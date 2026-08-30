@@ -2473,7 +2473,7 @@ window.CANVAS_INSPECT = {
  "see": "A man sits three-quarter-length in black against a wall that changes colour behind him. The hat arrives first: a stiff cylinder with a flat top, set on a brim wide enough to keep the forehead in half-shade. Under it falls long red-brown hair, a thin moustache, a face flushed at the cheek and nose-tip. The one clean white is a flat linen collar spread across the shoulders, and just below it the collar's own tassels catch a knot of dull gold. Two hands come out of the cloak at different heights: one at picture-left cupping something pale and rounded, one low at picture-right lying open-fingered in shadow. Behind, the wall splits: cool olive-grey on one side, warm brick red on the other, with a straight vertical edge running down through the red. Canvas weave and a fine craquelure show through the thin darks everywhere.",
  "about": "The subject is standing, in the social sense: a man of the Dutch burgher class presenting the face he wanted kept. Everything that signals rank here does so by subtraction. No colour, no lace, no jewel, only the tassels on the collar; the wealth is in the quantity of good black cloth and the quality of plain linen, which is exactly how a Reformed republic let a rich man look rich. The picture is also about steadiness. He is seated, squared to us, hands settled, mouth closed, a man who has stopped arranging himself. Set against that composure is the face, which is not flattered: broken veins, tired lids, a complexion the painter recorded rather than corrected. The tension between an unshakeable public costume and a candid, aging head is what the portrait actually holds, and it is why the black is worth this much of the surface.",
  "craft": "The hard problem in a picture like this is that four-fifths of it is one colour, and dark paint has no range to spare. What the surface now shows is layering rather than mixing: thin transparent darks over a warm ground, so the cloak reads brown-black where the ground comes through and blue-black where the paint sits thicker, and the shoulder turns without a single drawn edge. How much of that flatness is choice and how much is the discoloured varnish over it, the catalogue says cannot be told. Against that the collar is opaque and loaded, put down in a few broad strokes with the folds carried by shadow, not by line. The flesh gets the only real impasto, small dragged touches of pink and grey that model the cheek in relief you can read as texture. Composition is a slow diagonal: hat, collar, tassels, then down and out to the two hands at unequal heights. Nothing is centred, and nothing is symmetrical except the collar.",
- "context": "A date of about 1663 puts the picture in the last decade of Rembrandt's life, after the insolvency and the forced sale of his collection, when he was living in rented rooms on the Rozengracht and still taking portrait commissions from men who could pay. Amsterdam portraiture of those years had settled into this uniform: black cloak, flat linen band, tall hat, dark ground, nothing that would date the sitter to a season. The plate reproduced here is the National Gallery of Art's canvas, catalogued there as Rembrandt with no qualifier; the date is a circa built on costume, because the signature's final digit has worn away — read as 1662 in the 1890s, as 1663 by 1935, and now gone. The sitter has no name: the museum will go no further than a well-to-do burgher, probably an Amsterdam merchant, read from dress and bearing alone.",
+ "context": "A date of about 1663 puts the picture in the last decade of Rembrandt's life, after the insolvency and the forced sale of his collection, when he was living in rented rooms on the Rozengracht and still taking portrait commissions from men who could pay. Amsterdam portraiture of those years had settled into this uniform: black cloak, flat linen band, tall hat, dark ground, nothing that would date the sitter to a season. The picture hangs at the National Gallery of Art, catalogued there as Rembrandt with no qualifier; the date is a circa built on costume, because the signature's final digit has worn away — read as 1662 in the 1890s, as 1663 by 1935, and now gone. The sitter has no name: the museum will go no further than a well-to-do burgher, probably an Amsterdam merchant, read from dress and bearing alone.",
  "deeper": [
   {
    "t": "A solid before a face",
@@ -2542,7 +2542,12 @@ window.CANVAS_INSPECT = {
  ],
  "by": "Opus 4.8",
  "beside": "Three decades earlier came what was likely Rembrandt's first commission from outside his own family, and the terms were reversed. Portrait of Nicolaes Ruts gives a named Amsterdam merchant whose sable robe and fur hat announce exactly which trade paid for them; the costume is an advertisement, and it works by addition. Here the transaction has been emptied. No name survives, no goods are named, and the only thing sold to the eye is the quantity of black cloth a man could afford to keep plain. Both sitters commissioned their own faces; one wanted his business remembered, the other wanted nothing remembered but the composure. Subtraction, it turns out, costs more.",
- "refs": [{"id":"portrait-of-nicolaes-ruts","text":"Portrait of Nicolaes Ruts"}]
+ "refs": [
+  {
+   "id": "portrait-of-nicolaes-ruts",
+   "text": "Portrait of Nicolaes Ruts"
+  }
+ ]
 },
 
 "van-gogh-roses": {
@@ -2557,7 +2562,7 @@ window.CANVAS_INSPECT = {
    "y": 0.3,
    "w": 0.33,
    "h": 0.34,
-   "body": "Sit inside the densest part of the bouquet and the whites come apart into a dozen separate decisions. Some petals are laid in nearly pure white, thick and standing off the surface; others are white cut with green so they sink back a step; others carry a cool blue-grey in the cupped shadow where a bloom folds in on itself. Roundness arrives without a single dark contour: each flower is a rosette of short strokes turning around a centre, and the turn of the stroke does the modelling a drawn line would do elsewhere. Then look into the throats of two or three of the open blooms, where the tone goes warm, a cream leaning toward pink. Whether that is surviving lake or simply how the paint was mixed cannot be told from the plate; the analysed sample came from the table under the flowers, not from a petal."
+   "body": "Sit inside the densest part of the bouquet and the whites come apart into a dozen separate decisions. Some petals are laid in nearly pure white, thick and standing off the surface; others are white cut with green so they sink back a step; others carry a cool blue-grey in the cupped shadow where a bloom folds in on itself. Roundness arrives without a single dark contour: each flower is a rosette of short strokes turning around a centre, and the turn of the stroke does the modelling a drawn line would do elsewhere. Then look into the throats of two or three of the open blooms, where the tone goes warm, a cream leaning toward pink. Whether that is surviving lake or simply how the paint was mixed cannot be told by eye; the analysed sample came from the table under the flowers, not from a petal."
   },
   {
    "t": "Just short of the top edge",
@@ -2589,7 +2594,7 @@ window.CANVAS_INSPECT = {
    "y": 0.6,
    "w": 0.23,
    "h": 0.34,
-   "body": "The jug is the least van Gogh thing in the picture and the most necessary one. Plain earthenware, a dull ochre that reads toward rose-brown on this plate, a swelling belly, a small foot, a lip that barely clears the leaves. Almost nowhere else on this canvas is there a warm colour at all; the entire warm budget is spent here, low and central, acting as ballast under all that cool white. It is modelled more conventionally than anything around it too, with one side lit and the other in shadow and a soft light coming back off the tabletop. Van Gogh needed a single object the eye would accept as solid and ordinary so that everything else could stay as loose as it liked. The scale is the wit of it: this modest pot is holding a bouquet three times its size."
+   "body": "The jug is the least van Gogh thing in the picture and the most necessary one. Plain earthenware, a dull ochre that reads toward rose-brown here, a swelling belly, a small foot, a lip that barely clears the leaves. Almost nowhere else on this canvas is there a warm colour at all; the entire warm budget is spent here, low and central, acting as ballast under all that cool white. It is modelled more conventionally than anything around it too, with one side lit and the other in shadow and a soft light coming back off the tabletop. Van Gogh needed a single object the eye would accept as solid and ordinary so that everything else could stay as loose as it liked. The scale is the wit of it: this modest pot is holding a bouquet three times its size."
   },
   {
    "t": "The corner that keeps time",
@@ -2605,7 +2610,7 @@ window.CANVAS_INSPECT = {
    "y": 0,
    "w": 0.28,
    "h": 0.32,
-   "body": "Empty ground, worked over every square inch. The green is laid in long strokes leaning the same way, which then bend as they approach the flowers, so the wall behaves like a current running around an obstacle. Two or three greens are at work, at least as this plate shows them: a yellower one beneath, a cooler one over it, the underlayer surfacing between strokes as thin bright seams. That broken surface is why the background never settles into backdrop, it has as much event in it as the bouquet does, just no subject. It also solves the value problem. A flat green of this lightness would have swallowed white flowers whole, whereas a green that flickers gives white something to sit on top of. Half the picture's effect comes from the corner nobody looks at."
+   "body": "Empty ground, worked over every square inch. The green is laid in long strokes leaning the same way, which then bend as they approach the flowers, so the wall behaves like a current running around an obstacle. Two or three greens are at work, at least as the eye can separate them: a yellower one beneath, a cooler one over it, the underlayer surfacing between strokes as thin bright seams. That broken surface is why the background never settles into backdrop, it has as much event in it as the bouquet does, just no subject. It also solves the value problem. A flat green of this lightness would have swallowed white flowers whole, whereas a green that flickers gives white something to sit on top of. Half the picture's effect comes from the corner nobody looks at."
   },
   {
    "t": "The picture that was pink",
@@ -2618,7 +2623,12 @@ window.CANVAS_INSPECT = {
  ],
  "by": "Opus 4.8",
  "beside": "The same test was run the previous summer with his own face. In Self-Portrait, made at the asylum weeks after a breakdown had stopped him working, he faced himself with palette and brushes to find out whether hand and eye still held together, and sent the answer north to his brother. Here the question is identical and the sitter has been removed. No face, no palette, nothing that could be read as confession, only cut flowers in a plain pot, done well. It is the harder version of the proof, because a bouquet cannot plead. Competence has to be visible in the paint or nowhere.",
- "refs": [{"id":"vincent-van-gogh-self-portrait-2","text":"Self-Portrait"}]
+ "refs": [
+  {
+   "id": "vincent-van-gogh-self-portrait-2",
+   "text": "Self-Portrait"
+  }
+ ]
 },
 
 "morisot-the-mother-and-sister-of-the-artist": {
@@ -2973,7 +2983,7 @@ window.CANVAS_INSPECT = {
  "see": "A vast arch of limestone fills almost the whole frame, pale gray-ochre rock stratified in long horizontal bands, blistered and shelved and lit as if from the open air behind you. Under it the light stops. The cave mouth opens onto a flat black pool that gives back nothing but a few smeared reflections, and the interior recedes into a brown-black nothing the eye cannot fix. One small pale figure stands at the water's edge at lower left, dwarfed, the only warm-lit vertical in the picture. At the lower right the water breaks its stillness and spills over wet rock. The whole thing is built as a contrast of two zones: a bright, legible, heavily worked rock face above, and a dark, unreadable interior below, the boundary between them running as a ragged seam across the middle of the canvas.",
  "about": "This is a portrait of a specific place near Ornans, the source of the river Loue, and it is about what a place looks like when it is indifferent to you. There is no drama staged, no mythology, no picturesque framing that flatters the site. The cave is simply large and old and dark, and the human presence is reduced to a speck who has come to fish, not to marvel. The picture is about geology as much as scenery: the reading eye is invited to trace how the rock was laid down and cut, how water made this hollow over an unimaginable span. The darkness at the center is the real subject, an honest refusal to fill the void with anything invented. It is landscape as fact rather than mood, the earth's own body treated with the same unsentimental attention Courbet gave to stone-breakers and burials.",
  "craft": "The engine of the picture is the palette knife. Courbet loads the blade and drags pigment across the rock so the paint itself becomes stratified stone, ridge and shelf built from the smear rather than drawn line. That worked, tactile surface up top is set against passages of thin, near-transparent dark below, where the pool is scumbled and wiped almost to bare tone. The one place the knife is set aside is the tiny spear-fisherman, painted conventionally with the brush so the human yardstick stays legible at that scale. He controls the eye by value alone: the lit figure and pale rock rim pull you in, then the great central black holds you and refuses to release. Composition is a low arch anchored by that ragged mid-canvas seam, weighted left by the figure and vented right by the falling water so the stillness never becomes inert. The restricted range of grays, ochres and browns is discipline, not poverty, forcing every effect from touch and value.",
- "context": "By the mid-1860s Courbet was the notorious head of Realism, already scandalous for showing peasants and provincial life at monumental scale and for rejecting the idealized landscape the Salon prized. He returned often to the Franche-Comte country of his childhood around Ornans, and the caves and river-sources of the Jura became a recurring motif in these years. The grotto pictures sit alongside his hunting scenes and seascapes as studies of raw nature observed rather than composed. They also feed a growing appetite among collectors for these dark, matter-of-fact wilderness views. The plate here comes from the National Gallery of Art in Washington. Courbet painted the Loue source more than once, so the specific dimensions, condition and provenance belong to this canvas and not to its siblings.",
+ "context": "By the mid-1860s Courbet was the notorious head of Realism, already scandalous for showing peasants and provincial life at monumental scale and for rejecting the idealized landscape the Salon prized. He returned often to the Franche-Comte country of his childhood around Ornans, and the caves and river-sources of the Jura became a recurring motif in these years. The grotto pictures sit alongside his hunting scenes and seascapes as studies of raw nature observed rather than composed. They also feed a growing appetite among collectors for these dark, matter-of-fact wilderness views. The canvas hangs at the National Gallery of Art in Washington. Courbet painted the Loue source more than once, so the specific dimensions, condition and provenance belong to this canvas and not to its siblings.",
  "deeper": [
   {
    "t": "the ragged seam",
@@ -3026,7 +3036,12 @@ window.CANVAS_INSPECT = {
  ],
  "by": "Opus 4.8",
  "beside": "Courbet worked the same Loue valley in The Stream, and setting the two side by side shows the grotto's bargain at its opposite extreme. There the knife builds wet rock and dense wood into a ravine that stays wholly legible, every shelf and current readable, the eye free to wander in and out. Here the identical method carries you only as far as the lit arch before the black pool refuses to be read at all. The stream trusts the knife to describe a place; the grotto uses the same blade to describe the limit of description, the point where honest observation reaches a dark it declines to invent past.",
- "refs": [{"id":"courbet-the-stream-le-ruisseau-du-puits-noir-vallee-de-la-loue","text":"The Stream"}]
+ "refs": [
+  {
+   "id": "courbet-the-stream-le-ruisseau-du-puits-noir-vallee-de-la-loue",
+   "text": "The Stream"
+  }
+ ]
 },
 
 "degas-scene-from-the-steeplechase-the-fallen-jockey": {
@@ -3093,7 +3108,7 @@ window.CANVAS_INSPECT = {
  "see": "A small boy stands alone at the front of a shallow stone platform, lit hard from the left so the whole figure reads as a single upright silhouette against a warm, near-featureless brown void. He is dressed like a miniature grandee: a jerkin and breeches under a cape embroidered all over with gold thread, slashed sleeves that let a soft gold satin puff through, a flat white lace collar and cuffs, mustard-yellow hose and small heeled black shoes. His left arm is akimbo, elbow cocked outward, hand set on the hip; his right hand grips an iron chain. Behind his leg a mastiff puppy is held on that chain and turns its head away to the side. The palette is deliberately narrow — dark ground, gold, and the two hot notes of yellow at the legs and a rust in the dog — so the eye ricochets between the pale face at the top and the bright stockings at the bottom, held together by the vertical of the child.",
  "about": "This is a portrait about rank arriving early. The sitter is a boy of a great Genoese banking family, and every device usually reserved for an adult aristocrat has been handed to a child: the full-length format normally reserved for the powerful, the raised platform that lifts him above the viewer, the confident hand-on-hip, the costly gold-shot dress. The picture is not interested in the boy as a boy so much as in the lineage he embodies and will one day carry. Yet the painter lets a real child survive inside the formula — the round face, the wary unsettled look, the smallness of the hand on the oversized attitude of command. The mastiff puppy on its iron chain doubles the message: constancy, faithfulness, a household in miniature held in check. The result reads as a claim about a dynasty's future dressed in the manners of its present.",
  "craft": "The composition is built on a single strong vertical broken by two horizontals — the pale collar high up and the bright hose low down — and van Dyck uses that scaffold to move the eye fast from face to feet and back. Value does most of the work: the near-black mass of the costume is kept from going dead by the gold threading that catches light in a fine restless mesh, so the dark is alive rather than flat. The face is painted with the softest transitions in the picture, thinly and warmly, against the crisper handling of lace and braid, which is where he spends his precision. Watch how little sits in the background — a single tonal shift suggests a step and a wall, and nothing competes with the figure. The low horizon and the platform tilt the boy slightly above eye level, lending an ordinary child the address of a portrait of state.",
- "context": "Van Dyck spent the early 1620s in Genoa, and this belongs to that Italian sojourn, when he adapted the full-length aristocratic portrait to the tastes of the city's banking dynasties. The Cattaneo were among his patrons, and this boy was painted as part of a family group of likenesses; the pendant portrait is his sister Maddalena, and a full-length of their mother, Marchesa Elena Grimaldi Cattaneo, came from the same 1623 commission, so the picture belongs to a dynastic set rather than standing in isolation. Working in his mid-twenties, van Dyck was already absorbing Titian and the grand Venetian manner while forging the elegant, slightly cool formula that would later make him the defining court portraitist in England. The plate here comes from the National Gallery of Art in Washington. Reading a small child in the full apparatus of state portraiture tells you as much about Genoese self-presentation as about the boy.",
+ "context": "Van Dyck spent the early 1620s in Genoa, and this belongs to that Italian sojourn, when he adapted the full-length aristocratic portrait to the tastes of the city's banking dynasties. The Cattaneo were among his patrons, and this boy was painted as part of a family group of likenesses; the pendant portrait is his sister Maddalena, and a full-length of their mother, Marchesa Elena Grimaldi Cattaneo, came from the same 1623 commission, so the picture belongs to a dynastic set rather than standing in isolation. Working in his mid-twenties, van Dyck was already absorbing Titian and the grand Venetian manner while forging the elegant, slightly cool formula that would later make him the defining court portraitist in England. The painting is in the National Gallery of Art in Washington. Reading a small child in the full apparatus of state portraiture tells you as much about Genoese self-presentation as about the boy.",
  "deeper": [
   {
    "t": "The face that undoes the pose",
@@ -3155,13 +3170,18 @@ window.CANVAS_INSPECT = {
    "y": 0,
    "w": 1,
    "h": 1,
-   "body": "Step back and see how little the painter needed. There is no room, no drapery, no furniture — only a warm brown wall, a single tonal shift marking a step, and the pale stone the boy stands on. That emptiness is a decision, not a shortcut: with nothing to compete, the eye has nowhere to go but the figure, and the full-length format and low horizon do the rest, lifting a child to the address of a state portrait. Read the whole plate at once and the strategy is plain — narrow palette, one strong vertical, two bright accents top and bottom, and a void engineered to make a small person occupy a large space with complete ease.",
+   "body": "Step back and see how little the painter needed. There is no room, no drapery, no furniture — only a warm brown wall, a single tonal shift marking a step, and the pale stone the boy stands on. That emptiness is a decision, not a shortcut: with nothing to compete, the eye has nowhere to go but the figure, and the full-length format and low horizon do the rest, lifting a child to the address of a state portrait. Read the whole picture at once and the strategy is plain — narrow palette, one strong vertical, two bright accents top and bottom, and a void engineered to make a small person occupy a large space with complete ease.",
    "_check": "full frame synthesis"
   }
  ],
  "by": "Opus 4.8",
  "beside": "The boy was never meant to hang alone. His companion is his sister's pendant, Maddalena Cattaneo, and the two were built to answer each other across a wall: his mastiff turns its head away from him precisely because her portrait once stood where its gaze is aimed, closing a circuit between the pictures. Same year, same house, same borrowed grandeur handed early to a child. But the bargain divides by sex — his swagger leans on the hand-on-hip stance of a man of standing, hers on the softer decorum reserved for a daughter. Set side by side, the pair reads less as two children than as one dynasty rehearsing its future in two voices.",
- "refs": [{"id":"anthony-van-dyck-maddalena-cattaneo","text":"Maddalena Cattaneo"}]
+ "refs": [
+  {
+   "id": "anthony-van-dyck-maddalena-cattaneo",
+   "text": "Maddalena Cattaneo"
+  }
+ ]
 },
 
 "rousseau-tropical-forest-with-monkeys": {
@@ -3228,7 +3248,7 @@ window.CANVAS_INSPECT = {
  "see": "A wall of trees fills most of the frame, dark and weather-beaten, backed by a sky of piled grey cloud that carries as much drama as anything below it. The eye enters low, at a broad stream that spills white over a ledge of rock, then is pulled up and to the right by a broken, gnarled tree whose exposed roots grip a rocky outcropping at the edge. Beyond the water a glade opens where a small flock of sheep grazes, and tall living trees rise at the center and left, their crowns catching a thin, cool light that never quite becomes sunshine. A man and a woman walk a path across the rolling hillside in the middle distance, dwarfed by everything around them. The palette is olive, umber, slate, and a bruised white; colour is withheld so that the few lit passages — the broken trunk, the falling water, a rift of sky — do the work of drawing you through the dense, shadowed mass.",
  "about": "This is a forest as a place of time rather than shelter. Ruisdael sets living growth against conspicuous decay: the upright trees that still reach for light stand beside a broken tree whose roots cling, half torn free, to bare rock, and beside stumps and stones worn by the same water that keeps moving through. The picture is less a topographical record than a meditation on process — things rise, things rot, water finds its level, and the human pair on the path are incidental to a cycle far larger than them. The low viewpoint refuses any comforting overlook; even as the view opens across the water to the grazing glade beyond, you are held close among the trees, made to feel their scale and their indifference. Even the sky, unsettled and heavy, belongs to the same argument: nothing here is fixed or fair-weather. It is nature observed without pastoral sweetening, dignified and a little severe.",
  "craft": "The composition is built on a diagonal that runs from the bright water low at center up to the broken tree at the right, crossed by the verticals of the standing trees — a tension of collapse against endurance that organizes the whole. Ruisdael controls the eye almost entirely through value: he keeps the greens muted and the darks deep so that a handful of pale accents, the pale wood of the broken tree, the cascade, the torn opening in the cloud, become stepping-stones through the gloom. Foliage is described in massed tonal clumps rather than counted leaves, dry over wet, with flecks of lighter paint scumbled on the crowns to suggest light snagging on edges. The rocks and water at the base are handled with a loaded, broken touch that reads as texture up close and as splash and stone at distance. The sky, freely brushed, sets the emotional weather and balances the density below.",
- "context": "Jacob van Ruisdael, working in the mid-seventeenth-century Dutch Republic, turned landscape from a decorative backdrop into a subject with its own gravity, and the wooded scene with a fallen tree and running water is among his most personal inventions. Where much Dutch landscape of the period prized bright, level, sky-filled country, Ruisdael sought out the dense and the ruinous — the mortality that a forest quietly stages. That seriousness would make him the touchstone for later landscapists who wanted nature to carry feeling. The plate here comes from the National Gallery of Art, whose collection holds several of his forest and waterfall subjects; this one dates to about 1655. Ruisdael returned to these motifs repeatedly, and the composition closely parallels a waterfall landscape of his in the Uffizi that shares the same diminutive figures and grazing sheep, so the specific object matters: the reading above is drawn from this picture as reproduced, not from a related version.",
+ "context": "Jacob van Ruisdael, working in the mid-seventeenth-century Dutch Republic, turned landscape from a decorative backdrop into a subject with its own gravity, and the wooded scene with a fallen tree and running water is among his most personal inventions. Where much Dutch landscape of the period prized bright, level, sky-filled country, Ruisdael sought out the dense and the ruinous — the mortality that a forest quietly stages. That seriousness would make him the touchstone for later landscapists who wanted nature to carry feeling. The picture belongs to the National Gallery of Art, whose collection holds several of his forest and waterfall subjects; this one dates to about 1655. Ruisdael returned to these motifs repeatedly, and the composition closely parallels a waterfall landscape of his in the Uffizi that shares the same diminutive figures and grazing sheep, so the specific object matters: the reading above is drawn from this picture as reproduced, not from a related version.",
  "deeper": [
   {
    "t": "The broken tree",
@@ -3273,7 +3293,12 @@ window.CANVAS_INSPECT = {
  ],
  "by": "Opus 4.8",
  "beside": "The same hand that lets this wood rot builds something unkillable two years earlier in Castle Bentheim. There Ruisdael stacks the same wooded mass, the same weather, the same climbing diagonal — but instead of a snapped trunk clinging to bare rock at the top of the rise, a fortress crowns the hill, permanence made monumental. It is the identical argument at the opposite pole: one canvas hands the summit to a thing that endures, the other to a thing that has already failed. Set them together and Ruisdael's real subject clarifies. He is not painting places but the wager between standing and falling, and here, deliberately, he lets falling win.",
- "refs": [{"id":"castle-bentheim","text":"Castle Bentheim"}]
+ "refs": [
+  {
+   "id": "castle-bentheim",
+   "text": "Castle Bentheim"
+  }
+ ]
 },
 
 "amedeo-modigliani-roma-woman-with-baby": {
@@ -3588,7 +3613,7 @@ window.CANVAS_INSPECT = {
  "see": "A boy stands three-quarter length against a warm brown void, turned a few degrees so one shoulder comes forward. He is built out of three temperatures the eye reads instantly: the cool near-black of a fur-lined overcoat sliding off both shoulders, the hot rose of a slashed satin doublet buttoned up the middle, and the ruddy live flesh of a young face lit from the upper left. A small white collar breaks the dark under his chin; a white eight-pointed cross sits on the coat over his heart. Below, a red-gold sash cinches the waist, and a gilt sword-hilt catches light at his hip. His near hand comes down empty-looking at lower left, closed around a pale glove. The background is not black but a breathing umber, darker at the edges, so the figure seems lit rather than pasted on.",
  "about": "This is a child dressed as an institution. Ranuccio Farnese was about twelve, a grandson of the reigning pope, and the picture's real subject is the collision between that soft unfinished face and the adult machinery of rank hung on him: the Knights of Malta cross he had just been granted, the sword, the costly fur, the satin that costs more than most sitters earned in a year. Titian lets the two readings stay in tension rather than resolving them. The regalia insists on gravity; the mouth, the still-rounded cheek and the slightly uncertain gaze keep giving the game away. It is a portrait about a boy being asked to carry a family's ambition before he has grown into it, and about how a great painter can honor the office without pretending the person inside it is anything but young.",
  "craft": "Titian organizes the whole thing around a single bright diagonal: the rose doublet climbs from the low glove to the lit face, and everything dark is arranged to frame that climb. He paints the satin wet-in-wet, dragging a loaded brush so each slash of the fabric is a real stroke of pigment catching light, not a drawn line filled in. Against that busy surface he keeps the coat almost featureless, a matte dark that lets the eye rest and makes the rose sing louder by contrast. The flesh is built in thin warm glazes over a ruddy ground, which is why the boy looks blood-lit rather than powdered. Note how little is fully described: hands, cross and hilt are stated with a few decisive touches and then left, so your eye finishes them. Economy at the edges, lavish attention at the face.",
- "context": "Painted c.1542, when Titian was the portraitist every European court competed for and the Farnese were the papal family of the moment. Ranuccio was the grandson of Pope Paul III; his family had sent him to Venice as prior of a wealthy Knights of Malta property, whose badge he wears here newly conferred. The commission arose in that Venetian moment and helped open the Farnese door for Titian, who would soon paint the pope himself and the wider clan. The picture belongs to the run of portraits that made Titian the painter princes wanted: candid about the individual, flattering to the office. The plate here is the canvas now held by the National Gallery of Art in Washington.",
+ "context": "Painted c.1542, when Titian was the portraitist every European court competed for and the Farnese were the papal family of the moment. Ranuccio was the grandson of Pope Paul III; his family had sent him to Venice as prior of a wealthy Knights of Malta property, whose badge he wears here newly conferred. The commission arose in that Venetian moment and helped open the Farnese door for Titian, who would soon paint the pope himself and the wider clan. The picture belongs to the run of portraits that made Titian the painter princes wanted: candid about the individual, flattering to the office. The canvas now hangs at the National Gallery of Art in Washington.",
  "deeper": [
   {
    "t": "The face that undoes the costume",
@@ -3649,7 +3674,12 @@ window.CANVAS_INSPECT = {
  ],
  "by": "Opus 4.8",
  "beside": "Van Dyck's Filippo Cattaneo, painted eighty years later, sets a boy of roughly the same age against the same problem from the opposite side. That child is a Genoese heir, and van Dyck lets him stay a child: soft dress, a small dog, nothing borrowed from the world of grown men. Titian does the reverse. He hangs a twelve-year-old with a knight's cross, a sword, fur and satin, the full apparatus of an adult office conferred before it could be earned. Both painters know the face gives the years away. One protects the boyhood and paints around it; the other stages the collision and lets the strain of it show.",
- "refs": [{"id":"anthony-van-dyck-filippo-cattaneo","text":"Filippo Cattaneo"}]
+ "refs": [
+  {
+   "id": "anthony-van-dyck-filippo-cattaneo",
+   "text": "Filippo Cattaneo"
+  }
+ ]
 },
 
 "rubens-the-fall-of-phaeton": {
@@ -4040,7 +4070,7 @@ window.CANVAS_INSPECT = {
  "see": "A river runs straight back into a low sun, and the whole picture is organized around that single retreat of light. The banks are near-black at the edges, thick with backlit foliage, and they lean inward like theatre wings, so the eye is funnelled down the pale corridor of water toward a hazy center that has almost no drawing in it at all. The sun sits just above the far treeline, small and veiled, and drops a long molten reflection down the river's middle. Everything reads as tone before it reads as thing: the leaves resolve into leaves only where they catch a rim of light, and the far bank dissolves into vapor. The left foreground is the one place of sharp, close description — palms, tangled vine, a fallen bank — and it exists mainly to make the luminous distance feel farther and softer by contrast.",
  "about": "This is a tropical river in the Americas rendered less as a place than as a condition of light. Church had spent time in the equatorial New World, and the picture is his late statement about wilderness as something felt through atmosphere rather than mapped through detail. The subject is not really the river or the palms; it is the moment the low sun turns humid air into a visible substance you can look through and almost breathe. The darkness of the framing jungle is not menace so much as the price of that radiance — the eye earns the glowing center by passing out of shadow. There is a quiet devotional undertone common to his generation of American landscape: the wilderness held up as a place where light behaves like grace. But it is stated softly here, through vapor and reflection, not through any figure or overt symbol.",
  "craft": "The engine is aerial perspective pushed to an extreme: contrast, edge, and color all collapse toward the middle, so distance is built almost entirely from softening rather than from converging lines. Church reserves his hardest edges and darkest darks for the near left, then lets every plane going back lose a degree of definition, until the far bank is only a warm gray suggestion. The palette is narrow — umber and olive in shadow, a pale rose-and-cream light — which lets the one bright note, the sun and its reflected column, carry the entire picture. Note the vertical mirror of light on the water: it is what keeps the horizontal river from draining tension out of the composition, a spine of brightness holding the two dark wings apart. The paint is thin and blended in the sky and water, worked more densely and drily in the foliage.",
- "context": "Frederic Edwin Church was the leading figure of the second generation of American landscape painting, trained under Thomas Cole and famous by mid-century for vast, exacting canvases drawn from travels in the equatorial Andes and the far north. El Rio de Luz comes late, in 1877, after the era's taste for panoramic wilderness had begun to cool and after Church's own health had started to limit his ambitions. It reads as a distilled, more intimate return to the South American material that made his name — smaller in reach, more inward in mood, trading the earlier spectacle for atmosphere. The plate here is the National Gallery of Art's canvas. By this date the grand public-exhibition machinery around such pictures was fading, which suits the quieter, almost private tone of the work.",
+ "context": "Frederic Edwin Church was the leading figure of the second generation of American landscape painting, trained under Thomas Cole and famous by mid-century for vast, exacting canvases drawn from travels in the equatorial Andes and the far north. El Rio de Luz comes late, in 1877, after the era's taste for panoramic wilderness had begun to cool and after Church's own health had started to limit his ambitions. It reads as a distilled, more intimate return to the South American material that made his name — smaller in reach, more inward in mood, trading the earlier spectacle for atmosphere. This canvas belongs to the National Gallery of Art. By this date the grand public-exhibition machinery around such pictures was fading, which suits the quieter, almost private tone of the work.",
  "deeper": [
   {
    "t": "the veiled sun",
@@ -4109,7 +4139,12 @@ window.CANVAS_INSPECT = {
  ],
  "by": "Opus 4.8",
  "beside": "Church had one teacher, Thomas Cole, and the pupil kept the master's faith in radiance as grace while stripping out everything that once made it legible. In The Voyage of Life: Old Age Cole spends his light loudly: the clouds part on a shaft of glory, an angel waits inside it, and the meaning is spelled in figure and symbol so no viewer can miss it. Here the same devotional light is dissolved into vapor. There is no angel, no shaft, no allegory at all — only a veiled sun raising the value of humid air. The pupil trusts the glow to say alone what the master needed a figure to declare.",
- "refs": [{"id":"cole-the-voyage-of-life-old-age","text":"The Voyage of Life: Old Age"}]
+ "refs": [
+  {
+   "id": "cole-the-voyage-of-life-old-age",
+   "text": "The Voyage of Life: Old Age"
+  }
+ ]
 },
 
 "titian-the-feast-of-the-gods": {
@@ -4252,7 +4287,7 @@ window.CANVAS_INSPECT = {
    "y": 0.62,
    "w": 0.6,
    "h": 0.26,
-   "body": "Read the plate as a colour argument. Meléndez sorts the figs into two families — luminous yellow-greens and deep bruised purples — and lets them jostle without blending. The greens carry the light and sit forward; the violets fall back into shadow and knit the pile to the darkness behind. Each fruit keeps a taut, slightly matte skin with a powdery bloom, and he varies the stem scars and dimples so no two repeat. The heaping is deliberately unstable — figs perched, leaning, one nearly rolling off the rim — which reads as a pile just set down, not an arrangement composed. That casualness is the hardest thing here to fake."
+   "body": "Read the heaped fruit as a colour argument. Meléndez sorts the figs into two families — luminous yellow-greens and deep bruised purples — and lets them jostle without blending. The greens carry the light and sit forward; the violets fall back into shadow and knit the pile to the darkness behind. Each fruit keeps a taut, slightly matte skin with a powdery bloom, and he varies the stem scars and dimples so no two repeat. The heaping is deliberately unstable — figs perched, leaning, one nearly rolling off the rim — which reads as a pile just set down, not an arrangement composed. That casualness is the hardest thing here to fake."
   },
   {
    "t": "Torn crust and crumb",
@@ -4268,7 +4303,7 @@ window.CANVAS_INSPECT = {
    "y": 0.11,
    "w": 0.25,
    "h": 0.38,
-   "body": "The bottle is almost pure shadow, a near-black glass mass that could have been a dead hole in the picture. Meléndez saves it with two things: the cool grey-white glint sliding down its shoulder and belly, which tells you it is smooth wet glass and not just darkness, and the cork jammed loosely in the neck, casually off-centre. That single reflected highlight is doing structural work — without it the shape flattens into the brown ground. The bottle also functions as the dark backdrop the figs are thrown against, its blackness making the fruit's greens ring louder. It is the still life's anchor: tallest, quietest, heaviest thing on the shelf."
+   "body": "The bottle is almost pure shadow, a near-black glass mass that could have been a dead hole in the picture. Meléndez saves it with two things: the cool grey-white glint sliding down its shoulder and belly, which tells you it is smooth wet glass and not just darkness, and the cork jammed loosely in the neck, casually off-centre. That single reflected highlight is doing structural work; paint the glass one flat tone and it sinks into the brown ground. The bottle also functions as the dark backdrop the figs are thrown against, its blackness making the fruit's greens ring louder. It is the still life's anchor: tallest, quietest, heaviest thing on the shelf."
   },
   {
    "t": "Staves and hoops of the cask",
@@ -4289,7 +4324,12 @@ window.CANVAS_INSPECT = {
  ],
  "by": "Opus 4.8",
  "beside": "The same eye works at a wholly different scale in The Afternoon Meal (La Merienda), where Meléndez spreads food across an open hillside with figures gathered round it, air and distance to spare. Here the bargain reverses: no room, no people, no sky. The provisions are shoved to a shallow ledge and pressed almost against your face, the background sealed off in unlit brown. What the larger picture states through setting and company, this one wins by pure crowding — the same bread, the same patient looking, but with everywhere to expand traded for nowhere to hide.",
- "refs": [{"id":"the-afternoon-meal-la-merienda","text":"The Afternoon Meal (La Merienda)"}]
+ "refs": [
+  {
+   "id": "the-afternoon-meal-la-merienda",
+   "text": "The Afternoon Meal (La Merienda)"
+  }
+ ]
 },
 
 "eva-gonzales-nanny-and-child": {
@@ -4456,7 +4496,7 @@ window.CANVAS_INSPECT = {
    "y": 0.525,
    "w": 0.13,
    "h": 0.1,
-   "body": "Between the rose window and the portals a small light-coloured disc sits on the axis, a pale round accent set into the darker stone. It marks a feature on the real front, but Monet treats it as a note of colour more than a described object, a soft creamy circle that catches the eye halfway down the central spine. Its function on the canvas is rhythmic: it steps the descent from the deep blue rose above to the warm brown mouth below, a bright pause between the two darkest zones. Small as it is, mask the surrounding stone and you feel how it steadies the middle of the composition."
+   "body": "Between the rose window and the portals a small light-coloured disc sits on the axis, a pale round accent set into the darker stone. It marks a feature on the real front, but Monet treats it as a note of colour more than a described object, a soft creamy circle that catches the eye halfway down the central spine. Its function on the canvas is rhythmic: it steps the descent from the deep blue rose above to the warm brown mouth below, a bright pause between the two darkest zones. Small as it is, it steadies the middle of the composition, and the eye leans on it every time it travels from the rose window down to the portal."
   },
   {
    "t": "The signature",
@@ -4477,7 +4517,12 @@ window.CANVAS_INSPECT = {
  ],
  "by": "Opus 4.8",
  "beside": "The same carved front stands in Rouen Cathedral, West Façade, Sunlight, painted from the same window, and setting the two side by side is the whole argument made visible. There the stone burns bright and golden; here it holds back into a quieter daytime, cooler in the portals, the warmth thinned to the upper right. Nothing moved between them but the hour. Neither is the true version, because there is no true version — only this light, then that light, the identical masonry rebuilt each time it is touched. What each picture withholds, the other supplies, and the building itself turns out to be the one thing that never quite arrives.",
- "refs": [{"id":"claude-monet-rouen-cathedral-west-facade-sunlight","text":"Rouen Cathedral, West Façade, Sunlight"}]
+ "refs": [
+  {
+   "id": "claude-monet-rouen-cathedral-west-facade-sunlight",
+   "text": "Rouen Cathedral, West Façade, Sunlight"
+  }
+ ]
 },
 
 "arnold-bocklin-the-sanctuary-of-hercules": {
@@ -4516,7 +4561,7 @@ window.CANVAS_INSPECT = {
    "y": 0.76,
    "w": 0.34,
    "h": 0.18,
-   "body": "Track the scattered flecks of red across the pale stone floor and low step. They are the evidence of rite — read them as spilled libation, blood of sacrifice, or strewn petals and flowers left for the god. Whatever their exact nature, they are the freshest, most immediate marks in the painting, a jolt of warm colour laid over cool paving. Böcklin scatters them with apparent casualness, but they trace the path of the crouching figure and tie the human act at left to the shrine at centre. Without them the scene would be a still architecture study; with them it becomes a moment, something just done or being done."
+   "body": "Track the scattered flecks of red across the pale stone floor and low step. They are the evidence of rite — read them as spilled libation, blood of sacrifice, or strewn petals and flowers left for the god. Whatever their exact nature, they are the freshest, most immediate marks in the painting, a jolt of warm colour laid over cool paving. Böcklin scatters them with apparent casualness, but they trace the path of the crouching figure and tie the human act at left to the shrine at centre. Those few marks convert a still architecture study into a moment, something just done or being done."
   },
   {
    "t": "The shut-out sea",
@@ -4537,7 +4582,12 @@ window.CANVAS_INSPECT = {
  ],
  "by": "Opus 4.8",
  "beside": "Böcklin worked the same bargain elsewhere on a shadowed coast, and setting the two together shows the stakes flip. Here the wall glows because small acts keep it sacred; the men crouch, the red is fresh, and the order holds against the leaning trees. In Ruin of a Villa near the Sea the contest is already lost — the masonry stands, but no one tends it, and nature has finished the encroachment this shrine merely fears. What separates them is not the stone or the sea but the presence of the rite. Take the supplicants away and the sanctuary would slide, course by course, into that other, abandoned picture.",
- "refs": [{"id":"arnold-bocklin-ruin-of-a-villa-near-the-sea","text":"Ruin of a Villa near the Sea"}]
+ "refs": [
+  {
+   "id": "arnold-bocklin-ruin-of-a-villa-near-the-sea",
+   "text": "Ruin of a Villa near the Sea"
+  }
+ ]
 },
 
 "willem-van-de-velde-the-younger-and-studio-after-the-storm": {
@@ -4824,7 +4874,7 @@ window.CANVAS_INSPECT = {
    "y": 0.34,
    "w": 0.2,
    "h": 0.2,
-   "body": "Everything is aimed here, and given the subject that is not a figure of speech. The rings tighten to a small bullseye where Delaunay drops in the sharpest, most saturated notes of the whole work: a dark surround, then a hit of red-orange, a sliver of white, a core of blue. It reads as a target under a rifle sight, the point of the shot, and it is the only place he lets pure primaries sit at full strength and small scale, so the spot burns hotter and nearer than anything around it. Because the eye is drawn to the highest contrast, this centre acts as the hub the whole wheel turns on, and it is set just above the true middle so the disc feels lifted, spinning rather than resting. Take the figures away and this core alone would still organise the picture."
+   "body": "Everything is aimed here, and given the subject that is not a figure of speech. The rings tighten to a small bullseye where Delaunay drops in the sharpest, most saturated notes of the whole work: a dark surround, then a hit of red-orange, a sliver of white, a core of blue. It reads as a target under a rifle sight, the point of the shot, and it is the only place he lets pure primaries sit at full strength and small scale, so the spot burns hotter and nearer than anything around it. Because the eye is drawn to the highest contrast, this centre acts as the hub the whole wheel turns on, and it is set just above the true middle so the disc feels lifted, spinning rather than resting. Even with two figures pasted over it, this core keeps organising the picture on its own."
   },
   {
    "t": "Rings as an engine",
@@ -4869,7 +4919,12 @@ window.CANVAS_INSPECT = {
  ],
  "by": "Opus 4.8",
  "beside": "Set the spinning disc here against Kandinsky's Several Circles, where the same instrument runs at the opposite stake. Both trust concentric colour to carry the whole picture without drawn line or modelled shadow, rings pushing warm against cool until the surface seems to turn. But Kandinsky lets his circles drift weightless in a dark field, answerable to nothing outside themselves, pure and silent. Delaunay drives a newspaper murder into his wheel and pastes two collaged figures onto it, so the same luminous machine is made to hold a killing it will not absorb. One disc means only colour; the other is forced to mean a shooting, and neither concedes.",
- "refs": [{"id":"several-circles","text":"Several Circles"}]
+ "refs": [
+  {
+   "id": "several-circles",
+   "text": "Several Circles"
+  }
+ ]
 },
 
 "jervis-mcentee-mount-desert-island-maine": {
@@ -4892,7 +4947,7 @@ window.CANVAS_INSPECT = {
    "y": 0.32,
    "w": 0.16,
    "h": 0.14,
-   "body": "A single small figure in a pale shirt sits on the rock, knees up, back to us, gazing out over the valley. He is placed with care exactly where the near granite gives way to the far distance — the seam of the whole composition. He is not a character so much as a measure: he tells you how enormous the slab beneath him is, and he models the act the painting asks of you, sitting still and looking out rather than doing anything. Erase him and he is almost nothing missed; leave him in and he is the quiet human note that turns a rock study into a picture about contemplation."
+   "body": "A single small figure in a pale shirt sits on the rock, knees up, back to us, gazing out over the valley. He is placed with care exactly where the near granite gives way to the far distance — the seam of the whole composition. He is not a character so much as a measure: he tells you how enormous the slab beneath him is, and he models the act the painting asks of you, sitting still and looking out rather than doing anything. A few strokes buy a great deal here: he is the quiet human note that turns a rock study into a picture about contemplation."
   },
   {
    "t": "Distance made of thin paint",
@@ -4937,7 +4992,12 @@ window.CANVAS_INSPECT = {
  ],
  "by": "Opus 4.8",
  "beside": "The same island drew Church, and his Fog off Mount Desert takes the opposite bargain with the same tools. McEntee stakes everything on tactile granite in the foreground and lets the distance thin to nothing; Church starts from the thinning and pushes it over the whole canvas, dissolving rock, water, and shore alike into a single wall of weather. One painter trusts you to your feet on solid stone and asks you to leap across the void; the other takes the floor away entirely and leaves you inside the haze. Set side by side, they mark the two ends of a single question about how little paint the eye will still read as land.",
- "refs": [{"id":"church-fog-off-mount-desert","text":"Fog off Mount Desert"}]
+ "refs": [
+  {
+   "id": "church-fog-off-mount-desert",
+   "text": "Fog off Mount Desert"
+  }
+ ]
 },
 
 "anne-vallayer-coster-still-life-with-flowers-in-an-alabaster": {
@@ -5044,7 +5104,7 @@ window.CANVAS_INSPECT = {
    "y": 0.72,
    "w": 0.16,
    "h": 0.24,
-   "body": "On the near shore stand a woman in a red skirt and dark bodice and a man in a long dark coat, both facing away, out toward the water. They are small and they do nothing — no gesture, no work — they simply watch. This is the Friedrich device Dahl learned in Dresden: the figure seen from behind who stands in for you, so that your looking and theirs run the same line out to the moonlit distance. The red skirt matters practically as well as poetically — it is nearly the only warm colour in a blue-grey field, and Dahl uses it to hold the exact centre of the foreground and mark where the eye should land before it travels out. Without the couple the sea is only scenery; with them it becomes something being looked at."
+   "body": "On the near shore stand a woman in a red skirt and dark bodice and a man in a long dark coat, both facing away, out toward the water. They are small and they do nothing — no gesture, no work — they simply watch. This is the Friedrich device Dahl learned in Dresden: the figure seen from behind who stands in for you, so that your looking and theirs run the same line out to the moonlit distance. The red skirt matters practically as well as poetically — it is nearly the only warm colour in a blue-grey field, and Dahl uses it to hold the exact centre of the foreground and mark where the eye should land before it travels out. A stretch of water with someone standing before it stops being scenery and starts being something looked at."
   },
   {
    "t": "Nets on the poles",
@@ -5081,7 +5141,12 @@ window.CANVAS_INSPECT = {
  ],
  "by": "Opus 4.8",
  "beside": "The back-turned watcher is a device Dahl carried from the house he shared in Dresden, and its purest form hangs nearby in Friedrich's Seashore with fisherman — a lone figure on an almost empty shore, the sea and sky doing everything, the human reduced to a point of attention. Friedrich strips the coast to metaphysics: bare beach, vast air, no work, no place. Dahl takes the same standing witness and weights the other side of the bargain. His couple watch the same distance, but around them he hangs real nets, anchors a real hull, names a real fjord. The contemplation is identical; only Dahl insists it happen on an observed, working coast.",
- "refs": [{"id":"seashore-with-fisherman","text":"Seashore with fisherman"}]
+ "refs": [
+  {
+   "id": "seashore-with-fisherman",
+   "text": "Seashore with fisherman"
+  }
+ ]
 },
 
 "gustav-klimt-baby-cradle": {
@@ -5284,7 +5349,7 @@ window.CANVAS_INSPECT = {
    "y": 0.04,
    "w": 0.45,
    "h": 0.44,
-   "body": "Follow the pair of long pipes as they climb from behind the shoulder to the top-left corner. These are the drones, the fixed-note pipes that give a bagpipe its continuous hum, and here they are turned wood banded with paler ferrules that flare open at the ends. Compositionally they do the heavy lifting: two rigid parallel lines set against the soft round mass of head and bag, pulling the eye up and out of the tight huddle at the centre. Ter Brugghen paints them dry and exact, each collar of the wood catching a small hard highlight, so they feel like real machined objects sitting in the same air as the yielding flesh below. Without them the design would collapse inward."
+   "body": "Follow the pair of long pipes as they climb from behind the shoulder to the top-left corner. These are the drones, the fixed-note pipes that give a bagpipe its continuous hum, and here they are turned wood banded with paler ferrules that flare open at the ends. Compositionally they do the heavy lifting: two rigid parallel lines set against the soft round mass of head and bag, pulling the eye up and out of the tight huddle at the centre. Ter Brugghen paints them dry and exact, each collar of the wood catching a small hard highlight, so they feel like real machined objects sitting in the same air as the yielding flesh below. It is the drones that keep the design from collapsing inward."
   },
   {
    "t": "The turned wood, up close",
@@ -5329,7 +5394,12 @@ window.CANVAS_INSPECT = {
  ],
  "by": "Opus 4.8",
  "beside": "The half-length musician pressed close, all appetite and no anecdote, is a formula the young painter carried north out of Rome. Set him beside The Musicians, where Caravaggio crowds soft-lipped youths and their instruments to the front of the picture in the same warm huddle, and the debt is plain. But so is the revision. The Roman version leans into languor and sweetness, boys posed to be looked at; the piper is turned in strict profile and left to his labour, breath and wood over allure. What was there a scene arranged for the eye becomes here a single body caught working, the borrowed device cooled, greyed, and stripped down to the act of making sound.",
- "refs": [{"id":"the-musicians","text":"The Musicians"}]
+ "refs": [
+  {
+   "id": "the-musicians",
+   "text": "The Musicians"
+  }
+ ]
 },
 
 "bartolome-esteban-murillo-the-return-of-the-prodigal-son": {
@@ -5480,7 +5550,7 @@ window.CANVAS_INSPECT = {
    "y": 0.62,
    "w": 0.13,
    "h": 0.12,
-   "body": "Everything in the picture is arranged to deliver you here, and the payoff is two silhouettes barely taller than a brushstroke, standing at the near lip of the pale flat. They are hunters, one carrying a bow, the other what reads as a spear, and that detail changes what they mean: not idle contemplatives but working figures, proof that human life reaches even into this frozen waste. Placed almost dead center on the horizontal axis, they are the one vertical accident in a world of stacked bands, and the eye snags on them precisely because they are so small against so much. Without them the vastness has no measure; with them the whole expanse suddenly acquires human scale and a faint tenderness."
+   "body": "Everything in the picture is arranged to deliver you here, and the payoff is two silhouettes barely taller than a brushstroke, standing at the near lip of the pale flat. They are hunters, one carrying a bow, the other what reads as a spear, and that detail changes what they mean: not idle contemplatives but working figures, proof that human life reaches even into this frozen waste. Placed almost dead center on the horizontal axis, they are the one vertical accident in a world of stacked bands, and the eye snags on them precisely because they are so small against so much. Ask what gives the vastness its measure and the answer is this pair; through them the whole expanse acquires human scale and a faint tenderness."
   },
   {
    "t": "The luminous flat",
@@ -5517,7 +5587,12 @@ window.CANVAS_INSPECT = {
  ],
  "by": "Opus 4.8",
  "beside": "The same painter runs this bargain the other way in Sea beach in the fog, where the drained sky and pale flat return but the measure is taken away rather than given. Here two hunters, small as they are, pin the emptiness and make it inhabited; there the fog swallows depth and horizon until a lone figure at the water's edge has almost nothing to stand against, and the vastness turns from tender to annihilating. Same device in both — a body planted at the margin of an emptied world — but staked at opposite ends: one thaws toward habitation and returning light, the other dissolves toward a whiteout that refuses to resolve.",
- "refs": [{"id":"sea-beach-in-the-fog","text":"Sea beach in the fog"}]
+ "refs": [
+  {
+   "id": "sea-beach-in-the-fog",
+   "text": "Sea beach in the fog"
+  }
+ ]
 },
 
 "claude-monet-rouen-cathedral-west-facade-sunlight": {
@@ -5572,7 +5647,7 @@ window.CANVAS_INSPECT = {
    "y": 0.86,
    "w": 0.14,
    "h": 0.1,
-   "body": "At the very foot of the facade, easy to miss, sit a few small dabs of deep blue and violet that read as figures on the pavement below the cathedral. They are barely more than flecks, but they do enormous work: they give the wall of stone its true scale, so that the towering front above suddenly registers as immense. Monet keeps them cool and dark, the only clearly human note in a picture otherwise given entirely to stone and light. Their smallness is the measure. Without them the facade could be any size; with them it becomes overwhelming, and the human standing beneath it becomes a passing shadow."
+   "body": "At the very foot of the facade, easy to miss, sit a few small dabs of deep blue and violet that read as figures on the pavement below the cathedral. They are barely more than flecks, but they do enormous work: they give the wall of stone its true scale, so that the towering front above suddenly registers as immense. Monet keeps them cool and dark, the only clearly human note in a picture otherwise given entirely to stone and light. Their smallness is the measure. Nothing else in the picture reports the true size: they alone make the facade overwhelming, and the human standing beneath it a passing shadow."
   },
   {
    "t": "The signature and date",
@@ -5584,8 +5659,13 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "beside": "The bargain struck here — take one fixed structure, hold it still, and let it become a screen for a passing effect of light — is the same one Monet drives to the opposite hour in The Houses of Parliament, Sunset. There a modern seat of government, no older than the painter, is dissolved just as the eight-century cathedral is, but into the smoke and burnt orange of dusk over water rather than the flooding warmth of noon on stone. The cathedral is worked in crusted impasto that mimics carved masonry; the Parliament silhouette thins to a flat cutout drowning in coloured air. Same method, inverted architecture and inverted hour: a wall of sunlit stone and a shape sinking into its own reflected sunset.",
- "refs": [{"id":"claude-monet-the-houses-of-parliament-sunset","text":"The Houses of Parliament, Sunset"}]
+ "beside": "The bargain struck here — one fixed structure held still, a screen for a passing effect of light — is the same one Monet drives to the opposite hour in The Houses of Parliament, Sunset. There a modern seat of government, no older than the painter, is dissolved just as the eight-century cathedral is, but into the smoke and burnt orange of dusk over water rather than noon warmth on stone. The cathedral is crusted impasto mimicking carved masonry; the Parliament silhouette thins to a flat cutout drowning in coloured air. Same method, inverted hour: a wall of sunlit stone against a shape sinking into its own sunset.",
+ "refs": [
+  {
+   "id": "claude-monet-the-houses-of-parliament-sunset",
+   "text": "The Houses of Parliament, Sunset"
+  }
+ ]
 },
 
 "claude-monet-the-houses-of-parliament-sunset": {
@@ -5632,7 +5712,7 @@ window.CANVAS_INSPECT = {
    "y": 0.7,
    "w": 0.16,
    "h": 0.12,
-   "body": "Almost at dead center, low, sits a small dark rowboat with a faint figure, the only sign of human presence and the only true incident on the water. It is tiny, easily missed, and Monet keeps it that way on purpose. Its darkness anchors the shimmering surface and gives the eye one solid point to rest against after the dissolving towers above. Scale hides here too: measure the boat against the palace and you feel how vast the building is and how far off, how much cold water lies between you and it. Take the boat away and the lower half drifts into pure abstraction; it is the single thread tying the light-show back to a real river."
+   "body": "Almost at dead center, low, sits a small dark rowboat with a faint figure, the only sign of human presence and the only true incident on the water. It is tiny, easily missed, and Monet keeps it that way on purpose. Its darkness anchors the shimmering surface and gives the eye one solid point to rest against after the dissolving towers above. Scale hides here too: measure the boat against the palace and you feel how vast the building is and how far off, how much cold water lies between you and it. Its dark speck is the whole difference between a light-show and a river; the lower half stays legible only because one small solid thing floats on it."
   },
   {
    "t": "Water as broken color",
@@ -5652,8 +5732,13 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "beside": "Monet had stood at this same water before, thirty years younger, and painted the palace as a thing you could trust. In The Thames below Westminster the towers are drawn, their edges cut clean, the architecture solid enough to lean on while a grey river runs beneath it. Set that early canvas against this one and you are watching the same building at opposite ends of a conviction. Then the stone was the fact and the light was weather passing over it; now the light is the fact and the stone is barely permitted to exist, allowed only as a shadow the fire has not yet finished eating. The motif never changed. What changed was which of the two Monet decided was real.",
- "refs": [{"id":"claude-monet-the-thames-below-westminster","text":"The Thames below Westminster"}]
+ "beside": "Monet had stood at this same water before, thirty years younger, and painted the palace as a thing you could trust. In The Thames below Westminster the towers are drawn, their edges cut clean, the architecture solid enough to lean on while a grey river runs beneath it. Set the two together and you watch the same building at opposite ends of a conviction. Then the stone was the fact and the light was weather passing over it; now the light is the fact and the stone is barely permitted to exist. The motif never changed. What changed was which of the two Monet decided was real.",
+ "refs": [
+  {
+   "id": "claude-monet-the-thames-below-westminster",
+   "text": "The Thames below Westminster"
+  }
+ ]
 },
 
 "james-tissot-hide-and-seek": {
@@ -5720,8 +5805,13 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "beside": "The same game is played on the far side of the collection, out of doors and in full light. Morisot's Cache-cache sets a mother and child in a bright meadow, the hiding a soft, open-air ritual with nowhere really to disappear to; the air is the medium and the eye moves freely. Here the game is turned inside out. Tissot seals it in a brown, over-furnished room and rations the light so tightly that finding a hidden child becomes real work, the seeker's task handed to the viewer. Two painters take one nursery pastime and pitch it at opposite poles — open and bright against closed and dark, play as fresh air against play smuggled into a shrine of adult things.",
- "refs": [{"id":"berthe-morisot-untitled","text":"Cache-cache"}]
+ "beside": "The same game is played on the far side of the collection, out of doors and in full light. Morisot's Cache-cache sets a mother and child in a bright meadow, the hiding a soft, open-air ritual with nowhere really to disappear to. Here the game is turned inside out. Tissot seals it in a brown, over-furnished room and rations the light so tightly that finding a hidden child becomes real work, the seeker's task handed to the viewer. Two painters take one nursery pastime and pitch it at opposite poles — open and bright against closed and dark, play as fresh air against play smuggled into a shrine of adult things.",
+ "refs": [
+  {
+   "id": "berthe-morisot-untitled",
+   "text": "Cache-cache"
+  }
+ ]
 },
 
 "jean-beraud-paris-rue-du-havre": {
@@ -5860,7 +5950,7 @@ window.CANVAS_INSPECT = {
    "y": 0,
    "w": 0.16,
    "h": 0.85,
-   "body": "The dark tree trunk down the left edge is the quietest element and one of the most important. It is nearly black, the coolest dark in a painting otherwise built of heat, and it runs almost the full height of the canvas as a firm vertical. Paired with the man on the right, it turns the composition into something like a shallow stage: two dark uprights holding the bright, crowded middle in place. Without it the left side would spill open and the figures would drift. Macke keeps its surface flat and unfussy, a plane rather than a rendered tree, so it reads first as structure and only second as bark. It is the frame the color needs to stay taut."
+   "body": "The dark tree trunk down the left edge is the quietest element and one of the most important. It is nearly black, the coolest dark in a painting otherwise built of heat, and it runs almost the full height of the canvas as a firm vertical. Paired with the man on the right, it turns the composition into something like a shallow stage: two dark uprights holding the bright, crowded middle in place. The whole left side is held shut by it, and the figures are kept from drifting. Macke keeps its surface flat and unfussy, a plane rather than a rendered tree, so it reads first as structure and only second as bark. It is the frame the color needs to stay taut."
   },
   {
    "t": "Warring complementaries",
@@ -5872,8 +5962,13 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "beside": "The lesson that lets a lake become a few flat blue slabs rather than a distance was learned in Paris, and the collection keeps the source. Robert Delaunay's La Ville de Paris turns a whole modern metropolis into the same argument at the loudest possible pitch: overlapping planes of tuned color, space built from the contrast of hues instead of perspective, everything held on the vibrating surface. Set the two side by side and the bargain is identical, the stakes reversed. Delaunay pours the method into a city, monuments and towers and the machinery of a capital. Macke folds the same method down to three still strollers in a garden, and proves it can carry a whisper as well as a shout.",
- "refs": [{"id":"la-ville-de-paris","text":"La Ville de Paris"}]
+ "beside": "The lesson that lets a lake become a few flat blue slabs rather than a distance was learned in Paris, and the collection keeps the source. Robert Delaunay's La Ville de Paris turns a whole modern metropolis into the same argument at the loudest possible pitch: overlapping planes of tuned color, space built from the contrast of hues instead of perspective. The bargain is identical, the stakes reversed. Delaunay pours the method into a city, monuments and towers and the machinery of a capital. Macke folds the same method down to three still strollers in a garden, and proves it can carry a whisper as well as a shout.",
+ "refs": [
+  {
+   "id": "la-ville-de-paris",
+   "text": "La Ville de Paris"
+  }
+ ]
 },
 
 "giovanni-boldini-after-the-bath": {
