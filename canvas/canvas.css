@@ -463,6 +463,15 @@ a { color: inherit; }
 .cv-omni-sugg-sub { font: 400 10.5px/1.3 var(--mono); letter-spacing: .02em; color: var(--ink-faint); white-space: nowrap; flex-shrink: 0; }
 @media (max-width: 620px) {
   .cv-omni-input { width: min(180px, 52vw); }
+  /* The panel used to hang off .cv-omni with right:0, so a 320px-wide drop extended LEFTWARD from
+     a container that on a phone sits well inside the row — the results ran off the left edge of the
+     screen (owner-reported 2026-08-30). Anchoring it to the filter ROW instead of the input makes
+     the panel exactly as wide as the content column, so it cannot pass either edge whatever the
+     wrap puts the input next to. It also drops below the whole row rather than through the chips
+     under it. max-height keeps a long result list on screen instead of running off the bottom. */
+  .cv-filters { position: relative; }
+  .cv-omni { position: static; }
+  .cv-omni-drop { left: 0; right: 0; width: auto; max-height: 60vh; overflow-y: auto; overscroll-behavior: contain; }
 }
 /* ——— style (movement) chips ———
    Deliberately quieter than .cv-filters: lower-contrast, not uppercase, count set inside each
