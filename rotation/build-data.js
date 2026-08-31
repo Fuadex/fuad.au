@@ -3656,9 +3656,23 @@ const mediaTracks = [...trackPlays.entries()].sort((a, b) => b[1] - a[1]).map(([
   }
   const td = trackData(artist, title);
   const hasFeat = td && td.length >= 10;
+  // ALBUM "READS" (Fuad 2026-09-01). The song page shows Sounds (Spotify audio valence) against
+  // Reads (NRC lyric valence) — the gap between how a track sounds and what it says. Sounds is
+  // already album-level as dna[1]; Reads was not aggregated anywhere, so accumulate it here on the
+  // same play-weighted basis. Its own weight, because lyric coverage is thinner than audio: an
+  // album can have features for every track but lyrics for only some, and folding the two weights
+  // together would silently pull the average toward whichever tracks happen to have both.
+  if (albumIdx >= 0) {
+    const _m = aliasedBySlugAlbum(GENIUS_MOOD, slug(artist), slug(title));
+    if (_m && _m[0] != null) {
+      let a = albDNA.get(albumIdx);
+      if (!a) albDNA.set(albumIdx, a = { s: [0, 0, 0, 0, 0, 0], w: 0, x: [0, 0, 0, 0], xw: 0, key: new Map(), lyr: 0, lyrW: 0, lyrN: 0 });
+      a.lyr += _m[0] * plays; a.lyrW += plays; a.lyrN++;
+    }
+  }
   if (hasFeat && albumIdx >= 0) {   // accumulate album DNA: [energy, valence, dance, acoustic, instr, tempo]
     let a = albDNA.get(albumIdx);
-    if (!a) albDNA.set(albumIdx, a = { s: [0, 0, 0, 0, 0, 0], w: 0, x: [0, 0, 0, 0], xw: 0, key: new Map() });
+    if (!a) albDNA.set(albumIdx, a = { s: [0, 0, 0, 0, 0, 0], w: 0, x: [0, 0, 0, 0], xw: 0, key: new Map(), lyr: 0, lyrW: 0, lyrN: 0 });
     // s[5] = TEMPO was never accumulated (Fuad 2026-08-31: "every song features a BPM 50"). Five of
     // the six axes were summed and tempo silently stayed 0, so every album read 50 + 0 = 50 bpm —
     // the floor of the 50..190 remap, which looks like a real number and so went unnoticed.
@@ -3744,6 +3758,15 @@ for (const [ai, a] of albDNA) {
   let bk = -1, bm = -1, bw = 0;
   for (const [kk, wt] of a.key) if (wt > bw) { bw = wt; const p = kk.split(":"); bk = +p[0]; bm = +p[1]; }
   mediaAlbums[ai][10] = [...a.x.map(x => Math.round(x / a.xw)), bk, bm];
+}
+// [11] = album READS: [lyric valence 0..100, N tracks that carried lyrics]. The TRACK COUNT ships
+// with the value (not the play weight, which would just restate popularity) so the view can say
+// how much of the album the read rests on — a 12-track LP scored from 3 lyric sheets is a weaker
+// claim than one scored from 12, and showing N is the honest way to admit that. The value itself
+// stays PLAY-weighted, matching Sounds. Emitted only when at least one track has lyrics.
+for (const [ai, a] of albDNA) {
+  if (!a.lyrW) continue;
+  mediaAlbums[ai][11] = [Math.round(a.lyr / a.lyrW), a.lyrN];
 }
 // [9] = Spotify total_tracks (sparse) → per-album completeness ("played 7 of 12")
 for (const r of mediaAlbums) {
