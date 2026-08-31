@@ -1002,3 +1002,121 @@ window.ROTATION_absorbAlbum = (key) =>
     need.forEach(b => loadTier("g", repByBucket[b], done));
   };
 })();
+
+// ─────────────────────────────────────────────────────────────────────────────
+// itunesPreview — the shared runtime resolver for 30-second needle drops.
+//
+// Lives here because rotation-core loads before both rotation-media (song page, PreviewBtn) and
+// rotation-shelves (album/artist needle, ShNeedle), which each carried their own copy of the same
+// search and matcher. The copies had drifted, and both were wrong in the same way.
+//
+// WHAT WENT WRONG (Fuad, 2026-09-01: "Chalk - Tongue is the wrong song when previewing the song.
+// On album-level it doesn't have the needle drop but it should."). Both faults were iTunes SEARCH
+// RANKING, not missing data — Tongue is track 1 of Crystalpunk and does have a preview:
+//
+//   SONG PAGE  searched "Chalk Tongue". The album cut is not in the top 12; a "Tongue (Torba
+//              Remix)" is. The matcher stripped parentheticals before comparing, so the remix read
+//              as an exact title match and played. The old header promised this code "never serves
+//              the wrong version (remix/dub/live)" — paren-stripping had quietly broken that.
+//   ALBUM PAGE searched "Chalk Crystalpunk Tongue" and got ZERO results — the extra album words
+//              made the term too specific for search scoring — so the needle hid itself.
+//
+// THE FIX is to stop asking search to rank a single track when we know the album. Resolve the
+// COLLECTION instead and read the tracklist off it: a tracklist is authoritative where a ranked
+// search is a guess. It is also cheaper — two requests give previews for every track on the
+// record, rather than one request per track.
+//
+//   A. album known → search entity=album → exact collection match → lookup entity=song → cache
+//      the whole tracklist → answer this track and every later one from memory.
+//   B. no album, or A found nothing → the old song search, with the parenthetical hole closed.
+//
+// Returns a Promise<url|null>. Never throws.
+(function () {
+  const inflight = new Map();   // "artist~album"       → Promise<Map(track → url)>
+  const single = new Map();     // "artist~album~track" → Promise<url|null>
+
+  // Two normalizers, and the difference between them is the whole point. `base` strips
+  // parentheticals — needed to see past "(Remastered 2011)". `full` keeps them, so a remix is not
+  // silently equal to the album cut. Compare on `full` first; fall back to `base` only when the
+  // discarded qualifier is provably harmless.
+  const strip = (s) => (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+  const full = (s) => strip(s).replace(/[^a-z0-9぀-ヿ一-鿿]/gu, "");
+  const base = (s) => full(strip(s).replace(/\(.*?\)|\[.*?\]/g, ""));
+
+  // Qualifiers that denote the SAME recording, merely reissued. Anything absent from this list —
+  // remix, live, acoustic, demo, instrumental, edit, session, dub — is treated as a different
+  // performance and rejected. An allowlist, not a denylist: an unrecognised qualifier hides the
+  // button, which is the safe failure. Serving the wrong audio is not.
+  const BENIGN = /^(\d{4} )?(digital |half[- ]speed |analog )?remaster(ed)?( ?\d{4})?$|^mono$|^stereo$|^album version$|^original mix$|^explicit$|^clean$|^bonus track$/;
+  const qualifiersOk = (name) => (String(name).match(/\((.*?)\)|\[(.*?)\]/g) || [])
+    .every(q => BENIGN.test(q.replace(/[[\]()]/g, "").trim().toLowerCase()));
+
+  const titleOk = (cand, want) =>
+    full(cand) === full(want) || (base(cand) === base(want) && qualifiersOk(cand));
+
+  // Artist match: equal, or one name is a leading-token PREFIX of the other, after dropping a
+  // leading "the". Prefix rather than substring on purpose — substring let ANDREW CHALK answer for
+  // CHALK, which is how a drone musician's portrait, and very nearly his audio, reached this band.
+  // Prefix still absorbs the usual iTunes divergence, which is trailing ("X & Y", "X feat. Y").
+  const toks = (s) => strip(s).replace(/[^a-z0-9\s]/g, " ").trim().split(/\s+/).filter(t => t && t !== "the");
+  const artistOk = (a, b) => {
+    const x = toks(a), y = toks(b); if (!x.length || !y.length) return false;
+    const s = x.length <= y.length ? x : y, l = x.length <= y.length ? y : x;
+    return s.every((t, i) => l[i] === t);
+  };
+
+  const get = (u) => fetch(u).then(r => r.json()).catch(() => null);
+
+  // A — resolve the album's tracklist once, then serve every track on it from memory.
+  //
+  // Discovery goes through entity=SONG, not entity=album, which looks backwards and is not.
+  // entity=album is thin for smaller acts: it returns 5 results for "Radiohead OK Computer" and
+  // ZERO for both "Chalk Crystalpunk" and "Model/Actriz Dogsbody" — it would have silently
+  // disabled this whole path for exactly the artists that need it. A song search for the same
+  // term always comes back, and every song result carries its collectionId. So: ask for tracks,
+  // read the record they belong to, then fetch that record's authoritative tracklist.
+  function tracklist(artist, album) {
+    const ck = artist + "~" + album;
+    if (inflight.has(ck)) return inflight.get(ck);
+    const p = get("https://itunes.apple.com/search?term=" + encodeURIComponent(artist + " " + album) + "&media=music&entity=song&limit=25")
+      .then(j => {
+        const hit = ((j && j.results) || []).find(r => r.collectionId && full(r.collectionName) === full(album) && artistOk(r.artistName, artist));
+        if (!hit) return new Map();
+        return get("https://itunes.apple.com/lookup?id=" + hit.collectionId + "&entity=song&limit=100").then(t => {
+          const m = new Map();
+          for (const r of ((t && t.results) || [])) if (r.wrapperType === "track" && r.previewUrl) m.set(r.trackName, r.previewUrl);
+          return m;
+        });
+      })
+      .catch(() => new Map());
+    inflight.set(ck, p);
+    return p;
+  }
+
+  // B — last resort. Same search as before, but a candidate carrying an unvetted parenthetical is
+  // now rejected instead of being normalized into a false match.
+  function songSearch(artist, track) {
+    return get("https://itunes.apple.com/search?term=" + encodeURIComponent(artist + " " + track) + "&media=music&entity=song&limit=12")
+      .then(j => {
+        const hit = ((j && j.results) || []).find(r => r.previewUrl && titleOk(r.trackName, track) && artistOk(r.artistName, artist));
+        return hit ? hit.previewUrl : null;
+      })
+      .catch(() => null);
+  }
+
+  window.itunesPreview = function (o) {
+    const artist = o && o.artist, album = o && o.album, track = o && o.track;
+    if (!artist || !track) return Promise.resolve(null);
+    const ck = artist + "~" + (album || "") + "~" + track;
+    if (single.has(ck)) return single.get(ck);
+    const p = (album ? tracklist(artist, album) : Promise.resolve(new Map()))
+      .then(m => {
+        for (const [name, url] of m) if (full(name) === full(track)) return url;
+        for (const [name, url] of m) if (titleOk(name, track)) return url;
+        return songSearch(artist, track);
+      })
+      .catch(() => null);
+    single.set(ck, p);
+    return p;
+  };
+})();

@@ -921,9 +921,14 @@ function AlbumView({ id, go }) {
 // doing exactly that search all along, which is why Model/Actriz's Pirouette had a needle while
 // Poppy's own page had none. Requiring the TRACK NAME to match removes the guessing, so the same
 // source can now serve all three pages instead of only one.
+// 2026-09-01: that runtime lookup lived here as a private copy, and it DID hand back a remix —
+// Chalk's "Tongue" played "Tongue (Torba Remix)" because the matcher stripped parentheticals.
+// The whole resolver now lives once in rotation-core as window.itunesPreview, which prefers the
+// album's real tracklist over a ranked search. Passing ALBUM is what makes that path available,
+// so this call site now supplies it. See the long note there.
 // If no source has the track, the button hides itself. One Audio element, toggled; cleaned on nav.
 const PREVIEW_CID = "65b708073fc0480ea92a077233ca87bd";
-function PreviewBtn({ id, hue, artist, title }) {
+function PreviewBtn({ id, hue, artist, title, album }) {
   const [playing, setPlaying] = React.useState(false);
   const ref = React.useRef(null);
   const hash = window.ROTATION_PREVIEWS && window.ROTATION_PREVIEWS[id];
@@ -940,19 +945,10 @@ function PreviewBtn({ id, hue, artist, title }) {
     setItUrl(null);
     if (hash || fallback || !artist || !title) return;
     let dead = false;
-    const nrm = (s) => (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\(.*?\)|\[.*?\]/g, "").replace(/[^a-z0-9぀-ゟ゠-ヿ一-鿿]/gu, "");
-    fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(artist + " " + title)}&media=music&entity=song&limit=12`)
-      .then(r => r.json())
-      .then(j => {
-        if (dead) return;
-        const aN = nrm(artist), tN = nrm(title);
-        const hit = (j.results || []).find(r => r.previewUrl && nrm(r.trackName) === tN &&
-          (nrm(r.artistName).includes(aN) || aN.includes(nrm(r.artistName))));
-        setItUrl(hit ? hit.previewUrl : null);
-      })
-      .catch(() => { if (!dead) setItUrl(null); });
+    window.itunesPreview({ artist, album, track: title })
+      .then(u => { if (!dead) setItUrl(u); });
     return () => { dead = true; };
-  }, [id, hash, fallback, artist, title]);
+  }, [id, hash, fallback, artist, title, album]);
   const src = hash ? `https://p.scdn.co/mp3-preview/${hash}?cid=${PREVIEW_CID}` : (fallback || itUrl || null);
   if (!src) return null;
   const toggle = () => {
@@ -1338,7 +1334,7 @@ function TrackView({ id, go }) {
             by {known ? <b className="alb-artlink" onClick={() => go("artist", artistId)} title={`${data.artist} →`}>{data.artist}</b> : data.artist}
             {data.album && <> · <span className="tv-alblink" onClick={() => go("album", data.albumId)} title={`${data.album} →`}>{data.album}</span></>}</div>
           <div style={{ display: "flex", gap: 8, marginTop: 13, flexWrap: "wrap", alignItems: "center" }}>
-            <PreviewBtn id={id} hue={hue} artist={data.artist} title={data.title} />
+            <PreviewBtn id={id} hue={hue} artist={data.artist} title={data.title} album={data.album} />
             {seenLive && <span className="tv-seen" title="You've watched this performed live — it's in a setlist from a show you attended">🎤 Seen live</span>}
             <a className="r-extlink r-extlink-lf" href={`https://www.last.fm/music/${encodeURIComponent(data.artist)}/_/${encodeURIComponent(data.title)}`} target="_blank" rel="noopener noreferrer">last.fm ↗</a>
             <a className="r-extlink r-extlink-sp" href={`https://open.spotify.com/search/${encodeURIComponent(data.artist + " " + data.title)}`} target="_blank" rel="noopener noreferrer">Spotify ↗</a>

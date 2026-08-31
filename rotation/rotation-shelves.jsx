@@ -52,22 +52,16 @@ function ShNeedle({ trackKey, artist, album, track, hue, onState }) {
   // that made it feel safe was never checking the thing being named.
   // Now the TRACK must match too. That also unlocks album-less contexts (artist header, track
   // page): with a verified title, artist + track alone is enough to be sure what is playing.
+  // 2026-09-01: the search itself moved to rotation-core (window.itunesPreview), shared with the
+  // song page's PreviewBtn, which had a drifted copy of it. The version here folded the album into
+  // the SEARCH TERM and then required the collection to match. That double-counted the album and
+  // was why Chalk's Crystalpunk had no needle at all: "Chalk Crystalpunk Tongue" returns zero
+  // results, so the collection guard never got to run. The album is now used to fetch the record's
+  // real tracklist instead of to bias a search — which also means one lookup serves every track on
+  // the shelf rather than one request per needle.
   React.useEffect(() => {
     if (hash || vetted || !artist || !track || _shItCache.has(ck)) return;
-    const nrm = (s) => (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\(.*?\)|\[.*?\]/g, "").replace(/[^a-z0-9ぁ-んァ-ヶ一-龠]/gu, "");
-    const term = artist + " " + (album ? album + " " : "") + track;
-    fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(term)}&media=music&entity=song&limit=12`)
-      .then(r => r.json())
-      .then(j => {
-        const aN = nrm(artist), cN = nrm(album), tN = nrm(track);
-        const hit = (j.results || []).find(r => r.previewUrl &&
-          nrm(r.trackName) === tN &&                                   // the named song, not a neighbour
-          (!album || nrm(r.collectionName) === cN) &&                  // album still checked when we have one
-          (nrm(r.artistName).includes(aN) || aN.includes(nrm(r.artistName))));
-        const url = hit ? hit.previewUrl : null;
-        _shItCache.set(ck, url); setItUrl(url);
-      })
-      .catch(() => { _shItCache.set(ck, null); setItUrl(null); });
+    window.itunesPreview({ artist, album, track }).then(url => { _shItCache.set(ck, url); setItUrl(url); });
   }, [ck, hash, vetted]);
   const src = hash ? `https://p.scdn.co/mp3-preview/${hash}?cid=65b708073fc0480ea92a077233ca87bd` : (vetted || itUrl);
   if (!src) return null;
