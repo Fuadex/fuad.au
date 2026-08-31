@@ -90,6 +90,13 @@
    "toArtist": "Poets of the Fall",
    "toTrack": "Late Goodbye",
    "reason": "split: 'Late Goodbye' is Poets of the Fall's song (written for Max Payne 2); the 3 rows scrobbled under the game-OST artist 'Max Payne 2' move to the band and merge into their existing 'Late Goodbye' key. Remaining Max Payne 2 rows are the Hatakka/Kajasto score and stay under 'Max Payne 2'."
+  },
+  {
+   "fromArtist": "Scars on Broadway",
+   "fromTrack": "Fuck The System",
+   "toArtist": "System of a Down",
+   "toTrack": "Fuck The System",
+   "reason": "One play scrobbled under \"Daron Malakian\" from Steal This Album! — a System of a Down track, not a Scars on Broadway one. fromArtist is the POST-FOLD name on purpose: build-data runs canon() at ingest (L1593) BEFORE consulting MOVES (L1598), so by the time the move is looked up this row already reads \"Scars on Broadway\". Scars has no track of its own by this name, so there is no collision."
   }
  ],
  "Nocny Kochanek": {
@@ -15194,6 +15201,20 @@
     "to": "Psycho Killer",
     "type": "variant",
     "reason": "alternate version ((2005 Remastered Version))"
+   }
+  ]
+ },
+ "Scars on Broadway": {
+  "artist": [
+   {
+    "from": "Daron Malakian and Scars on Broadway",
+    "type": "variant",
+    "reason": "Later billing of the same band. Daron Malakian renamed the project for Dictator (2018) and kept it for Addicted To The Violence (2024); the played albums under this name are Dictator, Addicted To The Violence and Lives, all Scars on Broadway records. Owner ruling 2026-09-01."
+   },
+   {
+    "from": "Daron Malakian",
+    "type": "variant",
+    "reason": "Short billing of the same band, not a solo career. 24 of its 25 plays are Scars on Broadway material (Lives x19, Dictator x5, Guns Are Loaded). The one exception, \"Fuck The System\" off Steal This Album!, is a System of a Down song and is routed there by a _moves entry instead of riding along. Owner ruling 2026-09-01."
    }
   ]
  }

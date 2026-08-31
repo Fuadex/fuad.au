@@ -276,7 +276,7 @@ function AlbumView({ id, go }) {
     const hasNos = tracks.some(t => t.no);
     tracks.sort((x, y) => hasNos ? ((x.no || 999) - (y.no || 999)) || (y.plays - x.plays) : y.plays - x.plays);
     return { title: al[0], artist, plays: al[2], firstY: al[3], lastY: al[4], cover: al[6] || "", meta: al[7] || null,
-      tracks, trackPlays: tracks.reduce((s, t) => s + t.plays, 0), dna: al[8] || null,
+      tracks, trackPlays: tracks.reduce((s, t) => s + t.plays, 0), dna: al[8] || null, ext: al[10] || null,
       series: yearSeries(al[5], al[2]), rank: bestIdx + 1, albumCount: M.albums.length };
   }, [ready, id]);
 
@@ -298,6 +298,23 @@ function AlbumView({ id, go }) {
   const radar = dna ? [{ label: "Energy", value: dna[0] }, { label: "Tempo", value: dna[5] }, { label: "Dance", value: dna[2] }, { label: "Positive", value: dna[1] }, { label: "Acoustic", value: dna[3] }, { label: "Instr.", value: dna[4] }] : null;
   const eP = dna ? tastePctl("energy", dna[0]) : null, vP = dna ? tastePctl("valence", dna[1]) : null;
   const bpm = dna ? Math.round(50 + dna[5] / 100 * 140) : 0;
+  // Album stat block — the same row the song page shows, averaged up to the album (Fuad
+  // 2026-09-01: "I want the song-level values to also get averaged out at album level").
+  // ext = media row [10] = [loud dBx10, live, speech, pop, keyPitch, keyMode], play-weighted in
+  // build-data. Key is the play-weighted MODE, not a mean — pitch classes are categorical.
+  // followers stays ARTIST-level: it is a property of the act, not of one record, so averaging it
+  // across an album would be meaningless. It reads from R.AUDIO like the song page does.
+  const ext = data.ext;
+  const albArtAF = R.AUDIO && R.AUDIO[artistId];
+  const albAttrs = ext ? [
+    { k: "tempo", v: bpm || "—", u: bpm ? " bpm" : "" },
+    { k: "key", v: keyName(ext[4], ext[5]) || "—", t: "the key most of this album's plays sit in" },
+    { k: "loud", v: ext[0] ? (ext[0] / 10).toFixed(1) : "—", u: ext[0] ? " dB" : "" },
+    { k: "speech", v: ext[2], u: "%" },
+    { k: "live", v: ext[1], u: "%" },
+    { k: "pop", v: ext[3], u: "/100" },
+    { k: "followers", v: albArtAF ? fmtK(albArtAF[8]) : "—", t: "the artist's Spotify followers" },
+  ] : [];
   const avgSec = (R.TOTALS && R.TOTALS.avgTrackSec) || 216;
   const listenedMin = Math.round(avgSec * data.trackPlays / 60);
   const sr = data.series, sFirst = sr[0], sLast = sr[sr.length - 1], sPeak = sr.reduce((a, b) => b.p > (a ? a.p : 0) ? b : a, null);
@@ -508,6 +525,15 @@ function AlbumView({ id, go }) {
                 ))}
               </div>
             </div>
+            {/* same stat row the song page carries, averaged to the album (Fuad 2026-09-01) */}
+            {albAttrs.length > 0 && <div style={{ marginTop: 13, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(62px, 1fr))", gap: 9, borderTop: "1px solid var(--rule)", paddingTop: 12 }}>
+              {albAttrs.map(s => (
+                <div key={s.k} title={s.t || ""}>
+                  <div className="r-mono" style={{ fontSize: 8, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)" }}>{s.k}</div>
+                  <div style={{ fontSize: 13, marginTop: 1, whiteSpace: "nowrap" }}>{s.v}{s.u && <span style={{ fontSize: 9, color: "var(--ink-faint)" }}>{s.u}</span>}</div>
+                </div>
+              ))}
+            </div>}
           </div>
           <div className="r-card" style={{ padding: "16px 18px", display: "flex", flexDirection: "column", gap: 14 }}>
             <div>

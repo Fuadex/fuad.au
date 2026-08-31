@@ -3657,12 +3657,27 @@ const mediaTracks = [...trackPlays.entries()].sort((a, b) => b[1] - a[1]).map(([
   const td = trackData(artist, title);
   const hasFeat = td && td.length >= 10;
   if (hasFeat && albumIdx >= 0) {   // accumulate album DNA: [energy, valence, dance, acoustic, instr, tempo]
-    let a = albDNA.get(albumIdx); if (!a) albDNA.set(albumIdx, a = { s: [0, 0, 0, 0, 0, 0], w: 0 });
+    let a = albDNA.get(albumIdx);
+    if (!a) albDNA.set(albumIdx, a = { s: [0, 0, 0, 0, 0, 0], w: 0, x: [0, 0, 0, 0], xw: 0, key: new Map() });
     // s[5] = TEMPO was never accumulated (Fuad 2026-08-31: "every song features a BPM 50"). Five of
     // the six axes were summed and tempo silently stayed 0, so every album read 50 + 0 = 50 bpm —
     // the floor of the 50..190 remap, which looks like a real number and so went unnoticed.
     // TRACKDATA idx: 4 energy · 5 valence · 6 acoustic · 7 tempo · 8 dance · 9 instr (all 0..100).
     a.s[0] += td[4] * plays; a.s[1] += td[5] * plays; a.s[2] += td[8] * plays; a.s[3] += td[6] * plays; a.s[4] += td[9] * plays; a.s[5] += td[7] * plays; a.w += plays;
+    // EXTRAS (Fuad 2026-09-01: "I want the song-level values to also get averaged out at album
+    // level"). Play-weighted like the six axes above. TRACKDATA idx: 10 loud (dB x10) · 11 live ·
+    // 12 speech (both 0..100). Guarded on length >= 16 because the older 10-length rows stop at
+    // instr — a plain read there would average `undefined` into every album that mixes the two.
+    if (td.length >= 16) {
+      a.x[0] += td[10] * plays; a.x[1] += td[11] * plays; a.x[2] += td[12] * plays; a.x[3] += td[1] * plays; a.xw += plays;
+      // KEY IS CATEGORICAL — averaging pitch classes is meaningless (C and B would average to F#).
+      // Take the play-weighted MODE instead: the key the album actually spends most of its plays in.
+      // key = 0..11 pitch class (-1 unknown), mode = 1 major / 0 minor / -1 unknown.
+      if (td[13] >= 0 && td[14] >= 0) {
+        const kk = td[13] + ":" + td[14];
+        a.key.set(kk, (a.key.get(kk) || 0) + plays);
+      }
+    }
   }
   const row = [title, _ai(artist), plays, albumIdx, _tail(trackYear.get(key))];
   // [5] = track number. The released-tracklist disc position (discNo) is AUTHORITATIVE — it fixes
@@ -3719,6 +3734,17 @@ try {
 } catch (e) { /* report still prints the count if the sidecar can't be written */ }
 // play-weighted mean DNA per album → media album row [8] = [energy, valence, dance, acoustic, instr, tempo] (0..100)
 for (const [ai, a] of albDNA) if (a.w) mediaAlbums[ai][8] = a.s.map(x => Math.round(x / a.w));
+// [10] = album EXTRAS, play-weighted: [loud (dB x10), live 0..100, speech 0..100, pop 0..100,
+// keyPitch 0..11, keyMode 1 major/0 minor] — the song-level stat block averaged up to the album
+// (Fuad 2026-09-01). Key is the play-weighted MODE, not a mean: pitch classes are categorical, so
+// averaging C and B would land on F#. Absent when no track on the album carried a 16-length row,
+// and the key pair is omitted (-1,-1) when no track declared one.
+for (const [ai, a] of albDNA) {
+  if (!a.xw) continue;
+  let bk = -1, bm = -1, bw = 0;
+  for (const [kk, wt] of a.key) if (wt > bw) { bw = wt; const p = kk.split(":"); bk = +p[0]; bm = +p[1]; }
+  mediaAlbums[ai][10] = [...a.x.map(x => Math.round(x / a.xw)), bk, bm];
+}
 // [9] = Spotify total_tracks (sparse) → per-album completeness ("played 7 of 12")
 for (const r of mediaAlbums) {
   const tt = aliasedBySlugAlbum(ALBTRACKS, slug(_mArtists[r[1]]), slug(r[0]));
