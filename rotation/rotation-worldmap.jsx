@@ -16,6 +16,37 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
   const [view, setView] = React.useState("genre");   // genre | artist
   const { fam, sub } = filt;
   React.useEffect(() => { setHi(-1); }, [fam, sub, view]);
+
+  // ─── SHAPE: volume ⇄ share (Fuad 2026-09-01) ────────────────────────────────────────────────
+  // Same data, two readings. VOLUME is the flow as it has always drawn — one scale for every year,
+  // so the stack swells and thins with how much you played and the eye reads AMOUNT. SHARE scales
+  // each year to fill the height, squaring the chart into a rectangle so the eye reads PROPORTION:
+  // what a year was made of regardless of how big it was. A quiet 2013 and a huge 2019 become
+  // directly comparable, which is exactly what the volume view hides.
+  //
+  // ANIMATED, not switched. The two shapes share every point — only the vertical scale differs —
+  // so lerping that scale slides each band from one reading into the other. It reads as the chart
+  // stretching out to the frame, which is what it is: no path re-matching, no cross-fade.
+  const [shareOn, setShareOn] = React.useState(false);
+  const [normT, setNormT] = React.useState(0);
+  const normRaf = React.useRef(0);
+  React.useEffect(() => {
+    const to = shareOn ? 1 : 0;
+    const reduced = typeof window !== "undefined" && window.matchMedia
+      && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced || typeof requestAnimationFrame === "undefined") { setNormT(to); return; }
+    let from = null;
+    const DUR = 620, t0 = performance.now();
+    const ease = (p) => (p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2);   // in-out cubic
+    const step = (now) => {
+      const p = Math.min(1, (now - t0) / DUR);
+      setNormT((cur) => { if (from === null) from = cur; return from + (to - from) * ease(p); });
+      if (p < 1) normRaf.current = requestAnimationFrame(step);
+    };
+    cancelAnimationFrame(normRaf.current);
+    normRaf.current = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(normRaf.current);
+  }, [shareOn]);
   const series = React.useMemo(() => {
     const sumBy = (keyOf) => {
       const m = new Map();
@@ -69,9 +100,14 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
           {[["genre", fam != null ? "subgenres" : "genres"], ["artist", "bands"]].map(([k, lbl]) =>
             <button key={k} data-on={view === k} onClick={() => setView(k)}>{lbl}</button>)}
         </div>
+        {/* shape toggle — what the height MEANS, independent of which series are shown */}
+        <div className="r-seg r-seg-sm" title="volume: height is how much you played · share: every year fills the frame, so you read proportion">
+          {[[false, "volume"], [true, "share"]].map(([v, lbl]) =>
+            <button key={lbl} data-on={shareOn === v} onClick={() => setShareOn(v)}>{lbl}</button>)}
+        </div>
       </div>
       {hasFlow
-        ? <StreamGraph series={series} years={years} hi={hi} setHi={setHi} onPick={onPick} clickable={true} markYi={markYi} fixedH={FLOW_H} faint />
+        ? <StreamGraph series={series} years={years} hi={hi} setHi={setHi} onPick={onPick} clickable={true} markYi={markYi} fixedH={FLOW_H} faint normT={normT} />
         : <div style={{ padding: 18, minHeight: 224, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>not enough placed artists here for a flow.</div>}
       {hasFlow && <>
         {/* Legend well. The FLOOR (46px) is the 2026-07-05 rule: fewer series must not shrink the

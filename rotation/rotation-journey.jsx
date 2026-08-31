@@ -50,7 +50,12 @@ const SG_BANDS = {
   faint: { on: 0.16, hi: 0.38, off: 0.07, L: 0.66, C: 0.20, sL: 0.74, sC: 0.20,
            strokeOn: 0.74, strokeHi: 0.95, strokeOff: 0.22, w: 0.65, wHi: 1.9, sLHi: 0.80, sCHi: 0.25 },
 };
-function StreamGraph({ series, years, hi, setHi, onPick, clickable, markYi, fixedH, faint }) {
+// normT: 0 = VOLUME (every year drawn at the same scale, so the stack bulges and thins with how
+// much you played) · 1 = SHARE (each year scaled to fill the height, so the chart becomes a
+// rectangle and you read proportion instead of amount). Fractional values are the morph between
+// them — the two shapes share their points, so interpolating the SCALE alone slides every band
+// from one reading to the other without any path re-matching (Fuad 2026-09-01).
+function StreamGraph({ series, years, hi, setHi, onPick, clickable, markYi, fixedH, faint, normT = 0 }) {
   const BO = faint ? SG_BANDS.faint : SG_BANDS.solid;
   const L = React.useMemo(() => {
     const com = series.map(s => { let n = 0, d = 0; s.vals.forEach((v, i) => { n += v * years[i]; d += v; }); return d ? n / d : 9999; });
@@ -64,11 +69,18 @@ function StreamGraph({ series, years, hi, setHi, onPick, clickable, markYi, fixe
     const W = 1000, H = fixedH || Math.min(920, 500 + Math.max(0, series.length - 10) * 30), padX = 26, padTop = 22, padBot = 42, innerH = H - padTop - padBot, midY = padTop + innerH / 2, yScale = innerH / maxTotal;
     const xAt = (yi) => padX + (years.length === 1 ? 0 : yi / (years.length - 1)) * (W - 2 * padX);
     const bands = series.map(() => []);
-    years.forEach((y, yi) => { let acc = -totals[yi] / 2; order.forEach(i => { const v = series[i].vals[yi]; bands[i].push({ x: xAt(yi), yTop: midY - (acc + v) * yScale, yBot: midY - acc * yScale }); acc += v; }); });
+    // Per-year scale, lerped from the shared one. At normT 0 every year uses innerH/maxTotal (the
+    // original), at 1 it uses innerH/totals[yi] so the year fills the height whatever its volume.
+    // The stack is already centred on midY, so filling from a centred baseline squares the whole
+    // chart off rather than growing it downward.
+    const t = Math.max(0, Math.min(1, normT));
+    const scaleAt = (yi) => t === 0 ? yScale
+      : yScale + ((totals[yi] ? innerH / totals[yi] : yScale) - yScale) * t;
+    years.forEach((y, yi) => { const sc = scaleAt(yi); let acc = -totals[yi] / 2; order.forEach(i => { const v = series[i].vals[yi]; bands[i].push({ x: xAt(yi), yTop: midY - (acc + v) * sc, yBot: midY - acc * sc }); acc += v; }); });
     const area = (i) => { const b = bands[i]; const top = b.map(p => [p.x, p.yTop]), bot = b.map(p => [p.x, p.yBot]).reverse(); return `M ${top[0][0].toFixed(1)} ${top[0][1].toFixed(1)}` + _segs(top) + ` L ${bot[0][0].toFixed(1)} ${bot[0][1].toFixed(1)}` + _segs(bot) + " Z"; };
     const peak = {}; order.forEach(i => { let by = 0; series[i].vals.forEach((v, yi) => { if (v > series[i].vals[by]) by = yi; }); peak[i] = { yi: by, year: years[by], share: totals[by] ? series[i].vals[by] / totals[by] : 0 }; });
     return { order, bands, area, peak, W, H, xAt };
-  }, [series, years, fixedH]);
+  }, [series, years, fixedH, normT]);
 
   return (
     <svg viewBox={`0 0 ${L.W} ${L.H}`} style={{ width: "100%", height: "auto", display: "block" }} onMouseLeave={() => setHi(-1)}>
