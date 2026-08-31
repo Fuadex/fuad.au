@@ -94,6 +94,48 @@ const keyName = (k, m) => (k == null || k < 0) ? "" : PITCH[k] + (m === 0 ? " mi
 // Hoisted to module scope 2026-09-01 so the album Sounds/Reads pair uses the same ramp as the song
 // page — two ramps would make the same number read as two different colours between the views.
 const moodColor = (v) => `oklch(0.62 0.13 ${290 - Math.max(0, Math.min(100, v)) / 100 * 205})`;
+// Register vocabulary for calibrated/cathartic rows (GENIUS_MOOD[4] = index). ORDER IS THE EMIT'S —
+// .sptmp/nrc-audit/emit_v5.js — do not reorder. Null for legacy 4-element rows. Per-register hue is
+// for the bolded tone WORD, not the bars: neutral is chroma 0 (grey), anguished deep violet, joyful
+// gold. Module scope since 2026-09-01 — the album caption names the same words as the song page,
+// and a second copy of a decoding table is a drift waiting to happen.
+const REG_VOCAB = ['anguished', 'bittersweet', 'bleak', 'tender', 'angry', 'defiant', 'joyful', 'neutral', 'bitter'];
+const REG_HUES = { anguished: 290, bleak: 250, bitter: 110, angry: 25, bittersweet: 320, tender: 350, neutral: 0, defiant: 45, joyful: 85 };
+
+// Drag-to-scroll for the chip rails (Fuad 2026-09-01). Returns props to spread onto the scroller.
+// Pointer events + setPointerCapture, so the drag survives leaving the element — the same idiom the
+// world map's pan uses. The 4px threshold is what keeps CLICKING a chip working: below it nothing
+// is suppressed, above it we mark the element dragging and swallow the click that the browser fires
+// on release, so a drag that happens to end over a chip does not also navigate.
+function useDragScroll() {
+  const ref = React.useRef(null);
+  const st = React.useRef({ down: false, x: 0, left: 0, moved: false });
+  const onPointerDown = (e) => {
+    if (e.button != null && e.button !== 0) return;
+    const el = ref.current; if (!el) return;
+    st.current = { down: true, x: e.clientX, left: el.scrollLeft, moved: false };
+  };
+  const onPointerMove = (e) => {
+    const el = ref.current, s = st.current;
+    if (!el || !s.down) return;
+    const dx = e.clientX - s.x;
+    if (!s.moved && Math.abs(dx) > 4) {
+      s.moved = true; el.setAttribute("data-drag", "");
+      try { el.setPointerCapture(e.pointerId); } catch (x) {}
+    }
+    if (s.moved) { el.scrollLeft = s.left - dx; e.preventDefault(); }
+  };
+  const end = () => {
+    const el = ref.current;
+    if (el) el.removeAttribute("data-drag");
+    st.current.down = false;
+    // leave `moved` set until the click handler below has had its chance to swallow it
+  };
+  const onClickCapture = (e) => {
+    if (st.current.moved) { e.stopPropagation(); e.preventDefault(); st.current.moved = false; }
+  };
+  return { ref, onPointerDown, onPointerMove, onPointerUp: end, onPointerCancel: end, onClickCapture };
+}
 // TRACKDATA[7] and album DNA[5] hold RAW BPM as of 2026-09-01 (they were a lossy (bpm-50)/140
 // remap that clipped everything at/above 190). Radar and percentile axes still want 0..100, so
 // derive it from R.BPM_RANGE — the corpus's own measured min/max, recomputed each build — rather
@@ -321,6 +363,9 @@ function AlbumView({ id, go }) {
   // followers stays ARTIST-level: it is a property of the act, not of one record, so averaging it
   // across an album would be meaningless. It reads from R.AUDIO like the song page does.
   const ext = data.ext;
+  // one per rail — each needs its own ref and drag state
+  const tagDrag = useDragScroll();
+  const themeDrag = useDragScroll();
   const albSounds = dna ? dna[1] : null;   // play-weighted audio valence — "how it sounds"
   const albReads = data.reads || null;     // [play-weighted NRC lyric valence, N lyric-scored tracks]
   const albArtAF = R.AUDIO && R.AUDIO[artistId];
@@ -455,6 +500,17 @@ function AlbumView({ id, go }) {
         .alb-chipscroll::-webkit-scrollbar { display: none; }
         .alb-chiprow > .r-mono { flex-shrink: 0; }
         .alb-chipscroll > .r-chip { flex-shrink: 0; }
+        /* the themes row reuses this scroller, so its chips must not shrink either */
+        .alb-chipscroll .tv-theme { flex-shrink: 0; }
+        /* drag-to-scroll (Fuad 2026-09-01): grab cursor at rest, grabbing while held. The chips
+           keep their own pointer cursor — you drag the RAIL, you click a CHIP. */
+        .alb-chipscroll { cursor: grab; }
+        .alb-chipscroll[data-drag] { cursor: grabbing; user-select: none; }
+        .alb-chipscroll .r-chip, .alb-chipscroll .tv-theme { cursor: pointer; }
+        /* artist name under the title — was a bare bold with a pointer and no feedback */
+        .alb-artlink { cursor: pointer; color: var(--ink); border-bottom: 1px solid transparent;
+          transition: color .15s ease, border-color .15s ease; }
+        .alb-artlink:hover { color: var(--accent); border-bottom-color: var(--accent-dim); }
       `}</style>
       {/* an album's natural parent is its artist — go up to them, not back out to Explore.
           The back button lives at page left ABOVE the cover — its original home; both
@@ -469,7 +525,7 @@ function AlbumView({ id, go }) {
               (Fuad 2026-08-28): >26 chars → small clamp, >18 → mid clamp, else full size. */}
           <h1 className="r-title" style={{ fontSize: data.title.length > 30 ? "clamp(22px,3vw,36px)" : data.title.length > 26 ? "clamp(26px,3.6vw,44px)" : data.title.length > 18 ? "clamp(30px,4.2vw,52px)" : "clamp(36px,5vw,64px)" }}>{data.title}<span className="dot">.</span></h1>
           <div style={{ color: "var(--ink-soft)", fontSize: 15, marginTop: 6 }}>
-            by {known ? <b onClick={() => go("artist", artistId)} style={{ cursor: "pointer", color: "var(--ink)" }}>{data.artist}</b> : data.artist}</div>
+            by {known ? <b className="alb-artlink" onClick={() => go("artist", artistId)} title={`${data.artist} →`}>{data.artist}</b> : data.artist}</div>
           {livesOn && <div className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-faint)", marginTop: 5 }}>
             single · lives on <span className="link" style={{ cursor: "pointer", color: "var(--accent)" }} onClick={() => go("album", livesOn.id)} title={`${livesOn.title} →`}>{livesOn.title}</span></div>}
           {label && <div className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-faint)", marginTop: 4 }}>{label}{heardYr ? ` · you played it ${heardYr}` : ""}</div>}
@@ -481,7 +537,7 @@ function AlbumView({ id, go }) {
           {genreTags && genreTags.length > 0 && (
             <div className="alb-chiprow" style={{ marginTop: 12 }}>
               <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase" }}>last.fm</span>
-              <div className="alb-chipscroll">
+              <div className="alb-chipscroll" {...tagDrag}>
                 {genreTags.map(g => <span key={g} className="r-chip link" title={`Explore ${g} →`} onClick={() => go("explore", g)}>{g}</span>)}
               </div>
             </div>
@@ -578,8 +634,33 @@ function AlbumView({ id, go }) {
                       <div className="xp-bar" style={{ width: "100%" }}><div style={{ width: albReads[0] + "%", background: moodColor(albReads[0]) }} /></div>
                       <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{albReads[0]}</span>
                     </div>
-                    <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>
-                      how it sounds vs what it says · lyrics from {albReads[1]} track{albReads[1] === 1 ? "" : "s"}
+                    {/* Say what the two numbers MEAN, in the song page's words (Fuad 2026-09-01:
+                        "I don't really know what exactly that means anyway"). Same matrix: name the
+                        relationship, then name the tone. The register is the album's play-weighted
+                        MODAL one, so it is a word off the record rather than an average of words.
+                        Measured before writing this: sounds and reads correlate at r=0.178 across
+                        9,343 albums and disagree by 30+ on 22.8% of them — so the pairing is doing
+                        real work and the sentence has something to report. */}
+                    <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-soft)" }}
+                      title={`how it sounds (audio positivity) vs what it says (lyric positivity) · lyrics from ${albReads[1]} track${albReads[1] === 1 ? "" : "s"}`}>
+                      {(() => {
+                        const reg = albReads[2] != null && albReads[2] >= 0 ? REG_VOCAB[albReads[2]] : null;
+                        const gap = albSounds != null ? albSounds - albReads[0] : null;
+                        // 20, NOT the song page's 30. An album value is a play-weighted MEAN over
+                        // its tracks, and averaging compresses spread — album gaps run median 15 /
+                        // p75 28, so the track threshold only fires on 22.8% of albums and the
+                        // sound axis almost never changes the sentence. That is what made Sounds
+                        // look like it was riding along (Fuad 2026-09-01). At 20 it speaks on
+                        // 39.3%, and cases like With Teeth (51 vs 25) stop being called agreement,
+                        // which they plainly are not.
+                        const div = gap != null && Math.abs(gap) >= 20;
+                        const tone = reg ? <b style={{ color: `oklch(0.55 ${reg === "neutral" ? 0 : 0.13} ${REG_HUES[reg] || 0})` }}>{reg}</b> : null;
+                        if (gap == null) return tone ? <>Reads {tone}.</> : "lyric tone across the album";
+                        if (div) return gap > 0
+                          ? (tone ? <>Sounds bright, reads {tone}.</> : <>Sounds brighter than it reads.</>)
+                          : (tone ? <>Sounds heavy, reads {tone}.</> : <>Reads brighter than it sounds.</>);
+                        return tone ? <>Sound and words agree — {tone}.</> : <>Sound and words agree.</>;
+                      })()}
                     </div>
                   </div>
                 )}
@@ -616,9 +697,13 @@ function AlbumView({ id, go }) {
               {albThemes && (
                 <div style={{ marginTop: 12, borderTop: "1px solid var(--rule)", paddingTop: 11 }}>
                   <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 7 }}>Themes</div>
-                  <div className="tv-themes" style={{ margin: 0 }}
-                    title="Play-weighted across the tracks you've played from this album">
-                    {albThemes.list.map(t => <span key={t.theme} className="tv-theme">{t.theme}</span>)}
+                  {/* one row, scrolled rather than wrapped (Fuad 2026-09-01) — the cap is 5 and a
+                      wrapped block cost two lines in a card that is already dense. alb-chipscroll
+                      is the same scroller the last.fm genre row uses, so both behave alike. */}
+                  <div className="alb-chipscroll" {...themeDrag} title="Play-weighted across the tracks you've played from this album">
+                    <div className="tv-themes" style={{ margin: 0, flexWrap: "nowrap" }}>
+                      {albThemes.list.map(t => <span key={t.theme} className="tv-theme">{t.theme}</span>)}
+                    </div>
                   </div>
                 </div>
               )}
@@ -1155,15 +1240,9 @@ function TrackView({ id, go }) {
   const themes = (tGist && tGist.themes) || null;
   const seenLive = !!(R.GIGS && R.GIGS.liveSongs && R.GIGS.liveSongs.indexOf(id) >= 0);
   const divergent = (audVal != null && lyrVal != null && Math.abs(audVal - lyrVal) >= 30);
-  // Register vocabulary for calibrated/cathartic rows (mood[4] = index). ORDER IS THE EMIT'S —
-  // .sptmp/nrc-audit/emit_v5.js — do not reorder. reg is null for legacy 4-element rows, which
-  // fall back to the unmarked lyrEmo copy below.
-  const REG_VOCAB = ['anguished', 'bittersweet', 'bleak', 'tender', 'angry', 'defiant', 'joyful', 'neutral', 'bitter'];
+  // (REG_VOCAB / REG_HUES hoisted to module scope 2026-09-01 — the album caption names the same
+  //  register words, and two copies would be a decoding table that could silently drift.)
   const reg = (mood && mood[4] != null) ? REG_VOCAB[mood[4]] : null;
-  // (moodColor hoisted to module scope 2026-09-01 — shared with the album Sounds/Reads pair.)
-  // Per-register hue for the bolded register WORD in the note (not the bar). Same muted oklch family,
-  // keys mirror REG_VOCAB. neutral is chroma 0 (grey). Anguished→deep violet, joyful→gold.
-  const REG_HUES = { anguished: 290, bleak: 250, bitter: 110, angry: 25, bittersweet: 320, tender: 350, neutral: 0, defiant: 45, joyful: 85 };
   const regColor = reg ? `oklch(0.55 ${reg === 'neutral' ? 0 : 0.13} ${REG_HUES[reg] || 0})` : null;
   const bpm = f ? Math.round(f[7]) : 0;   // raw BPM straight from the dump — no remap to undo
   const totalMin = data.dur && data.plays ? Math.round(data.dur * data.plays / 60) : 0;

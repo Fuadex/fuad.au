@@ -3694,13 +3694,18 @@ const mediaTracks = [...trackPlays.entries()].sort((a, b) => b[1] - a[1]).map(([
     const _m = aliasedBySlugAlbum(GENIUS_MOOD, slug(artist), slug(title));
     if (_m && _m[0] != null) {
       let a = albDNA.get(albumIdx);
-      if (!a) albDNA.set(albumIdx, a = { s: [0, 0, 0, 0, 0, 0], w: 0, x: [0, 0, 0, 0], xw: 0, key: new Map(), lyr: 0, lyrW: 0, lyrN: 0 });
+      if (!a) albDNA.set(albumIdx, a = { s: [0, 0, 0, 0, 0, 0], w: 0, x: [0, 0, 0, 0], xw: 0, key: new Map(), lyr: 0, lyrW: 0, lyrN: 0, reg: new Map() });
       a.lyr += _m[0] * plays; a.lyrW += plays; a.lyrN++;
+      // REGISTER (GENIUS_MOOD[4], an index into REG_VOCAB) — the whole-lyric tone word. Play-
+      // weighted MODE, not a mean: these are categories, so averaging "bleak" and "joyful" into
+      // "tender" would invent a reading nothing on the record supports. Lets the album caption name
+      // the tone the way the song page does instead of leaving the two numbers unexplained.
+      if (_m[4] != null && _m[4] >= 0) a.reg.set(_m[4], (a.reg.get(_m[4]) || 0) + plays);
     }
   }
   if (hasFeat && albumIdx >= 0) {   // accumulate album DNA: [energy, valence, dance, acoustic, instr, tempo]
     let a = albDNA.get(albumIdx);
-    if (!a) albDNA.set(albumIdx, a = { s: [0, 0, 0, 0, 0, 0], w: 0, x: [0, 0, 0, 0], xw: 0, key: new Map(), lyr: 0, lyrW: 0, lyrN: 0 });
+    if (!a) albDNA.set(albumIdx, a = { s: [0, 0, 0, 0, 0, 0], w: 0, x: [0, 0, 0, 0], xw: 0, key: new Map(), lyr: 0, lyrW: 0, lyrN: 0, reg: new Map() });
     // s[5] = TEMPO was never accumulated (Fuad 2026-08-31: "every song features a BPM 50"). Five of
     // the six axes were summed and tempo silently stayed 0, so every album read 50 + 0 = 50 bpm —
     // the floor of the 50..190 remap, which looks like a real number and so went unnoticed.
@@ -3794,7 +3799,9 @@ for (const [ai, a] of albDNA) {
 // stays PLAY-weighted, matching Sounds. Emitted only when at least one track has lyrics.
 for (const [ai, a] of albDNA) {
   if (!a.lyrW) continue;
-  mediaAlbums[ai][11] = [Math.round(a.lyr / a.lyrW), a.lyrN];
+  let br = -1, bw = 0;
+  for (const [ri, wt] of a.reg) if (wt > bw) { bw = wt; br = ri; }
+  mediaAlbums[ai][11] = [Math.round(a.lyr / a.lyrW), a.lyrN, br];   // [valence, N tracks, regIdx|-1]
 }
 // [9] = Spotify total_tracks (sparse) → per-album completeness ("played 7 of 12")
 for (const r of mediaAlbums) {
