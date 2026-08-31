@@ -1432,24 +1432,17 @@ function TrackView({ id, go }) {
                                       : <>Sound and words agree.</>}
                                     {lyrEmo ? <> Lyric tone reads <b>{lyrEmo}</b>.</> : null}
                                   </>)}
-                        {/* PROVENANCE MARK (Fuad 2026-08-28): mood[3]===1 = valence re-scored by
-                            the local whole-lyric model (the surgical pass that caught bright-lexical
-                            masks over dark songs); unmarked rows are plain NRC lexicon. Lives in the
-                            note row — the axis grid is a fixed 3-column and must not gain children. */}
-                        {mood && mood[3] === 1 && (
-                          <span className="tv-mood-src" title="Valence re-scored by a whole-lyric language model — the word-count lexicon was misled by bright vocabulary over dark meaning. Unmarked tracks are plain NRC lexicon scores.">calibrated</span>
-                        )}
+                        {/* The "calibrated" provenance chip and the ? help bubble were removed here
+                            on Fuad's call (2026-09-01) — the row now carries the sentence alone,
+                            matching the album caption. The scoring provenance still EXISTS and
+                            still drives the copy: mood[3]===1 rows are the whole-lyric re-scores
+                            and mood[3]===2 the cathartic ones, and the matrix above still branches
+                            on both. It simply is not labelled on screen any more.
+                            "cathartic" is the sibling chip and is deliberately left in place —
+                            Fuad named calibrated and the question mark, not this one. */}
                         {mood && mood[3] === 2 && (
                           <span className="tv-mood-src" title="Reads furious, feels triumphant — the whole-lyric model rated this lyric's felt energy bright while its register stays dark, so the lexicon value was kept and the tension is named instead.">cathartic</span>
                         )}
-                      </span>
-                      <span className="tv-mood-help" tabIndex={0}>
-                        <i>?</i>
-                        <span className="tv-mood-tip">
-                          <b>Sounds</b> — how upbeat the music itself is: Spotify&#8217;s audio positivity, 0 gloomy &#8594; 100 euphoric.<br />
-                          <b>Reads</b> — how positive the lyrics are on the page, scored word-by-word against an emotion lexicon in the song&#8217;s language. Tracks tagged <b>calibrated</b> were re-scored by a whole-lyric model that reads meaning, not just vocabulary — it catches songs wearing bright words over dark content. Tracks tagged <b>cathartic</b> kept their lexicon score but the register tension is named — the model read the felt energy as bright while the lyric stays dark.<br />
-                          A wide gap is the classic trick: music that smiles while the words don&#8217;t.
-                        </span>
                       </span>
                     </div>
                   </div>
