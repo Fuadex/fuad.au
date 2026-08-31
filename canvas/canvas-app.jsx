@@ -3809,6 +3809,9 @@ function layoutWorldLeaders(halos, bubbles, opt) {
   // REST is where an unconflicted dot parks so a quiet halo still visibly emerges; MAX bounds a dodge
   // and the neighbourhood search (raising it costs mount time quadratically).
   const MINOUT = 0.3, REST = 0.7, MAXOUT = 3.6, GA = 2.399963;
+  // FAR-HALO REACH SCALING (Fuad 2026-09-01): unvisited venues with fewer connections get
+  // shorter leaders (half the base), gradually increasing with connection count.
+  const farMaxN = Math.max(1, ...halos.filter(h => h.far).map(h => h.list.length));
   const cityPts = halos.map(h => ({ x: h.x, y: h.y }));
   const nodes = [];
   for (const h of halos) {
@@ -3858,9 +3861,10 @@ function layoutWorldLeaders(halos, bubbles, opt) {
     // hug the rim as nubs, some fan to the old rest, and the ordinal graduation survives
     // inside the factor. Floor stays MINOUT; the descent still spends length only to dodge.
     const h01 = (s) => { let x = 7; for (let ci = 0; ci < s.length; ci++) x = (x * 31 + s.charCodeAt(ci)) >>> 0; return (x % 1000) / 1000; };
+    const farScale = h.far ? 0.5 + 0.5 * Math.sqrt(h.list.length / farMaxN) : 1;
     for (const p of pts) {
       const vary = 0.35 + 0.65 * h01(String((p.e && p.e.venue) || p.i));
-      const restOut = Math.min(MAXOUT, MINOUT + (baseOut - MINOUT + room * 0.45 * Math.sqrt(p.i)) * vary);
+      const restOut = Math.min(MAXOUT, MINOUT + (baseOut - MINOUT + room * 0.45 * Math.sqrt(p.i)) * vary * farScale);
       const dx = p.x - h.x, dy = p.y - h.y;
       const seedOut = Math.max(MINOUT, Math.min(restOut, (Math.hypot(dx, dy) - rimR) / dotR0));
       nodes.push({ e: p.e, city: h.city, key: h.x + "|" + h.y, bx: h.x, by: h.y, rim: rimR,
