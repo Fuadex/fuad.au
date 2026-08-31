@@ -1477,14 +1477,12 @@ function TrackView({ id, go }) {
               {themes && themes.length > 0 && (
                 <div style={{ marginTop: 12, borderTop: "1px solid var(--rule)", paddingTop: 11 }}>
                   <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 7 }}>Themes</div>
-                  <div className="tv-themes" style={{ margin: 0 }}>
+                  {/* the ? help bubble that sat after these chips is gone (Fuad 2026-09-01, with
+                      the Sounds/Reads one). Its copy moves to a hover title on the row, so the
+                      explanation is still reachable without a glyph sitting in the chip flow. */}
+                  <div className="tv-themes" style={{ margin: 0 }}
+                    title="The threads the lyrics keep returning to, reasoned from a close read of the words rather than counted off a lexicon. The first is the song's spine; the rest are what it brushes against.">
                     {themes.map(t => <span key={t} className="tv-theme">{t}</span>)}
-                    <span className="tv-mood-help" tabIndex={0}>
-                      <i>?</i>
-                      <span className="tv-mood-tip">
-                        The threads the lyrics keep returning to, reasoned from a close read of the words rather than counted off a lexicon. The first is the song&#8217;s spine; the rest are what it brushes against.
-                      </span>
-                    </span>
                   </div>
                 </div>
               )}
