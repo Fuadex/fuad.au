@@ -703,7 +703,15 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
           <g ref={gRef} transform={`translate(${view.x} ${view.y}) scale(${view.s})`}>
             {world.land.map((d, i) => <path key={i} d={d} fill="var(--bg-3)" stroke="var(--rule-2)" strokeWidth={0.4 / view.s} strokeOpacity={coastFade(view.s)} />)}
             {bubbles.slice().sort((a, b) => b.c.plays - a.c.plays).map(b => {
-              const on = hi === b.key, col = placeHue(b.c);
+              // SELECTED bubbles now read as selected (Fuad 2026-09-01: clicking a city "shouldn't
+              // just filter everything, the css should update to actually being active on the
+              // map"). Until now `sel` only drove the filtering — the dot you clicked looked
+              // identical to every other dot, so the map gave no answer to "which one did I pick".
+              // Selection borrows the hover treatment (full-opacity fill) and adds an accent ring
+              // on top, so it stays legible after the pointer moves away.
+              const selKey = sel ? sel.key : null;
+              const isSel = selKey != null && selKey === (b.kind === "country" ? b.c.code : b.c.country + "|" + b.c.city);
+              const on = hi === b.key || isSel, col = placeHue(b.c);
               // calendar-period filter: only the origins of that period's top artists REMAIN
               // on the map (Fuad 2026-07-05 — hiding beats dimming, visually)
               const inPeriod = periodPlaces
@@ -716,7 +724,7 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
               // transition inline while the cursor is engaged and restores it on reset.
               return <circle key={b.key} className="mp-bub" data-cx={b.x} data-cy={b.y} data-r0={b.r}
                 cx={b.x} cy={b.y} r={b.r / Math.pow(view.s, mpRadExp(view.s))} fill={col} fillOpacity={on ? 0.72 : 0.34}
-                stroke={inPeriod ? "var(--accent)" : col} strokeWidth={((inPeriod ? 1.8 : on ? 1.6 : 0.7)) / view.s}
+                stroke={(isSel || inPeriod) ? "var(--accent)" : col} strokeWidth={((isSel ? 2.4 : inPeriod ? 1.8 : on ? 1.6 : 0.7)) / view.s}
                 style={{ cursor: "pointer", transition: "r .6s cubic-bezier(.3,.8,.3,1), fill .5s, fill-opacity .12s" }}
                 onMouseEnter={() => setHi(b.key)} onClick={(e) => { e.stopPropagation(); if (!moved.current) openBubble(b); }} />;
             })}
@@ -745,7 +753,11 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
         <div className="r-mono" style={{ fontSize: 10, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 10 }}>{focus ? "Cities in " + focusName : mode === "city" ? "Deepest cities" : "Deepest countries"}</div>
         <div style={{ maxHeight: 200, overflowY: "auto", display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(230px,1fr))", gap: "5px 22px", paddingRight: 4 }}>
           {list.map((t, i) => (
+            // data-on marks the SELECTED row (Fuad 2026-09-01: the click should read as active
+            // "on the clicked city under the map" too, not only filter the panes). Row key matches
+            // the same shape `sel` uses — country code, or "COUNTRY|City".
             <div key={(t.code || t.city) + i} className="map-listrow"
+              data-on={(sel && sel.key === (t.code ? t.code : t.country + "|" + t.city)) || undefined}
               onMouseEnter={() => setHi(t.code ? t.code : "c" + cityPts.filter(c => !focus || c.country === focus).indexOf(t))} onMouseLeave={() => setHi(null)}
               onClick={() => { if (t.code) openBubble({ kind: "country", c: t }); else { setSel({ kind: "city", key: t.country + "|" + t.city }); setPane("artists"); } }}>
               <span className="map-sw" style={{ width: 11, height: 11, borderRadius: 3, "--sw": placeHue(t), flex: "none" }} />
@@ -965,6 +977,9 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
            the flow bands' quiet-until-cursor register (Fuad 2026-08-22) */
         .map-sw { background: transparent; box-shadow: inset 0 0 0 1.5px var(--sw); transition: background .15s; }
         .map-listrow:hover .map-sw { background: var(--sw); }
+        /* a SELECTED row keeps the hovered swatch fill after the pointer leaves, so the place you
+           picked stays legible while you read the panes it filtered (Fuad 2026-09-01). */
+        .map-listrow[data-on] .map-sw { background: var(--sw); }
         /* cover grid: fixed columns so a lone last item doesn't stretch into an orphan */
         .mp-covergrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
         .mp-coveritem { cursor: pointer; min-width: 0; }
@@ -1000,8 +1015,11 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
         .mp-restitle { white-space: nowrap; overflow: hidden; min-width: 0;
           -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 56px), transparent 100%);
           mask-image: linear-gradient(to right, #000 calc(100% - 56px), transparent 100%); }
-        .map-listrow { display: flex; align-items: center; gap: 10px; padding: 3px 4px; border-radius: 5px; cursor: pointer; transition: background .12s; }
+        .map-listrow { display: flex; align-items: center; gap: 10px; padding: 3px 4px; border-radius: 5px; cursor: pointer; transition: background .12s, box-shadow .12s; }
         .map-listrow:hover { background: var(--bg-3); }
+        /* SELECTED row: held background plus an accent hairline, matching the accent ring the
+           selected bubble gets on the map so the two read as one state. */
+        .map-listrow[data-on] { background: var(--bg-3); box-shadow: inset 0 0 0 1px var(--accent-dim); }
         /* min-width:0 on the GRID and the ROW, not only on the name (Fuad 2026-08-20: a long
            artist, album or song name pushed the play count past the edge of a phone screen).
            This is the Overview Results panel, and it carries its OWN copy of the .cal-* rules

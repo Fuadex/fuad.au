@@ -291,6 +291,11 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
 .tv-mood-bar i { display: block; height: 100%; border-radius: 4px; }
 .tv-mood-v { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); text-align: right; }
 .tv-mood-note { font-size: 12px; color: var(--ink-soft); margin-top: 2px; display: flex; align-items: center; gap: 8px; }
+/* vertical rule between the DNA radar and its bar column (Fuad 2026-09-01). align-self:stretch so
+   it tracks whichever column is taller — the bar list grows with Sounds/Reads and shrinks without
+   it — rather than a fixed height that would under- or overshoot. Hidden below 600px, where
+   .tv-dna-row stacks and a vertical rule would cut across the flow. */
+.tv-dna-rule { flex: 0 0 1px; align-self: stretch; background: var(--rule); border-radius: 1px; }
 .tv-mood-note b { color: var(--ink); }
 .tv-mood-note .txt { flex: 1; }
 /* theme chips under the bars — indented to the same 58px key gutter as Sounds/Reads so they
@@ -465,6 +470,8 @@ a.r-link:hover { color: var(--ink); }
   .tv-dna-row { flex-direction: column; align-items: stretch !important; }
   .tv-dna-row > div:first-child { margin: 0 auto; }
   .tv-dna-row > div:last-child { min-width: 0 !important; }
+  /* the vertical rule divides two COLUMNS; once they stack it would lie across the flow */
+  .tv-dna-rule { display: none; }
   /* card-header meta labels ("8 more you've played") ellipsise instead of clipping */
   .r-card-h .meta { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 45%; }
 }

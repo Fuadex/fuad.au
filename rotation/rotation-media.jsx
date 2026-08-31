@@ -543,6 +543,12 @@ function AlbumView({ id, go }) {
               <div style={{ flex: "0 0 auto", width: 188 }} title="solid = this album · dashed = your average">
                 <AudioRadar axes={radar} hue={hue} avg={radarLibAvg()} />
               </div>
+              {/* vertical rule between the radar and the bar column (Fuad 2026-09-01). alignSelf
+                  stretch rather than a fixed height, so it tracks whichever side is taller — the
+                  bar list grows when Sounds/Reads is present and shrinks when it isn't. Hidden on
+                  the wrapped (narrow) layout, where the two stack and a vertical rule would sit
+                  across the flow instead of between the columns. */}
+              <div className="tv-dna-rule" aria-hidden="true" />
               <div style={{ flex: 1, minWidth: 170, display: "grid", gap: 8, alignContent: "start" }}>
                 {[["Energy", dna[0]], ["Positivity", dna[1]], ["Danceability", dna[2]], ["Acousticness", dna[3]], ["Instrumental", dna[4]]].map(([label, v]) => (
                   <div key={label} style={{ display: "grid", gridTemplateColumns: "94px minmax(0,1fr) 26px", gap: 10, alignItems: "center" }}>
@@ -601,18 +607,18 @@ function AlbumView({ id, go }) {
                 </div>
               </div>
               {/* THEMES — moved here from the page header (Fuad 2026-09-01) so albums match songs,
-                  where themes sit at the foot of "Where it sits" behind a hairline. The album form
-                  is play-weighted across the tracks you've played from it, and names its source:
-                  the fable reads where they exist, the lyric lexicon otherwise. */}
+                  where themes sit at the foot of "Where it sits" behind a hairline. Play-weighted
+                  across the tracks you've played from this album.
+                  The source sub-line ("from the reads" / "lyric themes") was dropped on Fuad's call
+                  the same day — provenance the page never asked about. It still DECIDES which list
+                  wins upstream (fable reads beat the lexicon when they clear the coverage guard),
+                  it just isn't printed. The hover title carries how the roll-up is computed. */}
               {albThemes && (
                 <div style={{ marginTop: 12, borderTop: "1px solid var(--rule)", paddingTop: 11 }}>
                   <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 7 }}>Themes</div>
-                  <div className="tv-themes" style={{ margin: 0 }}>
-                    {albThemes.list.map(t => <span key={t.theme} className="tv-theme">{t.theme}</span>)}
-                  </div>
-                  <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", marginTop: 6 }}
+                  <div className="tv-themes" style={{ margin: 0 }}
                     title="Play-weighted across the tracks you've played from this album">
-                    {albThemes.src === "reads" ? "from the reads" : "lyric themes"}
+                    {albThemes.list.map(t => <span key={t.theme} className="tv-theme">{t.theme}</span>)}
                   </div>
                 </div>
               )}
