@@ -34,7 +34,14 @@ const already = new Set(folds._exclude || []);
 const NONMUSIC_TAG = /^(comedy|stand-?up( comedy)?|podcast|audiobook|audio book|spoken word|spoken-word|humou?r|interview|asmr|meditation|white noise|sleep|radio|talk|news|motivational|self-help|documentary|lecture)$/i;
 const NONMUSIC_STYLE = /^(comedy|spoken word|audiobook|interview|dialogue|monolog(ue)?|radioplay|poetry|education|speech|field recording|sermon|political|story)$/i;
 
-const all = [...R.ARTISTS.map(a => ({ ...a, tier: "kept" })), ...R.EXPLORE.map(a => ({ ...a, tier: "explore" }))];
+// ARTISTS and EXPLORE OVERLAP — 476 of the 489 kept artists also appear in EXPLORE — so a plain
+// concat lists those twice. Dedupe by id, keeping the kept-tier record (2026-08-31).
+const all = (() => {
+  const byId = new Map();
+  for (const a of R.EXPLORE) byId.set(a.id, { ...a, tier: "explore" });
+  for (const a of R.ARTISTS) byId.set(a.id, { ...a, tier: "kept" });
+  return [...byId.values()];
+})();
 const strong = [], weak = [];
 for (const a of all) {
   if (already.has(a.name)) continue;
