@@ -198,7 +198,7 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot,
   // Pan/zoom by writing the <g> transform directly each frame — re-rendering the whole map (land +
   // bubbles) on every pointermove crashes mobile browsers (GPU/memory). We commit to React state once
   // on gesture end so bubble sizes (r/√s) and stroke widths re-derive.
-  const applyView = (v) => { viewRef.current = v; const g = gRef.current; if (g) g.setAttribute("transform", `translate(${v.x} ${v.y}) scale(${v.s})`); };
+  const applyView = (raw) => { const v = clampView(raw); viewRef.current = v; const g = gRef.current; if (g) g.setAttribute("transform", `translate(${v.x} ${v.y}) scale(${v.s})`); };
   const commitView = () => { if (moved.current) setView(viewRef.current); };
 
   // ── cursor FISHEYE ─────────────────────────────────────────────────────────
@@ -271,10 +271,34 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
   }, [playing, geoYears]);
   const W = world ? world.w : 1000, Hh = world ? world.h : 500;
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  // ZOOM DEPTH (Fuad 2026-08-31: "allow to zoom in closer, especially when in cities' view").
+  // The interactive ceiling was 14 and the country fly-in 12. 14x shows ~26° of longitude — wide
+  // enough that two cities in the same country sit almost on top of each other, which is the wrong
+  // resting place for a view whose whole point is cities. MAXZ 60 gives ~6°, roughly 400km across
+  // at European latitudes, so a country's scene reads as separate dots.
+  //   FRAME_MAXZ is separate and lower on purpose: it only has to FIT a country, and the bbox
+  // helper already floors a country at 8 map units, so no bbox ever asks for more than ~39. At the
+  // old 12 the fly-in under-zoomed nearly every European country (Poland wanted 19.5, the
+  // Netherlands 39.1); 40 lets every one of them frame at its natural size, and landing closer is
+  // what makes the deeper interactive ceiling reachable rather than a thing you have to grind to.
+  //   The limit past this is DATA, not interaction: world-map.js land paths are integer
+  // coordinates, so the coastline is quantised to ~40km and cannot be zoomed into meaningfully.
+  // coastFade retires the outline before the staircase becomes the loudest thing on screen.
+  const MAXZ = 60, FRAME_MAXZ = 40;
+  const coastFade = (s) => clamp(1 - (s - 14) / 16, 0, 1);
+  // Panning has never been bounded. At 14x drifting into blank space was survivable; at 60x it is
+  // easy and there is no reset button outside the focused view, so hold the pan to keep the map
+  // covering all but a slim margin of the frame. s >= 1 always, so the map is never smaller than
+  // the viewport and this range is never empty.
+  const PAN_SLACK = 0.15;
+  const clampView = (v) => {
+    const mx = W * PAN_SLACK, my = Hh * PAN_SLACK;
+    return { s: v.s, x: clamp(v.x, W - W * v.s - mx, mx), y: clamp(v.y, Hh - Hh * v.s - my, my) };
+  };
   const toSvg = (cx, cy) => { const el = svgRef.current; if (!el) return [W / 2, Hh / 2]; const r = el.getBoundingClientRect(); if (!r.width || !r.height) return [W / 2, Hh / 2]; return [(cx - r.left) / r.width * W, (cy - r.top) / r.height * Hh]; };
   React.useEffect(() => {
     const el = svgRef.current; if (!el) return;
-    const onWheel = (e) => { e.preventDefault(); setViewAnim(false); const [sx, sy] = toSvg(e.clientX, e.clientY); setView(v => { const ns = clamp(v.s * (e.deltaY < 0 ? 1.15 : 1 / 1.15), 1, 14); return { s: ns, x: sx - (sx - v.x) / v.s * ns, y: sy - (sy - v.y) / v.s * ns }; }); };
+    const onWheel = (e) => { e.preventDefault(); setViewAnim(false); const [sx, sy] = toSvg(e.clientX, e.clientY); setView(v => { const ns = clamp(v.s * (e.deltaY < 0 ? 1.15 : 1 / 1.15), 1, MAXZ); return clampView({ s: ns, x: sx - (sx - v.x) / v.s * ns, y: sy - (sy - v.y) / v.s * ns }); }); };
     el.addEventListener("wheel", onWheel, { passive: false });
     return () => el.removeEventListener("wheel", onWheel);
   }, [world]);
@@ -292,7 +316,7 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
     if (pts.length >= 2) {                    // two-finger pinch-zoom (one finger still scrolls the page)
       e.preventDefault(); capture(e); moved.current = true;
       const [a, b] = pts, dist = Math.hypot(a.x - b.x, a.y - b.y), mx2 = (a.x + b.x) / 2, my2 = (a.y + b.y) / 2;
-      if (pinch.current) { const [sx, sy] = toSvg(mx2, my2), ratio = dist / pinch.current; const v = viewRef.current; const ns = clamp(v.s * ratio, 1, 14); applyView({ s: ns, x: sx - (sx - v.x) / v.s * ns, y: sy - (sy - v.y) / v.s * ns }); }
+      if (pinch.current) { const [sx, sy] = toSvg(mx2, my2), ratio = dist / pinch.current; const v = viewRef.current; const ns = clamp(v.s * ratio, 1, MAXZ); applyView({ s: ns, x: sx - (sx - v.x) / v.s * ns, y: sy - (sy - v.y) / v.s * ns }); }
       pinch.current = dist; drag.current = null; return;
     }
     pinch.current = null;
@@ -322,7 +346,7 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
   // smooth the <g> transform for PROGRAMMATIC zooms (fly into a clicked country, zoom back out on
   // deactivate) but keep it OFF during interactive pan/wheel so those stay instant (Fuad 2026-07-15).
   const setViewAnim = (on) => { const g = gRef.current; if (g) g.style.transition = on ? "transform .6s cubic-bezier(.3,.8,.3,1)" : "none"; };
-  const frame = (bb) => { if (!bb) return; const [x0, y0, x1, y1] = bb, bw = Math.max(8, x1 - x0), bh = Math.max(8, y1 - y0), cx = (x0 + x1) / 2, cy = (y0 + y1) / 2; const s = clamp(Math.min(W / (bw * 1.6), Hh / (bh * 1.6)), 1, 12); setViewAnim(true); setView({ s, x: W / 2 - cx * s, y: Hh / 2 - cy * s }); };
+  const frame = (bb) => { if (!bb) return; const [x0, y0, x1, y1] = bb, bw = Math.max(8, x1 - x0), bh = Math.max(8, y1 - y0), cx = (x0 + x1) / 2, cy = (y0 + y1) / 2; const s = clamp(Math.min(W / (bw * 1.6), Hh / (bh * 1.6)), 1, FRAME_MAXZ); setViewAnim(true); setView(clampView({ s, x: W / 2 - cx * s, y: Hh / 2 - cy * s })); };
   const reset = () => { setFocus(null); setSel(null); setViewAnim(true); setView({ s: 1, x: 0, y: 0 }); };
 
   // genre pivot — sum every place's plays for the selected family/subgenre (membership-based, like Explore).
@@ -677,7 +701,7 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
         <svg ref={svgRef} viewBox={`0 0 ${world.w} ${world.h}`} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: view.s > 1 ? "none" : "pan-y" }}
           onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onPointerCancel={onUp} onPointerLeave={onLeave}>
           <g ref={gRef} transform={`translate(${view.x} ${view.y}) scale(${view.s})`}>
-            {world.land.map((d, i) => <path key={i} d={d} fill="var(--bg-3)" stroke="var(--rule-2)" strokeWidth={0.4 / view.s} />)}
+            {world.land.map((d, i) => <path key={i} d={d} fill="var(--bg-3)" stroke="var(--rule-2)" strokeWidth={0.4 / view.s} strokeOpacity={coastFade(view.s)} />)}
             {bubbles.slice().sort((a, b) => b.c.plays - a.c.plays).map(b => {
               const on = hi === b.key, col = placeHue(b.c);
               // calendar-period filter: only the origins of that period's top artists REMAIN
