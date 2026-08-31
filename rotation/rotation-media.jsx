@@ -336,6 +336,18 @@ function AlbumView({ id, go }) {
   const avgSec = (R.TOTALS && R.TOTALS.avgTrackSec) || 216;
   const listenedMin = Math.round(avgSec * data.trackPlays / 60);
   const sr = data.series, sFirst = sr[0], sLast = sr[sr.length - 1], sPeak = sr.reduce((a, b) => b.p > (a ? a.p : 0) ? b : a, null);
+  // Cap on how many album themes survive the roll-up. Was a hard 2 in BOTH roll-ups below, which
+  // was right when this rendered as the prose line "Mostly about X, with Y" — two slots, two
+  // themes. Now that it renders as chips in the DNA card the cap was just hiding work: Rust In
+  // Peace has 10 themed tracks carrying 8 DISTINCT primary themes and showed two of them
+  // (Fuad 2026-09-01).
+  //
+  // STILL PRIMARY-ONLY, deliberately. Each track contributes only its FIRST theme, because the
+  // per-track lists are ranked and counting all three flattens the result — on Rust In Peace the
+  // all-themes roll-up runs 17/17/17/16/16/16%, an ordering that carries no information, where
+  // primary-only separates cleanly at 17/16/15/11/10%. So the album answers "what are these songs
+  // mostly about", not "every subject the record brushes".
+  const ALB_THEME_CAP = 5;
   // album theme roll-up: play-weighted primary themes across this album's tracks (≥2 themed).
   // PREFER the fable reads (R.aboutGist(key).themes — reasoned, first = primary) over the stale
   // lexicon source (ROTATION_TRACKTHEMES). Both are computed the same way; fable wins only when its
@@ -355,7 +367,7 @@ function AlbumView({ id, go }) {
       acc.set(th[0], (acc.get(th[0]) || 0) + t.plays);
     }
     if (themed < 2 || !tot) return { list: null, themed };
-    return { list: [...acc.entries()].sort((a, b) => b[1] - a[1]).slice(0, 2)
+    return { list: [...acc.entries()].sort((a, b) => b[1] - a[1]).slice(0, ALB_THEME_CAP)
       .map(([theme, p]) => ({ theme, share: Math.round(p / tot * 100) })), themed };
   })();
   // lexicon roll-up (ROTATION_TRACKTHEMES) → { list:[{theme,share}], themed }
@@ -369,7 +381,7 @@ function AlbumView({ id, go }) {
       acc.set(th[0][0], (acc.get(th[0][0]) || 0) + t.plays);
     }
     if (themed < 2 || !tot) return { list: null, themed };
-    return { list: [...acc.entries()].sort((a, b) => b[1] - a[1]).slice(0, 2)
+    return { list: [...acc.entries()].sort((a, b) => b[1] - a[1]).slice(0, ALB_THEME_CAP)
       .map(([i, p]) => ({ theme: TT._themes[i], share: Math.round(p / tot * 100) })), themed };
   })();
   // pick fable when it clears the coverage guard; else fall back to the lexicon unchanged.
@@ -596,7 +608,7 @@ function AlbumView({ id, go }) {
                 <div style={{ marginTop: 12, borderTop: "1px solid var(--rule)", paddingTop: 11 }}>
                   <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 7 }}>Themes</div>
                   <div className="tv-themes" style={{ margin: 0 }}>
-                    {albThemes.list.slice(0, 4).map(t => <span key={t.theme} className="tv-theme">{t.theme}</span>)}
+                    {albThemes.list.map(t => <span key={t.theme} className="tv-theme">{t.theme}</span>)}
                   </div>
                   <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", marginTop: 6 }}
                     title="Play-weighted across the tracks you've played from this album">
