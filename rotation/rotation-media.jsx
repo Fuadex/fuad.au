@@ -191,13 +191,19 @@ function AlbumTracksPlayed({ data, extras, standout, maxT, hue, R, go, baseTrack
         </div>
       )}
       <div style={{ display: "grid", gap: 2 }}>
+        {/* On a genuine double album the base list is CD 1 and needs saying so — otherwise the two
+            sections read as "the album" plus an afterthought. Only shown when a split exists. */}
+        {bonusSections.some(s => s.keepNo) ? secHead("CD 1") : null}
         {/* base tracklist — numbering as today (real Spotify no, else sequential) */}
         {baseTracks.map((t, i) => row(t, i))}
-        {/* one restart-numbered sub-section per edition (disc-like), biggest first, catch-all last */}
+        {/* one restart-numbered sub-section per edition (disc-like), biggest first, catch-all last.
+            A DISC section (keepNo) is the exception: its tracks already carry their true per-disc
+            positions, so it keeps them rather than renumbering from 1 — the printed numbers should
+            match the sleeve. */}
         {bonusSections.map(sec => (
           <React.Fragment key={"sec~" + sec.name}>
             {secHead(sec.name)}
-            {sec.tracks.map((t, i) => row(t, i, String(i + 1).padStart(2, "0")))}
+            {sec.tracks.map((t, i) => row(t, i, sec.keepNo ? null : String(i + 1).padStart(2, "0")))}
           </React.Fragment>
         ))}
       </div>
@@ -336,9 +342,14 @@ function AlbumView({ id, go }) {
     if (bestIdx < 0) return null;
     const al = M.albums[bestIdx], artist = M.artists[al[1]];
     const tracks = [];
-    for (const t of M.tracks) if (t[3] === bestIdx) tracks.push({ title: t[0], plays: t[2], no: t[5] || 0, e: t[6] != null ? t[6] : null, v: t[7] != null ? t[7] : null, bonus: t[8] === 1 });
+    // discs = { albumIdx: { trackSlug: discNo } }, emitted only for real doubles (build-data's
+    // 3-tracks-per-disc gate). Absent → every track is disc 1 and the page renders as it always has.
+    const discMap = (M.discs && M.discs[bestIdx]) || null;
+    for (const t of M.tracks) if (t[3] === bestIdx) tracks.push({ title: t[0], plays: t[2], no: t[5] || 0, e: t[6] != null ? t[6] : null, v: t[7] != null ? t[7] : null, bonus: t[8] === 1, disc: (discMap && discMap[R.slug(t[0])]) || 1 });
     const hasNos = tracks.some(t => t.no);
-    tracks.sort((x, y) => hasNos ? ((x.no || 999) - (y.no || 999)) || (y.plays - x.plays) : y.plays - x.plays);
+    // Sort by DISC first when we have one. Without it the two discs' positions interleave (two 01s,
+    // two 02s…), which is exactly what the split is here to fix.
+    tracks.sort((x, y) => (x.disc - y.disc) || (hasNos ? ((x.no || 999) - (y.no || 999)) || (y.plays - x.plays) : y.plays - x.plays));
     return { title: al[0], artist, plays: al[2], firstY: al[3], lastY: al[4], cover: al[6] || "", meta: al[7] || null,
       tracks, trackPlays: tracks.reduce((s, t) => s + t.plays, 0), dna: al[8] || null, ext: al[10] || null, reads: al[11] || null,
       series: yearSeries(al[5], al[2]), rank: bestIdx + 1, albumCount: M.albums.length };
@@ -477,14 +488,25 @@ function AlbumView({ id, go }) {
   // beside its studio base (STEP 3/4 of the album-homing reshape). Both keep the standard tracklist clean.
   const isBonus = (t) => (bonusSet && bonusSet.has(t.title)) || t.bonus;
   const anyBonus = data.tracks.some(isBonus);
-  const baseTracks = anyBonus ? data.tracks.filter(t => !isBonus(t)) : data.tracks;
+  const standardTracks = anyBonus ? data.tracks.filter(t => !isBonus(t)) : data.tracks;
   const bonusTracks = anyBonus ? data.tracks.filter(isBonus) : [];
+  // DISC SPLIT (Fuad 2026-09-01, The Fragile). Disc 1 stays the base list; discs 2+ become sections
+  // ABOVE the edition/bonus ones, because they are the album proper and bonus material is not.
+  // Only fires where build-data emitted a split, so single-disc pages are byte-for-byte unchanged.
+  const discSections = (() => {
+    const byDisc = new Map();
+    for (const t of standardTracks) { const d = t.disc || 1; if (!byDisc.has(d)) byDisc.set(d, []); byDisc.get(d).push(t); }
+    if (byDisc.size < 2) return [];
+    return [...byDisc.keys()].filter(d => d > 1).sort((a, b) => a - b)
+      .map(d => ({ name: "CD " + d, tracks: byDisc.get(d), keepNo: true }));
+  })();
+  const baseTracks = discSections.length ? standardTracks.filter(t => (t.disc || 1) === 1) : standardTracks;
   // build the per-edition sections from byEdition. Each section = { name, tracks[] }, tracks pulled
   // from bonusTracks (so we keep plays/mood/no); ordered by track count descending. Any bonus track
   // not attributable to a named edition (byEdition[""], or missing byEdition, or flagged only by the
   // media index) falls into a final "bonus & beside the album" catch-all.
   const bonusSections = (() => {
-    if (!bonusTracks.length) return [];
+    if (!bonusTracks.length) return discSections;
     const byTitle = new Map(bonusTracks.map(t => [t.title, t]));
     const be = (extras && extras.byEdition) || null;
     const named = [], leftover = new Set(byTitle.keys());
@@ -495,7 +517,7 @@ function AlbumView({ id, go }) {
     }
     named.sort((a, b) => b.tracks.length - a.tracks.length);   // biggest editions first
     if (leftover.size) named.push({ name: "bonus & beside the album", tracks: [...leftover].map(ti => byTitle.get(ti)) });
-    return named;
+    return discSections.concat(named);   // the record's own discs first, then editions/bonus
   })();
 
   return (
