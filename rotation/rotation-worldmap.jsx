@@ -13,9 +13,31 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
   // count differs) never changes the flow's height and shoves row-2 of the map band down.
   const FLOW_H = Math.min(920, 500 + Math.max(0, R.FAMILIES.length - 10) * 30);
   const [hi, setHi] = React.useState(-1);
-  const [view, setView] = React.useState("genre");   // genre | artist
+  const [view, setView] = React.useState("genre");   // genre | artist | eras
   const { fam, sub } = filt;
   React.useEffect(() => { setHi(-1); }, [fam, sub, view]);
+
+  // ─── "eras": the Book's Genre-Eras flow, as an alternate reading of this same module
+  // (Fuad 2026-09-01). The other two views are PLACE-SCOPED — they redraw from whatever the map
+  // currently has selected. This one is the whole library, every year, straight from the
+  // precomputed ROTATION.GENRE_FLOW, so it answers "how did my taste move" rather than "what came
+  // out of here". Both are stacked areas over years, so GENRE_FLOW folds into the same {key, name,
+  // hue, vals} series shape and the SAME StreamGraph renders it — no second chart to keep in sync.
+  const eras = React.useMemo(() => {
+    const gf = R && R.GENRE_FLOW;
+    if (!gf || !gf.years || !gf.families || !gf.years.length) return null;
+    const yrs = gf.years.map(y => y.year);
+    const ser = gf.families
+      .map(f => ({ key: f.i, name: f.family, hue: f.hue, fam: f.i, vals: gf.years.map(yr => yr.fams[f.i] || 0) }))
+      .filter(s => s.vals.some(v => v > 0));
+    return ser.length ? { years: yrs, series: ser } : null;
+  }, [R]);
+  const isEras = view === "eras" && !!eras;
+  // the year marker is an INDEX, and the two views have different year arrays — remap by the year
+  // VALUE so the marker keeps pointing at the same year instead of sliding to a different one.
+  const erasMarkYi = (markYi != null && eras && years[markYi] != null)
+    ? (eras.years.indexOf(years[markYi]) >= 0 ? eras.years.indexOf(years[markYi]) : undefined)
+    : undefined;
   const series = React.useMemo(() => {
     const sumBy = (keyOf) => {
       const m = new Map();
@@ -51,6 +73,9 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
   // artist ribbons open the artist
   const onPick = (s) => {
     if (view === "artist") { go && go("artist", s.id); return; }
+    // From the all-time flow a click means "show me this family HERE" — set the filter and drop
+    // back into the place-scoped view, since GENRE_FLOW has no subgenre breakdown to drill into.
+    if (isEras) { setFilt({ fam: s.fam, sub: null }); setView("genre"); return; }
     if (fam == null) setFilt({ fam: s.fam, sub: null });        // family → its subgenres
     else { setFilt({ fam, sub: s.sub }); setView("artist"); }   // subgenre → its bands (+ scope the map)
   };
@@ -61,19 +86,33 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
     <div className="r-card" style={{ padding: "13px 16px 11px", background: "var(--bg-2)" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6, flexWrap: "wrap" }}>
         <div className="r-mono" style={{ fontSize: 11, display: "flex", alignItems: "center", flexWrap: "wrap", gap: 2, flex: 1, minWidth: 0 }}>
+          {/* In eras mode the breadcrumb would lie: it describes the MAP's genre filter, and this
+              flow ignores it — the all-time reading is the whole library either way. Say what the
+              chart is instead, so the two never contradict each other on screen. */}
+          {isEras
+            ? <span style={{ color: "var(--ink-soft)" }}>every year · all genres · your whole library</span>
+            : <>
           <span style={{ cursor: "pointer", color: fam == null ? "var(--ink)" : "var(--accent)" }} onClick={() => { setFilt({ fam: null, sub: null }); setView("genre"); }}>all genres</span>
           {fam != null && <><span style={{ margin: "0 7px", color: "var(--ink-faint)" }}>›</span><span style={{ cursor: "pointer", color: sub == null && view === "genre" ? "var(--ink)" : "var(--accent)" }} onClick={() => { setFilt({ fam, sub: null }); setView("genre"); }}>{famName}</span></>}
           {sub != null && <><span style={{ margin: "0 7px", color: "var(--ink-faint)" }}>›</span><span style={{ cursor: "pointer", color: view === "genre" ? "var(--ink)" : "var(--accent)" }} onClick={() => setView("genre")}>{R.SUBS[sub].name}</span></>}
+            </>}
         </div>
         <div className="r-seg r-seg-sm">
-          {[["genre", fam != null ? "subgenres" : "genres"], ["artist", "bands"]].map(([k, lbl]) =>
+          {[["genre", fam != null ? "subgenres" : "genres"], ["artist", "bands"], ...(eras ? [["eras", "eras"]] : [])].map(([k, lbl]) =>
             <button key={k} data-on={view === k} onClick={() => setView(k)}>{lbl}</button>)}
         </div>
       </div>
-      {hasFlow
-        ? <StreamGraph series={series} years={years} hi={hi} setHi={setHi} onPick={onPick} clickable={true} markYi={markYi} fixedH={FLOW_H} faint />
+      {/* keyed on the mode so React remounts and the entry animation replays — a short fade with a
+          slight rise off the baseline. Both modes are stacked areas over years, so the shapes read
+          as one transforming into the other rather than two unrelated charts swapping. */}
+      {(isEras || hasFlow)
+        ? <div className="mp-flowswap" key={isEras ? "eras" : "scoped"}>
+            <StreamGraph series={isEras ? eras.series : series} years={isEras ? eras.years : years}
+              hi={hi} setHi={setHi} onPick={onPick} clickable={true}
+              markYi={isEras ? erasMarkYi : markYi} fixedH={FLOW_H} faint />
+          </div>
         : <div style={{ padding: 18, minHeight: 224, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>not enough placed artists here for a flow.</div>}
-      {hasFlow && <>
+      {(isEras || hasFlow) && <>
         {/* Legend well. The FLOOR (46px) is the 2026-07-05 rule: fewer series must not shrink the
             whole map/flow row. The CEILING is what was actually capping the legend — it was a flat
             `height: 46px`, so removing the hint line below it freed space the well could never use
@@ -82,7 +121,7 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
         <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 12px", marginTop: 8,
           minHeight: 46, maxHeight: 66, overflowY: "auto",
           alignContent: "flex-start", scrollbarWidth: "thin" }}>
-          {series.map((s, i) => (
+          {(isEras ? eras.series : series).map((s, i) => (
             <div key={s.key} onMouseEnter={() => setHi(i)} onMouseLeave={() => setHi(-1)} onClick={() => onPick(s)}
               style={{ display: "inline-flex", alignItems: "center", gap: 6, cursor: "pointer", opacity: hi < 0 || hi === i ? 1 : 0.4, transition: ".15s" }}>
               {/* hollow at rest, filled on hover — the same register as the flow bands (Fuad
@@ -1015,6 +1054,14 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
         .mp-restitle { white-space: nowrap; overflow: hidden; min-width: 0;
           -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 56px), transparent 100%);
           mask-image: linear-gradient(to right, #000 calc(100% - 56px), transparent 100%); }
+        /* Flow mode swap (Fuad 2026-09-01). The container is keyed on the mode, so React remounts
+           it and this replays. transform-origin:bottom means the stack grows off its own baseline
+           rather than the middle — a stacked area is anchored at the bottom, so rising from there
+           reads as the same chart re-forming instead of a new one appearing. Kept short and small:
+           the point is continuity between two readings, not an effect. */
+        .mp-flowswap { animation: mpFlowIn .42s cubic-bezier(.3, .8, .3, 1); transform-origin: bottom center; }
+        @keyframes mpFlowIn { from { opacity: 0; transform: scaleY(.955) translateY(4px); } to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .mp-flowswap { animation: none; } }
         .map-listrow { display: flex; align-items: center; gap: 10px; padding: 3px 4px; border-radius: 5px; cursor: pointer; transition: background .12s, box-shadow .12s; }
         .map-listrow:hover { background: var(--bg-3); }
         /* SELECTED row: held background plus an accent hairline, matching the accent ring the
