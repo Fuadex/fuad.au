@@ -4629,6 +4629,17 @@ for (const [name, plays] of rankedArtists) {
   // undated-only artists get neither field and drop out of those two sorts.
   const _sp = span.get(name);
   if (_sp) { rec.fd = Math.round((_sp[0] - oldestMs) / 86400e3); rec.sd = Math.round((_sp[1] - _sp[0]) / 86400e3); }
+  // PER-SOURCE GENRE RAILS FOR THE TAIL (Fuad 2026-08-31). These three fields are what
+  // rotation-artist.jsx renders as the last.fm / discogs / spotify rows. They were ARTIST_HEAVY,
+  // built only for the ~489 KEPT artists, so every Explore-tier artist showed merged subgenre
+  // chips with no idea which service said what — Texas Hippie Coalition looked unenriched when
+  // all three caches were in fact populated and correct. Same field names and same construction
+  // as the kept-artist path (~L1872/1884/1901) so the rails render unchanged; capped tighter here
+  // because this multiplies across 6,829 records rather than 489, and omitted entirely when empty
+  // so artists with no data for a source cost nothing.
+  const _tlf = cachedTags(name).map(t => t[0]).slice(0, 4);         if (_tlf.length) rec.tagsLf = _tlf;
+  const _st = (stylesOf(name) || []).slice(0, 6);                   if (_st.length) rec.styles = _st;
+  const _sg = (aliasedByName(SPOTGEN, name) || []).slice(0, 6);     if (_sg.length) rec.spotGenres = _sg;
   if (EXPLORE.length < EXPLORE_YP_TOP) {
     const yc = artistYear.get(name) || new Map();
     const yp = {}; for (const [y, c] of yc) if (c > 0) yp[y] = c;
