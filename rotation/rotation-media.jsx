@@ -520,10 +520,16 @@ function AlbumView({ id, go }) {
         .alb-chipscroll { cursor: grab; }
         .alb-chipscroll[data-drag] { cursor: grabbing; user-select: none; }
         .alb-chipscroll .r-chip, .alb-chipscroll .tv-theme { cursor: pointer; }
-        /* artist name under the title — was a bare bold with a pointer and no feedback */
+        /* artist name under the title — was a bare bold with a pointer and no feedback. Used on
+           BOTH album and song pages, so the artist link behaves identically wherever it appears. */
         .alb-artlink { cursor: pointer; color: var(--ink); border-bottom: 1px solid transparent;
           transition: color .15s ease, border-color .15s ease; }
         .alb-artlink:hover { color: var(--accent); border-bottom-color: var(--accent-dim); }
+        /* album link on the SONG page sits beside the artist one. Deliberately quieter (Fuad
+           2026-09-01: "for album we can just change font color to white") — it rests at ink-soft
+           and lifts to full ink, so the two links in that line do not compete for the eye. */
+        .tv-alblink { cursor: pointer; color: var(--ink-soft); transition: color .15s ease; }
+        .tv-alblink:hover { color: var(--ink); }
       `}</style>
       {/* an album's natural parent is its artist — go up to them, not back out to Explore.
           The back button lives at page left ABOVE the cover — its original home; both
@@ -1325,8 +1331,12 @@ function TrackView({ id, go }) {
           <div className="r-kicker">Song{data.trackNo ? ` · track ${data.trackNo}` : ""}{data.dur ? ` · ${mmss(data.dur)}` : ""}{data.explicit ? " · explicit" : ""}</div>
           <h1 className="r-title" style={{ fontSize: data.title.length > 30 ? "clamp(22px,3vw,36px)" : data.title.length > 26 ? "clamp(26px,3.6vw,44px)" : data.title.length > 18 ? "clamp(30px,4.2vw,52px)" : "clamp(36px,5vw,64px)" }}>{data.title}<span className="dot">.</span></h1>
           <div style={{ color: "var(--ink-soft)", fontSize: 15, marginTop: 6 }}>
-            by {known ? <b onClick={() => go("artist", artistId)} style={{ cursor: "pointer", color: "var(--ink)" }}>{data.artist}</b> : data.artist}
-            {data.album && <> · <span onClick={() => go("album", data.albumId)} style={{ cursor: "pointer", color: "var(--ink-soft)" }}>{data.album}</span></>}</div>
+            {/* Both were bare pointers with no feedback. The ARTIST gets the same treatment as on
+                album pages (accent + underline). The ALBUM gets a quieter one on Fuad's call —
+                it sits at ink-soft and just lifts to full ink on hover, so the two links do not
+                compete in the same line. */}
+            by {known ? <b className="alb-artlink" onClick={() => go("artist", artistId)} title={`${data.artist} →`}>{data.artist}</b> : data.artist}
+            {data.album && <> · <span className="tv-alblink" onClick={() => go("album", data.albumId)} title={`${data.album} →`}>{data.album}</span></>}</div>
           <div style={{ display: "flex", gap: 8, marginTop: 13, flexWrap: "wrap", alignItems: "center" }}>
             <PreviewBtn id={id} hue={hue} artist={data.artist} title={data.title} />
             {seenLive && <span className="tv-seen" title="You've watched this performed live — it's in a setlist from a show you attended">🎤 Seen live</span>}
