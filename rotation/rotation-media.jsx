@@ -1384,9 +1384,13 @@ function TrackView({ id, go }) {
                       pairs line up as one list (Fuad 2026-09-01: "in songs I want the same format
                       as it's in album"). Only the FILL differs — moodColor, not the track hue,
                       because these are a shared value-to-colour ramp rather than another
-                      hue-tinted DNA axis. The tv-mood-* classes carried their own bar sizing and
-                      would not have aligned. */}
-                  <div className="tv-mood" style={{ display: "grid", gap: 8 }}>
+                      hue-tinted DNA axis.
+                      NO .tv-mood CLASS. That rule draws a bordered, padded 520px card
+                      (rotation-core.jsx ~L281) — right when this was a standalone panel in its own
+                      subrow, wrong now that it is a continuation of the bar list. It was why the
+                      song version still looked boxed next to the album's after the grid was
+                      already matched. */}
+                  <div style={{ display: "grid", gap: 8 }}>
                     {audVal != null && (
                       <div style={{ display: "grid", gridTemplateColumns: "96px minmax(0,1fr) 26px", gap: 10, alignItems: "center" }}>
                         <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-soft)" }}>Sounds</span>
@@ -1399,10 +1403,11 @@ function TrackView({ id, go }) {
                       <div className="xp-bar" style={{ width: "100%" }}><div style={{ width: lyrVal + "%", background: moodColor(lyrVal) }} /></div>
                       <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{lyrVal}</span>
                     </div>
-                    {/* The NRC emotion caption + the Sounds/Reads axis help. THEMES used to supersede
-                        this caption here (pilot 2026-08-08) but moved into "Where it sits" (2026-08-16,
-                        Fuad) — so this card always carries its own note again. */}
-                    <div className="tv-mood-note">
+                    {/* The consensus sentence + the axis help. Sized down to 9.5px mono to match the
+                        album caption exactly — .tv-mood-note's own 12px belonged to the boxed panel
+                        this used to live in. The class stays because .txt's flex and the help
+                        chip's absolute positioning hang off it. */}
+                    <div className="tv-mood-note r-mono" style={{ fontSize: 9.5, color: "var(--ink-soft)", marginTop: 2 }}>
                       <span className="txt">
                         {/* COPY MATRIX (Fuad 2026-08-27): on recalibrated rows the tone word must be
                             the whole-lyric REGISTER (reg), never the NRC word-count emotion (lyrEmo),
