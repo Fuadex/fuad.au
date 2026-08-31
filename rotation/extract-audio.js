@@ -19,6 +19,20 @@ const R = ctx.window.ROTATION;
 const names = [...new Set([...R.ARTISTS.map(a => a.name), ...R.EXPLORE.map(a => a.name)])];
 fs.writeFileSync(".names.tmp.json", JSON.stringify(names.map(n => ({ name: n }))));
 
+// PICK THE FILE THAT ACTUALLY HAS DATA (Fuad 2026-08-31). spotify-audio-features.parquet was
+// sitting at ZERO BYTES — a truncated stub — while the real 56.3M-row table lived in
+// spotify-huge-audio-features.parquet. Every run since silently matched nothing, which is why
+// audio-features.json froze on 2026-08-16 and the artists added by the lowered play floor never
+// got a Sound-DNA vector (9 of the 2,158 in the 3-4 play band had one). Both names are local and
+// gitignored; prefer whichever is non-empty, largest first, and fail loudly if neither is.
+const AF_CANDIDATES = ["spotify-huge-audio-features.parquet", "spotify-audio-features.parquet"];
+const AF = AF_CANDIDATES
+  .map(f => ({ f, size: (() => { try { return fs.statSync(f).size; } catch (e) { return 0; } })() }))
+  .filter(x => x.size > 0)
+  .sort((a, b) => b.size - a.size)[0];
+if (!AF) throw new Error("no non-empty audio-features parquet found — looked for: " + AF_CANDIDATES.join(", "));
+console.log(`audio source: ${AF.f} (${(AF.size / 1024 / 1024 / 1024).toFixed(2)} GB)`);
+
 const db = new duckdb.Database(":memory:");
 const sql = `
   CREATE TABLE ours AS SELECT name, lower(name) AS lname FROM read_json_auto('.names.tmp.json');
@@ -29,7 +43,7 @@ const sql = `
       avg(speechiness) speech, avg(liveness) live, avg(loudness) loud,
       avg(case when mode = 1 then 1.0 else 0.0 end) major,
       max(artist_popularity) pop, max(artist_followers) followers, avg(duration_ms) dur, count(*) n
-    FROM read_parquet('spotify-audio-features.parquet') t
+    FROM read_parquet('${AF.f}') t
     JOIN ours o ON lower(t.artist_name) = o.lname
     GROUP BY o.name;`;
 
