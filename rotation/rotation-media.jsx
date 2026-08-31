@@ -344,6 +344,15 @@ function AlbumView({ id, go }) {
       series: yearSeries(al[5], al[2]), rank: bestIdx + 1, albumCount: M.albums.length };
   }, [ready, id]);
 
+  // Drag-to-scroll rails — one per chip row. THESE MUST STAY ABOVE THE EARLY RETURNS BELOW.
+  // They were originally declared down beside the render (~L374), which is after both guards: an
+  // album mounting not-ready ran 5 hooks, then ran 9 once the media index landed, and React threw
+  // "Rendered more hooks than during the previous render" (minified #310). It surfaced as an
+  // intermittent crash when navigating between songs and albums, because that is exactly when the
+  // not-ready render happens. Hooks before guards — no exceptions (Fuad reported 2026-09-01).
+  const tagDrag = useDragScroll();
+  const themeDrag = useDragScroll();
+
   if (!ready) return <div className="r-view"><div className="r-mono" style={{ color: "var(--ink-faint)", padding: 40 }}>loading album…</div></div>;
   if (!data) return <div className="r-view"><button className="r-back" onClick={() => go("explore")}>← explore</button><div className="r-mono" style={{ color: "var(--ink-faint)", padding: 24 }}>Album not found.</div></div>;
 
@@ -370,9 +379,6 @@ function AlbumView({ id, go }) {
   // followers stays ARTIST-level: it is a property of the act, not of one record, so averaging it
   // across an album would be meaningless. It reads from R.AUDIO like the song page does.
   const ext = data.ext;
-  // one per rail — each needs its own ref and drag state
-  const tagDrag = useDragScroll();
-  const themeDrag = useDragScroll();
   const albSounds = dna ? dna[1] : null;   // play-weighted audio valence — "how it sounds"
   const albReads = data.reads || null;     // [play-weighted NRC lyric valence, N lyric-scored tracks]
   const albArtAF = R.AUDIO && R.AUDIO[artistId];
