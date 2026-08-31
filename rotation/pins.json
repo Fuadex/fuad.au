@@ -396,5 +396,20 @@
     ],
     "bio": "Yuna Kil is a self-producing solo artist based in Malmo, Sweden, who records and mixes her own material. She has released singles since 2024, among them Cycle, Gumdrop and Burn Me to the Ground.",
     "note": "Had NO image and no enrichment of any kind. Identified from the played titles, which match her 2024-25 singles run. MEDIUM confidence: no legal name is published anywhere and there is no encyclopaedia entry, so this rests on music-press coverage of the three singles."
+  },
+  "DHMHTHP": {
+    "spotify": "2sSnHnCfvf7ellUBIzRuS2",
+    "origin": {
+      "country": "JP",
+      "area": "Japan",
+      "city": ""
+    },
+    "tags": [
+      "japanese indie",
+      "noise rock",
+      "lo-fi"
+    ],
+    "bio": "DHMHTHP are a Japanese indie band, the name a Latin-letter rendering of the Greek Demeter (they also appear as デーメーテール). Their album The Big Red Star came out in April 2023, its six tracks named after Japanese touchstones — a defunct supermarket chain, an arcade game, the White Day holiday.",
+    "note": "Owner has SEEN THEM LIVE (2026-03-21) so the entry matters despite 50 plays. Identity was unresolvable from the enrichment caches — no Discogs, no last.fm tags, no bio, no image — and an earlier research pass could not find a Spotify id at all. Resolved from the local dump instead: exactly ONE artist among 15.4M released an album called 'The Big Red Star' (2023-04-22), and it is this id. VOCALS: vocals.json had ['male']; Fuad corrected it to female 2026-08-31 — owner knowledge, they were at the show. IMAGE: Spotify holds no artist photo, only the album cover repeated at three sizes (ab67616d prefix), so that is what the card shows; a Deezer search returned 'Damh The Bard' (fuzzy, wrong) and a Greek-script 'Δημήτηρ' with zero releases (uncorroborated), both rejected rather than risk a wrong face."
   }
 }
