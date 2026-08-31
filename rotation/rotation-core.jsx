@@ -277,6 +277,19 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
 .tv-about-src { display: inline-block; margin-left: 10px; font-family: var(--mono); font-size: 9px;
   letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); text-decoration: none; white-space: nowrap; }
 .tv-about-src:hover { color: var(--accent); }
+/* Header links on ALBUM and SONG pages — the artist name, and the album name beside it on a song
+   page. Both were bare pointers with no feedback.
+   These belong in the GLOBAL sheet, not in a view's own <style>. They started life inside
+   AlbumView's block, which only mounts on album pages, so on a song page the classes were applied
+   with no rules behind them: no hover, and the album name lost its resting colour too. */
+.alb-artlink { cursor: pointer; color: var(--ink); border-bottom: 1px solid transparent;
+  transition: color .15s ease, border-color .15s ease; }
+.alb-artlink:hover { color: var(--accent); border-bottom-color: var(--accent-dim); }
+/* Album name on a song page: rests at ink-soft, goes WHITE on hover. Fuad asked for white
+   specifically — #fff, not var(--ink) (#f1eef6), which is the near-white the rest of the page
+   uses. Keeping them distinct is the point: the album lifts clear of the body text it sits in. */
+.tv-alblink { cursor: pointer; color: var(--ink-soft); transition: color .15s ease; }
+.tv-alblink:hover { color: #fff; }
 /* mood strip: how it SOUNDS (Spotify valence) vs how it READS (NRC lyric sentiment) */
 .tv-mood { display: grid; gap: 8px; max-width: 520px; margin: 0 0 var(--gap); padding: 14px 16px;
   border: 1px solid var(--rule); border-radius: 8px; }

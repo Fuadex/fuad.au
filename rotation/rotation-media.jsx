@@ -542,16 +542,10 @@ function AlbumView({ id, go }) {
         .alb-chipscroll { cursor: grab; }
         .alb-chipscroll[data-drag] { cursor: grabbing; user-select: none; }
         .alb-chipscroll .r-chip, .alb-chipscroll .tv-theme { cursor: pointer; }
-        /* artist name under the title — was a bare bold with a pointer and no feedback. Used on
-           BOTH album and song pages, so the artist link behaves identically wherever it appears. */
-        .alb-artlink { cursor: pointer; color: var(--ink); border-bottom: 1px solid transparent;
-          transition: color .15s ease, border-color .15s ease; }
-        .alb-artlink:hover { color: var(--accent); border-bottom-color: var(--accent-dim); }
-        /* album link on the SONG page sits beside the artist one. Deliberately quieter (Fuad
-           2026-09-01: "for album we can just change font color to white") — it rests at ink-soft
-           and lifts to full ink, so the two links in that line do not compete for the eye. */
-        .tv-alblink { cursor: pointer; color: var(--ink-soft); transition: color .15s ease; }
-        .tv-alblink:hover { color: var(--ink); }
+        /* .alb-artlink / .tv-alblink used to be declared here. They are used on the SONG page too,
+           and this style block only mounts with AlbumView — so on a song page the classes applied
+           with no rules behind them and nothing hovered. Both now live in rotation-core's global
+           sheet. Do not move them back. */
       `}</style>
       {/* an album's natural parent is its artist — go up to them, not back out to Explore.
           The back button lives at page left ABOVE the cover — its original home; both
