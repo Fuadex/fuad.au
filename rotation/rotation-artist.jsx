@@ -1810,16 +1810,22 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                   <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}>
                     <span className="lbl"><b>EPs & singles</b></span><span className="meta">{epsSingles.length}</span></div>
                   {albMode === "covers" ? (
-                    <div className="av-albumcovers" style={{
+                    /* r-hovgrid / r-hovtile / -art / -lbl: the same hover treatment the Albums grid
+                       above uses. EPs, singles and comps were plain divs, so only LPs lifted on
+                       hover (Fuad 2026-09-01). The grid class matters as well as the tile: it pads
+                       3px top-left so the tile's 2px shadow ring has somewhere to land. */
+                    <div className="av-albumcovers r-hovgrid" style={{
                       display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(72px, 1fr))", gap: 10 }}>
                       {epsSingles.map((al, i) => {
                         const onTitle = al.on ? titleForSlug(al.on) : null;
                         const nav = al.on ? () => go("album", R.slug(a.name) + "~" + al.on) : () => goAlbum(al.title);
                         return (
-                          <div key={al.title + i} style={{ cursor: "pointer", minWidth: 0 }} onClick={nav}
+                          <div key={al.title + i} className="r-hovtile" style={{ minWidth: 0 }} onClick={nav}
                             title={onTitle ? `${onTitle} →` : `${al.title} →`}>
-                            <GenCover hue={a.hue} name={al.title} image={al.cover} thumb={al.cover} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={3} />
-                            <div style={{ fontSize: 10, marginTop: 5, lineHeight: 1.2, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{al.title}</div>
+                            <div className="r-hovtile-art">
+                              <GenCover hue={a.hue} name={al.title} image={al.cover} thumb={al.cover} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={3} />
+                            </div>
+                            <div className="r-hovtile-lbl" style={{ fontSize: 10, marginTop: 5, lineHeight: 1.2, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{al.title}</div>
                             <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>
                               <span style={{ textTransform: "uppercase", letterSpacing: ".05em" }}>{al.kind}</span>
                               {onTitle && <span style={{ marginLeft: 4 }}>· on {onTitle}</span>}
@@ -1861,12 +1867,14 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                     <button className="av-more" onClick={() => setCompsOpen(o => !o)}>{compsOpen ? "hide ▴" : `+ ${comps.length} more`}</button>
                   </div>
                   {compsOpen && (albMode === "covers" ? (
-                    <div className="av-albumcovers" style={{
+                    <div className="av-albumcovers r-hovgrid" style={{
                       display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(72px, 1fr))", gap: 10 }}>
                       {comps.map((al, i) => (
-                        <div key={al.title + i} style={{ cursor: "pointer", minWidth: 0 }} onClick={() => goAlbum(al.title)} title={`${al.title} →`}>
-                          <GenCover hue={a.hue} name={al.title} image={al.cover} thumb={al.cover} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={3} />
-                          <div style={{ fontSize: 10, marginTop: 5, lineHeight: 1.2, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{al.title}</div>
+                        <div key={al.title + i} className="r-hovtile" style={{ minWidth: 0 }} onClick={() => goAlbum(al.title)} title={`${al.title} →`}>
+                          <div className="r-hovtile-art">
+                            <GenCover hue={a.hue} name={al.title} image={al.cover} thumb={al.cover} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={3} />
+                          </div>
+                          <div className="r-hovtile-lbl" style={{ fontSize: 10, marginTop: 5, lineHeight: 1.2, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{al.title}</div>
                           <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textTransform: "uppercase", letterSpacing: ".05em" }}>{al.kind}</div>
                           <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>{fmt(al.plays)} plays</div>
                         </div>
