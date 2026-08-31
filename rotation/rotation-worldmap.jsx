@@ -743,8 +743,11 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
               // just filter everything, the css should update to actually being active on the
               // map"). Until now `sel` only drove the filtering — the dot you clicked looked
               // identical to every other dot, so the map gave no answer to "which one did I pick".
-              // Selection borrows the hover treatment (full-opacity fill) and adds an accent ring
-              // on top, so it stays legible after the pointer moves away.
+              // Selection borrows the hover treatment (full-opacity fill) and holds it after the
+              // pointer leaves. NO accent ring: it was added first and Fuad cut it same-day —
+              // "we don't need a stroke around it, just having the square get filled is enough".
+              // The filled legend swatch below the map carries the state; a ring on the dot as
+              // well was saying it twice.
               const selKey = sel ? sel.key : null;
               const isSel = selKey != null && selKey === (b.kind === "country" ? b.c.code : b.c.country + "|" + b.c.city);
               const on = hi === b.key || isSel, col = placeHue(b.c);
@@ -760,7 +763,7 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
               // transition inline while the cursor is engaged and restores it on reset.
               return <circle key={b.key} className="mp-bub" data-cx={b.x} data-cy={b.y} data-r0={b.r}
                 cx={b.x} cy={b.y} r={b.r / Math.pow(view.s, mpRadExp(view.s))} fill={col} fillOpacity={on ? 0.72 : 0.34}
-                stroke={(isSel || inPeriod) ? "var(--accent)" : col} strokeWidth={((isSel ? 2.4 : inPeriod ? 1.8 : on ? 1.6 : 0.7)) / view.s}
+                stroke={inPeriod ? "var(--accent)" : col} strokeWidth={((inPeriod ? 1.8 : on ? 1.6 : 0.7)) / view.s}
                 style={{ cursor: "pointer", transition: "r .6s cubic-bezier(.3,.8,.3,1), fill .5s, fill-opacity .12s" }}
                 onMouseEnter={() => setHi(b.key)} onClick={(e) => { e.stopPropagation(); if (!moved.current) openBubble(b); }} />;
             })}
@@ -1053,9 +1056,10 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
           mask-image: linear-gradient(to right, #000 calc(100% - 56px), transparent 100%); }
         .map-listrow { display: flex; align-items: center; gap: 10px; padding: 3px 4px; border-radius: 5px; cursor: pointer; transition: background .12s, box-shadow .12s; }
         .map-listrow:hover { background: var(--bg-3); }
-        /* SELECTED row: held background plus an accent hairline, matching the accent ring the
-           selected bubble gets on the map so the two read as one state. */
-        .map-listrow[data-on] { background: var(--bg-3); box-shadow: inset 0 0 0 1px var(--accent-dim); }
+        /* SELECTED row: the filled swatch (above) is the signal; this just holds the hover
+           background so the row stays picked out. The accent hairline that was here went with the
+           bubble's ring on 2026-09-01 — one marker, not three. */
+        .map-listrow[data-on] { background: var(--bg-3); }
         /* min-width:0 on the GRID and the ROW, not only on the name (Fuad 2026-08-20: a long
            artist, album or song name pushed the play count past the edge of a phone screen).
            This is the Overview Results panel, and it carries its OWN copy of the .cal-* rules

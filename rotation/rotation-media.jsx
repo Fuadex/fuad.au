@@ -1334,90 +1334,11 @@ function TrackView({ id, go }) {
         </div>
       </div>
 
-      {/* "in your rotation" outliers LEFT · sounds/reads RIGHT (the Genius blurb moved into the
-          switcher below, so this slot now carries a personal audio read — Fuad 2026-07-06). */}
-      {(tasteStandouts.length > 0 || lyrVal != null) && (
-        <div className="tv-subrow" data-both={!!(tasteStandouts.length > 0 && lyrVal != null)}>
-          {tasteStandouts.length > 0 && (
-            <div className="tv-taste">
-              <div className="tv-taste-h">Next to everything you play, it's…</div>
-              <div className="tv-taste-list">
-                {tasteStandouts.map(s => (
-                  <div className="tv-taste-row" key={s.phrase}>
-                    <span className="tv-taste-adj">{s.phrase}</span>
-                    <div className="tv-taste-bar"><i style={{ width: s.pct + "%", background: `oklch(0.62 0.15 ${hue})` }} /></div>
-                    <span className="tv-taste-pct">more than {Math.round(s.pct)}%</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-          {(lyrVal != null) && (
-            <div className="tv-mood">
-              {audVal != null && (
-                <div className="tv-mood-axis">
-                  <span className="tv-mood-k">Sounds</span>
-                  <div className="tv-mood-bar"><i style={{ width: audVal + "%", background: moodColor(audVal) }} /></div>
-                  <span className="tv-mood-v">{audVal}</span>
-                </div>
-              )}
-              <div className="tv-mood-axis">
-                <span className="tv-mood-k">Reads</span>
-                <div className="tv-mood-bar"><i style={{ width: lyrVal + "%", background: moodColor(lyrVal) }} /></div>
-                <span className="tv-mood-v">{lyrVal}</span>
-              </div>
-              {/* The NRC emotion caption + the Sounds/Reads axis help. THEMES used to supersede
-                  this caption here (pilot 2026-08-08) but moved into "Where it sits" (2026-08-16,
-                  Fuad) — so this card always carries its own note again. */}
-              <div className="tv-mood-note">
-                <span className="txt">
-                  {/* COPY MATRIX (Fuad 2026-08-27): on recalibrated rows the tone word must be
-                      the whole-lyric REGISTER (reg), never the NRC word-count emotion (lyrEmo),
-                      and the consensus sentence is recomputed from audVal vs the CURRENT lyrVal.
-                      Rows without reg (legacy 4-element mood, or mark set but index missing) fall
-                      back to the unmarked lyrEmo copy so 4-element rows still render correctly. */}
-                  {(mood && mood[3] === 2 && reg)
-                    ? <>Reads <b style={{ color: regColor }}>{reg}</b>; the sound carries it as triumph.</>
-                    : (mood && mood[3] === 1 && reg)
-                      ? (audVal == null
-                          ? <>Reads <b style={{ color: regColor }}>{reg}</b>.</>
-                          : (divergent
-                              ? (audVal > lyrVal
-                                  ? <>Sounds bright, reads <b style={{ color: regColor }}>{reg}</b>.</>
-                                  : <>Sounds heavy, reads <b style={{ color: regColor }}>{reg}</b>.</>)
-                              : <>Sound and words agree — <b style={{ color: regColor }}>{reg}</b>.</>))
-                      : (audVal == null
-                          ? (lyrEmo ? <>Lyric tone reads <b>{lyrEmo}</b>.</> : null)
-                          : <>
-                              {divergent
-                                ? (audVal > lyrVal ? <>Bright sound, bleak words.</> : <>Heavy sound, hopeful words.</>)
-                                : <>Sound and words agree.</>}
-                              {lyrEmo ? <> Lyric tone reads <b>{lyrEmo}</b>.</> : null}
-                            </>)}
-                  {/* PROVENANCE MARK (Fuad 2026-08-28): mood[3]===1 = valence re-scored by
-                      the local whole-lyric model (the surgical pass that caught bright-lexical
-                      masks over dark songs); unmarked rows are plain NRC lexicon. Lives in the
-                      note row — the axis grid is a fixed 3-column and must not gain children. */}
-                  {mood && mood[3] === 1 && (
-                    <span className="tv-mood-src" title="Valence re-scored by a whole-lyric language model — the word-count lexicon was misled by bright vocabulary over dark meaning. Unmarked tracks are plain NRC lexicon scores.">calibrated</span>
-                  )}
-                  {mood && mood[3] === 2 && (
-                    <span className="tv-mood-src" title="Reads furious, feels triumphant — the whole-lyric model rated this lyric's felt energy bright while its register stays dark, so the lexicon value was kept and the tension is named instead.">cathartic</span>
-                  )}
-                </span>
-                <span className="tv-mood-help" tabIndex={0}>
-                  <i>?</i>
-                  <span className="tv-mood-tip">
-                    <b>Sounds</b> — how upbeat the music itself is: Spotify&#8217;s audio positivity, 0 gloomy &#8594; 100 euphoric.<br />
-                    <b>Reads</b> — how positive the lyrics are on the page, scored word-by-word against an emotion lexicon in the song&#8217;s language. Tracks tagged <b>calibrated</b> were re-scored by a whole-lyric model that reads meaning, not just vocabulary — it catches songs wearing bright words over dark content. Tracks tagged <b>cathartic</b> kept their lexicon score but the register tension is named — the model read the felt energy as bright while the lyric stays dark.<br />
-                    A wide gap is the classic trick: music that smiles while the words don&#8217;t.
-                  </span>
-                </span>
-              </div>
-            </div>
-          )}
-        </div>
-      )}
+      {/* The subrow that sat here is retired (Fuad 2026-09-01).
+            · "Next to everything you play, it's…" (tasteStandouts) is DISABLED for now on Fuad's
+              call. Its derivation is left intact above, so restoring it is putting one block back.
+            · Sounds/Reads MOVED into the Audio DNA card, at the foot of the bars — the same place
+              album pages put it, so the two views read alike. */}
 
       {/* "what it's about" — real Genius blurb always; the bake-off model reads where present */}
       <BlurbSwitcher id={id} about={about} />
@@ -1436,7 +1357,6 @@ function TrackView({ id, go }) {
             <div className="tv-dna-row" style={{ display: "flex", gap: 14, alignItems: "flex-start", flexWrap: "wrap" }}>
               <div style={{ flex: "0 0 auto", width: 188 }}>
                 <AudioRadar axes={radar} hue={hue} avg={radarLibAvg()} />
-                <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>solid = this song · dashed = your average</div>
               </div>
               <div style={{ flex: 1, minWidth: 170, display: "grid", gap: 8, alignContent: "start" }}>
                 {bars.map(([label, v]) => (
@@ -1446,6 +1366,75 @@ function TrackView({ id, go }) {
                     <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{v}</span>
                   </div>
                 ))}
+                {/* Sounds/Reads at the foot of the bars — moved here 2026-09-01 so songs match
+                    albums. Divider marks the shift: these two are a shared value-to-colour ramp,
+                    not another hue-tinted DNA axis. */}
+                {lyrVal != null && (
+                  <div style={{ marginTop: 4, paddingTop: 10, borderTop: "1px solid var(--rule)" }}>
+                  <div className="tv-mood">
+                    {audVal != null && (
+                      <div className="tv-mood-axis">
+                        <span className="tv-mood-k">Sounds</span>
+                        <div className="tv-mood-bar"><i style={{ width: audVal + "%", background: moodColor(audVal) }} /></div>
+                        <span className="tv-mood-v">{audVal}</span>
+                      </div>
+                    )}
+                    <div className="tv-mood-axis">
+                      <span className="tv-mood-k">Reads</span>
+                      <div className="tv-mood-bar"><i style={{ width: lyrVal + "%", background: moodColor(lyrVal) }} /></div>
+                      <span className="tv-mood-v">{lyrVal}</span>
+                    </div>
+                    {/* The NRC emotion caption + the Sounds/Reads axis help. THEMES used to supersede
+                        this caption here (pilot 2026-08-08) but moved into "Where it sits" (2026-08-16,
+                        Fuad) — so this card always carries its own note again. */}
+                    <div className="tv-mood-note">
+                      <span className="txt">
+                        {/* COPY MATRIX (Fuad 2026-08-27): on recalibrated rows the tone word must be
+                            the whole-lyric REGISTER (reg), never the NRC word-count emotion (lyrEmo),
+                            and the consensus sentence is recomputed from audVal vs the CURRENT lyrVal.
+                            Rows without reg (legacy 4-element mood, or mark set but index missing) fall
+                            back to the unmarked lyrEmo copy so 4-element rows still render correctly. */}
+                        {(mood && mood[3] === 2 && reg)
+                          ? <>Reads <b style={{ color: regColor }}>{reg}</b>; the sound carries it as triumph.</>
+                          : (mood && mood[3] === 1 && reg)
+                            ? (audVal == null
+                                ? <>Reads <b style={{ color: regColor }}>{reg}</b>.</>
+                                : (divergent
+                                    ? (audVal > lyrVal
+                                        ? <>Sounds bright, reads <b style={{ color: regColor }}>{reg}</b>.</>
+                                        : <>Sounds heavy, reads <b style={{ color: regColor }}>{reg}</b>.</>)
+                                    : <>Sound and words agree — <b style={{ color: regColor }}>{reg}</b>.</>))
+                            : (audVal == null
+                                ? (lyrEmo ? <>Lyric tone reads <b>{lyrEmo}</b>.</> : null)
+                                : <>
+                                    {divergent
+                                      ? (audVal > lyrVal ? <>Bright sound, bleak words.</> : <>Heavy sound, hopeful words.</>)
+                                      : <>Sound and words agree.</>}
+                                    {lyrEmo ? <> Lyric tone reads <b>{lyrEmo}</b>.</> : null}
+                                  </>)}
+                        {/* PROVENANCE MARK (Fuad 2026-08-28): mood[3]===1 = valence re-scored by
+                            the local whole-lyric model (the surgical pass that caught bright-lexical
+                            masks over dark songs); unmarked rows are plain NRC lexicon. Lives in the
+                            note row — the axis grid is a fixed 3-column and must not gain children. */}
+                        {mood && mood[3] === 1 && (
+                          <span className="tv-mood-src" title="Valence re-scored by a whole-lyric language model — the word-count lexicon was misled by bright vocabulary over dark meaning. Unmarked tracks are plain NRC lexicon scores.">calibrated</span>
+                        )}
+                        {mood && mood[3] === 2 && (
+                          <span className="tv-mood-src" title="Reads furious, feels triumphant — the whole-lyric model rated this lyric's felt energy bright while its register stays dark, so the lexicon value was kept and the tension is named instead.">cathartic</span>
+                        )}
+                      </span>
+                      <span className="tv-mood-help" tabIndex={0}>
+                        <i>?</i>
+                        <span className="tv-mood-tip">
+                          <b>Sounds</b> — how upbeat the music itself is: Spotify&#8217;s audio positivity, 0 gloomy &#8594; 100 euphoric.<br />
+                          <b>Reads</b> — how positive the lyrics are on the page, scored word-by-word against an emotion lexicon in the song&#8217;s language. Tracks tagged <b>calibrated</b> were re-scored by a whole-lyric model that reads meaning, not just vocabulary — it catches songs wearing bright words over dark content. Tracks tagged <b>cathartic</b> kept their lexicon score but the register tension is named — the model read the felt energy as bright while the lyric stays dark.<br />
+                          A wide gap is the classic trick: music that smiles while the words don&#8217;t.
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                  </div>
+                )}
               </div>
             </div>
             {attrs.length > 0 && <div style={{ marginTop: 13, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(62px, 1fr))", gap: 9, borderTop: "1px solid var(--rule)", paddingTop: 12 }}>
