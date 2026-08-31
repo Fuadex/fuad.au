@@ -4150,9 +4150,26 @@ function MapView({ go }) {
     // rim of Paris), the fisheye lens, and zoom. Do not reintroduce a relaxation here.
     const farRad = (f) => 1.1 + Math.sqrt(f.n) * 0.55;
     const visRad = (c) => cityRad(c.n);
-    const farList = [...farMap.values()].map(f => ({
+    // MERGE overlapping far entries: Wikidata P131 can return different district names for
+    // venues in the same city (e.g. "Sant Martí" and "Barcelona"), producing separate bubbles
+    // at nearly identical coordinates. Absorb any far entry within FOLD_R of an earlier one.
+    const farRaw = [...farMap.values()].map(f => ({
       ...f, x: f.wxs / f.n, y: f.wys / f.n, venues: [...f.venues.values()],
     }));
+    // sort largest first so the primary city name wins
+    farRaw.sort((a, b) => b.n - a.n);
+    const farList = [];
+    for (const f of farRaw) {
+      const host = farList.find(h => Math.hypot(h.x - f.x, h.y - f.y) < FOLD_R);
+      if (host) {
+        host.n += f.n; host.venues.push(...f.venues);
+        // re-centre on the merged works-weighted centroid
+        host.wxs += f.wxs; host.wys += f.wys;
+        host.x = host.wxs / host.n; host.y = host.wys / host.n;
+      } else {
+        farList.push(f);
+      }
+    }
     for (const f of farList) { f.r = farRad(f); }
     const farByKey = {}; for (const f of farList) farByKey[f.key] = f;
     const markers = [];
