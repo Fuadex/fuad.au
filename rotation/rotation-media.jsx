@@ -97,10 +97,17 @@ const moodColor = (v) => `oklch(0.62 0.13 ${290 - Math.max(0, Math.min(100, v)) 
 // Register vocabulary for calibrated/cathartic rows (GENIUS_MOOD[4] = index). ORDER IS THE EMIT'S —
 // .sptmp/nrc-audit/emit_v5.js — do not reorder. Null for legacy 4-element rows. Per-register hue is
 // for the bolded tone WORD, not the bars: neutral is chroma 0 (grey), anguished deep violet, joyful
-// gold. Module scope since 2026-09-01 — the album caption names the same words as the song page,
-// and a second copy of a decoding table is a drift waiting to happen.
-const REG_VOCAB = ['anguished', 'bittersweet', 'bleak', 'tender', 'angry', 'defiant', 'joyful', 'neutral', 'bitter'];
-const REG_HUES = { anguished: 290, bleak: 250, bitter: 110, angry: 25, bittersweet: 320, tender: 350, neutral: 0, defiant: 45, joyful: 85 };
+// gold.
+//
+// NAMED _MED_* ON PURPOSE. These files are plain <script type="text/babel"> and share ONE top-level
+// scope, so a bare `const REG_VOCAB` here collides with the identical declaration in
+// rotation-explore.jsx (~L220) — media loads first, explore's redeclaration then throws
+// "already declared" and the whole Explore page dies. That is exactly what happened on 2026-09-01
+// when these were hoisted out of the component under their plain names. The comment in
+// rotation-explore.jsx claiming each file's top-level consts are scoped separately is wrong; they
+// are not. Prefixed here so both copies can coexist until one canonical home is agreed.
+const _MED_REG_VOCAB = ['anguished', 'bittersweet', 'bleak', 'tender', 'angry', 'defiant', 'joyful', 'neutral', 'bitter'];
+const _MED_REG_HUES = { anguished: 290, bleak: 250, bitter: 110, angry: 25, bittersweet: 320, tender: 350, neutral: 0, defiant: 45, joyful: 85 };
 
 // Drag-to-scroll for the chip rails (Fuad 2026-09-01). Returns props to spread onto the scroller.
 // Pointer events + setPointerCapture, so the drag survives leaving the element — the same idiom the
@@ -644,7 +651,7 @@ function AlbumView({ id, go }) {
                     <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-soft)" }}
                       title={`how it sounds (audio positivity) vs what it says (lyric positivity) · lyrics from ${albReads[1]} track${albReads[1] === 1 ? "" : "s"}`}>
                       {(() => {
-                        const reg = albReads[2] != null && albReads[2] >= 0 ? REG_VOCAB[albReads[2]] : null;
+                        const reg = albReads[2] != null && albReads[2] >= 0 ? _MED_REG_VOCAB[albReads[2]] : null;
                         const gap = albSounds != null ? albSounds - albReads[0] : null;
                         // 20, NOT the song page's 30. An album value is a play-weighted MEAN over
                         // its tracks, and averaging compresses spread — album gaps run median 15 /
@@ -654,7 +661,7 @@ function AlbumView({ id, go }) {
                         // 39.3%, and cases like With Teeth (51 vs 25) stop being called agreement,
                         // which they plainly are not.
                         const div = gap != null && Math.abs(gap) >= 20;
-                        const tone = reg ? <b style={{ color: `oklch(0.55 ${reg === "neutral" ? 0 : 0.13} ${REG_HUES[reg] || 0})` }}>{reg}</b> : null;
+                        const tone = reg ? <b style={{ color: `oklch(0.55 ${reg === "neutral" ? 0 : 0.13} ${_MED_REG_HUES[reg] || 0})` }}>{reg}</b> : null;
                         if (gap == null) return tone ? <>Reads {tone}.</> : "lyric tone across the album";
                         if (div) return gap > 0
                           ? (tone ? <>Sounds bright, reads {tone}.</> : <>Sounds brighter than it reads.</>)
@@ -1240,10 +1247,9 @@ function TrackView({ id, go }) {
   const themes = (tGist && tGist.themes) || null;
   const seenLive = !!(R.GIGS && R.GIGS.liveSongs && R.GIGS.liveSongs.indexOf(id) >= 0);
   const divergent = (audVal != null && lyrVal != null && Math.abs(audVal - lyrVal) >= 30);
-  // (REG_VOCAB / REG_HUES hoisted to module scope 2026-09-01 — the album caption names the same
-  //  register words, and two copies would be a decoding table that could silently drift.)
-  const reg = (mood && mood[4] != null) ? REG_VOCAB[mood[4]] : null;
-  const regColor = reg ? `oklch(0.55 ${reg === 'neutral' ? 0 : 0.13} ${REG_HUES[reg] || 0})` : null;
+  // shared with the album caption via the file-level _MED_* copies (see the note at the top).
+  const reg = (mood && mood[4] != null) ? _MED_REG_VOCAB[mood[4]] : null;
+  const regColor = reg ? `oklch(0.55 ${reg === 'neutral' ? 0 : 0.13} ${_MED_REG_HUES[reg] || 0})` : null;
   const bpm = f ? Math.round(f[7]) : 0;   // raw BPM straight from the dump — no remap to undo
   const totalMin = data.dur && data.plays ? Math.round(data.dur * data.plays / 60) : 0;
   const radar = f ? [{ label: "Energy", value: f[4] }, { label: "Tempo", value: bpmAxis(f[7]) }, { label: "Dance", value: f[8] }, { label: "Positive", value: f[5] }, { label: "Acoustic", value: f[6] }, { label: "Instr.", value: f[9] }] : null;
