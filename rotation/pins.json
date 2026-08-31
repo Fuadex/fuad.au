@@ -131,5 +131,270 @@
   "Motörhead": {
     "died": "2015",
     "note": "Band ended in Dec 2015 when founder/frontman Lemmy Kilmister died (28 Dec 2015). Ended by a member's death → carries the deceased †."
+  },
+  "M.I.A.": {
+    "clearImage": true,
+    "note": "Maya Arulpragasam (Kala, Bad Girls, Paper Planes). discogs-artist matched a German techno producer who 'co-runs the Sub Static & Karloff labels' — his 500x500 portrait was the artist photo. MB origin (Hounslow, 1975) and the Discogs STYLES (electro/ragga/grime/bhangra) are the real M.I.A., so only the image is repointed."
+  },
+  "Annihilator": {
+    "clearImage": true,
+    "note": "Canadian thrash band (Jeff Waters, Alice in Hell, Refresh the Demon). discogs-artist matched Scott Brown, a Glasgow rave DJ and producer — his photo was the artist image. discogs-cache styles (Thrash 48 / Heavy Metal 24) are the real band, so styles stay."
+  },
+  "Grimes": {
+    "clearImage": true,
+    "clearStyles": true,
+    "note": "Claire Boucher (Art Angels, Miss Anthropocene). discogs-artist matched 'Grimes Adhesif', a soundcloud electronic producer — his photo and his release styles both came through. MB origin (Vancouver, 1988) was already correct."
+  },
+  "Chevelle": {
+    "clearImage": true,
+    "note": "Grayslake IL alt-metal trio (Wonder What's Next, Send the Pain Below). discogs-artist matched Chavell Singleton, a Newark NJ gospel/soul singer — her photo was the artist image (the linked facebook is hers). discogs-cache styles (Alternative Rock/Hard Rock/Nu Metal) are the real band, so styles stay."
+  },
+  "Yours Truly": {
+    "clearImage": true,
+    "clearStyles": true,
+    "note": "Sydney pop-punk band (Self Care, 2020). discogs-artist matched a 'vocal soul trio' — that entity also dragged RnB/Swing, Soul, Boogie and Rhythm & Blues into the style rails, so styles go with the image. Spotify (pop punk / emo pop) is the right act."
+  },
+  "Hyde": {
+    "clearImage": true,
+    "origin": {
+      "country": "JP",
+      "area": "Japan",
+      "city": "Wakayama"
+    },
+    "note": "HYDE — Takarai Hideto, vocalist of L'Arc~en~Ciel and VAMPS (FAKE DIVINE, MAD QUALIA, 監獄ROCK). discogs-artist matched an American producer/engineer born 1964, and artist-origins placed him in BRAZIL. Spotify (anime / visual kei / j-rock) is the right act; origin hard-set to Wakayama, where he was born."
+  },
+  "Nothing": {
+    "clearImage": true,
+    "origin": {
+      "country": "US",
+      "area": "Pennsylvania",
+      "city": "Philadelphia"
+    },
+    "note": "Philadelphia shoegaze band, Domenic Palermo (The Great Dismal, the Whirr split). discogs-artist matched a defunct Portland dark-ambient/industrial project formed 1995. discogs-cache styles (Shoegaze 31) and Spotify (shoegaze/dream pop/slowcore) are the real band, so only image + origin are set."
+  },
+  "Levels": {
+    "clearImage": true,
+    "clearStyles": true,
+    "note": "Metalcore/djent band (PULSE, SIREN HYMN, Chauvinist). discogs-artist matched a soundcloud 'levelsoundproject' whose styles were Deep House / Tech House / Drum n Bass / New Wave — wrong act on both counts. Spotify (djent / metalcore / deathcore) is right."
+  },
+  "Oliver": {
+    "clearImage": true,
+    "clearStyles": true,
+    "note": "clearImage and clearStyles were set in the first pass (discogs-artist held William Oliver Swofford, the singer who died in 2000). Identity now confirmed from the played titles: Portrait, Ottomatic, Chemicals feat. MNDR and Go With It feat. Chromeo are all on Full Circle. spotify-cache had a different id (6TLwD7HPWuiOzvXEa3oCNe) — left in place rather than guessed at, since no artist photo could be confirmed for the duo; the pin records the canonical id.",
+    "spotify": "0NDElNqwGRCmsYIQFapp6K",
+    "origin": {
+      "country": "US",
+      "area": "California",
+      "city": "Los Angeles"
+    },
+    "tags": [
+      "nu-disco",
+      "electro-funk",
+      "indie electronic",
+      "house"
+    ],
+    "bio": "Oliver were a Los Angeles electronic duo, Vaughn Oliver and Oliver Goldstein, formed around 2010 out of the 1990s scratch-DJ scene. Their only album, Full Circle (Interscope, 2017), featured Chromeo, MNDR, De La Soul and Yelle; the pair stopped working together in 2019."
+  },
+  "Mastodon": {
+    "clearImage": true,
+    "note": "Right band, wrong kind of picture: the Discogs image is 600x232 — the band LOGO, not a photo. Falls through to the Spotify artist portrait."
+  },
+  "Leprous": {
+    "clearImage": true,
+    "note": "Right band, wrong kind of picture: the Discogs image is 600x276, a logo banner. Falls through to the Spotify artist portrait."
+  },
+  "Cartoon Theory": {
+    "clearImage": true,
+    "note": "Right project, wrong kind of picture: the Discogs image is 600x110 — a 5.45:1 logo strip. Falls through to the Spotify artist portrait."
+  },
+  "Heathen": {
+    "clearImage": true,
+    "origin": {
+      "country": "US",
+      "area": "California",
+      "city": "San Francisco"
+    },
+    "note": "Bay Area thrash band (The Evolution of Chaos). Right entity on Discogs, but the image is a 500x170 logo gif. artist-origins was empty — set to San Francisco, where they formed in 1984."
+  },
+  "Behemoth": {
+    "clearImage": true,
+    "note": "Right band (Gdansk blackened death metal, The Satanist). The Discogs image is 200x150 — a thumbnail too small to render as a card portrait. Falls through to the Spotify artist photo."
+  },
+  "OOMPH!": {
+    "clearStyles": true,
+    "note": "Wolfsburg neue deutsche haerte band (Augen auf, Sandmann, Labyrinth). discogs-cache matched an ambiguous entity with TWO releases and returned KLEZMER, plus Pop and Folk/World genres — nonsense for this band and enough to skew the style rails. Spotify (industrial metal / industrial rock / ebm) is right; the image already comes from Spotify, so no clearImage needed."
+  },
+  "Alex": {
+    "spotify": "65sChHf6etCvSFdXn8NPUO",
+    "clearImage": true,
+    "clearStyles": true,
+    "origin": {
+      "country": "GB",
+      "area": "Scotland",
+      "city": "Edinburgh"
+    },
+    "tags": [
+      "synthwave",
+      "darksynth",
+      "cyberpunk",
+      "synthpop"
+    ],
+    "bio": "ALEX is Alex Davidson, an Edinburgh electronic producer working in synthwave and darksynth since 2016. His records include the AKUMA collaboration with Tokyo Rose, Simulations (2018) and NARCISSIST (2023), released through NewRetroWave and TimeSlave Recordings.",
+    "note": "Every enrichment had the wrong Alex. discogs-artist matched Alex Sadkin, the American producer who died in 1987, and brought Disco/Funk/Schlager styles with him; there was no Spotify entry at all. Identified from the played titles — AKUMA, Simulations, NARCISSIST, LEXXI and the Tech Noir live version are all one Edinburgh synthwave act. spotify-cache seeded with the correct id."
+  },
+  "Hyper": {
+    "spotify": "6DFJfhZxwWe1yKQvRDJmdl",
+    "clearImage": true,
+    "origin": {
+      "country": "GB",
+      "area": "England",
+      "city": "Oxford"
+    },
+    "tags": [
+      "breakbeat",
+      "nu skool breaks",
+      "electro",
+      "industrial"
+    ],
+    "bio": "Hyper is Guy Hatfield, a British producer and DJ working in nu-skool breaks and electro since around 1999. He runs the Ayra Recordings imprint, which released Lies (2014), Bully (2015), The Adventures of the Android Kid Pt 2 (2017) and the Cyberpunk EP (2019).",
+    "note": "The five played albums are ONE artist, not two — Lies, Suicide Tuesday, Cyberpunk EP, Android Kid Pt 2 and Bully all trace to Guy Hatfield's discography, so no fold is needed. spotify-cache held a different, obscure Hyper (32RaA7TgQ8WDXFG7xYBxXE); repointed to 6DFJfhZxwWe1yKQvRDJmdl."
+  },
+  "Hana": {
+    "spotify": "224Zsim3dmWXWYUXFuHv0o",
+    "clearImage": true,
+    "clearStyles": true,
+    "origin": {
+      "country": "US",
+      "area": "California",
+      "city": "Los Angeles"
+    },
+    "tags": [
+      "electropop",
+      "synthpop",
+      "indie pop"
+    ],
+    "bio": "HANA is Hana Pestle, an American singer, songwriter and producer based in Los Angeles. She moved from folk-pop to electropop after 2015, and wrote and recorded her album HANADRIEL (2019) over four weeks on Twitch livestreams.",
+    "note": "Three-way collision. discogs-artist matched the 1997 American trip-hop duo Greinke/Romero and dragged Ethereal and Trip Hop into the styles; spotify-cache held a Japanese artist, hence the j-pop tag. The played titles — HANADRIEL, Anxious Alien, Black Orchid, Chimera 2.0, Orca — are all Hana Pestle. Two other Spotify ids exist for this name: 40lmBYyahQHhNiutO05hUn is her earlier folk-pop identity, 1xwcjLUe5fzwxhg9lnWFfg is the Japanese act."
+  },
+  "Frau": {
+    "spotify": "14E6albdtD5YWzbat5lWKo",
+    "clearImage": true,
+    "clearStyles": true,
+    "origin": {
+      "country": "US",
+      "area": "New York",
+      "city": "Brooklyn"
+    },
+    "tags": [
+      "hyperpop",
+      "bedroom pop",
+      "electropop"
+    ],
+    "bio": "frau is a Nashville-born, New York-based solo songwriter and producer making synth-driven pop with a hyperpop streak. She debuted with the album a_/ww in 2020; the two played tracks are both from May 2025 — a pop cover of Tool's Stinkfist and the original single graduate.",
+    "note": "artist-origins had matched Leilani Hermiasih, the classically-trained pianist from Yogyakarta, Indonesia; Discogs supplied Punk/Techno/Ska from a third act. Both discarded. 'stinkfist' is a cover, which is why the title looked misplaced."
+  },
+  "EERA": {
+    "spotify": "2pEvCYGB3kxgoesDK5kt2P",
+    "clearImage": true,
+    "clearStyles": true,
+    "origin": {
+      "country": "US",
+      "area": "New York",
+      "city": "New York"
+    },
+    "tags": [
+      "hyperpop",
+      "cloud rap",
+      "electronic"
+    ],
+    "bio": "EERA is Cameron Kozloff, an American producer and co-founder of the New York label and collective Surf Gang. His solo run includes Cant Stop Wasting Time (2023) and the single Bleed (2024).",
+    "note": "The site held two different people at once: the bio described Kozloff while artist-origins described Anna Lena Bruland, the Norwegian musician in Berlin who shares the name. The played titles settle it — the Waste Walker remix is by Snow Strippers, a Surf Gang act, and Cant Stop Wasting Time is Surf Gang SG010. Bruland's record is discarded for this listener."
+  },
+  "Figures": {
+    "spotify": "5ucQrQ0aaegm0EqQfxjVA3",
+    "clearStyles": true,
+    "origin": {
+      "country": "AU",
+      "area": "Victoria",
+      "city": "Melbourne"
+    },
+    "tags": [
+      "alternative metal",
+      "progressive metal",
+      "metalcore",
+      "djent"
+    ],
+    "bio": "Figures are a five-piece alternative metal band from Melbourne, formed around 2013. After two EPs they released their debut album Operating in Unsafe Mode in 2020, taking cues from Deftones, Tool and Karnivool.",
+    "note": "Image was already correct (Spotify id 5ucQrQ0aaegm0EqQfxjVA3 matched what research found) — the wrong data was everything around it. artist-origins placed them in Antwerp as a solo male born 1989, and Discogs supplied Jungle/IDM/New Wave from an unrelated act. Every played track is on the Operating in Unsafe Mode tracklist."
+  },
+  "Future Foundation": {
+    "spotify": "5u1zkwhy0Y015qfTAfL6P5",
+    "clearStyles": true,
+    "origin": {
+      "country": "JP",
+      "area": "Japan",
+      "city": "Tokyo"
+    },
+    "tags": [
+      "metalcore",
+      "post-hardcore",
+      "j-rock"
+    ],
+    "dropTags": [
+      "psytrance"
+    ],
+    "bio": "FUTURE FOUNDATION is a Japanese metalcore collective formed in June 2020 from members of Crystal Lake, NOISEMAKER and SHADOWS, set up to raise money for Japanese live venues closed by the pandemic. They released the single DAWN in 2020 and the EP TRINITY in 2021.",
+    "note": "The psytrance tag was the giveaway that the wrong act was cached. TRINITY's tracklist — FUTURE FOUNDATION / WHO WE ARE / GETAWAY / DAWN — matches every play. spotify-cache held 6FvYwbG4fWfcgNlVOEr8NH; the correct id is recorded here. Discogs styles (Downtempo/DnB/Ambient) dropped."
+  },
+  "Diva": {
+    "spotify": "3eAdyHcHAUbAiLQYrznu5u",
+    "clearImage": true,
+    "clearStyles": true,
+    "origin": {
+      "country": "NO",
+      "area": "Norway",
+      "city": "Oslo"
+    },
+    "tags": [
+      "hardcore",
+      "nu metal",
+      "beatdown",
+      "metalcore"
+    ],
+    "bio": "DIVA are an Oslo band mixing hardcore, nu-metal, beatdown and drum and bass. Spit Blood, released in 2026 with a video, is their best-known track.",
+    "note": "Owner-confirmed Norwegian. artist-origins had them in Canada and Discogs supplied Euro House / Europop / Eurodance from one of the many acts sharing this name; the Deezer photo was the blank placeholder (the d41d8cd9 hash is the md5 of an empty string, i.e. no image). All three replaced."
+  },
+  "Knives": {
+    "spotify": "2YoHhPouaTT96k3dUQ8WZK",
+    "clearImage": true,
+    "clearStyles": true,
+    "origin": {
+      "country": "GB",
+      "area": "England",
+      "city": "Bristol"
+    },
+    "tags": [
+      "post-punk",
+      "hardcore",
+      "noise rock"
+    ],
+    "bio": "Knives are a six-piece band from Bristol formed in 2022, built around vocalist Jay Schottlander and drummer Erin Cook. Their debut album GLITTER came out on Marshall Records in May 2025 and includes THE DAGGER and RHINESTONE COWBOY.",
+    "note": "Deezer served the blank-placeholder image (d41d8cd9 = md5 of the empty string). Bristol was already right but the 2021-11-09 formation date is not supported; research puts it at 2022. Discogs styles came from an unrelated Basque crust act."
+  },
+  "Yuna Kil": {
+    "spotify": "3xavWCdmIQIFprE3Bph6sv",
+    "clearImage": true,
+    "origin": {
+      "country": "SE",
+      "area": "Sweden",
+      "city": "Malmo"
+    },
+    "tags": [
+      "electro-metal",
+      "nu metal",
+      "alternative metal"
+    ],
+    "bio": "Yuna Kil is a self-producing solo artist based in Malmo, Sweden, who records and mixes her own material. She has released singles since 2024, among them Cycle, Gumdrop and Burn Me to the Ground.",
+    "note": "Had NO image and no enrichment of any kind. Identified from the played titles, which match her 2024-25 singles run. MEDIUM confidence: no legal name is published anywhere and there is no encyclopaedia entry, so this rests on music-press coverage of the three singles."
   }
 }
