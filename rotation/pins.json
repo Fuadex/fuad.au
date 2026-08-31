@@ -428,5 +428,16 @@
     ],
     "note": "Owner-corrected 2026-09-01: the electronic Nyx, not the black-metal one. Played titles are the single \"Idea\" (74 plays) and \"Somewhere Else\" (1). EVIDENCE POLLUTION: last.fm's artist row blends at least three acts — its tags read black metal(100) + trance + uplifting trance + ambient + choral, and Discogs id 165750 mixes Ambient/Trance/Black Metal/Drone/Techno/Choral on top. spotify-cache had matched NyxTheShield, an Undertale remixer, and was supplying the artist photo; that entry is deleted rather than repointed because NO Spotify artist named Nyx has either played track (checked all four casings: NYX 4087 followers, NyX 175, Nyx 159, nyx 41). Deezer has nothing either. last.fm confirms both tracks under artist Nyx (Idea: 2,291 listeners / 8,858 plays) and returns mbid 88261179-f944-4334-9e32-0a9f5ab4382f for both, but MusicBrainz disambiguates that id as \"Zouk\" with no tags, country or links — a mis-association, so it is NOT pinned. IDENTITY THEREFORE UNRESOLVED: tags are set to the electronic reading the owner confirms and the homonym tags are dropped, but no mbid/spotify/discogs id is asserted. If the exact act is named later, pin its ids here. FAMILY: dropTags governs display chips only, so the classifier kept voting Thrash/Death off the tag-cache's \"black metal\"(100) — which belongs to a homonym. fam hard-pins Electronic/DnB to match the owner-confirmed reading.",
     "fam": "Electronic/DnB"
+  },
+  "Chalk": {
+    "spotify": "3qa9pv6B0dmiBVETLQOCpi",
+    "clearImage": true,
+    "origin": {
+      "country": "GB",
+      "area": "Northern Ireland",
+      "city": "Belfast"
+    },
+    "bio": "Chalk are a noise-rock and post-punk band from Belfast, working in blown-out electronics and hard, repetitive drum programming. Their run of singles — Conditions, Static, Pain, Claw, Velodrome, Asking, Pool Scene — led to the album Crystalpunk.",
+    "note": "Owner-flagged 2026-09-01: tags were right, picture and description were not. IMAGE: discogs-artist matched ANDREW CHALK, the British experimental/drone musician active since 1985 (Ferial Confine, Organum, Mirror, brainwashed.com) — his portrait was the artist photo, and Discogs sits ahead of Spotify in the image chain. clearImage falls through to Spotify, which is verifiably the right band: the dump holds exactly ONE artist named Chalk (17,915 followers) and it is the one that released Claw, Velodrome, Pool Scene, Conditions and Asking, all of which are in the played set. BIO: was last.fm's seven-way disambiguation blob; the correct entry was its item 6, 'a noise rock/post-punk band from Belfast, Northern Ireland'. ORIGIN: artist-origins had US/Columbus — wrong act. The played track 'Beal Feirste' (Irish for Belfast) corroborates the correction. TAGS LEFT ALONE — post-punk/noise rock were already correct, per the owner. NOT FIXED HERE: the Crystalpunk album tracks (Tongue, I.D.C., Longer, One-Nine-Eight-Zero, Beal Feirste, Skem, Ache) have NO Spotify data at all — no preview, no ISRC, no features — while every single does, so the harvest matched the singles and missed the album. That is why the album has no needle drop."
   }
 }
