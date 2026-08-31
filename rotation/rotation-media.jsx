@@ -461,13 +461,8 @@ function AlbumView({ id, go }) {
           {livesOn && <div className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-faint)", marginTop: 5 }}>
             single · lives on <span className="link" style={{ cursor: "pointer", color: "var(--accent)" }} onClick={() => go("album", livesOn.id)} title={`${livesOn.title} →`}>{livesOn.title}</span></div>}
           {label && <div className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-faint)", marginTop: 4 }}>{label}{heardYr ? ` · you played it ${heardYr}` : ""}</div>}
-          {albThemes && (
-            <div style={{ fontSize: 12.5, color: "var(--ink-soft)", marginTop: 8 }} title="Play-weighted lyric themes across the tracks you've played from this album">
-              Mostly about <b style={{ color: "var(--ink)" }}>{albThemes.list[0].theme}</b>
-              {albThemes.list[1] ? <>, with <b style={{ color: "var(--ink)" }}>{albThemes.list[1].theme}</b></> : null}
-              <span style={{ color: "var(--ink-faint)" }}> · {albThemes.src === "reads" ? "from the reads" : "lyric themes"}</span>
-            </div>
-          )}
+          {/* album themes moved OUT of the header into the "Where it sits" card, matching where the
+              song page puts them (Fuad 2026-09-01). */}
           {/* album's OWN last.fm genre tags — mirrors the artist page's last.fm chip row; clickable
               into Explore (same tag vocabulary the artist chips use). Album-specific, so it sits above
               the artist-level subgenre chips. Renders nothing when the album has no tags. */}
@@ -593,6 +588,22 @@ function AlbumView({ id, go }) {
                   <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", marginTop: 5 }}>album mood vs your library</div>
                 </div>
               </div>
+              {/* THEMES — moved here from the page header (Fuad 2026-09-01) so albums match songs,
+                  where themes sit at the foot of "Where it sits" behind a hairline. The album form
+                  is play-weighted across the tracks you've played from it, and names its source:
+                  the fable reads where they exist, the lyric lexicon otherwise. */}
+              {albThemes && (
+                <div style={{ marginTop: 12, borderTop: "1px solid var(--rule)", paddingTop: 11 }}>
+                  <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 7 }}>Themes</div>
+                  <div className="tv-themes" style={{ margin: 0 }}>
+                    {albThemes.list.slice(0, 4).map(t => <span key={t.theme} className="tv-theme">{t.theme}</span>)}
+                  </div>
+                  <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", marginTop: 6 }}
+                    title="Play-weighted across the tracks you've played from this album">
+                    {albThemes.src === "reads" ? "from the reads" : "lyric themes"}
+                  </div>
+                </div>
+              )}
             </div>
             {sr.length > 0 && <div>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 4 }}><span className="lbl"><b>Your history</b></span>
