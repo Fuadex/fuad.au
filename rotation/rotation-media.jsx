@@ -529,9 +529,12 @@ function AlbumView({ id, go }) {
                 from the experiment: flex-start instead of center, so the text no longer floats
                 vertically centered ("reads odd" was the original complaint). */}
             <div className="tv-dna-row" style={{ display: "flex", gap: 14, alignItems: "flex-start", flexWrap: "wrap" }}>
-              <div style={{ flex: "0 0 auto", width: 188 }}>
+              {/* The standing solid/dashed legend caption was dropped here (Fuad 2026-09-01) — it
+                  restated the chart every time for information you need once. It moves to a hover
+                  title instead, so the shape reads clean and the legend is still one pointer away.
+                  The song page keeps its printed caption. */}
+              <div style={{ flex: "0 0 auto", width: 188 }} title="solid = this album · dashed = your average">
                 <AudioRadar axes={radar} hue={hue} avg={radarLibAvg()} />
-                <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 2 }}>solid = this album · dashed = your average</div>
               </div>
               <div style={{ flex: 1, minWidth: 170, display: "grid", gap: 8, alignContent: "start" }}>
                 {[["Energy", dna[0]], ["Positivity", dna[1]], ["Danceability", dna[2]], ["Acousticness", dna[3]], ["Instrumental", dna[4]]].map(([label, v]) => (
