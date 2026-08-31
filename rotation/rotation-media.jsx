@@ -477,11 +477,6 @@ function AlbumView({ id, go }) {
             <a className="r-extlink r-extlink-sp" href={`https://open.spotify.com/search/${encodeURIComponent(data.artist + " " + data.title)}`} target="_blank" rel="noopener noreferrer">Spotify ↗</a>
           </div>
         </div>
-        {/* tv-head is a flex ROW (cover · text column · stats). The Sounds/Reads pair belongs
-            directly BENEATH the stats numbers, so stats + pair share one COLUMN flex item —
-            as a sibling it just wrapped onto a new line and landed under the cover instead
-            (Fuad 2026-09-01: "not underneath the album cover so a new row"). */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 14, alignItems: "flex-start" }}>
         <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
           <div><div className="r-stat-n" style={{ fontSize: 36 }}>{fmt(data.plays)}</div>
             <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>plays</div></div>
@@ -494,32 +489,6 @@ function AlbumView({ id, go }) {
             return ft ? <div title="times you played this album start-to-finish in one sitting"><div className="r-stat-n" style={{ fontSize: 36 }}>{ft}×</div>
               <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>front-to-back</div></div> : null;
           })()}
-        </div>
-        {/* Sounds vs Reads, averaged to the album (Fuad 2026-09-01) — the same pair the song page
-            carries. Sounds is the play-weighted audio valence (album DNA[1]); Reads is the
-            play-weighted NRC lyric valence. The gap is the point: Toxicity sounds 53 and reads 36.
-            The track count is shown because lyric coverage is thinner than audio — a read drawn
-            from 3 of 12 tracks is a weaker claim than one drawn from 12, and hiding that would
-            overstate it. Only renders when the album has any lyric-scored track. */}
-        {albReads && (
-          <div className="tv-mood" style={{ minWidth: 260, maxWidth: 340, width: "100%" }}>
-            {albSounds != null && (
-              <div className="tv-mood-axis">
-                <span className="tv-mood-k">Sounds</span>
-                <div className="tv-mood-bar"><i style={{ width: albSounds + "%", background: moodColor(albSounds) }} /></div>
-                <span className="tv-mood-v">{albSounds}</span>
-              </div>
-            )}
-            <div className="tv-mood-axis">
-              <span className="tv-mood-k">Reads</span>
-              <div className="tv-mood-bar"><i style={{ width: albReads[0] + "%", background: moodColor(albReads[0]) }} /></div>
-              <span className="tv-mood-v">{albReads[0]}</span>
-            </div>
-            <div className="tv-mood-note"><span className="txt r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>
-              how it sounds vs what it says · lyrics from {albReads[1]} track{albReads[1] === 1 ? "" : "s"}
-            </span></div>
-          </div>
-        )}
         </div>
       </div>
 
@@ -586,6 +555,32 @@ function AlbumView({ id, go }) {
                 </div>
               </div>
             </div>
+            {/* Sounds vs Reads, averaged to the album (Fuad 2026-09-01) — the same pair the song
+                page carries. Sounds is the play-weighted audio valence (album DNA[1]); Reads is the
+                play-weighted NRC lyric valence. The gap is the point: Toxicity sounds 53 and reads
+                36. The track count is shown because lyric coverage is thinner than audio — a read
+                drawn from 3 of 12 tracks is a weaker claim than one from 12, and hiding that would
+                overstate it. Sits between "Where it sits" and "Your history" (Fuad's placement,
+                third attempt): it belongs with the mood reading, not up in the play counts. */}
+            {albReads && (
+              <div className="tv-mood">
+                {albSounds != null && (
+                  <div className="tv-mood-axis">
+                    <span className="tv-mood-k">Sounds</span>
+                    <div className="tv-mood-bar"><i style={{ width: albSounds + "%", background: moodColor(albSounds) }} /></div>
+                    <span className="tv-mood-v">{albSounds}</span>
+                  </div>
+                )}
+                <div className="tv-mood-axis">
+                  <span className="tv-mood-k">Reads</span>
+                  <div className="tv-mood-bar"><i style={{ width: albReads[0] + "%", background: moodColor(albReads[0]) }} /></div>
+                  <span className="tv-mood-v">{albReads[0]}</span>
+                </div>
+                <div className="tv-mood-note"><span className="txt r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>
+                  how it sounds vs what it says · lyrics from {albReads[1]} track{albReads[1] === 1 ? "" : "s"}
+                </span></div>
+              </div>
+            )}
             {sr.length > 0 && <div>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 4 }}><span className="lbl"><b>Your history</b></span>
                 <span className="meta">{sFirst.y === sLast.y ? sFirst.y : `${sFirst.y}–${sLast.y}`}</span></div>

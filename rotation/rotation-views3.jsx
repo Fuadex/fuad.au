@@ -3404,7 +3404,20 @@ function SearchOverlay({ open, onClose, go }) {
   }, [mediaReady]);
 
   // accent-insensitive so "americain" finds "à l'américaine", "bjork" finds "Björk", etc.
-  const deAccent = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+  //
+  // NFD ONLY GETS YOU HALF WAY (Fuad 2026-09-01: "rot should be searchable by just using o instead
+  // of ø"). Decomposition splits a base letter from a COMBINING mark — ö becomes o + U+0308, so the
+  // strip works. But ø, ł, đ, æ, þ and friends are single indivisible codepoints: the stroke or
+  // ligature is part of the glyph, not a mark hung off it, so NFD leaves them untouched and they
+  // survive the replace. "rot" therefore never matched "røt".
+  // 34 artists were affected, and Polish ł mattered more than ø: Sokół, Słoń, Dawid Podsiadło,
+  // Michał Wieczorek and Dwa Sławy were all unreachable by their plain-ASCII spelling.
+  // Two-character expansions (æ→ae, ß→ss) are correct for search: the needle is folded the same
+  // way, so typing either "aether" or "æther" finds Æther Realm.
+  const STROKE_FOLD = { "ø": "o", "ł": "l", "đ": "d", "ð": "d", "þ": "th", "æ": "ae", "œ": "oe",
+    "ß": "ss", "ħ": "h", "ŧ": "t", "ı": "i", "ĸ": "k", "ŋ": "n", "ſ": "s" };
+  const deAccent = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .replace(/[øłđðþæœßħŧıĸŋſ]/g, (c) => STROKE_FOLD[c] || c);
 
   // also match the romanised form of kana names, so "midori" finds ミドリ, "boris" finds ボリス
   const romaMatch = (name, needle) => KANA_RE.test(name) && deAccent(kanaToRomaji(name)).includes(needle);
