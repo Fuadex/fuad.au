@@ -477,6 +477,11 @@ function AlbumView({ id, go }) {
             <a className="r-extlink r-extlink-sp" href={`https://open.spotify.com/search/${encodeURIComponent(data.artist + " " + data.title)}`} target="_blank" rel="noopener noreferrer">Spotify ↗</a>
           </div>
         </div>
+        {/* tv-head is a flex ROW (cover · text column · stats). The Sounds/Reads pair belongs
+            directly BENEATH the stats numbers, so stats + pair share one COLUMN flex item —
+            as a sibling it just wrapped onto a new line and landed under the cover instead
+            (Fuad 2026-09-01: "not underneath the album cover so a new row"). */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 14, alignItems: "flex-start" }}>
         <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
           <div><div className="r-stat-n" style={{ fontSize: 36 }}>{fmt(data.plays)}</div>
             <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>plays</div></div>
@@ -497,7 +502,7 @@ function AlbumView({ id, go }) {
             from 3 of 12 tracks is a weaker claim than one drawn from 12, and hiding that would
             overstate it. Only renders when the album has any lyric-scored track. */}
         {albReads && (
-          <div className="tv-mood" style={{ marginTop: 16, maxWidth: 340 }}>
+          <div className="tv-mood" style={{ minWidth: 260, maxWidth: 340, width: "100%" }}>
             {albSounds != null && (
               <div className="tv-mood-axis">
                 <span className="tv-mood-k">Sounds</span>
@@ -515,6 +520,7 @@ function AlbumView({ id, go }) {
             </span></div>
           </div>
         )}
+        </div>
       </div>
 
       {/* PORTRAIT owns this slot (Fuad 2026-07-17). When a liner entry exists it is the primary read;
