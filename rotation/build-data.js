@@ -3652,7 +3652,11 @@ const mediaTracks = [...trackPlays.entries()].sort((a, b) => b[1] - a[1]).map(([
   const hasFeat = td && td.length >= 10;
   if (hasFeat && albumIdx >= 0) {   // accumulate album DNA: [energy, valence, dance, acoustic, instr, tempo]
     let a = albDNA.get(albumIdx); if (!a) albDNA.set(albumIdx, a = { s: [0, 0, 0, 0, 0, 0], w: 0 });
-    a.s[0] += td[4] * plays; a.s[1] += td[5] * plays; a.s[2] += td[8] * plays; a.s[3] += td[6] * plays; a.s[4] += td[9] * plays; a.w += plays;
+    // s[5] = TEMPO was never accumulated (Fuad 2026-08-31: "every song features a BPM 50"). Five of
+    // the six axes were summed and tempo silently stayed 0, so every album read 50 + 0 = 50 bpm —
+    // the floor of the 50..190 remap, which looks like a real number and so went unnoticed.
+    // TRACKDATA idx: 4 energy · 5 valence · 6 acoustic · 7 tempo · 8 dance · 9 instr (all 0..100).
+    a.s[0] += td[4] * plays; a.s[1] += td[5] * plays; a.s[2] += td[8] * plays; a.s[3] += td[6] * plays; a.s[4] += td[9] * plays; a.s[5] += td[7] * plays; a.w += plays;
   }
   const row = [title, _ai(artist), plays, albumIdx, _tail(trackYear.get(key))];
   // [5] = track number. The released-tracklist disc position (discNo) is AUTHORITATIVE — it fixes
