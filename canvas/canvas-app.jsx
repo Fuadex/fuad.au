@@ -3736,8 +3736,10 @@ function Artists({ go }) {
           return (
             <button className="cv-artblob" key={r.id} onClick={() => go("artist", r.id)} title={r.name}>
               <span className="cv-artblob-face" data-empty={a.image ? "false" : "true"}
-                style={a.image ? { backgroundImage: `url("${a.image}")` } : { background: `hsl(${strHue(r.id)} 34% 52%)` }}>
-                {!a.image && <i>{initialsOf(r.name)}</i>}
+                style={a.image ? undefined : { background: `hsl(${strHue(r.id)} 34% 52%)` }}>
+                {a.image
+                  ? <LazyImg className="cv-artblob-photo" src={a.image} alt="" />
+                  : <i>{initialsOf(r.name)}</i>}
                 {r.fl > 0 && <b className="cv-artblob-star">★{r.fl}</b>}
               </span>
               <span className="cv-artblob-name">{r.name}</span>
@@ -4917,12 +4919,19 @@ function MapView({ go }) {
   }, []);
   // Gestures preview per event (one attribute write, zero React renders — the choppiness fix
   // survives) and flush a single render at rest.
-  const onDown = (e) => { if (e.button !== 0) return; drag.current = { mx: e.clientX, my: e.clientY, v: vbRef.current, moved: false }; setLensThrottled(null); };
+  // The lens used to be dropped HERE, on mousedown (Fuad 2026-08-31: "clicking near the red dots
+  // causes the red dots to collapse in size which causes to not fire the image"). Dropping it is
+  // right for a PAN — a fisheye anchored to stale map coords smears as the map moves — but
+  // mousedown is too early to know a pan is what this is. A plain click got its magnification
+  // yanked out from under a stationary cursor: every dot in lens range snapped back to resting
+  // size, so the one being aimed at shrank away and its hover never fired. The clear now waits
+  // for the drag threshold in onMove, which is the first moment a pan is real.
+  const onDown = (e) => { if (e.button !== 0) return; drag.current = { mx: e.clientX, my: e.clientY, v: vbRef.current, moved: false }; };
   const onMove = (e) => {
     if (drag.current && svgRef.current) {
       const r = svgRef.current.getBoundingClientRect(), d = drag.current;
       const dx = e.clientX - d.mx, dy = e.clientY - d.my;
-      if (Math.abs(dx) + Math.abs(dy) > 3) d.moved = true;
+      if (Math.abs(dx) + Math.abs(dy) > 3 && !d.moved) { d.moved = true; setLensThrottled(null); }
       preview({ ...d.v, x: d.v.x - dx / r.width * d.v.w, y: d.v.y - dy / r.height * d.v.h });
       return;
     }
