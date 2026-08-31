@@ -1355,9 +1355,12 @@ function TrackView({ id, go }) {
             {/* The 2026-08-28 flip REVERTED same day with the album block (the auto-sized label
                 column collapsed its bars). Graph left / labels right restored; flex-start kept. */}
             <div className="tv-dna-row" style={{ display: "flex", gap: 14, alignItems: "flex-start", flexWrap: "wrap" }}>
-              <div style={{ flex: "0 0 auto", width: 188 }}>
+              <div style={{ flex: "0 0 auto", width: 188 }} title="solid = this song · dashed = your average">
                 <AudioRadar axes={radar} hue={hue} avg={radarLibAvg()} />
               </div>
+              {/* same vertical rule the album DNA card carries — stretches to the taller column,
+                  hidden below 600px where .tv-dna-row stacks (Fuad 2026-09-01) */}
+              <div className="tv-dna-rule" aria-hidden="true" />
               <div style={{ flex: 1, minWidth: 170, display: "grid", gap: 8, alignContent: "start" }}>
                 {bars.map(([label, v]) => (
                   <div key={label} style={{ display: "grid", gridTemplateColumns: "96px minmax(0,1fr) 26px", gap: 10, alignItems: "center" }}>
@@ -1370,19 +1373,25 @@ function TrackView({ id, go }) {
                     albums. Divider marks the shift: these two are a shared value-to-colour ramp,
                     not another hue-tinted DNA axis. */}
                 {lyrVal != null && (
-                  <div style={{ marginTop: 4, paddingTop: 10, borderTop: "1px solid var(--rule)" }}>
-                  <div className="tv-mood">
+                  <div style={{ marginTop: 4, paddingTop: 10, borderTop: "1px solid var(--rule)", display: "grid", gap: 8 }}>
+                  {/* Same three-column grid and xp-bar as the DNA bars directly above, so the two
+                      pairs line up as one list (Fuad 2026-09-01: "in songs I want the same format
+                      as it's in album"). Only the FILL differs — moodColor, not the track hue,
+                      because these are a shared value-to-colour ramp rather than another
+                      hue-tinted DNA axis. The tv-mood-* classes carried their own bar sizing and
+                      would not have aligned. */}
+                  <div className="tv-mood" style={{ display: "grid", gap: 8 }}>
                     {audVal != null && (
-                      <div className="tv-mood-axis">
-                        <span className="tv-mood-k">Sounds</span>
-                        <div className="tv-mood-bar"><i style={{ width: audVal + "%", background: moodColor(audVal) }} /></div>
-                        <span className="tv-mood-v">{audVal}</span>
+                      <div style={{ display: "grid", gridTemplateColumns: "96px minmax(0,1fr) 26px", gap: 10, alignItems: "center" }}>
+                        <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-soft)" }}>Sounds</span>
+                        <div className="xp-bar" style={{ width: "100%" }}><div style={{ width: audVal + "%", background: moodColor(audVal) }} /></div>
+                        <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{audVal}</span>
                       </div>
                     )}
-                    <div className="tv-mood-axis">
-                      <span className="tv-mood-k">Reads</span>
-                      <div className="tv-mood-bar"><i style={{ width: lyrVal + "%", background: moodColor(lyrVal) }} /></div>
-                      <span className="tv-mood-v">{lyrVal}</span>
+                    <div style={{ display: "grid", gridTemplateColumns: "96px minmax(0,1fr) 26px", gap: 10, alignItems: "center" }}>
+                      <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-soft)" }}>Reads</span>
+                      <div className="xp-bar" style={{ width: "100%" }}><div style={{ width: lyrVal + "%", background: moodColor(lyrVal) }} /></div>
+                      <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{lyrVal}</span>
                     </div>
                     {/* The NRC emotion caption + the Sounds/Reads axis help. THEMES used to supersede
                         this caption here (pilot 2026-08-08) but moved into "Where it sits" (2026-08-16,
