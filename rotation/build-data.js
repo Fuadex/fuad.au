@@ -2111,6 +2111,27 @@ const spanDays = Math.round((newestMs - oldestMs) / 86400e3);
 // exact, the uncovered remainder is filled at the measured average track length so the total stays honest).
 // Same pass builds a play-weighted distribution of each audio axis across your library → AUDIO_DIST, so
 // a track/album page can say "more intense than 78% of your plays" without loading the per-track file.
+// ─────────── BPM_RANGE — the corpus tempo bounds, measured not guessed (Fuad 2026-09-01) ───────────
+// TRACKDATA[7] used to be tempo squeezed into 0..100 by a hand-picked (bpm-50)/140 remap. That
+// CLIPPED: 202,072 distinct dump tempos became 101 buckets, and everything at or above 190 bpm
+// collapsed onto a single value — 1,120 of this corpus, concentrated exactly in the fast genres
+// where the sort is most interesting. The field now holds RAW BPM straight from the dump, which
+// costs ~34 KB and makes the number usable in Explore's charts.
+//
+// The 0..100 form the radar and percentile axes still need is derived HERE, from the corpus's own
+// min/max rather than an invented range, so the axis spans exactly the tempo this library contains
+// and nothing clips by construction. Recomputed every build, so it tracks the data.
+const BPM_RANGE = (() => {
+  let lo = Infinity, hi = -Infinity;
+  for (const k in TRACKDATA) { const v = TRACKDATA[k]; if (!v || v.length < 10) continue;
+    const b = v[7]; if (!(b > 0)) continue; if (b < lo) lo = b; if (b > hi) hi = b; }
+  if (!isFinite(lo) || hi <= lo) return [40, 220];   // empty/unmigrated store — harmless fallback
+  return [Math.floor(lo), Math.ceil(hi)];
+})();
+const bpmToAxis = (bpm) => !(bpm > 0) ? 0
+  : Math.max(0, Math.min(100, Math.round((bpm - BPM_RANGE[0]) / (BPM_RANGE[1] - BPM_RANGE[0]) * 100)));
+console.log(`BPM_RANGE: ${BPM_RANGE[0]}–${BPM_RANGE[1]} bpm (corpus-measured; tempo stored RAW)`);
+
 const DIST_AXES = [["energy", 4], ["valence", 5], ["dance", 8], ["acoustic", 6], ["instr", 9], ["tempo", 7]];
 const _hist = DIST_AXES.map(() => new Float64Array(101));
 let _distTotal = 0;
@@ -2121,7 +2142,14 @@ for (const [key, plays] of trackPlays) {
   if (!td) continue;
   if (td[0]) { _secCov += td[0] * plays; _playsCov += plays; }
   if (td.length >= 3) { _explCov += plays; if (td[2]) _explPlays += plays; }
-  if (td.length >= 10) { _distTotal += plays; for (let a = 0; a < DIST_AXES.length; a++) { const v = Math.max(0, Math.min(100, td[DIST_AXES[a][1]] | 0)); _hist[a][v] += plays; } }
+  // TEMPO IS RAW BPM as of 2026-09-01 (see BPM_RANGE) — every other axis is already 0..100, but
+  // tempo now arrives as 37..220 and would blow past this 101-bucket histogram. Normalise it here,
+  // to the CORPUS range rather than a hand-picked one, so the percentile machinery keeps working.
+  if (td.length >= 10) { _distTotal += plays; for (let a = 0; a < DIST_AXES.length; a++) {
+    const raw = td[DIST_AXES[a][1]];
+    const v = Math.max(0, Math.min(100, (DIST_AXES[a][0] === "tempo" ? bpmToAxis(raw) : raw) | 0));
+    _hist[a][v] += plays;
+  } }
 }
 const _avgSec = _playsCov ? _secCov / _playsCov : 216;
 const exactHours = Math.round((_secCov + (_totPlays - _playsCov) * _avgSec) / 3600);
@@ -3842,7 +3870,9 @@ console.log(`album-absorb.js: ${Object.keys(ALBUM_ABSORB).length} single→LP ab
   let LIKED_AUDIO = {};
   try { LIKED_AUDIO = JSON.parse(fs.readFileSync(path.join(__dirname, "liked-audio.json"), "utf8")); } catch (e) {}
   // tempo idx7 in the TRACKDATA store is normalised (bpm-50)/140*100 → invert to whole BPM.
-  const tdTempoToBpm = (t) => Math.round(50 + (t / 100) * 140);
+  // TRACKDATA[7] is RAW BPM since 2026-09-01 — this used to undo the (bpm-50)/140 remap. Kept as a
+  // named helper rather than inlined so the one caller still reads as "this is a BPM".
+  const tdTempoToBpm = (t) => Math.round(t);
   // family + a primary human subgenre label per (canon) artist name, for the genre chip row +
   // subgenre dropdown. familyIdxByName is the same classifier the Sound Map uses; the subgenre is
   // the first SPECIFIC (non-umbrella) tag/style that classifies to that family (clean label).
@@ -5899,7 +5929,7 @@ const CORE = {
   ARTISTS: ARTISTS_CORE, TRACKS, GENRES, CLOCK, ERAS, YEARS, CONCERTS,
   CITIES, TOTALS, NOW, RECENT, ERA_START, TREND, INSIGHTS, PLAYED, ALIAS_TO_ID, CANON_MK,
   FAMILIES: FAMILIES_OUT, SUBS, GENRE_FLOW, THUMBS, SPOTIMG: SPOTIMG_OUT,
-  AUDIO_DIST, GIGS, TOUR, EXPLORE_N: EXPLORE.length,
+  AUDIO_DIST, BPM_RANGE, GIGS, TOUR, EXPLORE_N: EXPLORE.length,
   // build stamp — cache-buster for lazily-fetched shards (Cloudflare caches 4h; stamped URLs
   // make each build's shards distinct AND keep core+shards version-consistent).
   BUILT: new Date().toISOString().slice(0, 16).replace(/[-:T]/g, ""),

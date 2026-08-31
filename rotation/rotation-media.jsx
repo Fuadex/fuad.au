@@ -94,6 +94,15 @@ const keyName = (k, m) => (k == null || k < 0) ? "" : PITCH[k] + (m === 0 ? " mi
 // Hoisted to module scope 2026-09-01 so the album Sounds/Reads pair uses the same ramp as the song
 // page — two ramps would make the same number read as two different colours between the views.
 const moodColor = (v) => `oklch(0.62 0.13 ${290 - Math.max(0, Math.min(100, v)) / 100 * 205})`;
+// TRACKDATA[7] and album DNA[5] hold RAW BPM as of 2026-09-01 (they were a lossy (bpm-50)/140
+// remap that clipped everything at/above 190). Radar and percentile axes still want 0..100, so
+// derive it from R.BPM_RANGE — the corpus's own measured min/max, recomputed each build — rather
+// than a hand-picked range. Nothing can clip, because the range IS the data's extent.
+const bpmAxis = (bpm) => {
+  const r = (typeof R !== "undefined" && R.BPM_RANGE) || [40, 220];
+  if (!(bpm > 0)) return 0;
+  return Math.max(0, Math.min(100, Math.round((bpm - r[0]) / (r[1] - r[0]) * 100)));
+};
 
 // AlbumView — your history with one album: the tracks you've played from it (with per-song plays),
 // when you played it, and the artist's genre/mood (joined from the inline universe). The album's
@@ -301,9 +310,10 @@ function AlbumView({ id, go }) {
   const relYear = data.meta && data.meta[0] ? data.meta[0] : "";
   const label = data.meta && data.meta[2] ? data.meta[2] : "";
   const dna = data.dna;   // [energy, valence, dance, acoustic, instr, tempo]
-  const radar = dna ? [{ label: "Energy", value: dna[0] }, { label: "Tempo", value: dna[5] }, { label: "Dance", value: dna[2] }, { label: "Positive", value: dna[1] }, { label: "Acoustic", value: dna[3] }, { label: "Instr.", value: dna[4] }] : null;
+  // dna[5] is RAW BPM now — the radar axis needs the 0..100 form, everything else is already 0..100
+  const radar = dna ? [{ label: "Energy", value: dna[0] }, { label: "Tempo", value: bpmAxis(dna[5]) }, { label: "Dance", value: dna[2] }, { label: "Positive", value: dna[1] }, { label: "Acoustic", value: dna[3] }, { label: "Instr.", value: dna[4] }] : null;
   const eP = dna ? tastePctl("energy", dna[0]) : null, vP = dna ? tastePctl("valence", dna[1]) : null;
-  const bpm = dna ? Math.round(50 + dna[5] / 100 * 140) : 0;
+  const bpm = dna ? Math.round(dna[5]) : 0;   // raw BPM — no remap to undo
   // Album stat block — the same row the song page shows, averaged up to the album (Fuad
   // 2026-09-01: "I want the song-level values to also get averaged out at album level").
   // ext = media row [10] = [loud dBx10, live, speech, pop, keyPitch, keyMode], play-weighted in
@@ -531,6 +541,32 @@ function AlbumView({ id, go }) {
                     <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{v}</span>
                   </div>
                 ))}
+                {/* Sounds vs Reads sits at the FOOT of the DNA bars (Fuad 2026-09-01, final
+                    placement). Same grid as the bars above so the three columns line up, but the
+                    fill uses moodColor rather than the album hue — these two are a value-to-colour
+                    ramp shared with the song page, not another hue-tinted DNA axis, and colouring
+                    them like the bars would imply they belong to the same scale. Divider above
+                    marks that shift. Reads only appears when the album has lyric-scored tracks;
+                    the count is shown because lyric coverage is thinner than audio coverage. */}
+                {albReads && (
+                  <div style={{ marginTop: 4, paddingTop: 10, borderTop: "1px solid var(--rule)", display: "grid", gap: 8 }}>
+                    {albSounds != null && (
+                      <div style={{ display: "grid", gridTemplateColumns: "94px minmax(0,1fr) 26px", gap: 10, alignItems: "center" }}>
+                        <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-soft)" }}>Sounds</span>
+                        <div className="xp-bar" style={{ width: "100%" }}><div style={{ width: albSounds + "%", background: moodColor(albSounds) }} /></div>
+                        <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{albSounds}</span>
+                      </div>
+                    )}
+                    <div style={{ display: "grid", gridTemplateColumns: "94px minmax(0,1fr) 26px", gap: 10, alignItems: "center" }}>
+                      <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-soft)" }}>Reads</span>
+                      <div className="xp-bar" style={{ width: "100%" }}><div style={{ width: albReads[0] + "%", background: moodColor(albReads[0]) }} /></div>
+                      <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{albReads[0]}</span>
+                    </div>
+                    <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>
+                      how it sounds vs what it says · lyrics from {albReads[1]} track{albReads[1] === 1 ? "" : "s"}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             {/* same stat row the song page carries, averaged to the album (Fuad 2026-09-01) */}
@@ -555,32 +591,6 @@ function AlbumView({ id, go }) {
                 </div>
               </div>
             </div>
-            {/* Sounds vs Reads, averaged to the album (Fuad 2026-09-01) — the same pair the song
-                page carries. Sounds is the play-weighted audio valence (album DNA[1]); Reads is the
-                play-weighted NRC lyric valence. The gap is the point: Toxicity sounds 53 and reads
-                36. The track count is shown because lyric coverage is thinner than audio — a read
-                drawn from 3 of 12 tracks is a weaker claim than one from 12, and hiding that would
-                overstate it. Sits between "Where it sits" and "Your history" (Fuad's placement,
-                third attempt): it belongs with the mood reading, not up in the play counts. */}
-            {albReads && (
-              <div className="tv-mood">
-                {albSounds != null && (
-                  <div className="tv-mood-axis">
-                    <span className="tv-mood-k">Sounds</span>
-                    <div className="tv-mood-bar"><i style={{ width: albSounds + "%", background: moodColor(albSounds) }} /></div>
-                    <span className="tv-mood-v">{albSounds}</span>
-                  </div>
-                )}
-                <div className="tv-mood-axis">
-                  <span className="tv-mood-k">Reads</span>
-                  <div className="tv-mood-bar"><i style={{ width: albReads[0] + "%", background: moodColor(albReads[0]) }} /></div>
-                  <span className="tv-mood-v">{albReads[0]}</span>
-                </div>
-                <div className="tv-mood-note"><span className="txt r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>
-                  how it sounds vs what it says · lyrics from {albReads[1]} track{albReads[1] === 1 ? "" : "s"}
-                </span></div>
-              </div>
-            )}
             {sr.length > 0 && <div>
               <div className="r-card-h" style={{ padding: 0, marginBottom: 4 }}><span className="lbl"><b>Your history</b></span>
                 <span className="meta">{sFirst.y === sLast.y ? sFirst.y : `${sFirst.y}–${sLast.y}`}</span></div>
@@ -1123,9 +1133,9 @@ function TrackView({ id, go }) {
   // keys mirror REG_VOCAB. neutral is chroma 0 (grey). Anguished→deep violet, joyful→gold.
   const REG_HUES = { anguished: 290, bleak: 250, bitter: 110, angry: 25, bittersweet: 320, tender: 350, neutral: 0, defiant: 45, joyful: 85 };
   const regColor = reg ? `oklch(0.55 ${reg === 'neutral' ? 0 : 0.13} ${REG_HUES[reg] || 0})` : null;
-  const bpm = f ? Math.round(50 + f[7] / 100 * 140) : 0;   // undo build-time 50..190 remap
+  const bpm = f ? Math.round(f[7]) : 0;   // raw BPM straight from the dump — no remap to undo
   const totalMin = data.dur && data.plays ? Math.round(data.dur * data.plays / 60) : 0;
-  const radar = f ? [{ label: "Energy", value: f[4] }, { label: "Tempo", value: f[7] }, { label: "Dance", value: f[8] }, { label: "Positive", value: f[5] }, { label: "Acoustic", value: f[6] }, { label: "Instr.", value: f[9] }] : null;
+  const radar = f ? [{ label: "Energy", value: f[4] }, { label: "Tempo", value: bpmAxis(f[7]) }, { label: "Dance", value: f[8] }, { label: "Positive", value: f[5] }, { label: "Acoustic", value: f[6] }, { label: "Instr.", value: f[9] }] : null;
   const bars = f ? [["Energy", f[4]], ["Positivity", f[5]], ["Danceability", f[8]], ["Acousticness", f[6]], ["Liveness", f[11]], ["Instrumental", f[9]]] : null;
   const eP = f ? tastePctl("energy", f[4]) : null, vP = f ? tastePctl("valence", f[5]) : null;
   // "In your rotation, this track is…" — the audio axes where THIS song is a genuine outlier
@@ -1152,7 +1162,10 @@ function TrackView({ id, go }) {
     ];
     const out = [];
     for (const d of DIMS) {
-      const raw = f[d.i];
+      // tempo is RAW BPM in the store now; AUDIO_DIST is bucketed 0..100, so fold it to the axis
+      // before the percentile lookup. The `min` gates below are all on 0..100 axes, and tempo has
+      // no min gate, so this conversion is the only place the change is felt here.
+      const raw = d.k === "tempo" ? bpmAxis(f[d.i]) : f[d.i];
       const p = tastePctlMid(d.k, raw); if (p == null) continue;
       // TEMPO SANITY (2026-08-27, ゆきこさん: energy 94 yet "slow"): the dump's beat tracker
       // half-times songs with mixed passages, so a tempo claim must not contradict energy —
