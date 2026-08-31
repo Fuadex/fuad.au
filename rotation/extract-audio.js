@@ -115,6 +115,7 @@ db.exec(sql, (err) => {
     }
     fs.writeFileSync("audio-features.json", JSON.stringify(out));
     fs.unlinkSync(".names.tmp.json");
+    try { fs.unlinkSync(".aliases.tmp.json"); } catch (e) {}   // added with the alias pass; clean up like its sibling
     console.log("matched", rows.length, "/", names.length, "artists →", (fs.statSync("audio-features.json").size / 1024).toFixed(0) + "KB");
   });
 });
