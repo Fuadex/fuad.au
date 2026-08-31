@@ -4540,6 +4540,7 @@ function MapView({ go }) {
   // works you saw there (hover a work for a preview, click to open). Pure geometry in map units;
   // focusing auto-zooms the viewBox to frame the branch. (Fuad 2026-07-14)
   const [focus, setFocus] = useState(null);
+  const preFocusVb = React.useRef(null);
   // ——— collision-relaxed radial fan (fix 2). Seed each child on a golden-angle spiral out of the
   // parent (guarantees an even, non-symmetrical spread that adapts to count), then run a few
   // relaxation passes: children that sit closer than their combined radii shove each other apart
@@ -4878,10 +4879,12 @@ function MapView({ go }) {
   };
   const framePending = React.useRef(false);
   const focusCity = (c) => {
+    preFocusVb.current = vbRef.current;
     setFocus(c.city); setGrow(0); animateGrow(1, 0);
-    framePending.current = true;                       // frame once `branch` (hence its reach) is ready
+    framePending.current = true;
   };
   const focusFar = (f) => {
+    preFocusVb.current = vbRef.current;
     setFocus("far:" + f.key); setGrow(0); animateGrow(1, 0);
     framePending.current = true;
   };
@@ -4896,8 +4899,8 @@ function MapView({ go }) {
     commit({ x: branch.c.x - half, y: branch.c.y - h / 2, w, h });
   }, [branch]);
   const clearFocus = () => {
-    setHover(null); commit(HOME); animateGrow(0);
-    setTimeout(() => setFocus(null), 440);            // retract the branch, then drop it
+    setHover(null); commit(preFocusVb.current || HOME); animateGrow(0);
+    setTimeout(() => setFocus(null), 440);
   };
   React.useEffect(() => {
     const el = svgRef.current; if (!el) return;
