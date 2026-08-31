@@ -1556,13 +1556,13 @@ function Wall({ go, styleIds }) {
         {/* TODAY'S HANG — what Home shows, on the Wall: the day's rotating floored works with the
             ones Fuad pins always present. It leads the row because it replaces the whole selection
             rather than narrowing it, and it reads as a place to start rather than another filter. */}
-        {/* The house glyph carries it alone at every size (Fuad 2026-08-30, extended from phones to
-            desktop the same day). It leads the row, it is the only ⌂ on the page, and the words were
-            restating what the position and the icon already say. Meaning stays in the title and the
-            aria-label. */}
+        {/* "⌂ today's wall" on desktop; glyph-only on phones via the cv-f-full / cv-f-tiny split
+            (Fuad 2026-09-01, brought the label back on PC). */}
         <button className="cv-hang-chip" data-on={hang} onClick={() => setHang(v => !v)}
           aria-label="today's hang"
-          title="today's hang — a curated rotation of works that floored me">⌂</button>
+          title="today's hang — a curated rotation of works that floored me">
+          <span className="cv-f-tiny">⌂</span><span className="cv-f-full">⌂ today's wall</span>
+        </button>
         <span className="cv-filt-div" aria-hidden="true" />
         {/* "all" clears both axes — a reset, not a third state you can be in */}
         <button data-on={!marks.size && !status.size}

@@ -79,7 +79,8 @@ a { color: inherit; }
 .cv-r-body { padding: 26px 34px 40px; }
 .cv-r-title { font: 600 30px/1.15 var(--serif); color: var(--ink); margin: 0; }
 .cv-r-meta { font: 500 11.5px/1.6 var(--mono); letter-spacing: .07em; text-transform: uppercase; color: var(--ink-faint); margin-top: 8px; }
-.cv-r-meta b { color: var(--accent); font-weight: 600; }
+.cv-r-meta b { color: var(--accent); font-weight: 600; cursor: pointer; transition: color .15s ease; }
+.cv-r-meta b:hover { color: var(--ink); }
 .cv-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
 .cv-chip { font: 500 10.5px/1 var(--mono); letter-spacing: .07em; padding: 6px 11px; border-radius: 999px; border: 1px solid var(--rule); color: var(--ink-soft); }
 .cv-chip-study { cursor: pointer; background: none; color: var(--accent); border-color: oklch(0.66 0.14 46 / .45); }
@@ -92,7 +93,8 @@ a { color: inherit; }
 .cv-r-sec { margin-top: 22px; font: 400 14px/1.65 var(--serif); }
 .cv-r-sec .lbl { font: 600 10px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); display: block; margin-bottom: 7px; }
 .cv-r-links { margin-top: 24px; display: flex; gap: 14px; flex-wrap: wrap; }
-.cv-r-links a { font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); text-decoration: none; border-bottom: 1px solid oklch(0.66 0.14 46 / .35); padding-bottom: 2px; }
+.cv-r-links a { font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 2px; transition: border-color .15s ease; }
+.cv-r-links a:hover { border-bottom-color: oklch(0.66 0.14 46 / .35); }
 .cv-r-close { position: sticky; top: 10px; margin-left: calc(100% - 46px); width: 36px; height: 36px; border-radius: 999px; border: none; background: rgba(26,20,14,.72); color: #e3d8c8; font-size: 17px; cursor: pointer; z-index: 2; }
 
 /* ——— museums view ——— */
@@ -807,7 +809,8 @@ a { color: inherit; }
 .cv-zoom-close { position: fixed; top: 16px; right: 20px; margin: 0; z-index: 2; }
 .cv-zoom-hint { position: fixed; bottom: 14px; left: 0; right: 0; text-align: center; font: 500 10px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: rgba(227,216,200,.5); }
 /* deep zoom (OpenSeadragon over IIIF) — a layer above the Reader/Zoom */
-.cv-r-deep { font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); background: none; cursor: pointer; border: none; border-bottom: 1px solid oklch(0.66 0.14 46 / .35); padding: 0 0 2px; }
+.cv-r-deep { font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); background: none; cursor: pointer; border: none; border-bottom: 1px solid transparent; padding: 0 0 2px; transition: border-color .15s ease; }
+.cv-r-deep:hover { border-bottom-color: oklch(0.66 0.14 46 / .35); }
 .cv-osd { position: fixed; inset: 0; background: rgba(10,8,5,.98); z-index: 70; overflow: hidden; }
 .cv-osd-view { position: absolute; inset: 0; }
 .cv-osd-close { position: fixed; top: 16px; right: 20px; margin: 0; z-index: 2; }
@@ -920,15 +923,11 @@ a { color: inherit; }
 }
 .cv-study-collapse:hover { border-color: var(--ink); color: var(--ink); }
 .cv-study-restore {
-  /* sits just above the walkthrough chip strip (bottom of the viewer) rather than crowding the
-     top with the tour arrows + exit (Fuad 2026-07-19) */
-  position: absolute; left: 16px; bottom: 64px; z-index: 7; margin: 0;
+  position: absolute; top: 14px; right: 60px; z-index: 8; margin: 0;
   font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase;
   color: rgba(227,216,200,.85); background: rgba(20,15,10,.78); border: 1px solid rgba(227,216,200,.3);
   border-radius: 999px; padding: 9px 15px; cursor: pointer;
 }
-/* when there's no walkthrough strip, drop it to the corner so it isn't floating in space */
-.cv-study:not(:has(.cv-study-tour)) .cv-study-restore { bottom: 16px; }
 .cv-study-restore:hover { border-color: rgba(227,216,200,.75); background: rgba(30,22,14,.9); color: #f2e9dc; }
 /* always-visible exit at the viewer's top-right corner */
 .cv-study-exit {
@@ -1002,7 +1001,8 @@ a { color: inherit; }
 .cv-study-body { padding: 26px 34px 90px; max-width: 640px; }
 .cv-study-title { font: 600 27px/1.15 var(--serif); color: var(--ink); margin: 0 0 6px; }
 .cv-study-meta { font: 400 14px/1.5 var(--serif); color: var(--ink-soft); margin-bottom: 24px; }
-.cv-study-meta b { color: var(--ink); font-weight: 600; }
+.cv-study-meta b { color: var(--ink); font-weight: 600; cursor: pointer; transition: color .15s ease; }
+.cv-study-meta b:hover { color: var(--accent); }
 .cv-study-empty { font: italic 400 15px/1.6 var(--serif); color: var(--ink-faint); }
 .cv-study-sec { margin-bottom: 26px; scroll-margin-top: 70px; }
 .cv-study-sec-h {
@@ -1053,8 +1053,7 @@ a { color: inherit; }
   .cv-study-divider { display: flex; flex: 0 0 12px; width: 100%; height: 12px; cursor: row-resize;
     border-left: none; border-right: none; border-top: 1px solid rgba(227,216,200,.14); border-bottom: 1px solid var(--rule); }
   .cv-study-divider-grip { width: 42px; height: 3px; }
-  /* restore button clears the smaller mobile chip strip */
-  .cv-study-restore { bottom: 58px; }
+  .cv-study-restore { right: 60px; }
   .cv-study-panehead { padding: 10px 18px; }
   .cv-study-body { padding: 20px 20px 80px; }
   .cv-study-title { font-size: 23px; }
@@ -1071,7 +1070,8 @@ a { color: inherit; }
 .cv-r-read-head { display: flex; align-items: baseline; gap: 12px; }
 .cv-r-read-head .lbl { font: 600 10px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); }
 .cv-r-tiers { margin-left: auto; display: flex; gap: 5px; }
-.cv-r-tiers button { font: 500 10px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 6px 11px; border-radius: 999px; border: 1px solid var(--rule); background: none; color: var(--ink-faint); cursor: pointer; }
+.cv-r-tiers button { font: 500 10px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 6px 11px; border-radius: 999px; border: 1px solid var(--rule); background: none; color: var(--ink-faint); cursor: pointer; transition: color .15s ease, border-color .15s ease; }
+.cv-r-tiers button:hover { color: var(--ink); border-color: var(--ink-soft); }
 .cv-r-tiers button[data-on="true"] { border-color: var(--accent-soft); color: var(--accent); }
 .cv-r-read-txt { font: 400 15px/1.65 var(--serif); color: var(--ink-soft); margin-top: 10px; }
 .cv-r-read-by { font: 500 9px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); margin-top: 8px; }
