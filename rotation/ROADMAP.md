@@ -877,6 +877,38 @@ for me" concierge. Decision pending — design new features template-aware from 
 
 ---
 
+## ⑤ Shard the artist payload, to push the kept-artist line past 1000 (2026-08-31)
+
+`TOP_ARTISTS` went 400 → 1000 on 2026-08-31 (489 → 1,061 kept artists). Measured cost of that
+raise across the six data files: **+1,744 KB, +7.9%** — but the split matters more than the total:
+
+| file | 400 | 1000 | delta | tier |
+|---|---|---|---|---|
+| music-core.js | 2,630 KB | 3,141 KB | **+511 KB** | **eager, first paint** |
+| music-rest.js | 5,292 KB | 6,960 KB | +1,668 KB | deferred |
+| artist-detail.js | 4,132 KB | 3,553 KB | −579 KB | lazy (shrinks — promoted artists no longer need its fallback) |
+| artist-flow.js | 2,937 KB | 3,074 KB | +137 KB | lazy |
+| media-index.js | 6,933 KB | 6,935 KB | +2 KB | lazy |
+
+**The binding constraint is `music-core.js`, not the total.** Deferred and lazy bytes are close to
+free; the +511 KB on the eager file (+19%) is what a further raise would spend. Going to 2000+ by
+simply moving the constant again would push first paint somewhere it should not go.
+
+Two levers, cheapest first:
+
+1. **Move more fields into `ARTIST_HEAVY`** (build-data.js ~L5785). That list already routes
+   bio/members/topTracks/topAlbums/similar/styles/discogsGenres/spotGenres/origin into
+   `music-rest.js`; the genre rails joined it 2026-08-31. Anything Overview's first paint does not
+   read can follow. Cheap, no new machinery — but it only buys one step.
+2. **Shard the artist payload properly.** One file per artist bucket (by id prefix or rank band),
+   fetched on demand the way `artist-detail.js` and `sim-img.js` already are, so the kept-artist
+   line stops being a payload decision at all. That is the real fix and the reason this is on the
+   roadmap rather than done: it needs a loader contract (what is guaranteed present at first paint
+   vs awaited), and every consumer that walks `R.ARTISTS` synchronously has to tolerate a partial
+   set — the same discipline `_restLoaded` already imposes for `EXPLORE`.
+
+Until one of those lands, treat 1000 as the ceiling.
+
 ## Parking lot (unranked)
 Vinyl/format breakdown (Discogs release formats) · supergroup detection (MB rels) · festival
 lineup auto-pull (setlist.fm/Wikipedia) · Discogs collection value tracker · listening-goal

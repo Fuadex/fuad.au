@@ -91,7 +91,7 @@ const _filtSubs = (rec) => (rec && rec.sq) ? rec.sq : ((rec && rec.s) || []);
 // DROP the artist from this sort, mirroring how audio sorts drop artists without measured audio);
 // `af` is R.AUDIO[a.id] (may be undefined), `a` the EXPLORE rec. `d` is the natural default direction
 // (+1 = high→low, -1 = low→high, before the flip button multiplies it). `disp` formats the value
-// label. `audio` marks sorts that read the measured vector (kept behind the ≥15-play floor + af gate,
+// label. `audio` marks sorts that read the measured vector (kept behind the ≥3-play floor + af gate,
 // byte-identical to the old path). `bar:false` hides the length bar where value isn't a magnitude.
 const SND_SPECS = {
   energy:  { audio: true, v: (a, af) => af[0], disp: v => Math.round(v * 100) + "%" },
@@ -165,7 +165,13 @@ function exploreRank(R, kind, f, limit = 40) {
       if (hasCells && !plays) continue;
       let value = plays, disp, bar = true;
       if (spec) {                                  // sort by a measured/derived axis instead of plays
-        if (plays < 15) continue;                  // shared floor keeps every alt-sort meaningful
+        // 15 → 3 (Fuad 2026-08-31), i.e. the Explore floor itself, so alt-sorts now reach the whole
+        // list. The old floor guarded relevance rather than data quality, and the data holds up at
+        // 3 plays: audio sorts read R.AUDIO, which is averaged over the DUMP's tracks for that
+        // artist (median 77) and not over your plays, so a 3-play artist still has a well-sampled
+        // vector; the metadata sorts (listeners/debut/span/discovered) never depended on play count
+        // at all. Sortable pool goes ~1,900 → ~6,800. Costs nothing: this filters shipped data.
+        if (plays < 3) continue;
         const af = spec.audio ? R.AUDIO[a.id] : null;
         if (spec.audio && !af) continue;           // audio sorts drop artists without a measured vector
         value = spec.v(a, af, plays);
@@ -1287,7 +1293,12 @@ function MoodContext({ R, arts, go }) {
     const all = arts; const n = all.length || 1;
     let se = 0, sv = 0, sd = 0, smaj = 0, sbpm = 0;
     for (const a of all) { const af = A[a.id]; se += af[0]; sv += af[1]; sd += af[4]; smaj += af[6]; sbpm += 50 + af[3] * 140; }
-    const strong = all.filter(a => a.plays >= 30); const pool = strong.length ? strong : all;
+    // 30 → 10 (Fuad 2026-08-31). This floor picks the artist NAMED as your most energetic / most
+    // acoustic, so it is a taste claim about you rather than a data-quality gate — the averages
+    // above use every artist with a vector and have no floor. 10 opens it well into the tail while
+    // keeping the claim defensible; crowning something played three times would be true and
+    // meaningless. Falls back to the whole pool if nobody clears it.
+    const strong = all.filter(a => a.plays >= 10); const pool = strong.length ? strong : all;
     const top = (idx, dir) => pool.slice().sort((x, y) => dir * (A[y.id][idx] - A[x.id][idx]))[0];
     return { n: all.length, energy: se / n, valence: sv / n, dance: sd / n, major: smaj / n, bpm: Math.round(sbpm / n),
       danceArtist: top(4, 1), sadArtist: top(1, -1), obscureArtist: top(7, -1) };

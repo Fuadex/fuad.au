@@ -17,7 +17,13 @@ const TZ_OFFSET_HOURS = 10;
 // toward eras/years/discovery but not the clock, streaks, or top-day stats.
 const UNDATED_REMAP_START = Date.UTC(2006, 0, 1);
 
-const TOP_ARTISTS = 400;       // ~100-play cutoff (rank 400 = 99 plays) — full pages for everyone played ~100+ times
+// 400 → 1000 (Fuad 2026-08-31). Kept artists get the FULL record — bio, members, top tracks and
+// albums, similar, the three genre rails, origin, connections, era curve — so this is the "deserves
+// a real page" line. Measured cost of the raise: 489 → 1,061 kept, +1,744 KB across the six data
+// files (+7.9%), of which +511 KB lands in the EAGER music-core.js and +1,668 KB in the deferred
+// music-rest.js; artist-detail.js SHRINKS 579 KB because promoted artists no longer need its lazy
+// top-tracks fallback. Kept albums roughly double as a side effect (1,811 → 3,825).
+const TOP_ARTISTS = 1000;      // ~40-play cutoff — full pages well into the tail (was 400 ≈ 100 plays)
 const TOP_ALBUMS = 120;        // bumped from 60 — wider Charts coverage
 const TOP_TRACKS = 50;         // bumped from 24 — wider Charts coverage
 const ALBUMS_PER_ARTIST = 4;
