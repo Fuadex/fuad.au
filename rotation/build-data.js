@@ -669,6 +669,10 @@ const GENRE_RULES = [
   // Prog; it has had no home since, which is the actual cause of the CCR/post-rock report.
   // "rock and roll" must precede nothing in particular but is spelled for both apostrophe forms —
   // _gnorm already strips ’ and ', so "rock'n'roll" arrives as "rocknroll".
+  // GUARD FIRST: a roots word with "metal" welded on is a METAL tag, not a roots one. Without this
+  // /\bcountry\b/ below claimed "country metal" and it became a Roots/Classic subgenre (Fuad
+  // 2026-08-31). \bfolk metal\b is already caught back in §1; these are the rest.
+  ["Heavy/Doom", /\b(country|blues|americana|bluegrass|southern)[- ]metal\b/, _GW.strong],
   ["Roots/Classic", /\bclassic rock\b/, _GW.strong],
   ["Roots/Classic", /\bcountry rock\b/, _GW.strong],
   ["Roots/Classic", /\bsouthern rock\b/, _GW.strong],
@@ -793,6 +797,26 @@ function classifyArtist(ev) { const { ranked } = _voteArtist(ev); return ranked.
 //    that clear the gate join, capped at 3 total, ordered dominant-first then by share. Most
 //    artists end up with exactly one. `famAlso` pins (pins.json, array of family NAMES) append
 //    memberships (cap still 3). Returns a 1–3 element array of family indexes, dominant first.
+// ── ROOTS GUARD (Fuad ruling 2026-08-31: "anything metal shouldn't live in that genre") ──
+// Roots/Classic exists for classic/country/southern/folk ROCK. Those tags sit all over metal
+// bands too — AC/DC and Led Zeppelin carry "blues rock", Korpiklaani and In Extremo carry "folk",
+// Texas Hippie Coalition carries "southern rock" and "country" — and on the first build that was
+// enough to make Roots/Classic the DOMINANT family for 20 metal acts, S.O.D. (a thrash band)
+// among them. A metal act is never a roots act, so the two are mutually exclusive: if any metal
+// family carries real weight, Roots/Classic is dropped from both the dominant slot and the
+// membership list. Prog is deliberately NOT in this set — prog rock is not metal.
+const _METAL_FAMS = ["Thrash/Death", "Heavy/Doom", "Metalcore/Nu"];
+const _metalIdx = () => _METAL_FAMS.map(f => _FAM_INDEX.get(f)).filter(i => i != null);
+const _rootsIdx = () => _FAM_INDEX.get("Roots/Classic");
+function _rootsGuard(idx, ev) {
+  const rc = _rootsIdx();
+  if (rc == null || idx !== rc) return idx;
+  const { totals } = _voteArtist(ev);
+  let best = -1, bestW = 0;
+  for (const mi of _metalIdx()) { const w = totals.get(mi) || 0; if (w > bestW) { bestW = w; best = mi; } }
+  return bestW >= FAM_ABS_MIN ? best : idx;   // any real metal vote outranks a roots reading
+}
+
 const FAM_SHARE_MIN = 0.25, FAM_ABS_MIN = 0.5, FAM_MEMBER_CAP = 3;
 const _famMembersCache = new Map();
 function familyMembersByName(name) {
@@ -821,6 +845,11 @@ function familyMembersByName(name) {
     for (const fn of pn.famAlso) { const fi = _FAM_INDEX.get(fn); if (fi != null && !out.includes(fi) && out.length < FAM_MEMBER_CAP) out.push(fi); }
   }
   if (!out.length && dom >= 0) out.push(dom);   // grey-dominant fallback: keep at least the dominant so fm is never empty
+  // roots guard, membership half: a metal act is never also a roots act (see _rootsGuard above).
+  const _rc = _rootsIdx(), _mi = _metalIdx();
+  if (_rc != null && out.includes(_rc) && out.some(i => _mi.includes(i))) {
+    const i = out.indexOf(_rc); out.splice(i, 1);
+  }
   _famMembersCache.set(name, out);
   return out;
 }
@@ -872,7 +901,7 @@ function familyIdxByName(name) {
     : cachedTags(name);                                            // [[tag, count], …]
   const spotify = aliasedByName(SPOTGEN, name) || [];
   const discogs = stylesCountOf(name);
-  const idx = classifyArtist({ lastfm, spotify, discogs });
+  const idx = _rootsGuard(classifyArtist({ lastfm, spotify, discogs }), { lastfm, spotify, discogs });
   _famCache.set(name, idx);
   return idx;
 }
