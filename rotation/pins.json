@@ -411,5 +411,22 @@
     ],
     "bio": "DHMHTHP are a Japanese noise-punk band, the name a Latin-letter rendering of the Greek Demeter (they also appear as デーメーテール). Their album The Big Red Star came out in April 2023, its six tracks named after Japanese touchstones — a defunct supermarket chain, an arcade game, the White Day holiday. The playing is noisier and more wired than the indie label suggests, with prog inflections in the drumming and guitar work.",
     "note": "Owner has SEEN THEM LIVE (2026-03-21) so the entry matters despite 50 plays. Identity was unresolvable from the enrichment caches — no Discogs, no last.fm tags, no bio, no image — and an earlier research pass could not find a Spotify id at all. Resolved from the local dump instead: exactly ONE artist among 15.4M released an album called 'The Big Red Star' (2023-04-22), and it is this id. VOCALS: vocals.json had ['male']; Fuad corrected it to female 2026-08-31 — owner knowledge, they were at the show. IMAGE: Spotify holds no artist photo, only the album cover repeated at three sizes (ab67616d prefix), so that is what the card shows; a Deezer search returned 'Damh The Bard' (fuzzy, wrong) and a Greek-script 'Δημήτηρ' with zero releases (uncorroborated), both rejected rather than risk a wrong face. GENRE CORRECTED BY OWNER 2026-08-31: the first pass tagged them \"japanese indie / noise rock / lo-fi\". Fuad: \"not really japanese indie (they are but they're not), noise rock is ok but they're noise punk akin to midori, I'd add punk but they do have some prog influences on drums and guitar.\" Tags are now noise punk / noise rock / punk; the prog inflection is described in the bio rather than tagged, since it is a colouring of the playing and not the genre. The Punk/Hardcore family the classifier already assigned is correct and left alone. ミドリ is in the corpus, so the kinship is a real reference point rather than a stray comparison."
+  },
+  "Nyx": {
+    "clearImage": true,
+    "clearStyles": true,
+    "tags": [
+      "trance",
+      "uplifting trance",
+      "electronic"
+    ],
+    "dropTags": [
+      "black metal",
+      "choral",
+      "ambient",
+      "drone"
+    ],
+    "note": "Owner-corrected 2026-09-01: the electronic Nyx, not the black-metal one. Played titles are the single \"Idea\" (74 plays) and \"Somewhere Else\" (1). EVIDENCE POLLUTION: last.fm's artist row blends at least three acts — its tags read black metal(100) + trance + uplifting trance + ambient + choral, and Discogs id 165750 mixes Ambient/Trance/Black Metal/Drone/Techno/Choral on top. spotify-cache had matched NyxTheShield, an Undertale remixer, and was supplying the artist photo; that entry is deleted rather than repointed because NO Spotify artist named Nyx has either played track (checked all four casings: NYX 4087 followers, NyX 175, Nyx 159, nyx 41). Deezer has nothing either. last.fm confirms both tracks under artist Nyx (Idea: 2,291 listeners / 8,858 plays) and returns mbid 88261179-f944-4334-9e32-0a9f5ab4382f for both, but MusicBrainz disambiguates that id as \"Zouk\" with no tags, country or links — a mis-association, so it is NOT pinned. IDENTITY THEREFORE UNRESOLVED: tags are set to the electronic reading the owner confirms and the homonym tags are dropped, but no mbid/spotify/discogs id is asserted. If the exact act is named later, pin its ids here. FAMILY: dropTags governs display chips only, so the classifier kept voting Thrash/Death off the tag-cache's \"black metal\"(100) — which belongs to a homonym. fam hard-pins Electronic/DnB to match the owner-confirmed reading.",
+    "fam": "Electronic/DnB"
   }
 }
