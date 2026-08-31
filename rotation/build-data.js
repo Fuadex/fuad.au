@@ -454,6 +454,14 @@ const FAMILIES = [
   { family: "Jazz/Funk",                         hue: 40,  cx: .40, cy: .32 },
   { family: "Classical",                    hue: 150, cx: .18, cy: .22 },
   { family: "Score",                        hue: 308, cx: .50, cy: .22 },
+  // Roots/Classic (Fuad approved 2026-08-31). The other fourteen families grew out of a metal and
+  // electronic listening history and had NO home for classic rock, country rock, southern rock,
+  // folk rock, rockabilly or americana — none of those words existed anywhere in the rule table,
+  // so the whole roots canon fell through to the bare "rock" umbrella (Alternative/Indie, weight
+  // 0.2) and was then DISPLAYED as post-rock, that family's lowest-index sub. CCR, The Cranberries,
+  // Silos and CherryFilter all landed there. hue 123 sits in the widest free gap (96→150); cx/cy
+  // put it left (organic, not electronic) and mid-light, between Jazz/Funk and Prog.
+  { family: "Roots/Classic",                hue: 123, cx: .30, cy: .38 },
   // Other — catch-all so nothing gets nuked; no rule assigns it (only the explicit fallback does).
   // grey:true is a marker for the color pass (rendered with a placeholder hue until then).
   { family: "Other",                        hue: 72,  cx: .50, cy: .50, grey: true },
@@ -652,6 +660,29 @@ const GENRE_RULES = [
   ["Pop", /\bdark pop\b/, _GW.strong],
   ["Pop", /\bk-?pop\b/, _GW.strong],
   ["Pop", /\bpop\b/, _GW.weak],
+
+  // ── 11b Roots/Classic (Fuad approved 2026-08-31) ──
+  // Placed HERE deliberately, between two rules that would otherwise swallow these tokens:
+  //   • after \bfolk metal\b (§1) so folk metal stays Heavy/Doom, not Roots;
+  //   • before \bblues\b → Jazz/Funk (§12) so "blues rock" reads as rock, not as jazz.
+  // "classic rock" was removed from the Prog rules on 2026-08-28 because it dragged the canon into
+  // Prog; it has had no home since, which is the actual cause of the CCR/post-rock report.
+  // "rock and roll" must precede nothing in particular but is spelled for both apostrophe forms —
+  // _gnorm already strips ’ and ', so "rock'n'roll" arrives as "rocknroll".
+  ["Roots/Classic", /\bclassic rock\b/, _GW.strong],
+  ["Roots/Classic", /\bcountry rock\b/, _GW.strong],
+  ["Roots/Classic", /\bsouthern rock\b/, _GW.strong],
+  ["Roots/Classic", /\bfolk rock\b/, _GW.strong],
+  ["Roots/Classic", /\broots rock\b/, _GW.strong],
+  ["Roots/Classic", /\bblues rock\b/, _GW.strong],
+  ["Roots/Classic", /\brockabilly\b|\bpsychobilly\b/, _GW.strong],
+  ["Roots/Classic", /\b(rock ?n ?roll|rocknroll)\b/, _GW.strong],
+  ["Roots/Classic", /\bamericana\b/, _GW.strong],
+  ["Roots/Classic", /\bbluegrass\b/, _GW.strong],
+  ["Roots/Classic", /\b(alt|alternative)[- ]country\b/, _GW.strong],
+  ["Roots/Classic", /\bsinger[- ]songwriter\b/, _GW.weak],
+  ["Roots/Classic", /\bcountry\b/, _GW.med],
+  ["Roots/Classic", /\bfolk\b/, _GW.med],
 
   // ── 12 Jazz (soul/funk/R&B/blues fold in) ──
   ["Jazz/Funk", /\bjazz\b/, _GW.strong],
@@ -1132,7 +1163,9 @@ const FAMILY_OVERRIDES = {
   "Zankyou no Terror OST": "Score",
   "Future Foundation": "Punk/Hardcore",
   "Wienners": "Punk/Hardcore",
-  "Johnny Cash": "Jazz/Funk",   // blues/roots stretch (Fuad 2026-08-13), out of Other
+  // was a "blues/roots stretch" into Jazz/Funk (Fuad 2026-08-13) purely to get him out of Other —
+  // he displayed as "jazz". Roots/Classic is his actual home, so the stretch is retired.
+  "Johnny Cash": "Roots/Classic",
   "Vana": "Metalcore/Nu",
   "Ylvis": "Pop",
   "Spec Ops: The Line": "Score",
