@@ -658,10 +658,12 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #8a8175;
-  display: flex;
-  gap: 10px;
-  align-items: center;
   margin-bottom: 6px;
+  line-height: 1.6;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
 }
 .popup .t {
   font-family: var(--serif);

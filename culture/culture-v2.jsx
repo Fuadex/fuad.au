@@ -1794,14 +1794,15 @@ function Popup({ item, x, y, linkPref = 'filmweb', onMouseEnter, onMouseLeave, o
       onMouseLeave={onMouseLeave}
     >
       <span className="popup-bridge"/>
-      <div className="meta">
-        {item.director && <span className="meta-link" onClick={e => f('director:' + item.director, e)}>{item.director}</span>}
-        {item.director && <span>·</span>}
-        <span className="meta-link" onClick={e => f('year:' + item.year, e)}>{item.year}</span>
-        {item.rating ? <span>·</span> : null}
-        {item.rating ? <span className="meta-link" onClick={e => f('rating:' + item.rating, e)}>★ {item.rating}/10</span> : null}
-        {item.seasons ? <span>·</span> : null}
-        {item.seasons ? <span>{item.seasons} {item.seasons > 1 ? 'seasons' : 'season'}</span> : null}
+      <div className="meta" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+        <span>
+          {item.director && <span className="meta-link" onClick={e => f('director:' + item.director, e)}>{item.director}</span>}
+          {item.director && ' · '}
+          <span className="meta-link" onClick={e => f('year:' + item.year, e)}>{item.year}</span>
+          {item.seasons ? ' · ' : ''}
+          {item.seasons ? <span>{item.seasons} {item.seasons > 1 ? 'seasons' : 'season'}</span> : null}
+        </span>
+        {item.rating ? <span className="meta-link" style={{ whiteSpace: 'nowrap', flexShrink: 0 }} onClick={e => f('rating:' + item.rating, e)}>★{' '}{item.rating}/10</span> : null}
       </div>
       <div className="t">{displayTitle(item)}
         {item.source === 'fable' && <span className="fable-chip sm" title="added by Fable 5 with a why-watch note">✦ Fable</span>}
