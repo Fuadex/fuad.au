@@ -508,16 +508,20 @@ const fmtDate = (s) => { const [y, m, d] = String(s).split("-"); return `${+d} $
 // a phone, and "hrs · Industrial/Noise/Hyperpop" blows the Overview stat strip apart. Nothing is
 // renamed — the flow bands, the families grid and every title attribute keep the full name. This is
 // a truncation with a chosen break point rather than an ellipsis landing mid-word. It lives in core
-// because Explore and the world map both need it. Families not listed (Punk/Hardcore,
-// Shoegaze/Grunge, Jazz/Funk, Prog, Score, Pop, Classical, Other) are short enough and fall through.
+// because Explore and the world map both need it. Families not listed (Prog, Score, Pop,
+// Classical, Other) are short enough and fall through.
 const FAM_SHORT = {
   "Thrash/Death": "Thrash",
   "Heavy/Doom": "Heavy",
   "Metalcore/Nu": "Metalcore",
+  "Punk/Hardcore": "Punk",
+  "Shoegaze/Grunge": "Grunge",
   "Alternative/Indie": "Alternative",
   "Industrial/Noise/Hyperpop": "Industrial",
-  "Electronic/DnB": "Electronic",
-  "Hip-Hop/Rap": "Hip-Hop",
+  "Electronic/DnB": "Electro",
+  "Hip-Hop/Rap": "Rap",
+  "Jazz/Funk": "Jazz",
+  "Roots/Classic": "Roots",
 };
 const famShort = (name) => FAM_SHORT[name] || name;
 // FAM_TINY — the PHONE labels (Fuad 2026-08-21, his wording). Deliberately a SECOND map rather than
