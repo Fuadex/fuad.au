@@ -699,7 +699,7 @@ function OverviewView({ t, go, restReady, seed }) {
                     leaving a hole in the strip. */}
                 <Stat n={flt ? (flt.depth != null ? flt.depth : flt.sharePct + "%") : sinceYears + " yr"}
                   sub={flt ? (flt.depth != null ? "plays / artist" : "of all plays") : "of history"} />
-                <Stat n={flt && flt.hi ? fmt(flt.hi.count) : R.TOTALS.topDay.count} sub={"streak · " + ((flt && flt.hi ? flt.hi.date : R.TOTALS.topDay.date)).slice(2)} onClick={() => go("calendar")} />
+                <Stat n={flt && flt.hi ? fmt(flt.hi.count) : R.TOTALS.topDay.count} sub="streak" onClick={() => go("calendar")} />
                 {/* Tenth stat (Fuad 2026-08-20): what share of everything I've ever played belongs
                     to the artists standing in the Results list right now — the WHOLE list, not its
                     visible top ten. Unfiltered it reads as the genre map's coverage of my listening;
