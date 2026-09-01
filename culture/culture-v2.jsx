@@ -1795,11 +1795,11 @@ function Popup({ item, x, y, linkPref = 'filmweb', onMouseEnter, onMouseLeave, o
     >
       <span className="popup-bridge"/>
       <div className="meta">
+        {item.director && <span className="meta-link" onClick={e => f('director:' + item.director, e)}>{item.director}</span>}
+        {item.director && <span>·</span>}
         <span className="meta-link" onClick={e => f('year:' + item.year, e)}>{item.year}</span>
         {item.rating ? <span>·</span> : null}
         {item.rating ? <span className="meta-link" onClick={e => f('rating:' + item.rating, e)}>★ {item.rating}/10</span> : null}
-        {regionName(item.region) ? <span>·</span> : null}
-        {regionName(item.region) ? <span className="meta-link" onClick={e => f('region:' + (item.region === 'su' ? 'ru' : item.region), e)}>{regionName(item.region)}</span> : null}
         {item.seasons ? <span>·</span> : null}
         {item.seasons ? <span>{item.seasons} {item.seasons > 1 ? 'seasons' : 'season'}</span> : null}
       </div>
@@ -1809,11 +1809,10 @@ function Popup({ item, x, y, linkPref = 'filmweb', onMouseEnter, onMouseLeave, o
       {(item.noteEn || item.note)
         ? <div className="blurb">{splitNoteAttribution(item.noteEn || item.note).text}</div>
         : <div className="blurb empty">From the wider library — no personal note yet.</div>}
-      {(item.director || item.studio) && (
-        <div className="hint">
-          {item.director && <span className="meta-link" onClick={e => f('director:' + item.director, e)}>{item.director}</span>}
-          {item.director && item.studio && <span> · </span>}
-          {item.studio && <span className="meta-link" onClick={e => f('studio:' + item.studio, e)}>{item.studio}</span>}
+      {(item.studio || regionName(item.region)) && (
+        <div className="hint" style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span>{item.studio && <span className="meta-link" onClick={e => f('studio:' + item.studio, e)}>{item.studio}</span>}</span>
+          <span>{regionName(item.region) && <span className="meta-link" onClick={e => f('region:' + (item.region === 'su' ? 'ru' : item.region), e)}>{regionName(item.region)}</span>}</span>
         </div>
       )}
     </div>
