@@ -1803,19 +1803,19 @@ function Popup({ item, x, y, linkPref = 'filmweb', onMouseEnter, onMouseLeave, o
         {item.seasons ? <span>·</span> : null}
         {item.seasons ? <span>{item.seasons} {item.seasons > 1 ? 'seasons' : 'season'}</span> : null}
       </div>
-      {(item.director || item.studio) && (
-        <div className="meta" style={{ marginTop: 3 }}>
-          {item.director && <span className="meta-link" onClick={e => f('director:' + item.director, e)}>{item.director}</span>}
-          {item.director && item.studio && <span>·</span>}
-          {item.studio && <span className="meta-link" onClick={e => f('studio:' + item.studio, e)}>{item.studio}</span>}
-        </div>
-      )}
       <div className="t">{displayTitle(item)}
         {item.source === 'fable' && <span className="fable-chip sm" title="added by Fable 5 with a why-watch note">✦ Fable</span>}
       </div>
       {(item.noteEn || item.note)
         ? <div className="blurb">{splitNoteAttribution(item.noteEn || item.note).text}</div>
         : <div className="blurb empty">From the wider library — no personal note yet.</div>}
+      {(item.director || item.studio) && (
+        <div className="hint">
+          {item.director && <span className="meta-link" onClick={e => f('director:' + item.director, e)}>{item.director}</span>}
+          {item.director && item.studio && <span> · </span>}
+          {item.studio && <span className="meta-link" onClick={e => f('studio:' + item.studio, e)}>{item.studio}</span>}
+        </div>
+      )}
     </div>
   );
 }
