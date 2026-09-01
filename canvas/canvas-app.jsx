@@ -5020,12 +5020,10 @@ function MapView({ go }) {
           work, scroll to zoom) are all discoverable by doing them. */}
       <div className="cv-map-wrap" onMouseLeave={onLeave}>
         <div className="cv-map-zoom">
-          <div className="cv-map-zoom-row">
-            {(focus || vb.w < 880) && <button type="button" className="cv-map-reset" onClick={clearFocus} title={focus ? "Back to all cities" : "Reset view"}>{focus ? "←" : "↺"}</button>}
-            <button type="button" onClick={() => zoomCenter(1 / 1.4)} aria-label="Zoom in" title="Zoom in">+</button>
-          </div>
+          <button type="button" onClick={() => zoomCenter(1 / 1.4)} aria-label="Zoom in" title="Zoom in">+</button>
           <button type="button" onClick={() => zoomCenter(1.4)} aria-label="Zoom out" title="Zoom out">−</button>
           <button type="button" onClick={() => commit(HOME)} aria-label="Reset view" title="Reset view">⌂</button>
+          {(focus || vb.w < 880) && <button type="button" className="cv-map-reset" onClick={clearFocus} title={focus ? "Back to all cities" : "Reset view"}>{focus ? "←" : "↺"}</button>}
         </div>
         <svg ref={svgRef} viewBox={`${vb.x} ${vb.y} ${vb.w} ${vb.h}`}
           onMouseDown={onDown} onMouseMove={onMove} onMouseUp={stop}
