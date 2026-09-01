@@ -804,6 +804,18 @@
     "to": "Phantasmagoria",
     "type": "variant",
     "reason": "demo recording ((Demo Version))"
+   },
+   {
+    "from": "A Man Called Norhing",
+    "to": "A Man Called Nothing",
+    "type": "spelling",
+    "reason": "spelling: library typo row (Norhing) folds to the canonical Refresh the Demon title; same recording"
+   },
+   {
+    "from": "King of the Hill",
+    "to": "King of the Kill",
+    "type": "spelling",
+    "reason": "spelling: ghost row from a garbled title - no such track exists in the catalog; folds to the King of the Kill title track"
    }
   ]
  },
