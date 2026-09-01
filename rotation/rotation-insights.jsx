@@ -201,18 +201,12 @@ const PROVIDERS = [
               onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
               onMouseLeave={e => e.currentTarget.style.background = "transparent"}
               style={{ display: "flex", alignItems: "center", gap: 9, cursor: "pointer", padding: "3px 0", borderRadius: 4, minWidth: 0 }}>
-              <GenCover hue={_hue(t.artist)} name={t.artist} size={28} radius={2} style={{ flex: "none" }} />
-              {/* FADE, DON'T PUSH (Fuad 2026-08-21). A long song name was driving the play count off
-                  the right edge of a phone: the count is flex:none, so the only thing that could give
-                  was this column, and an ellipsis alone does not help if the flex item is allowed to
-                  claim its content width. minWidth:0 lets it shrink and the mask dims the overflow
-                  rather than cutting it dead, which reads as "there is more name" instead of a
-                  truncation artefact. */}
+              <GenCover hue={_hue(t.artist)} name={t.artist} size={22} radius={2} style={{ flex: "none" }} />
               <div className="ov-rep-txt" style={{ flex: "1 1 0", minWidth: 0 }}>
-                <div style={{ fontSize: 12.5, fontWeight: i === 0 ? 600 : 500, whiteSpace: "nowrap", overflow: "hidden" }}>{t.name}</div>
+                <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden" }}>{t.name}</div>
                 <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden" }}>{t.artist}</div>
               </div>
-              <span className="r-mono" style={{ fontSize: 9.5, color: i === 0 ? "var(--accent)" : "var(--ink-faint)", flex: "none" }}>{t.plays}×</span>
+              <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", flex: "none" }}>{t.plays}×</span>
             </div>
           ))}
         </div>
@@ -458,12 +452,12 @@ const PROVIDERS = [
               onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
               onMouseLeave={e => e.currentTarget.style.background = "transparent"}
               style={{ display: "flex", alignItems: "center", gap: 9, cursor: "pointer", padding: "3px 0", borderRadius: 4, minWidth: 0 }}>
-              <GenCover hue={_hue(r.name)} name={r.name} size={28} radius={2} style={{ flex: "none" }} />
+              <GenCover hue={_hue(r.name)} name={r.name} size={22} radius={2} style={{ flex: "none" }} />
               <div style={{ flex: "1 1 0", minWidth: 0 }}>
-                <div style={{ fontSize: 12.5, fontWeight: i === 0 ? 600 : 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.name}</div>
+                <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.name}</div>
                 <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden" }}>{r.plays} this week · ~{Math.max(1, Math.round(r.pace))}/wk lifetime</div>
               </div>
-              <span className="r-mono" style={{ fontSize: 9.5, color: i === 0 ? "var(--accent)" : "var(--ink-faint)", flex: "none" }}>×{r.ratio >= 10 ? Math.round(r.ratio) : r.ratio.toFixed(1)}</span>
+              <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", flex: "none" }}>×{r.ratio >= 10 ? Math.round(r.ratio) : r.ratio.toFixed(1)}</span>
             </div>
           ))}
         </div>
