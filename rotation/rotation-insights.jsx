@@ -248,23 +248,21 @@ const PROVIDERS = [
       if (gap >= 2 && (!back || gap > back.gap)) back = { tag: "BACK", id: t.artistId, name: t.name, gap, detail: gap + " years quiet" };
     }
     if (back) lines.push(back);
-    // TOP — this week's most-played artist by raw plays, skipping picks already shown.
-    const skip = new Set(lines.map(l => l.id));
-    const top = (wk.topArtists || []).find(t => t.plays >= 10 && !skip.has(t.artistId));
-    if (top) lines.push({ tag: "TOP", id: top.artistId, name: top.name, detail: top.plays + " plays this week" });
     if (!lines.length) return null;
     return {
       id: "movement", category: "movement", score: 0.7, label: "Movement", meta: "this week",
       render: (
         <div style={{ display: "grid", gap: 6, gridTemplateColumns: "minmax(0, 1fr)" }}>
-          {lines.slice(0, 3).map(l => (
+          {lines.slice(0, 2).map(l => (
             <div key={l.tag + l.id} onClick={(e) => { e.stopPropagation(); ctx.go("artist", l.id); }}
               onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
               onMouseLeave={e => e.currentTarget.style.background = "transparent"}
               style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", padding: "3px 0", borderRadius: 4, minWidth: 0 }}>
               <span className="r-mono" style={{ fontSize: 8, letterSpacing: ".12em", color: "var(--accent)", flex: "none", minWidth: 38 }}>{l.tag}</span>
-              <span style={{ fontSize: 12.5, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", minWidth: 0, flex: "1 1 0" }}>{l.name}</span>
-              <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", flex: "0 1 auto", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", minWidth: 0 }}>{l.detail}</span>
+              <div style={{ flex: "1 1 0", minWidth: 0 }}>
+                <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{l.name}</div>
+                <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden" }}>{l.detail}</div>
+              </div>
             </div>
           ))}
         </div>
