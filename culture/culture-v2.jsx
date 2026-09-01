@@ -3234,9 +3234,6 @@ function App() {
               <button data-active={library === 'library'}  onClick={() => switchLibrary('library')}>Library</button>
               <button data-active={library === 'wishlist'} onClick={() => switchLibrary('wishlist')}>Wishlist</button>
             </div>
-            <button className="btn-tonight" onClick={goTonight} title="Tonight's Pick — deal three from your wishlist">
-              ✦ Tonight
-            </button>
             </div>
             <div className="br-group br-view">
             <div className="mode-toggle">
@@ -3295,7 +3292,7 @@ function App() {
                 <circle cx="8.5" cy="8.5" r="1" fill="currentColor"/>
                 <circle cx="12.5" cy="12.5" r="1" fill="currentColor"/>
               </svg>
-              <span className="btn-txt">Pick one for me</span>
+              <span className="btn-txt">Pick one</span>
             </button>
             <button
               className="search-hint-btn"
@@ -3306,6 +3303,9 @@ function App() {
             </div>
           </div>
           <div className="search-row">
+            <button className="btn-tonight" onClick={goTonight} title="Tonight's Pick — deal three from your wishlist">
+              ✦ Tonight
+            </button>
             <div className="search-wrap">
               <svg className="search-icon" width="12" height="12" viewBox="0 0 16 16" fill="none">
                 <circle cx="6.5" cy="6.5" r="4.5" stroke="currentColor" strokeWidth="1.4"/>
