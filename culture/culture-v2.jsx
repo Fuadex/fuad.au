@@ -1816,7 +1816,6 @@ function Popup({ item, x, y, linkPref = 'filmweb', onMouseEnter, onMouseLeave, o
       {(item.noteEn || item.note)
         ? <div className="blurb">{splitNoteAttribution(item.noteEn || item.note).text}</div>
         : <div className="blurb empty">From the wider library — no personal note yet.</div>}
-      <div className="hint">Click to open ↗ · middle-click → {service}</div>
     </div>
   );
 }
