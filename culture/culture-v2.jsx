@@ -1793,8 +1793,6 @@ function Popup({ item, x, y, linkPref = 'filmweb', onMouseEnter, onMouseLeave })
     >
       <span className="popup-bridge"/>
       <div className="meta">
-        <span>{MEDIA_SHORT[item.medium]}</span>
-        <span>·</span>
         <span>{item.year}</span>
         {item.rating ? <span>·</span> : null}
         {item.rating ? <span>★ {item.rating}/10</span> : null}
@@ -1805,7 +1803,7 @@ function Popup({ item, x, y, linkPref = 'filmweb', onMouseEnter, onMouseLeave })
       </div>
       {(item.director || item.studio) && (
         <div className="meta" style={{ marginTop: 3 }}>
-          {item.director && <span>{directorLabel(item.medium)}: {item.director}</span>}
+          {item.director && <span>{item.director}</span>}
           {item.director && item.studio && <span>·</span>}
           {item.studio && <span>{item.studio}</span>}
         </div>
