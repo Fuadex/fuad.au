@@ -696,7 +696,7 @@ a { color: inherit; }
   box-shadow: 0 1px 4px rgba(80,55,25,.14); transition: border-color .15s, color .15s, background .15s;
 }
 .cv-map-zoom button:hover { border-color: var(--ink); color: var(--ink); background: #ede4d6; }
-.cv-map svg { width: 100%; background: #e9dfcd; border-radius: 12px; box-shadow: inset 0 0 60px rgba(120,90,50,.12); cursor: grab; touch-action: none; display: block; overflow: hidden; /* the gesture-preview <g> scales past the viewBox mid-burst; never let it spill the frame */ }
+.cv-map svg { width: 100%; background: #e9dfcd; border-radius: 12px; box-shadow: inset 0 0 60px rgba(120,90,50,.12); cursor: grab; touch-action: none; display: block; overflow: hidden; user-select: none; -webkit-user-select: none; /* the gesture-preview <g> scales past the viewBox mid-burst; never let it spill the frame */ }
 .cv-map svg:active { cursor: grabbing; }
 /* mobile: reclaim the side padding so the map (and its now-fatter dots) get more room (Fuad 2026-07-25) */
 @media (max-width: 620px) { .cv-map { padding: 16px 12px 54px; } }
