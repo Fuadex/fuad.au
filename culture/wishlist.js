@@ -1528,4 +1528,5 @@ window.CULTURE_WISHLIST = [
 {"id": "wl-b-the-cyberiad", "title": "The Cyberiad", "year": 1965, "medium": "Books", "director": "Stanisław Lem", "source": "goodreads", "addedDate": "2020-06-06"},
 {"id": "wl-b-solaris", "title": "Solaris", "year": 1961, "medium": "Books", "director": "Stanisław Lem", "source": "goodreads", "addedDate": "2020-06-06"},
 {"id": "wl-b-white-nights", "title": "White Nights", "year": 1848, "medium": "Books", "director": "Fyodor Dostoevsky", "source": "goodreads", "addedDate": "2023-07-30"},
+{"id": "wl-f-the-servant", "title": "The Servant", "year": 1963, "medium": "Movies", "director": "Joseph Losey", "source": "own", "addedDate": "2026-09-01"},
 ];
