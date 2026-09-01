@@ -763,7 +763,7 @@ function OverviewView({ t, go, restReady, seed }) {
             sits on — the default "span 4" would eat the whole row.
             This week is retired rather than moved: the Riser card is already framed on the week, and
             two week-shaped cards side by side said the same thing twice. */}
-        <InsightRow go={go} n={2} span="auto" only={["riser", "scrob-mile"]}
+        <InsightRow go={go} n={2} span="auto" only={["scrob-mile", "artist-mile"]}
           omit={["week", "story-day"]} />
         </div>{/* /ov-pulseslot */}
 
@@ -845,7 +845,7 @@ function OverviewView({ t, go, restReady, seed }) {
               About to tip over is pinned to the trailing cell (Fuad 2026-08-20). Score decided both
               WHETHER a card showed and WHERE it sat, so this one drifted a cell left or right as
               other providers came and went; `last` fixes the position without touching the pick. */}
-          <InsightRow go={go} n={3} omit={["riser", "scrob-mile", "week"]} last={["artist-mile"]} />
+          <InsightRow go={go} n={3} omit={["scrob-mile", "artist-mile", "week"]} last={["movement"]} />
         </div>
 
         {/* emotional weather — last-90d sounds/reads only now (the decades strip moved up to the
