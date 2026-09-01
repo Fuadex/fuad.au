@@ -934,7 +934,7 @@ function OverviewView({ t, go, restReady, seed }) {
              here rather than at each call site, so a fifth card dropped into this row inherits it. */
           .ov-pulseslot > .r-card { padding: 12px !important; }
           .ov-pulseslot > .r-card > .r-card-h { margin-bottom: 4px !important; }
-          .ov-pulseslot .r-stat-n { font-size: 27px !important; }
+          .ov-pulseslot .r-stat-n { font-size: 20px !important; }
           /* Insight figures sit ONE STEP DOWN from the two bespoke cards (Fuad 2026-08-20). Same
              face, same weight, same colour — 27px was simply too much next to a 12px name and a 9px
              footnote, where Scrobbles and Streak carry their number alone. Matching the row means
