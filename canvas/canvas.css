@@ -696,6 +696,7 @@ a { color: inherit; }
   box-shadow: 0 1px 4px rgba(80,55,25,.14); transition: border-color .15s, color .15s, background .15s;
 }
 .cv-map-zoom button:hover { border-color: var(--ink); color: var(--ink); background: #ede4d6; }
+.cv-map-zoom-row { display: flex; gap: 6px; align-items: center; }
 .cv-map svg { width: 100%; background: #e9dfcd; border-radius: 12px; box-shadow: inset 0 0 60px rgba(120,90,50,.12); cursor: grab; touch-action: none; display: block; overflow: hidden; user-select: none; -webkit-user-select: none; /* the gesture-preview <g> scales past the viewBox mid-burst; never let it spill the frame */ }
 .cv-map svg:active { cursor: grabbing; }
 /* mobile: reclaim the side padding so the map (and its now-fatter dots) get more room (Fuad 2026-07-25) */
@@ -711,9 +712,7 @@ a { color: inherit; }
 .cv-map-preview img { width: 100%; height: 120px; object-fit: cover; border-radius: 5px; display: block; background: #d8cbb8; }
 .cv-map-preview-t { font: 600 13px/1.3 var(--serif); color: var(--ink); margin-top: 6px; }
 .cv-map-preview-s { font: 400 11px/1.4 var(--mono); color: var(--ink-soft); margin-top: 2px; }
-.cv-map-reset { position: absolute; top: 12px; right: 14px; font: 500 10px/1 var(--mono);
-  letter-spacing: .1em; text-transform: uppercase; padding: 7px 11px; border-radius: 999px;
-  border: 1px solid var(--rule); background: rgba(251,246,236,.9); color: var(--ink-soft); cursor: pointer; }
+.cv-map-reset { font: 500 18px/1 var(--sans); }
 .cv-map-legend { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-top: 12px; font: 500 11px/1 var(--mono); color: var(--ink-soft); letter-spacing: .04em; }
 .cv-map-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
 .cv-map-legend .lg-seen { background: oklch(0.55 0.13 46 / .82); }

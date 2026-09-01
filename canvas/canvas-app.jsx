@@ -5021,7 +5021,10 @@ function MapView({ go }) {
           work, scroll to zoom) are all discoverable by doing them. */}
       <div className="cv-map-wrap" onMouseLeave={onLeave}>
         <div className="cv-map-zoom">
-          <button type="button" onClick={() => zoomCenter(1 / 1.4)} aria-label="Zoom in" title="Zoom in">+</button>
+          <div className="cv-map-zoom-row">
+            {(focus || vb.w < 880) && <button type="button" className="cv-map-reset" onClick={clearFocus} title={focus ? "Back to all cities" : "Reset view"}>{focus ? "←" : "↺"}</button>}
+            <button type="button" onClick={() => zoomCenter(1 / 1.4)} aria-label="Zoom in" title="Zoom in">+</button>
+          </div>
           <button type="button" onClick={() => zoomCenter(1.4)} aria-label="Zoom out" title="Zoom out">−</button>
           <button type="button" onClick={() => commit(HOME)} aria-label="Reset view" title="Reset view">⌂</button>
         </div>
@@ -5274,7 +5277,6 @@ function MapView({ go }) {
             {hover.venue && <div className="cv-map-preview-s">{hover.seen ? "seen at " : "to see at "}{hover.venue}, {hover.city}</div>}
           </div>
         )}
-        {(focus || vb.w < 880) && <button className="cv-map-reset" onClick={clearFocus}>{focus ? "← all cities" : "reset view"}</button>}
       </div>
       <div className="cv-map-legend">
         <span><i className="lg-seen" /> museums you've walked</span>
