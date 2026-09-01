@@ -254,20 +254,10 @@ const PROVIDERS = [
       if (gap >= 2 && (!back || gap > back.gap)) back = { tag: "BACK", id: t.artistId, name: t.name, gap, detail: gap + " years quiet" };
     }
     if (back) lines.push(back);
-    // RISING — this week's plays vs the artist's own lifetime weekly pace; bar: real
-    // history (>=60 plays), a real week (>=15), and >=6x their usual. Skip the BACK pick
-    // (a return IS a rise) and brand-new artists (no pace to rise against).
-    let rise = null;
-    for (const t of (wk.topArtists || [])) {
-      if (back && t.artistId === back.id) continue;
-      const a = R.byId[t.artistId]; if (!a || !a.yp || (a.plays || 0) < 60 || t.plays < 15) continue;
-      let first = nowYear;
-      for (const y in a.yp) if (a.yp[y] > 0 && +y < first) first = +y;
-      const weeks = Math.max(8, (nowYear - first + 1) * 52);
-      const ratio = t.plays / Math.max(0.25, (a.plays || 0) / weeks);
-      if (ratio >= 6 && (!rise || ratio > rise.ratio)) rise = { tag: "RISING", id: t.artistId, name: t.name, ratio, detail: t.plays + " plays · " + Math.round(ratio) + "× their usual" };
-    }
-    if (rise) lines.push(rise);
+    // TOP — this week's most-played artist by raw plays, skipping picks already shown.
+    const skip = new Set(lines.map(l => l.id));
+    const top = (wk.topArtists || []).find(t => t.plays >= 10 && !skip.has(t.artistId));
+    if (top) lines.push({ tag: "TOP", id: top.artistId, name: top.name, detail: top.plays + " plays this week" });
     if (!lines.length) return null;
     return {
       id: "movement", category: "movement", score: 0.7, label: "Movement", meta: "this week",
@@ -445,23 +435,39 @@ const PROVIDERS = [
   (ctx) => {
     const w = window.ROTATION_LIVE && window.ROTATION_LIVE.week;
     if (!w || !w.topArtists) return null;
-    const cy = ctx.now.getUTCFullYear();
-    let best = null;
+    const R = ctx.R, cy = ctx.now.getUTCFullYear();
+    const risers = [];
     for (const ta of w.topArtists) {
       if (ta.plays < 15) continue;
-      const a = ctx.R.byId[ta.artistId]; if (!a || !a.firstYear) continue;
+      const a = R.byId[ta.artistId]; if (!a || !a.firstYear) continue;
       const weeks = Math.max(26, (cy - a.firstYear + 1) * 52);
-      const pace = a.plays / weeks;                       // lifetime plays-per-week
+      const pace = a.plays / weeks;
       const ratio = pace > 0 ? ta.plays / pace : 0;
-      if (ratio >= 2.5 && (!best || ratio > best.ratio)) best = { ...ta, ratio, pace };
+      if (ratio >= 2.5) risers.push({ ...ta, ratio, pace });
     }
-    if (!best) return null;
+    if (!risers.length) return null;
+    risers.sort((a, b) => b.ratio - a.ratio);
+    const top2 = risers.slice(0, 2);
     return {
-      id: "riser", category: "riser", score: 0.72, accent: true,
-      label: "Riser of the week", onClick: () => ctx.go("artist", best.artistId),
-      render: <SubjectStat name={best.name}
-        big={"×" + (best.ratio >= 10 ? Math.round(best.ratio) : best.ratio.toFixed(1))} unit="usual pace"
-        foot={`${best.plays} this week · ~${Math.max(1, Math.round(best.pace))}/wk lifetime`} />,
+      id: "riser", category: "riser", score: 0.72,
+      label: "Riser of the week",
+      render: (
+        <div style={{ display: "grid", gap: 6, gridTemplateColumns: "minmax(0, 1fr)" }}>
+          {top2.map((r, i) => (
+            <div key={r.artistId} onClick={(e) => { e.stopPropagation(); ctx.go("artist", r.artistId); }}
+              onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
+              onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+              style={{ display: "flex", alignItems: "center", gap: 9, cursor: "pointer", padding: "3px 0", borderRadius: 4, minWidth: 0 }}>
+              <GenCover hue={_hue(r.name)} name={r.name} size={28} radius={2} style={{ flex: "none" }} />
+              <div style={{ flex: "1 1 0", minWidth: 0 }}>
+                <div style={{ fontSize: 12.5, fontWeight: i === 0 ? 600 : 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.name}</div>
+                <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden" }}>{r.plays} this week · ~{Math.max(1, Math.round(r.pace))}/wk lifetime</div>
+              </div>
+              <span className="r-mono" style={{ fontSize: 9.5, color: i === 0 ? "var(--accent)" : "var(--ink-faint)", flex: "none" }}>×{r.ratio >= 10 ? Math.round(r.ratio) : r.ratio.toFixed(1)}</span>
+            </div>
+          ))}
+        </div>
+      ),
     };
   },
 
