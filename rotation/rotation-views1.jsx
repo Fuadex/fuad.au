@@ -616,7 +616,7 @@ function OverviewView({ t, go, restReady, seed }) {
 
   const Stat = ({ n, sub, big, onClick }) => (
     <div onClick={onClick} style={onClick ? { cursor: "pointer" } : null} className={onClick ? "ov-stat-link" : ""}>
-      <div className="r-stat-n" style={{ fontSize: big ? "clamp(28px,3.4vw,40px)" : 27 }}>{n}</div>
+      <div className="r-stat-n" style={{ fontSize: big ? "clamp(28px,3.4vw,40px)" : 20 }}>{n}</div>
       {/* the ↗ is gone (Fuad 2026-08-20). It marked the stat as clickable, but every stat in the
           strip is, so it marked nothing — and it inflated captions that are already tight once a
           filter name is concatenated in. .ov-stat-link still carries the hover affordance. */}
@@ -680,16 +680,16 @@ function OverviewView({ t, go, restReady, seed }) {
                  artists react to the active map/calendar filter, the rest are lifetime. */
               <div className="r-card ov-strip" style={{ padding: "12px 14px", display: "grid",
                 gridTemplateColumns: "repeat(2,1fr)", gap: "10px 16px", alignContent: "center" }}>
-                <Stat n={fStats && fStats.active ? fmt(fStats.hours) : fmt(Math.round(hrs))} sub={fStats && fStats.active ? "hrs · " + fStats.label : "hours listened"} onClick={() => go("calendar")} />
-                <Stat n={fStats && fStats.active ? fmt(fStats.artists) : fmt(T.artists)} sub={fStats && fStats.active ? "artists · filtered" : "distinct artists"} onClick={() => go("explore")} />
+                <Stat n={fStats && fStats.active ? fmt(fStats.hours) : fmt(Math.round(hrs))} sub={fStats && fStats.active ? "hrs · " + fStats.label : "hours"} onClick={() => go("calendar")} />
+                <Stat n={fStats && fStats.active ? fmt(fStats.artists) : fmt(T.artists)} sub={fStats && fStats.active ? "artists · filtered" : "artists"} onClick={() => go("explore")} />
                 {/* the catalogue row (Fuad 2026-08-12): how much MUSIC that listening covered —
                     LPs / EPs+singles / distinct folded songs. Lifetime (post-fold row counts);
                     the map/calendar filter intentionally doesn't reach these — media rows carry
                     no per-period tags, so a filtered recount would be new plumbing, parked. */}
-                {T.albumsLP != null && <Stat n={fmt(T.albumsLP)} sub="albums played" onClick={() => go("shelves")} />}
-                {T.epsSingles != null && <Stat n={fmt(T.epsSingles)} sub="EPs & singles" onClick={() => go("shelves")} />}
-                {T.tracks != null && <Stat n={fmt(T.tracks)} sub="songs played" onClick={() => go("explore")} />}
-                {seenLivePct > 0 && <Stat n={seenLiveShown + "%"} sub={fStats && fStats.active ? "seen live · filtered" : "plays · seen live"} onClick={() => go("gigs")} />}
+                {T.albumsLP != null && <Stat n={fmt(T.albumsLP)} sub="played" onClick={() => go("shelves")} />}
+                {T.epsSingles != null && <Stat n={fmt(T.epsSingles)} sub="EPs/singles" onClick={() => go("shelves")} />}
+                {T.tracks != null && <Stat n={fmt(T.tracks)} sub="songs" onClick={() => go("explore")} />}
+                {seenLivePct > 0 && <Stat n={seenLiveShown + "%"} sub={fStats && fStats.active ? "seen live · filtered" : "seen live"} onClick={() => go("gigs")} />}
                 <Stat n={flt ? flt.avgDay : T.perDay} sub={flt ? "avg/day · " + flt.label : "avg / day"} />
                 {/* Filtered, this slot shows DEPTH, not share (Fuad 2026-08-20). It used to become
                     "% of all plays", which is the same quantity the tenth stat spells out as "of
@@ -699,7 +699,7 @@ function OverviewView({ t, go, restReady, seed }) {
                     leaving a hole in the strip. */}
                 <Stat n={flt ? (flt.depth != null ? flt.depth : flt.sharePct + "%") : sinceYears + " yr"}
                   sub={flt ? (flt.depth != null ? "plays / artist" : "of all plays") : "of history"} />
-                <Stat n={flt && flt.hi ? fmt(flt.hi.count) : R.TOTALS.topDay.count} sub={"heaviest · " + ((flt && flt.hi ? flt.hi.date : R.TOTALS.topDay.date)).slice(2)} onClick={() => go("calendar")} />
+                <Stat n={flt && flt.hi ? fmt(flt.hi.count) : R.TOTALS.topDay.count} sub={"streak · " + ((flt && flt.hi ? flt.hi.date : R.TOTALS.topDay.date)).slice(2)} onClick={() => go("calendar")} />
                 {/* Tenth stat (Fuad 2026-08-20): what share of everything I've ever played belongs
                     to the artists standing in the Results list right now — the WHOLE list, not its
                     visible top ten. Unfiltered it reads as the genre map's coverage of my listening;
@@ -722,7 +722,7 @@ function OverviewView({ t, go, restReady, seed }) {
             <span className="lbl"><b>Scrobbles</b></span>
             <span className="meta">26-wk</span>
           </div>
-          <div className="r-stat-n" style={{ fontSize: "clamp(24px,3.4vw,34px)", margin: "1px 0 0" }}>{fmt(Math.round(scrob))}</div>
+          <div className="r-stat-n" style={{ fontSize: 20, margin: "1px 0 0" }}>{fmt(Math.round(scrob))}</div>
           <div style={{ marginTop: 2 }}>
             <Spark data={trend} w={300} h={22} run={seen} fill="var(--accent-bg)" />
           </div>
@@ -733,7 +733,7 @@ function OverviewView({ t, go, restReady, seed }) {
           <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>Streak</b></span>
             {T.streak.current >= T.streak.best ? <span className="meta" style={{ color: "var(--accent)" }}>record!</span> : null}</div>
           <div style={{ display: "flex", alignItems: "baseline", gap: 7, marginTop: 0 }}>
-            <div className="r-stat-n" style={{ fontSize: 28 }}>{T.streak.current}</div>
+            <div className="r-stat-n" style={{ fontSize: 20 }}>{T.streak.current}</div>
             <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>days</span>
           </div>
           {(() => {
@@ -945,7 +945,7 @@ function OverviewView({ t, go, restReady, seed }) {
           .ov-np { max-height: 92px; overflow: hidden; }
           .ov-recent .ov-rl { overflow-y: auto; }
           .ov-strip    { grid-column: 1 / span 8 !important; grid-template-columns: repeat(5, 1fr) !important; gap: 10px !important; }
-          .ov-strip .r-stat-n { font-size: 21px !important; }
+          .ov-strip .r-stat-n { font-size: 20px !important; }
           /* Story-of-the-day row: Story compresses to cols 1-8, Decades takes 9-12 (the same
              span the weather card uses on the row below) — Fuad 2026-08-17. */
           .ov-story    { grid-column: 1 / span 8 !important; }
@@ -1058,7 +1058,7 @@ function OverviewView({ t, go, restReady, seed }) {
              set for a five-across desktop strip; at two-across on a phone the numbers dominate the
              card and crowd their own captions. Only the strip is touched — the pulse row's figures
              are the point of their cards and keep their size. */
-          .ov-strip .r-stat-n { font-size: 19px !important; }
+          .ov-strip .r-stat-n { font-size: 20px !important; }
           .ov-strip { gap: 8px 12px !important; }
           /* the milestone number and its unit stay on one line; wrapping put "from 325,000" under
              the figure and off its baseline, which is the misalignment Fuad saw */
