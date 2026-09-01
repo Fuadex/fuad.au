@@ -200,7 +200,7 @@ const PROVIDERS = [
             <div key={t.name + t.artist} onClick={(e) => { e.stopPropagation(); ctx.go("track", R.slug(t.artist) + "~" + R.slug(t.name)); }}
               onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
               onMouseLeave={e => e.currentTarget.style.background = "transparent"}
-              style={{ display: "flex", alignItems: "center", gap: 9, cursor: "pointer", padding: "3px 6px", borderRadius: 4, minWidth: 0 }}>
+              style={{ display: "flex", alignItems: "center", gap: 9, cursor: "pointer", padding: "3px 0", borderRadius: 4, minWidth: 0 }}>
               <GenCover hue={_hue(t.artist)} name={t.artist} size={28} radius={2} style={{ flex: "none" }} />
               {/* FADE, DON'T PUSH (Fuad 2026-08-21). A long song name was driving the play count off
                   the right edge of a phone: the count is flex:none, so the only thing that could give
@@ -271,17 +271,16 @@ const PROVIDERS = [
     if (!lines.length) return null;
     return {
       id: "movement", category: "movement", score: 0.7, label: "Movement", meta: "this week",
-      onClick: () => ctx.go("explore"),
       render: (
         <div style={{ display: "grid", gap: 6, gridTemplateColumns: "minmax(0, 1fr)" }}>
           {lines.slice(0, 3).map(l => (
             <div key={l.tag + l.id} onClick={(e) => { e.stopPropagation(); ctx.go("artist", l.id); }}
               onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
               onMouseLeave={e => e.currentTarget.style.background = "transparent"}
-              style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", padding: "3px 6px", borderRadius: 4, minWidth: 0 }}>
+              style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", padding: "3px 0", borderRadius: 4, minWidth: 0 }}>
               <span className="r-mono" style={{ fontSize: 8, letterSpacing: ".12em", color: "var(--accent)", flex: "none", minWidth: 38 }}>{l.tag}</span>
-              <span style={{ fontSize: 12.5, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", minWidth: 0 }}>{l.name}</span>
-              <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", flex: "none", whiteSpace: "nowrap" }}>{l.detail}</span>
+              <span style={{ fontSize: 12.5, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", minWidth: 0, flex: "1 1 0" }}>{l.name}</span>
+              <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", flex: "0 1 auto", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", minWidth: 0 }}>{l.detail}</span>
             </div>
           ))}
         </div>

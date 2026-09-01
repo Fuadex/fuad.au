@@ -744,7 +744,7 @@ function OverviewView({ t, go, restReady, seed }) {
               <div>
                 {/* per-item micro-label, pairs with the 8.5px line below (footnote-grade eyebrow — Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
                 <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", letterSpacing: ".08em" }}>
-                  best <span style={{ color: "var(--accent)" }}>{T.streak.best}</span>{S && S.start ? <> · {f(S.start)}–{f(S.end)}</> : null}
+                  best <span style={{ color: "var(--accent)" }}>{T.streak.best}</span>
                 </div>
                 <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginTop: 3 }}>
                   {T.streak.best > T.streak.current ? (T.streak.best - T.streak.current) + " days from the record" : "longest run ever — keep going"}
@@ -826,7 +826,7 @@ function OverviewView({ t, go, restReady, seed }) {
             <div className="ov-rl" style={{ display: "grid", gap: 1, flex: 1, alignContent: "center" }}>
               {recent3.map(r => (
                 <div key={r.id} onClick={() => { if (r.artist && r.track) go("track", R.slug(r.artist) + "~" + R.slug(r.track)); }} title={`${r.track} →`} style={{ display: "flex", alignItems: "center", gap: 9,
-                  padding: "3px 6px", borderRadius: 4, cursor: "pointer", minWidth: 0 }}
+                  padding: "3px 0", borderRadius: 4, cursor: "pointer", minWidth: 0 }}
                   onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
                   onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
                   <GenCover hue={r.hue} name={r.artist} image={r.img || undefined} size={22} radius={2} />
