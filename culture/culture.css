@@ -1443,10 +1443,12 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
 .hbar-row { display: flex; align-items: center; gap: 8px; cursor: pointer; }
 .hbar-row:hover .hbar-fill { opacity: .75; }
 .hbar-row.active .hbar-fill { background: var(--accent); }
-.hbar-name { font-family: var(--mono); font-size: 9px; color: var(--ink-soft); width: 140px; min-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hbar-name { font-family: var(--mono); font-size: 9px; color: var(--ink-soft); width: 140px; min-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; transition: color .15s ease; }
+.hbar-row:hover .hbar-name { color: var(--ink); }
 .hbar-track { flex: 1; height: 10px; background: rgba(255,255,255,.04); border-radius: 2px; overflow: hidden; }
-.hbar-fill { height: 100%; background: var(--rule); border-radius: 2px; transition: background .15s, opacity .15s; }
-.hbar-cnt { font-family: var(--mono); font-size: 9px; color: var(--ink-faint); width: 24px; text-align: right; flex-shrink: 0; }
+.hbar-fill { height: 100%; background: var(--rule); border-radius: 2px; transition: background .15s ease, opacity .15s ease; }
+.hbar-cnt { font-family: var(--mono); font-size: 9px; color: var(--ink-faint); width: 24px; text-align: right; flex-shrink: 0; transition: color .15s ease; }
+.hbar-row:hover .hbar-cnt { color: var(--ink-soft); }
 
 /* activity heatmap */
 .heatmap-wrap { overflow-x: auto; }
