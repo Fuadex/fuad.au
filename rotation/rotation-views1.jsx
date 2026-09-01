@@ -686,7 +686,7 @@ function OverviewView({ t, go, restReady, seed }) {
                     LPs / EPs+singles / distinct folded songs. Lifetime (post-fold row counts);
                     the map/calendar filter intentionally doesn't reach these — media rows carry
                     no per-period tags, so a filtered recount would be new plumbing, parked. */}
-                {T.albumsLP != null && <Stat n={fmt(T.albumsLP)} sub="played" onClick={() => go("shelves")} />}
+                {T.albumsLP != null && <Stat n={fmt(T.albumsLP)} sub="albums" onClick={() => go("shelves")} />}
                 {T.epsSingles != null && <Stat n={fmt(T.epsSingles)} sub="EPs/singles" onClick={() => go("shelves")} />}
                 {T.tracks != null && <Stat n={fmt(T.tracks)} sub="songs" onClick={() => go("explore")} />}
                 {seenLivePct > 0 && <Stat n={seenLiveShown + "%"} sub={fStats && fStats.active ? "seen live · filtered" : "seen live"} onClick={() => go("gigs")} />}
