@@ -20,9 +20,9 @@ a { color: inherit; }
 .cv-head { display: flex; align-items: baseline; gap: 26px; padding: 26px 34px 18px; border-bottom: 1px solid var(--rule); flex-wrap: wrap; }
 .cv-brand { font: 700 24px/1 var(--sans); color: var(--ink); letter-spacing: -.02em; text-decoration: none; }
 .cv-brand i { font-style: normal; color: var(--accent-soft); }
-/* wrap so the 7-item nav folds to fit a phone instead of forcing the page ~160px wider than the
-   viewport (Fuad 2026-07-18). Plenty of room to stay one line on desktop. */
-.cv-nav { display: flex; gap: 4px; flex-wrap: wrap; }
+.cv-nav { display: flex; gap: 4px; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.cv-nav::-webkit-scrollbar { display: none; }
+.cv-nav a { white-space: nowrap; flex-shrink: 0; }
 .cv-nav a { font: 500 11.5px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; text-decoration: none; color: var(--ink-faint); padding: 7px 12px; border-radius: 999px; }
 .cv-nav a:hover { color: var(--ink); }
 .cv-nav a[data-on="true"] { background: var(--ink); color: var(--paper); }
@@ -1046,8 +1046,12 @@ a { color: inherit; }
 
 /* MOBILE (<760px): stack — viewer fixed at top (~45vh), reading pane scrolls beneath */
 @media (max-width: 760px) {
-  /* tighten the header gutter/gap so the wrapped nav + search reclaim phone width */
-  .cv-head { padding: 18px 16px 14px; gap: 12px 18px; }
+  .cv-head { padding: 18px 16px 14px; gap: 10px 14px; }
+  .cv-search { margin-left: 0; order: 10; flex-basis: 100%; }
+  .cv-search-input { width: 100%; border-radius: 8px; }
+  .cv-search-drop { left: 0; right: 0; width: auto; }
+  .cv-nav .cv-f-full { display: none; }
+  .cv-nav .cv-f-tiny { display: inline; }
   .cv-study { flex-direction: column; }
   /* stacked layout: the inline flex-basis (the split) now drives the viewer's HEIGHT, and the
      divider is a horizontal drag handle so the reader can grow/shrink the image up or down
@@ -1107,7 +1111,7 @@ a { color: inherit; }
 .cv-a-kin-chip i { display: block; font: italic 400 10.5px/1.3 var(--serif); color: var(--ink-faint); margin-top: 3px; font-style: italic; }
 
 /* ——— Search bar (header) ——— */
-.cv-search { position: relative; margin-left: auto; display: flex; align-items: center; }
+.cv-search { position: relative; margin-left: auto; display: flex; align-items: center; flex-shrink: 1; min-width: 0; }
 /* .cv-search-icon removed 2026-08-19 — the bar is always present now, so there is nothing to
    expand from. "/" and Cmd-K focus it instead of summoning it. */
 /* SUBJECT-vs-NAME mode row, inside the results panel. Same grammar as the Wall's facet chips so
@@ -1120,8 +1124,8 @@ a { color: inherit; }
 .cv-search-modes button[data-on="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 .cv-search-modehint { font: italic 400 11px/1.3 var(--serif); color: var(--ink-faint); margin-left: auto; }
 .cv-search-empty { padding: 14px 14px 16px; font: italic 400 12.5px/1.55 var(--serif); color: var(--ink-soft); }
-.cv-search-box { display: flex; align-items: center; gap: 6px; }
-.cv-search-input { font: 500 10.5px/1 var(--mono); letter-spacing: .08em; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink); width: min(260px, 48vw); outline: none; transition: border-color .15s; }
+.cv-search-box { display: flex; align-items: center; gap: 6px; min-width: 0; width: 100%; }
+.cv-search-input { font: 500 10.5px/1 var(--mono); letter-spacing: .08em; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink); width: 260px; max-width: 100%; outline: none; transition: border-color .15s; flex-shrink: 1; min-width: 80px; }
 .cv-search-input:hover { border-color: var(--ink-faint); }
 .cv-search-input:focus { border-color: var(--ink); }
 .cv-search-input::-webkit-search-cancel-button { display: none; }
@@ -1140,13 +1144,8 @@ a { color: inherit; }
 .cv-search-hit-sub { font: 500 10px/1.3 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 /* the matched subject terms, shown only on subject hits so the result explains itself */
 .cv-search-why { color: var(--accent-dim); text-transform: none; letter-spacing: .02em; }
-/* mobile: search icon wraps to its own row on narrow viewports, full-width input */
-@media (max-width: 620px) {
-  .cv-head { flex-wrap: wrap; }
-  .cv-search { margin-left: 0; order: 10; flex-basis: 100%; }
-  .cv-search-input { width: 100%; border-radius: 8px; }
-  .cv-search-drop { left: 0; right: 0; width: auto; }
-}
+/* 620px filter compaction (cv-f-full/cv-f-tiny) handles Wall filter chips;
+   search-drop now handled at 760px above. */
 
 /* ——— Inspection block (Reader: four-lens deep reading by Fable) ——— */
 .cv-r-inspect { margin-top: 28px; }

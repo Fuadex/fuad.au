@@ -280,7 +280,6 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
 }
 .search-results-msg button:hover { color: var(--ink); }
 @media (max-width: 768px) {
-  .search-input { width: 200px; }
   .search-results-msg { padding: 0 24px; }
 }
 
@@ -1121,21 +1120,15 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   .site-head { padding: 32px 24px 18px; grid-template-columns: minmax(0, 1fr); }
   .site-head .right { align-items: stretch; max-width: 100%; min-width: 0; }
   .site-head .tagline { text-align: left; }
-  /* header controls in stacked rows (Fuad 2026-07-19): Library/Wishlist + Tonight, then
-     Covers/Spines/Mix + a compressed Curated dropdown, then the ←/Stats/Pick/? actions as
-     icons. Each .br-group is its own row; the groups are display:contents on desktop. */
-  .btn-row { flex-direction: column; align-items: stretch; gap: 10px; overflow: visible; max-width: 100%; }
-  .br-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-  /* keep Covers/Spines/Mix + Curated on ONE row: toggle holds its width, dropdown fills+shrinks */
-  .br-view { flex-wrap: nowrap; }
-  .br-view .mode-toggle { flex: 0 0 auto; }
-  .br-view .mode-toggle button { padding: 8px 11px; }
-  .br-view .sort-select { flex: 1 1 0; min-width: 0; width: 0; }  /* compressed Curated dropdown (basis 0 → fills leftover) */
-  .br-actions { justify-content: flex-start; }
-  .btn-stats .btn-txt, .btn-pick .btn-txt { display: none; }   /* icon-only actions */
+  .btn-row { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; gap: 8px; max-width: 100%; justify-content: flex-start; scrollbar-width: none; }
+  .btn-row::-webkit-scrollbar { display: none; }
+  .br-group { display: contents; }
+  .mode-toggle button { padding: 8px 11px; }
+  .btn-stats .btn-txt, .btn-pick .btn-txt { display: none; }
   .btn-stats, .btn-pick { padding: 8px 10px; }
-  .search-row { width: 100%; flex-wrap: wrap; }
-  .search-wrap { flex: 1 1 100%; min-width: 0; }
+  .search-row { width: 100%; flex-wrap: nowrap; }
+  .search-wrap { flex: 1 1 0; min-width: 0; }
+  .search-input { width: 100%; }
   .shelf-head { padding: 0 24px 12px; }
   .shelf-scroll { padding: 18px 24px 18px; }
   .shelf-rail::before, .shelf-rail::after { width: 24px; }

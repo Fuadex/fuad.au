@@ -6081,7 +6081,7 @@ function App() {
         <nav className="cv-nav">
           {/* highlight follows the page BEHIND an open reader, so the nav does not go blank the
               moment you open a work from the map or a museum */}
-          <a href="#/" data-on={bgView === "wall"}>The Wall</a>
+          <a href="#/" data-on={bgView === "wall"}><span className="cv-f-full">The Wall</span><span className="cv-f-tiny">Wall</span></a>
           <a href="#/portrait" data-on={bgView === "portrait"}>Portrait</a>
           <a href="#/museums" data-on={bgView === "museums" || bg.view === "museum" || (bg.view === "deck" && bg.id !== "by-artists")}>Museums</a>
           <a href="#/artists" data-on={bgView === "artists" || bg.view === "artist"}>Artists</a>

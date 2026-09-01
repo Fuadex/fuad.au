@@ -680,8 +680,8 @@ function OverviewView({ t, go, restReady, seed }) {
                  artists react to the active map/calendar filter, the rest are lifetime. */
               <div className="r-card ov-strip" style={{ padding: "12px 14px", display: "grid",
                 gridTemplateColumns: "repeat(2,1fr)", gap: "10px 16px", alignContent: "center" }}>
-                <Stat n={fStats && fStats.active ? fmt(fStats.hours) : fmt(Math.round(hrs))} sub={fStats && fStats.active ? "hrs · " + fStats.label : "hours"} onClick={() => go("calendar")} />
-                <Stat n={fStats && fStats.active ? fmt(fStats.artists) : fmt(T.artists)} sub={fStats && fStats.active ? "artists · filtered" : "artists"} onClick={() => go("explore")} />
+                <Stat n={fStats && fStats.active ? fmt(fStats.hours) : fmt(Math.round(hrs))} sub="hours" onClick={() => go("calendar")} />
+                <Stat n={fStats && fStats.active ? fmt(fStats.artists) : fmt(T.artists)} sub="artists" onClick={() => go("explore")} />
                 {/* the catalogue row (Fuad 2026-08-12): how much MUSIC that listening covered —
                     LPs / EPs+singles / distinct folded songs. Lifetime (post-fold row counts);
                     the map/calendar filter intentionally doesn't reach these — media rows carry
@@ -689,8 +689,8 @@ function OverviewView({ t, go, restReady, seed }) {
                 {T.albumsLP != null && <Stat n={fmt(T.albumsLP)} sub="albums" onClick={() => go("shelves")} />}
                 {T.epsSingles != null && <Stat n={fmt(T.epsSingles)} sub="EPs/singles" onClick={() => go("shelves")} />}
                 {T.tracks != null && <Stat n={fmt(T.tracks)} sub="songs" onClick={() => go("explore")} />}
-                {seenLivePct > 0 && <Stat n={seenLiveShown + "%"} sub={fStats && fStats.active ? "seen live · filtered" : "seen live"} onClick={() => go("gigs")} />}
-                <Stat n={flt ? flt.avgDay : T.perDay} sub={flt ? "avg/day · " + flt.label : "avg / day"} />
+                {seenLivePct > 0 && <Stat n={seenLiveShown + "%"} sub="seen live" onClick={() => go("gigs")} />}
+                <Stat n={flt ? flt.avgDay : T.perDay} sub="avg / day" />
                 {/* Filtered, this slot shows DEPTH, not share (Fuad 2026-08-20). It used to become
                     "% of all plays", which is the same quantity the tenth stat spells out as "of
                     plays · in results" — two cells apart, saying one thing. Depth answers what
