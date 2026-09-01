@@ -3229,12 +3229,6 @@ function App() {
             {/*Things I watched, read and played.*/}
           </div>
           <div className="btn-row">
-            <div className="br-group br-primary">
-            <div className="library-toggle">
-              <button data-active={library === 'library'}  onClick={() => switchLibrary('library')}>Library</button>
-              <button data-active={library === 'wishlist'} onClick={() => switchLibrary('wishlist')}>Wishlist</button>
-            </div>
-            </div>
             <div className="br-group br-view">
             <div className="mode-toggle">
               <button data-active={mode === 'covers'} onClick={() => setModeAndAnimate('covers')}>Covers</button>
@@ -3303,6 +3297,10 @@ function App() {
             </div>
           </div>
           <div className="search-row">
+            <div className="library-toggle">
+              <button data-active={library === 'library'}  onClick={() => switchLibrary('library')}>Library</button>
+              <button data-active={library === 'wishlist'} onClick={() => switchLibrary('wishlist')}>Wishlist</button>
+            </div>
             <button className="btn-tonight" onClick={goTonight} title="Tonight's Pick — deal three from your wishlist">
               ✦ Tonight
             </button>

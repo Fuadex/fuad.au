@@ -67,7 +67,7 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   line-height: 1.45;
   max-width: 320px;
 }
-.btn-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+.btn-row { display: flex; gap: 8px; align-items: center; flex-wrap: nowrap; justify-content: flex-end; }
 /* on desktop the sub-groups are transparent — every control flows into .btn-row exactly as before.
    On phones (see the media query) each group becomes its own row. */
 .br-group { display: contents; }
@@ -1132,8 +1132,8 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   .br-actions { justify-content: flex-start; }
   .btn-stats .btn-txt, .btn-pick .btn-txt { display: none; }   /* icon-only actions */
   .btn-stats, .btn-pick { padding: 8px 10px; }
-  .search-row { width: 100%; }
-  .search-wrap { flex: 1 1 auto; min-width: 0; }
+  .search-row { width: 100%; flex-wrap: wrap; }
+  .search-wrap { flex: 1 1 100%; min-width: 0; }
   .shelf-head { padding: 0 24px 12px; }
   .shelf-scroll { padding: 18px 24px 18px; }
   .shelf-rail::before, .shelf-rail::after { width: 24px; }
