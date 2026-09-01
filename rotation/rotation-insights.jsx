@@ -43,7 +43,7 @@ function SubjectStat({ name, title, big, unit, foot, size }) {
     <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
       <div style={{ minWidth: 0, flex: 1 }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
-          <div className="r-mono ov-ins-fig" style={{ fontSize: 23, lineHeight: 1.05, color: "#fff" }}>{big}</div>
+          <div className="r-mono ov-ins-fig" style={{ fontSize: 10, lineHeight: 1.05, color: "#fff" }}>{big}</div>
           {unit && <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>{unit}</span>}
         </div>
         <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginTop: 3 }}>{title || name}</div>
@@ -92,7 +92,7 @@ const PROVIDERS = [
       render: (
         <div>
           <div className="ov-mile-line" style={{ display: "flex", alignItems: "baseline", gap: 7, flexWrap: "nowrap", minWidth: 0 }}>
-            <div className="r-mono ov-ins-fig" style={{ fontSize: 23, lineHeight: 1.05, color: "#fff", flex: "none" }}>{_fmtN(away)}</div>
+            <div className="r-mono ov-ins-fig" style={{ fontSize: 10, lineHeight: 1.05, color: "#fff", flex: "none" }}>{_fmtN(away)}</div>
             <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)", whiteSpace: "nowrap" }}>from {_fmtN(next)}</span>
           </div>
           {/* Hollow fill, quiet rim (Fuad 2026-08-20). Alpha lives in the background colour only,

@@ -940,7 +940,6 @@ function OverviewView({ t, go, restReady, seed }) {
              footnote, where Scrobbles and Streak carry their number alone. Matching the row means
              matching the typeface, not the point size; the earlier attempt swapped the family
              instead and had to be reverted. */
-          .ov-pulseslot .ov-ins-fig { font-size: 21px !important; }
           .ov-scrob .spark { max-height: 30px; }
           .ov-np { max-height: 92px; overflow: hidden; }
           .ov-recent .ov-rl { overflow-y: auto; }
@@ -1063,7 +1062,6 @@ function OverviewView({ t, go, restReady, seed }) {
           /* the milestone number and its unit stay on one line; wrapping put "from 325,000" under
              the figure and off its baseline, which is the misalignment Fuad saw */
           .ov-mile-line { flex-wrap: nowrap !important; }
-          .ov-pulseslot .ov-ins-fig { font-size: 19px !important; }
           /* the fade that keeps a long song title from shoving the play count off-screen */
           .ov-rep-txt > div {
             -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 14px), transparent 100%);
