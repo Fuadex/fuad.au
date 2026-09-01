@@ -1361,7 +1361,7 @@ const HIGHLIGHTS = {
 function highlightCap(item) { return spineWidth(item) >= 29 ? 3 : 1; }
 
 // ─────────── Shelf row ───────────
-function ShelfRow({ medium, items, idx, mode, sort, sortDir, mixSeed, onOpenItem, justPickedId, pickedSet, spineValue = 'rating', linkPref = 'filmweb' }) {
+function ShelfRow({ medium, items, idx, mode, sort, sortDir, mixSeed, onOpenItem, justPickedId, pickedSet, spineValue = 'rating', linkPref = 'filmweb', onFilter }) {
   const { MEDIA_SHORT, MEDIA_GLYPH } = window.CULTURE;
   const [hoverIdx, setHoverIdx] = React.useState(-1);
   const [popupPos, setPopupPos] = React.useState(null);
@@ -1772,6 +1772,7 @@ function ShelfRow({ medium, items, idx, mode, sort, sortDir, mixSeed, onOpenItem
           linkPref={linkPref}
           onMouseEnter={cancelClose}
           onMouseLeave={handleLeave}
+          onFilter={onFilter}
         />
       )}
     </section>
@@ -1779,11 +1780,12 @@ function ShelfRow({ medium, items, idx, mode, sort, sortDir, mixSeed, onOpenItem
 }
 
 // ─────────── Popup (hover) ───────────
-function Popup({ item, x, y, linkPref = 'filmweb', onMouseEnter, onMouseLeave }) {
+function Popup({ item, x, y, linkPref = 'filmweb', onMouseEnter, onMouseLeave, onFilter }) {
   const { MEDIA_SHORT } = window.CULTURE;
   const adjX = Math.min(Math.max(x, 160), window.innerWidth - 160);
   const flipBelow = y < 220;
   const service = externalServiceName(primaryLink(item, linkPref));
+  const f = (val, e) => { e.stopPropagation(); onFilter && onFilter(val); };
   return (
     <div
       className={`popup on${flipBelow ? ' below' : ''}`}
@@ -1793,19 +1795,19 @@ function Popup({ item, x, y, linkPref = 'filmweb', onMouseEnter, onMouseLeave })
     >
       <span className="popup-bridge"/>
       <div className="meta">
-        <span>{item.year}</span>
+        <span className="meta-link" onClick={e => f('year:' + item.year, e)}>{item.year}</span>
         {item.rating ? <span>·</span> : null}
-        {item.rating ? <span>★ {item.rating}/10</span> : null}
+        {item.rating ? <span className="meta-link" onClick={e => f('rating:' + item.rating, e)}>★ {item.rating}/10</span> : null}
         {regionName(item.region) ? <span>·</span> : null}
-        {regionName(item.region) ? <span>{regionName(item.region)}</span> : null}
+        {regionName(item.region) ? <span className="meta-link" onClick={e => f('region:' + (item.region === 'su' ? 'ru' : item.region), e)}>{regionName(item.region)}</span> : null}
         {item.seasons ? <span>·</span> : null}
         {item.seasons ? <span>{item.seasons} {item.seasons > 1 ? 'seasons' : 'season'}</span> : null}
       </div>
       {(item.director || item.studio) && (
         <div className="meta" style={{ marginTop: 3 }}>
-          {item.director && <span>{item.director}</span>}
+          {item.director && <span className="meta-link" onClick={e => f('director:' + item.director, e)}>{item.director}</span>}
           {item.director && item.studio && <span>·</span>}
-          {item.studio && <span>{item.studio}</span>}
+          {item.studio && <span className="meta-link" onClick={e => f('studio:' + item.studio, e)}>{item.studio}</span>}
         </div>
       )}
       <div className="t">{displayTitle(item)}
@@ -3128,6 +3130,23 @@ function App() {
     setSelectedReleaseBuckets(new Set());
     setSelectedHighlights(new Set());
   };
+  const handleFilter = (val) => {
+    const m = val.match(/^(\w+):(.+)$/i);
+    if (m) {
+      const type = m[1].toLowerCase(), value = m[2];
+      if (type === 'genre')                                { toggleGenre(value); setOpenItem(null); return; }
+      if (type === 'actor' || type === 'cast')             { toggleActor(value); setOpenItem(null); return; }
+      if (type === 'director' || type === 'dir')           { toggleDirector(value); setOpenItem(null); return; }
+      if (type === 'studio')                               { toggleStudio(value); setOpenItem(null); return; }
+      if (type === 'writer' || type === 'author')          { toggleWriter(value); setOpenItem(null); return; }
+      if (type === 'dp' || type === 'cin')                 { toggleCinematographer(value); setOpenItem(null); return; }
+      if (type === 'region' || type === 'country')         { toggleCountry(value); setOpenItem(null); return; }
+      if (type === 'highlight')                            { toggleHighlight(value); setOpenItem(null); return; }
+      if (type === 'year')                                 { setSearch('y:' + value); setOpenItem(null); return; }
+      if (type === 'rating')                               { setSearch('r:' + value); setOpenItem(null); return; }
+    }
+    setSearch(val); setOpenItem(null);
+  };
 
   // Pool for Pick One — anything in PICKABLE_IDS that exists, or items with notes as fallback.
   const pickPool = React.useMemo(() => {
@@ -3414,6 +3433,7 @@ function App() {
           justPickedId={justPickedId}
           pickedSet={pickedSet}
           spineValue={spineValue}
+          onFilter={handleFilter}
         />
       ))}
 
@@ -3490,21 +3510,7 @@ function App() {
           allItems={ITEMS}
           otherItems={library === 'wishlist' ? seenItems : wishlistItems}
           library={library}
-          onFilter={(val) => {
-            const m = val.match(/^(\w+):(.+)$/i);
-            if (m) {
-              const type = m[1].toLowerCase(), value = m[2];
-              if (type === 'genre')                                { toggleGenre(value); setOpenItem(null); return; }
-              if (type === 'actor' || type === 'cast')             { toggleActor(value); setOpenItem(null); return; }
-              if (type === 'director' || type === 'dir')           { toggleDirector(value); setOpenItem(null); return; }
-              if (type === 'studio')                               { toggleStudio(value); setOpenItem(null); return; }
-              if (type === 'writer' || type === 'author')          { toggleWriter(value); setOpenItem(null); return; }
-              if (type === 'dp' || type === 'cin')                 { toggleCinematographer(value); setOpenItem(null); return; }
-              if (type === 'region' || type === 'country')         { toggleCountry(value); setOpenItem(null); return; }
-              if (type === 'highlight')                            { toggleHighlight(value); setOpenItem(null); return; }
-            }
-            setSearch(val); setOpenItem(null);
-          }} />
+          onFilter={handleFilter} />
       )}
 
       {statsOpen && (
