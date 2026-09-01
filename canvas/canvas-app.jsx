@@ -1561,7 +1561,7 @@ function Wall({ go, styleIds }) {
         <button className="cv-hang-chip" data-on={hang} onClick={() => setHang(v => !v)}
           aria-label="today's hang"
           title="today's hang — a curated rotation of works that floored me">
-          <span className="cv-f-tiny">⌂</span><span className="cv-f-full">⌂ today's wall</span>
+          <span className="cv-f-tiny">⌂</span><span className="cv-f-full"><span className="cv-hang-icon">⌂</span> today's wall</span>
         </button>
         <span className="cv-filt-div" aria-hidden="true" />
         {/* "all" clears both axes — a reset, not a third state you can be in */}

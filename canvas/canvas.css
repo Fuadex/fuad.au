@@ -344,6 +344,7 @@ a { color: inherit; }
 /* today's hang leads the filter row and is deliberately warmer than a filter chip — it swaps the
    wall's whole contents rather than trimming them */
 .cv-hang-chip[data-on="true"] { background: var(--accent) !important; border-color: var(--accent) !important; color: var(--paper) !important; }
+.cv-hang-icon { display: inline-block; vertical-align: middle; line-height: 1; }
 .cv-filt-div { width: 1px; align-self: stretch; min-height: 18px; background: var(--rule); margin: 0 4px; }
 /* SPECTRUM TARGET — lives INSIDE .cv-filters now (Fuad 2026-08-20: it read as a band bolted onto
    the collage, and sat out of line with everything else). It inherits the row's chip shape and
