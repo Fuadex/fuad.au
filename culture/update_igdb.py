@@ -180,6 +180,16 @@ def parse_igdb_result(r):
     """Extract enrichment fields from an IGDB game object."""
     out = {}
 
+    # WHICH GAME THIS PAYLOAD CAME FROM. `id` and `name` were always requested in IGDB_FIELDS and
+    # then discarded, so every field below shipped with no record of the match that produced it —
+    # a wrong match (a DLC, an edition, an unrelated game with a similar name) was indistinguishable
+    # from a right one unless the row happened to carry an enTitle to contradict. Persist both, so
+    # the match is auditable and re-runnable by id instead of by fuzzy search.
+    if r.get('id'):
+        out['igdbId'] = r['id']
+    if r.get('name'):
+        out['igdbName'] = r['name']
+
     # Cover
     cover_obj = r.get('cover') or {}
     image_id  = cover_obj.get('image_id') if isinstance(cover_obj, dict) else None
@@ -433,6 +443,19 @@ def main():
 
         # — cast_data.js fields —
         updated_cd = dict(existing_cd)
+
+        # Identity is written UNCONDITIONALLY, unlike the enrichment fields below which only fill
+        # when absent. These two record which IGDB game the rest of this row came from, so they
+        # must track the match actually made on this run — a stale id describing a payload that has
+        # since been re-fetched would be worse than none. Flag when the id changes under us.
+        if 'igdbId' in enrichment:
+            prev_id = existing_cd.get('igdbId')
+            if prev_id and prev_id != enrichment['igdbId']:
+                notes.append(f'REMATCHED {prev_id} -> {enrichment["igdbId"]}')
+                stats['rematched'] = stats.get('rematched', 0) + 1
+            updated_cd['igdbId'] = enrichment['igdbId']
+        if 'igdbName' in enrichment:
+            updated_cd['igdbName'] = enrichment['igdbName']
 
         if 'igdbCover' in enrichment and (needs_cover or FORCE):
             updated_cd['igdbCover'] = enrichment['igdbCover']
