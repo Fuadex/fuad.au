@@ -1516,9 +1516,6 @@ by: "Opus 4.8" },
 about: "A Spanish proverb — 'la mujer ventanera, uva de la calle,' a woman at the window is a grape of the street — likely underlies what seems like casual charm; Murillo c.1655–1660 borrowed the window-frame device from Dutch genre painting.",
 by: "Opus 4.8" },
 
-"bulb-fields": {
-about: "Sold for scrap as worthless rubbish in 1902, this Van Gogh from 1883 is now in the NGA — a wide landscape of striped hyacinth beds near The Hague painted when he had barely a year of oils behind him.",
-by: "Opus 4.8" },
 
 "girl-in-white": {
 about: "Painted in the final weeks before Van Gogh's death in 1890 at Auvers-sur-Oise, this figure standing in a wheat field passed through Johanna van Gogh-Bonger's hands before collector Chester Dale gave it to the NGA in 1963.",
