@@ -39,6 +39,19 @@ haiku → sonnet → opus.** Audit first; classify gaps:
 | Instrumental WITH a lyric source | ⚠ Verify the source — LRCLIB community entries can be MISATTRIBUTED (the-four-of-us-are-dying carried someone else's lyrics; all three tiers then faithfully described the wrong song and had to be purged). If a track is known-instrumental, distrust any lyric that appears for it |
 | Real gaps | FILL before writing the album read |
 
+**Knowledge-descriptor class (approved 2026-09-03, first used on the Reznor/Ross score
+catalog, second on God Is an Astronaut):** for albums that are effectively ALL instrumental
+(score/post-rock catalogs where the coverage rule is satisfied by exemption but no reads
+exist to build a liner from), a **gist-only descriptor written from verified knowledge +
+library play data** may ship (`by:"Fable"`): what the record is (film/era/frame, one
+verified anchor fact) + the bucket's play leaders, leaders checked against the library
+before writing. No liner, no arc — those stay read-based. An album whose few vocal tracks
+ARE all read (e.g. Origins) still gets the full read-based entry. The artist entry for such
+catalogs is built from whatever vocal surface exists, with the instrumental mass as frame.
+Two standing cascade checks ride with this class: every DV-killed claim gets RE-CHECKED in
+liner/artist drafts (kill findings re-import from model priors), and echo-scan gram corpora
+must include PRE-FABLED store reads, not just the batch's out-files.
+
 Gap fills are authored by the tier's **namesake model** (Haiku/Sonnet/Opus subagents),
 each tier written INDEPENDENTLY (no sight of other tiers), sonnet under the original
 register rules, opus under the non-quoting rules + the mechanical bigram gate (≤1 shared
