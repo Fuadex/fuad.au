@@ -74,6 +74,22 @@ real defects that were live on the site until a corrective commit (`3b1741a` →
    fused Info + `beside` — run after the besides land and before the seal.** Every claim traces to
    the tour or the research file's verified list, and **a hedge in the tour's flags must still be a
    hedge in every downstream layer.**
+1b. **THE FUSION BRIEF ALLOCATES ACROSS THE STACK, NOT JUST THE TOUR.** The brief's job was
+   "facts → regions", where every region was a tour lens or stop. That silently starves the layers
+   written afterwards: the strongest interpretive claim gets spent in the `about` lens, and the
+   Interpretation falls back on its second choice. Two of wave 7's twenty did this and only their
+   notes recorded it. **Fusion must name two theses before drafting — what the `about` lens will
+   argue, and a claim RESERVED for the Interpretation that the tour may not spend in any lens or
+   stop.** Where a work supports only one real argument, say so and choose the layer deliberately;
+   the other is then written as the supporting layer, which is honest. Letting the tour take it by
+   default is not.
+   **Why no gate can replace this:** the cost is paid BEFORE drafting. Measured across wave 7, the
+   Interpretations share 0–1 content trigrams with their own `about` lens — the agents saw the
+   collision and steered around it, so the artifact looks clean and the loss is invisible to any
+   check on the output. A defect that is only visible in an agent's honest notes must be prevented
+   upstream, not detected downstream. (The tempting division — `about` owns the visible, the
+   Interpretation owns what the picture cannot show — was TESTED on wave 7 and does not hold: one
+   of the two starved works carries zero surface vocabulary. Do not write it into the spec.)
 2. **The seal runs before merge, always.** Approval covers the CONTENT, not the order of operations;
    an approved batch still waits for the seal's ledger. The seal's job is what no regex can do —
    batch gait, layer echo, cross-layer drift — and it should never be where a factual error is
