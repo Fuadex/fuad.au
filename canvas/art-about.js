@@ -4417,4 +4417,64 @@ by: "Opus 4.8" },
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
+"boudin-bathing-time-at-deauville": {
+ "about": "The pale huts in Eugène Boudin's 1865 beach scene are bathing machines: wheeled changing rooms a horse dragged into the surf so bathers entered the water unseen, painted on a small oil panel amid the resort crowd.",
+ "deep": "The ceremony of being seen at the coast dwindles to mere incident here, dwarfed by weather above and empty sand below. Boudin gives the fashionable band a single thin line along the waterline and surrenders the rest to consequence: cloud claims the upper register by right of paint, massed in slow horizontal drags that press the horizon low. Warm bare foreground answers from beneath, isolating the crowd so it reads provisional. One yellow shawl pins the group and keeps the eye returning, yet cannot rescue anyone from smallness. Each visitor is a comma of loaded paint, a type performing leisure, present but overwhelmed.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"gainsborough-seashore-with-fishermen": {
+ "about": "This coast never existed. Gainsborough conjured it in his studio around 1781, working straight onto canvas or from models, so the breaking surf and the crew straining to launch their boat are pure invention, even the wind-tilted cliff.",
+ "deep": "Work under bad weather, and no prettified coast anywhere in it. One thread of brightness ties the lit rock to the churn behind the beached boat and to two craft leaning into the gale; everything outside it sinks toward brown or slate. Bodies stay small and unfinished by design, so the labour registers through the pitch of a spine, never a face. Danger reads as general, not local: the same water presses everyone across it. And the shore was never real — Gainsborough grew it in the studio from models and invention, so it feels refined out of many coasts rather than sketched from one, and the picture belongs to its tone, not to any place.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"matisse-woman-seated-in-an-armchair": {
+ "about": "Matisse set this down in 1940 as France fell to Germany, war closing in. Though barely two feet across, the pared canvas — flat planes, a single drawn line, the sitter inlaid in lemon-yellow — reads monumental.",
+ "deep": "A body pulled clear out of performance — thrown sideways in a lemon chair, the face shut and heavy, red slippers trailing off legs that sprawl where they wished. She makes no bid to please; she has quit. Around that collapse Matisse sets an easy life's comforts, cabinet and urn and a pink cactus burning out of black, and keeps the surface flat: every patch a soaked colour, every edge a line, no shadow to ease it. Making and mood are one gesture. Set down in 1940 as France went under, this recurring subject — woman, chair, loaded room — is pared and driven toward the cut-out plainness about to claim his work.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"courbet-the-black-rocks-at-trouville": {
+ "about": "Courbet built this beach almost without a brush in 1865/1866, troweling wet sand and rock over a dark ground with a palette knife — one of many near-identical sea landscapes, a repeated motif Monet later pushed further.",
+ "deep": "Three-fifths of the canvas is sky, and that is the argument. A sunset cloud mass — smoky red-brown, heat burning through a dark ground — bears down until the shore is barely a margin below: wet sand, a scatter of dark weed-furred rocks, two sails no larger than brushstrokes on the thin seam of sea. That low horizon inverts the holiday view; where the fashionable Normandy coast of the 1860s offered promenade and parasol, this empties it. You are left at tide-line, low to the ground, under weather. The black rocks hold the composition the way ballast holds a hull — not decorative, simply needed, the one tactile solid keeping the canvas from dissolving into vapour and reflection.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"pierre-bonnard-the-artist-s-studio": {
+ "about": "Bonnard painted this 1900 interior on wood panel, not canvas: a slender easel holds a small unfinished canvas near the window, so the work in progress becomes a second picture-within-a-picture beside the framed rooftops it turns away from.",
+ "deep": "The world is on offer through that window — a grid of rooftops, a pale dome taking the daylight — and the room turns away. The A-frame easel is left with no one at it, its little canvas abandoned mid-thought; at the edge a woman sinks so far into shadow she reads as one more furnishing, no heavier than a chest. Bonnard pitches nearly the whole interior to grey-taupe, so its scarce true colours — the red box, the red tabletop canted forward until it lies flat as pattern — hold the eye by rarity. What he gives is a working room at its dullest, unstaged hour: shut in, patient, gathered around a chilly light it never quite admits.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"sisley-flood-at-port-marly": {
+ "about": "Alfred Sisley found the drowned storefront at Port-Marly so worth painting in 1872 that he returned to the same flooded wine merchant's, a shop that stood there and is a café now, for a celebrated repeat in 1876.",
+ "deep": "Floodwater unsettles the ordinary rather than destroying it. The Seine has swallowed the street at Port-Marly, laying a working road out as one flat reflecting sheet, and Sisley records this without drama: two figures pole a punt over sunk cobbles, the wine merchant's shutters at their usual angle, commerce carrying on above the waterline. The overcast sky, given the greater share of the canvas, does the quiet work: its flat light drains colour from all but the one warm ochre wall and turns the drowned road into a luminous plane. Reflection is restatement, not copy: the building's tones dragged downward in broken marks, cooled by the sky they pass through. Quiet disaster, rendered as atmosphere.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"jean-baptiste-camille-corot-madame-stumpf-and-her-daughter": {
+ "about": "In 1872 Corot gave this double portrait to the sitters' family, setting Madame Stumpf and her daughter Madeleine in his signature feathery woods, so the closed parasol in her hand becomes the picture's one hard vertical.",
+ "deep": "An entire canvas is starved of color to make one dress possible. Tawny woods, bare path, and pale sky are held to near-monochrome, and against that hush the dense modeled blue — cascading the full height of the picture — detonates as the composition's spine and its sole loud note. Every other element answers the handclasp at center, where the child reaches upward and the mother bends to receive her; that small knot of suggested paint is the portrait's actual subject. Behind them the backdrop dissolves into vapor through feathery, spare strokes, so the pair inhabit no room at all but weather and clearing, their closeness granted the gravity the painter reserved for woodland light.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"guercino-self-portrait-before-a-painting-of-amor-fedele": {
+ "about": "In 1655, the year it was painted, a Venetian collection inventory logged Guercino’s scheme exactly: faithful and eternal love, a beautiful greyhound, and the painter's own portrait made by himself, leaning from shadow to certify his invented fable.",
+ "deep": "The ageing painter lodged at the dark edge of his own allegory is not a supporting detail — he is why it was painted. Everything bright in the frame belongs to fiction: the blond god, the leashed hound, the sky behind a painted cliff. The artist stands at the seam between that invented world and the studio dark, brush raised and aimed inward, the one tool crossing both zones. Warm, smooth flesh for the imagined figure; a specific, unsparing face for the man who composed it — tonal logic carries the whole argument in silence. The picture declares not that love is faithful, but that this particular person built that idea and stands in shadow to say so.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"picasso-family-of-saltimbanques": {
+ "about": "Beneath this 1905 frieze an X-ray found two different pictures — a circus family, then paired acrobats — that Picasso, twenty-three, scraped away over months as blue shifted to rose; the turned-away harlequin is his own likeness.",
+ "deep": "Six bodies share a bare plain and nothing else. The real subject is the breach Picasso declines to heal — an over-wide channel of empty earth dividing the upright five from the woman seated alone to the right, held open by every compositional choice: no cast shadow, no horizon, no glance sent across. The palette empties to grey and rose, marooning the figures in suspension rather than setting. Costumes still carry their theatrical signals while the faces wearing them have gone quietly elsewhere, and the one tender act — a barely-held grip between two hands — is almost forgotten.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
+"morisot-the-sisters": {
+ "about": "The two women in matching white gowns, traditionally titled sisters, are named in Berthe Morisot's letters as the demoiselles Delaroche — not her siblings, and perhaps unrelated to each other; the near-twinning, painted in 1869, is her invention.",
+ "deep": "Dressed as one, they resist it. Two women spread across the canvas as a luminous field, their white gowns merging without a seam; at first glance the picture reads as sameness. Then small distances assert themselves: darker hair and lowered eyes on the left, fairer skin and a more alert gaze on the right, a ring catching light on one folded hand. The argument turns on that oscillation — symmetry and shared dress driving them toward a single self, difference quietly fracturing it. Flowered chintz behind them supplies warmth the pale gowns withhold; twin fan shapes, one mounted high and one held low, anchor a spine through the center. The setting is domestic, the subject restless.",
+ "by": "Opus 4.8",
+ "deepBy": "Sonnet 4.6"
+},
 };

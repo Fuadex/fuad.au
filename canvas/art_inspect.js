@@ -49,6 +49,678 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+"boudin-bathing-time-at-deauville": {
+ "see": "A wide beach under a sky that eats more than half the panel. The cloud is a single grey-blue mass, warming and thinning toward the low horizon on the left. Below it a pale strip of sea, then a broad sweep of warm sand that empties toward the viewer. The human incident is squeezed into a narrow band along the waterline: three whitish bathing huts left of center, a knot of seated figures with one blazing yellow note among them, two brown horses at center, a dog, and small dark clusters spread rightward to a standing couple. Three poles and two white sails punctuate the right.",
+ "about": "This is leisure as a new social ritual, painted while it was still forming. Deauville in the 1860s was a resort manufactured almost overnight, and Boudin's subject is the crowd that came to perform being seen there: bourgeois visitors installed on rented chairs, dressed for town rather than water, watching the sea more than entering it. The bathing huts and the horse that hauled them into the shallows are the machinery of a codified modesty. What the picture is really about is scale, though. The tiny, over-dressed figures pinned under an enormous sky read as a quiet argument about how small this fashionable ceremony is against weather and coast.",
+ "craft": "Boudin builds the whole thing on a low horizon and a top-heavy division that hands the sky its dominance. The paint changes register by zone: the clouds are dragged and scrubbed in long soft strokes, wet worked into wet, while the figures are set down as compact dabs and commas of loaded color that never resolve into drawing. He lets the warm sand ground read through thinly at the edges, which keeps the foreground luminous rather than dead. Color does the composing. The single yellow shawl anchors the crowd and pulls the eye across a field of otherwise muted greys, blues and blacks, and small reds far out at the water repeat the trick at distance.",
+ "context": "Boudin was the older painter who put the young Monet in front of the open air and told him to trust it, and this beach is where that lesson lived. He made these Deauville and Trouville scenes on the Normandy coast through the 1860s as a repeatable subject, half document of the resort boom brought by the new railway, half study of Channel weather. He called the fashionable bathers his little dolls and half-mocked them even as they sold. The pictures were admired precisely for their skies; Corot named him the king of them. This panel belongs to that campaign, an art of quick coastal observation that fed directly into what became Impressionism.",
+ "deeper": [
+  {
+   "t": "The sky's weight",
+   "x": 0.18,
+   "y": 0.02,
+   "w": 0.64,
+   "h": 0.48,
+   "body": "Give the eye a moment here before anything else, because Boudin lets the sky swell until it dwarfs the beach below, and means the imbalance. The cloud is not drawn but massed: long horizontal drags of grey-blue, scrubbed thin in places so a cooler underlayer shows through, thickening into a low ceiling that presses down on the horizon. Notice how it warms and lightens toward the left, where a paler wash opens as if the weather is breaking there. There is no single light source and no tidy modeling; the volume is carried entirely by the direction and pressure of the strokes. This is the passage the picture was actually built to deliver. Everything below is small incident staged so the sky can do the talking, and the flat, almost empty band of sea beneath it exists mainly to keep the horizon low and let the clouds tower."
+  },
+  {
+   "t": "The yellow shawl",
+   "x": 0.24,
+   "y": 0.72,
+   "w": 0.11,
+   "h": 0.16,
+   "body": "One figure wears a shawl of pure warm yellow, and it is the only fully saturated note in the whole crowd. Track what it does: in a band of greys, dull blues and blacks it becomes the pin the entire cluster hangs from, the first thing the eye lands on after the sky and the point it keeps returning to. Boudin lays it in as a few confident strokes of thick, unbroken paint, brighter and heavier than anything around it. It is a compositional device as much as a dress, a single hot accent placed slightly off-center to hold the left group together and to weight the picture against the empty sand. Small touches of red far out at the waterline answer it at distance, so the warm note is deliberately rhymed across the depth of the beach."
+  },
+  {
+   "t": "Painted as dolls",
+   "x": 0.13,
+   "y": 0.7,
+   "w": 0.28,
+   "h": 0.24,
+   "body": "Lean in on the seated crowd and the figures refuse to become people. Each is a shorthand of loaded dabs: a dark comma for a bonnet, a wedge of black or blue for a skirt, a pale flick for a face that has no features. Boudin is not failing at portraiture; he is recording a type. These are the fashionable visitors he privately called his petites poupées, and the handling matches the contempt and affection in that phrase. They sit on rented wooden chairs in full town dress, turned toward the water and each other, performing leisure rather than bathing. The economy is the point. From a normal viewing distance these strokes resolve into a convincing, chattering group, and up close they dissolve into pure paint, which is exactly the perceptual trick the next generation would build a movement on."
+  },
+  {
+   "t": "The bathing huts",
+   "x": 0.09,
+   "y": 0.55,
+   "w": 0.32,
+   "h": 0.28,
+   "body": "Three pale huts stand behind the crowd, the nearest catching a diagonal mark or two on its flank. These are bathing machines, wheeled changing rooms that a horse dragged down to the sea so a bather could enter the water unseen and step straight in. They are the hardware of a very particular decorum, and their scuffed near-white surfaces double as the largest light-catching planes in the lower half, echoing the pale sky-break at upper left."
+  },
+  {
+   "t": "The horses and attendant",
+   "x": 0.42,
+   "y": 0.66,
+   "w": 0.18,
+   "h": 0.2,
+   "body": "At the center stand two brown horses, the working engine of the scene, with a small figure in blue at the hut door beside them. These are the animals that hauled those machines into the shallows, and Boudin puts them dead center yet paints them as quietly as everything else, warm brown masses with no anecdotal fuss. Their placement matters more than their detail: they are the hinge between the leisured cluster on the left and the thin scatter of activity running right toward the water, a pivot the eye crosses on its way out to sea."
+  },
+  {
+   "t": "Poles, sails and small bathers",
+   "x": 0.55,
+   "y": 0.32,
+   "w": 0.42,
+   "h": 0.4,
+   "body": "Three thin poles rise straight into the cloud at center-right, marching back into the distance, and two white sails sit low on the water further along, each a small vertical drawn against the horizontal grain of the sky. They do measured work: the verticals interrupt the long drag of the clouds and pull the eye rightward and back into depth, while the sails, lit and clean, are the brightest points out over the sea. Below them the distant bathers are reduced to specks, a few carrying that answering touch of red, strung along the shallows to mark the true waterline and set the scale of everything nearer."
+  },
+  {
+   "t": "The empty sand",
+   "x": 0,
+   "y": 0.85,
+   "w": 1,
+   "h": 0.15,
+   "body": "Step back to the foreground, because its emptiness is a decision. The lower strip is bare warm sand, thinly brushed so the ground tone glows through, and Boudin leaves it almost entirely unpopulated but for a small dog and a few scattered dark figures at its upper edge. That void does the same job as the oversized sky: it isolates the human band, squeezing all the incident into a thin line across the middle so the crowd looks provisional and small against beach and weather. Read top and bottom together and the picture's real argument appears, a sliver of fashionable society caught between a vast sky and an open expanse of sand, present but dwarfed."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "Set this beach beside Monet's La Grenouillère, painted only four years later at a weekend bathing resort on the Seine. There the leisure crowd is packed onto a round gravel islet with a floating café, everyone crammed into the near ground while the water is hacked into restless dashes of light that fill the eye. Here the same fashionable ritual is treated as the opposite of dense: the visitors thin to a band of commas along the waterline, given almost nothing to stand on, and an enormous sky and open sand are left to dwarf them. Both painters chase the same modern subject, yet one crowds it toward you and the other lets weather shrink it to incident.",
+ "refs": [{"id":"la-grenouillere","text":"La Grenouillère"}]
+},
+
+"gainsborough-seashore-with-fishermen": {
+ "see": "A rocky cove under a wind-driven sky. Left of centre a great pale cliff rears up, half chalk-bright and half shadowed, with dark scrub clinging to its flank. Below it men crowd a beached boat at the surf line; two more stoop over a net in the near shadow. The middle distance opens to a choppy sea where two small sail-craft lean on the wind, and a dark headland shoulders in from the right foreground. Colour is held to a narrow band of grey-blue, ochre and cool white; the only true brightness is the sunlit rock and the sails, everything else sunk toward brown or slate.",
+ "about": "This is labour under weather, not a picturesque coast. Gainsborough is painting the moment a crew forces a boat out through breaking surf while a second crew sorts the catch. The subject behind the subject is the smallness of the human effort against the scale of rock, water and moving air. The figures are pushed low and kept dim so the sky and cliff can dominate; the cliff's thrusting diagonal echoes the men straining to launch, and the distant sails repeat the near boat's struggle at a size that makes the point: the sea is the same everywhere, and everyone on it is bent to the task of not being beaten by it.",
+ "craft": "The picture is built on a diagonal spine running from the dark lower-right rock up through the boat to the lit cliff, with the sea as the bright wedge between two masses of shadow. Gainsborough works thin and fast, dragging pale grey over darker ground so the cliff and clouds share one restless, scumbled touch and the whole surface seems to move. Light is rationed to a single peak on the rock and echoed only in the sails and surf, which pins the eye's path. The foreground is nearly monochrome brown, a deep repoussoir that throws the middle distance forward and keeps the tonal drama, not colour, carrying the mood.",
+ "context": "Late Gainsborough, around 1781, is the coast-and-marine phase of a painter far better known for portraits and pastoral idylls. This particular coast never existed: the gallery records that Gainsborough evolved it in the studio, either directly on the canvas or from small scale models rather than any named shore, which is why the scene reads as a distilled, imaginary British seaside rather than a real place. Behind it lies the Dutch marine painting he collected and admired. The loosened, near-abstract handling of this Washington canvas, now at the National Gallery of Art, looks toward the Romantic sea pictures that follow him.",
+ "deeper": [
+  {
+   "t": "The lit cliff",
+   "x": 0.16,
+   "y": 0.13,
+   "w": 0.3,
+   "h": 0.55,
+   "body": "The one passage of full sun in the painting, and the reason the eye lands here first. Gainsborough builds it almost entirely by tone: a near-white face on the sunward side dissolving into cool grey shadow on the left, with no hard contour anywhere. The paint is dragged thin so the darker underlayer shows through the pale scumble, which is what gives the rock its chalky, crumbling texture instead of a solid wall. Watch how the top edge frays into the cloud rather than cutting against it, so rock and sky read as one continuous atmosphere. The dark scrub pinned to the flank does real work: it is the only strong dark high in the composition, and it keeps the bright mass from floating loose. This is a landscape painter using a cliff the way he would model a face, all light turning into shade with the drawing kept soft."
+  },
+  {
+   "t": "Launching the boat",
+   "x": 0.2,
+   "y": 0.61,
+   "w": 0.32,
+   "h": 0.22,
+   "body": "The narrative engine of the picture, and its densest cluster of touches. A crew works a beached boat at the exact line where sand meets breaking water; one man leans his whole weight into the bow while others crowd the stern where the surf is already climbing the hull. Gainsborough keeps every figure small, dim and only half-drawn, faces barely more than a warm dab, so you read the effort from posture alone, from the diagonal strain of backs and arms rather than from any detail. The boat itself is the largest man-made shape in the frame, and its long pale sheer echoes the tilt of the sails far out at sea. Notice the white churn breaking against the stern: that single bright accent tells you the water is fighting the men, that this is the hard instant of getting a boat through surf, not a calm arrival. It is a whole story compressed into a few square inches of restless paint."
+  },
+  {
+   "t": "Men and the net",
+   "x": 0.24,
+   "y": 0.78,
+   "w": 0.24,
+   "h": 0.2,
+   "body": "Down in the near shadow two figures bend over a net while a third crouches lower toward the water. They are the closest people to the viewer and the most legible, yet still painted with almost no finish, a pale shirt and a warm face doing the work of a whole man. Their quiet stooping labour deliberately answers the strain at the boat above them: two crews, two tasks, the same working shore. Because they sit in the deepest brown of the foreground, they anchor the base of the composition and give the eye a dark, human step before it climbs the bright diagonal to the cliff."
+  },
+  {
+   "t": "The two sails offshore",
+   "x": 0.63,
+   "y": 0.5,
+   "w": 0.28,
+   "h": 0.18,
+   "body": "Far out on the grey water two small craft heel under the same wind, their pale sails the second-brightest note in the painting after the cliff. They are more than scenery. Set against the near boat's fight in the surf, they show the same struggle at a distance, which is how Gainsborough makes the sea's scale felt: the danger is not local to the beach, it is everywhere on the water. The nearer sail leans hard, its rigging a few dry scratches of the brush; the farther one is barely a smudge of light dissolving into haze. That rapid falling-off from just-legible to almost-nothing is the whole depth of the picture done in two marks."
+  },
+  {
+   "t": "The dark headland",
+   "x": 0.78,
+   "y": 0.7,
+   "w": 0.22,
+   "h": 0.28,
+   "body": "A near-black mass of rock shoulders in from the lower right, the closest thing in the painting and the darkest. It has no detail to speak of, and that is the point: it is a near foreground wall of shadow whose only job is to stop the eye at the edge and hurl the lit sea and cliff back into depth. Set it against the pale cliff opposite and you have the picture's real structure, two rock masses framing a bright wedge of troubled water. The contrast between them is what makes the middle distance glow."
+  },
+  {
+   "t": "The wind-torn sky",
+   "x": 0.3,
+   "y": 0,
+   "w": 0.55,
+   "h": 0.4,
+   "body": "Weather takes the greater share of the canvas. Gainsborough scumbles pale grey and cool white over a darker ground with the same restless, dragged touch he used on the cliff, so cloud and rock plainly belong to one storm-lit day. The clouds pile and tear on a diagonal that pushes down toward the boats, and the paint is left visibly rough, streaked rather than blended, which reads as moving air. This handling is the loosest thing in the picture and the most modern, a near-abstract passage of pure tone that carries the whole mood before you have looked at a single figure."
+  },
+  {
+   "t": "The bright diagonal",
+   "x": 0,
+   "y": 0,
+   "w": 1,
+   "h": 1,
+   "body": "Step back and the composition resolves into one gesture. A single seam of light runs from the sunlit cliff, down through the pale boat and its churning surf, out to the two heeling sails, framed top and bottom by the torn sky and the black headland. Everything the eye did stop by stop was travel along that seam. The rationing of light to just the rock, the sails and the breaking water is what makes so quiet a palette feel charged, and it is why the picture holds the room from a distance before it gives up its fishermen up close."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "The quickest way to feel how strange this coast is comes from setting it beside a coast painted the opposite way. John Constable's Osmington Bay was made on the spot in October 1816, during the six weeks of his honeymoon on the Dorset shore, its swift open handling and cloud-filled sky the record of a real place seen in front of him. There, the freshness is the point: the weather and water are answerable to a shore that exists. Here, nothing is answerable to anything. Gainsborough grew his surf, cliff and straining crew in the studio from models and invention, so the drama is refined out of many coasts rather than caught at one.",
+ "refs": [{"id":"john-constable-osmington-bay","text":"John Constable's Osmington Bay"}]
+},
+
+"matisse-woman-seated-in-an-armchair": {
+ "see": "A woman reclines across a lemon-yellow armchair set on a blue floor scored with white hatch-marks. Her green-trousered legs stretch left toward red slippers; a patterned white blouse covers her torso, dark sprigs scattered over it. Her hair is a dense knot of near-black, her face pale and long. Behind her the room opens: a green cabinet, a covered urn, a stool, framed sheets on a pale wall, a paneled door, and at the upper right a pink cactus flaring against black. Reds punctuate the corners. Everything sits flat and frontal, drawn in dark contour.",
+ "about": "This is a picture of a body given over to its chair. The sitter is not posed to charm; she slumps, legs slung sideways, face closed and heavy, more inhabited than displayed. What the picture is really about is ease pushed to the edge of torpor — the specific fatigue of a person who has stopped performing for the room. Matisse fills that room with the props of a comfortable life, cabinet and urn and flowering plant, and lets the figure sink through all of it into the chair's yellow hollow. The mood is domestic and faintly airless, a private hour rather than a social one, watched without sentiment.",
+ "craft": "The method is flat color divided by contour: each zone — chair, floor, trousers, wall — is a saturated field, and a drawn black line does the describing that modeling would elsewhere do. Matisse tunes the picture by temperature, banking warm yellow and red against a cold blue that he keeps from going dead by raking it with white strokes. Pattern is a structural tool, not decoration: the floor's hatching, the blouse's sprigs, and the wall's framed marks each pace a different part of the surface so no field reads as empty. Space is asserted by overlap and scale alone, never by perspective.",
+ "context": "Matisse painted this in 1940, in France, as the war closed in and the country fell; he was still mobile and unsettled, moving between Paris and the south, and the near-fatal surgery that would confine him to a bed and wheelchair still lay a year off. The seated, semi-reclining woman in a charged room is the motif he returned to for decades, but here the handling is blunter and the drawing more nakedly linear than in the lush odalisques of the 1920s. It belongs to the late phase in which he pared the easel picture toward the flat, cut-out clarity that would soon take over his work entirely.",
+ "deeper": [
+  {
+   "t": "The closed face",
+   "x": 0.58,
+   "y": 0.28,
+   "w": 0.18,
+   "h": 0.22,
+   "body": "Come to the face first, because it refuses the transaction the pose seems to offer. It is built from almost nothing: a long pale oval, two dark dashes for eyes set low and heavy, a small down-turned mouth, a smear of shadow along one cheek. Matisse gives it no roundness — the same flat handling as the chair beside it — yet it reads as tired, even sullen, and that is the whole trick. The expression lives entirely in placement and weight: eyes dropped, brows slack, the mouth pulled fractionally down. Against the black mass of hair above, the pallor makes the head sit forward like a mask hung on the dark. A more finished, prettier face would have turned this into a picture of a beautiful woman relaxing. This one keeps the sitter opaque and slightly unwilling, and the whole mood of the room follows from it."
+  },
+  {
+   "t": "Sunk into the yellow",
+   "x": 0.5,
+   "y": 0.38,
+   "w": 0.34,
+   "h": 0.5,
+   "body": "The chair is the second protagonist. Matisse lays it in as one unbroken lemon field, its arms and back defined by nothing but a dark contour and a few red touches at the base, and he lets that field swallow the lower half of the body. Watch how the yellow does emotional work the figure withholds: it is warm, high-keyed, almost buoyant, and it holds her the way the face will not hold your gaze. The single saturated hue also flattens the seat into a shape rather than an object, so the woman seems less to sit on it than to be set into it, like an inlay. Its brightness is what makes the blue floor read as cold, and the two together generate most of the picture's charge."
+  },
+  {
+   "t": "The green diagonal",
+   "x": 0.07,
+   "y": 0.55,
+   "w": 0.47,
+   "h": 0.35,
+   "body": "The legs are the one strong movement in a largely frontal design. Sheathed in green — the sole cool note allowed to cross into the warm figure — they shoot from the chair down to the left and out toward the red slippers, cutting a long diagonal across the yellow and pinning the composition to the floor. Green against the yellow seat is a deliberate collision of near-opposites that keeps the corner alive. Note too that Matisse barely models them; they are a flat green plane with a contour, yet the angle alone supplies all the sense of a body slung sideways in the seat. The slippers at the end, small and red, are the punctuation that stops the eye from sliding off the canvas."
+  },
+  {
+   "t": "White marks on the blue",
+   "x": 0,
+   "y": 0.45,
+   "w": 0.4,
+   "h": 0.4,
+   "body": "The floor could have been a flat blue slab. Instead Matisse rakes it with short white strokes, roughly parallel, tilted like rain or like a loose herringbone. They serve two ends at once. They keep the largest single area of the canvas from going inert — the blue breathes because it is worked — and they lay a faint directional grain across the lower field that plays against the green legs above it. The marks are frank and unblended, brush-drawing rather than texture, and they tell you how Matisse thinks: a color area is never just filled, it is paced. This is the same instinct that scatters sprigs on the blouse and hangs framed sheets on the wall — pattern deployed to regulate the surface."
+  },
+  {
+   "t": "Cactus against black",
+   "x": 0.74,
+   "y": 0.15,
+   "w": 0.26,
+   "h": 0.35,
+   "body": "In the upper right a pink flowering cactus flares out of a black ground. It is the coolest, oddest passage in the room and it earns its corner. The black behind it is the broadest, flattest dark field in the painting, and dropping it there counterpoises the dark hair on the opposite side of the figure. The pink pads, touched with pale green, answer the sitter's pallor and rhyme with the reds without repeating them. Placed high and to the edge, the plant also opens the flat wall into a suggestion of depth and exotic warmth — a little charge of life set against the woman's stillness, the room quietly insisting on itself while she has gone quiet."
+  },
+  {
+   "t": "The room behind",
+   "x": 0,
+   "y": 0,
+   "w": 0.62,
+   "h": 0.4,
+   "body": "The back wall is a shallow shelf of a world, everything pressed close to the picture plane. A green cabinet, a covered white urn, a small stool, a paneled door and a scatter of framed sheets sit at roughly one depth, described by contour and local color with no consistent perspective. This is how Matisse builds space here: by overlap and by size, letting the eye infer a room without ever measuring it. The green of the cabinet quietly seeds the green of the trousers below, tying background to figure. Kept pale and busy, the wall reads as ordinary domestic clutter — the ballast of a real interior against which the strange, heavy sitter registers all the more."
+  },
+  {
+   "t": "Signed in the corner",
+   "x": 0.78,
+   "y": 0.88,
+   "w": 0.22,
+   "h": 0.12,
+   "body": "Bottom right, over the blue, the pale cursive of the signature and the date sit small against the field, light strokes laid across the darker floor. It is worth ending here because the inscription confirms what the handling already says: this is a picture that shows its own making. Nothing is hidden — the contour lines stay visible, the brushed floor keeps its strokes, and the name is written plainly onto the color rather than tucked away. The corner also carries the last red accents, so the eye that has traveled the room lands on a quiet full stop."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "Both of these came out of the same stranded 1940, when Matisse told his son he needed a model more than ever. In Still Life with Sleeping Woman he took a hired brunette dozing among studio fruit and lifted her into an angel on flat violet, the flat handling turned toward grace. There the collapse becomes transcendence, sleep read as a kind of blessing over the still life. Here the same flatness bends the other way: the sitter sinks into the chair's yellow hollow, closed and heavy, torpor rather than rapture. One woman is raised off the surface, the other pressed down into it, and the difference is entirely a matter of where he tilts the color.",
+ "refs": [{"id":"matisse-still-life-with-sleeping-woman","text":"Still Life with Sleeping Woman"}]
+},
+
+"courbet-the-black-rocks-at-trouville": {
+ "see": "A beach seen from sand level. Sky takes the top three-fifths, a smoky mass of red-brown and slate cloud dragged flat toward the horizon. Below it a thin bright band of water carries two specks of sail. The foreground is wet, tawny sand studded with a scatter of dark rocks, the largest cluster low and to the right, furred with black weed. Light pools in the sand as milky reflection. The whole thing sits on a hard low horizon, so the eye drops fast to the bottom edge and then works back up through the rocks into the burning air.",
+ "about": "This is weather and tide as fact, not scenery. Courbet paints the Normandy coast at Trouville the way he painted quarry cliffs and stags: as raw matter under its own light, with no anecdote, no strolling figures, no picturesque incident to soften it. The subject is really the meeting of three substances — loaded sky, flat water, exposed shore at low tide — and the pressure each puts on the other. The rocks anchor a world that is otherwise all atmosphere and reflection. It refuses the seaside as leisure. What it offers instead is the coast as a physical event you are standing inside, close to the ground, at an hour when the sky has gone heavy.",
+ "craft": "Two registers of paint do the work. The sky is brushed and scumbled, thin warm ground left to glow through dragged cloud so the air reads as depth rather than surface. The shore is built with the palette knife: sand and rock laid in slabs and scraped flat, wet light troweled on in pale strokes that sit proud of the picture. The low horizon is the governing decision — it hands most of the canvas to sky and forces the small dark rocks to carry the whole lower half against that expanse. Warm above, cool along the water, warm again in the sand: the colour loops the eye back down and around.",
+ "context": "Courbet worked the Normandy beaches at Trouville and Deauville in 1865/1866, the fashionable resort coast, yet he stripped the fashion out. Where his acquaintance Boudin filled the same sands with crinolined holidaymakers, Courbet emptied them and looked at the ground and the sky. This is one of a whole serial run of near-identical sand-sea-sky 'sea landscapes' — a repeat-the-motif method that anticipates Monet's later series — painted directly from the motif with the knife. The bare, weather-driven coast here is of a piece with the Realist program he had been defending for over a decade: paint what is materially in front of you, at the scale and mood it actually has.",
+ "deeper": [
+  {
+   "t": "The black rocks",
+   "x": 0.52,
+   "y": 0.72,
+   "w": 0.34,
+   "h": 0.22,
+   "body": "The title lives here, in the low cluster to the right. Look at how the paint changes character: the weed is dragged on almost dry, dark green-black over a warmer under-layer, so the rock reads as wet, matted, slick rather than merely dark. Courbet does not draw a rock and shade it — he builds it in scraped and dabbed slabs of the knife, then lets a few licks of pale light catch the top edges where the sky is reflected off the wet stone. That is why the mass sits so convincingly on the sand and not on the surface of the canvas. It is the heaviest, most worked passage in the picture, and it has to be: it is the one solid thing holding down a composition that is otherwise vapour and reflection. Everything above it — sea, cloud, horizon — gets its scale from being measured against this low, near, tactile lump. Follow the smaller rocks running left from it and you feel the shore recede in a shallow arc toward the water."
+  },
+  {
+   "t": "Two sails, and the whole distance opens",
+   "x": 0.24,
+   "y": 0.65,
+   "w": 0.34,
+   "h": 0.11,
+   "body": "Two flecks of sail sit on the pale seam of the sea, each barely wider than a brush hair. They are the smallest marks that carry the most information. Set the far boats against the near rocks and the true depth of the scene snaps open — the space you were reading as a shallow band of water turns out to run for miles. They also fix the human scale of the place without putting a single figure on the sand, which is exactly Courbet's refusal: the coast stays empty of people, but the sea is worked. Painted almost as an afterthought in a light touch, they anchor the horizon so it does not read as a bare ruled line."
+  },
+  {
+   "t": "Wet sand and the light lying in it",
+   "x": 0.04,
+   "y": 0.78,
+   "w": 0.42,
+   "h": 0.2,
+   "body": "The low tide has left the sand mirror-wet, and Courbet paints that with the flat of the knife: broad, dragged strokes of tawny and grey laid down and scraped, with milky pale light troweled across the middle distance where the sky comes down into the standing water. The reflection is what makes the shore glow rather than sink. Notice there is almost no line here — shore, puddle and rock edge are all edges of paint mass, not drawn contours, which is the knife's signature. The band of light does structural work too: it separates the dark near rocks from the dark far water and keeps the lower half from collapsing into one murky zone."
+  },
+  {
+   "t": "The sky as the real subject",
+   "x": 0,
+   "y": 0,
+   "w": 1,
+   "h": 0.55,
+   "body": "The top three-fifths is where the picture's mood is made. The cloud is worked with both brush and palette knife over a dark ground so the warm underlayer burns through, giving the smoky red-brown its heat and its depth at once. The strokes flatten and stretch as they near the horizon, which pushes the ceiling of cloud back into distance. This is not fair-weather holiday sky; it is a sunset, heavy and low and charged. By handing so much canvas to it and keeping the shore low and dark, Courbet makes the air the dominant force and the land a thin margin beneath it — the exact inversion of a conventional beach view, and the reason the painting feels like standing under a sky rather than looking at a shore."
+  },
+  {
+   "t": "The horizon seam",
+   "x": 0,
+   "y": 0.65,
+   "w": 1,
+   "h": 0.12,
+   "body": "Run your eye along the join where sky meets sea. It is nearly straight but never ruled — slightly soft, slightly broken, warm cloud settling onto cool water with a hairline of lighter tone between them. That thin luminous edge is doing the hardest quiet job in the composition: it holds warm against cool, keeps the two great flat fields from bleeding together, and gives the two sails a shelf to sit on. Kept this low and this taut, the seam is the pivot the whole design turns on."
+  },
+  {
+   "t": "Signed into the sand",
+   "x": 0,
+   "y": 0.88,
+   "w": 0.2,
+   "h": 0.1,
+   "body": "The signature sits in the wet sand at the lower left, scratched in what reads as reddish paint. It reads as if written into the beach itself rather than added to the surface, and its placement in the emptiest, lightest corner balances the weight of the dark rocks diagonally opposite — a small compositional counterweight doing double duty as a name. The gesture suits the whole shore, which Courbet built by scraping and dragging the knife rather than by drawing; a name incised into wet sand is the same act at a smaller scale, the maker's hand pressed once more into the same worked surface. Even the mark's exact hue stays uncertain at this distance, a reddish trace half-lost in the tawny ground."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "Put this next to Courbet's Soleil couchant, Marine, painted a few years on during a single knife-and-impasto campaign of some twenty seascapes at Étretat, and you watch one method drive toward its limit. Both are the same argument: a loaded sunset sky pressed down onto a thin shore, worked with the palette knife rather than the brush, the sea given weight instead of shimmer. There, the later canvas strips almost everything away — a low red line under vast pale air, a single sail barely legible. Here the shore still holds its ground, a cluster of black weed-furred rocks anchoring the tide-line as the solid the whole vaporous scene is measured against. The subtraction is where he was headed.",
+ "refs": [{"id":"gustave-courbet-soleil-couchant-marine","text":"Courbet's Soleil couchant, Marine"}]
+},
+
+"pierre-bonnard-the-artist-s-studio": {
+ "see": "A low-keyed room of grey-taupe walls, warmed and cooled by scattered colour, with one tall casement window punched through the middle and hung with pale, looped-back lace. Through the panes: a run of Paris rooftops and shuttered facades in cooler grey-blue. Left of the window a dark chest carries a scatter of clutter, a red box on top; a slender pale-wood easel with a small canvas stands beside it. A small table below the sill holds a vase and a spread of papers. At right a dark seated figure sinks into shadow. Foreground: a red-brown tabletop, tilted up, strewn with pale flecks, the signature low on it.",
+ "about": "A painter's account of the room he works in, seen at the flat, unspectacular hour when nothing is staged. The window is the argument: the world is out there in the rooftops, but the picture stays indoors among the grey-taupe walls, the unattended easel, the debris of making. Bonnard sets the labour of art against the ordinary city and lets neither win. The seated woman, barely resolved, belongs to the room as furniture belongs to it — present, unaddressed. It is a portrait of a working space as a mood: enclosed, patient, lit by a single cool source it does not quite let in.",
+ "craft": "The whole is keyed to a narrow band of warm and cool greys, so that the few saturated notes — the red box, the red table, a flare of pink at the sill — carry the eye by scarcity rather than force. Painted on a wood panel, the paint is dragged thin and scumbled, kept dry and matte so the pale ground glimmers through rather than any canvas weave. The window's grid organises the design; everything else is loosely brushed against it. Bonnard tilts the foreground table toward the viewer, a Nabi flattening that presses depth forward and makes the floor read as pattern.",
+ "context": "Bonnard painted this around 1900, just as the flat, poster-like manner he had learned among the Nabis — trained alongside Vuillard and Denis in the 1890s — was loosening into the intimate interiors that would occupy him for life. He worked from small studios in Paris, and the motif of a window framing the city recurs across his career as a way to hold inside and outside in one plane. The picture belongs to that intimiste vein shared with Vuillard: domestic, low-pitched, attentive to a room's whole atmosphere rather than any single incident, the drama drained out so that mood can carry the whole.",
+ "deeper": [
+  {
+   "t": "The looped lace",
+   "x": 0.28,
+   "y": 0.03,
+   "w": 0.42,
+   "h": 0.55,
+   "body": "Everything begins here because the light does. The lace is tied back on both sides in soft, irregular loops, and Bonnard has painted it as pure drag — thin white pulled over the darker window so the fabric reads as a veil the light passes through rather than a solid thing. Notice that the curtain is not symmetrical: the left fall is fuller and creamier, the right one thinner and cooler, so the window seems to breathe unevenly. The loops frame the rooftops like a proscenium, turning the view into a picture the room is watching. This is the one passage where his touch turns tender; against the dry grey walls the curtain is the softest surface in the room, and the eye keeps returning to it as the place where inside and outside are stitched together."
+  },
+  {
+   "t": "Rooftops through the panes",
+   "x": 0.36,
+   "y": 0.13,
+   "w": 0.26,
+   "h": 0.32,
+   "body": "The city arrives as a picture-within-the-picture, boxed by the glazing bars into neat rectangles. A pale dome or turret catches the light at the upper left; shuttered windows repeat in a cool grey-blue register that is set deliberately apart from the warmer greys of the room. Bonnard paints the exterior smaller and flatter than perspective wants, so it reads less as deep space than as a tapestry hung in the window. The little red marks along the upper sill — geraniums, most likely — are the brightest exterior note and pull the outdoors half a step forward. Hold the view and the room beside it, and you feel the whole point of the composition: the world is available, framed and legible, yet kept firmly on the far side of the glass."
+  },
+  {
+   "t": "The empty easel",
+   "x": 0.19,
+   "y": 0.31,
+   "w": 0.22,
+   "h": 0.52,
+   "body": "What reads at first as a bundle of leaning poles is a slender A-frame easel of pale, straw-coloured wood, a small marked canvas propped on its ledge. Its light struts cut the one crisp, straight-edged shape into a surface that is elsewhere all smudge and drift, and they do structural work too: they tie the dark foreground to the pale window and keep the left half from going slack. Read it as the studio confessing itself. Yet no one stands at it — the easel is unattended, the little canvas left mid-thought — so the room announces its function without a single figure at work, the tell sharpened by that emptiness."
+  },
+  {
+   "t": "Table, vase, and papers",
+   "x": 0.35,
+   "y": 0.5,
+   "w": 0.24,
+   "h": 0.28,
+   "body": "A plain wooden table sits under the sill carrying the day's working matter: a vase with a few thin stems, a loose spread of papers or prints, and a soft pink mass that could be blossom or rag. The papers catch the window light and become the second-brightest area in the room, a quiet echo of the glowing panes above. Bonnard keeps the whole still life summary — nothing is drawn, everything is placed by tone — so it holds together as a patch of light rather than a list of objects."
+  },
+  {
+   "t": "The figure in shadow",
+   "x": 0.79,
+   "y": 0.44,
+   "w": 0.21,
+   "h": 0.5,
+   "body": "At the right edge a woman sits, and you almost miss her: her dark dress dissolves into the dark corner so that only the pale oval of her face and a warm knot of hair stay legible. She is turned inward, unoccupied, sharing the room's stillness rather than performing for it. Bonnard gives her exactly the finish he gives the furniture — no more — which is the tell. In this intimiste world a person is part of the atmosphere of a room, weighted the same as a chest or a curtain, and the picture is truer for refusing to make her its subject."
+  },
+  {
+   "t": "The red table and the signature",
+   "x": 0,
+   "y": 0.79,
+   "w": 0.55,
+   "h": 0.21,
+   "body": "The foreground table is tilted up toward you until its top reads almost as a flat red-brown disc laid on the picture plane — the Nabi habit of pressing depth into pattern. Its surface is strewn with pale flecks and smears, the residue of the palette or the working table, painted as loose dabs rather than described things. Down at the lower left the date and the name sit in the paint itself. The warm red here rhymes with the red box across the room, and the two together pin the corners of an otherwise cool composition."
+  },
+  {
+   "t": "The low-keyed room",
+   "x": 0,
+   "y": 0,
+   "w": 1,
+   "h": 1,
+   "body": "Step back and the subject turns out to be the low key itself. The walls are a muted grey-taupe, and Bonnard holds most of the room to that register so that the true colour — the reds of box and table, the pale blue and yellow of the buildings beyond the glass — is made to matter by how little competes with it. This is not a monochrome; it is a room pitched quiet so a few saturated notes can carry. That is the intimiste wager: an ordinary room at an ordinary hour, painted for its whole mood rather than any event, can hold the eye as long as any drama. What pulls you in is not a thing but a temperature — the enclosed, working hush of the place."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "A room by Bonnard's fellow Nabi — Vuillard's Femme assise of about 1895 — makes the shared intimiste bargain plain: a person weighed no more than the furniture around her. There, Vuillard lets his seated woman nearly dissolve into the dark, flickering brushwork of the setting, the line between body and interior all but erased for the sake of pattern. Here the erasure is a choice of pitch rather than surface: Bonnard keeps his shadowed figure legible but demotes her, giving her exactly the finish he gives a chest or a curtain, so the room's whole quiet mood outweighs the single life inside it.",
+ "refs": [{"id":"edouard-vuillard-untitled","text":"Vuillard's Femme assise of about 1895"}]
+},
+
+"sisley-flood-at-port-marly": {
+ "see": "A tall corner building fills the left of the frame, its ground floor lettered as a wine merchant's, its shutters powder-blue against ochre stone. It stands not on a street but in water: the flooded road runs unbroken from the shop-front to the bottom edge, a flat sheet holding the building's reflection. Two small figures work a punt in the mid-ground, a second boat moored beyond. A single dark post rises at the right. Above all of it, cloud occupies more than half the canvas, a shifting grey-and-white weather that dwarfs the town beneath.",
+ "about": "This is a disaster painted as weather, not drama. The Seine has risen and swallowed a working street at Port-Marly, and Sisley records the fact with total calm: no rescue, no crisis, just townspeople going about business by boat where carts once passed. The subject is really the water itself, how a flood converts a familiar place into a mirror and makes the ordinary strange. Behind the topographic report sits an Impressionist conviction that the true event of any scene is light and atmosphere on a particular day, and that a drowned road under moving cloud is worth as much attention as any grander motif.",
+ "craft": "Sisley builds the picture on a hard horizontal-vertical scaffold, then dissolves its surfaces in loose paint. The building's edges are ruled and architectural; everything below the waterline is fluid, laid in broken horizontal strokes that let the ground tone glow through. He keys the whole canvas to a narrow silver register, so the ochre wall and blue shutters read as the only saturated notes and pull the eye instantly. The sky is scrubbed wet and thin, the water thicker and more deliberate, each a different handling. Reflection is not mirrored but restated: the wall's colours dragged downward in shortened, interrupted marks.",
+ "context": "Sisley painted this in 1872, early in the Impressionist decade, before the group's first exhibition. Port-Marly on the Seine flooded repeatedly, and he returned to the subject; a celebrated series followed in 1876. This canvas belongs to the first encounter. He was the most single-minded landscapist of the circle, an Englishman by parentage who spent his life in France, painted almost nothing but the Ile-de-France river country, and died poor before his work was valued. The flood motif suited him exactly: a real place, a transient condition of light and water, no need for incident.",
+ "deeper": [
+  {
+   "t": "The wine-shop, still open",
+   "x": 0,
+   "y": 0.13,
+   "w": 0.33,
+   "h": 0.72,
+   "body": "The building is the composition's anchor and its argument. Sisley gives it real weight, a solid corner block ruled with straight edges and stacked windows, and then sets it in water so that its base simply vanishes into reflection with no ground to stand on. Look at how the ochre of the wall is the warmest colour on the canvas, deliberately so: it is the one note that says human occupation against a sky and river drained to silver. The shutters, picked out in a chalky blue, repeat down the facade and hand the eye a rhythm to climb. What makes the passage work is the contrast of treatment against everything around it: while the rest of the canvas stays loose and wet, here alone the drawing is ruled and firm."
+  },
+  {
+   "t": "Lettering that dates the ruin",
+   "x": 0,
+   "y": 0.55,
+   "w": 0.29,
+   "h": 0.14,
+   "body": "Along the ground floor Sisley has painted shop signage, legible enough to read as a wine merchant's premises without ever being lettered like a signwriter would. The marks are approximate, a few strokes standing in for each word, yet the eye completes them into text at normal viewing distance. The premises were real: the \"A St Nicolas\" wine and spirits merchant genuinely stood here at Port-Marly, and a cafe occupies the site today. This is the Impressionist bargain in miniature: paint the impression a sign makes on the eye, not its actual letterforms. That commercial frontage, meant for foot traffic and delivery, now opens straight onto floodwater, and the ordinariness of the advertising makes the abnormality of the water underneath it land harder than any dramatic gesture could."
+  },
+  {
+   "t": "Business as usual, by boat",
+   "x": 0.27,
+   "y": 0.66,
+   "w": 0.22,
+   "h": 0.21,
+   "body": "Two figures stand in a flat-bottomed punt where the street should be, poling across their own drowned road. They are painted in a handful of strokes, almost too small to read as individuals, and that smallness is the point. Sisley refuses to make them protagonists: their calm, upright posture tells you this is a nuisance being managed, not a catastrophe being fled. The boat also does structural work, a small dark accent set at the meeting of the warm building and the cold expanse of water that stops the eye and scales the whole flat foreground to a human being."
+  },
+  {
+   "t": "The post that measures the flood",
+   "x": 0.77,
+   "y": 0.24,
+   "w": 0.1,
+   "h": 0.52,
+   "body": "A single tall post rises on the right, nearly the full height of the picture, dark and almost ruler-straight. It answers the vertical of the building across a wide gap of sky and water, holding the right side of the composition from drifting apart. It also does something sly: because it stands in the flood with its base submerged, it silently records how high the water has climbed, a gauge Sisley never comments on. In a canvas so committed to horizontals, this lone vertical is the pin that keeps the design taut."
+  },
+  {
+   "t": "The sky sets the terms",
+   "x": 0.32,
+   "y": 0,
+   "w": 0.68,
+   "h": 0.45,
+   "body": "Weather claims well over half the picture. Sisley scrubs the sky in thin, mobile paint, letting warm underlayer show through cool grey so the cloud feels lit from within and genuinely in motion. This is where the day is set: the silvery, overcast light that keys every colour below and keeps the ochre wall from ever turning gaudy. The clouds are not decorative filler above the scene but its cause. Their flat, even light is exactly what makes the flooded street so mirror-like, and the low tonal range of the whole picture flows down from this handling. Give the sky the time it asks for and the rest of the painting explains itself."
+  },
+  {
+   "t": "The mirror that is not a mirror",
+   "x": 0,
+   "y": 0.7,
+   "w": 1,
+   "h": 0.3,
+   "body": "The flooded street is the picture's quiet marvel and the reason it exists. Sisley lays the water in broken horizontal strokes rather than a glassy sheet, so it reflects the building and sky as colour restated rather than optically copied. Track the reflection and it does specific work: the ochre wall drops straight down as a paler, wavering column, and the dark band of the ground-floor lettering repeats below the waterline as a second smear of shadow, so the shop is doubled. Where the submerged post already gauged how high the flood had climbed, this doubling confirms that depth again. The punt and its two figures cast their own short reflection, small vertical accents held in the water. The reflected colours are lighter and cooler than the things above them, because the overcast sky the water mirrors sits between it and the building; the surface does not copy the wall, it copies the wall as the sky has dimmed it. Step back and it reads as still water; step in and it is all separate touches. A familiar road becomes a low, luminous plane that gives the town back upside down and softened, the disaster rendered as something almost serene."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "The same river, the same year, put to opposite use. In this collection too is Monet's Régates à Argenteuil — Sunday sailboats and their broken reflections on a bright, working stretch of water. There the river is leisure, chopped by wind into restless dashes, its mirrored hulls fractured and dancing. Here that same Seine has climbed over its banks and swallowed a street, and the water goes utterly still: a flat silver plane that gives the wine-shop back to itself almost whole. Set the two side by side and you see the range of a single Impressionist idea — reflection as the true event — swinging from festival to quiet catastrophe.",
+ "refs": [{"id":"regates-a-argenteuil","text":"Régates à Argenteuil"}]
+},
+
+"jean-baptiste-camille-corot-madame-stumpf-and-her-daughter": {
+ "see": "A woman in deep blue stands nearly full-length on a bare ochre path, turned three-quarters toward a small child in white who reaches up to her. Behind them a wooded slope rises in browns and olive-greens, opening at the far left to a pale wedge of sky. The mother's dress is the one saturated note in an otherwise tawny, atmospheric field; the child's white pinafore is the second, smaller flare. A slim closed parasol divides the left half. The paint thins to bare weave in the background trees and thickens on the two figures. The signature sits lower right.",
+ "about": "This is a formal portrait pushed toward pastoral idyll. Corot, a landscape painter to his bones, sets a bourgeois mother and daughter not in a drawing room but in his own woodland register, so the sitters read less as a social record than as two figures inside a mood. What the portrait is really tracking is transmission: the exchange at the joined hands, the child's upward reach, the answering tilt of the mother's head. Dress and setting carry the argument as much as the faces do. It is intimacy staged in the open air, a private bond given the weight and hush of Corot's landscapes.",
+ "craft": "Corot sets two ways of laying paint against each other. The background is scrubbed thin, pulled in feathery strokes across a warm underlayer so the weave shows and the trees dissolve into vapor; the figures are built up denser, the blue dress modeled with real body. That contrast throws the pair forward without a hard outline anywhere. The palette is nearly monochrome tawny, deliberately, so the single blue detonates and the white pinafore seconds it. Verticals govern the design: the parasol, the trunks, the standing mother, all held by the low horizon of sky at left. Value does the drawing that line refuses to.",
+ "context": "Painted in 1872, this belongs to Corot's late figure work, the private pictures he made alongside the silvery landscapes that had made his name. Late in life he turned repeatedly to single women and, less often, to sitters he knew, posing them in the same feathery woods he painted for their own sake. Here that idiom holds a real mother and her small daughter Madeleine; Corot never sold the picture but gave it to Monsieur Stumpf, and it stayed with the family for decades. It hangs at the National Gallery of Art. By this date Corot was old and celebrated, near the end of his life, and such intimate figures would later be prized well beyond the landscapes' first fame.",
+ "deeper": [
+  {
+   "t": "The blue that carries the picture",
+   "x": 0.27,
+   "y": 0.42,
+   "w": 0.3,
+   "h": 0.45,
+   "body": "The whole canvas is tuned to make this dress possible. Corot has starved the rest of the picture of color, holding the woods, the earth underfoot, and the far opening of sky to a narrow band of ochre, olive and warm gray, so that when the blue arrives it reads as almost the only pure hue present. Look at how many blues it actually is: a darker, cooler blue in the shadowed folds of the skirt, a lighter chalky blue where light rakes the bodice and the near shoulder, a violet drift in the deepest recesses of the hem. The color is not flat local color but modeled, turned around the body's volume, which is why the figure feels solid against a background that is barely there. The bustle and the tiered, ruffled skirt let him pile that blue into a long vertical cascade running most of the picture's height, so the dress becomes the composition's spine as well as its one loud voice. This is the single passage that bears the picture's whole load, and Corot spent his density here."
+  },
+  {
+   "t": "Where the two hands meet",
+   "x": 0.47,
+   "y": 0.58,
+   "w": 0.17,
+   "h": 0.15,
+   "body": "The whole painting bends toward this small knot of hands at its center. The child lifts something toward her mother and the mother's hand comes down to receive it, and the gesture is the picture's real subject compressed into a few inches of paint. Notice that Corot puts almost nothing sharp here either: the fingers are suggested, the little offering barely described, yet the meeting reads instantly because every larger line in the canvas points at it. This is the hinge; every other stop reports back to it."
+  },
+  {
+   "t": "The mother's downward tilt",
+   "x": 0.39,
+   "y": 0.35,
+   "w": 0.15,
+   "h": 0.13,
+   "body": "Her head inclines just slightly toward the child, and that small tilt does an enormous amount of the emotional work. The face is softly modeled, lit from the left, the expression grave and inward rather than posed for us. A dark jeweled ornament pins the hair and catches a fleck of light, the one point of decorative sparkle Corot allows the upper figure. The eyes are cast down, not out at the viewer, which quietly refuses the conventions of the commissioned portrait and keeps the attention circulating between the two of them."
+  },
+  {
+   "t": "The child, answering in white and red",
+   "x": 0.5,
+   "y": 0.59,
+   "w": 0.22,
+   "h": 0.34,
+   "body": "The daughter is the picture's second color event and its rhyme. Her white pinafore picks up and answers the blue, a smaller bright shape balancing the large one, and a warm red sash cuts across it to keep the white from going inert. Below, striped stockings and small dark boots ground her on the same ochre path. She is turned fully toward her mother, up on the reach, the only figure in motion, and Corot lets her stand slightly forward on the path so the size difference between the two of them registers as tenderness rather than mere scale."
+  },
+  {
+   "t": "The parasol and the standing verticals",
+   "x": 0.27,
+   "y": 0.46,
+   "w": 0.11,
+   "h": 0.45,
+   "body": "A slim closed parasol runs from the mother's hand almost to the ground, a single ruled vertical in a picture otherwise built of soft edges. It rhymes with the slender tree trunks at the right and with the standing figure herself, so the eye reads a family of uprights holding the loose woodland steady. Notice too that it is lit along its near edge, a bright hairline that keeps it forward of the dark skirt behind, the one crisp line Corot allows himself. Furled and carried rather than opened, it quietly tells you these two are out on a stroll, which is what licenses the whole open-air setting and lets the portrait pass as a moment rather than a pose."
+  },
+  {
+   "t": "Trees made of almost nothing",
+   "x": 0.66,
+   "y": 0.02,
+   "w": 0.33,
+   "h": 0.52,
+   "body": "This is Corot the landscapist off the leash. The trunks and foliage at the right are dragged in thin, feathery strokes over the warm ground, the paint so sparing that the canvas weave reads through it and the whole wood turns to atmosphere rather than description. Nothing is drawn; the trees exist as tone and touch. Set this passage beside the built-up blue of the dress and you see the entire method of the painting in one comparison, dense figure against dissolved world."
+  },
+  {
+   "t": "The gap of sky",
+   "x": 0.01,
+   "y": 0.42,
+   "w": 0.15,
+   "h": 0.17,
+   "body": "At the far left the trees part onto a pale, cool wedge of distance and sky, the coolest and lightest note in the lower half of the canvas. It vents the dense woodland, gives the eye somewhere to breathe, and sets a soft horizon that steadies the standing figures. A single small glow sits low in the opening, warmer than the surrounding blue-grey, reading as light caught on far foliage or water, and it draws the eye level with the mother's waist so the gap and the figure lock together. The vent also throws the blue dress into relief, cool against cool, so the color reads richer by the neighbor than it would against the tawny woods alone."
+  },
+  {
+   "t": "The signature and the bare ground",
+   "x": 0.8,
+   "y": 0.84,
+   "w": 0.2,
+   "h": 0.16,
+   "body": "Lower right, COROT is lettered plainly into the tawny foreground in dark capitals. Around it the path is left as nearly raw warm underpaint, thinly brushed, doing double duty as ground and as the tonal key the whole picture is built over. Look at how few strokes describe this whole lower corner: a scumble of ochre and brown, a drift of shadow, no drawn edge for the path at all, the eye asked to accept it as floor purely from tone. The signature sitting directly on that bare passage is a small honesty about the method: the warm base coat everywhere under this painting is not hidden but declared as the thing the figures are lifted out of."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "Corot dropped women into his feathery woods again and again in these last years, and the woods stay the same while the woman changes everything. Set this beside his Diana bathing, painted a year later. There a lone bather stands in a silvery wood with nothing to name her — no bow, no hound, no crescent — a figure Corot idealizes into anonymity, one of the fewer than thirty nudes of his whole life. Here the same painter fills the same clearing with a woman he knew, clothed to her throat in that one saturated blue, and gives her a child at her hip and a real family name. The wood is a stage for reverie in one; in the other it shelters a bond he chose to record.",
+ "refs": [{"id":"jean-baptiste-camille-corot-diana-bathing","text":"Diana bathing"}]
+},
+
+"guercino-self-portrait-before-a-painting-of-amor-fedele": {
+ "see": "A standing Cupid fills the middle of the frame, a naked blond child with a bow in one fist and his other hand hooked into the red collar of a lean greyhound that folds its legs beside him and stares up into his face. Behind them a painted sky opens over a dark cliff. Then the trick lands: this is a picture on an easel, its wooden bars showing top and left, and in the lower right corner a grey-haired man in black leans in from outside it, looking at you, a loaded brush in his raised hand.",
+ "about": "The painting is a portrait of the painter as the maker of an allegory. The child is Amor Fedele, Faithful Love, and the leashed hound is the emblem that spells the word out, fidelity held on a short rein. Guercino sets his own likeness at the threshold between the invented scene and the room, so the subject is less the god than the act of authorship: a man declaring that this tenderness, this loyalty, came out of his hand. Love is shown as something composed and vouched for rather than merely felt, and the artist signs it with his face.",
+ "context": "Guercino painted this late, in his Bologna years, decades after the dramatic naturalism of his youth had softened into the polished, sweeter manner that the market wanted. By 1655 he was the grand old man of the city's studios, running a busy shop and keeping the meticulous account book that still survives. A collection inventory drawn up that same year records the picture exactly as he staged it: \"faithful and eternal love, with a beautiful greyhound, and the portrait of Guercino made by himself\" — period proof of both the allegory and the self-portrait conceit. Picturing oneself beside one's own invention let a painter advertise skill and wit at once.",
+ "craft": "The design is a quiet argument in tones. The Cupid is built in warm, evenly lit flesh against cool sky so the eye goes to him first and holds; the painter, by contrast, emerges from near-black in the corner, lit only on the brow, the collar and the working hand. That two-key lighting keeps the invented world bright and the real one shadowed, and the framing bars slid across two edges do the rest, telling you which is which without a word. The brushwork tightens where it matters, crisp in the dog's muzzle and the man's eye, looser in cloud and drapery.",
+ "deeper": [
+  {
+   "t": "The face that turns out",
+   "x": 0.66,
+   "y": 0.44,
+   "w": 0.3,
+   "h": 0.32,
+   "body": "Everything in the bright scene faces inward, the child to the dog, the dog to the child, but this head breaks the loop and looks straight out at you. That single reversed gaze is what converts a mythological picture into a self-portrait; it is the painter certifying, in person, that the fable above him is his. Read the handling and you see age set down without flattery, the pouched eyes, the slack cheek, the grey moustache thinning into stubble, the light catching only the forehead and the soft fall of the collar. He gives the invented god smooth, generalized flesh and gives himself every specific of a real face, which is the whole joke and the whole boast at once: the beautiful thing is imagined, the man who imagined it is this tired, particular, watching person in the dark."
+  },
+  {
+   "t": "The loaded brush",
+   "x": 0.48,
+   "y": 0.72,
+   "w": 0.34,
+   "h": 0.28,
+   "body": "Down in the corner a hand rises into the light holding one fine brush, poised as if a stroke were about to be laid, while a fist of spare brushes juts below. Notice where the tip points, up and inward, toward the painted scene, so the gesture reads as ongoing making rather than a finished flourish. The brush is the hinge of the entire conceit: it is the only object that belongs to both worlds, physically in the shadowed real corner yet aimed at the bright fiction, the tool by which the one becomes the other. Guercino paints the very instrument that painted everything you are looking at, and paints it wet and mid-act, so the allegory above never quite settles into a done thing."
+  },
+  {
+   "t": "Cupid at the collar",
+   "x": 0.07,
+   "y": 0.38,
+   "w": 0.38,
+   "h": 0.18,
+   "body": "The child's near hand does not idle; it reaches down and hooks into the dog's red collar, and that small grip is the sentence the whole allegory is built to speak. This is Amor Fedele, and fidelity is not stated but demonstrated, love keeping its hold, love that has taken a leash. The bow slack in the far hand tells you the mischievous, wounding side of Eros is at rest here; the point of the picture is the other hand, the one doing the binding."
+  },
+  {
+   "t": "The hound looking up",
+   "x": 0,
+   "y": 0.3,
+   "w": 0.33,
+   "h": 0.41,
+   "body": "The greyhound is the emblem carrying the picture's word. A hound has meant faithfulness in painting for centuries, and Guercino leans the whole meaning of Amor Fedele on it, but he refuses to let it stay a mere symbol. The animal is turned up toward the child with its ears back and its gaze fixed, the neck craned in the exact posture of a real dog waiting on a face it trusts. The lean flank and folded legs are drawn with the tight, observed line the god's body is denied. So the abstraction, faithful love, is proved on the one creature in the frame that is behaving, not posing, and the red collar closes the argument, the bright note that ties the emblem to the child's leashing hand."
+  },
+  {
+   "t": "The quiver and the sash",
+   "x": 0.42,
+   "y": 0.44,
+   "w": 0.24,
+   "h": 0.31,
+   "body": "A violet sash crosses the child's torso and slings a quiver at his hip, its arrows fanning out feathered-end up. These are the standard fittings of Cupid, the tackle that names him, but see how modestly they are deployed. The arrows are stowed, not nocked, the bow is unstrung of any threat, and the one hot color, the purple of the sash echoing the collar's red, does its job of keeping the eye circulating between weapon and dog. This is love equipped for constancy rather than for the ambush."
+  },
+  {
+   "t": "The easel that frames the fiction",
+   "x": 0.28,
+   "y": 0,
+   "w": 0.44,
+   "h": 0.16,
+   "body": "Look at the top edge and the picture confesses its own structure: two pale wooden bars of an easel cross behind the sky, and along the left a straighter timber runs down. These are not part of the sunny landscape, they are the scaffold the landscape is stretched on. With that one device Guercino tells you the entire bright world, child, dog, cliff and cloud, is a canvas standing in a studio, and the shadowed man in the corner is the only thing in the room. It is the cheapest possible means and the most complete, a few strokes of plank that reorganize everything below them into a painting being looked at."
+  },
+  {
+   "t": "The oval on the ledge",
+   "x": 0.02,
+   "y": 0.72,
+   "w": 0.34,
+   "h": 0.22,
+   "body": "On the stone plinth at lower left sits a pale oval, lightly incised, catching a cool grey light against the block. Its identity stays genuinely uncertain — a smooth tablet or slab, some studio object washed up at the border between the fiction and the floor of the real room; it is not the palette, which Guercino holds in his working hand. Its blankness is the point: an empty oval beneath a finished allegory, the surface before the image, quietly rhyming with the loaded brush across the frame."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "Two ageing masters here fold their own faces into an emblem, and the difference is the whole lesson. Set this beside Titian's Allegory of Prudence, where three ages of man ride above a three-headed beast and the heads are thought to be Titian himself in old age, his son Orazio and his heir Marco, a family portrait smuggled into a maxim about Time. There the makers vanish into the emblem; their real faces become the allegory, so you cannot tell person from meaning. Here Guercino refuses that dissolve. He keeps the fable bright on its easel and himself in the corner dark, leaning out to certify from outside that the invention is his. Titian is absorbed by his allegory; Guercino stands next to his and signs it.",
+ "refs": [{"id":"allegory-of-prudence","text":"Titian's Allegory of Prudence"}]
+},
+
+"picasso-family-of-saltimbanques": {
+ "see": "Six circus performers stand on a bare pinkish plain under a washed blue-grey sky with no horizon line to catch them. Left to right: a tall harlequin in blue-and-rose lozenges seen from behind, a heavy man in a red suit and pointed cap, a bare-armed youth in flesh-pink tights carrying a bundle, a small boy in a blue costume, and a little girl in a pink tutu with her back turned. Off to the right, seated and separate, a woman in a straw hat. Nobody meets anyone else's eye. A flower basket and a jug sit on the ground.",
+ "about": "This is a picture about a company that is not a company anymore. Six people share a trade and a patch of ground, yet no gaze crosses to another and no hand does real work; the troupe has been assembled and then emptied of the thing that would make it one. The circus figures Picasso painted through 1905 were his surrogates for the artist as outsider, and here the outsiderhood is turned inward on the group itself. The seated woman, held apart, makes the isolation structural rather than incidental. The subject is less a family than the failure of these bodies to cohere into one.",
+ "craft": "The composition works by refusing the grouping it seems to offer. Picasso stands the five upright figures in a loose frieze, then breaks it with the seated woman set low and to the right, so the eye is pulled across an unbridged gap of empty ground. The palette is starved to rose-browns and greys, with the red suit and the woman's rust skirt as the only heat. There is no cast shadow and no receding plane; the ground reads as a flat tinted field, which strands the figures in a space that will not hold them together. Contours are drawn firmly, modelling kept thin.",
+ "context": "Painted in Paris in 1905, this is the largest and last of Picasso's Rose Period saltimbanque works, the summit of a run of harlequin and acrobat pictures made when he was twenty-three and poor among the circus performers of Montmartre. The canvas is near mural scale, a summary statement of the whole series. A 1980 X-ray found two entirely different pictures underneath — first a circus family, then a pair of acrobats — reworked over months as the palette shifted from blue toward rose, so the final frieze is the residue of a long argument with himself rather than a scene set down at once. It hangs at the National Gallery of Art in Washington, in the Chester Dale collection.",
+ "deeper": [
+  {
+   "t": "Harlequin, turned away",
+   "x": 0.03,
+   "y": 0.11,
+   "w": 0.24,
+   "h": 0.77,
+   "body": "The figure that anchors the left edge is the one who gives us the least. He is a harlequin — the diamond lozenges of blue, rose and grey run down his body — but Picasso has swung him to three-quarter-back, so the patterned costume, the traditional emblem of the trickster performer, is shown to us the way an audience never sees it. His face is in near-profile, closed. The one soft act in the whole picture happens at his lowered hand, where he holds the little girl's fingers, and even that grip is loose, almost forgotten. He is the harlequin Picasso used as his own surrogate across the Rose Period — the accepted reading is that this is the painter himself — and the turned back becomes a decision: the performer withholds the front he sells to a crowd. The lozenges stay vivid while the man inside them goes quiet."
+  },
+  {
+   "t": "The red jester, all bulk",
+   "x": 0.21,
+   "y": 0.13,
+   "w": 0.26,
+   "h": 0.62,
+   "body": "Against the willowy figures around him, the man in red is a mass. His suit swells into a single unbroken shape, the largest field of colour on the canvas, and its warmth is the first thing that reaches the eye from a distance. The pointed cap and ruff mark him as the comic fool, the buffoon of the troupe, yet the face under the cap is heavy and unamused, jowls sagging, gaze wandering off past the boy beside him. Picasso lets the costume carry all the theatrical signal and gives the head none of it. The result is a comedian who has quit the act mid-shift, the professional gaiety left in the fabric while the man wearing it has gone somewhere else."
+  },
+  {
+   "t": "The bundle on the shoulder",
+   "x": 0.36,
+   "y": 0.14,
+   "w": 0.22,
+   "h": 0.24,
+   "body": "The tall youth in flesh-pink tights raises one arm to steady a soft sack slung at his shoulder. It is the only piece of luggage in the picture, and it does the quiet narrative work: these are travelling people, carrying what they own on their bodies. The raised arm also opens his silhouette against the sky at the picture's highest point, giving the frieze its tallest note — a lump of dun colour and a curled hand enough to turn standing figures into a company caught mid-journey rather than posed."
+  },
+  {
+   "t": "The girl's turned back",
+   "x": 0.24,
+   "y": 0.36,
+   "w": 0.23,
+   "h": 0.54,
+   "body": "The smallest figure among the five upright is a girl in a rose tutu, and like the harlequin she has her back completely to us, dark hair gathered, a black bodice over the pink skirt. Two backs on the same side of the canvas is not an accident; it seals the left group off, presenting the viewer with shoulders and refusals rather than faces. At her feet sits a basket of flowers, the one bright, tended thing on this barren ground, and it reads as hers. The pairing is deliberately tender and deliberately withheld: a child with flowers, shown so that we cannot see whether she is delighted or bored."
+  },
+  {
+   "t": "The gap that will not close",
+   "x": 0.55,
+   "y": 0.4,
+   "w": 0.22,
+   "h": 0.45,
+   "body": "The most important passage here is the one where nothing is painted. Between the standing troupe and the seated woman lies a wedge of empty rose-brown ground, and Picasso has done everything to keep it open. He sets the woman lower and further right than the frieze would reach, faces her body outward, and gives the space between no prop, no shadow, no path across. Measure the wedge and it is wider than any single figure, a deliberate over-allowance of emptiness where a group portrait would have crowded its people together. The gap is the one place the ground speaks for itself, an unbroken field of tinted earth running from the troupe's feet to the woman's hem, so the two parties stand on one continuous plane and still cannot reach each other. The eye tries to bridge it and is defeated each time, because Picasso has withheld the one thing that would help — a glance, an arm, a shared object thrown across. This void turns a group portrait into a study of estrangement: the subject is not the performers but the distance the painter has opened and refused to close, carried entirely by this stretch of blank ground."
+  },
+  {
+   "t": "The woman set apart",
+   "x": 0.7,
+   "y": 0.4,
+   "w": 0.29,
+   "h": 0.53,
+   "body": "The seated woman, often identified as Fernande Olivier, Picasso's companion in these years, is the picture's counterweight and its outsider. She wears a straw hat and a pale wrap over a rust-red skirt, the skirt echoing the jester's suit so that she is tied to the troupe by colour even as she is cut off from it by space. She looks off to the right, out of the group entirely, chin lifted. A small jug rests on the ground beside her. Placed low and alone, she completes the composition's argument: the frieze needs her weight on the right to balance, and yet she refuses to belong to it. She is present and unjoined at once."
+  },
+  {
+   "t": "Ground into sky, no horizon",
+   "x": 0,
+   "y": 0,
+   "w": 1,
+   "h": 1,
+   "body": "Step back and look at what the figures are standing on. The pinkish-brown plain rises and simply dissolves into the pale blue-grey sky with no drawn horizon, no distant town, no road. The setting is nowhere in particular, a stage of bare tinted air. This is the decision that lifts the picture out of genre and into something closer to a vision: strip away the shadows and the ground plane and the six performers stop being circus folk in a field and become figures suspended in a void, held only by each other's proximity and by the frieze Picasso has drawn them into. The emptiness is not a background left unfinished; it is the subject's condition."
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "The same year and the same young painter, twenty-three and poor in Montmartre, stand behind a second canvas in this collection. Lady with a Fan, made in the same 1905 as Picasso eased out of his blue years by way of the antiquities rooms downstairs at the Louvre, where the looking hardened into a single flat, upheld palm. There the pressure runs inward, a body compacted into one still Egyptian gesture, everything squeezed toward the hand. Here it runs the opposite way — outward, into distance — the figures pulled apart across a plain of empty ground the painter refuses to close. One canvas concentrates a person; this one strands a company.",
+ "refs": [{"id":"picasso-lady-with-a-fan","text":"Lady with a Fan"}]
+},
+
+"morisot-the-sisters": {
+ "see": "Two young women in near-matching white day dresses sit side by side on a flowered sofa, filling the canvas almost edge to edge. Their pale spotted gowns fuse into one broad field of white; the chintz cushion riots with red and pink blooms behind them. Above hangs a mounted Japanese fan-painting on a plain wall; a slim plant rises at far left. The woman on the right holds an open wooden fan low at the center; the left one's hands rest in her lap. Cool blues, warm florals, and a great deal of high-key white carry the eye.",
+ "about": "It is a picture about likeness and the small distances inside it. The two women, dressed alike, posed alike, become a single luminous mass, and the painting invites you to sort them: the darker, downcast composure on the left against the fairer, more alert bearing on the right. Morisot makes doubling the subject rather than portraiture of two individuals. The shared dress, the symmetry, the mirrored ovals of the faces press them toward one identity; the difference in coloring, gaze, and hands quietly pulls them apart. The real subject is that oscillation between merged and separate that so matched a pair can produce.",
+ "craft": "The method is a bright, thinly loaded touch that keeps the whole surface breathing. White is built from cool grey-blue and warm cream so the two gowns read as one field yet never go chalky. Morisot orchestrates a near-symmetry and then breaks it: warm hair and floral chintz answer the cool dress, keeping the picture from freezing into a diagram. Contours stay open, brushed rather than drawn, so figures and patterned ground share one atmosphere. The framed fan above and the held fan below pin a vertical axis through the middle, steadying a composition that is otherwise all lateral spread.",
+ "context": "Morisot painted this in 1869, before the first Impressionist exhibition and while she was close to Manet, whose influence shows in the confident economy of the whites. The traditional title names the pair as sisters, but Morisot's own letters identify the sitters as the demoiselles Delaroche, not her family; whether the two were related at all is unrecorded, and the near-twinning remains her pictorial invention. Women of her class were largely barred from the cafes and streets the male Impressionists roamed, so the domestic interior was the world available to her, and she made it a serious arena for modern painting. The mounted Japanese fan on the wall marks the japonisme then sweeping Paris.",
+ "deeper": [
+  {
+   "t": "Sorting the twins",
+   "x": 0.06,
+   "y": 0.09,
+   "w": 0.88,
+   "h": 0.42,
+   "body": "Set the two faces against each other and the painting's whole game surfaces. Both are the same oval, same central part, same downward-tilted calm, and at first they read as one face printed twice. Then the differences declare themselves: the woman on the left is darker-haired, her eyes lowered and inward, her mouth set; the one on the right is fairer, warmer in the cheek, her gaze angled off to the side and more awake to the room. Morisot has weighted them unequally on purpose. The left face is cooler and more shadowed, the right catches more light and warmer skin, so even the paint temperature separates them. Look how little it takes to individuate near-identical sitters, and how the eye, once it starts, cannot stop measuring one against the other. That restless comparing is the picture's true engine, staged in the smallest distances between two nearly matching heads.",
+   "flags": []
+  },
+  {
+   "t": "One dress, made of two",
+   "x": 0.08,
+   "y": 0.44,
+   "w": 0.84,
+   "h": 0.5,
+   "body": "The lower half is where the two women become a single object. Their white spotted gowns run together across the middle of the canvas with almost no seam, one continuous field of pale fabric flecked with small blue dots. Morisot refuses to draw the boundary between them; she lets the whites merge and trusts a shift of hands and a fall of shadow to keep the bodies distinct. Watch how the white itself is worked: not flat but shot through with cool blue-grey in the folds and warmer cream where light sits, so a large area of near-white stays alive across its whole span. The blue dots do quiet structural work, scattering a rhythm over the mass that keeps it from reading as an empty patch. This fused field is the visual argument for the whole picture, sameness made literal in cloth, before the faces above are allowed to pull the pair back apart.",
+   "flags": []
+  },
+  {
+   "t": "The chintz that won't sit still",
+   "x": 0.28,
+   "y": 0.2,
+   "w": 0.34,
+   "h": 0.35,
+   "body": "Between and behind the two figures the flowered sofa erupts in reds, pinks and greens, the one loud passage in a cool painting. Its function is contrast: set against the disciplined whites, the chintz supplies the warmth and busyness the gowns withhold, and it keeps the eye from slipping away across the pale center. The blooms are laid in as quick dabs, pattern suggested rather than catalogued, so the sofa stays a texture and never competes with the faces for finish. It also does compositional labor, filling the wedge of space the two figures leave open at the center and pushing them gently outward and forward.",
+   "flags": []
+  },
+  {
+   "t": "Japonisme on the wall",
+   "x": 0.35,
+   "y": 0.03,
+   "w": 0.28,
+   "h": 0.2,
+   "body": "The mounted fan-painting above the sofa is the picture's one deliberate quotation of the outside world. Its arc of decorated paper, with small figures across a pale ground, signals the Japanese taste then fashionable in Paris and among Morisot's circle. Placed dead center and high, it caps the composition and answers the open fan below, so two fan shapes bracket the sisters top and bottom. Its cooler, flatter handling also gives the eye a rest from the busy chintz.",
+   "flags": [
+    "The wall object reads as a mounted Japanese fan or fan-painting; the precise identification of the print is not certain from the image."
+   ]
+  },
+  {
+   "t": "The fan at the pivot",
+   "x": 0.4,
+   "y": 0.55,
+   "w": 0.24,
+   "h": 0.32,
+   "body": "The open wooden fan the right-hand woman holds low in her lap is the still point of the whole design. Its warm tan spokes are the picture's only strong note of bare wood, and they fan out along the exact vertical center, aligning with the framed fan above to run an invisible axis straight down the canvas. That axis is what keeps a broad, symmetrical, laterally spreading picture from feeling static or split in two. The fan is also a small emblem of the pair's shared world of leisure and accomplishment, handled here as pure structure as much as prop.",
+   "flags": []
+  },
+  {
+   "t": "Ribbon, ring, and hands",
+   "x": 0.03,
+   "y": 0.08,
+   "w": 0.33,
+   "h": 0.86,
+   "body": "The left-hand woman carries the picture's smallest human specifics. A cool blue bow sits in her dark hair, the single saturated blue that rhymes with the scattered dots of the dresses. Her hands fold quietly in her lap, and a ring catches a point of light, one glint of individual life inside all that generalized white. Where the faces do the work of separating the two as types, these details insist on a particular person, and Morisot places them where the eye lands after it has finished comparing the two heads.",
+   "flags": []
+  }
+ ],
+ "by": "Opus 4.8",
+ "beside": "Both pictures carry a title that lies. Renoir's Two Sisters, painted a dozen years later on the Fournaise terrace at Chatou, poses a young woman and a girl as a matched pair, yet the elder was an eighteen-year-old aspiring actress, Jeanne Darlot, no relation at all; the sibling name came from the painter's own hand and stuck. There Renoir sets his invented sisters against the open river, a warm bloom of hats and yarn baskets in the outdoor light. Here Morisot works the opposite direction, pulling her demoiselles Delaroche indoors and dressing them alike until white fuses into one field. Both turn kinship into a fiction the eye happily believes.",
+ "refs": [{"id":"two-sisters","text":"Renoir's Two Sisters"}]
+},
+
 "circle-of-jacques-louis-david-portrait-of-a-young-woman-in-white": {
  "see": "A young woman, seated, is turned almost fully to the right, then brings her head back over her shoulder, so the body goes one way and the face comes to meet you. She wears white: a high-waisted muslin gown with a gauze layer so thin the skin reads pink through it at the shoulders and chest. Dark hair, cut short and brought forward at the temples, is pinned up behind and bound with a plaited band. Two props hold the corners. At the right, the plain honey-coloured back of a wooden chair; at the left, a small table with a raspberry-crimson shawl thrown over it, its knotted fringe hanging almost to the floor. The same crimson returns at the right, under her far hand. Everything else is flat olive-grey ground, darker at the edges and lightening into a soft halo behind her head. The whole picture runs on three notes: white, crimson, grey, with the warm wood mediating between them.",
  "about": "Two people in this picture had names and lost them. For decades it was published as Madame Hamelin by Jacques-Louis David, and it was still catalogued as an autograph David in 1931. The museum's artist field now reads Anonymous Artist, with Circle of Jacques-Louis David as the qualifier: not a person, and not quite an exclusion either, since circle-of leaves David himself formally inside the net. Nobody has been able to establish a hand. The white chemise gown, worn loose and high-waisted without stays, without panniers, without brocade, was the costume of Directoire Paris: antique in its reference, republican in its plainness, and a way of signalling which side of the Revolution you had come out on. The plaited band in the hair belongs to the same set of Greek quotations. So the subject is a young woman dressed in an argument about how a citizen ought to look, and the picture's second subject is how completely a person can survive as an image while disappearing as a name.",
