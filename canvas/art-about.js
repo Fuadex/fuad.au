@@ -1193,7 +1193,7 @@ about: "Tanguy let destitute artists pay in canvases, making his Montmartre back
 by: "Opus 4.8" },
 
 "arles-view-from-the-wheat-fields": {
- "about": "Of the wheat fields van Gogh painted in 1888, this is the only one he stood upright — every other harvest lies level with the horizon, while here sheaves rise below stooping harvesters, Arles pressed thin at top.",
+ "about": "Of the wheat fields van Gogh painted in 1888, only this one stands upright — every other harvest lies level with the horizon, while here a sheaf rises below stooping harvesters, Arles pressed thin at top.",
  "deep": "Harvest here refuses perspective. Sheaf anchored low, two harvesters bent across the middle, the whole town pressed into a cool thin frieze near the top — nothing recedes, and you feel labour stacked against you. Van Gogh painted around ten harvest views that June, every other one laid level along its skyline; only here he tips the field upright, turning a seasonal view into a vertical argument about heat and work. Violet dashes seeded into the gold troughs stop the yellow going flat and dead, making the field pulse as southern heat, and the town's cool band sharpens the furnace below it. The field is not scenery. It is a weight pressing in.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
@@ -1903,7 +1903,7 @@ by: "Opus 4.8" },
 
 "portrait-of-pere-paul": {
  "about": "Paul-Antoine Graff (1823-1893) ran the Pourville galette inn where Monet lodged in 1882; the painter, who almost never turned from the Normandy sea to a human face, gave the man in the toque this likeness as thanks.",
- "deep": "Gratitude here takes the form of the fastest honest eye Monet could give — and that is already a kind of respect. He almost never stopped from his clifftop campaign for a face, yet when he turns to the man who housed him, the method doesn't change: warm flesh massed into cool air the same way a breaking wave gets massed into sky, one chromatic accent at the throat holding the pale field together where light would otherwise drift. Below the beard the brush concedes it has spent its care; the coat dissolves into open canvas, and the dissolution is not apology but precision — interest accounted for, nothing counterfeit added.",
+ "deep": "Gratitude here takes the form of the fastest honest eye Monet could give — and that is already a kind of respect. He almost never broke from his clifftop campaign for a face, yet when he turns to the man who housed him, the method doesn't change: warm flesh massed into cool air with the same shorthand he spent on cliffs and weather, one chromatic accent at the throat holding the pale field together where light would otherwise drift. Below the beard the brush concedes it has spent its care; the coat thins toward what may be bare canvas, and the letting-go is not apology but precision — interest accounted for, nothing counterfeit added.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
@@ -2163,7 +2163,7 @@ by: "Opus 4.8" },
 
 "dempsey-and-firpo": {
  "about": "Bellows hid himself in the lower-left crowd at the moment Firpo knocked Dempsey clean out of the ring — a cameo that collapses painter, witness, and fight fan into one person, George Bellows, 1924.",
- "deep": "The canvas memorializes a defeat that never really happened. Dempsey is the falling figure, and Bellows chose the one second he was helpless over the four minutes he was dominant, fixing the eventual winner airborne and head-first toward the crowd. That choice converts the work from a sports record into an argument about spectatorship: the rope meant to hold the brawl inside the ring gives way precisely here, and the body is delivered not into defeat but into the audience. Low framing seats you among the reaching hands at the bottom edge, so the membrane parts on your side of it.",
+ "deep": "The canvas memorializes a defeat that never really happened. Dempsey is the falling figure, and Bellows chose the one second he was helpless over everything after it: he was back on his feet and had won inside four minutes, yet the canvas fixes the eventual winner airborne and head-first toward the crowd. That choice converts the work from a sports record into an argument about spectatorship: the rope charged with keeping the brawl inside the ring gives way precisely here, and the body is delivered not into defeat but into the audience. The low vantage puts you among the reaching hands at the bottom edge, so the membrane parts on your side of it.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
@@ -2221,7 +2221,7 @@ about: "Kandinsky's Paris exile reshaped his vocabulary: arriving in France in l
 by: "Opus 4.8" },
 
 "red-oval": {
- "about": "As the Constructivists' fight against his \"mysticism\" broke out at the Moscow institute he had just founded, Kandinsky in 1920 pinned a yellow trapezoid to the ground rather than flinging it outward like a Suprematist plane.",
+ "about": "As the Constructivists' fight against his \"mysticism\" broke out at the Moscow institute he had just founded, Kandinsky's 1920 yellow trapezoid reads as a refusal — held down on the green where a Suprematist would send it flying.",
  "deep": "The small oval insists on something the surrounding geometry is trying to organize away. Cold teal atmosphere, a tilted luminous plane, ruled diagonals pressing inward — everything else arrives pre-angular, leaning toward mechanical order. The oval holds the field's warmth in one plum-sized mark, porous green stacked behind it so it reads nearer and hotter, refusing absorption into the Constructivist diagram closing around it. This was 1920 Moscow, the rupture already live: colleagues were pushing mysticism out for material logic. Here the argument stays open, the hot accent surviving inside the cold scaffold before the expulsion completes it.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
@@ -2380,8 +2380,8 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "portrait-of-nicolaes-ruts": {
- "about": "On a folded slip in his sitter's hand, Rembrandt inscribed the year 1631 upside down, then set the whole thing on mahogany — a Caribbean colonial timber making this among the earliest European portraits painted on that wood.",
- "deep": "Every layer of this commission trades in the same global network as its sitter. Ruts dealt in sable out of Arctic Russia, and he wears it here — lining the robe, capping the head — while the panel beneath the paint is mahogany drawn from Caribbean colonial timber, among the earliest such supports in European portraiture. Set against that inventory of merchandise, the face holds its own ground: deeply creased, watching somewhere past the viewer, measured by what it has survived rather than what it possesses. In his hand a folded slip carries the date 1631, written upside down — likely the first portrait Rembrandt was ever paid by an outsider to make.",
+ "about": "On a pale slip in his sitter's hand, Rembrandt inscribed the year 1631 upside down, then set the whole thing on mahogany — a Caribbean colonial timber making this among the earliest European portraits painted on that wood.",
+ "deep": "Every layer of this commission trades in the same global network as its sitter. Ruts dealt in sable out of Arctic Russia, and he wears it here — lining the robe, capping the head — while the panel beneath the paint is mahogany drawn from Caribbean colonial timber, among the earliest such supports in European portraiture. Set against that inventory of merchandise, the face holds its own ground: deeply creased, watching somewhere past the viewer, measured by what it has survived rather than what it possesses. In his hand a pale slip carries the date 1631, written upside down — likely the first portrait Rembrandt was ever paid by an outsider to make.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
@@ -3022,7 +3022,7 @@ by: "Opus 4.8" },
 
 "jan-ciaglinski-himalaje-z-podrozy-do-indii": {
  "about": "Jan Ciągliński dated this study 1907, the year he crossed India, so its haze is weather he stood inside, not remembered; where his travel cycle otherwise teems with people, this one empties to mist and a pale thread.",
- "deep": "He was inside this weather in 1907, not reconstructing it later. Every other panel from the journey fills with people and built form; this one was pared to three marks: a dark ridge pressing in from the upper right, a pale gap threading between green slopes, and a mist-core bright because pigment was withheld and the warm ground left to glow. All that travel, and the Himalayas condense to vapour. The stripped frame reads as the cycle's most truthful one — field notes end when the weather shifts, before memory can substitute a view.",
+ "deep": "He was inside this weather in 1907, not reconstructing it later. Every other panel from the journey fills with people and built form; this one was pared back to weather alone: a dark ridge pressing in from the upper right, a pale gap threading between green slopes, a deep green bank holding the lower left, and a mist-core bright because pigment was withheld and the warm ground left to glow. All that travel, and the Himalayas condense to vapour. The stripped frame reads as the cycle's most truthful one — field notes end when the weather shifts, before memory can substitute a view.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
@@ -4496,26 +4496,26 @@ by: "Opus 4.8" },
  "deepBy": "Sonnet 4.6"
 },
 "turner-dort-or-dordrecht-the-dort-packet-boat-from-rotterdam-becalmed": {
- "about": "Turner painted this becalmed morning in 1818 as a challenge to Aelbert Cuyp, the Dutch master of golden dawns British collectors prized — then hung it at the Academy beside his own moonlit Waterloo battlefield, calm against carnage.",
+ "about": "Turner painted this becalmed morning in London to challenge Aelbert Cuyp, the Dutch master of golden dawns British collectors prized — then showed it at the 1818 Academy beside his own moonlit Waterloo battlefield, calm against carnage.",
  "deep": "Stilled water proves the argument before the eye finds the ship — a becalmed morning gives Turner licence to flood every surface with one warm value until atmosphere stops being weather and becomes the subject. Sails, sky and the Dordrecht haze are pitched so close in tone that the barge half-disappears into the air it sits inside, solid form eaten by light. Beneath that dissolution runs the contest: Turner working openly in Cuyp's manner, on Cuyp's own river, pressing the Dutch master's golden dawns until commerce, crowd and cityscape all thin to warm specks and the light wins. One limp red pennant, the sole saturated note, droops as proof of the title and anchor of the whole.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
 "georges-seurat-study-for-a-sunday-on-la-grande-jatte": {
- "about": "Working in 1884, Seurat rehearsed his whole Seine Sunday in crisscrossing hatched strokes a scholar likened to \"chopped straw\" — the museum's final study, made before the disciplined Pointillist dot he invented only on the mural that followed.",
+ "about": "Working in 1884, Seurat rehearsed his whole Seine Sunday in crisscrossing hatched strokes a scholar likened to \"chopped straw\" — the museum's final study, with no Pointillist dot yet: that regimented method belongs to the mural that followed.",
  "deep": "Before the dot arrived, there was this. Seurat built the whole Seine Sunday — turf, shadow, crowd, water — from a crisscrossing hatching one observer likened to \"chopped straw\": hot touches laid across cool ones, fusing into grass only at distance. Light falls not as value but as temperature: violet-blue shade against yellow-chartreuse sun-lawn tips the park away, nothing outlined, figures reduced to economical dabs, one dark woman at right anchoring everything. He reasoned out the optics before the regimented point that would make him famous; that came only once he enlarged the design to mural scale. What this canvas holds is the method at the threshold — working, complete, one rehearsal short of the name.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
 "henri-fantin-latour-potted-pansies": {
- "about": "Fantin-Latour returned to this same two-pot pansy arrangement across roughly three decades, yet set the flowers up and painted from life each time rather than copying his earlier canvas — repetition without replication, signed Fantin.83 in 1883.",
+ "about": "Fantin-Latour returned to this same two-pot pansy arrangement across roughly three decades, yet set the flowers up and painted from life each time rather than copying his earlier canvas — repetition without replication, signed and dated 1883.",
  "deep": "Brightness here is a budget, not a mood — spent on one resolved bloom and nowhere else, so the rest of the field rides on that single proof of finish. The lowest value in the picture crowns the arrangement: a near-black pansy at the apex, refusing prettiness, earning its gravity by darkness. Everything below — leaf-mass, shadow, pot-rim — stays dim so the small faces above can read as lit. Fantin had painted this two-pot motif before and would again, each time from life, never tracing an earlier canvas. Modesty held long enough becomes method.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
 "eugene-isabey-marine": {
  "about": "Catalogued under the plainest name a sea picture can carry, this small c. 1830 sheet by Eugène Isabey comes from the hand that taught Boudin and Jongkind to read the coast — the bridge into Impressionist marine painting.",
- "deep": "Isabey's gambit is tonal rather than compositional: the smoke pouring off the stack is mixed to the very same slate the storm-mass carries behind it, so the boundary between vessel and weather stops existing. The hull holds — low, dark, pinned to the sea — but all above it surrenders to the sky, made of the same air it moves through. Steam power is not conquering this sea; the sea is digesting it. On the pier, a cluster of dark marks leans into the wind — enough to give the vast indifference of the sky something human to threaten, and that threat is what the picture is for.",
+ "deep": "Isabey's gambit is above all tonal: what reads as smoke pouring off a stack is mixed to the very same slate the storm-mass carries behind it, so the boundary between vessel and weather stops existing. The hull holds — low, dark, pinned to the sea — but all above it surrenders to the sky, made of the same air it moves through. Steam power is not conquering this sea; the sea is digesting it. On the pier, a cluster of dark marks leans into the wind — enough to give the vast indifference of the sky something human to threaten, and that threat is what the picture is for.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
