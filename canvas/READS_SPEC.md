@@ -81,12 +81,23 @@ real defects that were live on the site until a corrective commit (`3b1741a` →
 2b. **Every merged tour carries `mv`, the methodology version that wrote it.** Stamp it at merge, in
    the same step that writes the entries — a wave that ships unstamped cannot be told apart from the
    one before it without git archaeology, which is exactly the problem the field exists to end. The
-   value is the methodology the tour was WRITTEN under: **a later repair never raises it**, because
-   the question `mv` answers is "what process produced this", not "how good is it now". Add a new
-   version only when the cascade changes materially — several waves sharing a number is the correct
-   outcome when nothing changed between them. Document the new band in the `art_inspect.js` header
+   value is the methodology the tour **currently meets**, so a retro-repair that brings an older
+   tour up to a later standard RAISES it (Fuad's ruling). `mv` answers "what standard does this
+   meet", not "when was it born" — an unraised stamp would send a re-audit back over work that has
+   already been fixed, which is the opposite of what the field is for. Raise only on the evidence
+   the upgrade actually landed: 33 mv-1 tours were moved to mv 2 because they were given the
+   companion apparatus (`beside` + `refs`) in later passes, and nothing was moved to mv 3 because
+   the proportion rules have never been applied retroactively — measured, not assumed.
+   Add a new version only when the cascade changes materially; several waves sharing a number is
+   correct when nothing changed between them. Document the new band in the `art_inspect.js` header
    at the same time, or the number is meaningless to the next reader. Current bands: 1 four-lens,
    2 hi-res cascade (fused Info + `beside`), 3 proportion rules, 4 parallel eye/research front end.
+   **mv 3 is measurable and should be re-checked, not trusted:** the proportion gate over the whole
+   store passes 2/389 at mv 1 and 0/85 at mv 2 (the spread failure — every stop the same length —
+   is exactly the samey-ness the rules were written to kill), against 6/10 at both mv 3 and mv 4.
+   The four mv-3/mv-4 misses are near ones (spread 40-49 against a floor of 50) and they drifted
+   out of band during SEAL CORRECTIONS — so a repair can lower the standard a tour meets as well as
+   raise it. Re-run the gate after any repair pass, not just after drafting.
 3. **Two blind spots became instruments** (both in `canvas/`, both proven on the batch that exposed
    them): `check-besides.js` now reads the candidate rows, knows which companions ship an Info, and
    **hard-flags any `beside` leaning on one that does not** (artist/title/year is all such a row
