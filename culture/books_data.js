@@ -134,35 +134,6 @@ window.CULTURE_BOOKS = {
   "director": "Inio Asano",
   "pages": 224
  },
- "imp-b-160014": {
-  "bookCover": "https://covers.openlibrary.org/b/id/12993656-L.jpg",
-  "summary": "Fahrenheit 451 is a 1953 dystopian novel by American writer Ray Bradbury. Often regarded as one of his best works, the novel presents a future American society where books are outlawed and \"firemen\" burn any that are found. The book's tagline explains the title as \"'the temperature at which book paper catches fire, and burns\": the autoignition temperature of paper. The lead character, Guy Montag, is a fireman who becomes disillusioned with his role of censoring literature and destroying knowledge, eventually quitting his job and committing himself to the preservation of literary and cultural writings.\r\n\r\nThe novel has been the subject of interpretations focusing on the historical role of book burning in suppressing dissenting ideas for change. In a 1956 radio interview, Bradbury said that he wrote Fahrenheit 451 because of his concerns at the time (during the McCarthy era) about the threat of book burning in the United States. In later years, he described the book as a commentary on how mass media reduces interest in reading literature.\r\n\r\nIn 1954, Fahrenheit 451 won the American Academy of Arts and Letters Award in Literature and the Commonwealth Club of California Gold Medal. It later won the Prometheus \"Hall of Fame\" Award in 1984 and a \"Retro\" Hugo Award, one of a limited number of Best Novel Retro Hugos ever given, in 2004. Bradbury was honored with a Spoken Word Grammy nomination for his 1976 audiobook version.",
-  "genres": [
-   "Mechanical Hound",
-   "girl next door",
-   "Terrorismo estatal",
-   "Censura"
-  ],
-  "tags": [
-   "Mechanical Hound",
-   "girl next door",
-   "Terrorismo estatal",
-   "Censura",
-   "Novela",
-   "Totalitarismo",
-   "science fiction",
-   "political fiction",
-   "satire",
-   "Zukunft",
-   "State-sponsored terrorism",
-   "Totalitarianism",
-   "Book burning",
-   "Censorship",
-   "American Science fiction"
-  ],
-  "director": "Ray Bradbury",
-  "pages": 172
- },
  "imp-b-57282096": {
   "summary": "Goodnight Punpun (Japanese: おやすみプンプン, Hepburn: Oyasumi Punpun) is a Japanese manga series written and illustrated by Inio Asano. It was initially serialized in Shogakukan's seinen manga magazine Weekly Young Sunday between 2007 and 2008, and was later transferred to Weekly Big Comic Spirits, where it ran from 2008 to 2013. Its chapters were collected in thirteen tankōbon volumes. In North America, it was licensed for English release by Viz Media.",
   "genres": [
@@ -517,35 +488,6 @@ window.CULTURE_BOOKS = {
   ],
   "director": "George Orwell",
   "pages": 298
- },
- "imp-b-4381": {
-  "bookCover": "https://covers.openlibrary.org/b/id/12993656-L.jpg",
-  "summary": "Fahrenheit 451 is a 1953 dystopian novel by American writer Ray Bradbury. Often regarded as one of his best works, the novel presents a future American society where books are outlawed and \"firemen\" burn any that are found. The book's tagline explains the title as \"'the temperature at which book paper catches fire, and burns\": the autoignition temperature of paper. The lead character, Guy Montag, is a fireman who becomes disillusioned with his role of censoring literature and destroying knowledge, eventually quitting his job and committing himself to the preservation of literary and cultural writings.\r\n\r\nThe novel has been the subject of interpretations focusing on the historical role of book burning in suppressing dissenting ideas for change. In a 1956 radio interview, Bradbury said that he wrote Fahrenheit 451 because of his concerns at the time (during the McCarthy era) about the threat of book burning in the United States. In later years, he described the book as a commentary on how mass media reduces interest in reading literature.\r\n\r\nIn 1954, Fahrenheit 451 won the American Academy of Arts and Letters Award in Literature and the Commonwealth Club of California Gold Medal. It later won the Prometheus \"Hall of Fame\" Award in 1984 and a \"Retro\" Hugo Award, one of a limited number of Best Novel Retro Hugos ever given, in 2004. Bradbury was honored with a Spoken Word Grammy nomination for his 1976 audiobook version.",
-  "genres": [
-   "Mechanical Hound",
-   "girl next door",
-   "Terrorismo estatal",
-   "Censura"
-  ],
-  "tags": [
-   "Mechanical Hound",
-   "girl next door",
-   "Terrorismo estatal",
-   "Censura",
-   "Novela",
-   "Totalitarismo",
-   "science fiction",
-   "political fiction",
-   "satire",
-   "Zukunft",
-   "State-sponsored terrorism",
-   "Totalitarianism",
-   "Book burning",
-   "Censorship",
-   "American Science fiction"
-  ],
-  "director": "Ray Bradbury",
-  "pages": 158
  },
  "imp-b-11590296": {
   "bookCover": "https://covers.openlibrary.org/b/id/7825328-L.jpg",

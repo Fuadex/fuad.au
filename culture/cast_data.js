@@ -11795,25 +11795,6 @@ window.CULTURE_CAST = {
       "Desire, fiction"
     ]
   },
-  "imp-b-160014": {
-    "tags": [
-      "Mechanical Hound",
-      "girl next door",
-      "Long Now Manual for Civilization",
-      "Terrorismo estatal",
-      "Censura",
-      "Novela",
-      "Totalitarismo",
-      "science fiction",
-      "political fiction",
-      "satire",
-      "Zukunft",
-      "State-sponsored terrorism",
-      "Totalitarianism",
-      "Book burning",
-      "Censorship"
-    ]
-  },
   "imp-b-5129": {
     "tags": [
       "Utopias",
@@ -11831,25 +11812,6 @@ window.CULTURE_CAST = {
       "Totalitarianism",
       "Collectivism",
       "Control (Psychology)"
-    ]
-  },
-  "imp-b-4381": {
-    "tags": [
-      "Mechanical Hound",
-      "girl next door",
-      "Long Now Manual for Civilization",
-      "Terrorismo estatal",
-      "Censura",
-      "Novela",
-      "Totalitarismo",
-      "science fiction",
-      "political fiction",
-      "satire",
-      "Zukunft",
-      "State-sponsored terrorism",
-      "Totalitarianism",
-      "Book burning",
-      "Censorship"
     ]
   },
   "imp-b-43443242": {
@@ -31585,18 +31547,6 @@ window.CULTURE_CAST = {
   },
   "imp-f-andalusian-dance": {
     "tmdbPoster": "https://image.tmdb.org/t/p/w500/mHxQjXOpzNnSs4z0BLog8Rq38zK.jpg"
-  },
-  "imp-f-the-derby-1896-2": {
-    "productionCompanies": [
-      "Robert W. Paul"
-    ],
-    "tags": [
-      "silent film"
-    ],
-    "genres": [
-      "Documentary"
-    ],
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/1367F7BKSoR5X8oQmZvq6cti2Ti.jpg"
   },
   "imp-f-photographe": {
     "cast": [

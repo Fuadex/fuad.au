@@ -41436,19 +41436,6 @@ window.CULTURE_OMDB = {
   ],
   "PlotShort": "The Derby is an 1896 British short black-and-white silent documentary film, produced and directed by Birt Acres for exhibition on Robert W. Paul's Kinetoscopes, featuring the end of the 29 May 1895 Epsom Derby viewed from a raised..."
  },
- "imp-f-the-derby-1896-2": {
-  "imdbID": "tt0815451",
-  "imdbRating": "5.0",
-  "imdbVotes": "413",
-  "Poster": "https://m.media-amazon.com/images/M/MV5BNTU2NmY3YTMtYWNkMy00MTEwLWExNjctMTUxMjk3YTM2ZjhiL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNDE4OTY5NzI@._V1_SX300.jpg",
-  "Ratings": [
-   {
-    "Source": "Internet Movie Database",
-    "Value": "5.0/10"
-   }
-  ],
-  "PlotShort": "The Derby is an 1896 British short black-and-white silent documentary film, produced and directed by Birt Acres for exhibition on Robert W. Paul's Kinetoscopes, featuring the end of the 29 May 1895 Epsom Derby viewed from a raised..."
- },
  "imp-f-the-derby-1895": {
   "imdbID": "tt0000020",
   "imdbRating": "4.7",
