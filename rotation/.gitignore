@@ -60,3 +60,9 @@ mb-lineup.js
 # llm-about.js itself remains the committed source of truth; only the split output is ignored.
 about/
 genealogy.js
+
+# Backup copies of data files. These carry stale snapshots of the very files that
+# receive privacy fixes, so an accidental `git add -A` would re-publish scrubbed data.
+*.bak
+*.bak-*
+*.bak.*

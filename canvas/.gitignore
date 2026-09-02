@@ -11,3 +11,9 @@ edge-tmp*/
 # lat/lon location history + per-photo match picks). Local-only PII; only the DERIVED, verified
 # fields (qid, seenAt, seenConfidence, favorite) flow into the committed artworks.js.
 match_decisions*.json
+
+# Backup copies of data files. These carry stale snapshots of the very files that
+# receive privacy fixes, so an accidental `git add -A` would re-publish scrubbed data.
+*.bak
+*.bak-*
+*.bak.*
