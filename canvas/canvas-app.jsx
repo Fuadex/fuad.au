@@ -640,8 +640,8 @@ function Card({ w, go }) {
   const title = w.label && !/^TBC/.test(w.title) ? w.title : w.title.replace(/^TBC — /, "");
   const byline = w.artist.replace(/\s*\(.*\)$/, "") + (w.year ? " · " + w.year : "");
   return (
-    <div className={"cv-card" + (img ? "" : " cv-text")} data-conf={w.seenConfidence}
-      onClick={() => go("work", w.id)}
+    <a className={"cv-card" + (img ? "" : " cv-text")} data-conf={w.seenConfidence}
+      href={"#/work/" + w.id}
       // hover shows the RAW Wikidata kind next to the title — the medium chips are deliberately
       // coarse, and this is where "woodblock print", "cage cup", "diorama" or "group of casts"
       // stays visible instead of being flattened into "works on paper" / "objects".
@@ -653,8 +653,8 @@ function Card({ w, go }) {
           kills the layout shift that used to happen as each image landed. Works with no measured
           size (24 of them) keep the plain img, where the natural aspect is doing that job. */}
       {img && (w.px
-        ? <LazyImg src={img} alt={w.title} style={{ aspectRatio: `${w.px[0]} / ${w.px[1]}` }} />
-        : <LazyImg src={img} alt={w.title} />)}
+        ? <LazyImg src={img} alt={w.title + " — " + byline} style={{ aspectRatio: `${w.px[0]} / ${w.px[1]}` }} />
+        : <LazyImg src={img} alt={w.title + " — " + byline} />)}
       <div className="cv-label">
         <div className="cv-title">{title}</div>
         <div className="cv-byline">{byline}</div>
@@ -664,7 +664,7 @@ function Card({ w, go }) {
       {/* hover-peek Info was tried and DISABLED the same day (Fuad 2026-08-15: "this
           doesn't look right") — don't re-add without asking. The fused Info lives on the
           work page; the byline fix (.cv-byline rename) stays. */}
-    </div>
+    </a>
   );
 }
 
@@ -1802,7 +1802,7 @@ function Wall({ go, styleIds }) {
 //     div — previously drag would silently stall on a fast swipe out-of-bounds.
 //   • All listeners are on the overlay div (not window), cleaned up on unmount via the ref guard.
 //   • Pan is clamped to avoid runaway offsets at low zoom.
-function Zoom({ src, onClose }) {
+function Zoom({ src, alt, onClose }) {
   const imgRef = useRef(null);
   const overlayRef = useRef(null);
   // committed state: only updated on release so React never re-renders mid-drag
@@ -1895,10 +1895,10 @@ function Zoom({ src, onClose }) {
       onPointerUp={onPointerUp}
       onPointerCancel={onPointerUp}
       onDoubleClick={onDoubleClick}>
-      <img ref={imgRef} src={src.replace(/width=\d+/, "width=3200")} alt=""
+      <img ref={imgRef} src={src.replace(/width=\d+/, "width=3200")} alt={alt || ""}
         style={{ transform: `translate(${committed.x}px,${committed.y}px) scale(${committed.s})` }}
         draggable="false" />
-      <button className="cv-r-close cv-zoom-close" onClick={onClose}>✕</button>
+      <button className="cv-r-close cv-zoom-close" onClick={onClose} aria-label="Close">✕</button>
       <div className="cv-zoom-hint">scroll to zoom · drag to pan · double-click resets · Esc closes</div>
     </div>
   );
@@ -2240,7 +2240,7 @@ function DeepZoom({ work, onClose, onOsdFail }) {
       <div className="cv-osd-view" ref={elRef} />
       <OSDControls viewerRef={viewerRef} />
       {err && <div className="cv-osd-err">zoom unavailable — the tile source didn't load</div>}
-      <button className="cv-r-close cv-osd-close" onClick={onClose}>✕</button>
+      <button className="cv-r-close cv-osd-close" onClick={onClose} aria-label="Close">✕</button>
 
       {/* Annotation tour strip — only when details exist */}
       {details.length > 0 && (
@@ -2548,7 +2548,7 @@ function StudyView({ id, go }) {
       {!collapsed && (
       <div className="cv-study-pane" ref={paneRef}>
         <div className="cv-study-panehead">
-          <button className="cv-study-back" onClick={() => history.back()} title="Leave the study (Esc)">✕ close</button>
+          <button className="cv-study-back" onClick={() => history.back()} title="Leave the study (Esc)" aria-label="Close">✕ close</button>
           <button className="cv-study-collapse" onClick={() => setCollapsed(true)} title="Hide the study pane (full-bleed viewer)">⤢ hide pane</button>
           <label className="cv-study-follow" title="Let the viewer follow your reading">
             <input type="checkbox" checked={autoFollow} onChange={e => setAutoFollow(e.target.checked)} />
@@ -2558,7 +2558,9 @@ function StudyView({ id, go }) {
         <div className="cv-study-body">
           <h1 className="cv-study-title">{work.title.replace(/^TBC — /, "")}</h1>
           <div className="cv-study-meta">
-            <b onClick={() => go("artist", work.artistId)} style={{ cursor: "pointer" }}>{work.artist.replace(/\s*\(.*\)$/, "")}</b>
+            <b onClick={() => go("artist", work.artistId)} style={{ cursor: "pointer" }}
+              role="button" tabIndex={0} title="artist page"
+              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go("artist", work.artistId); } }}>{work.artist.replace(/\s*\(.*\)$/, "")}</b>
             {life ? ` · ${life}` : ""}{work.year ? ` · ${work.year}` : ""}
           </div>
           {!inspect && <p className="cv-study-empty">No study written for this work yet.</p>}
@@ -2651,10 +2653,10 @@ function Reader({ id, go }) {
     <React.Fragment>
       <div className="cv-reader-bg" onClick={close} />
       <div className="cv-reader">
-        <button className="cv-r-close" onClick={close}>✕</button>
+        <button className="cv-r-close" onClick={close} aria-label="Close">✕</button>
         {/* FIX 5 (2026-07-17): when this work has a study (CANVAS_INSPECT entry), the hero opens Study
             mode instead of the bare DeepZoom overlay; works without a study keep the plain zoom. */}
-        {w.img && <img className="hero" src={w.img} alt={w.title}
+        {w.img && <img className="hero" src={w.img} alt={w.title + ", " + w.artist + (w.year ? ", " + w.year : "")}
           title={inspect ? "click to open the study" : "click to zoom"}
           style={{ cursor: inspect ? "pointer" : "zoom-in" }}
           role="button" tabIndex={0} aria-label={(inspect ? "open the study of " : "zoom into ") + w.title}
@@ -2662,7 +2664,7 @@ function Reader({ id, go }) {
           onClick={inspect ? () => go("study", w.id) : openZoom} />}
         <div className="cv-r-body">
           <h1 className="cv-r-title">{w.title.replace(/^TBC — /, "")}</h1>
-          <div className="cv-r-meta"><b style={{ cursor: "pointer" }} title="artist page" onClick={() => go("artist", w.artistId)}>{w.artist.replace(/\s*\(.*\)$/, "")}</b>{life ? ` · ${life}` : ""}{w.year ? ` · ${w.year}` : ""}{a.desc ? ` · ${a.desc}` : ""}</div>
+          <div className="cv-r-meta"><b style={{ cursor: "pointer" }} title="artist page" role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go("artist", w.artistId); } }} onClick={() => go("artist", w.artistId)}>{w.artist.replace(/\s*\(.*\)$/, "")}</b>{life ? ` · ${life}` : ""}{w.year ? ` · ${w.year}` : ""}{a.desc ? ` · ${a.desc}` : ""}</div>
           <div className="cv-chips">
             <ConfChip conf={w.seenConfidence} />
             {/* STYLE TAGS (Fuad 2026-08-13). Sourced from the artist's movementQids resolved
@@ -2676,6 +2678,8 @@ function Reader({ id, go }) {
                 always routed to the wall. */}
             {styleTags.map(t => (
               <span key={t} className="cv-chip cv-chip-style" title={`see every work on the wall in ${t}`}
+                role="button" tabIndex={0}
+                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go("wall", movSlug(t)); } }}
                 onClick={() => go("wall", movSlug(t))}>{t}</span>
             ))}
             {w.floored && <span className="cv-chip" data-k="floored">★ floored me</span>}
@@ -2799,7 +2803,7 @@ function Reader({ id, go }) {
           </div>
         </div>
       </div>
-      {zoom && (w.imgZoom || w.img) && <Zoom src={w.imgZoom || w.img} onClose={() => setZoom(false)} />}
+      {zoom && (w.imgZoom || w.img) && <Zoom src={w.imgZoom || w.img} alt={w.title + ", " + w.artist + (w.year ? ", " + w.year : "")} onClose={() => setZoom(false)} />}
       {deep && <DeepZoom work={w} onClose={() => setDeep(false)} onOsdFail={handleOsdFail} />}
     </React.Fragment>
   );
@@ -2825,8 +2829,8 @@ function MuseumCard({ m, go, quiet }) {
   const img = DATA && DATA.img ? DATA.img : null;
   const name = m.name.replace(/\s*\(.*\)$/, "");
   return (
-    <div className={"cv-musidx-card" + (img ? "" : " cv-musidx-text") + (quiet ? " cv-musidx-quiet" : "")}
-      data-kind={m.kind} onClick={() => go("museum", m.id)} title={"open " + name}>
+    <a className={"cv-musidx-card" + (img ? "" : " cv-musidx-text") + (quiet ? " cv-musidx-quiet" : "")}
+      data-kind={m.kind} href={"#/museum/" + m.id} title={"open " + name}>
       {img
         ? <div className="cv-musidx-thumb"><LazyImg src={img} alt={name} /></div>
         : null}
@@ -2850,7 +2854,7 @@ function MuseumCard({ m, go, quiet }) {
               off behind `false &&`. */}
         </div>
       </div>
-    </div>
+    </a>
   );
 }
 
@@ -6076,6 +6080,10 @@ function App() {
   const bgView = bg.view;
   return (
     <React.Fragment>
+      {/* The whole app is hash-ROUTED, so letting this link actually navigate to "#cv-main" would
+          make useRoute parse "cv-main" as a view and dump you on the Wall from wherever you were.
+          Keep the href (it is what makes it a real skip link) but move focus by hand instead. */}
+      <a className="cv-skip" href="#cv-main" onClick={(e) => { e.preventDefault(); const m = document.getElementById("cv-main"); if (m) m.focus(); }}>Skip to the gallery</a>
       <header className="cv-head">
         <a className="cv-brand" href="#/">Canvas<i>.</i></a>
         <nav className="cv-nav">
@@ -6094,14 +6102,16 @@ function App() {
         <SearchBar go={go} />
       </header>
       {/* driven by `bg`, not `route`, so an open reader leaves the page beneath it intact */}
-      {bg.view === "deck" ? <Deck museumId={bg.id} part={bg.part} go={go} key={bg.id + "-" + bg.part} />
-        : bg.view === "museum" ? <MuseumView museumId={bg.id} go={go} key={bg.id} />
-        : bgView === "museums" ? <Museums go={go} />
-        : bgView === "portrait" ? <Portrait go={go} />
-        : (bgView === "map" || bgView === "pilgrimage") ? <MapView go={go} />
-        : bg.view === "artist" ? <ArtistView artistId={bg.id} go={go} key={bg.id} />
-        : bgView === "artists" ? <Artists go={go} />
-        : <Wall go={go} styleIds={bg.view === "wall" ? bg.id : null} />}
+      <main id="cv-main" tabIndex={-1}>
+        {bg.view === "deck" ? <Deck museumId={bg.id} part={bg.part} go={go} key={bg.id + "-" + bg.part} />
+          : bg.view === "museum" ? <MuseumView museumId={bg.id} go={go} key={bg.id} />
+          : bgView === "museums" ? <Museums go={go} />
+          : bgView === "portrait" ? <Portrait go={go} />
+          : (bgView === "map" || bgView === "pilgrimage") ? <MapView go={go} />
+          : bg.view === "artist" ? <ArtistView artistId={bg.id} go={go} key={bg.id} />
+          : bgView === "artists" ? <Artists go={go} />
+          : <Wall go={go} styleIds={bg.view === "wall" ? bg.id : null} />}
+      </main>
       {route.view === "work" && <Reader id={route.id} go={go} />}
       {route.view === "study" && <StudyView id={route.id} go={go} key={route.id} />}
       {/* Site-switch leads, credit trails — same order as Rotation's footer (Fuad 2026-08-20). */}
