@@ -48,12 +48,19 @@ const proxied = (u) => {
   for (const k in IMG_PROXY) if (u.startsWith(k)) return IMG_PROXY[k] + u.slice(k.length);
   return u;
 };
+// TMDB stores every poster in our data at ONE size, /t/p/w500/ — ~7x oversampled for a 96px
+// shelf cover at DPR 2. tmdbSize() rewrites ONLY that path segment, so hand-picked
+// fuad.design/Culture posters, IGDB covers, OpenLibrary and Amazon art (none of which carry a
+// TMDB size token) pass through byte-identical. Grid/shelf/strip ask for w185; the Reader hero
+// asks for w780, i.e. sharper than it is today — never smaller.
+const tmdbSize = (u, size) => (u && u.indexOf('image.tmdb.org/t/p/w500/') > 0)
+  ? u.replace('/t/p/w500/', '/t/p/' + size + '/') : u;
 const unproxy = (e) => {
   const el = e.currentTarget, orig = el.dataset && el.dataset.orig;
   if (orig && el.src !== orig) el.src = orig;
 };
 
-function LazyImg({ src, alt, className, draggable }) {
+function LazyImg({ src, alt, className, draggable, size = 'w185' }) {
   const ref = React.useRef(null);
   const [show, setShow] = React.useState(false);
   const [direct, setDirect] = React.useState(false);   // proxy failed once → go direct
@@ -68,10 +75,11 @@ function LazyImg({ src, alt, className, draggable }) {
     io.observe(el);
     return () => io.disconnect();
   }, [show, src]);
-  const prox = proxied(src);
+  const url = tmdbSize(src, size);   // LazyImg only ever paints small covers (96px shelf / 88px
+  const prox = proxied(url);         // hall / 48-58px wall) — w185 is the honest ask there.
   return <img ref={ref} className={className} alt={alt || ''} draggable={draggable}
-    src={show ? (direct ? src : prox) : undefined} loading="lazy" decoding="async"
-    onError={() => { if (!direct && prox !== src) setDirect(true); }} />;
+    src={show ? (direct ? url : prox) : undefined} loading="lazy" decoding="async"
+    onError={() => { if (!direct && prox !== url) setDirect(true); }} />;
 }
 
 // If data.js ever fails to load (stale cache / partial deploy), a shape-complete stub
@@ -2064,7 +2072,7 @@ function Reader({ item, onClose, onJump, allItems, otherItems, library, onFilter
         </button>
         <div className="reader-poster">
           {(item.poster || item.tmdbPoster || item.igdbCover || item.bookCover)
-            ? (() => { const p = item.poster || item.tmdbPoster || item.igdbCover || item.bookCover;
+            ? (() => { const p = tmdbSize(item.poster || item.tmdbPoster || item.igdbCover || item.bookCover, 'w780');
                 return <img src={proxied(p)} data-orig={p} onError={unproxy} alt={item.title}/>; })()
             : <div className="poster-fallback" style={{ '--pf-bg': spineBodyColor(item) }}>
                 <span className="pf-title">{displayTitle(item)}</span>
@@ -2195,7 +2203,7 @@ function Reader({ item, onClose, onJump, allItems, otherItems, library, onFilter
               {adjacent.map(a => (
                 <a key={a.id} onClick={() => onJump(a)} title={`${displayTitle(a)} (${a.year})`}>
                   {(a.poster || a.tmdbPoster || a.igdbCover || a.bookCover)
-                    ? (() => { const p = a.poster || a.tmdbPoster || a.igdbCover || a.bookCover;
+                    ? (() => { const p = tmdbSize(a.poster || a.tmdbPoster || a.igdbCover || a.bookCover, 'w185');
                         return <img src={proxied(p)} data-orig={p} onError={unproxy} alt=""/>; })()
                     : <span className="thumb-fallback" style={{ '--pf-bg': spineBodyColor(a) }}>{MEDIA_GLYPH[a.medium]}</span>}
                 </a>
@@ -2209,7 +2217,7 @@ function Reader({ item, onClose, onJump, allItems, otherItems, library, onFilter
                 {crossover.map(a => (
                   <a key={a.id} className="crossover-thumb" onClick={() => onJump(a)} title={`${displayTitle(a)} (${a.year})`}>
                     {(a.poster || a.tmdbPoster || a.igdbCover || a.bookCover)
-                      ? (() => { const p = a.poster || a.tmdbPoster || a.igdbCover || a.bookCover;
+                      ? (() => { const p = tmdbSize(a.poster || a.tmdbPoster || a.igdbCover || a.bookCover, 'w185');
                           return <img src={proxied(p)} data-orig={p} onError={unproxy} alt=""/>; })()
                       : <span className="thumb-fallback" style={{ '--pf-bg': spineBodyColor(a) }}>{MEDIA_GLYPH[a.medium]}</span>}
                     <span className="crossover-badge" title={library === 'wishlist' ? 'Already seen' : 'On your wishlist'}>{crossoverBadge}</span>
@@ -2808,8 +2816,10 @@ function App() {
   React.useEffect(() => {
     const cb = () => setDataTick(t => t + 1);
     _lazyDoneCbs.push(cb);
-    // idle preload: in most sessions both sets are resident long before the first click
-    const tid = setTimeout(() => { loadLazySet('reader'); loadLazySet('wishlist'); }, 2500);
+    // idle preload: the reader set only — every Reader open needs it, whichever library you are in.
+    // The wishlist set (~2.54 MB) is NOT preloaded: the default library view never reads it, and the
+    // demand triggers below cover every entry path into it (switch to wishlist / #tonight / open= deep link).
+    const tid = setTimeout(() => { loadLazySet('reader'); }, 2500);
     return () => { clearTimeout(tid); const i = _lazyDoneCbs.indexOf(cb); if (i >= 0) _lazyDoneCbs.splice(i, 1); };
   }, []);
   // The SEEN library: favourites (data.js) + imports, merged with cast/season data.
@@ -2917,11 +2927,16 @@ function App() {
     }
   }, []);   // mount only
   // resolve a deep-linked open= as soon as its item exists in either pool (fires again per dataTick)
+  const [openMissed, setOpenMissed] = React.useState(false);   // deep link the local data can't satisfy
   React.useEffect(() => {
     const id = pendingOpenId.current; if (!id) return;
     const found = seenItems.find(i => i.id === id) || wishlistItems.find(i => i.id === id);
-    if (found) { pendingOpenId.current = null; setOpenItem(found); }
-  }, [seenItems, wishlistItems]);
+    if (found) { pendingOpenId.current = null; setOpenItem(found); return; }
+    // Both lazy pools have settled (loaded OR 404'd — loadLazySet marks 'done' either way) and the
+    // id still resolves to nothing: this copy of the library predates the entry, or the link is bad.
+    // Say so once rather than leaving the visitor on an ordinary shelf wondering what they clicked.
+    if (_lazyState.reader === 'done' && _lazyState.wishlist === 'done') { pendingOpenId.current = null; setOpenMissed(true); }
+  }, [seenItems, wishlistItems, dataTick]);
   const firstUrlWrite = React.useRef(true);
   React.useEffect(() => {
     if (firstUrlWrite.current) { firstUrlWrite.current = false; return; }  // don't clobber the restored hash
@@ -3503,6 +3518,25 @@ function App() {
           <a href="https://www.last.fm/user/Fuadex" target="_blank" rel="noopener noreferrer">Last.fm</a>
         </div>
       </footer>
+
+      {/* deep-link miss: ?open=<id> that no pool could resolve. No notice component exists in this
+          app, so this is a small paper-card strip in the Reader/palette idiom, styled inline
+          (culture.css is not ours to touch) and dismissible. Sits under the palette (1000). */}
+      {openMissed && (
+        <div role="status" style={{
+          position: 'fixed', left: '50%', bottom: 18, transform: 'translateX(-50%)', zIndex: 900,
+          display: 'flex', alignItems: 'center', gap: 12, maxWidth: 'min(92vw, 460px)',
+          padding: '9px 8px 9px 13px', background: 'var(--paper)', color: 'var(--paper-ink)',
+          border: '1px solid var(--paper-rule)', borderRadius: 3,
+          fontFamily: 'var(--mono)', fontSize: 11, lineHeight: 1.5,
+          boxShadow: '0 10px 30px rgba(0,0,0,.38)',
+        }}>
+          <span>That entry isn’t in this copy of the library yet — reload, then follow the link again.</span>
+          <button onClick={() => setOpenMissed(false)} title="Dismiss" aria-label="Dismiss"
+            style={{ background: 'none', border: 'none', color: 'inherit', font: 'inherit',
+                     cursor: 'pointer', opacity: .55, padding: '0 5px' }}>✕</button>
+        </div>
+      )}
 
       {openItem && (
         <Reader item={openResolved} onClose={() => setOpenItem(null)} onJump={(it) => setOpenItem(it)}
