@@ -15231,5 +15231,13 @@
     "reason": "Short billing of the same band, not a solo career. 24 of its 25 plays are Scars on Broadway material (Lives x19, Dictator x5, Guns Are Loaded). The one exception, \"Fuck The System\" off Steal This Album!, is a System of a Down song and is routed there by a _moves entry instead of riding along. Owner ruling 2026-09-01."
    }
   ]
- }
+ },
+ "_albumMoves": [
+  {
+   "artist": "Annihilator",
+   "track": "Bloodbath",
+   "toAlbum": "Criteria for a Black Widow",
+   "reason": "album-string fold (approved 2026-09-02): scrobbles carry the Alice in Hell string but Bloodbath is Criteria for a Black Widows opening track; manual override past the studio-guard"
+  }
+ ]
 }

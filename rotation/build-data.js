@@ -186,7 +186,7 @@ const realSimilar = (name) => { const b = aliasedByName(BIOS, name); return (b &
 // Applied at four ingest slots below (artist→HAND_MERGE, album→ALBUM_FOLD, track→
 // TRACK_MERGE/TRACK_FOLD, variant→ROTATION_VARIANT_OF sidecar). Keys derive via lib-slug.
 const FOLDS = (() => {
-  try { const f = JSON.parse(fs.readFileSync(path.join(__dirname, "folds.json"), "utf8")); delete f._doc; delete f._comment; delete f.note; delete f._exclude; delete f._moves; return f; }
+  try { const f = JSON.parse(fs.readFileSync(path.join(__dirname, "folds.json"), "utf8")); delete f._doc; delete f._comment; delete f.note; delete f._exclude; delete f._moves; delete f._albumMoves; return f; }
   catch (e) { return {}; }
 })();
 // _moves: top-level list in folds.json of per-track ARTIST reassignments — a single (fromArtist,
@@ -201,6 +201,21 @@ try {
   for (const m of (raw._moves || [])) {
     if (!m || !m.fromArtist || !m.fromTrack || !m.toArtist) continue;
     MOVES.set(slug(m.fromArtist) + "~" + slug(m.fromTrack), [m.toArtist, m.toTrack || m.fromTrack]);
+  }
+} catch (e) {}
+// _albumMoves (Fuad 2026-09-02, born of the Annihilator Bloodbath row): curated per-track ALBUM
+// re-homes for rows whose scrobble album-string majority points at the wrong STUDIO album. The
+// automatic reconciler's studio-guard rightly refuses to move a track already homed on a studio
+// body, so a mis-tagged scrobble history (Bloodbath tagged "Alice in Hell"; the song is Criteria
+// for a Black Widow's opener) can never self-heal — this list is the manual override. Applied to
+// the homing pointer BEFORE tracklist reconciliation, so the discs data then supplies the real
+// position. Keyed slug(artist)~slug(track); value = toAlbum title (must be an existing album row).
+const ALBUM_MOVES = new Map();
+try {
+  const raw = JSON.parse(fs.readFileSync(path.join(__dirname, "folds.json"), "utf8"));
+  for (const m of (raw._albumMoves || [])) {
+    if (!m || !m.artist || !m.track || !m.toAlbum) continue;
+    ALBUM_MOVES.set(slug(m.artist) + "~" + slug(m.track), m.toAlbum);
   }
 } catch (e) {}
 // _exclude: top-level list in folds.json of pure-noise "artists" (tutorials, trailers, YouTube
@@ -3614,6 +3629,12 @@ const mediaTracks = [...trackPlays.entries()].sort((a, b) => b[1] - a[1]).map(([
       if (h && albumKeyIdx.has(artist + "\x00" + h.title)) best = artist + "\x00" + h.title;
     }
     if (best != null && albumKeyIdx.has(best)) albumIdx = albumKeyIdx.get(best);
+  }
+  // _albumMoves manual override (see reader above): a curated wrong-studio-home row is pointed at
+  // its real album BEFORE reconciliation, so the discs pass below adopts the official position.
+  {
+    const am = ALBUM_MOVES.get(slug(artist) + "~" + slug(title));
+    if (am && albumKeyIdx.has(artist + "\x00" + am)) albumIdx = albumKeyIdx.get(artist + "\x00" + am);
   }
   // ── STEP 2/3: released-tracklist reconciliation. STRICT IMPROVEMENT — only overrides the heuristic
   // on POSITIVE disagreement: the current best does NOT list the song but another discs-backed album of
