@@ -104,10 +104,19 @@ real defects that were live on the site until a corrective commit (`3b1741a` →
    the upgrade actually landed: 33 mv-1 tours were moved to mv 2 because they were given the
    companion apparatus (`beside` + `refs`) in later passes, and nothing was moved to mv 3 because
    the proportion rules have never been applied retroactively — measured, not assumed.
+   **MAJOR vs MINOR (Fuad, 2026-09-03).** The integer moves only when the cascade changes SHAPE —
+   a stage added, an artifact class added, the order rearranged. A refinement inside the existing
+   shape takes a DECIMAL: a new gate, a new instrument, a tightened rule. Do not inflate the major
+   for a slight change. **Wave 7 is 4.1, not 5** — it sharpens the mv-4 cascade (zoom tiles and the
+   accessory-zoom law, stack-wide verification, seal-before-merge, fusion's layer allocation)
+   without changing its shape. Applied backwards too: **waves 2-4 are 2.1**, because the wave-2
+   hardening ruling landed five minutes before wave 2 merged, so those were drafted under gates the
+   pilot and wave 1 never saw.
    Add a new version only when the cascade changes materially; several waves sharing a number is
    correct when nothing changed between them. Document the new band in the `art_inspect.js` header
    at the same time, or the number is meaningless to the next reader. Current bands: 1 four-lens,
-   2 hi-res cascade (fused Info + `beside`), 3 proportion rules, 4 parallel eye/research front end.
+   2 hi-res cascade (fused Info + `beside`), 2.1 wave-2 hardening, 3 proportion rules,
+   4 parallel eye/research front end, 4.1 zoom + allocation + stack-wide verify (wave 7).
    **mv 3 is measurable and should be re-checked, not trusted:** the proportion gate over the whole
    store passes 2/389 at mv 1 and 0/85 at mv 2 (the spread failure — every stop the same length —
    is exactly the samey-ness the rules were written to kill), against 6/10 at both mv 3 and mv 4.
