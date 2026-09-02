@@ -17,3 +17,4 @@ match_decisions*.json
 *.bak
 *.bak-*
 *.bak.*
+memory-seed.md
