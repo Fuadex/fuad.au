@@ -1645,7 +1645,7 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "two-tahitian-women": {
-about: "Bare-breasted, bearing a dish of mango blossoms, the two women hold still against flat tropical green — Gauguin's 1899 Tahiti as an icon of unfallen calm, and one of his most debated canvases for exactly that reason.",
+about: "Bare-breasted, bearing a dish of blossoms usually called mango, the two women hold still against flat tropical green — Gauguin's 1899 Tahiti as an icon of unfallen calm, and one of his most debated canvases for exactly that reason.",
 deep: "One woman looks straight out, level and unsmiling, her face modelled to near-mask broadness — no coyness, no invitation. The other tilts in behind her shoulder, eyes down, skin painted a cooler olive that half-returns her to the green panels behind. Gauguin builds no depth: the background is flat decorative bands, not foliage, so the two bodies press to the surface like shapes in carved relief. The dish of pale pink blossoms anchors the centre, a horizontal bar steadying the two uprights; at the far right, the second woman lifts one hand in a suspended, unexplained gesture beside a spray of the same pink — neither picking nor offering, refusing to let the scene settle.",
 deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
@@ -2052,7 +2052,7 @@ about: "Painted by August Malmström in 1866 and bequeathed to the Nationalmuseu
 by: "Opus 4.8" },
 
 "young-boy-peeling-a-pear": {
-about: "Manet's stepson Léon Leenhoff, his most frequent young model, about 1868 at a Chardin-like task — the peel spooling in one unbroken ribbon from his knife while his eyes leave the work entirely and settle on you.",
+about: "Thought to be Léon Leenhoff, son of Manet's wife Suzanne and his most frequent model, about 1868 at a Chardin-like task — the peel spooling in one unbroken ribbon while his eyes leave the work and settle on you.",
 deep: "Genre painting keeps its figures sealed inside their work, eyes down, so we can watch unseen. Here the hands go on peeling and the boy looks up — steady, a little wary — and the picture tips from anecdote into portrait. His face gets the finish; the shirt is three or four loaded sweeps that light the whole canvas, the pear two strokes, the peel one unhurried filament. Léon Leenhoff was Manet's wife's son, and this is the private register he kept for family while his public canvases were making him notorious. Anders Zorn, a painter himself, bought it in Paris and sent it to Stockholm in 1896, the first Impressionist-circle picture to reach a Swedish collection.",
 deepBy: "Sonnet 4.6",
 by: "Fable 5" },
