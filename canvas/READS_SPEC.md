@@ -78,6 +78,15 @@ real defects that were live on the site until a corrective commit (`3b1741a` →
    an approved batch still waits for the seal's ledger. The seal's job is what no regex can do —
    batch gait, layer echo, cross-layer drift — and it should never be where a factual error is
    caught for the first time.
+2b. **Every merged tour carries `mv`, the methodology version that wrote it.** Stamp it at merge, in
+   the same step that writes the entries — a wave that ships unstamped cannot be told apart from the
+   one before it without git archaeology, which is exactly the problem the field exists to end. The
+   value is the methodology the tour was WRITTEN under: **a later repair never raises it**, because
+   the question `mv` answers is "what process produced this", not "how good is it now". Add a new
+   version only when the cascade changes materially — several waves sharing a number is the correct
+   outcome when nothing changed between them. Document the new band in the `art_inspect.js` header
+   at the same time, or the number is meaningless to the next reader. Current bands: 1 four-lens,
+   2 hi-res cascade (fused Info + `beside`), 3 proportion rules, 4 parallel eye/research front end.
 3. **Two blind spots became instruments** (both in `canvas/`, both proven on the batch that exposed
    them): `check-besides.js` now reads the candidate rows, knows which companions ship an Info, and
    **hard-flags any `beside` leaning on one that does not** (artist/title/year is all such a row
