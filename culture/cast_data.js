@@ -105262,21 +105262,41 @@ window.CULTURE_CAST = {
     "igdbName": "Just Cause 4"
   },
   "imp-g-627416": {
-    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2fro.jpg",
+    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/cob9lk.jpg",
     "tags": [
       "Fantasy",
-      "Comedy",
-      "Sandbox",
-      "Romance"
+      "exploration",
+      "3d",
+      "flight",
+      "graphic adventure",
+      "hiding",
+      "snow",
+      "silent protagonist",
+      "3d platformer",
+      "playstation network",
+      "platform exclusive",
+      "playstation trophies",
+      "60 fps on consoles",
+      "polygonal 3d",
+      "game reference",
+      "motion control",
+      "original soundtrack release",
+      "playstation plus",
+      "auto-saving",
+      "gamescom 2014",
+      "no hud",
+      "water level",
+      "no dialogue",
+      "dynamic soundtrack",
+      "gliding"
     ],
     "productionCompanies": [
-      "Maxis"
+      "ThatGameCompany"
     ],
-    "igdbPublisher": "Electronic Arts",
-    "igdbSummary": "Create your Sim's unique Star Wars story as you explore the remote world of Batuu, from Galaxy's Edge at Disneyland and Disney World, in The Sims 4: Journey to Batuu. Will your Sim join up with the Resistance, fall in with the scoundrels, or enlist with the First Order? It's up to you! Build up your Sim's reputation to unlock missions, purchase a lightsaber or droid, and meet iconic Star Wars characters like Rey and Kylo Ren.",
-    "igdbFranchise": "The Sims",
-    "igdbId": 137294,
-    "igdbName": "The Sims 4: Journey to Batuu"
+    "igdbPublisher": "Sony Computer Entertainment, Annapurna Interactive",
+    "igdbSummary": "A third-person adventure game in which the player, controlling a robed figure, makes a pilgrimage through a desert landscape to a rugged mountain with a beacon of light in the distance while uncovering the history of their people, rescuing and cooperating with friendly creatures, avoiding predatory ones and communicating with other travelers.",
+    "igdbId": 1352,
+    "igdbName": "Journey"
   },
   "imp-g-820304": {
     "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rbi.jpg",
@@ -105399,25 +105419,42 @@ window.CULTURE_CAST = {
     "igdbName": "Sid Meier's Civilization VI: Gathering Storm"
   },
   "imp-g-809105": {
-    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2j0h.jpg",
+    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2evj.jpg",
     "tags": [
-      "Puzzle",
-      "Sokoban",
-      "Logic",
-      "Hacking",
-      "Minimalist",
-      "Story Rich",
-      "Surreal",
-      "2D",
-      "Puzzle-Platformer",
-      "Sci-fi",
-      "Abstract",
-      "Platformer"
+      "Action",
+      "Fantasy",
+      "Science fiction",
+      "Horror",
+      "Thriller",
+      "exploration",
+      "monsters",
+      "psychological horror",
+      "paranormal",
+      "surrealism",
+      "character customization",
+      "dark",
+      "3d",
+      "story driven",
+      "dystopian",
+      "cinematic",
+      "female protagonist",
+      "supernatural",
+      "psychic abilities",
+      "new york",
+      "steam trading cards",
+      "atmospheric",
+      "surreal",
+      "psychological",
+      "steam achievements"
     ],
-    "igdbPublisher": "Brain Station 23 Ltd.",
-    "igdbSummary": "Control: Override is a puzzle game where control itself is a powerup. Solve puzzles, Break through a rogue AI's security layers and confront the truth about why it went rogue.",
-    "igdbId": 139615,
-    "igdbName": "Control: Override"
+    "igdbPublisher": "505 Games",
+    "igdbSummary": "Control is a third-person action-adventure game set in the Federal Bureau of Control, a secretive U.S. government agency that studies paranormal phenomena. Players control Jesse Faden, who arrives at the Bureau's headquarters, the Oldest House, to find it invaded by a hostile force called the Hiss. Gameplay combines supernatural abilities with a shape-shifting firearm, and the environment is reactive and destructible.",
+    "igdbId": 103329,
+    "igdbName": "Control",
+    "productionCompanies": [
+      "Remedy Entertainment"
+    ],
+    "igdbFranchise": "Control"
   },
   "imp-g-797247": {
     "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co4h3z.jpg",
@@ -105563,29 +105600,35 @@ window.CULTURE_CAST = {
     "igdbName": "Beat Saber"
   },
   "imp-g-765302": {
-    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9qfw.jpg",
+    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coaaqr.jpg",
     "tags": [
-      "Strategy",
-      "Turn-Based Strategy",
-      "Multiplayer",
+      "Fantasy",
       "Historical",
-      "Grand Strategy",
-      "Singleplayer",
-      "Turn-Based",
-      "4X",
-      "War",
-      "City Builder",
-      "Simulation",
-      "Tactical"
+      "4X (explore, expand, exploit, and exterminate)",
+      "turn-based",
+      "management",
+      "steam trading cards",
+      "steam achievements",
+      "digital distribution",
+      "steam cloud",
+      "game critics awards",
+      "steam workshop",
+      "bink video",
+      "d.i.c.e. awards 2017",
+      "barbarians",
+      "the game awards - nominee",
+      "the game awards 2016",
+      "the game awards - best strategy game - nominee",
+      "the game awards - best strategy game - winner"
     ],
     "productionCompanies": [
       "Firaxis Games"
     ],
-    "igdbPublisher": "2K Games",
-    "igdbSummary": "The Aztec Civilization Pack is a DLC that was simultaneously released with the initial game release. It was automatically included for players who pre-ordered the game, and made available for free to everyone else 3 months later. The pack includes a new Aztec civilization which is led by Montezuma.",
-    "igdbFranchise": "Civilization",
-    "igdbId": 341802,
-    "igdbName": "Sid Meier's Civilization VI: Aztec Civilization Pack"
+    "igdbPublisher": "Aspyr Media, 2K Games",
+    "igdbSummary": "Civilization VI is a 4X turn-based strategy game in which players guide a civilization from its founding as a small settlement through multiple eras of development. Players explore a procedurally generated map, found cities, research technologies, develop culture, engage in diplomacy, and compete against AI or human opponents to achieve victory through military dominance, scientific advancement, cultural influence, religious conversion, or diplomatic consensus. A key design change from its predecessor is the \"unstacking\" of cities, requiring players to place districts on surrounding tiles rather than stacking all improvements in the city center, making terrain and geography central to strategic planning. The game received two major expansions, Rise and Fall and Gathering Storm, which introduced mechanics like city loyalty, golden/dark ages, climate change, and natural disasters. It was succeeded by Civilization VII in 2025.",
+    "igdbFranchise": "Sid Meier",
+    "igdbId": 19130,
+    "igdbName": "Sid Meier's Civilization VI"
   },
   "imp-g-612048": {
     "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2n12.jpg",
@@ -105935,29 +105978,42 @@ window.CULTURE_CAST = {
     "igdbName": "Hitman"
   },
   "imp-g-705298": {
-    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2fx3.jpg",
+    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coagib.jpg",
     "tags": [
       "Action",
-      "Open World",
-      "Superhero",
+      "Thriller",
       "Stealth",
-      "Third Person",
-      "Singleplayer",
-      "Adventure",
-      "Detective",
-      "Story Rich",
-      "Fighting",
-      "Atmospheric",
-      "Dark"
+      "Drama",
+      "Open world",
+      "assassin",
+      "ninja",
+      "detective",
+      "insanity",
+      "action-adventure",
+      "steam",
+      "achievements",
+      "building",
+      "steam trading cards",
+      "crime",
+      "tank",
+      "over the shoulder",
+      "sequel",
+      "good vs evil",
+      "superhero",
+      "comic book",
+      "steam achievements",
+      "xbox controller support for pc",
+      "single-player only",
+      "licensed game"
     ],
     "productionCompanies": [
       "Rocksteady Studios"
     ],
     "igdbPublisher": "Warner Bros. Interactive Entertainment",
-    "igdbSummary": "This addon inlcudes a Batman costume inspired by the 2008 movie ‘The Dark Knight’.",
+    "igdbSummary": "Batman: Arkham Knight is an action-adventure game developed by Rocksteady Studios, released in 2015. It is the final installment in the Arkham series. Players control Batman as he faces Scarecrow, who unites Gotham's criminals to destroy the Dark Knight. The mysterious Arkham Knight, a new adversary, aids Scarecrow in his plan.\n\nThe game features open-world exploration, stealth, combat, and puzzle-solving. A key addition is the Batmobile, used for traversal and combat. The story explores Batman’s psychological struggles and the collapse of his alliances as Gotham spirals into chaos.",
     "igdbFranchise": "Batman",
-    "igdbId": 26041,
-    "igdbName": "Batman: Arkham Knight - 2008 Movie Batman Skin"
+    "igdbId": 5503,
+    "igdbName": "Batman: Arkham Knight"
   },
   "imp-g-680266": {
     "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8ezb.jpg",
@@ -106889,23 +106945,15 @@ window.CULTURE_CAST = {
     "igdbName": "Uncharted 3: Drake's Deception"
   },
   "imp-g-612830": {
-    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2oll.jpg",
-    "productionCompanies": [
-      "Electronic Arts"
-    ],
-    "igdbPublisher": "Electronic Arts",
-    "igdbSummary": "UEFA Euro 2012 is the official game about the European soccer championship 2012 and a DLC (downloadable content) for FIFA Soccer 12. However, about half of the 53 national teams (including the hosts Poland and Ukraine) come without authentic athlete names.",
+    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co6hae.jpg",
+    "igdbPublisher": "EA Sports",
+    "igdbSummary": "PSP port of FIFA Soccer 12.",
     "igdbFranchise": "FIFA",
     "tags": [
-      "Sports",
-      "Football",
-      "Soccer",
-      "Simulation",
-      "Multiplayer",
-      "Competitive"
+      "Non-fiction"
     ],
-    "igdbId": 22265,
-    "igdbName": "FIFA 12: UEFA Euro 2012"
+    "igdbId": 240392,
+    "igdbName": "FIFA Soccer 12"
   },
   "imp-g-608029": {
     "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co6k6i.jpg",
@@ -107369,29 +107417,42 @@ window.CULTURE_CAST = {
     "igdbName": "Kane & Lynch: Dead Men"
   },
   "imp-g-608009": {
-    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co85uv.jpg",
+    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co20up.jpg",
     "tags": [
-      "Strategy",
-      "Turn-Based Strategy",
-      "Turn-Based",
-      "Multiplayer",
+      "Fantasy",
+      "Science fiction",
       "Historical",
-      "4X",
-      "Addictive",
-      "Singleplayer",
-      "Hex Grid",
-      "Grand Strategy",
-      "Replay Value",
-      "Co-op"
+      "Warfare",
+      "4X (explore, expand, exploit, and exterminate)",
+      "modern warfare",
+      "helicopter",
+      "exploration",
+      "medieval",
+      "samurai",
+      "world domination",
+      "construction",
+      "turn-based",
+      "fishing",
+      "military",
+      "robots",
+      "alternate history",
+      "horse",
+      "spaceship",
+      "management",
+      "war",
+      "diplomacy",
+      "steam",
+      "bird",
+      "achievements"
     ],
     "productionCompanies": [
       "Firaxis Games"
     ],
-    "igdbPublisher": "2K Games",
-    "igdbSummary": "The Cradle of Civilization Map Pack: Asia includes a single-player map based on the historical regions of Asia, featuring key river valleys such as the Yellow River and Yangtze River. The map is designed to reflect the geographic and cultural landscape of early Asian civilizations. Players can select random leaders or those appropriate to the region's history. The map can also be used in the World Builder tool for custom scenarios.",
-    "igdbFranchise": "Civilization",
-    "igdbId": 164395,
-    "igdbName": "Sid Meier's Civilization V: Cradle of Civilization Map Pack - Asia"
+    "igdbPublisher": "Aspyr Media, Mastertronic",
+    "igdbSummary": "Sid Meier's Civilization V is a turn-based strategy game in which players lead a civilization from the ancient era through the future. Players found cities, research technologies, build improvements, train military units, and engage in diplomacy with AI or human opponents. Victory can be achieved through domination, science, culture, diplomacy, or by having the highest score when time runs out. The game features a hex-based tile system, city-states as minor factions, and ranged combat that prevents unit stacking on a single tile.",
+    "igdbFranchise": "Sid Meier",
+    "igdbId": 866,
+    "igdbName": "Sid Meier's Civilization V"
   },
   "imp-g-608441": {
     "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2mw2.jpg",
@@ -108126,19 +108187,42 @@ window.CULTURE_CAST = {
     "igdbName": "Assassin's Creed II"
   },
   "imp-g-605968": {
-    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co6zkr.jpg",
+    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rrw.jpg",
     "tags": [
       "Action",
+      "Fantasy",
+      "Science fiction",
       "Historical",
+      "Stealth",
+      "Sandbox",
       "Open world",
-      "Character Customization",
-      "Ancient China"
+      "assassin",
+      "medieval",
+      "time travel",
+      "murder",
+      "story driven",
+      "parkour",
+      "horse",
+      "action-adventure",
+      "12th century",
+      "time limit",
+      "building",
+      "conspiracy",
+      "climbing",
+      "hide and seek",
+      "horse riding",
+      "digital distribution",
+      "bink video",
+      "xbox one x enhanced"
     ],
-    "igdbPublisher": "Ubisoft Entertainment, Level Infinite",
-    "igdbSummary": "Explore the path of Xia in Assassin’s Creed Codename Jade. Set in the third century BC during the time of one of the first unified empires in China, an unprecedented era of trade and cultural exchange between East and West is just beginning, but with this comes new challenges and threats lurking in the shadows.\n\nFrom the Great Wall outside the empire’s borders to the imperial capital of Xianyang, journey through a world filled with ancient history and hidden dangers. Defend against the Xiongnu and work to dismantle conspiracies, taking on greater responsibilities, and facing new challenges.",
+    "igdbPublisher": "Ubisoft Entertainment",
+    "igdbSummary": "Assassin's Creed is a non-linear action-adventure video game, during which the player controls a 12th-century Levantine Assassin named Altaïr Ibn-La'Ahad during the Third Crusade, whose life is experienced through the Animus by his 21st century descendant, Desmond Miles.",
     "igdbFranchise": "Assassin's Creed",
-    "igdbId": 216319,
-    "igdbName": "Assassin's Creed Jade"
+    "igdbId": 128,
+    "igdbName": "Assassin's Creed",
+    "productionCompanies": [
+      "Ubisoft Montreal"
+    ]
   },
   "imp-g-606824": {
     "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2n13.jpg",
@@ -108594,25 +108678,42 @@ window.CULTURE_CAST = {
     "igdbName": "Anomaly: Warzone Earth"
   },
   "imp-g-606961": {
-    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/obmmduqnz0ge5s2rvfkf.jpg",
+    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/cobtgs.jpg",
     "tags": [
-      "Horror",
-      "Co-op",
       "Action",
-      "Zombies",
-      "Co-op Campaign",
-      "Third-Person Shooter",
-      "Online Co-Op",
-      "Multiplayer",
-      "Adventure",
-      "Third Person",
-      "Survival Horror",
-      "Shooter"
+      "Horror",
+      "Survival",
+      "modern warfare",
+      "helicopter",
+      "motorcycle",
+      "martial arts",
+      "bloody",
+      "disease",
+      "infection",
+      "death",
+      "archery",
+      "chicken",
+      "goat",
+      "female protagonist",
+      "steam",
+      "multiple protagonists",
+      "achievements",
+      "mutants",
+      "online",
+      "traps",
+      "campaign",
+      "artificial intelligence",
+      "snake",
+      "racism"
     ],
-    "igdbSummary": "Pachi-Slot Resident Evil 5 is a mobile pachinko/slot game based on Capcom's infected human hunting game.",
+    "igdbSummary": "Resident Evil 5 is the seventh video game in the Resident Evil series. It features similar gameplay to Resident Evil 4 utilizing the same over the shoulder view, but this time the environment plays a significant role. The player is now dependent on his partner more than in older games. When the partner's health bar drop down to 0, he will enter the dying stage where the health bar will flash red and gradually lower as he stays like this. Resident Evil 5 also features new types of enemies called Majini and mostly are of African descent.",
     "igdbFranchise": "Resident Evil",
-    "igdbId": 61488,
-    "igdbName": "Pachi-Slot Biohazard 5"
+    "igdbId": 847,
+    "igdbName": "Resident Evil 5",
+    "productionCompanies": [
+      "Capcom"
+    ],
+    "igdbPublisher": "Capcom"
   },
   "imp-g-611392": {
     "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1xmk.jpg",
@@ -108836,27 +108937,42 @@ window.CULTURE_CAST = {
     "igdbName": "Battlefield 2: Special Forces"
   },
   "imp-g-608014": {
-    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co6t4d.jpg",
+    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/cocdky.jpg",
     "tags": [
       "Action",
-      "Open World",
-      "Adventure",
-      "Parkour",
-      "Stealth",
-      "Assassin",
-      "Third Person",
+      "Fantasy",
+      "Science fiction",
       "Historical",
-      "Multiplayer",
-      "Singleplayer",
-      "Rome",
-      "Story Rich"
+      "Stealth",
+      "Sandbox",
+      "Open world",
+      "assassin",
+      "exploration",
+      "bloody",
+      "medieval",
+      "detective",
+      "murder",
+      "tycoon",
+      "parkour",
+      "construction",
+      "death",
+      "horse",
+      "flight",
+      "action-adventure",
+      "religion",
+      "achievements",
+      "apocalypse",
+      "online",
+      "artificial intelligence"
     ],
     "productionCompanies": [
       "Ubisoft Montreal"
     ],
     "igdbPublisher": "Ubisoft Entertainment",
-    "igdbSummary": "Live and breathe as Ezio, a legendary Master Assassin, in his enduring struggle against the powerful Templar Order. He must journey into Italy’s greatest city, Rome, center of power, greed and corruption to strike at the heart of the enemy.\nDefeating the corrupt tyrants entrenched there will require not only strength, but leadership, as Ezio commands an entire Brotherhood who will rally to his side. Only by working together can the Assassins defeat their mortal enemies.\nAnd for the first time, introducing a never-before-seen multiplayer layer that allows you to choose from a wide range of unique characters, each with their own signature weapons and assassination techniques, and match your skills against other players from around the world.\nIt’s time to join the Brotherhood.",
-    "igdbFranchise": "Assassin's Creed"
+    "igdbSummary": "Assassin's Creed Brotherhood is an action-adventure game set in Rome, where Master Assassin Ezio Auditore takes on the Templar Order. Players recruit and command a Brotherhood of Assassins to dismantle the corrupt powers entrenched in the city. The game combines stealth, combat, and leadership as Ezio rallies allies to fight alongside him.\n\nThe game also introduces a multiplayer mode to the series, where players choose from a roster of unique characters with distinct weapons and assassination techniques, competing against each other online.",
+    "igdbFranchise": "Assassin's Creed",
+    "igdbId": 113,
+    "igdbName": "Assassin's Creed Brotherhood"
   },
   "imp-g-611542": {
     "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2f26.jpg",
@@ -109044,23 +109160,15 @@ window.CULTURE_CAST = {
     "igdbName": "Battlefield: Bad Company 2"
   },
   "imp-g-608251": {
-    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2ol9.jpg",
-    "productionCompanies": [
-      "Electronic Arts"
-    ],
-    "igdbPublisher": "Electronic Arts",
-    "igdbSummary": "This expansion enables you build teams using any players from all the leagues to play offline and online to win coins to buy better players or packs which contain random players.",
+    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co81mj.jpg",
+    "igdbPublisher": "EA Sports",
+    "igdbSummary": "Mobile (Java ME) port of FIFA Soccer 10.",
     "igdbFranchise": "FIFA",
     "tags": [
-      "Sports",
-      "Football",
-      "Soccer",
-      "Simulation",
-      "Multiplayer",
-      "Competitive"
+      "Non-fiction"
     ],
-    "igdbId": 22973,
-    "igdbName": "FIFA 10: Ultimate Team"
+    "igdbId": 240336,
+    "igdbName": "FIFA Soccer 10"
   },
   "imp-g-611263": {
     "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9a8d.jpg",
@@ -109703,25 +109811,27 @@ window.CULTURE_CAST = {
     "igdbName": "TrackMania United"
   },
   "imp-g-611062": {
-    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1o4h.jpg",
+    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coc51y.jpg",
     "tags": [
       "Business",
       "Sandbox",
-      "Construction",
-      "Management",
-      "Micromanagement",
-      "Building",
-      "Day/Night Cycle",
-      "City Builder",
-      "Ea App",
-      "God Mode"
+      "construction",
+      "management",
+      "micromanagement",
+      "building",
+      "day/night cycle",
+      "city builder",
+      "ea app",
+      "god mode"
     ],
     "productionCompanies": [
       "Maxis"
     ],
     "igdbPublisher": "Electronic Arts, Aspyr Media",
     "igdbSummary": "SimCity 4 is a city-building simultor. You are in the shoes of one or several mayors, and you are tasked with populating and managing your cities.When you have chosen a segment to place your city in, you will be able to chose between 3 game modes.\n\nGod mode: This mode lets you shape the overall landscapes as you desire\nMayor mode: In this mode you build and manage your own cities.\nMy Sim mode: Here the player can choose his own Sims and have them move into the city, or import saved games from the game The Sims.",
-    "igdbFranchise": "Sim"
+    "igdbFranchise": "Sim",
+    "igdbId": 1275,
+    "igdbName": "SimCity 4"
   },
   "imp-g-621151": {
     "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2sje.jpg",
@@ -110383,20 +110493,33 @@ window.CULTURE_CAST = {
     "igdbName": "Call of Duty 2"
   },
   "imp-g-608871": {
-    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9er6.jpg",
+    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/cocckr.jpg",
     "tags": [
       "Action",
       "Science fiction",
-      "Aliens",
-      "Bloody",
-      "Portals",
-      "Swimming",
-      "Explosion",
-      "Geometry",
-      "Human",
-      "Wasd Movement",
-      "Real-Time Combat",
-      "Instant Kill"
+      "aliens",
+      "bloody",
+      "portals",
+      "swimming",
+      "explosion",
+      "geometry",
+      "human",
+      "wasd movement",
+      "real-time combat",
+      "instant kill",
+      "difficulty level",
+      "mayan",
+      "anti-hero",
+      "gamersgate",
+      "reptilian humanoid",
+      "camping",
+      "invisibility",
+      "scripted events",
+      "first-person platforming",
+      "bots",
+      "playing dead",
+      "cliffhanger",
+      "god mode"
     ],
     "productionCompanies": [
       "Digital Extremes",
@@ -110404,7 +110527,9 @@ window.CULTURE_CAST = {
     ],
     "igdbPublisher": "GT Interactive Software",
     "igdbSummary": "Your prison ship has crash-landed on the fastest, sleekest, most dangerous 3D world ever created. Look around, crystal clear water shimmers, shadows dance and shift, alien architecture fades into the horizon. Discover the secret of this mysterious planet and find out what caused a peaceful race to be enslaved by vicious merciless aggressors.",
-    "igdbFranchise": "Unreal"
+    "igdbFranchise": "Unreal",
+    "igdbId": 273,
+    "igdbName": "Unreal"
   },
   "imp-g-611634": {
     "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co22ul.jpg",
@@ -110675,24 +110800,15 @@ window.CULTURE_CAST = {
     "igdbName": "Conflict: Desert Storm II: Back to Baghdad"
   },
   "imp-g-612829": {
-    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co207c.jpg",
+    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7yr7.jpg",
     "tags": [
-      "Non-fiction",
-      "Soccer",
-      "Football",
-      "Achievements",
-      "Year In The Title",
-      "Commentary",
-      "Unattainable Achievements"
+      "Non-fiction"
     ],
-    "productionCompanies": [
-      "EA Canada"
-    ],
-    "igdbPublisher": "Electronic Arts",
-    "igdbSummary": "You can experience the excitement of international soccer competition in FIFA 06. Extensive coaching options give you the opportunity to take control of all of your players on the pitch and determine their formation and strategy. FIFA 06 offers game modes ranging from a tournament to individual skill games. You can also play with real players from famous international teams from around the world. Multiplayer modes let you challenge other gamers.",
+    "igdbPublisher": "EA Sports",
+    "igdbSummary": "PSP port of FIFA Soccer 06.",
     "igdbFranchise": "FIFA",
-    "igdbId": 22342,
-    "igdbName": "FIFA 06: Road to FIFA World Cup"
+    "igdbId": 240358,
+    "igdbName": "FIFA Soccer 06"
   },
   "imp-g-620262": {
     "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1p2m.jpg",
@@ -111737,26 +111853,42 @@ window.CULTURE_CAST = {
     "igdbName": "Pac-Man"
   },
   "imp-g-618697": {
-    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7h9i.jpg",
+    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7jt6.jpg",
     "tags": [
       "Action",
       "Comedy",
       "Sandbox",
       "Open world",
-      "Racing",
-      "Arcade",
-      "Automobile Sim",
-      "Classic",
-      "Driving",
-      "Singleplayer",
-      "Retro",
-      "Great Soundtrack",
-      "Fast-Paced",
-      "Funny"
+      "minigames",
+      "burnout",
+      "arcade racers",
+      "steam",
+      "achievements",
+      "time limit",
+      "building",
+      "drifting",
+      "pizza",
+      "high score",
+      "digital distribution",
+      "xbox controller support for pc",
+      "countdown timer",
+      "playstation trophies",
+      "60 fps on consoles",
+      "character select screen",
+      "voice acting",
+      "game title announcer",
+      "licensed soundtrack",
+      "launch titles",
+      "escort mission"
     ],
-    "igdbPublisher": "Sega",
-    "igdbSummary": "Innovative and fresh style driving action! Cheerful feeling of freedom x fusion of nature and city. Peel out the new stage of Crazy City!",
-    "igdbFranchise": "Crazy Taxi"
+    "igdbPublisher": "Acclaim Entertainment, Activision Value",
+    "igdbSummary": "Hey hey, come on over and have some fun with Crrrrrazy Taxi! Barrel through traffic packed streets, hurdle off parking garages, and Crazy Combo your way to Crazy Money in a wild frantic race to scare up the most fares. In Crazy Taxi, time is money, and only the Craziest Cabbies come out victorious.",
+    "igdbFranchise": "Crazy Taxi",
+    "igdbId": 1805,
+    "igdbName": "Crazy Taxi",
+    "productionCompanies": [
+      "Hitmaker"
+    ]
   },
   "imp-g-623631": {
     "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co287m.jpg",
@@ -111883,27 +112015,42 @@ window.CULTURE_CAST = {
     "igdbName": "Spyro: Year of the Dragon"
   },
   "imp-g-608720": {
-    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co86dk.jpg",
+    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/cocc3x.jpg",
     "tags": [
-      "Cyberpunk",
-      "RPG",
-      "Stealth",
-      "Classic",
-      "Immersive Sim",
-      "FPS",
-      "Sci-fi",
-      "Cult Classic",
       "Action",
-      "Singleplayer",
-      "Dystopian ",
-      "Story Rich"
+      "Science fiction",
+      "Thriller",
+      "Stealth",
+      "Mystery",
+      "aliens",
+      "helicopter",
+      "basketball",
+      "cyberpunk",
+      "cybernetics",
+      "disease",
+      "mech",
+      "drugs",
+      "dystopian",
+      "21st century",
+      "robots",
+      "counter-terrorists",
+      "gangs",
+      "futuristic",
+      "pinball",
+      "cyborg",
+      "steam",
+      "espionage",
+      "multiple endings",
+      "mutants"
     ],
     "productionCompanies": [
       "Ion Storm"
     ],
     "igdbPublisher": "Eidos Interactive, Square Enix",
     "igdbSummary": "A philosophical first-person WRPG set in a dystopian 2052 in which JC Denton, a nano-augmented agent for the anti-terrorist organization UNATCO, is tasked with stopping the invasion of Liberty Island by the terrorist group NSF. As events unfold, Denton finds that he plays a large part in a world-spanning conspiracy which forces him to ponder his allegiances, beliefs, morality, and view of right and wrong.",
-    "igdbFranchise": "Deus Ex"
+    "igdbFranchise": "Deus Ex",
+    "igdbId": 41,
+    "igdbName": "Deus Ex"
   },
   "imp-g-614899": {
     "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co905c.jpg",
@@ -112469,12 +112616,8 @@ window.CULTURE_CAST = {
   },
   "imp-g-626520": {
     "igdbSummary": "PC Engine version of Minesweeper.",
-    "tags": [
-      "Puzzle",
-      "Casual",
-      "Classic",
-      "Logic"
-    ]
+    "igdbId": 267982,
+    "igdbName": "Minesweeper"
   },
   "spec-ops": {
     "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2acb.jpg",
@@ -113306,23 +113449,42 @@ window.CULTURE_CAST = {
     "tmdbPoster": "https://image.tmdb.org/t/p/w500/v65oWT7LsyHEMRs16RXWH8gNfqD.jpg"
   },
   "twd-game": {
-    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1v55.jpg",
+    "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2j1g.jpg",
     "tags": [
-      "Zombies",
-      "Story Rich",
-      "Adventure",
-      "Point & Click",
-      "Episodic",
-      "Singleplayer",
-      "Choices Matter",
-      "Drama",
+      "Action",
       "Horror",
-      "Emotional",
-      "Mature",
-      "Atmospheric"
+      "Survival",
+      "Drama",
+      "zombies",
+      "post-apocalyptic",
+      "cinematic",
+      "episodic",
+      "graphic adventure",
+      "apocalypse",
+      "building",
+      "easter egg",
+      "black protagonist",
+      "comic book",
+      "windows store",
+      "multiple storylines",
+      "ea app",
+      "profanity",
+      "playstation plus",
+      "moral decisions",
+      "real-time combat",
+      "games with gold",
+      "playstation tv support",
+      "xbox one backwards compatibility",
+      "suicide"
     ],
-    "igdbId": 114940,
-    "igdbName": "The Walking Dead: Season One - Episode 1: A New Day"
+    "igdbId": 1871,
+    "igdbName": "The Walking Dead",
+    "productionCompanies": [
+      "Telltale Games"
+    ],
+    "igdbPublisher": "Sony Computer Entertainment, Telltale Games",
+    "igdbSummary": "The Walking Dead: Season One (also known as The Walking Dead: The Game) is an episodic interactive drama graphic adventure video game developed and published by Telltale Games. Based on Robert Kirkman's The Walking Dead comic book series, the game consists of five episodes, released between April and November 2012. It is available for Android, iOS, Kindle Fire HDX, Microsoft Windows, Mac OS X, PlayStation 3, PlayStation Vita, Xbox 360, PlayStation 4 and Xbox One. The game is the first of The Walking Dead video game series published by Telltale.",
+    "igdbFranchise": "The Walking Dead"
   },
   "imp-g-614464": {
     "igdbCover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2ehb.jpg",
