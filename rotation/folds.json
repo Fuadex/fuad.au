@@ -15244,6 +15244,12 @@
    "track": "Bloodbath",
    "toAlbum": "Criteria for a Black Widow",
    "reason": "album-string fold (approved 2026-09-02): scrobbles carry the Alice in Hell string but Bloodbath is Criteria for a Black Widows opening track; manual override past the studio-guard"
+  },
+  {
+   "artist": "Korn",
+   "track": "Get Up! (feat. Skrillex)",
+   "toAlbum": "The Path of Totality",
+   "reason": "DV-confirmed re-home (korn campaign 2026-09-02): library buckets the row under The Paradigm Shift; Get Up! is The Path of Totality's lead single (2011)"
   }
  ]
 }
