@@ -20,6 +20,92 @@ and the A/B rulings of 2026-07-30 → 2026-08-05 (commits a67c492 → be8369a, b
 
 ## 1. The cascade
 
+### ⚙⚙ RULED 2026-09-03 — THE CHAIN IS NOW PARALLEL AT THE FRONT. THIS SUPERSEDES THE ORDER BELOW.
+
+Fuad, after waves 5 and 6 (`.dtmp/tourwave5-hires`, `.dtmp/tourwave6-hires`). The old chain drafts
+the tour BLIND and lets research arrive afterwards as a patch. Measured cost across wave 5: Courbet's
+palette-knife crux had to be hedged as eye-inference when the record documents it; Gainsborough's
+best story (the coast is invented in the studio) reached a hook file, not a stop; Boudin's bathing
+machines likewise; and Morisot's entire throughline was built on sitters the record says are not
+who the tour thought. **The new front end:**
+
+> **EYE agent (blind) ∥ RESEARCH agent (independent) → FUSION BRIEF (orchestrator) → tour draft →
+> stack-wide verify → Interpretation → ONE fused Info → `beside` → FINAL SEAL → merge.**
+
+- **The EYE agent works blind** — plate, identity block, brief, nothing else — and commits
+  `study_notes_<id>.md` (SEEN / CANDIDATE STOPS with boxes and CRUX marks / LENS SEEDS / QUESTIONS /
+  FLAGS) **before any research reaches it**. That file is the audit record of what the eye found
+  unaided; a later reader can always tell eye from record.
+- **The RESEARCH agent runs at the same time**, identity-first, and returns verified facts, hook
+  candidates, and a **RICHNESS VERDICT: story-rich or record-thin, judged only by what it FOUND —
+  never by the artist's fame.** A famous painter with a thinly documented canvas is record-thin.
+- **The orchestrator writes the FUSION BRIEF**: which verified facts anchor which regions, which
+  one or two stops carry the picture's weight, a **thesis candidate**, and the **tour's SIZE**.
+- **FUSION LAW — the load-bearing rule.** Research may ANCHOR or CORRECT a stop; it may never
+  GENERATE a stop's visual content. Every visual claim traces to the blind notes or the drafter's
+  own look. This is what stops the tour becoming a catalogue entry with pictures.
+
+**SIZE FOLLOWS RICHNESS (this is the answer to "third-rate artworks displaying just flowers").**
+A record-thin work is ENTITLED to 3–5 stops and a lean `context` (**under 90 words is permitted
+rather than padded** — the band is relaxed only downward, only here, and only on a research
+verdict). *Padding a modest picture to full size is the defect; the short tour is the correct
+output.* Wave 6 measured it: stops per tour ran **4–8** where wave 4 ran a flat 7–8.
+
+**The discipline cuts both ways, which is the proof it is real.** Wave 5 Bonnard: the EYE beat the
+record (the catalogued flower wreath is illegible on the plate; the easel is present but
+unattended). Wave 6 Fantin: the RECORD beat the eye (two pots, the blind reader saw one). Both were
+settled by the image-adjudication mini-agent, not by seniority.
+
+⚠ **What this replaces:** ruling 2 below still describes the content steps correctly, and the
+**back-edit** it references (`THE INFO SELECTS, THE TOUR KEEPS`) becomes a **verify pass** — research
+now arrives before drafting, so there is far less to restore or correct. Wave 6's verify found only
+wording-level leaks across ten works; wave 5's back-edit had to rebuild a throughline.
+
+### ⚙ RULED 2026-09-03 — VERIFICATION IS STACK-WIDE, AND THE SEAL IS A HARD GATE
+
+Both learned the expensive way: wave 6 merged before its seal reported, and the seal then found
+real defects that were live on the site until a corrective commit (`3b1741a` → `993e482`).
+
+1. **Verify the whole stack, not the tour.** The verify pass had covered TOURS only — and every
+   error that reached production was introduced *downstream* of it, in prose written after the only
+   check: a detail invented at the Interpretation layer and inherited by the caption, a date drifting
+   in a caption, a singular becoming plural, three captions asserting flat what their own `flags`
+   call unproven. **The unit of verification is the work's whole stack — tour + Interpretation +
+   fused Info + `beside` — run after the besides land and before the seal.** Every claim traces to
+   the tour or the research file's verified list, and **a hedge in the tour's flags must still be a
+   hedge in every downstream layer.**
+2. **The seal runs before merge, always.** Approval covers the CONTENT, not the order of operations;
+   an approved batch still waits for the seal's ledger. The seal's job is what no regex can do —
+   batch gait, layer echo, cross-layer drift — and it should never be where a factual error is
+   caught for the first time.
+3. **Two blind spots became instruments** (both in `canvas/`, both proven on the batch that exposed
+   them): `check-besides.js` now reads the candidate rows, knows which companions ship an Info, and
+   **hard-flags any `beside` leaning on one that does not** (artist/title/year is all such a row
+   licenses); `flagscan.js` takes the doubt-bearing entries out of `flags[]` and surfaces sentences
+   in ANY layer that carry a flag's own vocabulary with no hedge nearby.
+
+### ⚙ RULED 2026-09-03 — THE BATCH MAY NOT TEACH ONE LESSON TEN TIMES
+
+The wave-6 seal's finding, and the deepest samey-ness result so far. Ten works with ten genuinely
+distinct theses still produced **ten stops making the same argument** — *one small saturated accent
+governs an otherwise uniform field* — three of them closing on near-identical sentences (*"X is
+showing/proving that a painter governs a field by placing one accent…"*), five saying *"doing
+structural work"*, four craft lenses saying *"near-monochrome"*, eight `about` lenses opening
+*"This is…"*, nine `see` lenses opening on a bare indefinite noun phrase.
+
+**The diversity won in the fusion briefs was spent again in the prose.** The 4-gram gate cannot see
+this: the works share an ARGUMENT and a SHAPE, not a phrase.
+
+- A recurring *observation* is fine (many pictures do have one governing accent) — the recurring
+  **meta-claim about what that proves** is the defect. Recast it toward what is specific to THAT
+  picture, or let the observation stand alone.
+- **One licensed instance per batch.** Keep it where the picture genuinely IS that argument;
+  everywhere else it goes.
+- Vary lens openers deliberately: no more than half the batch may share an opening syntax.
+- A `craft` lens that pre-states its own stops is a layer echo — it names METHODS, the stops spend
+  the instances (wave-6 worst case: 4 of 4 stops pre-stated).
+- The seal now hunts this class explicitly, per work AND across the batch.
+
 ### ⚙ THREE RULINGS — Fuad, 2026-08-25, after two cascade pilots
 
 **1. §5c GOVERNS THE BANDS. The Interpretation runs 95–115 words with a soft margin, ~3× the

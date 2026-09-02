@@ -216,6 +216,45 @@ where it AIMS the eye — the survey's starting mark, `see`'s naming inventory �
 when description is the payload. This is a truth-compatible failure: a tour can pass every
 factual gate above and still be all caption; the audits QC'd truth, this law QCs nutrition.
 
+### ⚙⚙ RULED 2026-09-03 — PROPORTION: THE LENS DIET AND STOPS THAT BREATHE
+
+Fuad, from the wave-5 brief and ratified after wave 6: *"they can read a bit samey, especially
+structure-wise — the stops the same amount of words even when it's not describing anything in
+particular. areas that could use more space, don't get those."* Two rules, both measured.
+
+**1. LENS DIET.** Each of `see`/`about`/`craft`/`context` **targets 90–110 words.** Above 120 the
+draft must name, in `flags`, the specific finding the extra words carry — *"there was more to say"*
+is not a justification. The old 170 ceiling stands as an absolute. Remember the scope laws: `see`
+NAMES, never describes (that is a stop's content); `craft` names a METHOD, never spends an
+INSTANCE. Most overweight is instance-spending — move it to the stop that owns it, or cut it.
+
+**2. STOPS BREATHE — THE METRONOME IS A DEFECT.** Stops run **80–200 words and their length must
+TRACK their substance.** In any tour the crux passage should visibly outweigh the lightest stop
+(aim: **50+ words** between longest and shortest). It cuts both ways: a long stop earns its length
+with MORE FINDINGS, each passing Law 4, never with decoration; and a stop that has said its one
+thing STOPS — 85 honest words beat 130 padded ones. Decide while drafting which one or two stops
+carry the picture's weight.
+
+**Measured, three waves** (`stopvar.js`, in `canvas/`, reports per tour and flags CV < 0.07,
+spread < 40w, any lens > 120 unjustified, lens-total > 460):
+
+| | wave 4 (before) | wave 5 (rules on) | wave 6 (rules + richness) |
+|---|---|---|---|
+| stops per tour | 7–8 | 6–8 | **4–8** |
+| stop-length CV | 0.056 | 0.211 | 0.147 |
+| longest–shortest spread | 23w | 76w | 50w |
+| words per lens | ~153 | ~106 | ~110 |
+| Interpretation length CV | **0.027** | 0.056 | 0.078 |
+
+Wave 4's Interpretation CV of 0.027 is the disease in its purest form — ten reads within a couple
+of words of each other, and nobody had measured it. **Convergence is a hydra:** killed in stop
+lengths it reappeared in Interpretation lengths, then in Interpretation rhetoric, then in `beside`
+openers (5 of 10 opened *"Set this beside"*). **Scan every layer, every wave.**
+
+⚠ The touchstones (`monet-woman-with-a-parasol`, `szal-uniesien`, *A Convent Garden*) run CV
+0.08–0.11 with ~90–110w lenses and 28–57w spreads. The waves above overshoot that CV — in the right
+direction, because the extra spread comes from cruxes that earned it and floors that stayed honest.
+
 ### ⭐ THE CALIBRATION SPECIMEN — `monet-woman-with-a-parasol` (named by Fuad, 2026-08-25)
 
 Law 1's model (`…adeline-ravoux`) is the model for how a STOP is built. This is the model for
@@ -680,6 +719,20 @@ evidence against the pixels hypothesis is the corpus correlation (r = 0.143), no
 
 Everything above is why. This is what to do. Each item is a specific trigger and a specific
 action; none of it requires judgement about quality.
+
+⚙ **THE THREE SCRIPTED GATES (2026-09-03) — they live in `canvas/` and take the workshop directory
+as their one argument, e.g. `node canvas/stopvar.js .dtmp/tourwave6-hires`:**
+- **`stopvar.js`** — the proportion gate. Flags stop-CV < 0.07 (metronome), longest-shortest spread
+  < 40w, any lens > 120w without a justification naming it in `flags`, lens-total > 460.
+- **`check-besides.js`** — `beside` mechanics AND **companion grounding**: it reads the candidate
+  rows and hard-flags any `beside` whose companion ships no Info of its own, because such a row
+  licenses artist/title/year and nothing else. Also catches collection-counting, quotes/bangs, and
+  physical-adjacency phrasing (this collection is virtual — nothing "hangs nearby").
+- **`flagscan.js`** — hedge integrity across layers. Takes the doubt-bearing entries out of `flags[]`
+  and surfaces sentences in ANY layer (lens, stop, Interpretation, Info, `beside`) that carry a
+  flag's vocabulary with no hedge nearby. Heuristic and noisy by design; a human rules.
+
+None of the three replaces the seal, and the seal does not run before them.
 
 **⚙ CALIBRATED 2026-08-25 against a live run** (5 tours, ~210 grep hits adjudicated, hit rates
 measured). Changes from that run are marked ⚙. Run the cheap structural pass (group D) FIRST —
