@@ -8116,6 +8116,12 @@
     "to": "I'm Designer",
     "type": "variant",
     "reason": "remix ((UNKLE Remix))"
+   },
+   {
+    "from": "Who'll Be Next in Line",
+    "to": "Who'll Be the Next in Line",
+    "type": "spelling",
+    "reason": "spelling: same Kinks cover, article dropped in one scrobble variant; merge rows"
    }
   ]
  },
