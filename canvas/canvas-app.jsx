@@ -608,6 +608,9 @@ function RevealChunks({ items, initial = 24, step = 24, render }) {
   );
 }
 
+// true once an in-app navigation has pushed a history entry
+let cvDidNavigate = false;
+
 function useRoute() {
   const parse = () => {
     // A wall permalink hangs its filter state off the route as a `?query` (see wallStateFromHash):
@@ -2400,7 +2403,7 @@ function StudyView({ id, go }) {
   // ESC leaves study; ← → step the detail tour (when there is one).
   useEffect(() => {
     const onKey = (e) => {
-      if (e.key === "Escape") { e.stopPropagation(); history.back(); return; }
+      if (e.key === "Escape") { e.stopPropagation(); if (cvDidNavigate) history.back(); else location.hash = "#/"; return; }
       if (!tour.length) return;
       if (e.key === "ArrowRight") { e.stopPropagation(); stepTour(1); }
       else if (e.key === "ArrowLeft") { e.stopPropagation(); stepTour(-1); }
@@ -2410,7 +2413,7 @@ function StudyView({ id, go }) {
   }, [tour, stepTour]);
 
   // Bad/unknown artwork id: leave study (done in an effect so render stays side-effect-free).
-  useEffect(() => { if (!work) history.back(); }, [work]);
+  useEffect(() => { if (!work) { if (cvDidNavigate) history.back(); else location.hash = "#/"; } }, [work]);
 
   // Scroll-follow: observe EVERY section's heading (lenses too). The most-visible heading drives
   // the tour UI — the chip strip, the "1 / N" arrows label and the chapter highlight all track the
@@ -2536,7 +2539,7 @@ function StudyView({ id, go }) {
         {/* exit study — always reachable from the viewer's top-right. The pane's own ✕ close is
             hidden when collapsed and below the fold on a phone, so this is the dependable way out
             (Fuad 2026-07-18). Hidden only on desktop-expanded where the pane ✕ is already visible. */}
-        <button className="cv-study-exit" onClick={() => history.back()} title="Leave the study (Esc)" aria-label="Close study">✕</button>
+        <button className="cv-study-exit" onClick={() => { if (cvDidNavigate) history.back(); else location.hash = "#/"; }} title="Leave the study (Esc)" aria-label="Close study">✕</button>
       </div>
       {/* draggable divider (inert on the stacked mobile layout via CSS) */}
       {!collapsed && (
@@ -2548,7 +2551,7 @@ function StudyView({ id, go }) {
       {!collapsed && (
       <div className="cv-study-pane" ref={paneRef}>
         <div className="cv-study-panehead">
-          <button className="cv-study-back" onClick={() => history.back()} title="Leave the study (Esc)" aria-label="Close">✕ close</button>
+          <button className="cv-study-back" onClick={() => { if (cvDidNavigate) history.back(); else location.hash = "#/"; }} title="Leave the study (Esc)" aria-label="Close">✕ close</button>
           <button className="cv-study-collapse" onClick={() => setCollapsed(true)} title="Hide the study pane (full-bleed viewer)">⤢ hide pane</button>
           <label className="cv-study-follow" title="Let the viewer follow your reading">
             <input type="checkbox" checked={autoFollow} onChange={e => setAutoFollow(e.target.checked)} />
@@ -2605,7 +2608,7 @@ function Reader({ id, go }) {
   const [tier, setTier] = useState("about");
   const [inspOpen, setInspOpen] = useState(false);
   // close returns to the previous history entry (home or wall, depending where the card was clicked)
-  const close = () => { history.back(); };
+  const close = () => { if (cvDidNavigate) history.back(); else location.hash = "#/"; };
   useEffect(() => { setZoom(false); setDeep(false); setTier("about"); setInspOpen(false); }, [id]);
   useEffect(() => {
     const on = (e) => { if (e.key === "Escape" && !zoom && !deep) close(); };
@@ -3140,7 +3143,7 @@ function MuseumView({ museumId, go }) {
     };
   }, []);
   // date chip eligibility
-  const eligible = (dateStr, country) => dateStr < "2024-06" || dateStr > "2025-12" || country === "au";
+  const eligible = (dateStr, country) => { if (country === "au") return true; const em = String(dateStr).match(/(\d{4})(?:-(\d{2}))?/); if (!em) return true; const ey = +em[1], emo = em[2] ? +em[2] : 0; if (ey < 2024 || ey > 2025) return true; if (ey === 2024 && emo && emo < 5) return true; return false; };
   const visitDate = (Array.isArray(m.visits) ? m.visits : []).find(d => /^\d{4}-\d{2}/.test(d)) || null;
   const visitMonthLabel = (dateStr) => {
     const dt = new Date(dateStr + (dateStr.length === 7 ? "-01" : ""));
@@ -4273,12 +4276,14 @@ function MapView({ go }) {
     // honest rather than implied.
   }, [cities, dotMul]);
   const trips = useMemo(() => {
+    const eligible = (dateStr, country) => { if (country === "au") return true; const em = String(dateStr).match(/(\d{4})(?:-(\d{2}))?/); if (!em) return true; const ey = +em[1], emo = em[2] ? +em[2] : 0; if (ey < 2024 || ey > 2025) return true; if (ey === 2024 && emo && emo < 5) return true; return false; };
     const by = {};
     for (const m of MUSEUMS) for (const v of (m.visits || [])) {
       const y = String(v).match(/^(~?)(\d{4})/); if (!y) continue;
+      if (!eligible(String(v), m.country)) continue;
       (by[y[2]] = by[y[2]] || new Set()).add(m.city);
     }
-    return Object.entries(by).map(([y, s]) => [y, [...s]]).sort((a, b) => b[0] - a[0]);
+    return Object.entries(by).map(([y, s]) => [y, [...s]]).filter(([, c]) => c.length).sort((a, b) => b[0] - a[0]);
   }, []);
 
   // zoom + pan: the viewBox is state; wheel zooms toward the cursor, drag pans. Marker/label sizes
@@ -6049,7 +6054,7 @@ function SearchBar({ go }) {
 
 function App() {
   const route = useRoute();
-  const go = (view, id) => { location.hash = id ? "/" + view + "/" + id : view === "home" ? "/" : "/" + view; };
+  const go = (view, id) => { cvDidNavigate = true; location.hash = id ? "/" + view + "/" + id : view === "home" ? "/" : "/" + view; };
   // lazy data tier: re-render the tree when a lazy overlay lands (render-scope readers see it
   // immediately), and prefetch on an idle timer so the overlays are usually resident before
   // the first click (Culture's idle-preload idiom)
