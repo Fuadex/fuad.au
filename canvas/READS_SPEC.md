@@ -179,6 +179,39 @@ Two corollaries, both measured:
   their word budget. Enforcing the band without watching hedges actively causes hedge collapse;
   the two rules are coupled, not independent.
 
+### ⚙ FOUR MORE RULES — what wave 8 paid for (25 tours, 177 stops, 100 lenses, 66 lens findings)
+
+7. **A REVIEWER'S DIAGNOSIS AND ITS PROPOSED WORDING HAVE DIFFERENT RELIABILITY. VERIFY BOTH.**
+   The single most expensive discovery of wave 8. Review agents were reliable at finding what was
+   false and unreliable at saying what to put instead — because a proposed replacement is a NEW
+   claim, and nobody applies to their own suggestion the standard the original just failed.
+   **Seventeen proposed wordings across three fix batches had to be rewritten**, most of them
+   re-introducing in new words the very fault they were correcting: a lens accused of a false "only"
+   was handed a replacement containing a fresh false "only"; a scoping fix for one exclusivity named
+   a region that contained the counter-example. Two of one sweep's three HEADLINE fixes were
+   self-defeating. **Never paste a suggested sentence in. Re-derive it from the plate.**
+8. **PREFER WORDING THE TOUR ALREADY USES CORRECTLY OVER NEW PHRASING.** In seven of wave 8's lens
+   findings the true, properly scoped version was ALREADY WRITTEN in a stop of the same tour, and
+   only the lens had been left on the old claim. Bringing the lens into line with its own stop keeps
+   the tour coherent; inventing a third phrasing gives you two things to verify instead of one.
+9. **AGENT WORD COUNTS ARE BIASED, NOT NOISY — AND ALWAYS LOW.** Measured over 20 hand-counted
+   besides: 9 were wrong, and **every single error was an undercount, by 1-2 words**. The cause is
+   the same em-dash/hyphen bug that has been written by hand five times in this project. Agents
+   without a shell cannot count; brief them to aim 3-4 words inside the band, and gate mechanically
+   with `bandgate.js` afterwards. Never accept a self-reported count at a band edge.
+10. **AN ALLOCATED MECHANISM LEAKS ITS OWN VOCABULARY.** Wave 8 replaced the failed negative
+    de-convergence instruction ("get off your own tour") with a positive one: six argumentative
+    SHAPES — cause, cost, category, addressee, asymmetry, survival — one assigned per work. It
+    worked (antithesis closes 20/20 → 0/25; one spurious shared 4-gram across 25). But the only two
+    real collisions were both works writing the NAME of their assigned shape: two CATEGORY works
+    produced "the class this object belongs to", two ADDRESSEE works "addressed to people who
+    already". **Allocate the shape, then ban its label from the prose.**
+
+Also settled in wave 8, at the merge layer: **prove a companion's link anchor before merging.**
+`linkRefs` silently drops a ref whose `text` is absent from its paragraph or occurs more than once.
+Five of twenty wave-7 besides were labelled with the catalogue title while the prose said something
+else, and would have rendered as plain text with no link and no warning. See §11.
+
 ### ⚙⚙ RULED 2026-09-03 — CONVEYING THE ARTWORK OUTRANKS THE BATCH LAW. THIS GOVERNS EVERYTHING BELOW.
 
 Fuad, closing wave 7 after two seals: *"Let's stop fixing the tics. Conveying the artwork means more
