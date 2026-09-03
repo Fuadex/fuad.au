@@ -1,0 +1,31 @@
+{
+ "_note": "EXACT tile->plate fractions. Do NOT derive these yourself; edge tiles are clipped so the three bands are NOT equal width. Column 3 starts at 0.640, not 0.60.",
+ "columns": {
+  "c1": {
+   "x0": 0.0,
+   "x1": 0.36
+  },
+  "c2": {
+   "x0": 0.3067,
+   "x1": 0.6933
+  },
+  "c3": {
+   "x0": 0.64,
+   "x1": 1.0
+  }
+ },
+ "rows": {
+  "r1": {
+   "y0": 0.0,
+   "y1": 0.36
+  },
+  "r2": {
+   "y0": 0.3067,
+   "y1": 0.6933
+  },
+  "r3": {
+   "y0": 0.64,
+   "y1": 1.0
+  }
+ }
+}

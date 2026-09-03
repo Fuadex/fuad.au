@@ -83,6 +83,18 @@ real defects that were live on the site until a corrective commit (`3b1741a` →
    stop.** Where a work supports only one real argument, say so and choose the layer deliberately;
    the other is then written as the supporting layer, which is honest. Letting the tour take it by
    default is not.
+   **THE RESERVATION MUST COVER THE STOPS, NOT JUST THE LENS** (wave-7 close-out). Reserving a
+   thesis from the `about` lens does not reserve it from seven stop CLOSERS. Derain's reserved
+   argument turned out to be spread across three stop endings, so a reader who takes the tour
+   arrives at the Interpretation already knowing where it goes — at zero 4-gram overlap. The
+   allocation step binds every layer that can carry an argument: name the reserved claim, then check
+   the stop closers for it before drafting is called done.
+   **Diff against the shipped string, never against the notes.** The wave-7 audit first believed the
+   lens had taken different ground from the Interpretation, because the drafting notes and the
+   fusion brief both said so. That is not what shipped: in both works the lens argued the SAME claim
+   the Interpretation had retreated to, and both scored zero shared 4-grams because the authors
+   steered around wording rather than around the claim. Notes record intention; only the artifact
+   records the result.
    **Why no gate can replace this:** the cost is paid BEFORE drafting. Measured across wave 7, the
    Interpretations share 0–1 content trigrams with their own `about` lens — the agents saw the
    collision and steered around it, so the artifact looks clean and the loss is invisible to any
