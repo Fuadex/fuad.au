@@ -141,6 +141,44 @@ real defects that were live on the site until a corrective commit (`3b1741a` →
    licenses); `flagscan.js` takes the doubt-bearing entries out of `flags[]` and surfaces sentences
    in ANY layer that carry a flag's own vocabulary with no hedge nearby.
 
+### ⚙ HOW TO RUN A QC PASS — the six rules wave 7 paid for (3 seals, 6 repair passes, 20 tours)
+
+1. **PARTITION A QC PASS BY LAYER, NEVER BY WORK.** Wave 7's first repair round gave four agents
+   five works each. Every one fixed its own hedges correctly, none could see the batch, and they
+   independently converged on one title template and one hedging construction — driving the batch's
+   dominant tic UP while introducing eight sentences false against their own tours. Partition by
+   layer (all 80 lenses / all 20 Interpretations / all 20 Infos) or by defect class. An agent that
+   cannot see the whole batch cannot avoid the batch's failure modes.
+2. **THE LENSES ARE A LAYER AND MUST BE SWEPT.** Three consecutive passes swept absolutes and hedges
+   in the STOPS and never once read `see`/`about`/`craft`/`context`. Twelve of the final seal's
+   twenty-six findings lived there — including a `see` lens that said "two thirds of the surface is
+   closed shade" and "sky takes nearly half the field" twenty-four words apart, refuted by its own
+   census stop's arithmetic. **When a lens contradicts its stops, the lens is wrong: the stops did
+   the looking.**
+3. **AUDIT THE INTERPRETATION AND INFO AGAINST THEIR TOUR'S CLAIMS, not just for 4-gram overlap.**
+   Never done before wave 7. It found an Interpretation still asserting a claim its own tour had
+   retracted by name — at the layer the reader meets first. The gram gate cannot see this.
+4. **THE GAIT FORECAST RUNS BEFORE DRAFTING, NOT BESIDE IT.** Wave 8's forecast was written while
+   the drafters worked, so it reached none of them and several of its banned phrases shipped
+   verbatim. A ban that arrives after the draft is a report, not a rule.
+5. **NO READ-WRITE RACES ACROSS PASSES.** Partitioning by layer prevents write collisions but not
+   stale reads. Wave 7's final blocking error came from an audit reading tours while two other
+   agents were editing them. If pass B must read what pass A writes, sequence them.
+6. **A FLAG IS A CLAIM ABOUT A SENTENCE — CHECK IT LIKE ONE.** Flags in this batch repeatedly
+   documented fixes that were never made (2 found at the first seal, 22 at the second). A false flag
+   is worse than no flag: it tells the next reviewer the ground is covered. **Build the flag-vs-prose
+   check** — read each flag, find the sentence, confirm the sentence honours it. It is cheap, and it
+   finds hedge collapses faster than sweeping prose does.
+
+Two corollaries, both measured:
+- **The absolute/superlative ban belongs in the STUDY brief, not only the interp brief.** It
+  currently governs the tier with 20 paragraphs and none of the errors, and is absent from the tier
+  with 143 stops and all of them. Five of wave 7's factual errors sat inside a "the only"
+  construction, and **nine of fifteen sat in a stop's CLOSING sentence** — sweep that position first.
+- **Compression strips qualifiers.** Four of five lenses that had to be de-hardened were also over
+  their word budget. Enforcing the band without watching hedges actively causes hedge collapse;
+  the two rules are coupled, not independent.
+
 ### ⚙⚙ RULED 2026-09-03 — CONVEYING THE ARTWORK OUTRANKS THE BATCH LAW. THIS GOVERNS EVERYTHING BELOW.
 
 Fuad, closing wave 7 after two seals: *"Let's stop fixing the tics. Conveying the artwork means more
