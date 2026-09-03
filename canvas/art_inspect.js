@@ -1017,7 +1017,7 @@ window.CANVAS_INSPECT = {
  ],
  "by": "Opus 4.8",
  "mv": 4.1,
- "beside": "A mother petitioning a god on a cloud shelf was stock equipment for a ceiling painter, not something Tiepolo invented for Milan. James Thornhill, a generation older and England's chief decorator, put Aeneas before Dido, and Venus Supplicating Jupiter on one sheet around 1720, a sketch for a wall-and-ceiling scheme: the mortal reception scene, and separately the goddess-mother upstairs arguing her son's case. Thornhill keeps the two as distinct scenes for distinct surfaces. Tiepolo stands them on end inside one field, so the appeal climbs the canvas straight past the rescue it is about. The invention here is not the subject, which any decorator had in stock. It is the stacking, and what the stacking implies about who gets consulted.",
+ "beside": "A mother petitioning a god on a cloud shelf was stock equipment for a ceiling painter, not something Tiepolo invented for Milan. James Thornhill, a generation older and England's chief decorator, put Aeneas before Dido, and Venus Supplicating Jupiter on one sheet around 1720, a sketch for a wall-and-ceiling scheme: the mortal reception scene, and separately the goddess-mother upstairs arguing her son's case. Thornhill's sheet plans two surfaces at once, the petition belonging overhead. Tiepolo stands them on end inside one field, so the appeal climbs the canvas straight past the rescue it is about. The invention here is not the subject, which any decorator had in stock. It is the stacking, and what the stacking implies about who gets consulted.",
  "refs": [
   {
    "id": "james-thornhill-aeneas-before-dido-and-venus-supplicating-ju",
