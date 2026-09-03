@@ -6404,6 +6404,12 @@
     "to": "Citizen Erased",
     "type": "variant",
     "reason": "remix ((XX Anniversary RemiXX))"
+   },
+   {
+    "from": "Butterflies and Hurricanes",
+    "to": "Butterflies & Hurricanes",
+    "type": "spelling",
+    "reason": "spelling: ampersand/'and' variant folds to canonical"
    }
   ],
   "albums": [
