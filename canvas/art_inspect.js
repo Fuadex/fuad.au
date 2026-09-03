@@ -154,7 +154,14 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "mv": 4.1
+ "mv": 4.1,
+ "beside": "Making a type out of a particular person needs the person first, and Matisse was running the same operation in clay at almost the same moment. The Jeannette heads, begun in 1910 from a young woman called Jeanne Vaderin, are five, each further from her than the one before: what starts as an observed face ends, by the fourth, as lumps and hollows arranged for their own sake. The difference is that Matisse's stages are objects, and can be lined up and counted. Jawlensky's are scattered over decades and separate collections, so the sequence is never seen whole. Which is why this canvas reads better as a stage than as a picture — the state at which the mismatched eyes and heavy jaw are still outvoting the type.",
+ "refs": [
+  {
+   "id": "henri-matisse-tete-de-jeannette-iv",
+   "text": "The Jeannette heads"
+  }
+ ]
 },
 
 "amedeo-modigliani-girl-in-a-green-blouse": {
@@ -213,7 +220,14 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "mv": 4.1
+ "mv": 4.1,
+ "beside": "Before the portraits there was the sculpture, and through those years he filled sheet after sheet with a single subject: the caryatid, a nude posed to carry a building. Caryatid is one of them — a body organised wholly around the load it takes, and so a body with no use for a collarbone or a throat hollow, since neither helps anything stay up. He gave up carving around 1914 and the caryatid went with it. The reasoning stayed. What is missing from this sitter's chest and neck is not haste and not a mannerism; it is an older decision about what a body is for, kept on in a picture that has nothing left to hold up.",
+ "refs": [
+  {
+   "id": "amedeo-modigliani-caryatid",
+   "text": "Caryatid"
+  }
+ ]
 },
 
 "andre-derain-untitled": {
@@ -280,7 +294,14 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "mv": 4.1
+ "mv": 4.1,
+ "beside": "Going back to the museum after helping to blow it up was a common move in the 1920s, and Picasso made it at almost no cost to his standing. Madame Picasso — Olga, his wife, in 1923 — faces the tradition as squarely as anything Derain did: a household sitter, a sober manner, nothing argued with the past. But it was made alongside cubist still lifes, so it read as one register among several, something he could put down again. Derain kept no second track. The turn was the whole of his position and he held it for the rest of his life. Picasso's classicism was received as range; Derain's was received as a verdict. Which is what makes this dark, quiet canvas of a girl the more exposed of the two.",
+ "refs": [
+  {
+   "id": "picasso-madame-picasso",
+   "text": "Madame Picasso"
+  }
+ ]
 },
 
 "anthony-van-dyck-marchesa-elena-grimaldi-cattaneo": {
@@ -355,7 +376,14 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "mv": 4.1
+ "mv": 4.1,
+ "beside": "A painter abroad in Italy, an unfree man in the room, and a decision about where to put him: the same three things assemble twenty-seven years later and come out inverted. Velázquez painted Juan de Pareja in Rome in 1650 — the enslaved assistant of his own workshop — showed the picture publicly at the Pantheon that March, and within months signed the papers that would free him; Pareja went on to work as a painter himself. There the unfree man is the whole canvas, given the frontal address and undivided attention a patron is normally sold. Here he is equipment. The difference is not what the century could manage. It is what each picture was built to do.",
+ "refs": [
+  {
+   "id": "portrait-of-juan-de-pareja",
+   "text": "Juan de Pareja"
+  }
+ ]
 },
 
 "camille-pissarro-view-from-louveciennes": {
@@ -430,7 +458,14 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "mv": 4.1
+ "mv": 4.1,
+ "beside": "Reducing the people on a thoroughfare to a few marks was the period's most contested habit, and Monet pushed it furthest. The Boulevard des Capucines, which he painted twice, handed a hostile reviewer of the 1874 Impressionist show his best joke: he took the pedestrians along the bottom for illegible black smears and asked whether that was what he looked like walking down the street. Monet had numbers on his side — seen from a window above, a crowd genuinely is marks. Pissarro has a handful of people on an empty road at eye level, near enough to have had faces. The shorthand is identical and the alibi is gone, which turns his refusal of anecdote into a decision rather than a consequence of distance.",
+ "refs": [
+  {
+   "id": "claude-monet-le-boulevard-des-capucines",
+   "text": "The Boulevard des Capucines"
+  }
+ ]
 },
 
 "copley-baron-graham": {
@@ -497,7 +532,14 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "mv": 4.1
+ "mv": 4.1,
+ "beside": "Copley had already painted the genuine article, in bulk. The Death of the Earl of Chatham stages the House of Lords on the April day in 1778 when Chatham collapsed in it — some fifty-five portraits, peers in parliamentary scarlet crowding a falling man — and Copley showed it not at the Academy but alone, in a room he hired, by ticket. Rank there is spectacle, occasion and receipts, and it is a title being spent at the last possible moment on the floor where it actually worked. Here a title that was never quite a title sits in a chair with nothing to do. The man who had assembled the real peerage in its own colour knew precisely what he was leaving off Graham's fur.",
+ "refs": [
+  {
+   "id": "copley-the-death-of-the-earl-of-chatham",
+   "text": "The Death of the Earl of Chatham"
+  }
+ ]
 },
 
 "edouard-vuillard-the-terrace-at-vasouy-the-garden": {
@@ -572,7 +614,14 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "mv": 4.1
+ "mv": 4.1,
+ "beside": "Another picture in this catalogue is called simply Madame Hessel at her window. Lucy Hessel was the wife of Vuillard's dealer Jos Hessel and, from about 1900 until the painter died in 1940, his closest companion and the sitter he returned to more often than any other — indoors, in her own rooms, in the present tense. Vasouy was her house for that season, the garden hers to lend. The panel painted in it left her out. So the 1935 campaign inserts not a decorative correction but the woman the intervening thirty-four years had been about, given drawn eyes and a modelled hand among a company of dabs. She is not an addition to the afternoon. She is the part of it he had no reason yet to paint.",
+ "refs": [
+  {
+   "id": "edouard-vuillard-untitled-5",
+   "text": "Madame Hessel at her window"
+  }
+ ]
 },
 
 "henri-de-toulouse-lautrec-nude-study-woman-sitting-on-a-couc": {
@@ -647,7 +696,14 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "mv": 4.1
+ "mv": 4.1,
+ "beside": "A year earlier the same hand painted The Artist's Dog Flèche, and it is not a beginner's picture. Animals came first: from about thirteen he was taught by René Princeteau, an animal painter and a friend of his father's, and the horses and dogs of those years come out quick and unlaboured — creatures he had been watching since he could hold a pencil, on land his family owned. The nude reversed all of them: a stranger hired by the hour, held still in a room, offering a body no part of that upbringing had trained him to look at. Set the two together and the hesitations here stop reading as incapacity. They are unfamiliarity — a fluent draughtsman with no stock of habits for the one subject the school required.",
+ "refs": [
+  {
+   "id": "toulouse-lautrec-the-artist-s-dog-fleche",
+   "text": "The Artist's Dog Flèche"
+  }
+ ]
 },
 
 "meindert-hobbema-landscape-with-a-wooded-road": {
@@ -722,7 +778,14 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "mv": 4.1
+ "mv": 4.1,
+ "beside": "The picture Hobbema is remembered by does the opposite with the same three ingredients. The Avenue at Middelharnis, dated 1689 and made long after the Amsterdam cask-gauging post had all but closed his career, names a real village and then shows you the whole of it: a road driving dead straight at the horizon, its flanking trees limbed to bare poles that conceal nothing, drainage ditches told off along both sides, a man tending saplings in the plantation at the right, a church tower standing clear. Nothing is held at the threshold there. Which recasts the dimness here. This is not a wood that happens to be dark; it is the same inventory, taken by a painter who could plainly have shown all of it and chose not to.",
+ "refs": [
+  {
+   "id": "meindert-hobbema-the-avenue-at-middelharnis",
+   "text": "The Avenue at Middelharnis"
+  }
+ ]
 },
 
 "melencolia-i": {
@@ -797,7 +860,14 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "mv": 4.1
+ "mv": 4.1,
+ "beside": "Melancholy had already turned up in a Dürer engraving, as one of four. Adam and Eve, cut ten years earlier, stands a cat, a rabbit, an ox and an elk around the pair, animals long read as the four humours in the balance the Fall was about to end; that same plate is his demonstration of human proportion, two bodies constructed with compass and rule and then delivered as skin. Both prints run on a system. In Eden the temperaments are level and the geometry is invisible, because all of it has been spent making something. Here one temperament has the whole sheet and the geometry has become furniture. The dividers in her fist are the instruments of his own proof, handed to a figure they no longer help.",
+ "refs": [
+  {
+   "id": "adam-and-eve",
+   "text": "Adam and Eve"
+  }
+ ]
 },
 
 "odilon-redon-untitled-4": {
@@ -872,7 +942,14 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "mv": 4.1
+ "mv": 4.1,
+ "beside": "Paul Klee took the same object and kept it in its genre. Conch–Still Life II, painted in 1939, the last full year of a man working at enormous speed against illness — and, by its numbering, not his only attempt at the motif — keeps the words still life in its title, which is where shells have lived in European painting: on a table, among other objects, within reach. That is a shell as property. Collectors bought them, priced them, catalogued them, turned them in the hand. Redon supplies no table, no companions and no reach; the picture never offers a position from which the thing could be picked up. Which sharpens what is strange about it. A still-life conch is something somebody has. This one cannot be had.",
+ "refs": [
+  {
+   "id": "unknown-conch-still-life-ii",
+   "text": "Conch–Still Life II"
+  }
+ ]
 },
 
 "perseus-and-andromeda": {
@@ -939,7 +1016,14 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "mv": 4.1
+ "mv": 4.1,
+ "beside": "A mother petitioning a god on a cloud shelf was stock equipment for a ceiling painter, not something Tiepolo invented for Milan. James Thornhill, a generation older and England's chief decorator, put Aeneas before Dido, and Venus Supplicating Jupiter on one sheet around 1720, a sketch for a wall-and-ceiling scheme: the mortal reception scene, and separately the goddess-mother upstairs arguing her son's case. Thornhill keeps the two as distinct scenes for distinct surfaces. Tiepolo stands them on end inside one field, so the appeal climbs the canvas straight past the rescue it is about. The invention here is not the subject, which any decorator had in stock. It is the stacking, and what the stacking implies about who gets consulted.",
+ "refs": [
+  {
+   "id": "james-thornhill-aeneas-before-dido-and-venus-supplicating-ju",
+   "text": "Aeneas before Dido, and Venus Supplicating Jupiter"
+  }
+ ]
 },
 
 "raoul-dufy-le-jardin-abandonne": {
@@ -1014,7 +1098,14 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "mv": 4.1
+ "mv": 4.1,
+ "beside": "Attaching a human disaster to a picture that shows only building is an older French habit than Dufy. Cézanne's La Maison du pendu, Auvers-sur-Oise carries a hanged man in its title — a story never firmly established, and in any case off the canvas — then paints a slope, some walls and a rutted track, empty of people. The loss is registered as a refusal of easy entry rather than as any visible damage. Dufy takes the same bargain further: Cézanne still lets a distance open between his roofs, while the red plane here shuts the garden off and leaves no floor to stand on. Read that way, the sobriety is not borrowed faceting but a borrowed method — absence built into the construction, so the title has nothing left to illustrate.",
+ "refs": [
+  {
+   "id": "paul-cezanne-la-maison-du-pendu-auvers-sur-oise",
+   "text": "La Maison du pendu, Auvers-sur-Oise"
+  }
+ ]
 },
 
 "regatta-in-venice": {
@@ -1081,7 +1172,14 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "mv": 4.1
+ "mv": 4.1,
+ "beside": "Guardi's handling does not change when the place stops being real. His late capricci — invented harbours, Roman landmarks rebuilt into views that never existed — come out of the same habits as this canvas: walls given nothing but the light arriving on them, a water surface that stays a plate, people arriving as single flecks. Fanciful View of the Castel Sant'Angelo, Rome is one of those, and nothing in the touch declares it a fiction. That is worth knowing here, because a regatta looks like reporting: a fixed day in the calendar, a known course, boats you could count. The brush cannot tell a thing seen from a thing composed, so whatever accuracy you are crediting this picture with is coming from the subject and not from the paint.",
+ "refs": [
+  {
+   "id": "guardi-fanciful-view-of-the-castel-sant-angelo-rome",
+   "text": "Fanciful View of the Castel Sant'Angelo, Rome"
+  }
+ ]
 },
 
 "robert-henri-herself": {
@@ -1156,7 +1254,14 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "mv": 4.1
+ "mv": 4.1,
+ "beside": "Titling a sitter by category rather than by name was Henri's habit away from home, and this is the one time the habit turns over. Blind Spanish Singer, of the year before, offers a nation, a trade and an affliction and no name at all — three things a stranger can take from across a room, the last of them the very condition that rules out a returned look. \"Herself\" cannot be reached that way. It is not observation but local knowledge; nobody arrives at that word by looking, and somebody on the island had to hand it over. Which makes the title evidence about the painter's access rather than about the sitter — the one thing in a visitor's season that a visitor could not have supplied.",
+ "refs": [
+  {
+   "id": "robert-henri-blind-spanish-singer",
+   "text": "Blind Spanish Singer"
+  }
+ ]
 },
 
 "sargent-nonchaloir-repose": {
@@ -1231,7 +1336,14 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "mv": 4.1
+ "mv": 4.1,
+ "beside": "Twice Sargent built a picture no one had paid for around a sitter whose name he kept out of the title. He went after Virginie Gautreau himself, unpaid and uncommissioned, and showed the result at the 1884 Salon as a portrait of Madame ***, a blank anyone in the room could fill. That canvas is a performance held at full tension — profile, braced arm, the whole thing riding on the surface of a black satin sheath. By 1911 the method is intact and the stakes are gone: no fee, no exhibition to win, a niece dissolved into a French noun for a mood, and pale silk taking the room instead. What reads as a painter off duty among family is the earlier instinct with the audience subtracted.",
+ "refs": [
+  {
+   "id": "madame-x-virginie-amelie-avegno-gautreau",
+   "text": "Madame ***"
+  }
+ ]
 },
 
 "self-portrait-in-a-soft-hat": {
@@ -1282,7 +1394,14 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "mv": 4.1
+ "mv": 4.1,
+ "beside": "Rembrandt made the same subtraction and drew the opposite conclusion from it. His Self-Portrait of 1659, painted at fifty-three, after insolvency had taken his collection and his house, carries no attribute of the trade either: dark clothes, nothing in the hands, no room around him. Then every stroke of consequence goes into the face and a plain brown dark takes the rest. Both pictures throw the equipment away; they disagree about where the paint should then gather. Cézanne spreads one substance evenly over a head and a wallpaper rosette until only its loading tells them apart. So the missing brush here is not modesty about the profession. It is a second refusal, of the assumption Rembrandt never has to question: that a face is where a painting collects.",
+ "refs": [
+  {
+   "id": "rembrandt-self-portrait-1659",
+   "text": "Self-Portrait"
+  }
+ ]
 },
 
 "the-voyage-of-life": {
@@ -1357,7 +1476,14 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "mv": 4.1
+ "mv": 4.1,
+ "beside": "Cole had already tried this story with a traveller given every means of steering. The Departure, of five years earlier, sends a knight out from his castle in clear morning light — armed, mounted, attended, the road open in front of him — and its companion piece brings him back through the same country at evening, laid on a litter and carried by other men. Whatever the arms and the horse were for, they brought him home as something carried. So the infant's want of an oar, a rudder, or any notion that a voyage is under way is not a remark about how little a child can do. It is the condition Cole thought travellers were in, stated early and without the detour.",
+ "refs": [
+  {
+   "id": "cole-the-departure",
+   "text": "The Departure"
+  }
+ ]
 },
 
 "winslow-homer-waiting-for-a-bite": {
@@ -1432,7 +1558,14 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "mv": 4.1
+ "mv": 4.1,
+ "beside": "Thirty-five years on, Homer painted the other end of this transaction. Right and Left holds the instant two goldeneyes are hit, and it puts you at their eye level rather than the shooter's: one bird still up, one going over, and the man responsible reduced to a dark smudge in a boat on the horizon with a small orange flash beside him. Here the person is near and the event never comes — two lines go out, nothing takes them, and it is the faces that are withheld instead. One end is always unavailable. Which means the boys' blankness is not an economy forced by their size in the canvas; it is an early move in a habit Homer kept for the rest of his working life.",
+ "refs": [
+  {
+   "id": "winslow-homer-right-and-left",
+   "text": "Right and Left"
+  }
+ ]
 },
 
 "yellow-cow": {
@@ -1507,7 +1640,14 @@ window.CANVAS_INSPECT = {
   }
  ],
  "by": "Opus 4.8",
- "mv": 4.1
+ "mv": 4.1,
+ "beside": "The same continuity turns lethal two years later. Tierschicksale keeps the rule this cow is built on — no membrane between a creature and its country, one pigment crossing freely between them — and lets the country win: a wood coming apart in diagonal shafts, and the shafts running through the animals, because nothing in the doctrine says they should stop at a body. Marc wrote on the back of that canvas that all being is flaming suffering, and, writing home from the front, told Maria it looked to him like a premonition and that he could hardly believe he had painted it. Held against it, the yellow's ease reads less as a temperament than as a wager: a system with no clause in it for the other outcome.",
+ "refs": [
+  {
+   "id": "franz-marc-tierschicksale",
+   "text": "Tierschicksale"
+  }
+ ]
 },
 
 "turner-dort-or-dordrecht-the-dort-packet-boat-from-rotterdam-becalmed": {"mv":4,
