@@ -47,7 +47,15 @@ Three hand-QC'd content overlays sit beside the script pipeline, all keyed by ca
   `deeper` detail tour that Study mode (`#/study/<id>`) flies through. Production and QC
   protocol: **[STUDY_SPEC.md](STUDY_SPEC.md)** (Opus subagent drafts from the actual
   image → fact-checked every claim and crop-verified every anchor box before merge).
-  300 works covered as of 2026-08-06.
+  **539 works covered as of 2026-09-04.** Entries also carry `beside` — a companion
+  paragraph setting the work against one other picture in the catalogue — plus `refs`,
+  the link that makes the companion's name clickable. 183 tours have one; every
+  methodology band from mv 2 onward is complete. Two things about `refs` that are not
+  obvious and have both drawn blood: a bare `refs` array belongs to the `beside`
+  paragraph by default, and `linkRefs` **silently drops** a ref whose `text` is absent
+  from that paragraph or occurs in it more than once. Prove the anchor before merging.
+  Each entry records the methodology version it was made under as `mv` — integers for a
+  change to the cascade's shape, decimals for a refinement within it.
 - **`art-about.js`** (`CANVAS_ART_ABOUT`) — shorter two-tier reads (about/deep) for
   flagship works. Production and QC protocol: **[READS_SPEC.md](READS_SPEC.md)** — one
   Opus subagent per painting, **Interpretation written first and Info distilled from it

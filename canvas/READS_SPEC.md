@@ -1105,7 +1105,32 @@ measurement. A rule that cannot be traced to one of those is not a rule; strike 
 (History: an unsourced second-person ban and a hardened word ceiling both reached shipped
 content in August 2026 before being caught. This section exists so that cannot recur.)
 
-## Coverage (2026-08-24, post reshape + Interpretation backfill)
+## Coverage (2026-09-04, post wave 8)
+
+**2,745 canon works · 539 study tours · 922 Infos · 535 Interpretations · 183 companions.**
+
+Every Interpretation has an Info (0 exceptions). **Six tours have no Interpretation**, all of them
+mv 1 and all predating the tour-first rule: `henry-fuseli-thor-battering-the-midgard-serpent`,
+`maximilien-luce-morning-interior`, `bruno-liljefors-eider-ducks`, `teodor-axentowicz-ko-omyjka`,
+`jozef-pankiewicz-dorozka-w-deszczu`, `unknown-s-once-majowe`. That is the whole backlog.
+
+Companions by methodology band — **every band from mv 2 on is complete**:
+
+| mv | tours | with companion |
+|----|-------|----------------|
+| 1 | 356 | 0 (predates the device) |
+| 2 | 58 | 58 |
+| 2.1 | 60 | 60 |
+| 3 | 10 | 10 |
+| 4 | 10 | 10 |
+| 4.1 | 20 | 20 |
+| 4.2 | 25 | 25 |
+
+mv 4.1 sat at 0/20 for a while because wave 7's merge script asserted the ABSENCE of companions as a
+passing condition — the spec had moved completeness to "end of wave" and the end of the wave never
+came. **Companions now merge in-wave.** See §1 rules 7-12 for what waves 7 and 8 cost.
+
+## Coverage (2026-08-24, post reshape + Interpretation backfill) — SUPERSEDED
 
 **792 Infos · 365 Interpretations · 363 study tours**, against 1,956 canon works. Every
 Interpretation has an Info; all but two have a tour (`monet-nympheas-orangerie` and
