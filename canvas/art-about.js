@@ -3,6 +3,90 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+"winslow-homer-waiting-for-a-bite": {
+ "about": "Homer had drawn for the weeklies since 1857 and would stop the year after this. The far bank behind these two boys is a field of flat-topped stumps and dead standing poles, and nothing is biting.",
+ "deep": "The subject was made twice in one season, and what separates the two versions is audience rather than skill. One was cut into a boxwood block for a national weekly and printed that August, three figures deep in wooded country; the other keeps two figures on a snapped stump above unmoving water. Whichever came first, the version built to travel had to arrive furnished, while the one that stayed behind could afford to hand a viewer nothing to report. Homer stopped drawing for the weeklies the year after this, and the privilege the kept picture exercises is the one the trade could never allow: the right to be uninformative.",
+ "by": "Opus 4.8",
+ "deepBy": "Opus 4.8"
+},
+"sargent-nonchaloir-repose": {
+ "about": "Sargent first called it Nonchalance, then swapped in nonchaloir, a word French had stopped using. Some scholars hear a pun: the dead word carries châle, shawl, and his niece is wrapped in one decades out of fashion.",
+ "deep": "By about 1910 Sargent had quit the grand manner as a trade, and this picture is made from its leavings. The wrap, a Kashmir shawl a generation past its vogue, was studio property, not a new purchase; the noun he chose for the title had gone out of the language. Even the gilt is shorthand — commas and ticks where the carving should be. So a society picture is built from parts nobody wanted, and the one thing in it still current is a girl of eighteen, given less description than the cloth she is wrapped in. He has set her among retired things and painted her as the newest of them.",
+ "by": "Opus 4.8",
+ "deepBy": "Opus 4.8"
+},
+"robert-henri-herself": {
+ "about": "Achill Island, 1913: the sitter is named in the record — Biddy Cummings, wife of the fisherman Johnnie Cummings — and the painter came for a day trip, stayed the season, then did not return for eleven years.",
+ "deep": "Henri had the sitter's name, Biddy Cummings, and passed it over for 'herself' — what neighbours call the woman whose house it is, and only if they know the house. Then he painted her husband as the matching half, so this canvas leans on a second one to finish its own sentence. Both moves decline what portraiture usually promises, that a single face will hold a single person. One thing dissents. The eyes are where nearly all the drawing in this picture went, and they are level and unhurried, which puts the authority in the sitter rather than in the word chosen for her.",
+ "by": "Opus 4.8",
+ "deepBy": "Opus 4.8"
+},
+"raoul-dufy-le-jardin-abandonne": {
+ "about": "The museum credits this canvas with the moment Dufy's colour stopped obeying his line, its reasoning optical: a patch crossing the eye outlasts the outline. The weed in the corner is drawn clean past the green patch beneath.",
+ "deep": "The device that later made Dufy look effortless was found under duress. Five years of Cézanne discipline stand behind this canvas — planes tilted, stacked, a garden constructed rather than glimpsed — and it is here, by the museum's account, that his colour first breaks free of the line drawn over it. The proof is sombre. Black works as a pigment among pigments, not as the shadow of anything, and the picture it belongs to is heavy, angular and deliberately out of order. Within a decade or so the same split between patch and line will read as sunshine, speed, a holiday coast. It began as a structural finding, before it was a shorthand for pleasure.",
+ "by": "Opus 4.8",
+ "deepBy": "Opus 4.8"
+},
+"odilon-redon-untitled-4": {
+ "about": "For roughly two decades Redon worked almost only in black, on charcoal and lithographic stone, and built a reputation for monsters. Then he turned to colour, and painted in oil a conch shell no bigger than a forearm.",
+ "deep": "Take the title away and the picture stops being a shell. The paint gives a dark swelling mass with one warm friable ridge along its flank — a form that would sit as comfortably under a wave or a spine. \"Conque marine\" is uncontested wherever the work is catalogued, and those two words are what settle it. The noirs never needed that help: a spider with a human face declares itself. Nothing here does. Turning to colour, Redon also moved the naming outside the picture, and made an object whose identity is held not in the paint but in a line of catalogue text.",
+ "by": "Opus 4.8",
+ "deepBy": "Opus 4.8"
+},
+"meindert-hobbema-landscape-with-a-wooded-road": {
+ "about": "Scholars know this canvas by a second name, one that puts cottages in it. Three building groups are there, each standing a step deeper into the light than the one before: distance measured in degrees of visibility.",
+ "deep": "Milestone is the literature's word for this canvas, and it implies a road with more of it ahead. Hobbema is the only pupil Jacob van Ruisdael is documented to have taught, and the work before this follows the teacher's motifs closely enough to have been called near-copy. Then 1662, and the manner is his — after which it holds, a fixed stock of parts re-dealt into new arrangements for as long as he went on painting. Six years later he was on the Amsterdam payroll, re-measuring imported wine casks against the city's standard, and the pictures thinned out. What is being dated is a vocabulary arriving complete, not a road opening.",
+ "by": "Opus 4.8",
+ "deepBy": "Opus 4.8"
+},
+"henri-de-toulouse-lautrec-nude-study-woman-sitting-on-a-couc": {
+ "about": "Lautrec was seventeen, sitting the compulsory first exercise of the Paris studios; the brothel pictures his name summons are still a decade off. And drawn into the couch, unexplained, is a small ruled building of dark panes.",
+ "deep": "Lautrec was seventeen and in his first months of formal teaching, sitting the compulsory first exercise of the Paris studios; his master's complaint about him in those months landed on drawing rather than paint. Look at what the drawing on this canvas actually does. Within the couch's terracotta band stands a ruled block of small dark panes, at a scale the room cannot account for, with red passing over those lines in places and lying under them elsewhere. Pentimento or upholstery, the surface declines to say. An exercise is meant to be legible all the way down; this one is not.",
+ "by": "Opus 4.8",
+ "deepBy": "Opus 4.8"
+},
+"edouard-vuillard-the-terrace-at-vasouy-the-garden": {
+ "about": "Titanium white did not exist in 1901, so it marks what Vuillard changed when he returned to this garden thirty-four years later: among the 1935 additions, the catalogue says, is a woman who was never there.",
+ "deep": "Decoration was not a lesser category for Vuillard; it was the commission. This garden was made in 1901 as fitted equipment for a Paris apartment — distemper on canvas, a glue-bound scene-painter's material, matte and quick-setting — and installed there in one piece. Which is why what happened later is less a violation than a continuation. When the patron died and his widow wanted the panel changed, she asked the painter, and the painter divided his own picture into two halves and went back into the figures with a hand thirty-four years older. Household goods get altered when the household does. He agreed that his painting was one of them.",
+ "by": "Opus 4.8",
+ "deepBy": "Opus 4.8"
+},
+"copley-baron-graham": {
+ "about": "The year this was painted, 1804, Copley's son was called to the bar; twenty-three years on he became Lord Chancellor and a real baron. The sitter never was: on the Exchequer bench, Baron was the job title.",
+ "deep": "The costume is not a lie, and none of it is his. The English bench borrowed the peerage's colour language — scarlet, white fur, the full-bottomed wig — for men whose rank was a Latin job description: the Exchequer's judges were barones scaccarii, barons in name only, with no land, no parliamentary seat, no heir to the title. Copley paints the borrowed grandeur at scale and then declines to certify it, leaving the fur unbarred and the chest bare of any order. His finish goes elsewhere — to a face of fifty-nine that has not been improved, and to a folded sheet carrying an address. Rank is what he wears; the work is what he does.",
+ "by": "Opus 4.8",
+ "deepBy": "Opus 4.8"
+},
+"camille-pissarro-view-from-louveciennes": {
+ "about": "No date sits beside Pissarro's signature, so the white blossom — out before the leaves — has to do the dating instead: spring 1869 or spring 1870, and nothing in the picture chooses between them.",
+ "deep": "Landscape painting still ran on destinations in the late 1860s, and this stretch of the Seine valley was one — half an hour from Paris by train, busy with painters who had come to look. Pissarro paints the commute instead. That wide track is the route de la Princesse; the Gallery has it running from Bougival's station to the house he lived in, and reads the roofs he faces as Voisins, the next village over. He set up on his own road with his back to his own door. The label's stylistic account — Corot's warm earths beneath looser brushwork — is the smaller half of what is new. The modern decision was where to stand.",
+ "by": "Opus 4.8",
+ "deepBy": "Opus 4.8"
+},
+"anthony-van-dyck-marchesa-elena-grimaldi-cattaneo": {
+ "about": "Baroque state portraits almost always hang a crimson curtain behind the sitter; Van Dyck hung none. The red here is a parasol held for her, tilted so its ribbed underside shows — which you only see from below her.",
+ "deep": "A full-length normally supplies the means to measure a body — a floor to stand on, a column with a base under it and an entablature above — and here each has been withdrawn. Her height therefore cannot be checked. The gallery's record calls the painted height disproportionate, and the distortion would be plain if anything adjacent held still long enough to compare. So rank is manufactured less by exaggeration than by removing the instruments that would catch it. A steadier gauge of ordinary human scale sits in the corner: the attendant carrying the canopy, which is the reading the arrangement is built to discourage.",
+ "by": "Opus 4.8",
+ "deepBy": "Opus 4.8"
+},
+"andre-derain-untitled": {
+ "about": "The museum owns a second Derain of the same girl, under almost the same title. Here the big orange form behind her shoulder is a wide-brimmed hat, seen almost edge-on, worn hanging down her back.",
+ "deep": "Sitting for him was not an event in her life; it was a chore that came round. His sister-in-law moved into the household with her infant daughter in 1919, he began painting the girl at nine months, and more than a hundred canvases would eventually come of her. She is about twelve here, and already a decade into the job. A portrait usually records a meeting, and meetings make people careful. This one records a routine, so the composure that gets read as gravity is better explained as familiarity — she has run out of reasons to perform, and what the painting receives is someone with her guard already down.",
+ "by": "Opus 4.8",
+ "deepBy": "Opus 4.8"
+},
+"amedeo-modigliani-girl-in-a-green-blouse": {
+ "about": "Painted in 1917, it was hanging in Pittsburgh by 1922, and Glasgow, London and New York had all shown it before 1932 — four cities and two continents while the paint was barely fifteen years old.",
+ "deep": "The record has called her by her clothes since 1927. She went through a Paris auction that year entered as a green bodice, and two years later, in a collector's catalogue, the garment was still standing in for a name. That reads like a failure of the archive. It is closer to an accurate report. The blouse holds the lower half of this canvas outright, three greens deep and scrubbed over until it carries more incident than the face above it, which gets a small mouth and no anatomy. The label was not guessing at her. It was describing where the painting had put its interest.",
+ "by": "Opus 4.8",
+ "deepBy": "Opus 4.8"
+},
+"alexej-von-jawlensky-kopf": {
+ "about": "Every named Jawlensky head-series — Mystical Heads, Saviour's Faces, Abstract Heads, the palm-sized Meditations — postdates this one. Dated 1912 and all but square, it comes from the brief stretch when a head was still just a head.",
+ "deep": "No record on file names the sitter, and the painting is already at work on making that look like the point rather than an accident. The holding museum's account, at second hand, has him typifying faces here — the person still legible, but headed toward a category — which puts 1912 at the crossing of two subtractions running at different speeds. One is archival and already finished: what survives of a particular person is a title meaning head. The other is painted, slower, and would occupy him for decades. Portraiture usually banks on a likeness outlasting the paint. Here the paint outlasts the likeness, and the decades after this one say he meant it to.",
+ "by": "Opus 4.8",
+ "deepBy": "Opus 4.8"
+},
 "thomas-gainsborough-the-painter-s-daughters-with-a-cat": {
 about: "Gainsborough's own daughters, Mary about ten and Margaret about eight, painted around 1760 at Bath — and abandoned, since nobody had commissioned it. The faces are finished; everything below the chins is still brown drawing on bare ground.",
 deep: "Finish here is a gradient. Two faces are carried all the way, the part of a portrait that gets paid for; everything outward from them gets less, down to bare ground at the foot. The oddity is the sky, which got further than the clothes: a landscape painter's work stolen into the top of a portrait by a man who wrote that he was sick of portraits. The animal in the middle was not simply left behind; its back was covered over with a second, duller yellow, the one decision you can watch being reversed. What survives is a hold that never closes: two hands from two different children, meeting at the bottom edge.",
@@ -1353,8 +1437,11 @@ about: "Morning Light won Elioth Gruner the Wynne Prize in 1916, three years bef
 by: "Opus 4.8" },
 
 "melencolia-i": {
-about: "The 4x4 magic square in Dürer's 1514 engraving encodes the year of its making in its bottom row — every row, column, diagonal, and quadrant sums to 34 — part of an image so loaded with symbols that scholars still debate what they collectively mean.",
-by: "Opus 4.8" },
+ "about": "The 4x4 magic square in Dürer's 1514 engraving encodes the year of its making in its bottom row — every row, column, diagonal, and quadrant sums to 34 — part of an image so loaded with symbols that scholars still debate what they collectively mean.",
+ "by": "Opus 4.8",
+ "deep": "The trio this engraving is famous for belonging to was assembled after the fact — nothing shows Dürer planned a set of three, and on the Netherlands journey he appears to have handed the sheet out paired with his St Jerome, cut the same year. Circulation, not iconography, gave it its first context. Whoever received the two had a comparison in hand before they had a puzzle: one study interior and this one, the same burin behind both. That makes the print's difficulty look less like a self-contained riddle and more like one half of a proposition, issued with the other half attached and prised apart afterwards.",
+ "deepBy": "Opus 4.8"
+},
 
 "anguish": {
 about: "Schenck's Anguish, 1878: a ewe bellowing over her dead lamb as crows close in — voted the most popular work in the collection in both 1906 and 2011, two polls a century apart, same painting, same answer.",
@@ -1509,8 +1596,11 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "the-voyage-of-life": {
-about: "The NGA holds the second version of Cole's four-part allegory, painted in Rome in 1841–42 after a dispute over exhibition rights blocked the 1840 original — Thomas Cole completed this set abroad, then exhibited it across American cities on his return.",
-by: "Opus 4.8" },
+ "about": "Cole had written what the emblems meant before he painted this second set of four in Rome. Childhood, the first of them, gives the infant's boat a winged figure raising an hourglass — nothing left to guess.",
+ "by": "Opus 4.8",
+ "deep": "The meanings were settled in prose before this canvas existed. Cole composed his explanatory text for an earlier showing, telling readers what the cavern stood for and why the view closes in; when those first pictures were shut away by their owner's family, he traced their outlines and rebuilt the set abroad, a second body for a commentary that already had readers. That order governs how the picture behaves: little is left for anyone to find unaided, and the emblems arrive captioned, down to the hourglass raised at the prow. What the child is denied, any say in where the boat goes, is also the condition imposed on whoever looks.",
+ "deepBy": "Opus 4.8"
+},
 
 "two-women-at-a-window": {
 about: "A Spanish proverb — 'la mujer ventanera, uva de la calle,' a woman at the window is a grape of the street — likely underlies what seems like casual charm; Murillo c.1655–1660 borrowed the window-frame device from Dutch genre painting.",
@@ -1651,8 +1741,11 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "self-portrait-in-a-soft-hat": {
-about: "Painted around 1894, this is one of Cézanne's last self-portraits, in which the soft felt hat anchors a composition that subordinates likeness to the same constructive brushwork he applied to apples and Mont Sainte-Victoire.",
-by: "Opus 4.8" },
+ "about": "Painted around 1894, this is one of Cézanne's last self-portraits, in which the soft felt hat anchors a composition that subordinates likeness to the same constructive brushwork he applied to apples and Mont Sainte-Victoire.",
+ "by": "Opus 4.8",
+ "deep": "The year is a deduction, not a record. Four catalogue raisonnés carry this canvas, and not one of them can point to a signature, a date or a letter; the band they work inside runs from about 1890 to 1894, and no contemporary notice of it has surfaced. Its only witness is its own surface. That is a strange fate for a work whose whole method is to deny the head any special standing, building it from the same range of greens and dry patches as the wall behind. The record has handled it exactly as it handles its own subject: as one more thing in the room.",
+ "deepBy": "Opus 4.8"
+},
 
 "young-man-playing-the-piano-martial-caillebotte": {
 about: "Shown at the 1876 Second Impressionist Exhibition, this painting depicts Gustave’s younger brother Martial — a composer and pianist — at the family piano on rue de Miromesnil, rendered with Caillebotte’s signature realist depth.",
@@ -2174,8 +2267,11 @@ about: "Demuth cast a Lancaster grain elevator as an American equivalent of the 
 by: "Opus 4.8" },
 
 "yellow-cow": {
-about: "Art historian Mark Rosenthal reads this as a private wedding picture: the leaping yellow cow is Maria Franck, Marc's new wife, and the blue mountains are Franz himself, per his colour theory that yellow means feminine joy, Franz Marc, 1911.",
-by: "Opus 4.8" },
+ "about": "Art historian Mark Rosenthal reads this as a private wedding picture: the leaping yellow cow is Maria Franck, Marc's new wife, and the blue mountains are Franz himself, per his colour theory that yellow means feminine joy, Franz Marc, 1911.",
+ "by": "Opus 4.8",
+ "deep": "Whoever the painting reached in 1911 had no access to the colour key it is usually read through — a private letter, sent to a friend a year earlier and not published in his lifetime. Kandinsky was meanwhile in print that same season, assigning yellow the opposite temperament: earthly, restless, unwilling to hold inside its own boundary. Two irreconcilable accounts of a single hue, held by the two men who founded the Blaue Reiter, and neither appears to have wanted the matter settled. So the painting was probably never built to be decoded. Its yellow takes its force from the vermilion and violet pressed around it rather than from any legend.",
+ "deepBy": "Opus 4.8"
+},
 
 "composition-viii": {
 about: "Kandinsky saved the title Composition for what he counted his summit works, symphonies in paint. This one is 1923, his second Bauhaus year — geometry ruled and compassed, made to carry feeling as exactly as a musical interval.",
@@ -2414,12 +2510,18 @@ about: "Once owned by King Charles I of England, this tiny grisaille shows three
 by: "Opus 4.8" },
 
 "regatta-in-venice": {
-about: "Guardi based this view on a Canaletto composition rather than direct observation, then dissolved it into something Canaletto never quite managed: a shimmering, atmospheric light that makes the crowded Grand Canal feel felt rather than documented. Guardi, c.1770.",
-by: "Opus 4.8" },
+ "about": "Guardi based this view on a Canaletto composition rather than direct observation, then dissolved it into something Canaletto never quite managed: a shimmering, atmospheric light that makes the crowded Grand Canal feel felt rather than documented. Guardi, c.1770.",
+ "by": "Opus 4.8",
+ "deep": "The city's most public day left it as merchandise. This canvas and its pendant were acquired in Venice by John Strange, Britain's Resident from 1773 and a collector who also dealt: fifteen Guardis went through the sale of 436 pictures after his death. The buyer's position and the picture's turn out to be the same one. A diplomat posted to a republic he could observe and never join bought the sight of that republic assembled to look at itself for one February afternoon, every balcony taken. No seat is offered down among them. The thing is delivered from a window, to a man at a window.",
+ "deepBy": "Opus 4.8"
+},
 
 "perseus-and-andromeda": {
-about: "This small oil sketch is the only record of a lost ceiling fresco: Tiepolo painted it around 1730-31 as a modello for Milan's Palazzo Archinto, and the fresco was destroyed by Allied bombing in 1943. He put Perseus on Pegasus, not Ovid's winged sandals.",
-by: "Opus 4.8" },
+ "about": "This small oil sketch is the only record of a lost ceiling fresco: Tiepolo painted it around 1730-31 as a modello for Milan's Palazzo Archinto, and the fresco was destroyed by Allied bombing in 1943. He put Perseus on Pegasus, not Ovid's winged sandals.",
+ "by": "Opus 4.8",
+ "deep": "Emptiness here is a professional precaution as much as a mood. The ceiling itself took only the middle of this design: eight subsidiary mythologies and a shell of stucco closed around the finished fresco, and the illusionistic framework meant to hold it all had not been settled when Tiepolo painted the sketch. So the sketch is drafted to survive being crowded. The figures are packed against one side, leaving a quarter of the field as bare gold that a border could eat into without costing a single body. On a wall that vacancy reads as drama. Overhead it is also prudence — nothing of value is parked where a frame might later arrive.",
+ "deepBy": "Opus 4.8"
+},
 
 "the-comtesse-daru": {
 about: "David painted this portrait free of charge as a private gift to thank Comte Daru for finally securing his overdue payment for the monumental coronation painting of Napoleon — completing it in just a few sittings in 1810.",
