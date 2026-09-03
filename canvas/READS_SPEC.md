@@ -207,6 +207,22 @@ Two corollaries, both measured:
     produced "the class this object belongs to", two ADDRESSEE works "addressed to people who
     already". **Allocate the shape, then ban its label from the prose.**
 
+11. **THE SEAL MUST READ THE HOOK, OR IT CONDEMNS THE RESERVED-CLAIM MECHANISM IT EXISTS TO PROTECT.**
+    Wave 8's seal was briefed on the tour and the Interpretation and NOT the hook. It therefore
+    flagged four Interpretations for resting on material "that appears nowhere in the tour or its
+    flags" — the Pioneer's buried *Found*, Zorn's Liljefors camouflage programme, October's Légion
+    d'honneur, the Coronation's seventy years at Drottningholm. Every one is sourced in its hook
+    (17, 17, 15 and 13 matches). They are absent from the tour BY DESIGN: the fusion reserved them.
+    Acting on those flags would have deleted the best-sourced material in four sound paragraphs —
+    the exact inverse of the defect the seal is for. A reserved claim looks identical to an invented
+    one if you cannot see the reservation.
+12. **CORRECTING THE LIVE STORE IS NOT ENOUGH WHILE A STALE COPY OF THE SAME TEXT SURVIVES.** Wave 8
+    corrected 15 shipped Infos in `art-about.js`, then a companion author read the pre-correction
+    `existingInfo` out of the workshop's `canon.json` and reinstated two of the retired claims
+    verbatim — claims that work's own fusion file bans by name. Any pass that edits shipped prose
+    must either refresh the job file or state, in every downstream brief, which file is the source
+    of truth.
+
 Also settled in wave 8, at the merge layer: **prove a companion's link anchor before merging.**
 `linkRefs` silently drops a ref whose `text` is absent from its paragraph or occurs more than once.
 Five of twenty wave-7 besides were labelled with the catalogue title while the prose said something
