@@ -96,7 +96,7 @@ a { color: inherit; }
 /* MEASURE (2026-09-03). The reader is min(920px, 94vw) and the body had padding but no cap, so the
    read ran ~125-130 characters a line. Capped to the Study pane's register (.cv-study-body, 640px)
    and centred — the hero image and the ✕ are SIBLINGS of this div, not children, so neither moves. */
-.cv-r-body { padding: 26px 34px 40px; max-width: 660px; margin: 0 auto; }
+.cv-r-body { padding: 26px 34px 40px; }
 .cv-r-title { font: 600 30px/1.15 var(--serif); color: var(--ink); margin: 0; }
 .cv-r-meta { font: 500 11.5px/1.6 var(--mono); letter-spacing: .07em; text-transform: uppercase; color: var(--ink-faint); margin-top: 8px; }
 .cv-r-meta b { color: var(--accent); font-weight: 600; cursor: pointer; transition: color .15s ease; }
