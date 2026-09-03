@@ -3,6 +3,36 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+"winslow-homer-hound-and-hunter": {
+ "about": "Its subject was attacked in 1892 as cruel sport, viewers reading the boy as drowning the deer to save ammunition. Homer said the animal was already dead, then repainted the water to cover more of the body.",
+ "deep": "Almost all of this canvas is at rest. The broken water takes a small fraction of a picture four feet across; on both sides of it the lake holds its reflections whole, and the autumn wood above is held at a single value from edge to edge. The proportions are the argument. The event at the deer's head is granted the smallest region on the surface and the shortest duration, since froth closes, and the mirror on either side is the condition the water returns to. Homer scaled that event against a forest built to be older than it, and gave the forest most of the rectangle.",
+ "by": "Opus 4.8",
+ "deepBy": "Opus 4.8"
+},
+"lawrence-francis-charles-seymour-conway-3rd-marquess-of-hertford": {
+ "about": "Hertford collected on his wife's fortune: Maria Fagnani brought it to their 1798 marriage. He bought as a marchand-amateur, acquiring for his friend the Prince of Wales, later George IV, as well as for himself.",
+ "deep": "Lawrence made his living smoothing sitters, and the strange thing about this head is how much he left in it: an unapologetic double chin, a drinker's high colour, a small level mouth, eyes that come near the viewer and decline to arrive. The title and the honour the canvas was organised around have since gone quiet. That face has not. A generation after the sitting, two novelists took the same material and sharpened it — Thackeray's Lord Steyne and Disraeli's Marquess of Monmouth both descend from this man. The most durable thing Lawrence set down here was the material a villain was built from.",
+ "by": "Opus 4.8",
+ "deepBy": "Opus 4.8"
+},
+"john-frederick-kensett-beacon-rock-newport-harbor": {
+ "about": "Kensett came back to this headland seven years later and painted it half again as large. This 1857 canvas is the earlier and smaller version, its monogram at lower right carrying the date inside it.",
+ "deep": "Beacon Rock is said to be named for fires once burnt on its head to bring vessels into the entrance channel. Kensett paints the site in flat daylight with nothing on the crown and nothing lit, and explains none of it. The canvas is addressed to people who already own the harbour's working knowledge — the channel, the garrison, the reason for the name — and it leaves them to supply it. To anyone else it offers a calm, a headland and two red marks: a fisherman's shirt at the waterline, a flag over the fort. Both are signals, and this picture was painted for the people who could already read them.",
+ "by": "Opus 4.8",
+ "deepBy": "Opus 4.8"
+},
+"derby-portrait-of-a-gentleman": {
+ "about": "Wright trained under Thomas Hudson and lived by portraits. This one dates from about 1770 to 1773 — his Liverpool years painting the port's merchants, and the Derby years that produced An Iron Forge and The Alchemist.",
+ "deep": "The brightest paint on this canvas and its hardest edge both fall clear of the sitter. One is a gap of sky behind his shoulder; the other a wedge of stone under an overhang, modelled more sculpturally than the face. His own silhouette is feathered until head and rock share a colour. He is lit from one side and read against light from the other, and his eyes are raised out of the frame, away from the source. Every device that would fix a person in place has been aimed somewhere else. The anonymity is a property of the arrangement, and this canvas was never going to deliver him.",
+ "by": "Opus 4.8",
+ "deepBy": "Opus 4.8"
+},
+"amedeo-modigliani-nude-on-a-divan": {
+ "about": "Modigliani's only solo exhibition opened in Paris in December 1917 with four nudes; police forced them down. He painted this one the next year in the south of France, far from the city where it happened.",
+ "deep": "Four passages of tone and a handful of hairline contours account for the entire body. The head is held to another standard: cheeks blended, a mouth built from two tones, two irises that differ from each other. Everything withheld below the neck was spent up there. The genre supplies a body and dispenses with the person inside it, and this distribution inverts that arrangement — a particular face over an unspecified body. About forty nudes came out of these years; two of the women in them carry names, and she is not one of them. The most finished thing on the canvas is a portrait of someone who cannot be identified.",
+ "by": "Opus 4.8",
+ "deepBy": "Opus 4.8"
+},
 "winslow-homer-waiting-for-a-bite": {
  "about": "Homer had drawn for the weeklies since 1857 and would stop the year after this. The far bank behind these two boys is a field of flat-topped stumps and dead standing poles, and nothing is biting.",
  "deep": "The subject was made twice in one season, and what separates the two versions is audience rather than skill. One was cut into a boxwood block for a national weekly and printed that August, three figures deep in wooded country; the other keeps two figures on a snapped stump above unmoving water. Whichever came first, the version built to travel had to arrive furnished, while the one that stayed behind could afford to hand a viewer nothing to report. Homer stopped drawing for the weeklies the year after this, and the privilege the kept picture exercises is the one the trade could never allow: the right to be uninformative.",
@@ -224,8 +254,11 @@ deep: "Three pale trunks hold a fire. Between them everything is at full strengt
 by: "Opus 4.8" },
 
 "claude-monet-essai-de-figure-en-plein-air": {
-about: "Monet had painted the figure only rarely since Camille's death in 1879. In the summer of 1886 he returned to it, posing Suzanne Hoschedé — Alice Hoschedé's eighteen-year-old daughter, soon his favourite model — on the île aux Orties near Giverny. Of the resulting pair, this is the canvas where she turns to the right, both echoing Camille's 1875 parasol walk. The blank face was deliberate: figures \"done like landscapes\", he told Théodore Duret the next summer, were \"an old dream\" he meant to realise \"once and for all\".",
-by: "Opus 4.8" },
+ "about": "Monet had painted the figure only rarely since Camille's death in 1879. In the summer of 1886 he returned to it, posing Suzanne Hoschedé — Alice Hoschedé's eighteen-year-old daughter, soon his favourite model — on the riverbank near Giverny. Of the resulting pair, this is the canvas where she turns to the right, both echoing Camille's 1875 parasol walk. The blank face was deliberate: figures \"done like landscapes\", he told Théodore Duret the next summer, were \"an old dream\" he meant to realise \"once and for all\".",
+ "by": "Opus 4.8",
+ "deep": "Two canvases came out of that summer at one size, one sitter, one parasol: here she turns right, in the other she turns left, and neither is a study for the other. Whatever the pair means has to be legible in the difference between them. Give the head a face and that difference becomes a story about a person — two moods, an afternoon passing. The set only works if the woman inside it is unavailable as a subject, so the featureless head is what the arrangement costs. What Monet buys is a matched experiment run twice under one condition. The eighteen-year-old who stood for both pays for it.",
+ "deepBy": "Opus 4.8"
+},
 
 "claude-monet-la-rue-montorgueil": {
 about: "\"I loved flags,\" Monet said of the 30 June 1878 holiday for the Exposition Universelle; he got a balcony over the street and finished this and a rue Saint-Denis view the same day. Below, one stroke is one person.",
@@ -254,16 +287,22 @@ about: "From 1899 Monet worked the Thames from a fifth-floor Savoy Hotel suite, 
 by: "Opus 4.8" },
 
 "claude-monet-wind-effect-series-of-the-poplars": {
-about: "In the summer of 1891 the commune of Limetz marked the poplars along the Epte for felling while Monet was only partway through painting them; at the August auction he struck a deal with the timber merchant, paying the difference to keep the row standing until his series was done. Working from a boat moored on the river two kilometres from Giverny, he carried the campaign through some two dozen canvases between the Grainstacks and the Rouen Cathedrals. Of them all, this canvas — Wildenstein no. 1302 — is the one that lets the weather in, catching the row mid-gust.",
-by: "Opus 4.8" },
+ "about": "In the summer of 1891 the commune of Limetz marked the poplars along the Epte for felling while Monet was only partway through painting them; at the auction he went in with the timber merchant on condition the row stood until his series was done. Working from a boat moored on the river two kilometres from Giverny, he carried the campaign through some two dozen canvases between the Grainstacks and the Rouen Cathedrals. Of them all, this canvas — Wildenstein no. 1302 — is the one that lets the weather in, catching the row mid-gust.",
+ "by": "Opus 4.8",
+ "deep": "Monet's method on the Epte was built on coming back. Light returns, the season returns next year, and a row of trees holds still enough to be visited again with a fresh canvas for each hour. Wind grants none of that. Whatever moved through these crowns lasted minutes, so the one privilege the whole campaign was designed around — a second look — was not available here. The row would still be standing the next morning with nothing in it to check this canvas against. Everything had to be decided while it was happening, or afterwards from memory. A project about duration produced one object that could only be a moment.",
+ "deepBy": "Opus 4.8"
+},
 
 "edouard-manet-bords-de-seine-a-argenteuil": {
 about: "In the summer of 1874 Manet stayed at his family's house in Gennevilliers, directly across the Seine from Argenteuil, where Claude Monet had settled the year before. Painting beside the younger man, he made this canvas one of his most vivid experiments in open-air work, Camille Monet and her son Jean posing for the figures — borrowing Monet's swift, broken touch for the water's ripples while holding on to his own thick paint and rich blacks.",
 by: "Opus 4.8" },
 
 "ferdinand-hodler-bildnis-der-tanzerin-giulia-leonardi": {
-about: "In 1910 Hodler met Giulia Leonardi — born Angela Giulia Gallo in Alessandria — in a Geneva café where the Italian singer, guitarist and dancer performed. She became one of the most-painted women of his late career: roughly seventeen portraits in 1910–11 alone, and he reportedly paid her five francs a day whether she modelled or not. Among that crowd of Leonardis, this small 1910 canvas, turned to an unusual landscape format, is the one where she smiles.",
-by: "Opus 4.8" },
+ "about": "In 1910 Hodler met Giulia Leonardi — born Angela Giulia Gallo in Alessandria — in a Geneva café where the Italian singer, guitarist and dancer performed. She became one of the most-painted women of his late career: roughly seventeen portraits in 1910–11 alone, and he reportedly paid her five francs a day whether she modelled or not. Among that crowd of Leonardis, this small 1910 canvas, turned to an unusual landscape format, catches the mouth lifted at one corner.",
+ "by": "Opus 4.8",
+ "deep": "Seventeen heads of this woman came out of two years, and this is one of them. What the canvas settles has little to do with her: the whites of her eyes are olive, and there is no brown anywhere in the flesh, which runs yellow and green against rose. Those are proposals about what a face can be built out of, made inside a picture smaller than A3, then made again on the next one. The object is an instalment in an argument about colour that happens to carry a person's features. It was accepted into a public collection within a year of being painted, filed as a portrait.",
+ "deepBy": "Opus 4.8"
+},
 
 "georges-seurat-seascape-at-port-en-bessin-normandy": {
 about: "Seurat spent the summer of 1888 working the Normandy coast at Port-en-Bessin, recording the little fishing port almost systematically from inner harbour to outer, then out to the cliffs east and west. This near-square view of green headland dropping to the sea is one of six canvases he brought back, marines he conceived as a set meant to hang together in a deliberate order; all six were shown at Les XX in Brussels in February 1889. As in the others, he tracked the coast's signal apparatus closely, and framed the scene inside his hand-dotted painted border rather than a gilt frame.",
@@ -273,16 +312,25 @@ by: "Opus 4.8" ,
 },
 
 "j-m-w-turner-the-new-moon-or-i-ve-lost-my-boat-you-shan-t-ha": {
-about: "The squabble in the title's second half is the picture's own script: a boy has lost his toy boat and in revenge refuses to give up his playmate's hoop, a nursery drama Turner set on the sands of Margate, where he had been schooled as a child and where, by 1840, he lodged with his landlady Sophia Booth. The small mahogany panel went to that year's Royal Academy alongside the Slave Ship, and Blackwood's Magazine jeered, asking what the moon could have to do with a hoop and a boat and rating the picture 'far below even moonshine'.",
-by: "Opus 4.8" },
+ "about": "The squabble in the title's second half is a nursery quarrel supplied entirely in words: a boy has lost his toy boat and in revenge refuses to give up his playmate's hoop — a drama Turner set on the sands of Margate, where he had been schooled as a child and where, by 1840, he lodged with his landlady Sophia Booth. The small mahogany panel went to that year's Royal Academy alongside the Slave Ship, and Blackwood's Magazine jeered, asking what the moon could have to do with a hoop and a boat and rating the picture 'far below even moonshine'.",
+ "by": "Opus 4.8",
+ "deep": "In 1840 The Times called the crescent's substance putty and the figures lifeless; the sneer is still the most accurate account of this panel on record. Both complaints are what it delivers now — a loaded opaque lump of white in the sky, people given fewer strokes than their own reflections. Blackwood's asked what the moon had to do with a lost hoop and a boat, so the props were missing on opening day. Nothing here has been lost to age: the illegibility is original. And on a rigid mahogany board never relined, never examined, imaged or written up, the objection has outlived every chance to settle it.",
+ "deepBy": "Opus 4.8"
+},
 
 "paul-cezanne-la-montagne-sainte-victoire-au-dessus-de-la-rou": {
-about: "In the last decades before his death in 1906, Cézanne returned to this Provençal mountain obsessively, leaving dozens of oils and watercolours of it. This 1904 version belongs not to the frontal Les Lauves group painted near his studio but to the smaller set worked from above the road du Tholonet, southeast of Aix, where he set his easel at the roadside among umbrella pines. He painted it from life at that spot, letting a branch of one parasol pine reach across the sky so its curve answers the slope of the peak, binding the near tree to the far mountain.",
-by: "Opus 4.8" },
+ "about": "In the last decades before his death in 1906, Cézanne returned to this Provençal mountain obsessively, leaving dozens of oils and watercolours of it. This 1904 version belongs not to the frontal Les Lauves group painted near his studio but to the smaller set worked from above the road du Tholonet, southeast of Aix, where he set his easel at the roadside among umbrella pines. He painted it from life at that spot, letting a branch of one parasol pine reach across the sky so its curve answers the slope of the peak, binding the near tree to the far mountain.",
+ "by": "Opus 4.8",
+ "deep": "Every crux on this canvas is the record of a second visit to the same square inch, and the visits are not shared out evenly. Most of the surface carries return on return: a ridge line stated twice, a hair apart, with neither statement withdrawn; umber and blue-black drawing laid last across foreground colour that had already set; dark hooks added to a foliage mass already built. The lower left had a single thin pass and no second. Because nothing was scraped back, every decision stays legible, so what is unequally distributed across this picture is time. The subject is a mountain re-decided, with all the versions still standing.",
+ "deepBy": "Opus 4.8"
+},
 
 "pierre-auguste-renoir-luncheon-of-the-boating-party": {
-about: "From Chatou in 1880 Renoir wrote to his patron Paul Bérard that he was finally painting the oarsmen he had \"been itching to do for a long time,\" adding that one must sometimes attempt things beyond one's strength. The gamble ran for months on the Maison Fournaise terrace: fourteen friends — among them his future wife Aline Charigot with her little dog, the painter Gustave Caillebotte, and the collector Charles Ephrussi — sat piecemeal, since he could never gather them all at once. To Bérard he vowed this would be his last large painting, and when Durand-Ruel entered it in the 1882 Impressionist exhibition over the convalescing Renoir's objections, critics ranked it among the best things he had done.",
-by: "Opus 4.8" },
+ "about": "From Chatou in 1880 Renoir wrote to his patron Paul Bérard that he was finally painting the oarsmen he had \"been itching to do for a long time,\" adding that one must sometimes attempt things beyond one's strength. The gamble ran for months: fourteen friends — among them his future wife Aline Charigot with her little dog, the painter Gustave Caillebotte, and the collector Charles Ephrussi — went into a canvas he kept rebuilding, a dozen paint layers deep. To Bérard he vowed this would be his last large painting, and when Durand-Ruel entered it in the 1882 Impressionist exhibition over the convalescing Renoir's objections, critics ranked it among the best things he had done.",
+ "by": "Opus 4.8",
+ "deep": "An awning went on over a sky already painted; the two men at the far end of the balcony were turned around; a wine glass was painted out of the table and an aperitif glass replaced with grapes; the overpainting ran long enough for the drying to crack. Months of decision produced an hour that appears to have needed none. The society was produced the same way. The sleeveless singlet at the left edge belongs to a boat-hirer's son and the identical one at the right to a wealthy painter, so class here is a matter of what two men put on. Renoir manufactures spontaneity and social legibility together.",
+ "deepBy": "Opus 4.8"
+},
 
 "pierre-bonnard-sleeping-woman-on-a-bed": {
 about: "The sleeper is Maria Boursin, who had given Bonnard the invented name Marthe de Méligny; he learned her real one only at their 1925 wedding. This 1899 canvas is one of his first nudes.",
@@ -294,8 +342,11 @@ about: "Maitreya is the Buddha-in-waiting of Buddhist cosmology, presiding in th
 by: "Opus 4.8" },
 
 "unknown-mahakala-in-the-form-of-a-brahman": {
-about: "Sakya tradition holds that the protector Mahakala concealed himself as a wandering Brahman ascetic — Brahmarupa, bearded and blowing a thighbone trumpet — the guise in which he is said to have appeared to the lama Phagpa as the Sakyas converted Kublai Khan's Mongols. This Tibetan thangka of about 1650, pigments on cloth, crowns that rare form with Guhyasamaja Manjuvajra, the tantric deity whose special guardian Brahmarupa is, ranked second among the Sakya school's protectors.",
-by: "Opus 4.8" },
+ "about": "Sakya tradition gives Mahakala, second of the school's protectors, a borrowed body: Brahmarupa, a wandering Brahman ascetic bearded like a sage and carrying a trumpet cut from a human thighbone. Pigments on cloth, Tibet, seventeenth century.",
+ "by": "Opus 4.8",
+ "deep": "The deity here is wearing somebody else's body, and the substitution is prescribed. Chaturmukha Mahakala's own form — black, four-faced, four-armed — may not be shown in the Sakya schools to anyone who has not received the initiation, so he is given instead the dark skin and mild frame of the Brahman who served the translator Nyen Lotsawa. The calm is a rule of disclosure. What went undisguised is the escort: the four coloured dancers stationed around the fire belong to the hidden form, and a viewer who holds the empowerment recognises the concealed deity from them. The escort is the tell, legible only to those entitled to the sight being withheld.",
+ "deepBy": "Opus 4.8"
+},
 
 "vincent-van-gogh-enclosed-field-with-peasant": {
 about: "Van Gogh painted this around 12 October 1889 from the asylum at Saint-Rémy, and told Theo it showed \"the same field as the one of the reaper\" — the walled plot he watched from his cell window, now turned to mounds of ploughed earth under parched background hills. He meant it as a deliberate pendant: this violet-keyed canvas, with its small stooped peasant dragging a bundle of straw across the furrows, was to answer the yellow-dominated Reaper he had made earlier that year. It is a distinct work from the sun-blazing Enclosed Field with Rising Sun (F737) he would paint in December, with no figure in it at all.",
@@ -1454,8 +1505,11 @@ about: "John Ruskin declared Millais's 1855 painting the only great picture at t
 by: "Opus 4.8" },
 
 "the-pioneer": {
-about: "By casting settler life in a triptych — the format of religious altarpieces — McCubbin's 1904 painting deliberately elevated the Australian pioneer to a near-sacred subject, tracing one family from bush clearing to the graves they leave behind.",
-by: "Opus 4.8" },
+ "about": "By casting settler life in a triptych — the format of religious altarpieces — McCubbin's 1904 painting deliberately elevated the Australian pioneer to a near-sacred subject, tracing one family from bush clearing to a grave he never said was theirs.",
+ "by": "Opus 4.8",
+ "deep": "A whole earlier painting stands under this one — a life-size bushman holding a small child, shown in 1893 and afterwards covered over. It survives as one scrapbook photograph and a curved ridge in the paint belonging to no form above it. The subject came through the burial. A man and a child in the bush is what he painted again, this time spread over three panels, so the motif outlived the canvas that first carried it. The conservator who matched the hidden shapes to that photograph called the lost picture the origin of this one, and the family history read across these panels began as one man holding a child.",
+ "deepBy": "Opus 4.8"
+},
 
 "scene-from-a-midsummer-night-s-dream": {
 about: "Commissioned by engineer Isambard Kingdom Brunel and praised by Queen Victoria as 'a gem' in her diary on its 1851 Royal Academy debut, Landseer's painting of Titania besotted with Bottom is the only fairy scene he ever painted.",
@@ -1470,8 +1524,11 @@ about: "Melbourne's agent spotted this painting unfinished in Long's studio and 
 by: "Opus 4.8" },
 
 "october-saison-d-octobre": {
-about: "Bastien-Lepage painted this potato harvest in his own home village of Damvillers and showed it at the Paris Salon of 1879 as a declaration that peasant labour deserved the same monumental treatment as history painting — a shift that directly shaped the Australian Heidelberg painters. Jules Bastien-Lepage, 1878.",
-by: "Opus 4.8" },
+ "about": "Bastien-Lepage painted this potato harvest in his own home village of Damvillers and showed it at the Paris Salon of 1879 as a declaration that peasant labour deserved the same monumental treatment as history painting — a shift that reached the Australian Heidelberg painters through Paris and London. Jules Bastien-Lepage, 1878.",
+ "by": "Opus 4.8",
+ "deep": "Finish in this canvas is rationed, and almost the whole allowance goes to one head. A second share buys the weeds nearest us, each broad leaf edged and each yellow flower placed. What goes short is the work: potatoes at two or three strokes apiece, an apron of grey scuffs and umber smears with the pose lost inside it. The Salon of 1879 objected to exactly the passage that ration had bought, complaining the women moved mechanically and could not be believed as field workers, and gave Bastien-Lepage the Légion d'honneur on this picture's account. The concentration that made one head worth trusting made the labour around it look performed.",
+ "deepBy": "Opus 4.8"
+},
 
 "the-sunny-south": {
 about: "The title works three ways at once: a hit Melbourne play of 1883, Ricketts Point to the south of the city where the boys are swimming, and the bare backside of the central bather facing away from us. Tom Roberts, 1887.",
@@ -1546,8 +1603,11 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "a-young-girl-reading": {
-about: "Fragonard reportedly painted this in about an hour, working alla prima into still-wet layers; the girl originally faced the viewer and was later repainted absorbed in her book, which is why her profile carries such settled conviction.",
-by: "Opus 4.8" },
+ "about": "Under this canvas lies a finished painting, catalogued under a title of its own: a woman in a feathered headdress, facing out. She stood complete for months before Fragonard replaced the head and turned the gaze down.",
+ "by": "Opus 4.8",
+ "deep": "The fantasy figures were a naming game: friends and patrons put into studio costume, each head on the sheet of eighteen thumbnails inscribed with a name in Fragonard's own hand — every head but one, and the blank one is taken to be this canvas. The paint did the same work. Under the profile lies a completed picture of a woman facing out in a beaded, feathered headdress, her features more particular; he let it stand for months, then reopened the canvas, turned the head away and softened what had been individual. Withdrawn twice from a series built out of recognisable people, she became the one member of it nobody could greet.",
+ "deepBy": "Opus 4.8"
+},
 
 "the-railway": {
 about: "Mocked at the 1874 Salon, Manet's 1873 painting: Victorine Meurent at iron railings, book closed in her lap, a child beside her gripping the bars and staring into the steam where the locomotive should be.",
@@ -1603,13 +1663,19 @@ by: "Opus 4.8" },
 },
 
 "two-women-at-a-window": {
-about: "A Spanish proverb — 'la mujer ventanera, uva de la calle,' a woman at the window is a grape of the street — likely underlies what seems like casual charm; Murillo c.1655–1660 borrowed the window-frame device from Dutch genre painting.",
-by: "Opus 4.8" },
+ "about": "A Spanish proverb — 'la mujer ventanera, uva de la calle,' a woman at the window is a grape of the street — likely underlies what seems like casual charm; Murillo c.1655–1660 borrowed the window-frame device from Dutch genre painting.",
+ "by": "Opus 4.8",
+ "deep": "Three names have travelled with this canvas, and each licensed a different verdict. Las Gallegas named the pair by province, a name that expects its audience to supply the rest. A Girl and her Duenna gave the older woman an office, supervision, and turned the younger into somebody being watched over, which made it safe to hang. Two Women at a Window counts the figures and names the furniture, authorising nothing. The paint has not moved under any of them, and the newest of the three commits to least. What has lasted of this picture is a run of verdicts, each cut to the shape of a name.",
+ "deepBy": "Opus 4.8"
+},
 
 
 "girl-in-white": {
-about: "Painted in the final weeks before Van Gogh's death in 1890 at Auvers-sur-Oise, this figure standing in a wheat field passed through Johanna van Gogh-Bonger's hands before collector Chester Dale gave it to the NGA in 1963.",
-by: "Opus 4.8" },
+ "about": "Painted in the final weeks before Van Gogh's death in 1890 at Auvers-sur-Oise, this figure standing in a wheat field passed through Johanna van Gogh-Bonger's hands and came to Washington by Chester Dale's bequest in 1963.",
+ "by": "Opus 4.8",
+ "deep": "Van Gogh was working in Auvers with a red lake that has since been caught fading: on a canvas painted there within weeks of this one, analysis found flowers now white to have been red. No such test exists here. The flecks on this dress are rose today — hundreds of them, laid separately over cream and green, and the white you see is assembled out of the three. If that lake has travelled here too, the flecks went down redder still, and the white they assemble now was warmer and pinker when it was new. The mixture is the subject either way. Only its temperature is in doubt.",
+ "deepBy": "Opus 4.8"
+},
 
 "the-open-window": {
 about: "Hung in the Salon d'Automne room that critics nicknamed the cage aux fauves — cage of wild beasts — this Matisse from 1905 painted at Collioure gave the Fauvist movement the name it kept forever.",
@@ -2121,8 +2187,11 @@ about: "Roslin's wife Marie-Suzanne Giroust was herself a painter elected to the
 by: "Opus 4.8" },
 
 "portrait-of-a-violinist": {
-about: "Vallayer-Coster was one of only four women admitted to the Académie royale before the Revolution, elected at 26, and this 1773 portrait — acquired by Nationalmuseum at a then-record price — shows her at the height of that hard-won recognition.",
-by: "Opus 4.8" },
+ "about": "Vallayer-Coster was one of only four women the Académie royale allowed as members at any one time, and this 1773 portrait — acquired by Nationalmuseum at a then-record price — shows her at the height of that hard-won recognition.",
+ "by": "Opus 4.8",
+ "deep": "An instrument, a bow, a ruled book and a gilt chair are assembled here to stand for an art, and a woman is among them as one more precisely observed term. That is a picture of attributes. The finest drawing on it is a few loose ends of wire springing off the pegs, and the signature is tucked low into the stonework at the foot of the instrument, where a maker marks a thing. Filed under portraiture instead, it has been asked for a person ever since, and judged as a likeness, when what it proposes is that a wound peg and a nailhead deserve description at full strength.",
+ "deepBy": "Opus 4.8"
+},
 
 "truth-time-and-history": {
 about: "Goya, c.1804: winged Time hauls the veil off Truth while History, back turned, writes down what gets uncovered. The daylight face of the painter of sleeping reason — no monsters, only the belief that time sides with truth.",
@@ -2151,8 +2220,11 @@ deepBy: "Sonnet 4.6",
 by: "Fable 5" },
 
 "bringing-home-the-body-of-king-karl-xii-of-sweden": {
-about: "Cederström delivered this canvas on 30 November 1884, the precise anniversary of Karl XII's death; the snow cortège is a deliberate fantasy — the king's body was actually transported by wagon, not carried on an open bier.",
-by: "Opus 4.8" },
+ "about": "Karl XII was shot in the trenches at Fredrikshald in 1718. Cederström painted the homeward journey twice; this second, full-scale canvas was finished at Krusenberg in November 1884, and he freely admitted the scene was invented.",
+ "by": "Opus 4.8",
+ "deep": "The first canvas of this composition was the Swedish entry everyone noticed in Paris in 1878, where it took a medal and was sold to a Russian grand duke: a picture of a king carried home, gone to the empire he had fought. A subscription was raised to have Cederström paint it again, and the second canvas is the one that stayed. Nothing was reconsidered in the repeat; the design had been fixed in an oil study of 1877. The same design was later printed as a schoolroom wall chart, so what a national grievance paid to have made twice is what the country was taught from.",
+ "deepBy": "Opus 4.8"
+},
 
 "thor-s-fight-with-the-giants": {
 about: "Crowds queued for hours at its 1872 Nationalmuseum debut; bought by King Charles XV, who died that year and bequeathed it to the museum, Winge's 1872 canvas became the defining image of Norse mythology for Swedish national romanticism.",
@@ -2198,8 +2270,11 @@ about: "This drawing records a lost Rogier van der Weyden altarpiece that has no
 by: "Opus 4.8" },
 
 "coronation-of-gustav-iii": {
-about: "Pilo spent eleven years on this vast canvas and never finished it: Gustav III was assassinated at the opera in 1792, and Pilo himself died in 1793, leaving a swirling, half-resolved crowd the size of a room; Carl Gustaf Pilo, 1782–1793.",
-by: "Opus 4.8" },
+ "about": "Pilo spent eleven years on this vast canvas and never finished it: Gustav III was assassinated at the opera in 1792, and Pilo himself died in 1793, leaving a swirling, half-resolved crowd the size of a room; Carl Gustaf Pilo, 1782–1793.",
+ "by": "Opus 4.8",
+ "deep": "A coronation picture is commissioned to settle something, and this one went up before it could. It reached the wall it was made for and stood there some seventy years, sized and hung to answer an older painting of Karl XI's crowning across the room. What it brought to that exchange was a dynastic argument still in progress, with bare priming where the floor should carry the court's feet. Three generations saw that, which is the real price of installing it: the family's claim was on permanent display mid-sentence. The condition has now outlasted the claim it undercut, and two centuries on a living painter was invited to answer this canvas.",
+ "deepBy": "Opus 4.8"
+},
 
 "victory-at-narva": {
 about: "At Narva in November 1700, Charles XII's Swedish army routed a Russian force three to four times its size in a blizzard, a shock that reverberated across Europe; Gustaf Cederström painted this retrospective scene in 1905.",
@@ -2218,8 +2293,11 @@ about: "Gainsborough painted Maria Wilmot around the time of her 1766 marriage t
 by: "Opus 4.8" },
 
 "the-rhinoceros": {
-about: "Dürer never saw the animal: working from a written description and a quick sketch of a live Indian rhinoceros brought to Lisbon, he produced a woodcut in 1515 that Europeans accepted as an accurate likeness for over 250 years.",
-by: "Opus 4.8" },
+ "about": "Dürer never saw the animal: working from a written description and a quick sketch of a live Indian rhinoceros brought to Lisbon, he produced a woodcut in 1515 that Europeans accepted as an accurate likeness for over 250 years.",
+ "by": "Opus 4.8",
+ "deep": "The caption states as fact that this animal is the elephant's mortal enemy and kills it in combat, a claim from Pliny and fourteen centuries old when the sheet went to press. Three weeks after the rhinoceros landed at Lisbon, Manuel I staged that exact fight to find out whether Pliny held; the elephant panicked and ran, and no blow was struck. The sheet prints the ancient claim and carries nothing of the outcome. So the object has the furniture of a bulletin, a dateline and a port and a king, and the method of a compendium. Dürer sent out a page assembled from what could be looked up.",
+ "deepBy": "Opus 4.8"
+},
 
 "alba-madonna": {
 about: "Soviet Russia sold this tondo to Andrew Mellon in 1931 for $1,166,400, then the highest price ever paid for a single painting. Raphael painted it around 1510 as a Madonna of Humility, the Virgin seated straight on the ground — and gave the Christ Child a reed cross to grasp, the entire Passion already within a child's reach.",
@@ -2490,8 +2568,11 @@ about: "Lawrence painted this deliberately echoing Rubens's Chapeau de Paille, w
 by: "Opus 4.8" },
 
 "general-john-burgoyne": {
-about: "Reynolds painted Burgoyne around 1766, when he was a dashing colonel fresh from a Portuguese campaign. Eleven years later, the same man surrendered his entire army at Saratoga — the defeat that brought France into the Revolutionary War. The portrait knows nothing of what is coming. Reynolds, c.1766.",
-by: "Opus 4.8" },
+ "about": "Reynolds painted Burgoyne around 1766, four years on from the Portuguese campaign that made his name. Eleven years later, the same man surrendered his entire army at Saratoga — the defeat that brought France into the Revolutionary War. The portrait knows nothing of what is coming. Reynolds, c.1766.",
+ "by": "Opus 4.8",
+ "deep": "Burgoyne's grandest self-image was ordered by somebody else. The commission came from the German field marshal who had commanded him in Portugal; the canvas went to Schloss Bückeburg and stayed with his descendants for roughly a century and a half, reaching America only through Dresden, Pierpont Morgan and Knoedler. The flattery is therefore aimed sideways — a regiment the sitter raised himself, smoke from the one campaign that patron commanded him through, pitched at a foreign officer's memory of a foreign war. The man who would surrender an army at Saratoga spent most of this picture's life hanging in Westphalia, among people with no reason to know the name.",
+ "deepBy": "Opus 4.8"
+},
 
 "portrait-of-a-man": {
 about: "Memling painted this unidentified man around 1470-75, set against an open window with a Flemish landscape behind. The tower at right may be the church of St. Giles outside Bruges — the one clue to his identity scholars have chased for five centuries.",
@@ -2652,8 +2733,11 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "a-young-woman-seated-at-a-virginal": {
-about: "One of only two Vermeers in the National Gallery that face each other as probable pendants, it entered the collection through the Salting Bequest in 1910. The painting on the wall and the unused viola da gamba suggest a meditation on love and music. Johannes Vermeer, c.1670-72.",
-by: "Opus 4.8" },
+ "about": "One of only two Vermeers in the National Gallery, probable pendants, it entered the collection through the Salting Bequest in 1910. The painting on the wall and the unused viola da gamba suggest a meditation on love and music. Johannes Vermeer, c.1670-72.",
+ "by": "Opus 4.8",
+ "deep": "Baburen's Procuress, the picture hanging over her head, belonged to Maria Thins — Vermeer's mother-in-law, in whose house he lived and worked. He was quoting an object off his own family's wall, and that makes the quotation an address as much as a symbol. Anyone who had stood in those rooms knew the painting as a possession before it was an emblem; for such a viewer the scene of purchased affection in that frame arrives already attached to the household in which this young woman sits. A stranger has to identify it first, and the terms it sets are lost on him. Vermeer built his sitter's setting out of what his family owned.",
+ "deepBy": "Opus 4.8"
+},
 
 "samson-and-delilah": {
 about: "Delilah's hand rests flat on Samson's back while the barber sets a blade to the first lock, c.1609 — and it may not be his: a 2023 study put the odds of a later copy at 91 percent.",
@@ -2750,8 +2834,11 @@ refs: [{"id":"wheatfield-with-crows","text":"Wheatfield with Crows"}],
 by: "Opus 4.8" },
 
 "harvest-at-la-crau-with-montmajour-in-the-background": {
-about: "Van Gogh called this panorama of the Provençal plain one of the finest things he had done — a view of La Crau built in receding planes of yellowed wheat, with the ruined abbey of Montmajour rising at the far edge. He painted most of it in a single June day in 1888, at the height of his Arles period, and sent Theo a drawing of it that same week.",
-by: "Opus 4.8" },
+ "about": "Van Gogh called this panorama of the Provençal plain one of the finest things he had done — a view of La Crau built in receding planes of yellowed wheat, with the ruined abbey of Montmajour rising at the far edge. He painted most of it in a single June day in 1888, at the height of his Arles period.",
+ "by": "Opus 4.8",
+ "deep": "Within a day of finishing it, Van Gogh told his brother the canvas beat everything else he had, and let one picture stand level with it: a still life of coffee-pots, cups and plates in blue and yellow. A plain and a table of crockery cannot be ranked against each other as subjects. They can only be ranked as colour — firmness, register, how much yellow will carry against how much blue. So the class this object belongs to is the demonstration, conducted on a landscape because that is what stood outside the door. Ranked that way, a wheatfield and a coffee-pot are the same kind of object.",
+ "deepBy": "Opus 4.8"
+},
 
 "crab-on-its-back": {
 about: "The idea for this still life came from a Japanese woodblock print of a crab by Hokusai, reproduced in the magazine Le Japon Artistique that Van Gogh described as admirable. Painted in Paris in 1887, the orange-red shell set hard against a green background is a deliberate exercise in complementary-colour contrast — the same Delacroix principle Van Gogh was working through that summer.",
@@ -3594,8 +3681,11 @@ deepBy: "Sonnet 4.6",
 by: "Opus · Fable" },
 
 "anders-zorn-the-painter-bruno-liljefors": {
-about: "Anders Zorn, at the height of his international fame as a society portraitist, turned his brush on a fellow Swedish star in 1906: the wildlife painter Bruno Liljefors. Both had risen from modest beginnings to national prominence in the same generation.",
-by: "Opus · Fable" },
+ "about": "Anders Zorn, at the height of his international fame as a society portraitist, turned his brush on a fellow Swedish star in 1906: the wildlife painter Bruno Liljefors. Both had risen from modest beginnings to national prominence in the same generation.",
+ "by": "Opus · Fable",
+ "deep": "Liljefors spent his working life on animals that are hard to see: he studied camouflage patterns, kept live foxes and hares in an enclosure to paint from, and set a fox into snow in 1904 and a hare into winter in 1908. None of that explains Zorn's handling. It explains what the shortfall here comes to. Leave almost any portrait unfinished and you have a picture short of its sitter. Leave this one — coat and snow at one value, the outline never drawn — and the loss falls on the single subject the sitter gave his life to: a body that will not come away from its weather.",
+ "deepBy": "Opus 4.8"
+},
 
 "georges-lemmen-beach-at-heist": {
 about: "Georges Lemmen joined the Brussels avant-garde group Les XX in 1888, converted to pointillism after Seurat exhibited there. Painted around 1891, this small panel builds flat coloured zones from tiny dots edged with complementaries — already bending Seurat's science toward the Art Nouveau stylisation Lemmen would pursue.",
