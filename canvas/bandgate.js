@@ -42,14 +42,41 @@ for (const f of files) {
   st.forEach((n, i) => { if (n < 80 || n > 200) problems.push('stop' + (i + 1) + ' ' + n + 'w'); });
   const spread = st.length ? Math.max(...st) - Math.min(...st) : 0;
   if (st.length && spread < 50) problems.push('spread ' + spread);
+  // A stop may legitimately carry NO box. canvas-app.jsx gives such a chapter `anchor: null`:
+  // it reads in the Reader but sits out of the zoom tour. That is the right shape for a stop
+  // with nothing to point at ("What an eclogue is"). Five shipped stops do this on purpose, so
+  // treat an absent box as a choice and only judge boxes that exist.
+  const boxed = (d) => ['x', 'y', 'w', 'h'].every((k) => typeof d[k] === 'number' && isFinite(d[k]));
+  const anyCoord = (d) => ['x', 'y', 'w', 'h'].some((k) => d[k] !== undefined);
   for (const [i, d] of (t.deeper || []).entries()) {
+    if (!boxed(d)) {
+      // half a box is a typo, not a device
+      if (anyCoord(d)) problems.push('stop' + (i + 1) + ' has a partial box');
+      continue;
+    }
     if (!(d.w > 0) || !(d.h > 0)) problems.push('stop' + (i + 1) + ' zero-area');
     else if (d.x < -0.001 || d.y < -0.001 || d.x + d.w > 1.002 || d.y + d.h > 1.002)
       problems.push('stop' + (i + 1) + ' box out of frame');
   }
-  // a stop box that is the whole picture makes the zoom do nothing
-  for (const [i, d] of (t.deeper || []).entries())
-    if (d.w * d.h > 0.90) problems.push('stop' + (i + 1) + ' is the whole plate');
+  // A whole-plate box makes the zoom do nothing — UNLESS it is the closing pull-back, where
+  // showing the whole picture after a small stop IS the move. 161 shipped tours across every
+  // methodology band close exactly this way, so flagging it flatly is a false-positive machine:
+  // it condemns an approved device. What actually fails is a whole-plate box the viewer arrives
+  // at from another large box, because then nothing visibly happens.
+  // ...and the same goes for the whole-plate box. It is inert MID-TOUR, but at either end it is
+  // a move: an establishing shot first, a pull-back last. 161 shipped tours close this way and
+  // 14 open this way, so flagging area>0.90 flatly condemns an approved device rather than
+  // finding a fault. What actually fails is arriving at the whole plate from another big box.
+  const D = t.deeper || [];
+  const area = (d) => (boxed(d) ? d.w * d.h : null);
+  for (const [i, d] of D.entries()) {
+    if (!(area(d) > 0.90)) continue;
+    if (i === 0) continue;                                   // establishing shot
+    const prev = area(D[i - 1]);
+    if (i === D.length - 1 && (prev === null || prev < 0.50)) continue;   // pull-back
+    problems.push('stop' + (i + 1) + ' is the whole plate' +
+      (i === D.length - 1 ? ', arrived at from another big box' : ' mid-tour'));
+  }
 
   spreads.push(spread); stopCounts.push(st.length);
   if (problems.length) { flagged++; console.log('  FLAG  ' + id.slice(0, 46).padEnd(47) + problems.join(', ')); }
