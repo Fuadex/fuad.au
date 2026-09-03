@@ -576,3 +576,19 @@ coverage gap (four sub-floor tracks) flagged honestly in the gist.
 variants (edition spellings, promo pressings, mojibake titles), the finished entry
 is MIRRORED under every variant's album key so each album page shows it (e.g. both
 Random Album Title keys); the gist says "across editions" where the count is merged.
+
+### Batch log — Muse: Absolution A/B + Black Holes and Revelations first entry (2026-09-04)
+
+The Absolution tail (four sub-floor tracks, Fury as the Japanese-edition bonus row) was read
+alongside a wall-to-wall Black Holes and Revelations; fifteen reads and five fnotes shipped
+first, themes and tells behind them. Absolution's shipped gist and liner were then judged
+against a blind regeneration: the owner kept the shipped pair frontal, parked the regen on the
+flick, and took the NEW arc regardless — the old one claimed the closer was a song no reading
+could see, which stopped being true the moment Ruled by Secrecy was read. Black Holes got its
+first entry, organised around the claim only the whole record makes (political fervour and
+erotic helplessness as one inflation mechanism), with a Soldier's Poem clause added on the
+owner's order as the exception that proves it. Craft notes: the liner drafter re-imported a
+sound attribution verification had already killed at read level (Morricone → mariachi), the
+collage tax fired again (six seals on one liner, then my own replacement echoed a read and was
+re-sealed), and the dossier builder emitted a wrong album year that the verified date replaced.
+No artist entry — two of eight played albums portraited.
