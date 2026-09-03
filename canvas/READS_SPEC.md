@@ -141,6 +141,37 @@ real defects that were live on the site until a corrective commit (`3b1741a` →
    licenses); `flagscan.js` takes the doubt-bearing entries out of `flags[]` and surfaces sentences
    in ANY layer that carry a flag's own vocabulary with no hedge nearby.
 
+### ⚙⚙ RULED 2026-09-03 — CONVEYING THE ARTWORK OUTRANKS THE BATCH LAW. THIS GOVERNS EVERYTHING BELOW.
+
+Fuad, closing wave 7 after two seals: *"Let's stop fixing the tics. Conveying the artwork means more
+than fixing repeating formats."*
+
+**The batch law is real and stays. It is now subordinate.** A repeated construction is a blemish; a
+paragraph that has stopped showing the reader a painting is a failure. Where the two conflict, the
+picture wins.
+
+This is not a preference, it is a measured result. Wave 7's de-tic pass cost more than it bought:
+- it introduced **eight sentences false against their own tour** and **twenty new false flags**,
+  because agents chasing phrasing stopped checking claims;
+- it drove the batch's dominant construction the WRONG WAY (`rather than` 142 → 158), because the
+  natural de-absoluting move is itself an antithesis;
+- and it **dissolved real writing**. "That is an absence rather than something too small to see —
+  with one reservation, that a very faint eye mark could still sit below this plate's resolution"
+  survives every gate and tells a reader nothing. A stop titled *The census*, staged as "run the
+  count", now returns a range. A `craft` lens lost the noun it existed to argue in order to shed a
+  superlative.
+
+**The operative test, applied to any proposed QC edit:** does this make the reader see the painting
+more clearly? If the honest answer is "no, but it removes a repetition", DO NOT MAKE IT. Log it.
+A tic that survives into the merge is cheap. A hedge that cancels its own sentence is not, and
+neither is a claim that four gates passed because it was phrased carefully enough.
+
+**What still blocks a merge**, unchanged: a claim false against its own tour; a hedge that hardens
+as it travels toward the reader; a flag that lies about the prose it governs; a factual error.
+**What does not block a merge:** repeated syntax, repeated title shapes, a construction used too
+often across a batch. Those are logged as gait debt and paid down deliberately, not inside a
+correctness pass.
+
 ### ⚙ RULED 2026-09-03 — THE BATCH MAY NOT TEACH ONE LESSON TEN TIMES
 
 The wave-6 seal's finding, and the deepest samey-ness result so far. Ten works with ten genuinely
