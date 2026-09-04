@@ -606,3 +606,18 @@ Muse store (nine lifts sealed), the QC word load-bearing leaked into a liner for
 dossier builder emitted Drones as 2023, and the first cut of every gist ran long against the recipe and was
 trimmed; the anchor-fact opener rule moved the thermodynamics clause out of The 2nd Law's gist and the
 crowd-convicts-itself clause out of Will of the People's. Portraits after: 412.
+
+### Batch log — Trivium: full catalog, seven album entries, first artist entry (2026-09-04, 4dfe057 / ed039fd / f757ee9)
+
+Ninety-four reads across ten records shipped in one pass — In Waves and Vengeance Falls carry the listening, Shogun and
+The Sin and the Sentence next, Ascendancy, Ember to Inferno and The Crusade lightly, the 2015–2021 records and three
+covers barely — with thirty-six fnotes, the richest yield so far: a 2008 Shogun line that became a 2013 song title, the
+opener's first line returning in the plural four tracks later, a 2011 verse line promoted to a 2017 title, the real cases
+behind The Crusade that the band never named, a video-game commission, a title track written eight years before its
+album. Seven full entries followed (gist, liner, arc where the closer was verified), gist-only descriptors for What the
+Dead Men Say, In the Court of the Dragon and Silence in the Snow, and the first artist entry, organised around the one
+habit every record shares: someone rises to indict a world and finishes inside the charge. Craft notes: the first liner
+set was rejected for reciting producers and drummers and redrafted under a new rule (open on the record's move; crew only
+where it shapes the hearing); the read brief's "principal lyricist" line over-credited Heafy on records Paolo Gregoletto
+largely wrote and was sealed seven times; a Heaven Shall Burn cover was caught by verification and redone under covers
+doctrine. Portraits after: 423.
