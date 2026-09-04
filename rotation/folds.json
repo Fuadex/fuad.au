@@ -6410,6 +6410,30 @@
     "to": "Butterflies & Hurricanes",
     "type": "spelling",
     "reason": "spelling: ampersand/'and' variant folds to canonical"
+   },
+   {
+    "from": "Micro Cuts - XX Anniversary RemiXX",
+    "to": "Micro Cuts",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Kill Or Be Killed - Felsmann + Tiley Reinterpretation",
+    "to": "Kill or Be Killed",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Unravelling - Ghost Town Version",
+    "to": "Unravelling",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Big Freeze(HD Quality)",
+    "to": "Big Freeze",
+    "type": "spelling",
+    "reason": "spelling: rip-tag suffix on the same recording folds to canonical"
    }
   ],
   "albums": [
