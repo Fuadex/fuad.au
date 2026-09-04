@@ -9335,6 +9335,108 @@
     "to": "Beneath My Skin",
     "type": "spelling",
     "reason": "spelling (Fuad 2026-09-04): the two songs run as one on Sonder and were scrobbled as one combined title; folded to the first so the row homes at track 5, Mirror Image absorbed into it"
+   },
+   {
+    "from": "Survival (Errai)",
+    "to": "Survival",
+    "type": "variant",
+    "reason": "variant: Errai 2016 reworking by Aidan O'Brien (vocals-first rebuild), link to canonical for reads (Fuad 2026-09-04)"
+   },
+   {
+    "from": "Tourniquet (Errai)",
+    "to": "Tourniquet",
+    "type": "variant",
+    "reason": "variant: Errai 2016 reworking, link to canonical for reads (Fuad 2026-09-04)"
+   },
+   {
+    "from": "Cages (Errai)",
+    "to": "Cages",
+    "type": "variant",
+    "reason": "variant: Errai 2016 reworking, link to canonical for reads (Fuad 2026-09-04)"
+   },
+   {
+    "from": "Tourniquet - P O R T A L S",
+    "to": "Tourniquet",
+    "type": "variant",
+    "reason": "variant: P O R T A L S 2021 live rendition, link to canonical for reads (Fuad 2026-09-04)"
+   },
+   {
+    "from": "Cages - P O R T A L S",
+    "to": "Cages",
+    "type": "variant",
+    "reason": "variant: P O R T A L S 2021 live rendition, link to canonical for reads (Fuad 2026-09-04)"
+   },
+   {
+    "from": "Phoenix - P O R T A L S",
+    "to": "Phoenix",
+    "type": "variant",
+    "reason": "variant: P O R T A L S 2021 live rendition, link to canonical for reads (Fuad 2026-09-04)"
+   },
+   {
+    "from": "Nocturne - P O R T A L S",
+    "to": "Of Mind - Nocturne",
+    "type": "variant",
+    "reason": "variant: P O R T A L S 2021 live rendition, link to canonical for reads (Fuad 2026-09-04)"
+   },
+   {
+    "from": "Natural Disaster - RADAR O.S.T",
+    "to": "Natural Disaster",
+    "type": "variant",
+    "reason": "variant: Live at Radar Festival 2024 (Tour Edition), link to canonical for reads (Fuad 2026-09-04)"
+   },
+   {
+    "from": "King - RADAR O.S.T",
+    "to": "King",
+    "type": "variant",
+    "reason": "variant: Live at Radar Festival 2024, link to canonical for reads (Fuad 2026-09-04)"
+   },
+   {
+    "from": "Tender - RADAR O.S.T",
+    "to": "Tender",
+    "type": "variant",
+    "reason": "variant: Live at Radar Festival 2024 (Tour Edition), link to canonical for reads (Fuad 2026-09-04)"
+   },
+   {
+    "from": "Concealing Fate Part One Acceptance - RADAR O.S.T",
+    "to": "Acceptance - Concealing Fate, Pt. 1",
+    "type": "variant",
+    "reason": "variant: Live at Radar Festival 2024, link to canonical for reads (Fuad 2026-09-04)"
+   },
+   {
+    "from": "Juno (from Sonder)",
+    "to": "Juno",
+    "type": "variant",
+    "reason": "variant: the 2018 video/single tagging of the album track, link to canonical for reads (Fuad 2026-09-04)"
+   },
+   {
+    "from": "Nocturne",
+    "to": "Of Mind - Nocturne",
+    "type": "variant",
+    "reason": "variant: albumless scrobble of the Altered State single, link to canonical for reads (Fuad 2026-09-04)"
+   },
+   {
+    "from": "NocTurn-up",
+    "to": "Of Mind - Nocturne",
+    "type": "variant",
+    "reason": "variant: remix/rework tagging of Nocturne, link to canonical for reads (Fuad 2026-09-04)"
+   },
+   {
+    "from": "Deception Pt 2",
+    "to": "Deception - Concealing Fate, Pt. 2",
+    "type": "variant",
+    "reason": "variant: albumless scrobble of the Concealing Fate movement, link to canonical for reads (Fuad 2026-09-04)"
+   },
+   {
+    "from": "The Impossible - Concealing Fate Part Three",
+    "to": "The Impossible - Concealing Fate, Pt. 3",
+    "type": "variant",
+    "reason": "variant: Odyssey 2015 live recording (O'Hara era), link to canonical for reads (Fuad 2026-09-04)"
+   },
+   {
+    "from": "April (vocal cover)",
+    "to": "April",
+    "type": "variant",
+    "reason": "variant: albumless vocal-cover tagging of the One track, link to canonical for reads (Fuad 2026-09-04)"
    }
   ],
   "albums": [
