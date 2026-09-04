@@ -592,3 +592,17 @@ sound attribution verification had already killed at read level (Morricone → m
 collage tax fired again (six seals on one liner, then my own replacement echoed a read and was
 re-sealed), and the dossier builder emitted a wrong album year that the verified date replaced.
 No artist entry — two of eight played albums portraited.
+
+### Batch log — Muse: the rest of the catalog + first artist entry (2026-09-04, e96369f)
+
+Six album entries behind the seventy-read catalog close — Origin of Symmetry, The 2nd Law, The Resistance,
+Showbiz, Drones and Will of the People — plus gist-only descriptors for the Kill or Be Killed single bucket, the
+Muscle Museum B-sides bucket, The Wow! Signal and the Cryogen single, and the first `muse` artist entry,
+organised around one claim (a small private hurt that can only be admitted at enormous size) and weighted to
+Absolution and Black Holes where the listening lives. Four arcs earned; The Resistance ships arc-less because its
+liner close already owns the closing symphony, Drones because its running order is unreliable in the library and
+the title-track closer was never played. Craft notes: the collage tax fired on five of six liners against the full
+Muse store (nine lifts sealed), the QC word load-bearing leaked into a liner for the third time this campaign, the
+dossier builder emitted Drones as 2023, and the first cut of every gist ran long against the recipe and was
+trimmed; the anchor-fact opener rule moved the thermodynamics clause out of The 2nd Law's gist and the
+crowd-convicts-itself clause out of Will of the People's. Portraits after: 412.
