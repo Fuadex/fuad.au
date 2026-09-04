@@ -621,3 +621,16 @@ set was rejected for reciting producers and drummers and redrafted under a new r
 where it shapes the hearing); the read brief's "principal lyricist" line over-credited Heafy on records Paolo Gregoletto
 largely wrote and was sealed seven times; a Heaven Shall Burn cover was caught by verification and redone under covers
 doctrine. Portraits after: 423.
+
+### Batch log — Serj Tankian: the gap fill and the A/B regens (2026-09-04, 1a36ff0 / a45b180 / 147145f)
+
+Thirty-six reads filled the solo catalogue wall-to-wall — Elect the Dead, Harakiri, Imperfect Harmonies and the
+Elasticity EP — with twenty-two fnotes: a band's name split open into a pun on the hiatus record, a 2007 title retracted
+by a 2012 lyric, a protest statement pasted into a song word for word, two lyrics that turned out to be a playwright's,
+translated Aeschylus in a bridge, an Armenian-language song whose title puns on the word for I. The three entries that had
+shipped on partial coverage were regenerated against the full set and judged A/B: the fresh entries go frontal, the
+shipped ones stay on the flick with their two factual slips corrected (an Iraq song mis-framed as genocide, a two-state
+demand read as a shared homeland), Elasticity gets a first entry, and the artist entry is likewise regenerated with the
+old one preserved. Craft notes: the liners followed the crew-free rule from the Trivium round; the artist draft inverted
+the play weighting and was sealed; the Harakiri fnote re-told its read and was rewritten to carry only what the read
+lacked, which is now the rule for fnotes. Portraits after: 424.
