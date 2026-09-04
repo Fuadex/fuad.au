@@ -9307,10 +9307,10 @@
   ],
   "tracks": [
    {
-    "from": "Of Mind - Exile",
-    "to": "Of Mind - Exiled",
+    "from": "Of Mind - Exiled",
+    "to": "Of Mind - Exile",
     "type": "spelling",
-    "reason": "spelling: Spotify title is error; band-confirmed official title is \"Of Mind - Exiled\""
+    "reason": "spelling (reversed 2026-09-04, Fuad): the disc/MB title is Of Mind - Exile and homing keys on it; the band-confirmed Exiled spelling is noted here, not applied, so the row takes its track-5 position on Altered State"
    },
    {
     "from": "April (Acoustic)",
@@ -9329,6 +9329,12 @@
     "to": "Of Matter - Retrospect",
     "type": "variant",
     "reason": "instrumental version ((Instrumental))"
+   },
+   {
+    "from": "Beneath My Skin / Mirror Image",
+    "to": "Beneath My Skin",
+    "type": "spelling",
+    "reason": "spelling (Fuad 2026-09-04): the two songs run as one on Sonder and were scrobbled as one combined title; folded to the first so the row homes at track 5, Mirror Image absorbed into it"
    }
   ],
   "albums": [
