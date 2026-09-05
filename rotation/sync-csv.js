@@ -53,6 +53,8 @@ function fixUnknown(artist, album, track) {
 }
 // scatter a bogus placeholder album onto the real releases its tracks belong to (per-track)
 const ALBUM_REMAP = {
+  // Mick Gordon (Fuad 2026-09-06): rows scrobbled with an EMPTY album string, homed to their official releases by (remapped) title
+  ["Mick Gordon\x00"]: { "The Super Gore Nest": "DOOM Eternal (Original Game Soundtrack)", "BFG 10k": "DOOM Eternal (Original Game Soundtrack)", "Demonic Corruption": "DOOM Eternal (Original Game Soundtrack)", "The Only Thing They Fear Is You": "DOOM Eternal (Original Game Soundtrack)", "Rip & Tear": "DOOM (Original Game Soundtrack)", "BFG Division": "DOOM (Original Game Soundtrack)", "Flesh & Metal": "DOOM (Original Game Soundtrack)" },
   // God Is an Astronaut (Fuad 2026-09-06): remaster-edition album strings fold into the albums
   ["God Is an Astronaut\x00God Is An Astronaut (2011 Remastered Edition)"]: { "Loss": "God Is An Astronaut", "Shadows": "God Is An Astronaut" },
   ["God Is an Astronaut\x00The End Of The Beginning (2011 Remastered Edition)"]: { "Fall From the Stars": "The End of the Beginning" },
@@ -75,6 +77,14 @@ const cleanAlbum = (name) => {
 // all data-hygiene overrides in one place; applied on every pulled row AND to the existing CSV (--fixcsv)
 // TRACK_REMAP (Fuad 2026-09-06): mis-tagged track titles → the release title. Keyed artist\x00track.
 const TRACK_REMAP = {
+  // Mick Gordon (Fuad 2026-09-06): strip fan suffixes / numbered prefixes to the official titles
+  ["Mick Gordon\x00The Super Gore Nest (DOOM Eternal OST)"]: "The Super Gore Nest",
+  ["Mick Gordon\x00BFG 10k (DOOM Eternal OST)"]: "BFG 10k",
+  ["Mick Gordon\x00Demonic Corruption (DOOM Eternal OST)"]: "Demonic Corruption",
+  ["Mick Gordon\x00The Only Thing They Fear is You (DOOM Eternal OST)"]: "The Only Thing They Fear Is You",
+  ["Mick Gordon\x0002. Rip & Tear"]: "Rip & Tear",
+  ["Mick Gordon\x0011. BFG Division"]: "BFG Division",
+  ["Mick Gordon\x0008. Flesh & Metal"]: "Flesh & Metal",
   ["Strapping Young Lad\x00Plyophony"]: "Polyphony", // The New Black track 10
   // God Is an Astronaut (Fuad 2026-09-06): printed titles
   ["God Is an Astronaut\x00Postmortem"]: "Post Mortem",
