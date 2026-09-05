@@ -53,6 +53,9 @@ function fixUnknown(artist, album, track) {
 }
 // scatter a bogus placeholder album onto the real releases its tracks belong to (per-track)
 const ALBUM_REMAP = {
+  // God Is an Astronaut (Fuad 2026-09-06): remaster-edition album strings fold into the albums
+  ["God Is an Astronaut\x00God Is An Astronaut (2011 Remastered Edition)"]: { "Loss": "God Is An Astronaut", "Shadows": "God Is An Astronaut" },
+  ["God Is an Astronaut\x00The End Of The Beginning (2011 Remastered Edition)"]: { "Fall From the Stars": "The End of the Beginning" },
   // Strapping Young Lad (Fuad 2026-09-06): one Zen scrobble tagged to The New Black; Zen is Alien track 10.
   ["Strapping Young Lad\x00The New Black"]: { "Zen": "Alien" },
   ["Linkin Park\x00Mój Album"]: {
@@ -71,7 +74,12 @@ const cleanAlbum = (name) => {
 };
 // all data-hygiene overrides in one place; applied on every pulled row AND to the existing CSV (--fixcsv)
 // TRACK_REMAP (Fuad 2026-09-06): mis-tagged track titles → the release title. Keyed artist\x00track.
-const TRACK_REMAP = { ["Strapping Young Lad\x00Plyophony"]: "Polyphony" }; // The New Black track 10
+const TRACK_REMAP = {
+  ["Strapping Young Lad\x00Plyophony"]: "Polyphony", // The New Black track 10
+  // God Is an Astronaut (Fuad 2026-09-06): printed titles
+  ["God Is an Astronaut\x00Postmortem"]: "Post Mortem",
+  ["God Is an Astronaut\x00Fall From Stars"]: "Fall From the Stars",
+};
 function fixRow(artist, album, track) {
   [artist, album, track] = fixUnknown(artist, album, track);
   const tr = TRACK_REMAP[artist + "\x00" + track]; if (tr) track = tr;
