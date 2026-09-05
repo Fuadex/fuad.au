@@ -634,3 +634,6 @@ demand read as a shared homeland), Elasticity gets a first entry, and the artist
 old one preserved. Craft notes: the liners followed the crew-free rule from the Trivium round; the artist draft inverted
 the play weighting and was sealed; the Harakiri fnote re-told its read and was rewritten to carry only what the read
 lacked, which is now the rule for fnotes. Portraits after: 424.
+
+## Methodology stamp (2026-09-05)
+Entries in portraits.js carry `mv: "2.6"` when their liner/gist/portrait were produced under PORTRAIT METHODOLOGY v2.6 (liners 100–140w that argue rather than tour, ≤4 named tracks, one music sentence, images resolving in-paragraph; gists ≤2 named; artist entries with a music sentence). Entries without `mv` predate it. Superseded texts sit on `linerPrev` / `gistPrev` / `portraitPrev` / `notePrev` so old and new can be flicked; the new text is always the front one.
