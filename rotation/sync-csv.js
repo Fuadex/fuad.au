@@ -53,6 +53,8 @@ function fixUnknown(artist, album, track) {
 }
 // scatter a bogus placeholder album onto the real releases its tracks belong to (per-track)
 const ALBUM_REMAP = {
+  // Strapping Young Lad (Fuad 2026-09-06): one Zen scrobble tagged to The New Black; Zen is Alien track 10.
+  ["Strapping Young Lad\x00The New Black"]: { "Zen": "Alien" },
   ["Linkin Park\x00Mój Album"]: {
     "Numb": "Meteora", "From the Inside": "Meteora", "Somewhere I Belong": "Meteora",
     "Faint": "Meteora", "Breaking the Habbit": "Meteora",
@@ -68,8 +70,11 @@ const cleanAlbum = (name) => {
   return s || name;
 };
 // all data-hygiene overrides in one place; applied on every pulled row AND to the existing CSV (--fixcsv)
+// TRACK_REMAP (Fuad 2026-09-06): mis-tagged track titles → the release title. Keyed artist\x00track.
+const TRACK_REMAP = { ["Strapping Young Lad\x00Plyophony"]: "Polyphony" }; // The New Black track 10
 function fixRow(artist, album, track) {
   [artist, album, track] = fixUnknown(artist, album, track);
+  const tr = TRACK_REMAP[artist + "\x00" + track]; if (tr) track = tr;
   const m = ALBUM_REMAP[artist + "\x00" + album]; if (m && m[track]) album = m[track];
   return [artist, cleanAlbum(album), track];
 }
