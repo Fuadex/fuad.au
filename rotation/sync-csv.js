@@ -77,6 +77,9 @@ const cleanAlbum = (name) => {
 // all data-hygiene overrides in one place; applied on every pulled row AND to the existing CSV (--fixcsv)
 // TRACK_REMAP (Fuad 2026-09-06): mis-tagged track titles → the release title. Keyed artist\x00track.
 const TRACK_REMAP = {
+  // Pendulum (Fuad 2026-09-06): duplicate Island Pt. II row folded into the album's title form
+  ["Pendulum\x00The Island, Pt. II (Dusk)"]: "The Island - Pt. 2 (Dusk)",
+  ["Pendulum\x00The Island - Pt. II (Dusk)"]: "The Island - Pt. 2 (Dusk)",
   // Mick Gordon (Fuad 2026-09-06): strip fan suffixes / numbered prefixes to the official titles
   ["Mick Gordon\x00The Super Gore Nest (DOOM Eternal OST)"]: "The Super Gore Nest",
   ["Mick Gordon\x00BFG 10k (DOOM Eternal OST)"]: "BFG 10k",
