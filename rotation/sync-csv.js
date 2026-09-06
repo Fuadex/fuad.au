@@ -53,6 +53,8 @@ function fixUnknown(artist, album, track) {
 }
 // scatter a bogus placeholder album onto the real releases its tracks belong to (per-track)
 const ALBUM_REMAP = {
+  // Pendulum (Fuad 2026-09-06): the 2020 double A-side scrobbled as an album "Nothing For Free" → the Elemental EP that collects it
+  ["Pendulum\x00Nothing For Free"]: { "Driver": "Elemental", "Nothing For Free": "Elemental" },
   // Mick Gordon (Fuad 2026-09-06): rows scrobbled with an EMPTY album string, homed to their official releases by (remapped) title
   ["Mick Gordon\x00"]: { "The Super Gore Nest": "DOOM Eternal (Original Game Soundtrack)", "BFG 10k": "DOOM Eternal (Original Game Soundtrack)", "Demonic Corruption": "DOOM Eternal (Original Game Soundtrack)", "The Only Thing They Fear Is You": "DOOM Eternal (Original Game Soundtrack)", "Rip & Tear": "DOOM (Original Game Soundtrack)", "BFG Division": "DOOM (Original Game Soundtrack)", "Flesh & Metal": "DOOM (Original Game Soundtrack)" },
   // God Is an Astronaut (Fuad 2026-09-06): remaster-edition album strings fold into the albums
@@ -93,8 +95,14 @@ const TRACK_REMAP = {
   ["God Is an Astronaut\x00Postmortem"]: "Post Mortem",
   ["God Is an Astronaut\x00Fall From Stars"]: "Fall From the Stars",
 };
+// whole album rows scrobbled under the wrong artist → [artist, album] (Fuad 2026-09-06)
+const ARTIST_ALBUM_REMAP = {
+  // two J-pop tracks scrobbled under Pendulum; real artist not established, parked under the album name
+  ["Pendulum\x00the Best of Smile"]: ["the Best of Smile", ""],
+};
 function fixRow(artist, album, track) {
   [artist, album, track] = fixUnknown(artist, album, track);
+  const aa = ARTIST_ALBUM_REMAP[artist + "\x00" + album]; if (aa) { artist = aa[0]; album = aa[1]; }
   const tr = TRACK_REMAP[artist + "\x00" + track]; if (tr) track = tr;
   const m = ALBUM_REMAP[artist + "\x00" + album]; if (m && m[track]) album = m[track];
   return [artist, cleanAlbum(album), track];
