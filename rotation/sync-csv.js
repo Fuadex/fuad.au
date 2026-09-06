@@ -79,6 +79,31 @@ const cleanAlbum = (name) => {
 // all data-hygiene overrides in one place; applied on every pulled row AND to the existing CSV (--fixcsv)
 // TRACK_REMAP (Fuad 2026-09-06): mis-tagged track titles → the release title. Keyed artist\x00track.
 const TRACK_REMAP = {
+  // Hyper (Fuad 2026-09-06): Beatport-style Original Mix suffixes stripped so album rows meet their plain-title twins
+  ["Hyper\x00Bully - Original Mix"]: "Bully",
+  ["Hyper\x00Clockwork (Original Mix)"]: "Clockwork",
+  ["Hyper\x00Clockwork - Original Mix"]: "Clockwork",
+  ["Hyper\x00Controllin Me - Original Mix"]: "Controllin Me",
+  ["Hyper\x00Games (Original Mix)"]: "Games",
+  ["Hyper\x00Ghost - Original Mix"]: "Ghost",
+  ["Hyper\x00He Rises (Original Mix)"]: "He Rises",
+  ["Hyper\x00He Rises - Original Mix"]: "He Rises",
+  ["Hyper\x00Heartbeats - Original Mix"]: "Heartbeats",
+  ["Hyper\x00It's a Trap (Original Mix)"]: "It's a Trap",
+  ["Hyper\x00Lies (Original Mix)"]: "Lies",
+  ["Hyper\x00Lies - Original Mix"]: "Lies",
+  ["Hyper\x00Live Forever - Original Mix"]: "Live Forever",
+  ["Hyper\x00Out of Time (Original Mix)"]: "Out of Time",
+  ["Hyper\x00Out of Time - Original Mix"]: "Out of Time",
+  ["Hyper\x00Resurrection - Original Mix"]: "Resurrection",
+  ["Hyper\x00Say Goodnight (Original Mix)"]: "Say Goodnight",
+  ["Hyper\x00Scream For Me - Original Mix"]: "Scream For Me",
+  ["Hyper\x00Sirens - Original Mix"]: "Sirens",
+  ["Hyper\x00Spoiler - Original Mix"]: "Spoiler",
+  ["Hyper\x00Take Me Away (Original Mix)"]: "Take Me Away",
+  ["Hyper\x00Take Me Away - Original Mix"]: "Take Me Away",
+  ["Hyper\x00The Battle - Original Mix"]: "The Battle",
+  ["Hyper\x00The Fallen - Original Mix"]: "The Fallen",
   // Pendulum (Fuad 2026-09-06): duplicate Island Pt. II row folded into the album's title form
   ["Pendulum\x00The Island, Pt. II (Dusk)"]: "The Island - Pt. 2 (Dusk)",
   ["Pendulum\x00The Island - Pt. II (Dusk)"]: "The Island - Pt. 2 (Dusk)",
