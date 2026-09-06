@@ -637,3 +637,5 @@ lacked, which is now the rule for fnotes. Portraits after: 424.
 
 ## Methodology stamp (2026-09-05)
 Entries in portraits.js carry `mv: "2.6"` when their liner/gist/portrait were produced under PORTRAIT METHODOLOGY v2.6 (liners 100–140w that argue rather than tour, ≤4 named tracks, one music sentence, images resolving in-paragraph; gists ≤2 named; artist entries with a music sentence). Entries without `mv` predate it. Superseded texts sit on `linerPrev` / `gistPrev` / `portraitPrev` / `notePrev` so old and new can be flicked; the new text is always the front one.
+
+**Rule 12 (2026-09-06): gist is the frame, liner extends it.** An album gist holds year, form, the library tenure (first year, last year, how the plays fell) and at most one clause of thesis; the liner argues through the songs and never restates a gist sentence, and a fact that both could carry belongs to whichever does something with it. Model: the Nine Inch Nails entries. Piloted on Pendulum's In Silico.
