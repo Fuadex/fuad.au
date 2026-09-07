@@ -141,7 +141,7 @@ const ARTIST_ALBUM_REMAP = {
   ["Massive Attack\x00Danny The Dog - OST"]: ["Massive Attack", "Danny the Dog"],
   ["Massive Attack\x00Unleashed"]: ["Massive Attack", "Danny the Dog"],
   // Black Light Burns (Fuad 2026-09-07): two scrobbles landed on the clean edition of Cruel Melody and showed as a second album — folded into the record
-  ["Black Light Burns Cruel Melody (Clean)"]: ["Black Light Burns", "Cruel Melody"],
+  ["Black Light Burns\x00Cruel Melody (Clean)"]: ["Black Light Burns", "Cruel Melody"],
 };
 function fixRow(artist, album, track) {
   [artist, album, track] = fixUnknown(artist, album, track);
