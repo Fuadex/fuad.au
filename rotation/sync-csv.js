@@ -62,6 +62,8 @@ const ALBUM_REMAP = {
   ["God Is an Astronaut\x00The End Of The Beginning (2011 Remastered Edition)"]: { "Fall From the Stars": "The End of the Beginning" },
   // Strapping Young Lad (Fuad 2026-09-06): one Zen scrobble tagged to The New Black; Zen is Alien track 10.
   ["Strapping Young Lad\x00The New Black"]: { "Zen": "Alien" },
+  // Massive Attack (Fuad 2026-09-07): live "(with …)" rows scrobbled with an EMPTY album string fold onto the album cuts (titles remapped first)
+  ["Massive Attack\x00"]: { "Safe From Harm": "Blue Lines", "Unfinished Sympathy": "Blue Lines", "Teardrop": "Mezzanine", "Angel": "Mezzanine" },
   ["Linkin Park\x00Mój Album"]: {
     "Numb": "Meteora", "From the Inside": "Meteora", "Somewhere I Belong": "Meteora",
     "Faint": "Meteora", "Breaking the Habbit": "Meteora",
@@ -116,6 +118,17 @@ const TRACK_REMAP = {
   ["Mick Gordon\x0011. BFG Division"]: "BFG Division",
   ["Mick Gordon\x0008. Flesh & Metal"]: "Flesh & Metal",
   ["Strapping Young Lad\x00Plyophony"]: "Polyphony", // The New Black track 10
+  // Massive Attack (Fuad 2026-09-07): duplicate rows fold onto the album cuts
+  ["Massive Attack\x00Antistar - Includes Hidden Track 'LP4'"]: "Antistar",
+  ["Massive Attack\x00Antistar (Includes Hidden Track 'LP4')"]: "Antistar",
+  ["Massive Attack\x00Unfinished Sympathy (2012 Mix/Master)"]: "Unfinished Sympathy",
+  ["Massive Attack\x00Safe From Harm (2012 Mix/Master)"]: "Safe From Harm",
+  ["Massive Attack\x00Safe from Harm - 2012 Mix/Master"]: "Safe From Harm",
+  ["Massive Attack\x00Unfinished Sympathy - 2012 Mix/Master"]: "Unfinished Sympathy",
+  ["Massive Attack\x00Safe From Harm (with Deborah Miller)"]: "Safe From Harm",
+  ["Massive Attack\x00Unfinished Sympathy (with Deborah Miller)"]: "Unfinished Sympathy",
+  ["Massive Attack\x00Teardrop (with Dot Allison)"]: "Teardrop",
+  ["Massive Attack\x00Angel (with Horace Andy)"]: "Angel",
   // God Is an Astronaut (Fuad 2026-09-06): printed titles
   ["God Is an Astronaut\x00Postmortem"]: "Post Mortem",
   ["God Is an Astronaut\x00Fall From Stars"]: "Fall From the Stars",
@@ -124,6 +137,9 @@ const TRACK_REMAP = {
 const ARTIST_ALBUM_REMAP = {
   // two J-pop tracks scrobbled under Pendulum; real artist not established, parked under the album name
   ["Pendulum\x00the Best of Smile"]: ["the Best of Smile", ""],
+  // Massive Attack (Fuad 2026-09-07): one score under two titles — the 2004 Danny the Dog CD and its 2005 US edition Unleashed — folded to the film's own title
+  ["Massive Attack\x00Danny The Dog - OST"]: ["Massive Attack", "Danny the Dog"],
+  ["Massive Attack\x00Unleashed"]: ["Massive Attack", "Danny the Dog"],
 };
 function fixRow(artist, album, track) {
   [artist, album, track] = fixUnknown(artist, album, track);
