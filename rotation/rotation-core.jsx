@@ -474,7 +474,15 @@ a.r-link:hover { color: var(--ink); }
   .clk-scroll > div { min-width: 430px; }
 }
 .r-track-row { transition: background .15s; } .r-track-row:hover { background: var(--bg-3); }
-@media (max-width: 760px) { .tv-grid { grid-template-columns: 1fr !important; } }
+/* One column below 760px — but minmax(0,1fr), NOT a bare 1fr. A bare 1fr is minmax(auto,1fr),
+   so the track can never shrink below the widest card's min-content, and a grid item spanning
+   an auto-min track keeps its own content-based minimum too. The album page's "Where it sits"
+   card carries the one-line theme rail (.alb-chipscroll, chips set to nowrap), whose min-content
+   is the WHOLE chip run — that dragged the single column to ~850px on a 460px phone and pushed
+   the Audio DNA card sharing it straight off the page (.r-app clips, so it read as a cut-off
+   card). Song pages wrap their theme chips, which is why only albums showed it. minmax(0,1fr)
+   matches what both detail pages already declare inline for the two-column layout. */
+@media (max-width: 760px) { .tv-grid { grid-template-columns: minmax(0, 1fr) !important; } }
 @media (max-width: 600px) {
   .tv-head { gap: 16px !important; }
   .tv-head .r-stat-n { font-size: 26px !important; }
