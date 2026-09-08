@@ -2968,6 +2968,20 @@ const museumNormT = (s) => (s || "").toLowerCase().normalize("NFD").replace(/[̀
 const hexRGB = (h) => { const m = /^#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(h || ""); return m ? [parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16)] : null; };
 const hexClose = (a, b) => { const x = hexRGB(a), y = hexRGB(b); if (!x || !y) return false; return Math.abs(x[0] - y[0]) + Math.abs(x[1] - y[1]) + Math.abs(x[2] - y[2]) < 46; };
 
+// Visit-date eligibility, shared by the museum date chip and the map's trip strip (day-precise;
+// a year-only value gets no chip and no strip entry).
+const CV_TRIP_RANGES = [["2024-12-17", "2025-01-05"], ["2025-05-03", "2025-05-11"], ["2025-06-21", "2025-07-06"], ["2025-09-28", "2025-10-08"]];
+const visitEligible = (dateStr, country) => {
+  if (country === "au") return true;
+  const em = String(dateStr).match(/(\d{4})(?:-(\d{2})(?:-(\d{2}))?)?/);
+  if (!em) return true;
+  const ey = +em[1];
+  if (ey < 2024 || ey > 2025) return true;
+  if (!em[3]) return false;
+  const day = em[1] + "-" + em[2] + "-" + em[3];
+  return day < "2024-06-25" || CV_TRIP_RANGES.some(([a, b]) => day >= a && day <= b);
+};
+
 function MuseumView({ museumId, go }) {
   const m = MUS_BY_ID[museumId];
   const HL = window.CANVAS_HIGHLIGHTS || {};
@@ -3142,14 +3156,12 @@ function MuseumView({ museumId, go }) {
       el.removeEventListener("pointercancel", onUp);
     };
   }, []);
-  // date chip eligibility
-  const eligible = (dateStr, country) => { if (country === "au") return true; const em = String(dateStr).match(/(\d{4})(?:-(\d{2}))?/); if (!em) return true; const ey = +em[1], emo = em[2] ? +em[2] : 0; if (ey < 2024 || ey > 2025) return true; if (ey === 2024 && emo && emo < 5) return true; return false; };
   const visitDate = (Array.isArray(m.visits) ? m.visits : []).find(d => /^\d{4}-\d{2}/.test(d)) || null;
   const visitMonthLabel = (dateStr) => {
     const dt = new Date(dateStr + (dateStr.length === 7 ? "-01" : ""));
     return isNaN(dt) ? null : dt.toLocaleString("en-US", { month: "short", year: "numeric" });
   };
-  const showVisitChip = visitDate && eligible(visitDate, m.country) ? visitMonthLabel(visitDate) : null;
+  const showVisitChip = visitDate && visitEligible(visitDate, m.country) ? visitMonthLabel(visitDate) : null;
 
   // reusable card wall (uses the home Card so ✦ read markers + floored ★ + conf styling match).
   // Reveal-chunked (Fuad 2026-07-25): only the first ~30 cards mount up-front; the rest render as the
@@ -4276,11 +4288,10 @@ function MapView({ go }) {
     // honest rather than implied.
   }, [cities, dotMul]);
   const trips = useMemo(() => {
-    const eligible = (dateStr, country) => { if (country === "au") return true; const em = String(dateStr).match(/(\d{4})(?:-(\d{2}))?/); if (!em) return true; const ey = +em[1], emo = em[2] ? +em[2] : 0; if (ey < 2024 || ey > 2025) return true; if (ey === 2024 && emo && emo < 5) return true; return false; };
     const by = {};
     for (const m of MUSEUMS) for (const v of (m.visits || [])) {
       const y = String(v).match(/^(~?)(\d{4})/); if (!y) continue;
-      if (!eligible(String(v), m.country)) continue;
+      if (!visitEligible(String(v), m.country)) continue;
       (by[y[2]] = by[y[2]] || new Set()).add(m.city);
     }
     return Object.entries(by).map(([y, s]) => [y, [...s]]).filter(([, c]) => c.length).sort((a, b) => b[0] - a[0]);
