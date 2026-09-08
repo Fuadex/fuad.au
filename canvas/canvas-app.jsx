@@ -749,7 +749,11 @@ const palDistTo = (w, target) => {
   }
   return best;
 };
-// ERA CHIPS (Fuad 2026-08-20, replacing Timeline mode). Sized off the real distribution rather
+// ERA BANDS — the retired chip row (Fuad 2026-08-20, replacing Timeline mode; retired 2026-09-08
+// for the YEAR RANGE slider below). KEPT because the permalink parser still reads them: an old
+// shared link carrying `er=e1890+e1900` maps its keys through this table onto a [lo, hi] span, so
+// every wall URL ever copied still opens on the years it meant (see parseYearSpan). Sized off the
+// real distribution rather
 // than round numbers: the median work is from 1888 and the middle half sits 1865-1906, so a
 // century split would have produced one enormous 1800s bucket doing no work. These seven keep
 // every band between roughly 150 and 380 works, with the thin pre-1800 tail merged into one.
@@ -763,11 +767,64 @@ const ERAS = [
   ["e1920", "1920 on", 1920, 9999],
   ["undated", "undated", null, null],
 ];
-const eraPass = (w, k) => {
-  const e = ERAS.find(x => x[0] === k); if (!e) return true;
-  if (k === "undated") return !w.year;
-  return !!w.year && w.year >= e[2] && w.year <= e[3];
-};
+// ── YEAR RANGE (Fuad 2026-09-08: "a draggable time period handles over a line … which should give
+// more power and take less space than the current Era buttons"). Eight OR'd chips become one
+// [lo, hi] span, and the row of buttons becomes one line.
+//
+// THE AXIS IS NOT LINEAR, BECAUSE THE COLLECTION IS NOT. Measured over the 2,592 dated works
+// (2026-09-08): median 1884, middle half 1865–1906, 83% inside 1800–1949, a 405-work tail spread
+// across the 2,600 years before 1800 (earliest -825), and 28 works after 1950. A linear
+// 825 BCE–2030 axis would spend well over half its width on 0.4% of the canon and crush the
+// Impressionist decades — where every real question on this wall lives — into a few pixels.
+//
+// So the handles run over STOPS: evenly spaced in PIXELS, unevenly spaced in YEARS.
+//   · centuries before 1800, plus 1750 (1750–99 alone holds 146 works, so a bare 1700→1800 step
+//     would have hidden the whole late-Georgian block behind one bite)
+//   · one stop per DECADE 1800–1950 — the dense middle, 16 stops, ~2,150 works
+//   · coarse again after (1960 · 1980 · 2000 · now), where 28 works are left
+// 26 stops / 25 intervals. Every step is a meaningful bite rather than an empty one, and the whole
+// axis still fits a phone at roughly 12 px a step.
+const YEAR_STOPS = [-9999, 1400, 1500, 1600, 1700, 1750,
+  1800, 1810, 1820, 1830, 1840, 1850, 1860, 1870, 1880, 1890, 1900, 1910, 1920, 1930, 1940, 1950,
+  1960, 1980, 2000, 2030];
+const YEAR_MIN = YEAR_STOPS[0], YEAR_MAX = YEAR_STOPS[YEAR_STOPS.length - 1];
+// The ends are SENTINELS, not dates: -9999 has to clear the 825 BCE bronze and 2030 has to stay
+// ahead of the calendar. They print as words so nobody reads a fake year off the control.
+const yearLabel = (y) => y <= YEAR_MIN ? "earliest" : y >= YEAR_MAX ? "now" : String(y);
+// Only these get a printed label. Every stop is still visible — the 1 px gaps between the histogram
+// bars ARE the stops — but labelling all 26 would be an unreadable wall of numbers at any width.
+const YEAR_TICKS = new Set([-9999, 1600, 1800, 1850, 1900, 1950, 2030]);
+// year → 0..1 along the piecewise axis. INTERPOLATES inside the containing interval, so a span
+// restored from a legacy era link (1875–1889 — neither is a stop) draws its handles where it
+// actually is instead of being rounded before it is ever shown.
+function yearToPos(y) {
+  const N = YEAR_STOPS.length;
+  if (!(y > YEAR_MIN)) return 0;
+  if (y >= YEAR_MAX) return 1;
+  let i = 0; while (i < N - 2 && YEAR_STOPS[i + 1] <= y) i++;
+  const a = YEAR_STOPS[i], b = YEAR_STOPS[i + 1];
+  return (i + (y - a) / (b - a)) / (N - 1);
+}
+// 0..1 → the nearest stop's index. Dragging and the arrow keys always land ON a stop; there is no
+// in-between year to reach by hand, which is what keeps the two directions agreeing.
+const posToStop = (t) => Math.max(0, Math.min(YEAR_STOPS.length - 1, Math.round(t * (YEAR_STOPS.length - 1))));
+// index of the stop nearest a year — where the keyboard starts when the value came off a legacy
+// link and is not a stop itself.
+function stopIndexOf(y) {
+  let best = 0, bd = Infinity;
+  for (let i = 0; i < YEAR_STOPS.length; i++) { const d = Math.abs(YEAR_STOPS[i] - y); if (d < bd) { bd = d; best = i; } }
+  return best;
+}
+// A span covering the whole axis is not a filter, it is "all years" — the wall stores it as NO span
+// (nothing in the URL, undated works back in) so the two can never disagree.
+const spanIsAll = (sp) => !sp || (sp[0] <= YEAR_MIN && sp[1] >= YEAR_MAX);
+// THE FILTER: a work passes when lo <= year <= hi, both endpoints inclusive.
+// UNDATED WORKS (153 of 2,745 — `year` null or absent) are IN while no span is set and OUT the
+// moment one is. Same rule the medium and quality chips already apply to an unknown bucket: "made
+// between 1880 and 1925" is a question about a date, and a work with no date cannot answer it.
+// Sweeping them in would drop a work of unknown century into every span the user ever drags, and
+// silently guessing a date for them is the guess this pipeline refuses to make.
+const yearPass = (w, sp) => typeof w.year === "number" && w.year >= sp[0] && w.year <= sp[1];
 const centuryOf = (w) => w.year ? Math.floor(w.year / 100) * 100 : null;
 
 // ——— MOVEMENTS ———————————————————————————————————————————————————————————————
@@ -1078,7 +1135,7 @@ function tierHueOrder(list) {
 }
 
 // ── WALL PERMALINKS (Fuad approved 2026-08-27, "should extend to other buttons currently on the
-// wall"). The whole designed wall — marks, status, eras, media, quality, MP floor, tour, sort,
+// wall"). The whole designed wall — marks, status, the year range, media, quality, MP floor, tour, sort,
 // colour pick, the omnisearch tokens and the reshuffle seed — serialises into the hash so the URL
 // IS the wall. STYLES are NOT here: they already live in the route PATH (#/wall/impressionism+fauvism)
 // and stay there, so a permalink composes onto the path as a `?query`. useRoute splits the query off
@@ -1087,7 +1144,9 @@ function tierHueOrder(list) {
 // GRAMMAR (all `&`-joined, order below; empty facets omitted so a plain wall has no query):
 //   tok=<a|m|c|w>:<id>+…   tokens; each id encodeURIComponent'd; type prefix keeps them one param
 //   mk=floored+loved       marks     st=sure+unsure+wish   status
-//   er=e1890+e1900         eras      md=painting+paper     media buckets   ql=q500+iiif  quality
+//   er=1880-1925           year span (one [lo, hi]; -9999 = earliest, 2030 = now; the legacy
+//                          chip form er=e1890+e1900 still parses — see parseYearSpan)
+//   md=painting+paper      media buckets                    ql=q500+iiif    quality
 //   mp=mp150|mp500         MP floor  tour=1                tour-only
 //   sort=affinity|tierhue|colour   (hang is the default and is omitted; year/artist/museum were
 //                                 retired 2026-08-28 — an incoming legacy value falls back to
@@ -1108,6 +1167,34 @@ const WALL_QUAL_KEYS = new Set(QUALITY.map(q => q[0]));
 const WALL_SORTS = new Set(["affinity", "tierhue", "colour"]);
 const WALL_TOK_PREFIX = { artist: "a", museum: "m", city: "c", work: "w" };
 const WALL_TOK_TYPE = { a: "artist", m: "museum", c: "city", w: "work" };
+// `er=` PARSER — reads BOTH the current form and the retired one, so no shared wall URL ever rots.
+//   CURRENT: er=1880-1925   one [lo, hi] span. The sentinels serialise as their numbers, so an
+//            open-ended low bound reads er=-9999-1750; the regex is anchored and \d+ is greedy, so
+//            the leading minus binds to the first number and the separator is never mistaken for it.
+//   LEGACY:  er=e1890+e1900 the OR'd era chips (retired 2026-09-08). Each key maps through ERAS to
+//            its band and the span becomes [min low, max high] — WIDENED to a contiguous range,
+//            because a single span cannot express the hole that non-adjacent chips left. That is
+//            the honest fallback: the link's works are all still on the wall, plus the gap.
+//            `undated` carried no years at all, so it is skipped; a link that was ONLY er=undated
+//            lands on no span (all years) rather than on an empty wall.
+// Anything unparseable returns null and the facet is simply not restored — nothing here throws.
+function parseYearSpan(raw) {
+  if (!raw) return null;
+  const m = /^(-?\d+)-(-?\d+)$/.exec(raw);
+  let lo, hi;
+  if (m) { lo = parseInt(m[1], 10); hi = parseInt(m[2], 10); }
+  else {
+    const bands = raw.split("+").filter(k => WALL_ERA_KEYS.has(k))
+      .map(k => ERAS.find(e => e[0] === k)).filter(e => e && e[2] != null);
+    if (!bands.length) return null;
+    lo = Math.min(...bands.map(e => e[2]));
+    hi = Math.max(...bands.map(e => e[3]));
+  }
+  if (!Number.isFinite(lo) || !Number.isFinite(hi) || hi < lo) return null;
+  lo = Math.max(YEAR_MIN, Math.min(YEAR_MAX, lo));
+  hi = Math.max(YEAR_MIN, Math.min(YEAR_MAX, hi));
+  return spanIsAll([lo, hi]) ? null : [lo, hi];
+}
 
 // Build the query string (no leading '?') from the current wall state. Returns "" when everything is
 // at its default — a plain wall carries no query, so #/wall/ stays clean.
@@ -1121,7 +1208,9 @@ function wallStateToQuery(s) {
   }
   if (s.marks && s.marks.size) parts.push("mk=" + [...s.marks].join("+"));
   if (s.status && s.status.size) parts.push("st=" + [...s.status].join("+"));
-  if (s.eras && s.eras.size) parts.push("er=" + [...s.eras].join("+"));
+  // a span is only ever stored when it is narrower than the whole axis (see spanIsAll), so this
+  // never writes a no-op er= onto a wall nobody has filtered by year
+  if (s.span) parts.push("er=" + s.span[0] + "-" + s.span[1]);
   if (s.media && s.media.length) parts.push("md=" + s.media.join("+"));
   if (s.qual && s.qual.length) parts.push("ql=" + s.qual.join("+"));
   if (s.mp) parts.push("mp=" + s.mp);
@@ -1163,7 +1252,7 @@ function wallStateFromQuery(query, resolveToken) {
   const setFrom = (raw, valid) => new Set((raw || "").split("+").filter(k => valid.has(k)));
   if (kv.mk) out.marks = setFrom(kv.mk, WALL_MARK_KEYS);
   if (kv.st) out.status = setFrom(kv.st, WALL_STATUS_KEYS);
-  if (kv.er) out.eras = setFrom(kv.er, WALL_ERA_KEYS);
+  if (kv.er) { const sp = parseYearSpan(kv.er); if (sp) out.span = sp; }   // new form AND legacy chips
   if (kv.md) out.media = (kv.md).split("+").filter(k => WALL_MEDIA_KEYS.has(k));
   if (kv.ql) out.qual = (kv.ql).split("+").filter(k => WALL_QUAL_KEYS.has(k));
   if (kv.mp === "mp150" || kv.mp === "mp500") out.mp = kv.mp;
@@ -1178,6 +1267,125 @@ function wallStateFromQuery(query, resolveToken) {
 function parts_nonEmpty(kv) {
   for (const k in kv) if (["tok", "mk", "st", "er", "md", "ql", "mp", "tour", "sort", "col", "sh"].includes(k)) return true;
   return false;
+}
+
+// ── YEAR RANGE SLIDER (Fuad 2026-09-08) — two handles over one line, in place of the era chip row.
+// POINTER EVENTS ONLY: mouse, pen and touch are one code path, and the capture lives on the TRACK
+// rather than on either handle, so a drag that runs off the end of the rail (or off the window)
+// still reports back to the same element instead of dying mid-gesture.
+// KEYBOARD: both handles are role="slider" and sit in the tab order — arrows step one stop, PageUp/
+// PageDown four, Home/End run to the ends, Escape clears back to all years. Every key is
+// stopPropagation'd so the wall's global hotkeys never see it.
+// The histogram behind the rail is the collection's own shape under every OTHER active filter (the
+// same facet rule the chip counts follow), so the line shows where anything is left to find BEFORE
+// you drag. Its 1 px gaps are the stops, which is why no separate tick marks are drawn.
+function YearRange({ span, onSpan, hist, count }) {
+  const trackRef = useRef(null);
+  const dragRef = useRef(null);              // which end the pointer owns while down: "lo" | "hi"
+  const N = YEAR_STOPS.length;
+  const lo = span ? span[0] : YEAR_MIN, hi = span ? span[1] : YEAR_MAX;
+  const pLo = yearToPos(lo) * 100, pHi = yearToPos(hi) * 100;
+  const same = (a, b) => (!a && !b) || (!!a && !!b && a[0] === b[0] && a[1] === b[1]);
+  // Commit a stop to one end. The ends CLAMP rather than swap — dragging lo past hi parks them on
+  // the same stop (a one-stop span, which is a legitimate thing to ask for) instead of silently
+  // turning the handle you are holding into the other one under your finger.
+  // Identical values short-circuit: a span is an array, so re-setting it would hand every memo on
+  // the wall a fresh identity and re-sort 2,745 works for a pointermove that changed nothing.
+  const put = (end, idx) => {
+    const y = YEAR_STOPS[Math.max(0, Math.min(N - 1, idx))];
+    const next = end === "lo" ? [Math.min(y, hi), hi] : [lo, Math.max(y, lo)];
+    const norm = spanIsAll(next) ? null : next;
+    if (!same(norm, span)) onSpan(norm);
+  };
+  const posOf = (clientX) => {
+    const r = trackRef.current.getBoundingClientRect();
+    return r.width ? Math.max(0, Math.min(1, (clientX - r.left) / r.width)) : 0;
+  };
+  const onDown = (e) => {
+    const hit = e.target && e.target.closest && e.target.closest("[data-end]");
+    const t = posOf(e.clientX);
+    // OUTSIDE the pair, the handle on that side takes the press; BETWEEN them, the nearer one. A
+    // plain "nearest wins" would sometimes pick the handle that has to be dragged THROUGH the other
+    // to reach the tap, and the two sit on the same spot whenever the span is one stop wide.
+    const end = hit ? hit.dataset.end
+      : t <= yearToPos(lo) ? "lo"
+      : t >= yearToPos(hi) ? "hi"
+      : (t - yearToPos(lo) <= yearToPos(hi) - t ? "lo" : "hi");
+    dragRef.current = end;
+    try { trackRef.current.setPointerCapture(e.pointerId); } catch (err) { /* no capture: drag still tracks while over the rail */ }
+    // a press on the bare rail JUMPS that bound and keeps dragging it, so a phone tap sets a year
+    // without first hunting for a knob
+    if (hit) hit.focus(); else put(end, posToStop(t));
+  };
+  const onMove = (e) => { if (dragRef.current) put(dragRef.current, posToStop(posOf(e.clientX))); };
+  const endDrag = (e) => {
+    dragRef.current = null;
+    try { trackRef.current.releasePointerCapture(e.pointerId); } catch (err) { /* already released */ }
+  };
+  const onKey = (end) => (e) => {
+    const cur = stopIndexOf(end === "lo" ? lo : hi);
+    let idx = null;
+    if (e.key === "ArrowRight" || e.key === "ArrowUp") idx = cur + 1;
+    else if (e.key === "ArrowLeft" || e.key === "ArrowDown") idx = cur - 1;
+    else if (e.key === "PageUp") idx = cur + 4;
+    else if (e.key === "PageDown") idx = cur - 4;
+    else if (e.key === "Home") idx = 0;
+    else if (e.key === "End") idx = N - 1;
+    else if (e.key === "Escape" && span) { e.preventDefault(); e.stopPropagation(); onSpan(null); return; }
+    else return;
+    e.preventDefault(); e.stopPropagation();
+    put(end, idx);
+  };
+  // aria-valuemin/max carry the LIVE constraint (lo cannot pass hi), so a screen reader announces
+  // the range each handle can actually reach; valuetext says "earliest"/"now" where the number is
+  // a sentinel rather than a date.
+  const handle = (end) => {
+    const y = end === "lo" ? lo : hi;
+    return (
+      <div className="cv-yr-h" data-end={end} role="slider" tabIndex={0}
+        aria-label={end === "lo" ? "earliest year" : "latest year"}
+        aria-valuemin={end === "lo" ? YEAR_MIN : lo}
+        aria-valuemax={end === "lo" ? hi : YEAR_MAX}
+        aria-valuenow={y} aria-valuetext={yearLabel(y)}
+        style={{ left: (end === "lo" ? pLo : pHi) + "%" }}
+        onKeyDown={onKey(end)} />
+    );
+  };
+  const bins = hist || [];
+  const peak = Math.max(1, ...bins);
+  return (
+    <div className="cv-yr" data-set={!!span || undefined}>
+      <div className="cv-yr-head">
+        <output className="cv-yr-val">{span ? yearLabel(lo) + " – " + yearLabel(hi) : "all years"}</output>
+        <i className="cv-yr-n">{count}</i>
+        {span && (
+          <button type="button" className="cv-yr-clear" onClick={() => onSpan(null)}
+            title="drop the year range — every year again, undated works included">✕ all years</button>
+        )}
+      </div>
+      <div className="cv-yr-track" ref={trackRef}
+        onPointerDown={onDown} onPointerMove={onMove} onPointerUp={endDrag} onPointerCancel={endDrag}>
+        <div className="cv-yr-hist" aria-hidden="true">
+          {bins.map((c, i) => (
+            <span key={i} data-in={!!span && YEAR_STOPS[i + 1] > lo && YEAR_STOPS[i] <= hi}
+              style={{ height: (c ? Math.max(9, Math.round((c / peak) * 100)) : 0) + "%" }} />
+          ))}
+        </div>
+        <div className="cv-yr-rail" aria-hidden="true" />
+        <div className="cv-yr-fill" aria-hidden="true" style={{ left: pLo + "%", width: Math.max(0, pHi - pLo) + "%" }} />
+        {handle("lo")}{handle("hi")}
+      </div>
+      <div className="cv-yr-ticks" aria-hidden="true">
+        {YEAR_STOPS.filter(y => YEAR_TICKS.has(y)).map(y => {
+          const p = yearToPos(y);
+          return (
+            <span key={y} data-edge={p === 0 ? "lo" : p === 1 ? "hi" : undefined}
+              style={{ left: p * 100 + "%" }}>{yearLabel(y)}</span>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
 function Wall({ go, styleIds }) {
@@ -1239,8 +1447,12 @@ function Wall({ go, styleIds }) {
   const [allStyles, setAllStyles] = useState(false);   // "+N more" disclosure
   const [media, setMedia] = useState(IQ.media || []);  // selected medium buckets, OR'd like styles
   const [pick, setPick] = useState(IQ.pick || "");     // colour-sort target ("" = hue ramp)
-  const [eras, setEras] = useState(() => IQ.eras || new Set());   // era chips — OR within, AND with the rest
-  const toggleEra = unhang((k) => setEras(prev => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; }));
+  // YEAR RANGE — one [lo, hi] span where eight OR'd era chips used to be (Fuad 2026-09-08).
+  // null means ALL YEARS: no filter, no er= in the URL, undated works included. See YEAR_STOPS for
+  // the axis and yearPass for what a span does to a work with no date. Wrapped in `unhang` like
+  // every other filter: reaching for the handles is a statement about wanting the collection.
+  const [span, setSpan] = useState(() => IQ.span || null);
+  const setYearSpan = unhang((sp) => setSpan(sp));
   // ⤢ HAS A TOUR (Fuad 2026-08-24) — a cross-cutting filter on the first row, since "which of
   // these has something written about it" is a different question from grade or status.
   // It was briefly a PAIR of chips, INFO and TOUR (Fuad 2026-08-24: "introduce a button HAS A
@@ -1280,7 +1492,7 @@ function Wall({ go, styleIds }) {
     location.hash = path + (query ? "?" + query : "");
   });
   const toggle = (label) => setSel(sel.includes(label) ? sel.filter(x => x !== label) : [...sel, label]);
-  useEffect(() => { setExtra(0); }, [marks, status, eras, tokens, sort, styleIds, media, qual, mp, pick, hang, tourOnly, shuffleSeed]);
+  useEffect(() => { setExtra(0); }, [marks, status, span, tokens, sort, styleIds, media, qual, mp, pick, hang, tourOnly, shuffleSeed]);
 
   // Everything EXCEPT the style and medium selections. Both chip rows count against this, so their
   // numbers follow floored / liked / sure / wish / museum without either row filtering itself —
@@ -1290,12 +1502,12 @@ function Wall({ go, styleIds }) {
     let list = all;
     if (marks.size) list = list.filter(w => [...marks].some(k => markPass(w, k)));
     if (status.size) list = list.filter(w => [...status].some(k => statusPass(w, k)));
-    if (eras.size) list = list.filter(w => [...eras].some(k => eraPass(w, k)));
+    if (span) list = list.filter(w => yearPass(w, span));
     // artist + place tokens (OR within type, AND across; museum+city collapse to one place axis).
     // WORK tokens are pins, not filters — they union in at the `shown` stage, not here.
     if (tokens.some(t => t.type !== "work")) list = list.filter(w => tokensPass(w, tokens));
     return list;
-  }, [all, marks, status, eras, tokens]);
+  }, [all, marks, status, span, tokens]);
 
   // Live facet counts. Both rows count against `base` — every filter EXCEPT their own — and each
   // also honours the other, so with Sculpture on, the style numbers are sculpture-only. A chip that
@@ -1329,9 +1541,11 @@ function Wall({ go, styleIds }) {
     }
     return c;
   }, [base, sel, media]);
-  // era counts follow every other filter but not the era selection itself — same facet rule as
-  // the style and medium rows
-  const eraCounts = useMemo(() => {
+  // YEAR HISTOGRAM — the shape drawn behind the slider rail. Follows every other filter but NOT the
+  // span itself: the shared facet rule (a facet counted against its own selection reads 0 everywhere
+  // except where you already are). One bin per YEAR_STOPS interval; undated works stay in `list`
+  // but land in no bin, which is right — they have nowhere on a time axis to stand.
+  const yearFacet = useMemo(() => {
     let list = all;
     if (marks.size) list = list.filter(w => [...marks].some(k => markPass(w, k)));
     if (status.size) list = list.filter(w => [...status].some(k => statusPass(w, k)));
@@ -1339,11 +1553,19 @@ function Wall({ go, styleIds }) {
     if (sel.length) list = list.filter(w => movsOf(w).some(m => sel.includes(m)));
     if (media.length) list = list.filter(w => { const m = mediumOf(w); return m && m[0] && media.includes(m[0]); });
     if (qual.length) list = list.filter(w => qualMatch(w, qual));
-    const c = {};
-    for (const [k] of ERAS) c[k] = 0;
-    for (const w of list) for (const [k] of ERAS) if (eraPass(w, k)) c[k]++;
-    return c;
+    const bins = new Array(YEAR_STOPS.length - 1).fill(0);
+    for (const w of list) {
+      if (typeof w.year !== "number") continue;
+      // yearToPos is linear INSIDE each interval, so flooring its 0..1 by the interval count lands
+      // a year in its own bin exactly; the clamp only catches the year sitting on YEAR_MAX.
+      bins[Math.min(bins.length - 1, Math.floor(yearToPos(w.year) * bins.length))]++;
+    }
+    return { bins, list };
   }, [all, marks, status, tokens, sel, media, qual]);
+  // the number printed beside the range text — what survives the span, or the lot at "all years"
+  const yearCount = useMemo(
+    () => span ? yearFacet.list.filter(w => yearPass(w, span)).length : yearFacet.list.length,
+    [yearFacet, span]);
   // all-time counts, used only to decide which medium chips exist at all
   const mediaAll = useMemo(() => {
     const c = {};
@@ -1357,7 +1579,7 @@ function Wall({ go, styleIds }) {
     let list = all;
     if (marks.size) list = list.filter(w => [...marks].some(k => markPass(w, k)));
     if (status.size) list = list.filter(w => [...status].some(k => statusPass(w, k)));
-    if (eras.size) list = list.filter(w => [...eras].some(k => eraPass(w, k)));
+    if (span) list = list.filter(w => yearPass(w, span));   // undated works drop out here — see yearPass
     // artist + place tokens filter here (OR within type, AND across; museum+city are one place axis).
     // WORK tokens do NOT filter — they PIN below: unioned in and floated to the front.
     if (tokens.some(t => t.type !== "work")) list = list.filter(w => tokensPass(w, tokens));
@@ -1433,7 +1655,7 @@ function Wall({ go, styleIds }) {
   // class as media/qual/tourOnly — the token chip would appear but the wall would not move.
   // …and `shuffleSeed` (2026-08-27): the hang sort reads it via salonOrder(arr, shuffleSeed) — same
   // bug class as the rest of this list, the ↻ would light and the wall would not re-cast without it.
-  }, [all, marks, status, eras, tokens, sort, sel, media, qual, mp, pick, hang, tourOnly, lazyGen, shuffleSeed]);
+  }, [all, marks, status, span, tokens, sort, sel, media, qual, mp, pick, hang, tourOnly, lazyGen, shuffleSeed]);
   const visN = CAP + extra;
   // ── TOKEN SUGGESTION INDEX (Fuad 2026-08-27) — the four suggestible types the omnisearch draws
   // from, built once against the wall. This is the SAME source data the header SearchBar's
@@ -1516,7 +1738,7 @@ function Wall({ go, styleIds }) {
   const wroteOnce = useRef(false);
   useEffect(() => {
     if (!wroteOnce.current) { wroteOnce.current = true; return; }
-    const q = wallStateToQuery({ tokens, marks, status, eras, media, qual, mp, tourOnly, sort, pick, shuffleSeed });
+    const q = wallStateToQuery({ tokens, marks, status, span, media, qual, mp, tourOnly, sort, pick, shuffleSeed });
     const raw = location.hash || "#/";
     const hi = raw.indexOf("#");
     const afterHash = hi === -1 ? raw : raw.slice(hi + 1);      // e.g. "/wall/impressionism?old"
@@ -1527,7 +1749,7 @@ function Wall({ go, styleIds }) {
       const url = location.pathname + location.search + nextHash;
       history.replaceState(history.state, "", url);
     }
-  }, [tokens, marks, status, eras, media, qual, mp, tourOnly, sort, pick, shuffleSeed]);
+  }, [tokens, marks, status, span, media, qual, mp, tourOnly, sort, pick, shuffleSeed]);
   // The suggestion list for the typed query — max ~8, spread across the four types so no single type
   // (works, the largest pool) crowds the others out. Already-added tokens are filtered out.
   const suggest = useMemo(() => {
@@ -1684,17 +1906,17 @@ function Wall({ go, styleIds }) {
         </span>
         <span className="cv-count">{Math.min(visN, shown.length)} of {shown.length}</span>
       </div>
-      {/* MEDIUM + ERA share one row, medium leading (Fuad 2026-08-20). Both are short, closed sets
-          of chips — five buckets and eight bands — so two full-width rows spent a lot of vertical
-          space on a little over a line of content each, and pushed the wall further down the page.
-          They are the two axes that describe the OBJECT (what it is, when it was made), which is
-          why these pair and styles stays on its own row: that one is about the artist, and it grows
-          to twenty-odd chips when expanded.
+      {/* MEDIUM + YEARS share one row, medium leading (Fuad 2026-08-20). They are the two axes that
+          describe the OBJECT (what it is, when it was made), which is why they pair and styles stays
+          on its own row: that one is about the artist, and it grows to twenty-odd chips when expanded.
           MEDIUM — five coarse buckets folded from Wikidata P31, multi-select and OR'd. Unlike
           movement (which Wikidata files on the ARTIST) this is a property of the object itself, so
           no disclaimer is needed.
-          ERA — replaces the old Timeline mode. Buckets are sized off the collection's real shape
-          rather than round centuries; see ERAS. */}
+          YEARS — the era chip row, retired 2026-09-08 for a two-handled range over one line (Fuad:
+          "more power and take less space than the current Era buttons"). Eight bands could only be
+          switched on and off; the handles land on any of 26 stops, so 1830–1870 or "before 1600" is
+          now one gesture rather than an impossible one, in the height the label alone used to need.
+          See YEAR_STOPS for why the axis is piecewise. */}
       <div className="cv-styles cv-objrow">
         <span className="cv-objgrp">
           <span className="cv-styles-lbl" title="what kind of object it is — Wikidata P31">medium</span>
@@ -1713,17 +1935,14 @@ function Wall({ go, styleIds }) {
           })}
           {media.length > 0 && <button className="cv-styles-clear" onClick={unhang(() => setMedia([]))}>✕ clear</button>}
         </span>
-        <span className="cv-objgrp">
-          <span className="cv-styles-lbl" title="when the work was made">era</span>
-          {ERAS.map(([k, label]) => {
-            const n = eraCounts[k] || 0;
-            return (
-              <button key={k} data-on={eras.has(k)} data-empty={n === 0 && !eras.has(k)}
-                onClick={() => toggleEra(k)}>{label}<i>{n}</i></button>
-            );
-          })}
-          {eras.size > 0 && <button className="cv-styles-clear" onClick={unhang(() => setEras(new Set()))}>✕ clear</button>}
-        </span>
+        {/* a DIV, not a span like the medium group beside it: the slider is block content
+            (track, rail, tick row) and a span may not legally contain it. As a flex item of
+            .cv-objrow it lays out identically. */}
+        <div className="cv-objgrp cv-yrgrp">
+          <span className="cv-styles-lbl"
+            title="when the work was made — drag either handle, or focus one and use the arrow keys">years</span>
+          <YearRange span={span} onSpan={setYearSpan} hist={yearFacet.bins} count={yearCount} />
+        </div>
       </div>
       {/* STYLES — multi-select, OR'd. Movement is the artist's (Wikidata P135), so the note says
           so rather than pretending each canvas carries the tag. */}

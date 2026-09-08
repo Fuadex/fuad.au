@@ -511,11 +511,11 @@ a { color: inherit; }
 .cv-styles button[data-on="true"] i { color: var(--paper); opacity: .6; }
 .cv-styles-more, .cv-styles-clear { border-style: dashed !important; color: var(--ink-faint) !important; }
 .cv-styles-note { padding: 8px 34px 0; font: italic 400 12px/1.5 var(--serif); color: var(--ink-soft); }
-/* medium + era share one line, medium first (Fuad 2026-08-20). Each is an inline flex island so its
-   chips wrap among themselves and stay attached to their own label — on a flat row era's first chip
-   would ride up beside medium's last and there would be nothing saying which label owned it. The
-   wide column gap plus a rule before the era group is what marks the boundary when both groups are
-   long enough to fill the line; below 760px they stack and the rule would be a stray mark. */
+/* medium + years share one line, medium first (Fuad 2026-08-20). Each is an inline flex island so
+   its contents wrap among themselves and stay attached to their own label — on a flat row the year
+   control would ride up beside medium's last chip and there would be nothing saying which label
+   owned it. The wide column gap plus a rule before the second group is what marks the boundary when
+   both are long enough to fill the line; below 760px they stack and the rule would be a stray mark. */
 .cv-objrow { gap: 6px 22px; }
 .cv-objgrp { display: inline-flex; align-items: baseline; gap: 6px; flex-wrap: wrap; min-width: 0; }
 .cv-objrow .cv-objgrp + .cv-objgrp { border-left: 1px solid var(--rule); padding-left: 22px; }
@@ -552,6 +552,63 @@ a { color: inherit; }
   }
   .cv-objrow .cv-objgrp { display: flex; width: 100%; padding: 6px 34px 0 0; }
 }
+/* ——— YEAR RANGE (Fuad 2026-09-08) — replaces the era chip row: "a draggable time period handles
+   over a line … more power and take less space than the current Era buttons". One line carries the
+   range text, its live count, the clear, a histogram of the collection under every other filter, two
+   handles and six century labels — in about the height the eight chips needed for their first row.
+   Deliberately quiet, like the chips it replaces: ink at low opacity for the ground, the one burnt
+   sienna accent reserved for the SELECTED span, so the eye reads the chosen years first.
+   Placed after the 620px chip-rail block on purpose — .cv-yrgrp has to opt OUT of the horizontal
+   rail those rules give every .cv-objgrp, and the overrides below win on source order. */
+.cv-objrow .cv-yrgrp { align-self: flex-start; flex: 1 1 320px; min-width: 200px; max-width: 560px; }
+.cv-yrgrp .cv-styles-lbl { padding-top: 3px; }
+.cv-yr { flex: 1 1 auto; min-width: 170px; }
+.cv-yr-head { display: flex; align-items: baseline; gap: 8px; min-height: 15px; }
+.cv-yr-val { font: 500 11.5px/1 var(--mono); color: var(--ink); }
+.cv-yr-n { font: 400 9px/1 var(--mono); font-style: normal; color: var(--ink-faint); }
+/* two classes deep so it beats the generic .cv-styles button rule this control sits inside */
+.cv-yr .cv-yr-clear { font: 500 10px/1 var(--sans); padding: 4px 9px; margin-left: auto; border-radius: 999px;
+  border: 1px dashed var(--rule); background: none; color: var(--ink-faint); cursor: pointer; }
+.cv-yr .cv-yr-clear:hover { color: var(--ink); border-color: var(--ink-faint); }
+/* touch-action:none is load-bearing — without it a drag on a phone scrolls the page instead of
+   moving the handle. The track is 40px tall so the 34px handles have a full touch target; the rail
+   drawn inside it is 3px. */
+.cv-yr-track { position: relative; height: 40px; touch-action: none; cursor: pointer; }
+.cv-yr-hist { position: absolute; left: 0; right: 0; top: 2px; height: 19px; display: flex; align-items: flex-end; gap: 1px; }
+/* the 1px gaps between these bars ARE the stops — that is why no separate tick marks are drawn */
+.cv-yr-hist span { flex: 1 1 0; min-width: 0; background: var(--ink); opacity: .15; border-radius: 1px 1px 0 0; }
+.cv-yr-hist span[data-in="true"] { background: var(--accent); opacity: .45; }
+.cv-yr-rail { position: absolute; left: 0; right: 0; top: 22px; height: 3px; border-radius: 2px; background: rgba(0, 0, 0, .13); }
+.cv-yr-fill { position: absolute; top: 22px; height: 3px; border-radius: 2px; background: var(--accent); }
+/* AT REST (no span) the handles sit on the ends and the fill covers the whole rail — colouring that
+   in would light the control up as if a filter were on. Nothing is highlighted until a span exists. */
+.cv-yr:not([data-set]) .cv-yr-fill { background: rgba(0, 0, 0, .13); }
+.cv-yr:not([data-set]) .cv-yr-h:not(:hover):not(:focus-visible)::after { border-color: var(--ink-faint); }
+/* 34px square hit area, 15px visible knob — the target is the finger's, the mark is the eye's */
+.cv-yr-h { position: absolute; top: 6px; width: 34px; height: 34px; margin-left: -17px; touch-action: none; cursor: grab; }
+.cv-yr-h:active { cursor: grabbing; }
+.cv-yr-h::after { content: ""; position: absolute; left: 50%; top: 50%; width: 15px; height: 15px;
+  margin: -7.5px 0 0 -7.5px; border-radius: 50%; background: var(--plaster); border: 2px solid var(--accent);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .3); transition: border-color .18s ease, box-shadow .18s ease; }
+.cv-yr-h:hover::after { border-color: var(--ink); }
+.cv-yr-h:focus { outline: none; }
+.cv-yr-h:focus-visible::after { border-color: var(--ink); box-shadow: 0 0 0 3px var(--accent-soft); }
+.cv-yr-ticks { position: relative; height: 11px; }
+.cv-yr-ticks span { position: absolute; top: 0; transform: translateX(-50%);
+  font: 400 8.5px/1 var(--mono); color: var(--ink-faint); white-space: nowrap; }
+/* the two end labels would hang off the control — pin them inside instead of centring them */
+.cv-yr-ticks span[data-edge="lo"] { left: 0 !important; transform: none; }
+.cv-yr-ticks span[data-edge="hi"] { left: auto !important; right: 0; transform: none; }
+@media (prefers-reduced-motion: reduce) { .cv-yr-h::after { transition: none; } }
+@media (max-width: 620px) {
+  /* the year group is NOT a horizontal rail — it is one full-width control, so it opts out of the
+     nowrap/overflow/mask rules (.cv-styles, .cv-objgrp) hands every group at this width */
+  .cv-objrow .cv-objgrp.cv-yrgrp { flex-wrap: wrap; overflow: visible; max-width: none;
+    padding: 8px 16px 0 0; -webkit-mask-image: none; mask-image: none; }
+  .cv-yrgrp > * { flex: none; }
+  .cv-yr { flex: 1 1 100%; min-width: 0; }   /* full width of the row, never wider — no page scroll */
+}
+
 /* movements are hotlinks into the filtered wall — on the portrait bars and the artist header */
 .cv-p-barlink { cursor: pointer; }
 .cv-p-barlink:hover .cv-p-barlbl { color: var(--accent); }
