@@ -3,6 +3,12 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+"childe-hassam-the-new-york-window": {
+ "about": "Hassam's 1912 woman turned from a window is eighteen months younger than its frame — a Carrig-Rohane order of October 1910 made for a horizontal picture, one of two, its twin on Golden Afternoon at the Metropolitan Museum.",
+ "deep": "Almost every middle value was settled before the first stroke went down. A thin preparation, laid so lightly the weave shows through, was left uncovered over broad passages to stand in for that value, freeing the paint above to move fast: wet-into-wet, low in relief, darks thinned to a glaze over a warmer layer that shows back through. The quiet of a woman sitting through her own hour beside a window is that economy. The object has paid for it ever since. Paint took poorly to the ground beneath, lifted and flaked, drew into crackle at the lower right where it dried badly, and has needed lining, cleaning and consolidation to go on sitting still.",
+ "by": "Opus 5",
+ "deepBy": "Opus 5"
+},
 "winslow-homer-hound-and-hunter": {
  "about": "Its subject was attacked in 1892 as cruel sport, viewers reading the boy as drowning the deer to save ammunition. Homer said the animal was already dead, then repainted the water to cover more of the body.",
  "deep": "Almost all of this canvas is at rest. The broken water takes a small fraction of a picture four feet across; on both sides of it the lake holds its reflections whole, and the autumn wood above is held at a single value from edge to edge. The proportions are the argument. The event at the deer's head is granted the smallest region on the surface and the shortest duration, since froth closes, and the mirror on either side is the condition the water returns to. Homer scaled that event against a forest built to be older than it, and gave the forest most of the rectangle.",

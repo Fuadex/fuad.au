@@ -82,6 +82,99 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+"childe-hassam-the-new-york-window": {
+ "see": "The window takes the upper two-thirds of a tall canvas: two lights gridded by olive sash bars, a dark pier down the middle, an ochre frame band and a red curtain at the right edge, a lit sill under all of it. Below it the room falls into brown. A woman sits at the left in profile, robe open over a pale gown, both forearms bare. A blue-rimmed dish of fruit sits on a table at the lower right; the name and year, lower left. Almost every mark runs vertically, so the eye travels downward, and the warmth sits in the curtain, the frame band, the fruit and her skin.",
+ "about": "The window makes its offer in stages. High up there is little but weather. At her shoulder the street finally delivers — what reads as an awning and an arched opening in one light, a row of lit piers in the other — and by then it is inches above the sill, where the room takes over. The woman inside that light has declined it: her face is tipped down and her look stops short of the glass, and the loose robe belongs to a private hour. Very little divides that hour from the avenue. Glazing, frame and curtain are dragged with one brush in one direction, so the wall between inside and out is a change of hue.",
+ "craft": "The window wall is laid with a stiff brush in long dry verticals, and the direction holds across glass, frame and curtain. Darks are scumbled, a dry cool film over a warm lit layer that keeps surfacing through it, which keeps a large shadow airy. The preparation is left bare across wide patches to serve as the mid-tone. Colour is broken into short unblended hatches, complementaries set touching along the garment's edges, so contour is drawn in hue instead of line.",
+ "context": "Oil on canvas, 116.5 by 89.1 centimetres; National Gallery of Art, Washington, Corcoran Collection. It belongs to the New York Windows, women in quiet interiors begun around 1907–09. Three of its predecessors had each gone to a museum in their year of painting; this one followed, bought by the Corcoran from its December 1912 show on a trustees' minute of 21 April 1913, and never since on the market. That March it hung at the National Academy of Design's Eighty-seventh Annual, where Guy Pène du Bois's New York American headline called it the show's \"masterpiece\". The frame is eighteen months older than the painting: Carrig-Rohane, October 1910, one of a pair; its twin is on Golden Afternoon at the Metropolitan Museum. The maker's mark sits on its long side: built to hang horizontally, turned for this upright canvas. The 1912 loan form gives his address as 130 West 57th Street, Pollard and Steinam's studio building of 1907–08, with projecting window bays and north light.",
+ "deeper": [
+  {
+   "t": "Weather, before it is a city",
+   "x": 0.02,
+   "y": 0.03,
+   "w": 0.3,
+   "h": 0.24,
+   "body": "The top of the glass is the least legible paint in the picture and among the most deliberate. Every stroke runs from top to bottom in a long dry pull, dry enough that the tooth of the canvas chops each one into a broken line, and the only horizontal for a wide stretch in any direction is the transom bar crossing near the top. Nothing has been drawn, and nothing has been blended into anything else. The pale coral marks scattered through the blue are the closest thing up here to a building, and they give themselves away: each is a small vertical patch, taller than it is wide, aligned with the brushwork instead of with any facade. They are the colour a lit window would be, put down in the direction the rest of the passage happens to be going. Between the strokes a warm underlayer keeps surfacing in fine gold threads."
+  },
+  {
+   "t": "Where the marks turn crosswise",
+   "x": 0.365,
+   "y": 0.482,
+   "w": 0.155,
+   "h": 0.155,
+   "body": "Follow the same blue field down to the height of her shoulder and it starts to deliver. Inside a few inches of canvas: a lit orange streak, a salmon bar with short rose strokes hanging beneath it in separated fingers, a round-headed opening with a grey shadow sitting in its recess, and a few small rose dashes lower down that behave like windows. The salmon bar reads as an awning and its fringe, though a cornice in shadow would leave much the same marks.\n\nWhat lets the street through is neither detail nor focus. It is direction. These marks lie crosswise — the orange streak, the salmon bar, the cornice band above the opening — where the glass above and around them runs top to bottom. Vertical paint in this picture stays weather; a stroke laid across the grain of the passage turns into masonry. Hassam grants the city one narrow band of the canvas's height to exist in, and the sill shuts it down immediately below — a run of white and pale blue touches along the ledge, an olive board beneath that, then the room. The avenue gets one band, at her shoulder, and no more."
+  },
+  {
+   "t": "Ruled over a finished street",
+   "x": 0.66,
+   "y": 0.44,
+   "w": 0.185,
+   "h": 0.24,
+   "body": "The building opposite gets further here than anywhere else on the canvas: a row of pink piers with white and turquoise standing in the gaps between them, and above those, blue and orange blocks behaving like upper storeys. Then look at the two hairline verticals crossing the whole arrangement, with a softer, warmer third at the right that may be no more than a lit edge. The two are dead straight, warm dark, far finer than the olive sash bars elsewhere, and they run down from the top of the picture through sky, storeys and piers alike before stopping at the sill. Nowhere do they break, and nowhere does the masonry break for them. They were drawn onto a street that had already been finished — the near window's own divisions laid on last, over the view, instead of being reserved and painted around. What they are is a separate question; cords would hang like this, and so would a very fine glazing bar."
+  },
+  {
+   "t": "The one thing that crosses the sill",
+   "x": 0.505,
+   "y": 0.4,
+   "w": 0.185,
+   "h": 0.29,
+   "body": "The dark bar dividing the two lights is the largest shadow in the window and the least paint in it. Grey-olive has been dragged thinly over a warm lit layer that keeps coming up through it, flecks of blue and red are caught underneath, and along its left flank runs a broad warm passage, the lit face of the frame in orange ochre. Nothing about it is solid, which is why a shape this size and this dark never bears down on the design.\n\nThen watch it reach the sill. The white touches marking the ledge come in from the left and from the right and stop dead against the pier on both sides. The pier does not stop. It carries on down into the room at the same value and almost the same colour, and the two darks fuse into one shape. It is the one thing in the glazing that stands on both sides of the sill."
+  },
+  {
+   "t": "The head with no eye in it",
+   "x": 0.14,
+   "y": 0.355,
+   "w": 0.225,
+   "h": 0.19,
+   "body": "Every line of the design leads to the window, and her look is the one thing that does not. The chin is down, the profile aimed at the floor a few feet ahead, and the whole face comes to a couple of dozen strokes.\n\nThe telling part is what is absent. There is no eye. Where the eye belongs sits a soft warm smudge with one faint darker touch laid across it — no lid drawn, no lash, and nowhere any white. All the drawing the head receives has gone to its outer edge: one continuous rose contour from brow to nose to lip, a single warm mark for the nostril, a single short coral stroke for the mouth. Within that edge there is almost nothing. The cheek is one plane and the long neck another, and neither carries a drawn shadow. The ear is three touches at the hair's border, with nothing hanging from it. Her ornament lies in the hair itself, where amber and gold have been dropped into the dry brown mass at the crown. She is described from the outside and from nowhere else."
+  },
+  {
+   "t": "Two bare arms, one hand",
+   "x": 0.125,
+   "y": 0.695,
+   "w": 0.5,
+   "h": 0.285,
+   "body": "Both sleeves stop below the elbow and both forearms are bare, which is easy to miss, because only one of them ends in anything.\n\nThe far arm crosses down to the right and finishes in a hand draped over the crest of the knee: about five strokes, the fingers falling away down the far side, two dark lines dropped in to divide them, nothing held. The knuckles and finger ends carry a rust red that is the hottest colour anywhere on her, and it belongs to the same family as the curtain at the opposite edge of the canvas.\n\nThe near arm is given no such attention. It runs straight down her side for the full length of a forearm as one unbroken plane of rose-brown, without a wrist or an elbow crease, without a shadow anywhere along it — and it never arrives at a hand at all. A fold of the pale skirt crosses in front of it, and the picture lets it go."
+  },
+  {
+   "t": "The dish, seen from above",
+   "x": 0.68,
+   "y": 0.72,
+   "w": 0.32,
+   "h": 0.18,
+   "body": "The rim of the dish is drawn as a wide open ellipse, which means we are looking down into it. Nothing else here is seen that way: the building opposite is square-on, the sill runs flat across, her head is seen in level profile. The table has been tipped up towards the surface of the canvas while everything above it stays where it was, and the two viewpoints are left side by side without being reconciled.\n\nTwo things are worth stopping for once you are down here. Small turquoise, blue, white and yellow marks run along the rim at both ends of that ellipse — a pattern drawn out mark by mark, where almost everything else on the canvas is massed. And the fruit carries the thickest paint in the picture, loaded and ridged, where most of the canvas has been dragged thin."
+  },
+  {
+   "t": "Childe Hassam, 1912",
+   "x": 0,
+   "y": 0.925,
+   "w": 0.22,
+   "h": 0.075,
+   "body": "The name and the year sit low on the left, written in a thin dry brown-black that breaks apart wherever the surface beneath it is rough. They are not tucked into the corner but run along the edge where the pale hem meets the dark of the table, the first name sinking into that dark while the surname and the year read cleanly. That legibility earns its keep: Hassam painted a woman at a window many times over more than a decade, and the four figures under his name are among the few things on this canvas that tell you which of them you are looking at."
+  }
+ ],
+ "survey": [
+  "The long dry vertical drags and the single transom bar across the top of the glazing.",
+  "The salmon bar with hanging rose fingers, and the round-headed opening beside it at shoulder height.",
+  "The row of pink piers in the right light, and the three hairline verticals crossing them.",
+  "The grey-olive pier between the two lights, and the white sill touches stopping against it.",
+  "The head in profile: hair mass, outer contour, ear, unmodelled neck.",
+  "Two bare forearms below the sleeve hems, and the hand draped over the knee.",
+  "The open ellipse of the blue-rimmed dish and the marks along its rim.",
+  "The brown-black script and date on the dark of the table, lower left."
+ ],
+ "coverage": 0.453,
+ "by": "Opus 5",
+ "mv": 4.2,
+ "beside": "The window worked from the street side is in this collection. Two Women at a Window, Murillo's canvas at the National Gallery of Art in Washington, comes two hundred and fifty-seven years earlier. We are on the street side of its sill; the older woman has hold of the open shutter, a decision she is enjoying holding, and the girl returns the look without giving anything away. Whatever the two of them find funny is on our side of it. Here the opening takes most of the canvas and a face is turned down out of it; there it is held open by hand, and looking out through it is the whole event.",
+ "refs": [
+  {
+   "id": "two-women-at-a-window",
+   "text": "Two Women at a Window"
+  }
+ ]
+},
+
 "a-young-girl-reading": {
  "see": "Yellow, and then everything else. A girl in left profile sits half-length in a brown room, her dress the largest saturated area in it and its skirt filling the lower third of the canvas; the white ruff answers it as a second, colder light, the book's fore-edge answers both with vermilion at the far left margin, and a crimson-mauve chair closes the bottom corner. The wall is three fields, not one, and it turns cold exactly behind her head. Nothing settles into skin — strokes stay separate, wet runs into wet, and the most convincing volume here is a cushion made of six brown arcs around a lilac core. Weave-showing thinness at the right edge, the heaviest paint of all at her collar.",
  "about": "Reading, with the reading taken out. The page she is fixed on carries no letters at all, only the rhythm of type, so nothing on it can compete for the attention the picture is about. The book is small enough for one hand to span and she holds it well out from her body, which makes the gap between her eye and the page the quantity this composition really measures. Everything costly — ruff, ribbons, silk, bows — faces us and is painted with more relish than her face is. She has turned all of it away. The subject is not what she reads; it is that she is somewhere we were not invited.",
