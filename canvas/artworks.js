@@ -139,7 +139,7 @@ window.CANVAS_ARTWORKS = [
   // ——— deck-folded picks (fold-deck.js) ———
   { id: "the-thinker", title: "The Thinker", artist: "Auguste Rodin", artistId: "rodin", qid: "Q18003128", qidTrusted: true, year: 1882, seenAt: "rodin", seenConfidence: "sure", floored: true, note: "Deck pick — rodin-2026-07-07. Cast many times; the photo import also turned up the Venice cast, dropped rather than filed as a want-to-see for a sculpture already met here." },
   { id: "portrait-of-pere-tanguy", title: "Portrait of Père Tanguy", artist: "Vincent van Gogh", artistId: "van-gogh", qid: "Q13528770", qidTrusted: true, year: 1887, seenAt: "rodin", seenConfidence: "unsure", liked: true, note: "Deck pick — rodin-2026-07-07." },
-  { id: "the-kiss", title: "The Kiss", artist: "Auguste Rodin", artistId: "rodin", qid: "Q2418237", qidTrusted: true, year: 1880, seenAt: "rodin", seenConfidence: "sure", floored: true, note: "Deck pick — rodin-2026-07-07." },
+  { id: "the-kiss", title: "The Kiss", artist: "Auguste Rodin", artistId: "rodin", qid: "Q2418237", qidTrusted: true, year: 1880, seenAt: "rodin", seenConfidence: "sure", liked: true, note: "Deck pick — rodin-2026-07-07." },
   { id: "arles-view-from-the-wheat-fields", title: "Arles: View from the Wheat Fields", artist: "Vincent van Gogh", artistId: "van-gogh", qid: "Q4792194", qidTrusted: true, year: 1888, seenAt: "rodin", seenConfidence: "unsure", wish: true, liked: true, note: "Deck pick — rodin-2026-07-07." },
   { id: "the-eternal-springtime", title: "The Eternal Springtime", artist: "Auguste Rodin", artistId: "rodin", qid: "Q3205458", qidTrusted: true, year: 1884, seenAt: "rodin", seenConfidence: "unsure", wish: true, liked: true, note: "Deck pick — rodin-2026-07-07." },
   { id: "the-mature-age", title: "The Mature Age", artist: "Camille Claudel", artistId: "claudel", qid: "Q3205060", qidTrusted: true, year: 1898, seenAt: "rodin", seenConfidence: "unsure", liked: true, note: "Deck pick — rodin-2026-07-07." },
@@ -1038,7 +1038,7 @@ window.CANVAS_ARTWORKS = [
   { id: "claude-monet-champs-de-tulipes-en-hollande", title: "Champs de tulipes en Hollande", artist: "Claude Monet", artistId: "monet", qid: "Q17490992", qidTrusted: true, year: 1886,
     seenAt: "artizon", seenConfidence: "sure", liked: true },
   { id: "w-adys-aw-podkowinski-sza-szkic", title: "Szał, szkic", artist: "Władysław Podkowiński", artistId: "podkowinski", qid: "Q24083941", qidTrusted: true, year: 1893,
-    seenAt: "mnw", seenConfidence: "sure", floored: true },
+    seenAt: "mnw", seenConfidence: "sure", liked: true },
   { id: "denys-puech-l-aurore-by-denys-puech", title: "L'Aurore by Denys Puech", artist: "Denys Puech", artistId: "denys-puech", qid: "Q59692320", qidTrusted: true, year: 1900,
     seenAt: "orsay", seenConfidence: "sure", liked: true },
   { id: "pierre-auguste-renoir-la-seine-a-champrosay", title: "La Seine à Champrosay", artist: "Pierre-Auguste Renoir", artistId: "renoir", qid: "Q17492299", qidTrusted: true, year: 1876,
