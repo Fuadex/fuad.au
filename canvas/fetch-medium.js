@@ -28,6 +28,7 @@ const HERE = __dirname;
 const UA = { "User-Agent": "fuad.au-canvas/0.1 (https://fuad.au; fuadex@gmail.com)" };
 const CACHE = path.join(HERE, "medium_cache.json");
 const LABELS = path.join(HERE, "medium_labels.json");   // P31 qid -> English label
+const WD_CACHE = path.join(HERE, "wikidata_cache.json"); // local Wikidata entity dump, keyed "ent:<qid>"
 
 // ── the five facet buckets ────────────────────────────────────────────────────────────────
 // Curated P31 -> bucket for the cases where the label alone is ambiguous or absent.
@@ -79,10 +80,36 @@ const bucketOf = (qid, label) => {
   for (const [re, b] of BUCKET_BY_LABEL) if (label && re.test(label)) return b;
   return null;
 };
+// Per-WORK overrides, consulted before bucketOf. A handful of canon rows point their qid at a
+// Wikidata SERIES or UMBRELLA rather than the object itself, so P31 comes back as a series/set
+// type that correctly buckets to nothing — these were ruled by hand 2026-09-10.
+const BUCKET_BY_WORK = {
+  "elgin-marbles": "sculpture",
+  "antonio-canova-the-three-graces": "sculpture",
+  "alfred-stieglitz-equivalents": "photo",
+  "paul-cezanne-mont-ste-victoire": "painting",
+  "edward-burne-jones-study-for-the-star-of-bethlehem-by-sir-ed": "paper",
+};
 
 const load = (f, fb) => { try { return JSON.parse(fs.readFileSync(f, "utf8")); } catch (e) { return fb; } };
 const cache = load(CACHE, {});          // artwork qid -> [p31 qids]  (legacy values coerced below)
 const labels = load(LABELS, {});        // p31 qid -> label
+
+// Local Wikidata entity dump (267MB, keyed "ent:<qid>" with the full standard entity shape) —
+// consulted before ever hitting the network. Whole-file JSON.parse; it fits.
+console.log("loading local wikidata_cache.json …");
+const WD = load(WD_CACHE, {});
+const localP31 = (qid) => {
+  const ent = WD["ent:" + qid];
+  const claims = (ent && ent.claims && ent.claims.P31) || null;
+  if (!claims) return null;
+  return claims.map(c => c.mainsnak && c.mainsnak.datavalue && c.mainsnak.datavalue.value && c.mainsnak.datavalue.value.id).filter(Boolean);
+};
+const localLabel = (qid) => {
+  const ent = WD["ent:" + qid];
+  const lb = ent && ent.labels;
+  return (lb && ((lb.en && lb.en.value) || (lb.mul && lb.mul.value))) || null;
+};
 
 // canon rows via node (single source of truth for parsing)
 const w = {};
@@ -117,8 +144,19 @@ async function api(url) {
 
 (async () => {
   // ── pass 1: P31 claims per artwork ──────────────────────────────────────────────────────
-  for (let i = 0; i < todo.length; i += 45) {
-    const batch = todo.slice(i, i + 45);
+  // Local-first: wikidata_cache.json already holds a P31-bearing entity for almost every qid we
+  // need. Only what it genuinely can't answer goes to the throttled network path below.
+  let viaLocal = 0;
+  const netTodo = [];
+  for (const qid of todo) {
+    const p31 = localP31(qid);
+    if (p31) { cache[qid] = p31; viaLocal++; }
+    else netTodo.push(qid);
+  }
+  if (viaLocal) fs.writeFileSync(CACHE, JSON.stringify(cache));
+  console.log(`  P31 via local wikidata_cache.json: ${viaLocal}/${todo.length} — ${netTodo.length} left for network`);
+  for (let i = 0; i < netTodo.length; i += 45) {
+    const batch = netTodo.slice(i, i + 45);
     const j = await api("https://www.wikidata.org/w/api.php?action=wbgetentities&props=claims&format=json&ids=" + batch.join("|"));
     for (const qid of batch) {
       const ent = j.entities && j.entities[qid];
@@ -126,12 +164,21 @@ async function api(url) {
       cache[qid] = claims.map(c => c.mainsnak && c.mainsnak.datavalue && c.mainsnak.datavalue.value && c.mainsnak.datavalue.value.id).filter(Boolean);
     }
     fs.writeFileSync(CACHE, JSON.stringify(cache));
-    console.log(`  P31 ${Math.min(i + 45, todo.length)}/${todo.length}`);
+    console.log(`  P31 ${Math.min(i + 45, netTodo.length)}/${netTodo.length}`);
   }
 
   // ── pass 2: English labels for every distinct P31 in the corpus (the granular layer) ────
-  const allP31 = [...new Set(WORKS.flatMap(x => cachedP31(x.qid) || []))].filter(q => !(q in labels));
-  console.log(`${allP31.length} P31 types need labels`);
+  let allP31 = [...new Set(WORKS.flatMap(x => cachedP31(x.qid) || []))].filter(q => !(q in labels));
+  let labelViaLocal = 0;
+  const labelNetTodo = [];
+  for (const q of allP31) {
+    const lb = localLabel(q);
+    if (lb) { labels[q] = lb; labelViaLocal++; }
+    else labelNetTodo.push(q);
+  }
+  if (labelViaLocal) fs.writeFileSync(LABELS, JSON.stringify(labels, null, 1));
+  allP31 = labelNetTodo;
+  console.log(`${allP31.length + labelViaLocal} P31 types need labels — ${labelViaLocal} via local wikidata_cache.json, ${allP31.length} left for network`);
   for (let i = 0; i < allP31.length; i += 45) {
     const batch = allP31.slice(i, i + 45);
     const j = await api("https://www.wikidata.org/w/api.php?action=wbgetentities&props=labels&languages=en&format=json&ids=" + batch.join("|"));
@@ -161,6 +208,11 @@ async function api(url) {
       const m = d.match(/^(oil painting|painting|sculpture|statue|drawing|print|etching|engraving|lithograph|photograph|fresco|mural|tapestry|manuscript)\b/i);
       if (m) { const kind = m[1].toLowerCase(); picked = [bucketOf(null, kind), kind + " (from description)", picked ? picked[2] : null]; viaDesc++; }
       else if (picked) { undecided++; (unresolved[picked[2]] = unresolved[picked[2]] || { label: picked[1], n: 0 }).n++; }
+    }
+    if (BUCKET_BY_WORK[wk.id]) {
+      // the qid is a series/umbrella, not the object — bucket by hand, keep whatever label/p31 we found
+      if (picked && !picked[0]) undecided--;
+      picked = [BUCKET_BY_WORK[wk.id], (picked && picked[1]) || null, (picked && picked[2]) || null];
     }
     if (picked) out[wk.id] = picked;
   }

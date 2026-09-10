@@ -22,8 +22,34 @@ const cache = load(CACHE, {}), labels = load(LABELS, {});
 const g = {};
 new Function("window", fs.readFileSync(path.join(HERE, "artworks.js"), "utf8") + "\nreturn window;")(g);
 const WORKS = g.CANVAS_ARTWORKS.filter(w => w.qid && /^Q\d+$/.test(w.qid));
-const todo = [...new Set(WORKS.map(w => w.qid))].filter(q => !(q in cache));
+let todo = [...new Set(WORKS.map(w => w.qid))].filter(q => !(q in cache));
 console.log(`${WORKS.length} works with a real qid · ${todo.length} to fetch · ${Object.keys(cache).length} cached`);
+
+const claimIds = (ent, p) => ((ent && ent.claims && ent.claims[p]) || [])
+  .map(c => c.mainsnak && c.mainsnak.datavalue && c.mainsnak.datavalue.value)
+  .filter(v => v && v.id).map(v => v.id);
+
+// 2026-09-10 — wikidata_cache.json is a general-purpose entity cache another tool built (267MB,
+// keyed `ent:<qid>`, same claims shape as the API response below). Before spending network calls,
+// borrow from it wherever it already holds one of our qids — same claimIds() extraction applies.
+// Only qids it doesn't have go to the API.
+const WD_CACHE = path.join(HERE, "wikidata_cache.json");
+if (todo.length && fs.existsSync(WD_CACHE)) {
+  console.log(`checking wikidata_cache.json for a pre-seed (${todo.length} qids needed)...`);
+  const wd = JSON.parse(fs.readFileSync(WD_CACHE, "utf8"));
+  let seeded = 0;
+  for (const q of todo) {
+    const e = wd["ent:" + q];
+    if (!e) continue;
+    cache[q] = { d: claimIds(e, "P180"), g: claimIds(e, "P136") };
+    seeded++;
+  }
+  if (seeded) {
+    fs.writeFileSync(CACHE, JSON.stringify(cache));
+    todo = todo.filter(q => !(q in cache));
+    console.log(`  pre-seeded ${seeded} from wikidata_cache.json · ${todo.length} left for the network`);
+  }
+}
 
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 async function api(url) {
@@ -38,9 +64,6 @@ async function api(url) {
   }
   return null;
 }
-const claimIds = (ent, p) => ((ent && ent.claims && ent.claims[p]) || [])
-  .map(c => c.mainsnak && c.mainsnak.datavalue && c.mainsnak.datavalue.value)
-  .filter(v => v && v.id).map(v => v.id);
 
 (async () => {
   for (let i = 0; i < todo.length; i += 45) {

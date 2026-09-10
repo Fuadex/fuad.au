@@ -1161,6 +1161,14 @@ reads state facts, they never cite the label/source that supplied them (Fuad,
 
 ---
 
+## 9b. The lean recipe (Fuad 2026-09-10, binding) — pointer
+
+The stage, band and brief rules for the next cascade wave live in STUDY_SPEC.md under "mv 5 — the
+lean recipe". Two of them reach this file directly: **Interpretation + Info + `beside` are drafted
+by ONE agent per work**, and **no agent reads this spec** — each stage receives a ≤ 8 K-token brief
+cut from it (§10 was extracted verbatim as `.dtmp/artistreads-0910/SPEC_S10.md` the same day, which
+is the pattern). The one-home-per-fact rule applies across the Info, the Interpretation and the tour.
+
 ## 10. Artist reads (`art_artists.js`) — approved 2026-08-19
 
 A third tier, sitting on the artist page under the compressed header. Two or three

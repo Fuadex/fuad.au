@@ -2153,6 +2153,66 @@ per-work workshop dir at `.dtmp/toursNN/` holding `canon.json`, `p18.json`, the 
    coverage check must walk **both** ref shapes (bare array and keyed object) — a scan that
    walks only the keyed form under-reports `beside` refs by 95% (READS_SPEC §11).
 
+## mv 5 — the lean recipe (Fuad 2026-09-10: "enforce those new methodology rules", binding; NOT YET RUN)
+
+Source: the 2026-09-10 assessment of wave 10 against the shipped store and the session
+transcripts. Measured: wave-10 stops at a median **149 words** (mv 1: 120; wave 8: 139) with **70%
+of its stops over 135 words** (mv 1: 8%); the `craft` lens gone gnomic; the same fact landing in
+three layers; and a per-tour cost of **≈130 K output + ≈30 M cache-read tokens** against mv 1's ≈56 K +
+≈12 M — about 2.5×, with the difference in re-reads, not in checks. Reader-facing quality plateaued
+around mv 4; everything since bought error-catching, which is real (two wrong plates and six wrong
+Infos found by identity-first research) and is KEPT. What follows cuts re-reads only.
+
+Fuad's standing instruction the same day: **do not dispatch a new cascade until asked.** The next
+wave runs under these rules, on a 5-work proof batch of floored, seen, untoured works first.
+
+### Bands and tics (gated by `tonegate.js` + `bandgate.js`)
+- **Stop bodies 100–135 words**, hard. 130–135 is a LOOK. Aim 110–125.
+- **No closing epigram.** A stop's final sentence is not an aphorism: nothing under nine words,
+  no "X, not Y" turn, no "That is …" / "Here … ; there …" landing. End on the observation, not on
+  the moral of it. `tonegate.js` flags the shape; the drafter fixes the sentence, never pads it.
+  Calibration honesty (2026-09-10, `tonegate.js --store`): the short closer is a STORE-WIDE habit
+  at roughly 10% of stops in every methodology version, not a wave-10 invention; what wave 10 adds
+  is the "bolt-on" (a long discursive stop snapping to a one-liner: 5.7% of its long stops against
+  3.1% in mv 1). The rule stands for new drafting; it is not a reason to re-open shipped tours.
+- **`craft` is stated plainly.** Every sentence in the lens names a material or a mark (paint,
+  brush, stroke, ground, edge, glaze, load …). "An edge is a privilege of nearness" is a riddle the
+  stops then solve; write the rule the stops demonstrate instead.
+- **One home per fact.** A fact lives in ONE of: a lens, a stop, the Info, the Interpretation, the
+  `beside`. The fusion brief's LAYER ALLOCATION already assigns the reserved claim; extend it to
+  every documentary fact the research produced. Repetition across layers is a defect at the seal.
+
+### Stages (what is kept, what is merged, what is cut)
+KEEP unchanged: identity-first RESEARCH ∥ blind EYE; the gait forecast; fusion + tour; crop QC at
+full resolution; ONE lens sweep partitioned by field; the `beside` last, with `refs`.
+MERGE: **Interpretation + Info + `beside` are ONE agent per work**, reading the merged tour and the
+research hook once. (Wave 10: 60 launches → 20.)
+CUT to one: **a single consolidated repair round per work**, dispatched only after crop QC and the
+lens sweep have BOTH reported. Findings are queued, not forwarded as they arrive. The repair agent
+receives every finding for its work in one brief, verifies each at the plate, and re-runs the gates
+once. (Wave 10 ran twenty rounds.)
+CUT: tiles are not re-read for a prose-only repair. A repair that moves a box re-cuts that box only.
+
+### Briefs, not specs (the token rule)
+- **No agent reads this file or READS_SPEC.md.** Both stay with the orchestrator. Every stage gets a
+  brief of **≤ 8 K tokens** written from the spec — `.dtmp/tourwave10/BESIDE_BRIEF.md` is the model
+  (it carries the form, the bands, the no-count rule, the verification order and the batch law in
+  under 2 K words). Briefs live in the wave workshop and are the only thing a drafter is told to
+  read besides its own work's files.
+- A brief cites the spec section it was cut from, so a rule can be traced back (§9 of READS_SPEC).
+- The orchestrator re-reads the spec after a compaction; agents never do.
+
+### Model split (Fuad 2026-09-10: "implementation and research to Opus, easier tasks to Sonnet")
+Opus: eye, research, fusion + tour, crop QC, lens sweep, the merged reads agent, repair.
+Sonnet, by default: canon/pre/tile builders, candidate pools, corpus index, every gate, merge dry
+runs, verification scripts, and any stage whose output is a file the gates check rather than prose.
+
+### What this must not lose (the checks that stay)
+Lesson 8 (verify one magnification finer than the claim), lesson 9 (convergence is not proof —
+measure), rule 7 (verify a reviewer's wording as well as its diagnosis), rule 11 (the seal reads the
+hook), rule 12 (refresh stale workshop copies), the ratio-flag rule (name the rectangle measured),
+the scratch-path rule (every temp file carries its work id). None of these is a re-read; all stay.
+
 ## QC lessons (accumulated — read before drafting/QC)
 
 - **Text-only QC cannot catch visual misreads** (2026-08-24 — the audit that reshaped
