@@ -571,21 +571,24 @@ a { color: inherit; }
   border: 1px dashed var(--rule); background: none; color: var(--ink-faint); cursor: pointer; }
 .cv-yr .cv-yr-clear:hover { color: var(--ink); border-color: var(--ink-faint); }
 /* touch-action:none is load-bearing — without it a drag on a phone scrolls the page instead of
-   moving the handle. The track is 40px tall so the 34px handles have a full touch target; the rail
-   drawn inside it is 3px. */
-.cv-yr-track { position: relative; height: 40px; touch-action: none; cursor: pointer; }
-.cv-yr-hist { position: absolute; left: 0; right: 0; top: 2px; height: 19px; display: flex; align-items: flex-end; gap: 1px; }
+   moving the handle. The band is 23px so it stands exactly as tall as the filter chips beside it
+   (11px line + 5px padding each side + 1px borders); the rail drawn inside it is 3px, and the 34px
+   handles keep their full touch target by overflowing the band above and below (Fuad 2026-09-10). */
+.cv-yr-track { position: relative; height: 23px; touch-action: none; cursor: pointer; }
+.cv-yr-hist { position: absolute; left: 0; right: 0; top: 0; height: 11px; display: flex; align-items: flex-end; gap: 1px; }
 /* the 1px gaps between these bars ARE the stops — that is why no separate tick marks are drawn */
 .cv-yr-hist span { flex: 1 1 0; min-width: 0; background: var(--ink); opacity: .15; border-radius: 1px 1px 0 0; }
 .cv-yr-hist span[data-in="true"] { background: var(--accent); opacity: .45; }
-.cv-yr-rail { position: absolute; left: 0; right: 0; top: 22px; height: 3px; border-radius: 2px; background: rgba(0, 0, 0, .13); }
-.cv-yr-fill { position: absolute; top: 22px; height: 3px; border-radius: 2px; background: var(--accent); }
+.cv-yr-rail { position: absolute; left: 0; right: 0; top: 12px; height: 3px; border-radius: 2px; background: rgba(0, 0, 0, .13); }
+.cv-yr-fill { position: absolute; top: 12px; height: 3px; border-radius: 2px; background: var(--accent); }
 /* AT REST (no span) the handles sit on the ends and the fill covers the whole rail — colouring that
    in would light the control up as if a filter were on. Nothing is highlighted until a span exists. */
 .cv-yr:not([data-set]) .cv-yr-fill { background: rgba(0, 0, 0, .13); }
 .cv-yr:not([data-set]) .cv-yr-h:not(:hover):not(:focus-visible)::after { border-color: var(--ink-faint); }
-/* 34px square hit area, 15px visible knob — the target is the finger's, the mark is the eye's */
-.cv-yr-h { position: absolute; top: 6px; width: 34px; height: 34px; margin-left: -17px; touch-action: none; cursor: grab; }
+/* 34px square hit area, 15px visible knob — the target is the finger's, the mark is the eye's.
+   -3.5px puts the hit area's centre on the rail's centre (12 + 1.5) now that the band is 23px:
+   the knob stays inside, the target overflows onto the neutral space above and the tick row below. */
+.cv-yr-h { position: absolute; top: -3.5px; width: 34px; height: 34px; margin-left: -17px; touch-action: none; cursor: grab; }
 .cv-yr-h:active { cursor: grabbing; }
 .cv-yr-h::after { content: ""; position: absolute; left: 50%; top: 50%; width: 15px; height: 15px;
   margin: -7.5px 0 0 -7.5px; border-radius: 50%; background: var(--plaster); border: 2px solid var(--accent);
