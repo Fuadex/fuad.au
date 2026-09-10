@@ -413,6 +413,12 @@ a { color: inherit; }
 .cv-count { margin-left: auto; font: 500 10.5px/1 var(--mono); letter-spacing: .08em; color: var(--ink-faint); }
 /* the glyph-only forms of the mark filters exist for phones only */
 .cv-f-tiny { display: none; }
+/* THE HANG CHIP'S LABEL IS A ROW, NOT A WORD (Fuad 2026-09-10). "⌂ today's wall" is two spans that
+   need a gap, and that used to be an inline style on the element. An inline declaration outranks any
+   stylesheet rule, so the 620px `.cv-f-full { display: none }` below never fired for this chip and a
+   phone showed the glyph-only ⌂ AND the full "⌂ today's wall" side by side. Kept as a class instead,
+   two classes deep, so the matching two-class rule in the 620px block can hide it on source order. */
+.cv-hang-chip .cv-f-full { display: inline-flex; align-items: center; gap: 4px; }
 @media (max-width: 620px) {
   .cv-filters { padding: 14px 16px 0; gap: 7px; }
   /* A TIGHT BUTTON, NOT A BANNER (Fuad 2026-08-21). The old cap was the row width, which let
@@ -433,6 +439,10 @@ a { color: inherit; }
      seen words had to stay because no agreed symbol existed — an eye at three degrees of open is
      that symbol, and it says the thing the words were spending a third of the row to say. */
   .cv-f-full { display: none; }
+  /* the hang chip's full label is `.cv-hang-chip .cv-f-full` (0,2,0) up above, which the single-class
+     rule on the line before cannot reach — same specificity, later in the file, so this one wins and
+     the phone is left with the lone ⌂ (Fuad 2026-09-10) */
+  .cv-hang-chip .cv-f-full { display: none; }
   .cv-f-tiny { display: inline; }
   .cv-filters button:has(.cv-f-tiny) { padding: 7px 11px; font-size: 12px; }
   /* the eye sits on the text baseline like the other glyphs rather than riding above it, and the
@@ -553,50 +563,62 @@ a { color: inherit; }
   .cv-objrow .cv-objgrp { display: flex; width: 100%; padding: 6px 34px 0 0; }
 }
 /* ——— YEAR RANGE (Fuad 2026-09-08) — replaces the era chip row: "a draggable time period handles
-   over a line … more power and take less space than the current Era buttons". One line carries the
-   range text, its live count, the clear, a histogram of the collection under every other filter, two
-   handles and six century labels — in about the height the eight chips needed for their first row.
+   over a line … more power and take less space than the current Era buttons". One band carries a
+   histogram of the collection under every other filter, two handles and six century labels.
    Deliberately quiet, like the chips it replaces: ink at low opacity for the ground, the one burnt
    sienna accent reserved for the SELECTED span, so the eye reads the chosen years first.
+   ONE BAND, NOT THREE ROWS (Fuad 2026-09-10) — "I'd like to make sure that the draggable bar is at
+   the height of the buttons, currently it overblows it." The head row (the "all years / 1830 – 1870"
+   readout, its count and the ✕ clear) and the "years" label are gone, and the tick row moved INSIDE
+   the track, so the whole control is 23px tall — the filter chip's own height, 11px line + 5px
+   padding top and bottom + 1px border each side. Inside that band:
+     histogram   top 0,  height 9   → 0…9
+     rail/fill   top 10, height 3   → 10…13   (centre 11.5)
+     tick labels bottom 0, height 9 → 14…23   (8.5px mono on a 1.0 line = 8.5px of glyph)
+   Clearing is Escape, or both handles dragged to the ends; the years are announced by aria-valuetext
+   and shown by each handle's title.
    Placed after the 620px chip-rail block on purpose — .cv-yrgrp has to opt OUT of the horizontal
    rail those rules give every .cv-objgrp, and the overrides below win on source order. */
 .cv-objrow .cv-yrgrp { align-self: flex-start; flex: 1 1 320px; min-width: 200px; max-width: 560px; }
-.cv-yrgrp .cv-styles-lbl { padding-top: 3px; }
-.cv-yr { flex: 1 1 auto; min-width: 170px; }
-.cv-yr-head { display: flex; align-items: baseline; gap: 8px; min-height: 15px; }
-.cv-yr-val { font: 500 11.5px/1 var(--mono); color: var(--ink); }
-.cv-yr-n { font: 400 9px/1 var(--mono); font-style: normal; color: var(--ink-faint); }
-/* two classes deep so it beats the generic .cv-styles button rule this control sits inside */
-.cv-yr .cv-yr-clear { font: 500 10px/1 var(--sans); padding: 4px 9px; margin-left: auto; border-radius: 999px;
-  border: 1px dashed var(--rule); background: none; color: var(--ink-faint); cursor: pointer; }
-.cv-yr .cv-yr-clear:hover { color: var(--ink); border-color: var(--ink-faint); }
+/* a definite height, so .cv-objgrp's align-items:stretch cannot pull the band taller than the chips */
+.cv-yr { position: relative; flex: 1 1 auto; min-width: 170px; height: 23px; }
 /* touch-action:none is load-bearing — without it a drag on a phone scrolls the page instead of
-   moving the handle. The band is 23px so it stands exactly as tall as the filter chips beside it
-   (11px line + 5px padding each side + 1px borders); the rail drawn inside it is 3px, and the 34px
-   handles keep their full touch target by overflowing the band above and below (Fuad 2026-09-10). */
+   moving the handle. The track IS the 23px band and everything else is absolutely placed inside it
+   (Fuad 2026-09-10): histogram 0…9, rail 10…13, tick labels 14…23. The 34px handles keep their full
+   touch target by overflowing the band above and below. */
 .cv-yr-track { position: relative; height: 23px; touch-action: none; cursor: pointer; }
-.cv-yr-hist { position: absolute; left: 0; right: 0; top: 0; height: 11px; display: flex; align-items: flex-end; gap: 1px; }
+.cv-yr-hist { position: absolute; left: 0; right: 0; top: 0; height: 9px; display: flex; align-items: flex-end; gap: 1px; }
 /* the 1px gaps between these bars ARE the stops — that is why no separate tick marks are drawn */
 .cv-yr-hist span { flex: 1 1 0; min-width: 0; background: var(--ink); opacity: .15; border-radius: 1px 1px 0 0; }
 .cv-yr-hist span[data-in="true"] { background: var(--accent); opacity: .45; }
-.cv-yr-rail { position: absolute; left: 0; right: 0; top: 12px; height: 3px; border-radius: 2px; background: rgba(0, 0, 0, .13); }
-.cv-yr-fill { position: absolute; top: 12px; height: 3px; border-radius: 2px; background: var(--accent); }
+.cv-yr-rail { position: absolute; left: 0; right: 0; top: 10px; height: 3px; border-radius: 2px; background: rgba(0, 0, 0, .13); }
+.cv-yr-fill { position: absolute; top: 10px; height: 3px; border-radius: 2px; background: var(--accent); }
 /* AT REST (no span) the handles sit on the ends and the fill covers the whole rail — colouring that
    in would light the control up as if a filter were on. Nothing is highlighted until a span exists. */
 .cv-yr:not([data-set]) .cv-yr-fill { background: rgba(0, 0, 0, .13); }
 .cv-yr:not([data-set]) .cv-yr-h:not(:hover):not(:focus-visible)::after { border-color: var(--ink-faint); }
-/* 34px square hit area, 15px visible knob — the target is the finger's, the mark is the eye's.
-   -3.5px puts the hit area's centre on the rail's centre (12 + 1.5) now that the band is 23px:
-   the knob stays inside, the target overflows onto the neutral space above and the tick row below. */
-.cv-yr-h { position: absolute; top: -3.5px; width: 34px; height: 34px; margin-left: -17px; touch-action: none; cursor: grab; }
+/* 34px square hit area, 8px visible knob — the target is the finger's, the mark is the eye's, and
+   the two are deliberately not the same size. The KNOB halved on 2026-09-10 ("decrease the large
+   white dots, probably by like twice the size") from 15px to 8px; the hit area did NOT move, because
+   shrinking the mark is a visual decision and shrinking the target would be a usability one.
+   top:-5.5px puts the 34px square's centre (-5.5 + 17 = 11.5) on the rail's centre (10 + 1.5): the
+   knob sits on the rail, the target overflows onto neutral space above and the tick row below. */
+.cv-yr-h { position: absolute; top: -5.5px; width: 34px; height: 34px; margin-left: -17px; touch-action: none; cursor: grab; }
 .cv-yr-h:active { cursor: grabbing; }
-.cv-yr-h::after { content: ""; position: absolute; left: 50%; top: 50%; width: 15px; height: 15px;
-  margin: -7.5px 0 0 -7.5px; border-radius: 50%; background: var(--plaster); border: 2px solid var(--accent);
+/* border-box (see the reset at the top of this file) — 8px is the OUTER diameter, border included,
+   so the 2px accent ring is still a ring and the plaster centre is the remaining 4px. -4px margins
+   re-centre the halved knob on the 50%/50% origin. */
+.cv-yr-h::after { content: ""; position: absolute; left: 50%; top: 50%; width: 8px; height: 8px;
+  margin: -4px 0 0 -4px; border-radius: 50%; background: var(--plaster); border: 2px solid var(--accent);
   box-shadow: 0 1px 3px rgba(0, 0, 0, .3); transition: border-color .18s ease, box-shadow .18s ease; }
 .cv-yr-h:hover::after { border-color: var(--ink); }
 .cv-yr-h:focus { outline: none; }
 .cv-yr-h:focus-visible::after { border-color: var(--ink); box-shadow: 0 0 0 3px var(--accent-soft); }
-.cv-yr-ticks { position: relative; height: 11px; }
+/* the century row is a LAYER of the track now, not a row under it (Fuad 2026-09-10): 9px pinned to
+   the bottom of the 23px band, so 8.5px mono at line-height 1 fits with half a pixel to spare.
+   pointer-events:none is load-bearing — the labels sit on top of the rail's lower half, and without
+   it a press aimed at "1800" would be swallowed by the text instead of moving a handle. */
+.cv-yr-ticks { position: absolute; left: 0; right: 0; bottom: 0; height: 9px; pointer-events: none; }
 .cv-yr-ticks span { position: absolute; top: 0; transform: translateX(-50%);
   font: 400 8.5px/1 var(--mono); color: var(--ink-faint); white-space: nowrap; }
 /* the two end labels would hang off the control — pin them inside instead of centring them */
@@ -608,8 +630,10 @@ a { color: inherit; }
      nowrap/overflow/mask rules (.cv-styles, .cv-objgrp) hands every group at this width */
   .cv-objrow .cv-objgrp.cv-yrgrp { flex-wrap: wrap; overflow: visible; max-width: none;
     padding: 8px 16px 0 0; -webkit-mask-image: none; mask-image: none; }
-  .cv-yrgrp > * { flex: none; }
-  .cv-yr { flex: 1 1 100%; min-width: 0; }   /* full width of the row, never wider — no page scroll */
+  /* the group has exactly one child now that the "years" label is gone (Fuad 2026-09-10), and that
+     child takes the whole row — never wider, so the page never gains a horizontal scrollbar. The
+     23px height carries down from the base rule; only the width changes at this size. */
+  .cv-yr { flex: 1 1 100%; min-width: 0; }
 }
 
 /* movements are hotlinks into the filtered wall — on the portrait bars and the artist header */
@@ -1426,4 +1450,25 @@ a { color: inherit; }
    that waits on animationend (see .cv-fold) is left hanging. Last in the file so it wins. ——— */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+
+/* ——— PAGE FILTER ROWS — museum + artist chips (Fuad 2026-09-10) ———
+   The artist page grew the museum page's chip row ("add some basic filtering methods for artists'
+   pages"), and the museum row grew glyph-only phone forms when its single radio became three
+   independent axes. The artist row deliberately REUSES .cv-mus-filters/.cv-mus-filt rather than
+   cloning them: the same chip must not read as a different control on a different page, and one
+   styling source is the only way that stays true. .cv-a-filters carries nothing but the spacing
+   that sits it under the "In your canon" rule — the museum row's own margin belongs to the wall
+   lead island it lives inside.
+   NOTE these rules must stay AFTER .cv-mus-filt (~line 285) to win on equal specificity. */
+.cv-a-filters { margin: 0 0 14px; }
+.cv-a-filt-none { font: 400 14px/1.6 var(--serif); color: var(--ink-faint); margin: 4px 0 18px; }
+@media (max-width: 620px) {
+  /* the glyph-only compaction itself is global (.cv-f-full/.cv-f-tiny, ~line 435), so these chips
+     inherit it for free; all that is left is the padding a word-less pill wants, matching the
+     Wall's .cv-filters button:has(.cv-f-tiny) rule so the two rows compact to the same size */
+  .cv-mus-filt:has(.cv-f-tiny) { padding: 6px 11px; font-size: 12px; }
+  /* the eye is drawn, not typed: it sits as a block and the pill loses the text-side padding */
+  .cv-mus-filt:has(.cv-eye) { padding: 4px 9px; }
 }

@@ -724,6 +724,20 @@ const statusPass = (w, k) =>
   : k === "unsure" ? (w.seenConfidence != null && w.seenConfidence !== "sure")
   // pilgrimage: an explicit wish, or an unsure sighting you marked — you want to see it properly
   : !!(w.wish || (w.seenConfidence === "unsure" && (w.liked || w.floored || w.favorite)));
+// ✦ HAS A READ and ⤢ HAS A TOUR — ONE definition for every page (Fuad 2026-09-10, filtering on the
+// artist page: "Has a Read needs to be optional and possible to choose with the other types"). The
+// museum page carried its own copy of this rule and the artist page was about to grow a third;
+// "loved" already drifted between the Wall and the museum page exactly that way (see the note above
+// the museum page's filter model in MuseumView), and a chip meaning one thing here and another there is
+// worse than no chip. A "read" is a written reading (art-about.js) OR a walked study tour
+// (art_inspect.js) — a tour IS a read of the surface, so ⤢ is a subset of ✦, not a rival to it.
+// ⚠ both globals are LAZY (see LAZY_DATA): read them at CALL time, never cache them at module
+// scope, and any useMemo that filters on them must list useLazyGen()'s counter in its deps.
+const hasReadPass = (w) => !!((window.CANVAS_ART_ABOUT || {})[w.id] || (window.CANVAS_INSPECT || {})[w.id]);
+const hasTourPass = (w) => !!((window.CANVAS_INSPECT || {})[w.id]);
+// toggle a value in and out of a filter Set without mutating the one React is holding — the same
+// add/remove the Wall's toggleMark/toggleStatus do, shared by the museum and artist chip rows.
+const toggleInSet = (set, v) => { const n = new Set(set); if (n.has(v)) n.delete(v); else n.add(v); return n; };
 const weight = (w) => (w.floored || w.favorite) ? 0 : (w.liked ? 1 : 2);
 // arrangement helpers — dominant-hue of a work (grey/no-palette sort last), primary movement,
 // and century band. All from data already loaded (CANVAS_PALETTE, AD.artists movementQids, year).
@@ -1270,6 +1284,7 @@ function parts_nonEmpty(kv) {
 }
 
 // ── YEAR RANGE SLIDER (Fuad 2026-09-08) — two handles over one line, in place of the era chip row.
+// COMMITS ON RELEASE, not on every move (Fuad 2026-09-10) — see the live/committed span note below.
 // POINTER EVENTS ONLY: mouse, pen and touch are one code path, and the capture lives on the TRACK
 // rather than on either handle, so a drag that runs off the end of the rail (or off the window)
 // still reports back to the same element instead of dying mid-gesture.
@@ -1279,21 +1294,40 @@ function parts_nonEmpty(kv) {
 // The histogram behind the rail is the collection's own shape under every OTHER active filter (the
 // same facet rule the chip counts follow), so the line shows where anything is left to find BEFORE
 // you drag. Its 1 px gaps are the stops, which is why no separate tick marks are drawn.
-function YearRange({ span, onSpan, hist, count }) {
+function YearRange({ span, onSpan, hist }) {
   const trackRef = useRef(null);
   const dragRef = useRef(null);              // which end the pointer owns while down: "lo" | "hi"
   const N = YEAR_STOPS.length;
-  const lo = span ? span[0] : YEAR_MIN, hi = span ? span[1] : YEAR_MAX;
+  // LIVE SPAN vs COMMITTED SPAN (Fuad 2026-09-10) — "make sure it only fired an update once the
+  // handle is no longer being dragged - otherwise all the new paintings end up clogging the requests
+  // to drawing the pictures and it ends up getting really busy". `live` is this component's private
+  // copy and follows the finger frame by frame; `span` is what the wall has actually been told. Only
+  // the release pushes one up through onSpan, so a drag across the rail re-sorts 2,745 works and
+  // re-requests their images ONCE instead of on every pointermove. liveRef shadows the state because
+  // pointer handlers need the value THIS gesture just wrote, not the one their render closed over.
+  const [live, setLive] = useState(span);
+  const liveRef = useRef(span);
+  // the prop stays the authority: a permalink restore, an Escape, or a clear from anywhere else
+  // re-seeds the live copy — but never mid-drag, which would yank the handle out from under the hand.
+  useEffect(() => { if (!dragRef.current) { liveRef.current = span; setLive(span); } }, [span]);
+  const lo = live ? live[0] : YEAR_MIN, hi = live ? live[1] : YEAR_MAX;
   const pLo = yearToPos(lo) * 100, pHi = yearToPos(hi) * 100;
   const same = (a, b) => (!a && !b) || (!!a && !!b && a[0] === b[0] && a[1] === b[1]);
-  // Commit a stop to one end. The ends CLAMP rather than swap — dragging lo past hi parks them on
-  // the same stop (a one-stop span, which is a legitimate thing to ask for) instead of silently
-  // turning the handle you are holding into the other one under your finger.
-  // Identical values short-circuit: a span is an array, so re-setting it would hand every memo on
-  // the wall a fresh identity and re-sort 2,745 works for a pointermove that changed nothing.
-  const put = (end, idx) => {
+  // Move one end of a span to a stop. The ends CLAMP rather than swap — dragging lo past hi parks
+  // them on the same stop (a one-stop span, which is a legitimate thing to ask for) instead of
+  // silently turning the handle you are holding into the other one under your finger.
+  // Returns the SAME object when nothing actually moved, so callers can skip the work by identity.
+  const nudge = (cur, end, idx) => {
+    const l = cur ? cur[0] : YEAR_MIN, h = cur ? cur[1] : YEAR_MAX;
     const y = YEAR_STOPS[Math.max(0, Math.min(N - 1, idx))];
-    const next = end === "lo" ? [Math.min(y, hi), hi] : [lo, Math.max(y, lo)];
+    const next = end === "lo" ? [Math.min(y, h), h] : [l, Math.max(y, l)];
+    return (next[0] === l && next[1] === h) ? cur : next;
+  };
+  // paint only — moves the knob, the fill and the histogram tint, and touches nothing outside here
+  const draw = (next) => { if (next !== liveRef.current) { liveRef.current = next; setLive(next); } };
+  // Identical values short-circuit: a span is an array, so re-setting it would hand every memo on
+  // the wall a fresh identity and re-sort 2,745 works for a gesture that changed nothing.
+  const commit = (next) => {
     const norm = spanIsAll(next) ? null : next;
     if (!same(norm, span)) onSpan(norm);
   };
@@ -1314,13 +1348,21 @@ function YearRange({ span, onSpan, hist, count }) {
     dragRef.current = end;
     try { trackRef.current.setPointerCapture(e.pointerId); } catch (err) { /* no capture: drag still tracks while over the rail */ }
     // a press on the bare rail JUMPS that bound and keeps dragging it, so a phone tap sets a year
-    // without first hunting for a knob
-    if (hit) hit.focus(); else put(end, posToStop(t));
+    // without first hunting for a knob. It only DRAWS here — the release commits it, exactly as a
+    // drag does, which is why a bare tap with no movement still reaches the wall (Fuad 2026-09-10).
+    if (hit) hit.focus(); else draw(nudge(liveRef.current, end, posToStop(t)));
   };
-  const onMove = (e) => { if (dragRef.current) put(dragRef.current, posToStop(posOf(e.clientX))); };
+  const onMove = (e) => { if (dragRef.current) draw(nudge(liveRef.current, dragRef.current, posToStop(posOf(e.clientX)))); };
+  // THE ONE PLACE A DRAG REACHES THE WALL (Fuad 2026-09-10). pointerup, pointercancel AND
+  // lostpointercapture all land here, so a finger lifted outside the window — or a capture the OS
+  // takes back mid-gesture — still commits what the handle was showing instead of dropping the
+  // gesture and leaving the knob parked at a year the wall never heard about. Releasing the capture
+  // on pointerup fires lostpointercapture straight after; the dragRef guard makes that pass a no-op.
   const endDrag = (e) => {
+    const was = dragRef.current;
     dragRef.current = null;
     try { trackRef.current.releasePointerCapture(e.pointerId); } catch (err) { /* already released */ }
+    if (was) commit(liveRef.current);
   };
   const onKey = (end) => (e) => {
     const cur = stopIndexOf(end === "lo" ? lo : hi);
@@ -1331,19 +1373,23 @@ function YearRange({ span, onSpan, hist, count }) {
     else if (e.key === "PageDown") idx = cur - 4;
     else if (e.key === "Home") idx = 0;
     else if (e.key === "End") idx = N - 1;
-    else if (e.key === "Escape" && span) { e.preventDefault(); e.stopPropagation(); onSpan(null); return; }
+    else if (e.key === "Escape" && (span || live)) { e.preventDefault(); e.stopPropagation(); draw(null); commit(null); return; }
     else return;
     e.preventDefault(); e.stopPropagation();
-    put(end, idx);
+    // the keyboard still commits as it goes: one keypress is one deliberate change, and the
+    // release-only rule exists for the hundreds of steps a single drag throws off (Fuad 2026-09-10)
+    const next = nudge(liveRef.current, end, idx);
+    draw(next); commit(next);
   };
   // aria-valuemin/max carry the LIVE constraint (lo cannot pass hi), so a screen reader announces
   // the range each handle can actually reach; valuetext says "earliest"/"now" where the number is
-  // a sentinel rather than a date.
+  // a sentinel rather than a date. The `title` is new (Fuad 2026-09-10): with the head row's
+  // "1830 – 1870" readout gone, hovering a knob is how a mouse asks which year it is sitting on.
   const handle = (end) => {
     const y = end === "lo" ? lo : hi;
     return (
       <div className="cv-yr-h" data-end={end} role="slider" tabIndex={0}
-        aria-label={end === "lo" ? "earliest year" : "latest year"}
+        aria-label={end === "lo" ? "earliest year" : "latest year"} title={yearLabel(y)}
         aria-valuemin={end === "lo" ? YEAR_MIN : lo}
         aria-valuemax={end === "lo" ? hi : YEAR_MAX}
         aria-valuenow={y} aria-valuetext={yearLabel(y)}
@@ -1354,35 +1400,41 @@ function YearRange({ span, onSpan, hist, count }) {
   const bins = hist || [];
   const peak = Math.max(1, ...bins);
   return (
-    <div className="cv-yr" data-set={!!span || undefined}>
-      <div className="cv-yr-head">
-        <output className="cv-yr-val">{span ? yearLabel(lo) + " – " + yearLabel(hi) : "all years"}</output>
-        <i className="cv-yr-n">{count}</i>
-        {span && (
-          <button type="button" className="cv-yr-clear" onClick={() => onSpan(null)}
-            title="drop the year range — every year again, undated works included">✕ all years</button>
-        )}
-      </div>
+    // NO HEAD ROW (Fuad 2026-09-10) — "Let's remove the YEARS all years, including the amount of
+    // paintings shown … the draggable bar is at the height of the buttons, currently it overblows
+    // it." The "all years / 1830 – 1870" output, its count and the "✕ all years" button are gone, so
+    // the whole control is one 23px band, exactly as tall as the chips beside it. The years are
+    // still SPOKEN: aria-valuetext on each handle carries them for a screen reader, and each handle's
+    // own title shows them on hover. Clearing survives as Escape and as "drag both handles to the
+    // ends", which spanIsAll normalises straight back to null.
+    <div className="cv-yr" data-set={!!live || undefined}>
       <div className="cv-yr-track" ref={trackRef}
-        onPointerDown={onDown} onPointerMove={onMove} onPointerUp={endDrag} onPointerCancel={endDrag}>
+        title="when the work was made — drag either handle, or focus one and use the arrow keys"
+        onPointerDown={onDown} onPointerMove={onMove} onPointerUp={endDrag}
+        onPointerCancel={endDrag} onLostPointerCapture={endDrag}>
+        {/* the 14% floor keeps a bin with anything in it drawing at least a hairline now the
+            histogram is 9px rather than 11px — 9% of 9px rounds away to nothing */}
         <div className="cv-yr-hist" aria-hidden="true">
           {bins.map((c, i) => (
-            <span key={i} data-in={!!span && YEAR_STOPS[i + 1] > lo && YEAR_STOPS[i] <= hi}
-              style={{ height: (c ? Math.max(9, Math.round((c / peak) * 100)) : 0) + "%" }} />
+            <span key={i} data-in={!!live && YEAR_STOPS[i + 1] > lo && YEAR_STOPS[i] <= hi}
+              style={{ height: (c ? Math.max(14, Math.round((c / peak) * 100)) : 0) + "%" }} />
           ))}
         </div>
         <div className="cv-yr-rail" aria-hidden="true" />
         <div className="cv-yr-fill" aria-hidden="true" style={{ left: pLo + "%", width: Math.max(0, pHi - pLo) + "%" }} />
         {handle("lo")}{handle("hi")}
-      </div>
-      <div className="cv-yr-ticks" aria-hidden="true">
-        {YEAR_STOPS.filter(y => YEAR_TICKS.has(y)).map(y => {
-          const p = yearToPos(y);
-          return (
-            <span key={y} data-edge={p === 0 ? "lo" : p === 1 ? "hi" : undefined}
-              style={{ left: p * 100 + "%" }}>{yearLabel(y)}</span>
-          );
-        })}
+        {/* the century labels moved INSIDE the track (Fuad 2026-09-10) so histogram, rail and ticks
+            share one 23px band instead of stacking three rows. pointer-events:none in the CSS keeps
+            them from swallowing a press meant for the rail they are sitting on top of. */}
+        <div className="cv-yr-ticks" aria-hidden="true">
+          {YEAR_STOPS.filter(y => YEAR_TICKS.has(y)).map(y => {
+            const p = yearToPos(y);
+            return (
+              <span key={y} data-edge={p === 0 ? "lo" : p === 1 ? "hi" : undefined}
+                style={{ left: p * 100 + "%" }}>{yearLabel(y)}</span>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
@@ -1562,10 +1614,8 @@ function Wall({ go, styleIds }) {
     }
     return { bins, list };
   }, [all, marks, status, tokens, sel, media, qual]);
-  // the number printed beside the range text — what survives the span, or the lot at "all years"
-  const yearCount = useMemo(
-    () => span ? yearFacet.list.filter(w => yearPass(w, span)).length : yearFacet.list.length,
-    [yearFacet, span]);
+  // (the year facet's own count went with the slider's head row — Fuad 2026-09-10; the wall in front
+  //  of you and the .cv-count total already answer "how many", and the head cost the row 26px)
   // all-time counts, used only to decide which medium chips exist at all
   const mediaAll = useMemo(() => {
     const c = {};
@@ -1786,7 +1836,11 @@ function Wall({ go, styleIds }) {
         <button className="cv-hang-chip" data-on={hang} onClick={() => setHang(v => !v)}
           aria-label="today's hang"
           title="today's hang — a curated rotation of works that floored me">
-          <span className="cv-f-tiny">⌂</span><span className="cv-f-full" style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}><span>⌂</span><span>today's wall</span></span>
+          {/* NO INLINE display HERE (Fuad 2026-09-10) — an inline `display:inline-flex` on the full
+              label beat the 620px `.cv-f-full { display: none }` rule, so a phone drew BOTH spans:
+              a stray second ⌂ next to the words. The inline-flex/gap lives in .cv-hang-chip
+              .cv-f-full now, where the media query can out-specify it. */}
+          <span className="cv-f-tiny">⌂</span><span className="cv-f-full"><span>⌂</span><span>today's wall</span></span>
         </button>
         <span className="cv-filt-div" aria-hidden="true" />
         {/* "all" clears both axes — a reset, not a third state you can be in */}
@@ -1938,10 +1992,11 @@ function Wall({ go, styleIds }) {
         {/* a DIV, not a span like the medium group beside it: the slider is block content
             (track, rail, tick row) and a span may not legally contain it. As a flex item of
             .cv-objrow it lays out identically. */}
+        {/* NO "years" LABEL (Fuad 2026-09-10) — the six century numbers under the rail already say
+            what axis this is, and the word was buying a second line of chrome for a control that has
+            to stand exactly as tall as the chips beside it. Its hover hint moved onto the track. */}
         <div className="cv-objgrp cv-yrgrp">
-          <span className="cv-styles-lbl"
-            title="when the work was made — drag either handle, or focus one and use the arrow keys">years</span>
-          <YearRange span={span} onSpan={setYearSpan} hist={yearFacet.bins} count={yearCount} />
+          <YearRange span={span} onSpan={setYearSpan} hist={yearFacet.bins} />
         </div>
       </div>
       {/* STYLES — multi-select, OR'd. Movement is the artist's (Wikidata P135), so the note says
@@ -3207,7 +3262,6 @@ function MuseumView({ museumId, go }) {
   const PAL = window.CANVAS_PALETTE || {};
   const ABOUT = (window.CANVAS_MUSEUM_ABOUT || {})[museumId] || null;
   const DATA = (window.CANVAS_MUSEUM_DATA || {})[museumId] || null;
-  const READS = window.CANVAS_ART_ABOUT || {};
   const INSPECT = window.CANVAS_INSPECT || {};
   const [tier, setTier] = useState("about");
   // the highlight currently being looked at in place (non-canon works only)
@@ -3238,7 +3292,10 @@ function MuseumView({ museumId, go }) {
     return h && h.museumId === museumId && !metIds.has(w.id);
   }), [museumId, metIds]);
 
-  const hasRead = (w) => !!(READS[w.id] || INSPECT[w.id]);
+  // ✦ has a read — the SHARED predicate (hasReadPass): a written read or a walked study tour.
+  // This used to be a local copy of that rule; the ✦ badge on the cards below and the ✦ chip in
+  // the filter row now cannot disagree with the artist page's (Fuad 2026-09-10).
+  const hasRead = hasReadPass;
   // ★ floored/favorite first, then liked, then the rest; images ahead of text within a tier.
   const hangSort = (a, b) => {
     const wa = (a.floored || a.favorite) ? 0 : a.liked ? 1 : 2, wb = (b.floored || b.favorite) ? 0 : b.liked ? 1 : 2;
@@ -3317,19 +3374,72 @@ function MuseumView({ museumId, go }) {
   // ENCOUNTER FILTER (Fuad 2026-08-13): filter what was met here by how it landed. Mirrors the
   // Wall's own chip vocabulary so the two pages filter alike. "unmet" is NOT here — unmet majors
   // are a separate section further down, not part of the encounters grid.
-  const [musFilt, setMusFilt] = useState("all");
-  const MUS_FILTERS = [["all", "all"], ["floored", "★ floored"], ["loved", "♥ loved"],
-                       ["sure", "seen — sure"], ["unsure", "unsure"], ["read", "✦ has a read"]];
+  //
+  // RE-CUT INTO INDEPENDENT AXES (Fuad 2026-09-10: "Has a Read needs to be optional and possible to
+  // choose with the other types, similar with Floored/Loved and Seen/Unsure"). All six chips used to
+  // share ONE radio, so every question was exclusive and "the floored things here that also have a
+  // read" — the question a museum page exists to answer — could not be asked at all. It now mirrors
+  // the Wall's combining rules as well as its vocabulary: marks OR within themselves, status ORs
+  // within itself, the two axes AND against each other, and ✦/⤢ are independent toggles that
+  // combine with anything. "all" is a reset, not a seventh state you can sit in — it is lit exactly
+  // when nothing is selected. The predicates are the SHARED ones (markPass, hasReadPass,
+  // hasTourPass) rather than re-derived here; re-deriving is how "loved" drifted (2026-08-20).
+  const [musMarks, setMusMarks] = useState(() => new Set());
+  const [musStatus, setMusStatus] = useState(() => new Set());
+  const [musRead, setMusRead] = useState(false);
+  const [musTour, setMusTour] = useState(false);
+  // NO "not seen" CHIP HERE, unlike the Wall's three-state axis: every work in this grid was met in
+  // this building, so that state has no members on this page. And "unsure" keeps the museum's own
+  // wider reading — seenConfidence !== "sure", which holds `probably` and an unrecorded confidence
+  // inside it. The Wall's statusPass guards on `!= null` only to keep never-met works out of
+  // "unsure", and that case cannot arise here, so the guard would only lose encounters.
+  const MUS_STATUS_FILTERS = [["sure", "seen", "seen"], ["unsure", "unsure", "unsure"]];
+  const musStatusPass = (w, k) => k === "sure" ? w.seenConfidence === "sure" : w.seenConfidence !== "sure";
+  const musFiltOn = !!(musMarks.size || musStatus.size || musRead || musTour);
   const applyMusFilt = (list) => {
-    if (musFilt === "floored") return list.filter(w => w.floored || w.favorite);
-    // the liked mark alone — same tier split as the Wall (Fuad 2026-08-20), so "loved" cannot mean
-    // one thing on one page and a superset of it on another
-    if (musFilt === "loved") return list.filter(w => w.liked);
-    if (musFilt === "sure") return list.filter(w => w.seenConfidence === "sure");
-    if (musFilt === "unsure") return list.filter(w => w.seenConfidence !== "sure");
-    if (musFilt === "read") return list.filter(w => hasRead(w));
-    return list;
+    let out = list;
+    if (musMarks.size) out = out.filter(w => [...musMarks].some(k => markPass(w, k)));
+    if (musStatus.size) out = out.filter(w => [...musStatus].some(k => musStatusPass(w, k)));
+    if (musRead) out = out.filter(hasRead);
+    // ⤢ ANDs against ✦ rather than replacing it. A tour is a subset of a read, so both lit reads as
+    // "of the things with a read, the ones I walked" — which is what the two lit chips look like.
+    if (musTour) out = out.filter(w => !!INSPECT[w.id]);
+    return out;
   };
+  // ONE chip row, rendered in two places (inside the wall's lead island, and standalone when the
+  // filters empty the wall). It was duplicated markup; with four axes to keep in sync that was a
+  // drift waiting to happen. `always` forces the "n of m" counter on for the empty case, where the
+  // count is the only thing left saying why the wall is bare.
+  const musFilterRow = (nShown, nTotal, always) => (
+    <div className="cv-mus-filters">
+      <button className="cv-mus-filt" data-on={!musFiltOn} title="everything met here"
+        onClick={() => { setMusMarks(new Set()); setMusStatus(new Set()); setMusRead(false); setMusTour(false); }}>all</button>
+      {MARK_FILTERS.map(([v, label, tiny]) => (
+        <button key={v} className="cv-mus-filt" data-on={musMarks.has(v)} title={label}
+          onClick={() => setMusMarks(st => toggleInSet(st, v))}>
+          <span className="cv-f-full">{label}</span><span className="cv-f-tiny">{tiny}</span>
+        </button>
+      ))}
+      <span className="cv-filt-div" aria-hidden="true" />
+      {MUS_STATUS_FILTERS.map(([v, label]) => (
+        <button key={v} className="cv-mus-filt" data-on={musStatus.has(v)} title={label}
+          onClick={() => setMusStatus(st => toggleInSet(st, v))}>
+          <span className="cv-f-full">{label}</span>
+          <span className="cv-f-tiny"><EyeIcon state={STATUS_ICON[v]} /></span>
+        </button>
+      ))}
+      <span className="cv-filt-div" aria-hidden="true" />
+      <button className="cv-mus-filt" data-on={musRead} title="has a read — a written close reading of the work"
+        onClick={() => setMusRead(v => !v)}>
+        <span className="cv-f-full">✦ has a read</span><span className="cv-f-tiny">✦</span>
+      </button>
+      <button className="cv-mus-filt" data-on={musTour} title="has a study tour — a walked close reading of the surface"
+        onClick={() => setMusTour(v => !v)}>
+        <span className="cv-f-full">⤢ tour</span><span className="cv-f-tiny">⤢</span>
+      </button>
+      {(always || musFiltOn) && <span className="cv-mus-filt-n">{nShown} of {nTotal}</span>}
+    </div>
+  );
 
   const flooredRef = useRef(null);
   useEffect(() => {
@@ -3494,25 +3604,13 @@ function MuseumView({ museumId, go }) {
               <Wall works={shown} lead={
                 <React.Fragment>
                   <div className="cv-mus-lead-l">The encounters — what I met here</div>
-                  <div className="cv-mus-filters">
-                    {MUS_FILTERS.map(([k, label]) => (
-                      <button key={k} className="cv-mus-filt" data-on={musFilt === k}
-                        onClick={() => setMusFilt(k)}>{label}</button>
-                    ))}
-                    {musFilt !== "all" && <span className="cv-mus-filt-n">{shown.length} of {encounters.length}</span>}
-                  </div>
+                  {musFilterRow(shown.length, encounters.length, false)}
                 </React.Fragment>
               } />
             ) : (
               <React.Fragment>
                 <div className="cv-a-secl">The encounters — what I met here</div>
-                <div className="cv-mus-filters">
-                  {MUS_FILTERS.map(([k, label]) => (
-                    <button key={k} className="cv-mus-filt" data-on={musFilt === k}
-                      onClick={() => setMusFilt(k)}>{label}</button>
-                  ))}
-                  <span className="cv-mus-filt-n">{shown.length} of {encounters.length}</span>
-                </div>
+                {musFilterRow(shown.length, encounters.length, true)}
                 <p className="cv-mus-filt-none">Nothing here matches that.</p>
               </React.Fragment>
             )}
@@ -3818,6 +3916,24 @@ function ArtistView({ artistId, go }) {
   // canon wall page size (Fuad 2026-08-22: a hard 32 with an explicit button, not scroll-reveal).
   // The route keys this component by artist id, so a fresh artist resets to 32 by remount.
   const [wallN, setWallN] = useState(32);
+  // ARTIST FILTER ROW (Fuad 2026-09-10: "I'd also like to add some basic filtering methods for
+  // artists' pages"). The same chips, the same predicates and the same combining rules as the Wall
+  // and the museum page: marks OR within themselves, status ORs within itself, the two axes AND
+  // against each other, and ✦/⤢ are independent toggles that combine with anything. Unlike the
+  // museum page this wall carries works never met — the canon includes what is still to come — so
+  // the status axis keeps the Wall's full three states, statusPass and all.
+  // Declared up here with wallN, ABOVE the early return below, to keep the hook order stable.
+  const [aMarks, setAMarks] = useState(() => new Set());
+  const [aStatus, setAStatus] = useState(() => new Set());
+  const [aRead, setARead] = useState(false);
+  const [aTour, setATour] = useState(false);
+  // ✦ and ⤢ read the LAZY art-about.js / art_inspect.js globals, so this page has to re-render when
+  // one of them lands — otherwise an artist opened straight from a cold boot shows no ✦ chip and
+  // then never grows one (the stale-lazy bug class documented at useLazyGen).
+  useLazyGen();
+  // every toggle resets the pager: filtering to nine works while "show 32 more" still counts the
+  // unfiltered tail would leave a button offering works the filter has already excluded.
+  const aSet = (fn) => { setWallN(32); fn(); };
   const queueMajor = (n) => { addToDeckQueue(n); setQueuedQids(prev => new Set(prev).add(n.qid)); };
   if (!works.length && !AD2.qid) return <div className="cv-mus"><p>No artist here (yet).</p></div>;
   const name = (works[0] && works[0].artist.replace(/\s*\(.*\)$/, "")) || AD2.label;
@@ -3847,6 +3963,30 @@ function ArtistView({ artistId, go }) {
     .map(id => MUS_BY_ID[id]).filter(Boolean);
   const floored = works.filter(w => w.floored || w.favorite).length;
   const liked = works.filter(w => w.liked).length;
+  // A CHIP ONLY WHEN IT HAS MEMBERS (Fuad 2026-09-10). An artist with nothing floored would
+  // otherwise get a ★ that empties his wall, which reads as a bug rather than as an answer; the
+  // row should only ever offer questions this artist can answer. `all` is exempt — it is the way
+  // back — and if `all` is all that would be left, `live` is false and no row renders at all: a
+  // filter row with one dead button is worse than no filter row.
+  const aRow = {
+    marks: MARK_FILTERS.filter(([v]) => works.some(w => markPass(w, v))),
+    status: STATUS_FILTERS.filter(([v]) => works.some(w => statusPass(w, v))),
+    read: works.some(hasReadPass),
+    tour: works.some(hasTourPass),
+  };
+  aRow.live = aRow.marks.length + aRow.status.length + (aRow.read ? 1 : 0) + (aRow.tour ? 1 : 0) > 0;
+  const aFiltOn = !!(aMarks.size || aStatus.size || aRead || aTour);
+  const aWorks = (() => {
+    let out = works;
+    if (aMarks.size) out = out.filter(w => [...aMarks].some(k => markPass(w, k)));
+    if (aStatus.size) out = out.filter(w => [...aStatus].some(k => statusPass(w, k)));
+    if (aRead) out = out.filter(hasReadPass);
+    // ⤢ ANDs against ✦ — a tour is a subset of a read, so both lit means "of the read ones, the
+    // ones I walked". Not memoised on purpose: both predicates read lazy globals, and a useMemo
+    // here would need useLazyGen()'s counter in its deps to avoid the stale-chip bug.
+    if (aTour) out = out.filter(hasTourPass);
+    return out;
+  })();
   return (
     <div className="cv-artist">
       {/* COMPRESSED to the museum header's grammar (Fuad 2026-08-19). It used to stack four
@@ -3889,11 +4029,48 @@ function ArtistView({ artistId, go }) {
         {AD2.image && <img className="cv-a-face" src={proxied(AD2.image)} data-orig={AD2.image} onError={unproxy} alt={name} />}
       </div>
       <div className="cv-a-secl">In your canon</div>
-      <div className="cv-wall cv-a-wall">{works.slice(0, wallN).map(w => <Card key={w.id} w={w} go={go} />)}</div>
-      {works.length > wallN && (
+      {aRow.live && (
+        <div className="cv-mus-filters cv-a-filters">
+          {/* "all" is never hidden and never conditional — it is the way back out */}
+          <button className="cv-mus-filt" data-on={!aFiltOn} title={`every work by ${name} in the canon`}
+            onClick={() => aSet(() => { setAMarks(new Set()); setAStatus(new Set()); setARead(false); setATour(false); })}>all</button>
+          {aRow.marks.map(([v, label, tiny]) => (
+            <button key={v} className="cv-mus-filt" data-on={aMarks.has(v)} title={label}
+              onClick={() => aSet(() => setAMarks(st => toggleInSet(st, v)))}>
+              <span className="cv-f-full">{label}</span><span className="cv-f-tiny">{tiny}</span>
+            </button>
+          ))}
+          {aRow.marks.length > 0 && aRow.status.length > 0 && <span className="cv-filt-div" aria-hidden="true" />}
+          {aRow.status.map(([v, label]) => (
+            <button key={v} className="cv-mus-filt" data-on={aStatus.has(v)} title={label}
+              onClick={() => aSet(() => setAStatus(st => toggleInSet(st, v)))}>
+              <span className="cv-f-full">{label}</span>
+              <span className="cv-f-tiny"><EyeIcon state={STATUS_ICON[v]} /></span>
+            </button>
+          ))}
+          {(aRow.read || aRow.tour) && <span className="cv-filt-div" aria-hidden="true" />}
+          {aRow.read && (
+            <button className="cv-mus-filt" data-on={aRead} title="has a read — a written close reading of the work"
+              onClick={() => aSet(() => setARead(v => !v))}>
+              <span className="cv-f-full">✦ has a read</span><span className="cv-f-tiny">✦</span>
+            </button>
+          )}
+          {aRow.tour && (
+            <button className="cv-mus-filt" data-on={aTour} title="has a study tour — a walked close reading of the surface"
+              onClick={() => aSet(() => setATour(v => !v))}>
+              <span className="cv-f-full">⤢ tour</span><span className="cv-f-tiny">⤢</span>
+            </button>
+          )}
+          {aFiltOn && <span className="cv-mus-filt-n">{aWorks.length} of {works.length}</span>}
+        </div>
+      )}
+      {/* FILTER FIRST, THEN SLICE — the pager pages the filtered wall, not the canon behind it */}
+      <div className="cv-wall cv-a-wall">{aWorks.slice(0, wallN).map(w => <Card key={w.id} w={w} go={go} />)}</div>
+      {aWorks.length === 0 && <p className="cv-a-filt-none">Nothing of theirs matches that.</p>}
+      {aWorks.length > wallN && (
         <div className="cv-more">
           <button type="button" onClick={() => setWallN(n => n + 32)}>
-            show 32 more · {works.length - wallN} to go
+            show 32 more · {aWorks.length - wallN} to go
           </button>
         </div>
       )}
