@@ -62,6 +62,8 @@ const ALBUM_REMAP = {
   ["God Is an Astronaut\x00The End Of The Beginning (2011 Remastered Edition)"]: { "Fall From the Stars": "The End of the Beginning" },
   // Strapping Young Lad (Fuad 2026-09-06): one Zen scrobble tagged to The New Black; Zen is Alien track 10.
   ["Strapping Young Lad\x00The New Black"]: { "Zen": "Alien" },
+  // Arch Enemy (Fuad 2026-09-11): the truncated "Manifesto of" album string is the same 2009 compilation (titles remapped first)
+  ["Arch Enemy\x00Manifesto of"]: { "Burning Angel": "Manifesto of Arch Enemy (Best Of)", "I Will Live Again": "Manifesto of Arch Enemy (Best Of)", "Blood On Your Hands": "Manifesto of Arch Enemy (Best Of)", "Taking Back My Soul": "Manifesto of Arch Enemy (Best Of)", "Nemesis": "Manifesto of Arch Enemy (Best Of)", "We Will Rise": "Manifesto of Arch Enemy (Best Of)", "Revolution Begins": "Manifesto of Arch Enemy (Best Of)", "My Apocalypse": "Manifesto of Arch Enemy (Best Of)", "Ravenous": "Manifesto of Arch Enemy (Best Of)", "Dead Eyes See No Future": "Manifesto of Arch Enemy (Best Of)" },
   // Massive Attack (Fuad 2026-09-07): live "(with …)" rows scrobbled with an EMPTY album string fold onto the album cuts (titles remapped first)
   ["Massive Attack\x00"]: { "Safe From Harm": "Blue Lines", "Unfinished Sympathy": "Blue Lines", "Teardrop": "Mezzanine", "Angel": "Mezzanine" },
   ["Linkin Park\x00Mój Album"]: {
@@ -148,6 +150,24 @@ const TRACK_REMAP = {
   ["Anthrax\x00We're A Happy Family (Bonustrack)"]: "We're A Happy Family",
   ["Anthrax\x00Protest And Survive (Varukers Cover)"]: "Protest and Survive",
   ["Anthrax\x00Pipeline (The Ventures Cover)"]: "Pipeline",
+  // Arch Enemy (Fuad 2026-09-11): live / '99 / duplicate rows fold onto the song
+  ["Arch Enemy\x00Taking Back My Soul (live)"]: "Taking Back My Soul",
+  ["Arch Enemy\x00Blood On Your Hands (live)"]: "Blood On Your Hands",
+  ["Arch Enemy\x00Heart of Darkness (live in Paris 2004) (bonus track)"]: "Heart of Darkness",
+  ["Arch Enemy\x00Bridge of Destiny (live in paris 2004) (bonus track)"]: "Bridge Of Destiny",
+  ["Arch Enemy\x00Bridge Of Destiny (live)"]: "Bridge Of Destiny",
+  ["Arch Enemy\x00Bass Intro/Tears of the Dead (Live)"]: "Tears Of The Dead",
+  ["Arch Enemy\x00Beast Of Man (Live)"]: "Beast Of Man",
+  ["Arch Enemy\x00Diva Satanica (live)"]: "Diva Satanica",
+  ["Arch Enemy\x00The Immortal (live)"]: "The Immortal",
+  ["Arch Enemy\x00The Immortal (Live In Japan '99)"]: "The Immortal",
+  ["Arch Enemy\x00Silverwing (Live In Japan '99)"]: "Silverwing",
+  ["Arch Enemy\x00Dead Inside (Live In Japan '99)"]: "Dead Inside",
+  ["Arch Enemy\x00Bury Me an Angel (Live)"]: "Bury Me an Angel",
+  ["Arch Enemy\x00Angelclaw (Live in Japan '99)"]: "Angelclaw",
+  ["Arch Enemy\x00Pilgrim (Live In Japan '99)"]: "Pilgrim",
+  ["Arch Enemy\x00Fields Of Desolation '99"]: "Fields of Desolation",
+  ["Arch Enemy\x00The Oath"]: "The Oath (Kiss cover)", // the plain Kovered row is the same recording
 };
 // whole album rows scrobbled under the wrong artist → [artist, album] (Fuad 2026-09-06)
 const ARTIST_ALBUM_REMAP = {
