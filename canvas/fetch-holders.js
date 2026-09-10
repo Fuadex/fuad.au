@@ -77,14 +77,27 @@ async function api(url) {
   return null;
 }
 const val = (ent, p) => { const c = ent && ent.claims && ent.claims[p] && ent.claims[p][0]; return c && c.mainsnak && c.mainsnak.datavalue && c.mainsnak.datavalue.value; };
-const labelOf = (ent) => ent && ent.labels && ent.labels.en && ent.labels.en.value;
+// ⚠ Wikidata has been MIGRATING institution names off the `en` label onto `mul`, the
+// multilingual label that serves every language at once. Reading only `en` returns nothing for
+// those, and the caller then falls back to writing the bare QID as the name — which is how
+// art_holders.js ended up with five places called things like "Q1117704" (the Indianapolis Museum
+// of Art), feeding a raw qid into a candidate row where a museum name belongs. Try `mul` next,
+// then any label at all: a museum's name in its own language beats no name.
+const LANGS = ["en", "mul", "fr", "de", "nl", "it", "es", "sv", "pl", "da", "no", "fi", "ru"];
+const labelOf = (ent) => {
+  const L = ent && ent.labels;
+  if (!L) return undefined;
+  for (const k of LANGS) if (L[k] && L[k].value) return L[k].value;
+  const first = Object.values(L)[0];
+  return first && first.value;
+};
 
 (async () => {
   const need = qids.filter(q => !(q in cache));
   console.log(`fetching ${need.length} institutions (${qids.length - need.length} cached)`);
   for (let i = 0; i < need.length; i += 45) {
     const batch = need.slice(i, i + 45);
-    const j = await api("https://www.wikidata.org/w/api.php?action=wbgetentities&props=claims|labels&languages=en&format=json&ids=" + batch.join("|"));
+    const j = await api("https://www.wikidata.org/w/api.php?action=wbgetentities&props=claims|labels&languages=en|mul|fr|de|nl|it|es|sv|pl|da|no|fi|ru&format=json&ids=" + batch.join("|"));
     for (const q of batch) {
       const e = j && j.entities && j.entities[q];
       if (!e) { cache[q] = null; continue; }
@@ -106,7 +119,7 @@ const labelOf = (ent) => ent && ent.labels && ent.labels.en && ent.labels.en.val
   console.log(`resolving ${secondary.length} country/city entities`);
   for (let i = 0; i < secondary.length; i += 45) {
     const batch = secondary.slice(i, i + 45);
-    const j = await api("https://www.wikidata.org/w/api.php?action=wbgetentities&props=claims|labels&languages=en&format=json&ids=" + batch.join("|"));
+    const j = await api("https://www.wikidata.org/w/api.php?action=wbgetentities&props=claims|labels&languages=en|mul|fr|de|nl|it|es|sv|pl|da|no|fi|ru&format=json&ids=" + batch.join("|"));
     for (const q of batch) {
       const e = j && j.entities && j.entities[q];
       const coord = e && val(e, "P625");
