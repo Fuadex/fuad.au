@@ -115,6 +115,9 @@ a { color: inherit; }
 .cv-r-links { margin-top: 24px; display: flex; gap: 14px; flex-wrap: wrap; }
 .cv-r-links a { font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 2px; transition: border-color .15s ease; }
 .cv-r-links a:hover { border-bottom-color: oklch(0.66 0.14 46 / .35); }
+/* the master's size beside a clamped single-file link (Fuad 2026-09-10): same mono, quiet ink,
+   no underline — it is a statement of what the deep zoom serves, not a second download */
+.cv-r-links .cv-r-master { font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); padding-bottom: 2px; }
 .cv-r-close { position: sticky; top: 10px; margin-left: calc(100% - 46px); width: 36px; height: 36px; border-radius: 999px; border: none; background: rgba(26,20,14,.72); color: #e3d8c8; font-size: 17px; cursor: pointer; z-index: 2; }
 
 /* ——— museums view ——— */
@@ -568,25 +571,40 @@ a { color: inherit; }
    Deliberately quiet, like the chips it replaces: ink at low opacity for the ground, the one burnt
    sienna accent reserved for the SELECTED span, so the eye reads the chosen years first.
    ONE BAND, NOT THREE ROWS (Fuad 2026-09-10) — "I'd like to make sure that the draggable bar is at
-   the height of the buttons, currently it overblows it." The head row (the "all years / 1830 – 1870"
-   readout, its count and the ✕ clear) and the "years" label are gone, and the tick row moved INSIDE
-   the track, so the whole control is 23px tall — the filter chip's own height, 11px line + 5px
-   padding top and bottom + 1px border each side. Inside that band:
+   the height of the buttons, currently it overblows it." The stacked head row and the "years" label
+   are gone and the tick row moved INSIDE the track, so the whole control is 23px tall — the filter
+   chip's own height, 11px line + 5px padding top and bottom + 1px border each side. Inside the band:
      histogram   top 0,  height 9   → 0…9
-     rail/fill   top 10, height 3   → 10…13   (centre 11.5)
+     rail/fill   top 10, height 3   → 10…13   (centre 11.5, which is also the band's own centre)
      tick labels bottom 0, height 9 → 14…23   (8.5px mono on a 1.0 line = 8.5px of glyph)
-   Clearing is Escape, or both handles dragged to the ends; the years are announced by aria-valuetext
-   and shown by each handle's title.
+   .cv-yr is now the flex ROW that holds the band and, to its right, the readout that used to sit
+   above it — "bring back the years information update somehow, perhaps to be next to the bar, to
+   the right (with the filtered amount of artworks)". align-items:center puts the readout's 11px
+   line box centre on 11.5, the rail's line, so the two read as one horizontal statement.
+   Clearing is still Escape, or both handles dragged to the ends; the ✕ button did not come back.
    Placed after the 620px chip-rail block on purpose — .cv-yrgrp has to opt OUT of the horizontal
    rail those rules give every .cv-objgrp, and the overrides below win on source order. */
-.cv-objrow .cv-yrgrp { align-self: flex-start; flex: 1 1 320px; min-width: 200px; max-width: 560px; }
-/* a definite height, so .cv-objgrp's align-items:stretch cannot pull the band taller than the chips */
-.cv-yr { position: relative; flex: 1 1 auto; min-width: 170px; height: 23px; }
+.cv-objrow .cv-yrgrp { align-self: flex-start; flex: 1 1 420px; min-width: 260px; max-width: 620px; }
+/* a definite height, so .cv-objgrp's align-items:stretch cannot pull the row taller than the chips */
+.cv-yr { display: flex; align-items: center; gap: 10px; flex: 1 1 auto; min-width: 260px; height: 23px; }
 /* touch-action:none is load-bearing — without it a drag on a phone scrolls the page instead of
    moving the handle. The track IS the 23px band and everything else is absolutely placed inside it
    (Fuad 2026-09-10): histogram 0…9, rail 10…13, tick labels 14…23. The 34px handles keep their full
-   touch target by overflowing the band above and below. */
-.cv-yr-track { position: relative; height: 23px; touch-action: none; cursor: pointer; }
+   touch target by overflowing the band above and below.
+   min-width:0 lets it actually give way to the readout beside it — a flex item's default
+   min-width:auto would have it refuse to shrink past its content and push the row wide. */
+.cv-yr-track { position: relative; flex: 1 1 auto; min-width: 0; height: 23px; touch-action: none; cursor: pointer; }
+/* THE READOUT — mono, so the digits do not jitter as the count changes under a drag. A fixed
+   min-width (the longest string it can hold is "earliest – now · 2,745", 22 mono characters) keeps
+   the TRACK from resizing every time the number gains or loses a digit: without it the rail would
+   breathe under the finger and the handle would slide out from under the pointer mid-drag.
+   The middle dot is a <b> only so it can be dimmed without a second element. */
+.cv-yr-out { flex: none; min-width: 13.5em; font: 500 11px/1 var(--mono); color: var(--ink);
+  white-space: nowrap; letter-spacing: -.01em; }
+.cv-yr-out b { font-weight: 400; color: var(--ink-faint); }
+/* at rest the whole readout steps back — "all years · 2,745" is the absence of a filter, and it
+   should not sit there looking like one */
+.cv-yr:not([data-set]) .cv-yr-out { color: var(--ink-faint); }
 .cv-yr-hist { position: absolute; left: 0; right: 0; top: 0; height: 9px; display: flex; align-items: flex-end; gap: 1px; }
 /* the 1px gaps between these bars ARE the stops — that is why no separate tick marks are drawn */
 .cv-yr-hist span { flex: 1 1 0; min-width: 0; background: var(--ink); opacity: .15; border-radius: 1px 1px 0 0; }
@@ -598,19 +616,33 @@ a { color: inherit; }
 .cv-yr:not([data-set]) .cv-yr-fill { background: rgba(0, 0, 0, .13); }
 .cv-yr:not([data-set]) .cv-yr-h:not(:hover):not(:focus-visible)::after { border-color: var(--ink-faint); }
 /* 34px square hit area, 8px visible knob — the target is the finger's, the mark is the eye's, and
-   the two are deliberately not the same size. The KNOB halved on 2026-09-10 ("decrease the large
-   white dots, probably by like twice the size") from 15px to 8px; the hit area did NOT move, because
-   shrinking the mark is a visual decision and shrinking the target would be a usability one.
-   top:-5.5px puts the 34px square's centre (-5.5 + 17 = 11.5) on the rail's centre (10 + 1.5): the
-   knob sits on the rail, the target overflows onto neutral space above and the tick row below. */
+   the two are deliberately not the same size. The hit area has never moved through any of this:
+   shrinking the mark is a visual decision, shrinking the target would be a usability one.
+   top:-5.5px puts the 34px square's centre (-5.5 + 17 = 11.5) on the rail's centre (10 + 1.5). */
 .cv-yr-h { position: absolute; top: -5.5px; width: 34px; height: 34px; margin-left: -17px; touch-action: none; cursor: grab; }
 .cv-yr-h:active { cursor: grabbing; }
-/* border-box (see the reset at the top of this file) — 8px is the OUTER diameter, border included,
-   so the 2px accent ring is still a ring and the plaster centre is the remaining 4px. -4px margins
-   re-centre the halved knob on the 50%/50% origin. */
-.cv-yr-h::after { content: ""; position: absolute; left: 50%; top: 50%; width: 8px; height: 8px;
-  margin: -4px 0 0 -4px; border-radius: 50%; background: var(--plaster); border: 2px solid var(--accent);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, .3); transition: border-color .18s ease, box-shadow .18s ease; }
+/* WHY THE DOT SAT BELOW THE LINE (Fuad 2026-09-10: "move that white dot on the dates draggable bar
+   to be not below the line but on the center"). The reset at the top of this file is `* {
+   box-sizing: border-box }`, and the universal selector does NOT match pseudo-elements — every
+   reset that means to cover them spells out `*, *::before, *::after`. So this ::after was
+   content-box all along: width:8px + 2×2px border rendered 12px, while the -4px margin that was
+   meant to centre it was computed for 8px. The border box therefore ran from centre-4 to centre+8
+   and its optical middle landed 2px BELOW the rail. Measured on a 4× screenshot before the fix:
+   rail centre cssY 181.0, knob ink centroid cssY 182.94.
+   Two things stop it recurring: box-sizing is now declared HERE rather than inherited from a rule
+   that never applied, and the knob is placed by explicit pixels off the handle's own top-left
+   (17 − 4 = 13) instead of by 50% + a hand-computed negative margin, so the two numbers cannot
+   drift apart again.
+   SIZE: 8px outer, a third off the 12px that was actually on screen — "let's make those dots even
+   smaller by another 1/3rd". The ring thins to 1.5px so the plaster centre is still a real white
+   dot rather than a smudge: 5px of it on a retina screen, 6px where the browser snaps the ring to
+   a whole pixel. Measured on the 4× after-screenshot: knob 177.00…185.00, centre cssY 181.000,
+   against a rail centre of cssY 181.000 — dead on, where it used to sit 2px low.
+   The shadow lost its 1px downward offset: on a dot this small an offset shadow is itself a reason
+   the eye reads the mark as sitting low. */
+.cv-yr-h::after { content: ""; box-sizing: border-box; position: absolute; left: 13px; top: 13px;
+  width: 8px; height: 8px; border-radius: 50%; background: var(--plaster); border: 1.5px solid var(--accent);
+  box-shadow: 0 0 2px rgba(0, 0, 0, .28); transition: border-color .18s ease, box-shadow .18s ease; }
 .cv-yr-h:hover::after { border-color: var(--ink); }
 .cv-yr-h:focus { outline: none; }
 .cv-yr-h:focus-visible::after { border-color: var(--ink); box-shadow: 0 0 0 3px var(--accent-soft); }
@@ -631,9 +663,17 @@ a { color: inherit; }
   .cv-objrow .cv-objgrp.cv-yrgrp { flex-wrap: wrap; overflow: visible; max-width: none;
     padding: 8px 16px 0 0; -webkit-mask-image: none; mask-image: none; }
   /* the group has exactly one child now that the "years" label is gone (Fuad 2026-09-10), and that
-     child takes the whole row — never wider, so the page never gains a horizontal scrollbar. The
-     23px height carries down from the base rule; only the width changes at this size. */
-  .cv-yr { flex: 1 1 100%; min-width: 0; }
+     child takes the whole row — never wider, so the page never gains a horizontal scrollbar. */
+  /* THE READOUT WRAPS UNDER THE BAR HERE, rather than being dropped (Fuad 2026-09-10). The choice
+     was: keep it inline and let it eat ~130px of a ~340px row, or give it its own line. The axis
+     went from 25 intervals to 48 the same day, and precision is the whole point of that — inline
+     would leave 4.1px a step against 7.1px for a full-width rail, so the bar keeps the width and
+     the number takes the line. It costs 11px, and it is worth it twice over here: .cv-count ("48 of
+     402") is hidden at this width, so this is the ONLY count on a phone. margin-left:auto right-
+     aligns it under the rail's far end, where the eye already is after a drag. */
+  .cv-yr { flex: 1 1 100%; min-width: 0; flex-wrap: wrap; gap: 0; height: auto; }
+  .cv-yr-track { flex: 1 1 100%; }
+  .cv-yr-out { min-width: 0; margin-left: auto; padding-top: 3px; }
 }
 
 /* movements are hotlinks into the filtered wall — on the portrait bars and the artist header */

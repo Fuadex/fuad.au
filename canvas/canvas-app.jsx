@@ -305,7 +305,11 @@ const qualityOf = (w) => {
   // the master exists only tile by tile — advertising its MP here promised a download the
   // server refuses. Deep zoom stays discoverable through the "iiif" tag; the footer already
   // tells the same truth.
-  let px = h && h.w && h.h ? (h.flat ? h.flat[0] * h.flat[1] : h.w * h.h) : null;
+  // …but only where there is NO tile pyramid. With `iiif` present the deep zoom really does
+  // deliver the master's pixels, so a 5511×7402 Zorn whose host clamps single files at 1000px
+  // was landing in "<1MP" beside genuine thumbnails (Fuad 2026-09-10: "the artwork we have is at a
+  // much larger resolution"). The clamp still governs the download link, not the quality.
+  let px = h && h.w && h.h ? ((h.flat && !h.iiif) ? h.flat[0] * h.flat[1] : h.w * h.h) : null;
   if (!px) { const p = IMGSIZE[w.id]; if (p && p[0] && p[1]) px = p[0] * p[1]; }
   if (!px) return null;
   return px >= 500e6 ? "q500" : px >= 150e6 ? "q150" : px >= 50e6 ? "q50" : px >= 12e6 ? "q12" : px >= 3e6 ? "q3" : px >= 1e6 ? "q1" : "q0";
@@ -792,22 +796,39 @@ const ERAS = [
 // Impressionist decades — where every real question on this wall lives — into a few pixels.
 //
 // So the handles run over STOPS: evenly spaced in PIXELS, unevenly spaced in YEARS.
-//   · centuries before 1800, plus 1750 (1750–99 alone holds 146 works, so a bare 1700→1800 step
-//     would have hidden the whole late-Georgian block behind one bite)
-//   · one stop per DECADE 1800–1950 — the dense middle, 16 stops, ~2,150 works
-//   · coarse again after (1960 · 1980 · 2000 · now), where 28 works are left
-// 26 stops / 25 intervals. Every step is a meaningful bite rather than an empty one, and the whole
-// axis still fits a phone at roughly 12 px a step.
-const YEAR_STOPS = [-9999, 1400, 1500, 1600, 1700, 1750,
-  1800, 1810, 1820, 1830, 1840, 1850, 1860, 1870, 1880, 1890, 1900, 1910, 1920, 1930, 1940, 1950,
-  1960, 1980, 2000, 2030];
+//   · centuries before 1800, halved from 1550 on and quartered through the 18th (1750–99 alone
+//     holds 146 works, so a bare 1700→1800 step would have hidden the late-Georgian block)
+//   · one stop per HALF-DECADE 1800–1950 — the dense middle, 31 stops, ~2,150 works
+//   · coarse again after (1960 · 1970 · 1980 · 1990 · 2000 · 2010 · now), where 28 works are left
+// 49 stops / 48 intervals.
+//
+// RESOLUTION DOUBLED (Fuad 2026-09-10) — "let's try to make it even more incremental, right now the
+// bar is about 20 steps, we'll need more precision." It was 26 stops / 25 intervals, one per decade
+// through the middle; every interval is now half that, so 1865–1906 (the middle half of the whole
+// collection) is 9 bites instead of 4 and a five-year question can actually be asked. Nothing else
+// had to change for it: yearToPos, posToStop, stopIndexOf and the histogram all read the array's
+// length rather than a baked-in count, and the ends are the same two sentinels they always were.
+const YEAR_STOPS = [-9999, 1300, 1400, 1500, 1550, 1600, 1650, 1700, 1725, 1750, 1775,
+  1800, 1805, 1810, 1815, 1820, 1825, 1830, 1835, 1840, 1845, 1850, 1855, 1860, 1865, 1870,
+  1875, 1880, 1885, 1890, 1895, 1900, 1905, 1910, 1915, 1920, 1925, 1930, 1935, 1940, 1945, 1950,
+  1960, 1970, 1980, 1990, 2000, 2010, 2030];
 const YEAR_MIN = YEAR_STOPS[0], YEAR_MAX = YEAR_STOPS[YEAR_STOPS.length - 1];
 // The ends are SENTINELS, not dates: -9999 has to clear the 825 BCE bronze and 2030 has to stay
 // ahead of the calendar. They print as words so nobody reads a fake year off the control.
 const yearLabel = (y) => y <= YEAR_MIN ? "earliest" : y >= YEAR_MAX ? "now" : String(y);
 // Only these get a printed label. Every stop is still visible — the 1 px gaps between the histogram
-// bars ARE the stops — but labelling all 26 would be an unreadable wall of numbers at any width.
-const YEAR_TICKS = new Set([-9999, 1600, 1800, 1850, 1900, 1950, 2030]);
+// bars ARE the stops — but labelling all 49 would be an unreadable wall of numbers at any width.
+// 1600 LOST ITS LABEL 2026-09-10, measured rather than guessed. Two things happened to it at once:
+// the axis doubled its resolution, which slid 1600 from 12% of the rail to 10.4%, and the readout
+// moved in beside the bar, which took the track from 539px to 438px. "earliest" is pinned at the
+// left edge and is eight monospace characters — 40.8px at 8.5px/0.6em — while 1600's label now
+// starts 35.6px in, so the two collided outright ("earliesf600" in the 4× screenshot). Clearing it
+// would need a 518px track; a 390px phone has about 340px, so no width this control ever gets would
+// have fixed it. 1700 and 1750 were both tried on paper: 1700 still clips "earliest" on a phone and
+// 1750 collides with 1800. So the pre-1800 third goes unlabelled, which the histogram's own shape
+// already argues for — 405 of 2,745 works spread over 2,600 years, versus six labels across the
+// stretch where the questions actually are.
+const YEAR_TICKS = new Set([-9999, 1800, 1850, 1900, 1950, 2030]);
 // year → 0..1 along the piecewise axis. INTERPOLATES inside the containing interval, so a span
 // restored from a legacy era link (1875–1889 — neither is a stop) draws its handles where it
 // actually is instead of being rounded before it is ever shown.
@@ -1289,12 +1310,12 @@ function parts_nonEmpty(kv) {
 // rather than on either handle, so a drag that runs off the end of the rail (or off the window)
 // still reports back to the same element instead of dying mid-gesture.
 // KEYBOARD: both handles are role="slider" and sit in the tab order — arrows step one stop, PageUp/
-// PageDown four, Home/End run to the ends, Escape clears back to all years. Every key is
+// PageDown eight, Home/End run to the ends, Escape clears back to all years. Every key is
 // stopPropagation'd so the wall's global hotkeys never see it.
 // The histogram behind the rail is the collection's own shape under every OTHER active filter (the
 // same facet rule the chip counts follow), so the line shows where anything is left to find BEFORE
 // you drag. Its 1 px gaps are the stops, which is why no separate tick marks are drawn.
-function YearRange({ span, onSpan, hist }) {
+function YearRange({ span, onSpan, hist, count }) {
   const trackRef = useRef(null);
   const dragRef = useRef(null);              // which end the pointer owns while down: "lo" | "hi"
   const N = YEAR_STOPS.length;
@@ -1369,8 +1390,10 @@ function YearRange({ span, onSpan, hist }) {
     let idx = null;
     if (e.key === "ArrowRight" || e.key === "ArrowUp") idx = cur + 1;
     else if (e.key === "ArrowLeft" || e.key === "ArrowDown") idx = cur - 1;
-    else if (e.key === "PageUp") idx = cur + 4;
-    else if (e.key === "PageDown") idx = cur - 4;
+    // eight, not four, since 2026-09-10: the axis doubled its resolution, and PageUp is meant to be
+    // the coarse gesture — four stops is now half a decade a press, which is what the arrows do.
+    else if (e.key === "PageUp") idx = cur + 8;
+    else if (e.key === "PageDown") idx = cur - 8;
     else if (e.key === "Home") idx = 0;
     else if (e.key === "End") idx = N - 1;
     else if (e.key === "Escape" && (span || live)) { e.preventDefault(); e.stopPropagation(); draw(null); commit(null); return; }
@@ -1400,13 +1423,14 @@ function YearRange({ span, onSpan, hist }) {
   const bins = hist || [];
   const peak = Math.max(1, ...bins);
   return (
-    // NO HEAD ROW (Fuad 2026-09-10) — "Let's remove the YEARS all years, including the amount of
-    // paintings shown … the draggable bar is at the height of the buttons, currently it overblows
-    // it." The "all years / 1830 – 1870" output, its count and the "✕ all years" button are gone, so
-    // the whole control is one 23px band, exactly as tall as the chips beside it. The years are
-    // still SPOKEN: aria-valuetext on each handle carries them for a screen reader, and each handle's
-    // own title shows them on hover. Clearing survives as Escape and as "drag both handles to the
-    // ends", which spanIsAll normalises straight back to null.
+    // ONE ROW: BAR THEN READOUT (Fuad 2026-09-10). The old stacked head row is still gone — "the
+    // draggable bar is at the height of the buttons, currently it overblows it" — but the words it
+    // carried came back beside the bar instead of above it: "bring back the years information
+    // update somehow, perhaps to be next to the bar, to the right (with the filtered amount of
+    // artworks)". .cv-yr is the flex row, the track takes the slack, the readout is a fixed column
+    // on the right, and the whole thing still measures 23px, the filter chip's own height. The
+    // "✕ all years" button did NOT come back: clearing is Escape, or both handles dragged to the
+    // ends, which spanIsAll normalises straight to null.
     <div className="cv-yr" data-set={!!live || undefined}>
       <div className="cv-yr-track" ref={trackRef}
         title="when the work was made — drag either handle, or focus one and use the arrow keys"
@@ -1436,6 +1460,18 @@ function YearRange({ span, onSpan, hist }) {
           })}
         </div>
       </div>
+      {/* THE READOUT (Fuad 2026-09-10). Years come off the LIVE span, so they track the finger frame
+          by frame; the COUNT comes off the prop, which the wall only recomputes once the drag is
+          committed on release — so mid-drag the years move and the number holds at the last
+          committed span. That is the honest reading of it: the number describes the wall you are
+          actually looking at, and the wall has deliberately not re-sorted itself yet. It catches up
+          the instant you let go. `output` rather than a span because that is what it is — a live
+          result — and aria-live="off" so a screen reader hears the handles' own valuetext instead of
+          this being announced twice on every arrow key. */}
+      <output className="cv-yr-out" aria-live="off">
+        {live ? yearLabel(lo) + " – " + yearLabel(hi) : "all years"}
+        <b> · </b>{(count || 0).toLocaleString("en-AU")}
+      </output>
     </div>
   );
 }
@@ -1614,8 +1650,15 @@ function Wall({ go, styleIds }) {
     }
     return { bins, list };
   }, [all, marks, status, tokens, sel, media, qual]);
-  // (the year facet's own count went with the slider's head row — Fuad 2026-09-10; the wall in front
-  //  of you and the .cv-count total already answer "how many", and the head cost the row 26px)
+  // THE NUMBER BESIDE THE BAR (Fuad 2026-09-10: "bring back the years information update somehow,
+  // perhaps to be next to the bar, to the right (with the filtered amount of artworks)"). It briefly
+  // went with the slider's head row earlier the same day; it comes back on the ONE line the control
+  // now occupies rather than in a row of its own. yearFacet.list is everything passing every OTHER
+  // filter, so this is the count the span itself is responsible for — the same facet rule the chip
+  // counts follow — and at rest it is simply how many dated-or-not works the rest of the wall left.
+  const yearCount = useMemo(
+    () => span ? yearFacet.list.filter(w => yearPass(w, span)).length : yearFacet.list.length,
+    [yearFacet, span]);
   // all-time counts, used only to decide which medium chips exist at all
   const mediaAll = useMemo(() => {
     const c = {};
@@ -1996,7 +2039,7 @@ function Wall({ go, styleIds }) {
             what axis this is, and the word was buying a second line of chrome for a control that has
             to stand exactly as tall as the chips beside it. Its hover hint moved onto the track. */}
         <div className="cv-objgrp cv-yrgrp">
-          <YearRange span={span} onSpan={setYearSpan} hist={yearFacet.bins} />
+          <YearRange span={span} onSpan={setYearSpan} hist={yearFacet.bins} count={yearCount} />
         </div>
       </div>
       {/* STYLES — multi-select, OR'd. Movement is the artist's (Wikidata P135), so the note says
@@ -3053,9 +3096,13 @@ function Reader({ id, go }) {
                     ? `The largest single file this holder will serve — ${w.hires.flat[0]}×${w.hires.flat[1]}px. Its server clamps every flat render; the ${w.hires.w}×${w.hires.h} master is reachable only tile by tile, in the deep zoom.`
                     : `The holder's master scan — ${w.hires.w}×${w.hires.h}px, a very large download; browsers display giant scans downsampled`}>
                   {w.hires.flat
-                    ? `Museum render ↗ ${w.hires.flat[0]}×${w.hires.flat[1]}`
+                    ? `Single file ↗ ${w.hires.flat[0]}×${w.hires.flat[1]}`
                     : `Ultra HQ ↗ ${w.hires.w}×${w.hires.h}`}
                 </a>
+                {/* the clamped file is not the stated resolution of the work (Fuad 2026-09-10) — the
+                    master's size is printed beside it, since that is what the deep zoom serves */}
+                {w.hires.flat && w.hires.iiif &&
+                  <span className="cv-r-master" title="the holder's master, served tile by tile in the deep zoom">master {w.hires.w}×{w.hires.h}</span>}
                 {!w.hires.flat &&
                   <a href={w.hires.img} title="A 3000px render, if the master is too large to open">⭳ 3000px</a>}
               </React.Fragment>
