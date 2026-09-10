@@ -865,7 +865,7 @@ window.CANVAS_ARTWORKS = [
   { id: "claude-monet-ile-aux-orties-near-vernon", title: "Île aux Orties near Vernon", artist: "Claude Monet", artistId: "monet", qid: "Q19914264", qidTrusted: true, year: 1897,
     seenAt: "met-nyc", seenConfidence: "sure" },
   { id: "degas-grande-arabesque-third-time", title: "Grande Arabesque, Third Time (First Arabesque Penchée)", artist: "Edgar Degas", artistId: "degas", qid: "Q63861737", qidTrusted: true, year: 1885,
-    seenAt: "met-nyc", seenConfidence: "sure", note: "A bronze cast — the Met holds its Havemeyer cast; other casts hang at NGA Washington and Aberdeen." },
+    note: "Degas's own wax — pigmented beeswax, clay and cork on a metal armature and wooden base, NGA 1999.80.10, Mellon bequest 1999. He never exhibited it; the familiar bronzes are posthumous casts made from waxes like this one after his death. Fuad has stood in front of a Met cast of this pose, not this object." },
   { id: "john-constable-water-meadows-near-salisbury", title: "Water Meadows near Salisbury", artist: "John Constable", artistId: "constable", qid: "Q119681788", qidTrusted: true, year: 1820,
     seenAt: null, seenConfidence: "sure", liked: true },
   { id: "unknown-taneczny-krag", title: "Taneczny krąg", artist: "Franz von Stuck", artistId: "stuck", qid: "Q25263526", qidTrusted: true, year: 1910,
