@@ -132,6 +132,22 @@ const TRACK_REMAP = {
   // God Is an Astronaut (Fuad 2026-09-06): printed titles
   ["God Is an Astronaut\x00Postmortem"]: "Post Mortem",
   ["God Is an Astronaut\x00Fall From Stars"]: "Fall From the Stars",
+  // Anthrax (Fuad 2026-09-11): variant rows fold onto the song; scrobble cover tags dropped (the sleeves print plain titles)
+  ["Anthrax\x00Panic (Live In Studio)"]: "Panic",
+  ["Anthrax\x00Safe Home Acoustic (Bonustrack)"]: "Safe Home",
+  ["Anthrax\x00Safe Home Acoustic (Bonustrack"]: "Safe Home", // last.fm truncates the scrobbled title
+  ["Anthrax\x00We're A Happy Family (Bonustra"]: "We're A Happy Family",
+  ["Anthrax\x00Belly Of The Beast [Live]"]: "Belly of the Beast",
+  ["Anthrax\x00Keep It In The Family [Live]"]: "Keep It in the Family",
+  ["Anthrax\x00I'm The Man '91"]: "I'm The Man",
+  ["Anthrax\x00I'm The Man (Censored)"]: "I'm The Man",
+  ["Anthrax\x00Potters Field (Remix)"]: "Potter's Field",
+  ["Anthrax\x00Fueled (remix)"]: "Fueled",
+  ["Anthrax\x00Only (remix)"]: "Only",
+  ["Anthrax\x00Black Lodge (Tremolo mix)"]: "Black Lodge",
+  ["Anthrax\x00We're A Happy Family (Bonustrack)"]: "We're A Happy Family",
+  ["Anthrax\x00Protest And Survive (Varukers Cover)"]: "Protest and Survive",
+  ["Anthrax\x00Pipeline (The Ventures Cover)"]: "Pipeline",
 };
 // whole album rows scrobbled under the wrong artist → [artist, album] (Fuad 2026-09-06)
 const ARTIST_ALBUM_REMAP = {
