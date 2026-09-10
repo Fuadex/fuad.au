@@ -1712,66 +1712,66 @@ window.CANVAS_INSPECT = {
  "deeper": [
   {
    "t": "The pocket around the horse",
-   "x": 0.48,
-   "y": 0.45,
-   "w": 0.21,
-   "h": 0.37,
+   "x": 0.483,
+   "y": 0.467,
+   "w": 0.169,
+   "h": 0.253,
    "body": "Almost every body on this canvas touches another body. The rider on the grey-white horse does not, and the room he has is not luck. Look at the crowd behind the animal: it is dragged over with a scumble of pale dust exactly where it would otherwise close in, and the ground before the hooves is kept bare ochre while the same ground elsewhere is packed with feet. He has been given a pocket. He is not the biggest figure here — the bowing men in front are larger — and the heads behind him rise to his own. He is simply the one person with air. The white does the rest, and it was arranged afterwards. Berlin's own record dates the white Arabian stallion to a gift from the Sultan that reached the crown-prince couple in spring 1873, three and a half years after the ride it is carrying; the robe is the state dress he had worn in 1869, and both man and horse were studied in Berlin. The animal's head is down and turned away, its mouth open on the bit, one foreleg lifting. The road was opened for someone looking, not by anyone walking."
   },
   {
    "t": "Backs at the front",
-   "x": 0.25,
-   "y": 0.6,
-   "w": 0.25,
-   "h": 0.37,
+   "x": 0.299,
+   "y": 0.57,
+   "w": 0.201,
+   "h": 0.253,
    "body": "Along this stretch of the front rank the bodies are folded forward at the waist and turned away, so the whole near row shows you no face. They are on stony ground inside one broad thrown shadow, and that shadow is where the painting is least willing to go dull: warm rust light comes back up into the flank of a chestnut horse, into the folds of a blue robe, into a gold-striped sleeve. The dark stays coloured and occupied. Two things follow from the turned backs. Your vantage is inside the crowd, at its own height. And the rider's visibility is bought with the anonymity of the people nearest to us: of everyone in this picture, the record can put a name to exactly two."
   },
   {
    "t": "What is lying in the dirt",
-   "x": 0.46,
-   "y": 0.8,
-   "w": 0.21,
-   "h": 0.2,
+   "x": 0.467,
+   "y": 0.707,
+   "w": 0.169,
+   "h": 0.137,
    "body": "Below the horse the ground opens into dirt: cracked ochre bedrock, loose rubble, a flat slab half-buried in it. Across that ground lie cut palm branches, and each one carries its own small cast shadow, which is the point of them, because the shadow is what puts a branch in the space instead of on the surface. Scattered among them are a dozen or so rose-pink dabs, unevenly spread; they thicken along the strip the horse is walking onto. At gallery distance this passage reads as ceremony. Close up it is litter, and it has been laid where it will be seen."
   },
   {
    "t": "Palms laid over a finished crowd",
-   "x": 0.3,
-   "y": 0.16,
-   "w": 0.3,
-   "h": 0.33,
+   "x": 0.339,
+   "y": 0.269,
+   "w": 0.241,
+   "h": 0.226,
    "body": "Follow one frond and you find it built pinna by pinna, every spine a separate flick of grey-green. Most of those flicks stand against open sky and against the face of the wall; where they reach down and cross the crowd along the foot of this stretch, they sit on top of heads already finished underneath. The palms were not painted around; they were laid over. That makes them an armature rather than scenery. They cut a mass that would otherwise read as one continuous texture into bays the eye can take one at a time, and their arcs lean the same way, carrying attention off the packed heads and up to the line of the wall. They also do something a Berlin public did not need explained. Palm fronds overhead, branches cut and thrown down on the road, a man on a pale mount riding up to the wall of Jerusalem, bodies bending as he comes: the arrangement rhymes with another entry into this same city, and the picture never has to name it for the rhyme to work."
   },
   {
    "t": "Long shafts, and a device that stops",
-   "x": 0.01,
-   "y": 0.28,
-   "w": 0.32,
-   "h": 0.25,
+   "x": 0.106,
+   "y": 0.351,
+   "w": 0.257,
+   "h": 0.171,
    "body": "Above the left-hand crowd, eight or more very long and very thin shafts rise and fan at different angles, each carrying a shaggy globe, most of them dark, one maroon-red and one nearer blue-grey. Close in, those globes have soft fringed edges with warm rust light along one side, and one shows a pale skirt hanging below the ball; what they actually are is not something the paint will tell you. Their job is plain enough. They supply the verticals that keep this third of the canvas from lying flat, and they answer the flagstaffs along the battlements behind. One flag near them hangs pale and open, and carries a small ochre-and-rust device at its centre. Magnify it and it stays two or three warm marks. Gentz has painted the fact of a charge, and stopped at about the point where a viewer standing at the canvas would stop being able to read one."
   },
   {
    "t": "Heads a few centimetres high",
-   "x": 0.655,
-   "y": 0.47,
-   "w": 0.155,
-   "h": 0.13,
+   "x": 0.624,
+   "y": 0.481,
+   "w": 0.124,
+   "h": 0.089,
    "body": "Halfway up the canvas, at a depth where a crowd painter has every right to stop, the modelling does not stop. Inside about twenty centimetres of canvas there are four separately built heads: a man in a black peaked cap over a dark coat, a dark-haired head turned away beside him, a bearded man under a red cap, and a strongly lit face in a white head-cloth with a red band at the throat. Each has a brow, an eye socket and its own direction of gaze; two of them have beards drawn separately. Each head is a few centimetres high on a canvas over two and a half metres wide. They are not one head recoloured four times, the ordinary economy this far back. They were built one at a time, and one of the sheets survives: a pencil study for a figure group in this painting is in Frankfurt, drawn in 1868, a year before the ride, and made in Egypt. The picture spends its most expensive labour at a distance no visitor can read from a bench, and that labour pays only for the ones who walk up."
   },
   {
    "t": "Where the faces stop",
-   "x": 0.6,
-   "y": 0.32,
-   "w": 0.23,
-   "h": 0.16,
+   "x": 0.58,
+   "y": 0.378,
+   "w": 0.185,
+   "h": 0.109,
    "body": "Two thin streams of figures come down the bleached slope at the upper right, and at ordinary distance they are a texture, a granular warm-grey mottling of the kind a painter lays in with a loaded brush and a turn of the wrist. Magnify them. Every mark is still posed. One has an arm up, one has a leg swung out ahead of it, one leans forward into the walk, and the gaps between them are irregular the way gaps in a moving crowd are irregular. Faces have gone by this point in the recession and headwear goes a little further up the slope, but the walking never goes. Above the streams, the pale bloom of dust rising off the slope swallows the city wall it crosses. That is atmosphere given a job: it caps the right-hand crowd so the eye turns back toward the middle instead of running off to the right."
   },
   {
    "t": "The corner nobody ordered",
-   "x": 0.77,
-   "y": 0.45,
-   "w": 0.23,
-   "h": 0.55,
+   "x": 0.716,
+   "y": 0.467,
+   "w": 0.185,
+   "h": 0.376,
    "body": "Far over to the right a man in a white robe and a pale broad-brimmed hat sits on a grey donkey and holds a rectangle of pale card against his thigh: a board with a distinct dark border, tipped up the way a sketchbook is tipped when you work from the saddle. He has turned back toward the procession. Berlin's record says who he is: the painter, on a donkey, drawing. The corner he occupies is described more dryly than anything in the crowd. The wall behind him is ashlar with drafted margins; a fluted stone fragment lies loose in the dirt; poles are propped against the masonry; his donkey throws a shadow with an edge you could cut on. Full sunlight lands here, and the hard edges it makes are how the eye is told this corner is close. Low on the bare earth sits a short inscription in dark red-brown. He gave himself a donkey, the scale of a spectator, and a place out on your side of the crowd rather than the prince's."
   }
  ],

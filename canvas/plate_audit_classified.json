@@ -1,0 +1,12466 @@
+{
+ "catA": [],
+ "catB": [
+  {
+   "id": "alfred-sisley-the-banks-of-the-oise",
+   "w": 6252,
+   "h": 5181,
+   "measured": [
+    3000,
+    2486
+   ],
+   "dw": 52,
+   "dh": 52
+  },
+  {
+   "id": "alphonse-de-neuville-the-flag-of-truce",
+   "w": 24880,
+   "h": 17990,
+   "measured": [
+    3000,
+    2169
+   ],
+   "dw": 87.9,
+   "dh": 87.9
+  },
+  {
+   "id": "eva-gonzales-nanny-and-child",
+   "w": 19261,
+   "h": 15426,
+   "measured": [
+    3000,
+    2403
+   ],
+   "dw": 84.4,
+   "dh": 84.4
+  },
+  {
+   "id": "caspar-david-friedrich-northern-landscape-spring",
+   "w": 13245,
+   "h": 9535,
+   "measured": [
+    3000,
+    2160
+   ],
+   "dw": 77.3,
+   "dh": 77.3
+  },
+  {
+   "id": "august-macke-people-by-the-blue-lake",
+   "w": 19069,
+   "h": 23564,
+   "measured": [
+    3000,
+    3708
+   ],
+   "dw": 84.3,
+   "dh": 84.3
+  },
+  {
+   "id": "arnold-bocklin-the-sanctuary-of-hercules",
+   "w": 8309,
+   "h": 5205,
+   "measured": [
+    3000,
+    1879
+   ],
+   "dw": 63.9,
+   "dh": 63.9
+  },
+  {
+   "id": "jean-baptiste-armand-guillaumin-the-bridge-of-louis-philippe",
+   "w": 11835,
+   "h": 8921,
+   "measured": [
+    3000,
+    2261
+   ],
+   "dw": 74.7,
+   "dh": 74.7
+  },
+  {
+   "id": "anne-vallayer-coster-still-life-with-flowers-in-an-alabaster",
+   "w": 24812,
+   "h": 29928,
+   "measured": [
+    3000,
+    3619
+   ],
+   "dw": 87.9,
+   "dh": 87.9
+  },
+  {
+   "id": "anders-zorn-hugo-reisinger",
+   "w": 5327,
+   "h": 7271,
+   "measured": [
+    3000,
+    4095
+   ],
+   "dw": 43.7,
+   "dh": 43.7
+  },
+  {
+   "id": "bartolome-esteban-murillo-the-return-of-the-prodigal-son",
+   "w": 21882,
+   "h": 19829,
+   "measured": [
+    3000,
+    2719
+   ],
+   "dw": 86.3,
+   "dh": 86.3
+  },
+  {
+   "id": "sir-david-wilkie-the-holy-family-with-saint-elizabeth-and-sa",
+   "w": 5024,
+   "h": 6423,
+   "measured": [
+    3000,
+    3836
+   ],
+   "dw": 40.3,
+   "dh": 40.3
+  },
+  {
+   "id": "giovanni-boldini-after-the-bath",
+   "w": 8209,
+   "h": 6001,
+   "measured": [
+    3000,
+    2193
+   ],
+   "dw": 63.5,
+   "dh": 63.5
+  },
+  {
+   "id": "giovanni-boldini-whistler-asleep",
+   "w": 4693,
+   "h": 2914,
+   "measured": [
+    3000,
+    1863
+   ],
+   "dw": 36.1,
+   "dh": 36.1
+  },
+  {
+   "id": "giovanni-boldini-bust-of-a-young-woman-in-profile",
+   "w": 6175,
+   "h": 8569,
+   "measured": [
+    2952,
+    4096
+   ],
+   "dw": 52.2,
+   "dh": 52.2
+  },
+  {
+   "id": "giovanni-boldini-bust-of-francesco-i-d-este",
+   "w": 9052,
+   "h": 13496,
+   "measured": [
+    2747,
+    4096
+   ],
+   "dw": 69.7,
+   "dh": 69.7
+  },
+  {
+   "id": "gustav-klimt-baby-cradle",
+   "w": 14053,
+   "h": 14161,
+   "measured": [
+    3000,
+    3024
+   ],
+   "dw": 78.7,
+   "dh": 78.6
+  },
+  {
+   "id": "theo-van-rysselberghe-denise-marechal",
+   "w": 13874,
+   "h": 18857,
+   "measured": [
+    3000,
+    4078
+   ],
+   "dw": 78.4,
+   "dh": 78.4
+  },
+  {
+   "id": "leon-bonnat-henry-white",
+   "w": 17949,
+   "h": 22993,
+   "measured": [
+    3000,
+    3844
+   ],
+   "dw": 83.3,
+   "dh": 83.3
+  },
+  {
+   "id": "pascal-dagnan-bouveret-study-for-breton-women-at-a-pardon",
+   "w": 10123,
+   "h": 8925,
+   "measured": [
+    3000,
+    2645
+   ],
+   "dw": 70.4,
+   "dh": 70.4
+  },
+  {
+   "id": "paul-serusier-farmhouse-at-le-pouldu",
+   "w": 5017,
+   "h": 6172,
+   "measured": [
+    3000,
+    3691
+   ],
+   "dw": 40.2,
+   "dh": 40.2
+  },
+  {
+   "id": "robert-delaunay-political-drama",
+   "w": 3560,
+   "h": 4578,
+   "measured": [
+    3000,
+    3858
+   ],
+   "dw": 15.7,
+   "dh": 15.7
+  },
+  {
+   "id": "samuel-lovett-waldo-robert-g-l-de-peyster",
+   "w": 5515,
+   "h": 7502,
+   "measured": [
+    3000,
+    4081
+   ],
+   "dw": 45.6,
+   "dh": 45.6
+  },
+  {
+   "id": "willem-van-de-velde-the-younger-and-studio-after-the-storm",
+   "w": 11691,
+   "h": 6872,
+   "measured": [
+    3000,
+    1763
+   ],
+   "dw": 74.3,
+   "dh": 74.3
+  },
+  {
+   "id": "luis-melendez-still-life-with-figs-and-bread",
+   "w": 3544,
+   "h": 5032,
+   "measured": [
+    2885,
+    4096
+   ],
+   "dw": 18.6,
+   "dh": 18.6
+  },
+  {
+   "id": "jules-dupre-the-old-oak",
+   "w": 11269,
+   "h": 8690,
+   "measured": [
+    3000,
+    2313
+   ],
+   "dw": 73.4,
+   "dh": 73.4
+  },
+  {
+   "id": "jules-bastien-lepage-simon-hayem",
+   "w": 4720,
+   "h": 6182,
+   "measured": [
+    3000,
+    3930
+   ],
+   "dw": 36.4,
+   "dh": 36.4
+  },
+  {
+   "id": "johan-jongkind-the-towpath",
+   "w": 17928,
+   "h": 12924,
+   "measured": [
+    3000,
+    2163
+   ],
+   "dw": 83.3,
+   "dh": 83.3
+  },
+  {
+   "id": "johan-christian-dahl-view-from-vaekero-near-christiania",
+   "w": 19205,
+   "h": 12106,
+   "measured": [
+    3000,
+    1891
+   ],
+   "dw": 84.4,
+   "dh": 84.4
+  },
+  {
+   "id": "joachim-patinir-the-flight-into-egypt",
+   "w": 4744,
+   "h": 7548,
+   "measured": [
+    2574,
+    4096
+   ],
+   "dw": 45.7,
+   "dh": 45.7
+  },
+  {
+   "id": "jervis-mcentee-mount-desert-island-maine",
+   "w": 10875,
+   "h": 7192,
+   "measured": [
+    3000,
+    1984
+   ],
+   "dw": 72.4,
+   "dh": 72.4
+  },
+  {
+   "id": "jean-beraud-paris-rue-du-havre",
+   "w": 7291,
+   "h": 9452,
+   "measured": [
+    3000,
+    3890
+   ],
+   "dw": 58.9,
+   "dh": 58.8
+  },
+  {
+   "id": "jan-both-an-italianate-evening-landscape",
+   "w": 12271,
+   "h": 9792,
+   "measured": [
+    3000,
+    2394
+   ],
+   "dw": 75.6,
+   "dh": 75.6
+  },
+  {
+   "id": "hubert-robert-the-ponte-salario",
+   "w": 18192,
+   "h": 13689,
+   "measured": [
+    3000,
+    2257
+   ],
+   "dw": 83.5,
+   "dh": 83.5
+  },
+  {
+   "id": "henry-fuseli-oedipus-cursing-his-son-polynices",
+   "w": 12417,
+   "h": 11337,
+   "measured": [
+    3000,
+    2739
+   ],
+   "dw": 75.8,
+   "dh": 75.8
+  },
+  {
+   "id": "henri-gervex-study-for-autopsy-at-the-hotel-dieu",
+   "w": 3478,
+   "h": 4342,
+   "measured": [
+    3000,
+    3746
+   ],
+   "dw": 13.7,
+   "dh": 13.7
+  },
+  {
+   "id": "hendrick-ter-brugghen-bagpipe-player",
+   "w": 17327,
+   "h": 21169,
+   "measured": [
+    3000,
+    3666
+   ],
+   "dw": 82.7,
+   "dh": 82.7
+  },
+  {
+   "id": "james-tissot-hide-and-seek",
+   "w": 13102,
+   "h": 17904,
+   "measured": [
+    2997,
+    4096
+   ],
+   "dw": 77.1,
+   "dh": 77.1
+  },
+  {
+   "id": "claude-monet-the-cradle-camille-with-the-artist-s-son-jean",
+   "w": 24530,
+   "h": 32127,
+   "measured": [
+    3000,
+    3930
+   ],
+   "dw": 87.8,
+   "dh": 87.8
+  },
+  {
+   "id": "claude-monet-woman-seated-under-the-willows",
+   "w": 23193,
+   "h": 31350,
+   "measured": [
+    3000,
+    4056
+   ],
+   "dw": 87.1,
+   "dh": 87.1
+  },
+  {
+   "id": "claude-monet-the-artist-s-garden-at-vetheuil",
+   "w": 23052,
+   "h": 28846,
+   "measured": [
+    3000,
+    3755
+   ],
+   "dw": 87,
+   "dh": 87
+  },
+  {
+   "id": "claude-monet-the-houses-of-parliament-sunset",
+   "w": 17031,
+   "h": 15043,
+   "measured": [
+    3000,
+    2650
+   ],
+   "dw": 82.4,
+   "dh": 82.4
+  },
+  {
+   "id": "claude-monet-cliffs-at-pourville",
+   "w": 20692,
+   "h": 12341,
+   "measured": [
+    3000,
+    1789
+   ],
+   "dw": 85.5,
+   "dh": 85.5
+  },
+  {
+   "id": "claude-monet-sainte-adresse",
+   "w": 19047,
+   "h": 13249,
+   "measured": [
+    3000,
+    2087
+   ],
+   "dw": 84.2,
+   "dh": 84.2
+  },
+  {
+   "id": "claude-monet-waterloo-bridge-london-at-sunset",
+   "w": 18666,
+   "h": 13152,
+   "measured": [
+    3000,
+    2114
+   ],
+   "dw": 83.9,
+   "dh": 83.9
+  },
+  {
+   "id": "claude-monet-banks-of-the-seine-vetheuil",
+   "w": 18220,
+   "h": 13277,
+   "measured": [
+    3000,
+    2186
+   ],
+   "dw": 83.5,
+   "dh": 83.5
+  },
+  {
+   "id": "claude-monet-the-seine-at-giverny",
+   "w": 16794,
+   "h": 13553,
+   "measured": [
+    3000,
+    2421
+   ],
+   "dw": 82.1,
+   "dh": 82.1
+  },
+  {
+   "id": "claude-monet-the-artist-s-garden-in-argenteuil-a-corner-of-t",
+   "w": 17348,
+   "h": 12979,
+   "measured": [
+    3000,
+    2244
+   ],
+   "dw": 82.7,
+   "dh": 82.7
+  },
+  {
+   "id": "claude-monet-palazzo-da-mula-venice",
+   "w": 17104,
+   "h": 12985,
+   "measured": [
+    3000,
+    2278
+   ],
+   "dw": 82.5,
+   "dh": 82.5
+  },
+  {
+   "id": "claude-monet-jerusalem-artichoke-flowers",
+   "w": 12622,
+   "h": 17418,
+   "measured": [
+    2968,
+    4096
+   ],
+   "dw": 76.5,
+   "dh": 76.5
+  },
+  {
+   "id": "claude-monet-bazille-and-camille-study-for-dejeuner-sur-l-he",
+   "w": 12717,
+   "h": 17100,
+   "measured": [
+    3000,
+    4034
+   ],
+   "dw": 76.4,
+   "dh": 76.4
+  },
+  {
+   "id": "claude-monet-the-willows",
+   "w": 15922,
+   "h": 12764,
+   "measured": [
+    3000,
+    2405
+   ],
+   "dw": 81.2,
+   "dh": 81.2
+  },
+  {
+   "id": "claude-monet-interior-after-dinner",
+   "w": 15342,
+   "h": 11872,
+   "measured": [
+    3000,
+    2321
+   ],
+   "dw": 80.4,
+   "dh": 80.4
+  },
+  {
+   "id": "claude-monet-bridge-at-argenteuil-on-a-gray-day",
+   "w": 15468,
+   "h": 11650,
+   "measured": [
+    3000,
+    2260
+   ],
+   "dw": 80.6,
+   "dh": 80.6
+  },
+  {
+   "id": "claude-monet-still-life-with-bottle-carafe-bread-and-wine",
+   "w": 16003,
+   "h": 10532,
+   "measured": [
+    3000,
+    1974
+   ],
+   "dw": 81.3,
+   "dh": 81.3
+  },
+  {
+   "id": "claude-monet-ships-riding-on-the-seine-at-rouen",
+   "w": 11078,
+   "h": 9011,
+   "measured": [
+    3000,
+    2440
+   ],
+   "dw": 72.9,
+   "dh": 72.9
+  },
+  {
+   "id": "claude-monet-rouen-cathedral-west-facade-sunlight",
+   "w": 6030,
+   "h": 9204,
+   "measured": [
+    2683,
+    4096
+   ],
+   "dw": 55.5,
+   "dh": 55.5
+  },
+  {
+   "id": "claude-monet-rouen-cathedral-west-facade",
+   "w": 5728,
+   "h": 8857,
+   "measured": [
+    2649,
+    4096
+   ],
+   "dw": 53.8,
+   "dh": 53.8
+  },
+  {
+   "id": "claude-monet-the-bridge-at-argenteuil",
+   "w": 7999,
+   "h": 5998,
+   "measured": [
+    3000,
+    2250
+   ],
+   "dw": 62.5,
+   "dh": 62.5
+  },
+  {
+   "id": "claude-monet-morning-haze",
+   "w": 5980,
+   "h": 4756,
+   "measured": [
+    3000,
+    2386
+   ],
+   "dw": 49.8,
+   "dh": 49.8
+  },
+  {
+   "id": "a-girl-with-a-watering-can",
+   "w": 15915,
+   "h": 22072,
+   "measured": [
+    2953,
+    4096
+   ],
+   "dw": 81.4,
+   "dh": 81.4
+  },
+  {
+   "id": "a-lady-writing-a-letter",
+   "w": 25813,
+   "h": 29494,
+   "measured": [
+    3000,
+    3428
+   ],
+   "dw": 88.4,
+   "dh": 88.4
+  },
+  {
+   "id": "a-polish-nobleman",
+   "w": 13003,
+   "h": 19017,
+   "measured": [
+    2801,
+    4096
+   ],
+   "dw": 78.5,
+   "dh": 78.5
+  },
+  {
+   "id": "a-young-girl-reading",
+   "w": 12451,
+   "h": 15654,
+   "measured": [
+    3000,
+    3772
+   ],
+   "dw": 75.9,
+   "dh": 75.9
+  },
+  {
+   "id": "a-young-woman-seated-at-a-virginal",
+   "w": 10100,
+   "h": 11371,
+   "measured": [
+    3840,
+    4323
+   ],
+   "dw": 62,
+   "dh": 62
+  },
+  {
+   "id": "a-young-woman-standing-at-a-virginal",
+   "w": 9998,
+   "h": 11367,
+   "measured": [
+    3840,
+    4366
+   ],
+   "dw": 61.6,
+   "dh": 61.6
+  },
+  {
+   "id": "alba-madonna",
+   "w": 24180,
+   "h": 24180,
+   "measured": [
+    3000,
+    3000
+   ],
+   "dw": 87.6,
+   "dh": 87.6
+  },
+  {
+   "id": "allegory-of-prudence",
+   "w": 7548,
+   "h": 8432,
+   "measured": [
+    3840,
+    4290
+   ],
+   "dw": 49.1,
+   "dh": 49.1
+  },
+  {
+   "id": "almost-once",
+   "w": 2252,
+   "h": 4000,
+   "measured": [
+    4000,
+    2252
+   ],
+   "dw": 77.6,
+   "dh": 43.7
+  },
+  {
+   "id": "anders-zorn-coquelin-cadet",
+   "w": 5482,
+   "h": 7915,
+   "measured": [
+    693,
+    1000
+   ],
+   "dw": 87.4,
+   "dh": 87.4
+  },
+  {
+   "id": "anders-zorn-hemlandstoner",
+   "w": 5206,
+   "h": 8951,
+   "measured": [
+    582,
+    1000
+   ],
+   "dw": 88.8,
+   "dh": 88.8
+  },
+  {
+   "id": "anders-zorn-mrs-veronica-heiss",
+   "w": 5511,
+   "h": 7402,
+   "measured": [
+    745,
+    1000
+   ],
+   "dw": 86.5,
+   "dh": 86.5
+  },
+  {
+   "id": "anders-zorn-the-painter-bruno-liljefors",
+   "w": 7451,
+   "h": 9560,
+   "measured": [
+    779,
+    1000
+   ],
+   "dw": 89.5,
+   "dh": 89.5
+  },
+  {
+   "id": "anna-nordlander-at-the-suspended-cradle-study",
+   "w": 3149,
+   "h": 3543,
+   "measured": [
+    1920,
+    2160
+   ],
+   "dw": 39,
+   "dh": 39
+  },
+  {
+   "id": "august-hagborg-a-fishergirl-from-the-north-of-france-study",
+   "w": 3513,
+   "h": 4898,
+   "measured": [
+    1920,
+    2677
+   ],
+   "dw": 45.3,
+   "dh": 45.3
+  },
+  {
+   "id": "auguste-rodin-the-evil-spirits",
+   "w": 8929,
+   "h": 7143,
+   "measured": [
+    3000,
+    2400
+   ],
+   "dw": 66.4,
+   "dh": 66.4
+  },
+  {
+   "id": "bal-du-moulin-de-la-galette",
+   "w": 40869,
+   "h": 30379,
+   "measured": [
+    3840,
+    2854
+   ],
+   "dw": 90.6,
+   "dh": 90.6
+  },
+  {
+   "id": "battle-of-grunwald",
+   "w": 11788,
+   "h": 5235,
+   "measured": [
+    3840,
+    1705
+   ],
+   "dw": 67.4,
+   "dh": 67.4
+  },
+  {
+   "id": "bridge-in-the-rain-after-hiroshige",
+   "w": 5582,
+   "h": 7680,
+   "measured": [
+    4000,
+    5402
+   ],
+   "dw": 28.3,
+   "dh": 29.7
+  },
+  {
+   "id": "bringing-home-the-body-of-king-karl-xii-of-sweden",
+   "w": 11016,
+   "h": 7917,
+   "measured": [
+    1000,
+    719
+   ],
+   "dw": 90.9,
+   "dh": 90.9
+  },
+  {
+   "id": "bruno-liljefors-autumn-landscape-with-partridges",
+   "w": 7860,
+   "h": 5902,
+   "measured": [
+    1000,
+    751
+   ],
+   "dw": 87.3,
+   "dh": 87.3
+  },
+  {
+   "id": "bruno-liljefors-curlew",
+   "w": 3496,
+   "h": 2940,
+   "measured": [
+    1920,
+    1615
+   ],
+   "dw": 45.1,
+   "dh": 45.1
+  },
+  {
+   "id": "bruno-liljefors-eider-ducks",
+   "w": 3474,
+   "h": 2964,
+   "measured": [
+    1920,
+    1638
+   ],
+   "dw": 44.7,
+   "dh": 44.7
+  },
+  {
+   "id": "cafe-terrace-at-night",
+   "w": 7564,
+   "h": 9432,
+   "measured": [
+    3840,
+    4789
+   ],
+   "dw": 49.2,
+   "dh": 49.2
+  },
+  {
+   "id": "camille-pissarro-afternoon-break-girl-and-young-peasant-woma",
+   "w": 14819,
+   "h": 12000,
+   "measured": [
+    3840,
+    3110
+   ],
+   "dw": 74.1,
+   "dh": 74.1
+  },
+  {
+   "id": "camille-pissarro-route-de-versailles-louveciennes-rain-effec",
+   "w": 6817,
+   "h": 4629,
+   "measured": [
+    3840,
+    2608
+   ],
+   "dw": 43.7,
+   "dh": 43.7
+  },
+  {
+   "id": "carl-grabow-untitled-2",
+   "w": 6720,
+   "h": 4238,
+   "measured": [
+    3840,
+    2422
+   ],
+   "dw": 42.9,
+   "dh": 42.9
+  },
+  {
+   "id": "carl-grabow-untitled-3",
+   "w": 6719,
+   "h": 4307,
+   "measured": [
+    3840,
+    2462
+   ],
+   "dw": 42.8,
+   "dh": 42.8
+  },
+  {
+   "id": "chaim-soutine-untitled-4",
+   "w": 1596,
+   "h": 3152,
+   "measured": [
+    3152,
+    1596
+   ],
+   "dw": 97.5,
+   "dh": 49.4
+  },
+  {
+   "id": "christian-rohlfs-white-beeches-in-fall",
+   "w": 19714,
+   "h": 24908,
+   "measured": [
+    3000,
+    3791
+   ],
+   "dw": 84.8,
+   "dh": 84.8
+  },
+  {
+   "id": "claude-monet-essai-de-figure-en-plein-air",
+   "w": 6959,
+   "h": 10277,
+   "measured": [
+    3840,
+    5671
+   ],
+   "dw": 44.8,
+   "dh": 44.8
+  },
+  {
+   "id": "claude-monet-la-femme-a-l-ombrelle",
+   "w": 7325,
+   "h": 10810,
+   "measured": [
+    3840,
+    5667
+   ],
+   "dw": 47.6,
+   "dh": 47.6
+  },
+  {
+   "id": "claude-monet-le-givre",
+   "w": 12162,
+   "h": 7384,
+   "measured": [
+    3840,
+    2331
+   ],
+   "dw": 68.4,
+   "dh": 68.4
+  },
+  {
+   "id": "congregation-leaving-the-reformed-church-in-nuenen",
+   "w": 5735,
+   "h": 7421,
+   "measured": [
+    3852,
+    5076
+   ],
+   "dw": 32.8,
+   "dh": 31.6
+  },
+  {
+   "id": "coronation-of-gustav-iii",
+   "w": 10931,
+   "h": 5948,
+   "measured": [
+    1000,
+    544
+   ],
+   "dw": 90.9,
+   "dh": 90.9
+  },
+  {
+   "id": "dancing-fairies",
+   "w": 6228,
+   "h": 3746,
+   "measured": [
+    1000,
+    601
+   ],
+   "dw": 83.9,
+   "dh": 84
+  },
+  {
+   "id": "death-and-the-miser",
+   "w": 12375,
+   "h": 36971,
+   "measured": [
+    1371,
+    4096
+   ],
+   "dw": 88.9,
+   "dh": 88.9
+  },
+  {
+   "id": "degas-grande-arabesque-third-time",
+   "w": 5864,
+   "h": 4954,
+   "measured": [
+    3000,
+    2534
+   ],
+   "dw": 48.8,
+   "dh": 48.8
+  },
+  {
+   "id": "edgar-degas-woman-drying-herself",
+   "w": 2322,
+   "h": 4128,
+   "measured": [
+    4128,
+    2322
+   ],
+   "dw": 77.8,
+   "dh": 43.8
+  },
+  {
+   "id": "edmond-lachenal-untitled",
+   "w": 3888,
+   "h": 5184,
+   "measured": [
+    5184,
+    3888
+   ],
+   "dw": 33.3,
+   "dh": 25
+  },
+  {
+   "id": "eilif-peterssen-nocturne",
+   "w": 3385,
+   "h": 2696,
+   "measured": [
+    1920,
+    1529
+   ],
+   "dw": 43.3,
+   "dh": 43.3
+  },
+  {
+   "id": "elie-nadelman-man-in-the-open-air",
+   "w": 3060,
+   "h": 4080,
+   "measured": [
+    4080,
+    3060
+   ],
+   "dw": 33.3,
+   "dh": 25
+  },
+  {
+   "id": "en-premiar",
+   "w": 2619,
+   "h": 3534,
+   "measured": [
+    741,
+    1000
+   ],
+   "dw": 71.7,
+   "dh": 71.7
+  },
+  {
+   "id": "ernst-fries-berchtesgaden-with-the-watzmann-peak-in-the-dist",
+   "w": 5097,
+   "h": 3541,
+   "measured": [
+    3000,
+    2084
+   ],
+   "dw": 41.1,
+   "dh": 41.1
+  },
+  {
+   "id": "eugene-jansson-motif-from-timmermansgatan",
+   "w": 2826,
+   "h": 3874,
+   "measured": [
+    1920,
+    2632
+   ],
+   "dw": 32.1,
+   "dh": 32.1
+  },
+  {
+   "id": "eugene-jansson-sunset",
+   "w": 4276,
+   "h": 2442,
+   "measured": [
+    3840,
+    2193
+   ],
+   "dw": 10.2,
+   "dh": 10.2
+  },
+  {
+   "id": "eugene-jansson-the-outskirts-of-the-town",
+   "w": 3308,
+   "h": 3642,
+   "measured": [
+    1920,
+    2114
+   ],
+   "dw": 42,
+   "dh": 42
+  },
+  {
+   "id": "farmhouse-in-provence",
+   "w": 31183,
+   "h": 23388,
+   "measured": [
+    3000,
+    2250
+   ],
+   "dw": 90.4,
+   "dh": 90.4
+  },
+  {
+   "id": "ferdinand-hodler-bildnis-der-tanzerin-giulia-leonardi",
+   "w": 9449,
+   "h": 8150,
+   "measured": [
+    3840,
+    3312
+   ],
+   "dw": 59.4,
+   "dh": 59.4
+  },
+  {
+   "id": "fire-s-on",
+   "w": 19724,
+   "h": 30000,
+   "measured": [
+    3840,
+    5841
+   ],
+   "dw": 80.5,
+   "dh": 80.5
+  },
+  {
+   "id": "fishing-boats-on-the-beach-at-les-saintes-maries-de-la-mer",
+   "w": 11733,
+   "h": 9435,
+   "measured": [
+    4948,
+    4000
+   ],
+   "dw": 57.8,
+   "dh": 57.6
+  },
+  {
+   "id": "gerda-roosval-kallstenius-astrid-setterwall-angstrom-artist",
+   "w": 1702,
+   "h": 3650,
+   "measured": [
+    1280,
+    2745
+   ],
+   "dw": 24.8,
+   "dh": 24.8
+  },
+  {
+   "id": "ginevra-de-benci",
+   "w": 23235,
+   "h": 23968,
+   "measured": [
+    3000,
+    3095
+   ],
+   "dw": 87.1,
+   "dh": 87.1
+  },
+  {
+   "id": "giovanni-battista-tiepolo-die-verehrung-der-trinitat-durch-d",
+   "w": 4763,
+   "h": 6000,
+   "measured": [
+    2024,
+    2623
+   ],
+   "dw": 57.5,
+   "dh": 56.3
+  },
+  {
+   "id": "girl-in-white",
+   "w": 12107,
+   "h": 17862,
+   "measured": [
+    2776,
+    4096
+   ],
+   "dw": 77.1,
+   "dh": 77.1
+  },
+  {
+   "id": "gottfrid-kallstenius-after-sunset-motif-from-the-archipelago",
+   "w": 4078,
+   "h": 3508,
+   "measured": [
+    3840,
+    3303
+   ],
+   "dw": 5.8,
+   "dh": 5.8
+  },
+  {
+   "id": "gustaf-ankarcrona-in-days-of-yore",
+   "w": 4404,
+   "h": 3102,
+   "measured": [
+    3840,
+    2705
+   ],
+   "dw": 12.8,
+   "dh": 12.8
+  },
+  {
+   "id": "gustave-le-gray-cavalry-maneuvers-camp-de-chalons",
+   "w": 4648,
+   "h": 3756,
+   "measured": [
+    3000,
+    2424
+   ],
+   "dw": 35.5,
+   "dh": 35.5
+  },
+  {
+   "id": "harvest-at-la-crau-with-montmajour-in-the-background",
+   "w": 11382,
+   "h": 9053,
+   "measured": [
+    5065,
+    4000
+   ],
+   "dw": 55.5,
+   "dh": 55.8
+  },
+  {
+   "id": "henri-matisse-deux-femmes-dans-un-paysage",
+   "w": 3024,
+   "h": 4032,
+   "measured": [
+    4032,
+    3024
+   ],
+   "dw": 33.3,
+   "dh": 25
+  },
+  {
+   "id": "herman-norrman-moonlit-landscape",
+   "w": 3621,
+   "h": 2289,
+   "measured": [
+    1920,
+    1214
+   ],
+   "dw": 47,
+   "dh": 47
+  },
+  {
+   "id": "j-m-w-turner-the-new-moon-or-i-ve-lost-my-boat-you-shan-t-ha",
+   "w": 8136,
+   "h": 6538,
+   "measured": [
+    3840,
+    3086
+   ],
+   "dw": 52.8,
+   "dh": 52.8
+  },
+  {
+   "id": "john-mackie-falconer-washing-morning-down-south",
+   "w": 5454,
+   "h": 3318,
+   "measured": [
+    3000,
+    1825
+   ],
+   "dw": 45,
+   "dh": 45
+  },
+  {
+   "id": "klimt-kiss",
+   "w": 7376,
+   "h": 7401,
+   "measured": [
+    3840,
+    3853
+   ],
+   "dw": 47.9,
+   "dh": 47.9
+  },
+  {
+   "id": "la-balancoire",
+   "w": 7648,
+   "h": 10000,
+   "measured": [
+    3840,
+    5021
+   ],
+   "dw": 49.8,
+   "dh": 49.8
+  },
+  {
+   "id": "la-promenade",
+   "w": 6752,
+   "h": 8395,
+   "measured": [
+    3840,
+    4774
+   ],
+   "dw": 43.1,
+   "dh": 43.1
+  },
+  {
+   "id": "landscape-from-bretagne",
+   "w": 8875,
+   "h": 7344,
+   "measured": [
+    1000,
+    827
+   ],
+   "dw": 88.7,
+   "dh": 88.7
+  },
+  {
+   "id": "landscape-with-the-fall-of-icarus",
+   "w": 4506,
+   "h": 4053,
+   "measured": [
+    3840,
+    3454
+   ],
+   "dw": 14.8,
+   "dh": 14.8
+  },
+  {
+   "id": "laocoon",
+   "w": 38035,
+   "h": 30230,
+   "measured": [
+    3000,
+    2384
+   ],
+   "dw": 92.1,
+   "dh": 92.1
+  },
+  {
+   "id": "leonardo-da-vinci-la-gioconda",
+   "w": 7601,
+   "h": 11348,
+   "measured": [
+    3840,
+    5733
+   ],
+   "dw": 49.5,
+   "dh": 49.5
+  },
+  {
+   "id": "leonardo-da-vinci-saint-jean-baptiste",
+   "w": 10446,
+   "h": 13522,
+   "measured": [
+    3840,
+    4971
+   ],
+   "dw": 63.2,
+   "dh": 63.2
+  },
+  {
+   "id": "maria-lady-eardley-1743-1794",
+   "w": 3419,
+   "h": 4733,
+   "measured": [
+    1920,
+    2658
+   ],
+   "dw": 43.8,
+   "dh": 43.8
+  },
+  {
+   "id": "midsummer-dance",
+   "w": 3325,
+   "h": 4169,
+   "measured": [
+    798,
+    1000
+   ],
+   "dw": 76,
+   "dh": 76
+  },
+  {
+   "id": "monet-woman-with-a-parasol",
+   "w": 12666,
+   "h": 15698,
+   "measured": [
+    3000,
+    3719
+   ],
+   "dw": 76.3,
+   "dh": 76.3
+  },
+  {
+   "id": "niccolo-dell-abbate-le-grand-pont-ou-le-torrent",
+   "w": 1882,
+   "h": 3351,
+   "measured": [
+    3351,
+    1882
+   ],
+   "dw": 78.1,
+   "dh": 43.8
+  },
+  {
+   "id": "nils-kreuger-nightfall",
+   "w": 3361,
+   "h": 2680,
+   "measured": [
+    1920,
+    1531
+   ],
+   "dw": 42.9,
+   "dh": 42.9
+  },
+  {
+   "id": "october-saison-d-octobre",
+   "w": 7936,
+   "h": 7329,
+   "measured": [
+    3840,
+    3546
+   ],
+   "dw": 51.6,
+   "dh": 51.6
+  },
+  {
+   "id": "odilon-redon-untitled-9",
+   "w": 3456,
+   "h": 4608,
+   "measured": [
+    4608,
+    3456
+   ],
+   "dw": 33.3,
+   "dh": 25
+  },
+  {
+   "id": "paul-cezanne-arlequin",
+   "w": 11281,
+   "h": 17532,
+   "measured": [
+    2636,
+    4096
+   ],
+   "dw": 76.6,
+   "dh": 76.6
+  },
+  {
+   "id": "paul-cezanne-la-montagne-sainte-victoire-au-dessus-de-la-rou",
+   "w": 14368,
+   "h": 11448,
+   "measured": [
+    3840,
+    3060
+   ],
+   "dw": 73.3,
+   "dh": 73.3
+  },
+  {
+   "id": "paul-gauguin-the-universe-is-created-l-univers-est-cree",
+   "w": 4994,
+   "h": 2975,
+   "measured": [
+    3000,
+    1787
+   ],
+   "dw": 39.9,
+   "dh": 39.9
+  },
+  {
+   "id": "pehr-hillestrom-a-woman-picking-fleas-by-candlelight",
+   "w": 3174,
+   "h": 3873,
+   "measured": [
+    1920,
+    2343
+   ],
+   "dw": 39.5,
+   "dh": 39.5
+  },
+  {
+   "id": "pekka-halonen-late-winter",
+   "w": 2171,
+   "h": 3278,
+   "measured": [
+    3278,
+    2171
+   ],
+   "dw": 51,
+   "dh": 33.8
+  },
+  {
+   "id": "peter-paul-rubens-a-view-of-het-steen-in-the-early-morning",
+   "w": 21100,
+   "h": 12384,
+   "measured": [
+    3840,
+    2254
+   ],
+   "dw": 81.8,
+   "dh": 81.8
+  },
+  {
+   "id": "pierre-auguste-renoir-danseuse",
+   "w": 16208,
+   "h": 24531,
+   "measured": [
+    3840,
+    5812
+   ],
+   "dw": 76.3,
+   "dh": 76.3
+  },
+  {
+   "id": "pierre-auguste-renoir-luncheon-of-the-boating-party",
+   "w": 9025,
+   "h": 6684,
+   "measured": [
+    3840,
+    2844
+   ],
+   "dw": 57.5,
+   "dh": 57.5
+  },
+  {
+   "id": "pierre-bonnard-sleeping-woman-on-a-bed",
+   "w": 8428,
+   "h": 7672,
+   "measured": [
+    3840,
+    3496
+   ],
+   "dw": 54.4,
+   "dh": 54.4
+  },
+  {
+   "id": "portrait-of-a-man-self-portrait",
+   "w": 8889,
+   "h": 12230,
+   "measured": [
+    3840,
+    5283
+   ],
+   "dw": 56.8,
+   "dh": 56.8
+  },
+  {
+   "id": "portrait-of-a-violinist",
+   "w": 8768,
+   "h": 11116,
+   "measured": [
+    789,
+    1000
+   ],
+   "dw": 91,
+   "dh": 91
+  },
+  {
+   "id": "portrait-of-bindo-altoviti",
+   "w": 18702,
+   "h": 25703,
+   "measured": [
+    2980,
+    4096
+   ],
+   "dw": 84.1,
+   "dh": 84.1
+  },
+  {
+   "id": "skarga-s-sermon",
+   "w": 9478,
+   "h": 5398,
+   "measured": [
+    3840,
+    2187
+   ],
+   "dw": 59.5,
+   "dh": 59.5
+  },
+  {
+   "id": "strindberg-underlandet",
+   "w": 3181,
+   "h": 4385,
+   "measured": [
+    1920,
+    2647
+   ],
+   "dw": 39.6,
+   "dh": 39.6
+  },
+  {
+   "id": "symphony-in-white-no-1-the-white-girl",
+   "w": 28741,
+   "h": 57185,
+   "measured": [
+    2059,
+    4096
+   ],
+   "dw": 92.8,
+   "dh": 92.8
+  },
+  {
+   "id": "the-emperor-napoleon-in-his-study-at-the-tuileries",
+   "w": 16304,
+   "h": 26731,
+   "measured": [
+    2498,
+    4096
+   ],
+   "dw": 84.7,
+   "dh": 84.7
+  },
+  {
+   "id": "the-kitchen-maid",
+   "w": 5563,
+   "h": 6788,
+   "measured": [
+    820,
+    1000
+   ],
+   "dw": 85.3,
+   "dh": 85.3
+  },
+  {
+   "id": "the-milkmaid",
+   "w": 4649,
+   "h": 5177,
+   "measured": [
+    4000,
+    4485
+   ],
+   "dw": 14,
+   "dh": 13.4
+  },
+  {
+   "id": "the-old-musician",
+   "w": 19867,
+   "h": 15029,
+   "measured": [
+    3000,
+    2269
+   ],
+   "dw": 84.9,
+   "dh": 84.9
+  },
+  {
+   "id": "the-painter-s-studio",
+   "w": 16951,
+   "h": 9989,
+   "measured": [
+    3840,
+    2263
+   ],
+   "dw": 77.3,
+   "dh": 77.3
+  },
+  {
+   "id": "the-plum",
+   "w": 10983,
+   "h": 16425,
+   "measured": [
+    2739,
+    4096
+   ],
+   "dw": 75.1,
+   "dh": 75.1
+  },
+  {
+   "id": "the-railway",
+   "w": 32954,
+   "h": 26753,
+   "measured": [
+    3000,
+    2435
+   ],
+   "dw": 90.9,
+   "dh": 90.9
+  },
+  {
+   "id": "the-rope-dancer",
+   "w": 2880,
+   "h": 4155,
+   "measured": [
+    1920,
+    2770
+   ],
+   "dw": 33.3,
+   "dh": 33.3
+  },
+  {
+   "id": "the-sower",
+   "w": 9000,
+   "h": 7123,
+   "measured": [
+    7352,
+    5750
+   ],
+   "dw": 18.3,
+   "dh": 19.3
+  },
+  {
+   "id": "the-starry-night",
+   "w": 44567,
+   "h": 35291,
+   "measured": [
+    3840,
+    3041
+   ],
+   "dw": 91.4,
+   "dh": 91.4
+  },
+  {
+   "id": "the-town",
+   "w": 2710,
+   "h": 4807,
+   "measured": [
+    1920,
+    3406
+   ],
+   "dw": 29.2,
+   "dh": 29.1
+  },
+  {
+   "id": "the-voyage-of-life",
+   "w": 5121,
+   "h": 3459,
+   "measured": [
+    3000,
+    2026
+   ],
+   "dw": 41.4,
+   "dh": 41.4
+  },
+  {
+   "id": "thor-s-fight-with-the-giants",
+   "w": 3062,
+   "h": 4429,
+   "measured": [
+    1920,
+    2777
+   ],
+   "dw": 37.3,
+   "dh": 37.3
+  },
+  {
+   "id": "truth-time-and-history",
+   "w": 6080,
+   "h": 7320,
+   "measured": [
+    831,
+    1000
+   ],
+   "dw": 86.3,
+   "dh": 86.3
+  },
+  {
+   "id": "two-women-at-a-window",
+   "w": 17385,
+   "h": 20855,
+   "measured": [
+    3000,
+    3599
+   ],
+   "dw": 82.7,
+   "dh": 82.7
+  },
+  {
+   "id": "unknown-mahakala-in-the-form-of-a-brahman",
+   "w": 6527,
+   "h": 9133,
+   "measured": [
+    3840,
+    5373
+   ],
+   "dw": 41.2,
+   "dh": 41.2
+  },
+  {
+   "id": "unknown-untitled-3",
+   "w": 2223,
+   "h": 2845,
+   "measured": [
+    2845,
+    2223
+   ],
+   "dw": 28,
+   "dh": 21.9
+  },
+  {
+   "id": "victory-at-narva",
+   "w": 3524,
+   "h": 2590,
+   "measured": [
+    1920,
+    1411
+   ],
+   "dw": 45.5,
+   "dh": 45.5
+  },
+  {
+   "id": "view-of-arles-with-irises-in-the-foreground",
+   "w": 7000,
+   "h": 5862,
+   "measured": [
+    4758,
+    4000
+   ],
+   "dw": 32,
+   "dh": 31.8
+  },
+  {
+   "id": "vilhelm-hammersh-i-interior",
+   "w": 6013,
+   "h": 6999,
+   "measured": [
+    859,
+    1000
+   ],
+   "dw": 85.7,
+   "dh": 85.7
+  },
+  {
+   "id": "vilhelm-hammersh-i-interior-with-a-reading-lady",
+   "w": 5945,
+   "h": 6937,
+   "measured": [
+    857,
+    1000
+   ],
+   "dw": 85.6,
+   "dh": 85.6
+  },
+  {
+   "id": "vincent-van-gogh-enclosed-field-with-peasant",
+   "w": 23036,
+   "h": 18484,
+   "measured": [
+    3840,
+    3081
+   ],
+   "dw": 83.3,
+   "dh": 83.3
+  },
+  {
+   "id": "vincent-van-gogh-korenveld-met-cipressen",
+   "w": 10882,
+   "h": 8653,
+   "measured": [
+    3840,
+    3053
+   ],
+   "dw": 64.7,
+   "dh": 64.7
+  },
+  {
+   "id": "vincent-van-gogh-self-portrait-2",
+   "w": 21687,
+   "h": 28273,
+   "measured": [
+    3000,
+    3912
+   ],
+   "dw": 86.2,
+   "dh": 86.2
+  },
+  {
+   "id": "vincent-van-gogh-the-red-vineyard-red-vineyard-at-arles-mont",
+   "w": 11406,
+   "h": 9092,
+   "measured": [
+    3840,
+    3061
+   ],
+   "dw": 66.3,
+   "dh": 66.3
+  },
+  {
+   "id": "wassily-kandinsky-erinnerung-an-venedig-3-kanal",
+   "w": 8400,
+   "h": 6104,
+   "measured": [
+    3840,
+    2790
+   ],
+   "dw": 54.3,
+   "dh": 54.3
+  },
+  {
+   "id": "watson-and-the-shark",
+   "w": 32121,
+   "h": 25469,
+   "measured": [
+    3000,
+    2379
+   ],
+   "dw": 90.7,
+   "dh": 90.7
+  },
+  {
+   "id": "woman-holding-a-balance",
+   "w": 23283,
+   "h": 26343,
+   "measured": [
+    3000,
+    3395
+   ],
+   "dw": 87.1,
+   "dh": 87.1
+  },
+  {
+   "id": "young-boy-peeling-a-pear",
+   "w": 2940,
+   "h": 3474,
+   "measured": [
+    1920,
+    2269
+   ],
+   "dw": 34.7,
+   "dh": 34.7
+  },
+  {
+   "id": "zoie-ghika-moldavian-princess",
+   "w": 2841,
+   "h": 3436,
+   "measured": [
+    1920,
+    2322
+   ],
+   "dw": 32.4,
+   "dh": 32.4
+  },
+  {
+   "id": "the-great-wave-off-kanagawa",
+   "w": 8561,
+   "h": 6037,
+   "measured": [
+    3840,
+    2708
+   ],
+   "dw": 55.1,
+   "dh": 55.1
+  },
+  {
+   "id": "the-rhinoceros",
+   "w": 10851,
+   "h": 8484,
+   "measured": [
+    3000,
+    2346
+   ],
+   "dw": 72.4,
+   "dh": 72.3
+  },
+  {
+   "id": "two-sisters",
+   "w": 19848,
+   "h": 24629,
+   "measured": [
+    3840,
+    4765
+   ],
+   "dw": 80.7,
+   "dh": 80.7
+  },
+  {
+   "id": "knight-death-and-the-devil",
+   "w": 3761,
+   "h": 4878,
+   "measured": [
+    3000,
+    3891
+   ],
+   "dw": 20.2,
+   "dh": 20.2
+  },
+  {
+   "id": "nemesis",
+   "w": 3388,
+   "h": 4892,
+   "measured": [
+    2837,
+    4096
+   ],
+   "dw": 16.3,
+   "dh": 16.3
+  },
+  {
+   "id": "georges-seurat-seascape-at-port-en-bessin-normandy",
+   "w": 31546,
+   "h": 25392,
+   "measured": [
+    3000,
+    2415
+   ],
+   "dw": 90.5,
+   "dh": 90.5
+  },
+  {
+   "id": "claude-monet-waterloo-bridge-london-at-dusk",
+   "w": 18814,
+   "h": 12079,
+   "measured": [
+    3000,
+    1926
+   ],
+   "dw": 84.1,
+   "dh": 84.1
+  },
+  {
+   "id": "theo-van-rysselberghe-coastal-scene",
+   "w": 28641,
+   "h": 23726,
+   "measured": [
+    800,
+    665
+   ],
+   "dw": 97.2,
+   "dh": 97.2
+  },
+  {
+   "id": "madonna-of-the-pinks",
+   "w": 6909,
+   "h": 8585,
+   "measured": [
+    870,
+    1080
+   ],
+   "dw": 87.4,
+   "dh": 87.4
+  },
+  {
+   "id": "two-old-men-disputing",
+   "w": 4105,
+   "h": 5000,
+   "measured": [
+    1576,
+    1920
+   ],
+   "dw": 61.6,
+   "dh": 61.6
+  },
+  {
+   "id": "fjaestad-winter-moonlight",
+   "w": 3791,
+   "h": 3070,
+   "measured": [
+    1000,
+    810
+   ],
+   "dw": 73.6,
+   "dh": 73.6
+  },
+  {
+   "id": "fjaestad-wood-pattern",
+   "w": 3531,
+   "h": 2869,
+   "measured": [
+    1000,
+    813
+   ],
+   "dw": 71.7,
+   "dh": 71.7
+  },
+  {
+   "id": "simeon-in-the-temple",
+   "w": 2828,
+   "h": 3513,
+   "measured": [
+    805,
+    1000
+   ],
+   "dw": 71.5,
+   "dh": 71.5
+  },
+  {
+   "id": "henri-matisse-auguste-pellerin-ii",
+   "w": 2573,
+   "h": 4000,
+   "measured": [
+    1029,
+    1600
+   ],
+   "dw": 60,
+   "dh": 60
+  },
+  {
+   "id": "henri-matisse-tete-blanche-et-rose",
+   "w": 2436,
+   "h": 4000,
+   "measured": [
+    974,
+    1600
+   ],
+   "dw": 60,
+   "dh": 60
+  },
+  {
+   "id": "j-m-w-turner-mortlake-terrace",
+   "w": 35379,
+   "h": 26561,
+   "measured": [
+    3000,
+    2252
+   ],
+   "dw": 91.5,
+   "dh": 91.5
+  },
+  {
+   "id": "j-m-w-turner-approach-to-venice",
+   "w": 5039,
+   "h": 3340,
+   "measured": [
+    3000,
+    1988
+   ],
+   "dw": 40.5,
+   "dh": 40.5
+  },
+  {
+   "id": "j-m-w-turner-venice-the-dogana-and-san-giorgio-maggiore",
+   "w": 5057,
+   "h": 3747,
+   "measured": [
+    3000,
+    2223
+   ],
+   "dw": 40.7,
+   "dh": 40.7
+  },
+  {
+   "id": "j-m-w-turner-keelmen-heaving-in-coals-by-moonlight",
+   "w": 5144,
+   "h": 3820,
+   "measured": [
+    3000,
+    2228
+   ],
+   "dw": 41.7,
+   "dh": 41.7
+  },
+  {
+   "id": "j-m-w-turner-the-junction-of-the-thames-and-the-medway",
+   "w": 5057,
+   "h": 3806,
+   "measured": [
+    3000,
+    2258
+   ],
+   "dw": 40.7,
+   "dh": 40.7
+  },
+  {
+   "id": "j-m-w-turner-the-rape-of-proserpine",
+   "w": 7793,
+   "h": 5745,
+   "measured": [
+    3000,
+    2212
+   ],
+   "dw": 61.5,
+   "dh": 61.5
+  },
+  {
+   "id": "j-m-w-turner-the-evening-of-the-deluge",
+   "w": 16878,
+   "h": 16964,
+   "measured": [
+    3000,
+    3016
+   ],
+   "dw": 82.2,
+   "dh": 82.2
+  },
+  {
+   "id": "j-m-w-turner-the-dogana-and-santa-maria-della-salute-venice",
+   "w": 26080,
+   "h": 17278,
+   "measured": [
+    3000,
+    1987
+   ],
+   "dw": 88.5,
+   "dh": 88.5
+  },
+  {
+   "id": "j-m-w-turner-rotterdam-ferry-boat",
+   "w": 5005,
+   "h": 3740,
+   "measured": [
+    3000,
+    2242
+   ],
+   "dw": 40.1,
+   "dh": 40.1
+  },
+  {
+   "id": "j-m-w-turner-a-packet-boat-off-dover",
+   "w": 5083,
+   "h": 3478,
+   "measured": [
+    3000,
+    2053
+   ],
+   "dw": 41,
+   "dh": 41
+  },
+  {
+   "id": "j-m-w-turner-a-yorkshire-river",
+   "w": 5049,
+   "h": 3566,
+   "measured": [
+    3000,
+    2119
+   ],
+   "dw": 40.6,
+   "dh": 40.6
+  },
+  {
+   "id": "j-m-w-turner-tewkesbury-abbey-no-2",
+   "w": 6684,
+   "h": 8722,
+   "measured": [
+    3000,
+    3915
+   ],
+   "dw": 55.1,
+   "dh": 55.1
+  },
+  {
+   "id": "j-m-w-turner-oberwesel",
+   "w": 5204,
+   "h": 3434,
+   "measured": [
+    3000,
+    1980
+   ],
+   "dw": 42.4,
+   "dh": 42.3
+  },
+  {
+   "id": "j-m-w-turner-boats-carrying-out-anchors-to-the-dutch-men-of",
+   "w": 24304,
+   "h": 19058,
+   "measured": [
+    3000,
+    2352
+   ],
+   "dw": 87.7,
+   "dh": 87.7
+  },
+  {
+   "id": "vincent-van-gogh-roulin-s-baby-nga",
+   "w": 11574,
+   "h": 17076,
+   "measured": [
+    2776,
+    4096
+   ],
+   "dw": 76,
+   "dh": 76
+  },
+  {
+   "id": "vincent-van-gogh-la-mousme",
+   "w": 12684,
+   "h": 15516,
+   "measured": [
+    3000,
+    3670
+   ],
+   "dw": 76.3,
+   "dh": 76.3
+  },
+  {
+   "id": "vincent-van-gogh-the-olive-orchard",
+   "w": 22832,
+   "h": 18013,
+   "measured": [
+    3000,
+    2367
+   ],
+   "dw": 86.9,
+   "dh": 86.9
+  },
+  {
+   "id": "vincent-van-gogh-flower-beds-in-holland",
+   "w": 35365,
+   "h": 25890,
+   "measured": [
+    3000,
+    2196
+   ],
+   "dw": 91.5,
+   "dh": 91.5
+  },
+  {
+   "id": "vincent-van-gogh-green-wheat-fields-auvers",
+   "w": 16266,
+   "h": 12766,
+   "measured": [
+    3000,
+    2354
+   ],
+   "dw": 81.6,
+   "dh": 81.6
+  },
+  {
+   "id": "vincent-van-gogh-still-life-of-oranges-and-lemons-with-blue-gloves",
+   "w": 16898,
+   "h": 13009,
+   "measured": [
+    3000,
+    2310
+   ],
+   "dw": 82.2,
+   "dh": 82.2
+  },
+  {
+   "id": "girl-with-the-red-hat",
+   "w": 12070,
+   "h": 15257,
+   "measured": [
+    3000,
+    3793
+   ],
+   "dw": 75.1,
+   "dh": 75.1
+  },
+  {
+   "id": "william-james-glackens-family-group",
+   "w": 18400,
+   "h": 15681,
+   "measured": [
+    3000,
+    2557
+   ],
+   "dw": 83.7,
+   "dh": 83.7
+  },
+  {
+   "id": "jan-van-huysum-flowers-in-an-urn",
+   "w": 12260,
+   "h": 16613,
+   "measured": [
+    3000,
+    4066
+   ],
+   "dw": 75.5,
+   "dh": 75.5
+  },
+  {
+   "id": "jan-van-huysum-still-life-with-flowers-and-fruit",
+   "w": 5590,
+   "h": 7255,
+   "measured": [
+    3000,
+    3894
+   ],
+   "dw": 46.3,
+   "dh": 46.3
+  },
+  {
+   "id": "joseph-vernet-the-shipwreck",
+   "w": 15463,
+   "h": 10739,
+   "measured": [
+    3000,
+    2083
+   ],
+   "dw": 80.6,
+   "dh": 80.6
+  },
+  {
+   "id": "richard-parkes-bonington-the-grand-canal",
+   "w": 24620,
+   "h": 17976,
+   "measured": [
+    3000,
+    2190
+   ],
+   "dw": 87.8,
+   "dh": 87.8
+  },
+  {
+   "id": "jean-leon-gerome-view-of-medinet-el-fayoum",
+   "w": 13240,
+   "h": 9050,
+   "measured": [
+    3000,
+    2051
+   ],
+   "dw": 77.3,
+   "dh": 77.3
+  },
+  {
+   "id": "william-james-glackens-luxembourg-gardens",
+   "w": 16729,
+   "h": 12383,
+   "measured": [
+    3000,
+    2221
+   ],
+   "dw": 82.1,
+   "dh": 82.1
+  },
+  {
+   "id": "jules-breton-the-colza-harvesting-rapeseed",
+   "w": 19075,
+   "h": 12998,
+   "measured": [
+    3000,
+    2044
+   ],
+   "dw": 84.3,
+   "dh": 84.3
+  },
+  {
+   "id": "joseph-vernet-moonlight",
+   "w": 26756,
+   "h": 18603,
+   "measured": [
+    3000,
+    2086
+   ],
+   "dw": 88.8,
+   "dh": 88.8
+  },
+  {
+   "id": "jules-breton-the-cliff-la-falaise",
+   "w": 36672,
+   "h": 23777,
+   "measured": [
+    3000,
+    1945
+   ],
+   "dw": 91.8,
+   "dh": 91.8
+  },
+  {
+   "id": "jean-leon-gerome-edouard-delessert",
+   "w": 8319,
+   "h": 12074,
+   "measured": [
+    2822,
+    4096
+   ],
+   "dw": 66.1,
+   "dh": 66.1
+  },
+  {
+   "id": "edward-hopper-ground-swell",
+   "w": 19204,
+   "h": 14022,
+   "measured": [
+    3000,
+    2190
+   ],
+   "dw": 84.4,
+   "dh": 84.4
+  },
+  {
+   "id": "edward-hopper-cape-cod-evening",
+   "w": 17405,
+   "h": 13054,
+   "measured": [
+    3000,
+    2250
+   ],
+   "dw": 82.8,
+   "dh": 82.8
+  },
+  {
+   "id": "rembrandt-self-portrait-1659",
+   "w": 25143,
+   "h": 32158,
+   "measured": [
+    3000,
+    3838
+   ],
+   "dw": 88.1,
+   "dh": 88.1
+  },
+  {
+   "id": "rembrandt-a-woman-holding-a-pink",
+   "w": 18121,
+   "h": 21558,
+   "measured": [
+    3000,
+    3570
+   ],
+   "dw": 83.4,
+   "dh": 83.4
+  },
+  {
+   "id": "rembrandt-lucretia",
+   "w": 16225,
+   "h": 19065,
+   "measured": [
+    3000,
+    3526
+   ],
+   "dw": 81.5,
+   "dh": 81.5
+  },
+  {
+   "id": "rembrandt-a-young-man-seated-at-a-table-possibly-govaert-flinck",
+   "w": 17179,
+   "h": 21238,
+   "measured": [
+    3000,
+    3709
+   ],
+   "dw": 82.5,
+   "dh": 82.5
+  },
+  {
+   "id": "rembrandt-the-apostle-paul",
+   "w": 17803,
+   "h": 22319,
+   "measured": [
+    3000,
+    3761
+   ],
+   "dw": 83.1,
+   "dh": 83.1
+  },
+  {
+   "id": "rembrandt-the-circumcision",
+   "w": 17250,
+   "h": 12919,
+   "measured": [
+    3000,
+    2247
+   ],
+   "dw": 82.6,
+   "dh": 82.6
+  },
+  {
+   "id": "rembrandt-the-mill",
+   "w": 22180,
+   "h": 18526,
+   "measured": [
+    3000,
+    2506
+   ],
+   "dw": 86.5,
+   "dh": 86.5
+  },
+  {
+   "id": "rembrandt-philemon-and-baucis",
+   "w": 23684,
+   "h": 18403,
+   "measured": [
+    3000,
+    2331
+   ],
+   "dw": 87.3,
+   "dh": 87.3
+  },
+  {
+   "id": "rembrandt-portrait-of-a-gentleman-with-a-tall-hat-and-gloves",
+   "w": 17533,
+   "h": 20861,
+   "measured": [
+    3000,
+    3570
+   ],
+   "dw": 82.9,
+   "dh": 82.9
+  },
+  {
+   "id": "rembrandt-portrait-of-a-lady-with-an-ostrich-feather-fan",
+   "w": 17330,
+   "h": 21073,
+   "measured": [
+    3000,
+    3648
+   ],
+   "dw": 82.7,
+   "dh": 82.7
+  },
+  {
+   "id": "rembrandt-portrait-of-a-man-in-a-tall-hat",
+   "w": 23448,
+   "h": 29759,
+   "measured": [
+    3000,
+    3808
+   ],
+   "dw": 87.2,
+   "dh": 87.2
+  },
+  {
+   "id": "rembrandt-saskia-van-uylenburgh-the-wife-of-the-artist",
+   "w": 11148,
+   "h": 14348,
+   "measured": [
+    3000,
+    3862
+   ],
+   "dw": 73.1,
+   "dh": 73.1
+  },
+  {
+   "id": "rembrandt-seated-old-man",
+   "w": 4943,
+   "h": 5258,
+   "measured": [
+    3000,
+    3192
+   ],
+   "dw": 39.3,
+   "dh": 39.3
+  },
+  {
+   "id": "rembrandt-self-portrait-red-chalk",
+   "w": 5016,
+   "h": 5398,
+   "measured": [
+    3000,
+    3229
+   ],
+   "dw": 40.2,
+   "dh": 40.2
+  },
+  {
+   "id": "rembrandt-view-of-diemen",
+   "w": 6557,
+   "h": 2702,
+   "measured": [
+    3000,
+    1236
+   ],
+   "dw": 54.2,
+   "dh": 54.3
+  },
+  {
+   "id": "rembrandt-cottages-and-barn-beside-a-road",
+   "w": 6664,
+   "h": 3968,
+   "measured": [
+    3000,
+    1786
+   ],
+   "dw": 55,
+   "dh": 55
+  },
+  {
+   "id": "rembrandt-man-with-a-sheet-of-music",
+   "w": 20721,
+   "h": 28290,
+   "measured": [
+    3000,
+    4096
+   ],
+   "dw": 85.5,
+   "dh": 85.5
+  },
+  {
+   "id": "henri-harpignies-landscape",
+   "w": 12722,
+   "h": 10484,
+   "measured": [
+    3000,
+    2472
+   ],
+   "dw": 76.4,
+   "dh": 76.4
+  },
+  {
+   "id": "jacques-louis-david-madame-david",
+   "w": 12362,
+   "h": 15221,
+   "measured": [
+    3000,
+    3694
+   ],
+   "dw": 75.7,
+   "dh": 75.7
+  },
+  {
+   "id": "circle-of-jacques-louis-david-portrait-of-a-young-woman-in-white",
+   "w": 27225,
+   "h": 35894,
+   "measured": [
+    3000,
+    3956
+   ],
+   "dw": 89,
+   "dh": 89
+  },
+  {
+   "id": "franz-marc-siberian-dogs-in-the-snow",
+   "w": 18948,
+   "h": 13482,
+   "measured": [
+    3000,
+    2135
+   ],
+   "dw": 84.2,
+   "dh": 84.2
+  },
+  {
+   "id": "gustave-caillebotte-skiffs",
+   "w": 23093,
+   "h": 17622,
+   "measured": [
+    3000,
+    2289
+   ],
+   "dw": 87,
+   "dh": 87
+  },
+  {
+   "id": "henri-harpignies-landscape-in-auvergne",
+   "w": 7081,
+   "h": 4729,
+   "measured": [
+    3000,
+    2004
+   ],
+   "dw": 57.6,
+   "dh": 57.6
+  },
+  {
+   "id": "gustave-caillebotte-dahlias-garden-at-petit-gennevilliers",
+   "w": 15484,
+   "h": 21618,
+   "measured": [
+    2934,
+    4096
+   ],
+   "dw": 81.1,
+   "dh": 81.1
+  },
+  {
+   "id": "franz-marc-weasels-at-play",
+   "w": 16497,
+   "h": 25008,
+   "measured": [
+    2702,
+    4096
+   ],
+   "dw": 83.6,
+   "dh": 83.6
+  },
+  {
+   "id": "frans-snyders-still-life-with-grapes-and-game",
+   "w": 4755,
+   "h": 3788,
+   "measured": [
+    3000,
+    2390
+   ],
+   "dw": 36.9,
+   "dh": 36.9
+  },
+  {
+   "id": "frans-snyders-still-life-with-flowers-grapes-and-small-game-birds",
+   "w": 26070,
+   "h": 19576,
+   "measured": [
+    3000,
+    2253
+   ],
+   "dw": 88.5,
+   "dh": 88.5
+  },
+  {
+   "id": "franz-marc-genesis-ii",
+   "w": 3396,
+   "h": 4014,
+   "measured": [
+    3000,
+    3546
+   ],
+   "dw": 11.7,
+   "dh": 11.7
+  },
+  {
+   "id": "lawrence-lady-mary-templetown-and-her-eldest-son",
+   "w": 25804,
+   "h": 37320,
+   "measured": [
+    2832,
+    4096
+   ],
+   "dw": 89,
+   "dh": 89
+  },
+  {
+   "id": "lawrence-mrs-robert-blencowe",
+   "w": 5325,
+   "h": 6794,
+   "measured": [
+    3000,
+    3828
+   ],
+   "dw": 43.7,
+   "dh": 43.7
+  },
+  {
+   "id": "blake-job-and-his-daughters",
+   "w": 10128,
+   "h": 7055,
+   "measured": [
+    3000,
+    2090
+   ],
+   "dw": 70.4,
+   "dh": 70.4
+  },
+  {
+   "id": "david-johnson-edwin-forrest",
+   "w": 5292,
+   "h": 6310,
+   "measured": [
+    3000,
+    3578
+   ],
+   "dw": 43.3,
+   "dh": 43.3
+  },
+  {
+   "id": "millet-the-bather",
+   "w": 5757,
+   "h": 4444,
+   "measured": [
+    3000,
+    2316
+   ],
+   "dw": 47.9,
+   "dh": 47.9
+  },
+  {
+   "id": "carracci-river-landscape",
+   "w": 5970,
+   "h": 3510,
+   "measured": [
+    3000,
+    1764
+   ],
+   "dw": 49.7,
+   "dh": 49.7
+  },
+  {
+   "id": "blake-the-last-supper",
+   "w": 6807,
+   "h": 4391,
+   "measured": [
+    3000,
+    1935
+   ],
+   "dw": 55.9,
+   "dh": 55.9
+  },
+  {
+   "id": "carracci-venus-adorned-by-the-graces",
+   "w": 29224,
+   "h": 22806,
+   "measured": [
+    3000,
+    2341
+   ],
+   "dw": 89.7,
+   "dh": 89.7
+  },
+  {
+   "id": "millet-leconte-de-lisle",
+   "w": 4540,
+   "h": 6622,
+   "measured": [
+    2808,
+    4096
+   ],
+   "dw": 38.1,
+   "dh": 38.1
+  },
+  {
+   "id": "millet-portrait-of-a-man",
+   "w": 5019,
+   "h": 6406,
+   "measured": [
+    3000,
+    3830
+   ],
+   "dw": 40.2,
+   "dh": 40.2
+  },
+  {
+   "id": "alfred-stevens-young-woman-in-white-holding-a-bouquet",
+   "w": 4145,
+   "h": 5806,
+   "measured": [
+    2924,
+    4096
+   ],
+   "dw": 29.5,
+   "dh": 29.5
+  },
+  {
+   "id": "marquet-the-pont-neuf",
+   "w": 5218,
+   "h": 4200,
+   "measured": [
+    3000,
+    2413
+   ],
+   "dw": 42.5,
+   "dh": 42.5
+  },
+  {
+   "id": "adolphe-joseph-thomas-monticelli-madame-cahen",
+   "w": 5264,
+   "h": 7286,
+   "measured": [
+    2959,
+    4096
+   ],
+   "dw": 43.8,
+   "dh": 43.8
+  },
+  {
+   "id": "pierre-puvis-de-chavannes-the-prodigal-son",
+   "w": 24512,
+   "h": 17872,
+   "measured": [
+    3000,
+    2187
+   ],
+   "dw": 87.8,
+   "dh": 87.8
+  },
+  {
+   "id": "alfred-stevens-study-of-a-model",
+   "w": 3162,
+   "h": 4836,
+   "measured": [
+    2678,
+    4096
+   ],
+   "dw": 15.3,
+   "dh": 15.3
+  },
+  {
+   "id": "lawrence-francis-charles-seymour-conway-3rd-marquess-of-hertford",
+   "w": 23725,
+   "h": 29988,
+   "measured": [
+    3000,
+    3792
+   ],
+   "dw": 87.4,
+   "dh": 87.4
+  },
+  {
+   "id": "pollock-number-1-1950-lavender-mist",
+   "w": 11502,
+   "h": 8465,
+   "measured": [
+    3000,
+    2208
+   ],
+   "dw": 73.9,
+   "dh": 73.9
+  },
+  {
+   "id": "juan-gris-fantomas",
+   "w": 16124,
+   "h": 13325,
+   "measured": [
+    3000,
+    2479
+   ],
+   "dw": 81.4,
+   "dh": 81.4
+  },
+  {
+   "id": "pollock-number-7-1951",
+   "w": 19613,
+   "h": 16853,
+   "measured": [
+    3000,
+    2577
+   ],
+   "dw": 84.7,
+   "dh": 84.7
+  },
+  {
+   "id": "aert-van-der-neer-moonlit-landscape-with-bridge",
+   "w": 25617,
+   "h": 18282,
+   "measured": [
+    3000,
+    2141
+   ],
+   "dw": 88.3,
+   "dh": 88.3
+  },
+  {
+   "id": "blake-evening",
+   "w": 9297,
+   "h": 28975,
+   "measured": [
+    1314,
+    4096
+   ],
+   "dw": 85.9,
+   "dh": 85.9
+  },
+  {
+   "id": "pollock-ritual",
+   "w": 17417,
+   "h": 37157,
+   "measured": [
+    1921,
+    4096
+   ],
+   "dw": 89,
+   "dh": 89
+  },
+  {
+   "id": "constant-troyon-the-approaching-storm",
+   "w": 9934,
+   "h": 7358,
+   "measured": [
+    3000,
+    2222
+   ],
+   "dw": 69.8,
+   "dh": 69.8
+  },
+  {
+   "id": "alexandre-calame-fallen-tree",
+   "w": 11294,
+   "h": 6687,
+   "measured": [
+    3000,
+    1776
+   ],
+   "dw": 73.4,
+   "dh": 73.4
+  },
+  {
+   "id": "marquet-posters-at-trouville",
+   "w": 31852,
+   "h": 25491,
+   "measured": [
+    3000,
+    2400
+   ],
+   "dw": 90.6,
+   "dh": 90.6
+  },
+  {
+   "id": "alexandre-calame-an-ancient-pine-forest-with-a-mountain-stream",
+   "w": 6299,
+   "h": 4617,
+   "measured": [
+    3000,
+    2199
+   ],
+   "dw": 52.4,
+   "dh": 52.4
+  },
+  {
+   "id": "alexandre-calame-swiss-landscape",
+   "w": 11638,
+   "h": 8921,
+   "measured": [
+    3000,
+    2300
+   ],
+   "dw": 74.2,
+   "dh": 74.2
+  },
+  {
+   "id": "david-johnson-three-pears-and-an-apple",
+   "w": 13951,
+   "h": 8961,
+   "measured": [
+    3000,
+    1927
+   ],
+   "dw": 78.5,
+   "dh": 78.5
+  },
+  {
+   "id": "landseer-lion-defending-its-prey",
+   "w": 4613,
+   "h": 2991,
+   "measured": [
+    3000,
+    1945
+   ],
+   "dw": 35,
+   "dh": 35
+  },
+  {
+   "id": "juan-gris-ace-of-clubs-and-four-of-diamonds",
+   "w": 3283,
+   "h": 6512,
+   "measured": [
+    2065,
+    4096
+   ],
+   "dw": 37.1,
+   "dh": 37.1
+  },
+  {
+   "id": "juan-gris-glass-and-checkerboard",
+   "w": 17185,
+   "h": 12820,
+   "measured": [
+    3000,
+    2238
+   ],
+   "dw": 82.5,
+   "dh": 82.5
+  },
+  {
+   "id": "eugene-isabey-a-celebration",
+   "w": 14173,
+   "h": 16977,
+   "measured": [
+    3000,
+    3594
+   ],
+   "dw": 78.8,
+   "dh": 78.8
+  },
+  {
+   "id": "adolphe-joseph-thomas-monticelli-return-from-the-hunt",
+   "w": 29688,
+   "h": 14938,
+   "measured": [
+    3000,
+    1509
+   ],
+   "dw": 89.9,
+   "dh": 89.9
+  },
+  {
+   "id": "eugene-isabey-marine",
+   "w": 14625,
+   "h": 8925,
+   "measured": [
+    3000,
+    1831
+   ],
+   "dw": 79.5,
+   "dh": 79.5
+  },
+  {
+   "id": "constant-troyon-landscape-with-figures",
+   "w": 11918,
+   "h": 8776,
+   "measured": [
+    3000,
+    2209
+   ],
+   "dw": 74.8,
+   "dh": 74.8
+  },
+  {
+   "id": "aert-van-der-neer-winter-in-holland-skating-scene",
+   "w": 17067,
+   "h": 13182,
+   "measured": [
+    3000,
+    2317
+   ],
+   "dw": 82.4,
+   "dh": 82.4
+  },
+  {
+   "id": "eugene-isabey-country-tavern-feasting",
+   "w": 25790,
+   "h": 17746,
+   "measured": [
+    3000,
+    2064
+   ],
+   "dw": 88.4,
+   "dh": 88.4
+  },
+  {
+   "id": "landseer-the-duke-of-devonshire-and-lady-louisa-egerton",
+   "w": 35256,
+   "h": 27223,
+   "measured": [
+    3000,
+    2316
+   ],
+   "dw": 91.5,
+   "dh": 91.5
+  },
+  {
+   "id": "landseer-alpine-mastiffs-reanimating-a-distressed-traveler",
+   "w": 24787,
+   "h": 19530,
+   "measured": [
+    3000,
+    2364
+   ],
+   "dw": 87.9,
+   "dh": 87.9
+  },
+  {
+   "id": "pollock-untitled",
+   "w": 7588,
+   "h": 4861,
+   "measured": [
+    3000,
+    1923
+   ],
+   "dw": 60.5,
+   "dh": 60.4
+  },
+  {
+   "id": "pollock-untitled-nga-66677",
+   "w": 7615,
+   "h": 4871,
+   "measured": [
+    3000,
+    1920
+   ],
+   "dw": 60.6,
+   "dh": 60.6
+  },
+  {
+   "id": "pollock-untitled-nga-141770",
+   "w": 5296,
+   "h": 3634,
+   "measured": [
+    3000,
+    2060
+   ],
+   "dw": 43.4,
+   "dh": 43.3
+  },
+  {
+   "id": "millet-costume-studies",
+   "w": 3838,
+   "h": 3388,
+   "measured": [
+    3000,
+    2648
+   ],
+   "dw": 21.8,
+   "dh": 21.8
+  },
+  {
+   "id": "pollock-untitled-silkscreen-i",
+   "w": 2726,
+   "h": 4000,
+   "measured": [
+    2790,
+    4096
+   ],
+   "dw": 2.3,
+   "dh": 2.4
+  },
+  {
+   "id": "pollock-untitled-nga-152773",
+   "w": 7792,
+   "h": 5112,
+   "measured": [
+    3000,
+    1967
+   ],
+   "dw": 61.5,
+   "dh": 61.5
+  },
+  {
+   "id": "millet-calling-home-the-cows",
+   "w": 10428,
+   "h": 14087,
+   "measured": [
+    3000,
+    4053
+   ],
+   "dw": 71.2,
+   "dh": 71.2
+  },
+  {
+   "id": "millet-shepherd-returning-with-his-flock",
+   "w": 7161,
+   "h": 5499,
+   "measured": [
+    3000,
+    2304
+   ],
+   "dw": 58.1,
+   "dh": 58.1
+  },
+  {
+   "id": "millet-falling-leaves",
+   "w": 6552,
+   "h": 5715,
+   "measured": [
+    3000,
+    2617
+   ],
+   "dw": 54.2,
+   "dh": 54.2
+  },
+  {
+   "id": "eugene-isabey-abside-de-l-eglise-de-saint-nectaire",
+   "w": 3510,
+   "h": 4591,
+   "measured": [
+    3000,
+    3924
+   ],
+   "dw": 14.5,
+   "dh": 14.5
+  },
+  {
+   "id": "eugene-isabey-souvenir-de-st-valery-sur-somme",
+   "w": 3463,
+   "h": 4858,
+   "measured": [
+    2920,
+    4096
+   ],
+   "dw": 15.7,
+   "dh": 15.7
+  },
+  {
+   "id": "eugene-isabey-environs-de-dieppe",
+   "w": 4323,
+   "h": 3510,
+   "measured": [
+    3000,
+    2436
+   ],
+   "dw": 30.6,
+   "dh": 30.6
+  },
+  {
+   "id": "eugene-isabey-maree-basse",
+   "w": 3476,
+   "h": 4390,
+   "measured": [
+    3000,
+    3789
+   ],
+   "dw": 13.7,
+   "dh": 13.7
+  },
+  {
+   "id": "eugene-isabey-rue-des-gras-a-clermont",
+   "w": 3376,
+   "h": 4579,
+   "measured": [
+    3000,
+    4070
+   ],
+   "dw": 11.1,
+   "dh": 11.1
+  },
+  {
+   "id": "eugene-isabey-interieur-d-un-port",
+   "w": 3198,
+   "h": 4413,
+   "measured": [
+    2968,
+    4096
+   ],
+   "dw": 7.2,
+   "dh": 7.2
+  },
+  {
+   "id": "eugene-isabey-radoub-d-une-barque-a-maree-basse",
+   "w": 3354,
+   "h": 4535,
+   "measured": [
+    3000,
+    4057
+   ],
+   "dw": 10.6,
+   "dh": 10.5
+  },
+  {
+   "id": "eugene-isabey-retour-au-port",
+   "w": 3913,
+   "h": 3364,
+   "measured": [
+    3000,
+    2579
+   ],
+   "dw": 23.3,
+   "dh": 23.3
+  },
+  {
+   "id": "eugene-isabey-chaumieres-de-pecheurs",
+   "w": 5250,
+   "h": 3271,
+   "measured": [
+    3000,
+    1869
+   ],
+   "dw": 42.9,
+   "dh": 42.9
+  },
+  {
+   "id": "eugene-isabey-chateau-de-pont-gibaud",
+   "w": 4635,
+   "h": 3543,
+   "measured": [
+    3000,
+    2293
+   ],
+   "dw": 35.3,
+   "dh": 35.3
+  },
+  {
+   "id": "eugene-isabey-chateau-de-pesteil-a-polminhac",
+   "w": 4457,
+   "h": 3499,
+   "measured": [
+    3000,
+    2355
+   ],
+   "dw": 32.7,
+   "dh": 32.7
+  },
+  {
+   "id": "eugene-isabey-radoub-d-une-barque-a-la-maree-basse-refitting-of-a-ship-at-low-tide",
+   "w": 3541,
+   "h": 4602,
+   "measured": [
+    3000,
+    3899
+   ],
+   "dw": 15.3,
+   "dh": 15.3
+  },
+  {
+   "id": "eugene-isabey-fishing-boats-tossed-before-a-storm",
+   "w": 4937,
+   "h": 3401,
+   "measured": [
+    3000,
+    2067
+   ],
+   "dw": 39.2,
+   "dh": 39.2
+  },
+  {
+   "id": "eugene-isabey-sailboats-in-a-sunlit-harbor-recto",
+   "w": 5550,
+   "h": 7356,
+   "measured": [
+    3000,
+    3977
+   ],
+   "dw": 45.9,
+   "dh": 45.9
+  },
+  {
+   "id": "velazquez-pope-innocent-x",
+   "w": 9555,
+   "h": 11565,
+   "measured": [
+    3000,
+    3632
+   ],
+   "dw": 68.6,
+   "dh": 68.6
+  },
+  {
+   "id": "velazquez-the-needlewoman",
+   "w": 20911,
+   "h": 25426,
+   "measured": [
+    3000,
+    3648
+   ],
+   "dw": 85.7,
+   "dh": 85.7
+  },
+  {
+   "id": "velazquez-portrait-of-a-young-man",
+   "w": 15243,
+   "h": 18957,
+   "measured": [
+    3000,
+    3731
+   ],
+   "dw": 80.3,
+   "dh": 80.3
+  },
+  {
+   "id": "elisabeth-louise-vigee-le-brun-madame-d-aguesseau-de-fresnes",
+   "w": 19576,
+   "h": 25215,
+   "measured": [
+    3000,
+    3865
+   ],
+   "dw": 84.7,
+   "dh": 84.7
+  },
+  {
+   "id": "mantegna-portrait-of-a-man",
+   "w": 5062,
+   "h": 6445,
+   "measured": [
+    3000,
+    3820
+   ],
+   "dw": 40.7,
+   "dh": 40.7
+  },
+  {
+   "id": "durer-portrait-of-a-clergyman-johann-dorsch",
+   "w": 9227,
+   "h": 11917,
+   "measured": [
+    3000,
+    3875
+   ],
+   "dw": 67.5,
+   "dh": 67.5
+  },
+  {
+   "id": "mantegna-the-infant-savior",
+   "w": 2382,
+   "h": 4936,
+   "measured": [
+    1977,
+    4096
+   ],
+   "dw": 17,
+   "dh": 17
+  },
+  {
+   "id": "elisabeth-louise-vigee-le-brun-marie-antoinette",
+   "w": 12670,
+   "h": 16080,
+   "measured": [
+    3000,
+    3808
+   ],
+   "dw": 76.3,
+   "dh": 76.3
+  },
+  {
+   "id": "elisabeth-louise-vigee-le-brun-the-marquise-de-pezay-and-the-marquise-de-rouge-with-her-sons-alexis-and-adrien",
+   "w": 37416,
+   "h": 29503,
+   "measured": [
+    3000,
+    2366
+   ],
+   "dw": 92,
+   "dh": 92
+  },
+  {
+   "id": "arshile-gorky-the-artist-and-his-mother",
+   "w": 17358,
+   "h": 20795,
+   "measured": [
+    3000,
+    3596
+   ],
+   "dw": 82.7,
+   "dh": 82.7
+  },
+  {
+   "id": "arshile-gorky-one-year-the-milkweed",
+   "w": 20043,
+   "h": 15683,
+   "measured": [
+    3000,
+    2347
+   ],
+   "dw": 85,
+   "dh": 85
+  },
+  {
+   "id": "arshile-gorky-organization",
+   "w": 4351,
+   "h": 3630,
+   "measured": [
+    3000,
+    2503
+   ],
+   "dw": 31.1,
+   "dh": 31
+  },
+  {
+   "id": "elisabeth-louise-vigee-le-brun-madame-du-barry",
+   "w": 12698,
+   "h": 16425,
+   "measured": [
+    3000,
+    3881
+   ],
+   "dw": 76.4,
+   "dh": 76.4
+  },
+  {
+   "id": "constable-salisbury-cathedral-from-lower-marsh-close",
+   "w": 4648,
+   "h": 3628,
+   "measured": [
+    3000,
+    2342
+   ],
+   "dw": 35.5,
+   "dh": 35.4
+  },
+  {
+   "id": "constable-wivenhoe-park-essex",
+   "w": 22841,
+   "h": 12370,
+   "measured": [
+    3000,
+    1625
+   ],
+   "dw": 86.9,
+   "dh": 86.9
+  },
+  {
+   "id": "ruisdael-forest-scene",
+   "w": 40998,
+   "h": 32676,
+   "measured": [
+    3000,
+    2391
+   ],
+   "dw": 92.7,
+   "dh": 92.7
+  },
+  {
+   "id": "durer-the-dream-of-the-doctor-temptation-of-the-idler",
+   "w": 5070,
+   "h": 7840,
+   "measured": [
+    2649,
+    4096
+   ],
+   "dw": 47.8,
+   "dh": 47.8
+  },
+  {
+   "id": "durer-the-martyrdom-of-saint-john",
+   "w": 6211,
+   "h": 8557,
+   "measured": [
+    2973,
+    4096
+   ],
+   "dw": 52.1,
+   "dh": 52.1
+  },
+  {
+   "id": "durer-the-triumphal-chariot-of-maximilian-i-the-great-triumphal-car",
+   "w": 12905,
+   "h": 3103,
+   "measured": [
+    3000,
+    721
+   ],
+   "dw": 76.8,
+   "dh": 76.8
+  },
+  {
+   "id": "john-frederick-kensett-beacon-rock-newport-harbor",
+   "w": 34977,
+   "h": 21588,
+   "measured": [
+    3000,
+    1852
+   ],
+   "dw": 91.4,
+   "dh": 91.4
+  },
+  {
+   "id": "ruisdael-country-house-in-a-park",
+   "w": 7741,
+   "h": 6036,
+   "measured": [
+    3000,
+    2339
+   ],
+   "dw": 61.2,
+   "dh": 61.2
+  },
+  {
+   "id": "jean-jacques-henner-reclining-nude",
+   "w": 6960,
+   "h": 4517,
+   "measured": [
+    3000,
+    1947
+   ],
+   "dw": 56.9,
+   "dh": 56.9
+  },
+  {
+   "id": "ruisdael-landscape",
+   "w": 4178,
+   "h": 3714,
+   "measured": [
+    3000,
+    2667
+   ],
+   "dw": 28.2,
+   "dh": 28.2
+  },
+  {
+   "id": "jean-jacques-henner-alsatian-girl",
+   "w": 4576,
+   "h": 6784,
+   "measured": [
+    2763,
+    4096
+   ],
+   "dw": 39.6,
+   "dh": 39.6
+  },
+  {
+   "id": "jean-jacques-henner-madame-uhring",
+   "w": 2380,
+   "h": 3512,
+   "measured": [
+    2776,
+    4096
+   ],
+   "dw": 16.6,
+   "dh": 16.6
+  },
+  {
+   "id": "john-frederick-kensett-landing-at-sabbath-day-point",
+   "w": 19712,
+   "h": 12510,
+   "measured": [
+    3000,
+    1904
+   ],
+   "dw": 84.8,
+   "dh": 84.8
+  },
+  {
+   "id": "stanislas-lepine-pont-de-la-tournelle-paris",
+   "w": 12671,
+   "h": 9134,
+   "measured": [
+    3000,
+    2163
+   ],
+   "dw": 76.3,
+   "dh": 76.3
+  },
+  {
+   "id": "john-frederick-kensett-beach-at-beverly",
+   "w": 37113,
+   "h": 23639,
+   "measured": [
+    3000,
+    1911
+   ],
+   "dw": 91.9,
+   "dh": 91.9
+  },
+  {
+   "id": "durer-saint-michael-fighting-the-dragon",
+   "w": 5369,
+   "h": 7514,
+   "measured": [
+    2927,
+    4096
+   ],
+   "dw": 45.5,
+   "dh": 45.5
+  },
+  {
+   "id": "stanislas-lepine-view-on-the-outskirts-of-caen",
+   "w": 6056,
+   "h": 3520,
+   "measured": [
+    3000,
+    1744
+   ],
+   "dw": 50.5,
+   "dh": 50.5
+  },
+  {
+   "id": "durer-the-triumphal-arch-of-maximilian",
+   "w": 8004,
+   "h": 9801,
+   "measured": [
+    3000,
+    3674
+   ],
+   "dw": 62.5,
+   "dh": 62.5
+  },
+  {
+   "id": "stanislas-lepine-a-plow-horse-in-a-field",
+   "w": 6317,
+   "h": 3544,
+   "measured": [
+    3000,
+    1683
+   ],
+   "dw": 52.5,
+   "dh": 52.5
+  },
+  {
+   "id": "stanislas-lepine-view-of-the-louvre",
+   "w": 7892,
+   "h": 4848,
+   "measured": [
+    3000,
+    1843
+   ],
+   "dw": 62,
+   "dh": 62
+  },
+  {
+   "id": "constable-yarmouth-jetty",
+   "w": 27028,
+   "h": 16844,
+   "measured": [
+    3000,
+    1870
+   ],
+   "dw": 88.9,
+   "dh": 88.9
+  },
+  {
+   "id": "constable-cloud-study-stormy-sunset",
+   "w": 6519,
+   "h": 4618,
+   "measured": [
+    3000,
+    2125
+   ],
+   "dw": 54,
+   "dh": 54
+  },
+  {
+   "id": "jean-jacques-henner-levite-of-ephraim-and-his-dead-wife",
+   "w": 5013,
+   "h": 2852,
+   "measured": [
+    3000,
+    1707
+   ],
+   "dw": 40.2,
+   "dh": 40.1
+  },
+  {
+   "id": "john-frederick-kensett-view-on-the-genesee-near-mount-morris",
+   "w": 19601,
+   "h": 12074,
+   "measured": [
+    3000,
+    1848
+   ],
+   "dw": 84.7,
+   "dh": 84.7
+  },
+  {
+   "id": "jean-jacques-henner-standing-woman",
+   "w": 12146,
+   "h": 22777,
+   "measured": [
+    2184,
+    4096
+   ],
+   "dw": 82,
+   "dh": 82
+  },
+  {
+   "id": "ruisdael-dunes-by-the-sea",
+   "w": 16947,
+   "h": 12470,
+   "measured": [
+    3000,
+    2207
+   ],
+   "dw": 82.3,
+   "dh": 82.3
+  },
+  {
+   "id": "guercino-cardinal-francesco-cennini",
+   "w": 17361,
+   "h": 21018,
+   "measured": [
+    3000,
+    3632
+   ],
+   "dw": 82.7,
+   "dh": 82.7
+  },
+  {
+   "id": "rousseau-boy-on-the-rocks",
+   "w": 17422,
+   "h": 21101,
+   "measured": [
+    3000,
+    3634
+   ],
+   "dw": 82.8,
+   "dh": 82.8
+  },
+  {
+   "id": "frederic-bazille-edouard-blau",
+   "w": 11446,
+   "h": 15733,
+   "measured": [
+    2980,
+    4096
+   ],
+   "dw": 74,
+   "dh": 74
+  },
+  {
+   "id": "rousseau-the-equatorial-jungle",
+   "w": 23548,
+   "h": 25646,
+   "measured": [
+    3000,
+    3268
+   ],
+   "dw": 87.3,
+   "dh": 87.3
+  },
+  {
+   "id": "rousseau-rendezvous-in-the-forest",
+   "w": 21382,
+   "h": 27197,
+   "measured": [
+    3000,
+    3816
+   ],
+   "dw": 86,
+   "dh": 86
+  },
+  {
+   "id": "rousseau-tropical-forest-with-monkeys",
+   "w": 41655,
+   "h": 33278,
+   "measured": [
+    3000,
+    2397
+   ],
+   "dw": 92.8,
+   "dh": 92.8
+  },
+  {
+   "id": "frederic-bazille-young-woman-with-peonies",
+   "w": 16998,
+   "h": 13438,
+   "measured": [
+    3000,
+    2372
+   ],
+   "dw": 82.4,
+   "dh": 82.3
+  },
+  {
+   "id": "frederic-bazille-the-western-ramparts-at-aigues-mortes",
+   "w": 23403,
+   "h": 13873,
+   "measured": [
+    3000,
+    1778
+   ],
+   "dw": 87.2,
+   "dh": 87.2
+  },
+  {
+   "id": "frederic-bazille-edmond-maitre",
+   "w": 4677,
+   "h": 6080,
+   "measured": [
+    3000,
+    3900
+   ],
+   "dw": 35.9,
+   "dh": 35.9
+  },
+  {
+   "id": "guercino-amnon-and-tamar",
+   "w": 34388,
+   "h": 26209,
+   "measured": [
+    3000,
+    2286
+   ],
+   "dw": 91.3,
+   "dh": 91.3
+  },
+  {
+   "id": "guercino-joseph-and-potiphar-s-wife",
+   "w": 34474,
+   "h": 25919,
+   "measured": [
+    3000,
+    2256
+   ],
+   "dw": 91.3,
+   "dh": 91.3
+  },
+  {
+   "id": "guercino-self-portrait-before-a-painting-of-amor-fedele",
+   "w": 22906,
+   "h": 27804,
+   "measured": [
+    3000,
+    3642
+   ],
+   "dw": 86.9,
+   "dh": 86.9
+  },
+  {
+   "id": "derby-portrait-of-a-gentleman",
+   "w": 24501,
+   "h": 30650,
+   "measured": [
+    3000,
+    3753
+   ],
+   "dw": 87.8,
+   "dh": 87.8
+  },
+  {
+   "id": "william-merritt-chase-a-friendly-call",
+   "w": 10117,
+   "h": 6310,
+   "measured": [
+    3000,
+    1871
+   ],
+   "dw": 70.3,
+   "dh": 70.3
+  },
+  {
+   "id": "derby-portrait-of-a-gentleman-nga-34160",
+   "w": 4960,
+   "h": 6169,
+   "measured": [
+    3000,
+    3732
+   ],
+   "dw": 39.5,
+   "dh": 39.5
+  },
+  {
+   "id": "derby-the-corinthian-maid",
+   "w": 31091,
+   "h": 25319,
+   "measured": [
+    3000,
+    2443
+   ],
+   "dw": 90.4,
+   "dh": 90.4
+  },
+  {
+   "id": "derby-italian-landscape",
+   "w": 30587,
+   "h": 24425,
+   "measured": [
+    3000,
+    2396
+   ],
+   "dw": 90.2,
+   "dh": 90.2
+  },
+  {
+   "id": "albert-bierstadt-lake-lucerne",
+   "w": 7153,
+   "h": 4272,
+   "measured": [
+    3000,
+    1792
+   ],
+   "dw": 58.1,
+   "dh": 58.1
+  },
+  {
+   "id": "william-merritt-chase-nude",
+   "w": 5299,
+   "h": 6712,
+   "measured": [
+    3000,
+    3800
+   ],
+   "dw": 43.4,
+   "dh": 43.4
+  },
+  {
+   "id": "albert-bierstadt-the-last-of-the-buffalo",
+   "w": 10602,
+   "h": 6252,
+   "measured": [
+    3000,
+    1769
+   ],
+   "dw": 71.7,
+   "dh": 71.7
+  },
+  {
+   "id": "william-merritt-chase-gathering-autumn-flowers",
+   "w": 10808,
+   "h": 5881,
+   "measured": [
+    3000,
+    1632
+   ],
+   "dw": 72.2,
+   "dh": 72.2
+  },
+  {
+   "id": "albert-bierstadt-buffalo-trail-the-impending-storm",
+   "w": 22191,
+   "h": 13222,
+   "measured": [
+    3000,
+    1787
+   ],
+   "dw": 86.5,
+   "dh": 86.5
+  },
+  {
+   "id": "albert-bierstadt-mount-corcoran",
+   "w": 8903,
+   "h": 5591,
+   "measured": [
+    3000,
+    1884
+   ],
+   "dw": 66.3,
+   "dh": 66.3
+  },
+  {
+   "id": "william-merritt-chase-an-english-cod",
+   "w": 26831,
+   "h": 24133,
+   "measured": [
+    3000,
+    2698
+   ],
+   "dw": 88.8,
+   "dh": 88.8
+  },
+  {
+   "id": "william-merritt-chase-self-portrait",
+   "w": 18570,
+   "h": 22431,
+   "measured": [
+    3000,
+    3624
+   ],
+   "dw": 83.8,
+   "dh": 83.8
+  },
+  {
+   "id": "vermeer-the-lacemaker",
+   "w": 10321,
+   "h": 11771,
+   "measured": [
+    3000,
+    3422
+   ],
+   "dw": 70.9,
+   "dh": 70.9
+  },
+  {
+   "id": "vermeer-the-smiling-girl",
+   "w": 8339,
+   "h": 10877,
+   "measured": [
+    3000,
+    3914
+   ],
+   "dw": 64,
+   "dh": 64
+  },
+  {
+   "id": "vermeer-girl-with-a-flute",
+   "w": 11624,
+   "h": 12988,
+   "measured": [
+    3000,
+    3353
+   ],
+   "dw": 74.2,
+   "dh": 74.2
+  },
+  {
+   "id": "boucher-the-bath-of-venus",
+   "w": 8658,
+   "h": 11065,
+   "measured": [
+    3000,
+    3835
+   ],
+   "dw": 65.3,
+   "dh": 65.3
+  },
+  {
+   "id": "boucher-allegory-of-painting",
+   "w": 23403,
+   "h": 18436,
+   "measured": [
+    3000,
+    2363
+   ],
+   "dw": 87.2,
+   "dh": 87.2
+  },
+  {
+   "id": "boucher-allegory-of-music",
+   "w": 23314,
+   "h": 18587,
+   "measured": [
+    3000,
+    2392
+   ],
+   "dw": 87.1,
+   "dh": 87.1
+  },
+  {
+   "id": "boucher-madame-bergeret",
+   "w": 17061,
+   "h": 23305,
+   "measured": [
+    2999,
+    4096
+   ],
+   "dw": 82.4,
+   "dh": 82.4
+  },
+  {
+   "id": "charles-francois-daubigny-washerwomen-at-the-oise-river-near-valmondois",
+   "w": 6168,
+   "h": 3199,
+   "measured": [
+    3000,
+    1556
+   ],
+   "dw": 51.4,
+   "dh": 51.4
+  },
+  {
+   "id": "boucher-the-love-letter",
+   "w": 7863,
+   "h": 8652,
+   "measured": [
+    3000,
+    3302
+   ],
+   "dw": 61.8,
+   "dh": 61.8
+  },
+  {
+   "id": "charles-francois-daubigny-the-farm",
+   "w": 7008,
+   "h": 4396,
+   "measured": [
+    3000,
+    1882
+   ],
+   "dw": 57.2,
+   "dh": 57.2
+  },
+  {
+   "id": "church-el-rio-de-luz-the-river-of-light",
+   "w": 36733,
+   "h": 23743,
+   "measured": [
+    3000,
+    1939
+   ],
+   "dw": 91.8,
+   "dh": 91.8
+  },
+  {
+   "id": "church-newport-mountain-mount-desert",
+   "w": 17692,
+   "h": 11960,
+   "measured": [
+    3000,
+    2028
+   ],
+   "dw": 83,
+   "dh": 83
+  },
+  {
+   "id": "church-fog-off-mount-desert",
+   "w": 1024,
+   "h": 768,
+   "measured": [
+    3000,
+    2250
+   ],
+   "dw": 193,
+   "dh": 193
+  },
+  {
+   "id": "church-niagara",
+   "w": 27911,
+   "h": 12955,
+   "measured": [
+    3000,
+    1392
+   ],
+   "dw": 89.3,
+   "dh": 89.3
+  },
+  {
+   "id": "church-tamaca-palms",
+   "w": 17899,
+   "h": 13173,
+   "measured": [
+    3000,
+    2208
+   ],
+   "dw": 83.2,
+   "dh": 83.2
+  },
+  {
+   "id": "charles-francois-daubigny-landscape-distant-village",
+   "w": 16115,
+   "h": 10126,
+   "measured": [
+    3000,
+    1885
+   ],
+   "dw": 81.4,
+   "dh": 81.4
+  },
+  {
+   "id": "charles-francois-daubigny-auvers-washerwomen",
+   "w": 30531,
+   "h": 16025,
+   "measured": [
+    3000,
+    1575
+   ],
+   "dw": 90.2,
+   "dh": 90.2
+  },
+  {
+   "id": "charles-francois-daubigny-sunset-on-the-river",
+   "w": 30920,
+   "h": 17880,
+   "measured": [
+    3000,
+    1735
+   ],
+   "dw": 90.3,
+   "dh": 90.3
+  },
+  {
+   "id": "canal-the-square-of-saint-mark-s-venice",
+   "w": 25872,
+   "h": 19150,
+   "measured": [
+    3000,
+    2221
+   ],
+   "dw": 88.4,
+   "dh": 88.4
+  },
+  {
+   "id": "canal-entrance-to-the-grand-canal-from-the-molo-venice",
+   "w": 8360,
+   "h": 6226,
+   "measured": [
+    3000,
+    2234
+   ],
+   "dw": 64.1,
+   "dh": 64.1
+  },
+  {
+   "id": "canal-the-porta-portello-padua",
+   "w": 19535,
+   "h": 11085,
+   "measured": [
+    3000,
+    1702
+   ],
+   "dw": 84.6,
+   "dh": 84.6
+  },
+  {
+   "id": "eugene-delacroix-christopher-columbus-and-his-son-at-la-rabida",
+   "w": 4931,
+   "h": 3760,
+   "measured": [
+    3000,
+    2288
+   ],
+   "dw": 39.2,
+   "dh": 39.1
+  },
+  {
+   "id": "canal-english-landscape-capriccio-with-a-column",
+   "w": 5527,
+   "h": 7069,
+   "measured": [
+    3000,
+    3837
+   ],
+   "dw": 45.7,
+   "dh": 45.7
+  },
+  {
+   "id": "canal-english-landscape-capriccio-with-a-palace",
+   "w": 5576,
+   "h": 6934,
+   "measured": [
+    3000,
+    3731
+   ],
+   "dw": 46.2,
+   "dh": 46.2
+  },
+  {
+   "id": "eugene-delacroix-arabs-skirmishing-in-the-mountains",
+   "w": 12688,
+   "h": 15802,
+   "measured": [
+    3000,
+    3737
+   ],
+   "dw": 76.4,
+   "dh": 76.4
+  },
+  {
+   "id": "ernst-ludwig-kirchner-two-nudes-obverse",
+   "w": 1753,
+   "h": 5263,
+   "measured": [
+    1364,
+    4096
+   ],
+   "dw": 22.2,
+   "dh": 22.2
+  },
+  {
+   "id": "ernst-ludwig-kirchner-nude-figure-reverse",
+   "w": 3873,
+   "h": 11784,
+   "measured": [
+    1346,
+    4096
+   ],
+   "dw": 65.2,
+   "dh": 65.2
+  },
+  {
+   "id": "ernst-ludwig-kirchner-dance-hall-bellevue-obverse",
+   "w": 19086,
+   "h": 12521,
+   "measured": [
+    3000,
+    1968
+   ],
+   "dw": 84.3,
+   "dh": 84.3
+  },
+  {
+   "id": "ernst-ludwig-kirchner-the-visit-couple-and-newcomer",
+   "w": 8561,
+   "h": 8550,
+   "measured": [
+    3000,
+    2996
+   ],
+   "dw": 65,
+   "dh": 65
+  },
+  {
+   "id": "ernst-ludwig-kirchner-two-girls-under-an-umbrella",
+   "w": 5176,
+   "h": 6308,
+   "measured": [
+    3000,
+    3657
+   ],
+   "dw": 42,
+   "dh": 42
+  },
+  {
+   "id": "eugene-delacroix-a-horse-hitched-to-a-post",
+   "w": 6477,
+   "h": 5767,
+   "measured": [
+    3000,
+    2671
+   ],
+   "dw": 53.7,
+   "dh": 53.7
+  },
+  {
+   "id": "eugene-delacroix-two-studies-of-a-standing-indian-from-calcutta",
+   "w": 17504,
+   "h": 14181,
+   "measured": [
+    3000,
+    2430
+   ],
+   "dw": 82.9,
+   "dh": 82.9
+  },
+  {
+   "id": "eugene-delacroix-two-studies-of-an-indian-from-calcutta-seated-and-standing",
+   "w": 17861,
+   "h": 14421,
+   "measured": [
+    3000,
+    2422
+   ],
+   "dw": 83.2,
+   "dh": 83.2
+  },
+  {
+   "id": "ernst-ludwig-kirchner-dancing-couple-in-the-snow-reverse",
+   "w": 12884,
+   "h": 18761,
+   "measured": [
+    2813,
+    4096
+   ],
+   "dw": 78.2,
+   "dh": 78.2
+  },
+  {
+   "id": "eugene-delacroix-tiger-and-snake",
+   "w": 11964,
+   "h": 9427,
+   "measured": [
+    3000,
+    2364
+   ],
+   "dw": 74.9,
+   "dh": 74.9
+  },
+  {
+   "id": "meindert-hobbema-a-farm-in-the-sunlight",
+   "w": 3651,
+   "h": 4485,
+   "measured": [
+    3000,
+    3686
+   ],
+   "dw": 17.8,
+   "dh": 17.8
+  },
+  {
+   "id": "meindert-hobbema-a-wooded-landscape",
+   "w": 6683,
+   "h": 4812,
+   "measured": [
+    3000,
+    2160
+   ],
+   "dw": 55.1,
+   "dh": 55.1
+  },
+  {
+   "id": "meindert-hobbema-a-view-on-a-high-road",
+   "w": 5128,
+   "h": 3704,
+   "measured": [
+    3000,
+    2167
+   ],
+   "dw": 41.5,
+   "dh": 41.5
+  },
+  {
+   "id": "meindert-hobbema-hut-among-trees",
+   "w": 8670,
+   "h": 7796,
+   "measured": [
+    3000,
+    2698
+   ],
+   "dw": 65.4,
+   "dh": 65.4
+  },
+  {
+   "id": "meindert-hobbema-the-travelers",
+   "w": 26459,
+   "h": 18347,
+   "measured": [
+    3000,
+    2080
+   ],
+   "dw": 88.7,
+   "dh": 88.7
+  },
+  {
+   "id": "meindert-hobbema-village-near-a-pool",
+   "w": 9531,
+   "h": 7260,
+   "measured": [
+    3000,
+    2285
+   ],
+   "dw": 68.5,
+   "dh": 68.5
+  },
+  {
+   "id": "odilon-redon-pandora",
+   "w": 11604,
+   "h": 26579,
+   "measured": [
+    1788,
+    4096
+   ],
+   "dw": 84.6,
+   "dh": 84.6
+  },
+  {
+   "id": "odilon-redon-saint-sebastian",
+   "w": 11433,
+   "h": 26676,
+   "measured": [
+    1755,
+    4096
+   ],
+   "dw": 84.6,
+   "dh": 84.6
+  },
+  {
+   "id": "odilon-redon-evocation-of-roussel",
+   "w": 5232,
+   "h": 7157,
+   "measured": [
+    2994,
+    4096
+   ],
+   "dw": 42.8,
+   "dh": 42.8
+  },
+  {
+   "id": "odilon-redon-flowers-in-a-vase",
+   "w": 8222,
+   "h": 11638,
+   "measured": [
+    2894,
+    4096
+   ],
+   "dw": 64.8,
+   "dh": 64.8
+  },
+  {
+   "id": "alexej-von-jawlensky-easter-sunday",
+   "w": 4744,
+   "h": 6590,
+   "measured": [
+    2949,
+    4096
+   ],
+   "dw": 37.8,
+   "dh": 37.8
+  },
+  {
+   "id": "alexej-von-jawlensky-murnau",
+   "w": 7351,
+   "h": 5679,
+   "measured": [
+    3000,
+    2318
+   ],
+   "dw": 59.2,
+   "dh": 59.2
+  },
+  {
+   "id": "odilon-redon-large-vase-with-flowers",
+   "w": 11448,
+   "h": 15218,
+   "measured": [
+    3000,
+    3988
+   ],
+   "dw": 73.8,
+   "dh": 73.8
+  },
+  {
+   "id": "odilon-redon-breton-village",
+   "w": 10543,
+   "h": 7197,
+   "measured": [
+    3000,
+    2048
+   ],
+   "dw": 71.5,
+   "dh": 71.5
+  },
+  {
+   "id": "alexej-von-jawlensky-portrait-of-a-woman",
+   "w": 13115,
+   "h": 15968,
+   "measured": [
+    3000,
+    3654
+   ],
+   "dw": 77.1,
+   "dh": 77.1
+  },
+  {
+   "id": "alexej-von-jawlensky-still-life-with-bottles-and-fruit",
+   "w": 3532,
+   "h": 3527,
+   "measured": [
+    3000,
+    2996
+   ],
+   "dw": 15.1,
+   "dh": 15.1
+  },
+  {
+   "id": "alexej-von-jawlensky-red-path-st-prex",
+   "w": 3156,
+   "h": 4275,
+   "measured": [
+    3000,
+    4064
+   ],
+   "dw": 4.9,
+   "dh": 4.9
+  },
+  {
+   "id": "alexej-von-jawlensky-frosty-day",
+   "w": 3359,
+   "h": 4437,
+   "measured": [
+    3000,
+    3963
+   ],
+   "dw": 10.7,
+   "dh": 10.7
+  },
+  {
+   "id": "odilon-redon-village-by-the-sea-in-brittany",
+   "w": 5625,
+   "h": 4303,
+   "measured": [
+    3000,
+    2295
+   ],
+   "dw": 46.7,
+   "dh": 46.7
+  },
+  {
+   "id": "meindert-hobbema-wooded-landscape-with-figures",
+   "w": 16606,
+   "h": 12738,
+   "measured": [
+    3000,
+    2301
+   ],
+   "dw": 81.9,
+   "dh": 81.9
+  },
+  {
+   "id": "honore-daumier-advice-to-a-young-artist",
+   "w": 3706,
+   "h": 4710,
+   "measured": [
+    3000,
+    3813
+   ],
+   "dw": 19.1,
+   "dh": 19
+  },
+  {
+   "id": "childe-hassam-allies-day-may-1917",
+   "w": 30689,
+   "h": 37478,
+   "measured": [
+    3000,
+    3664
+   ],
+   "dw": 90.2,
+   "dh": 90.2
+  },
+  {
+   "id": "honore-daumier-in-church",
+   "w": 5373,
+   "h": 3676,
+   "measured": [
+    3000,
+    2052
+   ],
+   "dw": 44.2,
+   "dh": 44.2
+  },
+  {
+   "id": "honore-daumier-the-beggars",
+   "w": 6835,
+   "h": 5519,
+   "measured": [
+    3000,
+    2422
+   ],
+   "dw": 56.1,
+   "dh": 56.1
+  },
+  {
+   "id": "honore-daumier-french-theater",
+   "w": 6974,
+   "h": 5096,
+   "measured": [
+    3000,
+    2192
+   ],
+   "dw": 57,
+   "dh": 57
+  },
+  {
+   "id": "honore-daumier-wandering-saltimbanques",
+   "w": 4402,
+   "h": 6067,
+   "measured": [
+    2972,
+    4096
+   ],
+   "dw": 32.5,
+   "dh": 32.5
+  },
+  {
+   "id": "honore-daumier-hippolyte-lavoignat",
+   "w": 5588,
+   "h": 6978,
+   "measured": [
+    3000,
+    3747
+   ],
+   "dw": 46.3,
+   "dh": 46.3
+  },
+  {
+   "id": "childe-hassam-nude-seated",
+   "w": 6940,
+   "h": 7625,
+   "measured": [
+    3000,
+    3297
+   ],
+   "dw": 56.8,
+   "dh": 56.8
+  },
+  {
+   "id": "maurice-utrillo-the-church-of-saint-severin",
+   "w": 4734,
+   "h": 6480,
+   "measured": [
+    2990,
+    4096
+   ],
+   "dw": 36.8,
+   "dh": 36.8
+  },
+  {
+   "id": "maurice-utrillo-marizy-sainte-genevieve",
+   "w": 6579,
+   "h": 4824,
+   "measured": [
+    3000,
+    2200
+   ],
+   "dw": 54.4,
+   "dh": 54.4
+  },
+  {
+   "id": "maurice-utrillo-row-of-houses-at-pierrefitte",
+   "w": 6570,
+   "h": 4566,
+   "measured": [
+    3000,
+    2083
+   ],
+   "dw": 54.3,
+   "dh": 54.4
+  },
+  {
+   "id": "maurice-utrillo-landscape-pierrefitte",
+   "w": 6673,
+   "h": 4780,
+   "measured": [
+    3000,
+    2150
+   ],
+   "dw": 55,
+   "dh": 55
+  },
+  {
+   "id": "maurice-utrillo-rue-cortot-montmartre",
+   "w": 4906,
+   "h": 6898,
+   "measured": [
+    2913,
+    4096
+   ],
+   "dw": 40.6,
+   "dh": 40.6
+  },
+  {
+   "id": "maurice-utrillo-street-at-corte-corsica",
+   "w": 6502,
+   "h": 4840,
+   "measured": [
+    3000,
+    2233
+   ],
+   "dw": 53.9,
+   "dh": 53.9
+  },
+  {
+   "id": "childe-hassam-oyster-sloop-cos-cob",
+   "w": 11515,
+   "h": 12527,
+   "measured": [
+    3000,
+    3264
+   ],
+   "dw": 73.9,
+   "dh": 73.9
+  },
+  {
+   "id": "maurice-utrillo-the-pont-saint-michel-paris",
+   "w": 6676,
+   "h": 5685,
+   "measured": [
+    3000,
+    2553
+   ],
+   "dw": 55.1,
+   "dh": 55.1
+  },
+  {
+   "id": "childe-hassam-poppies-isles-of-shoals",
+   "w": 15675,
+   "h": 12910,
+   "measured": [
+    3000,
+    2471
+   ],
+   "dw": 80.9,
+   "dh": 80.9
+  },
+  {
+   "id": "childe-hassam-a-north-east-headland",
+   "w": 15493,
+   "h": 12930,
+   "measured": [
+    3000,
+    2504
+   ],
+   "dw": 80.6,
+   "dh": 80.6
+  },
+  {
+   "id": "childe-hassam-the-new-york-window",
+   "w": 15011,
+   "h": 19782,
+   "measured": [
+    3000,
+    3954
+   ],
+   "dw": 80,
+   "dh": 80
+  },
+  {
+   "id": "childe-hassam-old-house-at-east-hampton",
+   "w": 23187,
+   "h": 18939,
+   "measured": [
+    3000,
+    2450
+   ],
+   "dw": 87.1,
+   "dh": 87.1
+  },
+  {
+   "id": "honore-daumier-at-the-gallery-drouot",
+   "w": 8973,
+   "h": 11387,
+   "measured": [
+    3000,
+    3808
+   ],
+   "dw": 66.6,
+   "dh": 66.6
+  },
+  {
+   "id": "sisley-the-road-in-the-woods",
+   "w": 12190,
+   "h": 10139,
+   "measured": [
+    3000,
+    2495
+   ],
+   "dw": 75.4,
+   "dh": 75.4
+  },
+  {
+   "id": "sisley-boulevard-heloise-argenteuil",
+   "w": 8505,
+   "h": 5554,
+   "measured": [
+    3000,
+    1959
+   ],
+   "dw": 64.7,
+   "dh": 64.7
+  },
+  {
+   "id": "sisley-meadow",
+   "w": 14045,
+   "h": 10447,
+   "measured": [
+    3000,
+    2231
+   ],
+   "dw": 78.6,
+   "dh": 78.6
+  },
+  {
+   "id": "sisley-first-snow-at-veneux-nadon",
+   "w": 17176,
+   "h": 12859,
+   "measured": [
+    3000,
+    2246
+   ],
+   "dw": 82.5,
+   "dh": 82.5
+  },
+  {
+   "id": "sisley-flood-at-port-marly",
+   "w": 29434,
+   "h": 21890,
+   "measured": [
+    3000,
+    2231
+   ],
+   "dw": 89.8,
+   "dh": 89.8
+  },
+  {
+   "id": "sisley-marly-le-roi",
+   "w": 17949,
+   "h": 12085,
+   "measured": [
+    3000,
+    2020
+   ],
+   "dw": 83.3,
+   "dh": 83.3
+  },
+  {
+   "id": "van-gogh-portrait-of-vincent-van-gogh",
+   "w": 4852,
+   "h": 6077,
+   "measured": [
+    3000,
+    3758
+   ],
+   "dw": 38.2,
+   "dh": 38.2
+  },
+  {
+   "id": "van-gogh-landscape",
+   "w": 5872,
+   "h": 7124,
+   "measured": [
+    3000,
+    3640
+   ],
+   "dw": 48.9,
+   "dh": 48.9
+  },
+  {
+   "id": "van-gogh-roses",
+   "w": 29148,
+   "h": 23164,
+   "measured": [
+    3000,
+    2384
+   ],
+   "dw": 89.7,
+   "dh": 89.7
+  },
+  {
+   "id": "whistler-grey-and-silver-chelsea-wharf",
+   "w": 10762,
+   "h": 14430,
+   "measured": [
+    3000,
+    4023
+   ],
+   "dw": 72.1,
+   "dh": 72.1
+  },
+  {
+   "id": "whistler-mother-of-pearl-and-silver-the-andalusian",
+   "w": 13215,
+   "h": 28563,
+   "measured": [
+    1895,
+    4096
+   ],
+   "dw": 85.7,
+   "dh": 85.7
+  },
+  {
+   "id": "whistler-alexander-arnold-hannay",
+   "w": 3706,
+   "h": 6499,
+   "measured": [
+    2336,
+    4096
+   ],
+   "dw": 37,
+   "dh": 37
+  },
+  {
+   "id": "whistler-alice-butt",
+   "w": 8998,
+   "h": 12271,
+   "measured": [
+    3000,
+    4092
+   ],
+   "dw": 66.7,
+   "dh": 66.7
+  },
+  {
+   "id": "jean-charles-cazin-the-windmill",
+   "w": 10652,
+   "h": 14204,
+   "measured": [
+    3000,
+    3786
+   ],
+   "dw": 71.8,
+   "dh": 73.3
+  },
+  {
+   "id": "whistler-gold-and-brown-self-portrait",
+   "w": 11134,
+   "h": 14869,
+   "measured": [
+    3000,
+    4007
+   ],
+   "dw": 73.1,
+   "dh": 73.1
+  },
+  {
+   "id": "whistler-george-w-vanderbilt",
+   "w": 8814,
+   "h": 20223,
+   "measured": [
+    1785,
+    4096
+   ],
+   "dw": 79.7,
+   "dh": 79.7
+  },
+  {
+   "id": "jean-charles-cazin-paris-scene-with-bridge",
+   "w": 4836,
+   "h": 5603,
+   "measured": [
+    3000,
+    3476
+   ],
+   "dw": 38,
+   "dh": 38
+  },
+  {
+   "id": "whistler-wapping",
+   "w": 26205,
+   "h": 18401,
+   "measured": [
+    3000,
+    2107
+   ],
+   "dw": 88.6,
+   "dh": 88.5
+  },
+  {
+   "id": "whistler-battersea-reach",
+   "w": 32607,
+   "h": 21584,
+   "measured": [
+    3000,
+    1986
+   ],
+   "dw": 90.8,
+   "dh": 90.8
+  },
+  {
+   "id": "jean-charles-cazin-the-quarry-of-monsieur-pascal-near-nanterre",
+   "w": 14554,
+   "h": 11530,
+   "measured": [
+    3000,
+    2377
+   ],
+   "dw": 79.4,
+   "dh": 79.4
+  },
+  {
+   "id": "jean-charles-cazin-landscape",
+   "w": 21227,
+   "h": 15465,
+   "measured": [
+    3000,
+    2186
+   ],
+   "dw": 85.9,
+   "dh": 85.9
+  },
+  {
+   "id": "jean-charles-cazin-the-haystack-and-the-moon",
+   "w": 14863,
+   "h": 18744,
+   "measured": [
+    3000,
+    3784
+   ],
+   "dw": 79.8,
+   "dh": 79.8
+  },
+  {
+   "id": "jean-charles-cazin-the-great-windmill-and-the-rainbow",
+   "w": 4833,
+   "h": 3663,
+   "measured": [
+    3000,
+    2274
+   ],
+   "dw": 37.9,
+   "dh": 37.9
+  },
+  {
+   "id": "jean-charles-cazin-weary-wayfarers",
+   "w": 4862,
+   "h": 3887,
+   "measured": [
+    3000,
+    2398
+   ],
+   "dw": 38.3,
+   "dh": 38.3
+  },
+  {
+   "id": "jean-charles-cazin-homestead-by-the-sea",
+   "w": 19486,
+   "h": 15514,
+   "measured": [
+    3000,
+    2388
+   ],
+   "dw": 84.6,
+   "dh": 84.6
+  },
+  {
+   "id": "hals-portrait-of-a-woman-aged-sixty",
+   "w": 15776,
+   "h": 18722,
+   "measured": [
+    3000,
+    3561
+   ],
+   "dw": 81,
+   "dh": 81
+  },
+  {
+   "id": "hals-portrait-of-a-member-of-the-haarlem-civic-guard",
+   "w": 14415,
+   "h": 18015,
+   "measured": [
+    3000,
+    3750
+   ],
+   "dw": 79.2,
+   "dh": 79.2
+  },
+  {
+   "id": "hals-willem-coymans",
+   "w": 4813,
+   "h": 5889,
+   "measured": [
+    3000,
+    3671
+   ],
+   "dw": 37.7,
+   "dh": 37.7
+  },
+  {
+   "id": "hals-adriaen-van-ostade",
+   "w": 6040,
+   "h": 7594,
+   "measured": [
+    3000,
+    3772
+   ],
+   "dw": 50.3,
+   "dh": 50.3
+  },
+  {
+   "id": "hals-portrait-of-a-young-man",
+   "w": 3671,
+   "h": 4498,
+   "measured": [
+    3000,
+    3676
+   ],
+   "dw": 18.3,
+   "dh": 18.3
+  },
+  {
+   "id": "hals-a-young-man-in-a-large-hat",
+   "w": 4206,
+   "h": 5448,
+   "measured": [
+    3000,
+    3886
+   ],
+   "dw": 28.7,
+   "dh": 28.7
+  },
+  {
+   "id": "hals-portrait-of-a-man",
+   "w": 5780,
+   "h": 6975,
+   "measured": [
+    3000,
+    3621
+   ],
+   "dw": 48.1,
+   "dh": 48.1
+  },
+  {
+   "id": "hals-portrait-of-a-gentleman",
+   "w": 7209,
+   "h": 9841,
+   "measured": [
+    3000,
+    4096
+   ],
+   "dw": 58.4,
+   "dh": 58.4
+  },
+  {
+   "id": "robert-henri-catharine",
+   "w": 5832,
+   "h": 7051,
+   "measured": [
+    3000,
+    3628
+   ],
+   "dw": 48.6,
+   "dh": 48.5
+  },
+  {
+   "id": "robert-henri-young-woman-in-white",
+   "w": 12764,
+   "h": 26447,
+   "measured": [
+    1977,
+    4096
+   ],
+   "dw": 84.5,
+   "dh": 84.5
+  },
+  {
+   "id": "robert-henri-snow-in-new-york",
+   "w": 12638,
+   "h": 15758,
+   "measured": [
+    3000,
+    3741
+   ],
+   "dw": 76.3,
+   "dh": 76.3
+  },
+  {
+   "id": "robert-henri-edith-reynolds",
+   "w": 13100,
+   "h": 26879,
+   "measured": [
+    1996,
+    4096
+   ],
+   "dw": 84.8,
+   "dh": 84.8
+  },
+  {
+   "id": "robert-henri-volendam-street-scene",
+   "w": 5234,
+   "h": 4298,
+   "measured": [
+    3000,
+    2464
+   ],
+   "dw": 42.7,
+   "dh": 42.7
+  },
+  {
+   "id": "robert-henri-george-cotton-smith",
+   "w": 12713,
+   "h": 15651,
+   "measured": [
+    3000,
+    3694
+   ],
+   "dw": 76.4,
+   "dh": 76.4
+  },
+  {
+   "id": "robert-henri-elizabeth-virginia-laning-bradner-smith-mrs-george-cotton-smith",
+   "w": 12843,
+   "h": 15643,
+   "measured": [
+    3000,
+    3655
+   ],
+   "dw": 76.6,
+   "dh": 76.6
+  },
+  {
+   "id": "robert-henri-seated-nude",
+   "w": 15306,
+   "h": 18817,
+   "measured": [
+    3000,
+    3689
+   ],
+   "dw": 80.4,
+   "dh": 80.4
+  },
+  {
+   "id": "robert-henri-indian-girl-in-white-blanket",
+   "w": 13103,
+   "h": 16230,
+   "measured": [
+    3000,
+    3716
+   ],
+   "dw": 77.1,
+   "dh": 77.1
+  },
+  {
+   "id": "reynolds-lady-elizabeth-delme-and-her-children",
+   "w": 3176,
+   "h": 5199,
+   "measured": [
+    2502,
+    4096
+   ],
+   "dw": 21.2,
+   "dh": 21.2
+  },
+  {
+   "id": "reynolds-lady-elizabeth-compton",
+   "w": 5008,
+   "h": 8310,
+   "measured": [
+    2468,
+    4096
+   ],
+   "dw": 50.7,
+   "dh": 50.7
+  },
+  {
+   "id": "reynolds-lady-caroline-howard",
+   "w": 17374,
+   "h": 21935,
+   "measured": [
+    3000,
+    3788
+   ],
+   "dw": 82.7,
+   "dh": 82.7
+  },
+  {
+   "id": "reynolds-lady-cornewall",
+   "w": 5957,
+   "h": 7497,
+   "measured": [
+    3000,
+    3776
+   ],
+   "dw": 49.6,
+   "dh": 49.6
+  },
+  {
+   "id": "reynolds-lady-elizabeth-hamilton",
+   "w": 5768,
+   "h": 8220,
+   "measured": [
+    2874,
+    4096
+   ],
+   "dw": 50.2,
+   "dh": 50.2
+  },
+  {
+   "id": "reynolds-miss-nelly-o-brien",
+   "w": 4389,
+   "h": 5327,
+   "measured": [
+    3000,
+    3642
+   ],
+   "dw": 31.6,
+   "dh": 31.6
+  },
+  {
+   "id": "courbet-the-stream-le-ruisseau-du-puits-noir-vallee-de-la-loue",
+   "w": 32819,
+   "h": 24850,
+   "measured": [
+    3000,
+    2272
+   ],
+   "dw": 90.9,
+   "dh": 90.9
+  },
+  {
+   "id": "courbet-la-grotte-de-la-loue",
+   "w": 50475,
+   "h": 38168,
+   "measured": [
+    3000,
+    2269
+   ],
+   "dw": 94.1,
+   "dh": 94.1
+  },
+  {
+   "id": "reynolds-john-musters",
+   "w": 21190,
+   "h": 34419,
+   "measured": [
+    2522,
+    4096
+   ],
+   "dw": 88.1,
+   "dh": 88.1
+  },
+  {
+   "id": "courbet-beach-in-normandy",
+   "w": 5993,
+   "h": 4014,
+   "measured": [
+    3000,
+    2009
+   ],
+   "dw": 49.9,
+   "dh": 50
+  },
+  {
+   "id": "courbet-portrait-of-a-young-girl",
+   "w": 6006,
+   "h": 6936,
+   "measured": [
+    3000,
+    3465
+   ],
+   "dw": 50,
+   "dh": 50
+  },
+  {
+   "id": "courbet-a-young-woman-reading",
+   "w": 7248,
+   "h": 5903,
+   "measured": [
+    3000,
+    2443
+   ],
+   "dw": 58.6,
+   "dh": 58.6
+  },
+  {
+   "id": "courbet-boats-on-a-beach-etretat",
+   "w": 27844,
+   "h": 19561,
+   "measured": [
+    3000,
+    2108
+   ],
+   "dw": 89.2,
+   "dh": 89.2
+  },
+  {
+   "id": "courbet-la-bretonnerie-in-the-department-of-indre",
+   "w": 15261,
+   "h": 12566,
+   "measured": [
+    3000,
+    2470
+   ],
+   "dw": 80.3,
+   "dh": 80.3
+  },
+  {
+   "id": "courbet-calm-sea",
+   "w": 15417,
+   "h": 12983,
+   "measured": [
+    3000,
+    2526
+   ],
+   "dw": 80.5,
+   "dh": 80.5
+  },
+  {
+   "id": "reynolds-miss-beatrix-lister",
+   "w": 12807,
+   "h": 15349,
+   "measured": [
+    3000,
+    3596
+   ],
+   "dw": 76.6,
+   "dh": 76.6
+  },
+  {
+   "id": "courbet-the-black-rocks-at-trouville",
+   "w": 29309,
+   "h": 24172,
+   "measured": [
+    3000,
+    2474
+   ],
+   "dw": 89.8,
+   "dh": 89.8
+  },
+  {
+   "id": "reynolds-annetta-coke",
+   "w": 26007,
+   "h": 31363,
+   "measured": [
+    3000,
+    3618
+   ],
+   "dw": 88.5,
+   "dh": 88.5
+  },
+  {
+   "id": "tiepolo-study-for-a-ceiling-with-the-personification-of-counsel",
+   "w": 30901,
+   "h": 17501,
+   "measured": [
+    3000,
+    1699
+   ],
+   "dw": 90.3,
+   "dh": 90.3
+  },
+  {
+   "id": "tiepolo-scene-from-ancient-history",
+   "w": 7094,
+   "h": 8926,
+   "measured": [
+    3000,
+    3775
+   ],
+   "dw": 57.7,
+   "dh": 57.7
+  },
+  {
+   "id": "tiepolo-wealth-and-benefits-of-the-spanish-monarchy-under-charles-iii",
+   "w": 9599,
+   "h": 16821,
+   "measured": [
+    2337,
+    4096
+   ],
+   "dw": 75.7,
+   "dh": 75.6
+  },
+  {
+   "id": "tiepolo-madonna-of-the-goldfinch",
+   "w": 12896,
+   "h": 16322,
+   "measured": [
+    3000,
+    3797
+   ],
+   "dw": 76.7,
+   "dh": 76.7
+  },
+  {
+   "id": "tiepolo-young-lady-in-a-tricorn-hat",
+   "w": 21930,
+   "h": 28698,
+   "measured": [
+    3000,
+    3926
+   ],
+   "dw": 86.3,
+   "dh": 86.3
+  },
+  {
+   "id": "tiepolo-apollo-pursuing-daphne",
+   "w": 32915,
+   "h": 25922,
+   "measured": [
+    3000,
+    2363
+   ],
+   "dw": 90.9,
+   "dh": 90.9
+  },
+  {
+   "id": "tiepolo-saint-roch-carried-to-heaven-by-angels",
+   "w": 19744,
+   "h": 24530,
+   "measured": [
+    3000,
+    3728
+   ],
+   "dw": 84.8,
+   "dh": 84.8
+  },
+  {
+   "id": "rubens-decius-mus-addressing-the-legions",
+   "w": 17693,
+   "h": 16950,
+   "measured": [
+    3000,
+    2874
+   ],
+   "dw": 83,
+   "dh": 83
+  },
+  {
+   "id": "rubens-the-meeting-of-abraham-and-melchizedek",
+   "w": 16208,
+   "h": 12937,
+   "measured": [
+    3000,
+    2395
+   ],
+   "dw": 81.5,
+   "dh": 81.5
+  },
+  {
+   "id": "rubens-saint-peter",
+   "w": 13136,
+   "h": 17855,
+   "measured": [
+    3000,
+    4078
+   ],
+   "dw": 77.2,
+   "dh": 77.2
+  },
+  {
+   "id": "rubens-peter-paul-rubens",
+   "w": 7553,
+   "h": 9269,
+   "measured": [
+    3000,
+    3682
+   ],
+   "dw": 60.3,
+   "dh": 60.3
+  },
+  {
+   "id": "tiepolo-bacchus-and-ariadne",
+   "w": 21273,
+   "h": 20491,
+   "measured": [
+    3000,
+    2890
+   ],
+   "dw": 85.9,
+   "dh": 85.9
+  },
+  {
+   "id": "rubens-the-assumption-of-the-virgin",
+   "w": 10912,
+   "h": 14621,
+   "measured": [
+    3000,
+    4020
+   ],
+   "dw": 72.5,
+   "dh": 72.5
+  },
+  {
+   "id": "tiepolo-queen-zenobia-addressing-her-soldiers",
+   "w": 5980,
+   "h": 4260,
+   "measured": [
+    3000,
+    2137
+   ],
+   "dw": 49.8,
+   "dh": 49.8
+  },
+  {
+   "id": "rubens-marchesa-brigida-spinola-doria",
+   "w": 3318,
+   "h": 5137,
+   "measured": [
+    2646,
+    4096
+   ],
+   "dw": 20.3,
+   "dh": 20.3
+  },
+  {
+   "id": "rubens-agrippina-and-germanicus",
+   "w": 22193,
+   "h": 25968,
+   "measured": [
+    3000,
+    3511
+   ],
+   "dw": 86.5,
+   "dh": 86.5
+  },
+  {
+   "id": "rubens-daniel-in-the-lions-den",
+   "w": 25211,
+   "h": 17048,
+   "measured": [
+    3000,
+    2029
+   ],
+   "dw": 88.1,
+   "dh": 88.1
+  },
+  {
+   "id": "rubens-the-fall-of-phaeton",
+   "w": 35539,
+   "h": 26496,
+   "measured": [
+    3000,
+    2237
+   ],
+   "dw": 91.6,
+   "dh": 91.6
+  },
+  {
+   "id": "rubens-the-meeting-of-david-and-abigail",
+   "w": 26333,
+   "h": 17937,
+   "measured": [
+    3000,
+    2043
+   ],
+   "dw": 88.6,
+   "dh": 88.6
+  },
+  {
+   "id": "tiepolo-madonna-of-the-goldfinch-nga-101678",
+   "w": 27552,
+   "h": 34907,
+   "measured": [
+    3000,
+    3801
+   ],
+   "dw": 89.1,
+   "dh": 89.1
+  },
+  {
+   "id": "goya-the-marquesa-de-pontejos",
+   "w": 11141,
+   "h": 18534,
+   "measured": [
+    2462,
+    4096
+   ],
+   "dw": 77.9,
+   "dh": 77.9
+  },
+  {
+   "id": "goya-charles-iv-of-spain-as-huntsman",
+   "w": 3789,
+   "h": 5994,
+   "measured": [
+    2589,
+    4096
+   ],
+   "dw": 31.7,
+   "dh": 31.7
+  },
+  {
+   "id": "goya-senora-sabasa-garcia",
+   "w": 12162,
+   "h": 14995,
+   "measured": [
+    3000,
+    3699
+   ],
+   "dw": 75.3,
+   "dh": 75.3
+  },
+  {
+   "id": "guardi-view-on-the-cannaregio-canal-venice",
+   "w": 6012,
+   "h": 3867,
+   "measured": [
+    3000,
+    1930
+   ],
+   "dw": 50.1,
+   "dh": 50.1
+  },
+  {
+   "id": "guardi-temporary-tribune-in-the-campo-san-zanipolo-venice",
+   "w": 3505,
+   "h": 4202,
+   "measured": [
+    3000,
+    3597
+   ],
+   "dw": 14.4,
+   "dh": 14.4
+  },
+  {
+   "id": "goya-bartolome-sureda-y-miserol",
+   "w": 11940,
+   "h": 17930,
+   "measured": [
+    2728,
+    4096
+   ],
+   "dw": 77.2,
+   "dh": 77.2
+  },
+  {
+   "id": "goya-therese-louise-de-sureda",
+   "w": 11228,
+   "h": 17078,
+   "measured": [
+    2693,
+    4096
+   ],
+   "dw": 76,
+   "dh": 76
+  },
+  {
+   "id": "guardi-grand-canal-with-the-rialto-bridge-venice",
+   "w": 4958,
+   "h": 3635,
+   "measured": [
+    3000,
+    2199
+   ],
+   "dw": 39.5,
+   "dh": 39.5
+  },
+  {
+   "id": "guardi-capriccio-of-a-harbor",
+   "w": 26722,
+   "h": 18141,
+   "measured": [
+    3000,
+    2037
+   ],
+   "dw": 88.8,
+   "dh": 88.8
+  },
+  {
+   "id": "guardi-rialto-bridge-venice",
+   "w": 6928,
+   "h": 4340,
+   "measured": [
+    3000,
+    1879
+   ],
+   "dw": 56.7,
+   "dh": 56.7
+  },
+  {
+   "id": "guardi-fanciful-view-of-the-castel-sant-angelo-rome",
+   "w": 19120,
+   "h": 11598,
+   "measured": [
+    3000,
+    1820
+   ],
+   "dw": 84.3,
+   "dh": 84.3
+  },
+  {
+   "id": "goya-victor-guye",
+   "w": 16304,
+   "h": 20463,
+   "measured": [
+    3000,
+    3766
+   ],
+   "dw": 81.6,
+   "dh": 81.6
+  },
+  {
+   "id": "guardi-the-square-of-saint-mark-s-venice",
+   "w": 6961,
+   "h": 3954,
+   "measured": [
+    3000,
+    1704
+   ],
+   "dw": 56.9,
+   "dh": 56.9
+  },
+  {
+   "id": "goya-don-antonio-noriega",
+   "w": 25205,
+   "h": 32331,
+   "measured": [
+    3000,
+    3849
+   ],
+   "dw": 88.1,
+   "dh": 88.1
+  },
+  {
+   "id": "goya-the-duke-of-wellington",
+   "w": 12674,
+   "h": 15965,
+   "measured": [
+    3000,
+    3779
+   ],
+   "dw": 76.3,
+   "dh": 76.3
+  },
+  {
+   "id": "goya-young-lady-wearing-a-mantilla-and-basquina",
+   "w": 12331,
+   "h": 17425,
+   "measured": [
+    2899,
+    4096
+   ],
+   "dw": 76.5,
+   "dh": 76.5
+  },
+  {
+   "id": "guardi-carlo-and-ubaldo-resisting-the-enchantments-of-armida-s-nymphs",
+   "w": 6589,
+   "h": 3513,
+   "measured": [
+    3000,
+    1599
+   ],
+   "dw": 54.5,
+   "dh": 54.5
+  },
+  {
+   "id": "guardi-erminia-and-the-shepherds",
+   "w": 6205,
+   "h": 3479,
+   "measured": [
+    3000,
+    1682
+   ],
+   "dw": 51.7,
+   "dh": 51.7
+  },
+  {
+   "id": "goya-maria-teresa-de-borbon-y-vallabriga-later-condesa-de-chinchon",
+   "w": 11471,
+   "h": 13269,
+   "measured": [
+    3000,
+    3471
+   ],
+   "dw": 73.8,
+   "dh": 73.8
+  },
+  {
+   "id": "guardi-santa-maria-della-salute",
+   "w": 12251,
+   "h": 7372,
+   "measured": [
+    3000,
+    1805
+   ],
+   "dw": 75.5,
+   "dh": 75.5
+  },
+  {
+   "id": "titian-venus-with-a-mirror",
+   "w": 24992,
+   "h": 29610,
+   "measured": [
+    3000,
+    3555
+   ],
+   "dw": 88,
+   "dh": 88
+  },
+  {
+   "id": "titian-andrea-de-franceschi",
+   "w": 4945,
+   "h": 6245,
+   "measured": [
+    3000,
+    3789
+   ],
+   "dw": 39.3,
+   "dh": 39.3
+  },
+  {
+   "id": "titian-cupid-with-the-wheel-of-time",
+   "w": 21080,
+   "h": 25252,
+   "measured": [
+    3000,
+    3594
+   ],
+   "dw": 85.8,
+   "dh": 85.8
+  },
+  {
+   "id": "titian-allegory-of-love",
+   "w": 5241,
+   "h": 5935,
+   "measured": [
+    3000,
+    3398
+   ],
+   "dw": 42.8,
+   "dh": 42.7
+  },
+  {
+   "id": "titian-woman-holding-an-apple",
+   "w": 12872,
+   "h": 17089,
+   "measured": [
+    3000,
+    3983
+   ],
+   "dw": 76.7,
+   "dh": 76.7
+  },
+  {
+   "id": "benjamin-west-colonel-guy-johnson-and-karonghyontye-captain-david-hill",
+   "w": 23576,
+   "h": 34699,
+   "measured": [
+    2783,
+    4096
+   ],
+   "dw": 88.2,
+   "dh": 88.2
+  },
+  {
+   "id": "benjamin-west-benjamin-west",
+   "w": 4259,
+   "h": 5188,
+   "measured": [
+    3000,
+    3655
+   ],
+   "dw": 29.6,
+   "dh": 29.5
+  },
+  {
+   "id": "titian-the-feast-of-the-gods",
+   "w": 26900,
+   "h": 24642,
+   "measured": [
+    3000,
+    2748
+   ],
+   "dw": 88.8,
+   "dh": 88.8
+  },
+  {
+   "id": "benjamin-west-maria-hamilton-beckford-mrs-william-beckford",
+   "w": 5445,
+   "h": 7044,
+   "measured": [
+    3000,
+    3881
+   ],
+   "dw": 44.9,
+   "dh": 44.9
+  },
+  {
+   "id": "benjamin-west-elizabeth-countess-of-effingham",
+   "w": 5590,
+   "h": 7190,
+   "measured": [
+    3000,
+    3859
+   ],
+   "dw": 46.3,
+   "dh": 46.3
+  },
+  {
+   "id": "titian-ranuccio-farnese",
+   "w": 28585,
+   "h": 34917,
+   "measured": [
+    3000,
+    3665
+   ],
+   "dw": 89.5,
+   "dh": 89.5
+  },
+  {
+   "id": "titian-venus-blindfolding-cupid",
+   "w": 5691,
+   "h": 7204,
+   "measured": [
+    3000,
+    3798
+   ],
+   "dw": 47.3,
+   "dh": 47.3
+  },
+  {
+   "id": "titian-cardinal-pietro-bembo",
+   "w": 13171,
+   "h": 16171,
+   "measured": [
+    3000,
+    3684
+   ],
+   "dw": 77.2,
+   "dh": 77.2
+  },
+  {
+   "id": "benjamin-west-the-battle-of-la-hogue",
+   "w": 26750,
+   "h": 19027,
+   "measured": [
+    3000,
+    2134
+   ],
+   "dw": 88.8,
+   "dh": 88.8
+  },
+  {
+   "id": "titian-giacomo-and-cardinal-marco-corner-investing-andrea-abbot-of-san-zeno-with-his-benefice",
+   "w": 24007,
+   "h": 18085,
+   "measured": [
+    3000,
+    2260
+   ],
+   "dw": 87.5,
+   "dh": 87.5
+  },
+  {
+   "id": "titian-doge-andrea-gritti",
+   "w": 16907,
+   "h": 21869,
+   "measured": [
+    3000,
+    3881
+   ],
+   "dw": 82.3,
+   "dh": 82.3
+  },
+  {
+   "id": "benjamin-west-dr-samuel-boude",
+   "w": 15842,
+   "h": 18729,
+   "measured": [
+    3000,
+    3547
+   ],
+   "dw": 81.1,
+   "dh": 81.1
+  },
+  {
+   "id": "benjamin-west-mary-bethel-boude-mrs-samuel-boude",
+   "w": 5194,
+   "h": 6276,
+   "measured": [
+    3000,
+    3625
+   ],
+   "dw": 42.2,
+   "dh": 42.2
+  },
+  {
+   "id": "benjamin-west-the-expulsion-of-adam-and-eve-from-paradise",
+   "w": 19820,
+   "h": 13253,
+   "measured": [
+    3000,
+    2006
+   ],
+   "dw": 84.9,
+   "dh": 84.9
+  },
+  {
+   "id": "benjamin-west-telemachus-and-calypso",
+   "w": 25854,
+   "h": 17996,
+   "measured": [
+    3000,
+    2088
+   ],
+   "dw": 88.4,
+   "dh": 88.4
+  },
+  {
+   "id": "benjamin-west-cupid-stung-by-a-bee-is-cherished-by-his-mother",
+   "w": 17577,
+   "h": 17529,
+   "measured": [
+    3000,
+    2992
+   ],
+   "dw": 82.9,
+   "dh": 82.9
+  },
+  {
+   "id": "morisot-the-sisters",
+   "w": 30906,
+   "h": 19591,
+   "measured": [
+    3000,
+    1902
+   ],
+   "dw": 90.3,
+   "dh": 90.3
+  },
+  {
+   "id": "morisot-the-artist-s-daughter-with-a-parakeet",
+   "w": 10427,
+   "h": 13255,
+   "measured": [
+    3000,
+    3814
+   ],
+   "dw": 71.2,
+   "dh": 71.2
+  },
+  {
+   "id": "morisot-in-the-dining-room",
+   "w": 12568,
+   "h": 15466,
+   "measured": [
+    3000,
+    3692
+   ],
+   "dw": 76.1,
+   "dh": 76.1
+  },
+  {
+   "id": "morisot-the-mother-and-sister-of-the-artist",
+   "w": 22304,
+   "h": 27544,
+   "measured": [
+    3000,
+    3705
+   ],
+   "dw": 86.5,
+   "dh": 86.5
+  },
+  {
+   "id": "morisot-the-artist-s-sister-at-a-window",
+   "w": 17500,
+   "h": 20918,
+   "measured": [
+    3000,
+    3586
+   ],
+   "dw": 82.9,
+   "dh": 82.9
+  },
+  {
+   "id": "morisot-the-harbor-at-lorient",
+   "w": 27871,
+   "h": 16521,
+   "measured": [
+    3000,
+    1778
+   ],
+   "dw": 89.2,
+   "dh": 89.2
+  },
+  {
+   "id": "morisot-young-woman-with-a-straw-hat",
+   "w": 5567,
+   "h": 6624,
+   "measured": [
+    3000,
+    3570
+   ],
+   "dw": 46.1,
+   "dh": 46.1
+  },
+  {
+   "id": "morisot-girl-in-a-boat-with-geese",
+   "w": 5795,
+   "h": 6998,
+   "measured": [
+    3000,
+    3623
+   ],
+   "dw": 48.2,
+   "dh": 48.2
+  },
+  {
+   "id": "morisot-hanging-the-laundry-out-to-dry",
+   "w": 8264,
+   "h": 6710,
+   "measured": [
+    3000,
+    2436
+   ],
+   "dw": 63.7,
+   "dh": 63.7
+  },
+  {
+   "id": "morisot-peonies",
+   "w": 9241,
+   "h": 11518,
+   "measured": [
+    3000,
+    3740
+   ],
+   "dw": 67.5,
+   "dh": 67.5
+  },
+  {
+   "id": "morisot-young-girl-with-an-apron",
+   "w": 11070,
+   "h": 13162,
+   "measured": [
+    3000,
+    3567
+   ],
+   "dw": 72.9,
+   "dh": 72.9
+  },
+  {
+   "id": "raoul-dufy-saint-jeannet",
+   "w": 18570,
+   "h": 15011,
+   "measured": [
+    3000,
+    2427
+   ],
+   "dw": 83.8,
+   "dh": 83.8
+  },
+  {
+   "id": "cole-a-view-of-the-mountain-pass-called-the-notch-of-the-white-mountains-crawford-notch",
+   "w": 26925,
+   "h": 17532,
+   "measured": [
+    3000,
+    1953
+   ],
+   "dw": 88.9,
+   "dh": 88.9
+  },
+  {
+   "id": "cole-sketch-for-ohio-state-capitol-design",
+   "w": 15273,
+   "h": 5381,
+   "measured": [
+    3000,
+    1057
+   ],
+   "dw": 80.4,
+   "dh": 80.4
+  },
+  {
+   "id": "cole-the-voyage-of-life-youth",
+   "w": 5117,
+   "h": 3501,
+   "measured": [
+    3000,
+    2053
+   ],
+   "dw": 41.4,
+   "dh": 41.4
+  },
+  {
+   "id": "cole-the-voyage-of-life-manhood",
+   "w": 5272,
+   "h": 3468,
+   "measured": [
+    3000,
+    1973
+   ],
+   "dw": 43.1,
+   "dh": 43.1
+  },
+  {
+   "id": "cole-the-voyage-of-life-old-age",
+   "w": 5100,
+   "h": 3431,
+   "measured": [
+    3000,
+    2018
+   ],
+   "dw": 41.2,
+   "dh": 41.2
+  },
+  {
+   "id": "raoul-dufy-july-14-in-le-havre",
+   "w": 3455,
+   "h": 5047,
+   "measured": [
+    2803,
+    4096
+   ],
+   "dw": 18.9,
+   "dh": 18.8
+  },
+  {
+   "id": "raoul-dufy-music-and-the-pink-violin",
+   "w": 16272,
+   "h": 13394,
+   "measured": [
+    3000,
+    2470
+   ],
+   "dw": 81.6,
+   "dh": 81.6
+  },
+  {
+   "id": "cole-sunrise-in-the-catskills",
+   "w": 17795,
+   "h": 12732,
+   "measured": [
+    3000,
+    2146
+   ],
+   "dw": 83.1,
+   "dh": 83.1
+  },
+  {
+   "id": "cole-italian-coast-scene-with-ruined-tower",
+   "w": 5103,
+   "h": 3751,
+   "measured": [
+    3000,
+    2205
+   ],
+   "dw": 41.2,
+   "dh": 41.2
+  },
+  {
+   "id": "raoul-dufy-the-beach-at-sainte-adresse",
+   "w": 17477,
+   "h": 14456,
+   "measured": [
+    3000,
+    2480
+   ],
+   "dw": 82.8,
+   "dh": 82.8
+  },
+  {
+   "id": "cole-study-for-catskill-creek",
+   "w": 6559,
+   "h": 4365,
+   "measured": [
+    3000,
+    1996
+   ],
+   "dw": 54.3,
+   "dh": 54.3
+  },
+  {
+   "id": "raoul-dufy-the-landing",
+   "w": 19320,
+   "h": 14829,
+   "measured": [
+    3000,
+    2303
+   ],
+   "dw": 84.5,
+   "dh": 84.5
+  },
+  {
+   "id": "cole-the-return",
+   "w": 25386,
+   "h": 15687,
+   "measured": [
+    3000,
+    1854
+   ],
+   "dw": 88.2,
+   "dh": 88.2
+  },
+  {
+   "id": "cole-the-departure",
+   "w": 25475,
+   "h": 15798,
+   "measured": [
+    3000,
+    1860
+   ],
+   "dw": 88.2,
+   "dh": 88.2
+  },
+  {
+   "id": "cole-tornado-in-an-american-forest",
+   "w": 32063,
+   "h": 22708,
+   "measured": [
+    3000,
+    2125
+   ],
+   "dw": 90.6,
+   "dh": 90.6
+  },
+  {
+   "id": "toulouse-lautrec-a-corner-of-the-moulin-de-la-galette",
+   "w": 4490,
+   "h": 5065,
+   "measured": [
+    3000,
+    3385
+   ],
+   "dw": 33.2,
+   "dh": 33.2
+  },
+  {
+   "id": "toulouse-lautrec-rue-des-moulins-1894",
+   "w": 5479,
+   "h": 7495,
+   "measured": [
+    2994,
+    4096
+   ],
+   "dw": 45.4,
+   "dh": 45.4
+  },
+  {
+   "id": "toulouse-lautrec-maxime-dethomas",
+   "w": 5448,
+   "h": 6987,
+   "measured": [
+    3000,
+    3848
+   ],
+   "dw": 44.9,
+   "dh": 44.9
+  },
+  {
+   "id": "toulouse-lautrec-alfred-la-guigne",
+   "w": 5511,
+   "h": 7299,
+   "measured": [
+    3000,
+    3974
+   ],
+   "dw": 45.6,
+   "dh": 45.6
+  },
+  {
+   "id": "toulouse-lautrec-quadrille-at-the-moulin-rouge",
+   "w": 5579,
+   "h": 7394,
+   "measured": [
+    3000,
+    3976
+   ],
+   "dw": 46.2,
+   "dh": 46.2
+  },
+  {
+   "id": "toulouse-lautrec-the-artist-s-dog-fleche",
+   "w": 6333,
+   "h": 10661,
+   "measured": [
+    2433,
+    4096
+   ],
+   "dw": 61.6,
+   "dh": 61.6
+  },
+  {
+   "id": "toulouse-lautrec-carmen-gaudin",
+   "w": 6702,
+   "h": 10809,
+   "measured": [
+    2540,
+    4096
+   ],
+   "dw": 62.1,
+   "dh": 62.1
+  },
+  {
+   "id": "toulouse-lautrec-lady-with-a-dog",
+   "w": 5650,
+   "h": 7453,
+   "measured": [
+    3000,
+    3958
+   ],
+   "dw": 46.9,
+   "dh": 46.9
+  },
+  {
+   "id": "toulouse-lautrec-a-la-bastille-jeanne-wenz",
+   "w": 21190,
+   "h": 30990,
+   "measured": [
+    2801,
+    4096
+   ],
+   "dw": 86.8,
+   "dh": 86.8
+  },
+  {
+   "id": "toulouse-lautrec-marcelle-lender-dancing-the-bolero-in-chilperic",
+   "w": 20415,
+   "h": 20395,
+   "measured": [
+    3000,
+    2997
+   ],
+   "dw": 85.3,
+   "dh": 85.3
+  },
+  {
+   "id": "toulouse-lautrec-the-trap",
+   "w": 13859,
+   "h": 9929,
+   "measured": [
+    3000,
+    2149
+   ],
+   "dw": 78.4,
+   "dh": 78.4
+  },
+  {
+   "id": "toulouse-lautrec-hussars",
+   "w": 16302,
+   "h": 12804,
+   "measured": [
+    3000,
+    2356
+   ],
+   "dw": 81.6,
+   "dh": 81.6
+  },
+  {
+   "id": "henri-fantin-latour-duchess-de-fitz-james",
+   "w": 10596,
+   "h": 12597,
+   "measured": [
+    3000,
+    3567
+   ],
+   "dw": 71.7,
+   "dh": 71.7
+  },
+  {
+   "id": "henri-fantin-latour-mademoiselle-de-fitz-james",
+   "w": 10506,
+   "h": 12590,
+   "measured": [
+    3000,
+    3596
+   ],
+   "dw": 71.4,
+   "dh": 71.4
+  },
+  {
+   "id": "henri-fantin-latour-self-portrait",
+   "w": 8184,
+   "h": 10282,
+   "measured": [
+    3000,
+    3770
+   ],
+   "dw": 63.3,
+   "dh": 63.3
+  },
+  {
+   "id": "amedeo-modigliani-cafe-singer",
+   "w": 22970,
+   "h": 35522,
+   "measured": [
+    2649,
+    4096
+   ],
+   "dw": 88.5,
+   "dh": 88.5
+  },
+  {
+   "id": "amedeo-modigliani-girl-in-a-green-blouse",
+   "w": 17568,
+   "h": 31785,
+   "measured": [
+    2264,
+    4096
+   ],
+   "dw": 87.1,
+   "dh": 87.1
+  },
+  {
+   "id": "amedeo-modigliani-nude-on-a-blue-cushion",
+   "w": 27753,
+   "h": 17920,
+   "measured": [
+    3000,
+    1937
+   ],
+   "dw": 89.2,
+   "dh": 89.2
+  },
+  {
+   "id": "amedeo-modigliani-chaim-soutine",
+   "w": 22919,
+   "h": 35427,
+   "measured": [
+    2650,
+    4096
+   ],
+   "dw": 88.4,
+   "dh": 88.4
+  },
+  {
+   "id": "amedeo-modigliani-monsieur-deleu",
+   "w": 17589,
+   "h": 31355,
+   "measured": [
+    2298,
+    4096
+   ],
+   "dw": 86.9,
+   "dh": 86.9
+  },
+  {
+   "id": "amedeo-modigliani-nude-on-a-divan",
+   "w": 35661,
+   "h": 23169,
+   "measured": [
+    3000,
+    1949
+   ],
+   "dw": 91.6,
+   "dh": 91.6
+  },
+  {
+   "id": "henri-fantin-latour-portrait-of-sonia",
+   "w": 17559,
+   "h": 24208,
+   "measured": [
+    2971,
+    4096
+   ],
+   "dw": 83.1,
+   "dh": 83.1
+  },
+  {
+   "id": "henri-fantin-latour-still-life",
+   "w": 5848,
+   "h": 4755,
+   "measured": [
+    3000,
+    2439
+   ],
+   "dw": 48.7,
+   "dh": 48.7
+  },
+  {
+   "id": "amedeo-modigliani-adrienne-woman-with-bangs",
+   "w": 16296,
+   "h": 23608,
+   "measured": [
+    2827,
+    4096
+   ],
+   "dw": 82.7,
+   "dh": 82.6
+  },
+  {
+   "id": "amedeo-modigliani-madame-amedee-woman-with-cigarette",
+   "w": 15424,
+   "h": 23930,
+   "measured": [
+    2640,
+    4096
+   ],
+   "dw": 82.9,
+   "dh": 82.9
+  },
+  {
+   "id": "amedeo-modigliani-leon-bakst",
+   "w": 19576,
+   "h": 32500,
+   "measured": [
+    2467,
+    4096
+   ],
+   "dw": 87.4,
+   "dh": 87.4
+  },
+  {
+   "id": "amedeo-modigliani-roma-woman-with-baby",
+   "w": 28402,
+   "h": 44980,
+   "measured": [
+    2586,
+    4096
+   ],
+   "dw": 90.9,
+   "dh": 90.9
+  },
+  {
+   "id": "amedeo-modigliani-madame-kisling",
+   "w": 17003,
+   "h": 23723,
+   "measured": [
+    2936,
+    4096
+   ],
+   "dw": 82.7,
+   "dh": 82.7
+  },
+  {
+   "id": "amedeo-modigliani-woman-with-red-hair",
+   "w": 23412,
+   "h": 35476,
+   "measured": [
+    2703,
+    4096
+   ],
+   "dw": 88.5,
+   "dh": 88.5
+  },
+  {
+   "id": "henri-fantin-latour-three-peaches-on-a-plate",
+   "w": 4699,
+   "h": 3528,
+   "measured": [
+    3000,
+    2252
+   ],
+   "dw": 36.2,
+   "dh": 36.2
+  },
+  {
+   "id": "henri-fantin-latour-self-portrait-nga-92996",
+   "w": 3310,
+   "h": 3975,
+   "measured": [
+    3000,
+    3603
+   ],
+   "dw": 9.4,
+   "dh": 9.4
+  },
+  {
+   "id": "henri-fantin-latour-roses-de-nice-on-a-table",
+   "w": 11663,
+   "h": 7082,
+   "measured": [
+    3000,
+    1822
+   ],
+   "dw": 74.3,
+   "dh": 74.3
+  },
+  {
+   "id": "henri-fantin-latour-still-life-with-grapes-and-a-carnation",
+   "w": 4853,
+   "h": 3150,
+   "measured": [
+    3000,
+    1947
+   ],
+   "dw": 38.2,
+   "dh": 38.2
+  },
+  {
+   "id": "henri-fantin-latour-still-life-with-mustard-pot",
+   "w": 9198,
+   "h": 5835,
+   "measured": [
+    3000,
+    1903
+   ],
+   "dw": 67.4,
+   "dh": 67.4
+  },
+  {
+   "id": "henri-fantin-latour-pansies",
+   "w": 18249,
+   "h": 11716,
+   "measured": [
+    3000,
+    1926
+   ],
+   "dw": 83.6,
+   "dh": 83.6
+  },
+  {
+   "id": "henri-fantin-latour-still-life-with-peaches-and-grapes",
+   "w": 14204,
+   "h": 10652,
+   "measured": [
+    3000,
+    2014
+   ],
+   "dw": 78.9,
+   "dh": 81.1
+  },
+  {
+   "id": "gainsborough-mrs-richard-brinsley-sheridan",
+   "w": 10977,
+   "h": 15561,
+   "measured": [
+    2889,
+    4096
+   ],
+   "dw": 73.7,
+   "dh": 73.7
+  },
+  {
+   "id": "gainsborough-georgiana-duchess-of-devonshire",
+   "w": 16055,
+   "h": 25972,
+   "measured": [
+    2532,
+    4096
+   ],
+   "dw": 84.2,
+   "dh": 84.2
+  },
+  {
+   "id": "gainsborough-miss-catherine-tatton",
+   "w": 12609,
+   "h": 15067,
+   "measured": [
+    3000,
+    3585
+   ],
+   "dw": 76.2,
+   "dh": 76.2
+  },
+  {
+   "id": "gainsborough-mrs-john-taylor",
+   "w": 4905,
+   "h": 5910,
+   "measured": [
+    3000,
+    3615
+   ],
+   "dw": 38.8,
+   "dh": 38.8
+  },
+  {
+   "id": "gainsborough-mountain-landscape-with-bridge",
+   "w": 19730,
+   "h": 16620,
+   "measured": [
+    3000,
+    2527
+   ],
+   "dw": 84.8,
+   "dh": 84.8
+  },
+  {
+   "id": "gainsborough-mrs-paul-cobb-methuen",
+   "w": 5208,
+   "h": 6216,
+   "measured": [
+    3000,
+    3581
+   ],
+   "dw": 42.4,
+   "dh": 42.4
+  },
+  {
+   "id": "gainsborough-the-hon-mrs-thomas-graham",
+   "w": 11757,
+   "h": 15153,
+   "measured": [
+    3000,
+    3867
+   ],
+   "dw": 74.5,
+   "dh": 74.5
+  },
+  {
+   "id": "gainsborough-john-4th-earl-of-darnley",
+   "w": 6376,
+   "h": 7842,
+   "measured": [
+    3000,
+    3690
+   ],
+   "dw": 52.9,
+   "dh": 52.9
+  },
+  {
+   "id": "gauguin-the-bathers",
+   "w": 35660,
+   "h": 22808,
+   "measured": [
+    3000,
+    1919
+   ],
+   "dw": 91.6,
+   "dh": 91.6
+  },
+  {
+   "id": "gainsborough-master-john-heathcote",
+   "w": 17716,
+   "h": 22228,
+   "measured": [
+    3000,
+    3765
+   ],
+   "dw": 83.1,
+   "dh": 83.1
+  },
+  {
+   "id": "gainsborough-william-yelverton-davenport",
+   "w": 23570,
+   "h": 29511,
+   "measured": [
+    3000,
+    3757
+   ],
+   "dw": 87.3,
+   "dh": 87.3
+  },
+  {
+   "id": "gauguin-madame-alexandre-kohler",
+   "w": 9615,
+   "h": 12157,
+   "measured": [
+    3000,
+    3794
+   ],
+   "dw": 68.8,
+   "dh": 68.8
+  },
+  {
+   "id": "gauguin-brittany-landscape",
+   "w": 16595,
+   "h": 13163,
+   "measured": [
+    3000,
+    2380
+   ],
+   "dw": 81.9,
+   "dh": 81.9
+  },
+  {
+   "id": "gauguin-fatata-te-miti-by-the-sea",
+   "w": 12545,
+   "h": 9282,
+   "measured": [
+    3000,
+    2220
+   ],
+   "dw": 76.1,
+   "dh": 76.1
+  },
+  {
+   "id": "gauguin-self-portrait",
+   "w": 6852,
+   "h": 10663,
+   "measured": [
+    2632,
+    4096
+   ],
+   "dw": 61.6,
+   "dh": 61.6
+  },
+  {
+   "id": "gainsborough-seashore-with-fishermen",
+   "w": 30601,
+   "h": 24379,
+   "measured": [
+    3000,
+    2390
+   ],
+   "dw": 90.2,
+   "dh": 90.2
+  },
+  {
+   "id": "gauguin-haystacks-in-brittany",
+   "w": 25643,
+   "h": 20436,
+   "measured": [
+    3000,
+    2391
+   ],
+   "dw": 88.3,
+   "dh": 88.3
+  },
+  {
+   "id": "gauguin-parau-na-te-varua-ino-words-of-the-devil",
+   "w": 12716,
+   "h": 17105,
+   "measured": [
+    3000,
+    4036
+   ],
+   "dw": 76.4,
+   "dh": 76.4
+  },
+  {
+   "id": "gauguin-te-pape-nave-nave-delectable-waters",
+   "w": 16917,
+   "h": 13162,
+   "measured": [
+    3000,
+    2334
+   ],
+   "dw": 82.3,
+   "dh": 82.3
+  },
+  {
+   "id": "gauguin-the-invocation",
+   "w": 35762,
+   "h": 31075,
+   "measured": [
+    3000,
+    2607
+   ],
+   "dw": 91.6,
+   "dh": 91.6
+  },
+  {
+   "id": "gauguin-breton-girls-dancing-pont-aven",
+   "w": 35659,
+   "h": 27973,
+   "measured": [
+    3000,
+    2353
+   ],
+   "dw": 91.6,
+   "dh": 91.6
+  },
+  {
+   "id": "gauguin-landscape-at-le-pouldu",
+   "w": 26614,
+   "h": 21064,
+   "measured": [
+    3000,
+    2374
+   ],
+   "dw": 88.7,
+   "dh": 88.7
+  },
+  {
+   "id": "gauguin-self-portrait-dedicated-to-carriere",
+   "w": 8771,
+   "h": 10840,
+   "measured": [
+    3000,
+    3708
+   ],
+   "dw": 65.8,
+   "dh": 65.8
+  },
+  {
+   "id": "gauguin-still-life-with-peonies",
+   "w": 16372,
+   "h": 13341,
+   "measured": [
+    3000,
+    2445
+   ],
+   "dw": 81.7,
+   "dh": 81.7
+  },
+  {
+   "id": "gainsborough-francis-basset-lord-de-dunstanville",
+   "w": 18289,
+   "h": 22942,
+   "measured": [
+    3000,
+    3764
+   ],
+   "dw": 83.6,
+   "dh": 83.6
+  },
+  {
+   "id": "gainsborough-frances-susanna-lady-de-dunstanville",
+   "w": 18308,
+   "h": 22950,
+   "measured": [
+    3000,
+    3761
+   ],
+   "dw": 83.6,
+   "dh": 83.6
+  },
+  {
+   "id": "winslow-homer-breezing-up-a-fair-wind",
+   "w": 28431,
+   "h": 17894,
+   "measured": [
+    3000,
+    1888
+   ],
+   "dw": 89.4,
+   "dh": 89.4
+  },
+  {
+   "id": "winslow-homer-hound-and-hunter",
+   "w": 35432,
+   "h": 20615,
+   "measured": [
+    3000,
+    1745
+   ],
+   "dw": 91.5,
+   "dh": 91.5
+  },
+  {
+   "id": "winslow-homer-right-and-left",
+   "w": 36241,
+   "h": 20975,
+   "measured": [
+    3000,
+    1736
+   ],
+   "dw": 91.7,
+   "dh": 91.7
+  },
+  {
+   "id": "winslow-homer-sunset",
+   "w": 6700,
+   "h": 4550,
+   "measured": [
+    3000,
+    2037
+   ],
+   "dw": 55.2,
+   "dh": 55.2
+  },
+  {
+   "id": "winslow-homer-the-red-school-house",
+   "w": 9567,
+   "h": 13665,
+   "measured": [
+    2868,
+    4096
+   ],
+   "dw": 70,
+   "dh": 70
+  },
+  {
+   "id": "winslow-homer-autumn",
+   "w": 23283,
+   "h": 37180,
+   "measured": [
+    2565,
+    4096
+   ],
+   "dw": 89,
+   "dh": 89
+  },
+  {
+   "id": "winslow-homer-dad-s-coming",
+   "w": 4815,
+   "h": 3215,
+   "measured": [
+    3000,
+    2003
+   ],
+   "dw": 37.7,
+   "dh": 37.7
+  },
+  {
+   "id": "winslow-homer-home-sweet-home",
+   "w": 3608,
+   "h": 4769,
+   "measured": [
+    3000,
+    3966
+   ],
+   "dw": 16.9,
+   "dh": 16.8
+  },
+  {
+   "id": "winslow-homer-the-dinner-horn-blowing-the-horn-at-seaside",
+   "w": 20081,
+   "h": 28460,
+   "measured": [
+    2890,
+    4096
+   ],
+   "dw": 85.6,
+   "dh": 85.6
+  },
+  {
+   "id": "winslow-homer-sparrow-hall",
+   "w": 22550,
+   "h": 15575,
+   "measured": [
+    3000,
+    2072
+   ],
+   "dw": 86.7,
+   "dh": 86.7
+  },
+  {
+   "id": "winslow-homer-east-hampton-beach-long-island",
+   "w": 13170,
+   "h": 6076,
+   "measured": [
+    3000,
+    1384
+   ],
+   "dw": 77.2,
+   "dh": 77.2
+  },
+  {
+   "id": "winslow-homer-the-flirt",
+   "w": 6429,
+   "h": 4179,
+   "measured": [
+    3000,
+    1950
+   ],
+   "dw": 53.3,
+   "dh": 53.3
+  },
+  {
+   "id": "winslow-homer-school-time",
+   "w": 13434,
+   "h": 8844,
+   "measured": [
+    3000,
+    1975
+   ],
+   "dw": 77.7,
+   "dh": 77.7
+  },
+  {
+   "id": "winslow-homer-sketch-of-a-cottage-yard",
+   "w": 7317,
+   "h": 4773,
+   "measured": [
+    3000,
+    1957
+   ],
+   "dw": 59,
+   "dh": 59
+  },
+  {
+   "id": "winslow-homer-a-light-on-the-sea",
+   "w": 22922,
+   "h": 13329,
+   "measured": [
+    3000,
+    1744
+   ],
+   "dw": 86.9,
+   "dh": 86.9
+  },
+  {
+   "id": "copley-baron-graham",
+   "w": 5153,
+   "h": 6309,
+   "measured": [
+    3000,
+    3674
+   ],
+   "dw": 41.8,
+   "dh": 41.8
+  },
+  {
+   "id": "copley-the-red-cross-knight",
+   "w": 6813,
+   "h": 5245,
+   "measured": [
+    3000,
+    2310
+   ],
+   "dw": 56,
+   "dh": 56
+  },
+  {
+   "id": "copley-jane-browne",
+   "w": 5062,
+   "h": 6085,
+   "measured": [
+    3000,
+    3607
+   ],
+   "dw": 40.7,
+   "dh": 40.7
+  },
+  {
+   "id": "copley-the-death-of-the-earl-of-chatham",
+   "w": 7104,
+   "h": 5800,
+   "measured": [
+    3000,
+    2449
+   ],
+   "dw": 57.8,
+   "dh": 57.8
+  },
+  {
+   "id": "copley-epes-sargent",
+   "w": 4831,
+   "h": 6079,
+   "measured": [
+    3000,
+    3775
+   ],
+   "dw": 37.9,
+   "dh": 37.9
+  },
+  {
+   "id": "copley-colonel-william-fitch-and-his-sisters-sarah-and-ann-fitch",
+   "w": 6191,
+   "h": 4654,
+   "measured": [
+    3000,
+    2255
+   ],
+   "dw": 51.5,
+   "dh": 51.5
+  },
+  {
+   "id": "copley-the-copley-family",
+   "w": 32830,
+   "h": 26136,
+   "measured": [
+    3000,
+    2388
+   ],
+   "dw": 90.9,
+   "dh": 90.9
+  },
+  {
+   "id": "copley-eleazer-tyng",
+   "w": 21551,
+   "h": 26746,
+   "measured": [
+    3000,
+    3724
+   ],
+   "dw": 86.1,
+   "dh": 86.1
+  },
+  {
+   "id": "copley-anne-fairchild-bowler-mrs-metcalf-bowler",
+   "w": 8110,
+   "h": 10163,
+   "measured": [
+    3000,
+    3760
+   ],
+   "dw": 63,
+   "dh": 63
+  },
+  {
+   "id": "seurat-study-for-la-grande-jatte",
+   "w": 7697,
+   "h": 4812,
+   "measured": [
+    3000,
+    1876
+   ],
+   "dw": 61,
+   "dh": 61
+  },
+  {
+   "id": "copley-harrison-gray",
+   "w": 5397,
+   "h": 6541,
+   "measured": [
+    3000,
+    3636
+   ],
+   "dw": 44.4,
+   "dh": 44.4
+  },
+  {
+   "id": "copley-adam-babcock",
+   "w": 5435,
+   "h": 6976,
+   "measured": [
+    3000,
+    3851
+   ],
+   "dw": 44.8,
+   "dh": 44.8
+  },
+  {
+   "id": "copley-elizabeth-gray-otis-mrs-samuel-alleyne-otis",
+   "w": 16429,
+   "h": 18793,
+   "measured": [
+    3000,
+    3432
+   ],
+   "dw": 81.7,
+   "dh": 81.7
+  },
+  {
+   "id": "seurat-the-lighthouse-at-honfleur",
+   "w": 15803,
+   "h": 12861,
+   "measured": [
+    3000,
+    2441
+   ],
+   "dw": 81,
+   "dh": 81
+  },
+  {
+   "id": "copley-abigail-smith-babcock-mrs-adam-babcock",
+   "w": 19450,
+   "h": 25013,
+   "measured": [
+    3000,
+    3859
+   ],
+   "dw": 84.6,
+   "dh": 84.6
+  },
+  {
+   "id": "copley-sketch-for-the-copley-family",
+   "w": 3237,
+   "h": 3764,
+   "measured": [
+    3000,
+    3489
+   ],
+   "dw": 7.3,
+   "dh": 7.3
+  },
+  {
+   "id": "seurat-seascape-gravelines",
+   "w": 6859,
+   "h": 4759,
+   "measured": [
+    3000,
+    2081
+   ],
+   "dw": 56.3,
+   "dh": 56.3
+  },
+  {
+   "id": "seurat-haymakers-at-montfermeil",
+   "w": 6554,
+   "h": 4106,
+   "measured": [
+    3000,
+    1879
+   ],
+   "dw": 54.2,
+   "dh": 54.2
+  },
+  {
+   "id": "seurat-peasant-with-a-hoe",
+   "w": 6474,
+   "h": 4062,
+   "measured": [
+    3000,
+    1882
+   ],
+   "dw": 53.7,
+   "dh": 53.7
+  },
+  {
+   "id": "seurat-the-stone-breaker",
+   "w": 7562,
+   "h": 4687,
+   "measured": [
+    3000,
+    1859
+   ],
+   "dw": 60.3,
+   "dh": 60.3
+  },
+  {
+   "id": "seurat-the-watering-can-garden-at-le-raincy",
+   "w": 3987,
+   "h": 6466,
+   "measured": [
+    2526,
+    4096
+   ],
+   "dw": 36.6,
+   "dh": 36.7
+  },
+  {
+   "id": "seurat-a-summer-landscape",
+   "w": 7263,
+   "h": 4502,
+   "measured": [
+    3000,
+    1860
+   ],
+   "dw": 58.7,
+   "dh": 58.7
+  },
+  {
+   "id": "seurat-figures-in-a-landscape",
+   "w": 6436,
+   "h": 3951,
+   "measured": [
+    3000,
+    1842
+   ],
+   "dw": 53.4,
+   "dh": 53.4
+  },
+  {
+   "id": "seurat-bathers-study-for-bathers-at-asnieres",
+   "w": 7587,
+   "h": 4832,
+   "measured": [
+    3000,
+    1911
+   ],
+   "dw": 60.5,
+   "dh": 60.5
+  },
+  {
+   "id": "seurat-horse-and-boats-study-for-bathers-at-asnieres",
+   "w": 7583,
+   "h": 4803,
+   "measured": [
+    3000,
+    1900
+   ],
+   "dw": 60.4,
+   "dh": 60.4
+  },
+  {
+   "id": "seurat-the-seine-with-clothing-on-the-bank-study-for-bathers-at-asnieres",
+   "w": 6064,
+   "h": 3781,
+   "measured": [
+    3000,
+    1871
+   ],
+   "dw": 50.5,
+   "dh": 50.5
+  },
+  {
+   "id": "seurat-study-of-figures-for-la-grande-jatte",
+   "w": 7687,
+   "h": 4698,
+   "measured": [
+    3000,
+    1833
+   ],
+   "dw": 61,
+   "dh": 61
+  },
+  {
+   "id": "seurat-haystacks",
+   "w": 7634,
+   "h": 4787,
+   "measured": [
+    3000,
+    1881
+   ],
+   "dw": 60.7,
+   "dh": 60.7
+  },
+  {
+   "id": "seurat-man-with-a-hoe",
+   "w": 6469,
+   "h": 4069,
+   "measured": [
+    3000,
+    1887
+   ],
+   "dw": 53.6,
+   "dh": 53.6
+  },
+  {
+   "id": "copley-thomas-amory-ii",
+   "w": 13207,
+   "h": 16661,
+   "measured": [
+    3000,
+    3785
+   ],
+   "dw": 77.3,
+   "dh": 77.3
+  },
+  {
+   "id": "sargent-peter-a-b-widener",
+   "w": 17762,
+   "h": 27030,
+   "measured": [
+    2692,
+    4096
+   ],
+   "dw": 84.8,
+   "dh": 84.8
+  },
+  {
+   "id": "sargent-nonchaloir-repose",
+   "w": 18332,
+   "h": 15338,
+   "measured": [
+    3000,
+    2510
+   ],
+   "dw": 83.6,
+   "dh": 83.6
+  },
+  {
+   "id": "sargent-ellen-peabody-endicott-mrs-william-crowninshield-endicott",
+   "w": 27585,
+   "h": 39142,
+   "measured": [
+    2887,
+    4096
+   ],
+   "dw": 89.5,
+   "dh": 89.5
+  },
+  {
+   "id": "sargent-miss-mathilde-townsend",
+   "w": 14756,
+   "h": 22136,
+   "measured": [
+    2730,
+    4096
+   ],
+   "dw": 81.5,
+   "dh": 81.5
+  },
+  {
+   "id": "sargent-mary-crowninshield-endicott-chamberlain-mrs-joseph-chamberlain",
+   "w": 13986,
+   "h": 24959,
+   "measured": [
+    2295,
+    4096
+   ],
+   "dw": 83.6,
+   "dh": 83.6
+  },
+  {
+   "id": "sargent-street-in-venice",
+   "w": 23781,
+   "h": 19932,
+   "measured": [
+    3000,
+    2514
+   ],
+   "dw": 87.4,
+   "dh": 87.4
+  },
+  {
+   "id": "sargent-miss-grace-woodhouse",
+   "w": 3980,
+   "h": 7011,
+   "measured": [
+    2325,
+    4096
+   ],
+   "dw": 41.6,
+   "dh": 41.6
+  },
+  {
+   "id": "andre-derain-head-of-a-woman",
+   "w": 5103,
+   "h": 5693,
+   "measured": [
+    3000,
+    3346
+   ],
+   "dw": 41.2,
+   "dh": 41.2
+  },
+  {
+   "id": "andre-derain-portrait-of-a-girl",
+   "w": 4476,
+   "h": 6059,
+   "measured": [
+    3000,
+    4061
+   ],
+   "dw": 33,
+   "dh": 33
+  },
+  {
+   "id": "andre-derain-woman-in-an-armchair",
+   "w": 5805,
+   "h": 7296,
+   "measured": [
+    3000,
+    3771
+   ],
+   "dw": 48.3,
+   "dh": 48.3
+  },
+  {
+   "id": "andre-derain-woman-in-a-chemise",
+   "w": 5405,
+   "h": 6951,
+   "measured": [
+    3000,
+    3858
+   ],
+   "dw": 44.5,
+   "dh": 44.5
+  },
+  {
+   "id": "andre-derain-flowers-in-a-vase",
+   "w": 6012,
+   "h": 4731,
+   "measured": [
+    3000,
+    2360
+   ],
+   "dw": 50.1,
+   "dh": 50.1
+  },
+  {
+   "id": "andre-derain-harlequin",
+   "w": 5648,
+   "h": 6916,
+   "measured": [
+    3000,
+    3674
+   ],
+   "dw": 46.9,
+   "dh": 46.9
+  },
+  {
+   "id": "andre-derain-the-old-bridge",
+   "w": 6926,
+   "h": 5600,
+   "measured": [
+    3000,
+    2427
+   ],
+   "dw": 56.7,
+   "dh": 56.7
+  },
+  {
+   "id": "andre-derain-still-life",
+   "w": 6977,
+   "h": 5553,
+   "measured": [
+    3000,
+    2387
+   ],
+   "dw": 57,
+   "dh": 57
+  },
+  {
+   "id": "sargent-eleanora-o-donnell-iselin-mrs-adrian-iselin",
+   "w": 12706,
+   "h": 21215,
+   "measured": [
+    2453,
+    4096
+   ],
+   "dw": 80.7,
+   "dh": 80.7
+  },
+  {
+   "id": "andre-derain-road-in-provence",
+   "w": 7056,
+   "h": 5644,
+   "measured": [
+    3000,
+    2400
+   ],
+   "dw": 57.5,
+   "dh": 57.5
+  },
+  {
+   "id": "andre-derain-abandoned-house-in-provence",
+   "w": 7142,
+   "h": 5659,
+   "measured": [
+    3000,
+    2377
+   ],
+   "dw": 58,
+   "dh": 58
+  },
+  {
+   "id": "andre-derain-marie-harriman",
+   "w": 5811,
+   "h": 5648,
+   "measured": [
+    3000,
+    2917
+   ],
+   "dw": 48.4,
+   "dh": 48.4
+  },
+  {
+   "id": "andre-derain-still-life-nga-53128",
+   "w": 18059,
+   "h": 22832,
+   "measured": [
+    3000,
+    3793
+   ],
+   "dw": 83.4,
+   "dh": 83.4
+  },
+  {
+   "id": "andre-derain-charing-cross-bridge-london",
+   "w": 16695,
+   "h": 13380,
+   "measured": [
+    3000,
+    2403
+   ],
+   "dw": 82,
+   "dh": 82
+  },
+  {
+   "id": "andre-derain-mountains-at-collioure",
+   "w": 15893,
+   "h": 12858,
+   "measured": [
+    3000,
+    2427
+   ],
+   "dw": 81.1,
+   "dh": 81.1
+  },
+  {
+   "id": "andre-derain-view-of-the-thames",
+   "w": 16237,
+   "h": 12756,
+   "measured": [
+    3000,
+    2357
+   ],
+   "dw": 81.5,
+   "dh": 81.5
+  },
+  {
+   "id": "sargent-wild-olive-tree-roots-valldemosa-majorca",
+   "w": 29634,
+   "h": 23322,
+   "measured": [
+    3000,
+    2361
+   ],
+   "dw": 89.9,
+   "dh": 89.9
+  },
+  {
+   "id": "sargent-miss-beatrice-townsend",
+   "w": 3528,
+   "h": 4963,
+   "measured": [
+    2912,
+    4096
+   ],
+   "dw": 17.5,
+   "dh": 17.5
+  },
+  {
+   "id": "sargent-marie-buloz-pailleron-madame-edouard-pailleron",
+   "w": 13386,
+   "h": 27691,
+   "measured": [
+    1980,
+    4096
+   ],
+   "dw": 85.2,
+   "dh": 85.2
+  },
+  {
+   "id": "sargent-pavement-cairo",
+   "w": 23404,
+   "h": 19365,
+   "measured": [
+    3000,
+    2482
+   ],
+   "dw": 87.2,
+   "dh": 87.2
+  },
+  {
+   "id": "sargent-margaret-stuyvesant-rutherfurd-white-mrs-henry-white",
+   "w": 16869,
+   "h": 26461,
+   "measured": [
+    2611,
+    4096
+   ],
+   "dw": 84.5,
+   "dh": 84.5
+  },
+  {
+   "id": "sargent-simplon-pass",
+   "w": 17592,
+   "h": 13635,
+   "measured": [
+    3000,
+    2325
+   ],
+   "dw": 82.9,
+   "dh": 82.9
+  },
+  {
+   "id": "sargent-en-route-pour-la-peche-setting-out-to-fish",
+   "w": 31495,
+   "h": 19903,
+   "measured": [
+    3000,
+    1896
+   ],
+   "dw": 90.5,
+   "dh": 90.5
+  },
+  {
+   "id": "sargent-apollo-and-daphne",
+   "w": 14736,
+   "h": 17009,
+   "measured": [
+    3000,
+    3463
+   ],
+   "dw": 79.6,
+   "dh": 79.6
+  },
+  {
+   "id": "bellows-both-members-of-this-club",
+   "w": 4943,
+   "h": 3526,
+   "measured": [
+    3000,
+    2140
+   ],
+   "dw": 39.3,
+   "dh": 39.3
+  },
+  {
+   "id": "bellows-maud-murray-dale-mrs-chester-dale",
+   "w": 8434,
+   "h": 10090,
+   "measured": [
+    3000,
+    3590
+   ],
+   "dw": 64.4,
+   "dh": 64.4
+  },
+  {
+   "id": "bellows-chester-dale",
+   "w": 14695,
+   "h": 19049,
+   "measured": [
+    3000,
+    3889
+   ],
+   "dw": 79.6,
+   "dh": 79.6
+  },
+  {
+   "id": "bellows-blue-morning",
+   "w": 13134,
+   "h": 10236,
+   "measured": [
+    3000,
+    2338
+   ],
+   "dw": 77.2,
+   "dh": 77.2
+  },
+  {
+   "id": "bellows-the-lone-tenement",
+   "w": 10481,
+   "h": 7844,
+   "measured": [
+    3000,
+    2245
+   ],
+   "dw": 71.4,
+   "dh": 71.4
+  },
+  {
+   "id": "bellows-nude-with-red-hair",
+   "w": 4739,
+   "h": 6179,
+   "measured": [
+    3000,
+    3912
+   ],
+   "dw": 36.7,
+   "dh": 36.7
+  },
+  {
+   "id": "bellows-florence-sittenham-davey-mrs-randall-davey",
+   "w": 12960,
+   "h": 16533,
+   "measured": [
+    3000,
+    3828
+   ],
+   "dw": 76.9,
+   "dh": 76.8
+  },
+  {
+   "id": "bellows-club-night",
+   "w": 12107,
+   "h": 9771,
+   "measured": [
+    3000,
+    2421
+   ],
+   "dw": 75.2,
+   "dh": 75.2
+  },
+  {
+   "id": "bellows-anne-with-a-japanese-parasol",
+   "w": 8127,
+   "h": 13458,
+   "measured": [
+    2473,
+    4096
+   ],
+   "dw": 69.6,
+   "dh": 69.6
+  },
+  {
+   "id": "bellows-little-girl-in-white-queenie-burnett",
+   "w": 8949,
+   "h": 16270,
+   "measured": [
+    2253,
+    4096
+   ],
+   "dw": 74.8,
+   "dh": 74.8
+  },
+  {
+   "id": "bellows-my-family",
+   "w": 18599,
+   "h": 16844,
+   "measured": [
+    3000,
+    2717
+   ],
+   "dw": 83.9,
+   "dh": 83.9
+  },
+  {
+   "id": "bellows-nude-with-hexagonal-quilt",
+   "w": 13182,
+   "h": 10711,
+   "measured": [
+    3000,
+    2438
+   ],
+   "dw": 77.2,
+   "dh": 77.2
+  },
+  {
+   "id": "bellows-tennis-tournament",
+   "w": 11855,
+   "h": 10583,
+   "measured": [
+    3000,
+    2678
+   ],
+   "dw": 74.7,
+   "dh": 74.7
+  },
+  {
+   "id": "bellows-new-york",
+   "w": 5211,
+   "h": 3597,
+   "measured": [
+    3000,
+    2071
+   ],
+   "dw": 42.4,
+   "dh": 42.4
+  },
+  {
+   "id": "bellows-the-germans-arrive",
+   "w": 19881,
+   "h": 12355,
+   "measured": [
+    3000,
+    1864
+   ],
+   "dw": 84.9,
+   "dh": 84.9
+  },
+  {
+   "id": "bellows-forty-two-kids",
+   "w": 19201,
+   "h": 13297,
+   "measured": [
+    3000,
+    2078
+   ],
+   "dw": 84.4,
+   "dh": 84.4
+  },
+  {
+   "id": "picasso-lady-with-a-fan",
+   "w": 22783,
+   "h": 28368,
+   "measured": [
+    3000,
+    3735
+   ],
+   "dw": 86.8,
+   "dh": 86.8
+  },
+  {
+   "id": "picasso-pedro-manach",
+   "w": 20036,
+   "h": 30555,
+   "measured": [
+    2685,
+    4096
+   ],
+   "dw": 86.6,
+   "dh": 86.6
+  },
+  {
+   "id": "picasso-family-of-saltimbanques",
+   "w": 25245,
+   "h": 23548,
+   "measured": [
+    3000,
+    2798
+   ],
+   "dw": 88.1,
+   "dh": 88.1
+  },
+  {
+   "id": "picasso-madame-picasso",
+   "w": 18226,
+   "h": 22528,
+   "measured": [
+    3000,
+    3709
+   ],
+   "dw": 83.5,
+   "dh": 83.5
+  },
+  {
+   "id": "picasso-nude-woman",
+   "w": 10441,
+   "h": 32559,
+   "measured": [
+    1311,
+    4096
+   ],
+   "dw": 87.4,
+   "dh": 87.4
+  },
+  {
+   "id": "picasso-the-tragedy",
+   "w": 13445,
+   "h": 20422,
+   "measured": [
+    2694,
+    4096
+   ],
+   "dw": 80,
+   "dh": 79.9
+  },
+  {
+   "id": "picasso-still-life",
+   "w": 18591,
+   "h": 13769,
+   "measured": [
+    3000,
+    2223
+   ],
+   "dw": 83.9,
+   "dh": 83.9
+  },
+  {
+   "id": "picasso-guitar",
+   "w": 13219,
+   "h": 17870,
+   "measured": [
+    3000,
+    4055
+   ],
+   "dw": 77.3,
+   "dh": 77.3
+  },
+  {
+   "id": "picasso-harlequin-musician",
+   "w": 12829,
+   "h": 17268,
+   "measured": [
+    3000,
+    4036
+   ],
+   "dw": 76.6,
+   "dh": 76.6
+  },
+  {
+   "id": "picasso-le-gourmet",
+   "w": 9481,
+   "h": 12886,
+   "measured": [
+    3000,
+    4079
+   ],
+   "dw": 68.4,
+   "dh": 68.3
+  },
+  {
+   "id": "picasso-dora-maar",
+   "w": 6313,
+   "h": 7681,
+   "measured": [
+    3000,
+    3649
+   ],
+   "dw": 52.5,
+   "dh": 52.5
+  },
+  {
+   "id": "picasso-a-glass-on-a-table",
+   "w": 6501,
+   "h": 5013,
+   "measured": [
+    3000,
+    2313
+   ],
+   "dw": 53.9,
+   "dh": 53.9
+  },
+  {
+   "id": "picasso-classical-head",
+   "w": 4891,
+   "h": 5997,
+   "measured": [
+    3000,
+    3679
+   ],
+   "dw": 38.7,
+   "dh": 38.7
+  },
+  {
+   "id": "picasso-the-lovers",
+   "w": 4302,
+   "h": 5784,
+   "measured": [
+    3000,
+    4036
+   ],
+   "dw": 30.3,
+   "dh": 30.2
+  },
+  {
+   "id": "picasso-juggler-with-still-life",
+   "w": 4105,
+   "h": 5994,
+   "measured": [
+    2803,
+    4096
+   ],
+   "dw": 31.7,
+   "dh": 31.7
+  },
+  {
+   "id": "picasso-two-youths",
+   "w": 3416,
+   "h": 5562,
+   "measured": [
+    2517,
+    4096
+   ],
+   "dw": 26.3,
+   "dh": 26.4
+  },
+  {
+   "id": "picasso-peonies",
+   "w": 3191,
+   "h": 4751,
+   "measured": [
+    2749,
+    4096
+   ],
+   "dw": 13.9,
+   "dh": 13.8
+  },
+  {
+   "id": "pissarro-landscape-at-les-patis-pontoise",
+   "w": 22831,
+   "h": 18511,
+   "measured": [
+    3000,
+    2432
+   ],
+   "dw": 86.9,
+   "dh": 86.9
+  },
+  {
+   "id": "pissarro-boulevard-des-italiens-morning-sunlight",
+   "w": 19123,
+   "h": 15292,
+   "measured": [
+    3000,
+    2399
+   ],
+   "dw": 84.3,
+   "dh": 84.3
+  },
+  {
+   "id": "pissarro-charing-cross-bridge-london",
+   "w": 19627,
+   "h": 12736,
+   "measured": [
+    3000,
+    1947
+   ],
+   "dw": 84.7,
+   "dh": 84.7
+  },
+  {
+   "id": "pissarro-the-artist-s-garden-at-eragny",
+   "w": 17209,
+   "h": 13693,
+   "measured": [
+    3000,
+    2387
+   ],
+   "dw": 82.6,
+   "dh": 82.6
+  },
+  {
+   "id": "pissarro-young-peasant-girls-resting-in-the-fields-near-pontoise",
+   "w": 17154,
+   "h": 13720,
+   "measured": [
+    3000,
+    2399
+   ],
+   "dw": 82.5,
+   "dh": 82.5
+  },
+  {
+   "id": "pissarro-hampton-court-green",
+   "w": 17656,
+   "h": 12992,
+   "measured": [
+    3000,
+    2208
+   ],
+   "dw": 83,
+   "dh": 83
+  },
+  {
+   "id": "pissarro-the-louvre-afternoon-rainy-weather",
+   "w": 16127,
+   "h": 12953,
+   "measured": [
+    3000,
+    2410
+   ],
+   "dw": 81.4,
+   "dh": 81.4
+  },
+  {
+   "id": "pissarro-peasant-girl-with-a-straw-hat",
+   "w": 13041,
+   "h": 15970,
+   "measured": [
+    3000,
+    3674
+   ],
+   "dw": 77,
+   "dh": 77
+  },
+  {
+   "id": "pissarro-peasant-woman",
+   "w": 12399,
+   "h": 15274,
+   "measured": [
+    3000,
+    3696
+   ],
+   "dw": 75.8,
+   "dh": 75.8
+  },
+  {
+   "id": "pissarro-orchard-in-bloom-louveciennes",
+   "w": 13067,
+   "h": 10700,
+   "measured": [
+    3000,
+    2457
+   ],
+   "dw": 77,
+   "dh": 77
+  },
+  {
+   "id": "pissarro-landscape-ile-de-france",
+   "w": 14204,
+   "h": 9580,
+   "measured": [
+    3000,
+    2023
+   ],
+   "dw": 78.9,
+   "dh": 78.9
+  },
+  {
+   "id": "pissarro-the-fence",
+   "w": 9662,
+   "h": 7928,
+   "measured": [
+    3000,
+    2462
+   ],
+   "dw": 69,
+   "dh": 68.9
+  },
+  {
+   "id": "pissarro-the-bather",
+   "w": 6443,
+   "h": 8342,
+   "measured": [
+    3000,
+    3885
+   ],
+   "dw": 53.4,
+   "dh": 53.4
+  },
+  {
+   "id": "pissarro-a-creek-in-st-thomas-virgin-islands",
+   "w": 8363,
+   "h": 6261,
+   "measured": [
+    3000,
+    2246
+   ],
+   "dw": 64.1,
+   "dh": 64.1
+  },
+  {
+   "id": "pissarro-the-gardener-old-peasant-with-cabbage",
+   "w": 5876,
+   "h": 7370,
+   "measured": [
+    3000,
+    3763
+   ],
+   "dw": 48.9,
+   "dh": 48.9
+  },
+  {
+   "id": "pissarro-place-du-carrousel-paris",
+   "w": 5802,
+   "h": 4811,
+   "measured": [
+    3000,
+    2488
+   ],
+   "dw": 48.3,
+   "dh": 48.3
+  },
+  {
+   "id": "pissarro-two-women-chatting-by-the-sea-st-thomas",
+   "w": 5954,
+   "h": 4003,
+   "measured": [
+    3000,
+    2017
+   ],
+   "dw": 49.6,
+   "dh": 49.6
+  },
+  {
+   "id": "matisse-still-life-with-sleeping-woman",
+   "w": 38501,
+   "h": 31070,
+   "measured": [
+    3000,
+    2420
+   ],
+   "dw": 92.2,
+   "dh": 92.2
+  },
+  {
+   "id": "matisse-la-coiffure",
+   "w": 27368,
+   "h": 32702,
+   "measured": [
+    3000,
+    3586
+   ],
+   "dw": 89,
+   "dh": 89
+  },
+  {
+   "id": "matisse-woman-seated-in-an-armchair",
+   "w": 29306,
+   "h": 24338,
+   "measured": [
+    3000,
+    2490
+   ],
+   "dw": 89.8,
+   "dh": 89.8
+  },
+  {
+   "id": "matisse-still-life-with-apples-on-a-pink-tablecloth",
+   "w": 23616,
+   "h": 19343,
+   "measured": [
+    3000,
+    2457
+   ],
+   "dw": 87.3,
+   "dh": 87.3
+  },
+  {
+   "id": "matisse-still-life-with-pineapple",
+   "w": 23575,
+   "h": 19333,
+   "measured": [
+    3000,
+    2460
+   ],
+   "dw": 87.3,
+   "dh": 87.3
+  },
+  {
+   "id": "matisse-odalisque-seated-with-arms-raised-green-striped-chair",
+   "w": 17964,
+   "h": 23331,
+   "measured": [
+    3000,
+    3897
+   ],
+   "dw": 83.3,
+   "dh": 83.3
+  },
+  {
+   "id": "matisse-large-decoration-with-masks",
+   "w": 28889,
+   "h": 10215,
+   "measured": [
+    3000,
+    1060
+   ],
+   "dw": 89.6,
+   "dh": 89.6
+  },
+  {
+   "id": "matisse-palm-leaf-tangier",
+   "w": 13601,
+   "h": 19565,
+   "measured": [
+    2849,
+    4096
+   ],
+   "dw": 79.1,
+   "dh": 79.1
+  },
+  {
+   "id": "matisse-pianist-and-checker-players",
+   "w": 16600,
+   "h": 13291,
+   "measured": [
+    3000,
+    2403
+   ],
+   "dw": 81.9,
+   "dh": 81.9
+  },
+  {
+   "id": "matisse-lorette-with-turban-yellow-jacket",
+   "w": 13074,
+   "h": 16203,
+   "measured": [
+    3000,
+    3720
+   ],
+   "dw": 77.1,
+   "dh": 77
+  },
+  {
+   "id": "matisse-la-negresse",
+   "w": 14918,
+   "h": 10864,
+   "measured": [
+    3000,
+    2183
+   ],
+   "dw": 79.9,
+   "dh": 79.9
+  },
+  {
+   "id": "matisse-venus",
+   "w": 10128,
+   "h": 13710,
+   "measured": [
+    3000,
+    4061
+   ],
+   "dw": 70.4,
+   "dh": 70.4
+  },
+  {
+   "id": "matisse-beasts-of-the-sea",
+   "w": 7882,
+   "h": 15201,
+   "measured": [
+    2121,
+    4096
+   ],
+   "dw": 73.1,
+   "dh": 73.1
+  },
+  {
+   "id": "matisse-the-plumed-hat",
+   "w": 9545,
+   "h": 11940,
+   "measured": [
+    3000,
+    3756
+   ],
+   "dw": 68.6,
+   "dh": 68.5
+  },
+  {
+   "id": "matisse-woman-with-amphora-and-pomegranates",
+   "w": 5614,
+   "h": 14512,
+   "measured": [
+    1584,
+    4096
+   ],
+   "dw": 71.8,
+   "dh": 71.8
+  },
+  {
+   "id": "matisse-odalisque-half-length-the-tattoo",
+   "w": 6680,
+   "h": 9583,
+   "measured": [
+    2854,
+    4096
+   ],
+   "dw": 57.3,
+   "dh": 57.3
+  },
+  {
+   "id": "matisse-les-gorges-du-loup",
+   "w": 6928,
+   "h": 5601,
+   "measured": [
+    3000,
+    2427
+   ],
+   "dw": 56.7,
+   "dh": 56.7
+  },
+  {
+   "id": "matisse-pot-of-geraniums",
+   "w": 3628,
+   "h": 4547,
+   "measured": [
+    3000,
+    3761
+   ],
+   "dw": 17.3,
+   "dh": 17.3
+  },
+  {
+   "id": "matisse-still-life",
+   "w": 4749,
+   "h": 3250,
+   "measured": [
+    3000,
+    2053
+   ],
+   "dw": 36.8,
+   "dh": 36.8
+  },
+  {
+   "id": "pierre-bonnard-the-white-tablecloth",
+   "w": 29721,
+   "h": 31529,
+   "measured": [
+    3000,
+    3184
+   ],
+   "dw": 89.9,
+   "dh": 89.9
+  },
+  {
+   "id": "pierre-bonnard-the-artist-s-studio",
+   "w": 29030,
+   "h": 23782,
+   "measured": [
+    3000,
+    2457
+   ],
+   "dw": 89.7,
+   "dh": 89.7
+  },
+  {
+   "id": "pierre-bonnard-paris-rue-de-parme-on-bastille-day",
+   "w": 16530,
+   "h": 33258,
+   "measured": [
+    2034,
+    4096
+   ],
+   "dw": 87.7,
+   "dh": 87.7
+  },
+  {
+   "id": "pierre-bonnard-stairs-in-the-artist-s-garden",
+   "w": 22538,
+   "h": 19454,
+   "measured": [
+    3000,
+    2590
+   ],
+   "dw": 86.7,
+   "dh": 86.7
+  },
+  {
+   "id": "pierre-bonnard-the-cab-horse",
+   "w": 23601,
+   "h": 17335,
+   "measured": [
+    3000,
+    2203
+   ],
+   "dw": 87.3,
+   "dh": 87.3
+  },
+  {
+   "id": "pierre-bonnard-two-dogs-in-a-deserted-street",
+   "w": 15913,
+   "h": 20852,
+   "measured": [
+    3000,
+    3931
+   ],
+   "dw": 81.1,
+   "dh": 81.1
+  },
+  {
+   "id": "pierre-bonnard-nude-in-an-interior",
+   "w": 13066,
+   "h": 24934,
+   "measured": [
+    2144,
+    4096
+   ],
+   "dw": 83.6,
+   "dh": 83.6
+  },
+  {
+   "id": "pierre-bonnard-work-table",
+   "w": 12975,
+   "h": 17456,
+   "measured": [
+    3000,
+    4036
+   ],
+   "dw": 76.9,
+   "dh": 76.9
+  },
+  {
+   "id": "pierre-bonnard-still-life-with-dog",
+   "w": 15568,
+   "h": 12791,
+   "measured": [
+    3000,
+    2463
+   ],
+   "dw": 80.7,
+   "dh": 80.7
+  },
+  {
+   "id": "pierre-bonnard-bouquet-of-flowers",
+   "w": 11176,
+   "h": 16765,
+   "measured": [
+    2731,
+    4096
+   ],
+   "dw": 75.6,
+   "dh": 75.6
+  },
+  {
+   "id": "pierre-bonnard-the-green-table",
+   "w": 15337,
+   "h": 11933,
+   "measured": [
+    3000,
+    2333
+   ],
+   "dw": 80.4,
+   "dh": 80.4
+  },
+  {
+   "id": "pierre-bonnard-the-letter",
+   "w": 11168,
+   "h": 13008,
+   "measured": [
+    3000,
+    3493
+   ],
+   "dw": 73.1,
+   "dh": 73.1
+  },
+  {
+   "id": "pierre-bonnard-table-set-in-a-garden",
+   "w": 13638,
+   "h": 10434,
+   "measured": [
+    3000,
+    2297
+   ],
+   "dw": 78,
+   "dh": 78
+  },
+  {
+   "id": "pierre-bonnard-vase-with-flowers",
+   "w": 9656,
+   "h": 10983,
+   "measured": [
+    3000,
+    3414
+   ],
+   "dw": 68.9,
+   "dh": 68.9
+  },
+  {
+   "id": "pierre-bonnard-the-artist-s-sister-and-her-children",
+   "w": 5437,
+   "h": 6589,
+   "measured": [
+    3000,
+    3634
+   ],
+   "dw": 44.8,
+   "dh": 44.8
+  },
+  {
+   "id": "pierre-bonnard-a-spring-landscape",
+   "w": 7324,
+   "h": 4709,
+   "measured": [
+    3000,
+    1930
+   ],
+   "dw": 59,
+   "dh": 59
+  },
+  {
+   "id": "pierre-bonnard-study-for-a-portrait-of-vuillard",
+   "w": 3727,
+   "h": 4583,
+   "measured": [
+    3000,
+    3689
+   ],
+   "dw": 19.5,
+   "dh": 19.5
+  },
+  {
+   "id": "pierre-bonnard-walking-at-the-lake-bois-de-boulogne",
+   "w": 4055,
+   "h": 3667,
+   "measured": [
+    3000,
+    2713
+   ],
+   "dw": 26,
+   "dh": 26
+  },
+  {
+   "id": "pierre-bonnard-cherries",
+   "w": 4066,
+   "h": 3561,
+   "measured": [
+    3000,
+    2627
+   ],
+   "dw": 26.2,
+   "dh": 26.2
+  },
+  {
+   "id": "pierre-bonnard-red-plums",
+   "w": 4487,
+   "h": 3201,
+   "measured": [
+    3000,
+    2140
+   ],
+   "dw": 33.1,
+   "dh": 33.1
+  },
+  {
+   "id": "pierre-bonnard-the-barge-st-tropez-in-the-harbor-of-cannes",
+   "w": 3889,
+   "h": 3629,
+   "measured": [
+    3000,
+    2800
+   ],
+   "dw": 22.9,
+   "dh": 22.8
+  },
+  {
+   "id": "degas-scene-from-the-steeplechase-the-fallen-jockey",
+   "w": 35835,
+   "h": 42821,
+   "measured": [
+    3000,
+    3585
+   ],
+   "dw": 91.6,
+   "dh": 91.6
+  },
+  {
+   "id": "degas-edmondo-and-therese-morbilli",
+   "w": 23572,
+   "h": 30954,
+   "measured": [
+    3000,
+    3940
+   ],
+   "dw": 87.3,
+   "dh": 87.3
+  },
+  {
+   "id": "degas-four-dancers",
+   "w": 27492,
+   "h": 23004,
+   "measured": [
+    3000,
+    2510
+   ],
+   "dw": 89.1,
+   "dh": 89.1
+  },
+  {
+   "id": "degas-woman-ironing",
+   "w": 20056,
+   "h": 24834,
+   "measured": [
+    3000,
+    3715
+   ],
+   "dw": 85,
+   "dh": 85
+  },
+  {
+   "id": "degas-girl-in-red",
+   "w": 17940,
+   "h": 21864,
+   "measured": [
+    3000,
+    3657
+   ],
+   "dw": 83.3,
+   "dh": 83.3
+  },
+  {
+   "id": "degas-alexander-and-bucephalus",
+   "w": 17135,
+   "h": 22426,
+   "measured": [
+    3000,
+    3927
+   ],
+   "dw": 82.5,
+   "dh": 82.5
+  },
+  {
+   "id": "degas-madame-camus",
+   "w": 19268,
+   "h": 14855,
+   "measured": [
+    3000,
+    2313
+   ],
+   "dw": 84.4,
+   "dh": 84.4
+  },
+  {
+   "id": "degas-woman-viewed-from-behind-visit-to-a-museum",
+   "w": 16035,
+   "h": 17276,
+   "measured": [
+    3000,
+    3233
+   ],
+   "dw": 81.3,
+   "dh": 81.3
+  },
+  {
+   "id": "degas-the-riders",
+   "w": 17558,
+   "h": 13939,
+   "measured": [
+    3000,
+    2382
+   ],
+   "dw": 82.9,
+   "dh": 82.9
+  },
+  {
+   "id": "degas-the-dance-class",
+   "w": 16933,
+   "h": 12896,
+   "measured": [
+    3000,
+    2285
+   ],
+   "dw": 82.3,
+   "dh": 82.3
+  },
+  {
+   "id": "degas-achille-de-gas-in-the-uniform-of-a-cadet",
+   "w": 12150,
+   "h": 15400,
+   "measured": [
+    3000,
+    3803
+   ],
+   "dw": 75.3,
+   "dh": 75.3
+  },
+  {
+   "id": "degas-before-the-ballet",
+   "w": 18704,
+   "h": 8120,
+   "measured": [
+    3000,
+    1302
+   ],
+   "dw": 84,
+   "dh": 84
+  },
+  {
+   "id": "degas-the-dance-lesson",
+   "w": 18560,
+   "h": 8036,
+   "measured": [
+    3000,
+    1299
+   ],
+   "dw": 83.8,
+   "dh": 83.8
+  },
+  {
+   "id": "degas-horses-in-a-meadow",
+   "w": 13105,
+   "h": 10487,
+   "measured": [
+    3000,
+    2401
+   ],
+   "dw": 77.1,
+   "dh": 77.1
+  },
+  {
+   "id": "degas-the-races",
+   "w": 11533,
+   "h": 8700,
+   "measured": [
+    3000,
+    2263
+   ],
+   "dw": 74,
+   "dh": 74
+  },
+  {
+   "id": "degas-madame-rene-de-gas",
+   "w": 10797,
+   "h": 8567,
+   "measured": [
+    3000,
+    2380
+   ],
+   "dw": 72.2,
+   "dh": 72.2
+  },
+  {
+   "id": "degas-rene-de-gas",
+   "w": 8572,
+   "h": 10367,
+   "measured": [
+    3000,
+    3629
+   ],
+   "dw": 65,
+   "dh": 65
+  },
+  {
+   "id": "degas-mademoiselle-malot",
+   "w": 5708,
+   "h": 7095,
+   "measured": [
+    3000,
+    3729
+   ],
+   "dw": 47.4,
+   "dh": 47.4
+  },
+  {
+   "id": "degas-self-portrait-with-white-collar",
+   "w": 4842,
+   "h": 6888,
+   "measured": [
+    2879,
+    4096
+   ],
+   "dw": 40.5,
+   "dh": 40.5
+  },
+  {
+   "id": "degas-dancers-backstage",
+   "w": 4028,
+   "h": 5298,
+   "measured": [
+    3000,
+    3946
+   ],
+   "dw": 25.5,
+   "dh": 25.5
+  },
+  {
+   "id": "degas-the-loge",
+   "w": 5954,
+   "h": 3413,
+   "measured": [
+    3000,
+    1720
+   ],
+   "dw": 49.6,
+   "dh": 49.6
+  },
+  {
+   "id": "jean-baptiste-camille-corot-madame-stumpf-and-her-daughter",
+   "w": 21212,
+   "h": 30145,
+   "measured": [
+    2882,
+    4096
+   ],
+   "dw": 86.4,
+   "dh": 86.4
+  },
+  {
+   "id": "jean-baptiste-camille-corot-the-eel-gatherers",
+   "w": 25967,
+   "h": 19231,
+   "measured": [
+    3000,
+    2222
+   ],
+   "dw": 88.4,
+   "dh": 88.4
+  },
+  {
+   "id": "jean-baptiste-camille-corot-souvenir-of-terracina",
+   "w": 24548,
+   "h": 19903,
+   "measured": [
+    3000,
+    2432
+   ],
+   "dw": 87.8,
+   "dh": 87.8
+  },
+  {
+   "id": "jean-baptiste-camille-corot-forest-of-fontainebleau",
+   "w": 25730,
+   "h": 18704,
+   "measured": [
+    3000,
+    2181
+   ],
+   "dw": 88.3,
+   "dh": 88.3
+  },
+  {
+   "id": "jean-baptiste-camille-corot-ville-d-avray",
+   "w": 24902,
+   "h": 18793,
+   "measured": [
+    3000,
+    2264
+   ],
+   "dw": 88,
+   "dh": 88
+  },
+  {
+   "id": "jean-baptiste-camille-corot-landscape",
+   "w": 22114,
+   "h": 16080,
+   "measured": [
+    3000,
+    2181
+   ],
+   "dw": 86.4,
+   "dh": 86.4
+  },
+  {
+   "id": "jean-baptiste-camille-corot-a-view-near-volterra",
+   "w": 18728,
+   "h": 13651,
+   "measured": [
+    3000,
+    2187
+   ],
+   "dw": 84,
+   "dh": 84
+  },
+  {
+   "id": "jean-baptiste-camille-corot-river-view",
+   "w": 17274,
+   "h": 13691,
+   "measured": [
+    3000,
+    2378
+   ],
+   "dw": 82.6,
+   "dh": 82.6
+  },
+  {
+   "id": "jean-baptiste-camille-corot-agostina",
+   "w": 12851,
+   "h": 17648,
+   "measured": [
+    2983,
+    4096
+   ],
+   "dw": 76.8,
+   "dh": 76.8
+  },
+  {
+   "id": "jean-baptiste-camille-corot-the-repose",
+   "w": 19893,
+   "h": 11334,
+   "measured": [
+    3000,
+    1709
+   ],
+   "dw": 84.9,
+   "dh": 84.9
+  },
+  {
+   "id": "jean-baptiste-camille-corot-the-moored-boatman-souvenir-of-an-italian-lake",
+   "w": 18356,
+   "h": 12185,
+   "measured": [
+    3000,
+    1991
+   ],
+   "dw": 83.7,
+   "dh": 83.7
+  },
+  {
+   "id": "jean-baptiste-camille-corot-dance-under-the-trees-at-the-edge-of-the-lake",
+   "w": 17875,
+   "h": 12268,
+   "measured": [
+    3000,
+    2059
+   ],
+   "dw": 83.2,
+   "dh": 83.2
+  },
+  {
+   "id": "jean-baptiste-camille-corot-italian-woman-la-morieri",
+   "w": 12167,
+   "h": 14309,
+   "measured": [
+    3000,
+    3529
+   ],
+   "dw": 75.3,
+   "dh": 75.3
+  },
+  {
+   "id": "jean-baptiste-camille-corot-gypsy-woman-with-mandolin",
+   "w": 11342,
+   "h": 13922,
+   "measured": [
+    3000,
+    3683
+   ],
+   "dw": 73.5,
+   "dh": 73.5
+  },
+  {
+   "id": "jean-baptiste-camille-corot-portrait-of-a-young-girl",
+   "w": 9289,
+   "h": 11135,
+   "measured": [
+    3000,
+    3597
+   ],
+   "dw": 67.7,
+   "dh": 67.7
+  },
+  {
+   "id": "jean-baptiste-camille-corot-the-island-and-bridge-of-san-bartolomeo-rome",
+   "w": 11567,
+   "h": 7193,
+   "measured": [
+    3000,
+    1866
+   ],
+   "dw": 74.1,
+   "dh": 74.1
+  },
+  {
+   "id": "jean-baptiste-camille-corot-italian-peasant-boy",
+   "w": 8034,
+   "h": 6197,
+   "measured": [
+    3000,
+    2314
+   ],
+   "dw": 62.7,
+   "dh": 62.7
+  },
+  {
+   "id": "jean-baptiste-camille-corot-corot-s-studio-woman-seated-before-an-easel-a-mandolin-in-her-hand",
+   "w": 5566,
+   "h": 8564,
+   "measured": [
+    2662,
+    4096
+   ],
+   "dw": 52.2,
+   "dh": 52.2
+  },
+  {
+   "id": "jean-baptiste-camille-corot-bridge-on-the-saone-river-at-macon",
+   "w": 7757,
+   "h": 5704,
+   "measured": [
+    3000,
+    2206
+   ],
+   "dw": 61.3,
+   "dh": 61.3
+  },
+  {
+   "id": "jean-baptiste-camille-corot-saint-sebastian-succored-by-the-holy-women",
+   "w": 4388,
+   "h": 6576,
+   "measured": [
+    2733,
+    4096
+   ],
+   "dw": 37.7,
+   "dh": 37.7
+  },
+  {
+   "id": "jean-baptiste-camille-corot-view-near-epernon",
+   "w": 6630,
+   "h": 3983,
+   "measured": [
+    3000,
+    1802
+   ],
+   "dw": 54.8,
+   "dh": 54.8
+  },
+  {
+   "id": "jean-baptiste-camille-corot-the-forest-of-coubron",
+   "w": 4236,
+   "h": 5245,
+   "measured": [
+    3000,
+    3715
+   ],
+   "dw": 29.2,
+   "dh": 29.2
+  },
+  {
+   "id": "jean-baptiste-camille-corot-woman-reading-in-the-studio",
+   "w": 5314,
+   "h": 4166,
+   "measured": [
+    3000,
+    2352
+   ],
+   "dw": 43.5,
+   "dh": 43.5
+  },
+  {
+   "id": "jean-baptiste-camille-corot-rocks-in-the-forest-of-fontainebleau",
+   "w": 4666,
+   "h": 3603,
+   "measured": [
+    3000,
+    2317
+   ],
+   "dw": 35.7,
+   "dh": 35.7
+  },
+  {
+   "id": "jean-baptiste-camille-corot-beach-near-etretat",
+   "w": 5888,
+   "h": 2829,
+   "measured": [
+    3000,
+    1441
+   ],
+   "dw": 49,
+   "dh": 49.1
+  },
+  {
+   "id": "boudin-bathing-time-at-deauville",
+   "w": 35844,
+   "h": 21768,
+   "measured": [
+    3000,
+    1822
+   ],
+   "dw": 91.6,
+   "dh": 91.6
+  },
+  {
+   "id": "boudin-festival-in-the-harbor-of-honfleur",
+   "w": 28952,
+   "h": 19752,
+   "measured": [
+    3000,
+    2047
+   ],
+   "dw": 89.6,
+   "dh": 89.6
+  },
+  {
+   "id": "boudin-return-of-the-terre-neuvier",
+   "w": 22648,
+   "h": 16608,
+   "measured": [
+    3000,
+    2200
+   ],
+   "dw": 86.8,
+   "dh": 86.8
+  },
+  {
+   "id": "boudin-the-beach-at-villerville",
+   "w": 20392,
+   "h": 12096,
+   "measured": [
+    3000,
+    1780
+   ],
+   "dw": 85.3,
+   "dh": 85.3
+  },
+  {
+   "id": "boudin-le-havre",
+   "w": 18140,
+   "h": 12955,
+   "measured": [
+    3000,
+    2143
+   ],
+   "dw": 83.5,
+   "dh": 83.5
+  },
+  {
+   "id": "boudin-beach-scene",
+   "w": 18641,
+   "h": 12106,
+   "measured": [
+    3000,
+    1948
+   ],
+   "dw": 83.9,
+   "dh": 83.9
+  },
+  {
+   "id": "boudin-figures-on-the-beach",
+   "w": 16809,
+   "h": 10445,
+   "measured": [
+    3000,
+    1864
+   ],
+   "dw": 82.2,
+   "dh": 82.2
+  },
+  {
+   "id": "boudin-coast-of-brittany",
+   "w": 15292,
+   "h": 10821,
+   "measured": [
+    3000,
+    2123
+   ],
+   "dw": 80.4,
+   "dh": 80.4
+  },
+  {
+   "id": "boudin-low-tide-at-scheveningen",
+   "w": 15509,
+   "h": 10340,
+   "measured": [
+    3000,
+    2000
+   ],
+   "dw": 80.7,
+   "dh": 80.7
+  },
+  {
+   "id": "boudin-beach-at-trouville",
+   "w": 14805,
+   "h": 7951,
+   "measured": [
+    3000,
+    1611
+   ],
+   "dw": 79.7,
+   "dh": 79.7
+  },
+  {
+   "id": "boudin-entrance-to-the-harbor-le-havre",
+   "w": 12440,
+   "h": 9123,
+   "measured": [
+    3000,
+    2200
+   ],
+   "dw": 75.9,
+   "dh": 75.9
+  },
+  {
+   "id": "boudin-low-tide-sailboats-run-aground",
+   "w": 9526,
+   "h": 11788,
+   "measured": [
+    3000,
+    3713
+   ],
+   "dw": 68.5,
+   "dh": 68.5
+  },
+  {
+   "id": "boudin-ships-and-sailing-boats-leaving-le-havre",
+   "w": 12397,
+   "h": 8509,
+   "measured": [
+    3000,
+    2059
+   ],
+   "dw": 75.8,
+   "dh": 75.8
+  },
+  {
+   "id": "boudin-jetty-and-wharf-at-trouville",
+   "w": 13047,
+   "h": 7876,
+   "measured": [
+    3000,
+    1811
+   ],
+   "dw": 77,
+   "dh": 77
+  },
+  {
+   "id": "boudin-washerwomen-on-the-beach-of-etretat",
+   "w": 12037,
+   "h": 8197,
+   "measured": [
+    3000,
+    2043
+   ],
+   "dw": 75.1,
+   "dh": 75.1
+  },
+  {
+   "id": "boudin-fair-in-brittany",
+   "w": 12259,
+   "h": 7071,
+   "measured": [
+    3000,
+    1730
+   ],
+   "dw": 75.5,
+   "dh": 75.5
+  },
+  {
+   "id": "boudin-yacht-basin-at-trouville-deauville",
+   "w": 8229,
+   "h": 10151,
+   "measured": [
+    3000,
+    3701
+   ],
+   "dw": 63.5,
+   "dh": 63.5
+  },
+  {
+   "id": "boudin-women-on-the-beach-at-berck",
+   "w": 9659,
+   "h": 6646,
+   "measured": [
+    3000,
+    2064
+   ],
+   "dw": 68.9,
+   "dh": 68.9
+  },
+  {
+   "id": "boudin-concert-at-the-casino-of-deauville",
+   "w": 10067,
+   "h": 5666,
+   "measured": [
+    3000,
+    1688
+   ],
+   "dw": 70.2,
+   "dh": 70.2
+  },
+  {
+   "id": "boudin-washerwoman-near-trouville",
+   "w": 5218,
+   "h": 3494,
+   "measured": [
+    3000,
+    2009
+   ],
+   "dw": 42.5,
+   "dh": 42.5
+  },
+  {
+   "id": "boudin-ship-on-the-touques",
+   "w": 3565,
+   "h": 4905,
+   "measured": [
+    2977,
+    4096
+   ],
+   "dw": 16.5,
+   "dh": 16.5
+  },
+  {
+   "id": "boudin-the-trawlers",
+   "w": 4910,
+   "h": 3362,
+   "measured": [
+    3000,
+    2054
+   ],
+   "dw": 38.9,
+   "dh": 38.9
+  },
+  {
+   "id": "boudin-beach-scene-at-trouville",
+   "w": 5167,
+   "h": 3104,
+   "measured": [
+    3000,
+    1802
+   ],
+   "dw": 41.9,
+   "dh": 41.9
+  },
+  {
+   "id": "boudin-on-the-beach",
+   "w": 5176,
+   "h": 2969,
+   "measured": [
+    3000,
+    1721
+   ],
+   "dw": 42,
+   "dh": 42
+  },
+  {
+   "id": "boudin-on-the-jetty",
+   "w": 4665,
+   "h": 3157,
+   "measured": [
+    3000,
+    2030
+   ],
+   "dw": 35.7,
+   "dh": 35.7
+  },
+  {
+   "id": "boudin-on-the-beach-trouville",
+   "w": 4939,
+   "h": 2766,
+   "measured": [
+    3000,
+    1680
+   ],
+   "dw": 39.3,
+   "dh": 39.3
+  },
+  {
+   "id": "anthony-van-dyck-filippo-cattaneo",
+   "w": 31704,
+   "h": 46378,
+   "measured": [
+    2800,
+    4096
+   ],
+   "dw": 91.2,
+   "dh": 91.2
+  },
+  {
+   "id": "anthony-van-dyck-maddalena-cattaneo",
+   "w": 31702,
+   "h": 46358,
+   "measured": [
+    2801,
+    4096
+   ],
+   "dw": 91.2,
+   "dh": 91.2
+  },
+  {
+   "id": "anthony-van-dyck-giovanni-vincenzo-imperiale",
+   "w": 24135,
+   "h": 29388,
+   "measured": [
+    3000,
+    3653
+   ],
+   "dw": 87.6,
+   "dh": 87.6
+  },
+  {
+   "id": "anthony-van-dyck-marchesa-elena-grimaldi-cattaneo",
+   "w": 18655,
+   "h": 33059,
+   "measured": [
+    2311,
+    4096
+   ],
+   "dw": 87.6,
+   "dh": 87.6
+  },
+  {
+   "id": "anthony-van-dyck-queen-henrietta-maria-with-sir-jeffrey-hudson",
+   "w": 16462,
+   "h": 27108,
+   "measured": [
+    2487,
+    4096
+   ],
+   "dw": 84.9,
+   "dh": 84.9
+  },
+  {
+   "id": "anthony-van-dyck-the-prefect-raffaele-raggi",
+   "w": 18147,
+   "h": 22568,
+   "measured": [
+    3000,
+    3731
+   ],
+   "dw": 83.5,
+   "dh": 83.5
+  },
+  {
+   "id": "anthony-van-dyck-catherine-howard-lady-d-aubigny",
+   "w": 17048,
+   "h": 21568,
+   "measured": [
+    3000,
+    3796
+   ],
+   "dw": 82.4,
+   "dh": 82.4
+  },
+  {
+   "id": "anthony-van-dyck-philip-lord-wharton",
+   "w": 16889,
+   "h": 21201,
+   "measured": [
+    3000,
+    3766
+   ],
+   "dw": 82.2,
+   "dh": 82.2
+  },
+  {
+   "id": "anthony-van-dyck-a-genoese-noblewoman-and-her-son",
+   "w": 15648,
+   "h": 21531,
+   "measured": [
+    2977,
+    4096
+   ],
+   "dw": 81,
+   "dh": 81
+  },
+  {
+   "id": "anthony-van-dyck-portrait-of-a-flemish-lady",
+   "w": 12820,
+   "h": 17474,
+   "measured": [
+    3000,
+    4090
+   ],
+   "dw": 76.6,
+   "dh": 76.6
+  },
+  {
+   "id": "anthony-van-dyck-group-of-four-boys",
+   "w": 13208,
+   "h": 16343,
+   "measured": [
+    3000,
+    3713
+   ],
+   "dw": 77.3,
+   "dh": 77.3
+  },
+  {
+   "id": "anthony-van-dyck-lady-with-a-fan",
+   "w": 11569,
+   "h": 13604,
+   "measured": [
+    3000,
+    3528
+   ],
+   "dw": 74.1,
+   "dh": 74.1
+  },
+  {
+   "id": "anthony-van-dyck-susanna-fourment-and-her-daughter",
+   "w": 9963,
+   "h": 14695,
+   "measured": [
+    2777,
+    4096
+   ],
+   "dw": 72.1,
+   "dh": 72.1
+  },
+  {
+   "id": "anthony-van-dyck-isabella-brant",
+   "w": 9321,
+   "h": 11855,
+   "measured": [
+    3000,
+    3816
+   ],
+   "dw": 67.8,
+   "dh": 67.8
+  },
+  {
+   "id": "anthony-van-dyck-head-of-a-young-man",
+   "w": 9212,
+   "h": 11464,
+   "measured": [
+    3000,
+    3734
+   ],
+   "dw": 67.4,
+   "dh": 67.4
+  },
+  {
+   "id": "anthony-van-dyck-saint-mark",
+   "w": 8789,
+   "h": 10341,
+   "measured": [
+    3000,
+    3530
+   ],
+   "dw": 65.9,
+   "dh": 65.9
+  },
+  {
+   "id": "anthony-van-dyck-saint-john",
+   "w": 8806,
+   "h": 10283,
+   "measured": [
+    3000,
+    3504
+   ],
+   "dw": 65.9,
+   "dh": 65.9
+  },
+  {
+   "id": "anthony-van-dyck-saint-peter",
+   "w": 8739,
+   "h": 10310,
+   "measured": [
+    3000,
+    3540
+   ],
+   "dw": 65.7,
+   "dh": 65.7
+  },
+  {
+   "id": "anthony-van-dyck-saint-matthew",
+   "w": 8665,
+   "h": 10365,
+   "measured": [
+    3000,
+    3589
+   ],
+   "dw": 65.4,
+   "dh": 65.4
+  },
+  {
+   "id": "anthony-van-dyck-saint-james",
+   "w": 8635,
+   "h": 10271,
+   "measured": [
+    3000,
+    3569
+   ],
+   "dw": 65.3,
+   "dh": 65.3
+  },
+  {
+   "id": "anthony-van-dyck-saint-andrew",
+   "w": 8584,
+   "h": 10282,
+   "measured": [
+    3000,
+    3594
+   ],
+   "dw": 65.1,
+   "dh": 65
+  },
+  {
+   "id": "anthony-van-dyck-saint-james-the-less",
+   "w": 8609,
+   "h": 10229,
+   "measured": [
+    3000,
+    3565
+   ],
+   "dw": 65.2,
+   "dh": 65.1
+  },
+  {
+   "id": "anthony-van-dyck-saint-paul",
+   "w": 8509,
+   "h": 10321,
+   "measured": [
+    3000,
+    3639
+   ],
+   "dw": 64.7,
+   "dh": 64.7
+  },
+  {
+   "id": "anthony-van-dyck-saint-thomas",
+   "w": 8664,
+   "h": 10136,
+   "measured": [
+    3000,
+    3510
+   ],
+   "dw": 65.4,
+   "dh": 65.4
+  },
+  {
+   "id": "anthony-van-dyck-saint-simon",
+   "w": 8477,
+   "h": 10156,
+   "measured": [
+    3000,
+    3595
+   ],
+   "dw": 64.6,
+   "dh": 64.6
+  },
+  {
+   "id": "anthony-van-dyck-saint-philip",
+   "w": 8409,
+   "h": 10220,
+   "measured": [
+    3000,
+    3647
+   ],
+   "dw": 64.3,
+   "dh": 64.3
+  },
+  {
+   "id": "anthony-van-dyck-saint-bartholomew",
+   "w": 8379,
+   "h": 10211,
+   "measured": [
+    3000,
+    3656
+   ],
+   "dw": 64.2,
+   "dh": 64.2
+  },
+  {
+   "id": "anthony-van-dyck-the-virgin-as-intercessor",
+   "w": 6248,
+   "h": 7335,
+   "measured": [
+    3000,
+    3522
+   ],
+   "dw": 52,
+   "dh": 52
+  },
+  {
+   "id": "anthony-van-dyck-henri-ii-de-lorraine",
+   "w": 4756,
+   "h": 8026,
+   "measured": [
+    2427,
+    4096
+   ],
+   "dw": 49,
+   "dh": 49
+  },
+  {
+   "id": "anthony-van-dyck-marchesa-balbi",
+   "w": 3386,
+   "h": 5049,
+   "measured": [
+    2747,
+    4096
+   ],
+   "dw": 18.9,
+   "dh": 18.9
+  },
+  {
+   "id": "monet-wheatstacks-snow-effect-morning",
+   "w": 10877,
+   "h": 6994,
+   "measured": [
+    3000,
+    1929
+   ],
+   "dw": 72.4,
+   "dh": 72.4
+  },
+  {
+   "id": "monet-view-from-voorzan",
+   "w": 3635,
+   "h": 1696,
+   "measured": [
+    1000,
+    467
+   ],
+   "dw": 72.5,
+   "dh": 72.5
+  },
+  {
+   "id": "monet-view-over-the-sea",
+   "w": 3519,
+   "h": 2775,
+   "measured": [
+    1000,
+    789
+   ],
+   "dw": 71.6,
+   "dh": 71.6
+  },
+  {
+   "id": "turner-dort-or-dordrecht-the-dort-packet-boat-from-rotterdam-becalmed",
+   "w": 14484,
+   "h": 9741,
+   "measured": [
+    3000,
+    2017
+   ],
+   "dw": 79.3,
+   "dh": 79.3
+  },
+  {
+   "id": "turner-port-ruysdael",
+   "w": 10019,
+   "h": 7467,
+   "measured": [
+    3000,
+    2236
+   ],
+   "dw": 70.1,
+   "dh": 70.1
+  },
+  {
+   "id": "turner-stormy-sea-breaking-on-a-shore",
+   "w": 6634,
+   "h": 4428,
+   "measured": [
+    3000,
+    2002
+   ],
+   "dw": 54.8,
+   "dh": 54.8
+  },
+  {
+   "id": "turner-squally-weather",
+   "w": 7037,
+   "h": 4620,
+   "measured": [
+    3000,
+    1970
+   ],
+   "dw": 57.4,
+   "dh": 57.4
+  },
+  {
+   "id": "turner-lake-avernus-aeneas-and-the-cumaean-sibyl",
+   "w": 6138,
+   "h": 4500,
+   "measured": [
+    3000,
+    2199
+   ],
+   "dw": 51.1,
+   "dh": 51.1
+  },
+  {
+   "id": "turner-staffa-fingal-s-cave",
+   "w": 9989,
+   "h": 7480,
+   "measured": [
+    3000,
+    2247
+   ],
+   "dw": 70,
+   "dh": 70
+  },
+  {
+   "id": "turner-tummel-bridge-perthshire",
+   "w": 10099,
+   "h": 6123,
+   "measured": [
+    3000,
+    1819
+   ],
+   "dw": 70.3,
+   "dh": 70.3
+  },
+  {
+   "id": "turner-chateaux-de-st-michael-bonneville-savoy",
+   "w": 9889,
+   "h": 7360,
+   "measured": [
+    3000,
+    2233
+   ],
+   "dw": 69.7,
+   "dh": 69.7
+  },
+  {
+   "id": "turner-wreckers-coast-of-northumberland-with-a-steam-boat-assisting-a-ship-off-shore",
+   "w": 6939,
+   "h": 5160,
+   "measured": [
+    3000,
+    2231
+   ],
+   "dw": 56.8,
+   "dh": 56.8
+  },
+  {
+   "id": "turner-harlech-castle-from-tygwyn-ferry-summer-s-evening-twilight",
+   "w": 9820,
+   "h": 7075,
+   "measured": [
+    3000,
+    2161
+   ],
+   "dw": 69.5,
+   "dh": 69.5
+  },
+  {
+   "id": "turner-newark-abbey",
+   "w": 9345,
+   "h": 6897,
+   "measured": [
+    3000,
+    2214
+   ],
+   "dw": 67.9,
+   "dh": 67.9
+  },
+  {
+   "id": "turner-the-victory-returning-from-trafalgar-in-three-positions",
+   "w": 10145,
+   "h": 6849,
+   "measured": [
+    3000,
+    2025
+   ],
+   "dw": 70.4,
+   "dh": 70.4
+  },
+  {
+   "id": "turner-a-limekiln-possibly-at-briton-ferry-in-south-wales",
+   "w": 4086,
+   "h": 2784,
+   "measured": [
+    3000,
+    2044
+   ],
+   "dw": 26.6,
+   "dh": 26.6
+  },
+  {
+   "id": "turner-inverary-pier-loch-fyne-morning",
+   "w": 7190,
+   "h": 5370,
+   "measured": [
+    3000,
+    2241
+   ],
+   "dw": 58.3,
+   "dh": 58.3
+  }
+ ],
+ "catC": [
+  {
+   "id": "marquet-the-pont-neuf",
+   "w": 5218,
+   "h": 4200,
+   "info": [
+    900,
+    724
+   ]
+  },
+  {
+   "id": "pollock-number-7-1951",
+   "w": 19613,
+   "h": 16853,
+   "info": [
+    900,
+    773
+   ]
+  },
+  {
+   "id": "pollock-ritual",
+   "w": 17417,
+   "h": 37157,
+   "info": [
+    422,
+    900
+   ]
+  },
+  {
+   "id": "marquet-posters-at-trouville",
+   "w": 31852,
+   "h": 25491,
+   "info": [
+    900,
+    720
+   ]
+  },
+  {
+   "id": "pollock-untitled",
+   "w": 7588,
+   "h": 4861,
+   "info": [
+    900,
+    577
+   ]
+  },
+  {
+   "id": "pollock-untitled-nga-66677",
+   "w": 7615,
+   "h": 4871,
+   "info": [
+    900,
+    576
+   ]
+  },
+  {
+   "id": "pollock-untitled-nga-141770",
+   "w": 5296,
+   "h": 3634,
+   "info": [
+    900,
+    618
+   ]
+  },
+  {
+   "id": "pollock-untitled-silkscreen-i",
+   "w": 2726,
+   "h": 4000,
+   "info": [
+    613,
+    900
+   ]
+  },
+  {
+   "id": "pollock-untitled-nga-152773",
+   "w": 7792,
+   "h": 5112,
+   "info": [
+    900,
+    590
+   ]
+  },
+  {
+   "id": "arshile-gorky-the-artist-and-his-mother",
+   "w": 17358,
+   "h": 20795,
+   "info": [
+    751,
+    900
+   ]
+  },
+  {
+   "id": "arshile-gorky-one-year-the-milkweed",
+   "w": 20043,
+   "h": 15683,
+   "info": [
+    900,
+    704
+   ]
+  },
+  {
+   "id": "arshile-gorky-organization",
+   "w": 4351,
+   "h": 3630,
+   "info": [
+    900,
+    751
+   ]
+  },
+  {
+   "id": "alexej-von-jawlensky-easter-sunday",
+   "w": 4744,
+   "h": 6590,
+   "info": [
+    648,
+    900
+   ]
+  },
+  {
+   "id": "alexej-von-jawlensky-portrait-of-a-woman",
+   "w": 13115,
+   "h": 15968,
+   "info": [
+    739,
+    900
+   ]
+  },
+  {
+   "id": "maurice-utrillo-the-church-of-saint-severin",
+   "w": 4734,
+   "h": 6480,
+   "info": [
+    657,
+    900
+   ]
+  },
+  {
+   "id": "maurice-utrillo-marizy-sainte-genevieve",
+   "w": 6579,
+   "h": 4824,
+   "info": [
+    900,
+    660
+   ]
+  },
+  {
+   "id": "maurice-utrillo-row-of-houses-at-pierrefitte",
+   "w": 6570,
+   "h": 4566,
+   "info": [
+    900,
+    625
+   ]
+  },
+  {
+   "id": "maurice-utrillo-landscape-pierrefitte",
+   "w": 6673,
+   "h": 4780,
+   "info": [
+    900,
+    645
+   ]
+  },
+  {
+   "id": "maurice-utrillo-rue-cortot-montmartre",
+   "w": 4906,
+   "h": 6898,
+   "info": [
+    640,
+    900
+   ]
+  },
+  {
+   "id": "maurice-utrillo-street-at-corte-corsica",
+   "w": 6502,
+   "h": 4840,
+   "info": [
+    900,
+    670
+   ]
+  },
+  {
+   "id": "maurice-utrillo-the-pont-saint-michel-paris",
+   "w": 6676,
+   "h": 5685,
+   "info": [
+    900,
+    766
+   ]
+  },
+  {
+   "id": "jean-charles-cazin-the-windmill",
+   "w": 10652,
+   "h": 14204,
+   "info": [
+    8525,
+    10758
+   ]
+  },
+  {
+   "id": "raoul-dufy-saint-jeannet",
+   "w": 18570,
+   "h": 15011,
+   "info": [
+    900,
+    728
+   ]
+  },
+  {
+   "id": "raoul-dufy-july-14-in-le-havre",
+   "w": 3455,
+   "h": 5047,
+   "info": [
+    616,
+    900
+   ]
+  },
+  {
+   "id": "raoul-dufy-music-and-the-pink-violin",
+   "w": 16272,
+   "h": 13394,
+   "info": [
+    900,
+    741
+   ]
+  },
+  {
+   "id": "raoul-dufy-the-beach-at-sainte-adresse",
+   "w": 17477,
+   "h": 14456,
+   "info": [
+    900,
+    744
+   ]
+  },
+  {
+   "id": "raoul-dufy-the-landing",
+   "w": 19320,
+   "h": 14829,
+   "info": [
+    900,
+    691
+   ]
+  },
+  {
+   "id": "henri-fantin-latour-still-life-with-peaches-and-grapes",
+   "w": 14204,
+   "h": 10652,
+   "info": [
+    9870,
+    6626
+   ]
+  },
+  {
+   "id": "andre-derain-head-of-a-woman",
+   "w": 5103,
+   "h": 5693,
+   "info": [
+    807,
+    900
+   ]
+  },
+  {
+   "id": "andre-derain-portrait-of-a-girl",
+   "w": 4476,
+   "h": 6059,
+   "info": [
+    665,
+    900
+   ]
+  },
+  {
+   "id": "andre-derain-woman-in-an-armchair",
+   "w": 5805,
+   "h": 7296,
+   "info": [
+    716,
+    900
+   ]
+  },
+  {
+   "id": "andre-derain-woman-in-a-chemise",
+   "w": 5405,
+   "h": 6951,
+   "info": [
+    700,
+    900
+   ]
+  },
+  {
+   "id": "andre-derain-flowers-in-a-vase",
+   "w": 6012,
+   "h": 4731,
+   "info": [
+    900,
+    708
+   ]
+  },
+  {
+   "id": "andre-derain-harlequin",
+   "w": 5648,
+   "h": 6916,
+   "info": [
+    735,
+    900
+   ]
+  },
+  {
+   "id": "andre-derain-the-old-bridge",
+   "w": 6926,
+   "h": 5600,
+   "info": [
+    900,
+    728
+   ]
+  },
+  {
+   "id": "andre-derain-still-life",
+   "w": 6977,
+   "h": 5553,
+   "info": [
+    900,
+    716
+   ]
+  },
+  {
+   "id": "andre-derain-road-in-provence",
+   "w": 7056,
+   "h": 5644,
+   "info": [
+    900,
+    720
+   ]
+  },
+  {
+   "id": "andre-derain-abandoned-house-in-provence",
+   "w": 7142,
+   "h": 5659,
+   "info": [
+    900,
+    713
+   ]
+  },
+  {
+   "id": "andre-derain-marie-harriman",
+   "w": 5811,
+   "h": 5648,
+   "info": [
+    900,
+    875
+   ]
+  },
+  {
+   "id": "andre-derain-still-life-nga-53128",
+   "w": 18059,
+   "h": 22832,
+   "info": [
+    712,
+    900
+   ]
+  },
+  {
+   "id": "andre-derain-charing-cross-bridge-london",
+   "w": 16695,
+   "h": 13380,
+   "info": [
+    900,
+    721
+   ]
+  },
+  {
+   "id": "andre-derain-mountains-at-collioure",
+   "w": 15893,
+   "h": 12858,
+   "info": [
+    900,
+    728
+   ]
+  },
+  {
+   "id": "andre-derain-view-of-the-thames",
+   "w": 16237,
+   "h": 12756,
+   "info": [
+    900,
+    707
+   ]
+  },
+  {
+   "id": "picasso-lady-with-a-fan",
+   "w": 22783,
+   "h": 28368,
+   "info": [
+    723,
+    900
+   ]
+  },
+  {
+   "id": "picasso-pedro-manach",
+   "w": 20036,
+   "h": 30555,
+   "info": [
+    590,
+    900
+   ]
+  },
+  {
+   "id": "picasso-madame-picasso",
+   "w": 18226,
+   "h": 22528,
+   "info": [
+    728,
+    900
+   ]
+  },
+  {
+   "id": "picasso-nude-woman",
+   "w": 10441,
+   "h": 32559,
+   "info": [
+    288,
+    900
+   ]
+  },
+  {
+   "id": "picasso-the-tragedy",
+   "w": 13445,
+   "h": 20422,
+   "info": [
+    592,
+    900
+   ]
+  },
+  {
+   "id": "picasso-still-life",
+   "w": 18591,
+   "h": 13769,
+   "info": [
+    900,
+    667
+   ]
+  },
+  {
+   "id": "picasso-guitar",
+   "w": 13219,
+   "h": 17870,
+   "info": [
+    666,
+    900
+   ]
+  },
+  {
+   "id": "picasso-harlequin-musician",
+   "w": 12829,
+   "h": 17268,
+   "info": [
+    669,
+    900
+   ]
+  },
+  {
+   "id": "picasso-le-gourmet",
+   "w": 9481,
+   "h": 12886,
+   "info": [
+    662,
+    900
+   ]
+  },
+  {
+   "id": "picasso-dora-maar",
+   "w": 6313,
+   "h": 7681,
+   "info": [
+    740,
+    900
+   ]
+  },
+  {
+   "id": "picasso-a-glass-on-a-table",
+   "w": 6501,
+   "h": 5013,
+   "info": [
+    900,
+    694
+   ]
+  },
+  {
+   "id": "picasso-classical-head",
+   "w": 4891,
+   "h": 5997,
+   "info": [
+    734,
+    900
+   ]
+  },
+  {
+   "id": "picasso-the-lovers",
+   "w": 4302,
+   "h": 5784,
+   "info": [
+    669,
+    900
+   ]
+  },
+  {
+   "id": "picasso-juggler-with-still-life",
+   "w": 4105,
+   "h": 5994,
+   "info": [
+    616,
+    900
+   ]
+  },
+  {
+   "id": "picasso-two-youths",
+   "w": 3416,
+   "h": 5562,
+   "info": [
+    553,
+    900
+   ]
+  },
+  {
+   "id": "picasso-peonies",
+   "w": 3191,
+   "h": 4751,
+   "info": [
+    604,
+    900
+   ]
+  },
+  {
+   "id": "matisse-still-life-with-sleeping-woman",
+   "w": 38501,
+   "h": 31070,
+   "info": [
+    900,
+    726
+   ]
+  },
+  {
+   "id": "matisse-la-coiffure",
+   "w": 27368,
+   "h": 32702,
+   "info": [
+    753,
+    900
+   ]
+  },
+  {
+   "id": "matisse-woman-seated-in-an-armchair",
+   "w": 29306,
+   "h": 24338,
+   "info": [
+    900,
+    747
+   ]
+  },
+  {
+   "id": "matisse-still-life-with-apples-on-a-pink-tablecloth",
+   "w": 23616,
+   "h": 19343,
+   "info": [
+    900,
+    737
+   ]
+  },
+  {
+   "id": "matisse-still-life-with-pineapple",
+   "w": 23575,
+   "h": 19333,
+   "info": [
+    900,
+    738
+   ]
+  },
+  {
+   "id": "matisse-odalisque-seated-with-arms-raised-green-striped-chair",
+   "w": 17964,
+   "h": 23331,
+   "info": [
+    693,
+    900
+   ]
+  },
+  {
+   "id": "matisse-large-decoration-with-masks",
+   "w": 28889,
+   "h": 10215,
+   "info": [
+    900,
+    318
+   ]
+  },
+  {
+   "id": "matisse-palm-leaf-tangier",
+   "w": 13601,
+   "h": 19565,
+   "info": [
+    626,
+    900
+   ]
+  },
+  {
+   "id": "matisse-pianist-and-checker-players",
+   "w": 16600,
+   "h": 13291,
+   "info": [
+    900,
+    721
+   ]
+  },
+  {
+   "id": "matisse-lorette-with-turban-yellow-jacket",
+   "w": 13074,
+   "h": 16203,
+   "info": [
+    726,
+    900
+   ]
+  },
+  {
+   "id": "matisse-la-negresse",
+   "w": 14918,
+   "h": 10864,
+   "info": [
+    900,
+    655
+   ]
+  },
+  {
+   "id": "matisse-venus",
+   "w": 10128,
+   "h": 13710,
+   "info": [
+    665,
+    900
+   ]
+  },
+  {
+   "id": "matisse-beasts-of-the-sea",
+   "w": 7882,
+   "h": 15201,
+   "info": [
+    466,
+    900
+   ]
+  },
+  {
+   "id": "matisse-the-plumed-hat",
+   "w": 9545,
+   "h": 11940,
+   "info": [
+    719,
+    900
+   ]
+  },
+  {
+   "id": "matisse-woman-with-amphora-and-pomegranates",
+   "w": 5614,
+   "h": 14512,
+   "info": [
+    348,
+    900
+   ]
+  },
+  {
+   "id": "matisse-odalisque-half-length-the-tattoo",
+   "w": 6680,
+   "h": 9583,
+   "info": [
+    627,
+    900
+   ]
+  },
+  {
+   "id": "matisse-les-gorges-du-loup",
+   "w": 6928,
+   "h": 5601,
+   "info": [
+    900,
+    728
+   ]
+  },
+  {
+   "id": "matisse-pot-of-geraniums",
+   "w": 3628,
+   "h": 4547,
+   "info": [
+    718,
+    900
+   ]
+  },
+  {
+   "id": "matisse-still-life",
+   "w": 4749,
+   "h": 3250,
+   "info": [
+    900,
+    616
+   ]
+  },
+  {
+   "id": "pierre-bonnard-the-white-tablecloth",
+   "w": 29721,
+   "h": 31529,
+   "info": [
+    848,
+    900
+   ]
+  },
+  {
+   "id": "pierre-bonnard-the-artist-s-studio",
+   "w": 29030,
+   "h": 23782,
+   "info": [
+    900,
+    737
+   ]
+  },
+  {
+   "id": "pierre-bonnard-paris-rue-de-parme-on-bastille-day",
+   "w": 16530,
+   "h": 33258,
+   "info": [
+    447,
+    900
+   ]
+  },
+  {
+   "id": "pierre-bonnard-stairs-in-the-artist-s-garden",
+   "w": 22538,
+   "h": 19454,
+   "info": [
+    900,
+    777
+   ]
+  },
+  {
+   "id": "pierre-bonnard-the-cab-horse",
+   "w": 23601,
+   "h": 17335,
+   "info": [
+    900,
+    661
+   ]
+  },
+  {
+   "id": "pierre-bonnard-two-dogs-in-a-deserted-street",
+   "w": 15913,
+   "h": 20852,
+   "info": [
+    687,
+    900
+   ]
+  },
+  {
+   "id": "pierre-bonnard-nude-in-an-interior",
+   "w": 13066,
+   "h": 24934,
+   "info": [
+    471,
+    900
+   ]
+  },
+  {
+   "id": "pierre-bonnard-work-table",
+   "w": 12975,
+   "h": 17456,
+   "info": [
+    669,
+    900
+   ]
+  },
+  {
+   "id": "pierre-bonnard-still-life-with-dog",
+   "w": 15568,
+   "h": 12791,
+   "info": [
+    900,
+    739
+   ]
+  },
+  {
+   "id": "pierre-bonnard-bouquet-of-flowers",
+   "w": 11176,
+   "h": 16765,
+   "info": [
+    600,
+    900
+   ]
+  },
+  {
+   "id": "pierre-bonnard-the-green-table",
+   "w": 15337,
+   "h": 11933,
+   "info": [
+    900,
+    700
+   ]
+  },
+  {
+   "id": "pierre-bonnard-the-letter",
+   "w": 11168,
+   "h": 13008,
+   "info": [
+    773,
+    900
+   ]
+  },
+  {
+   "id": "pierre-bonnard-table-set-in-a-garden",
+   "w": 13638,
+   "h": 10434,
+   "info": [
+    900,
+    689
+   ]
+  },
+  {
+   "id": "pierre-bonnard-vase-with-flowers",
+   "w": 9656,
+   "h": 10983,
+   "info": [
+    791,
+    900
+   ]
+  },
+  {
+   "id": "pierre-bonnard-the-artist-s-sister-and-her-children",
+   "w": 5437,
+   "h": 6589,
+   "info": [
+    743,
+    900
+   ]
+  },
+  {
+   "id": "pierre-bonnard-a-spring-landscape",
+   "w": 7324,
+   "h": 4709,
+   "info": [
+    900,
+    579
+   ]
+  },
+  {
+   "id": "pierre-bonnard-study-for-a-portrait-of-vuillard",
+   "w": 3727,
+   "h": 4583,
+   "info": [
+    732,
+    900
+   ]
+  },
+  {
+   "id": "pierre-bonnard-walking-at-the-lake-bois-de-boulogne",
+   "w": 4055,
+   "h": 3667,
+   "info": [
+    900,
+    814
+   ]
+  },
+  {
+   "id": "pierre-bonnard-cherries",
+   "w": 4066,
+   "h": 3561,
+   "info": [
+    900,
+    788
+   ]
+  },
+  {
+   "id": "pierre-bonnard-red-plums",
+   "w": 4487,
+   "h": 3201,
+   "info": [
+    900,
+    642
+   ]
+  },
+  {
+   "id": "pierre-bonnard-the-barge-st-tropez-in-the-harbor-of-cannes",
+   "w": 3889,
+   "h": 3629,
+   "info": [
+    900,
+    840
+   ]
+  }
+ ],
+ "catC_apply": [],
+ "catD": [
+  {
+   "id": "fjaestad-wood-pattern",
+   "recorded": [
+    3000,
+    2438
+   ],
+   "measured": [
+    1000,
+    813
+   ]
+  },
+  {
+   "id": "fjaestad-winter-moonlight",
+   "recorded": [
+    3000,
+    2429
+   ],
+   "measured": [
+    1000,
+    810
+   ]
+  },
+  {
+   "id": "the-birth-of-venus",
+   "recorded": [
+    3000,
+    4238
+   ],
+   "measured": [
+    1239,
+    1749
+   ]
+  },
+  {
+   "id": "paule-gobillard-peignant",
+   "recorded": [
+    3000,
+    2691
+   ],
+   "measured": [
+    1500,
+    1361
+   ]
+  },
+  {
+   "id": "portrait-de-madame-claude-monet",
+   "recorded": [
+    3000,
+    3639
+   ],
+   "measured": [
+    1500,
+    1806
+   ]
+  },
+  {
+   "id": "in-the-arbour",
+   "recorded": [
+    2935,
+    2720
+   ],
+   "measured": [
+    1948,
+    1787
+   ]
+  },
+  {
+   "id": "the-open-window",
+   "recorded": [
+    2012,
+    2424
+   ],
+   "measured": [
+    1608,
+    1927
+   ]
+  },
+  {
+   "id": "the-taking-of-christ",
+   "recorded": [
+    3000,
+    2325
+   ],
+   "measured": [
+    1500,
+    1172
+   ]
+  },
+  {
+   "id": "hellelil-and-hildebrand-the-meeting-on-the-turret-stairs",
+   "recorded": [
+    1931,
+    3000
+   ],
+   "measured": [
+    1500,
+    2329
+   ]
+  },
+  {
+   "id": "simeon-in-the-temple",
+   "recorded": [
+    2828,
+    3513
+   ],
+   "measured": [
+    1000,
+    1228
+   ]
+  },
+  {
+   "id": "landscape-with-snow",
+   "recorded": [
+    1576,
+    1295
+   ],
+   "measured": [
+    980,
+    797
+   ]
+  },
+  {
+   "id": "yellow-cow",
+   "recorded": [
+    2390,
+    1767
+   ],
+   "measured": [
+    1067,
+    797
+   ]
+  },
+  {
+   "id": "graceful-ascent",
+   "recorded": [
+    3000,
+    2988
+   ],
+   "measured": [
+    980,
+    976
+   ]
+  },
+  {
+   "id": "the-lady-of-shalott",
+   "recorded": [
+    3000,
+    2302
+   ],
+   "measured": [
+    1712,
+    1314
+   ]
+  },
+  {
+   "id": "black-obelisk-of-shalmaneser-iii",
+   "recorded": [
+    3000,
+    4500
+   ],
+   "measured": [
+    1361,
+    2048
+   ]
+  },
+  {
+   "id": "mlle-irene-cahen-d-anvers",
+   "recorded": [
+    3000,
+    3610
+   ],
+   "measured": [
+    990,
+    1200
+   ]
+  },
+  {
+   "id": "two-sisters",
+   "recorded": [
+    3000,
+    3723
+   ],
+   "measured": [
+    1813,
+    2250
+   ]
+  },
+  {
+   "id": "shahnameh-of-shah-tahmasp",
+   "recorded": [
+    3000,
+    4519
+   ],
+   "measured": [
+    1458,
+    2200
+   ]
+  },
+  {
+   "id": "vincent-van-gogh-cypresse",
+   "recorded": [
+    2848,
+    3616
+   ],
+   "measured": [
+    1476,
+    1861
+   ]
+  },
+  {
+   "id": "vincent-van-gogh-korenveld-met-cipressen",
+   "recorded": [
+    3752,
+    2940
+   ],
+   "measured": [
+    10882,
+    8653
+   ]
+  },
+  {
+   "id": "franz-marc-tierschicksale",
+   "recorded": [
+    3000,
+    2202
+   ],
+   "measured": [
+    1150,
+    838
+   ]
+  },
+  {
+   "id": "peter-paul-rubens-self-portrait",
+   "recorded": [
+    3000,
+    4095
+   ],
+   "measured": [
+    1924,
+    2636
+   ]
+  },
+  {
+   "id": "arnold-bocklin-im-spiel-der-wellen",
+   "recorded": [
+    3000,
+    2279
+   ],
+   "measured": [
+    1344,
+    1018
+   ]
+  },
+  {
+   "id": "vincent-van-gogh-blick-auf-arles",
+   "recorded": [
+    2672,
+    2108
+   ],
+   "measured": [
+    900,
+    714
+   ]
+  },
+  {
+   "id": "claude-monet-arm-of-the-seine-near-giverny",
+   "recorded": [
+    1219,
+    992
+   ],
+   "measured": [
+    684,
+    549
+   ]
+  },
+  {
+   "id": "claude-monet-belle-ile-rocks-cote-sauvage",
+   "recorded": [
+    850,
+    682
+   ],
+   "measured": [
+    500,
+    409
+   ]
+  },
+  {
+   "id": "henry-fuseli-thor-battering-the-midgard-serpent",
+   "recorded": [
+    2024,
+    2855
+   ],
+   "measured": [
+    1415,
+    2000
+   ]
+  },
+  {
+   "id": "paul-cezanne-la-maison-du-pendu-auvers-sur-oise",
+   "recorded": [
+    2874,
+    2328
+   ],
+   "measured": [
+    1460,
+    1200
+   ]
+  },
+  {
+   "id": "john-constable-the-opening-of-waterloo-bridge-whitehall-stai",
+   "recorded": [
+    3000,
+    1780
+   ],
+   "measured": [
+    1536,
+    912
+   ]
+  },
+  {
+   "id": "paul-cezanne-une-moderne-olympia",
+   "recorded": [
+    2193,
+    1892
+   ],
+   "measured": [
+    1411,
+    1200
+   ]
+  },
+  {
+   "id": "henri-edmond-cross-la-chevelure",
+   "recorded": [
+    2304,
+    3104
+   ],
+   "measured": [
+    643,
+    850
+   ]
+  },
+  {
+   "id": "wilhelm-trubner-ave-caesar-morituri-te-salutant",
+   "recorded": [
+    2885,
+    3552
+   ],
+   "measured": [
+    1654,
+    2042
+   ]
+  },
+  {
+   "id": "georges-seurat-seascape-at-port-en-bessin-normandy",
+   "recorded": [
+    3000,
+    2416
+   ],
+   "measured": [
+    1576,
+    1253
+   ]
+  },
+  {
+   "id": "paul-steck-ophelie",
+   "recorded": [
+    1200,
+    2031
+   ],
+   "measured": [
+    472,
+    800
+   ]
+  },
+  {
+   "id": "vincent-van-gogh-enclosed-field-with-rising-sun",
+   "recorded": [
+    2536,
+    1984
+   ],
+   "measured": [
+    751,
+    590
+   ]
+  },
+  {
+   "id": "jozef-che-monski-bitwa-pod-el-teb-kawaleria-sudanska-prze-am",
+   "recorded": [
+    3000,
+    2008
+   ],
+   "measured": [
+    800,
+    539
+   ]
+  },
+  {
+   "id": "jean-baptiste-camille-corot-bacchanal-at-the-spring-souvenir",
+   "recorded": [
+    1286,
+    1600
+   ],
+   "measured": [
+    1000,
+    1267
+   ]
+  },
+  {
+   "id": "paul-signac-setting-sun-sardine-fishing-concarneau",
+   "recorded": [
+    2000,
+    1596
+   ],
+   "measured": [
+    745,
+    590
+   ]
+  },
+  {
+   "id": "arshile-gorky-enigmatic-combat",
+   "recorded": [
+    3000,
+    2250
+   ],
+   "measured": [
+    1280,
+    962
+   ]
+  },
+  {
+   "id": "pierre-bonnard-l-amandier-en-fleurs",
+   "recorded": [
+    866,
+    1280
+   ],
+   "measured": [
+    662,
+    970
+   ]
+  },
+  {
+   "id": "vincent-van-gogh-self-portrait",
+   "recorded": [
+    3000,
+    3792
+   ],
+   "measured": [
+    1774,
+    2250
+   ]
+  }
+ ],
+ "catD_apply": [
+  {
+   "id": "fjaestad-wood-pattern",
+   "recorded": [
+    3000,
+    2438
+   ],
+   "measured": [
+    1000,
+    813
+   ]
+  },
+  {
+   "id": "fjaestad-winter-moonlight",
+   "recorded": [
+    3000,
+    2429
+   ],
+   "measured": [
+    1000,
+    810
+   ]
+  },
+  {
+   "id": "the-birth-of-venus",
+   "recorded": [
+    3000,
+    4238
+   ],
+   "measured": [
+    1239,
+    1749
+   ]
+  },
+  {
+   "id": "paule-gobillard-peignant",
+   "recorded": [
+    3000,
+    2691
+   ],
+   "measured": [
+    1500,
+    1361
+   ]
+  },
+  {
+   "id": "portrait-de-madame-claude-monet",
+   "recorded": [
+    3000,
+    3639
+   ],
+   "measured": [
+    1500,
+    1806
+   ]
+  },
+  {
+   "id": "in-the-arbour",
+   "recorded": [
+    2935,
+    2720
+   ],
+   "measured": [
+    1948,
+    1787
+   ]
+  },
+  {
+   "id": "the-open-window",
+   "recorded": [
+    2012,
+    2424
+   ],
+   "measured": [
+    1608,
+    1927
+   ]
+  },
+  {
+   "id": "the-taking-of-christ",
+   "recorded": [
+    3000,
+    2325
+   ],
+   "measured": [
+    1500,
+    1172
+   ]
+  },
+  {
+   "id": "hellelil-and-hildebrand-the-meeting-on-the-turret-stairs",
+   "recorded": [
+    1931,
+    3000
+   ],
+   "measured": [
+    1500,
+    2329
+   ]
+  },
+  {
+   "id": "simeon-in-the-temple",
+   "recorded": [
+    2828,
+    3513
+   ],
+   "measured": [
+    1000,
+    1228
+   ]
+  },
+  {
+   "id": "landscape-with-snow",
+   "recorded": [
+    1576,
+    1295
+   ],
+   "measured": [
+    980,
+    797
+   ]
+  },
+  {
+   "id": "yellow-cow",
+   "recorded": [
+    2390,
+    1767
+   ],
+   "measured": [
+    1067,
+    797
+   ]
+  },
+  {
+   "id": "graceful-ascent",
+   "recorded": [
+    3000,
+    2988
+   ],
+   "measured": [
+    980,
+    976
+   ]
+  },
+  {
+   "id": "the-lady-of-shalott",
+   "recorded": [
+    3000,
+    2302
+   ],
+   "measured": [
+    1712,
+    1314
+   ]
+  },
+  {
+   "id": "black-obelisk-of-shalmaneser-iii",
+   "recorded": [
+    3000,
+    4500
+   ],
+   "measured": [
+    1361,
+    2048
+   ]
+  },
+  {
+   "id": "mlle-irene-cahen-d-anvers",
+   "recorded": [
+    3000,
+    3610
+   ],
+   "measured": [
+    990,
+    1200
+   ]
+  },
+  {
+   "id": "two-sisters",
+   "recorded": [
+    3000,
+    3723
+   ],
+   "measured": [
+    1813,
+    2250
+   ]
+  },
+  {
+   "id": "shahnameh-of-shah-tahmasp",
+   "recorded": [
+    3000,
+    4519
+   ],
+   "measured": [
+    1458,
+    2200
+   ]
+  },
+  {
+   "id": "vincent-van-gogh-cypresse",
+   "recorded": [
+    2848,
+    3616
+   ],
+   "measured": [
+    1476,
+    1861
+   ]
+  },
+  {
+   "id": "vincent-van-gogh-korenveld-met-cipressen",
+   "recorded": [
+    3752,
+    2940
+   ],
+   "measured": [
+    10882,
+    8653
+   ]
+  },
+  {
+   "id": "franz-marc-tierschicksale",
+   "recorded": [
+    3000,
+    2202
+   ],
+   "measured": [
+    1150,
+    838
+   ]
+  },
+  {
+   "id": "peter-paul-rubens-self-portrait",
+   "recorded": [
+    3000,
+    4095
+   ],
+   "measured": [
+    1924,
+    2636
+   ]
+  },
+  {
+   "id": "arnold-bocklin-im-spiel-der-wellen",
+   "recorded": [
+    3000,
+    2279
+   ],
+   "measured": [
+    1344,
+    1018
+   ]
+  },
+  {
+   "id": "vincent-van-gogh-blick-auf-arles",
+   "recorded": [
+    2672,
+    2108
+   ],
+   "measured": [
+    900,
+    714
+   ]
+  },
+  {
+   "id": "claude-monet-arm-of-the-seine-near-giverny",
+   "recorded": [
+    1219,
+    992
+   ],
+   "measured": [
+    684,
+    549
+   ]
+  },
+  {
+   "id": "claude-monet-belle-ile-rocks-cote-sauvage",
+   "recorded": [
+    850,
+    682
+   ],
+   "measured": [
+    500,
+    409
+   ]
+  },
+  {
+   "id": "henry-fuseli-thor-battering-the-midgard-serpent",
+   "recorded": [
+    2024,
+    2855
+   ],
+   "measured": [
+    1415,
+    2000
+   ]
+  },
+  {
+   "id": "paul-cezanne-la-maison-du-pendu-auvers-sur-oise",
+   "recorded": [
+    2874,
+    2328
+   ],
+   "measured": [
+    1460,
+    1200
+   ]
+  },
+  {
+   "id": "john-constable-the-opening-of-waterloo-bridge-whitehall-stai",
+   "recorded": [
+    3000,
+    1780
+   ],
+   "measured": [
+    1536,
+    912
+   ]
+  },
+  {
+   "id": "paul-cezanne-une-moderne-olympia",
+   "recorded": [
+    2193,
+    1892
+   ],
+   "measured": [
+    1411,
+    1200
+   ]
+  },
+  {
+   "id": "henri-edmond-cross-la-chevelure",
+   "recorded": [
+    2304,
+    3104
+   ],
+   "measured": [
+    643,
+    850
+   ]
+  },
+  {
+   "id": "wilhelm-trubner-ave-caesar-morituri-te-salutant",
+   "recorded": [
+    2885,
+    3552
+   ],
+   "measured": [
+    1654,
+    2042
+   ]
+  },
+  {
+   "id": "georges-seurat-seascape-at-port-en-bessin-normandy",
+   "recorded": [
+    3000,
+    2416
+   ],
+   "measured": [
+    1576,
+    1253
+   ]
+  },
+  {
+   "id": "paul-steck-ophelie",
+   "recorded": [
+    1200,
+    2031
+   ],
+   "measured": [
+    472,
+    800
+   ]
+  },
+  {
+   "id": "vincent-van-gogh-enclosed-field-with-rising-sun",
+   "recorded": [
+    2536,
+    1984
+   ],
+   "measured": [
+    751,
+    590
+   ]
+  },
+  {
+   "id": "jozef-che-monski-bitwa-pod-el-teb-kawaleria-sudanska-prze-am",
+   "recorded": [
+    3000,
+    2008
+   ],
+   "measured": [
+    800,
+    539
+   ]
+  },
+  {
+   "id": "jean-baptiste-camille-corot-bacchanal-at-the-spring-souvenir",
+   "recorded": [
+    1286,
+    1600
+   ],
+   "measured": [
+    1000,
+    1267
+   ]
+  },
+  {
+   "id": "paul-signac-setting-sun-sardine-fishing-concarneau",
+   "recorded": [
+    2000,
+    1596
+   ],
+   "measured": [
+    745,
+    590
+   ]
+  },
+  {
+   "id": "arshile-gorky-enigmatic-combat",
+   "recorded": [
+    3000,
+    2250
+   ],
+   "measured": [
+    1280,
+    962
+   ]
+  },
+  {
+   "id": "pierre-bonnard-l-amandier-en-fleurs",
+   "recorded": [
+    866,
+    1280
+   ],
+   "measured": [
+    662,
+    970
+   ]
+  },
+  {
+   "id": "vincent-van-gogh-self-portrait",
+   "recorded": [
+    3000,
+    3792
+   ],
+   "measured": [
+    1774,
+    2250
+   ]
+  }
+ ],
+ "catE": [
+  {
+   "id": "alexej-von-jawlensky-kopf",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/5/51/LWL_Museum_f%C3%BCr_Kunst_und_Kultur-Jawlensky-Kopf_DSC5884.jpg",
+   "error": "no SOF in 64KB window"
+  },
+  {
+   "id": "berthe-morisot-study-at-the-water-s-edge",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Berthe_Morisot_-_Study_at_the_Water%27s_Edge_-_Paris_1863_%E2%80%93_1874-_Revolution_in_der_Kunst-9835_%28cropped%29.jpg",
+   "error": "no SOF in 64KB window"
+  },
+  {
+   "id": "eugene-louis-boudin-de-kust-bij-deauville",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Ein_Gef%C3%BChl_von_Sommer-Eug%C3%A8ne_Boudin-Die_K%C3%BCste_bei_Deauville-6070.jpg",
+   "error": "no SOF in 64KB window"
+  },
+  {
+   "id": "henri-de-toulouse-lautrec-madame-la-comtesse-adele-de-toulou",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Toulouse-Lautrec_-_Ad%C3%A8le_de_Toulouse-Lautrec.jpg",
+   "error": "no SOF in 64KB window"
+  },
+  {
+   "id": "henri-edmond-cross-untitled",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Douai_%28Nord%29_-_Mus%C3%A9e_de_la_Chartreuse_-_%22Le_four_des_Maures%22_%28Henri-Edmond_Cross%2C_1856-1910%29.jpg",
+   "error": "no SOF in 64KB window"
+  },
+  {
+   "id": "henry-moore-falling-warrior",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Falling_Warrior.jpg",
+   "error": "no SOF in 64KB window"
+  },
+  {
+   "id": "jean-leon-gerome-les-mouettes",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Les_mouettes_gerome_vesoul.jpg",
+   "error": "no SOF in 64KB window"
+  },
+  {
+   "id": "vertumnus-and-pomona",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Vertumne_et_Pomone_par_Camille_Claudel%2C_Paris.jpg",
+   "error": "no SOF in 64KB window"
+  },
+  {
+   "id": "vincent-van-gogh-auvers-sous-la-pluie",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Amgueddfa_Cymru_-_Glaw%2C_Auvers_-_Rain%2C_Auvers_-_2470.jpeg",
+   "error": "no SOF in 64KB window"
+  }
+ ],
+ "catF": [
+  {
+   "id": "claude-monet-charing-cross-bridge-fog",
+   "src": "harvard",
+   "recorded": "Art Gallery of Ontario",
+   "implied": "harvard-art",
+   "recQid": "Q670250",
+   "expQid": "Q3783572"
+  },
+  {
+   "id": "the-sower",
+   "src": "kroller-muller",
+   "recorded": "Van Gogh Museum",
+   "implied": "Kröller-Müller Museum",
+   "recQid": "Q224124",
+   "expQid": "Q1051928"
+  },
+  {
+   "id": "the-rhinoceros",
+   "src": "nga",
+   "recorded": "British Museum",
+   "implied": "National Gallery of Art",
+   "recQid": "Q6373",
+   "expQid": "Q214867"
+  },
+  {
+   "id": "nemesis",
+   "src": "nga",
+   "recorded": "Staatliche Kunsthalle Karlsruhe",
+   "implied": "National Gallery of Art",
+   "recQid": "Q658725",
+   "expQid": "Q214867"
+  },
+  {
+   "id": "still-life-with-gingerpot-2",
+   "src": "gugg",
+   "recorded": "Kunstmuseum Den Haag",
+   "implied": "Solomon R. Guggenheim Museum",
+   "recQid": "Q1499958",
+   "expQid": "Q201469"
+  },
+  {
+   "id": "durer-saint-michael-fighting-the-dragon",
+   "src": "nga",
+   "recorded": "Q64946756",
+   "implied": "National Gallery of Art",
+   "recQid": "Q64946756",
+   "expQid": "Q214867"
+  },
+  {
+   "id": "durer-the-triumphal-arch-of-maximilian",
+   "src": "nga",
+   "recorded": "Germanisches Nationalmuseum",
+   "implied": "National Gallery of Art",
+   "recQid": "Q478695",
+   "expQid": "Q214867"
+  },
+  {
+   "id": "goya-the-marquesa-de-pontejos",
+   "src": "nga",
+   "recorded": "Q46596638",
+   "implied": "National Gallery of Art",
+   "recQid": "Q46596638",
+   "expQid": "Q214867"
+  },
+  {
+   "id": "sargent-margaret-stuyvesant-rutherfurd-white-mrs-henry-white",
+   "src": "nga",
+   "recorded": "Corcoran Gallery of Art",
+   "implied": "National Gallery of Art",
+   "recQid": "Q768446",
+   "expQid": "Q214867"
+  },
+  {
+   "id": "jean-baptiste-camille-corot-the-repose",
+   "src": "nga",
+   "recorded": "Corcoran Gallery of Art",
+   "implied": "National Gallery of Art",
+   "recQid": "Q768446",
+   "expQid": "Q214867"
+  },
+  {
+   "id": "jean-baptiste-camille-corot-the-moored-boatman-souvenir-of-an-italian-lake",
+   "src": "nga",
+   "recorded": "Corcoran Gallery of Art",
+   "implied": "National Gallery of Art",
+   "recQid": "Q768446",
+   "expQid": "Q214867"
+  },
+  {
+   "id": "anthony-van-dyck-maddalena-cattaneo",
+   "src": "nga",
+   "recorded": "Q62101859",
+   "implied": "National Gallery of Art",
+   "recQid": "Q62101859",
+   "expQid": "Q214867"
+  }
+ ]
+}

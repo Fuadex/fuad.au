@@ -18,3 +18,6 @@ match_decisions*.json
 *.bak-*
 *.bak.*
 memory-seed.md
+
+# raw per-row measurements from audit-plates.js (2 MB, regenerable from plate_audit_cache.json)
+plate_audit_results.json
