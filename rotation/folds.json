@@ -7464,9 +7464,9 @@
    },
    {
     "from": "01 - Into The Abyss (Intro)",
-    "to": "Into The Abyss (Intro)",
+    "to": "(Into the Abyss)",
     "type": "spelling",
-    "reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+    "reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23); canonical retargeted to the MB spine spelling 2026-09-11"
    },
    {
     "from": "06 - Godhead",
@@ -7476,21 +7476,165 @@
    },
    {
     "from": "11 - Bomber (feat. Phil Campbell & Tom Angelripper)",
-    "to": "Bomber (feat. Phil Campbell & Tom Angelripper)",
+    "to": "Bomber",
     "type": "spelling",
-    "reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+    "reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23); canonical retargeted to the MB spine spelling 2026-09-11"
    },
    {
     "from": "10 - End Of The Storm (Outro)",
-    "to": "End Of The Storm (Outro)",
+    "to": "(End of the Storm)",
     "type": "spelling",
-    "reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+    "reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23); canonical retargeted to the MB spine spelling 2026-09-11"
    },
    {
     "from": "09 - Suicideology",
     "to": "Suicideology",
     "type": "spelling",
     "reason": "spelling: rip-prefix track naming (NN - Title) of the same recording; fold to canonical (ruling 2026-08-23)"
+   },
+   {
+    "from": "In Search of Sanity - 01 - As",
+    "to": "Asylum",
+    "type": "spelling",
+    "reason": "spelling: truncated rip title, DV sleeve tracklist (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
+   },
+   {
+    "from": "In Search of Sanity - 02 - In",
+    "to": "In Search Of Sanity",
+    "type": "spelling",
+    "reason": "spelling: truncated rip title, DV sleeve tracklist (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
+   },
+   {
+    "from": "In Search of Sanity - 03 - Sh",
+    "to": "Shellshock",
+    "type": "spelling",
+    "reason": "spelling: truncated rip title, DV sleeve tracklist (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
+   },
+   {
+    "from": "In Search of Sanity - 04 - Li",
+    "to": "Lightning War",
+    "type": "spelling",
+    "reason": "spelling: truncated rip title, DV sleeve tracklist (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
+   },
+   {
+    "from": "In Search of Sanity - 05 - Le",
+    "to": "Let There Be Rock",
+    "type": "spelling",
+    "reason": "spelling: truncated rip title, DV sleeve tracklist (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
+   },
+   {
+    "from": "In Search of Sanity - 06 - Bl",
+    "to": "Blood Upon The Ice",
+    "type": "spelling",
+    "reason": "spelling: truncated rip title, DV sleeve tracklist (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
+   },
+   {
+    "from": "In Search of Sanity - 07 - We",
+    "to": "Welcome To Dying",
+    "type": "spelling",
+    "reason": "spelling: truncated rip title, DV sleeve tracklist (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
+   },
+   {
+    "from": "In Search of Sanity - 08 - Po",
+    "to": "Powerplay",
+    "type": "spelling",
+    "reason": "spelling: truncated rip title, DV sleeve tracklist (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
+   },
+   {
+    "from": "In Search of Sanity - 09 - Co",
+    "to": "Confused",
+    "type": "spelling",
+    "reason": "spelling: truncated rip title, DV sleeve tracklist (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
+   },
+   {
+    "from": "The Force - 06 - Contract in",
+    "to": "Contract In Blood",
+    "type": "spelling",
+    "reason": "spelling: truncated rip title, DV sleeve tracklist (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
+   },
+   {
+    "from": "The Force - 07 - Thrash 'till",
+    "to": "Thrash Till The Death",
+    "type": "spelling",
+    "reason": "spelling: truncated rip title, DV sleeve tracklist (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
+   },
+   {
+    "from": "Skull Crusher 1",
+    "to": "Skullcrusher I",
+    "type": "spelling",
+    "reason": "spelling: same instrumental, two spellings (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
+   },
+   {
+    "from": "Skull Crusher 2",
+    "to": "Skullcrusher II",
+    "type": "spelling",
+    "reason": "spelling: same instrumental, two spellings (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
+   },
+   {
+    "from": "The Devils Legion part 1",
+    "to": "The Devil's Legion",
+    "type": "spelling",
+    "reason": "spelling: one track split into two rip rows; MB spine spelling (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
+   },
+   {
+    "from": "The Devils Legion part 2",
+    "to": "The Devil's Legion",
+    "type": "spelling",
+    "reason": "spelling: one track split into two rip rows; MB spine spelling (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
+   },
+   {
+    "from": "The Devils Legion",
+    "to": "The Devil's Legion",
+    "type": "spelling",
+    "reason": "spelling: MB spine spelling (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
+   },
+   {
+    "from": "Damnation Onslaught",
+    "to": "Damnation / Onslaught (Power from Hell)",
+    "type": "spelling",
+    "reason": "spelling: the intro and the name-song in one file; MB spine title for the 2011 remaster (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
+   },
+   {
+    "from": "Onslaught (Power From Hell)",
+    "to": "Damnation / Onslaught (Power from Hell)",
+    "type": "spelling",
+    "reason": "spelling: MB spine title (the 2011 remaster combines the intro and the name-song) (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
+   },
+   {
+    "from": "A Prayer For The Dead",
+    "to": "Prayer for the Dead",
+    "type": "spelling",
+    "reason": "spelling: MB spine / sleeve title without the leading A (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
+   },
+   {
+    "from": "Into the Abyss (Intro)",
+    "to": "(Into the Abyss)",
+    "type": "spelling",
+    "reason": "spelling: MB spine spelling of the intro (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
+   },
+   {
+    "from": "End of the Storm (Outro)",
+    "to": "(End of the Storm)",
+    "type": "spelling",
+    "reason": "spelling: MB spine spelling of the outro (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
+   },
+   {
+    "from": "Seeds of Hate",
+    "to": "Planting Seeds of Hate",
+    "type": "variant",
+    "reason": "variant: Live Damnation rendition under the shortened title (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
+   },
+   {
+    "from": "Power From Hell (live)",
+    "to": "Damnation / Onslaught (Power from Hell)",
+    "type": "variant",
+    "reason": "variant: Live Damnation rendition of the name-song (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
+   },
+   {
+    "from": "Power from hell/Angels of death (live)",
+    "to": "Damnation / Onslaught (Power from Hell)",
+    "type": "variant",
+    "reason": "variant: 1993 bonus live medley; carries the name-song read (applied via sync-csv remap 2026-09-11; ledgered after the fact)"
    }
   ]
  },
@@ -15388,6 +15532,24 @@
    "track": "Get Up! (feat. Skrillex)",
    "toAlbum": "The Path of Totality",
    "reason": "DV-confirmed re-home (korn campaign 2026-09-02): library buckets the row under The Paradigm Shift; Get Up! is The Path of Totality's lead single (2011)"
+  },
+  {
+   "artist": "Onslaught",
+   "track": "Let There Be Rock (AC/DC Cover)",
+   "toAlbum": "The Force",
+   "reason": "the library \"Let There Be Rock\" album row = the 1993 Japanese The Force bonus set (DV 2026-09-11); applied via sync-csv ALBUM_REMAP, ledgered after the fact"
+  },
+  {
+   "artist": "Onslaught",
+   "track": "Metal Forces (Live)",
+   "toAlbum": "The Force",
+   "reason": "as above"
+  },
+  {
+   "artist": "Onslaught",
+   "track": "Power from hell/Angels of death (live)",
+   "toAlbum": "The Force",
+   "reason": "as above"
   }
  ]
 }
