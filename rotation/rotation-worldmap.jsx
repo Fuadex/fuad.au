@@ -852,127 +852,123 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
       {calSlot && <div className="mp-cal" style={{ marginTop: "var(--gap)" }}>{calSlot}</div>}
 
       {/* results — top artists + albums + songs + DNA for the current place ∩ genre ∩ year (no place needed) */}
-      {(() => {
-        return (
-          <div className="r-card mp-results" style={{ marginTop: "var(--gap)", padding: 22 }}>
-            {/* top margin 16 -> 0: it stood this row off the scope header, which now lives up in the
-                view head, so the card padding is the whole gap. (Fuad 2026-09-13) */}
-            <div className="mp-resctl" style={{ display: "flex", alignItems: "center", gap: "8px 10px", flexWrap: "wrap", margin: "0 0 14px" }}>
-              {/* r-seg-sm — the SAME variant class as the flowmap's genres/bands segment, not a
-                  local pixel copy of its numbers (that copy is what kept drifting; Fuad 2026-08-24:
-                  make them match by construction). */}
-              <div className="r-seg r-seg-sm">
-                {[["artists", "artists"], ["albums", "albums"], ["songs", "songs"], ["dna", "dna"]].map(([k, l]) => <button key={k} data-on={pane === k} onClick={() => { setPane(k); if (k === "albums" || k === "songs") ensureADetail(); }}>{l}</button>)}
-              </div>
-              {/* artists list/grid: word buttons replaced with the calendar's icon toggle (Fuad 2026-08-24) */}
-              {pane === "artists" && <div className="r-seg r-seg-sm cal-view-seg" title="list / grid view">
-                <button data-on={disp === "list"} onClick={() => setDisp("list")} title="list view">
+        <div className="r-card mp-results" style={{ marginTop: "var(--gap)", padding: 22 }}>
+          {/* top margin 16 -> 0: it stood this row off the scope header, which now lives up in the
+              view head, so the card padding is the whole gap. (Fuad 2026-09-13) */}
+          <div className="mp-resctl" style={{ display: "flex", alignItems: "center", gap: "8px 10px", flexWrap: "wrap", margin: "0 0 14px" }}>
+            {/* r-seg-sm — the SAME variant class as the flowmap's genres/bands segment, not a
+                local pixel copy of its numbers (that copy is what kept drifting; Fuad 2026-08-24:
+                make them match by construction). */}
+            <div className="r-seg r-seg-sm">
+              {[["artists", "artists"], ["albums", "albums"], ["songs", "songs"], ["dna", "dna"]].map(([k, l]) => <button key={k} data-on={pane === k} onClick={() => { setPane(k); if (k === "albums" || k === "songs") ensureADetail(); }}>{l}</button>)}
+            </div>
+            {/* artists list/grid: word buttons replaced with the calendar's icon toggle (Fuad 2026-08-24) */}
+            {pane === "artists" && <div className="r-seg r-seg-sm cal-view-seg" title="list / grid view">
+              <button data-on={disp === "list"} onClick={() => setDisp("list")} title="list view">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <line x1="4" y1="2" x2="12" y2="2"/><line x1="4" y1="6" x2="12" y2="6"/><line x1="4" y1="10" x2="12" y2="10"/>
+                  <rect x="0" y="0.5" width="2.5" height="2.5" rx="0.5"/><rect x="0" y="4.5" width="2.5" height="2.5" rx="0.5"/><rect x="0" y="8.5" width="2.5" height="2.5" rx="0.5"/>
+                </svg>
+              </button>
+              <button data-on={disp === "grid"} onClick={() => setDisp("grid")} title="grid view">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <rect x="0" y="0" width="5" height="5" rx="1"/><rect x="7" y="0" width="5" height="5" rx="1"/>
+                  <rect x="0" y="7" width="5" height="5" rx="1"/><rect x="7" y="7" width="5" height="5" rx="1"/>
+                </svg>
+              </button>
+            </div>}
+            {(pane === "albums" || pane === "songs") && (
+              <div className="r-seg r-seg-sm cal-view-seg" title="list / grid view">
+                <button data-on={resView === "list"} onClick={() => setResViewPersist("list")} title="list view">
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
                     <line x1="4" y1="2" x2="12" y2="2"/><line x1="4" y1="6" x2="12" y2="6"/><line x1="4" y1="10" x2="12" y2="10"/>
                     <rect x="0" y="0.5" width="2.5" height="2.5" rx="0.5"/><rect x="0" y="4.5" width="2.5" height="2.5" rx="0.5"/><rect x="0" y="8.5" width="2.5" height="2.5" rx="0.5"/>
                   </svg>
                 </button>
-                <button data-on={disp === "grid"} onClick={() => setDisp("grid")} title="grid view">
+                <button data-on={resView === "grid"} onClick={() => setResViewPersist("grid")} title="grid view">
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
                     <rect x="0" y="0" width="5" height="5" rx="1"/><rect x="7" y="0" width="5" height="5" rx="1"/>
                     <rect x="0" y="7" width="5" height="5" rx="1"/><rect x="7" y="7" width="5" height="5" rx="1"/>
                   </svg>
                 </button>
-              </div>}
-              {(pane === "albums" || pane === "songs") && (
-                <div className="r-seg r-seg-sm cal-view-seg" title="list / grid view">
-                  <button data-on={resView === "list"} onClick={() => setResViewPersist("list")} title="list view">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <line x1="4" y1="2" x2="12" y2="2"/><line x1="4" y1="6" x2="12" y2="6"/><line x1="4" y1="10" x2="12" y2="10"/>
-                      <rect x="0" y="0.5" width="2.5" height="2.5" rx="0.5"/><rect x="0" y="4.5" width="2.5" height="2.5" rx="0.5"/><rect x="0" y="8.5" width="2.5" height="2.5" rx="0.5"/>
-                    </svg>
-                  </button>
-                  <button data-on={resView === "grid"} onClick={() => setResViewPersist("grid")} title="grid view">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <rect x="0" y="0" width="5" height="5" rx="1"/><rect x="7" y="0" width="5" height="5" rx="1"/>
-                      <rect x="0" y="7" width="5" height="5" rx="1"/><rect x="7" y="7" width="5" height="5" rx="1"/>
-                    </svg>
-                  </button>
-                </div>
-              )}
+              </div>
+            )}
 
-            </div>
-            {/* year-slice note = footnote-grade (Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
-            {!periodData && yearIdx != null && (pane === "albums" || pane === "songs") && <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginBottom: 8 }}>albums &amp; songs aren't split by year — showing all-time for this slice.</div>}
-            <div className="mp-resbody">
-            {pane === "artists" && (resultArtists.length
-              ? (disp === "grid"
-                // r-hovgrid / r-hovtile / -art / -lbl: the accent ring the artist page puts on its
-                // albums and sounds-like tiles. r-hovgrid pads top and left so the ring, drawn
-                // outside the tile box, is not clipped by the grid edge. (Fuad 2026-09-13)
-                ? <div className="mp-covergrid r-hovgrid">{resultArtists.slice(0, shownN).map((e, i) => { const a = e.a, kept = !!R.byId[a.id] || !!(R.expById && R.expById[a.id]); return (
-                    <div key={a.id} className={"mp-coveritem" + (kept ? " r-hovtile" : "")} data-link={kept} onClick={() => kept && go("artist", a.id)}>
-                      <div className="r-hovtile-art" style={{ position: "relative" }}><GenCover hue={a.hue || 210} name={a.name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
-                        <span className="r-mono" style={{ position: "absolute", top: 4, left: 5, fontSize: 8.5, color: "rgba(255,255,255,.85)", textShadow: "0 1px 2px #000" }}>{String(i + 1).padStart(2, "0")}</span></div>
-                      <div className="mp-covernm r-hovtile-lbl">{a.name}</div><div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>{fmt(e.p)}</div></div>); })}</div>
-                : <div className="cal-rows">{resultArtists.slice(0, shownN).map((e, i) => { const a = e.a, kept = !!R.byId[a.id] || !!(R.expById && R.expById[a.id]); return (
-                    <div key={a.id} className="cal-row" data-link={kept} onClick={() => kept && go("artist", a.id)}>
-                      <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span><GenCover hue={a.hue || 210} name={a.name} size={34} radius={3} />
-                      <span className="cal-nm">{a.name}</span><span className="cal-pl">{fmt(e.p)}</span></div>); })}</div>)
-              : <div style={{ color: "var(--ink-soft)" }}>Nothing matches this filter.</div>)}
-            {(pane === "albums" || pane === "songs") && (() => {
-              const isSongs = pane === "songs";
-              const rows = isSongs ? resultMedia.songs : resultMedia.albums;
-              if (!rows.length) return <div style={{ color: "var(--ink-soft)", fontFamily: "var(--mono)", fontSize: 12 }}>{adetail ? "Nothing here." : "loading…"}</div>;
-              const shown = rows.slice(0, shownN);
-              if (resView === "grid") return (
-                <div className="mp-medgrid">{shown.map((r, i) => {
-                  const hue = (R.byId[r.aid] || {}).hue || 210;
-                  const ck3 = r.title + "\x00" + r.artist;
-                  const albumCover = isSongs ? (songAlbumCover[ck3] || "") : (albumCoverMap2[ck3] || "");
-                  const mid = R.slug(r.artist) + "~" + R.slug(r.title);
-                  return (
-                    <div key={r.aid + "|" + r.title + i} className="mp-medtile" data-link={true} onClick={() => go(isSongs ? "track" : "album", mid)} title={r.title}>
-                      <GenCover hue={hue} name={r.title} image={albumCover} thumb={albumCover} size="100%" style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={3} />
-                      <div className="mp-medtile-title">{r.title}</div>
-                      <div className="mp-medtile-plays">{isSongs ? r.artist + " · " : ""}{fmt(r.plays)}</div>
-                    </div>
-                  );
-                })}</div>
-              );
-              return <div className="cal-rows">{shown.map((r, i) => {
+          </div>
+          {/* year-slice note = footnote-grade (Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
+          {!periodData && yearIdx != null && (pane === "albums" || pane === "songs") && <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginBottom: 8 }}>albums &amp; songs aren't split by year — showing all-time for this slice.</div>}
+          <div className="mp-resbody">
+          {pane === "artists" && (resultArtists.length
+            ? (disp === "grid"
+              // r-hovgrid / r-hovtile / -art / -lbl: the accent ring the artist page puts on its
+              // albums and sounds-like tiles. r-hovgrid pads top and left so the ring, drawn
+              // outside the tile box, is not clipped by the grid edge. (Fuad 2026-09-13)
+              ? <div className="mp-covergrid r-hovgrid">{resultArtists.slice(0, shownN).map((e, i) => { const a = e.a, kept = !!R.byId[a.id] || !!(R.expById && R.expById[a.id]); return (
+                  <div key={a.id} className={"mp-coveritem" + (kept ? " r-hovtile" : "")} data-link={kept} onClick={() => kept && go("artist", a.id)}>
+                    <div className="r-hovtile-art" style={{ position: "relative" }}><GenCover hue={a.hue || 210} name={a.name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
+                      <span className="r-mono" style={{ position: "absolute", top: 4, left: 5, fontSize: 8.5, color: "rgba(255,255,255,.85)", textShadow: "0 1px 2px #000" }}>{String(i + 1).padStart(2, "0")}</span></div>
+                    <div className="mp-covernm r-hovtile-lbl">{a.name}</div><div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>{fmt(e.p)}</div></div>); })}</div>
+              : <div className="cal-rows">{resultArtists.slice(0, shownN).map((e, i) => { const a = e.a, kept = !!R.byId[a.id] || !!(R.expById && R.expById[a.id]); return (
+                  <div key={a.id} className="cal-row" data-link={kept} onClick={() => kept && go("artist", a.id)}>
+                    <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span><GenCover hue={a.hue || 210} name={a.name} size={34} radius={3} />
+                    <span className="cal-nm">{a.name}</span><span className="cal-pl">{fmt(e.p)}</span></div>); })}</div>)
+            : <div style={{ color: "var(--ink-soft)" }}>Nothing matches this filter.</div>)}
+          {(pane === "albums" || pane === "songs") && (() => {
+            const isSongs = pane === "songs";
+            const rows = isSongs ? resultMedia.songs : resultMedia.albums;
+            if (!rows.length) return <div style={{ color: "var(--ink-soft)", fontFamily: "var(--mono)", fontSize: 12 }}>{adetail ? "Nothing here." : "loading…"}</div>;
+            const shown = rows.slice(0, shownN);
+            if (resView === "grid") return (
+              <div className="mp-medgrid">{shown.map((r, i) => {
                 const hue = (R.byId[r.aid] || {}).hue || 210;
                 const ck3 = r.title + "\x00" + r.artist;
                 const albumCover = isSongs ? (songAlbumCover[ck3] || "") : (albumCoverMap2[ck3] || "");
                 const mid = R.slug(r.artist) + "~" + R.slug(r.title);
                 return (
-                  <div key={r.aid + "|" + r.title + i} className="cal-row" data-link={true} onClick={() => go(isSongs ? "track" : "album", mid)} title={`${r.title} →`}>
-                    <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span>
-                    <GenCover hue={hue} name={r.title} image={albumCover} thumb={albumCover} size={34} radius={3} />
-                    <div style={{ minWidth: 0, flex: 1 }}><div className="cal-nm" style={{ fontStyle: "italic" }}>{r.title}</div><div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{r.artist}</div></div>
-                    <span className="cal-pl">{fmt(r.plays)}</span>
+                  <div key={r.aid + "|" + r.title + i} className="mp-medtile" data-link={true} onClick={() => go(isSongs ? "track" : "album", mid)} title={r.title}>
+                    <GenCover hue={hue} name={r.title} image={albumCover} thumb={albumCover} size="100%" style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={3} />
+                    <div className="mp-medtile-title">{r.title}</div>
+                    <div className="mp-medtile-plays">{isSongs ? r.artist + " · " : ""}{fmt(r.plays)}</div>
                   </div>
                 );
-              })}</div>;
-            })()}
-            {pane === "dna" && (resultDNA
-              ? <div style={{ display: "flex", justifyContent: "center", padding: "6px 0" }}><div style={{ maxWidth: 340, width: "100%" }}>
-                  <Radar axes={["NRG", "MOOD", "ACOU", "BPM", "DANCE", "INSTR"]} values={resultDNA} values2={avg} run={true} size={300} />
-                  <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 6 }}>solid = this slice · dashed = your average</div></div></div>
-              : <div style={{ color: "var(--ink-soft)" }}>No DNA for this slice.</div>)}
-            {/* show-more: extends past the 10/25/50 baseline in 25s, so a deep slice can be read
-                all the way down without making 200 the persisted default (Fuad 2026-08-09) */}
-            {pane !== "dna" && (() => {
-              const total = pane === "artists" ? resultArtists.length
-                : pane === "songs" ? resultMedia.songs.length : resultMedia.albums.length;
-              if (total <= shownN) return null;
-              const next = Math.min(25, total - shownN);
+              })}</div>
+            );
+            return <div className="cal-rows">{shown.map((r, i) => {
+              const hue = (R.byId[r.aid] || {}).hue || 210;
+              const ck3 = r.title + "\x00" + r.artist;
+              const albumCover = isSongs ? (songAlbumCover[ck3] || "") : (albumCoverMap2[ck3] || "");
+              const mid = R.slug(r.artist) + "~" + R.slug(r.title);
               return (
-                <div className="mp-more">
-                  <button onClick={() => setExtra(x => x + 25)}>show {next} more</button>
-                  <span className="r-mono">{shownN} of {fmt(total)}</span>
+                <div key={r.aid + "|" + r.title + i} className="cal-row" data-link={true} onClick={() => go(isSongs ? "track" : "album", mid)} title={`${r.title} →`}>
+                  <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span>
+                  <GenCover hue={hue} name={r.title} image={albumCover} thumb={albumCover} size={34} radius={3} />
+                  <div style={{ minWidth: 0, flex: 1 }}><div className="cal-nm" style={{ fontStyle: "italic" }}>{r.title}</div><div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{r.artist}</div></div>
+                  <span className="cal-pl">{fmt(r.plays)}</span>
                 </div>
               );
-            })()}
-            </div>
+            })}</div>;
+          })()}
+          {pane === "dna" && (resultDNA
+            ? <div style={{ display: "flex", justifyContent: "center", padding: "6px 0" }}><div style={{ maxWidth: 340, width: "100%" }}>
+                <Radar axes={["NRG", "MOOD", "ACOU", "BPM", "DANCE", "INSTR"]} values={resultDNA} values2={avg} run={true} size={300} />
+                <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", textAlign: "center", marginTop: 6 }}>solid = this slice · dashed = your average</div></div></div>
+            : <div style={{ color: "var(--ink-soft)" }}>No DNA for this slice.</div>)}
+          {/* show-more: extends past the 10/25/50 baseline in 25s, so a deep slice can be read
+              all the way down without making 200 the persisted default (Fuad 2026-08-09) */}
+          {pane !== "dna" && (() => {
+            const total = pane === "artists" ? resultArtists.length
+              : pane === "songs" ? resultMedia.songs.length : resultMedia.albums.length;
+            if (total <= shownN) return null;
+            const next = Math.min(25, total - shownN);
+            return (
+              <div className="mp-more">
+                <button onClick={() => setExtra(x => x + 25)}>show {next} more</button>
+                <span className="r-mono">{shownN} of {fmt(total)}</span>
+              </div>
+            );
+          })()}
           </div>
-        );
-      })()}
+        </div>
       </div>
 
       <style>{`.map-ctl { display: flex; gap: 14px 18px; flex-wrap: wrap; align-items: center; margin-top: 6px; }
