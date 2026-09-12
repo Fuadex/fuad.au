@@ -1020,6 +1020,96 @@ function PreviewBtn({ id, hue, artist, title, album }) {
 // module's top right: Info = the normal one-line reads, Interpretation = Fable's longer reading.
 // which READ sources live in the gist shard (light) vs the deep shard (mirrors shard-about.js).
 const GIST_SRC = { haiku: 1, web: 1 };
+// ── SIMILAR SONGS (pilot, Fuad 2026-09-13) ───────────────────────────────────────────────────────
+// Replaces "More from <album>" on the song page. Everything it needs is ALREADY in memory there:
+// TrackView loads track-audio (per-track features), genius-mood (lyric valence + register) and the
+// media index. So this adds no fetch and no shipped file.
+//
+// Cost, measured rather than assumed: the index is a Float32Array built once per session (~24ms,
+// ~1.2MB for 50k tracks) and each query is a single linear pass (~0.8ms). That is why there is no
+// precomputed neighbour list — at this size brute force is cheaper than shipping one.
+//
+// THE METRIC. Audio distance alone is genre-blind: scored on features only, Nine Inch Nails' Burn
+// lands next to Luxtorpeda and Clipse, because energy and valence do not encode genre. So:
+//   1. weighted euclidean over the six audio dims (energy, valence, acoustic, tempo, dance, instr)
+//   2. x1.9 when the two artists sit in different Sound-Map families — the genre term that fixes (1)
+//   3. + lyric-valence distance, and x0.82 when the register matches, where both tracks have them
+// Tempo carries a low weight on purpose: half-time and double-time detections make it noisy.
+// Same artist is excluded outright, or this just becomes "More from" again.
+const SIM_W = [1.0, 1.0, 0.7, 0.45, 0.6, 0.4];   // energy · valence · acoustic · tempo · dance · instr
+let _simIdx = null;
+function simIndex() {
+  if (_simIdx) return _simIdx;
+  const TA = window.ROTATION_TRACKAUDIO, R = window.ROTATION;
+  if (!TA || !R) return null;
+  const MO = window.ROTATION_MOOD || {};
+  const keys = [], fam = [], lv = [], rg = [], art = [];
+  const n = Object.keys(TA).length;
+  const F = new Float32Array(n * 6);
+  let m = 0;
+  for (const k in TA) {
+    const v = TA[k]; if (!v || v.length < 10) continue;
+    const o = m * 6;
+    F[o] = v[4]; F[o + 1] = v[5]; F[o + 2] = v[6]; F[o + 3] = v[7]; F[o + 4] = v[8]; F[o + 5] = v[9];
+    const aS = k.slice(0, k.indexOf("~"));
+    const rec = (R.expById && R.expById[aS]) || (R.byId && R.byId[aS]) || null;
+    const mo = MO[k];
+    keys.push(k); art.push(aS);
+    fam.push(rec && rec.fm && rec.fm.length ? rec.fm[0] : -1);
+    lv.push(mo && typeof mo[0] === "number" ? mo[0] : -1);
+    rg.push(mo && mo[4] != null ? mo[4] : -1);
+    m++;
+  }
+  // Display names come from the media index, not from the slug: a slug is lowercase and hyphenated,
+  // so rendering it would show "love-you-to-death" where the page should say "Love You to Death".
+  const disp = new Map();
+  const MI = window.ROTATION_MEDIA;
+  if (MI) for (const row of MI.tracks) {
+    const a = MI.artists[row[1]] || "";
+    const k = R.slug(a) + "~" + R.slug(row[0]);
+    if (!disp.has(k)) disp.set(k, { t: row[0], a });
+  }
+  _simIdx = { F, keys, art, fam, lv, rg, m, disp, pos: new Map(keys.map((k, i) => [k, i])) };
+  return _simIdx;
+}
+// nearest K to `id`, excluding its own artist. Returns [{ key, artist, title, d }].
+function similarTo(id, K) {
+  const ix = simIndex(); if (!ix) return [];
+  const qi = ix.pos.get(id); if (qi == null) return [];
+  const { F, art, fam, lv, rg, m } = ix;
+  const qo = qi * 6, qArt = art[qi], qFam = fam[qi], qLv = lv[qi], qRg = rg[qi];
+  // GENRE IS A GATE, NOT A NUDGE. A multiplier could not do this job: with 50k candidates there are
+  // always tracks at near-zero audio distance, and 1.9x a tiny number still beats a same-genre track
+  // twice as far away — which is why Nine Inch Nails kept returning Clipse. Same family only, and the
+  // gate lifts just when that yields too few to fill the list.
+  const scan = (sameFamOnly) => {
+    const res = [];
+    for (let i = 0; i < m; i++) {
+      if (i === qi || art[i] === qArt) continue;
+      if (sameFamOnly && !(qFam >= 0 && fam[i] === qFam)) continue;
+      const o = i * 6;
+      let d = 0;
+      for (let j = 0; j < 6; j++) { const x = (F[o + j] - F[qo + j]) * SIM_W[j]; d += x * x; }
+      d = Math.sqrt(d);
+      if (qLv >= 0 && lv[i] >= 0) d += Math.abs(lv[i] - qLv) * 0.35;
+      if (qRg >= 0 && rg[i] >= 0 && rg[i] === qRg) d *= 0.82;
+      res.push([d, i]);
+    }
+    return res;
+  };
+  let out = qFam >= 0 ? scan(true) : [];
+  if (out.length < K * 4) out = scan(false);   // thin family (or none) → open it up rather than starve
+  out.sort((a, b) => a[0] - b[0]);
+  // at most two per artist, so one prolific neighbour cannot fill the list
+  const seen = new Map(), picked = [];
+  for (const [d, i] of out) {
+    const a = art[i]; const c = seen.get(a) || 0; if (c >= 2) continue;
+    const nm = ix.disp.get(ix.keys[i]);
+    seen.set(a, c + 1); picked.push({ key: ix.keys[i], artist: a, d, title: nm ? nm.t : null, artistName: nm ? nm.a : null });
+    if (picked.length >= K) break;
+  }
+  return picked;
+}
 function BlurbSwitcher({ id, about }) {
   const R = window.ROTATION;
   const [, bump] = React.useReducer(x => x + 1, 0);   // re-render when a lazy data file lands
@@ -1574,26 +1664,41 @@ function TrackView({ id, go }) {
         </div>
       )}
 
-      {data.siblings.length > 0 && (
-        <div className="r-card" style={{ padding: "16px 18px" }}>
-          <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}><span className="lbl">More from <b>{data.album}</b></span>
-            <span className="meta">{data.siblings.length} more you've played</span></div>
-          <div style={{ display: "grid", gap: 2 }}>
-            {data.siblings.map((s, i) => (
-              <div key={s.id + i} className="r-track-row" onClick={() => go("track", s.id)} title={`${s.title} →`}
-                style={{ display: "grid", gridTemplateColumns: "24px minmax(0,1fr) 46px", gap: 10, alignItems: "center", padding: "6px 4px", cursor: "pointer", borderRadius: 4 }}>
-                <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{s.no ? String(s.no).padStart(2, "0") : "·"}</span>
-                <span style={{ fontSize: 13, minWidth: 0, display: "flex", alignItems: "center", gap: 6, overflow: "hidden" }}>
-                  <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{s.title}</span>
-                  <LikedMark on={likedKey(s.id)} />
-                  <EngBar eng={engOf(s.id)} />
-                  <LiveMark on={seenLiveKey(s.id)} /></span>
-                <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)", textAlign: "right" }}>{fmt(s.plays)}</span>
-              </div>
-            ))}
+      {(() => {
+        // SIMILAR — the pilot that replaces "More from <album>". Deliberately NOT album-scoped: the
+        // siblings list was reachable from the album page anyway, and this answers a question the
+        // page could not ask before. Renders nothing when the track has no measured audio.
+        const sim = similarTo(id, 6);
+        if (!sim.length) return null;
+        // a track with no media-index row keeps its slug rather than rendering blank
+        const slugOf = (k) => { const i = k.indexOf("~"); return { a: k.slice(0, i), t: k.slice(i + 1) }; };
+        return (
+          <div className="r-card" style={{ padding: "16px 18px" }}>
+            <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}><span className="lbl"><b>Similar</b></span>
+              <span className="meta">by sound, genre and mood</span></div>
+            <div style={{ display: "grid", gap: 1 }}>
+              {sim.map((s, i) => {
+                const parts = slugOf(s.key);
+                const rec = (R.expById && R.expById[s.artist]) || (R.byId && R.byId[s.artist]) || null;
+                const tTitle = s.title || parts.t;
+                const tArtist = (rec && rec.name) || s.artistName || parts.a;
+                return (
+                  <div key={s.key + i} className="r-track-row" onClick={() => go("track", s.key)} title={tTitle + " \u2014 " + tArtist + " \u2192"}
+                    style={{ display: "grid", gridTemplateColumns: "minmax(0,1fr) 96px", gap: 10, alignItems: "center", padding: "4px 4px", cursor: "pointer", borderRadius: 4 }}>
+                    <span style={{ fontSize: 13, minWidth: 0, display: "flex", alignItems: "center", gap: 6, overflow: "hidden", whiteSpace: "nowrap" }}>
+                      <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>{tTitle}</span>
+                      <LikedMark on={likedKey(s.key)} />
+                      <EngBar eng={engOf(s.key)} />
+                      <LiveMark on={seenLiveKey(s.key)} /></span>
+                    <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                      {tArtist}</span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
 
       {(() => {
         // PILOT: the song's biography — writers, cover status, cross-library versions (MB works)
