@@ -4733,7 +4733,10 @@ function qualifyingSubs(name, s) {
   // the two count scales aren't comparable, so each is thresholded against its own source max).
   const lfBy = new Map(), dgBy = new Map();
   for (const [tag, count] of cachedTags(name)) { const c = canonSub(tag); if (subIdxByName.has(c)) lfBy.set(c, Math.max(lfBy.get(c) || 0, count || 0)); }
-  for (const [tag] of ((META[name] && META[name].tags) || []).map(t => Array.isArray(t) ? t : [t, 100])) { const c = canonSub(tag); if (subIdxByName.has(c)) lfBy.set(c, Math.max(lfBy.get(c) || 0, 100)); }
+  // META tags used to be folded in here at a flat 100 — the maximum last.fm weight — so the mock
+  // table did not just lead the display order, it also guaranteed its own terms passed the filter
+  // gate. Dropped with the vocabulary change (Fuad 2026-09-13); the gate now sees measured counts
+  // only.
   for (const st of stylesCountOf(name)) { const c = canonSub(String(st[0]).toLowerCase()); if (subIdxByName.has(c)) dgBy.set(c, Math.max(dgBy.get(c) || 0, st[1] || 0)); }
   const lfMax = Math.max(0, ...lfBy.values()), dgMax = Math.max(0, ...dgBy.values());
   const nameBySub = new Map(); for (const [nm, i] of subIdxByName) if (!nameBySub.has(i)) nameBySub.set(i, nm);
@@ -4757,12 +4760,45 @@ for (const [name, plays] of rankedArtists) {
   // are mostly mis-scrobbles and radio spillover.
   if (plays < 3) continue;
   if (NONMUSIC.has(name)) continue;   // "inapplicable" — not music, keep off the genre map
-  const meta = META[name];
-  // subgenre membership from last.fm tags AND Discogs styles — the latter reaches the ~6000
-  // artists we have Discogs data for, well past last.fm's tag coverage.
-  const vocab = [...((meta && meta.tags) || []), ...cachedTags(name).map(t => t[0]), ...stylesOf(name).map(s => s.toLowerCase())];
-  const seen = new Set(), s = [];
-  for (const tg of vocab) { const i = subIdxByName.get(canonSub(tg)); if (i != null && !seen.has(i)) { seen.add(i); s.push(i); } }
+  // WEIGHTED SUBGENRE ORDER (Fuad 2026-09-13). This was first-appearance order over
+  // [META.tags, last.fm, Discogs]: no weighting at all, Spotify absent entirely, and the
+  // mock-curated META table — 44 rows, never edited since the file was first committed —
+  // leading the list. That is why Nine Inch Nails read "industrial rock" before "industrial"
+  // when last.fm scores them 100 against 78 and Discogs 48 against nothing, and why Deftones
+  // led on alternative metal when all three sources say nu-metal first.
+  //
+  // Every source now votes with the SAME constants _voteArtist uses for the family, so the chips
+  // and the family finally share one trust model:
+  //   last.fm  1.0 x (count / this artist's top count)  — the only source with real per-tag weight
+  //   spotify  0.7 flat                                  — it ships an unranked list, no counts
+  //   discogs  0.5 x (count / this artist's top count)
+  // Ties go to the term more services named, then alphabetically, so a rebuild is byte-stable.
+  // META keeps supplying hue / country / similar / audio; it just no longer steers the genres.
+  // Inputs keep the caps the display paths already used: Discogs 5 (stylesOf has sliced to 5 since
+  // the file was written — its long tail runs to 14 styles on Nine Inch Nails, one-release noise
+  // like "Concert Film" and "House") and Spotify 6 (what the artist rail shows). Without them the
+  // scorer swept up every straggler and Bring Me the Horizon went from 5 chips to 17. last.fm needs
+  // no cap: the tag cache stores ~5 per artist already.
+  const _gLf = cachedTags(name);
+  const _gDg = stylesCountOf(name).slice(0, 5);
+  const _gSp = (aliasedByName(SPOTGEN, name) || []).slice(0, 6);
+  const _gLfMax = Math.max(1, ..._gLf.map(x => x[1] || 0));
+  const _gDgMax = Math.max(1, ..._gDg.map(x => x[1] || 0));
+  const _score = new Map(), _srcs = new Map();
+  const _bump = (term, val, src) => {
+    const i = subIdxByName.get(canonSub(term)); if (i == null) return;
+    _score.set(i, (_score.get(i) || 0) + val);
+    if (!_srcs.has(i)) _srcs.set(i, new Set());
+    _srcs.get(i).add(src);
+  };
+  for (const [tg, c] of _gLf) _bump(tg, (c || 0) / _gLfMax, "lf");
+  for (const g of _gSp) _bump(g, 0.7, "sp");
+  for (const [st, c] of _gDg) _bump(String(st).toLowerCase(), 0.5 * ((c || 0) / _gDgMax), "dg");
+  const s = [..._score.entries()].sort((a, b) =>
+    (b[1] - a[1]) ||
+    (_srcs.get(b[0]).size - _srcs.get(a[0]).size) ||
+    String((SUBS[a[0]] || {}).name || "").localeCompare((SUBS[b[0]] || {}).name || "")
+  ).map(e => e[0]);
   if (!s.length) {
     // family fallback: no SPECIFIC subgenre matched (the artist's tags are only generic umbrellas
     // like "rock" / "alternative rock", which are deliberately excluded from the subgenre vocab),
