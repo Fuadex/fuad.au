@@ -469,6 +469,72 @@
     "to": "SWITCH OFF THE LIGHT",
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
+   },
+   {
+    "from": "Twisted",
+    "to": "ROCKWAVE",
+    "type": "absorb",
+    "reason": "single (Nov 2025 EP) later collected as Rockwave track 2 — DV 2026-09-12"
+   },
+   {
+    "from": "SWITCH OFF THE LIGHT",
+    "to": "ROCKWAVE",
+    "type": "absorb",
+    "reason": "single (Oct 2025) later Rockwave track 5 — DV 2026-09-12"
+   },
+   {
+    "from": "ALL ABOUT THE TIME",
+    "to": "ROCKWAVE",
+    "type": "absorb",
+    "reason": "single (2025) reworked into Rockwave track 8 — DV 2026-09-12"
+   },
+   {
+    "from": "ANGER",
+    "to": "NOW YOU KNOW MY NAME",
+    "type": "absorb",
+    "reason": "single (Jul 2022) later Now You Know My Name track 11 — DV 2026-09-12"
+   },
+   {
+    "from": "NEUROFUNK",
+    "to": "NOW YOU KNOW MY NAME",
+    "type": "absorb",
+    "reason": "single (Aug 2022) later track 5 — DV 2026-09-12"
+   },
+   {
+    "from": "SOLID STATE SOCIETY",
+    "to": "NOW YOU KNOW MY NAME",
+    "type": "absorb",
+    "reason": "single (Dec 2022) later track 3 — DV 2026-09-12"
+   },
+   {
+    "from": "AZATHOTH",
+    "to": "NOW YOU KNOW MY NAME",
+    "type": "absorb",
+    "reason": "single (Oct 2023) later track 13 — DV 2026-09-12"
+   },
+   {
+    "from": "DANCE WITH ME AND MY 303",
+    "to": "NOW YOU KNOW MY NAME",
+    "type": "absorb",
+    "reason": "single (Aug 2022) later track 7 — DV 2026-09-12"
+   },
+   {
+    "from": "AKUMA V3 (TECH NOIR LIVE 2017 VERSION)",
+    "to": "AKUMA: THE LOST TAPES",
+    "type": "absorb",
+    "reason": "single (Feb 2022) collected as The Lost Tapes track 3 — DV 2026-09-12"
+   },
+   {
+    "from": "AKUMA V2",
+    "to": "AKUMA: THE LOST TAPES",
+    "type": "absorb",
+    "reason": "single (Dec 2021) collected as The Lost Tapes track 2 — DV 2026-09-12"
+   },
+   {
+    "from": "x",
+    "to": "X",
+    "type": "spelling",
+    "reason": "the album is titled X (Bandcamp, 25 Dec 2017); the scrobble string is lower-case — DV 2026-09-12"
    }
   ],
   "tracks": [
@@ -15550,6 +15616,24 @@
    "track": "Power from hell/Angels of death (live)",
    "toAlbum": "The Force",
    "reason": "as above"
+  },
+  {
+   "artist": "Alex",
+   "track": "WELCOME TO THE FUTURE",
+   "toAlbum": "AFTER THE FUTURE",
+   "reason": "DV 2026-09-12 (Bandcamp sleeve): After the Future track 4; the row had no album string"
+  },
+  {
+   "artist": "Alex",
+   "track": "YOU THINK YOU KNOW ME",
+   "toAlbum": "AFTER THE FUTURE",
+   "reason": "DV 2026-09-12 (Bandcamp sleeve): After the Future track 2; the row had no album string"
+  },
+  {
+   "artist": "Alex",
+   "track": "GEMINI",
+   "toAlbum": "ROCKWAVE",
+   "reason": "DV 2026-09-12 (Bandcamp sleeve): Rockwave track 6; the row had no album string"
   }
  ]
 }
