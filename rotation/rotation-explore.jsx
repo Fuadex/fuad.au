@@ -433,10 +433,18 @@ function ZoomControls({ z }) {
 // [1,FISH_MAXK]; pointerleave / any active drag resets. The chart supplies its live viewBox (vbRef,
 // so a zoom/pan mid-hover still maps correctly) and marks its fisheye dots with `data-fk` + data-cx/cy
 // (the dots' base 1000×H coords, which ARE viewBox-base units). draggingRef pauses it during a pan.
+// Park the last --fk written on the dot itself so a no-op write can be skipped. A custom-property
+// write dirties that element's style and forces the browser to re-resolve its calc() radius, so the
+// old "write every dot every frame" loop cost one style invalidation per dot per mousemove frame —
+// ~6.5k of them on the texture cloud, which is what made hovering crawl. Only the dots inside the
+// lens actually change, so this cuts the writes by ~98% on average (Fuad 2026-09-13).
+const _fkPut = (c, k) => {
+  if ((c.__fk === undefined ? 1 : c.__fk) !== k) { c.__fk = k; c.style.setProperty("--fk", k === 1 ? "1" : String(k)); }
+};
 function useFisheye(svgRef, vbRef, sel, draggingRef) {
   const raf = React.useRef(0);
   const FISH_R_PX = 55, FISH_MAXK = 1.35;
-  const reset = React.useCallback(() => { const el = svgRef.current; if (!el) return; for (const c of el.querySelectorAll(sel)) c.style.setProperty("--fk", "1"); }, [sel]);
+  const reset = React.useCallback(() => { const el = svgRef.current; if (!el) return; for (const c of el.querySelectorAll(sel)) _fkPut(c, 1); }, [sel]);
   const run = React.useCallback((cx, cy) => {
     const el = svgRef.current; if (!el) return;
     if (draggingRef && draggingRef.current) return;   // paused during a pan/brush gesture
@@ -451,10 +459,13 @@ function useFisheye(svgRef, vbRef, sel, draggingRef) {
       const rr = FISH_R_PX * (vb[2] / rect.width);   // R_PX screen px → viewBox units
       const inv = 1 / rr;
       for (const c of el.querySelectorAll(sel)) {
-        const bx = +c.dataset.cx, by = +c.dataset.cy;
-        const dnorm = Math.hypot((bx - mvx) * inv, (by - mvy) * inv);   // 0 at cursor, 1 at edge
-        const k = dnorm >= 1 ? 1 : 1 + (FISH_MAXK - 1) * (1 - dnorm) * (1 - dnorm);
-        c.style.setProperty("--fk", k.toFixed(3));
+        const dx = +c.dataset.cx - mvx, dy = +c.dataset.cy - mvy;
+        // square-box reject first: everything outside the lens is k=1 and needs no distance at all
+        if (dx > rr || dx < -rr || dy > rr || dy < -rr) { _fkPut(c, 1); continue; }
+        const dnorm = Math.sqrt(dx * dx + dy * dy) * inv;   // 0 at cursor, 1 at edge
+        if (dnorm >= 1) { _fkPut(c, 1); continue; }
+        const t = 1 - dnorm;
+        _fkPut(c, +(1 + (FISH_MAXK - 1) * t * t).toFixed(3));   // rounded, so slow drags stop re-writing
       }
     });
   }, [sel, reset, draggingRef]);
@@ -484,7 +495,15 @@ function MoodQuadrant({ pts, activeIds, go, moodZone, setMoodZone }) {
   // module height (Fuad 2026-07-05); quadrants are simply rectangles now.
   const QW = 1000, QH = 560, qp = 40;
   const qx = (v) => qp + v * (QW - 2 * qp), qy = (e) => qp + (1 - e) * (QH - 2 * qp);
-  const maxPlays = React.useMemo(() => { let m = 1; for (const p of pts) if (activeIds.has(p.id) && p.plays > m) m = p.plays; return m; }, [pts, activeIds]);
+  // Radii scale to the ACTIVE slice, but fall back to the full set when that slice is EMPTY. The old
+  // `let m = 1` floor survived as the divisor when nothing was active, so every radius became
+  // sqrt(plays)*9 — ~989px for the top artist on a 1000×560 canvas — and thousands of dots that size
+  // hung the page. An empty slice draws everything at 0.05 opacity anyway (Fuad 2026-09-13).
+  const maxPlays = React.useMemo(() => {
+    let act = 0, all = 0;
+    for (const p of pts) { if (p.plays > all) all = p.plays; if (activeIds.has(p.id) && p.plays > act) act = p.plays; }
+    return Math.max(1, act || all);
+  }, [pts, activeIds]);
   const nActive = activeIds.size;
   // dots memoized without the zoom factor; radius rides the --zk CSS var so zoom rescales
   // natively without re-reconciling the whole cloud (Fuad 2026-07-09).
@@ -1167,11 +1186,15 @@ function AttrExplore({ R, go, grain, onBrushSel, activeIds, activeSub, activeFam
   // brush refines WITHIN that dimmed view. artists grain reads the shared `activeIds` set (moodActive,
   // same as ArtistCloud/MoodQuadrant); subs grain reads activeSub/activeFam like ExploreScatter. When
   // no page filter is set, everything renders full strength (pageFiltered=false → pageActiveOf=true).
+  // `filtersActive` ALONE decides that. Not activeIds.size: an empty set means the slice matched
+  // nothing, which is the opposite of no filter being set, and the old `activeIds.size > 0` guard
+  // read the two as the same thing — so a combination that should have shown an empty chart lit
+  // every dot up instead (Fuad 2026-09-13: Year '10 + Vocals non-binary).
   // artists honour the whole slice (year/genre/clock via activeIds); subs dim by genre only, exactly
   // like ExploreScatter (which ignores year/clock for its subgenre dimming).
   const pageFiltered = mode === "subgenres"
     ? (activeSub != null || activeFam != null)
-    : (!!filtersActive && activeIds != null && activeIds.size > 0);
+    : (!!filtersActive && activeIds != null);
   const pageActiveOf = React.useCallback((row) => {
     if (!pageFiltered) return true;
     if (mode === "subgenres") {
