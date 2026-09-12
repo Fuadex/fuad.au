@@ -619,8 +619,7 @@ function AlbumView({ id, go }) {
       {dna && (
         <div className="tv-grid" style={{ display: "grid", gridTemplateColumns: "minmax(0,1.1fr) minmax(0,1fr)", gap: "var(--gap)", marginBottom: "var(--gap)" }}>
           <div className="r-card" style={{ padding: "16px 18px" }}>
-            <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}><span className="lbl"><b>Album Audio DNA</b></span>
-              <span className="meta">{bpm ? `~${bpm} BPM` : ""}</span></div>
+            <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}><span className="lbl"><b>Album Audio DNA</b></span></div>
             {/* The 2026-08-28 graph/text flip was REVERTED same day (Fuad: "not working" — the
                 auto-sized label column collapsed its bars). Original arrangement restored: graph
                 left at fixed width, labels right taking the flexible space — with ONE survivor
@@ -1384,8 +1383,7 @@ function TrackView({ id, go }) {
       {f ? (
         <div className="tv-grid" style={{ display: "grid", gridTemplateColumns: "minmax(0,1.1fr) minmax(0,1fr)", gap: "var(--gap)", marginBottom: "var(--gap)" }}>
           <div className="r-card" style={{ padding: "16px 18px" }}>
-            <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}><span className="lbl"><b>Audio DNA</b></span>
-              <span className="meta">Spotify features</span></div>
+            <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}><span className="lbl"><b>Audio DNA</b></span></div>
             {/* The 2026-08-28 flip REVERTED same day with the album block (the auto-sized label
                 column collapsed its bars). Graph left / labels right restored; flex-start kept. */}
             <div className="tv-dna-row" style={{ display: "flex", gap: 14, alignItems: "flex-start", flexWrap: "wrap" }}>

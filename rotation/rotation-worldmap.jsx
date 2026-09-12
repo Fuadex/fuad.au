@@ -168,21 +168,21 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot,
   const [filt, setFilt] = React.useState(_if.filt || { fam: null, sub: null }); // genre pivot: size every place by this genre
   // report the serializable filter (genre + mode) up so the Overview can put it in the URL
   React.useEffect(() => { if (onFilter) onFilter({ mode, filt }); }, [mode, filt]);
-  // TEN ON A PHONE, WHATEVER IS STORED (Fuad 2026-08-21). The 10/25/50 baseline persists, but that
+  // TEN ON A PHONE, WHATEVER IS STORED (Fuad 2026-08-21). The 10/50 baseline persists, but that
   // choice is almost always made at a desk, and restoring a stored 50 on a phone buries everything
   // below the results under a column you have to thumb past. Narrow screens ignore the stored value
-  // and start at 10; picking 25 or 50 on the phone still works and still writes through, so the
+  // and start at 10; picking 50 on the phone still works and still writes through, so the
   // desktop preference is neither lost nor imposed.
   const [limit, setLimit] = React.useState(() => {
     const narrow = typeof window !== "undefined" && window.matchMedia
       && window.matchMedia("(max-width: 760px)").matches;
     if (narrow) return 10;
-    try { const v = parseInt(localStorage.getItem("rot-ov-results-n"), 10); if (v === 10 || v === 25 || v === 50) return v; } catch (e) {}
+    try { const v = parseInt(localStorage.getItem("rot-ov-results-n"), 10); if (v === 10 || v === 50) return v; } catch (e) {}   // a 25 stored before the choice was dropped falls back to 10
     return 10;
   });
   const setLimitPersist = (v) => { setLimit(v); try { localStorage.setItem("rot-ov-results-n", String(v)); } catch (e) {} };
-  // "show 25 more" rides ON TOP of the persisted 10/25/50 baseline rather than replacing it —
-  // the stored value only validates as one of those three, so an expanded count would be thrown
+  // "show 25 more" rides ON TOP of the persisted 10/50 baseline rather than replacing it —
+  // the stored value only validates as one of those two, so an expanded count would be thrown
   // away on reload anyway. Transient by design: a new filter or a new baseline starts over.
   const [extra, setExtra] = React.useState(0);
   const shownN = limit + extra;
@@ -885,7 +885,7 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
                 </div>
               )}
               {pane !== "dna" && <div className="r-seg r-seg-sm map-limseg">
-                {[10, 25, 50].map(n => <button key={n} data-on={limit === n} onClick={() => setLimitPersist(n)}>{n}</button>)}
+                {[10, 50].map(n => <button key={n} data-on={limit === n} onClick={() => setLimitPersist(n)}>{n}</button>)}
               </div>}
             </div>
             {/* year-slice note = footnote-grade (Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
