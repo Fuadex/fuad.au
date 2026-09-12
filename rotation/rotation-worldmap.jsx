@@ -748,10 +748,13 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
               the band already carries a Geography kicker. The standalone Map page keeps its h1. */}
           {embedded ? null : <h1 className="r-title">Where it <em>comes from</em><span className="dot">.</span></h1>}
         </div>
-        {/* One row, never two: the clear button appears and disappears with the filters, and if it
-            were allowed to wrap it would push the whole head — and the page under it — down a row.
-            The scope line shrinks and clips instead (its middle span is the flexible part). */}
-        <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "nowrap", minWidth: 0 }}>
+        {/* One row, never two, and always the SAME row height. The clear button appears and
+            disappears with the filters: allowed to wrap it pushed the page down a whole row, and
+            even inline it is 17.5px against the 13.2px scope line, so the head still grew ~4px the
+            moment you filtered. minHeight floors the row at the button height, so both states
+            measure identically and nothing below moves. The scope line shrinks and clips rather
+            than wrapping (its middle span is the flexible part). */}
+        <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "nowrap", minWidth: 0, minHeight: 18 }}>
           {/* Results scope + play count, lifted out of the results card so it reads on the Geography
               kicker’s line rather than repeating that register further down (Fuad 2026-09-13). */}
           <div className="r-mono mp-scope">
