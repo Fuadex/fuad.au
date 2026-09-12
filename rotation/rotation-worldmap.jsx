@@ -1020,7 +1020,12 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
           .mp-map > .r-card { flex: 1; display: flex; align-items: center; }
           .mp-flow { grid-column: 2; grid-row: 1; margin-top: 0 !important; display: flex; flex-direction: column; }
           .mp-flow > .r-card { flex: 1; }
-          .mp-results { grid-column: 3; grid-row: 1; margin-top: 0 !important; padding: 16px 16px 12px !important;
+          /* top padding 16 -> 13 so the artists/albums/songs/dna segment lands on exactly the same
+             line as the flowmap s genres/bands/volume/share (Fuad 2026-09-13). Both cards are
+             grid-row 1 of a stretch grid, so their tops are level; the flow card sets 13px on its own
+             .r-card and its segment is the first child, as this one s is, so matching the padding is
+             the whole alignment. */
+          .mp-results { grid-column: 3; grid-row: 1; margin-top: 0 !important; padding: 13px 16px 12px !important;
             display: flex; flex-direction: column; min-height: 0; }
           /* the old 15px title step-down is gone: the title is mono-11 at every width now, so the
              band needs no override. Rows tightened one notch IN THE BAND ONLY (6px→4px vertical)
