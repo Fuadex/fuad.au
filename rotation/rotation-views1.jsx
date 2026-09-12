@@ -230,8 +230,15 @@ function parseOvSeed(seed) {
 // the story on click. The RELEASE-DECADE strip treemap used to ride underneath here; it now lives
 // in its own OvDecadesCard on the Story-of-the-day row (Fuad 2026-08-17) so this module is short.
 // (A by-year emotional-weather timeline is parked as a future pairing with the map's date scrubber.)
-function OvWeatherCard({ R, go }) {
+function OvWeatherCard({ R, go, fStats }) {
   const M = R.INSIGHTS && R.INSIGHTS.MOOD, N = M && M.now;
+  // SOUNDS FOLLOWS THE FILTER (Fuad 2026-09-13). fStats.sndValence is a play-weighted mean of the
+  // measured audio valence over the rows the map band is currently showing — the same rows its
+  // play and artist counts come from. READS cannot follow: lyric valence is only in the build-time
+  // genius-mood store and nothing equivalent ships, so it stays all-time and is labelled that way
+  // rather than being silently compared against a filtered number.
+  const filt = !!(fStats && fStats.active && fStats.sndValence != null);
+  const audV = filt ? fStats.sndValence : (N && N.aud);
 
   if (!N) return null;
 
@@ -268,11 +275,12 @@ function OvWeatherCard({ R, go }) {
     <div className="r-card ov-weather" style={{ padding: 12 }}>
       <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}>
         <span className="lbl"><b>Emotional weather</b></span>
+        {filt && <span className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--accent)" }}>{fStats.label || "filtered"}</span>}
       </div>
       <div onClick={() => go("stories", "emotional-weather")} style={{ cursor: "pointer" }}>
         <div style={{ display: "grid", gap: 8 }}>
-          <Bar label="Sounds" v={N.aud} avg={M.avgAud} col={SND} />
-          <Bar label="Reads" v={N.lyr} avg={M.avgLyr} col={RDS} />
+          <Bar label="Sounds" v={audV} avg={M.avgAud} col={SND} />
+          <Bar label={filt ? "Reads*" : "Reads"} v={N.lyr} avg={M.avgLyr} col={RDS} />
         </div>
         {/* the prose line is gone (Fuad 2026-08-20) — it restated the two bars underneath it in
             words and was most of this card's height. The bars carry the reading; the mood word is
@@ -281,7 +289,9 @@ function OvWeatherCard({ R, go }) {
         {/* dominant REGISTER (play-weighted mode over rows carrying regIdx) — the human mood word;
             falls back to the NRC emotion when no register data is present. */}
         <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginTop: 7, letterSpacing: ".06em" }}>
-          last {N.days} days{(M.topRegister || N.emo) ? <> · mostly <b style={{ color: "var(--ink-soft)", fontWeight: 600 }}>{M.topRegister || N.emo}</b></> : null}</div>
+          {filt
+            ? <>sounds across {fmt(fStats.sndPlays || 0)} measured plays in this slice · <b style={{ color: "var(--ink-soft)", fontWeight: 600 }}>reads*</b> stays all-time</>
+            : <>last {N.days} days{(M.topRegister || N.emo) ? <> · mostly <b style={{ color: "var(--ink-soft)", fontWeight: 600 }}>{M.topRegister || N.emo}</b></> : null}</>}</div>
       </div>
     </div>
   );
@@ -860,7 +870,7 @@ function OverviewView({ t, go, restReady, seed }) {
 
         {/* emotional weather — last-90d sounds/reads only now (the decades strip moved up to the
             Story row), so it's short and keeps the Right-now row lean. cols 9-12 (ov-weather grid rules). */}
-        <OvWeatherCard R={R} go={go} />
+        <OvWeatherCard R={R} go={go} fStats={fStats} />
 
       </div>
 

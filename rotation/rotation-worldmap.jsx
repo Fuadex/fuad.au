@@ -573,18 +573,30 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
     // 6,000 artist rows behind them are not.
     const debutYears = {};
     for (const e of resultArtists) { const y = e.a && e.a.d; if (y) debutYears[y] = (debutYears[y] || 0) + e.p; }
+    // Play-weighted audio valence over the same rows, so Emotional weather's SOUNDS bar can follow
+    // the filter. Artists with no measured vector drop out of both halves of the mean rather than
+    // counting as neutral, and sndPlays is reported so the card can say how much of the slice it
+    // actually measured. The READS bar has no client-side equivalent — lyric valence lives only in
+    // the build-time genius-mood store — so it stays all-time and the card labels it as such.
+    let _vs = 0, _vp = 0;
+    for (const e of resultArtists) {
+      const af = R.AUDIO && R.AUDIO[e.a && e.a.id]; if (!af) continue;
+      _vs += af[1] * e.p; _vp += e.p;
+    }
+    const sndValence = _vp ? Math.round((_vs / _vp) * 100) : null;
+    const sndPlays = _vp;
     const active = !!(sel || focus || filt.fam != null || filt.sub != null || yearIdx != null || periodData);
     // Report even when nothing is filtered: `active:false` keeps every existing consumer on its
     // lifetime branch (they all gate on .active), while still publishing the Results totals.
-    if (!active) { onStats({ active: false, plays, artists, debutYears, livePlays }); return; }
+    if (!active) { onStats({ active: false, plays, artists, debutYears, livePlays, sndValence, sndPlays }); return; }
     const avgSec = (R.TOTALS && R.TOTALS.avgTrackSec) || 216;
     // `slice` = a place/genre filter is active (not just a year/period). The Overview stat strip uses
     // it to decide whether to size avg/day from this (EXPLORE-scoped) count or from the exact day-series
     // total (which is right for a pure time filter). periodData is a time filter → slice:false.
-    if (periodData) { onStats({ active: true, slice: false, plays, artists, debutYears, livePlays, hours: Math.round(plays * avgSec / 3600), label: [periodData.label, sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? famShort(R.FAMILIES[filt.fam].family) : null].filter(Boolean).join(" · ") }); return; }
+    if (periodData) { onStats({ active: true, slice: false, plays, artists, debutYears, livePlays, sndValence, sndPlays, hours: Math.round(plays * avgSec / 3600), label: [periodData.label, sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? famShort(R.FAMILIES[filt.fam].family) : null].filter(Boolean).join(" · ") }); return; }
     const yr = yearIdx != null ? geoYears[yearIdx] : null;
     const slice = !!(sel || focus || filt.fam != null || filt.sub != null);
-    onStats({ active: true, slice, plays, artists, debutYears, livePlays, hours: Math.round(plays * avgSec / 3600), label: [sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? famShort(R.FAMILIES[filt.fam].family) : null, yr].filter(Boolean).join(" · ") || "filtered" });
+    onStats({ active: true, slice, plays, artists, debutYears, livePlays, sndValence, sndPlays, hours: Math.round(plays * avgSec / 3600), label: [sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? famShort(R.FAMILIES[filt.fam].family) : null, yr].filter(Boolean).join(" · ") || "filtered" });
   }, [resultArtists, filteredArtists, yearIdx, periodData, sel, focus, filt, onStats]);
   // calendar-period → the places its top artists come from. calendar-detail only stores the
   // top 5-6 artists per day/week, so a full dot re-weight would be dishonest — instead we
