@@ -1035,13 +1035,15 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
           .mp-map { order: 1; } .mp-flow { order: 2; } .mp-results { order: 3; }
           .mp-cal { order: 4; } .mp-list { order: 5; } .mp-stats { order: 6; }
         }
-        /* Metrics match .r-seg.r-seg-sm (the subgenres / bands / albums / songs controls): 9px type,
-           6px vertical padding inside a 1px border lands on their 25px, so it sits level with them
-           rather than reading as a taller object. flex 0 0 auto keeps it whole while the scope line
-           beside it does the shrinking. (Fuad 2026-09-13) */
-        .mp-clear { font-family: var(--mono); font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
-          padding: 6px 10px; border-radius: 999px; border: 1px solid var(--accent-dim); color: var(--accent);
-          background: var(--accent-bg); cursor: pointer; flex: 0 0 auto; white-space: nowrap; }
+        /* Sized to THIS row, not to the segmented controls elsewhere on the page (Fuad 2026-09-13).
+           The row it sits on is text only — a 10px eyebrow and the 11px scope line, so ~13px tall —
+           and matching .r-seg-sm s 25px made the button, not the text, set the head s height. 8.5px
+           on 2px padding lands ~17.5px: still a legible pill, no longer the tallest thing in the row.
+           flex 0 0 auto keeps it whole while the scope line beside it does the shrinking. */
+        .mp-clear { font-family: var(--mono); font-size: 8.5px; letter-spacing: .1em; text-transform: uppercase;
+          padding: 2px 8px; line-height: 1.35; border-radius: 999px; border: 1px solid var(--accent-dim);
+          color: var(--accent); background: var(--accent-bg); cursor: pointer; flex: 0 0 auto;
+          white-space: nowrap; align-self: center; }
         .mp-clear:hover { background: transparent; }
         /* deepest countries/cities swatches: hollow at rest, filled when the row is hovered —
            the flow bands' quiet-until-cursor register (Fuad 2026-08-22) */
