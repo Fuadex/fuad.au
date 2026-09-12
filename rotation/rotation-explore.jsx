@@ -871,25 +871,41 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
     return new Set(pts.slice().sort((a, b) => (b.row.plays || 0) - (a.row.plays || 0)).slice(0, 25).map(p => p.row.id));
   }, [pts, mode]);
 
-  // shade luminance: none · recency (year of last play) · seen-live (brighter if NEVER seen — the
-  // discovery-relevant read). recency/seen-live only exist per-artist, so subgenre mode → no shade.
+  // SHADE = OPACITY, and it can ride any axis (Fuad 2026-09-13). It used to modulate LIGHTNESS and
+  // offered only recency / seen-live. Two changes:
+  //  · the value can now be any ATTR_AXES key, so the chart encodes a THIRD dimension while X and Y
+  //    hold the other two — shade by valence while plotting energy against tempo, say.
+  //  · it drives fill-opacity rather than lightness, so the family hue stays exactly itself and only
+  //    its presence varies. Trade-off worth knowing: overlapping dots now SUM, so a dense cluster
+  //    reads stronger than any single value in it, which lightness did not do. The 0.18 floor keeps
+  //    the weakest dot visible against the dark ground.
   const shadeExtent = React.useMemo(() => {
     if (shade !== "recency") return null;
     let mn = Infinity, mx = -Infinity;
     for (const r of rows) { const v = r.recency; if (v != null) { if (v < mn) mn = v; if (v > mx) mx = v; } }
     return mx > mn ? { mn, mx } : null;
   }, [rows, shade]);
+  // any non-special shade key is an axis; reuse the same scale builder X and Y run on, so log and
+  // year axes normalise identically here.
+  const shadeScale = React.useMemo(
+    () => (shade && shade !== "none" && shade !== "recency" && shade !== "seenLive") ? buildScale(shade) : null,
+    [buildScale, shade]);
   const shadeVal = React.useCallback((row) => {
     if (shade === "none") return null;
     if (shade === "seenLive") { if (row.seenLive == null) return null; return row.seenLive ? 0.15 : 1; } // brighter = never seen live
     if (shade === "recency") { if (row.recency == null || !shadeExtent) return null; return (row.recency - shadeExtent.mn) / (shadeExtent.mx - shadeExtent.mn); }
+    if (shadeScale && shadeScale.ok) {
+      const v = attrRawVal(row, shade); if (v == null || v !== v) return null;
+      return Math.max(0, Math.min(1, shadeScale.map(v)));
+    }
     return null;
-  }, [shade, shadeExtent]);
-  const fillFor = React.useCallback((row) => {
-    const sv = shadeVal(row);
-    const L = sv == null ? 0.64 : (0.34 + sv * 0.5);
-    return "oklch(" + L.toFixed(3) + " 0.16 " + (row.hue != null ? row.hue : 300) + ")";
+  }, [shade, shadeExtent, shadeScale]);
+  // 0.18..1 — a floor, not 0, so an unshaded-low dot is dimmed rather than deleted.
+  const shadeOp = React.useCallback((row) => {
+    const sv = shadeVal(row); return sv == null ? 1 : (0.18 + sv * 0.82);
   }, [shadeVal]);
+  // colour is now purely identity — the family hue at a fixed lightness.
+  const fillFor = React.useCallback((row) => "oklch(0.640 0.16 " + (row.hue != null ? row.hue : 300) + ")", []);
 
   // pointer → pixel-space coords in the (possibly zoomed) viewBox
   const toLocal = (evt) => {
@@ -1013,7 +1029,12 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
     // page-slice dim is the same visual language as ArtistCloud (0.05) / ExploreScatter (~0.14): a
     // dot outside the active slice fades hard and stops responding to pointer, so brush/hover only
     // touch the conjunction. Family-dim (0.06) still wins when both apply.
-    const op = dimF ? 0.06 : dimP ? (mode === "subgenres" ? 0.12 : 0.05) : brushed ? (on ? 0.92 : 0.1) : (singleSel || clickSel) ? (isSel ? 0.95 : 0.15) : (mode === "subgenres" ? 0.82 : 0.72);
+    const _base = dimF ? 0.06 : dimP ? (mode === "subgenres" ? 0.12 : 0.05) : brushed ? (on ? 0.92 : 0.1) : (singleSel || clickSel) ? (isSel ? 0.95 : 0.15) : (mode === "subgenres" ? 0.82 : 0.72);
+    // Shade modulates only dots that are currently IN FOCUS. A dot already dimmed for being outside
+    // the family, the page slice, the brush or the selection is saying something else with its
+    // opacity, and multiplying the two would conflate the two meanings into one unreadable number.
+    const _dimmed = dimF || dimP || (brushed && !on) || ((singleSel || clickSel) && !isSel);
+    const op = _dimmed ? _base : _base * shadeOp(pt.row);
     // Position is ALWAYS via transform (cx/cy=0) so no dot ever switches how it's placed — that's what
     // kills the corner-flight. Opacity always transitions (cheap). The transform transition is armed
     // ONLY on a pure lens-change render (animatePos); otherwise transform:none so entering/moved-by-
@@ -1025,7 +1046,7 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
         fill={fillFor(pt.row)} fillOpacity={op}
         stroke={isSel ? "#fff" : "none"} strokeWidth={2} vectorEffect="non-scaling-stroke"
         style={{ transform: `translate(${pt.px.toFixed(1)}px, ${pt.py.toFixed(1)}px)`, r: `calc(${pt.radius.toFixed(2)}px * var(--zk) * var(--fk, 1))`, cursor: dimF || dimP ? "default" : "pointer", pointerEvents: dimF || dimP ? "none" : "auto", transition: trans }} />);
-  }), [pts, brushed, singleSel, clickSel, inBrush, isDimFam, isPageDim, fillFor, mode, animatePos]);
+  }), [pts, brushed, singleSel, clickSel, inBrush, isDimFam, isPageDim, fillFor, shadeOp, mode, animatePos]);
 
   const subLabels = React.useMemo(() => mode !== "subgenres" ? null : pts.filter(pt => labelIds.has(pt.row.id) && !isDimFam(pt.row) && !isPageDim(pt.row)).map(pt => (
     <text key={"lbl" + pt.row.id} x={(pt.px + pt.radius + 3).toFixed(1)} y={(pt.py + 3).toFixed(1)}
@@ -1214,9 +1235,14 @@ function AttrExplore({ R, go, grain, onBrushSel, activeIds, activeSub, activeFam
 
   // shade options: none · recency · seen-live. recency/seen-live are per-artist only → hidden in
   // subgenre mode. If shade is set to a per-artist option and we switch to subgenres, fall back.
+  // Shade can ride ANY axis now (Fuad 2026-09-13), so the chart reads three dimensions at once:
+  // X, Y, and opacity. The axis list is the same one X and Y use, which keeps the vocabulary and the
+  // scaling identical across all three pickers. recency / seen-live stay artist-only extras, since
+  // subgenre rows aggregate many artists and have neither.
   const shadeOpts = mode === "subgenres"
-    ? [{ key: "none", label: "none" }]
-    : [{ key: "none", label: "none" }, { key: "recency", label: "recency" }, { key: "seenLive", label: "seen-live" }];
+    ? [{ key: "none", label: "none" }, ...ATTR_AXES.map(a => ({ key: a.key, label: a.label }))]
+    : [{ key: "none", label: "none" }, ...ATTR_AXES.map(a => ({ key: a.key, label: a.label })),
+       { key: "recency", label: "recency" }, { key: "seenLive", label: "seen-live" }];
   React.useEffect(() => { if (!shadeOpts.some(o => o.key === shade)) setShade("none"); }, [mode]);
 
   const selBox = { background: "var(--bg-2)", color: "var(--ink)", border: "1px solid var(--rule)", borderRadius: 6, fontFamily: "var(--mono)", fontSize: 11, padding: "4px 8px", letterSpacing: ".03em", cursor: "pointer" };
