@@ -1035,7 +1035,12 @@ function BlurbSwitcher({ id, about }) {
   const gist0 = (R && R.aboutGist && R.aboutGist(id)) || null;   // read before deciding on deep load
   // pull the deep shard when a deep read is being shown: a picked deep source, the Interpretation
   // mode, OR when the DEFAULT source (gist.src) is itself a deep read (so it renders without a click).
-  const defaultDeep = !!(gist0 && gist0.src && !GIST_SRC[gist0.src]);
+  // Fable is the default read now (see `cur` below) and it lives in the DEEP shard, so the shard has
+  // to be pulled on FIRST PAINT whenever the track has one — not only when gist.src happens to name a
+  // deep source. Without the first clause the default rendered as “…” until you clicked another button
+  // and back, which is what armed the deep load the long way round (Fuad 2026-09-13).
+  const hasFableMark = !!(gist0 && gist0.has && gist0.has.includes("f"));
+  const defaultDeep = hasFableMark || !!(gist0 && gist0.src && !GIST_SRC[gist0.src]);
   const needDeep = mode === "deep" || (pick && !GIST_SRC[pick]) || (!pick && defaultDeep);
   React.useEffect(() => { if (needDeep && R && R.loadAboutDeep) R.loadAboutDeep(id, bump); }, [needDeep, id]);
   const gist = gist0;                                            // src + haiku + web + has (deep markers)
