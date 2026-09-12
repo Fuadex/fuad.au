@@ -2584,21 +2584,33 @@ function TourSection({ go, gigDate }) {
     }
     return out;
   }, [tour]);
+  // SEEN FILTER (Fuad 2026-09-13): "all" or only artists never caught live. Applied to `flat`
+  // itself rather than to each view, so the map, the calendar, the genre cascade and the list all
+  // narrow together — a genre pill counting acts the list will not show would be its own bug.
+  // R.GIGS.gigs is the attended-concert log; 182 distinct artistIds across 185 shows.
+  const [seenFilt, setSeenFilt] = React.useState("all");   // all | unseen
+  const seenIds = React.useMemo(() => {
+    const s = new Set();
+    for (const g of ((R.GIGS && R.GIGS.gigs) || [])) if (g.artistId) s.add(g.artistId);
+    return s;
+  }, [R]);
+  const pool = React.useMemo(() => seenFilt === "unseen" ? flat.filter(x => !seenIds.has(x.a.id)) : flat,
+    [flat, seenFilt, seenIds]);
   const byGenre = (x) => sub != null ? x.a.prim === sub : gkey != null ? x.a.gkey === gkey : true;
   const [mktFocus, setMktFocus] = React.useState(null);   // market chip clicked → TourMap flies there
   const byCity = (x) => city == null || (x.e.cc + "|" + x.e.city) === city;
   const byTime = (x) => selKey == null || keyOf(x.e.d) === selKey;
   // each vis sees the OTHER two filters; the list sees all three
-  const calEvents = React.useMemo(() => flat.filter(x => byGenre(x) && byCity(x)), [flat, gkey, sub, city]);
-  const mapEvents = React.useMemo(() => flat.filter(x => byGenre(x) && byTime(x)), [flat, gkey, sub, selKey, gran]);
+  const calEvents = React.useMemo(() => pool.filter(x => byGenre(x) && byCity(x)), [pool, gkey, sub, city]);
+  const mapEvents = React.useMemo(() => pool.filter(x => byGenre(x) && byTime(x)), [pool, gkey, sub, selKey, gran]);
   const cascArts = React.useMemo(() => {
     const seen = new Map();
-    for (const x of flat) if (byCity(x) && byTime(x) && !seen.has(x.a.id)) seen.set(x.a.id, x.a);
+    for (const x of pool) if (byCity(x) && byTime(x) && !seen.has(x.a.id)) seen.set(x.a.id, x.a);
     return [...seen.values()];
-  }, [flat, city, selKey, gran]);
+  }, [pool, city, selKey, gran]);
   const artists = React.useMemo(() => {
     const m = new Map();
-    for (const x of flat) {
+    for (const x of pool) {
       if (!byGenre(x) || !byCity(x) || !byTime(x)) continue;
       if (!m.has(x.a.id)) m.set(x.a.id, Object.assign({}, x.a, { events: [] }));
       m.get(x.a.id).events.push(x.e);
@@ -2606,7 +2618,7 @@ function TourSection({ go, gigDate }) {
     const arr = [...m.values()];
     for (const r of arr) r.events.sort((p, q) => (p.d < q.d ? -1 : 1));
     return arr.sort((p, q) => q.plays - p.plays);
-  }, [flat, gkey, sub, city, selKey, gran]);
+  }, [pool, gkey, sub, city, selKey, gran]);
   const T = R.TOUR;
   if (!T) return null;
   const hiArt = hi ? artists.find(a => a.id === hi) : null;
@@ -2623,7 +2635,7 @@ function TourSection({ go, gigDate }) {
     }
     return [...byA.values()].filter(r => r.pts.length >= 2);
   }, [mapEvents, checked]);
-  const anyFilt = gkey != null || sub != null || city != null || selKey != null;
+  const anyFilt = gkey != null || sub != null || city != null || selKey != null || seenFilt !== "all";
   React.useEffect(() => { setLimit(20); }, [gkey, sub, city, selKey, gran]);   // fresh slice → back to the first page
   const shown = artists.slice(0, limit);
   const chips = [];
@@ -2655,7 +2667,15 @@ function TourSection({ go, gigDate }) {
         {chips.map(([lbl, clear], i) => (
           <span key={lbl + i} className="gv-tour-chip" onClick={clear}>{lbl} ✕</span>
         ))}
-        {anyFilt && <span className="gv-tour-chip gv-tour-chip-all" onClick={() => { setGkey(null); setSub(null); setCity(null); setSelKey(null); }}>clear all</span>}
+        {anyFilt && <span className="gv-tour-chip gv-tour-chip-all" onClick={() => { setGkey(null); setSub(null); setCity(null); setSelKey(null); setSeenFilt("all"); }}>clear all</span>}
+        {/* pinned right on this row; margin-left:auto rather than a wrapper so it still wraps with
+            the rest when the market chips run long */}
+        <div className="r-seg r-seg-sm gv-tour-seen">
+          {[["all", "all"], ["unseen", "not seen"]].map(([k, l]) => (
+            <button key={k} data-on={seenFilt === k} onClick={() => setSeenFilt(k)}
+              title={k === "unseen" ? "only artists you have never caught live" : "every artist with upcoming dates"}>{l}</button>
+          ))}
+        </div>
       </div>
       {!tour && <div className="r-mono" style={{ color: "var(--ink-faint)", padding: 16 }}>loading tour dates…</div>}
       {tour && <>
@@ -3233,6 +3253,8 @@ function GigsView({ go }) {
         .gv-yrlabel { font-family: var(--mono); font-size: 10px; color: var(--ink-soft); flex: none; min-width: 56px; text-align: right; }
         .gv-foot { margin: 40px 0 20px; font-family: var(--mono); font-size: 10px; color: var(--ink-faint); text-align: center; letter-spacing: .05em; }
         .gv-tour-meta { display: flex; gap: 10px; flex-wrap: wrap; align-items: baseline; margin: -6px 0 14px; }
+        /* the row aligns on the baseline, which a segmented control has none worth sharing */
+        .gv-tour-seen { margin-left: auto; align-self: center; flex: none; }
         .gv-tour-mkt { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); border: 1px solid var(--rule); border-radius: 999px; padding: 3px 10px; cursor: help; }
         .gv-tour-mkt b { color: var(--accent); }
         .gv-tour-mkt[data-stale="true"] { border-color: oklch(0.62 0.16 45 / .6); color: oklch(0.78 0.14 55); }
