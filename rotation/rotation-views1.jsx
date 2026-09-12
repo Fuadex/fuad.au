@@ -136,15 +136,17 @@ function OvCalRail({ go, onYear, onPeriod, init }) {
   const dayStrip = Array.from({ length: dim }, (_, i) => i + 1);
   return (
     <div className="r-card ov-calrail" style={{ padding: "12px 14px" }}>
-      <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}>
-        <span className="lbl"><b>Calendar</b></span>
-        <span className="meta" style={{ cursor: "pointer" }} onClick={() => go("calendar")}>full ↗</span>
-      </div>
-      <div style={{ display: "flex", gap: 5, marginBottom: 8, alignItems: "center" }}>
-        <select className="ov-calsel" style={{ flex: "0 0 auto", width: "auto" }} value={yr} onChange={(e) => shift(+e.target.value, mo)}>
+      {/* One row instead of two (Fuad 2026-09-13): the title carries the link to the full
+          Calendar page, so the separate "full" affordance goes, and the year/month selects and
+          the d/w/m segment come up beside it. Aligned center rather than the card header default
+          of baseline, because a select and a segmented control have no text baseline to share
+          with the label. */}
+      <div className="r-card-h ov-calhead" style={{ padding: 0, marginBottom: 8 }}>
+        <button className="lbl ov-caltitle" onClick={() => go("calendar")} title="open the full Calendar page"><b>Calendar</b> ↗</button>
+        <select className="ov-calsel" value={yr} onChange={(e) => shift(+e.target.value, mo)}>
           {years.map(v => <option key={v} value={v}>{v}</option>)}
         </select>
-        <select className="ov-calsel" style={{ flex: "0 0 auto", width: "auto" }} value={mo} onChange={(e) => shift(yr, +e.target.value)}>
+        <select className="ov-calsel" value={mo} onChange={(e) => shift(yr, +e.target.value)}>
           {MON.map((m, i) => <option key={m} value={i}>{m}</option>)}
         </select>
         <div className="r-seg r-seg-sm" style={{ display: "flex", marginLeft: "auto" }}>
@@ -963,8 +965,18 @@ function OverviewView({ t, go, restReady, seed }) {
              weather card free to be short. */
           .ov-insgrid > .r-card, .ov-weather { max-height: 104px; overflow: hidden; }
         }
-        .ov-calsel { width: 100%; background: var(--bg-3); border: 1px solid var(--rule); color: var(--ink);
-          border-radius: 6px; padding: 5px 7px; font-family: var(--mono); font-size: 10px; }
+        /* Selects sit on the title row now, so they lose the full-width block sizing and come down
+           to the d/w/m segment height beside them: 9px type on 2px/6px padding measures ~21px
+           against .r-seg-sm's ~25px, close enough to read as one row of controls. */
+        .ov-calsel { width: auto; flex: 0 0 auto; background: var(--bg-3); border: 1px solid var(--rule);
+          color: var(--ink); border-radius: 6px; padding: 2px 6px; font-family: var(--mono); font-size: 9px;
+          line-height: 1.5; cursor: pointer; }
+        .ov-calsel:hover { border-color: var(--accent-dim); }
+        /* .r-card-h aligns its children on the baseline, which a select does not usefully share. */
+        .ov-calhead { align-items: center; gap: 6px; flex-wrap: wrap; }
+        .ov-caltitle { background: transparent; border: 0; padding: 0; cursor: pointer; }
+        .ov-caltitle:hover, .ov-caltitle:focus-visible { color: var(--accent); }
+        .ov-caltitle:hover b, .ov-caltitle:focus-visible b { color: var(--accent); }
         .ov-calweek[data-gran="week"]:hover { outline: 1px solid var(--accent-dim); outline-offset: 1px; }
         .ov-calrail i { transition: transform .1s; display: block; }
         /* The old hover rule below never fired: it required a [data-gran="day"] ancestor that the
