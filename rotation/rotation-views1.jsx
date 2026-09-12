@@ -230,6 +230,30 @@ function parseOvSeed(seed) {
 // the story on click. The RELEASE-DECADE strip treemap used to ride underneath here; it now lives
 // in its own OvDecadesCard on the Story-of-the-day row (Fuad 2026-08-17) so this module is short.
 // (A by-year emotional-weather timeline is parked as a future pairing with the map's date scrubber.)
+// Shared bar for the Emotional-weather card — the filled 0-100 track with the library-average tick.
+// DEFINED AT MODULE SCOPE ON PURPOSE (Fuad 2026-09-13): while it was declared inside OvWeatherCard,
+// every render produced a new component type, so React unmounted and remounted the bars instead of
+// updating them. A freshly mounted element has no previous width to animate from, which is why the
+// fill transition never fired on a filter change. Nothing here reads the card's scope, only props.
+const OvWeatherBar = ({ label, v, avg, col }) => (
+  <div style={{ display: "grid", gridTemplateColumns: "52px 1fr 26px", gap: 9, alignItems: "center" }}>
+    {/* per-row axis label (footnote-grade eyebrow — Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
+    <span className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--ink-soft)" }}>{label}</span>
+    <div style={{ position: "relative", height: 7, background: "var(--bg-3)", borderRadius: 4 }}>
+      {/* Transparent fill, vivid rim (Fuad 2026-08-20). The first pass put `opacity` on the whole
+          element, which faded the border along with the fill — the one thing that was supposed to
+          stay strong. Alpha now lives in the background colour only, so the stroke is free to be
+          brighter and more saturated than the fill it encloses. */}
+      {/* the fill animates between values so a filter change reads as a move, not a jump */}
+      <div style={{ position: "absolute", inset: "0 auto 0 0", width: v + "%", background: col.f,
+        border: "1px solid " + col.s, boxSizing: "border-box", borderRadius: 4,
+        transition: "width .45s cubic-bezier(.3,.8,.3,1)" }} />
+      {avg != null && <div title={"library average " + avg} style={{ position: "absolute", top: -2, bottom: -2, left: avg + "%", width: 2, background: "var(--ink-faint)", borderRadius: 1 }} />}
+    </div>
+    <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{v}</span>
+  </div>
+);
+
 function OvWeatherCard({ R, go, fStats }) {
   const M = R.INSIGHTS && R.INSIGHTS.MOOD, N = M && M.now;
   // SOUNDS FOLLOWS THE FILTER (Fuad 2026-09-13). fStats.sndValence is a play-weighted mean of the
@@ -246,26 +270,6 @@ function OvWeatherCard({ R, go, fStats }) {
 
   if (!N) return null;
 
-  // Shared bar — the filled 0–100 track with the library-average tick. (v is the metric value;
-  // avg draws the baseline tick.)
-  const Bar = ({ label, v, avg, col }) => (
-    <div style={{ display: "grid", gridTemplateColumns: "52px 1fr 26px", gap: 9, alignItems: "center" }}>
-      {/* per-row axis label (footnote-grade eyebrow — Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
-      <span className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--ink-soft)" }}>{label}</span>
-      <div style={{ position: "relative", height: 7, background: "var(--bg-3)", borderRadius: 4 }}>
-        {/* Transparent fill, vivid rim (Fuad 2026-08-20). The first pass put `opacity` on the whole
-            element, which faded the border along with the fill — the one thing that was supposed to
-            stay strong. Alpha now lives in the background colour only, so the stroke is free to be
-            brighter and more saturated than the fill it encloses. */}
-        {/* the fill animates between values so a filter change reads as a move, not a jump */}
-        <div style={{ position: "absolute", inset: "0 auto 0 0", width: v + "%", background: col.f,
-          border: "1px solid " + col.s, boxSizing: "border-box", borderRadius: 4,
-          transition: "width .45s cubic-bezier(.3,.8,.3,1)" }} />
-        {avg != null && <div title={"library average " + avg} style={{ position: "absolute", top: -2, bottom: -2, left: avg + "%", width: 2, background: "var(--ink-faint)", borderRadius: 1 }} />}
-      </div>
-      <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{v}</span>
-    </div>
-  );
   // .f = fill (translucent), .s = stroke (opaque, lifted in lightness AND chroma so the rim reads
   // as the drawn edge rather than as a darker outline of the same wash).
   const SND = { f: "oklch(0.72 0.15 145 / 0.28)", s: "oklch(0.80 0.19 145)" };
@@ -285,8 +289,8 @@ function OvWeatherCard({ R, go, fStats }) {
       </div>
       <div onClick={() => go("stories", "emotional-weather")} style={{ cursor: "pointer" }}>
         <div style={{ display: "grid", gap: 8 }}>
-          <Bar label="Sounds" v={audV} avg={M.avgAud} col={SND} />
-          <Bar label={filt && !lyrFilt ? "Reads*" : "Reads"} v={lyrV} avg={M.avgLyr} col={RDS} />
+          <OvWeatherBar label="Sounds" v={audV} avg={M.avgAud} col={SND} />
+          <OvWeatherBar label={filt && !lyrFilt ? "Reads*" : "Reads"} v={lyrV} avg={M.avgLyr} col={RDS} />
         </div>
         {/* the prose line is gone (Fuad 2026-08-20) — it restated the two bars underneath it in
             words and was most of this card's height. The bars carry the reading; the mood word is
