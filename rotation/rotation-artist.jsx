@@ -2361,6 +2361,38 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
         /* plays->peak->share->listeners row: the 38px figures don't fit four-up on a phone (the
            "listeners ww" label clipped off the edge), so shrink the figures + gap on narrow screens
            (Fuad 2026-07-18) */
+        /* GENRES / SOURCE RAILS (Fuad 2026-09-13). These MUST sit at stylesheet scope, not inside
+           the 620px block below: .av-tagrow lives there because the per-source scroller is a mobile
+           treatment, and putting these beside it meant the fold only collapsed on a phone and the
+           rows lost their flex and gap on every other width.
+           One label style for all four rows so the converged line reads as a fourth source rather
+           than a widget, and the row rule carries the display/gap/wrap the three rails used to get
+           from an inline style — so all four separate their chips identically. flex-wrap stays
+           WRAP here, which is the desktop behaviour the rails always had; the 620px block still
+           overrides it to nowrap + scroll on phones. */
+        .av-srcrow { display: flex; gap: 7px; align-items: center; flex-wrap: wrap; margin-top: 10px; }
+        .av-srclbl {
+          flex: none; background: transparent; border: 0; padding: 0; cursor: pointer;
+          font-family: var(--mono); font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
+          color: var(--ink-faint); transition: color .15s;
+        }
+        .av-srclbl:hover, .av-srclbl:focus-visible { color: var(--accent); }
+        /* 0fr -> 1fr animates to the content REAL height, which matters because the two halves
+           differ from one row to three and a max-height guess would clip one or lag the other.
+           visibility trails the collapse so a folded half leaves the tab order, but appears at once
+           on open. */
+        .av-genfold {
+          display: grid; grid-template-rows: 0fr; opacity: 0; visibility: hidden;
+          transition: grid-template-rows .3s cubic-bezier(.3,.8,.3,1), opacity .2s ease, visibility 0s linear .3s;
+        }
+        .av-genfold > div { overflow: hidden; min-height: 0; }
+        .av-genfold[data-open="true"] {
+          grid-template-rows: 1fr; opacity: 1; visibility: visible;
+          transition: grid-template-rows .3s cubic-bezier(.3,.8,.3,1), opacity .25s ease .05s, visibility 0s;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .av-genfold, .av-genfold[data-open="true"] { transition: none; }
+        }
         @media (max-width: 620px){
           .av-hstats { gap: 14px !important; }
           .av-hstats .r-stat-n { font-size: 23px !important; }
@@ -2379,34 +2411,6 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           }
           .av-tagrow::-webkit-scrollbar { display: none; }
           .av-tagrow > * { flex: none; }
-          /* GENRES / SOURCE RAILS (Fuad 2026-09-13). One label style for all four rows so the
-             converged line reads as a fourth source, not a different control. The label is the
-             only toggle; chips keep navigating to Explore.
-             The three rails used to get display/gap/alignment from an inline style; that moves
-             here so all four rows share ONE spacing rule and separate their chips identically. */
-          .av-srcrow { display: flex; gap: 7px; align-items: center; margin-top: 10px; }
-          .av-srclbl {
-            flex: none; background: transparent; border: 0; padding: 0; cursor: pointer;
-            font-family: var(--mono); font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
-            color: var(--ink-faint); transition: color .15s;
-          }
-          .av-srclbl:hover, .av-srclbl:focus-visible { color: var(--accent); }
-          /* 0fr -> 1fr animates to the content's REAL height, which matters here because the two
-             halves are different heights (one row against up to three) and a max-height guess would
-             clip one or lag the other. visibility trails the collapse so a folded half leaves the
-             tab order but appears instantly on open. */
-          .av-genfold {
-            display: grid; grid-template-rows: 0fr; opacity: 0; visibility: hidden;
-            transition: grid-template-rows .3s cubic-bezier(.3,.8,.3,1), opacity .2s ease, visibility 0s linear .3s;
-          }
-          .av-genfold > div { overflow: hidden; min-height: 0; }
-          .av-genfold[data-open="true"] {
-            grid-template-rows: 1fr; opacity: 1; visibility: visible;
-            transition: grid-template-rows .3s cubic-bezier(.3,.8,.3,1), opacity .25s ease .05s, visibility 0s;
-          }
-          @media (prefers-reduced-motion: reduce) {
-            .av-genfold, .av-genfold[data-open="true"] { transition: none; }
-          }
         }
         /* live-set song chips that you also have in rotation link to the track page */
         .av-livesong { cursor: pointer; text-decoration: none; }
