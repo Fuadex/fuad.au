@@ -585,18 +585,28 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
     }
     const sndValence = _vp ? Math.round((_vs / _vp) * 100) : null;
     const sndPlays = _vp;
+    // READS, the same shape: `lv` is the artist's play-weighted lyric valence, shipped since the
+    // 2026-09-13 build. Already 0-100, so no rescale. Artists without lyrics leave the mean rather
+    // than counting as neutral, exactly as above.
+    let _ls = 0, _lp = 0;
+    for (const e of resultArtists) {
+      const lv = e.a && e.a.lv; if (lv == null) continue;
+      _ls += lv * e.p; _lp += e.p;
+    }
+    const rdsValence = _lp ? Math.round(_ls / _lp) : null;
+    const rdsPlays = _lp;
     const active = !!(sel || focus || filt.fam != null || filt.sub != null || yearIdx != null || periodData);
     // Report even when nothing is filtered: `active:false` keeps every existing consumer on its
     // lifetime branch (they all gate on .active), while still publishing the Results totals.
-    if (!active) { onStats({ active: false, plays, artists, debutYears, livePlays, sndValence, sndPlays }); return; }
+    if (!active) { onStats({ active: false, plays, artists, debutYears, livePlays, sndValence, sndPlays, rdsValence, rdsPlays }); return; }
     const avgSec = (R.TOTALS && R.TOTALS.avgTrackSec) || 216;
     // `slice` = a place/genre filter is active (not just a year/period). The Overview stat strip uses
     // it to decide whether to size avg/day from this (EXPLORE-scoped) count or from the exact day-series
     // total (which is right for a pure time filter). periodData is a time filter → slice:false.
-    if (periodData) { onStats({ active: true, slice: false, plays, artists, debutYears, livePlays, sndValence, sndPlays, hours: Math.round(plays * avgSec / 3600), label: [periodData.label, sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? famShort(R.FAMILIES[filt.fam].family) : null].filter(Boolean).join(" · ") }); return; }
+    if (periodData) { onStats({ active: true, slice: false, plays, artists, debutYears, livePlays, sndValence, sndPlays, rdsValence, rdsPlays, hours: Math.round(plays * avgSec / 3600), label: [periodData.label, sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? famShort(R.FAMILIES[filt.fam].family) : null].filter(Boolean).join(" · ") }); return; }
     const yr = yearIdx != null ? geoYears[yearIdx] : null;
     const slice = !!(sel || focus || filt.fam != null || filt.sub != null);
-    onStats({ active: true, slice, plays, artists, debutYears, livePlays, sndValence, sndPlays, hours: Math.round(plays * avgSec / 3600), label: [sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? famShort(R.FAMILIES[filt.fam].family) : null, yr].filter(Boolean).join(" · ") || "filtered" });
+    onStats({ active: true, slice, plays, artists, debutYears, livePlays, sndValence, sndPlays, rdsValence, rdsPlays, hours: Math.round(plays * avgSec / 3600), label: [sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? famShort(R.FAMILIES[filt.fam].family) : null, yr].filter(Boolean).join(" · ") || "filtered" });
   }, [resultArtists, filteredArtists, yearIdx, periodData, sel, focus, filt, onStats]);
   // calendar-period → the places its top artists come from. calendar-detail only stores the
   // top 5-6 artists per day/week, so a full dot re-weight would be dishonest — instead we

@@ -2938,6 +2938,11 @@ const MOOD_EMO = ["anger", "anticipation", "disgust", "fear", "joy", "sadness", 
 // .sptmp/nrc-audit/emit_v5.js — do not reorder. (mirrors rotation-media.jsx REG_VOCAB.)
 const MOOD_REG = ['anguished', 'bittersweet', 'bleak', 'tender', 'angry', 'defiant', 'joyful', 'neutral', 'bitter'];
 let MOOD = null;
+// Per-artist play-weighted lyric valence, accumulated in the same pass as the per-year arc below.
+// Ships as `lv` on the EXPLORE record so the Overview weather card can recompute READS under a
+// filter, the way R.AUDIO already lets it recompute SOUNDS. One number per artist rather than the
+// 25,855-row per-track store: ~32KB for 3,683 artists, who carry 86% of all plays.
+const ARTIST_LYR = new Map();   // artistSlug → { w, p }
 {
   const rows = [];
   // emotional weather: per-year play-weighted lyric valence (reads), audio valence (sounds)
@@ -2955,8 +2960,13 @@ let MOOD = null;
         if (!a) { a = { p: 0, lyrW: 0, lyrP: 0, audW: 0, audP: 0, emo: new Array(8).fill(0), reg: new Array(MOOD_REG.length).fill(0) }; yAcc.set(y, a); }
         a.p += c;
         if (hasLyr) { a.lyrW += m[0] * c; a.lyrP += c; if (m[1] >= 0) a.emo[m[1]] += c; if (m[4] != null) a.reg[m[4]] += c; }
+        // (per-artist total is accumulated once per track, outside this per-year loop — see below)
         if (hasAud) { a.audW += td[5] * c; a.audP += c; }
       }
+    }
+    if (hasLyr) {
+      let la = ARTIST_LYR.get(aS); if (!la) ARTIST_LYR.set(aS, la = { w: 0, p: 0 });
+      la.w += m[0] * plays; la.p += plays;
     }
     if (!hasLyr || !hasAud) continue;
     rows.push({ artist, title, id: sk, artistId: slug(artist), hue: hueFor(artist), plays,
@@ -4819,6 +4829,9 @@ for (const [name, plays] of rankedArtists) {
   const fm = familyMembersByName(name);   // 1–3 family indexes, dominant first (membership, not mention)
   const sq = qualifyingSubs(name, s);     // filter-worthy subs (backing tag ≥25% of top-tag weight)
   const rec = { id: slug(name), name, plays, hue: hueFor(name), s, fm, l: listenersOf(name) || 0, d: debutOf(name) || 0 };
+  // lyric valence, play-weighted across this artist's tracks that have one (see ARTIST_LYR)
+  const _alv = ARTIST_LYR.get(rec.id);
+  if (_alv && _alv.p) rec.lv = Math.round(_alv.w / _alv.p);
   if (!(sq.length === s.length && sq.every((v, i) => v === s[i]))) rec.sq = sq;   // omit when identical to s (falls back to s)
   const _o = originOf(name);            // country/city tag → lets the Journey scope to a place
   if (_o) { rec.co = _o.country; if (_o.city) rec.ci = _o.city; }

@@ -239,6 +239,10 @@ function OvWeatherCard({ R, go, fStats }) {
   // rather than being silently compared against a filtered number.
   const filt = !!(fStats && fStats.active && fStats.sndValence != null);
   const audV = filt ? fStats.sndValence : (N && N.aud);
+  // READS follows too now that `lv` ships per artist. It can still be null on a slice whose
+  // artists have no lyric data at all, in which case the bar falls back to the all-time figure.
+  const lyrV = (filt && fStats.rdsValence != null) ? fStats.rdsValence : (N && N.lyr);
+  const lyrFilt = !!(filt && fStats.rdsValence != null);
 
   if (!N) return null;
 
@@ -253,8 +257,10 @@ function OvWeatherCard({ R, go, fStats }) {
             element, which faded the border along with the fill — the one thing that was supposed to
             stay strong. Alpha now lives in the background colour only, so the stroke is free to be
             brighter and more saturated than the fill it encloses. */}
+        {/* the fill animates between values so a filter change reads as a move, not a jump */}
         <div style={{ position: "absolute", inset: "0 auto 0 0", width: v + "%", background: col.f,
-          border: "1px solid " + col.s, boxSizing: "border-box", borderRadius: 4 }} />
+          border: "1px solid " + col.s, boxSizing: "border-box", borderRadius: 4,
+          transition: "width .45s cubic-bezier(.3,.8,.3,1)" }} />
         {avg != null && <div title={"library average " + avg} style={{ position: "absolute", top: -2, bottom: -2, left: avg + "%", width: 2, background: "var(--ink-faint)", borderRadius: 1 }} />}
       </div>
       <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{v}</span>
@@ -280,7 +286,7 @@ function OvWeatherCard({ R, go, fStats }) {
       <div onClick={() => go("stories", "emotional-weather")} style={{ cursor: "pointer" }}>
         <div style={{ display: "grid", gap: 8 }}>
           <Bar label="Sounds" v={audV} avg={M.avgAud} col={SND} />
-          <Bar label={filt ? "Reads*" : "Reads"} v={N.lyr} avg={M.avgLyr} col={RDS} />
+          <Bar label={filt && !lyrFilt ? "Reads*" : "Reads"} v={lyrV} avg={M.avgLyr} col={RDS} />
         </div>
         {/* the prose line is gone (Fuad 2026-08-20) — it restated the two bars underneath it in
             words and was most of this card's height. The bars carry the reading; the mood word is
@@ -290,7 +296,9 @@ function OvWeatherCard({ R, go, fStats }) {
             falls back to the NRC emotion when no register data is present. */}
         <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginTop: 7, letterSpacing: ".06em" }}>
           {filt
-            ? <>sounds across {fmt(fStats.sndPlays || 0)} measured plays in this slice · <b style={{ color: "var(--ink-soft)", fontWeight: 600 }}>reads*</b> stays all-time</>
+            ? (lyrFilt
+                ? <>this slice · {fmt(fStats.sndPlays || 0)} plays measured for sounds, {fmt(fStats.rdsPlays || 0)} for reads</>
+                : <>sounds across {fmt(fStats.sndPlays || 0)} measured plays · <b style={{ color: "var(--ink-soft)", fontWeight: 600 }}>reads*</b> has no lyric data in this slice, so it stays all-time</>)
             : <>last {N.days} days{(M.topRegister || N.emo) ? <> · mostly <b style={{ color: "var(--ink-soft)", fontWeight: 600 }}>{M.topRegister || N.emo}</b></> : null}</>}</div>
       </div>
     </div>
