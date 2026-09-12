@@ -3135,7 +3135,11 @@ function GigsView({ go }) {
         /* hero bottom padding + the first section margin were stacking to ~66px under the crowd caption
            (Fuad 2026-08-20). 26 -> 10 here, and the adjacent-sibling rule below trims only the FIRST
            section so the rhythm between later sections is untouched. */
-        .gv-hero { padding: 12px 2px 10px; }
+        /* top padding 12 -> var(--pad): GigsView renders its own root rather than .r-view, so it was
+           missing the standard view inset and the Attended kicker sat tight under the header. Matches
+           the breathing room above “On tour now” below, and scales down with --pad on mobile.
+           (Fuad 2026-09-13) */
+        .gv-hero { padding: var(--pad) 2px 10px; }
         .gv-hero + .gv-sec { margin-top: 18px; }
         /* margin-bottom 14px -> 0: that space stood the kicker off the h1, which is retired. The lede
            carries its own 14px top margin, so the pair still breathes. (Fuad 2026-09-13) */

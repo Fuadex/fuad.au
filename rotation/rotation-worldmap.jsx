@@ -168,22 +168,20 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot,
   const [filt, setFilt] = React.useState(_if.filt || { fam: null, sub: null }); // genre pivot: size every place by this genre
   // report the serializable filter (genre + mode) up so the Overview can put it in the URL
   React.useEffect(() => { if (onFilter) onFilter({ mode, filt }); }, [mode, filt]);
-  // TEN ON A PHONE, WHATEVER IS STORED (Fuad 2026-08-21). The 10/50 baseline persists, but that
-  // choice is almost always made at a desk, and restoring a stored 50 on a phone buries everything
-  // below the results under a column you have to thumb past. Narrow screens ignore the stored value
-  // and start at 10; picking 50 on the phone still works and still writes through, so the
-  // desktop preference is neither lost nor imposed.
-  const [limit, setLimit] = React.useState(() => {
-    const narrow = typeof window !== "undefined" && window.matchMedia
-      && window.matchMedia("(max-width: 760px)").matches;
-    if (narrow) return 10;
-    try { const v = parseInt(localStorage.getItem("rot-ov-results-n"), 10); if (v === 10 || v === 50) return v; } catch (e) {}   // a 25 stored before the choice was dropped falls back to 10
-    return 10;
+  // The results count is no longer chosen by hand (Fuad 2026-09-13: the 10/50 segment is gone). It
+  // is set once from the viewport, because the right number is a function of how much room the page
+  // has: a phone buries everything under the results, a 2k display leaves the band looking empty.
+  // Read once at mount on purpose — a starting size, not a live responsive binding, so the count
+  // never changes under the reader mid-scroll. The old rot-ov-results-n preference is now unused.
+  const [limit] = React.useState(() => {
+    try {
+      if (window.matchMedia("(min-width: 2000px)").matches) return 50;   // 2k and wider
+      if (window.matchMedia("(max-width: 760px)").matches) return 10;    // phones
+    } catch (e) {}
+    return 25;                                                          // ordinary desktop
   });
-  const setLimitPersist = (v) => { setLimit(v); try { localStorage.setItem("rot-ov-results-n", String(v)); } catch (e) {} };
-  // "show 25 more" rides ON TOP of the persisted 10/50 baseline rather than replacing it —
-  // the stored value only validates as one of those two, so an expanded count would be thrown
-  // away on reload anyway. Transient by design: a new filter or a new baseline starts over.
+  // "show 25 more" rides ON TOP of the viewport baseline rather than replacing it. Transient by
+  // design: a new filter or a new slice starts over.
   const [extra, setExtra] = React.useState(0);
   const shownN = limit + extra;
   React.useEffect(() => { setExtra(0); }, [limit, pane, mode, sel, focus, yearIdx, filt.fam, filt.sub, calPeriod]);
@@ -590,15 +588,32 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
   // artists fall below the EXPLORE cutoff (e.g. Jamaica/Morocco with a single low-play act) shows a
   // bubble that clicks through to an empty Results list (Fuad 2026-07-15).
   const exploreCC = React.useMemo(() => new Set((R.EXPLORE || []).map(a => a.co).filter(Boolean)), [R]);
+  // BOTH lenses are built every render and the inactive one is handed r = 0, which is what makes
+  // countries <-> cities animate. A year scrub already morphed smoothly because the year keeps the
+  // same keys and only moves r, and IDLE_TR transitions r; swapping the arrays on a mode change
+  // instead unmounted one set and mounted the other, and an unmounted circle cannot transition. So
+  // the outgoing lens now shrinks to nothing while the incoming one grows. Keys are namespaced by
+  // kind so the two sets can never collide. (Fuad 2026-09-13)
   const bubbles = React.useMemo(() => {
     if (!world) return [];
     const proj = (c) => [(c.lng + 180) / 360 * world.w, (90 - c.lat) / 180 * world.h];
-    let set, kind, base, scale, project;
-    if (focus) { set = cityPts.filter(c => c.country === focus); kind = "city"; base = 2; scale = 16; project = proj; }
-    else if (mode === "city") { set = cityPts; kind = "city"; base = 2.5; scale = 24; project = proj; }
-    else { const C = world.centroids; set = G.countries.filter(c => C[c.code] && exploreCC.has(c.code)); kind = "country"; base = 4; scale = 28; project = (c) => C[c.code]; }
-    const mx = Math.max(1, ...set.map(sizeOf));
-    return set.map((c, i) => { const [x, y] = project(c); const sv = sizeOf(c); const r = ((yearIdx != null || filtSums) && sv === 0) ? 0 : base + Math.sqrt(sv / mx) * scale; return { key: kind === "country" ? c.code : "c" + i, kind, x, y, r, c }; });
+    // `live` false => radius 0: still mounted, so it can grow back, but sized to nothing.
+    const build = (set, kind, base, scale, project, live) => {
+      const mx = Math.max(1, ...set.map(sizeOf));
+      return set.map((c, i) => {
+        const [x, y] = project(c);
+        const sv = sizeOf(c);
+        const r = !live ? 0 : (((yearIdx != null || filtSums) && sv === 0) ? 0 : base + Math.sqrt(sv / mx) * scale);
+        return { key: kind + ":" + (kind === "country" ? c.code : i), kind, x, y, r, c };
+      });
+    };
+    // A focused country shows only its own cities, at their own scale — no second lens to hold.
+    if (focus) return build(cityPts.filter(c => c.country === focus), "city", 2, 16, proj, true);
+    const C = world.centroids;
+    return [
+      ...build(G.countries.filter(c => C[c.code] && exploreCC.has(c.code)), "country", 4, 28, (c) => C[c.code], mode !== "city"),
+      ...build(cityPts, "city", 2.5, 24, proj, mode === "city"),
+    ];
   }, [world, mode, focus, yearIdx, filtSums, R]);
 
   // metrics you can colour the map by — measured audio dims + a few derived place metrics.
@@ -676,6 +691,16 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
       <div style={{ padding: embedded ? 30 : 60, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 12 }}>loading the map…</div></div>
   );
 
+  // Scope line + play count for the results module. Computed here rather than inside the results
+  // card because it now renders up in the view head, on the Geography kicker’s row, instead of
+  // restating the same register further down the page (Fuad 2026-09-13).
+  const resGName = filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? famShort(R.FAMILIES[filt.fam].family) : null;
+  const resParts = periodData   // a period COMPOSES with place/genre, so the caption names every active axis
+    ? ["on " + periodData.label, sel ? (selFlag + " " + selName) : null, resGName].filter(Boolean)
+    : [sel ? (selFlag + " " + selName) : "everywhere", resGName || "all genres", yearIdx != null ? geoYears[yearIdx] : "all years"];
+  const resTotalPlays = resultArtists.reduce((s, e) => s + e.p, 0);
+  const resEyebrow = periodData ? "on this " + calPeriod.gran : "results";
+
   return (
     <div className={embedded ? "map-embed" : "r-view tv-page"} style={embedded ? undefined : { maxWidth: 1360 }}>
       <div className={"r-viewhead" + (embedded ? " r-headbare" : "")} style={embedded ? { marginBottom: 16 } : undefined}>
@@ -686,6 +711,13 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
           {embedded ? null : <h1 className="r-title">Where it <em>comes from</em><span className="dot">.</span></h1>}
         </div>
         <div style={{ display: "flex", gap: 10, alignItems: "flex-end", flexWrap: "wrap" }}>
+          {/* Results scope + play count, lifted out of the results card so it reads on the Geography
+              kicker’s line rather than repeating that register further down (Fuad 2026-09-13). */}
+          <div className="r-mono mp-scope">
+            <span className="mp-scope-eb">{resEyebrow}</span>
+            <span className="mp-scope-parts" title={resParts.join("  ·  ")}>{resParts.join("  ·  ")}</span>
+            <span className="mp-scope-plays">{fmt(resTotalPlays)} plays</span>
+          </div>
           {/* clear-all clears the CALENDAR too (Fuad 2026-08-22) — the period lives upstairs in
               Overview state, reached through onClearPeriod; the button also shows when the
               calendar is the ONLY active filter */}
@@ -764,7 +796,8 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
               return <circle key={b.key} className="mp-bub" data-cx={b.x} data-cy={b.y} data-r0={b.r}
                 cx={b.x} cy={b.y} r={b.r / Math.pow(view.s, mpRadExp(view.s))} fill={col} fillOpacity={on ? 0.72 : 0.34}
                 stroke={inPeriod ? "var(--accent)" : col} strokeWidth={((inPeriod ? 1.8 : on ? 1.6 : 0.7)) / view.s}
-                style={{ cursor: "pointer", transition: "r .6s cubic-bezier(.3,.8,.3,1), fill .5s, fill-opacity .12s" }}
+                style={{ cursor: "pointer", pointerEvents: b.r ? "auto" : "none",   // the shrunk-away lens must not eat clicks
+                  transition: "r .6s cubic-bezier(.3,.8,.3,1), fill .5s, fill-opacity .12s" }}
                 onMouseEnter={() => setHi(b.key)} onClick={(e) => { e.stopPropagation(); if (!moved.current) openBubble(b); }} />;
             })}
           </g>
@@ -820,33 +853,11 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
 
       {/* results — top artists + albums + songs + DNA for the current place ∩ genre ∩ year (no place needed) */}
       {(() => {
-        const gName = filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? famShort(R.FAMILIES[filt.fam].family) : null;
-        // a period now COMPOSES with place/genre, so the caption names every active axis
-        const parts = periodData
-          ? ["on " + periodData.label, sel ? (selFlag + " " + selName) : null, gName].filter(Boolean)
-          : [sel ? (selFlag + " " + selName) : "everywhere", gName || "all genres", yearIdx != null ? geoYears[yearIdx] : "all years"];
-        const totalPlays = resultArtists.reduce((s, e) => s + e.p, 0);
         return (
           <div className="r-card mp-results" style={{ marginTop: "var(--gap)", padding: 22 }}>
-            {/* no flex-wrap (Fuad 2026-08-20): a long genre or subgenre name used to push the play
-                count onto its own line. The title clips and fades instead — the mask in .mp-restitle
-                sits at the container's right edge, so a short title never reaches it and a long one
-                runs out rather than stopping dead on an ellipsis. Header folded to a single row
-                (Fuad 2026-08-24), buying the results band another line. */}
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 16 }}>
-              {/* Scope line + count in the flowmap breadcrumb's register — r-mono 11, the same as
-                  "all genres" in the flow card (Fuad 2026-08-24: one voice for the two scope lines,
-                  and the serif-22 title + stat-26 count were the loudest of the Overview's mixed
-                  fonts). The count folds into one quiet line; both cuts also give the fixed-height
-                  results band its missing half row. */}
-              {/* Results-card title-eyebrow → canonical 10px (Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
-              <div style={{ minWidth: 0, flex: "1 1 auto", display: "flex", alignItems: "baseline", gap: 6 }}>
-                <div className="r-mono" style={{ fontSize: 10, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--ink-faint)", flex: "0 0 auto" }}>{periodData ? "on this " + calPeriod.gran : "results"}</div>
-                <div className="r-mono mp-restitle" title={parts.join("  ·  ")} style={{ fontSize: 11, minWidth: 0, flex: "1 1 auto" }}>{parts.join("  ·  ")}</div>
-              </div>
-              <div className="r-mono" style={{ flex: "0 0 auto", fontSize: 11, color: "var(--ink-soft)" }}>{fmt(totalPlays)} plays</div>
-            </div>
-            <div className="mp-resctl" style={{ display: "flex", alignItems: "center", gap: "8px 10px", flexWrap: "wrap", margin: "16px 0 14px" }}>
+            {/* top margin 16 -> 0: it stood this row off the scope header, which now lives up in the
+                view head, so the card padding is the whole gap. (Fuad 2026-09-13) */}
+            <div className="mp-resctl" style={{ display: "flex", alignItems: "center", gap: "8px 10px", flexWrap: "wrap", margin: "0 0 14px" }}>
               {/* r-seg-sm — the SAME variant class as the flowmap's genres/bands segment, not a
                   local pixel copy of its numbers (that copy is what kept drifting; Fuad 2026-08-24:
                   make them match by construction). */}
@@ -884,20 +895,21 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
                   </button>
                 </div>
               )}
-              {pane !== "dna" && <div className="r-seg r-seg-sm map-limseg">
-                {[10, 50].map(n => <button key={n} data-on={limit === n} onClick={() => setLimitPersist(n)}>{n}</button>)}
-              </div>}
+
             </div>
             {/* year-slice note = footnote-grade (Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
             {!periodData && yearIdx != null && (pane === "albums" || pane === "songs") && <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginBottom: 8 }}>albums &amp; songs aren't split by year — showing all-time for this slice.</div>}
             <div className="mp-resbody">
             {pane === "artists" && (resultArtists.length
               ? (disp === "grid"
-                ? <div className="mp-covergrid">{resultArtists.slice(0, shownN).map((e, i) => { const a = e.a, kept = !!R.byId[a.id] || !!(R.expById && R.expById[a.id]); return (
-                    <div key={a.id} className="mp-coveritem" data-link={kept} onClick={() => kept && go("artist", a.id)}>
-                      <div style={{ position: "relative" }}><GenCover hue={a.hue || 210} name={a.name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
+                // r-hovgrid / r-hovtile / -art / -lbl: the accent ring the artist page puts on its
+                // albums and sounds-like tiles. r-hovgrid pads top and left so the ring, drawn
+                // outside the tile box, is not clipped by the grid edge. (Fuad 2026-09-13)
+                ? <div className="mp-covergrid r-hovgrid">{resultArtists.slice(0, shownN).map((e, i) => { const a = e.a, kept = !!R.byId[a.id] || !!(R.expById && R.expById[a.id]); return (
+                    <div key={a.id} className={"mp-coveritem" + (kept ? " r-hovtile" : "")} data-link={kept} onClick={() => kept && go("artist", a.id)}>
+                      <div className="r-hovtile-art" style={{ position: "relative" }}><GenCover hue={a.hue || 210} name={a.name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} radius={4} />
                         <span className="r-mono" style={{ position: "absolute", top: 4, left: 5, fontSize: 8.5, color: "rgba(255,255,255,.85)", textShadow: "0 1px 2px #000" }}>{String(i + 1).padStart(2, "0")}</span></div>
-                      <div className="mp-covernm">{a.name}</div><div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>{fmt(e.p)}</div></div>); })}</div>
+                      <div className="mp-covernm r-hovtile-lbl">{a.name}</div><div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)" }}>{fmt(e.p)}</div></div>); })}</div>
                 : <div className="cal-rows">{resultArtists.slice(0, shownN).map((e, i) => { const a = e.a, kept = !!R.byId[a.id] || !!(R.expById && R.expById[a.id]); return (
                     <div key={a.id} className="cal-row" data-link={kept} onClick={() => kept && go("artist", a.id)}>
                       <span className="cal-rk">{String(i + 1).padStart(2, "0")}</span><GenCover hue={a.hue || 210} name={a.name} size={34} radius={3} />
@@ -1020,6 +1032,14 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
            picked stays legible while you read the panes it filtered (Fuad 2026-09-01). */
         .map-listrow[data-on] .map-sw { background: var(--sw); }
         /* cover grid: fixed columns so a lone last item doesn't stretch into an orphan */
+        /* Relocated results scope. Sits at the head’s right edge on the kicker row; the middle
+           span is the only flexible part, so a long place+genre clips there instead of pushing
+           the play count onto a second line. */
+        .mp-scope { display: flex; align-items: baseline; gap: 8px; min-width: 0; max-width: 100%; }
+        .mp-scope-eb { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); flex: 0 0 auto; }
+        .mp-scope-parts { font-size: 11px; color: var(--ink-soft); min-width: 0; flex: 0 1 auto;
+          overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .mp-scope-plays { font-size: 11px; color: var(--ink-soft); flex: 0 0 auto; }
         .mp-covergrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
         .mp-coveritem { cursor: pointer; min-width: 0; }
         .mp-coveritem[data-link="false"] { cursor: default; }
