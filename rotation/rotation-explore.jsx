@@ -892,8 +892,10 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
     [buildScale, shade]);
   const shadeVal = React.useCallback((row) => {
     if (shade === "none") return null;
-    if (shade === "seenLive") { if (row.seenLive == null) return null; return row.seenLive ? 0.15 : 1; } // brighter = never seen live
-    if (shade === "recency") { if (row.recency == null || !shadeExtent) return null; return (row.recency - shadeExtent.mn) / (shadeExtent.mx - shadeExtent.mn); }
+    // Both of these read the OTHER way round as of 2026-09-13 (Fuad). Bright now means the thing the
+    // option is named for is TRUE of that artist: you have seen them, or it has been a long time.
+    if (shade === "seenLive") { if (row.seenLive == null) return null; return row.seenLive ? 1 : 0.15; } // brighter = SEEN live
+    if (shade === "recency") { if (row.recency == null || !shadeExtent) return null; return 1 - (row.recency - shadeExtent.mn) / (shadeExtent.mx - shadeExtent.mn); } // brighter = LONGER since played
     if (shadeScale && shadeScale.ok) {
       const v = attrRawVal(row, shade); if (v == null || v !== v) return null;
       return Math.max(0, Math.min(1, shadeScale.map(v)));
@@ -1242,7 +1244,7 @@ function AttrExplore({ R, go, grain, onBrushSel, activeIds, activeSub, activeFam
   const shadeOpts = mode === "subgenres"
     ? [{ key: "none", label: "none" }, ...ATTR_AXES.map(a => ({ key: a.key, label: a.label }))]
     : [{ key: "none", label: "none" }, ...ATTR_AXES.map(a => ({ key: a.key, label: a.label })),
-       { key: "recency", label: "recency" }, { key: "seenLive", label: "seen-live" }];
+       { key: "recency", label: "dormancy" }, { key: "seenLive", label: "seen-live" }];   // "dormancy": bright = longest unplayed, so the label matches the encoding
   React.useEffect(() => { if (!shadeOpts.some(o => o.key === shade)) setShade("none"); }, [mode]);
 
   const selBox = { background: "var(--bg-2)", color: "var(--ink)", border: "1px solid var(--rule)", borderRadius: 6, fontFamily: "var(--mono)", fontSize: 11, padding: "4px 8px", letterSpacing: ".03em", cursor: "pointer" };
@@ -1292,7 +1294,7 @@ function AttrExplore({ R, go, grain, onBrushSel, activeIds, activeSub, activeFam
             number: it doesn't. The binding constraint here is the ≥3-audio-track bar, not the play
             floor — every artist the floor added has too few tracks with features to qualify.) */}
         {built.artists.length} of {built.totalAudioArtists || "?"} audio-covered artists plotted · ≥3 featured tracks each · coloured by genre family
-        {shade === "seenLive" ? " · brighter = never seen live" : shade === "recency" ? " · brighter = played more recently" : ""}
+        {shade === "seenLive" ? " · brighter = seen live" : shade === "recency" ? " · brighter = longer since you played them" : ""}
         {!restReady ? " · popularity & debut-year fill in as the long-tail universe loads" : ""}
       </div>
 
