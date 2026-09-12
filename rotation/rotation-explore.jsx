@@ -219,6 +219,12 @@ function exploreRank(R, kind, f, limit = 40) {
 // separately. Keep these two in sync with that copy. neutral is chroma 0 (grey).
 const REG_VOCAB = ['anguished', 'bittersweet', 'bleak', 'tender', 'angry', 'defiant', 'joyful', 'neutral', 'bitter'];
 const REG_HUES = { anguished: 290, bleak: 250, bitter: 110, angry: 25, bittersweet: 320, tender: 350, neutral: 0, defiant: 45, joyful: 85 };
+// DISPLAY order for the Register chip row, darkest to brightest. REG_VOCAB itself must NOT be
+// reordered — rec.rg is an INDEX into it, so shuffling that array would silently relabel every
+// artist. This is the empirical order: each register s mean lyric valence across the 25,855 tracks
+// carrying one, which is the 0-100 spread the row should read along (Fuad 2026-09-13).
+//   bleak 25 · anguished 27 · angry 33 · bitter 34 · bittersweet 55 · neutral 60 · defiant 75 · tender 78 · joyful 84
+const REG_ORDER = [bleak, anguished, angry, bitter, bittersweet, neutral, defiant, tender, joyful];
 // chip tint for register `name` (muted oklch, matching the media card's swatch: 0.55L / 0.13C).
 const regColor = (name) => `oklch(0.55 ${name === "neutral" ? 0 : 0.13} ${REG_HUES[name] || 0})`;
 // registerPass — an artist's dominant register (rec.rg idx) passes when its label is in the
@@ -2056,7 +2062,7 @@ function ExploreView({ t, go, setPop, seed }) {
         <div className="xp-frow xp-td-themes" style={{ marginBottom: 0, marginTop: 12 }}>
           <span className="xp-flabel">Register</span>
           <div className="xp-chiprow">
-            {REG_VOCAB.map(name => {
+            {REG_ORDER.map(name => {
               const on = regSel.has(name);
               const c = regCounts ? regCounts[name] : 0;
               if (!on && !c) return null;               // hide zero-count chips (mirrors Themes)
