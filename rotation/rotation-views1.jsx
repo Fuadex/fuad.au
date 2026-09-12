@@ -952,7 +952,9 @@ function OverviewView({ t, go, restReady, seed }) {
              instead and had to be reverted. */
           .ov-scrob .spark { max-height: 30px; }
           .ov-np { max-height: 92px; overflow: hidden; }
-          .ov-recent .ov-rl { overflow-y: auto; }
+          /* Recent does not scroll (Fuad 2026-09-13). This overrode the rule ~30 lines above,
+             which already sets overflow visible; the list is two rows, so there was nothing to
+             scroll to and the scroller only ever ate a drag. */
           .ov-strip    { grid-column: 1 / span 8 !important; grid-template-columns: repeat(5, 1fr) !important; gap: 10px !important; }
           .ov-strip .r-stat-n { font-size: 20px !important; }
           /* Story-of-the-day row: Story compresses to cols 1-8, Decades takes 9-12 (the same
