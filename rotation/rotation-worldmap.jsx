@@ -142,7 +142,7 @@ function MapFlow({ artists, filt, setFilt, years, markYi, go }) {
   );
 }
 
-function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot, initFilter, onFilter, onClearPeriod }) {
+function MapView({ go, embedded, extYear, onYear, calPeriod, onStats, calSlot, statSlot, initFilter, onFilter, onClearPeriod }) {
   const R = window.ROTATION;
   const G = R.INSIGHTS.GEOGRAPHY;
   const cityPts = G.cityPoints || [];
@@ -155,12 +155,21 @@ function MapView({ go, embedded, extYear, calPeriod, onStats, calSlot, statSlot,
   const [colorBy, setColorBy] = React.useState("dominant"); // dominant | top
   const [focus, setFocus] = React.useState(null);
   const [yearIdx, setYearIdx] = React.useState(null);       // null = all-time
-  // the Overview calendar rail scrubs the map's year from outside
+  // the Overview calendar rail scrubs the map's year from outside. Deliberately does NOT call
+  // onYear: this is the inbound half of the sync, and echoing it back would loop.
   React.useEffect(() => {
     if (extYear == null) return;
     const i = geoYears.indexOf(extYear);
     if (i >= 0) setYearIdx(i);
   }, [extYear]);
+  // Outbound half (Fuad 2026-09-13): the map used to take a year from the calendar but never give
+  // one back, so scrubbing the map left the rail sitting on a different year. Every USER-driven
+  // year change goes through here, which reports upward; the effect above stays silent, so the
+  // two directions cannot chase each other.
+  const pickYear = React.useCallback((i) => {
+    setYearIdx(i);
+    if (onYear) onYear(i == null ? null : geoYears[i]);
+  }, [onYear, geoYears]);
   const [playing, setPlaying] = React.useState(false);
   const [hi, setHi] = React.useState(null);
   const [sel, setSel] = React.useState(null);
@@ -303,6 +312,13 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
     const t = setInterval(() => setYearIdx(i => { const n = (i == null ? 0 : i + 1); if (n >= geoYears.length) { setPlaying(false); return geoYears.length - 1; } return n; }), 1100);
     return () => clearInterval(t);
   }, [playing, geoYears]);
+  // While the year animation runs, keep the calendar rail on the year being shown. Reported from
+  // an effect rather than from inside the setYearIdx updater: React may invoke an updater more
+  // than once, and a parent setState from inside one is a side effect in the wrong place.
+  React.useEffect(() => {
+    if (!playing || !onYear || yearIdx == null) return;
+    onYear(geoYears[yearIdx]);
+  }, [playing, yearIdx]);
   const W = world ? world.w : 1000, Hh = world ? world.h : 500;
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
   // ZOOM DEPTH (Fuad 2026-08-31: "allow to zoom in closer, especially when in cities' view").
@@ -744,9 +760,9 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
           {[["country", "countries"], ["city", "cities"]].map(([k, l]) => <button key={k} data-on={mode === k} onClick={() => { setMode(k); setHi(null); }}>{l}</button>)}
         </div>}
         <div className="map-years">
-          <button className="map-play" data-on={playing} onClick={() => { if (!playing && (yearIdx == null || yearIdx >= geoYears.length - 1)) setYearIdx(0); setPlaying(p => !p); }}>{playing ? "❚❚" : "▶"}</button>
+          <button className="map-play" data-on={playing} onClick={() => { if (!playing && (yearIdx == null || yearIdx >= geoYears.length - 1)) pickYear(0); setPlaying(p => !p); }}>{playing ? "❚❚" : "▶"}</button>
           <input className="map-slider" type="range" min="0" max={geoYears.length} value={yearIdx == null ? 0 : yearIdx + 1}
-            onChange={(e) => { setPlaying(false); const v = +e.target.value; setYearIdx(v === 0 ? null : v - 1); }} />
+            onChange={(e) => { setPlaying(false); const v = +e.target.value; pickYear(v === 0 ? null : v - 1); }} />
           <span className="map-yrlabel">{yearIdx == null ? "all years" : geoYears[yearIdx]}</span>
         </div>
       </div>

@@ -63,7 +63,7 @@ function TopArtistsPeek({ R, go }) {
 // day ⇄ week granularity, click a cell. What it drives today: the map/flow scrub to that year,
 // and the cell deep-opens its day/week in the full Calendar. (Day-level geography needs a new
 // build export — the tandem deepens next iteration.)
-function OvCalRail({ go, onYear, onPeriod, init }) {
+function OvCalRail({ go, onYear, onPeriod, init, extYear }) {
   // init = {year, period} restored from the URL — preselect the cell/year so the rail's highlight
   // matches the filtered map on a deep-link/refresh.
   const [selDay, setSelDay] = React.useState((init && init.period && init.period.key) || null);
@@ -82,6 +82,14 @@ function OvCalRail({ go, onYear, onPeriod, init }) {
   const [mo, setMo] = React.useState((_ik && _ik.length >= 7 ? +_ik.slice(5, 7) - 1 : now.getUTCMonth()));   // 0-11
   // default granularity week, not day (Fuad 2026-08-22) — a deep-linked period still wins
   const [gran, setGran] = React.useState((_ip && init.period.gran) || "week");   // day | week | month
+  // Year handed down from the map (Fuad 2026-09-13). Sets yr directly rather than going through
+  // shift(), which would call onYear straight back up and loop. Month and any day selection are
+  // left alone: the map only ever names a year, so carrying the selection the way shift() does
+  // would invent a month the map never asked for.
+  React.useEffect(() => {
+    if (extYear == null) return;
+    setYr(y => (y === extYear ? y : extYear));
+  }, [extYear]);
   React.useEffect(() => {
     if (window.ROTATION_CAL) return;
     let s = document.getElementById("rotation-cal-js");
@@ -178,7 +186,7 @@ function OvCalRail({ go, onYear, onPeriod, init }) {
 // OvMapBand — the geography band: the FULL MapView (+ the calendar rail slotted into its left
 // column, under deepest places). Mounts once the user scrolls near, so Overview's first paint
 // doesn't pay for world-map.js.
-function OvMapBand({ go, extYear, calPeriod, onStats, calRail, statSlot, restReady, initFilter, onFilter, onClearPeriod }) {
+function OvMapBand({ go, extYear, onYear, calPeriod, onStats, calRail, statSlot, restReady, initFilter, onFilter, onClearPeriod }) {
   const [ref, seen] = useInView();
   const [on, setOn] = React.useState(false);
   React.useEffect(() => { if (seen) setOn(true); }, [seen]);
@@ -187,7 +195,7 @@ function OvMapBand({ go, extYear, calPeriod, onStats, calRail, statSlot, restRea
   const ready = on && restReady;
   return (
     <div ref={ref} style={{ minHeight: ready ? 0 : 220 }}>
-      {ready ? <MapView go={go} embedded extYear={extYear} calPeriod={calPeriod} onStats={onStats} calSlot={calRail} statSlot={statSlot} initFilter={initFilter} onFilter={onFilter} onClearPeriod={onClearPeriod} />
+      {ready ? <MapView go={go} embedded extYear={extYear} onYear={onYear} calPeriod={calPeriod} onStats={onStats} calSlot={calRail} statSlot={statSlot} initFilter={initFilter} onFilter={onFilter} onClearPeriod={onClearPeriod} />
         : <div className="r-card" style={{ padding: 40, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 11 }}>the world map loads as you scroll…</div>}
     </div>
   );
@@ -673,10 +681,10 @@ function OverviewView({ t, go, restReady, seed }) {
         {/* THE MAP BAND — full width, right below the pulse row. The calendar rail rides along as
             a slot: it renders under the map's deepest-places column and cross-filters the results. */}
         <div className="ov-mapslot" style={{ gridColumn: "1 / -1" }}>
-          <OvMapBand go={go} restReady={restReady} extYear={mapYear} calPeriod={mapPeriod} onStats={setFStats}
+          <OvMapBand go={go} restReady={restReady} extYear={mapYear} onYear={setMapYear} calPeriod={mapPeriod} onStats={setFStats}
             onClearPeriod={() => { setMapPeriod(null); setMapYear(null); }}
             initFilter={_seed.filter} onFilter={setMapFilter}
-            calRail={<OvCalRail go={go} onYear={setMapYear} onPeriod={setMapPeriod} init={_seed} />}
+            calRail={<OvCalRail go={go} onYear={setMapYear} onPeriod={setMapPeriod} init={_seed} extYear={mapYear} />}
             statSlot={
               /* lifetime stats, now nested under the flowmap (Fuad 2026-07-06); hours + distinct
                  artists react to the active map/calendar filter, the rest are lifetime. */
