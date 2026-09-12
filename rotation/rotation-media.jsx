@@ -163,10 +163,13 @@ const bpmAxis = (bpm) => {
 // a fallback for albums with no MB spine. All page-derived values arrive as props so it stays pure.
 function AlbumTracksPlayed({ data, extras, standout, maxT, hue, R, go, baseTracks, bonusSections }) {
   const row = (t, i, nStr) => (
-    <div key={t.title + i} className="r-track-row" onClick={() => go("track", R.slug(data.artist) + "~" + R.slug(t.title))} title={`${t.title} →${t.e != null ? ` · energy ${t.e} · positivity ${t.v}` : ""}`} style={{ display: "grid", gridTemplateColumns: "24px minmax(0,1fr) 72px 46px", gap: 10, alignItems: "center", padding: "7px 4px", cursor: "pointer", borderRadius: 4 }}>
+    <div key={t.title + i} className="r-track-row" onClick={() => go("track", R.slug(data.artist) + "~" + R.slug(t.title))} title={`${t.title} →${t.e != null ? ` · energy ${t.e} · positivity ${t.v}` : ""}`} style={{ display: "grid", gridTemplateColumns: "24px minmax(0,1fr) 72px 46px", gap: 10, alignItems: "center", padding: "4px 4px", cursor: "pointer", borderRadius: 4 }}>
       <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)" }}>{nStr != null ? nStr : (t.no ? String(t.no).padStart(2, "0") : String(i + 1).padStart(2, "0"))}</span>
-      <div style={{ fontSize: 13, lineHeight: 1.25, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", wordBreak: "break-word" }}>
-        {t.title}{standout && t === standout ? <span title="your most-played from this album" style={{ color: "var(--accent)", marginLeft: 5 }}>★</span> : null}
+      {/* one line with an ellipsis, not a two-line clamp — the released spine above wraps nothing,
+          and a row that can silently become two was most of why this list read looser than it. */}
+      <div style={{ fontSize: 13, lineHeight: 1.25, minWidth: 0, display: "flex", alignItems: "center", overflow: "hidden", whiteSpace: "nowrap" }}>
+        <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
+        {t.title}</span>{standout && t === standout ? <span title="your most-played from this album" style={{ color: "var(--accent)", marginLeft: 5, flex: "none" }}>★</span> : null}
         {" "}<LikedMark on={likedKey(R.slug(data.artist) + "~" + R.slug(t.title))} />
         {" "}<EngBar eng={engOf(R.slug(data.artist) + "~" + R.slug(t.title))} />
         {" "}<LiveMark on={seenLiveKey(R.slug(data.artist) + "~" + R.slug(t.title))} /></div>
@@ -190,7 +193,8 @@ function AlbumTracksPlayed({ data, extras, standout, maxT, hue, R, go, baseTrack
           also logged as: <span style={{ color: "var(--ink-soft)" }}>{extras.from.join(", ")}</span>
         </div>
       )}
-      <div style={{ display: "grid", gap: 2 }}>
+      {/* gap 1, as the released spine uses — 2 read looser across a long tracklist */}
+      <div style={{ display: "grid", gap: 1 }}>
         {/* On a genuine double album the base list is CD 1 and needs saying so — otherwise the two
             sections read as "the album" plus an afterthought. Only shown when a split exists. */}
         {bonusSections.some(s => s.keepNo) ? secHead("CD 1") : null}
@@ -221,7 +225,12 @@ function AlbumTracksHandle(props) {
         style={{ margin: 0 }}>
         {open ? "hide the tracks you've played ▴" : "tracks you've played ▾"}
       </button>
-      {open && <div style={{ marginTop: 12 }}><AlbumTracksPlayed {...props} /></div>}
+      {/* 0fr -> 1fr animates to the real height, which a max-height guess cannot do here: a
+          tracklist runs from three rows to forty. Mounted either way so there is a height to
+          animate FROM; visibility trails the collapse so a shut list leaves the tab order. */}
+      <div className="alb-trkfold" data-open={open}>
+        <div><div style={{ marginTop: 12 }}><AlbumTracksPlayed {...props} /></div></div>
+      </div>
     </div>
   );
 }
@@ -540,6 +549,18 @@ function AlbumView({ id, go }) {
         /* drag-to-scroll (Fuad 2026-09-01): grab cursor at rest, grabbing while held. The chips
            keep their own pointer cursor — you drag the RAIL, you click a CHIP. */
         .alb-chipscroll { cursor: grab; }
+        /* "tracks you have played" fold. 0fr -> 1fr animates to the list s REAL height, which a
+           max-height guess cannot: a tracklist runs from three rows to forty, so any fixed ceiling
+           either clips a double album or leaves a long lazy tail on a single. visibility trails the
+           collapse so a shut list leaves the tab order, but appears at once on open. (Fuad 2026-09-13) */
+        .alb-trkfold { display: grid; grid-template-rows: 0fr; opacity: 0; visibility: hidden;
+          transition: grid-template-rows .32s cubic-bezier(.3,.8,.3,1), opacity .22s ease, visibility 0s linear .32s; }
+        .alb-trkfold > div { overflow: hidden; min-height: 0; }
+        .alb-trkfold[data-open="true"] { grid-template-rows: 1fr; opacity: 1; visibility: visible;
+          transition: grid-template-rows .32s cubic-bezier(.3,.8,.3,1), opacity .25s ease .05s, visibility 0s; }
+        @media (prefers-reduced-motion: reduce) {
+          .alb-trkfold, .alb-trkfold[data-open="true"] { transition: none; }
+        }
         .alb-chipscroll[data-drag] { cursor: grabbing; user-select: none; }
         .alb-chipscroll .r-chip, .alb-chipscroll .tv-theme { cursor: pointer; }
         /* .alb-artlink / .tv-alblink used to be declared here. They are used on the SONG page too,
