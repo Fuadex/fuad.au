@@ -65,7 +65,9 @@ function ArtistFlow({ id, hue, go, drill: drillProp, setDrill: setDrillProp, onA
     <div className={"r-card" + (className ? " " + className : "")} style={{ padding: 18, touchAction: "manipulation" }}>
       <div className="r-card-h" style={{ padding: 0, marginBottom: 10 }}>
         <span className="lbl"><b>How they played out</b></span>
-        <div className="r-seg">
+        {/* r-seg-sm to match the covers/list toggle on the Albums card (Fuad 2026-09-13): this was
+            the full-size segment, 9.5px on 7px/12px padding against their 9px on 3px/7px. */}
+        <div className="r-seg r-seg-sm">
           {[["albums", "albums"], ["songs", "songs"]].map(([k, lbl]) =>
             <button key={k} data-on={mode === k} onClick={() => { setMode(k); setDrill(null); setHi(-1); }}>{lbl}</button>)}
         </div>
