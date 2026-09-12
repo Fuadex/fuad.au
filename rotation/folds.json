@@ -8105,6 +8105,60 @@
     "to": "Blackest Eyes",
     "type": "variant",
     "reason": "alternate version ((studio version, with lyrics))"
+   },
+   {
+    "from": "What Happens Now? (lyrics)",
+    "to": "What Happens Now?",
+    "type": "variant",
+    "reason": "YouTube lyric-video title of the Nil Recurring track (Fuad 2026-09-07: fold, never mirror)"
+   },
+   {
+    "from": "Gravity Eyelids (In Absentia)",
+    "to": "Gravity Eyelids",
+    "type": "variant",
+    "reason": "album-suffixed upload title of the In Absentia track (Fuad 2026-09-07)"
+   },
+   {
+    "from": "Halo - 2017 Remaster",
+    "to": "Halo",
+    "type": "variant",
+    "reason": "2017 remaster row of the Deadwing track (Fuad 2026-09-07)"
+   },
+   {
+    "from": "Harridan - CLOSURE/CONTINUATION.LIVE",
+    "to": "Harridan",
+    "type": "variant",
+    "reason": "2023 live-album row of the Closure / Continuation track (Fuad 2026-09-07)"
+   },
+   {
+    "from": "Herd Culling - Single Edit",
+    "to": "Herd Culling",
+    "type": "variant",
+    "reason": "single edit row of the Closure / Continuation track (Fuad 2026-09-07)"
+   },
+   {
+    "from": "Last Chance To Evacuate Planet Earth",
+    "to": "Last Chance to Evacuate Planet Earth Before It Is Recycled",
+    "type": "spelling",
+    "reason": "truncated title of the Lightbulb Sun track; same recording (Fuad 2026-09-07)"
+   },
+   {
+    "from": "Fear of a Blank Planet - CLOSURE/CONTINUATION.LIVE",
+    "to": "Fear of a Blank Planet",
+    "type": "variant",
+    "reason": "2023 live-album row of the title track (Fuad 2026-09-07)"
+   },
+   {
+    "from": "The Sky Moves Sideways (Alternate Version)",
+    "to": "The Sky Moves Sideways Phase 1",
+    "type": "variant",
+    "reason": "alternate version of the suite, linked to the phase-1 row that carries the read (Fuad 2026-09-07)"
+   },
+   {
+    "from": "Glass Soul Shattering",
+    "to": "Glass Arm Shattering",
+    "type": "spelling",
+    "reason": "mis-tagged title of the Deadwing closer; same recording (Fuad 2026-09-07)"
    }
   ],
   "albums": [
