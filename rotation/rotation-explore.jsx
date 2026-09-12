@@ -224,7 +224,7 @@ const REG_HUES = { anguished: 290, bleak: 250, bitter: 110, angry: 25, bitterswe
 // artist. This is the empirical order: each register s mean lyric valence across the 25,855 tracks
 // carrying one, which is the 0-100 spread the row should read along (Fuad 2026-09-13).
 //   bleak 25 · anguished 27 · angry 33 · bitter 34 · bittersweet 55 · neutral 60 · defiant 75 · tender 78 · joyful 84
-const REG_ORDER = [bleak, anguished, angry, bitter, bittersweet, neutral, defiant, tender, joyful];
+const REG_ORDER = "bleak anguished angry bitter bittersweet neutral defiant tender joyful".split(" ");
 // chip tint for register `name` (muted oklch, matching the media card's swatch: 0.55L / 0.13C).
 const regColor = (name) => `oklch(0.55 ${name === "neutral" ? 0 : 0.13} ${REG_HUES[name] || 0})`;
 // registerPass — an artist's dominant register (rec.rg idx) passes when its label is in the
