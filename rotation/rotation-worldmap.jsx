@@ -710,7 +710,10 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
               the band already carries a Geography kicker. The standalone Map page keeps its h1. */}
           {embedded ? null : <h1 className="r-title">Where it <em>comes from</em><span className="dot">.</span></h1>}
         </div>
-        <div style={{ display: "flex", gap: 10, alignItems: "flex-end", flexWrap: "wrap" }}>
+        {/* One row, never two: the clear button appears and disappears with the filters, and if it
+            were allowed to wrap it would push the whole head — and the page under it — down a row.
+            The scope line shrinks and clips instead (its middle span is the flexible part). */}
+        <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "nowrap", minWidth: 0 }}>
           {/* Results scope + play count, lifted out of the results card so it reads on the Geography
               kicker’s line rather than repeating that register further down (Fuad 2026-09-13). */}
           <div className="r-mono mp-scope">
@@ -1016,9 +1019,13 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
           .mp-map { order: 1; } .mp-flow { order: 2; } .mp-results { order: 3; }
           .mp-cal { order: 4; } .mp-list { order: 5; } .mp-stats { order: 6; }
         }
-        .mp-clear { font-family: var(--mono); font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase;
-          padding: 6px 11px; border-radius: 999px; border: 1px solid var(--accent-dim); color: var(--accent);
-          background: var(--accent-bg); cursor: pointer; align-self: flex-end; }
+        /* Metrics match .r-seg.r-seg-sm (the subgenres / bands / albums / songs controls): 9px type,
+           6px vertical padding inside a 1px border lands on their 25px, so it sits level with them
+           rather than reading as a taller object. flex 0 0 auto keeps it whole while the scope line
+           beside it does the shrinking. (Fuad 2026-09-13) */
+        .mp-clear { font-family: var(--mono); font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
+          padding: 6px 10px; border-radius: 999px; border: 1px solid var(--accent-dim); color: var(--accent);
+          background: var(--accent-bg); cursor: pointer; flex: 0 0 auto; white-space: nowrap; }
         .mp-clear:hover { background: transparent; }
         /* deepest countries/cities swatches: hollow at rest, filled when the row is hovered —
            the flow bands' quiet-until-cursor register (Fuad 2026-08-22) */
@@ -1031,7 +1038,7 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
         /* Relocated results scope. Sits at the head’s right edge on the kicker row; the middle
            span is the only flexible part, so a long place+genre clips there instead of pushing
            the play count onto a second line. */
-        .mp-scope { display: flex; align-items: baseline; gap: 8px; min-width: 0; max-width: 100%; }
+        .mp-scope { display: flex; align-items: baseline; gap: 8px; min-width: 0; flex: 0 1 auto; }
         .mp-scope-eb { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); flex: 0 0 auto; }
         .mp-scope-parts { font-size: 11px; color: var(--ink-soft); min-width: 0; flex: 0 1 auto;
           overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
