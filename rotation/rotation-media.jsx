@@ -1063,9 +1063,7 @@ function BlurbSwitcher({ id, about }) {
   return (
     <div className="tv-switch">
       <div className="tv-switch-head">
-        <span className="tv-switch-lbl">What it's about
-          {about && about[1] && <a href={`https://genius.com/songs/${about[1]}`} target="_blank" rel="noopener noreferrer"
-            className="r-mono" style={{ fontSize: 9.5, marginLeft: 10, color: "var(--ink-faint)", borderBottom: "1px dotted var(--ink-faint)", letterSpacing: ".06em" }}>full lyrics ↗</a>}</span>
+        <span className="tv-switch-lbl">What it's about</span>   {/* "full lyrics ↗" link to Genius removed (Fuad 2026-09-13) */}
         {multi && (
           <div className="tv-switch-btns" data-dim={showDeep}>
             {sources.map(s => (
