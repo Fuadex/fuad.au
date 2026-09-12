@@ -4794,11 +4794,17 @@ for (const [name, plays] of rankedArtists) {
   for (const [tg, c] of _gLf) _bump(tg, (c || 0) / _gLfMax, "lf");
   for (const g of _gSp) _bump(g, 0.7, "sp");
   for (const [st, c] of _gDg) _bump(String(st).toLowerCase(), 0.5 * ((c || 0) / _gDgMax), "dg");
+  // Top 5 only (Fuad 2026-09-13). Now that the list is ordered by evidence strength rather than by
+  // order of appearance, the tail is by definition the weakest-supported terms — a sixth genre is
+  // something one service mentioned once. Capping here rather than at the view keeps the data and
+  // every reader of it in agreement: Explore filters, map counts and the artist page all see the
+  // same five.
+  const GENRE_MAX = 5;
   const s = [..._score.entries()].sort((a, b) =>
     (b[1] - a[1]) ||
     (_srcs.get(b[0]).size - _srcs.get(a[0]).size) ||
     String((SUBS[a[0]] || {}).name || "").localeCompare((SUBS[b[0]] || {}).name || "")
-  ).map(e => e[0]);
+  ).slice(0, GENRE_MAX).map(e => e[0]);
   if (!s.length) {
     // family fallback: no SPECIFIC subgenre matched (the artist's tags are only generic umbrellas
     // like "rock" / "alternative rock", which are deliberately excluded from the subgenre vocab),
