@@ -1034,7 +1034,12 @@ function BlurbSwitcher({ id, about }) {
     }
   }
   const geniusText = about && about[0];
-  if (geniusText) sources.push({ m: "genius", label: "Genius", text: geniusText, link: about && about[1] ? `https://genius.com/songs/${about[1]}` : null });
+  // GENIUS RETIRED FROM THE SWITCHER (Fuad 2026-09-13). It is no longer pushed as a normal source, so
+  // no Genius button renders and it can never win the default. It survives as a LAST RESORT only when
+  // the track has no model read at all: 353 songs ship a Genius blurb and nothing else, and dropping
+  // it outright would leave their "What it s about" panel empty. A single source renders no button
+  // row, so no Genius button appears in that case either — just the text.
+  if (geniusText && !sources.length) sources.push({ m: "genius", label: "Genius", text: geniusText, link: about && about[1] ? `https://genius.com/songs/${about[1]}` : null });
   if (!sources.length) {
     // no read exists — if the track is classified instrumental, say so instead of vanishing
     const inst = window.ROTATION_INSTRUMENTALS;
@@ -1050,7 +1055,12 @@ function BlurbSwitcher({ id, about }) {
     }
     return null;
   }
-  const cur = sources.find(s => s.m === pick) || sources.find(s => gist && s.m === gist.src) || sources[0];
+  // Fable is the default read (Fuad 2026-09-13), ahead of whatever gist.src names, falling back to
+  // that and then to the first available source.
+  const cur = sources.find(s => s.m === pick)
+    || sources.find(s => s.m === "fable")
+    || sources.find(s => gist && s.m === gist.src)
+    || sources[0];
   const multi = sources.length > 1;
   // fableDeep/opusDeep live in the deep shard; the gist `has` "I" marker tells us one EXISTS so
   // the Interpretation toggle renders before the deep shard lands. Its text fills in on load.
