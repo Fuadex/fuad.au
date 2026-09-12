@@ -2477,11 +2477,18 @@ function TourMap({ events, city, setCity, hiPath, hiHue, routes, focus }) {
   // once on first hover — never goes stale. A chip-toggled-off city dims to 0.14 and stops filtering.
   const dotEls = React.useMemo(() => cities.map(c => {
     const on = !off.has(c.k);
+    const col = c.hue != null ? `oklch(0.63 0.17 ${c.hue})` : "var(--accent)";
     return (
       <g key={c.k} className="gv-tmap-hit" data-cx={c.x} data-cy={c.y} data-r0={(base + Math.sqrt(c.n) * 1.15).toFixed(2)} style={{ opacity: on ? 1 : 0.14 }}>
+        {/* Overview map convention (rotation-worldmap mp-bub): family hue at oklch(0.63 0.17), a
+            stroke in the SAME colour rather than an ink ring, .34 fill lifting to .72 when hovered or
+            selected, stroke thickening with it. Stroke widths ride CSS vars so they counter-scale with
+            zoom the way the radius does, and hover stays in CSS so panning never re-renders the dots.
+            (Fuad 2026-09-13: "match Overview’s map style".) */}
         <circle className="gv-tmap-dot" data-on={city === c.k}
-          cx={c.x} cy={c.y} r={(base + Math.sqrt(c.n) * 1.15) / rk} strokeWidth={1.2 / rk}
-          fill={c.hue != null ? `oklch(0.64 0.15 ${c.hue})` : "var(--accent)"}
+          cx={c.x} cy={c.y} r={(base + Math.sqrt(c.n) * 1.15) / rk}
+          fill={col} stroke={col}
+          style={{ "--sw0": (0.7 / rk).toFixed(3), "--sw1": (1.6 / rk).toFixed(3) }}
           onClick={(e) => { if (!nav.moved.current && on) setCity(city === c.k ? null : c.k); e.stopPropagation(); }}>
           <title>{c.city} ({c.cc}) · {c.n} event{c.n !== 1 ? "s" : ""} — click to filter</title>
         </circle>
@@ -2559,7 +2566,15 @@ function TourSection({ go, gigDate }) {
     for (const a of ((tour && tour.artists) || [])) {
       const rec = R.byId[a.id] || (R.expById && R.expById[a.id]) || null;
       const prim = rec && rec.s && rec.s.length ? rec.s[0] : -1;
-      const famI = prim >= 0 && R.SUBS[prim] ? R.SUBS[prim].fam : -1;
+      // Family by the site’s own convention. `fm` is the record’s family MEMBERSHIP array and is what
+      // rotation-explore’s recInFam tests FIRST, so an artist carrying no display subgenres is still
+      // placed by us instead of dropping to a Ticketmaster bucket. That fallback was sending 209 of 689
+      // gig artists — Megadeth, Korn, Muse, Pendulum among them — to generic "Rock"/"Metal" pills with
+      // hash-derived hues, and since the map tints each city by its dominant genre hue it was colouring
+      // the map from those hashes too (Fuad 2026-09-13).
+      let famI = prim >= 0 && R.SUBS[prim] ? R.SUBS[prim].fam : -1;
+      if (famI < 0 && rec && rec.sq && rec.sq.length && R.SUBS[rec.sq[0]]) famI = R.SUBS[rec.sq[0]].fam;
+      if (famI < 0 && rec && rec.fm && rec.fm.length) famI = rec.fm[0];
       let gkey, gname, ghue;
       if (famI >= 0) { const f = R.FAMILIES.find(x => x.i === famI); gkey = "f" + famI; gname = f ? f.family : "—"; ghue = f ? f.hue : null; }
       else if (a.tmGenre) { gkey = "t:" + a.tmGenre; gname = a.tmGenre; ghue = hueOf("tm" + a.tmGenre); }
@@ -3273,9 +3288,8 @@ function GigsView({ go }) {
         .gv-tmap-zoom button:hover { color: var(--accent); border-color: var(--accent-dim); }
         .gv-tmap-empty { padding: 60px 0; text-align: center; color: var(--ink-faint); font-size: 11px; }
         /* NB: no fill here — a CSS fill would override the per-dot genre color set inline */
-        .gv-tmap-dot { fill-opacity: .72; cursor: pointer; transition: fill-opacity .15s; }
-        .gv-tmap-dot:hover { fill-opacity: 1; }
-        .gv-tmap-dot[data-on="true"] { fill-opacity: 1; stroke: var(--ink); }
+        .gv-tmap-dot { fill-opacity: .34; stroke-width: var(--sw0); cursor: pointer; transition: fill .5s, fill-opacity .12s, stroke-width .12s; }
+        .gv-tmap-dot:hover, .gv-tmap-dot[data-on="true"] { fill-opacity: .72; stroke-width: var(--sw1); }
         .gv-tmap-foot { display: flex; align-items: center; gap: 10px; margin: 4px 2px 10px; flex-wrap: wrap; }
         .gv-tmap-hint { font-size: 8.5px; color: var(--ink-faint); letter-spacing: .05em; flex: 1; min-width: 160px; }
         .gv-routes-btn { flex: none; font-family: var(--mono); font-size: 9.5px; letter-spacing: .06em; padding: 4px 10px;
