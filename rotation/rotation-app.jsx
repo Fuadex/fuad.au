@@ -221,7 +221,7 @@ function RotationApp() {
           the swap is purely DOM order — no alignment rules to chase. */}
       <footer className="r-foot">
         <nav className="site-switch r-foot-links">part of <a href="/">fuad.au</a> · <a href="/rotation/">Rotation</a> · <a href="/culture/">Culture</a> · <a href="/canvas/">Canvas</a></nav>
-        <div>rotation · real scrobbles — last.fm/fuadex · fuad.design / 2026</div>
+        <div>rotation — <a href="https://www.last.fm/user/fuadex" target="_blank" rel="noopener noreferrer">last.fm/fuadex</a> · <a href="https://fuad.design" target="_blank" rel="noopener noreferrer">fuad.design</a> / 2026</div>
       </footer>
 
       <Popover data={pop} />
@@ -265,13 +265,17 @@ function RotationApp() {
           color: var(--ink-dim); font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
           text-transform: uppercase; cursor: pointer; transition: color .15s, border-color .15s; }
         .r-search-btn:hover { color: var(--ink); border-color: var(--ink-faint); }
+        @media (max-width: 760px) {
+          .r-search-btn span { display: none; }
+          .r-search-btn { gap: 0; padding: 7px; }
+        }
         .r-np-tag { font-family: var(--mono); font-size: 8px; letter-spacing: .14em; text-transform: uppercase;
           color: #0c0a08; background: var(--accent); border-radius: 3px; padding: 1px 4px; margin-left: 7px; vertical-align: 1px; }
         .r-foot { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap;
           padding: 24px var(--pad); border-top: 1px solid var(--rule); font-family: var(--mono);
           font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
-        .r-foot .site-switch a { color: var(--accent); text-decoration: none; }
-        .r-foot .site-switch a:hover { color: var(--ink); }
+        .r-foot a { color: var(--accent); text-decoration: none; }
+        .r-foot a:hover { color: var(--ink); }
         .tw-accents { display: flex; gap: 8px; padding: 4px 0 10px; }
         .tw-accents button { width: 30px; height: 30px; border-radius: 8px; border: 2px solid transparent;
           cursor: pointer; transition: transform .15s, border-color .15s; }

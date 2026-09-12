@@ -678,12 +678,12 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
 
   return (
     <div className={embedded ? "map-embed" : "r-view tv-page"} style={embedded ? undefined : { maxWidth: 1360 }}>
-      <div className="r-viewhead" style={embedded ? { marginBottom: 16 } : undefined}>
+      <div className={"r-viewhead" + (embedded ? " r-headbare" : "")} style={embedded ? { marginBottom: 16 } : undefined}>
         <div>
           <div className="r-kicker">Geography · {G.totalCountries} countries · {fmt(cityPts.length)} cities{yearIdx != null ? " · " + geoYears[yearIdx] : ""}</div>
-          {embedded
-            ? <h2 style={{ fontFamily: "var(--serif)", fontWeight: 400, fontStyle: "italic", fontSize: 26, margin: "4px 0 0" }}>Where it comes from<span className="dot" style={{ color: "var(--accent)" }}>.</span></h2>
-            : <h1 className="r-title">Where it <em>comes from</em><span className="dot">.</span></h1>}
+          {/* The embedded heading ("Where it comes from.") is retired on Overview (Fuad 2026-09-13):
+              the band already carries a Geography kicker. The standalone Map page keeps its h1. */}
+          {embedded ? null : <h1 className="r-title">Where it <em>comes from</em><span className="dot">.</span></h1>}
         </div>
         <div style={{ display: "flex", gap: 10, alignItems: "flex-end", flexWrap: "wrap" }}>
           {/* clear-all clears the CALENDAR too (Fuad 2026-08-22) — the period lives upstairs in

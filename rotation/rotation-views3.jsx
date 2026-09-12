@@ -149,10 +149,10 @@ function StoriesView({ t, go, seed }) {
 
   return (
     <div className="r-view">
-      <div className="r-viewhead st-head">
+      <div className="r-viewhead st-head r-headbare">
         <div>
           <div className="r-kicker">Stories · mined from {fmt(R.TOTALS.scrobbles)} scrobbles</div>
-          <h1 className="r-title">Things last.fm <em>won't tell you</em><span className="dot">.</span></h1>
+          {/* "Things last.fm won’t tell you." retired (Fuad 2026-09-13) — the kicker above already names the page */}
         </div>
         {/* margin:0 — .r-viewhead aligns its children flex-end, so the paragraph's default
             1em margin padded the box below the text and floated this lede a line clear of the
@@ -2852,7 +2852,7 @@ function GigsView({ go }) {
             the site that was a full sentence carrying a number, which is also why its type still read
             as wrong after .gv-h1 was matched to .r-title's metrics in bfaa719. The metrics were half
             of it; the shape of the line was the rest. */}
-        <h1 className="gv-h1">In the <em>crowd</em><span className="dot">.</span></h1>
+        {/* "In the crowd." retired (Fuad 2026-09-13) — the kicker above already names the page */}
         <p className="gv-lead">
           <b>{G.total}</b> shows — {G.artists} artists across {G.cities} cities in {G.countries} countries, {span}.
           {" "}{fmt(G.songsSeen)} songs played to you live; <b>{G.inLibrary}</b> of these acts are in your rotation.
@@ -3137,7 +3137,9 @@ function GigsView({ go }) {
            section so the rhythm between later sections is untouched. */
         .gv-hero { padding: 12px 2px 10px; }
         .gv-hero + .gv-sec { margin-top: 18px; }
-        .gv-kicker { font-family: var(--mono); font-size: 9.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+        /* margin-bottom 14px -> 0: that space stood the kicker off the h1, which is retired. The lede
+           carries its own 14px top margin, so the pair still breathes. (Fuad 2026-09-13) */
+        .gv-kicker { font-family: var(--mono); font-size: 9.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 0; }
         /* Metrics copied from .r-title, not approximated (Fuad 2026-08-20: this line read as a
            different font from the rest of Gigs). It was: an h1 with no font-weight declared
            inherits bold, and the serif's bold cut is a visibly different face — .r-title sets

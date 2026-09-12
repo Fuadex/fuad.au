@@ -593,12 +593,14 @@ function ShelvesView({ go, seed }) {
 
   return (
     <div className="r-view">
-      <div className="r-viewhead sh-head">
+      <div className={"r-viewhead sh-head" + (mode === "wrap" ? "" : " r-headbare")}>
         <div>
           <div className="r-kicker">Records · {mode === "wrap"
             ? (unData ? `${fmt(unData.albums.length)} LPs still in shrinkwrap` : "…")
             : `${fmt(data.albums.length)} records racked`}</div>
-          <h1 className="r-title">{mode === "wrap" ? <>Still <em>sealed</em></> : <>The record <em>shop</em></>}<span className="dot">.</span></h1>
+          {/* "The record shop." retired (Fuad 2026-09-13) — the kicker above already names the page.
+              The wrap view keeps its own title: it is a separate sub-page and dropping that was not asked. */}
+          {mode === "wrap" && <h1 className="r-title">Still <em>sealed</em><span className="dot">.</span></h1>}
         </div>
         <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
           <span className="r-seg">

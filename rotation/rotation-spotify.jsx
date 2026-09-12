@@ -1160,15 +1160,14 @@ function LikedView({ go }) {
           <div className="r-kicker">Spotify · {rows.length} saved songs</div>
           {/* <h1 className="r-title">Your <em>liked</em> songs<span className="dot">.</span></h1> */}
         </div>
-        {/* header "tune DNA" pill — the panel now lives UNDER the results, so this is a jump/collapse
+        {/* header "tune DNA" chip — the panel now lives UNDER the results, so this is a jump/collapse
             control: click scrolls down to the panel (opening it if collapsed); the chevron collapses it. */}
         <button onClick={() => {
             setTuneOpen(true);
             requestAnimationFrame(() => { if (tuneRef.current) tuneRef.current.scrollIntoView({ behavior: "smooth", block: "start" }); });
-          }} className={"r-mono lk-tunepill" + (anyTuneActive ? " on" : "")}
+          }} className={"r-chip link lk-tunepill" + (anyTuneActive ? " on" : "")}
           title="jump to the audio-DNA tuner (below the songs)"
-          style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase",
-            padding: "7px 13px", borderRadius: 999, background: "transparent", cursor: "pointer" }}>
+          style={{ display: "inline-flex", alignItems: "center", gap: 5, textTransform: "none" }}>
           <span className="lk-tunelbl">tune DNA</span><span className="lk-tuneabbr">DNA</span> {anyTuneActive ? <span style={{ opacity: .7 }}>· {dictating === "dna" ? "shape" : (activeBands.length + (keyActive ? 1 : 0) + (modeActive ? 1 : 0)) + " on"}</span> : null}
           <span onClick={e => { e.stopPropagation(); setTuneOpen(o => !o); }} title={tuneOpen ? "collapse" : "expand"} style={{ opacity: .8 }}>{tuneOpen ? "▾" : "▸"}</span>
         </button>

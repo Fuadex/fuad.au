@@ -2053,6 +2053,12 @@ function ExploreView({ t, go, setPop, seed }) {
       {curYear != null && <YearDetail R={R} go={go} year={curYear} />}
 
       <style>{`
+        /* Explore carries no h1 — just the kicker and the search bar — so the standard .r-view top
+           inset (pad * 1.1, ~37px) leaves the search bar floating clear of the header. Every other
+           view spends that space on a title. Halved here, and given its own mobile value so the
+           tighter mobile --pad does not collapse it to single digits. (Fuad 2026-09-13) */
+        .r-view.xp { padding-top: calc(var(--pad) * 0.5); }
+        @media (max-width: 760px) { .r-view.xp { padding-top: 14px; } }
         .xp-head-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
         .xp-search { position: relative; display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px; border: 1px solid var(--rule); border-radius: 999px; color: var(--ink-dim); min-width: 240px; transition: border-color .15s; }
         .xp-search:focus-within { border-color: var(--ink-faint); }
