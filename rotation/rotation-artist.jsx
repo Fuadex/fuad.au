@@ -1611,6 +1611,17 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
   const hasConcertData = (R.CITIES || []).length > 0;
   const shareOfTotal = (a.plays / R.TOTALS.scrobbles * 100);
 
+  // GENRES, ONE LINE (Fuad 2026-09-13). The classifier already converges last.fm + Discogs +
+  // Spotify into a single deduplicated set — that is what _voteArtist produces and what `s` holds
+  // — so the page leads with it and folds the three raw rails behind a click. The rails are kept
+  // rather than dropped because they quote each service verbatim, which is the only way to see a
+  // source disagree (the Stones rail reading "blues" while last.fm led with classic rock was found
+  // exactly that way). `s` lives on the EXPLORE record, not the kept-artist one; every view but
+  // Overview mounts behind restReady, so expById is always populated by the time we are here.
+  const [genOpen, setGenOpen] = React.useState(false);
+  const _exp = (R.expById && R.expById[a.id]) || null;
+  const genreSubs = ((_exp && _exp.s) || []).map(i => R.SUBS[i] && R.SUBS[i].name).filter(Boolean);
+
   return (
     <div className="r-view tv-page av-page" ref={ref}>
       {/* FINAL layout after three 2026-08-28 iterations, owner-settled: back button alone at
@@ -1626,12 +1637,29 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             {a.debut ? ` · EST. ${a.debut}` : ""}</div>
           <h1 className="r-title" style={{ fontSize: "clamp(36px,5vw,64px)" }}>{a.name}<span className="dot">.</span></h1>
           <ArtistMeta gender={a.gender} life={a.life} size={18} seenLive={a.seenLive} onTour={a.onTour} vx={a.vx} />
+          {/* Converged line first. Clicking it expands the per-source rails below; when the
+              classifier produced nothing (16 kept artists have no EXPLORE twin carrying `s`) the
+              rails simply show as before, since there is nothing to converge into. */}
+          {genreSubs.length > 0 && (
+            <div className="av-genrow">
+              <button className="av-genbtn" onClick={() => setGenOpen(o => !o)} aria-expanded={genOpen}
+                title={genOpen ? "hide what each service says" : "show what each service says"}>
+                <span className="av-genlbl">genres</span><span className="av-gencaret" data-open={genOpen}>▸</span>
+              </button>
+              {genreSubs.map(g => <span key={g} className="r-chip link" title={`Explore ${g} →`} onClick={() => go("explore", g)}>{g}</span>)}
+            </div>
+          )}
+          {/* The rails. Collapsed behind the converged line when there is one; always open when
+              there is not. grid-template-rows 0fr -> 1fr animates to the content's own height,
+              which a max-height guess cannot do without either clipping or lagging. */}
+          <div className="av-genrails" data-open={genreSubs.length === 0 || genOpen} aria-hidden={genreSubs.length > 0 && !genOpen}>
+            <div>
           {/* the last.fm rail quotes the SOURCE (a.tagsLf = raw cache top-4) rather than the
               generic-filtered a.tags — the filtered residue misquoted last.fm (the Stones rail
               read "blues" while last.fm leads with classic rock; owner-reported 2026-08-28).
               a.tags stays the nav vocabulary everywhere else. */}
           {((a.tagsLf && a.tagsLf.length ? a.tagsLf : a.tags) || []).length > 0 && (
-            <div className="av-tagrow" style={{ display: "flex", gap: 7, marginTop: 14, flexWrap: "wrap", alignItems: "center" }}>
+            <div className="av-tagrow" style={{ display: "flex", gap: 7, marginTop: 10, flexWrap: "wrap", alignItems: "center" }}>
               <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase" }}>last.fm</span>
               {(a.tagsLf && a.tagsLf.length ? a.tagsLf : a.tags).map(g => <span key={g} className="r-chip link" title={`Explore ${g} →`} onClick={() => go("explore", g)}>{g}</span>)}
             </div>
@@ -1648,6 +1676,8 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               {a.spotGenres.map(s => <span key={s} className="r-chip link" title={`Explore ${s} →`} onClick={() => go("explore", s)} style={{ fontSize: 10.5, padding: "3px 8px", borderColor: "var(--line)" }}>{s}</span>)}
             </div>
           )}
+            </div>
+          </div>
           <div style={{ display: "flex", gap: 8, marginTop: 13, flexWrap: "wrap", alignItems: "center" }}>
             {needleKey && <ShNeedle trackKey={needleKey.key} track={needleKey.title} artist={a.name} hue={a.hue} />}
             <a className="r-extlink r-extlink-lf" href={`https://www.last.fm/music/${encodeURIComponent(a.name)}`} target="_blank" rel="noopener noreferrer">last.fm ↗</a>
@@ -2348,6 +2378,43 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
           }
           .av-tagrow::-webkit-scrollbar { display: none; }
           .av-tagrow > * { flex: none; }
+          /* CONVERGED GENRES LINE (Fuad 2026-09-13). The classifier already merges last.fm +
+             Discogs + Spotify into one deduplicated set, so that leads and the three rails fold
+             behind it. Same nowrap + scroll + fade-mask treatment as .av-tagrow, so a long set
+             behaves exactly like a rail does. */
+          .av-genrow {
+            display: flex; gap: 7px; align-items: center; margin-top: 14px; min-width: 0;
+            flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden;
+            scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 3px;
+            -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 30px), transparent 100%);
+                    mask-image: linear-gradient(to right, #000 calc(100% - 30px), transparent 100%);
+          }
+          .av-genrow::-webkit-scrollbar { display: none; }
+          .av-genrow > * { flex: none; }
+          .av-genbtn {
+            display: inline-flex; align-items: center; gap: 4px; background: transparent; border: 0;
+            padding: 0; cursor: pointer; font-family: var(--mono); font-size: 9px; letter-spacing: .12em;
+            text-transform: uppercase; color: var(--ink-faint); transition: color .15s;
+          }
+          .av-genbtn:hover, .av-genbtn:focus-visible { color: var(--accent); }
+          .av-gencaret { display: inline-block; font-size: 8px; transition: transform .24s cubic-bezier(.3,.8,.3,1); }
+          .av-gencaret[data-open="true"] { transform: rotate(90deg); }
+          /* 0fr -> 1fr animates to the content's REAL height. A max-height guess either clips a
+             well-tagged artist or leaves a lazy tail on a sparse one, and the rails vary from one
+             row to three. visibility is delayed by the collapse duration so the hidden rails leave
+             the tab order once shut, but appear instantly on open. */
+          .av-genrails {
+            display: grid; grid-template-rows: 0fr; opacity: 0; visibility: hidden;
+            transition: grid-template-rows .28s cubic-bezier(.3,.8,.3,1), opacity .22s ease, visibility 0s linear .28s;
+          }
+          .av-genrails > div { overflow: hidden; min-height: 0; }
+          .av-genrails[data-open="true"] {
+            grid-template-rows: 1fr; opacity: 1; visibility: visible;
+            transition: grid-template-rows .28s cubic-bezier(.3,.8,.3,1), opacity .22s ease, visibility 0s;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .av-genrails, .av-genrails[data-open="true"], .av-gencaret { transition: none; }
+          }
         }
         /* live-set song chips that you also have in rotation link to the track page */
         .av-livesong { cursor: pointer; text-decoration: none; }
