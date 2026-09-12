@@ -1124,11 +1124,18 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   .btn-row::-webkit-scrollbar { display: none; }
   .br-group { display: contents; }
   .mode-toggle button { padding: 8px 11px; }
-  .btn-stats .btn-txt, .btn-pick .btn-txt { display: none; }
+  .btn-stats .btn-txt, .btn-pick .btn-txt, .btn-tonight .btn-txt { display: none; }
   .btn-stats, .btn-pick { padding: 8px 10px; }
+  /* Tonight reduces to its star here. The row is nowrap, so every fixed item is width taken off the
+     search field — the toggle and Tonight together were leaving it too narrow to type in. */
+  .btn-tonight { padding: 6px 10px; flex: none; }
   .search-row { width: 100%; flex-wrap: nowrap; }
   .search-wrap { flex: 1 1 0; min-width: 0; }
-  .search-input { width: 100%; }
+  /* the toggle may give ground before the search field does; without this it is rigid and the
+     field absorbs every pixel of the squeeze */
+  .library-toggle { flex: 0 1 auto; min-width: 0; }
+  .library-toggle button { padding-left: 9px; padding-right: 9px; }
+  .search-input { width: 100%; min-width: 0; }
   .shelf-head { padding: 0 24px 12px; }
   .shelf-scroll { padding: 18px 24px 18px; }
   .shelf-rail::before, .shelf-rail::after { width: 24px; }

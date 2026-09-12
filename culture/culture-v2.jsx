@@ -3332,8 +3332,11 @@ function App() {
               <button data-active={library === 'library'}  onClick={() => switchLibrary('library')}>Library</button>
               <button data-active={library === 'wishlist'} onClick={() => switchLibrary('wishlist')}>Wishlist</button>
             </div>
+            {/* the word drops below 768px and the star carries it alone, the same .btn-txt idiom
+                .btn-stats and .btn-pick already use — it was taking ~60px off the search field on a
+                phone, which is the width that made the row unusable (Fuad 2026-09-13) */}
             <button className="btn-tonight" onClick={goTonight} title="Tonight's Pick — deal three from your wishlist">
-              ✦ Tonight
+              ✦<span className="btn-txt"> Tonight</span>
             </button>
             <div className="search-wrap">
               <svg className="search-icon" width="12" height="12" viewBox="0 0 16 16" fill="none">
