@@ -1391,7 +1391,38 @@ function TrackView({ id, go }) {
   // They ride in the GIST shard so they paint with the bars instead of popping in late; the
   // switcher below loads the same shard, and loadAbout is idempotent.
   const tGist = (R && R.aboutGist && R.aboutGist(id)) || null;
-  const themes = (tGist && tGist.themes) || null;
+  // the embedding-theme store, for the fallback below. Same lazy idiom AlbumView uses; fetched only
+  // when this page actually needs it, and the tag is reused if AlbumView already pulled it.
+  const [themesReady, setThemesReady] = React.useState(!!window.ROTATION_TRACKTHEMES);
+  React.useEffect(() => {
+    if (window.ROTATION_TRACKTHEMES) { if (!themesReady) setThemesReady(true); return; }
+    let s = document.getElementById("rotation-tthemes-js");
+    if (!s) {
+      s = document.createElement("script"); s.id = "rotation-tthemes-js"; s.src = "genius-themes-lazy.js";
+      document.head.appendChild(s);
+    }
+    const on = () => setThemesReady(true);
+    s.addEventListener("load", on);
+    return () => s.removeEventListener("load", on);
+  }, []);
+  // THEMES: reasoned first, embeddings as the fallback (Fuad 2026-09-13). The fable read wins
+  // wherever one exists — it is a close reading of the words. Where none does, the lyric-embedding
+  // themes stand in rather than the page showing nothing: 21,570 library tracks (a quarter of all
+  // plays) carry embedding themes and no read, and the store already ships for AlbumView's roll-up.
+  //
+  // They are NOT the same claim and are not presented as one. The embedding layer scores an anchor
+  // cosine over an 18-theme vocabulary — the 28-bucket list is a superset — so a fallback can only
+  // ever show one of the 18, and `themesAreML` marks it in the UI. Cap 3: that is what the store
+  // holds per track, and a weak third is already thin evidence.
+  const themesReasoned = (tGist && tGist.themes && tGist.themes.length) ? tGist.themes : null;
+  const themesML = React.useMemo(() => {
+    if (themesReasoned) return null;
+    const TT = window.ROTATION_TRACKTHEMES; if (!TT || !TT._themes) return null;
+    const row = TT[id]; if (!row || !row.length) return null;
+    return row.slice(0, 3).map(([ti]) => TT._themes[ti]).filter(Boolean);
+  }, [themesReasoned, id, themesReady]);
+  const themes = themesReasoned || (themesML && themesML.length ? themesML : null);
+  const themesAreML = !themesReasoned && !!themes;
   const seenLive = !!(R.GIGS && R.GIGS.liveSongs && R.GIGS.liveSongs.indexOf(id) >= 0);
   const divergent = (audVal != null && lyrVal != null && Math.abs(audVal - lyrVal) >= 30);
   // shared with the album caption via the file-level _MED_* copies (see the note at the top).
@@ -1626,12 +1657,14 @@ function TrackView({ id, go }) {
                   hairline, matching how stacked sub-sections separate elsewhere in this view. */}
               {themes && themes.length > 0 && (
                 <div style={{ marginTop: 12, borderTop: "1px solid var(--rule)", paddingTop: 11 }}>
-                  <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 7 }}>Themes</div>
+                  <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 7 }}>Themes{themesAreML ? <span style={{ marginLeft: 6, opacity: .7 }}>· from lyrics</span> : null}</div>
                   {/* the ? help bubble that sat after these chips is gone (Fuad 2026-09-01, with
                       the Sounds/Reads one). Its copy moves to a hover title on the row, so the
                       explanation is still reachable without a glyph sitting in the chip flow. */}
-                  <div className="tv-themes" style={{ margin: 0 }}
-                    title="The threads the lyrics keep returning to, reasoned from a close read of the words rather than counted off a lexicon. The first is the song's spine; the rest are what it brushes against.">
+                  <div className="tv-themes" style={{ margin: 0 }} data-ml={themesAreML}
+                    title={themesAreML
+                      ? "No close read exists for this song yet, so these come from the lyric-embedding layer — an 18-theme vocabulary scored by similarity, not reasoned. Treated as a placeholder until a read lands."
+                      : "The threads the lyrics keep returning to, reasoned from a close read of the words rather than counted off a lexicon. The first is the song's spine; the rest are what it brushes against."}>
                     {themes.map(t => <span key={t} className="tv-theme">{t}</span>)}
                   </div>
                 </div>
@@ -1655,7 +1688,7 @@ function TrackView({ id, go }) {
           {/* no audio features → no "Where it sits" card, so themes land here instead (2026-08-16) */}
           {themes && themes.length > 0 && (
             <div style={{ marginTop: 12, borderTop: "1px solid var(--rule)", paddingTop: 11 }}>
-              <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 7 }}>Themes</div>
+              <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".05em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 7 }}>Themes{themesAreML ? <span style={{ marginLeft: 6, opacity: .7 }}>· from lyrics</span> : null}</div>
               <div className="tv-themes" style={{ margin: 0 }}>
                 {themes.map(t => <span key={t} className="tv-theme">{t}</span>)}
               </div>
