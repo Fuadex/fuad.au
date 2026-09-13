@@ -1130,7 +1130,9 @@ function BlurbSwitcher({ id, about }) {
   // deep source. Without the first clause the default rendered as “…” until you clicked another button
   // and back, which is what armed the deep load the long way round (Fuad 2026-09-13).
   const hasFableMark = !!(gist0 && gist0.has && gist0.has.includes("f"));
-  const defaultDeep = hasFableMark || !!(gist0 && gist0.src && !GIST_SRC[gist0.src]);
+  // a nub renders the default straight out of the GIST shard, so those tracks no longer need the
+  // deep pull on first paint at all — it waits for an Interpretation click.
+  const defaultDeep = (hasFableMark && !(gist0 && gist0.nub)) || !!(gist0 && gist0.src && !GIST_SRC[gist0.src]);
   const needDeep = mode === "deep" || (pick && !GIST_SRC[pick]) || (!pick && defaultDeep);
   React.useEffect(() => { if (needDeep && R && R.loadAboutDeep) R.loadAboutDeep(id, bump); }, [needDeep, id]);
   const gist = gist0;                                            // src + haiku + web + has (deep markers)
@@ -1146,7 +1148,10 @@ function BlurbSwitcher({ id, about }) {
     const present = { haiku: !!gist.haiku, web: !!gist.web,
       sonnet: hasMark.includes("s"), opus: hasMark.includes("o"), fable: hasMark.includes("f") };
     for (const [m, label] of [["haiku", "Haiku"], ["sonnet", "Sonnet"], ["opus", "Opus"], ["fable", "Fable"], ["web", "Web"]]) {
-      if (present[m]) sources.push({ m, label, text: llm[m] || null });   // text null until deep loads
+      // FABLE'S INFO IS THE NUB wherever one exists (Fuad 2026-09-13): the ~48-word distillate, and
+      // the long read it was distilled from moves to the Interpretation toggle. Tracks with no nub
+      // yet are untouched — their read stays the info, so nothing regresses while coverage fills in.
+      if (present[m]) sources.push({ m, label, text: (m === "fable" ? (llm.nub || llm.fable) : llm[m]) || null });   // text null until deep loads
     }
   }
   const geniusText = about && about[0];
@@ -1180,10 +1185,18 @@ function BlurbSwitcher({ id, about }) {
   const multi = sources.length > 1;
   // fableDeep/opusDeep live in the deep shard; the gist `has` "I" marker tells us one EXISTS so
   // the Interpretation toggle renders before the deep shard lands. Its text fills in on load.
-  const hasDeepRead = !!(gist && gist.has && gist.has.includes("I")) || !!(llm && (llm.fableDeep || llm.opusDeep));
-  const deepText = llm && (llm.fableDeep || llm.opusDeep);   // Fable's close-reading wins over Opus's
-  const deepBy = llm && llm.fableDeep ? "fable" : "opus";    // honest attribution in the brand line
+  // THE FABLE READ IS THE INTERPRETATION once a nub has taken the info slot (Fuad 2026-09-13).
+  // Where no nub exists the old arrangement stands untouched. fableDeep does not lose its place on
+  // the few tracks carrying both: it stacks UNDER the read further down rather than displacing it.
+  const fableAsDeep = !!(llm && llm.nub && llm.fable);
+  const hasDeepRead = !!(gist && gist.has && gist.has.includes("I")) || !!(llm && (llm.fableDeep || llm.opusDeep)) || fableAsDeep;
+  const deepText = llm && (fableAsDeep ? llm.fable : (llm.fableDeep || llm.opusDeep));   // Fable's close-reading wins over Opus's
+  const deepBy = llm && (fableAsDeep || llm.fableDeep) ? "fable" : "opus";    // honest attribution in the brand line
   const showDeep = mode === "deep" && hasDeepRead;
+  // The read's annotations — alt take, stacked second take, fnotes — belong to the FABLE READ, not
+  // to whatever sits in the info slot, so they follow it: under the info while the info IS the read,
+  // under the Interpretation once a nub has moved it there.
+  const onFableRead = showDeep ? fableAsDeep : (cur.m === "fable" && !fableAsDeep);
   // a deep model read (sonnet/opus/fable) is selected but its shard hasn't landed yet
   const curLoading = !showDeep && cur.text == null && !GIST_SRC[cur.m] && cur.m !== "genius";
   return (
@@ -1214,11 +1227,11 @@ function BlurbSwitcher({ id, about }) {
             this track, its own Fable read survives as `fableAlt`. A subtle flick swaps between the
             two takes — same tv-switch-mode button idiom, scoped to the Fable read only. */}
         {(() => {
-          const hasAlt = !showDeep && cur.m === "fable" && llm && llm.fableAlt;
-          const shown = hasAlt && altTake ? llm.fableAlt : cur.text;
-          return <span className="tv-switch-txt">{showDeep ? (deepText || "…") : (curLoading ? "…" : shown)}</span>;
+          const hasAlt = onFableRead && llm && llm.fableAlt;
+          const body = showDeep ? (deepText || "…") : (curLoading ? "…" : cur.text);
+          return <span className="tv-switch-txt">{hasAlt && altTake ? llm.fableAlt : body}</span>;
         })()}
-        {!showDeep && cur.m === "fable" && llm && llm.fableAlt && (
+        {onFableRead && llm && llm.fableAlt && (
           <div className="tv-switch-mode tv-switch-alt">
             <button data-on={!altTake} onClick={() => setAltTake(false)}>Take</button>
             <button data-on={altTake} onClick={() => setAltTake(true)}>Alt take</button>
@@ -1226,18 +1239,24 @@ function BlurbSwitcher({ id, about }) {
         )}
         {/* Stacked second take (Fuad 2026-08-04): where an old-era Fable read stays primary,
             the newer read rides as `fable2` under a hairline split — same formatting, both kept. */}
-        {!showDeep && !altTake && cur.m === "fable" && llm && llm.fable2 && (
+        {onFableRead && !altTake && llm && llm.fable2 && (
           <span className="tv-switch-txt" style={{ display: "block", marginTop: 9, paddingTop: 9, borderTop: "1px solid var(--ink-faint, rgba(127,127,127,.3))" }}>{llm.fable2}</span>
         )}
         {/* Fable addition (Fuad 2026-07-28): when QC sees a verified layer the read couldn't
             surface, it rides as `fnote` — an italic line under the Fable read, never an edit. */}
-        {!showDeep && !altTake && cur.m === "fable" && llm && llm.fnote && (
+        {onFableRead && !altTake && llm && llm.fnote && (
           <span className="tv-switch-txt" style={{ display: "block", marginTop: 7, fontStyle: "italic", opacity: 0.85 }}>{llm.fnote}</span>
         )}
         {/* Second fnote slot (Fuad 2026-08-12): a further verified annotation stacks as
             `fnote2` under the first — same italic styling, only when present. */}
-        {!showDeep && !altTake && cur.m === "fable" && llm && llm.fnote2 && (
+        {onFableRead && !altTake && llm && llm.fnote2 && (
           <span className="tv-switch-txt" style={{ display: "block", marginTop: 7, fontStyle: "italic", opacity: 0.85 }}>{llm.fnote2}</span>
+        )}
+        {/* On the few tracks carrying BOTH a nub and a fableDeep, the read takes the Interpretation
+            body and the deeper close-reading stacks beneath it — the same hairline idiom fable2
+            uses — so neither is orphaned by the other. */}
+        {showDeep && fableAsDeep && llm && llm.fableDeep && (
+          <span className="tv-switch-txt" style={{ display: "block", marginTop: 9, paddingTop: 9, borderTop: "1px solid var(--ink-faint, rgba(127,127,127,.3))" }}>{llm.fableDeep}</span>
         )}
         {showDeep
           ? <span className="tv-switch-brand" data-m={deepBy}>via {deepBy === "fable" ? "Fable" : "Opus"} · interpretation</span>

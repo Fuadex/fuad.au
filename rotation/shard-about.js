@@ -48,7 +48,10 @@ const STOPWORDS = new Set((
 // GIST holds only what the default track-page read needs; DEEP holds the interpretive reads.
 // themes/means/built ride in GIST because they render beside the mood bars on first paint —
 // in DEEP they'd pop in late. They cost ~150 bytes a track and only 74 tracks carry them today.
-const GIST_FIELDS = ["src", "haiku", "web", "themes", "means", "built"];
+// `nub` joins them (Fuad 2026-09-13): it is the track page's DEFAULT read now, so it has to be in
+// GIST or the song page shows "…" until the deep shard lands — the exact first-paint bug the Fable
+// default hit. It also means a track with a nub no longer pulls the deep shard just to render.
+const GIST_FIELDS = ["src", "haiku", "web", "themes", "means", "built", "nub"];
 const DEEP_FIELDS = ["sonnet", "opus", "fable", "fable2", "fableAlt", "fableDeep", "opusDeep", "fv", "fvr", "fnote", "fnote2"];   // fv: fable-tier methodology version (2 = Opus-authored + Fable-QC'd, dual credit in UI); fvr: fable revision — "2.3" = account-first + FINAL SWEEP era, absent = v2.2 implicit; fable2 = stacked newer take under a kept old-era read; fableAlt = the merged-away twin's Fable read after a coherency fold (flick to it)
 
 function loadSource() {
@@ -124,7 +127,9 @@ function main() {
     if (e.sonnet) has += "s";
     if (e.opus) has += "o";
     if (e.fable) has += "f";
-    if (e.fableDeep || e.opusDeep) has += "I";
+    // "I" = there is something to EXPAND. Once a nub takes the info slot the long fable read
+    // becomes the Interpretation, so it earns the marker too (Fuad 2026-09-13).
+    if (e.fableDeep || e.opusDeep || (e.nub && e.fable)) has += "I";
     if (has) g.has = has;
     if (Object.keys(g).length) gist[b][k] = g;
     if (Object.keys(d).length) deep[b][k] = d;
