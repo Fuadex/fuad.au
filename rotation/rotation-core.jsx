@@ -418,7 +418,24 @@ a.r-link:hover { color: var(--ink); }
 .tv-switch-body { position: relative; }
 /* the read block owns the absolute brand credit, so Means/Built can follow it in flow */
 .tv-switch-read { position: relative; padding-bottom: 20px; }
-.tv-switch-txt { font-family: var(--serif); font-size: 15.5px; line-height: 1.6; color: var(--ink-soft); }
+/* ORPHAN CONTROL (Fuad 2026-09-13: a few words spilling onto a last line "looks a bit meh").
+   Measured across all 29 nubs at four real column widths before choosing:
+       width   lines     ragged last line (<30% full)    same, balanced
+       1048    2-3       4 of 29                         0
+        798    3         9 of 29                         0
+        498    4-5       7 of 29                         0
+        298    6-9       9 of 29                         9   <- balance cannot help here
+   text-wrap:balance evens the lines so no stub is left, and it clears the problem entirely down to
+   about 500px. It does nothing at phone width because the engine only balances blocks of SIX LINES
+   OR FEWER and the nubs run 6-9 there, so that breakpoint falls back to text-wrap:pretty — which
+   only repairs the last line, but is the best available. The long read is never balanced: it is far
+   over the six-line cap, so it takes pretty throughout.
+   A fixed LINE COUNT is not enforceable in CSS. The count is a function of column width, and the
+   table above is the proof: the same 29 texts run 2 lines wide and 9 lines narrow. What IS
+   enforceable, and what was actually being complained about, is the ragged stub. */
+.tv-switch-txt { font-family: var(--serif); font-size: 15.5px; line-height: 1.6; color: var(--ink-soft); text-wrap: pretty; }
+.tv-switch-txt[data-nub="true"] { text-wrap: balance; }
+@media (max-width: 620px) { .tv-switch-txt[data-nub="true"] { text-wrap: pretty; } }
 /* fableAlt flick (Fuad 2026-08-11) — the "Take / Alt take" swap under a folded twin's Fable read.
    Reuses the tv-switch-mode pill idiom; sits inline under the read (no margin-auto push right). */
 .tv-switch-alt { margin: 9px 0 0; }

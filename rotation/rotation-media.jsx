@@ -1237,7 +1237,10 @@ function BlurbSwitcher({ id, about }) {
         {(() => {
           const hasAlt = onFableRead && llm && llm.fableAlt;
           const body = showDeep ? (deepText || "…") : (curLoading ? "…" : cur.text);
-          return <span className="tv-switch-txt">{hasAlt && altTake ? llm.fableAlt : body}</span>;
+          // the nub is typeset differently from the long read — see .tv-switch-txt[data-nub] in
+          // rotation-core.jsx. It is short enough for the browser to balance; the read is not.
+          const isNub = !showDeep && cur.m === "fable" && !!(llm && llm.nub);
+          return <span className="tv-switch-txt" data-nub={isNub ? "true" : undefined}>{hasAlt && altTake ? llm.fableAlt : body}</span>;
         })()}
         {onFableRead && llm && llm.fableAlt && (
           <div className="tv-switch-mode tv-switch-alt">
@@ -1271,7 +1274,12 @@ function BlurbSwitcher({ id, about }) {
         {/* MEANS + BUILT (pilot 2026-08-08) — distilled from the same read, so they sit BELOW the
             read's attribution behind a hairline: the credit closes the read, these open a second
             register. They describe the song, not the selected tier, so they don't switch. */}
-        {llm && (llm.means || llm.built) && (
+        {/* MEANING + DEVICE HIDE BEHIND A NUB (Fuad 2026-09-13: "they kind of double up"). They do,
+            and by construction: the nub was written with means as its thesis anchor and built as the
+            device its second sentence spends itself on, so on a nubbed track these two rows restate
+            the paragraph directly above them in a shorter, worse form. They stay everywhere else —
+            4,793 tracks carry them and only ~929 will ever carry a read to distil. */}
+        {llm && !llm.nub && (llm.means || llm.built) && (
           <div className="tv-craft">
             {llm.means && <div className="tv-craft-row"><span className="tv-craft-k">Meaning</span><span className="tv-craft-v">{llm.means}</span></div>}
             {llm.built && <div className="tv-craft-row"><span className="tv-craft-k">Device</span><span className="tv-craft-v">{llm.built}</span></div>}
