@@ -5984,9 +5984,12 @@ function Portrait({ go }) {
               title={`${n} loved works you've met · ${data.movChase[m] || 0} works you haven't seen yet — click for the wall`}>
               <span className="cv-p-barlbl">{m}</span>
               <span className="cv-p-bartrack"><i style={{ width: (n / maxMov * 100) + "%" }} /></span>
-              {/* the "+N" reads bare on purpose (Fuad 2026-08-28: the teach-once " unseen" suffix
-                  cluttered the impressionism row) — the tooltip above carries the explanation */}
-              <span className="cv-p-barn">{n}{data.movChase[m] > 0 && <em className="cv-p-barchase">+{data.movChase[m]}</em>}</span>
+              {/* The green "+N" chase suffix is RETIRED here (Fuad 2026-09-13). These rows already
+                  carry a number — the loved-met count — so a second one beside it in another colour
+                  was two figures competing on a bar that only needs one. The chase count is still
+                  on the row: the title above reads it out in words. The three chase-ONLY rows below
+                  keep their "+N", because there it is the only number the row has. */}
+              <span className="cv-p-barn">{n}</span>
             </div>
           ))}
           {/* chase-only movements (Fuad 2026-08-27): big on the horizon, invisible in loved-met.

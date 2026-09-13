@@ -1375,6 +1375,9 @@ a { color: inherit; }
    compete with the biography this page is about. "+N" addendum after a loved-met movement's
    count; a muted bar + count for chase-only movements; heading + chip border for the
    calling list. */
+/* UNUSED since 2026-09-13 — the "+N" chase suffix was retired from the loved-met movement rows,
+   which already carry their own number. Kept because the comment above (~line 260) points here to
+   name the green chase colour, and because restoring the suffix is then a one-line change. */
 .cv-p-barchase { font-style: normal; margin-left: 3px; color: oklch(0.55 0.03 150); }
 .cv-p-bartrack i.cv-p-bartrack-chase { background: oklch(0.55 0.03 150 / .45); }
 .cv-p-barn-chase { color: oklch(0.55 0.03 150); }
