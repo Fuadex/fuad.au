@@ -641,3 +641,93 @@ Entries in portraits.js carry `mv: "2.6"` when their liner/gist/portrait were pr
 **Rule 12 (2026-09-06): gist is the frame, liner extends it.** An album gist holds year, form, the library tenure (first year, last year, how the plays fell) and at most one clause of thesis; the liner argues through the songs and never restates a gist sentence, and a fact that both could carry belongs to whichever does something with it. Model: the Nine Inch Nails entries. Piloted on Pendulum's In Silico.
 
 **Rule 12 amendment (2026-09-07):** the gist's single charged clause is the record's sonic identity in a concrete image unless the liner already owns that fact; producers, labels, studios, chart positions and awards do not appear in gists (nor in liners); the tenure line and the gist-vs-liner overlap check are unchanged. Born of the Karnivool A/B, where the pre-2.6 gists kept the sound and the rule-12 drafts had replaced it with provenance.
+
+## The nub — song-level distillates (EXPLORATION, 2026-09-13; continuation NOT yet decided)
+
+A `nub` is a 2–3 sentence distillate of a song's Fable read, carried in the GIST shard and shown as
+the song page's **Fable info**, with the long read moved behind the **Interpretation** toggle beside
+it. 29 exist. They are an **exploration, not a campaign**: the remaining 4,794 are not queued, and
+whether to continue at all is an open question — see the bottom of this section.
+
+**The instruction, as it now stands (Fuad, 2026-09-13):** *encapsulate the thesis of the song into
+2 to 3 sentences; avoid doubling up what is written in Meaning and Device.*
+
+That second clause is the day's hardest-won rule. The first 29 were written with `means` as the
+thesis anchor and `built` as the device the second sentence spends itself on, which produced nubs
+that restated both rows almost verbatim on the same screen — Kerosene's reproduced them nearly word
+for word. Six were rewritten to draw their material from parts of the read those rows leave
+untouched; measured word overlap with `means`+`built` fell from 41–73% to 0–5% while overlap with
+the read itself held at 55–81%, which is the shape to aim for.
+
+### What was measured rather than asserted
+
+- **Two sentences is the form, not a preference.** 16 of 16 drafts — 8 mine, 8 from blind Opus
+  agents given only the original brief — came out at two, from source reads of 74 to 241 words.
+- **40–52 words.** The 20-word floor in the first brief is unreachable: nothing came near it, and
+  getting there means dropping into `means`-style telegraphy that reads as a data field, not prose.
+- **Never restate the question.** 8 of 8 blind drafts opened "X is about…", because the brief asks
+  "what is this song really about?" and writers answer in the question's grammar. Every drafter will
+  produce this tic unless told not to.
+- **The budget does not scale with the source.** A 103-word read and a 241-word read both distil to
+  ~48 words. Compression ran 1.8× on short reads and 4.6× on long ones.
+- **Name a person only when they are the argument.** Across 29 nubs, two proper nouns survived.
+  Meshuggah kept theirs because the drum engine *is* the thesis; Wilson, LaPlante, TK, Gossow,
+  Steele, Mukai and Alice Glass were all dropped with nothing lost.
+- **Read the last sentence first.** These reads land their thesis at the close, so distilling
+  front-to-back reliably keeps the setup and loses the point — the repeated failure in batch one.
+- **The title is already on screen.** A nub never needs to restate it; Michael de Santa never names
+  Michael de Santa.
+
+### A/B against blind drafters
+
+Eight reads were distilled twice: once by me under the draft rules, once by an Opus subagent given
+only Fuad's original brief and no rules. Each side won two songs on substance. Blind found Sugar's
+title connection and recovered Rosenrot's closing turn, both of which I had dropped; mine kept
+Kerosene's saline/kerosene pair and SOSOS's stuttered title, both of which blind lost. The
+conclusion is that the work parallelises without quality loss **provided the drafter gets the
+ruleset** — the one systematic flaw in the blind output was the "is about" tic that rule 3 now kills.
+
+### Precedents set the same day
+
+- **Info / Interpretation split.** Where a nub exists it takes the info slot and the Fable read moves
+  to the Interpretation toggle. Where none exists nothing changes — the read stays the info and the
+  toggle stays hidden. The read's annotations (`fnote`, `fnote2`, `fable2`, the `fableAlt` flick)
+  belong to the READ and follow it wherever it renders.
+- **`fableDeep` retired.** It was a third layer behind the read; the nub/read split does that job
+  with two. All 138 tracks carrying one also carry a `fable`, so nothing lost its long read. Dropped
+  from `DEEP_FIELDS` in shard-about.js so it stops shipping; the entries stay in llm-about.js as the
+  archive, and putting the field name back revives them.
+- **`opusDeep` kept**, and deliberately not treated as the same case: all 8 tracks carrying one have
+  no `fable` at all, so it is the only long read they have.
+- **`means`, `built` and `themes` are off-limits** (Fuad, explicit). Their values are not edited and
+  their rows are not gated. A same-day attempt to hide them behind a nub was reverted. Verified
+  against the pre-session baseline: 0 changed, 0 added, 0 removed across all 15,871 entries.
+- **Typography.** The nub takes `text-wrap: balance`, measured to remove every ragged last line down
+  to ~500px; below that the engine will not balance blocks over six lines, so it falls back to
+  `pretty`. A fixed line count is not enforceable in CSS — the same 29 texts run 2 lines wide and 9
+  lines narrow.
+
+### Hazard found the hard way
+
+**Never draft from, or count from, `rotation/about/` or the `*-about-lazy.js` files.** They are
+gitignored CI artifacts and go stale silently. Twice in one day they produced confidently wrong
+answers: a Fable-read count of 929 when the true figure is **4,823**, and four nubs distilled from
+reads that had since been rewritten (The Best Things, Splitting the Atom, The Void, Live 4Ever —
+caught at 10/20/22/64% word overlap with their current reads, all four redrafted). `llm-about.js` is
+the source of truth for every census and every draft.
+
+### What continuation needs before it starts
+
+29 of 4,823 reads carry a nub — **0.6%**. Before any of the remaining 4,794 are written:
+
+1. **Is the nub worth it at all, given Meaning and Device already exist?** Measured lexical reuse
+   was 31% and neither contains the other, so they are not duplicates — but the honest difference is
+   register (a paragraph you read vs. two keyed fragments you scan), not information. This is the
+   open question and it is Fuad's.
+2. **The 708 short reads.** 15% of reads are under 110 words, where a nub compresses only ~1.8× and
+   the Interpretation expansion reveals barely thirty words more. Those may be better left with the
+   read as the info and no toggle at all.
+3. **Terms of art.** `l'appel du vide`, `kawaii` — unglossed they break the rule that every referent
+   resolves inside the text; glossed they cost a fifth of the budget. Unruled.
+4. **Who writes them.** 4,794 by hand is not feasible; the A/B says subagents match, given the rules.
+   A pilot of ~20 under the full ruleset, checked by Fuad, should precede any scaling.
