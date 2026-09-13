@@ -2195,7 +2195,13 @@ function TourCal({ events, gran, setGran, selKey, setSelKey, keyOf }) {
 // writing each circle's r attribute; and a hover readout. VB is the static viewBox this projection
 // lives in ("0 70 1000 315"). MINK/MAXK bound the zoom.
 const TMAP_VB = { x: 0, y: 70, w: 1000, h: 315 };
-const TMAP_MINK = 1, TMAP_MAXK = 14;
+// MAXK 14 -> 60 (Fuad 2026-09-13). The projection puts 360 degrees of longitude across the 1000-unit
+// viewBox, so k is directly a scale on that: 14 showed ~26 degrees, about 1,800km at European
+// latitude, which is continental — two cities 100km apart sat 5% of the width from each other and a
+// cluster could never be separated. 60 shows ~6 degrees, about 430km, which resolves a metro area.
+// Safe at that depth because every drawn thing already counter-scales by rk: dot radii, route stroke
+// widths and the selection ring are all divided by it, so nothing balloons as you go in.
+const TMAP_MINK = 1, TMAP_MAXK = 60;
 function useTourMapNav(svgRef, gRef, dotSel, ready) {
   const [tf, setTf] = React.useState({ k: 1, x: 0, y: 0 });   // committed g transform
   const tfRef = React.useRef(tf);
