@@ -1783,38 +1783,38 @@ function StoriesView({ t, go, seed }) {
            Width stays near the reading measure rather than filling the screen; the modest bump at
            1500px keeps a 4K screen from looking empty without stretching the rows inside the
            cards. .st-head mirrors these numbers — if one moves, move both. */
-        .st-feed { max-width: 820px; margin: 0 auto; display: grid; gap: var(--gap); }
+        .st-feed { max-width: 820px; margin: 0 auto; display: grid; gap: calc(var(--gap) * .62); }
         @media (min-width: 1500px) { .st-feed { max-width: 900px; } }
-        .st-card { background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 26px 28px; }
-        .st-hero { padding: 34px 32px; }
-        .st-label { font-family: var(--mono); font-size: 9.5px; letter-spacing: .22em; text-transform: uppercase;
-          color: var(--accent); margin-bottom: 14px; }
-        .st-big { font-family: var(--serif); font-size: clamp(24px, 3.4vw, 36px); line-height: 1.12; letter-spacing: -.015em; }
+        .st-card { background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 17px 19px; }
+        .st-hero { padding: 22px 21px; }
+        .st-label { font-family: var(--mono); font-size: 9px; letter-spacing: .13em; text-transform: uppercase;
+          color: var(--accent); margin-bottom: 8px; }
+        .st-big { font-family: var(--serif); font-size: clamp(19px, 2.2vw, 26px); line-height: 1.16; letter-spacing: -.015em; }
         .st-big em { font-style: italic; }
         .st-big[data-link="true"] { cursor: pointer; }
-        .st-sub { color: var(--ink-soft); font-size: 14px; line-height: 1.55; margin-top: 12px; max-width: 560px; }
-        .st-title-sm { font-family: var(--serif); font-style: italic; font-size: 21px; margin-bottom: 18px; }
+        .st-sub { color: var(--ink-soft); font-size: 13.5px; line-height: 1.5; margin-top: 8px; max-width: 560px; }
+        .st-title-sm { font-family: var(--serif); font-style: italic; font-size: 16.5px; margin-bottom: 11px; }
         .st-list { display: grid; gap: 4px; }
-        .st-row { display: flex; gap: 14px; align-items: center; padding: 9px 10px; margin: 0 -10px; border-radius: 6px;
+        .st-row { display: flex; gap: 12px; align-items: center; padding: 6px 9px; margin: 0 -9px; border-radius: 6px;
           transition: background .15s; }
         .st-row[data-link="true"] { cursor: pointer; }
         .st-row[data-link="true"]:hover { background: var(--bg-3); }
         .st-row-name { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .st-row-sub { font-size: 12px; color: var(--ink-faint); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .st-row-right { flex: none; }
-        .st-num { font-family: var(--serif); font-size: 22px; font-variant-numeric: tabular-nums; }
+        .st-num { font-family: var(--serif); font-size: 18px; font-variant-numeric: tabular-nums; }
         .st-num small { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase;
           color: var(--ink-faint); margin-left: 5px; }
-        .st-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
-        .st-obs { border: 1px solid var(--rule); border-radius: 6px; padding: 14px; position: relative; transition: border-color .15s; }
+        .st-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 9px; }
+        .st-obs { border: 1px solid var(--rule); border-radius: 6px; padding: 11px; position: relative; transition: border-color .15s; }
         .st-obs[data-link="true"] { cursor: pointer; }
         .st-obs[data-link="true"]:hover { border-color: var(--rule-2); }
-        .st-obs-share { position: absolute; top: 12px; right: 14px; font-family: var(--serif); font-size: 24px; }
-        .st-obs .st-row-name { margin-top: 12px; }
-        .st-obs-bar { height: 3px; background: var(--bg-3); border-radius: 2px; margin-top: 10px; overflow: hidden; }
+        .st-obs-share { position: absolute; top: 9px; right: 11px; font-family: var(--serif); font-size: 18px; }
+        .st-obs .st-row-name { margin-top: 8px; }
+        .st-obs-bar { height: 3px; background: var(--bg-3); border-radius: 2px; margin-top: 7px; overflow: hidden; }
         .st-obs-bar i { display: block; height: 100%; border-radius: 2px; }
-        .st-ug-cuts { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 8px; margin-top: 18px; }
-        .st-ug-cut { display: flex; gap: 12px; align-items: center; padding: 8px 10px; border: 1px solid var(--rule);
+        .st-ug-cuts { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 7px; margin-top: 12px; }
+        .st-ug-cut { display: flex; gap: 11px; align-items: center; padding: 7px 9px; border: 1px solid var(--rule);
           border-radius: 6px; transition: border-color .15s; }
         .st-ug-cut[data-link="true"] { cursor: pointer; }
         .st-ug-cut[data-link="true"]:hover { border-color: var(--accent-dim); }
@@ -1824,28 +1824,28 @@ function StoriesView({ t, go, seed }) {
           border-radius: 5px; font-size: 16px; line-height: 1; cursor: pointer; transition: .15s; }
         .st-yir-nav button:hover:not(:disabled) { border-color: var(--accent-dim); color: var(--ink); }
         .st-yir-nav button:disabled { opacity: .3; cursor: default; }
-        .st-yir-y { font-family: var(--serif); font-style: italic; font-size: 22px; min-width: 64px; text-align: center; }
-        .st-yir-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 22px;
-          padding: 14px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
-        .st-yir-n { font-family: var(--serif); font-size: clamp(20px, 2.4vw, 28px); line-height: 1; }
+        .st-yir-y { font-family: var(--serif); font-style: italic; font-size: 18px; min-width: 64px; text-align: center; }
+        .st-yir-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 14px;
+          padding: 11px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+        .st-yir-n { font-family: var(--serif); font-size: clamp(17px, 1.7vw, 21px); line-height: 1; }
         .st-yir-l { font-family: var(--mono); font-size: 9.5px; color: var(--ink-faint); letter-spacing: .12em;
           text-transform: uppercase; margin-top: 6px; }
-        .st-yir-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 18px; }
+        .st-yir-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 13px; }
         .st-yir-h { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); letter-spacing: .12em;
           text-transform: uppercase; margin-bottom: 10px; }
-        .st-yir-jump { margin-top: 16px; padding: 11px 14px; background: var(--bg-3); border-radius: 5px; font-size: 13.5px; cursor: default; }
+        .st-yir-jump { margin-top: 11px; padding: 9px 12px; background: var(--bg-3); border-radius: 5px; font-size: 13.5px; cursor: default; }
         .st-yir-jump[data-link="true"] { cursor: pointer; }
         .st-yir-jump[data-link="true"]:hover { background: var(--bg-4, var(--bg-3)); }
-        .st-geo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; margin-top: 22px; }
-        .st-geo-c { display: flex; gap: 12px; align-items: center; padding: 9px 11px; border: 1px solid var(--rule); border-radius: 6px; }
-        .st-geo-flag { font-size: 22px; line-height: 1; flex: none; width: 30px; text-align: center; }
-        .st-geo-pct { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--accent); margin-left: auto; flex: none; }
+        .st-geo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 7px; margin-top: 14px; }
+        .st-geo-c { display: flex; gap: 11px; align-items: center; padding: 7px 10px; border: 1px solid var(--rule); border-radius: 6px; }
+        .st-geo-flag { font-size: 18px; line-height: 1; flex: none; width: 30px; text-align: center; }
+        .st-geo-pct { font-family: var(--serif); font-style: italic; font-size: 15.5px; color: var(--accent); margin-left: auto; flex: none; }
         .st-geo-cities { display: flex; gap: 6px; flex-wrap: wrap; }
-        .st-flame-pct { font-family: var(--serif); font-style: italic; font-size: 18px; flex: none; }
-        .st-turn { display: grid; gap: 10px; margin-top: 22px; }
+        .st-flame-pct { font-family: var(--serif); font-style: italic; font-size: 15.5px; flex: none; }
+        .st-turn { display: grid; gap: 8px; margin-top: 14px; }
         .st-turn-row { display: grid; grid-template-columns: 160px 1fr 60px; gap: 18px; align-items: center; }
         .st-turn-label { font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint); letter-spacing: .1em; text-transform: uppercase; }
-        .st-turn-n { font-family: var(--serif); font-style: italic; font-size: 17px; text-align: right; }
+        .st-turn-n { font-family: var(--serif); font-style: italic; font-size: 15px; text-align: right; }
         .st-turn-axis { display: flex; justify-content: space-between; padding-left: 178px;
           font-family: var(--mono); font-size: 10px; color: var(--ink-faint); letter-spacing: .1em; margin-top: 4px; }
         @media (max-width: 700px) {
@@ -1955,7 +1955,7 @@ function StoriesView({ t, go, seed }) {
         .st-peak-a { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .st-peak-d { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); }
         @media (max-width: 700px) {
-          .st-card { padding: 20px 18px; }
+          .st-card { padding: 14px 13px; }
           .st-hero { padding: 24px 20px; }
           .st-grid { grid-template-columns: 1fr 1fr; }
           .st-peak { grid-template-columns: 42px 44px 1fr; }
@@ -1979,10 +1979,10 @@ function StoriesView({ t, go, seed }) {
         .st-toc button[data-on="true"]::after { background: var(--accent-dim); }
         .st-fresh { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--accent);
           margin-right: 6px; vertical-align: 1px; }
-        .st-chapter { display: flex; align-items: baseline; gap: 12px; margin: 26px 2px 2px;
-          font-family: var(--serif); font-style: italic; font-size: 24px; color: var(--ink); }
-        .st-chapter span { font-family: var(--mono); font-style: normal; font-size: 10px;
-          letter-spacing: .2em; color: var(--accent); }
+        .st-chapter { display: flex; align-items: baseline; gap: 10px; margin: 14px 2px 0;
+          font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--ink); }
+        .st-chapter span { font-family: var(--mono); font-style: normal; font-size: 9.5px;
+          letter-spacing: .13em; color: var(--accent); }
         .st-chapter::after { content: ""; flex: 1; height: 1px; background: var(--rule); align-self: center; }
 
         /* Stories TOC as a vertical breadcrumb rail pinned to the left edge (wide screens).
