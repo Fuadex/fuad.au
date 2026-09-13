@@ -2321,8 +2321,15 @@ function useTourMapNav(svgRef, gRef, dotSel, ready) {
       const mvx = (vx - t.x) / t.k, mvy = (vy - t.y) / t.k;
       const rx = R_PX * pxToVx / t.k, ry = R_PX * pxToVy / t.k;   // fisheye radius stays ~constant on screen
       // pass 1: find the dot the cursor is actually ON (screen-space hit against rendered radius)
+      // A dot explicitly sized to ZERO is filtered out of the current view and still mounted only so
+      // it can animate back (see dotCities). It must not be a hover or fisheye target — without this
+      // the `|| 4` fallback below would treat it as a radius-4 bubble and the fisheye would pop an
+      // invisible city into view under the cursor. Tested for r0 PRESENT-and-zero, never for absent,
+      // because maps that set no data-r0 at all rely on that fallback.
+      const hidden = (g) => g.dataset.r0 !== undefined && +g.dataset.r0 === 0;
       let hoverG = null, hoverD = Infinity;
       for (const g of svg.querySelectorAll(dotSel)) {
+        if (hidden(g)) continue;
         const bx = +g.dataset.cx, by = +g.dataset.cy;
         const sx = rect.left + ((bx * t.k + t.x) - TMAP_VB.x) / pxToVx;
         const sy = rect.top + ((by * t.k + t.y) - TMAP_VB.y) / pxToVy;
@@ -2332,6 +2339,7 @@ function useTourMapNav(svgRef, gRef, dotSel, ready) {
       }
       // pass 2: fisheye targets, hovered dot boosted above its neighbours
       for (const g of svg.querySelectorAll(dotSel)) {
+        if (hidden(g)) { g.dataset.kt = 1; continue; }   // stays at r=0; never grows under the lens
         const bx = +g.dataset.cx, by = +g.dataset.cy;
         const dnorm = Math.hypot((bx - mvx) / rx, (by - mvy) / ry);   // 0 at cursor, 1 at edge
         let k = dnorm >= 1 ? 1 : 1 + (FISH_MAXK - 1) * (1 - dnorm) * (1 - dnorm);
@@ -2415,7 +2423,7 @@ const TMAP_REGIONS = {
   warsaw: { x0: 455, y0: 75, x1: 605, y1: 160 },
   tokyo:  { x0: 855, y0: 130, x1: 920, y1: 175 },
 };
-function TourMap({ events, city, setCity, hiPath, hiHue, routes, focus }) {
+function TourMap({ events, allEvents, city, setCity, hiPath, hiHue, routes, focus }) {
   const [world, setWorld] = React.useState(window.ROTATION_WORLD || null);
   const [off, setOff] = React.useState(() => new Set());   // "cc|city" keys toggled OFF via a chip
   const svgRef = React.useRef(null);
@@ -2481,18 +2489,43 @@ function TourMap({ events, city, setCity, hiPath, hiHue, routes, focus }) {
   // Each dot is a hit-<g> carrying the data-attrs the fisheye reads (data-cx/cy/city/count); the
   // inner circle has a FIXED r (the <g> transform handles zoom) so the fisheye's data-r cache — set
   // once on first hover — never goes stale. A chip-toggled-off city dims to 0.14 and stops filtering.
-  const dotEls = React.useMemo(() => cities.map(c => {
-    const on = !off.has(c.k);
+  // STABLE KEY SET FOR THE DOTS (Fuad 2026-09-14: transitions "similar to what we have on overview's
+  // map when clicking other genres"). rotation-worldmap already records why this is necessary: it
+  // swapped bubble arrays on a mode change, "an unmounted circle cannot transition", and the fix was
+  // to keep the same keys and only move r. Same thing here — `cities` is built from the GENRE-FILTERED
+  // events, so clicking a genre unmounted one set of circles and mounted another and nothing could
+  // animate. Geometry now comes from the whole pool so every key survives every filter; the count and
+  // hue come from the live set, and a city with nothing under the current genre stays mounted and
+  // animates down to r=0 instead of disappearing between frames.
+  const dotCities = React.useMemo(() => {
+    const live = new Map(cities.map(c => [c.k, c]));
+    const src = (allEvents && allEvents.length) ? allEvents : events;
+    const m = new Map();
+    for (const x of src) {
+      if (!x.e.ll) continue;
+      const k = x.e.cc + "|" + x.e.city;
+      if (m.has(k)) continue;
+      const l = live.get(k);
+      m.set(k, { k, x: (x.e.ll[1] + 180) / 360 * 1000, y: (90 - x.e.ll[0]) / 180 * 500,
+        city: x.e.city, cc: x.e.cc, n: l ? l.n : 0, hue: l ? l.hue : null });
+    }
+    // draw the small ones last so a big bubble never sits on top of a small neighbour
+    return [...m.values()].sort((a, b) => b.n - a.n);
+  }, [cities, events, allEvents]);
+  const dotEls = React.useMemo(() => dotCities.map(c => {
+    const on = !off.has(c.k) && c.n > 0;
     const col = c.hue != null ? `oklch(0.63 0.17 ${c.hue})` : "var(--accent)";
+    const r0 = c.n > 0 ? base + Math.sqrt(c.n) * 1.15 : 0;
     return (
-      <g key={c.k} className="gv-tmap-hit" data-cx={c.x} data-cy={c.y} data-r0={(base + Math.sqrt(c.n) * 1.15).toFixed(2)} style={{ opacity: on ? 1 : 0.14 }}>
+      <g key={c.k} className="gv-tmap-hit" data-cx={c.x} data-cy={c.y} data-r0={r0.toFixed(2)}
+        style={{ opacity: c.n === 0 ? 0 : on ? 1 : 0.14 }}>
         {/* Overview map convention (rotation-worldmap mp-bub): family hue at oklch(0.63 0.17), a
             stroke in the SAME colour rather than an ink ring, .34 fill lifting to .72 when hovered or
             selected, stroke thickening with it. Stroke widths ride CSS vars so they counter-scale with
             zoom the way the radius does, and hover stays in CSS so panning never re-renders the dots.
             (Fuad 2026-09-13: "match Overview’s map style".) */}
-        <circle className="gv-tmap-dot" data-on={city === c.k}
-          cx={c.x} cy={c.y} r={(base + Math.sqrt(c.n) * 1.15) / rk}
+        <circle className="gv-tmap-dot" data-on={city === c.k} data-empty={c.n === 0}
+          cx={c.x} cy={c.y} r={r0 / rk}
           fill={col} stroke={col}
           style={{ "--sw0": (0.7 / rk).toFixed(3), "--sw1": (1.6 / rk).toFixed(3) }}
           onClick={(e) => { if (!nav.moved.current && on) setCity(city === c.k ? null : c.k); e.stopPropagation(); }}>
@@ -2500,7 +2533,7 @@ function TourMap({ events, city, setCity, hiPath, hiHue, routes, focus }) {
         </circle>
       </g>
     );
-  }), [cities, city, off, rk]);
+  }), [dotCities, city, off, rk]);
   const hiEls = React.useMemo(() => {
     if (!hiPath) return null;
     return (<React.Fragment>
@@ -2686,7 +2719,9 @@ function TourSection({ go, gigDate }) {
       {!tour && <div className="r-mono" style={{ color: "var(--ink-faint)", padding: 16 }}>loading tour dates…</div>}
       {tour && <>
         <div className="r-card gv-tmap-card">
-          <TourMap events={mapEvents} city={city} setCity={setCity} hiPath={hiPath} hiHue={hiArt ? hiArt.hue : 40} routes={checkedRoutes} focus={mktFocus} />
+          {/* allEvents is the UNFILTERED pool — the map builds its dot key set from it so a genre
+              click moves radii instead of unmounting circles. See the note above dotCities. */}
+          <TourMap events={mapEvents} allEvents={pool} city={city} setCity={setCity} hiPath={hiPath} hiHue={hiArt ? hiArt.hue : 40} routes={checkedRoutes} focus={mktFocus} />
           <div className="gv-tmap-foot">
             <span className="r-mono gv-tmap-hint">{hiArt ? <>tracing <b>{hiArt.name}</b>'s route — dots numbered in date order</>
               : checked.size ? <>mapping <b>{(checkedRoutes || []).length}</b> route{(checkedRoutes || []).length !== 1 ? "s" : ""} — tick artists below to add · <em style={{ cursor: "pointer", color: "var(--accent)" }} onClick={() => setChecked(new Set())}>clear ✕</em></>
@@ -3143,7 +3178,23 @@ function GigsView({ go }) {
                         {n.songCount > 0 ? <span className="gv-gig-set">{n.songCount}<small>songs</small></span> : null}
                       </div>
                     </div>
-                    {open && <div className="gv-night-acts">{n.acts.map((g, i) => <GigRow key={g.artist + i} g={g} noDate />)}</div>}
+                    {/* UNRAVEL (Fuad 2026-09-14: "a transition that unravels to all the individual
+                        concerts ... right now it's a bit abrupt"). The list used to be mounted and
+                        unmounted on `open`, so a 14-act festival day appeared and vanished in one
+                        frame. It now stays mounted and the WRAPPER animates grid-template-rows
+                        0fr -> 1fr, which transitions to the content's real height without anyone
+                        having to measure it or hard-code a max-height that clips a long day.
+                        Each act then fades and slides in on its own small delay, so the day unrolls
+                        top to bottom instead of arriving whole. Closing plays it straight back. */}
+                    <div className="gv-night-unravel" aria-hidden={!open}>
+                      <div className="gv-night-acts">
+                        {n.acts.map((g, i) => (
+                          <div key={g.artist + i} className="gv-night-act-row" style={{ "--i": Math.min(i, 11) }}>
+                            <GigRow g={g} noDate />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 );
               })}
@@ -3242,6 +3293,24 @@ function GigsView({ go }) {
         .gv-night-act[data-link="true"]:hover { color: var(--accent); }
         .gv-night-sep { color: var(--ink-faint); font-weight: 400; }
         .gv-night-more { font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; color: var(--accent); font-weight: 400; margin-left: 6px; }
+        /* THE UNRAVEL. grid-template-rows 0fr -> 1fr animates to the content's OWN height, so a
+           2-act night and a 14-act festival day both open correctly with no measuring and no
+           max-height guess that would clip the long ones. The inner element must carry the
+           overflow:hidden for the 0fr row to actually clip. */
+        .gv-night-unravel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .42s cubic-bezier(.22,.61,.36,1); }
+        .gv-night[data-open="true"] .gv-night-unravel { grid-template-rows: 1fr; }
+        .gv-night-unravel > .gv-night-acts { overflow: hidden; min-height: 0; }
+        /* closed rows must not be clickable or tab-reachable while they sit at zero height */
+        .gv-night-unravel[aria-hidden="true"] { pointer-events: none; }
+        /* each act arrives on its own beat — that stagger is what reads as unravelling rather than
+           as one block appearing. Index is capped at 11 in the JSX so a long festival day cannot
+           run the tail out past the container's own transition. */
+        .gv-night-act-row { opacity: 0; transform: translateY(-6px); transition: opacity .3s ease, transform .3s cubic-bezier(.22,.61,.36,1); }
+        .gv-night[data-open="true"] .gv-night-act-row { opacity: 1; transform: none; transition-delay: calc(var(--i, 0) * 34ms); }
+        @media (prefers-reduced-motion: reduce) {
+          .gv-night-unravel, .gv-night-act-row { transition: none; }
+          .gv-night[data-open="true"] .gv-night-act-row { transition-delay: 0s; }
+        }
         .gv-night-acts { padding-left: 14px; margin-top: 2px; display: grid; gap: 2px; }
         .gv-night-acts .gv-gig-date { display: none; }
         .gv-night-acts .gv-gig { grid-template-columns: 10px 1fr auto; }
@@ -3322,8 +3391,19 @@ function GigsView({ go }) {
         .gv-tmap-zoom button:hover { color: var(--accent); border-color: var(--accent-dim); }
         .gv-tmap-empty { padding: 60px 0; text-align: center; color: var(--ink-faint); font-size: 11px; }
         /* NB: no fill here — a CSS fill would override the per-dot genre color set inline */
-        .gv-tmap-dot { fill-opacity: .34; stroke-width: var(--sw0); cursor: pointer; transition: fill .5s, fill-opacity .12s, stroke-width .12s; }
+        /* r and the group opacity join the transition (Fuad 2026-09-14). The r curve is the overview
+           map's own IDLE_TR — r .6s cubic-bezier(.3,.8,.3,1) — so a genre click reads the same on
+           both maps: bubbles swell and shrink to the new counts instead of cutting. The fisheye in
+           useTourMapNav overrides transition inline while the cursor is engaged and restores it on
+           reset, so this only governs the idle state. */
+        .gv-tmap-hit { transition: opacity .42s cubic-bezier(.3,.8,.3,1); }
+        .gv-tmap-dot { fill-opacity: .34; stroke-width: var(--sw0); cursor: pointer; transition: r .6s cubic-bezier(.3,.8,.3,1), fill .5s, fill-opacity .12s, stroke-width .12s; }
         .gv-tmap-dot:hover, .gv-tmap-dot[data-on="true"] { fill-opacity: .72; stroke-width: var(--sw1); }
+        /* a city with nothing under the current filter stays mounted at r=0 so it can grow back */
+        .gv-tmap-dot[data-empty="true"] { pointer-events: none; }
+        @media (prefers-reduced-motion: reduce) {
+          .gv-tmap-hit, .gv-tmap-dot { transition: none; }
+        }
         .gv-tmap-foot { display: flex; align-items: center; gap: 10px; margin: 4px 2px 10px; flex-wrap: wrap; }
         .gv-tmap-hint { font-size: 8.5px; color: var(--ink-faint); letter-spacing: .05em; flex: 1; min-width: 160px; }
         .gv-routes-btn { flex: none; font-family: var(--mono); font-size: 9.5px; letter-spacing: .06em; padding: 4px 10px;
