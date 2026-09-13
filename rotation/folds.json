@@ -10292,6 +10292,18 @@
     "to": "Cold and Ugly",
     "type": "variant",
     "reason": "live recording ([live])"
+   },
+   {
+    "from": "Forty Six  and two",
+    "to": "Forty Six & 2",
+    "type": "spelling",
+    "reason": "spelling: spelled-out scrobble spelling (with a doubled space) of Ænima's 'Forty Six & 2'; same recording — collapses the duplicate tracklist row"
+   },
+   {
+    "from": "Forty Six & 2 (REACTION!!!)",
+    "to": "Forty Six & 2",
+    "type": "spelling",
+    "reason": "spelling: a reaction-video title scrobbled over the track; the parenthetical is not part of the work and drops to the base title — same recording"
    }
   ]
  },
