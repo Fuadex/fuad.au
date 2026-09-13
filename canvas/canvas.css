@@ -487,11 +487,22 @@ a { color: inherit; }
    become token chips inline before the input, filters compose as you add them, "clear all" resets
    the tokens only. It borrows the filter row's pill/mono voice so it reads as one control among the
    chips rather than a second search language. */
-.cv-omni { position: relative; display: inline-flex; align-items: center; flex-wrap: wrap; gap: 5px; }
+/* IT FLEXES INSTEAD OF WRAPPING (Fuad 2026-09-14: "on smaller screens it collapses to the next row
+   (when in 4K 250%) but there is still a fair bit of space left so it can squeeze in there").
+   The input used to carry a hard `width: min(230px, 44vw)` and .cv-omni sized to its content. Flex
+   line-breaking is decided on an item's HYPOTHETICAL main size — flex-basis clamped by min/max, NOT
+   the size it would shrink to — so a 230px basis jumped to the next line while ~150px of the row
+   was still free; shrinking alone could never have saved it. So the basis moves onto .cv-omni and
+   comes down to 150px, small enough to be placed on the line, with flex-grow taking the slack back
+   so it still reads full-width when there is room. max-width keeps it from eating a wide row. */
+.cv-omni { position: relative; display: inline-flex; align-items: center; flex-wrap: wrap; gap: 5px;
+  flex: 1 1 150px; min-width: 0; max-width: 320px; }
+/* flex, NOT width:100% — the input shares .cv-omni's wrap line with the committed token chips, and a
+   percentage width would take the whole line and push every token onto a row of its own. */
 .cv-omni-input {
   font: 500 10.5px/1 var(--mono); letter-spacing: .06em; padding: 7px 12px; border-radius: 999px;
   border: 1px solid var(--rule); background: transparent; color: var(--ink); outline: none;
-  width: min(230px, 44vw); transition: border-color .15s;
+  flex: 1 1 110px; min-width: 0; width: auto; transition: border-color .15s;
 }
 .cv-omni-input:hover { border-color: var(--ink-faint); }
 .cv-omni-input:focus { border-color: var(--ink); }
@@ -527,7 +538,9 @@ a { color: inherit; }
 .cv-omni-sugg-label { font: 600 13px/1.25 var(--serif); color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 1; }
 .cv-omni-sugg-sub { font: 400 10.5px/1.3 var(--mono); letter-spacing: .02em; color: var(--ink-faint); white-space: nowrap; flex-shrink: 0; }
 @media (max-width: 620px) {
-  .cv-omni-input { width: min(180px, 52vw); }
+  /* the input is width:100% of .cv-omni now, so the phone cap belongs on the CONTAINER — setting a
+     width here again would re-introduce the hypothetical-size wrap this control was just freed from */
+  .cv-omni { flex-basis: 130px; max-width: min(230px, 62vw); }
   /* The panel used to hang off .cv-omni with right:0, so a 320px-wide drop extended LEFTWARD from
      a container that on a phone sits well inside the row — the results ran off the left edge of the
      screen (owner-reported 2026-08-30). Anchoring it to the filter ROW instead of the input makes

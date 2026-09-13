@@ -1645,7 +1645,16 @@ function Wall({ go, styleIds }) {
     location.hash = path + (query ? "?" + query : "");
   });
   const toggle = (label) => setSel(sel.includes(label) ? sel.filter(x => x !== label) : [...sel, label]);
-  useEffect(() => { setExtra(0); }, [marks, status, span, tokens, sort, styleIds, media, qual, mp, pick, hang, tourOnly, shuffleSeed]);
+  // Reset the "hang N more" count when the RESULT SET changes, never when only its ORDER does
+  // (Fuad 2026-09-14: "changing the dropdown ... only rearranges all the artworks on the current
+  // page, rather than reset everything ... when I end up pulling more artworks and I pick one of
+  // the options in the dropdown, it collapses back to where it started").
+  // `sort`, `shuffleSeed` and `pick` are ARRANGEMENT: every branch in the `shown` memo reorders the
+  // same array (salonOrder / affinityOrder / tierHueOrder all return a fresh array of the same
+  // members, and `pick` only feeds the colour comparator). None of them filters, so none may reset
+  // the page. Everything left here genuinely narrows or widens the set, where returning to the first
+  // page is right — otherwise `extra` would keep a stale count against a shorter list.
+  useEffect(() => { setExtra(0); }, [marks, status, span, tokens, styleIds, media, qual, mp, hang, tourOnly]);
 
   // Everything EXCEPT the style and medium selections. Both chip rows count against this, so their
   // numbers follow floored / liked / sure / wish / museum without either row filtering itself —
@@ -2072,45 +2081,6 @@ function Wall({ go, styleIds }) {
         </span>
         <span className="cv-count">{Math.min(visN, shown.length)} of {shown.length}</span>
       </div>
-      {/* MEDIUM + YEARS share one row, medium leading (Fuad 2026-08-20). They are the two axes that
-          describe the OBJECT (what it is, when it was made), which is why they pair and styles stays
-          on its own row: that one is about the artist, and it grows to twenty-odd chips when expanded.
-          MEDIUM — five coarse buckets folded from Wikidata P31, multi-select and OR'd. Unlike
-          movement (which Wikidata files on the ARTIST) this is a property of the object itself, so
-          no disclaimer is needed.
-          YEARS — the era chip row, retired 2026-09-08 for a two-handled range over one line (Fuad:
-          "more power and take less space than the current Era buttons"). Eight bands could only be
-          switched on and off; the handles land on any of 26 stops, so 1830–1870 or "before 1600" is
-          now one gesture rather than an impossible one, in the height the label alone used to need.
-          See YEAR_STOPS for why the axis is piecewise. */}
-      <div className="cv-styles cv-objrow">
-        <span className="cv-objgrp">
-          <span className="cv-styles-lbl" title="what kind of object it is — Wikidata P31">medium</span>
-          {/* which chips EXIST is decided against the whole collection, so the row keeps a stable
-              shape; the number on each is live, and a bucket with none left under the current
-              filters dims instead of disappearing. Before the counts moved they were static, so
-              dropping the empties was free — now it would make the row jump on every filter. */}
-          {MEDIA.filter(([k]) => mediaAll[k]).map(([k, label]) => {
-            const n = mediaCounts[k] || 0;
-            return (
-              <button key={k} data-on={media.includes(k)} data-empty={n === 0 && !media.includes(k)}
-                onClick={() => toggleMedium(k)}>
-                {label}<i>{n}</i>
-              </button>
-            );
-          })}
-          {media.length > 0 && <button className="cv-styles-clear" onClick={unhang(() => setMedia([]))}>✕ clear</button>}
-        </span>
-        {/* a DIV, not a span like the medium group beside it: the slider is block content
-            (track, rail, tick row) and a span may not legally contain it. As a flex item of
-            .cv-objrow it lays out identically. */}
-        {/* NO "years" LABEL (Fuad 2026-09-10) — the six century numbers under the rail already say
-            what axis this is, and the word was buying a second line of chrome for a control that has
-            to stand exactly as tall as the chips beside it. Its hover hint moved onto the track. */}
-        <div className="cv-objgrp cv-yrgrp">
-          <YearRange span={span} onSpan={setYearSpan} hist={yearFacet.bins} count={yearCount} />
-        </div>
-      </div>
       {/* STYLES — multi-select, OR'd. Movement is the artist's (Wikidata P135), so the note says
           so rather than pretending each canvas carries the tag. */}
       {(() => {
@@ -2161,6 +2131,46 @@ function Wall({ go, styleIds }) {
           </React.Fragment>
         );
       })()}
+      {/* MEDIUM + YEARS share one row, medium leading (Fuad 2026-08-20). They are the two axes that
+          describe the OBJECT (what it is, when it was made), which is why they pair. They now sit
+          BELOW quality+styles (Fuad 2026-09-14); styles is about the ARTIST and grows to twenty-odd
+          chips when expanded, so it leads and the object axes settle under it.
+          MEDIUM — five coarse buckets folded from Wikidata P31, multi-select and OR'd. Unlike
+          movement (which Wikidata files on the ARTIST) this is a property of the object itself, so
+          no disclaimer is needed.
+          YEARS — the era chip row, retired 2026-09-08 for a two-handled range over one line (Fuad:
+          "more power and take less space than the current Era buttons"). Eight bands could only be
+          switched on and off; the handles land on any of 26 stops, so 1830–1870 or "before 1600" is
+          now one gesture rather than an impossible one, in the height the label alone used to need.
+          See YEAR_STOPS for why the axis is piecewise. */}
+      <div className="cv-styles cv-objrow">
+        <span className="cv-objgrp">
+          <span className="cv-styles-lbl" title="what kind of object it is — Wikidata P31">medium</span>
+          {/* which chips EXIST is decided against the whole collection, so the row keeps a stable
+              shape; the number on each is live, and a bucket with none left under the current
+              filters dims instead of disappearing. Before the counts moved they were static, so
+              dropping the empties was free — now it would make the row jump on every filter. */}
+          {MEDIA.filter(([k]) => mediaAll[k]).map(([k, label]) => {
+            const n = mediaCounts[k] || 0;
+            return (
+              <button key={k} data-on={media.includes(k)} data-empty={n === 0 && !media.includes(k)}
+                onClick={() => toggleMedium(k)}>
+                {label}<i>{n}</i>
+              </button>
+            );
+          })}
+          {media.length > 0 && <button className="cv-styles-clear" onClick={unhang(() => setMedia([]))}>✕ clear</button>}
+        </span>
+        {/* a DIV, not a span like the medium group beside it: the slider is block content
+            (track, rail, tick row) and a span may not legally contain it. As a flex item of
+            .cv-objrow it lays out identically. */}
+        {/* NO "years" LABEL (Fuad 2026-09-10) — the six century numbers under the rail already say
+            what axis this is, and the word was buying a second line of chrome for a control that has
+            to stand exactly as tall as the chips beside it. Its hover hint moved onto the track. */}
+        <div className="cv-objgrp cv-yrgrp">
+          <YearRange span={span} onSpan={setYearSpan} hist={yearFacet.bins} count={yearCount} />
+        </div>
+      </div>
       {sel.length > 0 && (
         <div className="cv-styles-note">
           {shown.length} {shown.length === 1 ? "work" : "works"} by artists working in {sel.join(" or ")}
