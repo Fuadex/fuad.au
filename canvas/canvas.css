@@ -421,15 +421,17 @@ a { color: inherit; }
    of relying on a space character. Kept to ONE class on purpose: the 620px rule hiding
    .cv-f-full further down is also one class, so it wins on source order and the phone is left with
    the lone thumb — the same trap ".cv-hang-chip .cv-f-full" (0,2,0) fell into by being two deep. */
-.cv-f-icon { display: inline-flex; align-items: center; gap: 5px; }
-.cv-thumb { flex: none; }
+.cv-f-icon { display: inline-flex; align-items: center; gap: .45em; }
+/* sized in em, not px: ★ and ♥ grow and shrink with the font of whatever row they sit in, and the
+   thumb has to do the same or it is a different size on the wall than on a work page. The 24-unit
+   box carries its shape across y=1..21, so 1em lands ~0.83em of ink — the band a mono ★ occupies. */
+.cv-thumb { flex: none; width: 1em; height: 1em; }
 /* the thumb also appears inline in prose-ish chips and tallies — the work page's mark chip, the
    artist header chips, the museum stat line — each a text row that needs the same gap */
 .cv-chip:has(.cv-thumb), .cv-a-chip:has(.cv-thumb), .cv-mus-stats span:has(.cv-thumb) {
-  display: inline-flex; align-items: center; gap: 5px; }
-/* the card's corner badge is absolutely positioned and 12px of type; the svg needs the box to
-   collapse onto it rather than leave a text line-height's worth of slack under it */
-.cv-fav-thumb { display: inline-flex; line-height: 0; }
+  display: inline-flex; align-items: center; gap: .4em; }
+/* (.cv-fav-thumb retired 2026-09-13 — the card's corner badge stops at ★ and ♥; see the note on
+   the badge in Card. No svg rides in .cv-fav any more, so it needs no line-height reset.) */
 /* THE HANG CHIP'S LABEL IS A ROW, NOT A WORD (Fuad 2026-09-10). "⌂ today's wall" is two spans that
    need a gap, and that used to be an inline style on the element. An inline declaration outranks any
    stylesheet rule, so the 620px `.cv-f-full { display: none }` below never fired for this chip and a
@@ -466,12 +468,9 @@ a { color: inherit; }
      button loses the text-side padding it no longer needs */
   .cv-filters button:has(.cv-eye) { padding: 5px 9px; }
   .cv-eye { display: block; }
-  /* the thumb rides the same tightened button as the eye — it is the same kind of drawn glyph, and
-     the two sit in adjacent groups of the row, so a different height between them would read as a
-     mistake. ":has" also matches through the hidden .cv-f-full, which is harmless: on a phone only
-     the tiny span is showing anyway. */
-  .cv-filters button:has(.cv-thumb) { padding: 5px 9px; }
-  .cv-thumb { display: block; }
+  /* the thumb does NOT take the eye's tightened button. It is text-sized and solid, so it belongs
+     to ★ and ♥ — the :has(.cv-f-tiny) rule above already gives all three the same 7px/11px pill,
+     and singling this one out is what made it read as a different class of control. */
 }
 /* ——— OMNISEARCH — "design your own wall" (Fuad 2026-08-27) ———
    One search where the Museum and Artist dropdowns used to sit; it owns them now. Committed picks
@@ -1534,5 +1533,4 @@ a { color: inherit; }
   .cv-mus-filt:has(.cv-f-tiny) { padding: 6px 11px; font-size: 12px; }
   /* the eye is drawn, not typed: it sits as a block and the pill loses the text-side padding */
   .cv-mus-filt:has(.cv-eye) { padding: 4px 9px; }
-  .cv-mus-filt:has(.cv-thumb) { padding: 4px 9px; }
 }

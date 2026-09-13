@@ -663,9 +663,14 @@ function Card({ w, go }) {
       // coarse, and this is where "woodblock print", "cage cup", "diorama" or "group of casts"
       // stays visible instead of being flattened into "works on paper" / "objects".
       title={w.title + ((mediumOf(w) && mediumOf(w)[1]) ? " · " + mediumOf(w)[1] : "")}>
+      {/* THE CORNER BADGE MARKS THE TOP TWO TIERS ONLY (Fuad 2026-09-13: "not correct, hide them").
+          A liked badge lands on 1,449 of 2,745 cards, so it stops being a mark and becomes the
+          wall's default state — the same reason the old ♡ was worth losing when it covered 62% of
+          the wall. The badge exists to say "this one", and it cannot say that about most of them.
+          Liked is still fully answerable: it is a chip in the filter row, and it is named on the
+          work's own page. */}
       {isFloored(w) ? <span className="cv-fav">★</span>
-        : isLoved(w) ? <span className="cv-fav">♥</span>
-        : isLiked(w) ? <span className="cv-fav cv-fav-thumb"><ThumbIcon /></span> : null}
+        : isLoved(w) ? <span className="cv-fav">♥</span> : null}
       {/* The wall is a CSS-column masonry, so an image with no src collapses to zero height and
           the whole column reflows. art_imgsize gives real dimensions, so reserve the space with
           aspect-ratio and the tile holds its shape while the src is still withheld — which also
@@ -750,11 +755,17 @@ const EyeIcon = ({ state }) => (
 // THUMBS UP for the liked tier (Fuad 2026-09-13), drawn rather than typed for the same reason the
 // eyes are: 👍 has emoji presentation on every phone and would land as a colour sticker in a row of
 // mono glyphs. ★ and ♥ stay typed — they have text presentation and are already how the cards mark.
+// IT HAS TO PASS FOR A TYPED GLYPH (Fuad 2026-09-13, second cut: "too thick and overpowering").
+// The first cut was the eyes' idiom — a 14px outline on a 1.9 stroke — which is the right call for
+// the status axis, where the eye is the only mark in its group and carries a shape no character
+// offers. It is the wrong call next to ★ and ♥: those are SOLID glyphs set at the row's own 10.5px,
+// so an outline a third larger read as a different class of thing shouting over its neighbours.
+// Solid fill, no stroke, and sized in em rather than px so it tracks the font wherever it lands —
+// the 10.5px filter rows, the work page's chips, the museum tallies — exactly as the two characters
+// beside it do.
 const ThumbIcon = () => (
-  <svg className="cv-thumb" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"
-    fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M7 10.5v11" />
-    <path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88z" />
+  <svg className="cv-thumb" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" />
   </svg>
 );
 // ONE renderer for a mark chip's face, shared by the Wall, the museum page and the artist page. All
