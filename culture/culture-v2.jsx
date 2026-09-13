@@ -1870,7 +1870,7 @@ function Popup({ item, x, y, linkPref = 'filmweb', onMouseEnter, onMouseLeave, o
         {item.rating ? <span className="meta-link" style={{ whiteSpace: 'nowrap', flexShrink: 0 }} onClick={e => f('rating:' + item.rating, e)}>★{' '}{item.rating}/10</span> : null}
       </div>
       <div className="t">{displayTitle(item)}
-        {item.source === 'fable' && <span className="fable-chip sm" title="added by Fable 5 with a why-watch note">✦ Fable</span>}
+        {item.source === 'fable' && <span className="fable-chip sm" title="added by Fable 5 with a why-watch note">✦</span>}
       </div>
       {(item.noteEn || item.note)
         ? <div className="blurb">{splitNoteAttribution(item.noteEn || item.note).text}</div>
@@ -2178,7 +2178,7 @@ function Reader({ item, onClose, onJump, allItems, otherItems, library, onFilter
           )}
           <h2 className="reader-title">{displayTitle(item)}<span className="dot">.</span>
             {item.source === 'fable' && (
-              <span className="fable-chip" title="added by Fable 5 with a why-watch note">✦ Fable</span>
+              <span className="fable-chip" title="added by Fable 5 with a why-watch note">✦</span>
             )}
             {item.fablePick && (
               <span className="fable-chip conviction" title="Fable's conviction pick">✦ Fable's conviction</span>
@@ -2541,7 +2541,7 @@ function TonightCard({ item, pinned, onPin, onOpen }) {
             {badges.map(h => <span key={h} className="tonight-expect-badge" title={HIGHLIGHTS[h].label}>{HIGHLIGHTS[h].emoji} {HIGHLIGHTS[h].label}</span>)}
           </div>
         )}
-        {item.source === 'fable' && <span className="fable-chip sm" title="added by Fable 5 with a why-watch note">✦ Fable</span>}
+        {item.source === 'fable' && <span className="fable-chip sm" title="added by Fable 5 with a why-watch note">✦</span>}
         <div className="tonight-card-actions">
           <button className={`tonight-pin${pinned ? ' active' : ''}`} onClick={() => onPin(item)} title={pinned ? 'Unpin' : 'Pin as up next'}>
             {pinned ? '★ Pinned' : '☆ Pin for later'}

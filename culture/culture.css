@@ -1665,6 +1665,13 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   text-transform: uppercase; font-weight: 500;
 }
 .fable-chip.sm { font-size: 8.5px; padding: 1px 6px; margin-left: 7px; }
+/* GLYPH-ONLY CHIP (Fuad 2026-09-14: "instead of having (✦ FABLE) let's have only (✦)"). The pill is
+   built for a word — 0.08em of letter-spacing after the last character and symmetric padding — so a
+   lone ✦ sits visibly off-centre, pushed left by its own trailing track. Kill the tracking and even
+   the padding up so the mark reads as centred. :not() keeps the conviction chip, which still
+   carries text, on the original treatment. */
+.fable-chip:not(.conviction) { letter-spacing: 0; padding-left: 6px; padding-right: 6px; }
+.fable-chip.sm:not(.conviction) { padding-left: 5px; padding-right: 5px; }
 .fable-chip.conviction { color: var(--accent); border-color: var(--accent); }
 
 /* Subtle ✦ corner mark on a wishlist shelf tile (cover or spine) whose item is a
