@@ -63,7 +63,16 @@ a { color: inherit; }
 .cv-card[data-conf="unsure"] .cv-label { opacity: .82; }   /* the ?/?? glyphs after the title were dropped 2026-08-13 (Fuad: "just confusing") — the faded label still carries the uncertainty, and the Wall's "unsure" filter + the reader's ConfChip state it in words */
 .cv-chip-style { cursor: pointer; }
 .cv-chip-style:hover { border-color: var(--accent-soft); color: var(--ink); }
-.cv-fav { position: absolute; top: 8px; right: 9px; font-size: 12px; filter: drop-shadow(0 1px 2px rgba(0,0,0,.5)); }
+/* THE MARK BADGE RIDES THE HOVER (Fuad 2026-09-13). Left standing it sat on most of the wall at
+   once and stopped reading as a mark; revealed on hover it answers a question you are already
+   asking of that one tile. pointer-events stay off so the glyph can never eat a click meant for
+   the card, and a touch device — which has no hover — simply never paints it, the same quiet
+   degradation the Portrait's chase counts take. :focus-visible carries it for the keyboard, since
+   the card is a real <a> and tabbing to it is the same act of asking. */
+.cv-fav { position: absolute; top: 8px; right: 9px; font-size: 12px; filter: drop-shadow(0 1px 2px rgba(0,0,0,.5));
+  opacity: 0; pointer-events: none; transition: opacity .16s ease; }
+.cv-card:hover .cv-fav, .cv-card:focus-visible .cv-fav { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .cv-fav { transition: none; } }
 /* text-forward card (no image: copyright / TBC) */
 .cv-card.cv-text { background: var(--ink); color: var(--paper); padding: 22px 18px 18px; }
 .cv-card.cv-text .cv-title { color: var(--paper); font-size: 16px; }
@@ -430,8 +439,9 @@ a { color: inherit; }
    artist header chips, the museum stat line — each a text row that needs the same gap */
 .cv-chip:has(.cv-thumb), .cv-a-chip:has(.cv-thumb), .cv-mus-stats span:has(.cv-thumb) {
   display: inline-flex; align-items: center; gap: .4em; }
-/* (.cv-fav-thumb retired 2026-09-13 — the card's corner badge stops at ★ and ♥; see the note on
-   the badge in Card. No svg rides in .cv-fav any more, so it needs no line-height reset.) */
+/* the card's corner badge is absolutely positioned and 12px of type; the svg needs the box to
+   collapse onto it rather than leave a text line-height's worth of slack under it */
+.cv-fav-thumb { display: inline-flex; line-height: 0; }
 /* THE HANG CHIP'S LABEL IS A ROW, NOT A WORD (Fuad 2026-09-10). "⌂ today's wall" is two spans that
    need a gap, and that used to be an inline style on the element. An inline declaration outranks any
    stylesheet rule, so the 620px `.cv-f-full { display: none }` below never fired for this chip and a

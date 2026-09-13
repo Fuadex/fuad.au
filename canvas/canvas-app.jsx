@@ -663,14 +663,16 @@ function Card({ w, go }) {
       // coarse, and this is where "woodblock print", "cage cup", "diorama" or "group of casts"
       // stays visible instead of being flattened into "works on paper" / "objects".
       title={w.title + ((mediumOf(w) && mediumOf(w)[1]) ? " · " + mediumOf(w)[1] : "")}>
-      {/* THE CORNER BADGE MARKS THE TOP TWO TIERS ONLY (Fuad 2026-09-13: "not correct, hide them").
-          A liked badge lands on 1,449 of 2,745 cards, so it stops being a mark and becomes the
-          wall's default state — the same reason the old ♡ was worth losing when it covered 62% of
-          the wall. The badge exists to say "this one", and it cannot say that about most of them.
-          Liked is still fully answerable: it is a chip in the filter row, and it is named on the
-          work's own page. */}
+      {/* THE CORNER BADGE IS A HOVER AFFORDANCE (Fuad 2026-09-13, in two steps: "not correct, hide
+          them", then "we can have those appear on hover, though, for floored, loved, liked").
+          Standing on every card it was noise — ★ on 203, ♥ on 260 and the thumb on 1,449 of 2,745
+          tiles, so most of the wall wore a mark and the mark therefore said nothing. On hover the
+          logic inverts: you are already asking about THIS tile, so one glyph in its corner is an
+          answer rather than a texture. All three tiers show, because at that point there is nothing
+          left for them to compete with. */}
       {isFloored(w) ? <span className="cv-fav">★</span>
-        : isLoved(w) ? <span className="cv-fav">♥</span> : null}
+        : isLoved(w) ? <span className="cv-fav">♥</span>
+        : isLiked(w) ? <span className="cv-fav cv-fav-thumb"><ThumbIcon /></span> : null}
       {/* The wall is a CSS-column masonry, so an image with no src collapses to zero height and
           the whole column reflows. art_imgsize gives real dimensions, so reserve the space with
           aspect-ratio and the tile holds its shape while the src is still withheld — which also
