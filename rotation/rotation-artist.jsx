@@ -1546,6 +1546,12 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
     const tip = order.map(k => (counts[k] > 1 ? counts[k] + "x " : "") + LABELS[k]).join(" · ");
     return { n: current.length, glyphs: shown.map(glyphOf), overflow, tip };
   }, [a.id, mbReady]);
+  // the genres row's fold state (see the Genres block far below). It lives up HERE, with the other
+  // hooks, because of the rule the next comment states: ArtistView is mounted once and re-fed a new
+  // `id` prop — app.jsx renders it without a key — so a hook declared after the guards below is
+  // called on a full artist and skipped on a mini one, and navigating between the two changes the
+  // hook count mid-instance. That is React #310, and it is what this cost on the song page.
+  const [genOpen, setGenOpen] = React.useState(false);
   // artists outside the kept 205 still rank in Explore — give them a lightweight page
   // (return AFTER hooks so hook order stays stable across navigations).
   if (!full && R.expById && R.expById[id]) return <MiniArtistView a={R.expById[id]} go={go} />;
@@ -1620,7 +1626,6 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
   // source disagree (the Stones rail reading "blues" while last.fm led with classic rock was found
   // exactly that way). `s` lives on the EXPLORE record, not the kept-artist one; every view but
   // Overview mounts behind restReady, so expById is always populated by the time we are here.
-  const [genOpen, setGenOpen] = React.useState(false);
   const _exp = (R.expById && R.expById[a.id]) || null;
   const genreSubs = ((_exp && _exp.s) || []).map(i => R.SUBS[i] && R.SUBS[i].name).filter(Boolean);
 

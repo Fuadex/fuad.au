@@ -1369,24 +1369,18 @@ function TrackView({ id, go }) {
     };
   }, [ready, id]);
 
-  if (!ready) return <div className="r-view"><div className="r-mono" style={{ color: "var(--ink-faint)", padding: 40 }}>loading track…</div></div>;
-  if (!data) return <div className="r-view"><button className="r-back" onClick={() => go("explore")}>← explore</button><div className="r-mono" style={{ color: "var(--ink-faint)", padding: 24 }}>Track not found.</div></div>;
-
-  const artistId = R.idForName(data.artist) || R.slug(data.artist);
-  const rec = R.byId[artistId] || (R.expById && R.expById[artistId]);
-  const known = !!rec;
-  const hue = rec ? rec.hue : hueOf(data.artist);
-  const mmss = (s) => s ? Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0") : "";
-  const f = data.feat;
-  // lyric mood (NRC) + "seen live" — both keyed by the same slug id TrackView routes by
-  const EMO_NAMES = ["anger", "anticipation", "disgust", "fear", "joy", "sadness", "surprise", "trust"];
-  // Row shape: [valence, emoIdx, words, flag?, regIdx?] — flag 1 = calibrated whole-lyric re-score,
-  // flag 2 = cathartic (dark register, NRC valence kept); regIdx = REG_VOCAB index (absent on legacy rows).
-  const mood = (window.ROTATION_MOOD && window.ROTATION_MOOD[id]) || null; // [valence, emoIdx, words, flag?, regIdx?]
-  const about = (window.ROTATION_ABOUT && window.ROTATION_ABOUT[id]) || null; // [excerpt, geniusId]
-  const audVal = f ? f[5] : null;    // Spotify audio valence ("sounds")
-  const lyrVal = mood ? mood[0] : null;  // NRC lyric valence ("reads")
-  const lyrEmo = mood && mood[1] >= 0 ? EMO_NAMES[mood[1]] : null;
+  // EVERY HOOK MUST SIT ABOVE THE TWO GUARDS BELOW (bug fix 2026-09-13, React #310
+  // "Rendered more hooks than during the previous render"). The themes block used to live further
+  // down, after `if (!ready)` / `if (!data)` had already returned. That is fine on a render that
+  // gets past them and fatal on the pair that does not: opening a song before the media shards are
+  // in window renders the "loading track…" branch with 5 hooks, the effect above then flips `ready`,
+  // and the next render runs 8. React counts hooks positionally, so the mismatch throws and the
+  // page dies. It read as random because it depends entirely on whether ROTATION_MEDIA and
+  // ROTATION_TRACKAUDIO happened to be loaded already — browse to a song and it works, land on one
+  // cold and it breaks.
+  //
+  // These read `id` and globals, never `data`, so they are safe above the guards. Anything added
+  // here later must go above them too.
   // THEMES + MEANS (pilot 2026-08-08) — reasoned from the fable read, not the NRC lexicon.
   // They ride in the GIST shard so they paint with the bars instead of popping in late; the
   // switcher below loads the same shard, and loadAbout is idempotent.
@@ -1423,6 +1417,25 @@ function TrackView({ id, go }) {
   }, [themesReasoned, id, themesReady]);
   const themes = themesReasoned || (themesML && themesML.length ? themesML : null);
   const themesAreML = !themesReasoned && !!themes;
+
+  if (!ready) return <div className="r-view"><div className="r-mono" style={{ color: "var(--ink-faint)", padding: 40 }}>loading track…</div></div>;
+  if (!data) return <div className="r-view"><button className="r-back" onClick={() => go("explore")}>← explore</button><div className="r-mono" style={{ color: "var(--ink-faint)", padding: 24 }}>Track not found.</div></div>;
+
+  const artistId = R.idForName(data.artist) || R.slug(data.artist);
+  const rec = R.byId[artistId] || (R.expById && R.expById[artistId]);
+  const known = !!rec;
+  const hue = rec ? rec.hue : hueOf(data.artist);
+  const mmss = (s) => s ? Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0") : "";
+  const f = data.feat;
+  // lyric mood (NRC) + "seen live" — both keyed by the same slug id TrackView routes by
+  const EMO_NAMES = ["anger", "anticipation", "disgust", "fear", "joy", "sadness", "surprise", "trust"];
+  // Row shape: [valence, emoIdx, words, flag?, regIdx?] — flag 1 = calibrated whole-lyric re-score,
+  // flag 2 = cathartic (dark register, NRC valence kept); regIdx = REG_VOCAB index (absent on legacy rows).
+  const mood = (window.ROTATION_MOOD && window.ROTATION_MOOD[id]) || null; // [valence, emoIdx, words, flag?, regIdx?]
+  const about = (window.ROTATION_ABOUT && window.ROTATION_ABOUT[id]) || null; // [excerpt, geniusId]
+  const audVal = f ? f[5] : null;    // Spotify audio valence ("sounds")
+  const lyrVal = mood ? mood[0] : null;  // NRC lyric valence ("reads")
+  const lyrEmo = mood && mood[1] >= 0 ? EMO_NAMES[mood[1]] : null;
   const seenLive = !!(R.GIGS && R.GIGS.liveSongs && R.GIGS.liveSongs.indexOf(id) >= 0);
   const divergent = (audVal != null && lyrVal != null && Math.abs(audVal - lyrVal) >= 30);
   // shared with the album caption via the file-level _MED_* copies (see the note at the top).
