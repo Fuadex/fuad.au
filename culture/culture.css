@@ -1556,36 +1556,41 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
    --serif variable carries — and it ran a size larger than the rest of Stats. body already sets
    var(--serif), which is why Halls looks right while declaring no family at all.
    Reference: .hall-title 1.08rem · .legend-text b and .hall-sub .86rem · .legend-desc .76rem. */
+/* A SECOND STEP DOWN (Fuad 2026-09-13: "still too large"). The Halls scale was the right family to
+   join but the wrong size for this pane: Halls is a browsing grid where the title is the click
+   target, while this is a column of prose sitting under a 10px mono section title, and next to that
+   a 1.08rem heading reads as a different page. Everything drops roughly one notch — lead 1 → .88,
+   heading 1.08 → .95, body .86 → .8, foot .76 → .72 — which keeps the internal intervals intact so
+   the pane still reads as a hierarchy rather than as flat small text. */
 .mytaste-lead {
-  font-family: var(--serif); font-size: 1rem; font-style: italic;
+  font-family: var(--serif); font-size: .88rem; font-style: italic;
   color: var(--ink-soft, var(--ink)); margin: 4px 0 16px; line-height: 1.5;
 }
 .mytaste-strip {
   display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px;
 }
 .mytaste-strip span {
-  font-size: .74rem; text-transform: uppercase; letter-spacing: .06em;
-  border: 1px solid var(--rule); border-radius: 999px; padding: 5px 12px; color: var(--ink-faint);
+  font-size: .68rem; text-transform: uppercase; letter-spacing: .06em;
+  border: 1px solid var(--rule); border-radius: 999px; padding: 4px 10px; color: var(--ink-faint);
 }
 .mytaste-wall { margin-bottom: 22px; }
 .mytaste-wall-h {
-  display: flex; align-items: baseline; gap: 12px; font-weight: 600; font-size: 1.08rem;
-  color: var(--ink); margin-bottom: 6px;   /* 1.02 -> 1.08, exactly .hall-title */
+  display: flex; align-items: baseline; gap: 10px; font-weight: 600; font-size: .95rem;
+  color: var(--ink); margin-bottom: 5px;
 }
 .mytaste-num {
-  flex: none; width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--rule);
-  display: inline-flex; align-items: center; justify-content: center; font-size: .8rem;
+  flex: none; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--rule);
+  display: inline-flex; align-items: center; justify-content: center; font-size: .7rem;
   color: var(--ink-faint); font-variant-numeric: tabular-nums;
 }
 .mytaste-wall p {
-  margin: 0 0 0 38px; line-height: 1.62; color: var(--ink-soft, var(--ink));
-  font-family: var(--serif); font-size: .86rem;   /* 1.0 -> .86, matching .hall-sub / .legend-text b */
+  margin: 0 0 0 32px; line-height: 1.6; color: var(--ink-soft, var(--ink));
+  font-family: var(--serif); font-size: .8rem;
 }
 .mytaste-foot {
   margin-top: 26px; padding-top: 16px; border-top: 1px solid var(--rule);
-  /* .9 -> .76: this is secondary matter under a rule, the same weight .legend-desc carries, and at
-     .9 it was reading nearly as loud as the five walls above it. */
-  font-size: .76rem; line-height: 1.6; color: var(--ink-faint); font-style: italic;
+  /* secondary matter under a rule — it has to stay quieter than the five walls above it */
+  font-size: .72rem; line-height: 1.58; color: var(--ink-faint); font-style: italic;
 }
 
 /* predicted-rating chip (wishlist "For you" sort) */

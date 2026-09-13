@@ -688,6 +688,42 @@ function TagBadgeExplorer({ items, onOpenItem }) {
   );
 }
 
+// MONOTONE CUBIC through a series of points, as an SVG path (Fuad 2026-09-13: "smooth curves").
+// Not Catmull-Rom, which is the usual one-liner: on spiky count data its control points overshoot,
+// so a line that runs 0 → 40 → 0 bulges BELOW the baseline on the way back down and draws a year
+// with negative titles in it. Fritsch–Carlson clamps the tangents so the curve can never leave the
+// interval its own points define — it stays flat where the data is flat and never invents a peak
+// between two samples. Falls back to a plain move/line for one- and two-point series.
+const smoothPath = (pts) => {
+  if (!pts.length) return "";
+  if (pts.length === 1) return `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
+  const seg = (a, b) => `L${b[0].toFixed(1)},${b[1].toFixed(1)}`;
+  if (pts.length === 2) return `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}` + seg(pts[0], pts[1]);
+  const N = pts.length, dx = [], d = [];
+  for (let i = 0; i < N - 1; i++) {
+    dx[i] = pts[i + 1][0] - pts[i][0];
+    d[i] = dx[i] === 0 ? 0 : (pts[i + 1][1] - pts[i][1]) / dx[i];
+  }
+  const m = [d[0]];
+  for (let i = 1; i < N - 1; i++) m[i] = (d[i - 1] + d[i]) / 2;
+  m[N - 1] = d[N - 2];
+  for (let i = 0; i < N - 1; i++) {
+    if (d[i] === 0) { m[i] = 0; m[i + 1] = 0; continue; }
+    const a = m[i] / d[i], b = m[i + 1] / d[i];
+    if (a < 0) m[i] = 0;
+    if (b < 0) m[i + 1] = 0;
+    const s = a * a + b * b;
+    if (s > 9) { const t = 3 / Math.sqrt(s); m[i] = t * a * d[i]; m[i + 1] = t * b * d[i]; }
+  }
+  let out = `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
+  for (let i = 0; i < N - 1; i++) {
+    const c1x = pts[i][0] + dx[i] / 3, c1y = pts[i][1] + (m[i] * dx[i]) / 3;
+    const c2x = pts[i + 1][0] - dx[i] / 3, c2y = pts[i + 1][1] - (m[i + 1] * dx[i]) / 3;
+    out += `C${c1x.toFixed(1)},${c1y.toFixed(1)} ${c2x.toFixed(1)},${c2y.toFixed(1)} ${pts[i + 1][0].toFixed(1)},${pts[i + 1][1].toFixed(1)}`;
+  }
+  return out;
+};
+
 function TasteProfile({ items, onOpenItem }) {
   const [axis, setAxis] = React.useState('filmweb');   // community baseline
   const [hiddenMed, setHiddenMed] = React.useState(() => new Set());  // growth legend toggles
@@ -821,16 +857,22 @@ function TasteProfile({ items, onOpenItem }) {
         const vis = timeline.mediums.filter(m => !hiddenMed.has(m));
         const vmax = Math.max(1, ...vis.flatMap(m => timeline.series[m]));
         const X = i => n > 1 ? (i / (n - 1)) * W : 0;
-        const Y = c => H - PAD - (c / vmax) * (H - PAD * 2);
+        // LOG SCALE (Fuad 2026-09-13). On a linear axis shorts own the chart — they out-count every
+        // other medium by an order of magnitude, so every line that matters sits flattened along the
+        // floor and the shape of a year is unreadable. log1p, not log: a count of 0 is ordinary here
+        // (a medium you touched one year and not the next) and log(0) is -Infinity, while log1p sends
+        // 0 to 0 and leaves the baseline exactly where the eye expects it.
+        const Y = c => H - PAD - (Math.log1p(c) / Math.log1p(vmax)) * (H - PAD * 2);
         return (
           <div className="stats-section" style={{ marginBottom: 0 }}>
-            <div className="stats-section-title">Titles seen per year — {timeline.total} dated · peak {timeline.peak} in {timeline.peakYear}</div>
+            <div className="stats-section-title">Titles seen per year — {timeline.total} dated · peak {timeline.peak} in {timeline.peakYear} · log scale</div>
             <div className="taste-growth-layout">
               <div className="taste-growth-chart">
                 <svg className="taste-timeline" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet">
                   {vis.map(m => (
-                    <polyline key={m} fill="none" stroke={MEDIUM_MAP_HUE[m] || 'var(--accent)'} strokeWidth="1.4" vectorEffect="non-scaling-stroke"
-                      points={ys.map((_, i) => `${X(i).toFixed(1)},${Y(timeline.series[m][i]).toFixed(1)}`).join(' ')} />
+                    <path key={m} fill="none" stroke={MEDIUM_MAP_HUE[m] || 'var(--accent)'} strokeWidth="1.4"
+                      strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke"
+                      d={smoothPath(ys.map((_, i) => [X(i), Y(timeline.series[m][i])]))} />
                   ))}
                 </svg>
                 <div className="taste-timeline-labels">
