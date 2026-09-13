@@ -52,7 +52,10 @@ const STOPWORDS = new Set((
 // GIST or the song page shows "…" until the deep shard lands — the exact first-paint bug the Fable
 // default hit. It also means a track with a nub no longer pulls the deep shard just to render.
 const GIST_FIELDS = ["src", "haiku", "web", "themes", "means", "built", "nub"];
-const DEEP_FIELDS = ["sonnet", "opus", "fable", "fable2", "fableAlt", "fableDeep", "opusDeep", "fv", "fvr", "fnote", "fnote2"];   // fv: fable-tier methodology version (2 = Opus-authored + Fable-QC'd, dual credit in UI); fvr: fable revision — "2.3" = account-first + FINAL SWEEP era, absent = v2.2 implicit; fable2 = stacked newer take under a kept old-era read; fableAlt = the merged-away twin's Fable read after a coherency fold (flick to it)
+// fableDeep is RETIRED (Fuad 2026-09-13) and deliberately absent from this list: it is no longer
+// rendered anywhere, so shipping it would spend ~130 KB of deep shard on text nothing reads. The
+// entries stay in llm-about.js, which is the archive — put the field back here to revive them.
+const DEEP_FIELDS = ["sonnet", "opus", "fable", "fable2", "fableAlt", "opusDeep", "fv", "fvr", "fnote", "fnote2"];   // fv: fable-tier methodology version (2 = Opus-authored + Fable-QC'd, dual credit in UI); fvr: fable revision — "2.3" = account-first + FINAL SWEEP era, absent = v2.2 implicit; fable2 = stacked newer take under a kept old-era read; fableAlt = the merged-away twin's Fable read after a coherency fold (flick to it)
 
 function loadSource() {
   if (!fs.existsSync(SRC)) {
@@ -127,9 +130,10 @@ function main() {
     if (e.sonnet) has += "s";
     if (e.opus) has += "o";
     if (e.fable) has += "f";
-    // "I" = there is something to EXPAND. Once a nub takes the info slot the long fable read
-    // becomes the Interpretation, so it earns the marker too (Fuad 2026-09-13).
-    if (e.fableDeep || e.opusDeep || (e.nub && e.fable)) has += "I";
+    // "I" = there is something to EXPAND: the fable read once a nub has taken the info slot, or an
+    // opusDeep on the 8 tracks that have no fable read at all. fableDeep no longer counts — it is
+    // retired (Fuad 2026-09-13) and no longer shipped.
+    if ((e.nub && e.fable) || e.opusDeep) has += "I";
     if (has) g.has = has;
     if (Object.keys(g).length) gist[b][k] = g;
     if (Object.keys(d).length) deep[b][k] = d;

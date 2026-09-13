@@ -1186,12 +1186,20 @@ function BlurbSwitcher({ id, about }) {
   // fableDeep/opusDeep live in the deep shard; the gist `has` "I" marker tells us one EXISTS so
   // the Interpretation toggle renders before the deep shard lands. Its text fills in on load.
   // THE FABLE READ IS THE INTERPRETATION once a nub has taken the info slot (Fuad 2026-09-13).
-  // Where no nub exists the old arrangement stands untouched. fableDeep does not lose its place on
-  // the few tracks carrying both: it stacks UNDER the read further down rather than displacing it.
+  // Where no nub exists the read stays the info and there is nothing to expand.
+  //
+  // fableDeep IS RETIRED (Fuad 2026-09-13, same day: "the old fabledeep entries get phased out").
+  // It was a second, deeper close-reading stacked behind the read — a layer the nub/read split now
+  // does the job of. All 138 tracks carrying one also carry a fable read, so retiring it costs
+  // none of them their long read; it is dropped from the shard in shard-about.js and kept in
+  // llm-about.js, which is the archive.
+  //
+  // opusDeep STAYS, and is not the same case: all 8 tracks carrying one have NO fable read at all,
+  // so it is the only long read they have. Retiring it would leave them with nothing to expand.
   const fableAsDeep = !!(llm && llm.nub && llm.fable);
-  const hasDeepRead = !!(gist && gist.has && gist.has.includes("I")) || !!(llm && (llm.fableDeep || llm.opusDeep)) || fableAsDeep;
-  const deepText = llm && (fableAsDeep ? llm.fable : (llm.fableDeep || llm.opusDeep));   // Fable's close-reading wins over Opus's
-  const deepBy = llm && (fableAsDeep || llm.fableDeep) ? "fable" : "opus";    // honest attribution in the brand line
+  const hasDeepRead = !!(gist && gist.has && gist.has.includes("I")) || !!(llm && llm.opusDeep) || fableAsDeep;
+  const deepText = llm && (fableAsDeep ? llm.fable : llm.opusDeep);
+  const deepBy = fableAsDeep ? "fable" : "opus";    // honest attribution in the brand line
   const showDeep = mode === "deep" && hasDeepRead;
   // The read's annotations — alt take, stacked second take, fnotes — belong to the FABLE READ, not
   // to whatever sits in the info slot, so they follow it: under the info while the info IS the read,
@@ -1251,12 +1259,6 @@ function BlurbSwitcher({ id, about }) {
             `fnote2` under the first — same italic styling, only when present. */}
         {onFableRead && !altTake && llm && llm.fnote2 && (
           <span className="tv-switch-txt" style={{ display: "block", marginTop: 7, fontStyle: "italic", opacity: 0.85 }}>{llm.fnote2}</span>
-        )}
-        {/* On the few tracks carrying BOTH a nub and a fableDeep, the read takes the Interpretation
-            body and the deeper close-reading stacks beneath it — the same hairline idiom fable2
-            uses — so neither is orphaned by the other. */}
-        {showDeep && fableAsDeep && llm && llm.fableDeep && (
-          <span className="tv-switch-txt" style={{ display: "block", marginTop: 9, paddingTop: 9, borderTop: "1px solid var(--ink-faint, rgba(127,127,127,.3))" }}>{llm.fableDeep}</span>
         )}
         {showDeep
           ? <span className="tv-switch-brand" data-m={deepBy}>via {deepBy === "fable" ? "Fable" : "Opus"} · interpretation</span>
