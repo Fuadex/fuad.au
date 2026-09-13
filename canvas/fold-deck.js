@@ -79,8 +79,8 @@ const lines = out.map(e => {
     `year: ${e.year}`, `seenAt: ${JSON.stringify(e.seenAt)}`, `seenConfidence: ${JSON.stringify(e.seenConfidence)}`,
   ];
   if (e.wish) parts.push("wish: true");
-  if (e.liked) parts.push("liked: true");
-  if (e.floored) parts.push("floored: true");
+  // exactly one mark, highest tier wins (see the note on addFloored below)
+  if (e.floored) parts.push("floored: true"); else if (e.loved) parts.push("loved: true"); else if (e.liked) parts.push("liked: true");
   parts.push(`note: ${JSON.stringify(e.note)}`);
   return "  { " + parts.join(", ") + " },";
 });
@@ -97,7 +97,13 @@ for (const m of merges) {
     b = b.replace(/seenAt: (\[[^\]]*\]|"[^"]*"|null)/, "seenAt: " + JSON.stringify(newVenues));
     if (m.upConf) b = b.replace(/seenConfidence: "[^"]*"/, 'seenConfidence: "sure"');
     if (!/multiVenue: true/.test(b)) b = b.replace(/seenConfidence: "[^"]*"/, m2 => m2 + ", multiVenue: true");
-    if (m.addFloored && !/floored: true/.test(b)) b = b.replace(/(, note:)/, ", floored: true$1");
+    // ONE FLAG PER WORK (Fuad 2026-09-14: "One artwork should only carry one badge ... never 2 or
+    // 3 at the same time!"). A promotion REPLACES the softer mark; it does not sit on top of it.
+    // Stacking here is how the 7 floored+liked rows in the store were born.
+    if (m.addFloored && !/floored: true/.test(b)) {
+      b = b.replace(/,\s*(?:loved|liked): true/g, "");
+      b = b.replace(/(, note:)/, ", floored: true$1");
+    }
     return b + tail;
   });
 }

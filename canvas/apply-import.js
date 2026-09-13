@@ -180,14 +180,22 @@ function finalSeenAt(sa) {
 
   // ---- WRITE artworks.js: append new entries before closing "];", apply merges in place ----
   let atxt = fs.readFileSync(path.join(HERE, "artworks.js"), "utf8");
-  // merges: add mark field to the existing entry line(s)
+  // merges: SET the mark field on the existing entry line(s).
+  // ONE FLAG PER WORK (Fuad 2026-09-14: "One artwork should only carry one badge, floored, loved or
+  // liked, never 2 or 3 at the same time!"). This used to append, so an import that judged a work
+  // `floored` left any existing `liked`/`loved` sitting beside it. Strip the others, then set.
+  const TIER = { floored: 3, favorite: 3, loved: 2, liked: 1 };
   for (const m of merges) {
     if (!m.add) continue;
     const re = new RegExp(`(qid:\\s*"${m.qid}"[^\\n]*)`);
-    if (re.test(atxt) && !new RegExp(`"${m.qid}"[\\s\\S]{0,300}${m.add}:`).test(atxt)) {
-      // append the mark right after seenConfidence of that entry's object
-      atxt = atxt.replace(new RegExp(`("${m.id}"[\\s\\S]{0,400}?seenConfidence:\\s*"[a-z]+")`), `$1, ${m.add}: true`);
-    }
+    if (!re.test(atxt)) continue;
+    atxt = atxt.replace(new RegExp(`("${m.id}"[\\s\\S]{0,400}?seenConfidence:\\s*"[a-z]+")([^\\n]*)`), (full, head, rest) => {
+      const present = Object.keys(TIER).filter((f) => new RegExp(`,\\s*${f}:\\s*true`).test(rest));
+      // never demote: an existing stronger mark wins over the imported one
+      if (present.some((f) => TIER[f] > TIER[m.add])) return full;
+      const cleaned = rest.replace(/,\s*(?:floored|favorite|loved|liked):\s*true/g, "");
+      return head + `, ${m.add}: true` + cleaned;
+    });
   }
   // artworks.js has a trailing CANVAS_AFFINITY array — insert before the FIRST "\n];" (works close)
   if (newLines.length) atxt = atxt.replace(/,?\n\];/, ",\n" + newLines.join(",\n") + "\n];");   // ,? absorbs existing trailing comma before works-array close

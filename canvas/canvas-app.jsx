@@ -282,17 +282,24 @@ function tokensPass(w, tokens) {
 // The pilgrimage is everything still to be met: an explicit wish, or a sighting he is unsure of.
 // Loved and liked are kept distinguishable — they are different appetites, not one list.
 const isUnseen = (w) => !!w.wish || w.seenConfidence === "unsure";
-const unseenRank = (w) => isFloored(w) ? 2 : w.liked ? 1 : 0;   // 2 = floored, 1 = any softer mark
+const unseenRank = (w) => isFloored(w) ? 2 : softMark(w) ? 1 : 0;   // 2 = floored, 1 = any softer mark
 // THE THREE TIERS, defined once (the vocabulary is set out in the long note above MARK_FILTERS).
 // Every surface that NAMES a tier — the three filter rows, the card badge, the work page's chips,
 // the museum and artist tallies — goes through these, because a glyph meaning one thing on the Wall
 // and another on a museum page is exactly the drift that note already records for "loved".
-// `loved` is a strict SUBSET of `liked` in the data, deliberately: the raw `w.liked` still means
-// "some appetite below floored", so every ranking that reads it (weight, hangSort, the artist
-// clusters, the world map) keeps working untouched. Only the tier NAMES are three-way.
+// ONE FLAG PER WORK (Fuad 2026-09-14: "One artwork should only carry one badge, floored, loved or
+// liked, never 2 or 3 at the same time!"). `loved` used to be written as a strict SUBSET of `liked`
+// so that raw `w.liked` could stand in for "some appetite below floored"; 263 rows carried two or
+// three flags. The store is now normalised to exactly one, so that stand-in no longer works and
+// every ranking that wants "below floored but marked" asks softMark() instead. The predicates below
+// stay defensive about precedence anyway — they are the only thing that may NAME a tier.
 const isFloored = (w) => !!(w.floored || w.favorite);
 const isLoved = (w) => !!(w.loved && !isFloored(w));
 const isLiked = (w) => !!(w.liked && !w.loved && !isFloored(w));
+// "marked, but not floored" — what weight, hangSort, the artist clusters and the world map mean.
+// Loved and liked score the SAME here, exactly as they did when loved implied liked: this change
+// normalises storage, it deliberately does not re-weight anything.
+const softMark = (w) => !!(w.loved || w.liked);
 const mediumOf = (w) => MEDIUM[w.id] || null;
 const MEDIA = [["painting", "paintings"], ["sculpture", "sculpture"], ["paper", "works on paper"], ["object", "objects"], ["photo", "photography"]];
 // QUALITY buckets (Fuad 2026-08-23) — how much real pixel the best-known source holds, from
@@ -785,7 +792,7 @@ const statusPass = (w, k) =>
   k === "sure" ? w.seenConfidence === "sure"
   : k === "unsure" ? (w.seenConfidence != null && w.seenConfidence !== "sure")
   // pilgrimage: an explicit wish, or an unsure sighting you marked — you want to see it properly
-  : !!(w.wish || (w.seenConfidence === "unsure" && (w.liked || w.floored || w.favorite)));
+  : !!(w.wish || (w.seenConfidence === "unsure" && (softMark(w) || isFloored(w))));
 // ✦ HAS A READ and ⤢ HAS A TOUR — ONE definition for every page (Fuad 2026-09-10, filtering on the
 // artist page: "Has a Read needs to be optional and possible to choose with the other types"). The
 // museum page carried its own copy of this rule and the artist page was about to grow a third;
@@ -800,7 +807,7 @@ const hasTourPass = (w) => !!((window.CANVAS_INSPECT || {})[w.id]);
 // toggle a value in and out of a filter Set without mutating the one React is holding — the same
 // add/remove the Wall's toggleMark/toggleStatus do, shared by the museum and artist chip rows.
 const toggleInSet = (set, v) => { const n = new Set(set); if (n.has(v)) n.delete(v); else n.add(v); return n; };
-const weight = (w) => (w.floored || w.favorite) ? 0 : (w.liked ? 1 : 2);
+const weight = (w) => isFloored(w) ? 0 : (softMark(w) ? 1 : 2);
 // arrangement helpers — dominant-hue of a work (grey/no-palette sort last), primary movement,
 // and century band. All from data already loaded (CANVAS_PALETTE, AD.artists movementQids, year).
 const palHueOf = (w) => { const p = (window.CANVAS_PALETTE || {})[w.id]; if (!p || !p[0]) return 999; const h = hexHue(p[0]); return h < 0 ? 998 : h; };
@@ -1135,7 +1142,7 @@ function affinityOrder(list) {
     let c = clusters.get(k);
     if (!c) { c = { key: k, works: [], love: 0, met: 0, name: (w.artist ? w.artist.replace(/\s*\(.*\)$/, "").trim() : "") }; clusters.set(k, c); }
     c.works.push(w);
-    if (w.floored || w.favorite) c.love += 3; else if (w.liked) c.love += 1;
+    if (isFloored(w)) c.love += 3; else if (softMark(w)) c.love += 1;
     if (!isUnseen(w)) c.met++;   // isUnseen is module-scope (~line 284); reachable here, no local copy
   }
 
@@ -3065,7 +3072,7 @@ function Reader({ id, go }) {
                 onClick={() => go("wall", movSlug(t))}>{t}</span>
             ))}
             {w.floored && <span className="cv-chip" data-k="floored">★ floored me</span>}
-            {w.favorite && <span className="cv-chip" data-k="floored">★ favorite</span>}
+            {!w.floored && w.favorite && <span className="cv-chip" data-k="floored">★ favorite</span>}
             {isLoved(w) && <span className="cv-chip" data-k="floored">♥ loved</span>}
             {isLiked(w) && <span className="cv-chip" data-k="floored"><ThumbIcon /> liked</span>}
             {w.wish && <span className="cv-chip">pilgrimage — not yet seen</span>}
@@ -3408,7 +3415,7 @@ function MuseumView({ museumId, go }) {
   const hasRead = hasReadPass;
   // ★ floored/favorite first, then liked, then the rest; images ahead of text within a tier.
   const hangSort = (a, b) => {
-    const wa = (a.floored || a.favorite) ? 0 : a.liked ? 1 : 2, wb = (b.floored || b.favorite) ? 0 : b.liked ? 1 : 2;
+    const wa = isFloored(a) ? 0 : softMark(a) ? 1 : 2, wb = isFloored(b) ? 0 : softMark(b) ? 1 : 2;
     return wa - wb || (b.imgGrid ? 1 : 0) - (a.imgGrid ? 1 : 0);
   };
   const encounters = met.filter(w => w.via !== "exhibition").sort(hangSort);
@@ -4251,7 +4258,7 @@ function Artists({ go }) {
     for (const w of WORKS.map(enrich)) {
       if (!w.artistId) continue;
       const r = (by[w.artistId] = by[w.artistId] || { id: w.artistId, name: w.artist.replace(/\s*\(.*\)$/, ""), n: 0, fl: 0, lk: 0 });
-      r.n++; if (w.floored || w.favorite) r.fl++; if (w.liked) r.lk++;
+      r.n++; if (isFloored(w)) r.fl++; if (softMark(w)) r.lk++;
     }
     return Object.values(by).sort((a, b) => (b.fl * 3 + b.lk) - (a.fl * 3 + a.lk) || b.n - a.n);
   }, []);
@@ -5358,7 +5365,7 @@ function MapView({ go }) {
     });
     const nodes = mFan.map((mn, i) => {
       const m = mn.it, mx = mn.x, my = mn.y;
-      const works = enriched.filter(w => !w.wish && (w.floored || w.liked) &&
+      const works = enriched.filter(w => !w.wish && (isFloored(w) || softMark(w)) &&
         (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt]).includes(m.id));
       const nw = works.length;
       // FIX 4 (2026-07-17 r4): the work dots were almost city-sized (4.6/3.8). Shrink ~2.5x to a tight
@@ -5930,14 +5937,14 @@ function Portrait({ go }) {
     // Met works carry the biography; the chase is stated as its own register, like the map.
     const met = works.filter(w => !isUnseen(w));
     const chase = works.filter(isUnseen);
-    const loved = met.filter(w => w.floored || w.favorite || w.liked);
+    const loved = met.filter(w => isFloored(w) || softMark(w));
     const museums = new Set(), countries = new Set();
     for (const w of met) for (const id of (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at])) { const m = MUS_BY_ID[id]; if (m) { museums.add(m.id); countries.add(m.country); } }
     const chaseCities = new Set();
     for (const w of chase) { const h = homeOf(w); if (h && h.city) chaseCities.add(h.city); }
     // artists ranked by impact — met works only
     const byArtist = {};
-    for (const w of met) { if (!w.artistId) continue; const r = byArtist[w.artistId] = byArtist[w.artistId] || { id: w.artistId, name: w.artist.replace(/\s*\(.*\)$/, ""), n: 0, love: 0 }; r.n++; if (w.floored || w.favorite) r.love += 3; if (w.liked) r.love += 1; }
+    for (const w of met) { if (!w.artistId) continue; const r = byArtist[w.artistId] = byArtist[w.artistId] || { id: w.artistId, name: w.artist.replace(/\s*\(.*\)$/, ""), n: 0, love: 0 }; r.n++; if (isFloored(w)) r.love += 3; if (softMark(w)) r.love += 1; }
     const artists = Object.values(byArtist).sort((a, b) => b.love - a.love || b.n - a.n);
     const found = artists.filter(a => !AFFINITY.has(a.id) && a.love >= 4).slice(0, 14);
     // "Calling from afar" (Fuad 2026-08-27): the same love scoring over CHASE works — wish works do
@@ -5945,7 +5952,7 @@ function Portrait({ go }) {
     // affinities and anyone already in `found` (a met-loved artist isn't "calling from afar").
     const foundIds = new Set(found.map(a => a.id));
     const byArtistChase = {};
-    for (const w of chase) { if (!w.artistId) continue; const r = byArtistChase[w.artistId] = byArtistChase[w.artistId] || { id: w.artistId, name: w.artist.replace(/\s*\(.*\)$/, ""), n: 0, love: 0 }; r.n++; if (w.floored || w.favorite) r.love += 3; if (w.liked) r.love += 1; }
+    for (const w of chase) { if (!w.artistId) continue; const r = byArtistChase[w.artistId] = byArtistChase[w.artistId] || { id: w.artistId, name: w.artist.replace(/\s*\(.*\)$/, ""), n: 0, love: 0 }; r.n++; if (isFloored(w)) r.love += 3; if (softMark(w)) r.love += 1; }
     const calling = Object.values(byArtistChase).filter(a => !AFFINITY.has(a.id) && !foundIds.has(a.id) && a.love >= 4).sort((a, b) => b.love - a.love || b.n - a.n).slice(0, 8);
     // movements (loved among met)
     const movCount = {};
@@ -5984,7 +5991,7 @@ function Portrait({ go }) {
     // as tours complete — which is the accuracy plan.
     const HUNT = window.CANVAS_HUNT || {};
     for (const w of works) {
-      const wt = (w.floored || w.favorite) ? 3 : w.liked ? 1 : 0; if (!wt) continue;
+      const wt = isFloored(w) ? 3 : softMark(w) ? 1 : 0; if (!wt) continue;
       const h = HUNT[w.id];
       if (h) {
         for (const ft of h) { const t = ft.split(':')[1]; if (STOP.has(t)) continue; subjCount[t] = (subjCount[t] || 0) + wt; }
