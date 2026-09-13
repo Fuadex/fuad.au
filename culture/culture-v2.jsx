@@ -726,7 +726,6 @@ const smoothPath = (pts) => {
 
 function TasteProfile({ items, onOpenItem }) {
   const [axis, setAxis] = React.useState('filmweb');   // community baseline
-  const [hiddenMed, setHiddenMed] = React.useState(() => new Set());  // growth legend toggles
 
   const contrarian = React.useMemo(() => {
     const rows = [];
@@ -852,42 +851,58 @@ function TasteProfile({ items, onOpenItem }) {
       </div>
 
       {timeline && (() => {
-        const W = 320, H = 76, PAD = 6;
+        // SMALL MULTIPLES (Fuad 2026-09-13). Seven series in one 76px box tangled on any scale that
+        // made them all visible. The log axis did not cause that — it revealed it; linear had simply
+        // been hiding six of the seven flat against the floor, which reads as a clean chart only
+        // because most of the data is invisible. One row per medium instead, so shapes are compared
+        // by scanning DOWN a column of identical frames rather than by untangling colours in one.
+        // The scale is SHARED across rows — a single vmax over every medium-year cell — so a tall
+        // curve means a big year in absolute terms and the rows stay honestly comparable. Per-row
+        // normalisation would make each row prettier and throw exactly that away, turning 90 books
+        // and 1,133 films into the same mountain.
+        // What this costs: the crossover read ("2021 is where shorts passed movies") is gone, since
+        // no two series share an axis any more. The legend's show/hide toggles go with it — every
+        // medium now has its own row, so there is nothing left to hide.
+        const W = 320, H = 22, PAD = 3;
         const ys = timeline.years, n = ys.length;
-        const vis = timeline.mediums.filter(m => !hiddenMed.has(m));
-        const vmax = Math.max(1, ...vis.flatMap(m => timeline.series[m]));
+        const vmax = Math.max(1, ...timeline.mediums.flatMap(m => timeline.series[m]));
         const X = i => n > 1 ? (i / (n - 1)) * W : 0;
-        // LOG SCALE (Fuad 2026-09-13). On a linear axis shorts own the chart — they out-count every
-        // other medium by an order of magnitude, so every line that matters sits flattened along the
-        // floor and the shape of a year is unreadable. log1p, not log: a count of 0 is ordinary here
-        // (a medium you touched one year and not the next) and log(0) is -Infinity, while log1p sends
-        // 0 to 0 and leaves the baseline exactly where the eye expects it.
+        // log1p, not log: a count of 0 is ordinary here (a medium you touched one year and not the
+        // next) and log(0) is -Infinity, while log1p sends 0 to 0 and leaves the baseline exactly
+        // where the eye expects it.
         const Y = c => H - PAD - (Math.log1p(c) / Math.log1p(vmax)) * (H - PAD * 2);
         return (
           <div className="stats-section" style={{ marginBottom: 0 }}>
-            <div className="stats-section-title">Titles seen per year — {timeline.total} dated · peak {timeline.peak} in {timeline.peakYear} · log scale</div>
-            <div className="taste-growth-layout">
-              <div className="taste-growth-chart">
-                <svg className="taste-timeline" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet">
-                  {vis.map(m => (
-                    <path key={m} fill="none" stroke={MEDIUM_MAP_HUE[m] || 'var(--accent)'} strokeWidth="1.4"
-                      strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke"
-                      d={smoothPath(ys.map((_, i) => [X(i), Y(timeline.series[m][i])]))} />
-                  ))}
-                </svg>
-                <div className="taste-timeline-labels">
-                  {ys.map(y => <span key={y}>{"’" + y.slice(2)}</span>)}
-                </div>
-              </div>
-              <div className="taste-growth-legend">
-                {timeline.mediums.map(m => (
-                  <div key={m} className={`growth-leg${hiddenMed.has(m) ? ' off' : ''}`}
-                    onClick={() => setHiddenMed(p => { const s = new Set(p); s.has(m) ? s.delete(m) : s.add(m); return s; })}>
-                    <span className="growth-swatch" style={{ background: MEDIUM_MAP_HUE[m] || 'var(--accent)' }} />
-                    <span className="growth-leg-name">{m}</span>
-                    <span className="growth-leg-cnt">{timeline.series[m].reduce((a, b) => a + b, 0)}</span>
+            <div className="stats-section-title">Titles seen per year — {timeline.total} dated · peak {timeline.peak} in {timeline.peakYear} · log scale, shared</div>
+            <div className="taste-sm">
+              {timeline.mediums.map(m => {
+                const s = timeline.series[m];
+                const tot = s.reduce((a, b) => a + b, 0);
+                const pk = s.indexOf(Math.max(...s));
+                const hue = MEDIUM_MAP_HUE[m] || MEDIUM_MAP_HUE['All'];
+                const d = smoothPath(ys.map((_, i) => [X(i), Y(s[i])]));
+                return (
+                  <div className="tsm-row" key={m} title={`${m} — ${tot} titles · peak ${s[pk]} in ${ys[pk]}`}>
+                    <span className="tsm-swatch" style={{ background: hue }} />
+                    <span className="tsm-name">{m}</span>
+                    <span className="tsm-cnt">{tot}</span>
+                    {/* preserveAspectRatio="none" so every row is the same height whatever the column
+                        width; non-scaling-stroke keeps the line 1.3 device px through that stretch */}
+                    <svg className="tsm-spark" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none">
+                      {/* THE FILL IS WHAT MAKES A SHARED SCALE READABLE. Stroke alone leaves each row
+                          a thin line floating in an empty box, and the eye cannot weigh one row
+                          against the next — which is the whole point of sharing the scale. Area does
+                          it at a glance: Movies a thick band the width of the chart, Books a thin
+                          one, while the top edge still carries the year-to-year shape. */}
+                      <path d={`${d} L${W},${H - PAD} L0,${H - PAD} Z`} fill={hue} fillOpacity=".2" stroke="none" />
+                      <path fill="none" stroke={hue} strokeWidth="1.3" strokeLinecap="round"
+                        strokeLinejoin="round" vectorEffect="non-scaling-stroke" d={d} />
+                    </svg>
                   </div>
-                ))}
+                );
+              })}
+              <div className="tsm-axis">
+                {ys.map(y => <span key={y}>{"’" + y.slice(2)}</span>)}
               </div>
             </div>
           </div>
