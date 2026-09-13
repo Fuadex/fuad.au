@@ -47,9 +47,39 @@ function infoMap(id) {
   sawAnyPool = sawAnyPool || Object.keys(m).length > 0;
   return m;
 }
+// THREE INPUT SHAPES NOW. Waves 1-9 wrote one `beside_<id>.json` per work. From wave 11 the
+// fusion+tour agent carries the beside INLINE in `out_tour_<id>.json`, so the whole gate went dark
+// for that wave — it threw ENOENT on the first id and the wave's besides were checked by hand
+// instead. That is the SAME silent-input failure the header above already records, arriving by a
+// different door: this script's one standing rule is that a check which cannot find its input must
+// say so, never pass. So resolve the shape explicitly and name it.
+// Inline refs also use a different key (`{in, id, title}` against the store's `{id, text}`), because
+// BRIEF_common.md specified it that way. Normalise `title` -> `text` so the once-only anchor check
+// below still means something; the anchor rule itself is NOT relaxed.
+const shapeSeen = {};
+function loadBeside(id) {
+  const split = D + 'beside_' + id + '.json';
+  if (fs.existsSync(split)) {
+    shapeSeen.split = (shapeSeen.split || 0) + 1;
+    return JSON.parse(fs.readFileSync(split, 'utf8').replace(/^﻿/, ''));
+  }
+  const inline = D + 'out_tour_' + id + '.json';
+  if (fs.existsSync(inline)) {
+    shapeSeen.inline = (shapeSeen.inline || 0) + 1;
+    const t = JSON.parse(fs.readFileSync(inline, 'utf8').replace(/^﻿/, ''));
+    const refs = (t.refs || []).map((r) => ({ id: r.id, text: r.text != null ? r.text : r.title }));
+    return { beside: t.beside, refs, notes: t.besideNotes || null };
+  }
+  console.log('FATAL: no beside input for ' + id);
+  console.log('  looked for: ' + split);
+  console.log('          and: ' + inline);
+  console.log('A check that cannot find its input must not pass. Fix the path, do not skip the work.');
+  process.exit(2);
+}
+
 let ungrounded = 0;
 for (const id of ids) {
-  const b = JSON.parse(fs.readFileSync(D + 'beside_' + id + '.json', 'utf8').replace(/^﻿/, ''));
+  const b = loadBeside(id);
   // An omission is a recorded DECISION, not a missing file — skip it, but refuse a silent one.
   if (!b.beside) { console.log('== ' + id + '  OMITTED' + (b.notes ? ': ' + String(b.notes).slice(0, 120) : '  WARN: NO REASON RECORDED')); console.log(''); continue; }
   const wc = b.beside.trim().split(/\s+/).length;
@@ -100,6 +130,11 @@ for (const id of ids) {
   console.log(b.beside);
   console.log('');
 }
+// Say which input shape was actually read. The gate has now failed open twice by reading the wrong
+// shape, so a run that does not name its input is not evidence of anything.
+console.log('input shape: ' + (Object.keys(shapeSeen).length
+  ? Object.entries(shapeSeen).map(([k, v]) => k + ' x' + v).join(', ')
+  : 'NONE'));
 console.log(ungrounded
   ? ungrounded + ' beside(s) lean on an INFO-less companion — a human must confirm no content is claimed.'
   : 'all companions carry shipped Info — content claims are groundable');

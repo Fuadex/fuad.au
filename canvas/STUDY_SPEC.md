@@ -2167,7 +2167,22 @@ Fuad's standing instruction the same day: **do not dispatch a new cascade until 
 wave runs under these rules, on a 5-work proof batch of floored, seen, untoured works first.
 
 ### Bands and tics (gated by `tonegate.js` + `bandgate.js`)
-- **Stop bodies 100–135 words**, hard. 130–135 is a LOOK. Aim 110–125.
+- **The TYPICAL (median) stop sits at or below 135 words; individual stops range as the picture
+  earns, within `bandgate.js`'s 80–200 band, and the longest-minus-shortest spread stays ≥ 50.**
+  ⚠ CORRECTED 2026-09-14 (Fuad: "we widened the spread, not cut it, the 110-125 is wrong"). The
+  line here read "Stop bodies 100–135 words, hard … Aim 110–125," which was a transcription error:
+  it is arithmetically incompatible with the widened spread it was meant to sit beside — a tour
+  whose every stop falls in 100–135 has a maximum spread of 35, and at 110–125 only 15, so it
+  cannot clear `bandgate`'s spread ≥ 50 or `stopvar`'s ≥ 40. Every tour written to it would fail
+  the gates this section names. The gates were right; this text was wrong.
+  What the mv-5 assessment actually measured was DRIFT IN THE MEDIAN: wave-10 stops at a median
+  149 with 70% over 135, against mv-1's 120 and the store-wide median-of-median-stop of 124. The
+  cure is to pull the typical stop back under 135, NOT to clamp every stop — the delivered wave-10
+  tours ran stops 86–201 with a mean spread of 68 (e.g. Puech's *L'Aurore*: seven stops 107–190,
+  spread 83), and that range is what the spread gate rewards and the four-movement descent needs.
+  So: median ≤ 135 (a soft ceiling, the same "length is an outcome" test as everywhere else — a
+  135–150 median is a LOOK, not a fail, if every stop is justified), spread ≥ 50, per-stop 80–200.
+  This changes NO gate; `bandgate.js` and `stopvar.js` are already correct and stay untouched.
 - **No closing epigram.** A stop's final sentence is not an aphorism: nothing under nine words,
   no "X, not Y" turn, no "That is …" / "Here … ; there …" landing. End on the observation, not on
   the moral of it. `tonegate.js` flags the shape; the drafter fixes the sentence, never pads it.

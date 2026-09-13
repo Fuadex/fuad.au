@@ -203,11 +203,23 @@ function craftAbstractHits(text) {
   return hits;
 }
 
-// ---- per-stop band ----
-function bandRating(wc) {
-  if (wc < 100) return { rating: 'FAIL', note: '<100' };
-  if (wc > 135) return { rating: 'FAIL', note: '>135' };
-  if (wc >= 130) return { rating: 'LOOK', note: '130-135 ceiling' };
+// ---- band ----
+// CORRECTED 2026-09-14. This function used to FAIL any stop under 100 or over 135 words — a
+// per-stop hard cap that (a) duplicated bandgate.js's sizing check, which the header above already
+// says is bandgate's job, and (b) encoded the transcription error corrected in STUDY_SPEC's mv-5
+// section: "every stop 100–135" is arithmetically incompatible with the widened spread≥50 gate a
+// tour must also clear, so it condemned every legally-spread tour (delivered wave-10 stops ran
+// 86–201, mean spread 68). The real rule is a MEDIAN, not a per-stop clamp: the typical stop sits
+// at or below 135; individual stops range within bandgate's 80–200; spread≥50 is bandgate's.
+// tonegate now checks only the tour MEDIAN (soft — a LOOK, never a FAIL, because length is an
+// outcome and a justified long tour is not a defect), and leaves per-stop sizing to bandgate.
+// The epigram / voice checks below — the actual reason this file exists — are untouched.
+function medianRating(stopWcs) {
+  if (!stopWcs.length) return null;
+  const s = [...stopWcs].sort((a, b) => a - b);
+  const med = s[Math.floor(s.length / 2)];
+  if (med > 150) return { rating: 'LOOK', note: 'median ' + med + 'w >150 (drift — check every stop is justified)' };
+  if (med > 135) return { rating: 'LOOK', note: 'median ' + med + 'w (135–150 band)' };
   return null;
 }
 
@@ -228,13 +240,14 @@ function checkTour(t) {
   stops.forEach((d, i) => {
     const wc = words(d.body);
     const label = 'stop' + (i + 1);
-    const band = bandRating(wc);
-    if (band) note(band.rating, label, band.rating + ' ' + wc + 'w (' + band.note + ')');
     const closer = checkCloser(d.body);
     if (closer) note(closer.rating, label + ' closer',
       closer.rating + ' closer "' + closer.sentence + '" (' + closer.wc + 'w)');
     stopStats.push({ wc, over135: wc > 135, closerRating: closer ? closer.rating : null, closerSentence: closer ? closer.sentence : null });
   });
+  // tour-level median (soft), replacing the old per-stop hard band — see medianRating above
+  const med = medianRating(stops.map((d) => words(d.body)));
+  if (med) note(med.rating, 'stops', med.rating + ' ' + med.note);
 
   let craftAbstract = false;
   for (const lens of LENS) {
