@@ -1771,21 +1771,20 @@ function StoriesView({ t, go, seed }) {
            read as two different layouts stacked). Every max-width below is mirrored from .st-feed
            at the same breakpoint — if one moves, move both. */
         .st-head { max-width: 820px; margin-left: auto; margin-right: auto; }
-        @media (min-width: 1150px) { .st-head { max-width: 1100px; } }
-        @media (min-width: 1500px) { .st-head { max-width: 1200px; } }
+        @media (min-width: 1500px) { .st-head { max-width: 900px; } }
+        /* ONE COLUMN, BLOCKS STACKED (Fuad 2026-09-14: "instead of having a long list of two
+           columns, I'd like to stack one block on top of another to keep things clearer").
+           This used to switch to a two-column magazine flow past 1150px (CSS multi-column, cards
+           kept whole with break-inside, chapter rules spanning both). Multi-column reads in a
+           snake — down the left, back up to the top of the right — so the chapter order the feed
+           is built around was only legible if you already knew to read it that way. A single grid
+           column keeps the sections in the order they are registered in, which is the point of
+           the table of contents beside them.
+           Width stays near the reading measure rather than filling the screen; the modest bump at
+           1500px keeps a 4K screen from looking empty without stretching the rows inside the
+           cards. .st-head mirrors these numbers — if one moves, move both. */
         .st-feed { max-width: 820px; margin: 0 auto; display: grid; gap: var(--gap); }
-        /* desktop: two-column magazine flow — chapters span both columns, cards never split.
-           Feed width scales with the screen so PC/4K read comfortably (Fuad 2026-07-17): the
-           earlier mobile-overflow fix had clamped this to 780px even on wide screens, which
-           read compressed. Now: ~1100px at the 1150px tier, opening to 1200px past 1500px. */
-        @media (min-width: 1150px) {
-          .st-feed { display: block; columns: 2; column-gap: var(--gap); max-width: 1100px; }
-          .st-feed > section { break-inside: avoid; margin-bottom: var(--gap); }
-          .st-feed > .st-chapter { column-span: all; break-inside: avoid; margin-bottom: var(--gap); }
-        }
-        @media (min-width: 1500px) {
-          .st-feed { max-width: 1200px; column-gap: calc(var(--gap) * 1.35); }
-        }
+        @media (min-width: 1500px) { .st-feed { max-width: 900px; } }
         .st-card { background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 26px 28px; }
         .st-hero { padding: 34px 32px; }
         .st-label { font-family: var(--mono); font-size: 9.5px; letter-spacing: .22em; text-transform: uppercase;
@@ -2685,8 +2684,13 @@ function TourSection({ go, gigDate }) {
   return (
     <section className="gv-sec">
       <div className="gv-label">On tour now · Ticketmaster</div>
-      <div className="gv-title">
-        {anyFilt ? <>{artists.length} of {T.artistCount} artists match.</> : <>{T.artistCount} artists from your rotation have upcoming dates.</>}
+      {/* the freshness stamp rides THIS line, pushed right (Fuad 2026-09-14) — it used to sit in
+          the market-chip row under the map, where it read as one more chip among the filters. It is
+          not a filter, it is provenance for everything below it, so it belongs beside the headline
+          count and out of the chip flow. */}
+      <div className="gv-title gv-title-split">
+        <span>{anyFilt ? <>{artists.length} of {T.artistCount} artists match.</> : <>{T.artistCount} artists from your rotation have upcoming dates.</>}</span>
+        <span className="gv-tour-fetched">{T.warn ? <>checked {T.checked} · data from {T.fetched}</> : <>checked {T.fetched} · refreshed weekly</>}</span>
       </div>
       {T.warn && (
         <div className="gv-tour-warn" role="status">
@@ -2702,7 +2706,6 @@ function TourSection({ go, gigDate }) {
             {m.label} <b>{m.matched}</b>{m.stale ? " ⚠" : ""}
           </span>
         ))}
-        <span className="gv-tour-fetched">{T.warn ? <>checked {T.checked} · data from {T.fetched}</> : <>checked {T.fetched} · refreshed weekly</>}</span>
         {chips.map(([lbl, clear], i) => (
           <span key={lbl + i} className="gv-tour-chip" onClick={clear}>{lbl} ✕</span>
         ))}
@@ -3239,6 +3242,11 @@ function GigsView({ go }) {
         .gv-sec { margin-top: 40px; }
         .gv-label { font-family: var(--mono); font-size: 9.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
         .gv-title { font-family: var(--serif); font-style: italic; font-size: 21px; margin-bottom: 16px; }
+        /* headline left, freshness stamp hard right on the same baseline. A modifier rather than a
+           change to .gv-title, which four other sections share. Wraps rather than crushes on narrow
+           screens, and the stamp keeps its mono voice against the serif headline. */
+        .gv-title-split { display: flex; align-items: baseline; justify-content: space-between; gap: 10px 16px; flex-wrap: wrap; }
+        .gv-title-split > .gv-tour-fetched { margin-left: auto; font-style: normal; white-space: nowrap; }
         .gv-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
         .gv-tile { display: flex; gap: 12px; align-items: center; padding: 8px 10px; border: 1px solid var(--rule); border-radius: 6px; transition: border-color .15s; }
         .gv-tile[data-link="true"] { cursor: pointer; }
