@@ -732,11 +732,23 @@ const CAP = 48;
 // would be worse than the space it saves (Fuad 2026-08-22).
 // "seen — sure" became "Seen" and "pilgrimage" became "Not seen" on BOTH sizes: the old pair named
 // the data model (a confidence value, an aspiration) rather than the thing you are asking for.
-// [key, word, glyph (null = the drawn thumb), title]
+// UNMARKED is the fourth chip (Fuad 2026-09-14), and it is the only one that names an ABSENCE: the
+// 872 works no tier has claimed. It is deliberately WORDS-ONLY — asked for an icon, Fuad's answer was
+// "OK, no icon", and he is right that there is no honest glyph for "nothing was said". A hollow ring
+// would read as a fourth grade rather than as the lack of one.
+// It earns its place because the absence is not uniform: 724 of those works are `wish` rows already
+// reachable through the "not seen" status chip, but 140 were SEEN for certain and never rated — The
+// Kiss, Whistler's Mother, The Thinker, the Winged Victory, long runs of Rembrandt and Turner from
+// bulk museum days where only the standouts got marked. Crossing this chip with "seen" is what
+// isolates those, which is why it belongs on the MARK axis and not in the status row: marks and
+// status already AND against each other, so the interesting question composes out of the two rows
+// rather than needing a concept of its own.
+// [key, word, glyph (null = the drawn thumb, false = no icon at all), title]
 const MARK_FILTERS = [
   ["floored", "floored", "★", "floored me — the in-the-moment knockout"],
   ["loved", "loved", "♥", "loved — marked, and you know you stood in front of it"],
   ["liked", "liked", null, "liked — marked, but not yet properly met"],
+  ["unmarked", "unmarked", false, "unmarked — no verdict recorded. Cross it with “seen” for the ones you stood in front of and never rated."],
 ];
 const STATUS_FILTERS = [["sure", "seen", "seen"], ["unsure", "unsure", "unsure"], ["wish", "not seen", "not seen"]];
 // EYE ICONS for the seen axis on phones (Fuad 2026-08-30). The three states are one idea at three
@@ -780,14 +792,25 @@ const ThumbIcon = () => (
 // ONE renderer for a mark chip's face, shared by the Wall, the museum page and the artist page. All
 // three inlined the same pair of spans, and a third tier is exactly the moment that stops being
 // harmless. `glyph` null means "draw the thumb"; cv-f-icon gives the svg a real gap from its word.
-const MarkFace = ({ word, glyph }) => (
-  <React.Fragment>
-    <span className={"cv-f-full" + (glyph ? "" : " cv-f-icon")}>{glyph || <ThumbIcon />}{glyph ? " " : null}{word}</span>
-    <span className="cv-f-tiny">{glyph || <ThumbIcon />}</span>
-  </React.Fragment>
-);
+// glyph === false means WORDS ONLY (the unmarked chip). It is distinct from null, which asks for the
+// drawn thumb — so the phone variant has to fall back to the word rather than to an icon, or the
+// button would render empty at that size.
+const MarkFace = ({ word, glyph }) => {
+  const bare = glyph === false;
+  const icon = bare ? null : (glyph || <ThumbIcon />);
+  return (
+    <React.Fragment>
+      <span className={"cv-f-full" + (glyph || bare ? "" : " cv-f-icon")}>{icon}{glyph ? " " : null}{word}</span>
+      <span className="cv-f-tiny">{bare ? word : icon}</span>
+    </React.Fragment>
+  );
+};
 const STATUS_ICON = { sure: "open", unsure: "half", wish: "closed" };
-const markPass = (w, k) => k === "floored" ? isFloored(w) : k === "loved" ? isLoved(w) : isLiked(w);
+// the four tiers are mutually exclusive and exhaustive — every work answers exactly one of them,
+// which is what lets the chip counts add up to the wall.
+const isUnmarked = (w) => !isFloored(w) && !w.loved && !w.liked;
+const markPass = (w, k) => k === "floored" ? isFloored(w) : k === "loved" ? isLoved(w)
+  : k === "liked" ? isLiked(w) : isUnmarked(w);
 const statusPass = (w, k) =>
   k === "sure" ? w.seenConfidence === "sure"
   : k === "unsure" ? (w.seenConfidence != null && w.seenConfidence !== "sure")
@@ -1968,7 +1991,8 @@ function Wall({ go, styleIds }) {
         <button data-on={!hang && !marks.size && !status.size}
           onClick={unhang(() => { setMarks(new Set()); setStatus(new Set()); })}>all</button>
         {MARK_FILTERS.map(([v, word, glyph, tip]) => (
-          <button key={v} data-on={marks.has(v)} onClick={() => toggleMark(v)} title={tip}>
+          <button key={v} className={glyph === false ? "cv-f-bare" : undefined}
+            data-on={marks.has(v)} onClick={() => toggleMark(v)} title={tip}>
             <MarkFace word={word} glyph={glyph} />
           </button>
         ))}
@@ -3558,7 +3582,7 @@ function MuseumView({ museumId, go }) {
       <button className="cv-mus-filt" data-on={!musFiltOn} title="everything met here"
         onClick={() => { setMusMarks(new Set()); setMusStatus(new Set()); setMusRead(false); setMusTour(false); }}>all</button>
       {MARK_FILTERS.map(([v, word, glyph, tip]) => (
-        <button key={v} className="cv-mus-filt" data-on={musMarks.has(v)} title={tip}
+        <button key={v} className={"cv-mus-filt" + (glyph === false ? " cv-f-bare" : "")} data-on={musMarks.has(v)} title={tip}
           onClick={() => setMusMarks(st => toggleInSet(st, v))}>
           <MarkFace word={word} glyph={glyph} />
         </button>
