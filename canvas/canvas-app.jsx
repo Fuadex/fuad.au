@@ -282,7 +282,17 @@ function tokensPass(w, tokens) {
 // The pilgrimage is everything still to be met: an explicit wish, or a sighting he is unsure of.
 // Loved and liked are kept distinguishable — they are different appetites, not one list.
 const isUnseen = (w) => !!w.wish || w.seenConfidence === "unsure";
-const unseenRank = (w) => (w.floored || w.favorite) ? 2 : w.liked ? 1 : 0;   // 2 = loved, 1 = liked
+const unseenRank = (w) => isFloored(w) ? 2 : w.liked ? 1 : 0;   // 2 = floored, 1 = any softer mark
+// THE THREE TIERS, defined once (the vocabulary is set out in the long note above MARK_FILTERS).
+// Every surface that NAMES a tier — the three filter rows, the card badge, the work page's chips,
+// the museum and artist tallies — goes through these, because a glyph meaning one thing on the Wall
+// and another on a museum page is exactly the drift that note already records for "loved".
+// `loved` is a strict SUBSET of `liked` in the data, deliberately: the raw `w.liked` still means
+// "some appetite below floored", so every ranking that reads it (weight, hangSort, the artist
+// clusters, the world map) keeps working untouched. Only the tier NAMES are three-way.
+const isFloored = (w) => !!(w.floored || w.favorite);
+const isLoved = (w) => !!(w.loved && !isFloored(w));
+const isLiked = (w) => !!(w.liked && !w.loved && !isFloored(w));
 const mediumOf = (w) => MEDIUM[w.id] || null;
 const MEDIA = [["painting", "paintings"], ["sculpture", "sculpture"], ["paper", "works on paper"], ["object", "objects"], ["photo", "photography"]];
 // QUALITY buckets (Fuad 2026-08-23) — how much real pixel the best-known source holds, from
@@ -653,7 +663,9 @@ function Card({ w, go }) {
       // coarse, and this is where "woodblock print", "cage cup", "diorama" or "group of casts"
       // stays visible instead of being flattened into "works on paper" / "objects".
       title={w.title + ((mediumOf(w) && mediumOf(w)[1]) ? " · " + mediumOf(w)[1] : "")}>
-      {(w.favorite || w.floored) ? <span className="cv-fav">★</span> : w.liked ? <span className="cv-fav">♡</span> : null}
+      {isFloored(w) ? <span className="cv-fav">★</span>
+        : isLoved(w) ? <span className="cv-fav">♥</span>
+        : isLiked(w) ? <span className="cv-fav cv-fav-thumb"><ThumbIcon /></span> : null}
       {/* The wall is a CSS-column masonry, so an image with no src collapses to zero height and
           the whole column reflows. art_imgsize gives real dimensions, so reserve the space with
           aspect-ratio and the tile holds its shape while the src is still withheld — which also
@@ -683,10 +695,19 @@ function Card({ w, go }) {
 const CAP = 48;
 // TWO independent axes (Fuad 2026-08-20), each multi-select and OR'd within itself, AND'd across.
 //
-// MARKS are the feeling, and the vocabulary is counter-intuitive on purpose: what this site calls
-// FLOORED is what Fuad means by loved, and what it calls LOVED is what he means by liked. They are
-// separate tiers, not nested — "loved" used to resolve to floored ∪ liked, which is 1,833 of 1,894
-// works and therefore filtered nothing. It now means the `liked` mark alone.
+// MARKS are the feeling, in THREE tiers since 2026-09-13. The ♥ row was 62% of the wall and so
+// filtered almost nothing: the mark shown as "loved" was really the bulk `liked` import wearing a
+// heart, which is the counter-intuitive translation this note used to describe and defend. They are
+// separate tiers, not nested — "loved" once resolved to floored ∪ liked, 1,833 of 1,894 works.
+//   ★ floored    203 — the in-the-moment knockout
+//   ♥ loved      260 — marked, on a work he KNOWS he stood in front of
+//   👍 liked   1,449 — marked, but not (yet) properly met
+// The loved/liked cut was SEEDED from the encounter (liked + seenConfidence "sure"), NOT derived
+// live from it: `loved` is a real flag in artworks.js, so marks and status remain the two
+// independent axes they have always been, and a never-seen work can still be promoted to ♥ by hand.
+// "unsure" deliberately does not qualify as met — the pilgrimage already treats an unsure sighting
+// as not-yet-properly-seen, so calling it loved would contradict the site's own rule. That leaves
+// exactly one work passing "loved" AND "not seen" today; the intersection is thin, not sealed.
 //
 // STATUS is the encounter: did you stand in front of it, are you unsure, is it still to come. All
 // six chips used to share one radio group, so "floored things I still haven't seen" — the question
@@ -697,7 +718,12 @@ const CAP = 48;
 // would be worse than the space it saves (Fuad 2026-08-22).
 // "seen — sure" became "Seen" and "pilgrimage" became "Not seen" on BOTH sizes: the old pair named
 // the data model (a confidence value, an aspiration) rather than the thing you are asking for.
-const MARK_FILTERS = [["floored", "★ floored", "★"], ["loved", "♥ loved", "♥"]];
+// [key, word, glyph (null = the drawn thumb), title]
+const MARK_FILTERS = [
+  ["floored", "floored", "★", "floored me — the in-the-moment knockout"],
+  ["loved", "loved", "♥", "loved — marked, and you know you stood in front of it"],
+  ["liked", "liked", null, "liked — marked, but not yet properly met"],
+];
 const STATUS_FILTERS = [["sure", "seen", "seen"], ["unsure", "unsure", "unsure"], ["wish", "not seen", "not seen"]];
 // EYE ICONS for the seen axis on phones (Fuad 2026-08-30). The three states are one idea at three
 // degrees, so they get one glyph at three degrees rather than three unrelated marks: open eye,
@@ -721,8 +747,27 @@ const EyeIcon = ({ state }) => (
     )}
   </svg>
 );
+// THUMBS UP for the liked tier (Fuad 2026-09-13), drawn rather than typed for the same reason the
+// eyes are: 👍 has emoji presentation on every phone and would land as a colour sticker in a row of
+// mono glyphs. ★ and ♥ stay typed — they have text presentation and are already how the cards mark.
+const ThumbIcon = () => (
+  <svg className="cv-thumb" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"
+    fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M7 10.5v11" />
+    <path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88z" />
+  </svg>
+);
+// ONE renderer for a mark chip's face, shared by the Wall, the museum page and the artist page. All
+// three inlined the same pair of spans, and a third tier is exactly the moment that stops being
+// harmless. `glyph` null means "draw the thumb"; cv-f-icon gives the svg a real gap from its word.
+const MarkFace = ({ word, glyph }) => (
+  <React.Fragment>
+    <span className={"cv-f-full" + (glyph ? "" : " cv-f-icon")}>{glyph || <ThumbIcon />}{glyph ? " " : null}{word}</span>
+    <span className="cv-f-tiny">{glyph || <ThumbIcon />}</span>
+  </React.Fragment>
+);
 const STATUS_ICON = { sure: "open", unsure: "half", wish: "closed" };
-const markPass = (w, k) => k === "floored" ? !!(w.floored || w.favorite) : !!w.liked;
+const markPass = (w, k) => k === "floored" ? isFloored(w) : k === "loved" ? isLoved(w) : isLiked(w);
 const statusPass = (w, k) =>
   k === "sure" ? w.seenConfidence === "sure"
   : k === "unsure" ? (w.seenConfidence != null && w.seenConfidence !== "sure")
@@ -1178,7 +1223,7 @@ function tierHueOrder(list) {
 //
 // GRAMMAR (all `&`-joined, order below; empty facets omitted so a plain wall has no query):
 //   tok=<a|m|c|w>:<id>+…   tokens; each id encodeURIComponent'd; type prefix keeps them one param
-//   mk=floored+loved       marks     st=sure+unsure+wish   status
+//   mk=floored+loved+liked marks     st=sure+unsure+wish   status
 //   er=1880-1925           year span (one [lo, hi]; -9999 = earliest, 2030 = now; the legacy
 //                          chip form er=e1890+e1900 still parses — see parseYearSpan)
 //   md=painting+paper      media buckets                    ql=q500+iiif    quality
@@ -1893,9 +1938,9 @@ function Wall({ go, styleIds }) {
             REPLACES the selection rather than narrowing it, so the two can never both be true. */}
         <button data-on={!hang && !marks.size && !status.size}
           onClick={unhang(() => { setMarks(new Set()); setStatus(new Set()); })}>all</button>
-        {MARK_FILTERS.map(([v, label, tiny]) => (
-          <button key={v} data-on={marks.has(v)} onClick={() => toggleMark(v)} title={label}>
-            <span className="cv-f-full">{label}</span><span className="cv-f-tiny">{tiny}</span>
+        {MARK_FILTERS.map(([v, word, glyph, tip]) => (
+          <button key={v} data-on={marks.has(v)} onClick={() => toggleMark(v)} title={tip}>
+            <MarkFace word={word} glyph={glyph} />
           </button>
         ))}
         <span className="cv-filt-div" aria-hidden="true" />
@@ -3008,7 +3053,8 @@ function Reader({ id, go }) {
             ))}
             {w.floored && <span className="cv-chip" data-k="floored">★ floored me</span>}
             {w.favorite && <span className="cv-chip" data-k="floored">★ favorite</span>}
-            {w.liked && !w.floored && <span className="cv-chip" data-k="floored">♡ liked</span>}
+            {isLoved(w) && <span className="cv-chip" data-k="floored">♥ loved</span>}
+            {isLiked(w) && <span className="cv-chip" data-k="floored"><ThumbIcon /> liked</span>}
             {w.wish && <span className="cv-chip">pilgrimage — not yet seen</span>}
             {w.via === "exhibition" && <span className="cv-chip">temporary exhibition</span>}
             {/* the full study is the flagship — promoted up here (Fuad: at the bottom it hides) */}
@@ -3355,8 +3401,9 @@ function MuseumView({ museumId, go }) {
   const encounters = met.filter(w => w.via !== "exhibition").sort(hangSort);
   const onLoan = met.filter(w => w.via === "exhibition").sort(hangSort);
   const heldSorted = held.slice().sort(hangSort);   // same floored→liked→rest, images-first order
-  const floored = met.filter(w => w.floored || w.favorite);
-  const liked = met.filter(w => w.liked).length;
+  const floored = met.filter(isFloored);
+  const loved = met.filter(isLoved).length;
+  const liked = met.filter(isLiked).length;
 
   // confidence breakdown for the stats title attr
   const conf = { sure: 0, probably: 0, unsure: 0 };
@@ -3465,10 +3512,10 @@ function MuseumView({ museumId, go }) {
     <div className="cv-mus-filters">
       <button className="cv-mus-filt" data-on={!musFiltOn} title="everything met here"
         onClick={() => { setMusMarks(new Set()); setMusStatus(new Set()); setMusRead(false); setMusTour(false); }}>all</button>
-      {MARK_FILTERS.map(([v, label, tiny]) => (
-        <button key={v} className="cv-mus-filt" data-on={musMarks.has(v)} title={label}
+      {MARK_FILTERS.map(([v, word, glyph, tip]) => (
+        <button key={v} className="cv-mus-filt" data-on={musMarks.has(v)} title={tip}
           onClick={() => setMusMarks(st => toggleInSet(st, v))}>
-          <span className="cv-f-full">{label}</span><span className="cv-f-tiny">{tiny}</span>
+          <MarkFace word={word} glyph={glyph} />
         </button>
       ))}
       <span className="cv-filt-div" aria-hidden="true" />
@@ -3595,7 +3642,8 @@ function MuseumView({ museumId, go }) {
               ? <span title="your coverage of the collection">{met.length} work{met.length !== 1 ? "s" : ""} met · of ~{fmtWorks(DATA.works)}</span>
               : <span title={`sure ${conf.sure} · probably ${conf.probably} · unsure ${conf.unsure}`}>{met.length} work{met.length !== 1 ? "s" : ""} met</span>}
             {floored.length ? <span>★ {floored.length} floored</span> : null}
-            {liked ? <span>♡ {liked} loved</span> : null}
+            {loved ? <span>♥ {loved} loved</span> : null}
+            {liked ? <span><ThumbIcon /> {liked} liked</span> : null}
             {/* the quiet chase tally: works catalogued to this collection but not yet met here
                 (Fuad 2026-08-28). Only shown when non-zero — for the 7 never-visited holders this
                 is the only work-count the header can offer. */}
@@ -4012,8 +4060,9 @@ function ArtistView({ artistId, go }) {
   const movements = movsOf({ artistId });
   const venues = [...new Set(works.flatMap(w => (Array.isArray(w.seenAt) ? w.seenAt : [w.seenAt || w.at]).filter(Boolean)))]
     .map(id => MUS_BY_ID[id]).filter(Boolean);
-  const floored = works.filter(w => w.floored || w.favorite).length;
-  const liked = works.filter(w => w.liked).length;
+  const floored = works.filter(isFloored).length;
+  const loved = works.filter(isLoved).length;
+  const liked = works.filter(isLiked).length;
   // A CHIP ONLY WHEN IT HAS MEMBERS (Fuad 2026-09-10). An artist with nothing floored would
   // otherwise get a ★ that empties his wall, which reads as a bug rather than as an answer; the
   // row should only ever offer questions this artist can answer. `all` is exempt — it is the way
@@ -4055,7 +4104,8 @@ function ArtistView({ artistId, go }) {
           <div className="cv-a-chips">
             <span className="cv-a-chip">{works.length} in your canon</span>
             {floored > 0 && <span className="cv-a-chip">★ {floored} floored</span>}
-            {liked > 0 && <span className="cv-a-chip">♡ {liked} liked</span>}
+            {loved > 0 && <span className="cv-a-chip">♥ {loved} loved</span>}
+            {liked > 0 && <span className="cv-a-chip"><ThumbIcon /> {liked} liked</span>}
             {venues.length > 0 && <span className="cv-a-chip" title={venues.map(v => v.name).join(", ")}>
               met at {venues.length === 1 ? venues[0].name.replace(/\s*\(.*\)$/, "") : `${venues.length} museums`}</span>}
           </div>
@@ -4085,10 +4135,10 @@ function ArtistView({ artistId, go }) {
           {/* "all" is never hidden and never conditional — it is the way back out */}
           <button className="cv-mus-filt" data-on={!aFiltOn} title={`every work by ${name} in the canon`}
             onClick={() => aSet(() => { setAMarks(new Set()); setAStatus(new Set()); setARead(false); setATour(false); })}>all</button>
-          {aRow.marks.map(([v, label, tiny]) => (
-            <button key={v} className="cv-mus-filt" data-on={aMarks.has(v)} title={label}
+          {aRow.marks.map(([v, word, glyph, tip]) => (
+            <button key={v} className="cv-mus-filt" data-on={aMarks.has(v)} title={tip}
               onClick={() => aSet(() => setAMarks(st => toggleInSet(st, v)))}>
-              <span className="cv-f-full">{label}</span><span className="cv-f-tiny">{tiny}</span>
+              <MarkFace word={word} glyph={glyph} />
             </button>
           ))}
           {aRow.marks.length > 0 && aRow.status.length > 0 && <span className="cv-filt-div" aria-hidden="true" />}

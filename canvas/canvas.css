@@ -416,6 +416,20 @@ a { color: inherit; }
 .cv-count { margin-left: auto; font: 500 10.5px/1 var(--mono); letter-spacing: .08em; color: var(--ink-faint); }
 /* the glyph-only forms of the mark filters exist for phones only */
 .cv-f-tiny { display: none; }
+/* THE DRAWN THUMB (liked, 2026-09-13). The star and heart are typed glyphs that sit on the text
+   baseline on their own; an svg does not, so its label becomes a flex row with a real gap instead
+   of relying on a space character. Kept to ONE class on purpose: the 620px rule hiding
+   .cv-f-full further down is also one class, so it wins on source order and the phone is left with
+   the lone thumb — the same trap ".cv-hang-chip .cv-f-full" (0,2,0) fell into by being two deep. */
+.cv-f-icon { display: inline-flex; align-items: center; gap: 5px; }
+.cv-thumb { flex: none; }
+/* the thumb also appears inline in prose-ish chips and tallies — the work page's mark chip, the
+   artist header chips, the museum stat line — each a text row that needs the same gap */
+.cv-chip:has(.cv-thumb), .cv-a-chip:has(.cv-thumb), .cv-mus-stats span:has(.cv-thumb) {
+  display: inline-flex; align-items: center; gap: 5px; }
+/* the card's corner badge is absolutely positioned and 12px of type; the svg needs the box to
+   collapse onto it rather than leave a text line-height's worth of slack under it */
+.cv-fav-thumb { display: inline-flex; line-height: 0; }
 /* THE HANG CHIP'S LABEL IS A ROW, NOT A WORD (Fuad 2026-09-10). "⌂ today's wall" is two spans that
    need a gap, and that used to be an inline style on the element. An inline declaration outranks any
    stylesheet rule, so the 620px `.cv-f-full { display: none }` below never fired for this chip and a
@@ -452,6 +466,12 @@ a { color: inherit; }
      button loses the text-side padding it no longer needs */
   .cv-filters button:has(.cv-eye) { padding: 5px 9px; }
   .cv-eye { display: block; }
+  /* the thumb rides the same tightened button as the eye — it is the same kind of drawn glyph, and
+     the two sit in adjacent groups of the row, so a different height between them would read as a
+     mistake. ":has" also matches through the hidden .cv-f-full, which is harmless: on a phone only
+     the tiny span is showing anyway. */
+  .cv-filters button:has(.cv-thumb) { padding: 5px 9px; }
+  .cv-thumb { display: block; }
 }
 /* ——— OMNISEARCH — "design your own wall" (Fuad 2026-08-27) ———
    One search where the Museum and Artist dropdowns used to sit; it owns them now. Committed picks
@@ -1514,4 +1534,5 @@ a { color: inherit; }
   .cv-mus-filt:has(.cv-f-tiny) { padding: 6px 11px; font-size: 12px; }
   /* the eye is drawn, not typed: it sits as a block and the pill loses the text-side padding */
   .cv-mus-filt:has(.cv-eye) { padding: 4px 9px; }
+  .cv-mus-filt:has(.cv-thumb) { padding: 4px 9px; }
 }
