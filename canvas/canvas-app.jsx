@@ -1984,13 +1984,21 @@ function Wall({ go, styleIds }) {
           title="only works with a study tour — a walked close reading of the surface">
           <span className="cv-f-full">⤢ tour</span><span className="cv-f-tiny">⤢</span>
         </button>
-        <select value={sort === "colour" ? "hang" : sort} onChange={unhang(e => setSort(e.target.value))}>
+        {/* THE BOX NAMES THE ARRANGEMENT THAT IS ACTUALLY LIVE (Fuad 2026-09-14: "at times it
+            doesn't fire"). It used to render value={sort === "colour" ? "hang" : sort}, so while a
+            colour swatch was lit the box read "salon rhythm" with sort secretly "colour" — and
+            choosing "salon rhythm" then changed NO dom value, fired no change event, and did
+            nothing at all. The only way out of colour mode was clicking the lit swatch again.
+            Colour stays swatch-driven and out of the list when it is not running; it only appears
+            as an option while it IS running, which makes every pick a real change. */}
+        <select value={sort} onChange={unhang(e => setSort(e.target.value))}>
           {/* value="hang" stays unchanged — the default is omitted from permalinks and old links must
               keep working; only the display label was updated to name what the arrangement actually is
               (Fuad approved the trio 2026-08-27/28). */}
           <option value="hang">salon rhythm</option>
           <option value="affinity">by affinity</option>
           <option value="tierhue">tier + hue</option>
+          {sort === "colour" && <option value="colour">by colour</option>}
         </select>
         {/* RESHUFFLE (Fuad approved seeded shuffle, 2026-08-27). Only meaningful for the salon hang —
             the affinity, tierhue, and (hidden) colour sorts are fully determined, so the ↻ appears
@@ -1999,10 +2007,17 @@ function Wall({ go, styleIds }) {
             Each click bumps the seed, re-casting the passages between anchors deterministically; the
             seed rides along in the permalink. There is no reset button — the ↻ cycles forward and a
             fresh wall / cleared permalink starts back at 0. */}
-        {sort === "hang" && (
-          <button className="cv-reshuffle" onClick={unhang(() => setShuffleSeed(s => s + 1))}
-            title="reshuffle the hang — a fresh salon arrangement of the same works">↻</button>
-        )}
+        {/* ALWAYS RENDERED, hidden when it does not apply (Fuad 2026-09-14: the sort control "looks
+            almost like clicking it fires it repeatedly ... sometimes it doesn't fire the dropdown
+            and ... it does flicker a bit"). Mounting and unmounting this button changed the width of
+            a WRAPPING flex row, so every sort change moved the wrap points and the row's height
+            underneath the cursor — which is what reads as flicker, and what can close or swallow a
+            native select popup mid-click. Reserving the space costs one hidden button and makes the
+            row geometry constant across all four sorts. */}
+        <button className="cv-reshuffle" data-idle={sort !== "hang"} aria-hidden={sort !== "hang"}
+          tabIndex={sort === "hang" ? 0 : -1}
+          onClick={unhang(() => { if (sort === "hang") setShuffleSeed(s => s + 1); })}
+          title="reshuffle the hang — a fresh salon arrangement of the same works">↻</button>
         {/* COLOUR SWATCHES, always present (Fuad 2026-08-20). First it was a mode, then a dropdown
             option, then a toggle that revealed them — each step still asked you to turn colour ON
             before you could use it. Now the swatches simply sit in the row: click one and the wall
