@@ -652,12 +652,22 @@ whether to continue at all is an open question — see the bottom of this sectio
 **The instruction, as it now stands (Fuad, 2026-09-13):** *encapsulate the thesis of the song into
 2 to 3 sentences; avoid doubling up what is written in Meaning and Device.*
 
-That second clause is the day's hardest-won rule. The first 29 were written with `means` as the
-thesis anchor and `built` as the device the second sentence spends itself on, which produced nubs
-that restated both rows almost verbatim on the same screen — Kerosene's reproduced them nearly word
-for word. Six were rewritten to draw their material from parts of the read those rows leave
-untouched; measured word overlap with `means`+`built` fell from 41–73% to 0–5% while overlap with
-the read itself held at 55–81%, which is the shape to aim for.
+That second clause is not yet satisfied by anything shipped. The first 29 were written with `means`
+as the thesis anchor and `built` as the device the second sentence spends itself on, which produced
+nubs that restate both rows almost verbatim on the same screen — Kerosene's reproduces them nearly
+word for word, Wolf Moon's is the two stitched together. Six of the 29 double up this way: Rosenrot
+73%, Wolf Moon 62%, Kerosene 46%, 2-17 43%, Nemesis 41%, In the Fade 41% measured word overlap.
+
+**An attempt to fix them was written and REJECTED on reading (Fuad, same day), and the originals
+stand.** The rewrites did what the instruction asked on the metric — overlap with `means`+`built`
+fell to 0–5% while overlap with the read held at 55–81% — and were worse to read. Avoiding the
+Meaning row pushed the thesis out of the opening sentence and left the craft in its place ("an
+insurgency assembled by accumulation", "a suicide note that declines to argue with itself"), and one
+of them had to break the name rule to find material the rows had not already taken. The lesson to
+carry, not the drafts: **on a song whose read has one clear claim and one clear device, `means` and
+`built` may simply have taken both, and there may be no third thing for a nub to say.** That is
+evidence about where the nub earns its place, and it belongs with the open question below rather
+than being drafted around.
 
 ### What was measured rather than asserted
 
@@ -721,8 +731,10 @@ the source of truth for every census and every draft.
 29 of 4,823 reads carry a nub — **0.6%**. Before any of the remaining 4,794 are written:
 
 1. **Is the nub worth it at all, given Meaning and Device already exist?** Measured lexical reuse
-   was 31% and neither contains the other, so they are not duplicates — but the honest difference is
-   register (a paragraph you read vs. two keyed fragments you scan), not information. This is the
+   across the 29 is 31% and neither contains the other, so they are not duplicates in general — but
+   on the six named above the rows had taken both the claim and the device, and the attempt to write
+   around them produced worse prose (see the rejected rewrite above). The honest difference is
+   register — a paragraph you read vs. two keyed fragments you scan — not information. This is the
    open question and it is Fuad's.
 2. **The 708 short reads.** 15% of reads are under 110 words, where a nub compresses only ~1.8× and
    the Interpretation expansion reveals barely thirty words more. Those may be better left with the
