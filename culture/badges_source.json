@@ -34,6 +34,7 @@
  ],
  "atlanta": [
   "absurdist",
+  "cerebral",
   "funny",
   "satire",
   "social-xray"
@@ -68,9 +69,10 @@
  ],
  "black-mirror": [
   "ahead",
+  "cognitive",
+  "haunting",
   "horrifying",
-  "social-xray",
-  "haunting"
+  "social-xray"
  ],
  "blade-runner-2049": [
   "impact",
@@ -154,7 +156,6 @@
   "gentle"
  ],
  "escape-cinema": [
-  "formal-exec",
   "funny",
   "satire"
  ],
@@ -244,6 +245,9 @@
  ],
  "ico": [
   "devastating"
+ ],
+ "ikiru": [
+  "formal-exec"
  ],
  "illustrated-man": [
   "ahead",
@@ -503,6 +507,9 @@
   "bittersweet",
   "gem"
  ],
+ "in-treatment": [
+  "formal-exec"
+ ],
  "invincible": [
   "devastating",
   "impact"
@@ -519,7 +526,11 @@
   "cerebral"
  ],
  "kite": [
-  "gem"
+  "gem",
+  "style"
+ ],
+ "kiwi": [
+  "formal-exec"
  ],
  "la-haine": [
   "social-xray"
@@ -629,8 +640,7 @@
  ],
  "paradyzja": [
   "ahead",
-  "cerebral",
-  "worldbuilding"
+  "cerebral"
  ],
  "paranoia-agent": [
   "horrifying"
@@ -758,7 +768,7 @@
  ],
  "steins-gate": [
   "devastating",
-  "worldbuilding"
+  "writing"
  ],
  "subnautica": [
   "worldbuilding"
@@ -867,6 +877,9 @@
  ],
  "waltz-bashir": [
   "cerebral"
+ ],
+ "watchmen": [
+  "mindbending"
  ],
  "watership-down": [
   "devastating",
@@ -1614,12 +1627,16 @@
   "cognitive",
   "atmosphere"
  ],
+ "wolf-among-us": [
+  "writing"
+ ],
  "wolfs-rain": [
   "atmosphere",
   "devastating",
   "score"
  ],
  "woman-under": [
+  "formal-exec",
   "horrifying"
  ],
  "wonder-egg": [
@@ -1634,14 +1651,5 @@
  "your-name": [
   "bittersweet",
   "score"
- ],
- "in-treatment": [
-  "formal-exec"
- ],
- "ikiru": [
-  "formal-exec"
- ],
- "wolf-among-us": [
-  "writing"
  ]
 }

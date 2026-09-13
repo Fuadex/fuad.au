@@ -38,6 +38,7 @@ window.CULTURE_BADGES = {
  ],
  "atlanta": [
   "absurdist",
+  "cerebral",
   "funny",
   "satire",
   "social-xray"
@@ -72,9 +73,10 @@ window.CULTURE_BADGES = {
  ],
  "black-mirror": [
   "ahead",
+  "cognitive",
+  "haunting",
   "horrifying",
-  "social-xray",
-  "haunting"
+  "social-xray"
  ],
  "blade-runner-2049": [
   "impact",
@@ -158,7 +160,6 @@ window.CULTURE_BADGES = {
   "gentle"
  ],
  "escape-cinema": [
-  "formal-exec",
   "funny",
   "satire"
  ],
@@ -529,7 +530,11 @@ window.CULTURE_BADGES = {
   "cerebral"
  ],
  "kite": [
-  "gem"
+  "gem",
+  "style"
+ ],
+ "kiwi": [
+  "formal-exec"
  ],
  "la-haine": [
   "social-xray"
@@ -639,8 +644,7 @@ window.CULTURE_BADGES = {
  ],
  "paradyzja": [
   "ahead",
-  "cerebral",
-  "worldbuilding"
+  "cerebral"
  ],
  "paranoia-agent": [
   "horrifying"
@@ -768,7 +772,7 @@ window.CULTURE_BADGES = {
  ],
  "steins-gate": [
   "devastating",
-  "worldbuilding"
+  "writing"
  ],
  "subnautica": [
   "worldbuilding"
@@ -877,6 +881,9 @@ window.CULTURE_BADGES = {
  ],
  "waltz-bashir": [
   "cerebral"
+ ],
+ "watchmen": [
+  "mindbending"
  ],
  "watership-down": [
   "devastating",
@@ -1633,6 +1640,7 @@ window.CULTURE_BADGES = {
   "score"
  ],
  "woman-under": [
+  "formal-exec",
   "horrifying"
  ],
  "wonder-egg": [
