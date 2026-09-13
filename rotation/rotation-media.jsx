@@ -1111,83 +1111,84 @@ function similarTo(id, K) {
   return picked;
 }
 // ——— SAME THEMES (Fuad 2026-09-14: "introduce another 3 songs that have similar themes, can we do
-// this cheap and dynamic?"). Cheap because nothing new ships: ROTATION_TRACKTHEMES is already on the
-// song page for the themes chips (the lazy tag TrackView pulls), and it carries the WHOLE library —
-// 25,530 tracks as [[themeIdx, score 0-100], …top 3] over one 18-theme vocabulary. So this is a
-// cosine over sparse 18-dim vectors built once and reused, not a fetch and not a build artifact.
+// this cheap and dynamic?"). Deliberately a DIFFERENT question from similarTo() above, which gates on
+// genre and measures audio distance: two songs can sit far apart in sound and be about the same
+// thing. The picks exclude whatever `Similar` already listed, so the second list is never a repeat.
 //
-// Deliberately a DIFFERENT question from similarTo() above, which gates on genre and measures audio
-// distance. Two songs can sit far apart in sound and be about the same thing; that is the whole
-// point of showing both, and why the theme picks exclude whatever `Similar` already listed.
+// IT MATCHES ON ROTATION_FILTER, NOT ROTATION_TRACKTHEMES. The first version used genius-themes (the
+// 18-bucket EMBEDDING layer) and was wrong — Fuad: "the 3 songs proposed carry a different set of
+// themes which essentially makes it incorrect". The chips this page renders prefer the REASONED
+// themes off the fable read and fall back to embeddings; matching on embeddings alone meant that on
+// any track with a read (~4,800 of them) the chips said one thing and this list matched another.
+// filter-index is the merged vocabulary that already resolves exactly that precedence: 28 canonical
+// buckets, REASONED themes winning where present and embeddings filling the rest, one bitmask per
+// track. So the list now matches on the same themes the page is showing.
+const themePop = (m) => { let n = 0; while (m) { m &= m - 1; n++; } return n; };
 let THEME_IX = null;
 function themeIndex() {
   if (THEME_IX) return THEME_IX;
-  const T = window.ROTATION_TRACKTHEMES;
-  if (!T || !T._themes) return null;   // lazy file not in yet — do NOT cache the miss, it lands later
-  const keys = [], vec = [];
-  const df = new Array(T._themes.length).fill(0);
-  for (const k in T) {
-    if (k === "_themes") continue;
-    const v = T[k];
-    if (!Array.isArray(v) || !v.length) continue;
-    keys.push(k); vec.push(v);
-    for (const p of v) df[p[0]]++;
+  const F = window.ROTATION_FILTER;
+  if (!F || !F.themes || !F.t) return null;   // lazy file not in yet — do NOT cache the miss
+  const names = F.themes, keys = [], mask = [];
+  const df = new Array(names.length).fill(0);
+  for (const k in F.t) {
+    const m = F.t[k][0];
+    if (!m) continue;                          // 19k of 45k tracks carry no theme at all
+    keys.push(k); mask.push(m);
+    for (let b = 0; b < names.length; b++) if (m & (1 << b)) df[b]++;
   }
-  // IDF. Measured on the real store: "madness & the mind" sits on a huge share of the library and
-  // carries almost no signal, "politics & society" is rare and carries a lot (0.70 … 3.82).
   const N = keys.length;
-  THEME_IX = { names: T._themes, keys, vec, idf: df.map(d => Math.log(N / Math.max(1, d))) };
+  THEME_IX = { names, keys, mask, idf: df.map(d => Math.log(N / Math.max(1, d))) };
   return THEME_IX;
 }
 const themeTitleKey = (s) => s.replace(/[^a-z0-9]+/g, "");
 // K picks, at most ONE per artist (three slots — a second track by the same act wastes one), and
-// never a key already shown by `Similar`. Returns [] when the query track has no themed row, which
+// never a key already shown by `Similar`. Returns [] when the query track carries no themes, which
 // is the honest answer rather than a filled list of weak matches.
 //
-// SCORED BY WEIGHTED OVERLAP, NOT COSINE. A cosine was tried first and was useless: with an 18-theme
-// vocabulary and a top-3 per track, thousands of tracks carry the same triple in the same
-// proportions, so nearly every candidate scored 1.000 and the tie-break fell to index order —
-// Eminem's "My Name Is" came back with Skrillex and The Police. Dividing by the candidate's norm
-// throws away the very thing worth ranking on. The raw IDF-weighted overlap keeps it, so a song that
-// is STRONGLY about the shared theme beats one that merely leans that way.
+// Ranked by IDF-WEIGHTED JACCARD over the union, exact theme-set matches first. The weighting
+// matters: a bucket carried by a huge share of the library says almost nothing, a rare one says a
+// lot. The union in the denominator stops a track with four themes from outranking a tight
+// three-for-three match just by overlapping more.
 function themeKin(id, K, exclude) {
   const ix = themeIndex(); if (!ix) return [];
-  const T = window.ROTATION_TRACKTHEMES;
-  const q = T[id]; if (!Array.isArray(q) || !q.length) return [];
+  const row = window.ROTATION_FILTER.t[id];
+  const qm = row ? row[0] : 0;
+  if (!qm) return [];
   const qArt = id.slice(0, id.indexOf("~"));
   const qTitle = themeTitleKey(id.slice(id.indexOf("~") + 1));
-  const qs = new Map();
-  for (const [i, s] of q) qs.set(i, s);
-  // one theme in common is a coincidence; two is a kinship. Only fall back to one when the query
+  // one theme in common is a coincidence; two is a kinship. Fall back to one only when the query
   // track itself carries only one.
-  const needShared = qs.size >= 2 ? 2 : 1;
+  const need = themePop(qm) >= 2 ? 2 : 1;
+  let qw = 0;
+  for (let b = 0; b < ix.names.length; b++) if (qm & (1 << b)) qw += ix.idf[b];
   const res = [];
-  for (let n = 0; n < ix.keys.length; n++) {
-    const k = ix.keys[n];
+  for (let i = 0; i < ix.keys.length; i++) {
+    const k = ix.keys[i];
     if (k === id || (exclude && exclude.has(k))) continue;
     if (k.slice(0, k.indexOf("~")) === qArt) continue;
-    let sc = 0, hits = 0, top = -1, topW = 0;
-    for (const [i, s] of ix.vec[n]) {
-      const w = qs.get(i); if (!w) continue;
-      hits++;
-      const c = w * s * ix.idf[i]; sc += c;
-      if (c > topW) { topW = c; top = i; }
+    const cm = ix.mask[i], sh = qm & cm;
+    if (!sh || themePop(sh) < need) continue;
+    let w = 0, uw = qw;
+    for (let b = 0; b < ix.names.length; b++) {
+      const bit = 1 << b;
+      if (sh & bit) w += ix.idf[b];
+      else if (cm & bit) uw += ix.idf[b];
     }
-    if (hits < needShared || !sc) continue;
-    res.push([sc, k, top]);
+    res.push([cm === qm ? 1 : 0, uw ? w / uw : 0, w, k, sh]);
   }
-  res.sort((a, b) => b[0] - a[0]);
+  res.sort((a, b) => b[0] - a[0] || b[1] - a[1] || b[2] - a[2]);
   // dedupe on TITLE as well as artist: folded twins like novelists / novelists-fr are the same song
   // under two artist spellings, and the per-artist cap cannot see that.
   const seenA = new Set(), seenT = new Set(), out = [];
   const disp = (() => { const s = simIndex(); return s ? s.disp : null; })();
-  for (const [score, k, top] of res) {
-    const a = k.slice(0, k.indexOf("~"));
-    const t = themeTitleKey(k.slice(k.indexOf("~") + 1));
+  for (const r of res) {
+    const k = r[3], a = k.slice(0, k.indexOf("~")), t = themeTitleKey(k.slice(k.indexOf("~") + 1));
     if (seenA.has(a) || seenT.has(t) || t === qTitle) continue;
     seenA.add(a); seenT.add(t);
     const nm = disp ? disp.get(k) : null;
-    out.push({ key: k, artist: a, score, shared: ix.names[top] || null,
+    out.push({ key: k, artist: a, exact: !!r[0],
+      shared: ix.names.filter((_, b) => r[4] & (1 << b)),
       title: nm ? nm.t : null, artistName: nm ? nm.a : null });
     if (out.length >= K) break;
   }
@@ -1509,6 +1510,15 @@ function TrackView({ id, go }) {
     const on = () => setThemesReady(true);
     s.addEventListener("load", on);
     return () => s.removeEventListener("load", on);
+  }, []);
+  // filter-index — the MERGED 28-bucket theme masks (reasoned themes winning over embeddings) that
+  // the "Same themes" list below matches on. Explore already pulls this file through the same
+  // id-keyed loader, so arriving from there costs nothing; arriving cold it lands after paint and
+  // the section appears when it does. Declared here with the other hooks, above every early return.
+  const [filtReady, setFiltReady] = React.useState(!!window.ROTATION_FILTER);
+  React.useEffect(() => {
+    if (window.ROTATION_FILTER) { if (!filtReady) setFiltReady(true); return; }
+    if (window.loadScript) window.loadScript("filter-index.js", "rotation-filter-js", () => setFiltReady(true));
   }, []);
   // THEMES: reasoned first, embeddings as the fallback (Fuad 2026-09-13). The fable read wins
   // wherever one exists — it is a close reading of the words. Where none does, the lyric-embedding
@@ -1832,6 +1842,11 @@ function TrackView({ id, go }) {
         // second list is always three songs you have not already been offered on this page.
         const kin = themeKin(id, 3, new Set(sim.map(s => s.key)));
         if (!sim.length && !kin.length) return null;
+        // the union of what the three picks actually share with this song — never a theme the query
+        // does not carry, because themeKin only ever reports bits of the query's own mask
+        const kinThemes = kin.length
+          ? Array.from(new Set([].concat.apply([], kin.map(k => k.shared || [])))).slice(0, 3)
+          : [];
         // a track with no media-index row keeps its slug rather than rendering blank
         const slugOf = (k) => { const i = k.indexOf("~"); return { a: k.slice(0, i), t: k.slice(i + 1) }; };
         const Row = (s, i) => {
@@ -1839,8 +1854,11 @@ function TrackView({ id, go }) {
           const rec = (R.expById && R.expById[s.artist]) || (R.byId && R.byId[s.artist]) || null;
           const tTitle = s.title || parts.t;
           const tArtist = (rec && rec.name) || s.artistName || parts.a;
+          // a theme pick says WHICH themes it shares on hover, so the claim is checkable against
+          // the chips above rather than asserted
+          const why = s.shared && s.shared.length ? "\nshares " + s.shared.join(" \u00b7 ") : "";
           return (
-            <div key={s.key + i} className="r-track-row" onClick={() => go("track", s.key)} title={tTitle + " \u2014 " + tArtist + " \u2192"}
+            <div key={s.key + i} className="r-track-row" onClick={() => go("track", s.key)} title={tTitle + " \u2014 " + tArtist + why + " \u2192"}
               style={{ display: "grid", gridTemplateColumns: "minmax(0,1fr) 96px", gap: 10, alignItems: "center", padding: "4px 4px", cursor: "pointer", borderRadius: 4 }}>
               <span style={{ fontSize: 13, minWidth: 0, display: "flex", alignItems: "center", gap: 6, overflow: "hidden", whiteSpace: "nowrap" }}>
                 <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>{tTitle}</span>
@@ -1863,7 +1881,10 @@ function TrackView({ id, go }) {
               <div style={{ marginTop: 12, borderTop: "1px solid var(--rule)", paddingTop: 11 }}>
                 <div className="r-card-h" style={{ padding: 0, marginBottom: 6 }}>
                   <span className="lbl"><b>Same themes</b></span>
-                  <span className="meta">{kin[0].shared ? "sharing " + kin[0].shared : "by what they are about"}</span></div>
+                  {/* name the themes being matched on. They are the query's OWN buckets, so this
+                      line can be checked against the chips in "Where it sits" — which is exactly
+                      what went wrong when this matched the embedding layer instead. */}
+                  <span className="meta">{kinThemes.length ? kinThemes.join(" · ") : "by what they are about"}</span></div>
                 <div style={{ display: "grid", gap: 1 }}>{kin.map(Row)}</div>
               </div>
             )}
