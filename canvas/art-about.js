@@ -4806,4 +4806,34 @@ by: "Opus 4.8" },
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
+ "johan-jongkind-clair-de-lune-a-overschie-environs-de-rotterd": {
+  "about": "Jongkind signed this canvas 1855 — a year he spent in Paris until November — yet the museum files it among \"the series of views of Overschie created during this Dutch stay.\" No institution states where he painted it.",
+  "by": "Opus 5",
+  "deep": "Paint is spent as unequally as light here, and that inequality is the argument. One passage is permitted to be an object: the disc in the sky, stirred opaque and rimmed, covering its ground where every other light lets the weave or the ochre read through. The rest is withheld — a boat given one lit line and nothing inside it, two women fused into a single skirt, a hull losing its edge in the water it floats on. Two reflections lie inches apart and agree about nothing: one scrubbed formless, the other an unbroken wedge. They become one night only at distance, which is where the picture concedes the effect was assembled, not observed.",
+  "deepBy": "Opus 5"
+ },
+ "albert-chmielowski-opuszczona-plebania": {
+  "about": "A year into the Franciscan habit, the painter was already Brother Albert when he made this in 1888. He signed it with the name he had before, Adam Chmielowski, and sold it under that name too.",
+  "by": "Opus 5",
+  "deep": "The centre goes to a half-stripped tree, and the eye goes first to a black figure carrying firewood on the pale path; the presbytery that gives the picture its name is off to the right, the church tower further still. Ordinary labour is put in front of the institution, and the institution is what softens — the eave dissolving into the wall, the garden edgeless, one clean roofline holding the building up. The face is refused outright: an olive oval with a single ochre patch, no features drawn. Everything is withheld except attention to small things — the stick-ends, the leaves in the air, the few touches of vermilion set down where the name is written.",
+  "deepBy": "Opus 5"
+ },
+ "claude-monet-gare-saint-lazare-monet-series": {
+  "about": "Monet worked the terminus into twelve canvases in 1877, since dispersed as far as London, Chicago, Hannover and Cambridge, Massachusetts. The exhibition catalogue that spring listed this canvas as “Vue intérieure de la gare St-Lazare.”",
+  "by": "Opus 5",
+  "deep": "Everything here is calibrated to a viewing distance. Close up, the city beyond the shed mouth is a scatter of unblended touches, the funnel a film of dark with the pale ground breaking through it, the near rail a wobbling stroke dragged over dry impasto. Walk back and they resolve into housefronts, an engine, a floor with depth. The method suits the subject precisely: a station is a place seen in passing by people who are not staying, and the painting gives it exactly the description a glance recovers. The limit shows at left, where the biggest dark shape on the canvas refuses to resolve at any distance, and so goes unnamed.",
+  "deepBy": "Opus 5"
+ },
+ "edgar-degas-untitled-2": {
+  "about": "Dated anywhere from 1886 to 1893, this canvas never left Degas's hands in his lifetime: it sold as lot 72 in the 1918 atelier sale, after his death. Its catalogue neighbour, Lemoisne 1013, is in New York.",
+  "by": "Opus 5",
+  "deep": "Every strong thing in this picture lands where nobody is looking. The most saturated colour is a fragment of bodice glimpsed between two bodies; the brightest light falls on a back turned away, whose edge simply gives out into hair. That indifference is a method rather than a mood. The figures attend to their costumes, and the paint attends to almost nothing: a hand is a comb of marks and stops there, the blue mass is a wash over warm ground rescued by a single wandering line, and the one straight element resolves, close to, into a brushed band of tone. Drawing and withheld attention hold this together; no weight of paint does.",
+  "deepBy": "Opus 5"
+ },
+ "j-m-w-turner-snow-storm-steam-boat-off-a-harbour-s-mouth": {
+  "about": "Blackwood’s, July 1842, on Turner’s claim to have been in the storm: “he must have been very nearly lost then, and quite lost afterwards.” The Literary Gazette: “Neither by land or water was such a scene ever witnessed.”",
+  "by": "Opus 5",
+  "deep": "The design turns everything toward one place — the pale masses, the brown band, the climbing trough — and what waits there, inside the one patch of clean light, is the thing hardest to make out. The withholding is the point, not a failure of finish: the eye is aimed at what the painter refused to settle. A title that swore the author had been there does not show what he saw; it puts the viewer where he says he stood, with no horizon, no edge to trust, and a vessel that comes down to one line’s worth of belief. The picture does not report the storm. It reproduces the difficulty of seeing anything in one.",
+  "deepBy": "Opus 5"
+ }
 };

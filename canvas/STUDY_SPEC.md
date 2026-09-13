@@ -2336,3 +2336,61 @@ the scratch-path rule (every temp file carries its work id). None of these is a 
 - A work with a **broken qid shows no image on the site** — worth periodic qid audits
   (P31/P18/P170). False positives: pastels/sculptures/murals (P31 ≠ "painting") and
   intentional `met-NNNNN` accession pseudo-ids.
+
+## Wave 11 lessons (2026-09-14) — three that must outlive the workshop
+
+The wave-11 workshop is a temp directory and will vanish. These three are durable and cost real work
+to learn, so they live here.
+
+### L1. Test the RENDITION THE SITE SERVES, not a downscale of the master.
+Defect 25 ended with "state the RESOLUTION at which a plate defect is visible". That is necessary and
+**not sufficient — the DOWNSCALER changes the answer too, by 3-4x.**
+
+The Turner corner artifact was ruled invisible to viewers, then crop QC reported it visible at 960px,
+then a re-measurement reproduced crop QC's figure exactly — and the original ruling still turned out
+to be right. Canvas serves Wikimedia's own renditions (`Special:FilePath/...?width=900` for the card,
+`?width=480` for the thumb). Same file, same mask, same crop, same width, two scalers:
+
+| 960px source | strict blue px |
+|---|---|
+| Wikimedia rendition (what a viewer gets) | **0** |
+| PIL LANCZOS downscale of the master | 14 |
+
+At 1920 it is 29 against 96. A locally resampled master is evidence about your resampler, not about
+the site. **Fetch the serving URL.**
+
+Corollary, and the sharper half of the lesson: the standing failure mode in this project is
+escalating an agent's flag before verifying it. This is the mirror image — the flag WAS verified, the
+number reproduced, and it was still wrong, because the verification inherited the agent's APPARATUS
+instead of testing its CLAIM. Reproducing a measurement is not verifying it. Ask what the real
+question is (here: which file does the browser receive), not whether the number comes out the same.
+
+### L2. A reviewer may not report word counts from its own tokeniser.
+`bandgate.js` is the designated counter and its header already records two prior incidents. Wave 11
+produced a third: a lens sweep filed a REPAIR against Turner's `context` at "172, over the 170 cap",
+and proposed cuts. Under `bandgate` it is **167 — three words inside the cap.** The gap was entirely
+this lens's four hyphenated compounds (steam-boat, Art-Union, snow-storm, sea-motion), which a `\w+`
+tokeniser splits in two. Had it been applied, a lens in band would have been trimmed — exactly the
+false work `bandgate`'s header was written to prevent.
+
+**Rule for every review brief: either run `bandgate.js`, or report "count not verified" and let the
+orchestrator run it.** The reviewer in question flagged its own uncertainty and said the counter
+needed settling first, which is the only reason this was caught. Brief reviewers to do that.
+
+### L3. The `refs` contract belongs in the brief, stated as the ANCHOR rule.
+All five wave-11 drafters emitted `refs: [{in, id, title}]` because `BRIEF_common.md` specified it.
+The store's shape is `refs: [{id, text}]`, and `text` is not a label — **it is the anchor phrase that
+must occur EXACTLY ONCE in the `beside` prose**, which is how the companion link is placed. Two of
+five besides therefore could not be linked: Turner's anchor carried a leading "The" its sentence did
+not, and Monet's beside never named its companion at all (four mentions of "Manet", zero of *The
+Railway*), which is a prose repair and not a key fix.
+
+Compounding it, `check-besides.js` could not run on the wave at all — it read one `beside_<id>.json`
+per work while wave 11 carried the beside inline in `out_tour_<id>.json`. It now resolves three input
+shapes and prints which one it read. **A gate that cannot find its input must say so, never pass** —
+this is the second time that script has failed open, and the first time was silent.
+
+Also unrun this wave: the beside candidate-pool stage. No `beside_candidates.json` was built and no
+builder for one exists in the repo, so the drafters chose companions freely. Grounding was verified
+by hand against the store instead (all five companions in canon, all shipping an Info). Building a
+pool after drafting is theatre — pools constrain the CHOICE, so they belong in the build stage.

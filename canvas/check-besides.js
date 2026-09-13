@@ -82,7 +82,17 @@ for (const id of ids) {
   const b = loadBeside(id);
   // An omission is a recorded DECISION, not a missing file — skip it, but refuse a silent one.
   if (!b.beside) { console.log('== ' + id + '  OMITTED' + (b.notes ? ': ' + String(b.notes).slice(0, 120) : '  WARN: NO REASON RECORDED')); console.log(''); continue; }
-  const wc = b.beside.trim().split(/\s+/).length;
+  // COUNT THE WAY bandgate.js COUNTS. A naive whitespace split treats a spaced em dash as a word,
+  // so this gate reported a wave-11 beside at 121 against its 120 cap when the governing counter
+  // put it at 119 — the third counter disagreement this project has paid for, and the first inside
+  // a gate. One counter, from one place (bandgate.js header), or the gate produces false work.
+  const wc = String(b.beside || '')
+    .toLowerCase()
+    .replace(/[–—]/g, ' ')            // em/en dashes separate, they are not words
+    .replace(/[^a-z0-9\s'’-]/g, ' ')       // keep the hyphen: "steam-boat" is ONE word
+    .split(/\s+/)
+    .map((w) => w.replace(/^['’-]+|['’-]+$/g, ''))
+    .filter(Boolean).length;
   // Two file shapes exist and both are valid. Waves 1-6 wrote scalar `companion` + `refText`;
   // from wave 10 the file carries `refs: [{id, text}]` — which is also the STORE's shape — and
   // `companion` became an object. Reading only the old shape does not fail loudly: `b.refText`
