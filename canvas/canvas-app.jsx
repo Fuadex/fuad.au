@@ -1886,8 +1886,12 @@ function Wall({ go, styleIds }) {
           <span className="cv-f-tiny">⌂</span><span className="cv-f-full"><span>⌂</span><span>today's wall</span></span>
         </button>
         <span className="cv-filt-div" aria-hidden="true" />
-        {/* "all" clears both axes — a reset, not a third state you can be in */}
-        <button data-on={!marks.size && !status.size}
+        {/* "all" clears both axes — a reset, not a third state you can be in.
+            NOT lit while today's hang is on (Fuad 2026-09-13). Its old test was only "no marks and
+            no status", which is true on a fresh load — so landing on today's wall drew `all` as
+            active even though the wall is showing the day's rotation, not everything. The hang
+            REPLACES the selection rather than narrowing it, so the two can never both be true. */}
+        <button data-on={!hang && !marks.size && !status.size}
           onClick={unhang(() => { setMarks(new Set()); setStatus(new Set()); })}>all</button>
         {MARK_FILTERS.map(([v, label, tiny]) => (
           <button key={v} data-on={marks.has(v)} onClick={() => toggleMark(v)} title={label}>
