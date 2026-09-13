@@ -2066,6 +2066,12 @@ function ReaderQuote({ item }) {
 }
 
 // ─────────── Reader Modal ───────────
+// DIALOGUE READS — off (Fuad 2026-09-14). The NRC sentiment strip in the Reader: a 0-100 bar, two
+// emotion words, word count, words/min and unique-word share, all derived from the transcript.
+// Turned OFF rather than deleted: the enrichment behind it is untouched (script_mood.js still
+// ships, enrichExtras still attaches item.scriptMood at ~L1290), so this is one word to reverse and
+// nothing has to be re-derived. Flipping it back to true restores the strip exactly as it was.
+const SHOW_DIALOGUE_READS = false;
 function Reader({ item, onClose, onJump, allItems, otherItems, library, onFilter }) {
   const { ITEMS, MEDIA_SHORT, MEDIA_GLYPH } = window.CULTURE;
   const [on, setOn] = React.useState(false);
@@ -2204,7 +2210,7 @@ function Reader({ item, onClose, onJump, allItems, otherItems, library, onFilter
               </div>
             );
           })()}
-          {item.scriptMood && (() => {
+          {SHOW_DIALOGUE_READS && item.scriptMood && (() => {
             const m = item.scriptMood;
             const col = m.v >= 62 ? 'oklch(0.7 0.15 145)' : m.v <= 42 ? 'oklch(0.64 0.17 25)' : 'oklch(0.72 0.12 85)';
             const wpm = (m.w && item.runtime) ? Math.round(m.w / item.runtime) : null;
