@@ -12,6 +12,126 @@ const hueOfName = (name) => (window.ROTATION.byId[window.ROTATION.slug(name)] ||
   ? window.ROTATION.byId[window.ROTATION.slug(name)].hue
   : hashInt(name, 0) % 360;
 
+
+// ── Who rose, who fell: the artist rows of the slope chart ───────────────────────────────────
+// Fuad 2026-09-14: "I only wanted to transition the artist movements, so their texts and bars
+// moving, the rest of the new on charts, probably just appearing." The module used to remount
+// wholesale on a pair change — one keyed fade over the headline, the caption AND the chart — so
+// nothing could travel: every dot was a brand new node at its new height. The rows now live in
+// their own component, keyed by artist name, which is what lets React hand the same <g> back on
+// the next pair; each artist's two endpoints then ease from where they are to where they belong.
+//
+// Two deliberate limits. An artist that was not on the previous pair's chart is SEEDED at its
+// target, so it appears rather than flying in from an address it never had. And the line weight
+// and opacity read from the TARGET ranks, not the in-flight ones, so a line does not thin and
+// thicken while it swings.
+//
+// The easing is a rAF loop rather than a CSS transition because an SVG <line>'s x1/y1/x2/y2 are
+// plain attributes, not the CSS geometry properties cx/cy/r/x/y — they cannot be transitioned.
+// Fourteen rows re-rendering for about twenty-five frames is cheap. prefers-reduced-motion skips
+// the loop and snaps.
+function SlopeRows({ rows, X_L, X_R, goIf, isClickable }) {
+  const [, bump] = React.useReducer((n) => n + 1, 0);
+  const posRef = React.useRef(new Map());
+  const rafRef = React.useRef(0);
+  const calm = typeof window !== "undefined" && window.matchMedia
+    && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const targets = new Map(rows.map((r) => [r.name, { y1: r.y1, y2: r.y2 }]));
+  for (const [name, t] of targets) if (!posRef.current.has(name)) posRef.current.set(name, { y1: t.y1, y2: t.y2 });
+  for (const name of Array.from(posRef.current.keys())) if (!targets.has(name)) posRef.current.delete(name);
+
+  const sig = rows.map((r) => r.name + ":" + r.y1 + ":" + r.y2).join("|");
+  React.useEffect(() => {
+    if (calm) {
+      for (const [name, t] of targets) posRef.current.set(name, { y1: t.y1, y2: t.y2 });
+      bump();
+      return;
+    }
+    const step = () => {
+      let moving = false;
+      for (const [name, t] of targets) {
+        const p = posRef.current.get(name);
+        if (!p) continue;
+        for (const k of ["y1", "y2"]) {
+          const to = t[k], from = p[k];
+          // an endpoint that gains or loses a year has no path to travel — it cuts
+          if (to === null || from === null) { if (from !== to) { p[k] = to; moving = true; } continue; }
+          const d = to - from;
+          if (Math.abs(d) < 0.25) { p[k] = to; } else { p[k] = from + d * 0.22; moving = true; }
+        }
+      }
+      bump();
+      if (moving) rafRef.current = requestAnimationFrame(step);
+    };
+    rafRef.current = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [sig]);
+
+  const trunc = (n) => (n.length > 18 ? n.slice(0, 17) + "\u2026" : n);
+  return (
+    <>
+      {rows.map((r) => {
+        const p = posRef.current.get(r.name) || { y1: r.y1, y2: r.y2 };
+        const y1 = p.y1, y2 = p.y2;
+        const col = "oklch(0.72 0.14 " + r.hue + ")";
+        const rising = r.y1 !== null && r.y2 !== null && r.y2 < r.y1;
+        const falling = r.y1 !== null && r.y2 !== null && r.y2 > r.y1;
+        const strokeW = rising ? 2.0 : 1.3;
+        const op = rising ? 0.9 : falling ? 0.55 : 0.78;
+        const click = isClickable(r.name);
+        const cur = { cursor: click ? "pointer" : "default" };
+        return (
+          <g key={r.name}>
+            {y1 !== null && y2 !== null && (
+              <line x1={X_L} y1={y1.toFixed(1)} x2={X_R} y2={y2.toFixed(1)}
+                stroke={col} strokeWidth={strokeW} strokeLinecap="round" opacity={op} />
+            )}
+            {/* ghost "new" line from the left edge if only in cur */}
+            {y1 === null && y2 !== null && (
+              <line x1={X_L} y1={y2.toFixed(1)} x2={X_R} y2={y2.toFixed(1)}
+                stroke={col} strokeWidth="1" strokeDasharray="3 3" opacity="0.35" />
+            )}
+            {/* ghost "gone" line to the right edge if only in prev */}
+            {y1 !== null && y2 === null && (
+              <line x1={X_L} y1={y1.toFixed(1)} x2={X_R} y2={y1.toFixed(1)}
+                stroke={col} strokeWidth="1" strokeDasharray="3 3" opacity="0.35" />
+            )}
+            {y1 !== null && (
+              <g style={cur} onClick={() => goIf(r.name)}>
+                <circle cx={X_L} cy={y1.toFixed(1)} r="3.5" fill={col} opacity={op} />
+                <text x={X_L - 8} y={(y1 + 3.8).toFixed(1)} fill={col} fontSize="9.5" opacity={op}
+                  fontFamily="var(--mono)" textAnchor="end">
+                  {trunc(r.name)}
+                  <tspan fill="var(--ink-faint)" fontSize="8.5"> {r.prevP}</tspan>
+                </text>
+              </g>
+            )}
+            {y2 !== null && (
+              <g style={cur} onClick={() => goIf(r.name)}>
+                <circle cx={X_R} cy={y2.toFixed(1)} r="3.5" fill={col} opacity={op} />
+                <text x={X_R + 8} y={(y2 + 3.8).toFixed(1)} fill={col} fontSize="9.5" opacity={op}
+                  fontFamily="var(--mono)" textAnchor="start">
+                  {trunc(r.name)}
+                  <tspan fill="var(--ink-faint)" fontSize="8.5"> {r.curP}</tspan>
+                </text>
+              </g>
+            )}
+            {y1 === null && y2 !== null && (
+              <text x={X_L - 8} y={(y2 + 3.8).toFixed(1)} fill={col} fontSize="8" opacity="0.55"
+                fontFamily="var(--mono)" textAnchor="end" fontStyle="italic">new</text>
+            )}
+            {y1 !== null && y2 === null && (
+              <text x={X_R + 8} y={(y1 + 3.8).toFixed(1)} fill={col} fontSize="8" opacity="0.55"
+                fontFamily="var(--mono)" textAnchor="start" fontStyle="italic">gone</text>
+            )}
+          </g>
+        );
+      })}
+    </>
+  );
+}
+
 // ════════════════════════ STORIES ════════════════════════
 
 // "The songs you own twice" — the cross-library covers graph (mb-covers-story.js, lazy).
@@ -587,8 +707,11 @@ function StoriesView({ t, go, seed }) {
           // SVG layout
           const N = displayed.length;
           const W = 520, PAD_L = 140, PAD_R = 140, PAD_T = 38, PAD_B = 16;
-          const ROW_H = Math.max(22, Math.min(30, (340 - PAD_T - PAD_B) / Math.max(N - 1, 1)));
-          const H = PAD_T + ROW_H * Math.max(N - 1, 1) + PAD_B + 10;
+          // Canvas height is FIXED across pairs (Fuad 2026-09-14). It used to grow and shrink with
+          // the row count, so the whole viewBox jumped underneath the dots the moment they started
+          // travelling. Rows spread across whatever height they are given, so a sparse pair simply
+          // breathes wider instead of shortening the card.
+          const H = 350;
           const X_L = PAD_L - 6, X_R = W - PAD_R + 6;
 
           // y position by rank index within the displayed set
@@ -602,6 +725,13 @@ function StoriesView({ t, go, seed }) {
           const prevCount = prevDisplayed.length, curCount = curDisplayed.length;
 
           const yOf = (posIdx, total) => PAD_T + (total <= 1 ? (H - PAD_T - PAD_B) / 2 : (posIdx / (total - 1)) * (H - PAD_T - PAD_B));
+
+          // geometry resolved here, motion handled in SlopeRows
+          const rowData = displayed.map((r) => ({
+            name: r.name, hue: r.hue, prevP: r.prevP, curP: r.curP,
+            y1: r.prevP > 0 ? yOf(prevPosMap.get(r.name), prevCount) : null,
+            y2: r.curP > 0 ? yOf(curPosMap.get(r.name), curCount) : null,
+          }));
 
           const pairLabel = `'${String(prevYear).slice(2)}→'${String(curYear).slice(2)}`;
 
@@ -636,6 +766,7 @@ function StoriesView({ t, go, seed }) {
                 Each line connects an artist's rank in {prevYear} to their rank in {curYear} — the steeper the cross, the bigger the shift.
                 Artists new to the chart or gone from it anchor at the edge.
               </div>
+              </div>{/* /st-swap — the sentence and the caption swap; the chart below travels */}
               <div className="st-sg-wrap">
                 <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ display: "block", maxWidth: W, margin: "0 auto", overflow: "visible" }}>
                   {/* column year headers */}
@@ -645,73 +776,10 @@ function StoriesView({ t, go, seed }) {
                     textAnchor="start" letterSpacing=".1em">{curYear}</text>
                   {/* center axis */}
                   <line x1={X_L + 2} x2={X_R - 2} y1={PAD_T - 6} y2={PAD_T - 6} stroke="var(--rule)" strokeWidth="1" />
-                  {/* lines + dots per artist */}
-                  {displayed.map(r => {
-                    const hasPrev = r.prevP > 0, hasCur = r.curP > 0;
-                    const prevPos = prevPosMap.get(r.name);
-                    const curPos = curPosMap.get(r.name);
-                    const y1 = hasPrev ? yOf(prevPos, prevCount) : null;
-                    const y2 = hasCur ? yOf(curPos, curCount) : null;
-                    const col = `oklch(0.72 0.14 ${r.hue})`;
-                    // direction: rising = better rank (lower index) in cur; falling = worse
-                    const rising = y1 !== null && y2 !== null && y2 < y1;
-                    const falling = y1 !== null && y2 !== null && y2 > y1;
-                    const strokeW = rising ? 2.0 : 1.3;
-                    const op = rising ? 0.9 : falling ? 0.55 : 0.78;
-                    const truncName = n => n.length > 18 ? n.slice(0, 17) + "…" : n;
-                    const isClick = clickable(resolveId(r.name));
-                    return (
-                      <g key={r.name}>
-                        {y1 !== null && y2 !== null && (
-                          <line x1={X_L} y1={y1.toFixed(1)} x2={X_R} y2={y2.toFixed(1)}
-                            stroke={col} strokeWidth={strokeW} strokeLinecap="round" opacity={op} />
-                        )}
-                        {/* ghost "new" line from left edge if only in cur */}
-                        {!hasPrev && y2 !== null && (
-                          <line x1={X_L} y1={y2.toFixed(1)} x2={X_R} y2={y2.toFixed(1)}
-                            stroke={col} strokeWidth="1" strokeDasharray="3 3" opacity="0.35" />
-                        )}
-                        {/* ghost "gone" line to right edge if only in prev */}
-                        {hasPrev && !hasCur && y1 !== null && (
-                          <line x1={X_L} y1={y1.toFixed(1)} x2={X_R} y2={y1.toFixed(1)}
-                            stroke={col} strokeWidth="1" strokeDasharray="3 3" opacity="0.35" />
-                        )}
-                        {/* left dot + label */}
-                        {y1 !== null && (
-                          <g style={{ cursor: isClick ? "pointer" : "default" }} onClick={() => goIf(r.name)}>
-                            <circle cx={X_L} cy={y1.toFixed(1)} r="3.5" fill={col} opacity={op} />
-                            <text x={X_L - 8} y={(y1 + 3.8).toFixed(1)} fill={col} fontSize="9.5" opacity={op}
-                              fontFamily="var(--mono)" textAnchor="end">
-                              {truncName(r.name)}
-                              <tspan fill="var(--ink-faint)" fontSize="8.5"> {r.prevP}</tspan>
-                            </text>
-                          </g>
-                        )}
-                        {/* right dot + label */}
-                        {y2 !== null && (
-                          <g style={{ cursor: isClick ? "pointer" : "default" }} onClick={() => goIf(r.name)}>
-                            <circle cx={X_R} cy={y2.toFixed(1)} r="3.5" fill={col} opacity={op} />
-                            <text x={X_R + 8} y={(y2 + 3.8).toFixed(1)} fill={col} fontSize="9.5" opacity={op}
-                              fontFamily="var(--mono)" textAnchor="start">
-                              {truncName(r.name)}
-                              <tspan fill="var(--ink-faint)" fontSize="8.5"> {r.curP}</tspan>
-                            </text>
-                          </g>
-                        )}
-                        {/* "new" / "gone" badge */}
-                        {!hasPrev && y2 !== null && (
-                          <text x={X_L - 8} y={(y2 + 3.8).toFixed(1)} fill={col} fontSize="8" opacity="0.55"
-                            fontFamily="var(--mono)" textAnchor="end" fontStyle="italic">new</text>
-                        )}
-                        {hasPrev && !hasCur && y1 !== null && (
-                          <text x={X_R + 8} y={(y1 + 3.8).toFixed(1)} fill={col} fontSize="8" opacity="0.55"
-                            fontFamily="var(--mono)" textAnchor="start" fontStyle="italic">gone</text>
-                        )}
-                      </g>
-                    );
-                  })}
+                  {/* artist rows — own component so each artist keeps its node across a pair change */}
+                  <SlopeRows rows={rowData} X_L={X_L} X_R={X_R} goIf={goIf}
+                    isClickable={(n) => clickable(resolveId(n))} />
                 </svg>
-              </div>
               </div>
             </section>
           );
