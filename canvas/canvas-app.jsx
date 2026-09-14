@@ -4918,8 +4918,20 @@ function MapView({ go }) {
     const ccMap = new Map();
     for (const c of sortedCities) {
       let e = ccMap.get(c.cc);
-      if (!e) { e = { cc: c.cc, name: countryName(c.cc), n: 0, floored: 0, cities: [] }; ccMap.set(c.cc, e); }
+      if (!e) { e = { cc: c.cc, name: countryName(c.cc), n: 0, floored: 0, cities: [], places: [] }; ccMap.set(c.cc, e); }
       e.n += c.n; e.floored += c.floored; e.cities.push(c);
+    }
+    // HAND-AUTHORED PLACES JOIN THEIR COUNTRY (Fuad 2026-09-14). They first rendered as a separate
+    // block below the list, then briefly with their own country headings — which produced "two
+    // polands now, the second is at the bottom of the list", because Poland already had a group up
+    // top. A country is a country: CANVAS_PILGRIMAGE entries belong INSIDE the existing one, beside
+    // its cities, not in a parallel list keyed the same way. They carry no works, so they add
+    // nothing to the counts and cannot reorder anything.
+    for (const pl of (window.CANVAS_PILGRIMAGE || [])) {
+      const cc = String(pl.country || "").toUpperCase();
+      let e = ccMap.get(cc);
+      if (!e) { e = { cc, name: countryName(cc), n: 0, floored: 0, cities: [], places: [] }; ccMap.set(cc, e); }
+      e.places.push(pl);
     }
     // Halo separation and the per-dot free bearing/length solve used to live here (the
     // cityScale halo-shrink and the LEADER LENGTH AND BEARING solve). Both are now folded into
@@ -5990,6 +6002,7 @@ function MapView({ go }) {
                   <span className="cv-pil-citymeta">
                     {co.floored > 0 && <b>★ {co.floored}</b>}
                     {co.n} work{co.n === 1 ? "" : "s"} · {co.cities.length} cit{co.cities.length === 1 ? "y" : "ies"}
+                    {co.places && co.places.length > 0 ? " · " + co.places.length + " place" + (co.places.length === 1 ? "" : "s") : ""}
                   </span>
                   <span className="cv-pil-caret" data-open={cOpen || undefined}>▸</span>
                 </button>
@@ -6017,7 +6030,18 @@ function MapView({ go }) {
                       ))}</Fold>
                     </div>
                   );
-                })}</Fold>
+                })}
+                {/* a PLACE has no works behind it — it is somewhere to go, not a set of pictures to
+                    look at — so it renders as a plain row rather than a collapsible city. */}
+                {(co.places || []).map(pl => (
+                  <div className="cv-pil-place" key={pl.id}>
+                    <div className="cv-pil-placehead">
+                      <span className="cv-pil-placename">{pl.title}</span>
+                      <span className="cv-pil-placecity">{pl.city}</span>
+                    </div>
+                    {pl.note && <div className="cv-pil-placenote">{pl.note}</div>}
+                  </div>
+                ))}</Fold>
               </div>
             );
           })}
@@ -6040,35 +6064,6 @@ function MapView({ go }) {
           <div className="cv-pil-total r-mono">
             {wishCities.reduce((n, c) => n + c.n, 0) + wishUnplaced.length} works you're chasing, across {wishCities.length} cities
           </div>
-          {/* GROUPED BY COUNTRY, like everything above it (Fuad 2026-09-14: "Muzeum Historyczne w
-              Sanoku belongs to Poland"). These hand-authored places already carry a `country`, but
-              they rendered in one flat "Places" block under no country at all — so the one entry
-              that exists read as belonging nowhere, sitting below a list where every other venue is
-              filed under a nation. Same countryName() the country headings above use, so "pl" prints
-              as Poland rather than as a code. Entries with no country keep a plain heading rather
-              than being dropped. */}
-          {(window.CANVAS_PILGRIMAGE || []).length > 0 && (() => {
-            const byCc = new Map();
-            for (const p of (window.CANVAS_PILGRIMAGE || [])) {
-              const cc = (p.country || "").toUpperCase();
-              if (!byCc.has(cc)) byCc.set(cc, []);
-              byCc.get(cc).push(p);
-            }
-            return [...byCc.entries()]
-              .sort((a, b) => (countryName(a[0]) || "").localeCompare(countryName(b[0]) || ""))
-              .map(([cc, list]) => (
-                <React.Fragment key={cc || "_"}>
-                  <div className="cv-mus-country">{cc ? countryName(cc) : "Places"}</div>
-                  {list.map(p => (
-                    <div className="cv-mus-row" key={p.id}>
-                      <span className="cv-mus-name">{p.title}</span>
-                      <span className="cv-mus-city">{p.city}</span>
-                      {p.note && <span className="cv-mus-note">{p.note}</span>}
-                    </div>
-                  ))}
-                </React.Fragment>
-              ));
-          })()}
         </div>
       )}
     </div>

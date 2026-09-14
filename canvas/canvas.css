@@ -777,6 +777,15 @@ a { color: inherit; }
 .cv-pil-cityname { font: 600 15px/1.2 var(--serif); flex: 0 0 auto; }
 .cv-pil-citymeta { font: 500 9.5px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase;
   color: var(--ink-faint); flex: 1 1 auto; display: flex; gap: 10px; align-items: baseline; }
+/* A PLACE sits among the cities of its own country (Fuad 2026-09-14) — hand-authored somewhere to
+   go, with no works behind it, so it takes the city row's type and rhythm but never a caret: there
+   is nothing to unfold. The left rule marks it as a different kind of entry without a second
+   heading, which is what produced two Polands when these had their own country block. */
+.cv-pil-place { padding: 9px 2px 9px 11px; border-left: 2px solid var(--rule); margin: 2px 0 2px 2px; }
+.cv-pil-placehead { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.cv-pil-placename { font: 600 14px/1.25 var(--serif); color: var(--ink); }
+.cv-pil-placecity { font: 500 9.5px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
+.cv-pil-placenote { font: italic 400 12.5px/1.5 var(--serif); color: var(--ink-soft); margin-top: 5px; max-width: 62ch; }
 .cv-pil-citymeta b { color: var(--accent); font-weight: 600; }
 .cv-pil-caret { font-size: 10px; color: var(--ink-faint); flex: 0 0 auto; }
 .cv-pil-cityhead[data-on="true"] .cv-pil-caret { color: var(--accent); }
