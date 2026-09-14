@@ -328,19 +328,32 @@ function StoriesView({ t, go, seed }) {
           return (
             <section className="st-card st-hero">
               <div className="st-label">Blind spots</div>
-              <div className="st-big">
+              <div className="st-big" data-link={clickable(top.name)} onClick={() => goIf(top.name)}>
                 Your favourites keep pointing to <em style={{ color: `oklch(0.78 0.14 ${top.hue})` }}>{top.name}</em> — and you've barely pressed play.
               </div>
               <div className="st-sub">
                 Artists your most-played acts are repeatedly compared to, that you haven't really explored. The most overdue:
               </div>
               <div className="st-ug-cuts">
+                {/* LINKED WHERE A LINK EXISTS (Fuad 2026-09-14: "Blind spots completely are not
+                    hyperlinked"). The whole row was cursor:default, which was over-cautious rather
+                    than wrong: these are artists you have NOT explored, so most have no page —
+                    1 of 6 here. So the row links only when it can, and the VIA names, which are
+                    your most-played acts and always have pages, become links in their own right.
+                    That is the useful jump anyway: it answers "who sent me here?". */}
                 {RC.artists.slice(0, 6).map(r => (
-                  <div key={r.name} className="st-ug-cut" style={{ cursor: "default" }}>
+                  <div key={r.name} className="st-ug-cut" data-link={clickable(r.name)}
+                    onClick={() => goIf(r.name)} style={clickable(r.name) ? undefined : { cursor: "default" }}>
                     <GenCover hue={r.hue} name={r.name} size={40} radius={4} />
                     <div style={{ minWidth: 0 }}>
                       <div className="st-row-name">{r.name}</div>
-                      <div className="st-row-sub">via {r.via.map(v => v.name).join(", ")}{r.listeners ? ` · ${fmtL(r.listeners)}` : ""}</div>
+                      <div className="st-row-sub">via {r.via.map((v, i) => (
+                        <React.Fragment key={v.name}>
+                          {i > 0 ? ", " : ""}
+                          <b className="st-inline-link" data-link={clickable(v.name)}
+                            onClick={(e) => { if (clickable(v.name)) { e.stopPropagation(); goIf(v.name); } }}>{v.name}</b>
+                        </React.Fragment>
+                      ))}{r.listeners ? ` · ${fmtL(r.listeners)}` : ""}</div>
                     </div>
                   </div>
                 ))}
@@ -435,13 +448,6 @@ function StoriesView({ t, go, seed }) {
                 <button onClick={() => setYi(Math.min(realYears.length - 1, yi + 1))} disabled={yi === realYears.length - 1} aria-label="next year">›</button>
               </div>
             </div>
-            {/* KEYED ON THE YEAR (Fuad 2026-09-14: "would be nice if they carried transitions when
-                toggling between years"). React reuses these nodes across a year change, so the
-                numbers and names swapped in one frame with nothing to say a year had passed. Keying
-                the body remounts it, and .st-swap fades the new year in. The HEAD is deliberately
-                outside the key: the arrows and the year itself must not flicker under the cursor
-                that is clicking them. */}
-            <div className="st-swap" key={yr.year}>
             {yr.topArtist && (
               <div className="st-big" data-link={clickable(yr.topArtist.name)} onClick={() => goIf(yr.topArtist.name)}>
                 <em style={{ color: `oklch(0.78 0.14 ${yr.topArtist.hue})` }}>{yr.topArtist.name}</em>'s year.
@@ -452,6 +458,13 @@ function StoriesView({ t, go, seed }) {
               {yr.activeDays} active days · roughly <em>{fmt(yr.hours)} hours</em> of music.
             </div>
 
+            {/* ONLY THE FIGURES MOVE (Fuad 2026-09-14: "I only meant the transitions for stuff that
+                makes sense: numbers, on rotation and new this year - not everything"). The first
+                pass keyed the whole card, so the headline, the caption and the biggest-jump line
+                all re-animated on every arrow press — motion on text that is simply being rewritten.
+                The key now covers the stat row and the two columns beneath it and stops there; the
+                head, the sentence and the jump update in place, silently. */}
+            <div className="st-swap" key={yr.year}>
             <div className="st-yir-stats">
               <div><div className="st-yir-n">{fmt(yr.plays)}</div><div className="st-yir-l">plays</div></div>
               <div><div className="st-yir-n">{fmt(yr.artists)}</div><div className="st-yir-l">artists</div></div>
@@ -508,6 +521,7 @@ function StoriesView({ t, go, seed }) {
                 ))}
               </div>
             </div>
+            </div>
 
             {yr.gainer && yr.gainer.delta > 50 && (
               <div className="st-yir-jump" data-link={clickable(yr.gainer.name)} onClick={() => goIf(yr.gainer.name)}>
@@ -517,7 +531,6 @@ function StoriesView({ t, go, seed }) {
                 <span style={{ color: "var(--ink-soft)" }}> · {yr.gainer.prev} → <em>{yr.gainer.plays}</em> plays (+{yr.gainer.delta} YoY)</span>
               </div>
             )}
-            </div>
           </section>
         )}
 
@@ -1856,6 +1869,21 @@ function StoriesView({ t, go, seed }) {
         .st-mi-soft { color: var(--ink-soft); }
         .st-nr { font-size: 10px; color: var(--ink-faint); text-align: right; }
         .st-tx { font-size: 12.5px; color: var(--ink); }
+        /* HOVER TRANSITIONS, EVERYWHERE A ROW REACTS (Fuad 2026-09-14, reported across several
+           modules: "The songs you own twice hyperlinks don't have hover transitions, same in The
+           ones that ended"). An audit of the feed's hover rules found eight classes that CHANGE on
+           hover — background, border or colour — while their base declared no transition, so each
+           one snapped. .st-row, .st-obs, .st-ug-cut and .st-bridge already had one, which is why
+           some modules felt right and others did not. Declared once here rather than edited into
+           eight separate grid/flex rules. */
+        .st-yir-jump, .st-life-row, .st-gate, .st-incub-row,
+        .st-atlas-row, .st-scene-a, .st-mile, .st-peak {
+          transition: background .16s ease, border-color .16s ease, color .16s ease;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .st-yir-jump, .st-life-row, .st-gate, .st-incub-row,
+          .st-atlas-row, .st-scene-a, .st-mile, .st-peak { transition: none; }
+        }
         .st-label { font-family: var(--mono); font-size: 9px; letter-spacing: .13em; text-transform: uppercase;
           color: var(--accent); margin-bottom: 8px; }
         .st-big { font-family: var(--serif); font-size: clamp(19px, 2.2vw, 26px); line-height: 1.16; letter-spacing: -.015em; }
@@ -1867,7 +1895,19 @@ function StoriesView({ t, go, seed }) {
            despite being the bold in-sentence link used throughout the prose. Everything else already
            had one. The headline underlines its own <em> rather than recolouring, because that word
            carries an inline artist hue that a colour change would fight. */
-        .st-big[data-link="true"]:hover em { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+        /* AN UNDERLINE THAT ACTUALLY TRANSITIONS (Fuad 2026-09-14: "we have Romes in the header but
+           there is no hover transition"). text-decoration cannot be animated — it snaps on and off,
+           which is why the previous pass read as no transition at all. A gradient underline can:
+           background-size wipes from 0 to full width. currentColor means it picks up the artist hue
+           the <em> already carries inline, and :first-of-type keeps it to the NAME in headlines that
+           also emphasise a play count. */
+        .st-big[data-link="true"] em:first-of-type {
+          background-image: linear-gradient(currentColor, currentColor);
+          background-repeat: no-repeat; background-position: 0 100%; background-size: 0% 1px;
+          padding-bottom: 2px; transition: background-size .28s cubic-bezier(.22,.61,.36,1);
+        }
+        .st-big[data-link="true"]:hover em:first-of-type { background-size: 100% 1px; }
+        @media (prefers-reduced-motion: reduce) { .st-big[data-link="true"] em:first-of-type { transition: none; } }
         .st-inline-link[data-link="true"] { cursor: pointer; transition: color .14s; }
         .st-inline-link[data-link="true"]:hover { color: var(--accent); }
         /* a catch-all so a NEW clickable is never silent: lowest specificity and declared first, so
