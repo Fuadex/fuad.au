@@ -632,7 +632,10 @@ function LikedView({ go }) {
   const [restReady, setRestReady] = React.useState(() => !!(window.ROTATION && window.ROTATION._restLoaded));  // deferred bundle → R.expById (explorable-artist vx for the vocals filter)
   const [q, setQ] = React.useState("");
   const [bucket, setBucket] = React.useState("all");
-  const [sort, setSort] = React.useState("plays");
+  // DEFAULT "newest" (Fuad 2026-09-14). The natural direction of "first-new" IS newest-first (see
+  // the SORT_DIRS table), so no invert is needed — the page opens on what you liked most recently
+  // rather than on the all-time play ranking, which the rest of the site already answers.
+  const [sort, setSort] = React.useState("first-new");
   const [inv, setInv] = React.useState(false);   // transient invert of the active sort's direction (reset when sort changes)
   const [fams, setFams] = React.useState(() => new Set());   // selected family ids (empty = all)
   const [subFilter, setSubFilter] = React.useState("");      // subgenre label ("" = any)
