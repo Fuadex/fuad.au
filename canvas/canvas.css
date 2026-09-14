@@ -670,6 +670,14 @@ a { color: inherit; }
 .cv-yr-hist span[data-in="true"] { background: var(--accent); opacity: .45; }
 .cv-yr-rail { position: absolute; left: 0; right: 0; top: 10px; height: 3px; border-radius: 2px; background: rgba(0, 0, 0, .13); }
 .cv-yr-fill { position: absolute; top: 10px; height: 3px; border-radius: 2px; background: var(--accent); }
+/* the set band is draggable as a unit (Fuad 2026-09-14), so it says so. The fill is 3px and sits
+   under the pointer only in a sliver, so the grab zone is widened with a transparent pad rather
+   than by thickening the line — the rail keeps its weight, the gesture gets a target. `pointer-
+   events: none` stays OFF here deliberately: this element has to receive the press. Only when a
+   span is actually set, since with none there is nothing to translate. */
+.cv-yr[data-set] .cv-yr-fill { cursor: grab; }
+.cv-yr[data-set] .cv-yr-fill::before { content: ""; position: absolute; left: 0; right: 0; top: -8px; bottom: -8px; }
+.cv-yr[data-set] .cv-yr-track:active .cv-yr-fill { cursor: grabbing; }
 /* AT REST (no span) the handles sit on the ends and the fill covers the whole rail — colouring that
    in would light the control up as if a filter were on. Nothing is highlighted until a span exists. */
 .cv-yr:not([data-set]) .cv-yr-fill { background: rgba(0, 0, 0, .13); }

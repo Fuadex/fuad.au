@@ -1450,9 +1450,26 @@ function YearRange({ span, onSpan, hist, count }) {
     const r = trackRef.current.getBoundingClientRect();
     return r.width ? Math.max(0, Math.min(1, (clientX - r.left) / r.width)) : 0;
   };
+  // GRAB THE BAND ITSELF (Fuad 2026-09-14: "I want to be able to click in between the dots and move
+  // the currently spread bar"). Pressing inside a set span now TRANSLATES it — both ends move
+  // together and the width is preserved — instead of dragging whichever bound happened to be
+  // nearer. It only applies when a real span is set and it is narrower than the axis: with no span
+  // every press is "between" the ends, and translating the whole axis would be a no-op gesture that
+  // silently ate the tap-to-set-a-year behaviour below.
+  const bandRef = useRef(null);              // { loI, hiI, grab } — stop indices captured at press
   const onDown = (e) => {
     const hit = e.target && e.target.closest && e.target.closest("[data-end]");
     const t = posOf(e.clientX);
+    const idx = posToStop(t);
+    if (!hit && live && !spanIsAll(live)) {
+      const loI = stopIndexOf(lo), hiI = stopIndexOf(hi);
+      if (idx > loI && idx < hiI) {          // strictly inside: the ends keep their own hit zones
+        dragRef.current = "band";
+        bandRef.current = { loI, hiI, grab: idx };
+        try { trackRef.current.setPointerCapture(e.pointerId); } catch (err) { /* drag still tracks over the rail */ }
+        return;                              // nothing to draw yet — a press alone must not move it
+      }
+    }
     // OUTSIDE the pair, the handle on that side takes the press; BETWEEN them, the nearer one. A
     // plain "nearest wins" would sometimes pick the handle that has to be dragged THROUGH the other
     // to reach the tap, and the two sit on the same spot whenever the span is one stop wide.
@@ -1467,7 +1484,20 @@ function YearRange({ span, onSpan, hist, count }) {
     // drag does, which is why a bare tap with no movement still reaches the wall (Fuad 2026-09-10).
     if (hit) hit.focus(); else draw(nudge(liveRef.current, end, posToStop(t)));
   };
-  const onMove = (e) => { if (dragRef.current) draw(nudge(liveRef.current, dragRef.current, posToStop(posOf(e.clientX)))); };
+  // translating clamps as a UNIT — the span slides until one end reaches the axis and then stops,
+  // keeping its width, rather than compressing against the edge the way two independent ends would.
+  const slide = (idx) => {
+    const b = bandRef.current; if (!b) return;
+    const w = b.hiI - b.loI;
+    const loI = Math.max(0, Math.min(N - 1 - w, b.loI + (idx - b.grab)));
+    draw([YEAR_STOPS[loI], YEAR_STOPS[loI + w]]);
+  };
+  const onMove = (e) => {
+    if (!dragRef.current) return;
+    const idx = posToStop(posOf(e.clientX));
+    if (dragRef.current === "band") slide(idx);
+    else draw(nudge(liveRef.current, dragRef.current, idx));
+  };
   // THE ONE PLACE A DRAG REACHES THE WALL (Fuad 2026-09-10). pointerup, pointercancel AND
   // lostpointercapture all land here, so a finger lifted outside the window — or a capture the OS
   // takes back mid-gesture — still commits what the handle was showing instead of dropping the
@@ -1476,6 +1506,7 @@ function YearRange({ span, onSpan, hist, count }) {
   const endDrag = (e) => {
     const was = dragRef.current;
     dragRef.current = null;
+    bandRef.current = null;
     try { trackRef.current.releasePointerCapture(e.pointerId); } catch (err) { /* already released */ }
     if (was) commit(liveRef.current);
   };
@@ -1683,7 +1714,17 @@ function Wall({ go, styleIds }) {
   // members, and `pick` only feeds the colour comparator). None of them filters, so none may reset
   // the page. Everything left here genuinely narrows or widens the set, where returning to the first
   // page is right — otherwise `extra` would keep a stale count against a shorter list.
-  useEffect(() => { setExtra(0); }, [marks, status, span, tokens, styleIds, media, qual, mp, hang, tourOnly]);
+  // `span` is OUT as of 2026-09-14 (Fuad: the year bar should filter "results currently shown (and
+  // if extended past extra 48 artworks) ... but also filter any other results that can be loaded up
+  // afterwards"). It already filtered globally — `shown` applies yearPass to the whole collection,
+  // not to the loaded page — so the only thing the reset did was throw away how far you had loaded.
+  // Dragging the bar after hanging 200 works collapsed you to 48 and made you click back.
+  // Keeping `extra` is safe in both directions: `vis` is shown.slice(0, visN), so a narrower span
+  // just returns fewer rows, and widening it again restores the depth you had rather than starting
+  // over. Same reasoning that took sort/shuffleSeed/pick out above — nothing here needs the page
+  // reset except a change that could strand you past the end of a much shorter list, and slicing
+  // already handles that.
+  useEffect(() => { setExtra(0); }, [marks, status, tokens, styleIds, media, qual, mp, hang, tourOnly]);
 
   // Everything EXCEPT the style and medium selections. Both chip rows count against this, so their
   // numbers follow floored / liked / sure / wish / museum without either row filtering itself —
