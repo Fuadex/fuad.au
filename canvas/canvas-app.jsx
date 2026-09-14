@@ -4699,7 +4699,9 @@ function MapView({ go }) {
     for (const m of MUSEUMS) {
       const d = AD.museums[m.id] || {}; if (d.lat == null) continue;
       const [x, y] = P(d.lat, d.lng);
-      const c = (byCity[m.city] = byCity[m.city] || { city: m.city, xs: 0, ys: 0, k: 0, wxs: 0, wys: 0, wk: 0, n: 0, museums: [] });
+      // `cc` rides along so a district folded onto this bubble can inherit the country as well as
+      // the name — see the wish-list fold below, which used to keep the district's own country.
+      const c = (byCity[m.city] = byCity[m.city] || { city: m.city, cc: m.country || "", xs: 0, ys: 0, k: 0, wxs: 0, wys: 0, wk: 0, n: 0, museums: [] });
       const n = counts[m.id] || 0; c.xs += x; c.ys += y; c.k++; c.n += n;
       // works-weighted accumulator: the anchor is pulled toward the museums that actually
       // hold the canon (min weight 1 so coordinate-only venues still register), so the bubble
@@ -4794,11 +4796,21 @@ function MapView({ go }) {
         if (!v) { v = { name: venueName, x: hx, y: hy, list: [] }; f.venues.set(venueName, v); }
         v.list.push(w);
       }
-      const cc = (m && m.country) || (home && home.country) || "";
-      if (cityName) {
-        const cKey = cityName + (cc ? ", " + String(cc).toUpperCase() : "");
+      const rawCc = (m && m.country) || (home && home.country) || "";
+      // THE LIST MUST NAME THE CITY THE MAP NAMES (Fuad 2026-09-14: "St Petersburg is displayed on
+      // map but not showed under Russia on the list"). Wikidata P131 often returns a DISTRICT rather
+      // than a city — "Leninsky City District" for a Saint Petersburg venue, the way "Khamovniki
+      // District" stands for Moscow — and the MAP already resolves that: `fold` either name-matches
+      // a visited city or folds by proximity, and the bubble is drawn under fold.city. The list keyed
+      // on the unfolded name instead, so one and the same work showed on the map as Saint Petersburg
+      // and in the list as Leninsky City District, under a Russia that appeared to hold nothing else.
+      // Take the folded identity — name AND country — wherever the map found one.
+      const cityLabel = fold ? fold.city : cityName;
+      const cc = (fold && fold.cc) || rawCc;
+      if (cityLabel) {
+        const cKey = cityLabel + (cc ? ", " + String(cc).toUpperCase() : "");
         let c = cityGroups.get(cKey);
-        if (!c) { c = { key: cKey, city: cityName, cc: String(cc || "").toUpperCase(), n: 0, floored: 0, venues: new Map() }; cityGroups.set(cKey, c); }
+        if (!c) { c = { key: cKey, city: cityLabel, cc: String(cc || "").toUpperCase(), n: 0, floored: 0, venues: new Map() }; cityGroups.set(cKey, c); }
         c.n++; if (w.floored || w.favorite) c.floored++;
         const vn = venueName || "elsewhere in the city";
         if (!c.venues.has(vn)) c.venues.set(vn, []);
@@ -6028,18 +6040,35 @@ function MapView({ go }) {
           <div className="cv-pil-total r-mono">
             {wishCities.reduce((n, c) => n + c.n, 0) + wishUnplaced.length} works you're chasing, across {wishCities.length} cities
           </div>
-          {(window.CANVAS_PILGRIMAGE || []).length > 0 && (
-            <React.Fragment>
-              <div className="cv-mus-country">Places</div>
-              {(window.CANVAS_PILGRIMAGE || []).map(p => (
-                <div className="cv-mus-row" key={p.id}>
-                  <span className="cv-mus-name">{p.title}</span>
-                  <span className="cv-mus-city">{p.city}</span>
-                  {p.note && <span className="cv-mus-note">{p.note}</span>}
-                </div>
-              ))}
-            </React.Fragment>
-          )}
+          {/* GROUPED BY COUNTRY, like everything above it (Fuad 2026-09-14: "Muzeum Historyczne w
+              Sanoku belongs to Poland"). These hand-authored places already carry a `country`, but
+              they rendered in one flat "Places" block under no country at all — so the one entry
+              that exists read as belonging nowhere, sitting below a list where every other venue is
+              filed under a nation. Same countryName() the country headings above use, so "pl" prints
+              as Poland rather than as a code. Entries with no country keep a plain heading rather
+              than being dropped. */}
+          {(window.CANVAS_PILGRIMAGE || []).length > 0 && (() => {
+            const byCc = new Map();
+            for (const p of (window.CANVAS_PILGRIMAGE || [])) {
+              const cc = (p.country || "").toUpperCase();
+              if (!byCc.has(cc)) byCc.set(cc, []);
+              byCc.get(cc).push(p);
+            }
+            return [...byCc.entries()]
+              .sort((a, b) => (countryName(a[0]) || "").localeCompare(countryName(b[0]) || ""))
+              .map(([cc, list]) => (
+                <React.Fragment key={cc || "_"}>
+                  <div className="cv-mus-country">{cc ? countryName(cc) : "Places"}</div>
+                  {list.map(p => (
+                    <div className="cv-mus-row" key={p.id}>
+                      <span className="cv-mus-name">{p.title}</span>
+                      <span className="cv-mus-city">{p.city}</span>
+                      {p.note && <span className="cv-mus-note">{p.note}</span>}
+                    </div>
+                  ))}
+                </React.Fragment>
+              ));
+          })()}
         </div>
       )}
     </div>
