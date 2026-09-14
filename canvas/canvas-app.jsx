@@ -1409,7 +1409,7 @@ function parts_nonEmpty(kv) {
 // The histogram behind the rail is the collection's own shape under every OTHER active filter (the
 // same facet rule the chip counts follow), so the line shows where anything is left to find BEFORE
 // you drag. Its 1 px gaps are the stops, which is why no separate tick marks are drawn.
-function YearRange({ span, onSpan, hist, count }) {
+function YearRange({ span, onSpan, hist, count, countOf }) {
   const trackRef = useRef(null);
   const dragRef = useRef(null);              // which end the pointer owns while down: "lo" | "hi"
   const N = YEAR_STOPS.length;
@@ -1426,6 +1426,10 @@ function YearRange({ span, onSpan, hist, count }) {
   // re-seeds the live copy — but never mid-drag, which would yank the handle out from under the hand.
   useEffect(() => { if (!dragRef.current) { liveRef.current = span; setLive(span); } }, [span]);
   const lo = live ? live[0] : YEAR_MIN, hi = live ? live[1] : YEAR_MAX;
+  // the readout's number now follows the LIVE span, so it answers "how many would this give me?"
+  // while the handle is still moving. Memoised on the span identity: `draw` only writes a new array
+  // when a stop actually changed, so a drag across several pixels inside one stop recounts nothing.
+  const liveCount = useMemo(() => (countOf ? countOf(live) : null), [countOf, live]);
   const pLo = yearToPos(lo) * 100, pHi = yearToPos(hi) * 100;
   const same = (a, b) => (!a && !b) || (!!a && !!b && a[0] === b[0] && a[1] === b[1]);
   // Move one end of a span to a stop. The ends CLAMP rather than swap — dragging lo past hi parks
@@ -1499,7 +1503,13 @@ function YearRange({ span, onSpan, hist, count }) {
     const b = bandRef.current; if (!b) return;
     const w = b.hiI - b.loI;
     const loI = Math.max(0, Math.min(N - 1 - w, b.loI + (idx - b.grab)));
-    draw([YEAR_STOPS[loI], YEAR_STOPS[loI + w]]);
+    const a = YEAR_STOPS[loI], z = YEAR_STOPS[loI + w];
+    // return the SAME array when nothing moved, matching nudge's contract. A drag of a few pixels
+    // inside one stop must not hand out a fresh identity: draw() compares by reference, and the
+    // readout's live count memoises on it — a new array every frame would recount 2,745 works for a
+    // gesture that changed no stop at all.
+    const cur = liveRef.current;
+    draw(cur && cur[0] === a && cur[1] === z ? cur : [a, z]);
   };
   const onMove = (e) => {
     if (!dragRef.current) return;
@@ -1594,17 +1604,22 @@ function YearRange({ span, onSpan, hist, count }) {
           })}
         </div>
       </div>
-      {/* THE READOUT (Fuad 2026-09-10). Years come off the LIVE span, so they track the finger frame
-          by frame; the COUNT comes off the prop, which the wall only recomputes once the drag is
-          committed on release — so mid-drag the years move and the number holds at the last
-          committed span. That is the honest reading of it: the number describes the wall you are
-          actually looking at, and the wall has deliberately not re-sorted itself yet. It catches up
-          the instant you let go. `output` rather than a span because that is what it is — a live
-          result — and aria-live="off" so a screen reader hears the handles' own valuetext instead of
-          this being announced twice on every arrow key. */}
+      {/* THE READOUT. Years AND the count both come off the LIVE span now, so the whole line answers
+          "what would this give me?" while the handle is still moving (Fuad 2026-09-14: "I'd like it
+          to automatically update even before launching results").
+          This REVERSES the 2026-09-10 rule that the number should hold at the last committed span
+          until release. That rule was reasoned as honesty — the number describing the wall you are
+          actually looking at — but in use it reads as the control being broken, because the thing a
+          range filter is asked while you drag it is precisely how much it will leave.
+          The release-only COMMIT is untouched and still does the real work: re-sorting 2,745 works
+          and re-requesting their images stays on release, which is the cost that made the rule in
+          the first place. Only the count went live, and that is one numeric pass over a list that is
+          already built. `output` rather than a span because that is what it is — a live result — and
+          aria-live="off" so a screen reader hears the handles' own valuetext instead of this being
+          announced twice on every arrow key. */}
       <output className="cv-yr-out" aria-live="off">
         {live ? yearLabel(lo) + " – " + yearLabel(hi) : "all years"}
-        <b> · </b>{(count || 0).toLocaleString("en-AU")}
+        <b> · </b>{(liveCount == null ? (count || 0) : liveCount).toLocaleString("en-AU")}
       </output>
     </div>
   );
@@ -1812,6 +1827,17 @@ function Wall({ go, styleIds }) {
   const yearCount = useMemo(
     () => span ? yearFacet.list.filter(w => yearPass(w, span)).length : yearFacet.list.length,
     [yearFacet, span]);
+  // THE SAME COUNT, FOR AN UNCOMMITTED SPAN (Fuad 2026-09-14: "there's a number that shows the
+  // results, I'd like it to automatically update even before launching results"). The slider can now
+  // ask what a span WOULD yield while the finger is still down, which supersedes the 2026-09-10
+  // decision to hold the number at the last committed span.
+  // The release-only commit itself stays — it exists because re-sorting 2,745 works and re-requesting
+  // their images on every frame is what clogged the wall. This does neither: it is one numeric pass
+  // over a list that is already built, so the expensive half stays on release and only the cheap
+  // half goes live.
+  const yearCountOf = useCallback(
+    (sp) => sp ? yearFacet.list.filter(w => yearPass(w, sp)).length : yearFacet.list.length,
+    [yearFacet]);
   // all-time counts, used only to decide which medium chips exist at all
   const mediaAll = useMemo(() => {
     const c = {};
@@ -2263,7 +2289,7 @@ function Wall({ go, styleIds }) {
             what axis this is, and the word was buying a second line of chrome for a control that has
             to stand exactly as tall as the chips beside it. Its hover hint moved onto the track. */}
         <div className="cv-objgrp cv-yrgrp">
-          <YearRange span={span} onSpan={setYearSpan} hist={yearFacet.bins} count={yearCount} />
+          <YearRange span={span} onSpan={setYearSpan} hist={yearFacet.bins} count={yearCount} countOf={yearCountOf} />
         </div>
       </div>
       {sel.length > 0 && (
