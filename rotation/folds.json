@@ -59,6 +59,7 @@
  "_doc": "Curated coherency folds. Applied at scrobble ingest in build-data.js. Grouped by canonical artist; one line per fold. type spelling|variant|feat-credit|diacritic. artist may be a single {from,type,reason} object OR an array of them. Top-level _exclude[] lists pure-noise names (tutorials/trailers/YouTube junk) dropped whole at ingest (matched by exact raw name + slug). Top-level _moves[] does per-track artist REASSIGNMENT — {fromArtist,fromTrack,toArtist,toTrack,reason}: a single (artist,track) pair is retargeted to another artist (optionally renaming the track) BEFORE any play/album/track map is keyed, so plays/media/reads all follow. Unlike artist folds (whole artist) and track folds (rename within one canonical artist), a move splits one row off an artist. Applied at ingest right after canon()+foldTrack() (build-data.js ~L1336); matched on slug(fromArtist)~slug(fromTrack). Source: classified-all.json + out-AR-albums-fixed.json + mojibake + tier-2 verifier corrections. See LEDGER_DESIGN.md.",
  "_exclude": [
   "Fuad Soudah",
+  "George Carlin",
   "jQuery Tutorial #3",
   "How to create CSS Layouts",
   "Widzimy się w kinie",

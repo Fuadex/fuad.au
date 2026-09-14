@@ -1279,6 +1279,9 @@ const FAMILY_OVERRIDES = {
 };
 // Non-music scrobbles (YouTube shows etc.) — excluded from Explore / the genre map.
 // ("Corridor" ≠ "Corridor Crew" — the Montreal band stays.)
+// NOTE 2026-09-14: George Carlin and Fuad Soudah are ALSO in folds.json _exclude now (Fuad: "George
+// Carlin is not a musician, another one goes to the noise ban list"), which drops them whole at
+// ingest — so they never reach this set. Kept here as the record of what the softer treatment was.
 const NONMUSIC = new Set(["Corridor Crew", "George Carlin"]);   // stand-up, not music
 // deliberately unclassified — kept in the library but off the genre map (Fuad's own releases:
 // "doesn't belong anywhere, this needs to be invalidated somehow", 2026-07-12)

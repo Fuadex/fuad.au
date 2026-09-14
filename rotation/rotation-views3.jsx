@@ -541,8 +541,7 @@ function StoriesView({ t, go, seed }) {
               {L.graves.length > 0 && (
                 <div className="st-sub" style={{ marginTop: 18 }}>
                   And the graves you dug up: {L.graves.map((g, i) => (
-                    <span key={g.name}>{i > 0 ? " · " : ""}<b className="st-inline-link" data-link={clickable(g.name)} onClick={() => goIf(g.name)}
-                      style={{ color: "var(--ink)", cursor: clickable(g.name) ? "pointer" : "default" }}>{g.name}</b> ({g.gap} yrs after the end)</span>
+                    <span key={g.name}>{i > 0 ? " · " : ""}<b className="st-inline-link" data-link={clickable(g.name)} onClick={() => goIf(g.name)}>{g.name}</b> ({g.gap} yrs after the end)</span>
                   ))}.
                   {L.elders.length > 0 && <> Still standing after everything: <b style={{ color: "var(--ink)" }}>{L.elders[0].name}</b>, going since {L.elders[0].begin}.</>}
                 </div>
@@ -1048,8 +1047,7 @@ function StoriesView({ t, go, seed }) {
                   Signature obsessions: {T.artists.slice(0, 6).map((a, i) => (
                     <React.Fragment key={a.artistId}>{i > 0 ? " · " : ""}
                       <b className="st-inline-link" data-link={hasPage(a.artistId)}
-                        onClick={() => hasPage(a.artistId) && go("artist", a.artistId)}
-                        style={{ color: "var(--ink)", cursor: hasPage(a.artistId) ? "pointer" : "default" }}>{a.name}</b>
+                        onClick={() => hasPage(a.artistId) && go("artist", a.artistId)}>{a.name}</b>
                       {a.themes[0] ? <span style={{ color: "var(--ink-faint)" }}> ({a.themes[0].theme})</span> : null}
                     </React.Fragment>
                   ))}.
@@ -1991,8 +1989,21 @@ function StoriesView({ t, go, seed }) {
         }
         .st-alink:hover { color: var(--accent); text-decoration-color: var(--accent); }
         @media (prefers-reduced-motion: reduce) { .st-alink { transition: none; } }
-        .st-inline-link[data-link="true"] { cursor: pointer; transition: color .14s; }
-        .st-inline-link[data-link="true"]:hover { color: var(--accent); }
+        /* Fuad 2026-09-14: "'Creedence Clearwater Revival' and stuff under 'The Ones That Ended'
+           do not have translated hover effects yet". The rule here was correct and had been for a
+           while — but two of the four call sites (the graves line, where Creedence lives, and
+           Signature obsessions) also set color inline, and an inline style beats every selector
+           short of !important. The hover fired and repainted nothing. The base colour moves into
+           the class where :hover can actually win it, and these links pick up the same fading
+           underline as .st-alink so a link in prose reads as one before you touch it. */
+        .st-inline-link { color: var(--ink); }
+        .st-inline-link[data-link="true"] {
+          cursor: pointer; text-decoration: underline; text-decoration-color: transparent;
+          text-decoration-thickness: 1px; text-underline-offset: 3px;
+          transition: color .18s ease, text-decoration-color .18s ease;
+        }
+        .st-inline-link[data-link="true"]:hover { color: var(--accent); text-decoration-color: var(--accent); }
+        @media (prefers-reduced-motion: reduce) { .st-inline-link[data-link="true"] { transition: none; } }
         /* a catch-all so a NEW clickable is never silent: lowest specificity and declared first, so
            every rule above and below still wins where it is more specific. */
         .st-feed [data-link="true"] { cursor: pointer; }
@@ -2049,6 +2060,12 @@ function StoriesView({ t, go, seed }) {
           border-radius: 6px; transition: border-color .15s; }
         .st-ug-cut[data-link="true"] { cursor: pointer; }
         .st-ug-cut[data-link="true"]:hover { border-color: var(--accent-dim); }
+        /* "and stuff under The Ones That Ended" — the cut cards shifted a 1px border and nothing
+           else, which is nearly invisible against a dark ground. The name warms too, the way the
+           scene cards already do. .st-scene-a had the hover but no transition on the base, so its
+           name SNAPPED; one shared transition covers both. */
+        .st-ug-cut .st-row-name, .st-scene-a .st-row-name { transition: color .15s ease; }
+        .st-ug-cut[data-link="true"]:hover .st-row-name { color: var(--accent); }
         .st-yir-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
         .st-yir-nav { display: flex; align-items: center; gap: 6px; }
         .st-yir-nav button { width: 28px; height: 28px; border: 1px solid var(--line); background: transparent; color: var(--ink-soft);
