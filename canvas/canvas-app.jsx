@@ -247,6 +247,14 @@ const ARTIST_READ = window.CANVAS_ARTISTS || {};
 // Kept apart from seenAt, which records where he stood.
 const HOLD = window.CANVAS_HOLDERS || { works: {}, places: {} };
 const homeOf = (w) => HOLD.places[HOLD.works[w.id]] || null;
+// NOT AN ARTIST — THE ABSENCE OF ONE (Fuad 2026-09-14: "we should not be displaying Unknown
+// artist"). 26 works carry artistId "unknown" (spelled "Unknown" once and "(unknown)" 16 times in
+// the canon, one id behind both). It scores like anyone else, and on the chase side that is love 19
+// across 20 works — enough to render FIFTH in Portrait's "Calling from afar", a section about
+// artists waiting to be met. You cannot be called from afar by nobody. Anywhere Portrait counts or
+// names artists as PEOPLE this is excluded; the works themselves are untouched and still hang,
+// still filter, and still carry their marks.
+const isAnonArtist = (id) => !id || String(id).toLowerCase() === "unknown";
 // ── WALL TOKEN PLACE-SCOPING (Fuad 2026-08-27, "design your own wall"). A work belongs to a museum
 // two ways: he SAW it there (seenAt), or it LIVES there (art_holders P195 collection). Both count as
 // "in this museum" for a museum token. A city token widens that to every museum in the city — again
@@ -6099,7 +6107,7 @@ function Portrait({ go }) {
     for (const w of chase) { const h = homeOf(w); if (h && h.city) chaseCities.add(h.city); }
     // artists ranked by impact — met works only
     const byArtist = {};
-    for (const w of met) { if (!w.artistId) continue; const r = byArtist[w.artistId] = byArtist[w.artistId] || { id: w.artistId, name: w.artist.replace(/\s*\(.*\)$/, ""), n: 0, love: 0 }; r.n++; if (isFloored(w)) r.love += 3; if (softMark(w)) r.love += 1; }
+    for (const w of met) { if (isAnonArtist(w.artistId)) continue; const r = byArtist[w.artistId] = byArtist[w.artistId] || { id: w.artistId, name: w.artist.replace(/\s*\(.*\)$/, ""), n: 0, love: 0 }; r.n++; if (isFloored(w)) r.love += 3; if (softMark(w)) r.love += 1; }
     const artists = Object.values(byArtist).sort((a, b) => b.love - a.love || b.n - a.n);
     const found = artists.filter(a => !AFFINITY.has(a.id) && a.love >= 4).slice(0, 14);
     // "Calling from afar" (Fuad 2026-08-27): the same love scoring over CHASE works — wish works do
@@ -6107,7 +6115,7 @@ function Portrait({ go }) {
     // affinities and anyone already in `found` (a met-loved artist isn't "calling from afar").
     const foundIds = new Set(found.map(a => a.id));
     const byArtistChase = {};
-    for (const w of chase) { if (!w.artistId) continue; const r = byArtistChase[w.artistId] = byArtistChase[w.artistId] || { id: w.artistId, name: w.artist.replace(/\s*\(.*\)$/, ""), n: 0, love: 0 }; r.n++; if (isFloored(w)) r.love += 3; if (softMark(w)) r.love += 1; }
+    for (const w of chase) { if (isAnonArtist(w.artistId)) continue; const r = byArtistChase[w.artistId] = byArtistChase[w.artistId] || { id: w.artistId, name: w.artist.replace(/\s*\(.*\)$/, ""), n: 0, love: 0 }; r.n++; if (isFloored(w)) r.love += 3; if (softMark(w)) r.love += 1; }
     const calling = Object.values(byArtistChase).filter(a => !AFFINITY.has(a.id) && !foundIds.has(a.id) && a.love >= 4).sort((a, b) => b.love - a.love || b.n - a.n).slice(0, 8);
     // movements (loved among met)
     const movCount = {};
@@ -6159,7 +6167,9 @@ function Portrait({ go }) {
     // this, the chip cloud earns roughly three wrapped rows at desktop width.
     const motifs = Object.entries(subjCount).sort((a, b) => b[1] - a[1]).slice(0, 24);
     // breadth vs depth — the whole canon speaks here (an artist chased is still a taste)
-    const perArtist = {}; for (const w of works) if (w.artistId) perArtist[w.artistId] = (perArtist[w.artistId] || 0) + 1;
+    // same exclusion: "spans N artists" must not count the anonymous bucket as one of them, and the
+    // deepest-artist line must never be able to name it.
+    const perArtist = {}; for (const w of works) if (!isAnonArtist(w.artistId)) perArtist[w.artistId] = (perArtist[w.artistId] || 0) + 1;
     const singles = Object.values(perArtist).filter(n => n === 1).length;
     const deepEntry = Object.entries(perArtist).sort((a, b) => b[1] - a[1])[0];
     const deepWork = deepEntry && works.find(w => w.artistId === deepEntry[0]);
