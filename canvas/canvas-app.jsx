@@ -1458,6 +1458,15 @@ function YearRange({ span, onSpan, hist, count }) {
   // silently ate the tap-to-set-a-year behaviour below.
   const bandRef = useRef(null);              // { loI, hiI, grab } — stop indices captured at press
   const onDown = (e) => {
+    // STOP THE BROWSER TAKING THE GESTURE (Fuad 2026-09-14: dragging the band "I get an error icon,
+    // it only moves one bar and then doesn't scroll"). That ⊘ is the native drag/selection cursor:
+    // without preventDefault a press on the rail starts a text selection or a drag, the browser
+    // fires pointercancel to claim the gesture, endDrag commits, and every later pointermove is
+    // ignored because dragRef is already null — which is exactly one step of movement and then
+    // nothing. The handles never showed it because they are small and focusable; the band is a wide
+    // target sitting over the histogram, so a sideways drag across it reads as selecting.
+    // Focus is not lost by this: the handle branch below calls hit.focus() itself.
+    e.preventDefault();
     const hit = e.target && e.target.closest && e.target.closest("[data-end]");
     const t = posOf(e.clientX);
     const idx = posToStop(t);
@@ -1558,7 +1567,7 @@ function YearRange({ span, onSpan, hist, count }) {
     // ends, which spanIsAll normalises straight to null.
     <div className="cv-yr" data-set={!!live || undefined}>
       <div className="cv-yr-track" ref={trackRef}
-        title="when the work was made — drag either handle, or focus one and use the arrow keys"
+        title="when the work was made — drag either handle, drag the band between them to move the whole range, or focus a handle and use the arrow keys"
         onPointerDown={onDown} onPointerMove={onMove} onPointerUp={endDrag}
         onPointerCancel={endDrag} onLostPointerCapture={endDrag}>
         {/* the 14% floor keeps a bin with anything in it drawing at least a hairline now the

@@ -645,7 +645,11 @@ a { color: inherit; }
    rail those rules give every .cv-objgrp, and the overrides below win on source order. */
 .cv-objrow .cv-yrgrp { align-self: flex-start; flex: 1 1 420px; min-width: 260px; max-width: 620px; }
 /* a definite height, so .cv-objgrp's align-items:stretch cannot pull the row taller than the chips */
-.cv-yr { display: flex; align-items: center; gap: 10px; flex: 1 1 auto; min-width: 260px; height: 23px; }
+.cv-yr { display: flex; align-items: center; gap: 10px; flex: 1 1 auto; min-width: 260px; height: 23px;
+  /* a drag surface, so it must not also be a selection surface — same treatment .cv-map svg gets.
+     Without this a sideways drag across the rail starts a text selection, the browser fires
+     pointercancel to claim the gesture, and the drag dies after one step (Fuad 2026-09-14). */
+  user-select: none; -webkit-user-select: none; -webkit-user-drag: none; }
 /* touch-action:none is load-bearing — without it a drag on a phone scrolls the page instead of
    moving the handle. The track IS the 23px band and everything else is absolutely placed inside it
    (Fuad 2026-09-10): histogram 0…9, rail 10…13, tick labels 14…23. The 34px handles keep their full
@@ -669,7 +673,7 @@ a { color: inherit; }
 .cv-yr-hist span { flex: 1 1 0; min-width: 0; background: var(--ink); opacity: .15; border-radius: 1px 1px 0 0; }
 .cv-yr-hist span[data-in="true"] { background: var(--accent); opacity: .45; }
 .cv-yr-rail { position: absolute; left: 0; right: 0; top: 10px; height: 3px; border-radius: 2px; background: rgba(0, 0, 0, .13); }
-.cv-yr-fill { position: absolute; top: 10px; height: 3px; border-radius: 2px; background: var(--accent); }
+.cv-yr-fill { position: absolute; top: 10px; height: 3px; border-radius: 2px; background: var(--accent); touch-action: none; }
 /* the set band is draggable as a unit (Fuad 2026-09-14), so it says so. The fill is 3px and sits
    under the pointer only in a sliver, so the grab zone is widened with a transparent pad rather
    than by thickening the line — the rail keeps its weight, the gesture gets a target. `pointer-
