@@ -37,7 +37,7 @@ function CoversStory({ go }) {
             <b>{g.t}</b>{g.w && g.w.length ? <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginLeft: 8 }}>written by {g.w.slice(0, 2).join(", ")}</span> : null}
             <div className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-soft)", marginTop: 2 }}>
               {g.p.map(([sl, n, ts], j) => (
-                <React.Fragment key={sl + j}>{j > 0 ? " · " : ""}<a onClick={() => ts ? go("track", sl + "~" + ts) : go("artist", sl)} style={{ cursor: "pointer", borderBottom: "1px dotted var(--ink-faint)" }}>{n}</a></React.Fragment>
+                <React.Fragment key={sl + j}>{j > 0 ? " · " : ""}<a className="st-alink" onClick={() => ts ? go("track", sl + "~" + ts) : go("artist", sl)}>{n}</a></React.Fragment>
               ))}
             </div>
           </div>
@@ -272,7 +272,7 @@ function StoriesView({ t, go, seed }) {
                 ))}
               </div>
               <div className="st-ug-cuts">
-                {A.digs.slice(0, 4).map(c => (
+                {A.digs.slice(0, 6).map(c => (
                   <div key={c.name} className="st-ug-cut" data-link={clickable(c.name)} onClick={() => goIf(c.name)}>
                     <GenCover hue={c.hue} name={c.name} size={40} radius={4} />
                     <div style={{ minWidth: 0 }}>
@@ -303,13 +303,10 @@ function StoriesView({ t, go, seed }) {
               <div style={{ display: "grid", gap: 12, marginTop: 6 }}>
                 {C.links.slice(0, 6).map(l => (
                   <div key={l.person} style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
-                    <span style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 14, color: "var(--ink)", minWidth: 120 }}>{l.person}</span>
+                    <span className="st-person">{l.person}</span>
                     {l.artists.map(a => (
-                      <span key={a.name} data-link={clickable(a.name)} onClick={() => goIf(a.name)}
-                        style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "4px 9px", borderRadius: 999,
-                          border: "1px solid var(--rule)", fontSize: 11.5, cursor: clickable(a.name) ? "pointer" : "default",
-                          color: clickable(a.name) ? "var(--ink)" : "var(--ink-soft)" }}>
-                        <span style={{ width: 8, height: 8, borderRadius: 2, background: `oklch(0.62 0.16 ${a.hue})` }} />
+                      <span key={a.name} className="st-bandchip" data-link={clickable(a.name)} onClick={() => goIf(a.name)}>
+                        <span className="st-bandchip-dot" style={{ background: `oklch(0.62 0.16 ${a.hue})` }} />
                         {a.name}
                       </span>
                     ))}
@@ -1419,7 +1416,7 @@ function StoriesView({ t, go, seed }) {
                 The records you sit all the way through:
               </div>
               <div className="st-ug-cuts">
-                {S.sittings.top.slice(0, 8).map(a => (
+                {S.sittings.top.slice(0, 9).map(a => (
                   <div key={a.aid} className="st-ug-cut" data-link={true} onClick={() => go("album", a.aid)}>
                     <GenCover hue={a.hue} name={a.album} size={40} radius={4} />
                     <div style={{ minWidth: 0 }}>
@@ -1565,10 +1562,14 @@ function StoriesView({ t, go, seed }) {
           <div className="st-grid">
             {I.OBSESSIONS.map(o => (
               <div key={o.artist + o.weekStart} className="st-obs" data-link={clickable(o.artist)} onClick={() => goIf(o.artist)}>
-                <GenCover hue={o.hue} name={o.artist} size={56} radius={4} />
-                <div className="st-obs-share" style={{ color: `oklch(0.78 0.14 ${o.hue})` }}>{Math.round(o.share * 100)}%</div>
-                <div className="st-row-name">{o.artist}</div>
-                <div className="st-row-sub">{o.plays} plays, week of {fmtDate(o.weekStart)}</div>
+                <div className="st-obs-top">
+                  <GenCover hue={o.hue} name={o.artist} size={38} radius={4} />
+                  <div className="st-obs-txt">
+                    <div className="st-row-name">{o.artist}</div>
+                    <div className="st-row-sub">{o.plays} plays · week of {fmtDate(o.weekStart)}</div>
+                  </div>
+                  <div className="st-obs-share" style={{ color: `oklch(0.78 0.14 ${o.hue})` }}>{Math.round(o.share * 100)}%</div>
+                </div>
                 <div className="st-obs-bar"><i style={{ width: (o.share * 100) + "%", background: `oklch(0.62 0.15 ${o.hue})` }} /></div>
               </div>
             ))}
@@ -1736,11 +1737,15 @@ function StoriesView({ t, go, seed }) {
               {I.ALBUM_OBSESSIONS.map(o => (
                 <div key={o.artist + o.album + o.weekStart} className="st-obs"
                   data-link={artistHasPage(o.artistId)} onClick={() => artistHasPage(o.artistId) && go("artist", o.artistId)}>
-                  <GenCover hue={o.hue} name={o.album} size={56} radius={4}
-                    image={albumCover[o.album + "\x00" + o.artist] || ""} thumb={albumCover[o.album + "\x00" + o.artist] || ""} />
-                  <div className="st-obs-share" style={{ color: `oklch(0.78 0.14 ${o.hue})` }}>{Math.round(o.share * 100)}%</div>
-                  <div className="st-row-name" style={{ fontStyle: "italic" }}>{o.album}</div>
-                  <div className="st-row-sub">{o.artist} · {o.plays} plays, week of {fmtDate(o.weekStart)}</div>
+                  <div className="st-obs-top">
+                    <GenCover hue={o.hue} name={o.album} size={38} radius={4}
+                      image={albumCover[o.album + "\x00" + o.artist] || ""} thumb={albumCover[o.album + "\x00" + o.artist] || ""} />
+                    <div className="st-obs-txt">
+                      <div className="st-row-name st-row-name-alb">{o.album}</div>
+                      <div className="st-row-sub">{o.artist} · {o.plays} plays · week of {fmtDate(o.weekStart)}</div>
+                    </div>
+                    <div className="st-obs-share" style={{ color: `oklch(0.78 0.14 ${o.hue})` }}>{Math.round(o.share * 100)}%</div>
+                  </div>
                   <div className="st-obs-bar"><i style={{ width: (o.share * 100) + "%", background: `oklch(0.62 0.15 ${o.hue})` }} /></div>
                 </div>
               ))}
@@ -1895,19 +1900,29 @@ function StoriesView({ t, go, seed }) {
            despite being the bold in-sentence link used throughout the prose. Everything else already
            had one. The headline underlines its own <em> rather than recolouring, because that word
            carries an inline artist hue that a colour change would fight. */
-        /* AN UNDERLINE THAT ACTUALLY TRANSITIONS (Fuad 2026-09-14: "we have Romes in the header but
-           there is no hover transition"). text-decoration cannot be animated — it snaps on and off,
-           which is why the previous pass read as no transition at all. A gradient underline can:
-           background-size wipes from 0 to full width. currentColor means it picks up the artist hue
-           the <em> already carries inline, and :first-of-type keeps it to the NAME in headlines that
-           also emphasise a play count. */
+        /* FADE, DO NOT WIPE (Fuad 2026-09-14: "the expandable underlines from left to right are too
+           distracting, coloring and fading underline on hover would be better and fit how the rest
+           of the site behaves"). The wipe was built because text-decoration cannot be animated — but
+           text-decoration-COLOR can, so the underline can simply fade up from transparent while the
+           text warms to the accent. No travelling edge, and it matches the colour-shift hover the
+           rest of the site uses. :first-of-type keeps it on the NAME in headlines that also
+           emphasise a play count. */
         .st-big[data-link="true"] em:first-of-type {
-          background-image: linear-gradient(currentColor, currentColor);
-          background-repeat: no-repeat; background-position: 0 100%; background-size: 0% 1px;
-          padding-bottom: 2px; transition: background-size .28s cubic-bezier(.22,.61,.36,1);
+          text-decoration: underline; text-decoration-color: transparent;
+          text-decoration-thickness: 1px; text-underline-offset: 4px;
+          transition: text-decoration-color .2s ease, color .2s ease;
         }
-        .st-big[data-link="true"]:hover em:first-of-type { background-size: 100% 1px; }
+        .st-big[data-link="true"]:hover em:first-of-type { text-decoration-color: currentColor; }
         @media (prefers-reduced-motion: reduce) { .st-big[data-link="true"] em:first-of-type { transition: none; } }
+        /* the same treatment for the inline <a> links inside prose, which carried their underline as
+           an inline borderBottom and so could never be styled or transitioned from here. */
+        .st-alink {
+          cursor: pointer; text-decoration: underline; text-decoration-style: dotted;
+          text-decoration-color: var(--ink-faint); text-underline-offset: 3px;
+          transition: color .18s ease, text-decoration-color .18s ease;
+        }
+        .st-alink:hover { color: var(--accent); text-decoration-color: var(--accent); }
+        @media (prefers-reduced-motion: reduce) { .st-alink { transition: none; } }
         .st-inline-link[data-link="true"] { cursor: pointer; transition: color .14s; }
         .st-inline-link[data-link="true"]:hover { color: var(--accent); }
         /* a catch-all so a NEW clickable is never silent: lowest specificity and declared first, so
@@ -1930,12 +1945,35 @@ function StoriesView({ t, go, seed }) {
         .st-num { font-family: var(--serif); font-size: 18px; font-variant-numeric: tabular-nums; }
         .st-num small { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase;
           color: var(--ink-faint); margin-left: 5px; }
-        .st-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 9px; }
-        .st-obs { border: 1px solid var(--rule); border-radius: 6px; padding: 11px; position: relative; transition: border-color .15s; }
+        .st-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(232px, 1fr)); gap: 9px; }
+        /* ONE ROW, NOT A COLUMN WITH A FLOATED CORNER (Fuad 2026-09-14: it "should have artist name
+           and plays as well as percentage as part of a rectangular block, rather than this that has
+           tons of whitespace, same for albums weeks"). The 56px cover sat as a block with the
+           percentage absolutely positioned into the top-right, so the card was as tall as the cover
+           plus two stacked lines and carried a dead rectangle beside the artwork. Cover, text and
+           percentage now share one baseline-aligned row and the bar spans underneath — the block is
+           filled edge to edge and about a third shorter. */
+        .st-obs { border: 1px solid var(--rule); border-radius: 6px; padding: 10px 11px; transition: border-color .15s; }
         .st-obs[data-link="true"] { cursor: pointer; }
         .st-obs[data-link="true"]:hover { border-color: var(--rule-2); }
-        .st-obs-share { position: absolute; top: 9px; right: 11px; font-family: var(--serif); font-size: 18px; }
-        .st-obs .st-row-name { margin-top: 8px; }
+        .st-obs-top { display: flex; align-items: center; gap: 10px; }
+        .st-obs-txt { min-width: 0; flex: 1 1 auto; }
+        .st-obs-share { flex: none; font-family: var(--serif); font-size: 17px; line-height: 1; }
+        .st-obs .st-row-name { margin-top: 0; }
+        .st-row-name-alb { font-style: italic; }
+        .st-obs-bar { margin-top: 9px; }
+        /* BAND CHIPS (Fuad: "do not have a hover effect. Let's keep it subtle"). They were inline
+           styles with no class, which is why every earlier hover pass missed them. Subtle means the
+           rule warms and the ground lifts a shade — no colour flip, no movement. A chip whose artist
+           has no page keeps the flat, uninteractive look it already had. */
+        .st-person { font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--ink); min-width: 120px; }
+        .st-bandchip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px; border-radius: 999px;
+          border: 1px solid var(--rule); font-size: 11.5px; color: var(--ink-soft); cursor: default;
+          transition: border-color .16s ease, background .16s ease, color .16s ease; }
+        .st-bandchip[data-link="true"] { color: var(--ink); cursor: pointer; }
+        .st-bandchip[data-link="true"]:hover { border-color: var(--accent-dim); background: var(--bg-3); }
+        .st-bandchip-dot { width: 8px; height: 8px; border-radius: 2px; flex: none; }
+        @media (prefers-reduced-motion: reduce) { .st-bandchip { transition: none; } }
         .st-obs-bar { height: 3px; background: var(--bg-3); border-radius: 2px; margin-top: 7px; overflow: hidden; }
         .st-obs-bar i { display: block; height: 100%; border-radius: 2px; }
         .st-ug-cuts { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 7px; margin-top: 12px; }

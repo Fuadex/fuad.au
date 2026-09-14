@@ -2507,7 +2507,7 @@ if (hasStats) {
   const medianArtistListeners = nA ? listenerList[Math.floor(nA / 2)] : 0;
   // deep cuts: your kept artists with the fewest global listeners (favourites almost nobody else plays)
   const deepCuts = ARTISTS.filter(a => a.listeners != null).slice()
-    .sort((a, b) => a.listeners - b.listeners).slice(0, 8)
+    .sort((a, b) => a.listeners - b.listeners).slice(0, 9)   // 9 since 2026-09-14 (Fuad)
     .map(a => ({ artist: a.name, hue: a.hue, listeners: a.listeners, plays: a.plays }));
   // discovery shape: per year, the count of newly-discovered artists at each listener tier.
   // Reveals "when the taste turned underground" — the year discoveries shifted to obscure.
@@ -2734,7 +2734,7 @@ if (hasDiscogs) {
     if (dup) continue;
     seenKey.add(k);
     scenes.push(sc);
-    if (scenes.length >= 8) break;
+    if (scenes.length >= 9) break;   // 9 since 2026-09-14 (Fuad)
   }
   // bridges: artists who carry styles from ≥ 2 of your top scenes —
   // the connector nodes between scene clusters (e.g. Northlane = Metalcore + Synthwave).
