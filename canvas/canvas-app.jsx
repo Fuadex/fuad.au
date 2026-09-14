@@ -743,12 +743,16 @@ const CAP = 48;
 // isolates those, which is why it belongs on the MARK axis and not in the status row: marks and
 // status already AND against each other, so the interesting question composes out of the two rows
 // rather than needing a concept of its own.
-// [key, word, glyph (null = the drawn thumb, false = no icon at all), title]
+// [key, word, glyph (null = the drawn thumb, false = no icon at all), title, phoneGlyph]
+// The 5th slot exists only for `unmarked`: it shows the WORD on desktop, where a glyph next to ★ ♥
+// 👍 would read as a fourth grade rather than the lack of one — but on a phone the row compacts to
+// glyphs, and the word there is both long and the odd one out. ○ is the negative space of the other
+// three, which is exactly what it means at that size (Fuad 2026-09-14).
 const MARK_FILTERS = [
   ["floored", "floored", "★", "floored me — the in-the-moment knockout"],
   ["loved", "loved", "♥", "loved — marked, and you know you stood in front of it"],
   ["liked", "liked", null, "liked — marked, but not yet properly met"],
-  ["unmarked", "unmarked", false, "unmarked — no verdict recorded. Cross it with “seen” for the ones you stood in front of and never rated."],
+  ["unmarked", "unmarked", false, "unmarked — no verdict recorded. Cross it with “seen” for the ones you stood in front of and never rated.", "○"],
 ];
 const STATUS_FILTERS = [["sure", "seen", "seen"], ["unsure", "unsure", "unsure"], ["wish", "not seen", "not seen"]];
 // EYE ICONS for the seen axis on phones (Fuad 2026-08-30). The three states are one idea at three
@@ -795,13 +799,15 @@ const ThumbIcon = () => (
 // glyph === false means WORDS ONLY (the unmarked chip). It is distinct from null, which asks for the
 // drawn thumb — so the phone variant has to fall back to the word rather than to an icon, or the
 // button would render empty at that size.
-const MarkFace = ({ word, glyph }) => {
-  const bare = glyph === false;
+const MarkFace = ({ word, glyph, phoneGlyph }) => {
+  const bare = glyph === false;          // words-only at full size
   const icon = bare ? null : (glyph || <ThumbIcon />);
   return (
     <React.Fragment>
       <span className={"cv-f-full" + (glyph || bare ? "" : " cv-f-icon")}>{icon}{glyph ? " " : null}{word}</span>
-      <span className="cv-f-tiny">{bare ? word : icon}</span>
+      {/* a words-only chip still needs SOMETHING at phone size, where the row compacts to glyphs:
+          its phoneGlyph if it has one, else the word, so the button can never render empty. */}
+      <span className="cv-f-tiny">{bare ? (phoneGlyph || word) : icon}</span>
     </React.Fragment>
   );
 };
@@ -1990,10 +1996,10 @@ function Wall({ go, styleIds }) {
             REPLACES the selection rather than narrowing it, so the two can never both be true. */}
         <button data-on={!hang && !marks.size && !status.size}
           onClick={unhang(() => { setMarks(new Set()); setStatus(new Set()); })}>all</button>
-        {MARK_FILTERS.map(([v, word, glyph, tip]) => (
+        {MARK_FILTERS.map(([v, word, glyph, tip, phoneGlyph]) => (
           <button key={v} className={glyph === false ? "cv-f-bare" : undefined}
             data-on={marks.has(v)} onClick={() => toggleMark(v)} title={tip}>
-            <MarkFace word={word} glyph={glyph} />
+            <MarkFace word={word} glyph={glyph} phoneGlyph={phoneGlyph} />
           </button>
         ))}
         <span className="cv-filt-div" aria-hidden="true" />
@@ -3581,10 +3587,10 @@ function MuseumView({ museumId, go }) {
     <div className="cv-mus-filters">
       <button className="cv-mus-filt" data-on={!musFiltOn} title="everything met here"
         onClick={() => { setMusMarks(new Set()); setMusStatus(new Set()); setMusRead(false); setMusTour(false); }}>all</button>
-      {MARK_FILTERS.map(([v, word, glyph, tip]) => (
+      {MARK_FILTERS.map(([v, word, glyph, tip, phoneGlyph]) => (
         <button key={v} className={"cv-mus-filt" + (glyph === false ? " cv-f-bare" : "")} data-on={musMarks.has(v)} title={tip}
           onClick={() => setMusMarks(st => toggleInSet(st, v))}>
-          <MarkFace word={word} glyph={glyph} />
+          <MarkFace word={word} glyph={glyph} phoneGlyph={phoneGlyph} />
         </button>
       ))}
       <span className="cv-filt-div" aria-hidden="true" />
@@ -4204,10 +4210,10 @@ function ArtistView({ artistId, go }) {
           {/* "all" is never hidden and never conditional — it is the way back out */}
           <button className="cv-mus-filt" data-on={!aFiltOn} title={`every work by ${name} in the canon`}
             onClick={() => aSet(() => { setAMarks(new Set()); setAStatus(new Set()); setARead(false); setATour(false); })}>all</button>
-          {aRow.marks.map(([v, word, glyph, tip]) => (
-            <button key={v} className="cv-mus-filt" data-on={aMarks.has(v)} title={tip}
+          {aRow.marks.map(([v, word, glyph, tip, phoneGlyph]) => (
+            <button key={v} className={"cv-mus-filt" + (glyph === false ? " cv-f-bare" : "")} data-on={aMarks.has(v)} title={tip}
               onClick={() => aSet(() => setAMarks(st => toggleInSet(st, v)))}>
-              <MarkFace word={word} glyph={glyph} />
+              <MarkFace word={word} glyph={glyph} phoneGlyph={phoneGlyph} />
             </button>
           ))}
           {aRow.marks.length > 0 && aRow.status.length > 0 && <span className="cv-filt-div" aria-hidden="true" />}

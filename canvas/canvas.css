@@ -489,15 +489,16 @@ a { color: inherit; }
   /* the thumb does NOT take the eye's tightened button. It is text-sized and solid, so it belongs
      to ★ and ♥ — the :has(.cv-f-tiny) rule above already gives all three the same 7px/11px pill,
      and singling this one out is what made it read as a different class of control. */
-  /* UNMARKED is words-only by design (Fuad 2026-09-14: "OK, no icon"), so on a phone its .cv-f-tiny
-     falls back to the WORD rather than a glyph — otherwise the button would render empty. The 12px
-     from :has(.cv-f-tiny) above is tuned for a single character and reads oversized on a word, so
-     this one chip keeps the filter row's own label size. */
-  .cv-filters button.cv-f-bare:has(.cv-f-tiny) { font-size: 10.5px; padding: 7px 12px; }
+  /* UNMARKED is words-only at full size, but on a phone it shows ○ (Fuad 2026-09-14) — so it takes
+     the SAME pill as ★ ♥ and the thumb from the :has(.cv-f-tiny) rule above, and needs no override
+     of its own. It briefly rendered the word here, which was both long and the odd one out in a row
+     that has otherwise compacted to single glyphs. */
 }
 /* the four marks are exhaustive, so `unmarked` is a peer of the three tiers rather than a negation
-   of them — it takes the same pill, and only the icon is absent. */
-.cv-f-bare .cv-f-tiny { letter-spacing: .08em; }
+   of them. At full size the pill carries the word alone; the ring only appears where the row is
+   glyphs anyway. Letter-spacing is zeroed on the tiny label because 0.08em of trailing track pushes
+   a lone character visibly off-centre in a pill. */
+.cv-f-bare .cv-f-tiny { letter-spacing: 0; }
 /* ——— OMNISEARCH — "design your own wall" (Fuad 2026-08-27) ———
    One search where the Museum and Artist dropdowns used to sit; it owns them now. Committed picks
    become token chips inline before the input, filters compose as you add them, "clear all" resets
