@@ -192,10 +192,42 @@ const labelOf = (ent) => {
     "Taitō": "Tokyo", "Chiyoda": "Tokyo", "Minato": "Tokyo", "Sumida": "Tokyo",
     "Victoria": "Melbourne", "Museumsinsel": "Berlin", "Mitte": "Berlin",
     "Innere Stadt": "Vienna", "Maxvorstadt": "Munich",
+    // 2026-09-14 sweep (Fuad: "not all are on the city list under the map"). Nordic and Greek P131
+    // answers are municipalities, French ones are arrondissements, and German ones are Stadtbezirke
+    // — 24 places and 47 works were filed under names no one would put on an envelope, which split
+    // their real cities across several list entries.
+    "Oslo Municipality": "Oslo", "Bergen Municipality": "Bergen",
+    "Stockholm Municipality": "Stockholm", "Gothenburg Municipality": "Gothenburg",
+    "Mora Municipality": "Mora",
+    "Copenhagen Municipality": "Copenhagen", "Gentofte Municipality": "Charlottenlund",
+    "Athens Municipality": "Athens", "Thessaloniki Municipality": "Thessaloniki",
+    "1st arrondissement of Paris": "Paris", "3rd arrondissement of Paris": "Paris",
+    "4th arrondissement of Paris": "Paris", "7th arrondissement of Paris": "Paris",
+    "8th arrondissement of Paris": "Paris", "16th arrondissement of Paris": "Paris",
+    "Altstadt-Nord": "Cologne", "Bezirk Mitte": "Berlin", "Stadtbezirk II (Essen)": "Essen",
+    "Huangpu District": "Shanghai", "Leninsky City District": "Perm",
+    "Douglas County": "Lawrence", "Santa Barbara County": "Santa Barbara",
   };
   const fixCity = (c) => (c && CITY_FIX[c]) || c;
+  // DEAD COUNTRY CODES (2026-09-14). P17 can answer with a state that no longer exists: the Perm
+  // Art Museum came back "su". Intl.DisplayNames resolves SU to "Russia", so it did not look broken
+  // — it silently produced a SECOND "Russia" heading keyed SU, holding one city, while the real RU
+  // group held Moscow, Saint Petersburg, Syzran and Ryazan. Same class as the German Reich denial
+  // above: a work has to live somewhere you could actually travel to.
+  const COUNTRY_FIX = { su: "ru", yu: "rs", cs: "cz", dd: "de" };
+  const fixCc = (c) => (c && COUNTRY_FIX[String(c).toLowerCase()]) || c;
   // Start from the prior file's places verbatim — same rule as `works` above, a rerun only adds.
-  const places = { ...PRIOR.places };
+  // A rerun inherits prior places verbatim (see `works` above), so without this pass a new entry in
+  // CITY_FIX or COUNTRY_FIX would only ever reach holders fetched AFTER it was added — the existing
+  // rows would keep the district name that prompted the fix. Re-apply both on every run.
+  const places = {};
+  let healed = 0;
+  for (const [q, p] of Object.entries(PRIOR.places || {})) {
+    const city = fixCity(p.city), country = fixCc(p.country);
+    if (city !== p.city || country !== p.country) healed++;
+    places[q] = { ...p, city, country };
+  }
+  if (healed) console.log(`re-applied city/country fixes to ${healed} prior place(s)`);
   let placed = 0, unplaced = 0, mergedIntoCanon = 0, newPlaces = 0;
   for (const q of qids) {
     if (places[q]) { placed++; if (musByQid[q]) mergedIntoCanon++; continue; }
@@ -211,7 +243,7 @@ const labelOf = (ent) => {
     places[q] = {
       name: m ? m.name : h.name,
       city: m ? m.city : fixCity(city ? city.name : null),
-      country: m ? m.country : (country && country.iso ? String(country.iso).toLowerCase() : (country ? country.name : null)),
+      country: m ? m.country : fixCc(country && country.iso ? String(country.iso).toLowerCase() : (country ? country.name : null)),
       lat, lon,
       ...(m ? { museumId: m.id } : {}),
     };
