@@ -463,6 +463,24 @@ function StoriesView({ t, go, seed }) {
                   </div>
                 ))}
               </div>
+              {/* discovery lag over time (wave F insight 1) — median years back to an artist’s
+                  debut, per FOUND-year. Ships once CI rebuilds; hidden until then. */}
+              {A.lagArc && A.lagArc.length >= 8 && (() => {
+                const LA = A.lagArc;
+                const first = LA[0], last2 = LA[LA.length - 1];
+                return (
+                  <div style={{ marginTop: 18 }}>
+                    <div className="st-yir-h">The lag over time</div>
+                    <div className="st-sub" style={{ marginBottom: 8 }}>
+                      In {first.year} the artists you found were a median <b style={{ color: "var(--ink)" }}>{first.median} years</b> past
+                      their debut — {last2.year} runs at <b style={{ color: "var(--ink)" }}>{last2.median}</b>.
+                    </div>
+                    <Spark data={LA.map(x => x.median)} w={520} h={30} run={true}
+                      labels={LA.map(x => x.year)} fmtV={(v) => v + " yrs"}
+                      stroke="var(--accent)" fill="var(--accent-bg)" />
+                  </div>
+                );
+              })()}
             </section>
           );
         })()}
@@ -576,6 +594,47 @@ function StoriesView({ t, go, seed }) {
                     <span key={g.name}>{i > 0 ? " · " : ""}<b className="st-inline-link" data-link={clickable(g.name)} onClick={() => goIf(g.name)}>{g.name}</b> ({g.gap} yrs after the end)</span>
                   ))}.
                   {L.elders.length > 0 && <> Still standing after everything: <b style={{ color: "var(--ink)" }}>{L.elders[0].name}</b>, going since {L.elders[0].begin}.</>}
+                </div>
+              )}
+            </section>
+          );
+        })()}
+
+        {/* the concert effect (wave F insight 3) — plays in the 30 days before vs after each
+            attended show. Ships once CI rebuilds. */}
+        {I.CONCERT_EFFECT && I.CONCERT_EFFECT.boosted && I.CONCERT_EFFECT.boosted.length >= 3 && (() => {
+          const CE = I.CONCERT_EFFECT;
+          const top = CE.boosted[0];
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">The concert effect</div>
+              <div className="st-big" data-link={clickable(top.artist)} onClick={() => goIf(top.artist)}>
+                <em style={{ color: `oklch(0.78 0.14 ${top.hue})` }}>{top.artist}</em> went <em>{top.before} → {top.after}</em> plays
+                in the month around {top.venue || top.city}.
+              </div>
+              <div className="st-sub">
+                Each attended show, plays in the 30 days before vs after — <b style={{ color: "var(--ink)" }}>{CE.boostShare}%</b> of
+                {" "}{CE.gigs} measurable gigs lifted the month that followed.
+              </div>
+              <div style={{ display: "grid", gap: 7, marginTop: 14, maxWidth: 560 }}>
+                {CE.boosted.map(b => (
+                  <div key={b.artist + b.date} className="st-row" data-link={clickable(b.artist)} onClick={() => goIf(b.artist)}>
+                    <GenCover hue={b.hue} name={b.artist} size={36} radius={4} />
+                    <div style={{ minWidth: 0, flex: 1 }}>
+                      <div className="st-row-name" style={{ fontSize: 13.5 }}>{b.artist}</div>
+                      <div className="st-row-sub">{b.city} · {b.date}</div>
+                    </div>
+                    <div className="st-row-right"><span className="st-num">{b.before} → {b.after}<small> plays</small></span></div>
+                  </div>
+                ))}
+              </div>
+              {CE.faded && CE.faded.length >= 2 && (
+                <div className="st-sub" style={{ marginTop: 14 }}>
+                  And the ones a show put to rest: {CE.faded.slice(0, 3).map((f, i) => (
+                    <React.Fragment key={f.artist + f.date}>{i > 0 ? " · " : ""}
+                      <b className="st-inline-link" data-link={clickable(f.artist)} onClick={() => goIf(f.artist)}>{f.artist}</b>
+                      {" "}({f.before} → {f.after})</React.Fragment>
+                  ))}.
                 </div>
               )}
             </section>
@@ -917,6 +976,46 @@ function StoriesView({ t, go, seed }) {
           );
         })()}
 
+        {/* mother tongues (wave F insight 6) — of the artists from non-Anglophone countries,
+            who sings their own language and who trades it for English. Ships once CI rebuilds. */}
+        {I.MOTHER_TONGUE && I.MOTHER_TONGUE.countries && I.MOTHER_TONGUE.countries.length >= 2 && (() => {
+          const MT = I.MOTHER_TONGUE.countries;
+          const keeper = MT.slice().sort((a, b) => (b.nK / Math.max(b.nK + b.nT, 1)) - (a.nK / Math.max(a.nK + a.nT, 1)))[0];
+          const trader = MT.slice().sort((a, b) => (b.nT / Math.max(b.nK + b.nT, 1)) - (a.nT / Math.max(a.nK + a.nT, 1)))[0];
+          const chip = (a) => (
+            <b key={a.artistId} className="st-inline-link" data-link={hasPage(a.artistId)}
+              onClick={() => hasPage(a.artistId) && go("artist", a.artistId)}>{a.artist}</b>
+          );
+          const joinChips = (arr) => arr.map((a, i) => <React.Fragment key={a.artistId}>{i > 0 ? ", " : ""}{chip(a)}</React.Fragment>);
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">Mother tongues</div>
+              <div className="st-big">
+                Your {keeper.homeLang} bands keep <em>{keeper.homeLang}</em> —
+                {" "}your {trader.homeLang} ones switch to <em>English</em>.
+              </div>
+              <div className="st-sub">
+                For each non-Anglophone country, who sings the home language and who trades it away.
+              </div>
+              <div style={{ display: "grid", gap: 9, marginTop: 14 }}>
+                {MT.map(c => (
+                  <div key={c.cc} style={{ fontSize: 13 }}>
+                    <span style={{ fontSize: 16, marginRight: 6 }}>{c.flag}</span>
+                    <b>{c.name}</b>
+                    <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", marginLeft: 8 }}>
+                      {c.nK} in {c.homeLang} · {c.nT} in English</span>
+                    <div className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-soft)", marginTop: 2 }}>
+                      {c.keepers.length > 0 && <>{c.homeLang}: {joinChips(c.keepers)}</>}
+                      {c.keepers.length > 0 && c.traders.length > 0 && <span style={{ color: "var(--ink-faint)" }}> — </span>}
+                      {c.traders.length > 0 && <>English: {joinChips(c.traders)}</>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
         {/* mood — Spotify audio valence × NRC lyric valence ("sounds happy / reads dark") */}
         {I.MOOD && (I.MOOD.happyDark.length >= 3 || I.MOOD.darkHappy.length >= 3) && (() => {
           const M = I.MOOD;
@@ -1060,6 +1159,31 @@ function StoriesView({ t, go, seed }) {
                   )))}
                 </div>
               )}
+              {/* wave F insight 5 — the turn drawn, not just named: the riser and the faller
+                  as year arcs (T.arc ships today, no CI wait). */}
+              {T.arc && riser && faller && riser.delta > 0.02 && (() => {
+                const Ys = T.arc.years;
+                const row = (th, hue) => (
+                  <div className="st-arc-row" key={th}>
+                    <div className="st-arc-head"><span className="st-arc-name">{th}</span>
+                      <span className="st-arc-now" style={{ color: `oklch(0.72 0.14 ${hue})` }}>
+                        {Math.round((Ys[Ys.length - 1].byTheme[th] || 0) * 100)}%</span></div>
+                    <Spark data={Ys.map(y => y.byTheme[th] || 0)} w={420} h={24} run={true}
+                      labels={Ys.map(y => y.year)} fmtV={(v) => Math.round(v * 100) + "%"}
+                      stroke={`oklch(0.72 0.14 ${hue})`} fill={`oklch(0.72 0.14 ${hue} / .12)`} />
+                  </div>
+                );
+                return (
+                  <div style={{ marginTop: 18 }}>
+                    <div className="st-yir-h">How the turn happened</div>
+                    <div className="st-arc">
+                      {row(riser.th, 145)}
+                      {row(faller.th, 25)}
+                    </div>
+                    <div className="st-arc-axis"><span>{Ys[0].year}</span><span>{Ys[Ys.length - 1].year}</span></div>
+                  </div>
+                );
+              })()}
               {T.artists.length >= 5 && (
                 <div className="st-sub" style={{ marginTop: 18 }}>
                   Signature obsessions: {T.artists.slice(0, 6).map((a, i) => (
@@ -1519,6 +1643,34 @@ function StoriesView({ t, go, seed }) {
           );
         })()}
 
+        {/* the unfinished records (wave F insight 2) — albums whose plays never reach side B,
+            the mirror of the front-to-back records above. Ships once CI rebuilds. */}
+        {I.ALBUM_DECAY && I.ALBUM_DECAY.albums && I.ALBUM_DECAY.albums.length >= 3 && (() => {
+          const AD = I.ALBUM_DECAY;
+          const top = AD.albums[0];
+          return (
+            <section className="st-card">
+              <div className="st-label">The unfinished records</div>
+              <div className="st-title-sm">Albums you never let reach side B.</div>
+              <div className="st-sub" style={{ marginBottom: 12 }}>
+                Across {AD.sampled} albums with known tracklists the median album keeps {AD.median}% of its plays
+                on the front half — these never recover: <b style={{ color: "var(--ink)" }}>{top.album}</b> is {top.frontShare}% front-loaded.
+              </div>
+              <div className="st-ug-cuts">
+                {AD.albums.map(a => (
+                  <div key={a.artistId + a.album} className="st-ug-cut" data-link={clickable(a.artist)} onClick={() => goIf(a.artist)}>
+                    <GenCover hue={a.hue} name={a.artist} size={40} radius={4} />
+                    <div style={{ minWidth: 0 }}>
+                      <div className="st-row-name">{a.album}</div>
+                      <div className="st-row-sub">{a.artist} · {a.frontShare}% front-loaded · {fmt(a.plays)} plays</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
         {/* segue graph — what you play right after what (Phase 3) */}
         {I.SESSIONS && I.SESSIONS.segues && I.SESSIONS.segues.length >= 3 && (() => {
           const segs = I.SESSIONS.segues, top = segs[0];
@@ -1876,6 +2028,46 @@ function StoriesView({ t, go, seed }) {
               </ArtistRow>
             ))}
           </div>
+          {/* wave F insight 4 — the sound by hour (UTC, same clock as the module itself). The
+              axis with the biggest day swing tells the story; if nothing swings, THAT is the
+              story: the clock does not touch this library. */}
+          {I.HOUR_SOUND && I.HOUR_SOUND.hours && (() => {
+            const HS = I.HOUR_SOUND.hours.filter(Boolean);
+            if (HS.length < 18) return null;
+            const axes = [["energy", "Energy"], ["tempo", "Tempo"], ["dance", "Danceable"]];
+            const pick = axes.map(([k, name]) => {
+              const hi = HS.reduce((m, x) => x[k] > m[k] ? x : m, HS[0]);
+              const lo = HS.reduce((m, x) => x[k] < m[k] ? x : m, HS[0]);
+              return { k, name, hi, lo, swing: hi[k] - lo[k] };
+            }).sort((a, b) => b.swing - a.swing)[0];
+            const hh = (h) => (h % 24) + ":00";
+            const max = Math.max(...HS.map(x => x[pick.k]));
+            const min = Math.min(...HS.map(x => x[pick.k]));
+            return (
+              <div style={{ marginTop: 16 }}>
+                <div className="st-sub" style={{ marginBottom: 8 }}>
+                  {pick.swing >= 5
+                    ? <>The clock moves the sound: <b style={{ color: "var(--ink)" }}>{pick.name.toLowerCase()}</b> peaks
+                        at {hh(pick.hi.h)} ({pick.hi[pick.k]}) and bottoms out at {hh(pick.lo.h)} ({pick.lo[pick.k]}).</>
+                    : <>The clock barely touches the sound — 3am runs as hard as 3pm
+                        ({pick.name.toLowerCase()} swings only {pick.swing} points all day).</>}
+                </div>
+                <div style={{ display: "flex", alignItems: "flex-end", gap: 2, height: 44 }}>
+                  {Array.from({ length: 24 }, (_, h) => {
+                    const x = I.HOUR_SOUND.hours[h];
+                    const v = x ? x[pick.k] : null;
+                    const norm = v === null ? 0 : (v - min) / Math.max(max - min, 1);
+                    return (
+                      <div key={h} title={v === null ? "" : hh(h) + " · " + pick.name.toLowerCase() + " " + v}
+                        style={{ flex: 1, height: v === null ? 2 : (8 + norm * 34),
+                          background: h < 5 || h >= 23 ? "var(--accent)" : "var(--rule-2)", borderRadius: 2 }} />
+                    );
+                  })}
+                </div>
+                <div className="st-arc-axis"><span>0:00</span><span>12:00</span><span>23:00</span></div>
+              </div>
+            );
+          })()}
         </section>
 
         {/* discoveries */}

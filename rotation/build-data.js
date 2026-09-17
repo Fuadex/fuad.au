@@ -2809,6 +2809,7 @@ let ADOPTION = null;
 if (hasMB) {
   const rows = [];
   const decadePlays = new Map();
+  const lagByFound = new Map();   // found-year → lags, for the discovery-lag arc
   let covered = 0;
   for (const [name, plays] of artistPlays) {
     if (plays < 5) continue;
@@ -2823,6 +2824,7 @@ if (hasMB) {
     const dec = Math.floor(deb / 10) * 10;
     decadePlays.set(dec, (decadePlays.get(dec) || 0) + plays);
     rows.push({ name, plays, debut: deb, foundYear, lag, hue: hueFor(name), artistId: slug(name), kept: !!byName[name] });
+    { let lf = lagByFound.get(foundYear); if (!lf) lagByFound.set(foundYear, lf = []); lf.push(lag); }
   }
   rows.sort((a, b) => a.lag - b.lag);
   const lagArr = rows.map(r => r.lag).sort((a, b) => a - b);
@@ -2832,7 +2834,12 @@ if (hasMB) {
   // caught-early: smallest lag among well-played artists; digs: oldest music when found
   const early = rows.filter(r => r.plays >= 30).slice(0, 8);
   const digs = rows.filter(r => r.plays >= 20).slice().sort((a, b) => b.lag - a.lag).slice(0, 8);
-  ADOPTION = { coverage: Math.round(covered / lines.length * 100) / 100, artists: rows.length, medianLag, decades, early, digs };
+  // discovery-lag arc: for each year you FOUND artists, the median distance back to their debut
+  // ("in 2012 you found music 2 years late; in 2026, 9") — Fuad 2026-09-17 review, new insight 1.
+  const lagArc = [...lagByFound.entries()].filter(([, ls]) => ls.length >= 8).sort((a, b) => a[0] - b[0])
+    .map(([year, ls]) => { const s = ls.slice().sort((x, y) => x - y); return { year, median: s[Math.floor(s.length / 2)], n: ls.length }; });
+  ADOPTION = { coverage: Math.round(covered / lines.length * 100) / 100, artists: rows.length, medianLag, decades, early, digs,
+    lagArc: lagArc.length >= 8 ? lagArc : null };
 }
 
 // ─────────── LIFESPAN (MusicBrainz life-spans × your listening timeline) ───────────
@@ -3497,11 +3504,158 @@ let LIFECYCLE = null;
   console.log(`lifecycle: ${flameout.length} flameouts · ${perennial.length} perennials · ${slowburn.length} slow-burns · ${burning.length} burning now`);
 }
 
+// ─────────── WAVE F INSIGHTS (Fuad 2026-09-17 Stories review: "Are there any new insights
+// we can showcase?" — all six approved; these four are new sections, discovery lag rides on
+// ADOPTION above and the lyric-theme turn rides the existing THEMES.arc) ───────────
+
+// HOUR_SOUND — what the clock does to the sound. Per-scrobble hour (UTC — the same convention
+// as clockGrid and NIGHT_OWLS) × per-TRACK Spotify features where TRACKDATA has them, artist-
+// level AUDIO fallback. Feeds the After-midnight card: "3am runs hotter/softer than 3pm."
+let HOUR_SOUND = null;
+{
+  const acc = Array.from({ length: 24 }, () => ({ e: 0, tp: 0, d: 0, n: 0 }));
+  for (const [sArtist, , sTrack, ms] of scrobbles) {
+    if (!ms) continue;
+    const h = new Date(ms).getUTCHours();
+    const td = sTrack ? TRACKDATA[slug(sArtist) + "~" + slug(sTrack)] : null;
+    let e, tp, d;
+    if (td && td.length >= 10) { e = td[4] / 100; tp = td[7] / 100; d = td[8] / 100; }
+    else { const a = AUDIO[sArtist]; if (!a) continue; e = a.energy; tp = a.tempo; d = a.dance; }
+    const A = acc[h]; A.e += e; A.tp += tp; A.d += d; A.n++;
+  }
+  const hours = acc.map((A, h) => A.n >= 200
+    ? { h, energy: Math.round(A.e / A.n * 100), tempo: Math.round(A.tp / A.n * 100), dance: Math.round(A.d / A.n * 100), n: A.n }
+    : null);
+  if (hours.filter(Boolean).length >= 18) HOUR_SOUND = { hours };
+}
+
+// MOTHER_TONGUE — of your artists from non-Anglophone countries, who sings their own language
+// and who trades it for English. Dominant sung language per artist from GENIUS plays × originOf.
+let MOTHER_TONGUE = null;
+{
+  const HOME = { pl: "pl", jp: "ja", de: "de", at: "de", se: "sv", fr: "fr", fi: "fi", is: "is",
+    ru: "ru", ua: "uk", it: "it", br: "pt", pt: "pt", no: "no", dk: "da", cz: "cs", kr: "ko",
+    cn: "zh", tw: "zh", nl: "nl", es: "es", mx: "es", ar: "es" };
+  const CCN = { pl: "Poland", jp: "Japan", de: "Germany", at: "Austria", se: "Sweden", fr: "France",
+    fi: "Finland", is: "Iceland", ru: "Russia", ua: "Ukraine", it: "Italy", br: "Brazil",
+    pt: "Portugal", no: "Norway", dk: "Denmark", cz: "Czechia", kr: "South Korea", cn: "China",
+    tw: "Taiwan", nl: "Netherlands", es: "Spain", mx: "Mexico", ar: "Argentina" };
+  const ccFlag = (cc) => cc.toUpperCase().replace(/./g, (ch) => String.fromCodePoint(127397 + ch.charCodeAt(0)));
+  const langAcc = new Map();   // artist → Map(lang → plays), GENIUS-covered plays only
+  for (const [key, plays] of trackPlays) {
+    const ix = key.indexOf("\x00"); const artist = key.slice(0, ix), title = key.slice(ix + 1);
+    const g = GENIUS[slug(artist) + "~" + slug(title)];
+    if (!g || !g[0]) continue;
+    let m = langAcc.get(artist); if (!m) langAcc.set(artist, m = new Map());
+    m.set(g[0], (m.get(g[0]) || 0) + plays);
+  }
+  const byCc = new Map();
+  for (const [artist, m] of langAcc) {
+    const plays = [...m.values()].reduce((s, v) => s + v, 0);
+    if (plays < 30) continue;
+    const o = originOf(artist);
+    const cc = o && o.country ? String(o.country).toLowerCase() : null;
+    const home = cc && HOME[cc];
+    if (!home) continue;
+    const dom = [...m.entries()].sort((a, b) => b[1] - a[1])[0][0];
+    let e = byCc.get(cc); if (!e) byCc.set(cc, e = { cc, keepers: [], traders: [] });
+    const row = { artist, plays, hue: hueFor(artist), artistId: slug(artist) };
+    if (dom === home) e.keepers.push(row); else if (dom === "en") e.traders.push(row);
+  }
+  const countries = [...byCc.values()]
+    .map((e) => ({ cc: e.cc, name: CCN[e.cc] || e.cc.toUpperCase(), flag: ccFlag(e.cc),
+      homeLang: LANG_NAMES[HOME[e.cc]] || HOME[e.cc],
+      nK: e.keepers.length, nT: e.traders.length,
+      keepers: e.keepers.sort((a, b) => b.plays - a.plays).slice(0, 4),
+      traders: e.traders.sort((a, b) => b.plays - a.plays).slice(0, 4) }))
+    .filter((e) => e.nK + e.nT >= 3)
+    .sort((a, b) => (b.nK + b.nT) - (a.nK + a.nT));
+  if (countries.length >= 2) MOTHER_TONGUE = { countries: countries.slice(0, 6) };
+}
+
+// CONCERT_EFFECT — what an attended show does to the rotation: the artist’s plays in the 30
+// days before vs after each gig (gigs.json + gigs-manual). Windows still open are skipped.
+let CONCERT_EFFECT = null;
+{
+  let gigsList = [];
+  try { gigsList = (JSON.parse(fs.readFileSync(path.join(__dirname, "gigs.json"), "utf8")).gigs || []).slice(); } catch (e) {}
+  try { const gm = JSON.parse(fs.readFileSync(path.join(__dirname, "gigs-manual.json"), "utf8")); for (const g of (gm.add || [])) gigsList.push(g); } catch (e) {}
+  const dayByArtist = new Map();
+  for (const [sArtist, , , ms] of scrobbles) {
+    if (!ms) continue;
+    const d = Math.floor(ms / 86400e3);
+    let m = dayByArtist.get(sArtist); if (!m) dayByArtist.set(sArtist, m = new Map());
+    m.set(d, (m.get(d) || 0) + 1);
+  }
+  const nameBySlugL = new Map();
+  for (const name of dayByArtist.keys()) if (!nameBySlugL.has(slug(name))) nameBySlugL.set(slug(name), name);
+  const rows = [];
+  const today = Math.floor(Date.now() / 86400e3);
+  for (const g of gigsList) {
+    if (!g || !g.date || !g.artist) continue;
+    const gd = Math.floor(new Date(g.date + "T00:00:00Z").getTime() / 86400e3);
+    if (!isFinite(gd) || today - gd < 30) continue;
+    const name = nameBySlugL.get(slug(g.artist)); if (!name) continue;
+    const m = dayByArtist.get(name);
+    let before = 0, after = 0;
+    for (let d = gd - 30; d < gd; d++) before += m.get(d) || 0;
+    for (let d = gd + 1; d <= gd + 30; d++) after += m.get(d) || 0;
+    if (before + after < 10) continue;
+    rows.push({ artist: name, artistId: slug(name), hue: hueFor(name), date: g.date,
+      venue: g.venue || "", city: g.city || "", before, after });
+  }
+  if (rows.length >= 5) {
+    const boosted = rows.slice().sort((a, b) => (b.after - b.before) - (a.after - a.before))
+      .filter(r => r.after >= r.before * 1.5 && r.after >= 10).slice(0, 5);
+    const faded = rows.slice().sort((a, b) => (a.after - a.before) - (b.after - b.before))
+      .filter(r => r.before >= r.after * 1.5 && r.before >= 10).slice(0, 5);
+    CONCERT_EFFECT = { gigs: rows.length, boosted, faded,
+      boostShare: Math.round(rows.filter(r => r.after > r.before).length / rows.length * 100) };
+  }
+}
+
+// ALBUM_DECAY — the records you never finish: albums whose plays live on the FRONT half of the
+// tracklist (TRACKDATA trackNo). The mirror of SESSIONS’ front-to-back records.
+let ALBUM_DECAY = null;
+{
+  const cand = [];
+  for (const [key, titles] of albumTracks) {
+    const ix = key.indexOf("\x00"); const artist = key.slice(0, ix), album = key.slice(ix + 1);
+    if (/(live|remix|remixe[sd]|cut up|acoustic|demos?|instrumentals?|unplugged|sessions?)/i.test(album)) continue;
+    const rows = [];
+    for (const title of titles) {
+      const td = TRACKDATA[slug(artist) + "~" + slug(title)];
+      if (!td || !td[3]) continue;
+      const plays = trackPlays.get(artist + "\x00" + title) || 0;
+      if (td[3] >= 1 && td[3] <= 30) rows.push({ pos: td[3], plays });
+    }
+    if (rows.length < 8) continue;
+    const total = rows.reduce((s, r) => s + r.plays, 0);
+    if (total < 120) continue;
+    const maxPos = Math.max(...rows.map(r => r.pos));
+    if (maxPos < 8) continue;
+    const half = maxPos / 2;
+    const front = rows.filter(r => r.pos <= half).reduce((s, r) => s + r.plays, 0);
+    const backRows = rows.filter(r => r.pos > half);
+    if (!backRows.length) continue;
+    const frontShare = front / total;
+    cand.push({ artist, artistId: slug(artist), hue: hueFor(artist), album, plays: total,
+      tracks: rows.length, frontShare: Math.round(frontShare * 100) });
+  }
+  if (cand.length >= 12) {
+    const med = cand.map(c => c.frontShare).sort((a, b) => a - b)[Math.floor(cand.length / 2)];
+    const abandoned = cand.slice().sort((a, b) => b.frontShare - a.frontShare)
+      .filter(c => c.frontShare >= 72).slice(0, 6);
+    if (abandoned.length >= 3) ALBUM_DECAY = { median: med, albums: abandoned, sampled: cand.length };
+  }
+}
+
 const INSIGHTS = {
   MILESTONES, OBSESSIONS, ALBUM_OBSESSIONS, LIFETIME_TRACKS, FLAMEOUTS, INCUBATION, ARTIST_ERAS, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
   AUDIO_DRIFT, ADOPTION, CONNECTIONS, RECOMMENDATIONS, REVISIT, LIFESPAN, LANGUAGE, LINEUPS, MOOD, THEMES,
   STREAK: { best, start: bestStart, end: bestEnd, current },
   UNDERGROUND, GEOGRAPHY, STYLE_ATLAS, SESSIONS, SEASONALITY, LIFECYCLE,
+  HOUR_SOUND, MOTHER_TONGUE, CONCERT_EFFECT, ALBUM_DECAY,
 };
 
 // ─────────── SEARCH INDEX (separate lazy-loaded file) ───────────
