@@ -1148,12 +1148,17 @@ function StoriesView({ t, go, seed }) {
                   <div className="st-scene-name">{sc.style}</div>
                   <div className="st-scene-n">{fmt(sc.plays)} plays</div>
                   <div className="st-scene-via">
-                    {sc.artists.map((a, i) => (
+                    {/* row 1: the top artist. row 2: the top artist EXCLUSIVE to this scene
+                        (build-computed sc.solo) — the giants topped every box, which said
+                        nothing; who lives ONLY here does. Runner-up until CI ships solo. */}
+                    {[sc.artists[0], (sc.solo && sc.solo.name !== sc.artists[0].name) ? sc.solo : sc.artists[1]]
+                      .filter(Boolean).map((a) => (
                       <div key={a.name} className="st-scene-a" data-link={clickable(a.name)} onClick={() => goIf(a.name)}>
                         <GenCover hue={a.hue} name={a.name} size={32} radius={3} />
                         <div style={{ minWidth: 0 }}>
                           <div className="st-row-name" style={{ fontSize: 13 }}>{a.name}</div>
-                          <div className="st-row-sub" style={{ fontSize: 11 }}>{fmt(a.plays)} plays</div>
+                          <div className="st-row-sub" style={{ fontSize: 11 }}>{fmt(a.plays)} plays
+                            {sc.solo && a.name === sc.solo.name ? <span style={{ color: "var(--accent)" }}> · only here</span> : null}</div>
                         </div>
                       </div>
                     ))}
@@ -1296,10 +1301,10 @@ function StoriesView({ t, go, seed }) {
                 {" "}<em>{labels[second.ax]}</em> {dir(second.delta)} {Math.round(Math.abs(second.delta) * 100)}.
               </div>
               <div className="st-sub">
-                The play-weighted sound profile per year — the taste moved most on {labels[top.ax].toLowerCase()}, which {dir(top.delta)}, and {labels[second.ax].toLowerCase()}, which {dir(second.delta)}.
+                The play-weighted sound profile per year, {Y[0].year}–{Y[Y.length - 1].year} — only the movers drawn.
               </div>
               <div className="st-turn">
-                {order.map(({ ax }) => {
+                {order.slice(0, 2).map(({ ax }) => {
                   const series = Y.map(y => y[ax]);
                   return (
                     <div key={ax} className="st-turn-row">
@@ -1315,6 +1320,11 @@ function StoriesView({ t, go, seed }) {
                   <span>{Y[Math.floor(Y.length / 2)].year}</span>
                   <span>{Y[Y.length - 1].year}</span>
                 </div>
+              </div>
+              <div className="st-sub" style={{ marginTop: 10 }}>
+                The rest barely moved: {order.slice(2).map((o, i) => (
+                  <React.Fragment key={o.ax}>{i > 0 ? " · " : ""}{labels[o.ax]} {Math.round(Y[Y.length - 1][o.ax] * 100)}</React.Fragment>
+                ))}.
               </div>
             </section>
           );

@@ -2726,7 +2726,8 @@ if (hasDiscogs) {
   const topScenes = [...styleMap.entries()]
     .filter(([, v]) => v.artists.length >= 2)
     .map(([style, v]) => ({ style, plays: v.plays,
-      artists: v.artists.slice().sort((a, b) => b.plays - a.plays).slice(0, 2) }))
+      artists: v.artists.slice().sort((a, b) => b.plays - a.plays).slice(0, 2),
+      _all: v.artists.slice().sort((a, b) => b.plays - a.plays).slice(0, 40) }))
     .sort((a, b) => b.plays - a.plays);
   const seenKey = new Set();
   const scenes = [];
@@ -2738,6 +2739,19 @@ if (hasDiscogs) {
     seenKey.add(k);
     scenes.push(sc);
     if (scenes.length >= 9) break;   // 9 since 2026-09-14 (Fuad)
+  }
+  // Per scene, the top artist EXCLUSIVE to it among the picked nine (Fuad 2026-09-17 review:
+  // the same giants topped every box — NIN in three, Linkin Park in three — so the cards said
+  // little; the second row now names who lives ONLY in that scene). Falls back in the view
+  // to the plain runner-up when a scene has no exclusive resident.
+  {
+    const sceneCount = new Map();
+    for (const sc of scenes) for (const a of sc._all) sceneCount.set(a.name, (sceneCount.get(a.name) || 0) + 1);
+    for (const sc of scenes) {
+      const solo = sc._all.find((a) => sceneCount.get(a.name) === 1 && a.name !== sc.artists[0].name);
+      if (solo) sc.solo = { name: solo.name, plays: solo.plays, hue: solo.hue };
+      delete sc._all;
+    }
   }
   // bridges: artists who carry styles from ≥ 2 of your top scenes —
   // the connector nodes between scene clusters (e.g. Northlane = Metalcore + Synthwave).
