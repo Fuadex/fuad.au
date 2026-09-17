@@ -23,6 +23,12 @@
     "to": "All These Things I Hate (Revolve Around Me)",
     "type": "spelling",
     "reason": "spelling: repairs a last.fm CSV export truncation (title cut at a comma inside parentheses); same recording"
+   },
+   {
+    "from": "Parasite [Explicit]",
+    "to": "Parasite",
+    "type": "spelling",
+    "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -950,6 +956,12 @@
     "to": "Belly of the Beast",
     "type": "variant",
     "reason": "live recording ([Live])"
+   },
+   {
+    "from": "C11 H17 O2 N2 S Na (Sodium Pentathol)",
+    "to": "C11 H17 N2 O2 S Na (Sodium Pentathol)",
+    "type": "spelling",
+    "reason": "spelling: tag scrambles the thiopental formula (O2/N2 swapped); releases print C11 H17 N2 O2 S Na — same recording, Sound of White Noise"
    }
   ]
  },
@@ -1448,6 +1460,18 @@
     "to": "Head Bangya!!",
     "type": "variant",
     "reason": "variant: Budokan live upload of the same song"
+   },
+   {
+    "from": "DA DA DANCE (feat. Tak Matsumoto)",
+    "to": "DA DA DANCE",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Brand New Day (feat. Tim Henson & Scott LePage)",
+    "to": "Brand New Day",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
    }
   ],
   "artist": [
@@ -1898,6 +1922,12 @@
     "to": "One Day the Only Butterflies Left Will Be In Your Chest As You March Towards Your Death (feat. Amy Lee)",
     "type": "spelling",
     "reason": "edition tag ([Explicit]); same recording"
+   },
+   {
+    "from": "The Fox And The Wolf (feat. Josh Scogin)",
+    "to": "The Fox and the Wolf",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
    }
   ],
   "artist": [
@@ -2181,6 +2211,14 @@
     "from": "Throat Full of Glass",
     "to": "Making Monsters",
     "type": "absorb"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "This S*it Will Fcuk You Up",
+    "to": "This Shit Will Fcuk You Up",
+    "type": "spelling",
+    "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -2609,19 +2647,19 @@
    },
    {
     "from": "Raise Your Weapon (Madeon Extended Remix)",
-    "to": "Raise Your Weapon (Ft. Greta Svabo Bech)",
+    "to": "Raise Your Weapon",
     "type": "variant",
     "reason": "remix ((Madeon Extended Remix))"
    },
    {
     "from": "Raise Your Weapon (Wax Motif Remix)",
-    "to": "Raise Your Weapon (Ft. Greta Svabo Bech)",
+    "to": "Raise Your Weapon",
     "type": "variant",
     "reason": "remix ((Wax Motif Remix))"
    },
    {
     "from": "Raise Your Weapon (Original Mix)",
-    "to": "Raise Your Weapon (Ft. Greta Svabo Bech)",
+    "to": "Raise Your Weapon",
     "type": "variant",
     "reason": "remix ((Original Mix))"
    },
@@ -2732,6 +2770,24 @@
     "to": "1981",
     "type": "variant",
     "reason": "remix ((Miminal Remix))"
+   },
+   {
+    "from": "Raise Your Weapon (Ft. Greta Svabo Bech)",
+    "to": "Raise Your Weapon",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Animal Rights (ft. Wolfgang Gartner)",
+    "to": "Animal Rights",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "One Trick Pony (Ft. SOFI)",
+    "to": "One Trick Pony",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -2752,6 +2808,12 @@
     "to": "Hahaha",
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "I Want It I Need It",
+    "to": "I Want It I Need It (Death Heated)",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
    }
   ],
   "albums": [
@@ -2788,12 +2850,6 @@
   ],
   "tracks": [
    {
-    "from": "Knife Prty",
-    "to": "Knife Party",
-    "type": "spelling",
-    "reason": "spelling: typo/variant suffix folds to canonical"
-   },
-   {
     "from": "Digital Bath (acoustic)",
     "to": "Digital Bath",
     "type": "variant",
@@ -2816,6 +2872,12 @@
     "to": "Rivière",
     "type": "spelling",
     "reason": "diacritic: no-accent form folds to canonical accented form"
+   },
+   {
+    "from": "Knife Party",
+    "to": "Knife Prty",
+    "type": "spelling",
+    "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -2882,6 +2944,12 @@
     "to": "You Spin Me Round (Like a Record)",
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "I Wish I Was the President",
+    "to": "I Wish I Was President",
+    "type": "spelling",
+    "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -3169,6 +3237,18 @@
     "to": "Metropolis pt.1\"The Miracle and The Sleeper\"",
     "type": "spelling",
     "reason": "spelling: alternate punctuation of the same Images and Words track"
+   },
+   {
+    "from": "Viper King (Bonus track)",
+    "to": "Viper King",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "The Ytse Jam",
+    "to": "Ytse Jam",
+    "type": "spelling",
+    "reason": "spelling: word-order/naming tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -3189,6 +3269,12 @@
     "to": "In A Sentimental Mood",
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Mood Indigo (Remastered)",
+    "to": "Mood Indigo",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -3230,6 +3316,12 @@
     "to": "Sorry You're Not A Winner",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Rat Race",
+    "to": "Rat Race (bonus 2013 single)",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -3393,6 +3485,12 @@
     "to": "Ya Mamma",
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Gangster Trippin",
+    "to": "Gangster Tripping",
+    "type": "spelling",
+    "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -3808,6 +3906,36 @@
     "to": "DoYaThing (feat. Andre 3000 and James Murphy)",
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Tormenta (feat. Bad Bunny)",
+    "to": "Tormenta",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "New Gold (feat. Tame Impala and Bootie Brown)",
+    "to": "New Gold",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Cracker Island ft. Thundercat",
+    "to": "Cracker Island",
+    "type": "spelling",
+    "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Oil (feat. Stevie Nicks)",
+    "to": "Oil",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Silent Running (feat. Adeleye Omotayo)",
+    "to": "Silent Running",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
    }
   ],
   "artist": [
@@ -4201,6 +4329,12 @@
     "to": "Stabbing In the Dark",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Hip To Be Scared [Feat. Jacoby Shaddix]",
+    "to": "Hip to Be Scared",
+    "type": "spelling",
+    "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -4599,6 +4733,18 @@
     "to": "Somebody Someone",
     "type": "spelling",
     "reason": "packaging tag ((AC3 Stereo)); same recording"
+   },
+   {
+    "from": "Children Of The Korn (feat. Ice Cube)",
+    "to": "Children of the Korn",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Cameltosis (Feat. Slimkid 3)",
+    "to": "Cameltosis",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -4661,6 +4807,18 @@
     "to": "Civilization Collapse",
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Future Ring",
+    "to": "Future King",
+    "type": "spelling",
+    "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Mind of Fire",
+    "to": "Mind on Fire",
+    "type": "spelling",
+    "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -4863,6 +5021,12 @@
     "to": "Shot (Non-LP Version)",
     "type": "spelling",
     "reason": "packaging tag ((Bonus Track)); same recording"
+   },
+   {
+    "from": "I'll Be OK",
+    "to": "It’ll Be OK",
+    "type": "spelling",
+    "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -5725,33 +5889,45 @@
    },
    {
     "from": "You're On (Alex Metric Remix)",
-    "to": "You're On (ft. Kyan)",
+    "to": "You’re On",
     "type": "variant",
     "reason": "remix ((Alex Metric Remix))"
    },
    {
     "from": "You're On (Gramatik Remix)",
-    "to": "You're On (ft. Kyan)",
+    "to": "You’re On",
     "type": "variant",
     "reason": "remix ((Gramatik Remix))"
    },
    {
     "from": "You're On (Oliver Remix)",
-    "to": "You're On (ft. Kyan)",
+    "to": "You’re On",
     "type": "variant",
     "reason": "remix ((Oliver Remix))"
    },
    {
     "from": "Pay No Mind (Live Version)",
-    "to": "Pay No Mind (ft. Passion Pit)",
+    "to": "Pay No Mind",
     "type": "variant",
     "reason": "live recording ((Live Version))"
    },
    {
     "from": "Pay No Mind (Lemaitre Remix)",
-    "to": "Pay No Mind (ft. Passion Pit)",
+    "to": "Pay No Mind",
     "type": "variant",
     "reason": "remix ((Lemaitre Remix))"
+   },
+   {
+    "from": "You're On (ft. Kyan)",
+    "to": "You’re On",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Pay No Mind (ft. Passion Pit)",
+    "to": "Pay No Mind",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
    }
   ],
   "albums": [
@@ -6024,13 +6200,13 @@
    },
    {
     "from": "A Tout Le Monde (Radio Edit)",
-    "to": "A Tout le Monde",
+    "to": "À tout le monde",
     "type": "variant",
     "reason": "edit ((Radio Edit))"
    },
    {
     "from": "A Tout Le Monde (Demo)",
-    "to": "A Tout le Monde",
+    "to": "À tout le monde",
     "type": "variant",
     "reason": "demo recording ((Demo))"
    },
@@ -6081,6 +6257,18 @@
     "to": "Mary Jane",
     "type": "variant",
     "reason": "remix ((Paul Lani mix))"
+   },
+   {
+    "from": "À Tout Le Monde (Set Me Free)",
+    "to": "À tout le monde",
+    "type": "variant",
+    "reason": "variant: 2007 re-recording with Cristina Scabbia (United Abominations) — distinct recording from the Youthanasia original, linked not merged"
+   },
+   {
+    "from": "A Tout le Monde",
+    "to": "À tout le monde",
+    "type": "spelling",
+    "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -6188,6 +6376,12 @@
     "to": "Metal Militia",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "My Friend of Misery - From Jason's Riff Tapes",
+    "to": "My Friend of Misery",
+    "type": "spelling",
+    "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -6268,6 +6462,24 @@
     "to": "No One Will Teach You",
     "type": "spelling",
     "reason": "feat-credit tag ((feat. Neema Askari)); same recording"
+   },
+   {
+    "from": "Arch Essence (feat. Spencer Sotelo)",
+    "to": "Arch Essence",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Cardinal Red (feat. Mick Gordon)",
+    "to": "Cardinal Red",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "False Providence (feat. Mick Gordon)",
+    "to": "False Providence",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
    }
   ],
   "artist": [
@@ -6434,6 +6646,12 @@
     "to": "Shoot You In The Back",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "The Chase Is Better Than The",
+    "to": "The Chase Is Better Than the Catch",
+    "type": "spelling",
+    "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -6502,6 +6720,12 @@
     "to": "Big Freeze",
     "type": "spelling",
     "reason": "spelling: rip-tag suffix on the same recording folds to canonical"
+   },
+   {
+    "from": "Prelude",
+    "to": "Survival (Prelude)",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
    }
   ],
   "albums": [
@@ -6519,6 +6743,12 @@
     "to": "モノクロエフェクター",
     "type": "spelling",
     "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   },
+   {
+    "from": "1,000,000 TIMES feat. chelly (EGOIST)",
+    "to": "1,000,000 TIMES",
+    "type": "spelling",
+    "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -7237,6 +7467,12 @@
     "to": "Xen",
     "type": "variant",
     "reason": "variant: distinct live recording (YouTube-caption title), link to canonical for reads"
+   },
+   {
+    "from": "nameless.exe",
+    "to": "Nameless",
+    "type": "spelling",
+    "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ],
   "artist": [
@@ -7765,6 +8001,12 @@
     "to": "Walk (Remastered Version)",
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "5 Minutes Alone (Remastered)",
+    "to": "5 Minutes Alone",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -7881,6 +8123,24 @@
     "to": "Better Man",
     "type": "spelling",
     "reason": "spelling fold within variant group: same recording as canonical"
+   },
+   {
+    "from": "Elderly Woman Behind The Counter In A Small Town (Remastered)",
+    "to": "Elderly Woman Behind the Counter in a Small Town",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Rearviewmirror (Remastered)",
+    "to": "Rearviewmirror",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Go (Remastered)",
+    "to": "Go",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -8020,6 +8280,12 @@
     "to": "Co Mam Powiedziec",
     "type": "spelling",
     "reason": "case/diacritic/punctuation variant of the base title; same recording"
+   },
+   {
+    "from": "Mamy ten styl",
+    "to": "Mam ten styl",
+    "type": "spelling",
+    "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -8042,10 +8308,16 @@
  "Pink Floyd": {
   "tracks": [
    {
-    "from": "Another Brick in the Wall (Part 2)",
-    "to": "Another Brick in the Wall, Pt. 2",
+    "from": "Another Brick in the Wall, Pt. 2",
+    "to": "Another Brick in the Wall, Part 2",
     "type": "spelling",
-    "reason": "spelling: typo/variant suffix folds to canonical"
+    "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Another Brick in the Wall, Pt. 1",
+    "to": "Another Brick in the Wall, Part 1",
+    "type": "spelling",
+    "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -8161,6 +8433,18 @@
     "to": "Glass Arm Shattering",
     "type": "spelling",
     "reason": "mis-tagged title of the Deadwing closer; same recording (Fuad 2026-09-07)"
+   },
+   {
+    "from": "Feel So Low (Lyrics)",
+    "to": "Feel So Low",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Moon Touches Your Shoulder",
+    "to": "The Moon Touches Your Shoulder",
+    "type": "spelling",
+    "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ],
   "albums": [
@@ -8239,14 +8523,8 @@
     "reason": "edition tag ([Explicit]); same recording"
    },
    {
-    "from": "Dwa Trzynaście",
-    "to": "Dwa Trzynascie",
-    "type": "spelling",
-    "reason": "case/diacritic/punctuation variant of the base title; same recording"
-   },
-   {
     "from": "Dwa Trzynascie (Instrumental)",
-    "to": "Dwa Trzynascie",
+    "to": "Dwa Trzynaście",
     "type": "variant",
     "reason": "instrumental version ((Instrumental))"
    },
@@ -8261,6 +8539,12 @@
     "to": "Makijaż",
     "type": "spelling",
     "reason": "case/diacritic/punctuation variant of the base title; same recording"
+   },
+   {
+    "from": "Dwa Trzynascie",
+    "to": "Dwa Trzynaście",
+    "type": "spelling",
+    "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ],
   "albums": [
@@ -8418,6 +8702,24 @@
     "to": "Who'll Be the Next in Line",
     "type": "spelling",
     "reason": "spelling: same Kinks cover, article dropped in one scrobble variant; merge rows"
+   },
+   {
+    "from": "Long Slow Goodbye",
+    "to": "Long Slow Goodbye / Hidden Finale",
+    "type": "spelling",
+    "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Everybody's Gonna Be Happy (bonus)",
+    "to": "Everybody’s Gonna Be Happy",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Mosquito Song (bonus)",
+    "to": "Mosquito Song",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -8686,6 +8988,12 @@
     "to": "Circle Pit",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Refused Are Fucking Dead",
+    "to": "Refused Are Fuckin Dead",
+    "type": "spelling",
+    "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -8936,6 +9244,18 @@
     "to": "Spirit In Black",
     "type": "variant",
     "reason": "live recording (- Live 1994)"
+   },
+   {
+    "from": "Wicked (Bonus Track)",
+    "to": "Wicked",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Filler / I Don't Want To Hear",
+    "to": "Filler / I Don't Want To Hear It",
+    "type": "spelling",
+    "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -9042,6 +9362,18 @@
     "to": "Purity",
     "type": "variant",
     "reason": "live recording ((live))"
+   },
+   {
+    "from": "The Opium Of The People",
+    "to": "Opium of the People",
+    "type": "spelling",
+    "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Vermillion",
+    "to": "Vermilion",
+    "type": "spelling",
+    "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -9114,6 +9446,12 @@
     "to": "An Eye for an Eye",
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Witching Metal (Bonus)",
+    "to": "Witching Metal",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
    }
   ],
   "albums": [
@@ -9280,6 +9618,30 @@
     "to": "The Holy Drinker",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Happy Returns / Ascendant Here On...",
+    "to": "Happy Returns",
+    "type": "spelling",
+    "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Blank Tapes (feat. Ninet Tayeb)",
+    "to": "Blank Tapes",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Pariah (feat. Ninet Tayeb)",
+    "to": "Pariah",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Song of I (feat. Sophie Hunger)",
+    "to": "Song of I",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -9302,6 +9664,12 @@
     "to": "Sex Type Thing",
     "type": "spelling",
     "reason": "remaster row (- 2017 Remaster); same recording per house rule"
+   },
+   {
+    "from": "Kitchenware & Candybars",
+    "to": "Kitchenware & Candybars / Second Album",
+    "type": "spelling",
+    "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -9670,7 +10038,7 @@
    },
    {
     "from": "Concealing Fate Part One Acceptance - RADAR O.S.T",
-    "to": "Acceptance - Concealing Fate, Pt. 1",
+    "to": "Concealing Fate, Part 1: Acceptance",
     "type": "variant",
     "reason": "variant: Live at Radar Festival 2024, link to canonical for reads (Fuad 2026-09-04)"
    },
@@ -9694,13 +10062,13 @@
    },
    {
     "from": "Deception Pt 2",
-    "to": "Deception - Concealing Fate, Pt. 2",
+    "to": "Concealing Fate, Part 2: Deception",
     "type": "variant",
     "reason": "variant: albumless scrobble of the Concealing Fate movement, link to canonical for reads (Fuad 2026-09-04)"
    },
    {
     "from": "The Impossible - Concealing Fate Part Three",
-    "to": "The Impossible - Concealing Fate, Pt. 3",
+    "to": "Concealing Fate, Part 3: The Impossible",
     "type": "variant",
     "reason": "variant: Odyssey 2015 live recording (O'Hara era), link to canonical for reads (Fuad 2026-09-04)"
    },
@@ -9709,6 +10077,42 @@
     "to": "April",
     "type": "variant",
     "reason": "variant: albumless vocal-cover tagging of the One track, link to canonical for reads (Fuad 2026-09-04)"
+   },
+   {
+    "from": "Deception - Concealing Fate, Pt. 2",
+    "to": "Concealing Fate, Part 2: Deception",
+    "type": "spelling",
+    "reason": "spelling: word-order/naming tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Acceptance - Concealing Fate, Pt. 1",
+    "to": "Concealing Fate, Part 1: Acceptance",
+    "type": "spelling",
+    "reason": "spelling: word-order/naming tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "The Impossible - Concealing Fate, Pt. 3",
+    "to": "Concealing Fate, Part 3: The Impossible",
+    "type": "spelling",
+    "reason": "spelling: word-order/naming tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Perfection - Concealing Fate, Pt. 4",
+    "to": "Concealing Fate, Part 4: Perfection",
+    "type": "spelling",
+    "reason": "spelling: word-order/naming tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Epiphany - Concealing Fate, Pt. 5",
+    "to": "Concealing Fate, Part 5: Epiphany",
+    "type": "spelling",
+    "reason": "spelling: word-order/naming tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Origin - Concealing Fate, Pt. 6",
+    "to": "Concealing Fate, Part 6: Origin",
+    "type": "spelling",
+    "reason": "spelling: word-order/naming tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ],
   "albums": [
@@ -9747,6 +10151,12 @@
     "to": "Over the Wall",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Henchman Ride",
+    "to": "Henchmen Ride",
+    "type": "spelling",
+    "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -10042,7 +10452,7 @@
    },
    {
     "from": "Their Law (feat. Pop Will Eat Itself) [Remastered]",
-    "to": "Their Law (feat. Pop Will Eat Itself)",
+    "to": "Their Law",
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
    },
@@ -10111,6 +10521,30 @@
     "to": "Breathe",
     "type": "variant",
     "reason": "remix ((The Glitch Mob Remix))"
+   },
+   {
+    "from": "Shoot Down -Feat. Liam Gallagher & Noel Gallagher Of Oasis",
+    "to": "Shoot Down",
+    "type": "spelling",
+    "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Wake Up Call -Feat. Kool Keith",
+    "to": "Wake Up Call",
+    "type": "spelling",
+    "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Memphis Bells -Feat. Princess Superstar",
+    "to": "Memphis Bells",
+    "type": "spelling",
+    "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Their Law (feat. Pop Will Eat Itself)",
+    "to": "Their Law",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -12413,6 +12847,12 @@
     "to": "Born Stubborn",
     "type": "spelling",
     "reason": "remaster row (- 2017 Remaster); same recording per house rule"
+   },
+   {
+    "from": "The Hunt (Lyrics)",
+    "to": "The Hunt",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -13105,9 +13545,33 @@
   "tracks": [
    {
     "from": "Venger (Instrumental)",
-    "to": "Venger (feat. Greta Link)",
+    "to": "Venger",
     "type": "variant",
     "reason": "instrumental version ((Instrumental))"
+   },
+   {
+    "from": "Venger (feat. Greta Link)",
+    "to": "Venger",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Femme Fatale (feat. Highway Superstar)",
+    "to": "Femme Fatale",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Souls At Zero (feat. Astronoid)",
+    "to": "Souls at Zero",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Sentient (feat. Hayley Stewart)",
+    "to": "Sentient",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -13127,6 +13591,20 @@
    },
    {
     "from": "Kendrick Lamar, Rihanna"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Worldwide Steppers [Explicit]",
+    "to": "Worldwide Steppers",
+    "type": "spelling",
+    "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Rich (Interlude) [Explicit]",
+    "to": "Rich (interlude)",
+    "type": "spelling",
+    "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -13787,6 +14265,14 @@
    {
     "from": "Miles Davis, John Coltrane, Cannonball Adderley, Bill Evans"
    }
+  ],
+  "tracks": [
+   {
+    "from": "So What (feat. John Coltrane, Cannonball Adderley & Bill Evans)",
+    "to": "So What",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
+   }
   ]
  },
  "Lane 8": {
@@ -14043,6 +14529,14 @@
    {
     "from": "Dance Gavin Dance, Bilmuri"
    }
+  ],
+  "tracks": [
+   {
+    "from": "Synergy (feat. Rob Damiani)",
+    "to": "Synergy",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
+   }
   ]
  },
  "Kiko King & creativemaze": {
@@ -14091,6 +14585,14 @@
   "artist": [
    {
     "from": "Circle Of Dust, Celldweller"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Embracing Entropy (feat. Celldweller)",
+    "to": "Embracing Entropy",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -14453,6 +14955,14 @@
     "from": "Like a Parasite",
     "to": "Aurora",
     "type": "absorb"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "Bonfire of the Millenials",
+    "to": "Bonfire of the Millennials",
+    "type": "spelling",
+    "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -14829,6 +15339,24 @@
     "to": "Wipeout",
     "type": "variant",
     "reason": "remix ((album mix))"
+   },
+   {
+    "from": "Freedom (feat. Rou Reynolds)",
+    "to": "Freedom",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Faint (feat. masato)",
+    "to": "Faint",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Destroy (feat. Ho99o9)",
+    "to": "Destroy",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -14853,6 +15381,14 @@
     "to": "THE SIDE EFFECTS",
     "type": "absorb"
    }
+  ],
+  "tracks": [
+   {
+    "from": "WORDS OF THE YOUTH",
+    "to": "WORDS OF YOUTH",
+    "type": "spelling",
+    "reason": "spelling: word-order/naming tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   }
   ]
  },
  "Kyuss": {
@@ -14861,6 +15397,14 @@
     "from": "Green Machine",
     "to": "Blues for the Red Sun",
     "type": "absorb"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "(Beginning Of What's About To Happen) HWY 74",
+    "to": "HWY 74",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -14938,6 +15482,14 @@
     "from": "I'm ready to die for my friends",
     "to": "PALEHELL",
     "type": "absorb"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "SUPER NATURAL HIGH - feat. 唾奇",
+    "to": "SUPER NATURAL HIGH",
+    "type": "spelling",
+    "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -15371,6 +15923,12 @@
     "to": "New Breed",
     "type": "variant",
     "reason": "remix ((Revolutionary Designed mix))"
+   },
+   {
+    "from": "Resistanica",
+    "to": "¡Resistancia!",
+    "type": "spelling",
+    "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
    }
   ]
  },
@@ -15709,5 +16267,237 @@
    "toAlbum": "ROCKWAVE",
    "reason": "DV 2026-09-12 (Bandcamp sleeve): Rockwave track 6; the row had no album string"
   }
- ]
+ ],
+ "Anathema": {
+  "tracks": [
+   {
+    "from": "A simple Mistake (lyrics)",
+    "to": "A Simple Mistake",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
+   }
+  ]
+ },
+ "Atreyu": {
+  "tracks": [
+   {
+    "from": "Death or Glory - Feat. Sierra Deaton",
+    "to": "Death or Glory",
+    "type": "spelling",
+    "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   }
+  ]
+ },
+ "Austrian Death Machine": {
+  "tracks": [
+   {
+    "from": "I Need Your Clothes, Your Boots, And Your Motorcycle",
+    "to": "I Need Your Clothes, Your Boots, and Your Motorcycle (from Terminator 2)",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Let Off Some Steam Bennett",
+    "to": "Let Off Some Steam Bennett (from Commando)",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "It's Simple, If It Jiggles It's Fat",
+    "to": "It’s Simple, If It Jiggles It’s Fat (from Pumping Iron)",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Who Told You You Could Eat My Cookies?",
+    "to": "Who Told You You Could Eat My Cookies? (from Jingle All the Way)",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Allow Me to Break the Ice",
+    "to": "Allow Me to Break the Ice (from Batman & Robin)",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Conan, What is Best in Life?",
+    "to": "Conan, What Is Best in Life? (from Conan the Barbarian)",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "See You at the Party Richter",
+    "to": "See You at the Party Richter (from Total Recall)",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
+   }
+  ]
+ },
+ "Beartooth": {
+  "tracks": [
+   {
+    "from": "Permanently Sealed - Bonus Track",
+    "to": "Permanently Sealed",
+    "type": "spelling",
+    "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   }
+  ]
+ },
+ "black midi": {
+  "tracks": [
+   {
+    "from": "Slow (Loud)",
+    "to": "Slow",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
+   }
+  ]
+ },
+ "Devin Townsend Project": {
+  "tracks": [
+   {
+    "from": "Transcendence ( + Download)",
+    "to": "Transcendence",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
+   }
+  ]
+ },
+ "Disclosure": {
+  "tracks": [
+   {
+    "from": "Help Me Lose My Mind (feat. London Grammar)",
+    "to": "Help Me Lose My Mind",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
+   }
+  ]
+ },
+ "Five Finger Death Punch": {
+  "tracks": [
+   {
+    "from": "Lift Me Up (Feat. Rob Halford)",
+    "to": "Lift Me Up",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
+   }
+  ]
+ },
+ "Flying Lotus": {
+  "tracks": [
+   {
+    "from": "More (feat. Anderson .Paak)",
+    "to": "More",
+    "type": "spelling",
+    "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan 2026-09-17)"
+   }
+  ]
+ },
+ "Geddy Lee": {
+  "tracks": [
+   {
+    "from": "My Favorite Headache",
+    "to": "My Favourite Headache",
+    "type": "spelling",
+    "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   }
+  ]
+ },
+ "Ghost": {
+  "tracks": [
+   {
+    "from": "Helvetesfonster",
+    "to": "Helvetesfönster",
+    "type": "spelling",
+    "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   }
+  ]
+ },
+ "Guns N' Roses": {
+  "tracks": [
+   {
+    "from": "Estranged (Lyrics)",
+    "to": "Estranged",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Civil War with Lyrics",
+    "to": "Civil War",
+    "type": "spelling",
+    "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   }
+  ]
+ },
+ "My Dead Girlfriend": {
+  "tracks": [
+   {
+    "from": "Kanojo ga tsumetaku warattara (prologue to the nine stages of change at the deceased remains)",
+    "to": "彼女が冷たく笑ったら (prologue to the nine stages of change at the deceased remains)",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
+   }
+  ]
+ },
+ "Silverchair": {
+  "tracks": [
+   {
+    "from": "Pure Massacre (Remastered)",
+    "to": "Pure Massacre",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
+   }
+  ]
+ },
+ "Skid Row": {
+  "tracks": [
+   {
+    "from": "Forever (1988 previously unreleased)",
+    "to": "Forever",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
+   }
+  ]
+ },
+ "Sleepmakeswaves": {
+  "tracks": [
+   {
+    "from": "Im Limbs and Joints",
+    "to": "in limbs and joints",
+    "type": "spelling",
+    "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   }
+  ]
+ },
+ "The Eden Project": {
+  "tracks": [
+   {
+    "from": "Crazy in Love Feat. Leah Kelly",
+    "to": "Crazy in Love",
+    "type": "spelling",
+    "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   }
+  ]
+ },
+ "The Mars Volta": {
+  "tracks": [
+   {
+    "from": "Son et Lumiere",
+    "to": "Son et lumière",
+    "type": "spelling",
+    "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   }
+  ]
+ },
+ "Vildhjarta": {
+  "tracks": [
+   {
+    "from": "Den Helige Anden",
+    "to": "Den helige anden (under vatten)",
+    "type": "spelling",
+    "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
+   }
+  ]
+ }
 }
