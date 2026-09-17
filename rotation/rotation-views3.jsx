@@ -1911,7 +1911,7 @@ function StoriesView({ t, go, seed }) {
            Width stays near the reading measure rather than filling the screen; the modest bump at
            1500px keeps a 4K screen from looking empty without stretching the rows inside the
            cards. .st-head mirrors these numbers — if one moves, move both. */
-        .st-feed { max-width: 820px; margin: 0 auto; display: grid; gap: calc(var(--gap) * .62); }
+        .st-feed { max-width: 820px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--gap) * .62); }
         @media (min-width: 1500px) { .st-feed { max-width: 900px; } }
         .st-card { background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 17px 19px; }
         /* THE TOC LANDED SECTIONS UNDER THE HEADER (Fuad 2026-09-14: the breadcrumbs "do not seem to
@@ -2288,7 +2288,13 @@ function StoriesView({ t, go, seed }) {
         .st-incub, .st-grid, .st-scenes, .st-ug-cuts, .st-geo-grid { min-width: 0; }
         .st-life-row, .st-atlas-row, .st-peak, .st-gate, .st-turn-row, .st-arc-row,
         .st-incub-row, .st-life-row > *, .st-atlas-row > *, .st-peak > *, .st-gate > * { min-width: 0; }
+        /* measured at 360px (probe 2026-09-17): these grid items grew to their nowrap content
+           (.st-ug-cut 473px, .st-row 435px, .st-obs 398px) and clipped at the viewport edge.
+           A grid item's min-width is AUTO unless pinned — the inner ellipsis rules can only
+           work once the item itself is allowed to shrink. */
+        .st-row, .st-ug-cut, .st-obs, .st-obs-top, .st-obs-txt, .st-scene-a, .st-mile { min-width: 0; }
         @media (max-width: 700px) {
+          .st-yir-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
           .st-ug-cuts { grid-template-columns: 1fr 1fr; gap: 6px; }
           .st-ug-cut { padding: 8px; }
           .st-big { font-size: 19px; line-height: 1.45; }
@@ -2305,7 +2311,7 @@ function StoriesView({ t, go, seed }) {
         .st-sg-wrap { margin-top: 18px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
         @media (max-width: 700px) {
           /* on narrow screens allow horizontal scroll so nothing overflows */
-          .st-sg-wrap svg { min-width: 360px; }
+          .st-sg-wrap svg { min-width: 320px; }
         }
       `}</style>
     </div>
