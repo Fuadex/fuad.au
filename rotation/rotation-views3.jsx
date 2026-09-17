@@ -32,6 +32,7 @@ const hueOfName = (name) => (window.ROTATION.byId[window.ROTATION.slug(name)] ||
 // the loop and snaps.
 function SlopeRows({ rows, X_L, X_R, goIf, isClickable }) {
   const [, bump] = React.useReducer((n) => n + 1, 0);
+  const [hot, setHot] = React.useState(null);   // hovered artist — their line lifts, others dim
   const posRef = React.useRef(new Map());
   const rafRef = React.useRef(0);
   const calm = typeof window !== "undefined" && window.matchMedia
@@ -82,7 +83,8 @@ function SlopeRows({ rows, X_L, X_R, goIf, isClickable }) {
         const click = isClickable(r.name);
         const cur = { cursor: click ? "pointer" : "default" };
         return (
-          <g key={r.name}>
+          <g key={r.name} onMouseEnter={() => setHot(r.name)} onMouseLeave={() => setHot(null)}
+            style={{ opacity: hot && hot !== r.name ? 0.15 : 1, transition: "opacity .18s ease" }}>
             {y1 !== null && y2 !== null && (
               <line x1={X_L} y1={y1.toFixed(1)} x2={X_R} y2={y2.toFixed(1)}
                 stroke={col} strokeWidth={strokeW} strokeLinecap="round" opacity={op} />
@@ -130,6 +132,64 @@ function SlopeRows({ rows, X_L, X_R, goIf, isClickable }) {
       })}
     </>
   );
+}
+
+// A number that COUNTS to its new value instead of being swapped (wave D 2026-09-17: the
+// year-in-review stats used to remount inside the keyed fade; numbers landing between years
+// read better travelling). 420ms ease-out; prefers-reduced-motion snaps.
+function TweenNum({ v, f }) {
+  const [shown, setShown] = React.useState(v);
+  const ref = React.useRef({ raf: 0 });
+  const fromRef = React.useRef(v);
+  React.useEffect(() => {
+    const from = fromRef.current;
+    if (from === v) return;
+    const calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (calm) { fromRef.current = v; setShown(v); return; }
+    const t0 = performance.now();
+    cancelAnimationFrame(ref.current.raf);
+    const step = (now) => {
+      const p = Math.min(1, (now - t0) / 420);
+      const e = 1 - Math.pow(1 - p, 3);
+      const val = Math.round(from + (v - from) * e);
+      setShown(val);
+      if (p < 1) ref.current.raf = requestAnimationFrame(step);
+      else fromRef.current = v;
+    };
+    ref.current.raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(ref.current.raf);
+  }, [v]);
+  return <>{f ? f(shown) : shown}</>;
+}
+
+// Swipe (touch) and arrow keys (while hovered) drive a prev/next pair — the year-in-review and
+// slope-chart navs only had the two small buttons.
+function usePairNav(ref, prev, next) {
+  React.useEffect(() => {
+    const el = ref.current; if (!el) return;
+    let x0 = null, y0 = null, over = false;
+    const ts = (e) => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; };
+    const te = (e) => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+      if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.5) (dx > 0 ? prev : next)();
+      x0 = null;
+    };
+    const en = () => { over = true; }, lv = () => { over = false; };
+    const kd = (e) => {
+      if (!over || e.altKey || e.metaKey || e.ctrlKey) return;
+      if (e.key === "ArrowLeft") { prev(); e.preventDefault(); }
+      else if (e.key === "ArrowRight") { next(); e.preventDefault(); }
+    };
+    el.addEventListener("touchstart", ts, { passive: true }); el.addEventListener("touchend", te);
+    el.addEventListener("mouseenter", en); el.addEventListener("mouseleave", lv);
+    window.addEventListener("keydown", kd);
+    return () => {
+      el.removeEventListener("touchstart", ts); el.removeEventListener("touchend", te);
+      el.removeEventListener("mouseenter", en); el.removeEventListener("mouseleave", lv);
+      window.removeEventListener("keydown", kd);
+    };
+  });
 }
 
 // ════════════════════════ STORIES ════════════════════════
@@ -269,6 +329,8 @@ function StoriesView({ t, go, seed }) {
   const realYears = (R.YEARS || []).filter(y => y.plays > 500);
   const [yi, setYi] = React.useState(realYears.length - 1);
   const yr = realYears[yi];
+  const yirRef = React.useRef(null);
+  usePairNav(yirRef, () => setYi((v) => Math.max(0, v - 1)), () => setYi((v) => Math.min(realYears.length - 1, v + 1)));
 
   const today = new Date();
   const todayKey = String(today.getMonth() + 1).padStart(2, "0") + "-" + String(today.getDate()).padStart(2, "0");
@@ -522,7 +584,7 @@ function StoriesView({ t, go, seed }) {
 
         {/* year in review */}
         {yr && (
-          <section className="st-card st-hero">
+          <section className="st-card st-hero" ref={yirRef}>
             <div className="st-yir-head">
               <div className="st-label" style={{ marginBottom: 0 }}>A year in review</div>
               <div className="st-yir-nav">
@@ -547,13 +609,15 @@ function StoriesView({ t, go, seed }) {
                 all re-animated on every arrow press — motion on text that is simply being rewritten.
                 The key now covers the stat row and the two columns beneath it and stops there; the
                 head, the sentence and the jump update in place, silently. */}
-            <div className="st-swap" key={yr.year}>
+            {/* stats sit OUTSIDE the keyed swap so the numbers can TRAVEL between years (wave D);
+                the grid and the jump strip below still cross-fade. */}
             <div className="st-yir-stats">
-              <div><div className="st-yir-n">{fmt(yr.plays)}</div><div className="st-yir-l">plays</div></div>
-              <div><div className="st-yir-n">{fmt(yr.artists)}</div><div className="st-yir-l">artists</div></div>
-              <div><div className="st-yir-n">{fmt(yr.distinctTracks || 0)}</div><div className="st-yir-l">tracks</div></div>
-              {yr.peakDay && <div><div className="st-yir-n">{yr.peakDay.plays}</div><div className="st-yir-l">peak · {fmtDate(yr.peakDay.date)}</div></div>}
+              <div><div className="st-yir-n"><TweenNum v={yr.plays} f={fmt} /></div><div className="st-yir-l">plays</div></div>
+              <div><div className="st-yir-n"><TweenNum v={yr.artists} f={fmt} /></div><div className="st-yir-l">artists</div></div>
+              <div><div className="st-yir-n"><TweenNum v={yr.distinctTracks || 0} f={fmt} /></div><div className="st-yir-l">tracks</div></div>
+              {yr.peakDay && <div><div className="st-yir-n"><TweenNum v={yr.peakDay.plays} /></div><div className="st-yir-l">peak · {fmtDate(yr.peakDay.date)}</div></div>}
             </div>
+            <div className="st-swap" key={yr.year}>
 
             <div className="st-yir-grid">
               <div>
@@ -604,8 +668,6 @@ function StoriesView({ t, go, seed }) {
                 ))}
               </div>
             </div>
-            </div>
-
             {yr.gainer && yr.gainer.delta > 50 && (
               <div className="st-yir-jump" data-link={clickable(yr.gainer.name)} onClick={() => goIf(yr.gainer.name)}>
                 <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase" }}>Biggest jump</span>
@@ -614,6 +676,8 @@ function StoriesView({ t, go, seed }) {
                 <span style={{ color: "var(--ink-soft)" }}> · {yr.gainer.prev} → <em>{yr.gainer.plays}</em> plays (+{yr.gainer.delta} YoY)</span>
               </div>
             )}
+            </div>
+
           </section>
         )}
 
@@ -631,6 +695,8 @@ function StoriesView({ t, go, seed }) {
           if (!pairs.length) return null;
 
           const [pairIdx, setPairIdx] = React.useState(pairs.length - 1);
+          const sgRef = React.useRef(null);
+          usePairNav(sgRef, () => setPairIdx((v) => Math.max(0, v - 1)), () => setPairIdx((v) => Math.min(pairs.length - 1, v + 1)));
           const pair = pairs[pairIdx];
           const prevEra = pair.prev, curEra = pair.cur;
           const prevYear = prevEra.year, curYear = curEra.year;
@@ -702,7 +768,7 @@ function StoriesView({ t, go, seed }) {
           const pairLabel = `'${String(prevYear).slice(2)}→'${String(curYear).slice(2)}`;
 
           return (
-            <section className="st-card st-hero">
+            <section className="st-card st-hero" ref={sgRef}>
               <div className="st-sg-head">
                 <div className="st-label" style={{ marginBottom: 0 }}>Who rose, who fell</div>
                 <div className="st-yir-nav">
@@ -835,7 +901,7 @@ function StoriesView({ t, go, seed }) {
                         <span className="st-arc-name">{l.name}</span>
                         <span className="st-arc-now" style={{ color: `oklch(0.7 0.16 ${hue})` }}>{Math.round(now * 100)}%</span>
                       </div>
-                      <Spark data={series} w={420} h={32} run={true}
+                      <Spark data={series} w={420} h={32} run={true} labels={A.years.map(y => y.year)} fmtV={(v) => Math.round(v * 100) + "%"}
                         stroke={`oklch(0.7 0.16 ${hue})`} fill={`oklch(0.7 0.16 ${hue} / .12)`} />
                       <div className="st-arc-peak">peak {Math.round(peak * 100)}% in '{String(peakYr).slice(2)}</div>
                     </div>
@@ -916,13 +982,13 @@ function StoriesView({ t, go, seed }) {
                       <div className="st-arc-row">
                         <div className="st-arc-head"><span className="st-arc-name">Sounds</span>
                           <span className="st-arc-now" style={{ color: "oklch(0.72 0.15 145)" }}>{last.aud}</span></div>
-                        <Spark data={A.map(y => y.aud)} w={420} h={24} run={true}
+                        <Spark data={A.map(y => y.aud)} w={420} h={24} run={true} labels={A.map(y => y.year)}
                           stroke="oklch(0.72 0.15 145)" fill="oklch(0.72 0.15 145 / .12)" />
                       </div>
                       <div className="st-arc-row">
                         <div className="st-arc-head"><span className="st-arc-name">Reads</span>
                           <span className="st-arc-now" style={{ color: "oklch(0.68 0.16 25)" }}>{last.lyr}</span></div>
-                        <Spark data={A.map(y => y.lyr)} w={420} h={24} run={true}
+                        <Spark data={A.map(y => y.lyr)} w={420} h={24} run={true} labels={A.map(y => y.year)}
                           stroke="oklch(0.68 0.16 25)" fill="oklch(0.68 0.16 25 / .12)" />
                       </div>
                     </div>
@@ -1238,7 +1304,7 @@ function StoriesView({ t, go, seed }) {
                   return (
                     <div key={ax} className="st-turn-row">
                       <div className="st-turn-label">{labels[ax]}</div>
-                      <Spark data={series} w={520} h={32} run={true}
+                      <Spark data={series} w={520} h={32} run={true} labels={Y.map(y => y.year)} fmtV={(v) => Math.round(v * 100)}
                         stroke={`oklch(0.7 0.16 ${hue[ax]})`} fill={`oklch(0.7 0.16 ${hue[ax]} / .12)`} />
                       <div className="st-turn-n">{Math.round(Y[Y.length - 1][ax] * 100)}</div>
                     </div>
@@ -1278,13 +1344,13 @@ function StoriesView({ t, go, seed }) {
               <div className="st-turn">
                 <div className="st-turn-row">
                   <div className="st-turn-label">under 50k listeners</div>
-                  <Spark data={series50} w={520} h={36} run={true}
+                  <Spark data={series50} w={520} h={36} run={true} labels={D.map(y => y.year)} fmtV={(v) => Math.round(v * 100) + "%"}
                     stroke="var(--accent)" fill="var(--accent-bg)" />
                   <div className="st-turn-n">{Math.round(last.under50k / last.withStats * 100)}%</div>
                 </div>
                 <div className="st-turn-row">
                   <div className="st-turn-label">under 10k listeners</div>
-                  <Spark data={series10} w={520} h={36} run={true}
+                  <Spark data={series10} w={520} h={36} run={true} labels={D.map(y => y.year)} fmtV={(v) => Math.round(v * 100) + "%"}
                     stroke="oklch(0.75 0.16 320)" fill="oklch(0.75 0.16 320 / .15)" />
                   <div className="st-turn-n">{Math.round(last.under10k / last.withStats * 100)}%</div>
                 </div>
@@ -1365,7 +1431,7 @@ function StoriesView({ t, go, seed }) {
                             <span className="st-arc-name">{c.name}</span>
                             <span className="st-arc-now" style={{ color: `oklch(0.7 0.16 ${hue})` }}>{Math.round(now * 100)}%</span>
                           </div>
-                          <Spark data={series} w={420} h={24} run={true}
+                          <Spark data={series} w={420} h={24} run={true} labels={A.years.map(y => y.year)} fmtV={(v) => Math.round(v * 100) + "%"}
                             stroke={`oklch(0.7 0.16 ${hue})`} fill={`oklch(0.7 0.16 ${hue} / .12)`} />
                         </div>
                       );

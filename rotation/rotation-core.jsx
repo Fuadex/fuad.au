@@ -809,7 +809,10 @@ function GenCover({ hue, name, size, radius, style, image, thumb }) {
 }
 
 // ─────────── sparkline ───────────
-function Spark({ data, w, h, run, stroke, fill }) {
+// labels/fmtV (optional): hover readout — nearest point gets a marker and a '2018 · 16%' tag.
+// Off unless labels is passed, so the dozens of existing call sites render byte-identical.
+function Spark({ data, w, h, run, stroke, fill, labels, fmtV }) {
+  const [hi, setHi] = React.useState(null);
   const W = w || 120, H = h || 32;
   const max = Math.max(...data, 1), min = Math.min(...data, 0);
   const pts = data.map((d, i) => [
@@ -819,14 +822,30 @@ function Spark({ data, w, h, run, stroke, fill }) {
   const dPath = pts.map((p, i) => (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" ");
   const area = dPath + ` L${W} ${H} L0 ${H} Z`;
   const len = 1200;
+  const onMove = labels ? (e) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    const i = Math.round(((e.clientX - r.left) / Math.max(r.width, 1)) * (data.length - 1));
+    setHi(Math.max(0, Math.min(data.length - 1, i)));
+  } : undefined;
   return (
     <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`}
+      onMouseMove={onMove} onMouseLeave={labels ? () => setHi(null) : undefined}
       style={{ display: "block", overflow: "visible", maxWidth: "100%", height: "auto" }}>
       {fill && <path d={area} fill={fill} className="r-spark-fill" />}
       <path d={dPath} fill="none" stroke={stroke || "var(--accent)"} strokeWidth="1.6"
         strokeLinecap="round" strokeLinejoin="round" className="r-spark-line"
         style={{ strokeDasharray: len, strokeDashoffset: 0, "--len": len }} />
       <circle cx={pts[pts.length - 1][0]} cy={pts[pts.length - 1][1]} r="2.4" fill={stroke || "var(--accent)"} />
+      {labels && hi !== null && pts[hi] && (
+        <g style={{ pointerEvents: "none" }}>
+          <circle cx={pts[hi][0]} cy={pts[hi][1]} r="3" fill={stroke || "var(--accent)"} />
+          <text x={pts[hi][0]} y={pts[hi][1] - 6} textAnchor={hi > data.length * 0.7 ? "end" : hi < data.length * 0.3 ? "start" : "middle"}
+            fontSize="9" fontFamily="var(--mono)" fill="var(--ink)"
+            stroke="var(--bg)" strokeWidth="3" paintOrder="stroke">
+            {labels[hi]} · {fmtV ? fmtV(data[hi]) : data[hi]}
+          </text>
+        </g>
+      )}
     </svg>
   );
 }
