@@ -347,9 +347,8 @@ function StoriesView({ t, go, seed }) {
                 in the entire world. You've played them <em>{fmt(deepest.plays)}</em> times.
               </div>
               <div className="st-sub">
-                That's volume, not taste — your charts lean on a few giants (a typical <em>play</em> is a ~{fmt(U.medianListeners)}-listener artist).
-                But of the {fmt(U.artistsCovered)} artists you actually play, <b style={{ color: "var(--ink)" }}>{Math.round(U.artistShare50k * 100)}% sit under 50k listeners</b> and {Math.round(U.artistShare10k * 100)}% under 10k —
-                the median one has just {fmt(U.medianArtistListeners)}. The depth is in the breadth. Your deepest cuts:
+                That's volume, not taste — of the {fmt(U.artistsCovered)} artists you actually
+                play, <b style={{ color: "var(--ink)" }}>{Math.round(U.artistShare50k * 100)}% sit under 50k listeners</b> and {Math.round(U.artistShare10k * 100)}% under 10k.
               </div>
               <div className="st-ug-cuts">
                 {U.deepCuts.map(c => (
@@ -373,12 +372,12 @@ function StoriesView({ t, go, seed }) {
           const dig = A.digs[0];
           return (
             <section className="st-card st-hero">
-              <div className="st-label">How old the music was</div>
+              <div className="st-label">Music age</div>
               <div className="st-big">
                 The median artist you found was <em>{A.medianLag} years</em> past their debut when you pressed play.
               </div>
               <div className="st-sub">
-                You don't chase new releases — you dig. Most of what you play was made in the
+                Most of what you play was made in the
                 <b style={{ color: "var(--ink)" }}> {peakDec.decade}s</b> ({Math.round(peakDec.share * 100)}% of plays){dig ? <>, and you went {dig.lag} years deep into <em>{dig.name}</em>'s back-catalogue</> : null}.
               </div>
               <div style={{ display: "flex", alignItems: "flex-end", gap: 6, height: 96, margin: "18px 0 6px" }}>
@@ -397,39 +396,8 @@ function StoriesView({ t, go, seed }) {
                     <GenCover hue={c.hue} name={c.name} size={40} radius={4} />
                     <div style={{ minWidth: 0 }}>
                       <div className="st-row-name">{c.name}</div>
-                      <div className="st-row-sub">debut {c.debut} · found {c.foundYear} · {c.lag}yr later</div>
+                      <div className="st-row-sub">{c.debut} → {c.foundYear} · {c.lag} yrs</div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          );
-        })()}
-
-        {/* connections — shared members / side-projects threading the library */}
-        {I.CONNECTIONS && I.CONNECTIONS.links && I.CONNECTIONS.links.length > 0 && (() => {
-          const C = I.CONNECTIONS;
-          const top = C.links[0];
-          return (
-            <section className="st-card st-hero">
-              <div className="st-label">Connected by blood</div>
-              <div className="st-big" data-link={clickable(top.artists[0].name)} onClick={() => goIf(top.artists[0].name)}>
-                <em>{top.person}</em> ties together {top.artists.length} acts you play.
-              </div>
-              <div className="st-sub">
-                {fmt(C.totalLinks)} hidden threads run through your library — shared members, side-projects,
-                the same hands on different records. The bloodlines that run deepest:
-              </div>
-              <div style={{ display: "grid", gap: 12, marginTop: 6 }}>
-                {C.links.slice(0, 6).map(l => (
-                  <div key={l.person} style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
-                    <span className="st-person">{l.person}</span>
-                    {l.artists.map(a => (
-                      <span key={a.name} className="st-bandchip" data-link={clickable(a.name)} onClick={() => goIf(a.name)}>
-                        <span className="st-bandchip-dot" style={{ background: `oklch(0.62 0.16 ${a.hue})` }} />
-                        {a.name}
-                      </span>
-                    ))}
                   </div>
                 ))}
               </div>
@@ -449,7 +417,7 @@ function StoriesView({ t, go, seed }) {
                 Your favourites keep pointing to <em style={{ color: `oklch(0.78 0.14 ${top.hue})` }}>{top.name}</em> — and you've barely pressed play.
               </div>
               <div className="st-sub">
-                Artists your most-played acts are repeatedly compared to, that you haven't really explored. The most overdue:
+                Artists your most-played acts keep getting compared to — and you've barely touched.
               </div>
               <div className="st-ug-cuts">
                 {/* LINKED WHERE A LINK EXISTS (Fuad 2026-09-14: "Blind spots completely are not
@@ -485,14 +453,14 @@ function StoriesView({ t, go, seed }) {
           const top = RV.artists[0];
           const MON = window.MON;
           const monthName = (ym) => { if (!ym) return ""; const [y, m] = ym.split("-"); return MON[+m - 1] + " " + y; };
-          const ago = (mo) => mo >= 12 ? (mo / 12).toFixed(mo >= 24 ? 0 : 1) + " years" : mo + " months";
+          const ago = (mo) => mo >= 18 ? Math.round(mo / 12) + " years" : mo >= 11 ? "a year" : mo + " months";
           return (
             <section className="st-card st-hero">
               <div className="st-label">Gathering dust</div>
               <div className="st-big" data-link={clickable(top.name)} onClick={() => goIf(top.name)}>
                 You played <em style={{ color: `oklch(0.78 0.14 ${top.hue})` }}>{top.name}</em> {fmt(top.plays)} times — and haven't pressed play in {ago(top.monthsSince)}.
               </div>
-              <div className="st-sub">Artists you once lived in, now gone quiet. Maybe it's time:</div>
+              <div className="st-sub">Artists you once lived in, now gone quiet.</div>
               <div className="st-ug-cuts">
                 {RV.artists.slice(0, 6).map(a => (
                   <div key={a.name} className="st-ug-cut" data-link={clickable(a.name)} onClick={() => goIf(a.name)}>
@@ -507,6 +475,9 @@ function StoriesView({ t, go, seed }) {
             </section>
           );
         })()}
+
+        {/* the songs you own twice — cross-library shared works (MB works graph) */}
+        <CoversStory go={go} />
 
         <div className="st-chapter"><span>II</span> Lives &amp; years</div>
 
@@ -523,9 +494,8 @@ function StoriesView({ t, go, seed }) {
                 you'd already played them <em>{fmt(top.before)}</em> times.
               </div>
               <div className="st-sub">
-                Of the {fmt(L.known)} artists here with a documented life-span, <b style={{ color: "var(--ink)" }}>{L.endedCount} have ended</b> ({Math.round(L.endedShare * 100)}%).
-                The median band you play lasted {L.medianLife} years{L.worstYear ? <>, and {L.worstYear} alone took {L.worstYearCount} of yours</> : null}.
-                These ended <i>while you were listening</i> — you were there for the last records:
+                Of the {fmt(L.known)} artists with a documented life-span, <b style={{ color: "var(--ink)" }}>{L.endedCount} have ended</b> ({Math.round(L.endedShare * 100)}%) —
+                and these ended <i>while you were listening</i>.
               </div>
               <div className="st-ug-cuts">
                 {L.whileListening.map(w => (
@@ -550,9 +520,6 @@ function StoriesView({ t, go, seed }) {
           );
         })()}
 
-        {/* the songs you own twice — cross-library shared works (MB works graph) */}
-        <CoversStory go={go} />
-
         {/* year in review */}
         {yr && (
           <section className="st-card st-hero">
@@ -570,8 +537,8 @@ function StoriesView({ t, go, seed }) {
               </div>
             )}
             <div className="st-sub">
-              {yr.topArtist ? <>You played them <em>{fmt(yr.topArtist.plays)}</em> times in {yr.year} — more than anyone else. </> : null}
-              {yr.activeDays} active days · roughly <em>{fmt(yr.hours)} hours</em> of music.
+              {yr.topArtist ? <>You played them <em>{fmt(yr.topArtist.plays)}</em> times in {yr.year} — </> : null}
+              {yr.activeDays} active days, roughly <em>{fmt(yr.hours)} hours</em> of music.
             </div>
 
             {/* ONLY THE FIGURES MOVE (Fuad 2026-09-14: "I only meant the transitions for stuff that
@@ -763,7 +730,6 @@ function StoriesView({ t, go, seed }) {
               </div>
               <div className="st-sub">
                 Each line connects an artist's rank in {prevYear} to their rank in {curYear} — the steeper the cross, the bigger the shift.
-                Artists new to the chart or gone from it anchor at the edge.
               </div>
               </div>{/* /st-swap — the sentence and the caption swap; the chart below travels */}
               <div className="st-sg-wrap">
@@ -784,7 +750,7 @@ function StoriesView({ t, go, seed }) {
           );
         })()}
 
-        <div className="st-chapter"><span>III</span> Scenes &amp; places</div>
+        <div className="st-chapter"><span>III</span> Words &amp; moods</div>
 
         {/* the languages you listen in — from Genius lyrics language detection */}
         {I.LANGUAGE && I.LANGUAGE.shares.length > 1 && (() => {
@@ -794,15 +760,14 @@ function StoriesView({ t, go, seed }) {
           const topNon = L.topNonEn[0];
           return (
             <section className="st-card st-hero">
-              <div className="st-label">What you listen in</div>
+              <div className="st-label">Languages</div>
               <div className="st-big">
                 {L.nonEnPct >= 4
                   ? <><em>{L.nonEnPct}%</em> of your listening isn't in English.</>
                   : <>You listen across <em>{L.langs}</em> languages.</>}
               </div>
               <div className="st-sub">
-                Across the {fmt(L.covered)} songs with detectable lyrics, {L.shares[1] ? <>the biggest non-English voice is <b style={{ color: "var(--ink)" }}>{L.shares[1].name}</b>{L.shares[2] ? <>, then {L.shares[2].name}</> : null}. </> : null}
-                {topNon ? <>Your most-played non-English track: <b className="st-inline-link" data-link={clickable(topNon.artist)} onClick={() => go("track", topNon.id)}>{topNon.title}</b> ({topNon.langName}, {fmt(topNon.plays)} plays).</> : null}
+                Across {fmt(L.covered)} songs with detectable lyrics, {L.shares[1] ? <>the biggest non-English voice is <b style={{ color: "var(--ink)" }}>{L.shares[1].name}</b>{L.shares[2] ? <>, then {L.shares[2].name}</> : null}</> : null}{topNon ? <> — most-played: <b className="st-inline-link" data-link={clickable(topNon.artist)} onClick={() => go("track", topNon.id)}>{topNon.title}</b> ({topNon.langName}, {fmt(topNon.plays)} plays)</> : null}.
               </div>
               <div style={{ display: "grid", gap: 7, marginTop: 18, maxWidth: 520 }}>
                 {top.map(s => (
@@ -848,15 +813,14 @@ function StoriesView({ t, go, seed }) {
           const peakNonEn = A.years[nonEnSeries.indexOf(Math.max(...nonEnSeries))];
           return (
             <section className="st-card st-hero">
-              <div className="st-label">How the languages moved</div>
+              <div className="st-label">Language drift</div>
               <div className="st-big">
                 <em>{mover.name}</em> crept in around <em>{moverYear ? moverYear.year : "—"}</em> —
                 now <em>{Math.round(mover.after * 100)}%</em> of a year's lyrics.
               </div>
               <div className="st-sub">
-                Each line is a language's share of that year's detectable-lyric plays. Your most non-English
-                year was <b style={{ color: "var(--ink)" }}>{peakNonEn.year}</b> at {Math.round(peakNonEn.nonEnPct * 100)}% —
-                the rest is English underneath.
+                Each line is a language's share of that year's lyric plays — the most non-English
+                year was <b style={{ color: "var(--ink)" }}>{peakNonEn.year}</b> at {Math.round(peakNonEn.nonEnPct * 100)}%.
               </div>
               <div className="st-arc">
                 {A.langs.map(l => {
@@ -1009,14 +973,13 @@ function StoriesView({ t, go, seed }) {
           }
           return (
             <section className="st-card st-hero">
-              <div className="st-label">What it's all about · lyric themes</div>
+              <div className="st-label">Lyric themes</div>
               <div className="st-big">
                 <em>{Math.round(top.share * 100)}%</em> of what you play is about <em>{top.theme}</em>.
               </div>
               <div className="st-sub">
-                Not how it sounds — what the words are <i>about</i>, read from the lyrics of {fmt(T.covered)} tracks
-                ({Math.round(T.coveredPlays / T.totalPlays * 100)}% of your plays, all languages).
-                {riser && faller && riser.delta > 0.02 ? <> Over the years <b style={{ color: "var(--ink)" }}>{riser.th}</b> has been rising while <b style={{ color: "var(--ink)" }}>{faller.th}</b> fades.</> : null}
+                What the words are <i>about</i> — read from {fmt(T.covered)} tracks ({Math.round(T.coveredPlays / T.totalPlays * 100)}% of plays)
+                {riser && faller && riser.delta > 0.02 ? <> — <b style={{ color: "var(--ink)" }}>{riser.th}</b> rising, <b style={{ color: "var(--ink)" }}>{faller.th}</b> fading</> : null}.
               </div>
               <div style={{ display: "grid", gap: 7, marginTop: 18, maxWidth: 560 }}>
                 {T.shares.slice(0, 8).map(s => (
@@ -1057,19 +1020,51 @@ function StoriesView({ t, go, seed }) {
           );
         })()}
 
+        <div className="st-chapter"><span>IV</span> Scenes &amp; places</div>
+
+        {/* connections — shared members / side-projects threading the library */}
+        {I.CONNECTIONS && I.CONNECTIONS.links && I.CONNECTIONS.links.length > 0 && (() => {
+          const C = I.CONNECTIONS;
+          const top = C.links[0];
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">Connected by blood</div>
+              <div className="st-big" data-link={clickable(top.artists[0].name)} onClick={() => goIf(top.artists[0].name)}>
+                <em>{top.person}</em> ties together {top.artists.length} acts you play.
+              </div>
+              <div className="st-sub">
+                {fmt(C.totalLinks)} hidden threads run through the library — shared members, side-projects,
+                the same hands on different records.
+              </div>
+              <div style={{ display: "grid", gap: 12, marginTop: 6 }}>
+                {C.links.slice(0, 6).map(l => (
+                  <div key={l.person} style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+                    <span className="st-person">{l.person}</span>
+                    {l.artists.map(a => (
+                      <span key={a.name} className="st-bandchip" data-link={clickable(a.name)} onClick={() => goIf(a.name)}>
+                        <span className="st-bandchip-dot" style={{ background: `oklch(0.62 0.16 ${a.hue})` }} />
+                        {a.name}
+                      </span>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
         {/* lineups — Wikidata band-member gender (the layer MB can't give us) */}
         {I.LINEUPS && I.LINEUPS.featured && I.LINEUPS.featured.length >= 4 && (() => {
           const L = I.LINEUPS;
           return (
             <section className="st-card">
-              <div className="st-label">Who's in the bands · Wikidata lineups</div>
+              <div className="st-label">Lineups</div>
               <div className="st-big">
                 <em>{Math.round(L.womenBandShare * 100)}%</em> of your band-listening has women in the lineup.
               </div>
               <div className="st-sub">
                 Of the {L.bandsAnalyzed} groups whose members Wikidata knows by name, <b style={{ color: "var(--ink)" }}>{L.bandsWithWomen}</b> have
-                at least one woman on stage — a cut MusicBrainz can't make, since it marks a band itself as genderless.
-                {L.allWomen.length > 0 ? <> {L.allWomen.length} of them are all-women.</> : null}
+                at least one woman on stage{L.allWomen.length > 0 ? <> — {L.allWomen.length} all-women</> : null}.
               </div>
               <div className="st-ug-cuts" style={{ marginTop: 18 }}>
                 {L.featured.slice(0, 6).map(b => (
@@ -1120,8 +1115,7 @@ function StoriesView({ t, go, seed }) {
             <div className="st-label">Bridge artists</div>
             <div className="st-title-sm">Who connects your scenes.</div>
             <div className="st-sub" style={{ marginBottom: 14 }}>
-              The connector nodes — artists whose Discogs styles span ≥ 2 of your top scenes.
-              These are the records that make the rest of the library cohere.
+              Artists whose styles span two or more of your top scenes — the records that make the library cohere.
             </div>
             <div className="st-bridges">
               {I.STYLE_ATLAS.bridges.map(b => (
@@ -1152,12 +1146,11 @@ function StoriesView({ t, go, seed }) {
           const sole = S.rarest.filter(r => r.artists.length === 1).length;
           return (
             <section className="st-card">
-              <div className="st-label">Style atlas · {fmt(S.uniqueStyles)} distinct Discogs styles</div>
+              <div className="st-label">Style atlas</div>
               <div className="st-title-sm">Only one or two artists hold these for you.</div>
               <div className="st-sub" style={{ marginBottom: 14 }}>
-                Across {S.artistsCovered} of your artists indexed on Discogs, <em>{S.uniqueStyles}</em> distinct styles —
-                {sole > 0 && <> and <em>{sole}</em> of these top ones live on a single artist in your library. </>}
-                The styles you've gone deepest on with the narrowest set of carriers:
+                Of <em>{S.uniqueStyles}</em> distinct styles across {S.artistsCovered} Discogs-indexed artists, these hang
+                on the narrowest set of carriers{sole > 0 && <> — <em>{sole}</em> on a single artist</>}.
               </div>
               <div className="st-atlas">
                 {S.rarest.map(r => (
@@ -1174,7 +1167,7 @@ function StoriesView({ t, go, seed }) {
                         </React.Fragment>
                       ))}
                     </div>
-                    <div className="st-atlas-n">{fmt(r.plays)}</div>
+                    <div className="st-atlas-n">{fmt(r.plays)}<small> plays</small></div>
                   </div>
                 ))}
               </div>
@@ -1201,9 +1194,7 @@ function StoriesView({ t, go, seed }) {
                   style={{ color: `oklch(0.78 0.14 ${hero.hue})`, cursor: hero.kept ? "pointer" : "default", fontStyle: "italic" }}>{hero.artist}</span>.
               </div>
               <div className="st-sub">
-                For each lane in the library, the first artist who opened the door. Some gateways stayed quiet
-                (one-offs like {G.find(g => g.plays < 50) ? `${G.find(g => g.plays < 50).artist} for ${G.find(g => g.plays < 50).flag}` : "passing visitors"}),
-                others kicked off years of obsession.
+                For each lane, the first artist who opened the door — some stayed one-offs, some kicked off years.
               </div>
               <div className="st-gates">
                 {G.map(g => (
@@ -1231,15 +1222,14 @@ function StoriesView({ t, go, seed }) {
           const big = eras.slice(1).filter(e => e.shift && e.shift.up).sort((a, b) => b.shift.up.d - a.shift.up.d)[0];
           return (
             <section className="st-card st-hero">
-              <div className="st-label">The chapters of your taste</div>
+              <div className="st-label">Chapters</div>
               <div className="st-big">
                 {big
                   ? <>Around {yr(big.start)}, <em style={{ color: `oklch(0.78 0.14 ${big.shift.up.hue})` }}>{big.shift.up.fam}</em> took over — up {big.shift.up.d} points in one turn.</>
                   : <>Your taste falls into <em>{eras.length} distinct chapters</em>.</>}
               </div>
               <div className="st-sub">
-                Not hand-drawn — found by watching your genre mix month by month and marking where it
-                genuinely shifted. {eras.length} chapters:
+                Found by watching the genre mix month by month and marking where it genuinely shifted.
               </div>
               <div style={{ display: "grid", gap: 13, marginTop: 6 }}>
                 {eras.map((e, i) => (
@@ -1285,15 +1275,13 @@ function StoriesView({ t, go, seed }) {
           const dir = d => d > 0 ? "climbed" : "dropped";
           return (
             <section className="st-card st-hero">
-              <div className="st-label">How the sound drifted</div>
+              <div className="st-label">Sound drift</div>
               <div className="st-big">
                 <em>{labels[top.ax]}</em> {dir(top.delta)} {Math.round(Math.abs(top.delta) * 100)} pts.
                 {" "}<em>{labels[second.ax]}</em> {dir(second.delta)} {Math.round(Math.abs(second.delta) * 100)}.
               </div>
               <div className="st-sub">
-                Play-weighted average sound profile per year, across artists with audio data
-                ({Math.round(Y[Y.length - 1].coverage / 1000)}k plays/yr coverage).
-                The taste moved most on {labels[top.ax].toLowerCase()}, which {dir(top.delta)}, and {labels[second.ax].toLowerCase()}, which {dir(second.delta)}.
+                The play-weighted sound profile per year — the taste moved most on {labels[top.ax].toLowerCase()}, which {dir(top.delta)}, and {labels[second.ax].toLowerCase()}, which {dir(second.delta)}.
               </div>
               <div className="st-turn">
                 {order.map(({ ax }) => {
@@ -1335,9 +1323,8 @@ function StoriesView({ t, go, seed }) {
                 under <em>10k listeners</em> worldwide.
               </div>
               <div className="st-sub">
-                The crossover happened in <em>{turn ? turn.year : "—"}</em> — the first year more than half of
-                your new artists were under 50k listeners. Now it's the default: {last.year} sits at <em>{Math.round(last.under50k / last.withStats * 100)}% under 50k</em>,
-                {" "}{Math.round(last.under10k / last.withStats * 100)}% under 10k.
+                <em>{turn ? turn.year : "—"}</em> was the first year more than half your new artists were under 50k
+                listeners — {last.year} sits at <em>{Math.round(last.under50k / last.withStats * 100)}%</em>.
               </div>
               <div className="st-turn">
                 <div className="st-turn-row">
@@ -1377,14 +1364,13 @@ function StoriesView({ t, go, seed }) {
           const moverYear = A.years.find(y => (y[mover.code] || 0) >= mover.after * 0.4);
           return (
             <section className="st-card st-hero">
-              <div className="st-label">How the map moved</div>
+              <div className="st-label">Map drift</div>
               <div className="st-big">
                 <em>{mover.flag} {mover.name}</em> crept in around <em>{moverYear ? moverYear.year : "—"}</em> —
                 now <em>{Math.round(mover.after * 100)}%</em> of what we can place on a map.
               </div>
               <div className="st-sub">
-                Each line is a country's share of your plays over time. {A.years[0].year} was {Math.round(A.years[0].US * 100)}% American;
-                today the lines tangle. {A.countries.length} countries shown, the rest folded into "elsewhere."
+                Each line is a country's share of plays — {A.years[0].year} was {Math.round(A.years[0].US * 100)}% American; today the lines tangle.
               </div>
               <div className="st-arc">
                 {A.countries.map(c => {
@@ -1423,7 +1409,7 @@ function StoriesView({ t, go, seed }) {
           const restShare = G.countries.slice(1, 6).reduce((s, c) => s + c.share, 0);
           return (
             <section className="st-card st-hero">
-              <div className="st-label">Where the taste comes from</div>
+              <div className="st-label">Origins</div>
               <div className="st-big">
                 <em>{Math.round(top.share * 100)}%</em> {top.flag} <em>{top.name}</em>
                 <span style={{ color: "var(--ink-soft)", fontSize: ".55em", fontStyle: "normal", marginLeft: 14 }}>
@@ -1464,7 +1450,7 @@ function StoriesView({ t, go, seed }) {
           );
         })()}
 
-        <div className="st-chapter"><span>IV</span> Rhythms &amp; records</div>
+        <div className="st-chapter"><span>V</span> Rhythms &amp; records</div>
 
         {/* sessions — how you actually listen (Phase 3): sittings, binge-vs-shuffle, album runs */}
         {I.SESSIONS && (() => {
@@ -1477,9 +1463,8 @@ function StoriesView({ t, go, seed }) {
                 {" "}{L.hours}h on {fmtDate(L.date)}{L.share >= 55 ? <>, almost all {L.artist}</> : null}.
               </div>
               <div className="st-sub">
-                {fmt(S.total)} listening sessions in all, a typical one {S.median} tracks long. <b style={{ color: "var(--ink)" }}>{S.bingeShare}%</b> of
-                your real sittings lock onto a single artist{topAlb ? <> — and you've played <b style={{ color: "var(--ink)" }}>{topAlb.album}</b> start-to-finish <b style={{ color: "var(--ink)" }}>{topAlb.count} times</b></> : null}.
-                The records you sit all the way through:
+                {fmt(S.total)} sessions, a typical one {S.median} tracks — <b style={{ color: "var(--ink)" }}>{S.bingeShare}%</b> lock onto
+                a single artist{topAlb ? <>, and you've played <b style={{ color: "var(--ink)" }}>{topAlb.album}</b> front-to-back <b style={{ color: "var(--ink)" }}>{topAlb.count} times</b></> : null}.
               </div>
               <div className="st-ug-cuts">
                 {S.sittings.top.slice(0, 9).map(a => (
@@ -1507,8 +1492,7 @@ function StoriesView({ t, go, seed }) {
                 {" "}<em>{top.pct}%</em> of the time, <span data-link={true} onClick={() => go("track", top.toId)}>{top.toTrack}</span> comes next.
               </div>
               <div className="st-sub">
-                The songs your listening chains together — one play, then almost always the same next one.
-                Your strongest segues, mostly rituals that cross artists entirely:
+                One play, then almost always the same next one — your strongest segues, mostly crossing artists entirely.
               </div>
               <div style={{ display: "grid", gap: 9, marginTop: 4 }}>
                 {segs.slice(0, 10).map((s, i) => (
@@ -1592,15 +1576,14 @@ function StoriesView({ t, go, seed }) {
           const names = (arr) => arr.slice(0, 4).map(a => a.name).join(", ");
           return (
             <section className="st-card st-hero">
-              <div className="st-label">The shape of an obsession</div>
+              <div className="st-label">Right now</div>
               <div className="st-big">
                 {hot
                   ? <>Right now it's <em style={{ color: `oklch(0.78 0.14 ${hot.hue})` }} onClick={() => go("artist", hot.id)}>{hot.name}</em> — {fmt(hot.recentPlays)} plays since {moL(hot.since)}, <em>{hot.flarePct}%</em> of everything you've ever played by them.</>
                   : <>Every obsession has an arc — some burn fast, some never leave.</>}
               </div>
               <div className="st-sub">
-                Burning brightest now — most of these plays crammed into the last four months. That's
-                the shape a flameout makes, mid-flight; history says some of these won't last the year:
+                Most of these plays landed in the last four months — the shape a flameout makes, mid-flight.
               </div>
               <div className="st-ug-cuts">
                 {L.burningNow.map(a => (
@@ -1648,8 +1631,7 @@ function StoriesView({ t, go, seed }) {
             <div className="st-label">Flameouts</div>
             <div className="st-title-sm">Songs that owned one week, then vanished.</div>
             <div className="st-sub" style={{ marginBottom: 14 }}>
-              The opposite of the constants — tracks where 40%+ of every play you ever gave them
-              happened in a single week. A one-off obsession, then silence.
+              Tracks where 40%+ of every play came in a single week — a one-off obsession, then silence.
             </div>
             <div className="st-life">
               {I.FLAMEOUTS.map((t, i) => (
@@ -1677,9 +1659,8 @@ function StoriesView({ t, go, seed }) {
               <div className="st-label">The constants</div>
               <div className="st-title-sm">Songs that survived every era.</div>
               <div className="st-sub" style={{ marginBottom: 14 }}>
-                Tracks you've played across <em>{hero.yearSpan} different years</em> — reaching back to <em>{hero.firstYr}</em>,
-                before most of the library existed, and still in rotation.
-                "<i>{hero.title}</i>" leads with {hero.plays} plays from {hero.firstYr} to {hero.lastYr}.
+                Played across <em>{hero.yearSpan} different years</em> and still in rotation — "<i>{hero.title}</i>"
+                leads, {hero.plays} plays from {hero.firstYr} to {hero.lastYr}.
               </div>
               <div className="st-life">
                 {L.map((t, i) => (
@@ -1720,8 +1701,7 @@ function StoriesView({ t, go, seed }) {
                   style={{ color: `oklch(0.78 0.14 ${top.hue})`, cursor: R.byId[top.artistId] ? "pointer" : "default", fontStyle: "italic" }}>{top.artist}</span>.
               </div>
               <div className="st-sub">
-                For each top artist, the single month where they owned the highest <em>share</em> of your listening.
-                Not the month with the most plays — the month where everyone else got pushed out.
+                The single month each artist owned the highest <em>share</em> of your listening — not the most plays, the most crowding-out.
               </div>
               <div className="st-life">
                 {E.map((e, i) => (
@@ -1757,8 +1737,7 @@ function StoriesView({ t, go, seed }) {
                 <em> {fast[0].artist}</em> took <em>{fast[0].incubDays || "zero"} {fast[0].incubDays === 1 ? "day" : "days"}</em>.
               </div>
               <div className="st-sub">
-                For each top artist, the gap between the first time you played them and the week they peaked.
-                Some sat for years before catching; others peaked the week you found them.
+                The gap between first play and peak week — some sat for years, others caught the week you found them.
               </div>
               <div className="st-incub">
                 <div>
@@ -1877,7 +1856,7 @@ function StoriesView({ t, go, seed }) {
 
         {/* year peaks */}
         <section className="st-card">
-          <div className="st-label">The heaviest day of every year</div>
+          <div className="st-label">Heaviest days</div>
           <div className="st-title-sm">Annual single-day records.</div>
           <div className="st-peaks">
             {I.YEAR_PEAKS.map(p => (
@@ -2170,6 +2149,7 @@ function StoriesView({ t, go, seed }) {
         .st-atlas-style { font-family: var(--serif); font-style: italic; font-size: 17px; }
         .st-atlas-via { font-size: 12.5px; color: var(--ink-soft); }
         .st-atlas-n { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); }
+        .st-atlas-n small { font-size: 8.5px; letter-spacing: .1em; text-transform: uppercase; opacity: .7; }
         .st-scenes { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
         .st-scene { border: 1px solid var(--rule); border-radius: 6px; padding: 14px 14px 12px; }
         .st-scene-name { font-family: var(--serif); font-style: italic; font-size: 19px; line-height: 1; }
