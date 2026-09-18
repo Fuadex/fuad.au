@@ -443,15 +443,16 @@
     "reason": "tier-2: typo, canonical is \"The Joker\""
    },
    {
-    "from": "Consument",
-    "to": "Konsument",
-    "type": "spelling"
-   },
-   {
     "from": "Wake Up! here Come The Acids",
     "to": "Wake Up! Here Come the Acid",
     "type": "spelling",
     "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan mb-refetch 2026-09-17)"
+   },
+   {
+    "from": "Konsument",
+    "to": "Consument",
+    "type": "spelling",
+    "reason": "spelling: studio tracklist spells it Consument (Infernal Connection, 1994); the Polish-spelled MB recording is a different live take — ruled by MB evidence 2026-09-19"
    }
   ]
  },
@@ -3032,10 +3033,10 @@
  "Destiny Potato": {
   "tracks": [
    {
-    "from": "Walls Of Thoughts",
-    "to": "Walls of Thought",
+    "from": "Walls of Thought",
+    "to": "Walls of Thoughts",
     "type": "spelling",
-    "reason": "spelling: typo/variant suffix folds to canonical"
+    "reason": "spelling: LUN track 7 is Walls of Thoughts per MB recording + tracklist (ruled 2026-09-19)"
    }
   ]
  },
@@ -11836,6 +11837,12 @@
     "to": "Devilizer",
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
+   },
+   {
+    "from": "Summoning the Future",
+    "to": "Summoning the Futura",
+    "type": "spelling",
+    "reason": "spelling: the sole MB recording, across all Necropolis editions, is Summoning the Futura (ruled 2026-09-19)"
    }
   ]
  },
@@ -13528,6 +13535,14 @@
     "to": "Soul Kiss",
     "type": "absorb"
    }
+  ],
+  "tracks": [
+   {
+    "from": "Fanfare",
+    "to": "Fanfāre",
+    "type": "spelling",
+    "reason": "spelling: the LOVETHEISM tracklist prints the macron — Fanfāre (ruled 2026-09-19)"
+   }
   ]
  },
  "Architects": {
@@ -14155,6 +14170,14 @@
     "from": "Animo",
     "to": "A Digital Nowhere",
     "type": "absorb"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "The Living Receiver",
+    "to": "The Living Reciever",
+    "type": "spelling",
+    "reason": "spelling: A Digital Nowhere track 9 is officially spelled Reciever (sic) per MB recording + tracklist (ruled 2026-09-19)"
    }
   ]
  },
@@ -16769,6 +16792,12 @@
     "to": "A Breath Away",
     "type": "spelling",
     "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan mb-refetch 2026-09-17)"
+   },
+   {
+    "from": "Brainwashed by London",
+    "to": "Brainwash by London",
+    "type": "spelling",
+    "reason": "spelling: all MB recordings and all three release tracklists spell it Brainwash by London (ruled 2026-09-19)"
    }
   ]
  },
@@ -18375,6 +18404,16 @@
     "to": "Have A Moment",
     "type": "spelling",
     "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan mb-refetch 2026-09-17)"
+   }
+  ]
+ },
+ "Proletaryat": {
+  "tracks": [
+   {
+    "from": "Widziałem Mam",
+    "to": "Wiedziałem mam",
+    "type": "spelling",
+    "reason": "spelling: 2 of 2 MB recordings across ReC./Recycling spell it Wiedziałem mam (ruled 2026-09-19)"
    }
   ]
  }
