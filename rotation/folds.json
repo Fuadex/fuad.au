@@ -12029,54 +12029,6 @@
    }
   ]
  },
- "Wargasm": {
-  "artist": {
-   "from": "WARGASM (UK)",
-   "type": "spelling",
-   "reason": "spelling: variant name form folds to canonical artist name"
-  },
-  "albums": [
-   {
-    "from": "Do It So Good",
-    "to": "Venom",
-    "type": "absorb"
-   },
-   {
-    "from": "Modern Love",
-    "to": "Venom",
-    "type": "absorb"
-   },
-   {
-    "from": "Salma Hayek",
-    "to": "EXPLICIT: THE MIXXXTAPE",
-    "type": "absorb"
-   },
-   {
-    "from": "Bang Ya Head",
-    "to": "Venom",
-    "type": "absorb"
-   },
-   {
-    "from": "Fukstar",
-    "to": "EXPLICIT: THE MIXXXTAPE",
-    "type": "absorb"
-   }
-  ],
-  "tracks": [
-   {
-    "from": "Spit. (Hyper's Deconstruction Remix)",
-    "to": "Spit.",
-    "type": "variant",
-    "reason": "remix ((Hyper's Deconstruction Remix))"
-   },
-   {
-    "from": "Scratchcard Feeling [Explicit]",
-    "to": "Scratchcard Feeling",
-    "type": "spelling",
-    "reason": "edition tag ([Explicit]); same recording"
-   }
-  ]
- },
  "Weather Report": {
   "tracks": [
    {
@@ -18370,6 +18322,45 @@
     "to": "Bang Ya Head",
     "type": "spelling",
     "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan mb-refetch 2026-09-17)"
+   },
+   {
+    "from": "Spit. (Hyper's Deconstruction Remix)",
+    "to": "Spit.",
+    "type": "variant",
+    "reason": "remix ((Hyper's Deconstruction Remix))"
+   },
+   {
+    "from": "Scratchcard Feeling [Explicit]",
+    "to": "Scratchcard Feeling",
+    "type": "spelling",
+    "reason": "edition tag ([Explicit]); same recording"
+   }
+  ],
+  "albums": [
+   {
+    "from": "Do It So Good",
+    "to": "Venom",
+    "type": "absorb"
+   },
+   {
+    "from": "Modern Love",
+    "to": "Venom",
+    "type": "absorb"
+   },
+   {
+    "from": "Salma Hayek",
+    "to": "EXPLICIT: THE MIXXXTAPE",
+    "type": "absorb"
+   },
+   {
+    "from": "Bang Ya Head",
+    "to": "Venom",
+    "type": "absorb"
+   },
+   {
+    "from": "Fukstar",
+    "to": "EXPLICIT: THE MIXXXTAPE",
+    "type": "absorb"
    }
   ]
  },
