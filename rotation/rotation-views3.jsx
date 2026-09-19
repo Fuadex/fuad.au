@@ -12,6 +12,23 @@ const hueOfName = (name) => (window.ROTATION.byId[window.ROTATION.slug(name)] ||
   ? window.ROTATION.byId[window.ROTATION.slug(name)].hue
   : hashInt(name, 0) % 360;
 
+// ── The comfort zone: audio-axis display names + the R.AUDIO column each one lives in ─────────
+// TWIN of rotation-lab.jsx's FP_LABEL / FP_AUDIO_IDX — the #lab TasteFingerprint prototype this
+// module graduated from on 2026-09-21. COPIED, not shared: rotation-lab.jsx only loads on #lab,
+// so reaching into it would make the Stories feed depend on a hidden route. If the lab's pair
+// moves, move this one too.
+// The ORDER TRAP the lab documents is real and worth repeating: R.AUDIO rows are
+// [energy, valence, acoustic, tempo, dance, instr, …] while AUDIO_DIST.axes is
+// [energy, valence, dance, acoustic, instr, tempo]. Map by NAME through ST_FP_COL, never by
+// position — the two disagree on four of six slots.
+const ST_FP_LABEL = { energy: "Energy", valence: "Positivity", dance: "Danceability", acoustic: "Acoustic", instr: "Instrumental", tempo: "Tempo" };
+const ST_FP_COL = { energy: 0, valence: 1, acoustic: 2, tempo: 3, dance: 4, instr: 5 };
+// Lyrical diet: a theme's colour is a pure function of its index in THEMES.names, so all 18 (and
+// any the classifier adds later) stay distinguishable and a theme never changes colour between
+// renders. The golden angle rather than an even 360/n split: even spacing gives ADJACENT indices
+// adjacent hues, and adjacent indices are exactly what stack against each other in the bars.
+const ST_DIET_HUE = (i) => Math.round((i * 137.508) % 360);
+
 
 // ── Who rose, who fell: the artist rows of the slope chart ───────────────────────────────────
 // Fuad 2026-09-14: "I only wanted to transition the artist movements, so their texts and bars
@@ -244,6 +261,161 @@ function StoriesView({ t, go, seed }) {
     if (window.loadScript) window.loadScript("reading.js", "rotation-reading-js", () => setReading(window.ROTATION_READING || null));
   }, []);
   const [readingOpen, setReadingOpen] = React.useState({});   // era index → expanded? (all collapsed at rest, any number may be open)
+
+  // ════ THREE LAB MODULES GRADUATE (2026-09-21) ════════════════════════════════════════════
+  // The comfort zone · Lyrical diet · Who brought you here, ported out of rotation-lab.jsx. Each
+  // reads as a STORY at rest — claim first, then evidence rows — but KEEPS the prototype's input
+  // (Fuad: "interactivity is key, providing power to the audience"), so the reader can aim it.
+  // EVERY hook below sits here with the rest, ABOVE every early return: a hook under a
+  // conditional is React #310 at runtime and check-jsx cannot see it (same note as The Reading).
+  const [czPick, setCzPick] = React.useState("");        // comfort-zone scorer input
+  const [dietSel, setDietSel] = React.useState(null);    // lyrical-diet theme pulled out of the stack
+  const [dietAll, setDietAll] = React.useState(false);   // …and whether the long tail of chips is open
+  const [genPick, setGenPick] = React.useState("");      // genealogy tracer input
+  // genealogy.js is lazy (slug → [who you heard just before, first play]); the module renders
+  // nothing until it lands, exactly like The Reading below. A 404 leaves genReady false forever,
+  // which is the intended degrade — the section simply never appears.
+  const [genReady, setGenReady] = React.useState(!!window.ROTATION_GENEALOGY);
+  React.useEffect(() => {
+    if (window.ROTATION_GENEALOGY) { if (!genReady) setGenReady(true); return; }
+    // the lab uses this same script id on purpose: loadScript is id-guarded, so whichever route
+    // asks first pays for the fetch and the other piggybacks on its load event.
+    if (window.loadScript) window.loadScript("genealogy.js", "rotation-genealogy-js", () => setGenReady(!!window.ROTATION_GENEALOGY));
+  }, []);
+  // ONE memoised option list under BOTH datalists below. A React element array is an immutable
+  // description, so the same array may hang under two parents; what it saves is rebuilding 1,061
+  // options on every keystroke in either input.
+  const artistOptions = React.useMemo(() => (R.ARTISTS || []).map(a => <option key={a.id} value={a.name} />), []);
+
+  // ── THE COMFORT ZONE ── the six bands, plus the two precomputed story rows.
+  // AUDIO_DIST.cdf[axis] is a 101-bucket cumulative curve in per-mille of PLAYS, so p25/p50/p75
+  // are quantile reads of every play logged, not an average over artists — which is why the
+  // bracket can end up narrower than any single artist sits.
+  const comfort = React.useMemo(() => {
+    const D = R.AUDIO_DIST;
+    if (!D || !D.cdf || !D.axes || !D.axes.length) return null;
+    const q = (c, pm) => { for (let v = 0; v <= 100; v++) if (c[v] >= pm) return v; return 100; };
+    const bands = D.axes.map((name, i) => {
+      const c = D.cdf[i];
+      const dens = c.map((v, j) => (j ? v - c[j - 1] : v));   // cumulative → per-bucket mass
+      return { name, label: ST_FP_LABEL[name] || name, p25: q(c, 250), p50: q(c, 500), p75: q(c, 750), dens, max: Math.max.apply(null, dens) };
+    });
+    const byWidth = bands.slice().sort((a, b) => (a.p75 - a.p25) - (b.p75 - b.p25));
+    // THE STORY ROWS. Universe: the 100 heaviest artists carrying a measured audio row — small
+    // enough that "the outlier you love anyway" means something (a twelve-play curio outside the
+    // band on six axes is noise, not a story) and cheap enough to score once at mount.
+    const pool = (R.ARTISTS || []).slice().sort((a, b) => b.plays - a.plays)
+      .filter(a => R.AUDIO && R.AUDIO[a.id]).slice(0, 100);
+    const scored = pool.map(a => {
+      const row = R.AUDIO[a.id];
+      const miss = []; let hits = 0, dist = 0;
+      for (const b of bands) {
+        const v = Math.round((row[ST_FP_COL[b.name]] || 0) * 100);
+        if (v >= b.p25 && v <= b.p75) hits++;
+        else { miss.push({ name: b.name, label: b.label, v: v, p25: b.p25, p75: b.p75 }); dist += v < b.p25 ? b.p25 - v : v - b.p75; }
+      }
+      return { id: a.id, name: a.name, hue: a.hue, plays: a.plays, hits, dist, miss };
+    });
+    // Ties break on total distance from the band edges, then on plays. Both tiebreaks earn their
+    // keep on today's data: four artists sit 6/6 and distance is 0 for all four, so weight decides.
+    const inside = scored.slice().sort((a, b) => (b.hits - a.hits) || (a.dist - b.dist) || (b.plays - a.plays))[0] || null;
+    const outside = scored.slice().sort((a, b) => (b.miss.length - a.miss.length) || (b.plays - a.plays) || (b.dist - a.dist))[0] || null;
+    return { bands, tight: byWidth[0], loose: byWidth[byWidth.length - 1], inside, outside };
+  }, []);
+  // The picked artist scored against those bands: null until something is typed, {found:false}
+  // when the name resolves to nobody carrying a measured row (below the top ~6,500 artists).
+  const czScore = React.useMemo(() => {
+    if (!comfort || !czPick.trim()) return null;
+    const pid = (R.idForName && R.idForName(czPick)) || R.slug(czPick);
+    const row = pid && R.AUDIO ? R.AUDIO[pid] : null;
+    if (!row) return { found: false };
+    const rec = R.byId[pid] || (R.expById && R.expById[pid]) || null;
+    const vals = {};
+    for (const b of comfort.bands) vals[b.name] = Math.round((row[ST_FP_COL[b.name]] || 0) * 100);
+    const inB = (b) => vals[b.name] >= b.p25 && vals[b.name] <= b.p75;
+    return { found: true, id: pid, name: (rec && rec.name) || czPick, vals, hits: comfort.bands.filter(inB), miss: comfort.bands.filter(b => !inB(b)) };
+  }, [czPick, comfort]);
+
+  // ── LYRICAL DIET ── one normalised shape for both payload generations.
+  // THEMES.matrix carries EVERY theme's per-mille share per year, which is what lets the whole
+  // diet stack and the picker reach all eighteen. Older payloads only have THEMES.arc — the top
+  // six, as fractions — so the module degrades to that and says so in its sub rather than
+  // implying the other twelve do not exist.
+  const diet = React.useMemo(() => {
+    const T = I.THEMES;
+    if (!T) return null;
+    const M = T.matrix;
+    let full, names, years;
+    if (M && M.rows && M.rows.length >= 4 && M.years && T.names && T.names.length) {
+      full = true; names = T.names;
+      years = M.years.map((y, i) => ({ year: y, plays: (M.plays && M.plays[i]) || 0, v: M.rows[i].map(p => p / 1000) }));
+    } else if (T.arc && T.arc.themes && T.arc.years && T.arc.years.length >= 4) {
+      full = false; names = T.arc.themes;
+      years = T.arc.years.map(y => ({ year: y.year, plays: y.plays || 0, v: names.map(th => y.byTheme[th] || 0) }));
+    } else return null;
+    const shares = (T.shares || []).filter(s => s.theme);
+    // Colour key: position in THEMES.names where we have it, so a theme keeps its hue whether
+    // the stack is the full eighteen or the degraded six. EVERY theme a chip can carry needs an
+    // entry, not only the ones drawn — on a matrix-less payload the chips come from shares and
+    // reach past the arc's six, and a theme with no hue used to fall out of the selectable test
+    // and leave a dead chip.
+    const key = ((T.names && T.names.length) ? T.names : names).slice();
+    for (const s of shares) if (key.indexOf(s.theme) < 0) key.push(s.theme);
+    for (const th of names) if (key.indexOf(th) < 0) key.push(th);
+    const hue = {};
+    key.forEach((th, i) => { hue[th] = ST_DIET_HUE(i); });
+    // The headline: first-three-years average against the last three, in percentage POINTS.
+    const n = years.length, w = Math.min(3, n);
+    const first = years.slice(0, w), last = years.slice(-w);
+    const mean = (arr, j) => arr.reduce((s, y) => s + (y.v[j] || 0), 0) / arr.length;
+    const shift = names.map((th, j) => ({ th, j, d: (mean(last, j) - mean(first, j)) * 100 })).sort((a, b) => b.d - a.d);
+    return { full, names, years, hue, riser: shift[0], fader: shift[shift.length - 1], chips: shares.slice(0, 8), rest: shares.slice(8) };
+  }, []);
+
+  // ── WHO BROUGHT YOU HERE ── gateways ranked by INTRODUCED PLAYS, plus the library's heaviest
+  // ancestry chain as a rendered specimen. Ranking by child COUNT (what the lab did) floats
+  // artists whose twenty doors all opened onto nothing: one 5,000-play introduction is the bigger
+  // event, so the sum of what walked through is the measure (Fuad 2026-09-21).
+  const gen = React.useMemo(() => {
+    const G = window.ROTATION_GENEALOGY;
+    if (!G) return null;
+    const recOf = (id) => R.byId[id] || (R.expById && R.expById[id]) || null;
+    const nameOf = (id) => { const r = recOf(id); return (r && r.name) || id; };
+    const playsOf = (id) => { const r = recOf(id); return (r && r.plays) || 0; };
+    const hueOf = (id) => { const r = recOf(id); return r && r.hue != null ? r.hue : hashInt(String(id), 0) % 360; };
+    const kids = {};
+    for (const k in G) { const p = G[k][0]; if (p) (kids[p] = kids[p] || []).push(k); }
+    const gateways = Object.keys(kids).map(g => {
+      const ks = kids[g].slice().sort((a, b) => playsOf(b) - playsOf(a));
+      return { id: g, name: nameOf(g), hue: hueOf(g), kids: ks, n: ks.length, introduced: ks.reduce((s, k) => s + playsOf(k), 0) };
+    }).sort((a, b) => (b.introduced - a.introduced) || (b.n - a.n));
+    // THE SPECIMEN. Walk parent links to the root with the lab's cycle guard (a self-referential
+    // pair would otherwise spin forever), keep every chain of four or more, take the one whose
+    // members carry the most plays — a long chain of strangers is a worse specimen than a short
+    // one of records that were actually worn out.
+    const walk = (id) => { const out = []; let cur = id, guard = 0; while (cur && guard++ < 24 && out.indexOf(cur) < 0) { out.unshift(cur); cur = G[cur] ? G[cur][0] : null; } return out; };
+    let best = null;
+    for (const k in G) {
+      const ids = walk(k);
+      if (ids.length < 4) continue;
+      const tot = ids.reduce((s, c) => s + playsOf(c), 0);
+      if (!best || tot > best.tot) best = { tot, ids };
+    }
+    const chain = best ? best.ids.map(id => ({ id, name: nameOf(id), plays: playsOf(id), date: G[id] ? G[id][1] : null })) : null;
+    return { G, kids, gateways, chain, chainPlays: best ? best.tot : 0, nameOf, playsOf };
+  }, [genReady]);
+  const genTrace = React.useMemo(() => {
+    if (!gen || !genPick.trim()) return null;
+    const G = gen.G;
+    const pid = (R.idForName && R.idForName(genPick)) || R.slug(genPick);
+    if (!pid || !G[pid]) return { found: false };
+    const chain = []; let cur = pid, guard = 0;
+    while (cur && guard++ < 24 && !chain.some(c => c.id === cur)) {
+      chain.unshift({ id: cur, name: gen.nameOf(cur), date: G[cur] ? G[cur][1] : null });
+      cur = G[cur] ? G[cur][0] : null;
+    }
+    return { found: true, id: pid, name: gen.nameOf(pid), chain, kids: (gen.kids[pid] || []).slice().sort((a, b) => gen.playsOf(b) - gen.playsOf(a)) };
+  }, [gen, genPick]);
   // keyed album\x00artist, the same key rotation-calendar builds
   const albumCover = React.useMemo(() => {
     const M = window.ROTATION_MEDIA; if (!M || !M.albums || !M.artists) return {};
@@ -1413,6 +1585,108 @@ function StoriesView({ t, go, seed }) {
           );
         })()}
 
+
+        {/* THE COMFORT ZONE (2026-09-21) — graduated from the #lab TasteFingerprint prototype and
+            parked directly under Sound drift on purpose: drift is how the sound MOVED, this is
+            where it lives. The strip is the prototype's one genuinely good graphic and its
+            anatomy survives intact — label · density strip · range — restyled off every LAB_*
+            constant onto the site's tokens, so the density ramp follows the tweak panel's accent
+            hue rather than a hard-coded pink.
+            Two precomputed rows carry the story at rest; the scorer under them is the prototype's
+            interaction, kept because the reader gets to aim it (Fuad: "interactivity is key,
+            providing power to the audience"). */}
+        {comfort && (() => {
+          const C = comfort, TZ = C.tight;
+          // A band pinned against the floor reads as broken in the "sits between X and Y" frame —
+          // acoustic is 0–1 here, and "between 0 and 1" looks like a bug rather than a finding.
+          // Same fact, phrased as a ceiling.
+          const pinned = TZ.p25 === 0 && TZ.p75 <= 3;
+          const ramp = (b) => "linear-gradient(90deg," + b.dens.filter((_, j) => j % 2 === 0)
+            .map((d, j) => "oklch(0.74 0.13 var(--acc-h) / " + (d / (b.max || 1) * 0.9).toFixed(2) + ") " + (j * 2) + "%").join(",") + ")";
+          const P = czScore && czScore.found ? czScore : null;
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">The comfort zone</div>
+              <div className="st-big">
+                {pinned
+                  ? <>Half of everything you play scores <em>{TZ.p75} or less</em> out of 100 on <em>{TZ.label.toLowerCase()}</em>.</>
+                  : <>Half of everything you play sits between <em>{TZ.p25}</em> and <em>{TZ.p75}</em> on <em>{TZ.label.toLowerCase()}</em>.</>}
+              </div>
+              <div className="st-sub">
+                Every play, weighted, poured onto each audio axis — the shaded mass is where they land,
+                the bracket is the middle 50% that is your comfort band, and the tick is the median.
+              </div>
+              <div className="st-cz">
+                {C.bands.map(b => {
+                  const v = P ? P.vals[b.name] : null;
+                  const inB = v !== null && v >= b.p25 && v <= b.p75;
+                  return (
+                    <div key={b.name} className="st-cz-row">
+                      <div className="st-cz-lbl">{b.label}</div>
+                      <div className="st-cz-strip" title={`${b.label} · comfort band ${b.p25}–${b.p75} · median ${b.p50}`}>
+                        <div className="st-cz-dens" style={{ backgroundImage: ramp(b) }} />
+                        <div className="st-cz-band" style={{ left: b.p25 + "%", width: Math.max(1.4, b.p75 - b.p25) + "%" }} />
+                        <div className="st-cz-med" style={{ left: `calc(${b.p50}% - 1px)` }} />
+                        {v !== null && <i className="st-cz-dot" data-in={inB ? "true" : "false"}
+                          style={{ left: `calc(${v}% - 5.5px)` }} title={`${P.name} · ${v}`} />}
+                      </div>
+                      <div className="st-cz-n">{b.p25}–{b.p75}</div>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="st-mi st-mi-soft" style={{ marginTop: 11 }}>
+                Tightest: {C.tight.label.toLowerCase()} {C.tight.p25}–{C.tight.p75} · loosest: {C.loose.label.toLowerCase()} {C.loose.p25}–{C.loose.p75}
+              </div>
+              {C.inside && C.outside && (
+                <div className="st-cz-pair">
+                  <div style={{ minWidth: 0 }}>
+                    <div className="st-yir-h">Squarely your sound</div>
+                    <ArtistRow name={C.inside.name} hue={C.inside.hue}
+                      right={<span className="st-num">{fmt(C.inside.plays)}<small> plays</small></span>}>
+                      inside the band on {C.inside.hits} of {C.bands.length} axes
+                    </ArtistRow>
+                  </div>
+                  <div style={{ minWidth: 0 }}>
+                    <div className="st-yir-h">The outlier you love anyway</div>
+                    <ArtistRow name={C.outside.name} hue={C.outside.hue}
+                      right={<span className="st-num">{fmt(C.outside.plays)}<small> plays</small></span>}>
+                      outside the band on {C.outside.miss.length} of {C.bands.length} axes
+                    </ArtistRow>
+                    <div className="st-mi st-cz-miss">
+                      {C.outside.miss.map((m, i) => (
+                        <React.Fragment key={m.name}>{i > 0 ? " · " : ""}{m.label.toLowerCase()} {m.v} vs {m.p25}–{m.p75}</React.Fragment>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+              <div style={{ marginTop: 18 }}>
+                <input className="st-in" list="st-cz-artists" value={czPick} onChange={e => setCzPick(e.target.value)}
+                  aria-label="score an artist against your comfort band"
+                  placeholder="score an artist against your fingerprint…" />
+                <datalist id="st-cz-artists">{artistOptions}</datalist>
+                {P && (
+                  <div className="st-sub" style={{ marginTop: 10 }}>
+                    <b className="st-inline-link" data-link={hasPage(P.id)} onClick={() => hasPage(P.id) && go("artist", P.id)}>{P.name}</b> sits
+                    inside your comfort band on <b style={{ color: "var(--ink)" }}>{P.hits.length} of {C.bands.length}</b> axes
+                    {P.miss.length
+                      ? <> — the outliers: {P.miss.map((b, i) => (
+                          <React.Fragment key={b.name}>{i > 0 ? ", " : ""}{b.label.toLowerCase()} {P.vals[b.name]} vs your {b.p25}–{b.p75}</React.Fragment>
+                        ))}.</>
+                      : <> — squarely your sound.</>}
+                  </div>
+                )}
+                {czScore && !czScore.found && (
+                  <div className="st-mi" style={{ marginTop: 8 }}>
+                    No measured audio row for that name — sound ships for the {fmt(Object.keys(R.AUDIO || {}).length)} artists with enough of a catalogue to average.
+                  </div>
+                )}
+              </div>
+            </section>
+          );
+        })()}
+
         {/* when the taste turned — share of yearly discoveries that were underground */}
         {I.UNDERGROUND && I.UNDERGROUND.discoveryShape && I.UNDERGROUND.discoveryShape.length >= 10 && (() => {
           const D = I.UNDERGROUND.discoveryShape.filter(y => y.withStats >= 10);
@@ -2043,6 +2317,100 @@ function StoriesView({ t, go, seed }) {
           </div>
         </section>
 
+
+        {/* WHO BROUGHT YOU HERE (2026-09-21) — the #lab GenealogyLab, graduated and sat beside
+            First contact because the two are siblings: first contact is the TRACK that started
+            each obsession, this is who led to whom. genealogy.js is lazy (~183 KB of slug → [the
+            artist you heard just before, first play]) and the whole module is guarded on it the
+            way The Reading is guarded on reading.js — nothing renders until the shard lands, and
+            a 404 simply means this section never appears.
+            The lab ranked gateways by how many artists they opened; this ranks by how many PLAYS
+            walked through (Fuad 2026-09-21), which is a different list — one 5,000-play
+            introduction outweighs six twenty-play ones. */}
+        {gen && gen.gateways.length > 0 && (() => {
+          const top = gen.gateways[0];
+          // both the specimen chain and the tracer's ancestry draw with this: the lab's
+          // arrow-and-dates line, moved off the prototype's mono into the feed's serif.
+          const thread = (nodes) => (
+            <div className="st-gen-chain">
+              {nodes.map((c, i) => (
+                <React.Fragment key={c.id}>
+                  {i > 0 && <span className="st-gen-arrow">→</span>}
+                  <span className="st-gen-node" data-link={hasPage(c.id)} onClick={() => hasPage(c.id) && go("artist", c.id)}>
+                    {c.name}<i>{c.date ? c.date.slice(0, 7) : ""}</i>
+                  </span>
+                </React.Fragment>
+              ))}
+            </div>
+          );
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">Who brought you here</div>
+              <div className="st-big" data-link={hasPage(top.id)} onClick={() => hasPage(top.id) && go("artist", top.id)}>
+                <em>{top.name}</em> opened {top.n} door{top.n === 1 ? "" : "s"} — <em>{fmt(top.introduced)}</em> plays walked through.
+              </div>
+              <div className="st-sub">
+                Reconstructed from listening sessions — the artist heard just before your first play. A guess, not a memory.
+              </div>
+              {gen.chain && (
+                <div style={{ marginTop: 20 }}>
+                  <div className="st-yir-h">The heaviest line in the library</div>
+                  {thread(gen.chain)}
+                  <div className="st-mi" style={{ marginTop: 7 }}>
+                    {gen.chain.length} artists · {fmt(gen.chainPlays)} plays along the line
+                  </div>
+                </div>
+              )}
+              <div style={{ marginTop: 20 }}>
+                <div className="st-yir-h">Your biggest gateways</div>
+                <div className="st-list">
+                  {gen.gateways.slice(0, 3).map(g => (
+                    <ArtistRow key={g.id} name={g.name} hue={g.hue}
+                      right={<span className="st-num">{fmt(g.introduced)}<small> plays in</small></span>}>
+                      {g.n} artist{g.n === 1 ? "" : "s"} · heaviest: {gen.nameOf(g.kids[0])} ({fmt(gen.playsOf(g.kids[0]))})
+                    </ArtistRow>
+                  ))}
+                </div>
+              </div>
+              <div style={{ marginTop: 18 }}>
+                <input className="st-in" list="st-gen-artists" value={genPick} onChange={e => setGenPick(e.target.value)}
+                  aria-label="trace an artist's ancestry" placeholder="trace an artist…" />
+                <datalist id="st-gen-artists">{artistOptions}</datalist>
+                {genTrace && genTrace.found && (
+                  <div style={{ marginTop: 14 }}>
+                    <div className="st-yir-h">Ancestry</div>
+                    {genTrace.chain.length > 1
+                      ? thread(genTrace.chain)
+                      : <div className="st-sub" style={{ marginTop: 0 }}>Nobody — <b style={{ color: "var(--ink)" }}>{genTrace.name}</b> is where a thread starts. Their first play opened a session rather than continuing one.</div>}
+                    {genTrace.kids.length > 0 && (
+                      <>
+                        <div className="st-yir-h" style={{ marginTop: 16 }}>
+                          {genTrace.name} introduced {genTrace.kids.length} artist{genTrace.kids.length === 1 ? "" : "s"}
+                        </div>
+                        <div className="st-gen-kids">
+                          {genTrace.kids.slice(0, 18).map(k => (
+                            <span key={k} className="st-bandchip" data-link={hasPage(k)} onClick={() => hasPage(k) && go("artist", k)}>
+                              {gen.nameOf(k)}<i className="st-gen-kidn">{fmt(gen.playsOf(k))}</i>
+                            </span>
+                          ))}
+                          {genTrace.kids.length > 18 && (
+                            <span className="st-mi" style={{ alignSelf: "center" }}>+{genTrace.kids.length - 18} more</span>
+                          )}
+                        </div>
+                      </>
+                    )}
+                  </div>
+                )}
+                {genTrace && !genTrace.found && (
+                  <div className="st-mi" style={{ marginTop: 8 }}>
+                    No entry for that name — the map only reaches dated plays from artists you played at least five times.
+                  </div>
+                )}
+              </div>
+            </section>
+          );
+        })()}
+
         {/* year peaks */}
         <section className="st-card">
           <div className="st-label">Heaviest days</div>
@@ -2058,6 +2426,116 @@ function StoriesView({ t, go, seed }) {
             ))}
           </div>
         </section>
+
+
+        {/* LYRICAL DIET (2026-09-21) — the feed's last chart, and it sits here rather than up in
+            chapter III on purpose: it is the quantitative shadow of the portrait's "the words run
+            darker" line. The chart shows the drift, The Reading immediately below names it, and
+            the feed closes on the naming.
+            Graduated from the #lab prototype with the one thing the lab could not do (Fuad
+            2026-09-21: "not just a limited selection") — THEMES.matrix carries every theme's
+            per-mille share per year, so the WHOLE diet stacks and the picker reaches all of it
+            rather than the arc's top six. Lyric themes up in chapter III still answers "what is it
+            about"; this one answers "what changed". */}
+        {diet && (() => {
+          const D = diet, T = I.THEMES, H = 168;
+          const sel = D.hue[dietSel] != null ? dietSel : null;
+          const selJ = sel ? D.names.indexOf(sel) : -1;
+          // a theme can be pickable without being drawn (the degraded arc stacks six but the
+          // chips reach eight) — then its exemplars still open and the chart simply does not dim.
+          const dim = selJ >= 0;
+          const pts = (d) => (d > 0 ? "+" : "−") + Math.abs(d).toFixed(1);
+          const band = (th, on) => on ? `oklch(0.68 0.145 ${D.hue[th]})` : `oklch(0.42 0.05 ${D.hue[th]})`;
+          const ex = sel ? ((T.exemplarsAll || T.exemplars || {})[sel] || []) : [];
+          const fed = sel ? (T.artists || []).filter(a => (a.themes || []).some(t => t.theme === sel)).slice(0, 6) : [];
+          const chip = (s) => (
+            <button key={s.theme} type="button" className="st-diet-chip" data-on={sel === s.theme ? "true" : undefined}
+              onClick={() => setDietSel(sel === s.theme ? null : s.theme)}
+              style={sel === s.theme
+                ? { background: `oklch(0.72 0.15 ${D.hue[s.theme]})`, borderColor: `oklch(0.72 0.15 ${D.hue[s.theme]})` }
+                : { borderColor: `oklch(0.50 0.08 ${D.hue[s.theme]})` }}>
+              {s.theme} · {Math.round(s.share * 100)}%
+            </button>
+          );
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">Lyrical diet</div>
+              <div className="st-big">
+                <em>{D.riser.th}</em> is up <em>{pts(D.riser.d)} points</em> on your first years.
+                {" "}<em>{D.fader.th}</em> is down <em>{pts(D.fader.d)}</em>.
+              </div>
+              <div className="st-sub">
+                Play-weighted shares of what the words are about, year by year, over {fmt(T.covered)} theme-classified
+                tracks ({Math.round(T.coveredPlays / T.totalPlays * 100)}% of plays).
+                {D.full ? ` All ${D.names.length} themes stack here` : " Only the six biggest themes are in this payload"} — pick one to pull it out of the mix.
+              </div>
+              <div className="st-diet" style={{ height: H + 26 }}>
+                {D.years.map(y => {
+                  const drawn = y.v.reduce((s, x) => s + x, 0);
+                  const rem = 1 - drawn;
+                  return (
+                    <div key={y.year} className="st-diet-col" title={`${y.year} · ${fmt(y.plays)} themed plays`}>
+                      {/* an "other" cap only where the stack genuinely leaves room: the matrix rows
+                          sum to ~1000 per-mille (rounding puts them at 998–1002), so on today's
+                          payload this never draws — it exists for the degraded arc, which really
+                          is only six themes deep. */}
+                      {rem > 0.005 && <div className="st-diet-seg" style={{ height: Math.round(rem * H), background: "var(--bg-3)" }} title="every other theme" />}
+                      {/* reversed: the column is justify-content:flex-end, so the FIRST child sits
+                          highest — names[0] has to be drawn last to land at the bottom. */}
+                      {D.names.map((_, k) => {
+                        const j = D.names.length - 1 - k, th = D.names[j], v = y.v[j] || 0;
+                        if (v <= 0) return null;
+                        return <div key={th} className="st-diet-seg"
+                          style={{ height: Math.max(1, Math.round(v * H)), background: band(th, !dim || j === selJ), opacity: dim && j !== selJ ? 0.55 : 1 }}
+                          title={`${th} · ${(v * 100).toFixed(1)}% of ${y.year}`} />;
+                      })}
+                      <div className="st-diet-yr">{String(y.year).slice(2)}</div>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="st-diet-chips">
+                {D.chips.map(chip)}
+                {D.full && D.rest.length > 0 && (
+                  <button type="button" className="st-diet-chip st-diet-more" onClick={() => setDietAll(v => !v)}
+                    aria-expanded={dietAll}>
+                    {dietAll ? "fewer" : `all ${D.names.length} themes`}
+                  </button>
+                )}
+                {dietAll && D.rest.map(chip)}
+              </div>
+              {sel && (
+                <div className="st-diet-pick">
+                  <div className="st-yir-h">{sel} · the songs that carry it</div>
+                  {ex.length > 0 ? (
+                    <div className="st-list">
+                      {ex.map(x => (
+                        <div key={x.id} className="st-row" data-link={true} onClick={() => go("track", x.id)}>
+                          <GenCover hue={x.hue} name={x.artist} size={44} radius={4} />
+                          <div style={{ minWidth: 0, flex: 1 }}>
+                            <div className="st-row-name">{x.title}</div>
+                            <div className="st-row-sub">{x.artist}</div>
+                          </div>
+                          <div className="st-row-right"><span className="st-num">{fmt(x.plays)}<small> plays</small></span></div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : <div className="st-mi">No exemplar tracks shipped for this theme.</div>}
+                  {fed.length > 0 && (
+                    <div className="st-sub" style={{ marginTop: 10 }}>
+                      Fed by: {fed.map((a, i) => (
+                        <React.Fragment key={a.artistId}>{i > 0 ? " · " : ""}
+                          <b className="st-inline-link" data-link={hasPage(a.artistId)}
+                            onClick={() => hasPage(a.artistId) && go("artist", a.artistId)}>{a.name}</b>
+                        </React.Fragment>
+                      ))}.
+                    </div>
+                  )}
+                </div>
+              )}
+            </section>
+          );
+        })()}
 
         {/* THE READING (2026-09-21) — the feed CLOSES on it (Fuad: "should go to the bottom of the
             page"; it first sat directly after Chapters). Everything above is the evidence — sound,
@@ -2558,6 +3036,95 @@ function StoriesView({ t, go, seed }) {
         .st-sg-wrap { margin-top: 18px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
         @media (max-width: 700px) {
           /* on narrow screens allow horizontal scroll so nothing overflows */
+          .st-sg-wrap svg { min-width: 320px; }
+        }
+
+        /* ── THREE LAB MODULES, RESTYLED (2026-09-21) ────────────────────────────────────────
+           The comfort zone / Lyrical diet / Who brought you here arrived from rotation-lab.jsx,
+           where every colour and face was a LAB_* constant on a private palette. Nothing of that
+           survives below: the strips ramp on the accent via --acc-h so they follow the tweak
+           panel, prose is the feed's serif, micro-labels are .st-mi's mono, and the rows reuse
+           .st-row / .st-bandchip / .st-yir-h rather than minting parallel names.
+           NO BACKTICKS ANYWHERE IN HERE, comments included — this whole style block is one
+           template literal, a nested backtick closes it early, and the residue parses as live JS
+           that only fails at runtime (the views1 "stat is not defined" crash, 2026-09-21). */
+
+        /* the feed's only two text inputs — the comfort-zone scorer and the genealogy tracer.
+           Quiet until focused; mono, because what you type is matched against data, not read. */
+        .st-in { background: var(--bg-3); border: 1px solid var(--rule); color: var(--ink);
+          border-radius: 6px; padding: 8px 11px; font-family: var(--mono); font-size: 11px;
+          width: min(340px, 100%); outline: none; transition: border-color .16s ease; }
+        .st-in::placeholder { color: var(--ink-faint); }
+        .st-in:focus { border-color: var(--accent-dim); }
+        @media (prefers-reduced-motion: reduce) { .st-in { transition: none; } }
+
+        /* ── the comfort zone ── label · strip · range, the prototype's anatomy kept whole. The
+           strip is a stack of absolutely positioned layers inside one clipped box: density ramp,
+           middle-50% bracket, median tick, and the picked artist's dot on top. */
+        .st-cz { display: grid; gap: 9px; margin-top: 18px; }
+        .st-cz-row { display: grid; grid-template-columns: 96px minmax(0, 1fr) 56px; gap: 12px; align-items: center; }
+        .st-cz-lbl { font-family: var(--mono); font-size: 10px; letter-spacing: .06em; color: var(--ink-soft); text-align: right; }
+        .st-cz-strip { position: relative; height: 22px; background: var(--bg-3); border-radius: 4px; overflow: hidden; }
+        .st-cz-dens { position: absolute; inset: 0; }
+        .st-cz-band { position: absolute; top: 0; bottom: 0; border: 1px solid var(--ink); border-radius: 3px; opacity: .5; }
+        .st-cz-med { position: absolute; top: 2px; bottom: 2px; width: 2px; background: var(--ink); opacity: .85; }
+        /* in-band reads as a filled accent dot, out-of-band as a dark disc with a bright ring —
+           the site has no semantic pass/fail colour, and inventing a green here would be the only
+           green on the page. */
+        .st-cz-dot { position: absolute; top: 5px; width: 11px; height: 11px; border-radius: 50%;
+          background: var(--accent); border: 1.5px solid var(--bg); }
+        .st-cz-dot[data-in="false"] { background: var(--bg-2); border-color: var(--ink); }
+        .st-cz-n { font-family: var(--mono); font-size: 9.5px; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+        .st-cz-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 20px; }
+        /* .st-row-sub is nowrap-with-ellipsis by design, so the outlier's four missed axes get
+           their own wrapping line under the row instead of being clipped to the first one. */
+        .st-cz-miss { margin-top: 5px; line-height: 1.75; }
+        @media (max-width: 700px) {
+          .st-cz-row { grid-template-columns: 72px minmax(0, 1fr) 46px; gap: 8px; }
+          .st-cz-lbl { font-size: 9px; }
+          .st-cz-n { font-size: 9px; }
+          .st-cz-pair { grid-template-columns: 1fr; gap: 16px; }
+        }
+
+        /* ── lyrical diet ── seventeen stacked year bars that must survive a 360px screen.
+           Measured, not guessed: at 360 the gutter is 2 x 16px and the card 2 x 13px, so the row
+           has 302px; seventeen bars at a 3px gap are 14.9px each and the two-digit year beneath
+           (8px mono, about 9.6px wide) clears it. Gaps tighten to 2px under 420px. flex:1 1 0 with
+           an explicit min-width:0 — a flex item's automatic minimum is its content, which is what
+           pushed earlier story rows past the viewport edge. */
+        .st-diet { display: flex; gap: 3px; margin-top: 18px; }
+        .st-diet-col { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; justify-content: flex-end; }
+        /* flex:none on both — a column flex item shrinks by default, and these carry explicit
+           pixel heights that must not be negotiated away if a stack ever rounds past the box. */
+        .st-diet-seg { flex: none; transition: opacity .2s ease, background .2s ease; }
+        .st-diet-yr { flex: none; font-family: var(--mono); font-size: 8px; color: var(--ink-faint); text-align: center; margin-top: 5px; }
+        .st-diet-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 15px; }
+        /* chip grammar borrowed from .se-modes in the search overlay — outline at rest, filled
+           when on. The hue is inline (it comes from the theme's index), the geometry is here. */
+        .st-diet-chip { font-family: var(--mono); font-size: 9.5px; letter-spacing: .04em; padding: 5px 11px;
+          border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink-soft);
+          cursor: pointer; transition: color .14s ease, border-color .14s ease, background .14s ease; }
+        .st-diet-chip:hover { color: var(--ink); }
+        .st-diet-chip[data-on="true"] { color: var(--bg); font-weight: 600; }
+        .st-diet-more { border-style: dashed; border-color: var(--rule-2); color: var(--ink-faint); }
+        .st-diet-pick { margin-top: 15px; border-top: 1px solid var(--rule); padding-top: 13px; }
+        @media (prefers-reduced-motion: reduce) { .st-diet-seg, .st-diet-chip { transition: none; } }
+        @media (max-width: 420px) { .st-diet { gap: 2px; } }
+
+        /* ── who brought you here ── the chain wraps rather than scrolls: a seven-name line runs
+           to four rows at 360px, which reads fine, where a horizontal scroller inside a vertical
+           feed does not. Dates ride each name in mono, as in the prototype. */
+        .st-gen-chain { font-family: var(--serif); font-size: 15px; line-height: 2.05; margin-top: 4px; color: var(--ink-soft); }
+        .st-gen-node { color: var(--ink); }
+        .st-gen-node[data-link="true"] { cursor: pointer; text-decoration: underline;
+          text-decoration-color: transparent; text-decoration-thickness: 1px; text-underline-offset: 4px;
+          transition: color .18s ease, text-decoration-color .18s ease; }
+        .st-gen-node[data-link="true"]:hover { color: var(--accent); text-decoration-color: var(--accent); }
+        .st-gen-node i { font-family: var(--mono); font-style: normal; font-size: 9px; color: var(--ink-faint); margin-left: 5px; }
+        .st-gen-arrow { color: var(--ink-faint); margin: 0 7px; }
+        .st-gen-kids { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .st-gen-kidn { font-family: var(--mono); font-style: normal; font-size: 9px; color: var(--ink-faint); margin-left: 6px; }
+        @media (prefers-reduced-motion: reduce) { .st-gen-node[data-link="true"] { transition: none; } }
           .st-sg-wrap svg { min-width: 320px; }
         }
       `}</style>
