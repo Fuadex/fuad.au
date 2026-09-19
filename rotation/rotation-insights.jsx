@@ -13,7 +13,8 @@
 
 const _fmtN = (n) => (typeof fmt === "function" ? fmt(n) : Number(n).toLocaleString("en-US"));
 const _liveTotal = () => (window.ROTATION_LIVE && window.ROTATION_LIVE.total) || (window.ROTATION.TOTALS.scrobbles);
-const _nextThreshold = (n, steps) => { for (const s of steps) if (s > n) return s; const top = steps[steps.length - 1]; return Math.ceil((n + 1) / top) * top; };
+// _nextThreshold went with the last provider that used it (2026-09-19) — the artist-milestone
+// card, which now lives on the artist page (rotation-artist.jsx) and computes its own next round.
 // stable per-day jitter so evergreen cards rotate across days without flickering within a day
 const _hash = (s) => { let h = 5381; for (let i = 0; i < s.length; i++) h = (((h << 5) + h) ^ s.charCodeAt(i)) >>> 0; return h; };
 const _dayKey = (now) => `${now.getUTCFullYear()}-${now.getUTCMonth()}-${now.getUTCDate()}`;
@@ -86,21 +87,58 @@ const PROVIDERS = [
   // deck cannot resurrect it. The freed seat went to "On this day", which never won on score.
   () => null,
 
-  // ── a top artist about to tip over a round play count ──
+  // ── a top artist about to tip over a round play count — MOVED TO THE ARTIST PAGE (2026-09-19) ──
+  // The fact was never about the library: it picked whichever of the top 80 artists happened to be
+  // nearest a round total and gave them a seat in a row that is otherwise about the last seven
+  // days, so the card changed subject every few weeks and told you nothing about the one you were
+  // looking at. It is a footnote under an artist's OWN play count, and that is where it went — a
+  // slim rail in the artist header (rotation-artist.jsx), same "within 40" bar, thresholds every
+  // 500 to 5k and every 1,000 above. Null here so the deck cannot resurrect it; the freed pulse
+  // seat went to "In season" below.
+  () => null,
+
+  // ── IN SEASON — the artists this library only plays at this time of year ──
+  // INSIGHTS.SEASONALITY.top ranks artists by how much of their listening falls inside one
+  // three-month window. The card keeps only the windows the CURRENT month sits inside, so it
+  // answers "who belongs to right now" rather than "who is seasonal in general" — which is the
+  // only version of the fact that earns a seat in the pulse row. An off-season month would leave
+  // that row a hole, so it falls back to whoever's window opens soonest and says so.
   (ctx) => {
-    const steps = [50, 100, 250, 500, 1000, 1500, 2000, 3000, 5000, 7500, 10000, 15000];
-    let best = null;
-    for (const a of ctx.R.ARTISTS.slice(0, 80)) {
-      const thr = _nextThreshold(a.plays, steps), away = thr - a.plays;
-      if (away <= 0) continue;
-      if (!best || away < best.away) best = { a, thr, away };
-    }
-    if (!best || best.away > 40) return null;
+    const top = (ctx.R.INSIGHTS && ctx.R.INSIGHTS.SEASONALITY && ctx.R.INSIGHTS.SEASONALITY.top) || [];
+    if (!top.length) return null;
+    const MON = window.MON, cur = ctx.now.getUTCMonth();
+    // windows ship as "Feb–Apr" (en dash), and they WRAP ("Dec–Feb"), so the containment test
+    // cannot be a plain range compare.
+    const ends = (w) => String(w || "").split(/[–—-]/).map(s => MON.indexOf(s.trim()));
+    const inWin = (w) => { const [a, b] = ends(w); return a >= 0 && b >= 0 && (b >= a ? (cur >= a && cur <= b) : (cur >= a || cur <= b)); };
+    const untilStart = (w) => { const a = ends(w)[0]; return a < 0 ? 99 : (a - cur + 12) % 12; };
+    let rows = top.filter(t => inWin(t.window)), soon = false;
+    if (!rows.length) { soon = true; rows = top.slice().sort((a, b) => untilStart(a.window) - untilStart(b.window)); }
+    rows = rows.slice(0, 2);
+    if (!rows.length) return null;
     return {
-      id: "artist-mile", category: "artist-milestone", score: 0.5 + 0.46 * (1 - best.away / 40), accent: true,
-      label: "About to tip over", onClick: () => ctx.go("artist", best.a.id),
-      render: <SubjectStat name={best.a.name} big={_fmtN(best.away)} unit={`plays to ${_fmtN(best.thr)}`}
-        foot={`${_fmtN(best.a.plays)} so far`} />,
+      id: "in-season", category: "seasonality", score: 0.64,
+      label: "In season", meta: soon ? "coming up" : MON[cur],
+      render: (
+        <div style={{ display: "grid", gap: 6, gridTemplateColumns: "minmax(0, 1fr)" }}>
+          {rows.map(t => (
+            <div key={t.id} className="ov-hovrow" onClick={(e) => { e.stopPropagation(); ctx.go("artist", t.id); }}
+              title={`${t.name} — ${t.share}% of their plays fall in ${t.window} →`}
+              style={{ display: "flex", alignItems: "center", gap: 9, cursor: "pointer", padding: "3px 0", borderRadius: 4, minWidth: 0 }}>
+              <GenCover hue={t.hue} name={t.name} size={22} radius={2} style={{ flex: "none" }} />
+              <div style={{ flex: "1 1 0", minWidth: 0 }}>
+                <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.name}</div>
+                {/* the play count sits at the trailing edge, not in this line: "98% in Sep–Nov ·
+                    162 plays" wants 140px and a pulse card's sub-line has 128, so the count was
+                    the half that got ellipsised. On repeat's rows already park their figure out
+                    there (37×), so the row keeps both numbers and the family's shape. */}
+                <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.share}% in {t.window}</div>
+              </div>
+              <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", flex: "none" }}>{_fmtN(t.plays)}</span>
+            </div>
+          ))}
+        </div>
+      ),
     };
   },
 
@@ -185,28 +223,56 @@ const PROVIDERS = [
     };
   },
 
-  // ── MOVEMENT (Fuad 2026-08-27 #10, replaces "New this month"; his floor was New This
-  // Week) — the discovery-and-return pulse in one card: this week's arrival (genealogy-
-  // tagged where the lazy file is resident), a return from dormancy, and the biggest
-  // riser vs their own usual pace. EVERY line is EARNED (bullet discipline): a line that
-  // doesn't clear its bar simply doesn't render, and a card with no lines doesn't exist.
+  // ── THIS WEEK — Movement (Fuad 2026-08-27 #10) and Riser of the week, MERGED (2026-09-19) ──
+  // Two cards stood side by side in the deck framed on the same seven days: Riser carried the ▲
+  // line, Movement carried NEW and BACK, and between them they usually printed three rows across
+  // two headers, two frames and two lots of padding. One card, one header, three tagged rows.
+  // EVERY row is still EARNED (the bullet discipline Movement was built on): a row that doesn't
+  // clear its bar doesn't render, and a card with no rows doesn't exist — so this stands at one,
+  // two or three rows without stretching, since the deck's min-height does the equalising.
+  //   ▲    — this week's plays against the artist's own lifetime weekly pace.
+  //   NEW  — the month's arrival, genealogy-tagged where the lazy file is resident.
+  //   BACK — a known artist back after a year-grain silence.
   (ctx) => {
     const LV = window.ROTATION_LIVE; if (!LV) return null;
     const R = ctx.R;
     const wk = LV.week || {}, mo = LV.month || {};
-    const nowYear = new Date().getFullYear();
+    const cy = ctx.now.getUTCFullYear();
     const lines = [];
     // warm the lazy genealogy file (the lab's loader idiom) so the NEW line can carry its
-    // "via X" tag — first paint may show the fallback detail; the next render upgrades it.
+    // "via X" tag — first paint may show the bare count; the next render upgrades it.
     if (!window.ROTATION_GENEALOGY && window.loadScript) window.loadScript("genealogy.js", "rotation-genealogy-js");
-    // NEW — the month's arrival with the most plays; "via X" when genealogy knows the door.
+    // ▲ — the steepest riser. The old card listed two; beside NEW and BACK one is the row, and a
+    // second ▲ would push the third tag off the card.
+    let riser = null;
+    for (const ta of (wk.topArtists || [])) {
+      if (ta.plays < 15) continue;
+      const a = R.byId[ta.artistId]; if (!a || !a.firstYear) continue;
+      const pace = a.plays / Math.max(26, (cy - a.firstYear + 1) * 52);
+      const ratio = pace > 0 ? ta.plays / pace : 0;
+      if (ratio < 2.5 || (riser && ratio <= riser.ratio)) continue;
+      // "50 this week · ~1/wk lifetime" wanted 157px and this row has ~102 once the tag and the
+      // cover are in front of it, so it ellipsised mid-phrase — as it did on the old Riser card,
+      // which had no tag and still ran over. Compressed to the comparison itself; the full
+      // sentence rides in the row's title.
+      const wkly = Math.max(1, Math.round(pace));
+      riser = { tag: "▲", id: ta.artistId, name: ta.name, ratio,
+        detail: `${ta.plays} vs ~${wkly}/wk`,
+        title: `${ta.name} — ${ta.plays} plays this week against a lifetime pace of ~${wkly} a week →` };
+    }
+    if (riser) lines.push(riser);
+    // NEW — the month's arrival. It used to read "first plays this month" under a NEW tag on a
+    // card headed "this week", which is the same word three times and a number nowhere; the
+    // count is the only part of that line the tag doesn't already say.
     const newest = (mo.newArtists || [])[0];
     if (newest) {
       const gen = window.ROTATION_GENEALOGY && window.ROTATION_GENEALOGY[newest.artistId];
       const viaId = gen && gen[0];
       const via = viaId && R.byId[viaId] ? R.byId[viaId].name : null;
+      const n = newest.plays || 0;
       lines.push({ tag: "NEW", id: newest.artistId, name: newest.name,
-        detail: via ? "via " + via : "first plays this month" });
+        detail: (n ? `first ${n} play${n !== 1 ? "s" : ""}` : "first plays") + (via ? " · via " + via : ""),
+        title: `${newest.name} — first arrival this month${via ? ", by way of " + via : ""} →` });
     }
     // BACK — a known artist in this week's top whose yearly plays go quiet for >=2 years
     // before now (year-grain dormancy; the current year is excluded since this week is in it).
@@ -214,20 +280,26 @@ const PROVIDERS = [
     for (const t of (wk.topArtists || [])) {
       const a = R.byId[t.artistId]; if (!a || !a.yp || (a.plays || 0) < 60) continue;
       let last = 0;
-      for (const y in a.yp) { const yy = +y; if (yy < nowYear && a.yp[y] > 0 && yy > last) last = yy; }
-      const gap = last ? nowYear - last : 0;
-      if (gap >= 2 && (!back || gap > back.gap)) back = { tag: "BACK", id: t.artistId, name: t.name, gap, detail: gap + " years quiet" };
+      for (const y in a.yp) { const yy = +y; if (yy < cy && a.yp[y] > 0 && yy > last) last = yy; }
+      const gap = last ? cy - last : 0;
+      if (gap >= 2 && (!back || gap > back.gap)) back = { tag: "BACK", id: t.artistId, name: t.name, gap,
+        detail: gap + " years quiet", title: `${t.name} — back this week after ${gap} quiet years →` };
     }
     if (back) lines.push(back);
     if (!lines.length) return null;
     return {
-      id: "movement", category: "movement", score: 0.7, label: "Movement", meta: "this week",
+      // Riser's score, not Movement's — this is the card Riser was, with two more kinds of row.
+      id: "this-week", category: "this-week", score: 0.72, label: "This week",
       render: (
-        <div style={{ display: "grid", gap: 6, gridTemplateColumns: "minmax(0, 1fr)" }}>
-          {lines.slice(0, 2).map(l => (
-            <div key={l.tag + l.id} className="ov-hovrow" onClick={(e) => { e.stopPropagation(); ctx.go("artist", l.id); }}
-              style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", padding: "3px 0", borderRadius: 4, minWidth: 0 }}>
-              <span className="r-mono" style={{ fontSize: 8, letterSpacing: ".12em", color: "var(--accent)", flex: "none", minWidth: 38 }}>{l.tag}</span>
+        <div style={{ display: "grid", gap: 5, gridTemplateColumns: "minmax(0, 1fr)" }}>
+          {/* the Riser row, tagged: the tag leads, then the cover and the name/detail column the
+              other deck rows use. Three of these fit the rank; the cover comes down to 20px and
+              the padding to 2px so the third row doesn't push past its neighbours. */}
+          {lines.slice(0, 3).map(l => (
+            <div key={l.tag + l.id} className="ov-hovrow" title={l.title} onClick={(e) => { e.stopPropagation(); ctx.go("artist", l.id); }}
+              style={{ display: "flex", alignItems: "center", gap: 7, cursor: "pointer", padding: "2px 0", borderRadius: 4, minWidth: 0 }}>
+              <span className="r-mono" style={{ fontSize: 8, letterSpacing: ".12em", color: "var(--accent)", flex: "none", width: 23 }}>{l.tag}</span>
+              <GenCover hue={_hue(l.name)} name={l.name} size={20} radius={2} style={{ flex: "none" }} />
               <div style={{ flex: "1 1 0", minWidth: 0 }}>
                 <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{l.name}</div>
                 <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{l.detail}</div>
@@ -329,13 +401,20 @@ const PROVIDERS = [
       id: "otd", category: "on-this-day", score: 0.68, label, meta: `${_fmtN(entry.total)} plays all-time`,
       render: (
         <div>
+          {/* THREE YEARS, NOT FOUR (2026-09-19). This card won its pulse seat in wave 1 and
+              immediately set the row's height: four year-rows plus the Biggest line ran to 186px
+              against neighbours that had nothing like that much to say, so the whole rank stretched
+              to fit one card. The fourth year is the least interesting line on it — the rows are
+              already sorted newest-first, not biggest-first, and the standout is named underneath
+              regardless. Three rows plus the italic lands at ~150px, level with the filled Streak
+              and Scrobbles cards beside it. */}
           <div style={{ display: "grid", gap: 5 }}>
-            {rows.slice(0, 4).map(r => (
+            {rows.slice(0, 3).map(r => (
               <div key={r.y} onClick={(e) => { e.stopPropagation(); ctx.go("artist", r.artistId); }} style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer" }}>
                 <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", width: 28 }}>{r.y}</span>
                 <GenCover hue={r.hue} name={r.artist} size={20} radius={2} />
                 <div style={{ flex: 1, minWidth: 0, fontSize: 12, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.artist}</div>
-                <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{r.plays}</span>
+                <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", flex: "none" }}>{r.plays}</span>
               </div>
             ))}
           </div>
@@ -392,43 +471,10 @@ const PROVIDERS = [
     };
   },
 
-  // ── riser of the week — this week's plays vs the artist's own lifetime weekly pace ──
-  (ctx) => {
-    const w = window.ROTATION_LIVE && window.ROTATION_LIVE.week;
-    if (!w || !w.topArtists) return null;
-    const R = ctx.R, cy = ctx.now.getUTCFullYear();
-    const risers = [];
-    for (const ta of w.topArtists) {
-      if (ta.plays < 15) continue;
-      const a = R.byId[ta.artistId]; if (!a || !a.firstYear) continue;
-      const weeks = Math.max(26, (cy - a.firstYear + 1) * 52);
-      const pace = a.plays / weeks;
-      const ratio = pace > 0 ? ta.plays / pace : 0;
-      if (ratio >= 2.5) risers.push({ ...ta, ratio, pace });
-    }
-    if (!risers.length) return null;
-    risers.sort((a, b) => b.ratio - a.ratio);
-    const top2 = risers.slice(0, 2);
-    return {
-      id: "riser", category: "riser", score: 0.72,
-      label: "Riser of the week",
-      render: (
-        <div style={{ display: "grid", gap: 6, gridTemplateColumns: "minmax(0, 1fr)" }}>
-          {top2.map((r, i) => (
-            <div key={r.artistId} className="ov-hovrow" onClick={(e) => { e.stopPropagation(); ctx.go("artist", r.artistId); }}
-              style={{ display: "flex", alignItems: "center", gap: 9, cursor: "pointer", padding: "3px 0", borderRadius: 4, minWidth: 0 }}>
-              <GenCover hue={_hue(r.name)} name={r.name} size={22} radius={2} style={{ flex: "none" }} />
-              <div style={{ flex: "1 1 0", minWidth: 0 }}>
-                <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.name}</div>
-                <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.plays} this week · ~{Math.max(1, Math.round(r.pace))}/wk lifetime</div>
-              </div>
-              <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", flex: "none" }}>×{r.ratio >= 10 ? Math.round(r.ratio) : r.ratio.toFixed(1)}</span>
-            </div>
-          ))}
-        </div>
-      ),
-    };
-  },
+  // ── riser of the week — FOLDED INTO "This week" above (2026-09-19). Its ▲ row, its 2.5×-pace
+  // bar and its row markup all live there now, beside NEW and BACK; it was a whole card for one
+  // line. Nothing returns here: a second riser card on the same row is exactly what the merge
+  // removed.
 
 ];
 

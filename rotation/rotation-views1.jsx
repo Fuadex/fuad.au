@@ -422,54 +422,85 @@ function OvDecadesCard({ R, go, restReady, fStats }) {
   );
 }
 
-// Compact fact line for the Overview "portrait" / "dig" modules — reuses lab2's FACT_RULES
-// grammar (glanceable headline collapsed to ONE line, click to expand the full sentence +
-// derivation detail). Kept dense on purpose: this whole pass is about tightening Overview.
-// `ids` picks which lab2 rules to fire, in order; missing/null-returning rules are skipped.
-function OvFacts({ ids, go, accent, restReady }) {
+// OvFacts — the bullet-list renderer both .ov-pd modules used, DELETED on 2026-09-19 with its
+// two callers. It fired a list of lab2 FACT_RULES by id and collapsed each derivation to one
+// headline you could click open; the rules themselves are untouched and still drive #lab2.
+// If a fact list ever comes back to Overview, it comes back at a shape that has a subject.
+
+// GATHERING DUST — the four favourites that have gone quietest. INSIGHTS.REVISIT is the same
+// export the Stories feed's "Gathering dust" section reads (score = plays × silence), so the
+// module and the story cannot drift apart. Every row opens the artist.
+function OvDustCard({ go }) {
   const R = window.ROTATION;
-  const rules = window.FACT_RULES;
-  const [open, setOpen] = React.useState(-1);
-  // restReady is a dep so rules that read deferred keys (ALBUMS → complete-discog) re-derive
-  // once music-rest has merged into the same window.ROTATION object.
-  const facts = React.useMemo(() => {
-    if (!R || !rules) return [];
-    const byId = {}; rules.forEach(r => { byId[r.id] = r; });
-    const out = [];
-    for (const id of ids) {
-      const rule = byId[id]; if (!rule) continue;
-      let res = null; try { res = rule.derive(R); } catch (e) { res = null; }
-      if (res && res.headline) out.push({ rule, res });
-    }
-    return out;
-  }, [R, rules, ids.join(","), restReady]);
-  if (!facts.length) return null;
-  // Bullet list in the #lab2 sense: a bullet-dot lead-in + one terse mono-ish headline per item,
-  // tight vertical rhythm, click to expand the full sentence + derivation (mirrors lab2 FactCard's
-  // collapsed→expanded grammar). Redesigned from the old full-width expanding rows (Fuad 2026-07-18).
+  const rows = ((R.INSIGHTS && R.INSIGHTS.REVISIT && R.INSIGHTS.REVISIT.artists) || []).slice(0, 4);
+  if (!rows.length) return null;
   return (
-    <ul className="ov-facts">
-      {facts.map(({ rule, res }, i) => {
-        const isOpen = open === i;
-        return (
-          <li key={rule.id} className="ov-fact" data-open={isOpen}>
-            <button className="ov-fact-head" onClick={() => setOpen(x => x === i ? -1 : i)}>
-              <span className="ov-fact-dot" style={accent ? { background: accent } : null} />
-              <span className="ov-fact-hl">{res.headline}</span>
-              {res.link && (
-                <span className="ov-fact-go" onClick={(e) => { e.stopPropagation(); go(res.link.view, res.link.id || undefined); }}>→</span>
-              )}
-            </button>
-            {isOpen && (
-              <div className="ov-fact-body">
-                <div className="ov-fact-text">{res.text}</div>
-                {res.detail && <div className="ov-fact-det">{res.detail}</div>}
+    <div className="r-card ov-pd-card" style={{ padding: "12px 16px" }}>
+      <div className="r-mono ov-pd-lbl">Gathering dust</div>
+      <div className="ov-pd-rows">
+        {rows.map(a => (
+          <div key={a.artistId || a.name} className="ov-hovrow ov-pd-row" style={{ cursor: "pointer" }}
+            title={`${a.name} →`} onClick={() => go("artist", a.artistId || R.slug(a.name))}>
+            <GenCover hue={a.hue} name={a.name} size={28} radius={3} style={{ flex: "none" }} />
+            <div style={{ minWidth: 0, flex: 1 }}>
+              <div className="ov-pd-name">{a.name}</div>
+              <div className="r-mono ov-pd-sub">quiet {Math.round(a.monthsSince)} months</div>
+            </div>
+            <span className="r-mono ov-pd-fig">{fmt(a.plays)} plays</span>
+          </div>
+        ))}
+      </div>
+      <div className="r-mono ov-pd-foot" onClick={() => go("stories", "gathering-dust")}>read the story ↗</div>
+    </div>
+  );
+}
+
+// BLIND SPOTS — artists your most-played acts keep getting compared to, that you have barely
+// touched. INSIGHTS.RECOMMENDATIONS, the export behind the Stories section of the same name.
+function OvBlindCard({ go, restReady }) {
+  const R = window.ROTATION;
+  // restReady is the memo's only dep on purpose: the click gate below asks whether a recommended
+  // artist has a page at all, and expById — which is where an explore-only artist answers yes —
+  // arrives with music-rest, after this module's first paint.
+  const rows = React.useMemo(
+    () => ((R.INSIGHTS && R.INSIGHTS.RECOMMENDATIONS && R.INSIGHTS.RECOMMENDATIONS.artists) || []).slice(0, 4),
+    [restReady]);   // eslint-disable-line react-hooks/exhaustive-deps
+  if (!rows.length) return null;
+  // Alias-aware id, then the same hasPage test the Stories module runs (rotation-views3.jsx
+  // "blind spots", Fuad 2026-09-14): these are artists you have NOT explored, so most have no
+  // page — the ROW links only where one exists, and the VIA names, which are your most-played
+  // acts and always have pages, are links in their own right. That is the useful jump anyway:
+  // it answers "who sent me here?".
+  const idOf = (name) => (R.idForName && R.idForName(name)) || R.slug(name);
+  const pageId = (name) => { const id = idOf(name); return (R.byId[id] || (R.expById && R.expById[id])) ? id : null; };
+  const fmtL = (n) => (n >= 1e6 ? (n / 1e6).toFixed(1) + "M" : n >= 1000 ? Math.round(n / 1000) + "k" : String(n));
+  return (
+    <div className="r-card ov-pd-card" style={{ padding: "12px 16px" }}>
+      <div className="r-mono ov-pd-lbl">Blind spots</div>
+      <div className="ov-pd-rows">
+        {rows.map(r => {
+          const pid = pageId(r.name);
+          return (
+            <div key={r.name} className={"ov-pd-row" + (pid ? " ov-hovrow" : "")}
+              style={{ cursor: pid ? "pointer" : "default" }} title={pid ? `${r.name} →` : undefined}
+              onClick={pid ? () => go("artist", pid) : undefined}>
+              <div style={{ minWidth: 0, flex: 1 }}>
+                <div className="ov-pd-name">{r.name}</div>
+                <div className="r-mono ov-pd-sub">via {(r.via || []).map((v, i) => (
+                  <React.Fragment key={v.name}>
+                    {i > 0 ? ", " : ""}
+                    <b className="ov-pd-via" title={`${v.name} →`}
+                      onClick={(e) => { e.stopPropagation(); go("artist", v.artistId || idOf(v.name)); }}>{v.name}</b>
+                  </React.Fragment>
+                ))}</div>
               </div>
-            )}
-          </li>
-        );
-      })}
-    </ul>
+              {r.listeners ? <span className="r-mono ov-pd-fig">{fmtL(r.listeners)} listeners</span> : null}
+            </div>
+          );
+        })}
+      </div>
+      <div className="r-mono ov-pd-foot" onClick={() => go("stories", "blind-spots")}>read the story ↗</div>
+    </div>
   );
 }
 
@@ -805,15 +836,39 @@ function OverviewView({ t, go, restReady, seed }) {
             const S = R.INSIGHTS && R.INSIGHTS.STREAK;
             const MON = window.MON;
             const f = (d) => { const x = new Date(d + "T00:00:00Z"); return MON[x.getUTCMonth()] + " '" + String(x.getUTCFullYear()).slice(2); };
+            // THE VOID, FILLED (2026-09-19). This card carried a number, a "best" and one sentence,
+            // and once On this day joined the row it was left holding ~40px of nothing. Two things
+            // go in, both of them the record's own context:
+            //   · WHEN the record ran. INSIGHTS.STREAK has shipped {start,end} all along and the
+            //     card only ever printed the count, so "best 329" named a feat with no date on it.
+            //   · WHAT THE LAST 60 DAYS LOOK LIKE. ROTATION_DAYS is already resident here — the
+            //     same flat per-day counts the stat strip filters on — so the run costs one slice
+            //     and no fetch, and it puts the current streak in a picture instead of a claim.
+            // "N days from the record" came OUT: Your portrait printed the same subtraction two
+            // rows down ("317 days from the 329-day record"), and that module is gone now anyway.
+            const run = (days && days.counts) ? days.counts.slice(-60) : null;
+            const mx = run ? Math.max(1, ...run) : 1;
             return (
-              <div>
-                {/* per-item micro-label, pairs with the 8.5px line below (footnote-grade eyebrow — Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
-                <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", letterSpacing: ".08em" }}>
+              <div style={{ alignSelf: "stretch", width: "100%", minWidth: 0 }}>
+                {/* per-item micro-label, pairs with the 8.5px line below (footnote-grade eyebrow — Fuad 2026-08-24: eyebrow collapse, two sizes only)
+                    TRACKING PAYS FOR THE DATES (2026-09-19), the same trade the stat strip's
+                    captions made: at .08em this line ran two characters past the 162px this card
+                    gets at 1280 and ellipsised the record's end month. Down to .04em, and the
+                    dash loses its spaces, so the whole span fits with room. */}
+                <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", letterSpacing: ".04em",
+                  whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}
+                  title={S && S.start && S.end ? `longest run: ${T.streak.best} days, ${S.start} to ${S.end}` : undefined}>
                   best <span style={{ color: "var(--accent)" }}>{T.streak.best}</span>
+                  {S && S.start && S.end ? <> · {f(S.start)}–{f(S.end)}</> : null}
                 </div>
-                <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginTop: 3 }}>
-                  {T.streak.best > T.streak.current ? (T.streak.best - T.streak.current) + " days from the record" : "longest run ever — keep going"}
-                </div>
+                {/* strip AND caption, or neither: day-series.js is lazy, so on the paint before it
+                    lands `run` is null and a bare "last 60 days" would caption nothing. */}
+                {run && (<>
+                  <div className="ov-daybar" title="the last 60 days — one bar a day, empty where nothing played">
+                    {run.map((c, i) => <i key={i} style={c ? { background: "var(--accent)", opacity: 0.32 + 0.68 * Math.min(1, c / mx) } : { background: "var(--bg-3)" }} />)}
+                  </div>
+                  <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", letterSpacing: ".06em" }}>last 60 days</div>
+                </>)}
               </div>
             );
           })()}
@@ -832,8 +887,13 @@ function OverviewView({ t, go, restReady, seed }) {
             head of this row, which was already printing its number. "On this day" takes the seat:
             it scores 0.68 against an on-repeat at 0.78 and a riser at 0.72, so it lost the lottery
             essentially every day despite being the only card here that looks backwards. Pinned, in
-            the freed cell, with About to tip over holding the trailing one it already had. */}
-        <InsightRow go={go} n={2} span="auto" only={["otd", "artist-mile"]}
+            the freed cell, with About to tip over holding the trailing one it already had.
+            ABOUT TO TIP OVER LEFT THIS ROW (2026-09-19) — it named whichever artist in the whole
+            library happened to be nearest a round total, which is a fact about that artist and not
+            about this week, and it now rides under their own play count on the artist page. Its
+            seat goes to In season: the two or three artists whose listening only ever happens in
+            the window the calendar is standing in right now. */}
+        <InsightRow go={go} n={2} span="auto" only={["otd", "in-season"]}
           omit={["week", "story-day"]} />
         </div>{/* /ov-pulseslot */}
 
@@ -912,13 +972,14 @@ function OverviewView({ t, go, restReady, seed }) {
               ))}
             </div>
           </div>
-          {/* three scored cards beside it. artist-mile + otd are pinned into the pulse row above and
+          {/* three scored cards beside it. otd + in-season are pinned into the pulse row above and
               `week` is retired, so all three are omitted here or the page shows them twice.
-              (scrob-mile left this list on 2026-09-19 along with the provider itself.)
-              About to tip over is pinned to the trailing cell (Fuad 2026-08-20). Score decided both
-              WHETHER a card showed and WHERE it sat, so this one drifted a cell left or right as
-              other providers came and went; `last` fixes the position without touching the pick. */}
-          <InsightRow go={go} n={3} omit={["artist-mile", "otd", "week"]} last={["movement"]} />
+              (scrob-mile left this list on 2026-09-19 along with the provider itself; artist-mile
+              and movement followed on the same day — the first moved to the artist page, the
+              second merged into "This week", and neither can return a card to omit.)
+              `last` went with movement, which was the only id it ever pinned. Position is back to
+              score order here; if a card needs a fixed cell again, `last` is still in runInsights. */}
+          <InsightRow go={go} n={3} omit={["otd", "in-season", "week", "mood"]} />
         </div>
 
         {/* emotional weather — last-90d sounds/reads only now (the decades strip moved up to the
@@ -927,28 +988,21 @@ function OverviewView({ t, go, restReady, seed }) {
 
       </div>
 
-      {/* portrait + dig — two compact data-derived modules, Phase 1 of the Overview makeover
-          (Fuad 2026-07-17). Both share lab2's FACT_RULES grammar via <OvFacts>: a glanceable
-          one-line headline, click to open the fuller sentence + derivation. Portrait = who you
-          are (identity facts); Where to dig = where to explore next (discovery facts). Each
-          module fires a hand-picked subset of rule ids so it stays tight. */}
+      {/* THE TWO MODULES CHANGED SUBJECT (2026-09-19). "Your portrait" and "Where to dig" were
+          Phase 1 of the Overview makeover (Fuad 2026-07-17): each fired a hand-picked subset of
+          lab2's FACT_RULES and printed six or seven one-line claims you could click open. The
+          claims were true and the lists were unreadable — seven bullets of seven different shapes
+          ("48% of library under 50k listeners", "'Tsunami (11:11)' is 60% of Bambie Thug"), with
+          no through-line and, for most of them, nowhere to go. And the portrait's last bullet was
+          the Streak card's own sentence, two rows apart on the same page.
+          Both slots now name ARTISTS, four rows each, out of the same build exports the Stories
+          feed reads — and every row is a page. Gathering dust (INSIGHTS.REVISIT) is the library
+          you already own and stopped playing; Blind spots (INSIGHTS.RECOMMENDATIONS) is the one
+          your most-played acts keep pointing at. The .ov-pd frame and its 1fr/1fr split are
+          unchanged, so the pair still sits at the width the fact modules held. */}
       <div className="ov-pd" style={{ marginTop: "calc(var(--gap)*1.4)" }}>
-        {/* YOUR PORTRAIT — self-portrait, now the FULL identity slice of lab2's rule set
-            (populated like the old rich modules but each line stays an expandable bullet —
-            Fuad 2026-07-18) */}
-        <div className="r-card ov-pd-card" style={{ padding: "12px 16px" }}>
-          <div className="r-mono ov-pd-lbl">Your portrait</div>
-          <OvFacts ids={["underground", "decade-growth", "taste-era", "peak-day", "one-song", "obsession-peak", "streak-gap"]} go={go} accent="var(--accent)" restReady={restReady} />
-          <div className="r-mono ov-pd-foot" onClick={() => go("stories")}>read the long version ↗</div>
-        </div>
-
-        {/* WHERE TO DIG — the full discovery slice: genre momentum · newest top-50 face ·
-            comeback · discography to complete · binge album · disbanded favourite */}
-        <div className="r-card ov-pd-card" style={{ padding: "12px 16px" }}>
-          <div className="r-mono ov-pd-lbl">Where to dig</div>
-          <OvFacts ids={["genre-shift", "new-to-top50", "comeback", "complete-discog", "binge-album", "disbanded"]} go={go} accent="oklch(0.7 0.16 188)" restReady={restReady} />
-          <div className="r-mono ov-pd-foot" onClick={() => go("explore")}>open Explore ↗</div>
-        </div>
+        <OvDustCard go={go} />
+        <OvBlindCard go={go} restReady={restReady} />
       </div>
 
       <style>{`
@@ -1083,25 +1137,24 @@ function OverviewView({ t, go, restReady, seed }) {
         .ov-pd-lbl { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 9px; }
         .ov-pd-foot { font-size: 8.5px; letter-spacing: .1em; color: var(--ink-faint); margin-top: 9px; cursor: pointer; }
         .ov-pd-foot:hover { color: var(--accent); }
-        /* tight bulleted fact list (lab2 collapsed-fact grammar): dot lead-in, terse mono-ish
-           headline, minimal padding + rhythm; click expands the sentence + derivation. */
-        .ov-facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
-        .ov-fact { border-radius: 5px; }
-        .ov-fact-head { display: flex; align-items: baseline; gap: 8px; width: 100%; text-align: left;
-          background: none; border: none; padding: 2.5px 6px; margin: 0 -6px; border-radius: 5px; cursor: pointer;
-          transition: background .15s; }
-        .ov-fact-head:hover { background: var(--bg-3); }
-        .ov-fact-dot { flex: none; width: 4px; height: 4px; border-radius: 50%; background: var(--accent-dim);
-          align-self: center; }
-        .ov-fact-hl { flex: 1; min-width: 0; font-family: var(--mono); font-size: 10.5px; letter-spacing: .01em;
-          line-height: 1.35; color: var(--ink-soft);
+        /* The .ov-fact* block (bulleted lab2 fact list: dot lead-in, one-line headline, click to
+           expand the sentence + derivation) was DELETED here on 2026-09-19 with OvFacts and its
+           two callers. Both .ov-pd modules name artists now; their rows are below. */
+        /* ONE ROW RHYTHM FOR BOTH .ov-pd MODULES. These sit at half the page, so the row can carry
+           a real name size and a trailing figure without the ellipsis fight the pulse-row rows
+           have — but it stays the same shape as those rows (hover from .ov-hovrow, name over a
+           mono sub-line) so the page reads as one family top to bottom. The negative margin lets
+           the hover wash reach past the card's text column, as the fact list's did. */
+        .ov-pd-rows { display: grid; gap: 2px; }
+        .ov-pd-row { display: flex; align-items: center; gap: 10px; min-width: 0;
+          padding: 4px 6px; margin: 0 -6px; border-radius: 5px; }
+        .ov-pd-name { font-size: 12.5px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        /* sub-line + trailing figure are footnote-grade (Fuad 2026-08-24: eyebrow collapse, two sizes only) */
+        .ov-pd-sub { font-size: 9px; color: var(--ink-faint); line-height: 1.5;
           white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .ov-fact[data-open="true"] .ov-fact-hl { white-space: normal; overflow: visible; color: var(--ink); }
-        .ov-fact-go { flex: none; font-family: var(--mono); font-size: 11px; color: var(--accent); padding: 0 2px; }
-        .ov-fact-body { padding: 1px 6px 8px 18px; display: grid; gap: 5px; }
-        .ov-fact-text { font-family: var(--serif); font-style: italic; font-size: 13px; line-height: 1.5; color: var(--ink-soft); }
-        /* derivation detail = footnote-grade (Fuad 2026-08-24: eyebrow collapse, two sizes only) */
-        .ov-fact-det { font-family: var(--mono); font-size: 8.5px; color: var(--ink-faint); line-height: 1.45; }
+        .ov-pd-fig { font-size: 9.5px; color: var(--ink-faint); flex: none; white-space: nowrap; }
+        .ov-pd-via { color: var(--accent); font-weight: 600; cursor: pointer; }
+        .ov-pd-via:hover { text-decoration: underline; }
         .ov-stat-link { transition: color .15s; } .ov-stat-link:hover .r-stat-n { color: var(--accent); } .ov-stat-link:hover { color: var(--accent); }
         /* HOVER TRANSITIONS FOR THE OVERVIEW (2026-09-19), the same audit rotation-views3.jsx ran
            over the Stories feed on 2026-09-14. Five things here change background, border or
@@ -1124,6 +1177,13 @@ function OverviewView({ t, go, restReady, seed }) {
            ink, tabular so the digits sit in columns. */
         .ov-ins-fig { font-family: var(--serif); font-size: 20px; color: var(--ink);
           font-variant-numeric: tabular-nums; line-height: 1.05; }
+        /* STREAK'S 60-DAY RUN (2026-09-19). Sixty bars and fifty-nine 1px gaps inside a ~161px
+           card column leaves each bar under 2px, which is the point: this is a texture, not a
+           chart — you read the density and the gaps, not any one day. flex-basis 0 with a 0 min
+           keeps all sixty inside the card; without the min they would each claim their content
+           box and the run would push past the card's padding. */
+        .ov-daybar { display: flex; gap: 1px; margin: 5px 0 4px; width: 100%; }
+        .ov-daybar i { flex: 1 1 0; min-width: 0; height: 9px; border-radius: 1px; display: block; }
         /* STRIP CAPTIONS (2026-09-19). A 1fr track in this strip is ~57px — nine characters at
            the old .14em — and three captions were over it, so they broke mid-phrase and dropped
            that tile's caption a line below its neighbours'. Letter-spacing came down to .06em,

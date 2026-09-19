@@ -1727,6 +1727,36 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                 <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>listeners ww</div></div>
             )}
           </div>
+          {/* ABOUT TO TIP OVER, ON THE PAGE IT IS ABOUT (2026-09-19). This was an Overview pulse
+              card: it scanned the top 80 artists, picked whichever happened to be nearest a round
+              total, and printed them in a row otherwise framed on the last seven days — so the
+              card changed subject every few weeks and said nothing about the artist you were
+              actually reading. The fact belongs under THIS artist's own play count, and only when
+              the number is genuinely close: the retired provider's bar was 40 plays, and that bar
+              is kept. Thresholds are every 500 up to 5k and every 1,000 above (the provider ran a
+              hand-written ladder — 50/100/250/1500/7500 — which made "500 away" mean something
+              different at every rung). The bar is the Scrobbles milestone bar at a smaller gauge:
+              one line, a 4px rail, no header of its own. */}
+          {(() => {
+            const p = a.plays || 0;
+            const next = p < 5000 ? Math.ceil((p + 1) / 500) * 500 : Math.ceil((p + 1) / 1000) * 1000;
+            if (next - p > 40) return null;
+            const step = next <= 5000 ? 500 : 1000;
+            const pct = Math.max(0, Math.min(100, (p - (next - step)) / step * 100));
+            return (
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 10, minWidth: 0 }}
+                title={`${fmt(next - p)} plays from ${fmt(next)}`}>
+                <div style={{ flex: 1, minWidth: 0, height: 4, borderRadius: 3, background: "var(--bg-3)", position: "relative" }}>
+                  {/* alpha lives in the background colour only — `opacity` on this element would
+                      fade the border along with the wash it encloses (the Scrobbles card's note). */}
+                  <div style={{ position: "absolute", inset: "0 auto 0 0", width: pct + "%",
+                    background: "oklch(0.72 0.15 350 / 0.22)", border: "1px solid oklch(0.66 0.08 350 / 0.42)",
+                    boxSizing: "border-box", borderRadius: 3 }} />
+                </div>
+                <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", flex: "none", whiteSpace: "nowrap" }}>{fmt(p)} → {fmt(next)}</span>
+              </div>
+            );
+          })()}
         </div>
       </div>
 
