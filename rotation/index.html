@@ -104,7 +104,69 @@
 <script>
   // PWA shell — https only, so local dev (http) never registers a worker
   if ("serviceWorker" in navigator && location.protocol === "https:")
-    addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+    addEventListener("load", () => navigator.serviceWorker.register("sw.js").then(swWarm).catch(() => {}));
+
+  // Per-VIEW route shards — the files each top-level tab injects the first time it is opened.
+  // Warming them is what makes a tab you never opened this epoch work offline; the worker skips
+  // whatever this epoch already holds, so a repeat run costs nothing. ~9.0 MB gzip over the wire
+  // / ~24.6 MB decompressed on device, once per cache epoch. Per-ARTIST data (artist-flow /
+  // artist-detail, about/* buckets, mb-* / genius-* stores) is deliberately absent — that stays
+  // cache-on-use, and llm-about.js is over the worker's 5 MB cache guard anyway.
+  const SW_PRIME = [
+    "media-index.js", "track-audio.js", "track-previews.js", "preview-fallback.js",       // shared: Records/Explore/Time/Liked/album+track
+    "calendar.js", "calendar-detail.js", "day-hours.js", "day-series.js",                 // Time + Overview
+    "world-map.js",                                                                       // Overview map
+    "filter-index.js",                                                                    // Explore theme/decade chips
+    "shelves-unplayed.js", "mb-album-labels.js", "label-parents.js",                      // Records
+    "search-index.js",                                                                    // header search overlay (every page)
+    "reading.js",                                                                         // Stories
+    "tm-tour-lazy.js",                                                                    // Gigs / Live
+    "liked-meta.js", "spotify-liked.js", "spotify-engagement.js",                         // Liked
+    "spotify-insights.js", "spotify-persona.js", "spotify-attention.js",                  // Spotify (#spotify)
+    "album-extras.js", "album-about-lazy.js", "album-absorb.js", "instrumentals.js",      // album + track pages
+    "words-layer.js", "vendor-page-flip.js",                                              // portrait prose · Book page-flip
+  ];
+
+  function swWarm() {
+    // Best-effort: ask the browser not to evict Cache Storage under general storage pressure.
+    // Fire-and-forget — private windows reject it, some engines ignore it; never block, never throw.
+    try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {}); } catch (e) {}
+
+    const idle = window.requestIdleCallback ? window.requestIdleCallback.bind(window) : ((f) => setTimeout(f, 2500));
+    idle(() => {
+      navigator.serviceWorker.ready.then((reg) => {
+        const w = reg && reg.active;
+        if (!w) return;
+        // 1 · EPOCH CARRY-FORWARD. Hand the worker the ?v=-stamped URLs this document is actually
+        // running on. They are content-addressed, so it can lift those entries out of the previous
+        // epoch's cache instead of letting the next visit re-download byte-identical bundles after
+        // every daily deploy — then it drops that epoch, so at most one ever lingers.
+        try {
+          const assets = [];
+          document.querySelectorAll("script[src], link[href]").forEach((n) => {
+            const raw = n.getAttribute("src") || n.getAttribute("href");
+            if (!raw) return;
+            const u = new URL(raw, location.href);
+            if (u.origin === location.origin && /[?&]v=/.test(u.search)) assets.push(u.href);
+          });
+          // music-rest.js is injected after mount, so it may not be in the DOM yet; its ?v= is a
+          // content hash of the file itself (ROTATION.REST_V), so name it outright.
+          const R = window.ROTATION;
+          if (R && R.REST_V) assets.push(new URL("music-rest.js?v=" + R.REST_V, location.href).href);
+          w.postMessage({ type: "EPOCH_HANDOFF", assets });
+        } catch (e) {}
+        // 2 · ROUTE-SHARD WARM-UP. Skipped on a first-ever visit (no controller — everything is
+        // being downloaded for the first time anyway) and whenever Data Saver is on. The worker
+        // fetches these itself: the load right after a deploy is still controlled by the OUTGOING
+        // worker, so a fetch() from here would land in the cache that is about to be dropped.
+        try {
+          if (!navigator.serviceWorker.controller) return;
+          if (navigator.connection && navigator.connection.saveData) return;
+          w.postMessage({ type: "PRIME", assets: SW_PRIME });
+        } catch (e) {}
+      }).catch(() => {});
+    }, { timeout: 5000 });
+  }
 </script>
 <script type="text/babel" src="rotation-book.jsx"></script>
 <script type="text/babel" src="rotation-lab.jsx"></script>
