@@ -43,7 +43,10 @@ function SubjectStat({ name, title, big, unit, foot, size }) {
     <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
       <div style={{ minWidth: 0, flex: 1 }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
-          <div className="r-mono ov-ins-fig" style={{ fontSize: 10, lineHeight: 1.05, color: "#fff" }}>{big}</div>
+          {/* the face is .ov-ins-fig's now (2026-09-19) — it used to carry r-mono at 10px/#fff
+              inline, which beat the class and left these figures the only numerals in the pulse
+              row wearing the mono face at a footnote size. */}
+          <div className="ov-ins-fig">{big}</div>
           {unit && <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>{unit}</span>}
         </div>
         <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginTop: 3 }}>{title || name}</div>
@@ -76,44 +79,12 @@ const PROVIDERS = [
     };
   },
 
-  // ── next round scrobble total ──
-  (ctx) => {
-    const total = _liveTotal();
-    const next = Math.ceil((total + 1) / 5000) * 5000, away = next - total;
-    if (away > 5000) return null;
-    const pct = Math.round((5000 - away) / 5000 * 100);
-    return {
-      id: "scrob-mile", category: "milestone", score: 0.5 + 0.46 * (1 - away / 5000), accent: true,
-      label: "Next milestone", meta: pct + "%",
-      // A bar, not a note (Fuad 2026-08-20: "kinda okay but there's heaps of white space"). This is
-      // the one card here with no artist to show, so it had a number and two lines of text to fill a
-      // full-height cell. How far through the current 5,000 you are is the whole point of the card
-      // and it was only ever implied by the number — drawing it uses the room rather than padding it.
-      render: (
-        <div>
-          <div className="ov-mile-line" style={{ display: "flex", alignItems: "baseline", gap: 7, flexWrap: "nowrap", minWidth: 0 }}>
-            <div className="r-mono ov-ins-fig" style={{ fontSize: 10, lineHeight: 1.05, color: "#fff", flex: "none" }}>{_fmtN(away)}</div>
-            <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)", whiteSpace: "nowrap" }}>from {_fmtN(next)}</span>
-          </div>
-          {/* Hollow fill, quiet rim (Fuad 2026-08-20). Alpha lives in the background colour only,
-              never as `opacity` on the element, or the border fades along with the wash it is meant
-              to enclose. The rim takes the DECADES values, not the weather ones: weather strokes run
-              chroma 0.19–0.20 at full alpha because they are the loudest thing in their card, while
-              a decade segment sits at chroma 0.08 / alpha 0.42 and reads as an edge rather than as a
-              line. This bar is a footnote under a number, so it wants the decades end. */}
-          <div style={{ height: 7, borderRadius: 4, background: "var(--bg-3)", margin: "8px 0 6px", position: "relative" }}>
-            <div style={{ position: "absolute", inset: "0 auto 0 0", width: pct + "%",
-              background: "oklch(0.72 0.15 350 / 0.22)", border: "1px solid oklch(0.66 0.08 350 / 0.42)",
-              boxSizing: "border-box", borderRadius: 4 }} />
-          </div>
-          <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--ink-faint)" }}>
-            {_fmtN(total)} scrobbles and counting
-          </div>
-          {away < 200 && <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 12, color: "var(--ink-soft)", marginTop: 4 }}>You'll cross it any day now.</div>}
-        </div>
-      ),
-    };
-  },
+  // ── next round scrobble total — FOLDED INTO THE SCROBBLES CARD (2026-09-19) ──
+  // It printed the same live total the Scrobbles card prints, one cell along, so the pulse row
+  // spent two of its four seats on one number. The progress bar, the end-cap target and the last
+  // crossing now ride under that card's sparkline (rotation-views1.jsx); this returns null so the
+  // deck cannot resurrect it. The freed seat went to "On this day", which never won on score.
+  () => null,
 
   // ── a top artist about to tip over a round play count ──
   (ctx) => {
@@ -197,14 +168,14 @@ const PROVIDERS = [
           {tt.slice(0, 2).map((t, i) => (
             // row hover MATCHES the Overview Recently-played rows (Fuad 2026-08-27 #11):
             // same padding/radius + bg-3 swap, so the two pulse cards read as one family.
-            <div key={t.name + t.artist} onClick={(e) => { e.stopPropagation(); ctx.go("track", R.slug(t.artist) + "~" + R.slug(t.name)); }}
-              onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
-              onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+            // .ov-hovrow (rotation-views1.jsx) IS that swap now (2026-09-19) — four rows across
+            // two files were each doing it by hand in JS, which no transition could ever reach.
+            <div key={t.name + t.artist} className="ov-hovrow" onClick={(e) => { e.stopPropagation(); ctx.go("track", R.slug(t.artist) + "~" + R.slug(t.name)); }}
               style={{ display: "flex", alignItems: "center", gap: 9, cursor: "pointer", padding: "3px 0", borderRadius: 4, minWidth: 0 }}>
               <GenCover hue={_hue(t.artist)} name={t.artist} size={22} radius={2} style={{ flex: "none" }} />
               <div className="ov-rep-txt" style={{ flex: "1 1 0", minWidth: 0 }}>
-                <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden" }}>{t.name}</div>
-                <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden" }}>{t.artist}</div>
+                <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.name}</div>
+                <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.artist}</div>
               </div>
               <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", flex: "none" }}>{t.plays}×</span>
             </div>
@@ -254,14 +225,12 @@ const PROVIDERS = [
       render: (
         <div style={{ display: "grid", gap: 6, gridTemplateColumns: "minmax(0, 1fr)" }}>
           {lines.slice(0, 2).map(l => (
-            <div key={l.tag + l.id} onClick={(e) => { e.stopPropagation(); ctx.go("artist", l.id); }}
-              onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
-              onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+            <div key={l.tag + l.id} className="ov-hovrow" onClick={(e) => { e.stopPropagation(); ctx.go("artist", l.id); }}
               style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", padding: "3px 0", borderRadius: 4, minWidth: 0 }}>
               <span className="r-mono" style={{ fontSize: 8, letterSpacing: ".12em", color: "var(--accent)", flex: "none", minWidth: 38 }}>{l.tag}</span>
               <div style={{ flex: "1 1 0", minWidth: 0 }}>
                 <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{l.name}</div>
-                <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden" }}>{l.detail}</div>
+                <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{l.detail}</div>
               </div>
             </div>
           ))}
@@ -446,14 +415,12 @@ const PROVIDERS = [
       render: (
         <div style={{ display: "grid", gap: 6, gridTemplateColumns: "minmax(0, 1fr)" }}>
           {top2.map((r, i) => (
-            <div key={r.artistId} onClick={(e) => { e.stopPropagation(); ctx.go("artist", r.artistId); }}
-              onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
-              onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+            <div key={r.artistId} className="ov-hovrow" onClick={(e) => { e.stopPropagation(); ctx.go("artist", r.artistId); }}
               style={{ display: "flex", alignItems: "center", gap: 9, cursor: "pointer", padding: "3px 0", borderRadius: 4, minWidth: 0 }}>
               <GenCover hue={_hue(r.name)} name={r.name} size={22} radius={2} style={{ flex: "none" }} />
               <div style={{ flex: "1 1 0", minWidth: 0 }}>
                 <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.name}</div>
-                <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden" }}>{r.plays} this week · ~{Math.max(1, Math.round(r.pace))}/wk lifetime</div>
+                <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.plays} this week · ~{Math.max(1, Math.round(r.pace))}/wk lifetime</div>
               </div>
               <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", flex: "none" }}>×{r.ratio >= 10 ? Math.round(r.ratio) : r.ratio.toFixed(1)}</span>
             </div>
@@ -541,9 +508,13 @@ function InsightCard({ ins, span }) {
       style={{ gridColumn: span || "span 4", padding: "8px 12px", cursor: ins.onClick ? "pointer" : "default",
         display: "flex", flexDirection: "column", minWidth: 0 }}
       onClick={ins.onClick || undefined}>
-      <div className="r-card-h" style={{ padding: 0, marginBottom: 3, flex: "none" }}>
-        <span className="lbl"><b>{ins.label}</b></span>
-        {ins.meta && <span className="meta" style={{ maxWidth: 130, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{ins.meta}</span>}
+      {/* The LABEL holds the line, the meta gives way (2026-09-19). The meta already ellipsised,
+          but nothing stopped it claiming its full 130px first, so in a ~185px pulse-row card a
+          three-word label ("On this day") broke across two lines to make room for a footnote.
+          Names before annotations: the label refuses to wrap and the meta shrinks to what's left. */}
+      <div className="r-card-h" style={{ padding: 0, marginBottom: 3, flex: "none", flexWrap: "nowrap" }}>
+        <span className="lbl" style={{ whiteSpace: "nowrap", flex: "none" }}><b>{ins.label}</b></span>
+        {ins.meta && <span className="meta" style={{ minWidth: 0, maxWidth: 130, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{ins.meta}</span>}
       </div>
       {/* minWidth:0 matters as much as minHeight (Fuad 2026-08-21): without it this column refuses
           to go below the width of its widest child, so a long song title in On repeat pushed the

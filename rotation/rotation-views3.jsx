@@ -134,33 +134,9 @@ function SlopeRows({ rows, X_L, X_R, goIf, isClickable }) {
   );
 }
 
-// A number that COUNTS to its new value instead of being swapped (wave D 2026-09-17: the
-// year-in-review stats used to remount inside the keyed fade; numbers landing between years
-// read better travelling). 420ms ease-out; prefers-reduced-motion snaps.
-function TweenNum({ v, f }) {
-  const [shown, setShown] = React.useState(v);
-  const ref = React.useRef({ raf: 0 });
-  const fromRef = React.useRef(v);
-  React.useEffect(() => {
-    const from = fromRef.current;
-    if (from === v) return;
-    const calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (calm) { fromRef.current = v; setShown(v); return; }
-    const t0 = performance.now();
-    cancelAnimationFrame(ref.current.raf);
-    const step = (now) => {
-      const p = Math.min(1, (now - t0) / 420);
-      const e = 1 - Math.pow(1 - p, 3);
-      const val = Math.round(from + (v - from) * e);
-      setShown(val);
-      if (p < 1) ref.current.raf = requestAnimationFrame(step);
-      else fromRef.current = v;
-    };
-    ref.current.raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(ref.current.raf);
-  }, [v]);
-  return <>{f ? f(shown) : shown}</>;
-}
+// TweenNum LIVES IN rotation-core.jsx NOW (2026-09-19). The Overview took it up for its stat
+// strip and Scrobbles counter, and core loads first — two declarations of the same name at
+// shared top-level scope is a trap, so the one copy sits beside Spark. Used below, unchanged.
 
 // Swipe (touch) and arrow keys (while hovered) drive a prev/next pair — the year-in-review and
 // slope-chart navs only had the two small buttons.

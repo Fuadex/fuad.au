@@ -1,5 +1,9 @@
 // rotation-views1.jsx — Overview
-// exports: OverviewView, Popover (shared) + WallGrid/BubbleField (used by Overview)
+// exports: OverviewView, Popover (shared).
+// The header used to claim WallGrid/BubbleField were "used by Overview"; they had not been
+// rendered for a long time, and TopArtistsPeek beside them was in the same state. All three were
+// deleted on 2026-09-19 along with the .wall-* styles WallGrid carried in its own <style> block.
+// (variant-wall.jsx declares its own .wall-cell rules and never read these.)
 
 // shared hover popover (paper card following cursor)
 function Popover({ data }) {
@@ -21,44 +25,6 @@ function Popover({ data }) {
 }
 
 // ════════════════════════ OVERVIEW ════════════════════════
-// Top-artists strip with an all-time ⇄ this-year toggle (this-year ranks kept artists by their
-// current-year plays from the per-year yp map).
-function TopArtistsPeek({ R, go }) {
-  const [span, setSpan] = React.useState("all");
-  const cy = new Date().getUTCFullYear();
-  const items = React.useMemo(() => {
-    if (span === "all") return R.ARTISTS.slice(0, 12).map(a => ({ ...a, n: a.plays }));
-    return R.ARTISTS.map(a => ({ ...a, n: (a.yp && a.yp[cy]) || 0 })).filter(a => a.n > 0)
-      .sort((x, y) => y.n - x.n).slice(0, 12);
-  }, [R, span]);
-  return (
-    <div className="r-card ov-wall" style={{ gridColumn: "span 7", padding: 18 }}>
-      <div className="r-card-h" style={{ padding: 0, marginBottom: 14 }}>
-        <span className="lbl"><b>Top artists</b></span>
-        <span style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
-          <span className="r-seg">
-            <button data-on={span === "all"} onClick={() => setSpan("all")}>all time</button>
-            <button data-on={span === "year"} onClick={() => setSpan("year")}>'{String(cy).slice(2)}</button>
-          </span>
-          <span className="meta" style={{ cursor: "pointer" }} onClick={() => go("explore")}>explore ↗</span>
-        </span></div>
-      <div className="r-xscroll ov-wallgrid">
-        {items.map((a, i) => (
-          <div key={a.id} onClick={() => go("artist", a.id)} style={{ cursor: "pointer", flex: "none", width: 96 }}>
-            <div style={{ position: "relative" }}>
-              <GenCover hue={a.hue} name={a.name} size={"100%"} style={{ aspectRatio: "1", width: "100%", height: "auto" }} />
-              <span className="r-mono" style={{ position: "absolute", top: 5, left: 6, fontSize: 9,
-                color: "rgba(255,255,255,.85)", textShadow: "0 1px 2px #000" }}>{String(i + 1).padStart(2, "0")}</span>
-            </div>
-            <div style={{ fontSize: 11.5, marginTop: 7, lineHeight: 1.25, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</div>
-            <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)" }}>{fmt(a.n)} plays{span === "year" ? ` in '${String(cy).slice(2)}` : ""}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 // OvCalRail — the calendar as a NARROW vertical filter rail beside the map: pick year + month,
 // day ⇄ week granularity, click a cell. What it drives today: the map/flow scrub to that year,
 // and the cell deep-opens its day/week in the full Calendar. (Day-level geography needs a new
@@ -250,7 +216,11 @@ const OvWeatherBar = ({ label, v, avg, col }) => (
         transition: "width .45s cubic-bezier(.3,.8,.3,1)" }} />
       {avg != null && <div title={"library average " + avg} style={{ position: "absolute", top: -2, bottom: -2, left: avg + "%", width: 2, background: "var(--ink-faint)", borderRadius: 1 }} />}
     </div>
-    <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>{v}</span>
+    {/* the readout TRAVELS with the bar (2026-09-19): the fill has animated between values since
+        the bar moved to module scope, but the number beside it still hard-swapped, so a filter
+        change slid one and blinked the other. */}
+    <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>
+      {typeof v === "number" ? <TweenNum v={v} /> : v}</span>
   </div>
 );
 
@@ -599,7 +569,9 @@ function OverviewView({ t, go, restReady, seed }) {
     return Math.round(fStats.plays / total * 1000) / 10;
   }, [fStats, days, T.scrobbles]);
   const liveTotal = (window.ROTATION_LIVE && window.ROTATION_LIVE.total) || T.scrobbles;
-  const scrob = useCountUp(liveTotal, 1400, seen);
+  // useCountUp is gone from this view (2026-09-19): it ramps 0→target on mount and then only ever
+  // re-ramps from zero, so a figure that MOVED — hours under a filter — restarted from nothing
+  // instead of travelling the difference. TweenNum does both (from={0} buys back the mount ramp).
   // LIVE-ADJUSTED HOURS (Fuad 2026-08-27 #5): the scrobble stat ticks live off the daily
   // snapshot while hours froze at the build-baked T.listeningHours, so the pair drifted
   // apart between builds. Extend the baked hours by the live delta at the library's own
@@ -610,7 +582,6 @@ function OverviewView({ t, go, restReady, seed }) {
     const avgSec = baked ? base * 3600 / baked : 210;
     return Math.round(base + Math.max(0, liveTotal - baked) * avgSec / 3600);
   }, [T, liveTotal]);
-  const hrs = useCountUp(hrsLive, 1400, seen);
   // seen-live share (Fuad 2026-08-13): % of ALL plays belonging to artists you've stood in front
   // of. seenLive ships ONLY on kept (core) artist records — expById rest rows never carry it, and
   // they OVERLAP the kept set, so summing both would be a double-count trap. Denominator is
@@ -645,15 +616,47 @@ function OverviewView({ t, go, restReady, seed }) {
   const trend = React.useMemo(() => R.TREND || Array.from({ length: 26 }, (_, i) =>
     180 + Math.round(Math.sin(i / 3) * 60 + (hashInt("wk" + i, 5) % 90) + i * 3)), []);
   const sinceYears = ((Date.now() - new Date(T.since)) / 3.156e10).toFixed(1);
+  // NEXT MILESTONE, FOLDED IN (2026-09-19). It was its own pulse card printing the same live total
+  // the Scrobbles card prints one cell along — two of the row's four seats spent on one number.
+  // What the card actually added was the DISTANCE to the next round five thousand, so that is what
+  // comes across: a bar under the sparkline, the target as an end-cap, and the last crossing named
+  // underneath (INSIGHTS.MILESTONES is the build's ledger of them — biggest n is the most recent).
+  const mile = React.useMemo(() => {
+    const next = Math.ceil((liveTotal + 1) / 5000) * 5000;
+    const pct = Math.max(0, Math.min(100, Math.round((5000 - (next - liveTotal)) / 5000 * 100)));
+    const ms = (R.INSIGHTS && R.INSIGHTS.MILESTONES) || [];
+    let last = null; for (const m of ms) if (!last || m.n > last.n) last = m;
+    return { next, pct, last };
+  }, [liveTotal, R]);
+  // 10,485 → "10.5k". The strip and the milestone line both want a round number small enough to
+  // ride inside a caption; fmt() spells every digit and is too wide for either.
+  const kAbbr = (n) => n >= 10000 ? (Math.round(n / 100) / 10) + "k" : fmt(n);
+  const SESS = R.INSIGHTS && R.INSIGHTS.SESSIONS;
+  // SAY WHICH TILES DIDN'T MOVE (2026-09-19). Filter the strip and hours, artists, avg/day and the
+  // rest all narrow — but the catalogue counts cannot (media rows carry no per-period tags), so
+  // they sat there under a filter name looking like part of the slice. One muted word, on the two
+  // tiles where the number is genuinely the whole library, and only while a filter is on. It is
+  // kept in its own nowrap span so it drops to a second line as a unit rather than breaking
+  // mid-word — and it leads with an explicit {" "}, because two adjacent spans with no whitespace
+  // between them are one unbreakable run to the line breaker, which is how the marker first went
+  // out: it dragged its tile's grid track to 133px and squeezed four neighbours into wrapping.
+  const ltMark = (fStats && fStats.active)
+    ? <>{" "}<span className="ov-stat-lt">· lifetime</span></> : null;
 
-  const Stat = ({ n, sub, big, onClick }) => (
+  // Stat takes a RAW NUMBER plus its formatter now (2026-09-19), not a pre-formatted string: a
+  // numeral that arrives as text can only be swapped, and every one of these ten changes the
+  // moment a filter lands. `f` formats, `from`/`dur` hand TweenNum a first-paint ramp for the two
+  // figures that used to get one from useCountUp. Anything non-numeric (a hyphen, a unit already
+  // baked in) still prints as-is, so a call site that has nothing to tween costs nothing.
+  const Stat = ({ n, f, sub, big, onClick, from, dur }) => (
     <div onClick={onClick} style={onClick ? { cursor: "pointer" } : null} className={onClick ? "ov-stat-link" : ""}>
-      <div className="r-stat-n" style={{ fontSize: big ? "clamp(28px,3.4vw,40px)" : 20 }}>{n}</div>
+      <div className="r-stat-n" style={{ fontSize: big ? "clamp(28px,3.4vw,40px)" : 20 }}>
+        {typeof n === "number" && isFinite(n) ? <TweenNum v={n} f={f} from={from} dur={dur} /> : n}</div>
       {/* the ↗ is gone (Fuad 2026-08-20). It marked the stat as clickable, but every stat in the
           strip is, so it marked nothing — and it inflated captions that are already tight once a
           filter name is concatenated in. .ov-stat-link still carries the hover affordance. */}
       {/* per-tile stat caption (footnote-grade eyebrow — Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
-      <div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".14em", textTransform: "uppercase",
+      <div className="r-mono ov-stat-sub" style={{ fontSize: 8.5, textTransform: "uppercase",
         color: "var(--ink-faint)", marginTop: 4 }}>{sub}</div>
     </div>
   );
@@ -712,16 +715,22 @@ function OverviewView({ t, go, restReady, seed }) {
                  artists react to the active map/calendar filter, the rest are lifetime. */
               <div className="r-card ov-strip" style={{ padding: "12px 14px", display: "grid",
                 gridTemplateColumns: "repeat(2,1fr)", gap: "10px 16px", alignContent: "center" }}>
-                <Stat n={fStats && fStats.active ? fmt(fStats.hours) : fmt(Math.round(hrs))} sub="hours" onClick={() => go("calendar")} />
-                <Stat n={fStats && fStats.active ? fmt(fStats.artists) : fmt(T.artists)} sub="artists" onClick={() => go("explore")} />
+                <Stat n={fStats && fStats.active ? fStats.hours : hrsLive} f={fmt} from={0} dur={1400} sub="hours" onClick={() => go("calendar")} />
+                <Stat n={fStats && fStats.active ? fStats.artists : T.artists} f={fmt} sub="artists" onClick={() => go("explore")} />
                 {/* the catalogue row (Fuad 2026-08-12): how much MUSIC that listening covered —
                     LPs / EPs+singles / distinct folded songs. Lifetime (post-fold row counts);
                     the map/calendar filter intentionally doesn't reach these — media rows carry
-                    no per-period tags, so a filtered recount would be new plumbing, parked. */}
-                {T.albumsLP != null && <Stat n={fmt(T.albumsLP)} sub="albums" onClick={() => go("shelves")} />}
-                {T.epsSingles != null && <Stat n={fmt(T.epsSingles)} sub="EPs/singles" onClick={() => go("shelves")} />}
-                {T.tracks != null && <Stat n={fmt(T.tracks)} sub="songs" onClick={() => go("explore")} />}
-                {seenLivePct > 0 && <Stat n={seenLiveShown + "%"} sub="seen live" onClick={() => go("gigs")} />}
+                    no per-period tags, so a filtered recount would be new plumbing, parked.
+                    EPs+SINGLES LOST ITS OWN TILE (2026-09-19). It was a second catalogue count
+                    sitting beside the first and reading like a rival to it, when what it really
+                    is — the tail hanging off the album shelf — is a footnote on the album tile.
+                    The freed cell went to the median sitting, which had no home in the strip at
+                    all and says something none of the other nine do: how long a stretch runs. */}
+                {T.albumsLP != null && <Stat n={T.albumsLP} f={fmt} onClick={() => go("shelves")}
+                  sub={<><span>albums +{kAbbr(T.epsSingles || 0)}</span>{ltMark}</>} />}
+                {SESS && SESS.median != null && <Stat n={SESS.median} sub="/ sitting" onClick={() => go("calendar")} />}
+                {T.tracks != null && <Stat n={T.tracks} f={fmt} sub={<><span>songs</span>{ltMark}</>} onClick={() => go("explore")} />}
+                {seenLivePct > 0 && <Stat n={seenLiveShown} f={(x) => x + "%"} sub="seen live" onClick={() => go("gigs")} />}
                 <Stat n={flt ? flt.avgDay : T.perDay} sub="avg / day" />
                 {/* Filtered, this slot shows DEPTH, not share (Fuad 2026-08-20). It used to become
                     "% of all plays", which is the same quantity the tenth stat spells out as "of
@@ -729,16 +738,23 @@ function OverviewView({ t, go, restReady, seed }) {
                     neither neighbour does: was this slice one obsession or a wide graze. Falls back
                     to share on the rare filter where Results reports no artist count, rather than
                     leaving a hole in the strip. */}
-                <Stat n={flt ? (flt.depth != null ? flt.depth : flt.sharePct + "%") : sinceYears + " yr"}
-                  sub={flt ? (flt.depth != null ? "plays / artist" : "of all plays") : "of history"} />
-                <Stat n={flt && flt.hi ? fmt(flt.hi.count) : R.TOTALS.topDay.count} sub="streak" onClick={() => go("calendar")} />
+                {/* captions cut to fit the track (2026-09-19): "plays / artist" and "of history"
+                    both ran past the ~57px a 1fr column gets here and broke onto a second line,
+                    which dropped that tile's caption a row below its neighbours'. */}
+                <Stat n={flt ? (flt.depth != null ? flt.depth : flt.sharePct) : +sinceYears}
+                  f={flt ? (flt.depth != null ? undefined : (x) => x + "%") : (x) => x.toFixed(1) + " yr"}
+                  sub={flt ? (flt.depth != null ? "per artist" : "share") : "of history"} />
+                {/* "streak" NAMED THE WRONG STAT (2026-09-19). R.TOTALS.topDay.count is the
+                    heaviest single DAY — the streak, a run of consecutive days, is the pulse card
+                    two rows up and carries a different number entirely. */}
+                <Stat n={flt && flt.hi ? flt.hi.count : R.TOTALS.topDay.count} f={fmt} sub="peak day" onClick={() => go("calendar")} />
                 {/* Tenth stat (Fuad 2026-08-20): what share of everything I've ever played belongs
                     to the artists standing in the Results list right now — the WHOLE list, not its
                     visible top ten. Unfiltered it reads as the genre map's coverage of my listening;
                     narrow to a city or a genre and it drops to that corner's weight. Distinct from
                     the share stat above it, which follows the time window and reads years-of-history
                     when nothing is filtered. */}
-                {resShare != null && <Stat n={resShare + "%"} sub="of plays" onClick={() => go("explore")} />}
+                {resShare != null && <Stat n={resShare} f={(x) => x + "%"} sub="of plays" onClick={() => go("explore")} />}
               </div>
             } />
         </div>
@@ -748,16 +764,33 @@ function OverviewView({ t, go, restReady, seed }) {
             nested 4-up grid rather than being re-pinned individually — the ≥981px rules pinned each
             card to grid-row 1, so moving them in the DOM alone would have snapped them back up. */}
         <div className="ov-pulseslot">
-        {/* scrobble counter + trend — left anchor of the pulse row */}
+        {/* scrobble counter + trend + the next milestone — left anchor of the pulse row */}
         <div className="r-card ov-scrob" style={{ padding: 12, display: "flex", flexDirection: "column" }}>
           <div className="r-card-h" style={{ padding: 0 }}>
             <span className="lbl"><b>Scrobbles</b></span>
             <span className="meta">26-wk</span>
           </div>
-          <div className="r-stat-n" style={{ fontSize: 20, margin: "1px 0 0" }}>{fmt(Math.round(scrob))}</div>
+          <div className="r-stat-n" style={{ fontSize: 20, margin: "1px 0 0" }}>
+            <TweenNum v={liveTotal} f={fmt} from={0} dur={1400} /></div>
           <div style={{ marginTop: 2 }}>
             <Spark data={trend} w={300} h={22} run={seen} fill="var(--accent-bg)" />
           </div>
+          {/* THE MILESTONE CARD, FOLDED IN (2026-09-19) — see the `mile` memo above. The bar is
+              the retired card's bar at a smaller gauge, and it takes the DECADES rim values
+              (chroma 0.08 / alpha 0.42), not the weather ones: this is a footnote under a number,
+              so it wants an edge rather than a drawn line. Alpha lives in the background colour
+              only — put `opacity` on the element and the border fades with the wash it encloses. */}
+          <div className="ov-mile-line" style={{ display: "flex", alignItems: "center", gap: 7, marginTop: 3, minWidth: 0 }}>
+            <div style={{ flex: 1, minWidth: 0, height: 5, borderRadius: 3, background: "var(--bg-3)", position: "relative" }}>
+              <div style={{ position: "absolute", inset: "0 auto 0 0", width: mile.pct + "%",
+                background: "oklch(0.72 0.15 350 / 0.22)", border: "1px solid oklch(0.66 0.08 350 / 0.42)",
+                boxSizing: "border-box", borderRadius: 3 }} />
+            </div>
+            <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", flex: "none", whiteSpace: "nowrap" }}>→ {fmt(mile.next)}</span>
+          </div>
+          {mile.last && <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", letterSpacing: ".06em",
+            whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+            last: {kAbbr(mile.last.n)} — {mile.last.artist}, {mile.last.track}</div>}
         </div>
 
         {/* streak — current run + when the all-time best happened (INSIGHTS.STREAK carries the range) */}
@@ -794,8 +827,13 @@ function OverviewView({ t, go, restReady, seed }) {
             `span="auto"` because .ov-pulseslot is a plain 4-up grid, not the 12-col bento the deck
             sits on — the default "span 4" would eat the whole row.
             This week is retired rather than moved: the Riser card is already framed on the week, and
-            two week-shaped cards side by side said the same thing twice. */}
-        <InsightRow go={go} n={2} span="auto" only={["scrob-mile", "artist-mile"]}
+            two week-shaped cards side by side said the same thing twice.
+            NEXT MILESTONE IS GONE FROM HERE (2026-09-19) — it folded into the Scrobbles card at the
+            head of this row, which was already printing its number. "On this day" takes the seat:
+            it scores 0.68 against an on-repeat at 0.78 and a riser at 0.72, so it lost the lottery
+            essentially every day despite being the only card here that looks backwards. Pinned, in
+            the freed cell, with About to tip over holding the trailing one it already had. */}
+        <InsightRow go={go} n={2} span="auto" only={["otd", "artist-mile"]}
           omit={["week", "story-day"]} />
         </div>{/* /ov-pulseslot */}
 
@@ -851,16 +889,18 @@ function OverviewView({ t, go, restReady, seed }) {
                 the last.fm link left the rows so little width that both entries crushed together.
                 A container query would also fix it, but the short word is what was asked for and it
                 cannot fall out of sync with a layout that keeps moving. */}
-            <div className="r-card-h" style={{ padding: 0, marginBottom: 3 }}>
+            {/* The link is ONE WORD (2026-09-19). At this card's ~185px the 10px meta ran just
+                past the room left beside "Recent", so the ↗ dropped to a second line on its own
+                and the header stood two rows tall. Dropped to the 8.5px footnote size (the other
+                half of the eyebrow pair) and pinned nowrap: the arrow belongs to the address. */}
+            <div className="r-card-h" style={{ padding: 0, marginBottom: 3, flexWrap: "nowrap" }}>
               <span className="lbl"><b>Recent</b></span>
               <a className="meta r-extlink-lf" href="https://www.last.fm/user/fuadex" target="_blank" rel="noopener noreferrer"
-                style={{ color: "var(--ink-faint)", textDecoration: "none" }}>last.fm/fuadex ↗</a></div>
+                style={{ color: "var(--ink-faint)", textDecoration: "none", fontSize: 8.5, whiteSpace: "nowrap", flex: "none" }}>last.fm/fuadex ↗</a></div>
             <div className="ov-rl" style={{ display: "grid", gap: 1, flex: 1, alignContent: "center" }}>
               {recent3.map(r => (
-                <div key={r.id} onClick={() => { if (r.artist && r.track) go("track", R.slug(r.artist) + "~" + R.slug(r.track)); }} title={`${r.track} →`} style={{ display: "flex", alignItems: "center", gap: 9,
-                  padding: "3px 0", borderRadius: 4, cursor: "pointer", minWidth: 0 }}
-                  onMouseEnter={e => e.currentTarget.style.background = "var(--bg-3)"}
-                  onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
+                <div key={r.id} className="ov-hovrow" onClick={() => { if (r.artist && r.track) go("track", R.slug(r.artist) + "~" + R.slug(r.track)); }} title={`${r.track} →`} style={{ display: "flex", alignItems: "center", gap: 9,
+                  padding: "3px 0", borderRadius: 4, cursor: "pointer", minWidth: 0 }}>
                   <GenCover hue={r.hue} name={r.artist} image={r.img || undefined} size={22} radius={2} />
                   <div style={{ minWidth: 0, flex: 1 }}>
                     <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.track}</div>
@@ -872,12 +912,13 @@ function OverviewView({ t, go, restReady, seed }) {
               ))}
             </div>
           </div>
-          {/* three scored cards beside it. riser + scrob-mile are pinned into the pulse row above and
+          {/* three scored cards beside it. artist-mile + otd are pinned into the pulse row above and
               `week` is retired, so all three are omitted here or the page shows them twice.
+              (scrob-mile left this list on 2026-09-19 along with the provider itself.)
               About to tip over is pinned to the trailing cell (Fuad 2026-08-20). Score decided both
               WHETHER a card showed and WHERE it sat, so this one drifted a cell left or right as
               other providers came and went; `last` fixes the position without touching the pick. */}
-          <InsightRow go={go} n={3} omit={["scrob-mile", "artist-mile", "week"]} last={["movement"]} />
+          <InsightRow go={go} n={3} omit={["artist-mile", "otd", "week"]} last={["movement"]} />
         </div>
 
         {/* emotional weather — last-90d sounds/reads only now (the decades strip moved up to the
@@ -979,9 +1020,9 @@ function OverviewView({ t, go, restReady, seed }) {
              scroll to and the scroller only ever ate a drag. */
           .ov-strip    { grid-column: 1 / span 8 !important; grid-template-columns: repeat(5, 1fr) !important; gap: 10px !important; }
           .ov-strip .r-stat-n { font-size: 20px !important; }
-          /* Story-of-the-day row: Story compresses to cols 1-8, Decades takes 9-12 (the same
-             span the weather card uses on the row below) — Fuad 2026-08-17. */
-          .ov-story    { grid-column: 1 / span 8 !important; }
+          /* Decades takes cols 9-12, the same span the weather card uses on the row below
+             (Fuad 2026-08-17). The .ov-story pin beside it went with the rest of that card's
+             styles on 2026-09-19. */
           .ov-decades  { grid-column: 9 / -1 !important; }
           /* Insight cards left (8) + emotional weather right (9-12), one row. The .ov-insights
              wrapper card is gone, so .ov-insgrid takes the span directly. */
@@ -994,8 +1035,13 @@ function OverviewView({ t, go, restReady, seed }) {
           /* Cap the row (Fuad 2026-08-20). Grid rows size to their tallest item, so one long
              insight was setting the height for the weather card beside it and the whole band read
              taller than it needed to. Capping the cards themselves rather than the row keeps the
-             weather card free to be short. */
-          .ov-insgrid > .r-card, .ov-weather { max-height: 104px; overflow: hidden; }
+             weather card free to be short.
+             A FLOOR, NOT A CEILING (2026-09-19). 104px was 13px short of what the Recent card
+             needs for two rows, so it sliced the second entry through the middle of the glyphs —
+             the cap was doing the equalising these four wanted AND clipping the one card that
+             overran it. min-height equalises exactly the same (the cards stretch to the row
+             anyway) and lets the tallest set the row instead of being cut to fit it. */
+          .ov-insgrid > .r-card, .ov-weather { min-height: 104px; }
         }
         /* Selects sit on the title row now, so they lose the full-width block sizing and come down
            to the d/w/m segment height beside them: 9px type on 2px/6px padding measures ~21px
@@ -1009,7 +1055,6 @@ function OverviewView({ t, go, restReady, seed }) {
         .ov-caltitle { background: transparent; border: 0; padding: 0; cursor: pointer; }
         .ov-caltitle:hover, .ov-caltitle:focus-visible { color: var(--accent); }
         .ov-caltitle:hover b, .ov-caltitle:focus-visible b { color: var(--accent); }
-        .ov-calweek[data-gran="week"]:hover { outline: 1px solid var(--accent-dim); outline-offset: 1px; }
         .ov-calrail i { transition: transform .1s; display: block; }
         /* The old hover rule below never fired: it required a [data-gran="day"] ancestor that the
            day strip does not have, so the calendar had no hover at all (Fuad 2026-08-20). Replaced
@@ -1021,36 +1066,15 @@ function OverviewView({ t, go, restReady, seed }) {
         .ov-daystrip i { transition: filter .12s ease-out, box-shadow .12s ease-out, transform .12s ease-out; }
         .ov-daystrip i:hover { filter: brightness(1.4); box-shadow: 0 0 0 1px var(--accent-dim);
           transform: scaleY(1.14); z-index: 1; position: relative; }
-        .hub-chips { display: flex; gap: 8px; flex-wrap: wrap; }
-        .hub-chip { display: inline-flex; align-items: baseline; gap: 8px; padding: 8px 14px; border-radius: 999px;
-          border: 1px solid var(--rule); background: none; cursor: pointer; transition: border-color .15s, transform .15s; }
-        .hub-chip:hover { border-color: color-mix(in oklch, var(--c) 55%, var(--rule-2)); transform: translateY(-2px); }
-        .hub-chip-k { font-family: var(--mono); font-size: 8.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-faint); }
-        .hub-chip-h { font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--ink); }
-        .hub-chip .hub-arrow { color: var(--c); font-size: 12px; }
-        .pt-link { cursor: pointer; border-bottom: 1px solid currentColor; }
-        .pt-link:hover { opacity: .8; }
-        .hub-card { position: relative; overflow: hidden; }
-        .hub-accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--c); opacity: .85; }
-        .hub-arrow { display: inline-block; transition: transform .15s; }
-        .hub-card:hover .hub-arrow { transform: translateX(3px); }
-        .hub-card:hover { border-color: color-mix(in oklch, var(--c) 50%, var(--rule-2)); }
-        .hub-h { color: var(--ink); }
-        .hub-lbl { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 12px; }
-        /* story of the day — a slim banner card, now compressed to cols 1-8 to share its row with
-           the Decades card (Fuad 2026-08-17). At the narrower span the teaser clamps to two lines
-           so the card height matches Decades instead of wrapping tall. */
-        .ov-story { transition: border-color .15s; }
-        .ov-story:hover { border-color: var(--accent-dim); }
-        .ov-story:hover .ov-story-go { color: var(--accent); }
-        .ov-story-tag { flex: none; font-size: 8.5px; letter-spacing: .14em; text-transform: uppercase;
-          color: var(--accent); border: 1px solid var(--accent-dim); border-radius: 999px; padding: 3px 9px; }
-        .ov-story-go { flex: none; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); transition: color .15s; }
-        @media (min-width: 981px) {
-          .ov-story-teaser { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-            overflow: hidden; }
-        }
-        @media (max-width: 760px) { .ov-story { flex-wrap: wrap; gap: 8px; } .ov-story-go { display: none; } }
+        /* The hub-* chip/card vocabulary, .pt-link and .ov-calweek were DELETED here on
+           2026-09-19. Thirteen hub classes, two portrait-link classes and a calendar-week hover
+           rule, none of them named by any element this file (or any other) renders — leftovers of
+           a hub layout the Overview stopped being. Nothing to restore: there is no markup for
+           them anywhere in the tree. */
+        /* The .ov-story* rules went on 2026-09-19. The Story-of-the-day banner they dressed has
+           been commented out of the tree since 2026-08-20 and the pulse modules hold its row; the
+           styles were carrying a card that is not there. If the banner ever comes back it needs
+           its own look at the width it lands on, not this one. */
         /* portrait + dig — twin compact fact modules, side-by-side on PC, stacked on mobile */
         .ov-pd { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
         @media (max-width: 760px) { .ov-pd { grid-template-columns: 1fr; } }
@@ -1078,18 +1102,41 @@ function OverviewView({ t, go, restReady, seed }) {
         .ov-fact-text { font-family: var(--serif); font-style: italic; font-size: 13px; line-height: 1.5; color: var(--ink-soft); }
         /* derivation detail = footnote-grade (Fuad 2026-08-24: eyebrow collapse, two sizes only) */
         .ov-fact-det { font-family: var(--mono); font-size: 8.5px; color: var(--ink-faint); line-height: 1.45; }
-        .hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: var(--gap); }
-        .hub-card { padding: 16px 18px; cursor: pointer; transition: transform .15s, box-shadow .15s; }
-        .hub-card:hover { transform: translateY(-3px); box-shadow: 0 16px 34px -16px rgba(0,0,0,.6); }
-        .hub-card:hover .hub-go { color: var(--accent); }
-        .hub-k { font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); }
-        .hub-h { font-family: var(--serif); font-style: italic; font-size: 21px; margin: 10px 0 4px; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .hub-s { font-size: 12px; color: var(--ink-soft); line-height: 1.35; }
-        .hub-go { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; color: var(--ink-faint); margin-top: 12px; transition: color .15s; }
         .ov-stat-link { transition: color .15s; } .ov-stat-link:hover .r-stat-n { color: var(--accent); } .ov-stat-link:hover { color: var(--accent); }
-        .eqbar { width: 3px; height: 8px; background: var(--accent); border-radius: 2px;
-          animation: eq .9s ease-in-out infinite alternate; box-shadow: 0 0 6px var(--accent-bg); }
-        @keyframes eq { from { height: 5px; } to { height: 18px; } }
+        /* HOVER TRANSITIONS FOR THE OVERVIEW (2026-09-19), the same audit rotation-views3.jsx ran
+           over the Stories feed on 2026-09-14. Five things here change background, border or
+           colour on hover and declared no transition, so each one snapped while the feed eased.
+           .ov-hovrow is new: the Recently-played, On repeat, Movement and Riser rows were each
+           setting currentTarget.style.background in JS on enter and clearing it on leave — four
+           hand-rolled copies of one rule, and an inline style swap is exactly the thing a CSS
+           transition cannot smooth, since it is the transition that has to be declared first. */
+        .ov-hovrow, .ov-wback, .ov-calsel, .ov-caltitle, .ov-pd-foot {
+          transition: background .16s ease, border-color .16s ease, color .16s ease;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .ov-hovrow, .ov-wback, .ov-calsel, .ov-caltitle, .ov-pd-foot { transition: none; }
+        }
+        .ov-hovrow:hover { background: var(--bg-3); }
+        /* ONE FACE FOR THE PULSE ROW'S NUMERALS (2026-09-19). .ov-ins-fig was a class with no rule
+           behind it, so the two insight figures in this row fell back to whatever they were given
+           inline — the mono face at 10px in flat white — while Scrobbles and Streak carried the
+           serif at 20px beside them. The rule is the pulse row's own: same family, same size, same
+           ink, tabular so the digits sit in columns. */
+        .ov-ins-fig { font-family: var(--serif); font-size: 20px; color: var(--ink);
+          font-variant-numeric: tabular-nums; line-height: 1.05; }
+        /* STRIP CAPTIONS (2026-09-19). A 1fr track in this strip is ~57px — nine characters at
+           the old .14em — and three captions were over it, so they broke mid-phrase and dropped
+           that tile's caption a line below its neighbours'. Letter-spacing came down to .06em,
+           which is what pays for the EP count now folded into the album tile, and each caption
+           holds its segments unbreakable: a caption that still runs long drops a whole phrase.
+           The whole strip is measured against the NARROWEST case — the 366px the map band's
+           middle column gives it at 1280px — because that is where it breaks first. */
+        .ov-stat-sub { letter-spacing: .06em; }
+        .ov-stat-sub > span { white-space: nowrap; }
+        .ov-stat-lt { white-space: nowrap; opacity: .6; }
+        /* .eqbar and its @keyframes went on 2026-09-19 — the five animated bars belonged to the
+           Now-playing card, commented out of the tree since 2026-08-20, and an infinite animation
+           on elements nothing renders is pure weight. */
         /* bare fr tracks have an implicit auto min, so a long insight can push a card past its track
            and overflow. Pin the tracks to a 0 min and let the cards stack once there isn't room
            (Fuad 2026-07-16). Four tracks, matching .ov-pulseslot — see the inline style. */
@@ -1103,8 +1150,9 @@ function OverviewView({ t, go, restReady, seed }) {
              are the point of their cards and keep their size. */
           .ov-strip .r-stat-n { font-size: 20px !important; }
           .ov-strip { gap: 8px 12px !important; }
-          /* the milestone number and its unit stay on one line; wrapping put "from 325,000" under
-             the figure and off its baseline, which is the misalignment Fuad saw */
+          /* the milestone bar and its target stay on one line; wrapping put "→ 325,000" under the
+             bar and off its baseline, which is the misalignment Fuad saw. The row moved into the
+             Scrobbles card on 2026-09-19 and kept the class — the rule is still what it needs. */
           .ov-mile-line { flex-wrap: nowrap !important; }
           /* the fade that keeps a long song title from shoving the play count off-screen */
           .ov-rep-txt > div {
@@ -1121,98 +1169,6 @@ function OverviewView({ t, go, restReady, seed }) {
           .r-view .r-card { grid-column: span 12 !important; }
         }
       `}</style>
-    </div>
-  );
-}
-
-// wall of generative covers with hover-fan
-function WallGrid({ items, kind, seen, setPop, onClick }) {
-  const [hover, setHover] = React.useState(-1);
-  return (
-    <div className="wall" onMouseLeave={() => { setHover(-1); setPop(null); }}>
-      {items.map((it, i) => (
-        <div key={it.id} className="wall-cell" data-hot={hover === i}
-          style={{ animationDelay: (i * 0.022).toFixed(2) + "s",
-            zIndex: hover === i ? 30 : 1 }}
-          onMouseEnter={(e) => {
-            setHover(i);
-            const r = e.currentTarget.getBoundingClientRect();
-            setPop({ x: r.left + r.width / 2, y: r.top, title: it.label, pip: it.hue, meta: kind.slice(0, -1),
-              rows: [["plays", fmt(it.value)], [kind === "artists" ? "tag" : "by", it.sub]], hint: "click to open ↗" });
-          }}
-          onClick={() => onClick(it)}>
-          <GenCover hue={it.hue} name={it.label} size={"100%"} radius={3} style={{ aspectRatio: "1", width: "100%", height: "auto" }} />
-          <span className="wall-rank r-mono">{String(i + 1).padStart(2, "0")}</span>
-          <div className="wall-cap">
-            <div className="wall-t">{it.label}</div>
-            <div className="wall-s r-mono">{fmt(it.value)}</div>
-          </div>
-        </div>
-      ))}
-      <style>{`
-        .wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: calc(var(--gap)*.8); }
-        /* A laptop band was tried here 2026-08-24 and REVERTED the same day. It shrank
-           .wall's tile floor to 96px and set .ov-page button to 11px — but the results module's
-           controls (Artists/Albums/Songs/Sound DNA, List/Grid, 10/25/50) are rendered in
-           rotation-calendar.jsx, NOT under .ov-page, so the type rule never reached them, and
-           the .wall change hit a different grid and took the row from 5 tiles to 4.5.
-           DONE the right way in rotation-calendar.jsx (.cal-pseg) — at every width, not just the
-           laptop band, since the last row was clipped on 4K too. Don't re-add a rule here. */
-        .wall-cell { position: relative; cursor: pointer; transition: transform .35s cubic-bezier(.2,.7,.3,1); }
-        @media (prefers-reduced-motion: no-preference) {
-          .wall-cell { animation: wallIn .5s cubic-bezier(.2,.7,.3,1); }
-        }
-        @keyframes wallIn { from { transform: translateY(16px) scale(.95); } to { transform: none; } }
-        .wall-cell[data-hot="true"] { transform: translateY(-8px) scale(1.06); }
-        .wall-cell[data-hot="true"] .gc { box-shadow: 0 22px 44px -10px rgba(0,0,0,.7), inset 0 0 0 1px var(--accent); }
-        .wall-rank { position: absolute; top: 6px; left: 7px; font-size: 9.5px; color: rgba(255,255,255,.9); text-shadow: 0 1px 3px #000; }
-        .wall-cap { margin-top: 8px; }
-        .wall-t { font-size: 12px; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .wall-s { font-size: 9.5px; color: var(--ink-faint); margin-top: 2px; }
-      `}</style>
-    </div>
-  );
-}
-
-// packed bubbles sized by plays
-function BubbleField({ items, seen, setPop, onClick, expressive }) {
-  const max = Math.max(...items.map(i => i.value));
-  // simple deterministic spiral pack
-  const placed = [];
-  const W = 1000, H = 520;
-  items.slice(0, 22).forEach((it, i) => {
-    const rad = 18 + (it.value / max) * 66;
-    let a = i * 2.399, dist = 0, x, y, ok = false, tries = 0;
-    while (!ok && tries < 400) {
-      x = W / 2 + Math.cos(a) * dist; y = H / 2 + Math.sin(a) * dist * 0.62;
-      ok = placed.every(p => Math.hypot(p.x - x, p.y - y) > p.rad + rad + 6)
-        && x - rad > 0 && x + rad < W && y - rad > 0 && y + rad < H;
-      a += 0.5; dist += 2.2; tries++;
-    }
-    placed.push({ ...it, x, y, rad });
-  });
-  return (
-    <div style={{ width: "100%", overflow: "hidden" }}>
-      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto" }}>
-        {placed.map((p, i) => {
-          const col = expressive ? `oklch(0.6 0.13 ${p.hue})` : "var(--accent-dim)";
-          return (
-            <g key={p.id} style={{ cursor: "pointer", opacity: seen ? 1 : 0,
-              transform: seen ? "scale(1)" : "scale(0)", transformOrigin: `${p.x}px ${p.y}px`,
-              transition: `all .6s cubic-bezier(.3,1.4,.5,1) ${i * 0.03}s` }}
-              onMouseEnter={(e) => { const svg = e.currentTarget.ownerSVGElement, rc = svg && svg.getBoundingClientRect();
-                setPop({ x: rc ? rc.left + p.x / W * rc.width : p.x, y: 260, title: p.label, pip: p.hue,
-                meta: "plays", rows: [["plays", fmt(p.value)], ["·", p.sub]], hint: "click to open ↗" }); }}
-              onMouseLeave={() => setPop(null)} onClick={() => onClick(p)}>
-              <circle cx={p.x} cy={p.y} r={p.rad} fill={col} fillOpacity={expressive ? 0.32 : 0.16}
-                stroke={col} strokeWidth="1.4" />
-              <text x={p.x} y={p.y} textAnchor="middle" dominantBaseline="middle" fill="var(--ink)"
-                fontFamily="var(--sans)" fontWeight="600" fontSize={Math.max(8, Math.min(14, p.rad / 3.6))}>
-                {p.label.length > 14 ? p.label.slice(0, 12) + "…" : p.label}</text>
-            </g>
-          );
-        })}
-      </svg>
     </div>
   );
 }

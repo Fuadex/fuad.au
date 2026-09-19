@@ -1,5 +1,5 @@
 // rotation-core.jsx — design system + shared primitives for Rotation.
-// Exports to window: cssRotation, fmt, GenCover, Spark, Bars, Radar,
+// Exports to window: cssRotation, fmt, GenCover, Spark, TweenNum, Bars, Radar,
 //   Donut, RisoTexture, useInView, useCountUp, hashInt.
 
 // ─────────────────────────────────────────────────────────────────
@@ -850,6 +850,46 @@ function Spark({ data, w, h, run, stroke, fill, labels, fmtV }) {
   );
 }
 
+// ─────────── tweened numeral ───────────
+// A number that COUNTS to its new value instead of being swapped (wave D 2026-09-17: the
+// year-in-review stats used to remount inside the keyed fade; numbers landing between years
+// read better travelling). 420ms ease-out; prefers-reduced-motion snaps.
+// MOVED HERE FROM rotation-views3.jsx (2026-09-19): the Overview's stat strip, Scrobbles counter
+// and emotional-weather readouts tween on a filter change now, and views1 loads BEFORE views3 —
+// a helper two views share belongs beside Spark, not in whichever file happened to need it first.
+// Two optional props came with the move:
+//   from — a starting value for the FIRST paint, so a figure that used to ramp 0→total under
+//          useCountUp still does (useCountUp animated on mount; this only animates on change).
+//   dur  — overrides the 420ms default, for those longer mount ramps.
+// Intermediate frames round to the TARGET's own decimal places, and the last frame lands on `v`
+// exactly — the strip carries 53.9 plays/day and 20.7 yr beside its whole counts.
+function TweenNum({ v, f, from, dur }) {
+  const v0 = from != null ? from : v;
+  const [shown, setShown] = React.useState(v0);
+  const ref = React.useRef({ raf: 0 });
+  const fromRef = React.useRef(v0);
+  React.useEffect(() => {
+    const src = fromRef.current;
+    if (src === v) return;
+    const calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (calm) { fromRef.current = v; setShown(v); return; }
+    const span = (dur || 420), t0 = performance.now();
+    const q = Math.pow(10, Math.min((String(v).split(".")[1] || "").length, 2));
+    cancelAnimationFrame(ref.current.raf);
+    const step = (now) => {
+      const p = Math.min(1, (now - t0) / span);
+      if (p < 1) {
+        const e = 1 - Math.pow(1 - p, 3);
+        setShown(Math.round((src + (v - src) * e) * q) / q);
+        ref.current.raf = requestAnimationFrame(step);
+      } else { setShown(v); fromRef.current = v; }
+    };
+    ref.current.raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(ref.current.raf);
+  }, [v]);
+  return <>{f ? f(shown) : shown}</>;
+}
+
 // ─────────── horizontal bar ───────────
 function Bars({ items, run, expressive, max, onHover, onClick }) {
   const mx = max || Math.max(...items.map(i => i.value), 1);
@@ -935,7 +975,7 @@ class Boundary extends React.Component {
   }
 }
 
-Object.assign(window, { cssRotation, fmt, fmtK, hashInt, MON, fmtDate, FAM_SHORT, famShort, FAM_TINY, famTiny, loadScript, useCountUp, useInView, GenCover, Spark, Bars, Radar, kanaToRomaji, KANA_RE, Boundary, imgProxied });
+Object.assign(window, { cssRotation, fmt, fmtK, hashInt, MON, fmtDate, FAM_SHORT, famShort, FAM_TINY, famTiny, loadScript, useCountUp, useInView, GenCover, Spark, TweenNum, Bars, Radar, kanaToRomaji, KANA_RE, Boundary, imgProxied });
 
 // ─────────────────────────────────────────────────────────────────
 //  Singles→LP "absorb" resolver. album-absorb.js (window.ROTATION_ALBUM_ABSORB) maps a single's
