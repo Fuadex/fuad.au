@@ -1256,73 +1256,19 @@ function StoriesView({ t, go, seed }) {
           );
         })()}
 
-        {/* top scenes — Discogs styles you've gone deepest on */}
-        {I.STYLE_ATLAS && I.STYLE_ATLAS.scenes && I.STYLE_ATLAS.scenes.length >= 6 && (
-          <section className="st-card">
-            <div className="st-label">Top of each scene</div>
-            <div className="st-title-sm">Where you went deepest.</div>
-            <div className="st-scenes">
-              {I.STYLE_ATLAS.scenes.map(sc => (
-                <div key={sc.style} className="st-scene">
-                  <div className="st-scene-name">{sc.style}</div>
-                  <div className="st-scene-n">{fmt(sc.plays)} plays</div>
-                  <div className="st-scene-via">
-                    {/* row 1: the top artist. row 2: the top artist EXCLUSIVE to this scene
-                        (build-computed sc.solo) — the giants topped every box, which said
-                        nothing; who lives ONLY here does. Runner-up until CI ships solo. */}
-                    {[sc.artists[0], (sc.solo && sc.solo.name !== sc.artists[0].name) ? sc.solo : sc.artists[1]]
-                      .filter(Boolean).map((a) => (
-                      <div key={a.name} className="st-scene-a" data-link={clickable(a.name)} onClick={() => goIf(a.name)}>
-                        <GenCover hue={a.hue} name={a.name} size={32} radius={3} />
-                        <div style={{ minWidth: 0 }}>
-                          <div className="st-row-name" style={{ fontSize: 13 }}>{a.name}</div>
-                          <div className="st-row-sub" style={{ fontSize: 11 }}>{fmt(a.plays)} plays
-                            {sc.solo && a.name === sc.solo.name ? <span style={{ color: "var(--accent)" }}> · only here</span> : null}</div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* bridges — artists carrying ≥ 2 of your top scenes */}
-        {I.STYLE_ATLAS && I.STYLE_ATLAS.bridges && I.STYLE_ATLAS.bridges.length >= 4 && (
-          <section className="st-card">
-            <div className="st-label">Bridge artists</div>
-            <div className="st-title-sm">Who connects your scenes.</div>
-            <div className="st-sub" style={{ marginBottom: 14 }}>
-              Artists whose styles span two or more of your top scenes — the records that make the library cohere.
-            </div>
-            <div className="st-bridges">
-              {I.STYLE_ATLAS.bridges.slice().sort((a, b) => b.scenes.length * Math.log(b.plays + 1) - a.scenes.length * Math.log(a.plays + 1)).slice(0, 8).map(b => (
-                <div key={b.artist} className="st-bridge" data-link={artistHasPage(b.artistId)}
-                  onClick={() => R.byId[b.artistId] && go("artist", b.artistId)}>
-                  <GenCover hue={b.hue} name={b.artist} size={44} radius={4} />
-                  <div style={{ minWidth: 0, flex: 1 }}>
-                    <div className="st-row-name">{b.artist}</div>
-                    <div className="st-bridge-scenes">
-                      {b.scenes.map((s, i) => (
-                        <React.Fragment key={s}>
-                          {i > 0 ? <span className="st-bridge-plus">+</span> : null}
-                          <span className="st-bridge-scene" style={{ color: `oklch(0.78 0.13 ${b.hue + i * 18})` }}>{s}</span>
-                        </React.Fragment>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="st-bridge-n">{fmt(b.plays)} <small style={{ color: "var(--ink-faint)" }}>plays</small></div>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
+        {/* TOP OF EACH SCENE + BRIDGE ARTISTS — RETIRED (Fuad 2026-09-21: bridges measure Discogs
+            tag co-occurrence, not connection, and the scene boxes are a directory the Explore page
+            already provides). Both sections used to render here off I.STYLE_ATLAS.scenes/.bridges.
+            The one atom worth keeping — each scene's solo artist, who exists ONLY in that scene for
+            this listener — moved into Style atlas below as its opening "Carried alone" rows. */}
 
         {/* style atlas — discogs styles only you (or 1-2 artists) keep alive in this library */}
         {I.STYLE_ATLAS && I.STYLE_ATLAS.rarest && I.STYLE_ATLAS.rarest.length > 3 && (() => {
           const S = I.STYLE_ATLAS;
           const sole = S.rarest.filter(r => r.artists.length === 1).length;
+          // solo salvage from the retired scene boxes (Fuad 2026-09-21) — CI-computed, may be
+          // absent on an older payload; when no scene carries one this falls through untouched.
+          const solos = (S.scenes || []).filter(sc => sc.solo).slice(0, 6);
           return (
             <section className="st-card">
               <div className="st-label">Style atlas</div>
@@ -1331,6 +1277,24 @@ function StoriesView({ t, go, seed }) {
                 Of <em>{S.uniqueStyles}</em> distinct styles across {S.artistsCovered} Discogs-indexed artists, these hang
                 on the narrowest set of carriers{sole > 0 && <> — <em>{sole}</em> on a single artist</>}.
               </div>
+              {solos.length > 0 && (
+                <>
+                  <div className="st-yir-h">Carried alone</div>
+                  <div className="st-atlas" style={{ marginBottom: 16 }}>
+                    {solos.map(sc => (
+                      <div key={sc.style} className="st-atlas-row" data-link={clickable(sc.solo.name)}
+                        onClick={() => goIf(sc.solo.name)} style={{ cursor: clickable(sc.solo.name) ? "pointer" : "default" }}>
+                        <div className="st-atlas-style">{sc.style}</div>
+                        <div className="st-atlas-via" style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                          <GenCover hue={sc.solo.hue} name={sc.solo.name} size={32} radius={3} />
+                          <span style={{ color: `oklch(0.78 0.14 ${sc.solo.hue})`, fontWeight: 500 }}>{sc.solo.name}</span>
+                        </div>
+                        <div className="st-atlas-n">{fmt(sc.solo.plays)}<small> plays</small></div>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
               <div className="st-atlas">
                 {S.rarest.map(r => (
                   <div key={r.style} className="st-atlas-row">
@@ -2195,16 +2159,16 @@ function StoriesView({ t, go, seed }) {
            modules: "The songs you own twice hyperlinks don't have hover transitions, same in The
            ones that ended"). An audit of the feed's hover rules found eight classes that CHANGE on
            hover — background, border or colour — while their base declared no transition, so each
-           one snapped. .st-row, .st-obs, .st-ug-cut and .st-bridge already had one, which is why
-           some modules felt right and others did not. Declared once here rather than edited into
-           eight separate grid/flex rules. */
+           one snapped. .st-row, .st-obs and .st-ug-cut already had one, which is why some modules
+           felt right and others did not. Declared once here rather than edited into eight separate
+           grid/flex rules. */
         .st-yir-jump, .st-life-row, .st-gate, .st-incub-row,
-        .st-atlas-row, .st-scene-a, .st-mile, .st-peak {
+        .st-atlas-row, .st-mile, .st-peak {
           transition: background .16s ease, border-color .16s ease, color .16s ease;
         }
         @media (prefers-reduced-motion: reduce) {
           .st-yir-jump, .st-life-row, .st-gate, .st-incub-row,
-          .st-atlas-row, .st-scene-a, .st-mile, .st-peak { transition: none; }
+          .st-atlas-row, .st-mile, .st-peak { transition: none; }
         }
         .st-label { font-family: var(--mono); font-size: 9px; letter-spacing: .13em; text-transform: uppercase;
           color: var(--accent); margin-bottom: 8px; }
@@ -2312,10 +2276,8 @@ function StoriesView({ t, go, seed }) {
         .st-ug-cut[data-link="true"] { cursor: pointer; }
         .st-ug-cut[data-link="true"]:hover { border-color: var(--accent-dim); }
         /* "and stuff under The Ones That Ended" — the cut cards shifted a 1px border and nothing
-           else, which is nearly invisible against a dark ground. The name warms too, the way the
-           scene cards already do. .st-scene-a had the hover but no transition on the base, so its
-           name SNAPPED; one shared transition covers both. */
-        .st-ug-cut .st-row-name, .st-scene-a .st-row-name { transition: color .15s ease; }
+           else, which is nearly invisible against a dark ground. The name warms on hover too. */
+        .st-ug-cut .st-row-name { transition: color .15s ease; }
         .st-ug-cut[data-link="true"]:hover .st-row-name { color: var(--accent); }
         .st-yir-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
         .st-yir-nav { display: flex; align-items: center; gap: 6px; }
@@ -2386,14 +2348,6 @@ function StoriesView({ t, go, seed }) {
           .st-gate { grid-template-columns: auto 1fr auto; gap: 10px; }
           .st-gate-stamp { flex-direction: column; align-items: flex-start; gap: 2px; }
         }
-        .st-bridges { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 7px; }
-        .st-bridge { display: flex; gap: 10px; align-items: center; padding: 7px 9px; border: 1px solid var(--rule); border-radius: 6px; transition: border-color .15s; min-width: 0; }
-        .st-bridge[data-link="true"] { cursor: pointer; }
-        .st-bridge[data-link="true"]:hover { border-color: var(--accent-dim); }
-        .st-bridge-scenes { display: flex; gap: 8px; flex-wrap: wrap; align-items: baseline; margin-top: 4px; font-size: 12.5px; }
-        .st-bridge-scene { font-family: var(--serif); font-style: italic; font-weight: 500; }
-        .st-bridge-plus { color: var(--ink-faint); font-family: var(--mono); font-size: 11px; }
-        .st-bridge-n { font-family: var(--serif); font-size: 17px; flex: none; margin-left: auto; }
         .st-incub { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 22px; }
         .st-incub-row { display: grid; grid-template-columns: 32px 1fr auto; gap: 10px; align-items: center;
           padding: 7px 8px; margin: 0 -8px; border-radius: 5px; }
@@ -2427,15 +2381,6 @@ function StoriesView({ t, go, seed }) {
         .st-atlas-via { font-size: 12.5px; color: var(--ink-soft); }
         .st-atlas-n { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); }
         .st-atlas-n small { font-size: 8.5px; letter-spacing: .1em; text-transform: uppercase; opacity: .7; }
-        .st-scenes { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
-        .st-scene { border: 1px solid var(--rule); border-radius: 6px; padding: 14px 14px 12px; }
-        .st-scene-name { font-family: var(--serif); font-style: italic; font-size: 19px; line-height: 1; }
-        .st-scene-n { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); letter-spacing: .12em;
-          text-transform: uppercase; margin-top: 5px; margin-bottom: 10px; }
-        .st-scene-via { display: grid; gap: 7px; }
-        .st-scene-a { display: flex; gap: 9px; align-items: center; padding: 4px 0; }
-        .st-scene-a[data-link="true"] { cursor: pointer; }
-        .st-scene-a[data-link="true"]:hover .st-row-name { color: var(--accent); }
         @media (max-width: 700px) {
           .st-atlas-row { grid-template-columns: 1fr auto; gap: 6px 12px; }
           .st-atlas-via { grid-column: 1 / -1; font-size: 12px; }
@@ -2587,14 +2532,14 @@ function StoriesView({ t, go, seed }) {
         .st-feed > section { max-width: 100%; min-width: 0; overflow-wrap: anywhere; }
         @media (max-width: 700px) { .st-feed { max-width: 100%; } }
         .st-list, .st-life, .st-atlas, .st-peaks, .st-gates, .st-turn, .st-arc,
-        .st-incub, .st-grid, .st-scenes, .st-ug-cuts, .st-geo-grid { min-width: 0; }
+        .st-incub, .st-grid, .st-ug-cuts, .st-geo-grid { min-width: 0; }
         .st-life-row, .st-atlas-row, .st-peak, .st-gate, .st-turn-row, .st-arc-row,
         .st-incub-row, .st-life-row > *, .st-atlas-row > *, .st-peak > *, .st-gate > * { min-width: 0; }
         /* measured at 360px (probe 2026-09-17): these grid items grew to their nowrap content
            (.st-ug-cut 473px, .st-row 435px, .st-obs 398px) and clipped at the viewport edge.
            A grid item's min-width is AUTO unless pinned — the inner ellipsis rules can only
            work once the item itself is allowed to shrink. */
-        .st-row, .st-ug-cut, .st-obs, .st-obs-top, .st-obs-txt, .st-scene-a, .st-mile { min-width: 0; }
+        .st-row, .st-ug-cut, .st-obs, .st-obs-top, .st-obs-txt, .st-mile { min-width: 0; }
         @media (max-width: 700px) {
           .st-yir-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
           .st-ug-cuts { grid-template-columns: 1fr 1fr; gap: 6px; }
