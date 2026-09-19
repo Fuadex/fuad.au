@@ -511,7 +511,11 @@ function OvBlindCard({ go, restReady }) {
 // that arrives as text can only be swapped, and every one of these ten changes the moment a filter
 // lands. `f` formats, `from`/`dur` hand TweenNum a first-paint ramp for the two figures that used
 // to get one from useCountUp. Anything non-numeric (a hyphen, a unit already baked in) still prints
-// as-is, so a call site that has nothing to tween costs nothing.
+// as-is, so a call site that has nothing to tween costs nothing — SINCE and PEAK YEAR below lean on
+// exactly this (2026-09-21): a year handed in as a string skips TweenNum entirely, because a
+// count-up through a run of intermediate years reads as a date glitch, not a stat landing.
+// `title` (2026-09-21) is a plain passthrough to the tile's own div, for PEAK YEAR's exact-count
+// tooltip — optional, costs nothing when omitted.
 //
 // IT LIVES OUT HERE, NOT INSIDE OverviewView (2026-09-21). Declared in the view body it was a NEW
 // component type on every render, so React threw the whole strip away and remounted it whenever a
@@ -521,8 +525,8 @@ function OvBlindCard({ go, restReady }) {
 // nothing instead of travelling the difference"). Measured over CDP at 40ms: 7,800 -> 23 in one
 // frame before, the ease across ~420ms after. The component closes over nothing but its props, so
 // the hoist is the whole fix.
-const Stat = ({ n, f, sub, big, onClick, from, dur }) => (
-  <div onClick={onClick} style={onClick ? { cursor: "pointer" } : null} className={onClick ? "ov-stat-link" : ""}>
+const Stat = ({ n, f, sub, big, onClick, from, dur, title }) => (
+  <div onClick={onClick} title={title} style={onClick ? { cursor: "pointer" } : null} className={onClick ? "ov-stat-link" : ""}>
     <div className="r-stat-n" style={{ fontSize: big ? "clamp(28px,3.4vw,40px)" : 20 }}>
       {typeof n === "number" && isFinite(n) ? <TweenNum v={n} f={f} from={from} dur={dur} /> : n}</div>
     {/* the ↗ is gone (Fuad 2026-08-20). It marked the stat as clickable, but every stat in the
@@ -582,12 +586,16 @@ function OverviewView({ t, go, restReady, seed }) {
     } else { from = idxOf(mapYear + "-01-01"); to = idxOf(mapYear + "-12-31"); label = "" + mapYear; }
     from = Math.max(0, from); to = Math.min(days.counts.length - 1, to);
     if (to < from) return null;
-    let plays = 0, active = 0, hiC = -1, hiI = from;
-    for (let i = from; i <= to; i++) { const c = days.counts[i]; plays += c; if (c > 0) active++; if (c > hiC) { hiC = c; hiI = i; } }
+    // ACTIVE-DAY COUNT AND THE HEAVIEST-DAY SCAN WENT (Fuad 2026-09-21) with the two strip tiles
+    // that read them. Both only ever answered a TIME pick — day-series is flat per-day totals with
+    // no place or genre in it — so under a place/genre-only filter they silently kept showing this
+    // window's unsliced numbers. Exchanged for peak year / since year, built off `yp` in the map
+    // band's own onStats pass (rotation-worldmap.jsx), which a place or genre slice can answer too.
+    let plays = 0;
+    for (let i = from; i <= to; i++) plays += days.counts[i];
     const spanDays = to - from + 1;
-    const hiDate = new Date(startMs + hiI * 86400e3).toISOString().slice(0, 10);
-    return { plays, active, spanDays, label, avgDay: Math.round(plays / spanDays * 10) / 10,
-      hiCount: hiC, hiDate, sharePct: Math.round(plays / (days.total || 1) * 1000) / 10 };
+    return { plays, spanDays, label, avgDay: Math.round(plays / spanDays * 10) / 10,
+      sharePct: Math.round(plays / (days.total || 1) * 1000) / 10 };
   }, [days, mapYear, mapPeriod]);
   // Combine the temporal window (day-series) with the map's reported filtered plays (place + genre
   // + year, from fStats) so avg/day and share-of-history follow ANY filter — not just the date one.
@@ -604,18 +612,13 @@ function OverviewView({ t, go, restReady, seed }) {
     if (fp == null) return null;   // no filter → lifetime static stats
     const spanDays = dyn ? dyn.spanDays : days.counts.length;   // temporal window, or the whole span
     const rawLabel = slice ? (fStats.label || "filtered") : (dyn ? dyn.label : "");
-    // DEPTH — plays per artist across whatever Results is showing (Fuad 2026-08-20). Both terms come
-    // from fStats and neither from `fp`: resultArtists is period-scoped (it reads periodData.arts on
-    // a calendar pick, and is uncapped since 2026-07-26), so the pair is internally consistent.
-    // Mixing the day-series play total with an fStats artist count would inflate the ratio, because
-    // fStats sees Explore-eligible artists only while day-series counts every scrobble.
-    const depth = (fStats && fStats.plays != null && fStats.artists)
-      ? Math.round(fStats.plays / fStats.artists * 10) / 10 : null;
+    // DEPTH (plays per artist) AND ITS SHARE FALLBACK ARE GONE FROM HERE (Fuad 2026-09-21) — the
+    // tenth-tile ternary they fed is too, replaced by ONE stable PLAYS/ARTIST identity computed
+    // straight off fStats.plays/fStats.artists at the call site (no flt detour needed: unlike
+    // avg/day, this ratio never wanted the day-series window, only the Results counts). `hi`
+    // (heaviest day) is gone with the peak-day tile it fed — see the dyn comment above.
     return {
       avgDay: Math.round(fp / Math.max(1, spanDays) * 10) / 10,
-      sharePct: Math.round(fp / (days.total || 1) * 1000) / 10,
-      depth,
-      hi: dyn ? { count: dyn.hiCount, date: dyn.hiDate } : null,   // heaviest stays time-scoped (per-slice needs a heavier export)
       label: rawLabel.length > 18 ? rawLabel.slice(0, 17) + "…" : rawLabel,
     };
   }, [fStats, dyn, days]);
@@ -675,7 +678,10 @@ function OverviewView({ t, go, restReady, seed }) {
   // 26-week scrobble trend (real if the build provides it)
   const trend = React.useMemo(() => R.TREND || Array.from({ length: 26 }, (_, i) =>
     180 + Math.round(Math.sin(i / 3) * 60 + (hashInt("wk" + i, 5) % 90) + i * 3)), []);
-  const sinceYears = ((Date.now() - new Date(T.since)) / 3.156e10).toFixed(1);
+  // Library's first year — flt-independent (Fuad 2026-09-21), so the SINCE tile below has a real
+  // number to show before the map band's fStats pass lands (or on a slice with no yp coverage at
+  // all). Same source the header kicker used when it was on screen: new Date(T.since).getFullYear().
+  const firstYear = new Date(T.since).getFullYear();
   // NEXT MILESTONE, FOLDED IN (2026-09-19). It was its own pulse card printing the same live total
   // the Scrobbles card prints one cell along — two of the row's four seats spent on one number.
   // What the card actually added was the DISTANCE to the next round five thousand, so that is what
@@ -699,20 +705,12 @@ function OverviewView({ t, go, restReady, seed }) {
   // plays and artists (rotation-worldmap.jsx), so both tiles narrow with everything else and
   // there is nothing left to caption. .ov-stat-lt went with it.
   //
-  // ACTIVE DAYS replaced "N / sitting" in the same pass (Fuad 2026-09-21: "7 / sitting means
-  // nothing to me... We need something clearer and better"). The median session length was a
-  // lifetime constant with no filtered form at all. Days-played is the plainest thing this strip
-  // can say and it moves: the day-series counts are already resident for avg/day and peak day, so
-  // the slice's active days are one scan of the same array. Under a place/genre-only filter it
-  // reads the time window (lifetime when there is none) exactly as peak day does — day-series is
-  // flat per-day totals with no place or genre in it, and a per-slice day export is the same
-  // parked work peak day is waiting on.
-  const activeDays = React.useMemo(() => {
-    if (dyn) return dyn.active;                       // a year or calendar pick → that window's days
-    if (!days || !days.counts) return null;           // day-series still loading → tile waits
-    let n = 0; for (const c of days.counts) if (c > 0) n++;
-    return n;
-  }, [days, dyn]);
+  // ACTIVE DAYS (which had replaced "N / sitting" on 2026-09-19) IS GONE TOO, ONE DAY LATER
+  // (Fuad 2026-09-21). Same fault as its neighbour, peak day: day-series is flat per-day totals
+  // with no place or genre in it, so under a place/genre-only filter "days" silently kept showing
+  // this window's unfiltered count instead of the slice's own. Exchanged for SINCE — the earliest
+  // year the current slice actually has plays in, off the map band's own yp-built fStats pass
+  // (rotation-worldmap.jsx) — which a place or genre filter, not just a time one, can answer.
 
   return (
     <div className="r-view" ref={ref}>
@@ -764,12 +762,16 @@ function OverviewView({ t, go, restReady, seed }) {
             initFilter={_seed.filter} onFilter={setMapFilter}
             calRail={<OvCalRail go={go} onYear={setMapYear} onPeriod={setMapPeriod} init={_seed} extYear={mapYear} />}
             statSlot={
-              /* the stat strip, nested under the flowmap (Fuad 2026-07-06). Every tile but one is
+              /* the stat strip, nested under the flowmap (Fuad 2026-07-06). EVERY TILE is
                  filter-reactive as of 2026-09-21 (Fuad: "it'd be better if we had numbers updating
-                 with filters") — hours, artists, albums, songs, days played, seen live, avg/day,
-                 depth and results-share all narrow with the map/calendar pick. Days played and
-                 peak day both read the TIME window rather than the full slice, for the same
-                 reason: day-series carries no place or genre. Each says so where it is built. */
+                 with filters") — hours, artists, albums, songs, since year, seen live, avg/day,
+                 plays/artist, peak year and results-share all narrow with the map/calendar pick.
+                 SINCE and PEAK YEAR are the last two in (replacing "days played" and "peak day"):
+                 both used to read the day-series TIME window only — day-series carries no place or
+                 genre, so a place/genre-only filter silently kept showing the unsliced lifetime
+                 numbers underneath them. Both now come off the map band's own onStats pass instead
+                 (rotation-worldmap.jsx), which accumulates a year→plays map from each Results row's
+                 `yp` and so can answer a place or genre slice honestly, not just a time pick. */
               <div className="r-card ov-strip" style={{ padding: "12px 14px", display: "grid",
                 gridTemplateColumns: "repeat(2,1fr)", gap: "10px 16px", alignContent: "center" }}>
                 <Stat n={fStats && fStats.active ? fStats.hours : hrsLive} f={fmt} from={0} dur={1400} sub="hours" onClick={() => go("calendar")} />
@@ -789,38 +791,54 @@ function OverviewView({ t, go, restReady, seed }) {
                   n={fStats && fStats.active && fStats.albums != null ? fStats.albums : T.albumsLP}
                   sub={fStats && fStats.active && fStats.albums != null
                     ? <span>albums</span> : <span>albums +{kAbbr(T.epsSingles || 0)}</span>} />}
-                {/* "days played" is the phrase, "days" is what fits: eleven characters wanted 62px
-                    of a 59px track and broke onto a second line, which lifted the whole top row of
-                    the strip by 12px — the same fault as the marker above it, one tile along. Cut
-                    to the noun, as "plays / artist" and "of history" were on 2026-09-19. Beside
-                    HOURS and ARTISTS it reads as the third unit of listening, which is what it is. */}
-                {activeDays != null && <Stat n={activeDays} f={fmt} sub="days" onClick={() => go("calendar")} />}
+                {/* SINCE (Fuad 2026-09-21) replaces "days played" — see the strip's opening comment
+                    and the removed activeDays memo above for why. The number is the earliest year
+                    the CURRENT slice has any plays in at all, off fStats.sinceYear; the library's
+                    own first year covers the gap before the map band's first onStats report lands.
+                    Rendered as a STRING on purpose, not a number: Stat's f={fmt} would comma a year
+                    ("2,013"), and passing it through TweenNum/n-as-number would count up to it,
+                    which reads as a date glitch rather than a stat. A string skips both — it falls
+                    through Stat's own non-numeric branch (`typeof n === "number" ... : n`), which
+                    renders as-is with no formatter and no tween. */}
+                <Stat n={String(fStats && fStats.sinceYear != null ? fStats.sinceYear : firstYear)} sub="since" onClick={() => go("calendar")} />
                 {T.tracks != null && <Stat f={fmt} sub={<span>songs</span>} onClick={() => go("explore")}
                   n={fStats && fStats.active && fStats.songs != null ? fStats.songs : T.tracks} />}
                 {seenLivePct > 0 && <Stat n={seenLiveShown} f={(x) => x + "%"} sub="seen live" onClick={() => go("gigs")} />}
                 <Stat n={flt ? flt.avgDay : T.perDay} sub="avg / day" />
-                {/* Filtered, this slot shows DEPTH, not share (Fuad 2026-08-20). It used to become
-                    "% of all plays", which is the same quantity the tenth stat spells out as "of
-                    plays · in results" — two cells apart, saying one thing. Depth answers what
-                    neither neighbour does: was this slice one obsession or a wide graze. Falls back
-                    to share on the rare filter where Results reports no artist count, rather than
-                    leaving a hole in the strip. */}
-                {/* captions cut to fit the track (2026-09-19): "plays / artist" and "of history"
-                    both ran past the ~57px a 1fr column gets here and broke onto a second line,
-                    which dropped that tile's caption a row below its neighbours'. */}
-                <Stat n={flt ? (flt.depth != null ? flt.depth : flt.sharePct) : +sinceYears}
-                  f={flt ? (flt.depth != null ? undefined : (x) => x + "%") : (x) => x.toFixed(1) + " yr"}
-                  sub={flt ? (flt.depth != null ? "per artist" : "share") : "of history"} />
-                {/* "streak" NAMED THE WRONG STAT (2026-09-19). R.TOTALS.topDay.count is the
-                    heaviest single DAY — the streak, a run of consecutive days, is the pulse card
-                    two rows up and carries a different number entirely. */}
-                <Stat n={flt && flt.hi ? flt.hi.count : R.TOTALS.topDay.count} f={fmt} sub="peak day" onClick={() => go("calendar")} />
+                {/* PLAYS / ARTIST (Fuad 2026-09-21) is this tile's ONE stable identity now —
+                    it used to shape-shift between depth / share% / years-of-history depending on
+                    what was active, three different quantities behind one slot. fStats.plays /
+                    fStats.artists already IS the old "depth" reading, and fStats reports both
+                    whether or not a filter is on, so this single expression covers every case; the
+                    T.scrobbles/T.artists arm only covers the instant before the map band's first
+                    report lands. The FULL caption ships, not the "per artist" it was cut to on
+                    2026-09-19 (that cut, and "of history"'s, are why this and the tile below carry
+                    dated captions-cut-to-fit comments below) — here the CAPTION shrinks instead of
+                    the words: see .ov-stat-fit, sized against this strip's real ~57px 1fr track. */}
+                {/* BASE MATCHES THE VISIBLE NEIGHBOUR (2026-09-21, caught at QC render): unfiltered,
+                    fStats.plays/fStats.artists said 45.6 while the ARTISTS tile two cells over said
+                    16,054 — fStats counts Explore-eligible artists only, the tile counts the whole
+                    library, and a ratio the reader can't rebuild from the numbers beside it is the
+                    old "computable" complaint in a new costume. So: unfiltered reads lifetime over
+                    lifetime (T.scrobbles/T.artists, ≈20), filtered reads the slice over the slice's
+                    own artist count — each state computes against the ARTISTS tile it sits with. */}
+                <Stat n={fStats && fStats.active ? Math.round(fStats.plays / Math.max(1, fStats.artists) * 10) / 10
+                    : Math.round(T.scrobbles / Math.max(1, T.artists) * 10) / 10}
+                  sub={<span className="ov-stat-fit">plays / artist</span>} />
+                {/* PEAK YEAR (Fuad 2026-09-21) replaces "peak day" — the pair to SINCE above and
+                    the same fault as "days played": R.TOTALS.topDay was a LIFETIME constant with no
+                    filtered form, blind to place or genre. fStats.peakYear is the year with the most
+                    plays in whatever the onStats pass just aggregated (clamped to the picked
+                    window under a year/calendar pick — see rotation-worldmap.jsx); the exact count
+                    rides in the title tooltip, where a comma is correct, rather than in the tile
+                    itself. Plain-string year again, same reasoning as SINCE. */}
+                <Stat n={fStats && fStats.peakYear ? String(fStats.peakYear.y) : "–"} sub="peak year" onClick={() => go("calendar")}
+                  title={fStats && fStats.peakYear ? `${fmt(fStats.peakYear.plays)} plays in ${fStats.peakYear.y}` : undefined} />
                 {/* Tenth stat (Fuad 2026-08-20): what share of everything I've ever played belongs
                     to the artists standing in the Results list right now — the WHOLE list, not its
                     visible top ten. Unfiltered it reads as the genre map's coverage of my listening;
                     narrow to a city or a genre and it drops to that corner's weight. Distinct from
-                    the share stat above it, which follows the time window and reads years-of-history
-                    when nothing is filtered. */}
+                    plays/artist beside it, which answers obsession-vs-breadth rather than coverage. */}
                 {resShare != null && <Stat n={resShare} f={(x) => x + "%"} sub="of plays" onClick={() => go("explore")} />}
               </div>
             } />
@@ -1269,6 +1287,18 @@ function OverviewView({ t, go, restReady, seed }) {
         .ov-stat-sub > span { white-space: nowrap; }
         /* .ov-stat-lt held the "· lifetime" marker from 2026-09-19 to 2026-09-21. The marker is
            gone — the two tiles it annotated follow the filter now — so the rule went with it. */
+        /* .ov-stat-fit (2026-09-21): the plays/artist caption is the one place the CAPTION shrinks
+           instead of the words being cut — "plays / artist" was amputated to "per artist" on
+           2026-09-19 for exactly the reason above (~57px track, .06em spacing → ~10 characters).
+           Full phrase is 14 characters incl. the slash; JetBrains Mono's advance is ~0.6em, so at
+           this rule's 6.5px / 0 letter-spacing that's 14 × 6.5 × 0.6 ≈ 54.6px — under the ~57px
+           track with a few px to spare, still comfortably inside the narrowest (366px/5-col) case
+           the rest of this comment block is measured against. Nowrap already comes from the parent
+           rule above (this is a direct .ov-stat-sub > span child — NO backticks in this
+           comment: the whole style block is one template literal, and a nested backtick
+           closes it early, turning the text between into live JS that parses but crashes
+           the view at runtime; check-jsx cannot catch it). */
+        .ov-stat-fit { font-size: 6.5px; letter-spacing: 0; }
         /* .eqbar and its @keyframes went on 2026-09-19 — the five animated bars belonged to the
            Now-playing card, commented out of the tree since 2026-08-20, and an infinite animation
            on elements nothing renders is pure weight. */

@@ -404,6 +404,21 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
   // family membership → the record's `fm` set (mention ≠ membership, 2026-08-12); subgenre → `sq`
   // (qualifying subs, ≥25% of top-tag weight) falling back to `s` for legacy records.
   const matchGenre = (a) => filt.sub != null ? ((a.sq || a.s).includes(filt.sub)) : (a.fm ? a.fm.includes(filt.fam) : a.s.some(si => R.SUBS[si] && R.SUBS[si].fam === filt.fam));
+  // Resolve an id back to its EXPLORE/core record. Hoisted out of periodArtsFiltered below (Fuad
+  // 2026-09-21) — the peak-year/since-year accumulation in the onStats pass needs the same lookup
+  // for calendar-period rows, whose `a` is the bare {id,name,hue} calendar-detail shape and carries
+  // no `.yp` of its own.
+  const recOf = (id) => (R.expById && R.expById[id]) || (R.byId && R.byId[id]) || (R.EXPLORE && R.EXPLORE.find(a => a.id === id));
+  // The calendar year(s) a picked day/week/month period touches — almost always one, except a week
+  // straddling New Year's Eve. Mirrors daysIn()'s own week-start-plus-6 math below (Fuad 2026-09-21,
+  // for the peak-year/since-year clamp in the onStats pass).
+  const calWindowYears = (cp) => {
+    if (!cp) return null;
+    const y0 = +cp.key.slice(0, 4);   // day "YYYY-MM-DD" / week start / month "YYYY-MM" all lead with the year
+    if (cp.gran !== "week") return [y0];
+    const y1 = new Date(Date.parse(cp.key + "T00:00:00Z") + 6 * 86400e3).getUTCFullYear();
+    return y1 === y0 ? [y0] : [y0, y1];
+  };
   const filtSums = React.useMemo(() => {
     if (filt.sub == null && filt.fam == null) return null;
     const yr = yearIdx != null ? geoYears[yearIdx] : null;
@@ -497,7 +512,6 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
     if (!periodData) return null;
     const genreOn = filt.fam != null || filt.sub != null;
     if (!genreOn && !sel) return periodData.arts;
-    const recOf = (id) => (R.expById && R.expById[id]) || (R.byId && R.byId[id]) || (R.EXPLORE && R.EXPLORE.find(a => a.id === id));
     return periodData.arts.filter(e => {
       const rec = recOf(e.a.id); if (!rec) return false;
       if (genreOn && !matchGenre(rec)) return false;
@@ -602,18 +616,49 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
     }
     const rdsValence = _lp ? Math.round(_ls / _lp) : null;
     const rdsPlays = _lp;
+    // PEAK YEAR / SINCE — one more scan of the same Results rows (Fuad 2026-09-21: the Overview
+    // strip's last two time-only impostor tiles, days played and heaviest day, only ever followed
+    // a TIME pick — day-series carries no place or genre, so under a place/genre filter they kept
+    // silently showing the unsliced lifetime numbers). `yp` (lifetime per-year plays) already
+    // rides on every core ARTISTS record and the top of the EXPLORE tail for the genre pivot above,
+    // so folding a year→plays aggregate into this pass is one more loop, not new data — build-data.js
+    // is untouched.
+    //   A TIME filter (a year pick or a calendar period — this band's own yearIdx/calPeriod) clamps
+    // the aggregate to the years THAT PICK NAMES: summing a.yp unclamped under a 2013 pick would
+    // surface the surviving artists' lifetime peak (2017, say) instead of the honest answer "you
+    // picked 2013". A place/genre slice with no time pick has no window to clamp to, so it sums
+    // every year of yp for the slice's own rows — "when was this corner of the library heaviest" is
+    // exactly the intended reading. Unfiltered, the same sum runs over the full Explore-eligible
+    // base — the payload's existing slight-undercount-vs-raw-scrobbles convention, same as
+    // `plays`/`artists` above.
+    const timeWindow = periodData ? calWindowYears(calPeriod) : (yearIdx != null ? [geoYears[yearIdx]] : null);
+    const yrAgg = {};
+    for (const e of resultArtists) {
+      // non-period rows are real EXPLORE/core records already (yp lives right on e.a); a calendar-
+      // period row is the bare calendar-detail {id,name,hue} shape and needs the recOf lookup.
+      const rec = e.a && e.a.yp ? e.a : recOf(e.a && e.a.id);
+      const yp = rec && rec.yp; if (!yp) continue;
+      if (timeWindow) { for (const y of timeWindow) { const v = yp[y]; if (v) yrAgg[y] = (yrAgg[y] || 0) + v; } }
+      else { for (const y in yp) yrAgg[y] = (yrAgg[y] || 0) + yp[y]; }
+    }
+    let peakYear = null, sinceYear = null;
+    for (const y in yrAgg) {
+      const v = yrAgg[y], yn = +y;
+      if (v > 0 && (sinceYear == null || yn < sinceYear)) sinceYear = yn;
+      if (!peakYear || v > peakYear.plays) peakYear = { y: yn, plays: v };
+    }
     const active = !!(sel || focus || filt.fam != null || filt.sub != null || yearIdx != null || periodData);
     // Report even when nothing is filtered: `active:false` keeps every existing consumer on its
     // lifetime branch (they all gate on .active), while still publishing the Results totals.
-    if (!active) { onStats({ active: false, plays, artists, albums, songs, debutYears, livePlays, sndValence, sndPlays, rdsValence, rdsPlays }); return; }
+    if (!active) { onStats({ active: false, plays, artists, albums, songs, debutYears, livePlays, sndValence, sndPlays, rdsValence, rdsPlays, peakYear, sinceYear }); return; }
     const avgSec = (R.TOTALS && R.TOTALS.avgTrackSec) || 216;
     // `slice` = a place/genre filter is active (not just a year/period). The Overview stat strip uses
     // it to decide whether to size avg/day from this (EXPLORE-scoped) count or from the exact day-series
     // total (which is right for a pure time filter). periodData is a time filter → slice:false.
-    if (periodData) { onStats({ active: true, slice: false, plays, artists, albums, songs, debutYears, livePlays, sndValence, sndPlays, rdsValence, rdsPlays, hours: Math.round(plays * avgSec / 3600), label: [periodData.label, sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? famShort(R.FAMILIES[filt.fam].family) : null].filter(Boolean).join(" · ") }); return; }
+    if (periodData) { onStats({ active: true, slice: false, plays, artists, albums, songs, debutYears, livePlays, sndValence, sndPlays, rdsValence, rdsPlays, peakYear, sinceYear, hours: Math.round(plays * avgSec / 3600), label: [periodData.label, sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? famShort(R.FAMILIES[filt.fam].family) : null].filter(Boolean).join(" · ") }); return; }
     const yr = yearIdx != null ? geoYears[yearIdx] : null;
     const slice = !!(sel || focus || filt.fam != null || filt.sub != null);
-    onStats({ active: true, slice, plays, artists, albums, songs, debutYears, livePlays, sndValence, sndPlays, rdsValence, rdsPlays, hours: Math.round(plays * avgSec / 3600), label: [sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? famShort(R.FAMILIES[filt.fam].family) : null, yr].filter(Boolean).join(" · ") || "filtered" });
+    onStats({ active: true, slice, plays, artists, albums, songs, debutYears, livePlays, sndValence, sndPlays, rdsValence, rdsPlays, peakYear, sinceYear, hours: Math.round(plays * avgSec / 3600), label: [sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? famShort(R.FAMILIES[filt.fam].family) : null, yr].filter(Boolean).join(" · ") || "filtered" });
   }, [resultArtists, resultMedia, filteredArtists, yearIdx, periodData, sel, focus, filt, onStats]);
   // calendar-period → the places its top artists come from. calendar-detail only stores the
   // top 5-6 artists per day/week, so a full dot re-weight would be dishonest — instead we
