@@ -1390,48 +1390,6 @@ function StoriesView({ t, go, seed }) {
           );
         })()}
 
-        {/* THE READING (2026-09-21) — Chapters' sibling in argument: that card says where the SOUND
-            shifted, this one says what the WORDS were doing. Deliberately its own section rather
-            than extra rows grafted onto the TASTE_ERAS list above, for one hard reason: those eras
-            are auto-segmented and RE-CUT on every rebuild, so a digest pinned to "era 2" would
-            silently come to describe a different span. These four are fixed editorial cuts,
-            authored once against the fable reads and tracked in reading.js. The year spans echo
-            the Chapters rows (same 88px mono column) so the rhyme reads even though nothing is
-            shared between them. Renders nothing until the lazy script lands. */}
-        {reading && reading.portrait && reading.eras && reading.eras.length > 0 && (
-          <section className="st-card st-hero st-reading">
-            <div className="st-label">The Reading</div>
-            <div className="st-big">{reading.portrait.title}</div>
-            <div className="st-sub">
-              Read across the fable reads — four era digests below, each speaking only for the artists read closely in its years.
-            </div>
-            <p>{reading.portrait.text}</p>
-            <div style={{ display: "grid", gap: 2, marginTop: 16 }}>
-              {reading.eras.map((e, i) => {
-                const on = !!readingOpen[i];
-                return (
-                  <div key={i} style={{ minWidth: 0 }}>
-                    <button type="button" aria-expanded={on}
-                      onClick={() => setReadingOpen(o => ({ ...o, [i]: !o[i] }))}>
-                      <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)", paddingTop: 4, whiteSpace: "nowrap" }}>{e.span}</span>
-                      {/* no nowrap here — at 360px the title is the one thing that MUST wrap rather
-                          than clip, and .st-title-sm's bottom margin is for a standalone heading */}
-                      <span className="st-title-sm" style={{ marginBottom: 0, minWidth: 0 }}>{e.title}</span>
-                      <i aria-hidden="true">▸</i>
-                    </button>
-                    {on && (
-                      <div>
-                        <p>{e.text}</p>
-                        <div className="st-mi" style={{ marginTop: 11 }}>read from {e.coverage}% of this era's plays</div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </section>
-        )}
-
         {/* audio DNA drift — how the play-weighted average sound profile shifted year over year */}
         {I.AUDIO_DRIFT && I.AUDIO_DRIFT.years && I.AUDIO_DRIFT.years.length >= 12 && (() => {
           // skip pre-scrobbling synthetic years (undated remapped scrobbles)
@@ -2137,6 +2095,53 @@ function StoriesView({ t, go, seed }) {
           </div>
         </section>
 
+        {/* THE READING (2026-09-21) — the feed CLOSES on it (Fuad: "should go to the bottom of the
+            page"; it first sat directly after Chapters). Everything above is the evidence — sound,
+            years, words, places — and the portrait is the verdict, so it reads last. Deliberately
+            its own section rather than rows grafted onto the auto-segmented TASTE_ERAS (those
+            RE-CUT on every rebuild; a digest pinned to "era 2" would silently drift spans). The
+            four eras are fixed editorial cuts, authored against the fable reads and tracked in
+            reading.js; the year spans keep Chapters' 88px mono column so the rhyme still reads
+            across the distance. Renders nothing until the lazy script lands. */}
+        {reading && reading.portrait && reading.eras && reading.eras.length > 0 && (
+          <section className="st-card st-hero st-reading">
+            <div className="st-label">The Reading</div>
+            <div className="st-big">{reading.portrait.title}</div>
+            <div className="st-sub">
+              Read across the fable reads — four era digests below, each speaking only for the artists read closely in its years.
+            </div>
+            <p>{reading.portrait.text}</p>
+            <div style={{ display: "grid", gap: 2, marginTop: 16 }}>
+              {reading.eras.map((e, i) => {
+                const on = !!readingOpen[i];
+                return (
+                  <div key={i} style={{ minWidth: 0 }}>
+                    <button type="button" aria-expanded={on}
+                      onClick={() => setReadingOpen(o => ({ ...o, [i]: !o[i] }))}>
+                      <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)", paddingTop: 4, whiteSpace: "nowrap" }}>{e.span}</span>
+                      {/* no nowrap here — at 360px the title is the one thing that MUST wrap rather
+                          than clip, and .st-title-sm's bottom margin is for a standalone heading */}
+                      <span className="st-title-sm" style={{ marginBottom: 0, minWidth: 0 }}>{e.title}</span>
+                      <i aria-hidden="true">▸</i>
+                    </button>
+                    {/* ALWAYS MOUNTED so the unravel can ease (Fuad 2026-09-21: "some sort of
+                        transition when unraveling a chapter") — .st-rd-body is a 0fr→1fr grid
+                        track, the same unfold gv-night uses, because height:auto cannot transition
+                        and a mount/unmount has nothing to ease. aria-hidden keeps the closed text
+                        out of the accessibility tree; nothing inside is focusable. */}
+                    <div className="st-rd-body" data-open={on ? "1" : "0"} aria-hidden={!on}>
+                      <div>
+                        <p>{e.text}</p>
+                        <div className="st-mi" style={{ marginTop: 11, marginBottom: 14 }}>read from {e.coverage}% of this era's plays</div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
       </div>
 
       <style>{`
@@ -2507,11 +2512,19 @@ function StoriesView({ t, go, seed }) {
         .st-reading button[aria-expanded="true"] i { transform: rotate(90deg); color: var(--accent); }
         /* the open body indents to the title column so an era reads as one block rather than as a
            second row — but only where there is room for it; at phone widths the indent is the
-           measure. */
-        .st-reading button + div { padding: 2px 0 16px 102px; }
-        @media (max-width: 700px) { .st-reading button + div { padding-left: 0; } }
+           measure. The body is a 0fr-to-1fr grid track (2026-09-21, Fuad: a transition for the
+           unravel): height:auto cannot transition, a fraction track can, and the inner div's
+           overflow:hidden clips the text while the track grows. Vertical space rides the text's
+           own margins, NOT padding on the clipped div — vertical padding there pokes out of a
+           0fr track as a visible sliver. NO BACKTICKS in these comments, ever: this whole style
+           block is one template literal and a nested backtick closes it early (see the views1
+           "stat is not defined" crash, same day). */
+        .st-rd-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .34s ease; }
+        .st-rd-body[data-open="1"] { grid-template-rows: 1fr; }
+        .st-rd-body > div { overflow: hidden; min-height: 0; padding: 0 0 0 102px; }
+        @media (max-width: 700px) { .st-rd-body > div { padding-left: 0; } }
         @media (prefers-reduced-motion: reduce) {
-          .st-reading button, .st-reading i { transition: none; }
+          .st-reading button, .st-reading i, .st-rd-body { transition: none; }
         }
 
         /* Stories TOC as a vertical breadcrumb rail pinned to the left edge (wide screens).
