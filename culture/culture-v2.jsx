@@ -2940,7 +2940,8 @@ function App() {
     _lazyDoneCbs.push(cb);
     // idle preload: the reader set only — every Reader open needs it, whichever library you are in.
     // The wishlist set (~2.54 MB) is NOT preloaded: the default library view never reads it, and the
-    // demand triggers below cover every entry path into it (switch to wishlist / #tonight / open= deep link).
+    // demand triggers below cover every entry path into it (switch to wishlist / #tonight / open=
+    // deep link / any Reader open — the crossover row reads the opposite pool, added 2026-09-21).
     const tid = setTimeout(() => { loadLazySet('reader'); }, 2500);
     return () => { clearTimeout(tid); const i = _lazyDoneCbs.indexOf(cb); if (i >= 0) _lazyDoneCbs.splice(i, 1); };
   }, []);
@@ -2981,7 +2982,13 @@ function App() {
   // the Wishlist (which has no personal scores). Not user-toggleable on the main page.
   const spineValue = library === 'wishlist' ? 'fwAvg' : 'rating';
   const [openItem, setOpenItem] = React.useState(null);
-  React.useEffect(() => { if (openItem) loadLazySet('reader'); }, [openItem]);
+  // BOTH sets on Reader open (Fuad 2026-09-21: "On your wishlist — similar" never appeared from
+  // the Library until you visited the Wishlist tab once and came back). The Reader's crossover row
+  // scores against the OPPOSITE pool, so a Library reader needs the wishlist set too — it was only
+  // demand-loaded by the wishlist/tonight/deep-link triggers above, never by this one, and
+  // window.CULTURE_WISHLIST stayed [] so the row rendered empty. dataTick already re-enriches and
+  // re-renders when the set lands; the request was the only missing piece.
+  React.useEffect(() => { if (openItem) { loadLazySet('reader'); loadLazySet('wishlist'); } }, [openItem]);
   // the Reader must see the FRESH enriched object once a lazy set lands (openItem may
   // have been captured pre-enrichment) — re-resolve it by id against the live pools
   const openResolved = React.useMemo(() => {
