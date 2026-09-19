@@ -3230,12 +3230,26 @@ if (GENIUS_THEMES._themes) {
     // arc: top-6 themes' share of each year's themed plays (LANGUAGE.arc pattern)
     const arcThemes = order.slice(0, 6).map(([, i]) => i);
     const arcYears = [];
+    // matrix: the SAME year×theme walk, but every theme instead of just arcThemes' top-6, as
+    // per-mille ints (small enough to skip the arc's /1000-then-round-to-3-places float dance).
+    // Owner ruling 2026-09-21: the Lyrical-diet Stories module must let the audience stack ANY
+    // theme across years, "not just a limited selection" — the top-6 arc can't feed that, so the
+    // full grid ships alongside it. Measured on the 2026-09-20 build (18 themes × 17 qualifying
+    // years, real catalog): matrix itself is +1.2 KB raw / +0.5 KB gz — cheap, because it's just
+    // ints. exemplarsAll (below) is the real cost at +8.2 KB raw / +2.4 KB gz (18 themes' top-3
+    // tracks vs. the lab card's top-8). Together THEMES goes ~11 KB → ~20.5 KB raw, but that only
+    // moves music-core.js's shipped (gzip) weight by +1.5 KB — most of the raw bytes are the kind
+    // of repeated key names/artist strings gzip already eats. Both fields stay separate from
+    // arc/exemplars so the lab card's existing top-6/top-8 reads are untouched.
+    const matrixYears = [], matrixPlays = [], matrixRows = [];
     for (const [y, a] of [...byYear.entries()].sort((x, z) => x[0] - z[0])) {
       const tot = a.reduce((s, c) => s + c, 0);
       if (tot < 400) continue;
       const e = { year: y, plays: tot, byTheme: {} };
       for (const ti of arcThemes) e.byTheme[TN[ti]] = Math.round(a[ti] / tot * 1000) / 1000;
       arcYears.push(e);
+      matrixYears.push(y); matrixPlays.push(tot);
+      matrixRows.push(a.map(c => Math.round(c / tot * 1000)));
     }
     // artist theme profiles: top artists (≥300 themed plays) → their top-2 themes with shares
     const artistProfiles = [...artistAcc.entries()]
@@ -3250,7 +3264,14 @@ if (GENIUS_THEMES._themes) {
       names: TN, covered, coveredPlays, totalPlays,
       shares: sharesArr,
       exemplars: Object.fromEntries(order.slice(0, 8).map(([, i]) => [TN[i], exemplars[i].slice(0, 3)])),
+      // exemplarsAll: same shape as exemplars (top-3 played tracks), but EVERY theme that has at
+      // least one — not just the top-8 the lab card shows — so a stacked year can be clicked
+      // through to real tracks whichever theme it names.
+      exemplarsAll: Object.fromEntries(exemplars.map((ex, i) => [TN[i], ex]).filter(([, ex]) => ex.length > 0).map(([n, ex]) => [n, ex.slice(0, 3)])),
       arc: arcYears.length >= 6 ? { themes: arcThemes.map(i => TN[i]), years: arcYears } : null,
+      // matrix: full year × theme grid (per-mille share, ints) behind the arc — see comment above
+      // arcYears. years/plays/rows are parallel arrays (rows[i] aligned to `names`, for years[i]).
+      matrix: matrixYears.length >= 6 ? { years: matrixYears, plays: matrixPlays, rows: matrixRows } : null,
       artists: artistProfiles,
     };
   }
