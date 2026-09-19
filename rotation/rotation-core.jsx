@@ -877,7 +877,7 @@ function TweenNum({ v, f, from, dur }) {
     const q = Math.pow(10, Math.min((String(v).split(".")[1] || "").length, 2));
     cancelAnimationFrame(ref.current.raf);
     const step = (now) => {
-      const p = Math.min(1, (now - t0) / span);
+      const p = Math.min(1, Math.max(0, (now - t0) / span));
       if (p < 1) {
         const e = 1 - Math.pow(1 - p, 3);
         setShown(Math.round((src + (v - src) * e) * q) / q);

@@ -2579,6 +2579,33 @@ for (const [k, O] of otd) {
   ON_THIS_DAY[k] = { artist, plays, total: O.total, hue: hueFor(artist), artistId: slug(artist), byYear };
 }
 
+// rolling 12 months: the top artist and the top TRACK of the last 365 days, for the Overview card
+// that used to be "{year} so far" (Fuad 2026-09-21: "let's have a rolling last 12 months instead").
+// The window ends at the NEWEST DATED SCROBBLE, not at build time — a stale deploy would otherwise
+// walk its own window off the end of the data and hand the card an empty year. `scrobbles` is
+// newest-first, so the scan breaks the moment it drops out of the window.
+const ROLLING_12M = (() => {
+  const from = newestMs - 365 * 86400e3;
+  const arts = new Map(), trks = new Map();
+  for (const [artist, , track, ms] of scrobbles) {
+    if (ms < from) break;
+    arts.set(artist, (arts.get(artist) || 0) + 1);
+    if (track) { const k = artist + "\x00" + track; trks.set(k, (trks.get(k) || 0) + 1); }
+  }
+  if (!arts.size) return null;
+  const [aName, aPlays] = _top1(arts);
+  const tt = trks.size ? _top1(trks) : null;
+  const [tArtist, tTitle] = tt ? tt[0].split("\x00") : [null, null];
+  return {
+    from: iso(from), to: iso(newestMs),
+    topArtist: { name: aName, artistId: slug(aName), hue: hueFor(aName), plays: aPlays },
+    // `id` is the track route's own key (artistSlug~trackSlug), so the card's row is a link
+    // without the client re-deriving it from two names.
+    topTrack: tt ? { title: tTitle, artist: tArtist, artistId: slug(tArtist), hue: hueFor(tArtist),
+      plays: tt[1], id: slug(tArtist) + "~" + slug(tTitle) } : null,
+  };
+})();
+
 // ─────────── UNDERGROUND INDEX (how obscure the taste is) ───────────
 // Play-weighted over every artist we have a global listener count for.
 let UNDERGROUND = null;
@@ -3744,7 +3771,7 @@ let ALBUM_DECAY = null;
 }
 
 const INSIGHTS = {
-  MILESTONES, OBSESSIONS, ALBUM_OBSESSIONS, LIFETIME_TRACKS, FLAMEOUTS, INCUBATION, ARTIST_ERAS, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY,
+  MILESTONES, OBSESSIONS, ALBUM_OBSESSIONS, LIFETIME_TRACKS, FLAMEOUTS, INCUBATION, ARTIST_ERAS, COMEBACKS, WONDERS, NIGHT_OWLS, DISCOVERIES, YEAR_PEAKS, ON_THIS_DAY, ROLLING_12M,
   AUDIO_DRIFT, ADOPTION, CONNECTIONS, RECOMMENDATIONS, REVISIT, LIFESPAN, LANGUAGE, LINEUPS, MOOD, THEMES,
   STREAK: { best, start: bestStart, end: bestEnd, current },
   UNDERGROUND, GEOGRAPHY, STYLE_ATLAS, SESSIONS, SEASONALITY, LIFECYCLE,

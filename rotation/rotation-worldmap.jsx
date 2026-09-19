@@ -561,6 +561,13 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
     // show a share stat that is honestly "the artists you are looking at right now".
     const plays = resultArtists.reduce((s, e) => s + e.p, 0);
     const artists = resultArtists.length;
+    // ALBUMS AND SONGS RIDE ALONG (Fuad 2026-09-21: "Overall it'd be better if we had numbers
+    // updating with filters"). The Overview's catalogue tiles were lifetime-frozen because nothing
+    // handed them a filtered count — but resultMedia is exactly that count, already built for the
+    // Results pane's own "N of M" footer, so this is two array lengths rather than new plumbing.
+    // They are the rows RESULTS SHOWS, not a distinct-media recount of the slice: off a period
+    // they come from calendar-detail, otherwise from each of the top 160 artists' own top lists.
+    const albums = resultMedia.albums.length, songs = resultMedia.songs.length;
     // Seen-live plays inside the same rows (Fuad 2026-08-22: the Overview % should follow the
     // filter). Resolved through R.byId — seenLive ships only on kept core records, so rest rows
     // count 0 exactly as the lifetime stat counts them.
@@ -598,16 +605,16 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
     const active = !!(sel || focus || filt.fam != null || filt.sub != null || yearIdx != null || periodData);
     // Report even when nothing is filtered: `active:false` keeps every existing consumer on its
     // lifetime branch (they all gate on .active), while still publishing the Results totals.
-    if (!active) { onStats({ active: false, plays, artists, debutYears, livePlays, sndValence, sndPlays, rdsValence, rdsPlays }); return; }
+    if (!active) { onStats({ active: false, plays, artists, albums, songs, debutYears, livePlays, sndValence, sndPlays, rdsValence, rdsPlays }); return; }
     const avgSec = (R.TOTALS && R.TOTALS.avgTrackSec) || 216;
     // `slice` = a place/genre filter is active (not just a year/period). The Overview stat strip uses
     // it to decide whether to size avg/day from this (EXPLORE-scoped) count or from the exact day-series
     // total (which is right for a pure time filter). periodData is a time filter → slice:false.
-    if (periodData) { onStats({ active: true, slice: false, plays, artists, debutYears, livePlays, sndValence, sndPlays, rdsValence, rdsPlays, hours: Math.round(plays * avgSec / 3600), label: [periodData.label, sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? famShort(R.FAMILIES[filt.fam].family) : null].filter(Boolean).join(" · ") }); return; }
+    if (periodData) { onStats({ active: true, slice: false, plays, artists, albums, songs, debutYears, livePlays, sndValence, sndPlays, rdsValence, rdsPlays, hours: Math.round(plays * avgSec / 3600), label: [periodData.label, sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? famShort(R.FAMILIES[filt.fam].family) : null].filter(Boolean).join(" · ") }); return; }
     const yr = yearIdx != null ? geoYears[yearIdx] : null;
     const slice = !!(sel || focus || filt.fam != null || filt.sub != null);
-    onStats({ active: true, slice, plays, artists, debutYears, livePlays, sndValence, sndPlays, rdsValence, rdsPlays, hours: Math.round(plays * avgSec / 3600), label: [sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? famShort(R.FAMILIES[filt.fam].family) : null, yr].filter(Boolean).join(" · ") || "filtered" });
-  }, [resultArtists, filteredArtists, yearIdx, periodData, sel, focus, filt, onStats]);
+    onStats({ active: true, slice, plays, artists, albums, songs, debutYears, livePlays, sndValence, sndPlays, rdsValence, rdsPlays, hours: Math.round(plays * avgSec / 3600), label: [sel ? selName : null, filt.sub != null ? R.SUBS[filt.sub].name : filt.fam != null ? famShort(R.FAMILIES[filt.fam].family) : null, yr].filter(Boolean).join(" · ") || "filtered" });
+  }, [resultArtists, resultMedia, filteredArtists, yearIdx, periodData, sel, focus, filt, onStats]);
   // calendar-period → the places its top artists come from. calendar-detail only stores the
   // top 5-6 artists per day/week, so a full dot re-weight would be dishonest — instead we
   // RING those artists' origins and dim the rest ("where that day's music came from").

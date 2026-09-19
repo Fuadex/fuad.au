@@ -202,22 +202,24 @@ const PROVIDERS = [
   // line, Movement carried NEW and BACK, and between them they usually printed three rows across
   // two headers, two frames and two lots of padding. One card, one header, three tagged rows.
   // EVERY row is still EARNED (the bullet discipline Movement was built on): a row that doesn't
-  // clear its bar doesn't render, and a card with no rows doesn't exist — so this stands at one,
-  // two or three rows without stretching, since the deck's min-height does the equalising.
+  // clear its bar doesn't render, and a card with no rows doesn't exist — so this stands at one
+  // or two rows without stretching, since the deck's min-height does the equalising.
   //   ▲    — this week's plays against the artist's own lifetime weekly pace.
-  //   NEW  — the month's arrival, genealogy-tagged where the lazy file is resident.
   //   BACK — a known artist back after a year-grain silence.
+  // NEW IS GONE (Fuad 2026-09-21: "Let's remove NEW from This Week module, this also blows up the
+  // height of the row"). It was the third row on the tallest card of the pulse row, and a grid row
+  // is as tall as its tallest card — so one arrival's "first 4 plays" was setting the height of
+  // three cards that had nothing to do with it. The month's arrivals are still in the live feed
+  // for whatever wants them; they are not worth 40px of this row. The lazy genealogy warm-up went
+  // with it — the "via X" tag was NEW's alone (rotation-lab.jsx loads the same file for itself).
   (ctx) => {
     const LV = window.ROTATION_LIVE; if (!LV) return null;
     const R = ctx.R;
-    const wk = LV.week || {}, mo = LV.month || {};
+    const wk = LV.week || {};
     const cy = ctx.now.getUTCFullYear();
     const lines = [];
-    // warm the lazy genealogy file (the lab's loader idiom) so the NEW line can carry its
-    // "via X" tag — first paint may show the bare count; the next render upgrades it.
-    if (!window.ROTATION_GENEALOGY && window.loadScript) window.loadScript("genealogy.js", "rotation-genealogy-js");
-    // ▲ — the steepest riser. The old card listed two; beside NEW and BACK one is the row, and a
-    // second ▲ would push the third tag off the card.
+    // ▲ — the steepest riser. The old card listed two; beside BACK one is the row, and a second ▲
+    // would push the other tag off the card.
     let riser = null;
     for (const ta of (wk.topArtists || [])) {
       if (ta.plays < 15) continue;
@@ -235,19 +237,6 @@ const PROVIDERS = [
         title: `${ta.name} — ${ta.plays} plays this week against a lifetime pace of ~${wkly} a week →` };
     }
     if (riser) lines.push(riser);
-    // NEW — the month's arrival. It used to read "first plays this month" under a NEW tag on a
-    // card headed "this week", which is the same word three times and a number nowhere; the
-    // count is the only part of that line the tag doesn't already say.
-    const newest = (mo.newArtists || [])[0];
-    if (newest) {
-      const gen = window.ROTATION_GENEALOGY && window.ROTATION_GENEALOGY[newest.artistId];
-      const viaId = gen && gen[0];
-      const via = viaId && R.byId[viaId] ? R.byId[viaId].name : null;
-      const n = newest.plays || 0;
-      lines.push({ tag: "NEW", id: newest.artistId, name: newest.name,
-        detail: (n ? `first ${n} play${n !== 1 ? "s" : ""}` : "first plays") + (via ? " · via " + via : ""),
-        title: `${newest.name} — first arrival this month${via ? ", by way of " + via : ""} →` });
-    }
     // BACK — a known artist in this week's top whose yearly plays go quiet for >=2 years
     // before now (year-grain dormancy; the current year is excluded since this week is in it).
     let back = null;
@@ -262,14 +251,15 @@ const PROVIDERS = [
     if (back) lines.push(back);
     if (!lines.length) return null;
     return {
-      // Riser's score, not Movement's — this is the card Riser was, with two more kinds of row.
+      // Riser's score, not Movement's — this is the card Riser was, with another kind of row.
       id: "this-week", category: "this-week", score: 0.72, label: "This week",
       render: (
         <div style={{ display: "grid", gap: 4, gridTemplateColumns: "minmax(0, 1fr)" }}>
           {/* the Riser row, tagged: the tag leads, then the cover and the name/detail column the
-              other deck rows use. Three of these fit the rank; the cover comes down to 20px and
-              the padding to 2px so the third row doesn't push past its neighbours. */}
-          {lines.slice(0, 3).map(l => (
+              other deck rows use. TWO of these now (2026-09-21) — the slice tracks the tags that
+              are left, so a future third tag has to be added here deliberately rather than
+              arriving and quietly growing the card again. */}
+          {lines.slice(0, 2).map(l => (
             <div key={l.tag + l.id} className="ov-hovrow" title={l.title} onClick={(e) => { e.stopPropagation(); ctx.go("artist", l.id); }}
               style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", padding: "2px 0", borderRadius: 4, minWidth: 0 }}>
               {/* 8px, half a step under .ov-eb: BACK at .12em has to clear a 23px column, and the
@@ -317,27 +307,58 @@ const PROVIDERS = [
     };
   },
 
-  // ── top of the current year (build data) ──
+  // ── LAST 12 MONTHS — the rolling year's top artist and top track (build data) ──
+  // This was "2026 so far" (Fuad 2026-09-21: "For 2026 so far, let's keep the convention of Recent
+  // and On Repeat modules, so then most played song gets a proper row inside it. Instead of 'For
+  // 2026 so far', let's have a rolling last 12 months instead."). Two faults in one card: a
+  // calendar year is a week old every January and says nothing much until March, and the song was
+  // a ♪-prefixed footer line — the only thing on this card you could not click, in a deck where
+  // every other row is a page. Both rows are the deck's standard row now: 22px cover, name, sub,
+  // figure at the trailing edge, exactly as Recent / On repeat / In season print theirs.
+  // INSIGHTS.ROLLING_12M (build-data.js, same date) is the window, and it ends at the newest
+  // DATED SCROBBLE rather than at today — a stale build then shows a slightly old year instead of
+  // walking its window off the end of the data and going blank.
   (ctx) => {
-    const ys = ctx.R.YEARS; if (!ys || !ys.length) return null;
-    const cy = ctx.now.getUTCFullYear();
-    const y = ys.find(x => x.year === cy) || ys[ys.length - 1];
-    if (!y || !y.topArtist) return null;
+    const R = ctx.R, rl = R.INSIGHTS && R.INSIGHTS.ROLLING_12M;
+    let label = "Last 12 months", top = rl && rl.topArtist, trk = rl && rl.topTrack;
+    if (!rl) {
+      // CI-GATE: the export arrives with the next rebuild. Until it does this is the card it
+      // replaced, figures and label both — a card one build behind beats an empty cell.
+      const ys = R.YEARS; if (!ys || !ys.length) return null;
+      const cy = ctx.now.getUTCFullYear();
+      const y = ys.find(x => x.year === cy) || ys[ys.length - 1];
+      if (!y || !y.topArtist) return null;
+      label = `${y.year} so far`;
+      top = { name: y.topArtist.name, artistId: _id(y.topArtist.name), hue: y.topArtist.hue, plays: y.topArtist.plays };
+      trk = y.topTrack ? { title: y.topTrack.title, artist: y.topTrack.artist, hue: y.topTrack.hue,
+        plays: y.topTrack.plays, id: R.slug(y.topTrack.artist) + "~" + R.slug(y.topTrack.title) } : null;
+    }
+    if (!top) return null;
+    // The artist row's sub says what the row IS; the track row's sub is its artist, which is what
+    // a track row's second line is everywhere else on this page.
+    const rows = [{ k: "a", hue: top.hue != null ? top.hue : _hue(top.name), cover: top.name,
+      name: top.name, sub: "top artist", fig: _fmtN(top.plays),
+      title: `${top.name} — ${_fmtN(top.plays)} plays in the last 12 months →`,
+      hit: () => ctx.go("artist", top.artistId || _id(top.name)) }];
+    if (trk) rows.push({ k: "t", hue: trk.hue != null ? trk.hue : _hue(trk.artist), cover: trk.artist,
+      name: trk.title, sub: trk.artist, fig: _fmtN(trk.plays),
+      title: `${trk.title} — ${_fmtN(trk.plays)} plays in the last 12 months →`,
+      hit: () => ctx.go("track", trk.id) });
     return {
-      id: "top-year", category: "top-year", score: 0.6 + _jitter("top-year", ctx.now), label: `${y.year} so far`, meta: "map", onClick: () => ctx.go("map"),
+      id: "last12", category: "last12", score: 0.6 + _jitter("last12", ctx.now), label, meta: "map", onClick: () => ctx.go("map"),
       render: (
-        <div>
-          <div onClick={(e) => { e.stopPropagation(); ctx.go("artist", _id(y.topArtist.name)); }} style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }}>
-            <GenCover hue={y.topArtist.hue} name={y.topArtist.name} size={34} radius={3} />
-            <div style={{ minWidth: 0 }}>
-              <div className="ov-eb" style={{ letterSpacing: ".1em", textTransform: "uppercase" }}>top artist</div>
-              {/* 14.5/600, a size above .ov-tx: this card names ONE artist and the name IS the
-                  figure — there is no numeral over it to be the headline. */}
-              <div style={{ fontSize: 14.5, fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{y.topArtist.name}</div>
-              <div className="ov-mi">{_fmtN(y.topArtist.plays)} plays</div>
+        <div style={{ display: "grid", gap: 6, gridTemplateColumns: "minmax(0, 1fr)" }}>
+          {rows.map(r => (
+            <div key={r.k} className="ov-hovrow" title={r.title} onClick={(e) => { e.stopPropagation(); r.hit(); }}
+              style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", padding: "3px 0", borderRadius: 4, minWidth: 0 }}>
+              <GenCover hue={r.hue} name={r.cover} size={22} radius={2} style={{ flex: "none" }} />
+              <div style={{ flex: "1 1 0", minWidth: 0 }}>
+                <div className="ov-tx">{r.name}</div>
+                <div className="ov-mi" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.sub}</div>
+              </div>
+              <span className="ov-mi" style={{ flex: "none" }}>{r.fig}</span>
             </div>
-          </div>
-          {y.topTrack && <div className="ov-mi" style={{ color: "var(--ink-soft)", marginTop: 8, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>♪ {y.topTrack.title} — {y.topTrack.artist}</div>}
+          ))}
         </div>
       ),
     };
@@ -376,7 +397,9 @@ const PROVIDERS = [
     const MON = window.MON;
     const sameDay = used.getUTCDate() === ctx.now.getUTCDate() && used.getUTCMonth() === ctx.now.getUTCMonth();
     const label = sameDay ? "On this day" : `On ${used.getUTCDate()} ${MON[used.getUTCMonth()]}`;
-    const standout = rows.slice().sort((a, b) => b.plays - a.plays)[0];
+    // `standout` — the biggest of this date's years — went with the line it fed (Fuad 2026-09-21:
+    // "Remove 'Biggest: 2024, 148 plays — Four Year Strong.' ... it blows up the height of the
+    // entire row"). It was a fourth line restating a row already printed two lines above it.
     return {
       id: "otd", category: "on-this-day", score: 0.68, label, meta: `${_fmtN(entry.total)} plays all-time`,
       render: (
@@ -385,12 +408,14 @@ const PROVIDERS = [
               immediately set the row's height: four year-rows plus the Biggest line ran to 186px
               against neighbours that had nothing like that much to say, so the whole rank stretched
               to fit one card. The fourth year is the least interesting line on it — the rows are
-              already sorted newest-first, not biggest-first, and the standout is named underneath
-              regardless. Three rows plus the italic lands at ~150px, level with the filled Streak
-              and Scrobbles cards beside it. */}
+              already sorted newest-first, not biggest-first.
+              THE BIGGEST LINE WENT TOO (2026-09-21), for the same reason one step further: three
+              rows plus an italic still set the row's height, and the italic was the least of them —
+              it named a year that is usually already in the three rows, in a sentence, under a card
+              whose whole point is the rank. Rows only now; the row levels at ~118px. */}
           <div style={{ display: "grid", gap: 5 }}>
             {rows.slice(0, 3).map(r => (
-              <div key={r.y} onClick={(e) => { e.stopPropagation(); ctx.go("artist", r.artistId); }} style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer" }}>
+              <div key={r.y} onClick={(e) => { e.stopPropagation(); ctx.go("artist", r.artistId); }} style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", minWidth: 0, overflow: "hidden" }}>
                 <span className="ov-nr" style={{ width: 28 }}>{r.y}</span>
                 <GenCover hue={r.hue} name={r.artist} size={20} radius={2} />
                 {/* .ov-tx's size doing .ov-tx's job, but at 400: these rows are led by the YEAR in
@@ -401,7 +426,6 @@ const PROVIDERS = [
               </div>
             ))}
           </div>
-          {standout && <div className="ov-quote" style={{ marginTop: 9 }}>Biggest: {standout.y}, {standout.plays} plays — {standout.artist}.</div>}
         </div>
       ),
     };

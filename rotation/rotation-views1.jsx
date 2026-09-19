@@ -507,6 +507,32 @@ function OvBlindCard({ go, restReady }) {
   );
 }
 
+// Stat takes a RAW NUMBER plus its formatter (2026-09-19), not a pre-formatted string: a numeral
+// that arrives as text can only be swapped, and every one of these ten changes the moment a filter
+// lands. `f` formats, `from`/`dur` hand TweenNum a first-paint ramp for the two figures that used
+// to get one from useCountUp. Anything non-numeric (a hyphen, a unit already baked in) still prints
+// as-is, so a call site that has nothing to tween costs nothing.
+//
+// IT LIVES OUT HERE, NOT INSIDE OverviewView (2026-09-21). Declared in the view body it was a NEW
+// component type on every render, so React threw the whole strip away and remounted it whenever a
+// filter landed — and a remounted TweenNum starts at its target with nothing to travel from. Every
+// tile snapped; `hours`, the one tile carrying from={0}, restarted its 1.4s ramp from zero, which
+// is the exact fault the TweenNum migration was written to fix ("a figure that MOVED restarted from
+// nothing instead of travelling the difference"). Measured over CDP at 40ms: 7,800 -> 23 in one
+// frame before, the ease across ~420ms after. The component closes over nothing but its props, so
+// the hoist is the whole fix.
+const Stat = ({ n, f, sub, big, onClick, from, dur }) => (
+  <div onClick={onClick} style={onClick ? { cursor: "pointer" } : null} className={onClick ? "ov-stat-link" : ""}>
+    <div className="r-stat-n" style={{ fontSize: big ? "clamp(28px,3.4vw,40px)" : 20 }}>
+      {typeof n === "number" && isFinite(n) ? <TweenNum v={n} f={f} from={from} dur={dur} /> : n}</div>
+    {/* the ↗ is gone (Fuad 2026-08-20). It marked the stat as clickable, but every stat in the
+        strip is, so it marked nothing — and it inflated captions that are already tight once a
+        filter name is concatenated in. .ov-stat-link still carries the hover affordance. */}
+    {/* per-tile stat caption (footnote-grade eyebrow — Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
+    <div className="ov-eb ov-stat-sub" style={{ marginTop: 4 }}>{sub}</div>
+  </div>
+);
+
 function OverviewView({ t, go, restReady, seed }) {
   const R = window.ROTATION;
   const T = R.TOTALS;
@@ -665,34 +691,28 @@ function OverviewView({ t, go, restReady, seed }) {
   // 10,485 → "10.5k". The strip and the milestone line both want a round number small enough to
   // ride inside a caption; fmt() spells every digit and is too wide for either.
   const kAbbr = (n) => n >= 10000 ? (Math.round(n / 100) / 10) + "k" : fmt(n);
-  const SESS = R.INSIGHTS && R.INSIGHTS.SESSIONS;
-  // SAY WHICH TILES DIDN'T MOVE (2026-09-19). Filter the strip and hours, artists, avg/day and the
-  // rest all narrow — but the catalogue counts cannot (media rows carry no per-period tags), so
-  // they sat there under a filter name looking like part of the slice. One muted word, on the two
-  // tiles where the number is genuinely the whole library, and only while a filter is on. It is
-  // kept in its own nowrap span so it drops to a second line as a unit rather than breaking
-  // mid-word — and it leads with an explicit {" "}, because two adjacent spans with no whitespace
-  // between them are one unbreakable run to the line breaker, which is how the marker first went
-  // out: it dragged its tile's grid track to 133px and squeezed four neighbours into wrapping.
-  const ltMark = (fStats && fStats.active)
-    ? <>{" "}<span className="ov-stat-lt">· lifetime</span></> : null;
-
-  // Stat takes a RAW NUMBER plus its formatter now (2026-09-19), not a pre-formatted string: a
-  // numeral that arrives as text can only be swapped, and every one of these ten changes the
-  // moment a filter lands. `f` formats, `from`/`dur` hand TweenNum a first-paint ramp for the two
-  // figures that used to get one from useCountUp. Anything non-numeric (a hyphen, a unit already
-  // baked in) still prints as-is, so a call site that has nothing to tween costs nothing.
-  const Stat = ({ n, f, sub, big, onClick, from, dur }) => (
-    <div onClick={onClick} style={onClick ? { cursor: "pointer" } : null} className={onClick ? "ov-stat-link" : ""}>
-      <div className="r-stat-n" style={{ fontSize: big ? "clamp(28px,3.4vw,40px)" : 20 }}>
-        {typeof n === "number" && isFinite(n) ? <TweenNum v={n} f={f} from={from} dur={dur} /> : n}</div>
-      {/* the ↗ is gone (Fuad 2026-08-20). It marked the stat as clickable, but every stat in the
-          strip is, so it marked nothing — and it inflated captions that are already tight once a
-          filter name is concatenated in. .ov-stat-link still carries the hover affordance. */}
-      {/* per-tile stat caption (footnote-grade eyebrow — Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
-      <div className="ov-eb ov-stat-sub" style={{ marginTop: 4 }}>{sub}</div>
-    </div>
-  );
+  // THE "· lifetime" MARKER IS GONE, AND SO IS WHAT IT WAS APOLOGISING FOR (Fuad 2026-09-21:
+  // "after filtering 'lifetime' popping up under Albums is no good, it blows up a row" /
+  // "Overall it'd be better if we had numbers updating with filters"). It was added on 2026-09-19
+  // to own up to two tiles that couldn't follow the filter; the honest fix was to make them
+  // follow it. The map band now reports the Results pane's own album and song counts alongside
+  // plays and artists (rotation-worldmap.jsx), so both tiles narrow with everything else and
+  // there is nothing left to caption. .ov-stat-lt went with it.
+  //
+  // ACTIVE DAYS replaced "N / sitting" in the same pass (Fuad 2026-09-21: "7 / sitting means
+  // nothing to me... We need something clearer and better"). The median session length was a
+  // lifetime constant with no filtered form at all. Days-played is the plainest thing this strip
+  // can say and it moves: the day-series counts are already resident for avg/day and peak day, so
+  // the slice's active days are one scan of the same array. Under a place/genre-only filter it
+  // reads the time window (lifetime when there is none) exactly as peak day does — day-series is
+  // flat per-day totals with no place or genre in it, and a per-slice day export is the same
+  // parked work peak day is waiting on.
+  const activeDays = React.useMemo(() => {
+    if (dyn) return dyn.active;                       // a year or calendar pick → that window's days
+    if (!days || !days.counts) return null;           // day-series still loading → tile waits
+    let n = 0; for (const c of days.counts) if (c > 0) n++;
+    return n;
+  }, [days, dyn]);
 
   return (
     <div className="r-view" ref={ref}>
@@ -744,25 +764,39 @@ function OverviewView({ t, go, restReady, seed }) {
             initFilter={_seed.filter} onFilter={setMapFilter}
             calRail={<OvCalRail go={go} onYear={setMapYear} onPeriod={setMapPeriod} init={_seed} extYear={mapYear} />}
             statSlot={
-              /* lifetime stats, now nested under the flowmap (Fuad 2026-07-06); hours + distinct
-                 artists react to the active map/calendar filter, the rest are lifetime. */
+              /* the stat strip, nested under the flowmap (Fuad 2026-07-06). Every tile but one is
+                 filter-reactive as of 2026-09-21 (Fuad: "it'd be better if we had numbers updating
+                 with filters") — hours, artists, albums, songs, days played, seen live, avg/day,
+                 depth and results-share all narrow with the map/calendar pick. Days played and
+                 peak day both read the TIME window rather than the full slice, for the same
+                 reason: day-series carries no place or genre. Each says so where it is built. */
               <div className="r-card ov-strip" style={{ padding: "12px 14px", display: "grid",
                 gridTemplateColumns: "repeat(2,1fr)", gap: "10px 16px", alignContent: "center" }}>
                 <Stat n={fStats && fStats.active ? fStats.hours : hrsLive} f={fmt} from={0} dur={1400} sub="hours" onClick={() => go("calendar")} />
                 <Stat n={fStats && fStats.active ? fStats.artists : T.artists} f={fmt} sub="artists" onClick={() => go("explore")} />
                 {/* the catalogue row (Fuad 2026-08-12): how much MUSIC that listening covered —
-                    LPs / EPs+singles / distinct folded songs. Lifetime (post-fold row counts);
-                    the map/calendar filter intentionally doesn't reach these — media rows carry
-                    no per-period tags, so a filtered recount would be new plumbing, parked.
-                    EPs+SINGLES LOST ITS OWN TILE (2026-09-19). It was a second catalogue count
-                    sitting beside the first and reading like a rival to it, when what it really
-                    is — the tail hanging off the album shelf — is a footnote on the album tile.
-                    The freed cell went to the median sitting, which had no home in the strip at
-                    all and says something none of the other nine do: how long a stretch runs. */}
-                {T.albumsLP != null && <Stat n={T.albumsLP} f={fmt} onClick={() => go("shelves")}
-                  sub={<><span>albums +{kAbbr(T.epsSingles || 0)}</span>{ltMark}</>} />}
-                {SESS && SESS.median != null && <Stat n={SESS.median} sub="/ sitting" onClick={() => go("calendar")} />}
-                {T.tracks != null && <Stat n={T.tracks} f={fmt} sub={<><span>songs</span>{ltMark}</>} onClick={() => go("explore")} />}
+                    LPs / EPs+singles / distinct folded songs.
+                    THESE TWO FOLLOW THE FILTER NOW (Fuad 2026-09-21). They were lifetime-only from
+                    the start on the grounds that media rows carry no per-period tags — true of the
+                    shelf counts, but beside the point: the map band has been building the Results
+                    pane's albums and songs on every filter change all along, and it now reports
+                    their counts in fStats. Filtered, each tile is the slice's own list, which is
+                    the list one click away in Results. The EP/singles tail stays a LIFETIME
+                    footnote and so shows only unfiltered — a filtered LP count has no filtered
+                    tail to hang off it, and appending a lifetime one is the "· lifetime" marker
+                    coming back in another costume. */}
+                {T.albumsLP != null && <Stat f={fmt} onClick={() => go("shelves")}
+                  n={fStats && fStats.active && fStats.albums != null ? fStats.albums : T.albumsLP}
+                  sub={fStats && fStats.active && fStats.albums != null
+                    ? <span>albums</span> : <span>albums +{kAbbr(T.epsSingles || 0)}</span>} />}
+                {/* "days played" is the phrase, "days" is what fits: eleven characters wanted 62px
+                    of a 59px track and broke onto a second line, which lifted the whole top row of
+                    the strip by 12px — the same fault as the marker above it, one tile along. Cut
+                    to the noun, as "plays / artist" and "of history" were on 2026-09-19. Beside
+                    HOURS and ARTISTS it reads as the third unit of listening, which is what it is. */}
+                {activeDays != null && <Stat n={activeDays} f={fmt} sub="days" onClick={() => go("calendar")} />}
+                {T.tracks != null && <Stat f={fmt} sub={<span>songs</span>} onClick={() => go("explore")}
+                  n={fStats && fStats.active && fStats.songs != null ? fStats.songs : T.tracks} />}
                 {seenLivePct > 0 && <Stat n={seenLiveShown} f={(x) => x + "%"} sub="seen live" onClick={() => go("gigs")} />}
                 <Stat n={flt ? flt.avgDay : T.perDay} sub="avg / day" />
                 {/* Filtered, this slot shows DEPTH, not share (Fuad 2026-08-20). It used to become
@@ -1244,7 +1278,8 @@ function OverviewView({ t, go, restReady, seed }) {
            middle column gives it at 1280px — because that is where it breaks first. */
         .ov-stat-sub { letter-spacing: .06em; text-transform: uppercase; }
         .ov-stat-sub > span { white-space: nowrap; }
-        .ov-stat-lt { white-space: nowrap; opacity: .6; }
+        /* .ov-stat-lt held the "· lifetime" marker from 2026-09-19 to 2026-09-21. The marker is
+           gone — the two tiles it annotated follow the filter now — so the rule went with it. */
         /* .eqbar and its @keyframes went on 2026-09-19 — the five animated bars belonged to the
            Now-playing card, commented out of the tree since 2026-08-20, and an infinite animation
            on elements nothing renders is pure weight. */
