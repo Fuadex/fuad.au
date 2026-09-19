@@ -67,7 +67,7 @@ function OvCalRail({ go, onYear, onPeriod, init, extYear }) {
   const years = cal ? Object.keys(cal.byYear).map(Number).sort((a, b) => b - a) : [];
   const y = cal && cal.byYear[yr];
   const MON = window.MON;
-  if (!y) return <div className="r-card" style={{ padding: 16, fontFamily: "var(--mono)", fontSize: 10, color: "var(--ink-faint)" }}>calendar…</div>;
+  if (!y) return <div className="r-card ov-nr" style={{ padding: 16 }}>calendar…</div>;
   const counts = y.counts || [];
   const mx = Math.max(1, ...counts);
   const first = Date.UTC(yr, mo, 1), dim = new Date(Date.UTC(yr, mo + 1, 0)).getUTCDate();
@@ -142,7 +142,10 @@ function OvCalRail({ go, onYear, onPeriod, init, extYear }) {
               opacity: v ? 1 : 0.5, cursor: "pointer", outline: isSel ? "1.5px solid var(--accent)" : "none" }} />;
         })}
       </div>
-      <div className="r-mono" style={{ fontSize: 8, color: "var(--ink-faint)", marginTop: 7 }}>
+      {/* 8px, half a step under the footnote grade, and 7px of lead: this line is the last thing
+          in the rail and the rail is what sets the map band's height, so a rounder number here
+          pushes the band — and everything under it — down the page. */}
+      <div className="ov-eb" style={{ fontSize: 8, marginTop: 7 }}>
         {selDay ? <>filtering {gran} · <span style={{ cursor: "pointer", color: "var(--accent)" }} onClick={() => { setSelDay(null); onPeriod && onPeriod(null); }}>clear ✕</span></> : "click a " + gran + " to filter the map"}
       </div>
     </div>
@@ -204,7 +207,7 @@ function parseOvSeed(seed) {
 const OvWeatherBar = ({ label, v, avg, col }) => (
   <div style={{ display: "grid", gridTemplateColumns: "52px 1fr 26px", gap: 9, alignItems: "center" }}>
     {/* per-row axis label (footnote-grade eyebrow — Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
-    <span className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--ink-soft)" }}>{label}</span>
+    <span className="ov-eb" style={{ letterSpacing: ".08em", textTransform: "uppercase", color: "var(--ink-soft)" }}>{label}</span>
     <div style={{ position: "relative", height: 7, background: "var(--bg-3)", borderRadius: 4 }}>
       {/* Transparent fill, vivid rim (Fuad 2026-08-20). The first pass put `opacity` on the whole
           element, which faded the border along with the fill — the one thing that was supposed to
@@ -219,7 +222,7 @@ const OvWeatherBar = ({ label, v, avg, col }) => (
     {/* the readout TRAVELS with the bar (2026-09-19): the fill has animated between values since
         the bar moved to module scope, but the number beside it still hard-swapped, so a filter
         change slid one and blinked the other. */}
-    <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", textAlign: "right" }}>
+    <span className="ov-nr" style={{ textAlign: "right" }}>
       {typeof v === "number" ? <TweenNum v={v} /> : v}</span>
   </div>
 );
@@ -255,7 +258,7 @@ function OvWeatherCard({ R, go, fStats }) {
     <div className="r-card ov-weather" style={{ padding: 12 }}>
       <div className="r-card-h" style={{ padding: 0, marginBottom: 8 }}>
         <span className="lbl"><b>Emotional weather</b></span>
-        {filt && <span className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--accent)" }}>{fStats.label || "filtered"}</span>}
+        {filt && <span className="ov-eb ov-eb-on">{fStats.label || "filtered"}</span>}
       </div>
       <div onClick={() => go("stories", "emotional-weather")} style={{ cursor: "pointer" }}>
         <div style={{ display: "grid", gap: 8 }}>
@@ -268,7 +271,7 @@ function OvWeatherCard({ R, go, fStats }) {
         {/* footer hint (footnote-grade eyebrow — Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
         {/* dominant REGISTER (play-weighted mode over rows carrying regIdx) — the human mood word;
             falls back to the NRC emotion when no register data is present. */}
-        <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginTop: 7, letterSpacing: ".06em" }}>
+        <div className="ov-eb" style={{ marginTop: 8, letterSpacing: ".06em" }}>
           {filt
             ? (lyrFilt
                 ? <>this slice · {fmt(fStats.sndPlays || 0)} plays measured for sounds, {fmt(fStats.rdsPlays || 0)} for reads</>
@@ -333,7 +336,7 @@ function OvDecadesCard({ R, go, restReady, fStats }) {
     if (zoom != null) {
       const dec = decades.find(x => x.decade === zoom);
       if (!yearBreak) {
-        return <div className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", padding: "14px 0" }}>loading detail…</div>;
+        return <div className="ov-nr" style={{ padding: "14px 0" }}>loading detail…</div>;
       }
       const { rows, tot } = yearBreak;
       return (
@@ -352,13 +355,13 @@ function OvDecadesCard({ R, go, restReady, fStats }) {
                     "--sk": `oklch(${0.58 + (i % 5) * 0.04} 0.08 ${hue % 360} / 0.42)`,
                     "--skh": `oklch(${0.66 + (i % 5) * 0.04} 0.17 ${hue % 360} / 0.78)`,
                     display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-                  {w > 8 && <span className="r-mono" style={{ fontSize: 9.5, color: "rgba(255,255,255,.9)", whiteSpace: "nowrap" }}>'{String(r.year).slice(2)}</span>}
+                  {w > 8 && <span className="ov-mi" style={{ color: "rgba(255,255,255,.9)", whiteSpace: "nowrap" }}>'{String(r.year).slice(2)}</span>}
                 </div>
               );
             })}
           </div>
           {/* strip caption (footnote-grade eyebrow — Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
-          <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginTop: 7, lineHeight: 1.5 }}>
+          <div className="ov-eb" style={{ marginTop: 8, lineHeight: 1.5 }}>
             {dec ? Math.round(dec.share * 100) + "% of plays are " + zoom + "s music" : ""} — by artist debut year · click a year to open it in Explore
           </div>
         </div>
@@ -382,14 +385,14 @@ function OvDecadesCard({ R, go, restReady, fStats }) {
                   "--sk": `oklch(${0.56 + i * 0.04} 0.08 ${hue % 360} / 0.42)`,
                   "--skh": `oklch(${0.64 + i * 0.04} 0.18 ${hue % 360} / 0.78)`,
                   display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-                {w > 9 && <span className="r-mono" style={{ fontSize: 10, fontWeight: 600, color: "rgba(255,255,255,.92)", whiteSpace: "nowrap" }}>{String(d.decade).slice(2)}s</span>}
-                {w > 9 && <span className="r-mono" style={{ fontSize: 8.5, color: "rgba(255,255,255,.62)", whiteSpace: "nowrap" }}>{pct}%</span>}
+                {w > 9 && <span className="ov-nr" style={{ fontWeight: 600, color: "rgba(255,255,255,.92)", whiteSpace: "nowrap" }}>{String(d.decade).slice(2)}s</span>}
+                {w > 9 && <span className="ov-eb" style={{ color: "rgba(255,255,255,.62)", whiteSpace: "nowrap" }}>{pct}%</span>}
               </div>
             );
           })}
         </div>
         {/* strip caption (footnote-grade eyebrow — Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
-        <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", marginTop: 7 }}>
+        <div className="ov-eb" style={{ marginTop: 8 }}>
           area = share of plays by release decade · click a decade to drill in
         </div>
       </div>
@@ -400,7 +403,7 @@ function OvDecadesCard({ R, go, restReady, fStats }) {
     <div className="r-card ov-decades" style={{ padding: 12 }}>
       <div className="r-card-h" style={{ padding: 0, marginBottom: 8, display: "flex", alignItems: "center", gap: 10 }}>
         <span className="lbl"><b>Decades</b></span>
-        {fy && <span className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--accent)" }}>{(fStats && fStats.label) || "filtered"}</span>}
+        {fy && <span className="ov-eb ov-eb-on">{(fStats && fStats.label) || "filtered"}</span>}
         {zoom != null && (
           <button onClick={(e) => { e.stopPropagation(); setZoom(null); }} className="ov-wback">← all decades</button>
         )}
@@ -687,8 +690,7 @@ function OverviewView({ t, go, restReady, seed }) {
           strip is, so it marked nothing — and it inflated captions that are already tight once a
           filter name is concatenated in. .ov-stat-link still carries the hover affordance. */}
       {/* per-tile stat caption (footnote-grade eyebrow — Fuad 2026-08-24: eyebrow collapse, two sizes only) */}
-      <div className="r-mono ov-stat-sub" style={{ fontSize: 8.5, textTransform: "uppercase",
-        color: "var(--ink-faint)", marginTop: 4 }}>{sub}</div>
+      <div className="ov-eb ov-stat-sub" style={{ marginTop: 4 }}>{sub}</div>
     </div>
   );
 
@@ -801,7 +803,7 @@ function OverviewView({ t, go, restReady, seed }) {
             <span className="lbl"><b>Scrobbles</b></span>
             <span className="meta">26-wk</span>
           </div>
-          <div className="r-stat-n" style={{ fontSize: 20, margin: "1px 0 0" }}>
+          <div className="ov-n" style={{ margin: "1px 0 0" }}>
             <TweenNum v={liveTotal} f={fmt} from={0} dur={1400} /></div>
           <div style={{ marginTop: 2 }}>
             <Spark data={trend} w={300} h={22} run={seen} fill="var(--accent-bg)" />
@@ -811,15 +813,15 @@ function OverviewView({ t, go, restReady, seed }) {
               (chroma 0.08 / alpha 0.42), not the weather ones: this is a footnote under a number,
               so it wants an edge rather than a drawn line. Alpha lives in the background colour
               only — put `opacity` on the element and the border fades with the wash it encloses. */}
-          <div className="ov-mile-line" style={{ display: "flex", alignItems: "center", gap: 7, marginTop: 3, minWidth: 0 }}>
+          <div className="ov-mile-line" style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4, minWidth: 0 }}>
             <div style={{ flex: 1, minWidth: 0, height: 5, borderRadius: 3, background: "var(--bg-3)", position: "relative" }}>
               <div style={{ position: "absolute", inset: "0 auto 0 0", width: mile.pct + "%",
                 background: "oklch(0.72 0.15 350 / 0.22)", border: "1px solid oklch(0.66 0.08 350 / 0.42)",
                 boxSizing: "border-box", borderRadius: 3 }} />
             </div>
-            <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", flex: "none", whiteSpace: "nowrap" }}>→ {fmt(mile.next)}</span>
+            <span className="ov-mi" style={{ flex: "none", whiteSpace: "nowrap" }}>→ {fmt(mile.next)}</span>
           </div>
-          {mile.last && <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", letterSpacing: ".06em",
+          {mile.last && <div className="ov-eb" style={{ letterSpacing: ".06em",
             whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
             last: {kAbbr(mile.last.n)} — {mile.last.artist}, {mile.last.track}</div>}
         </div>
@@ -828,9 +830,9 @@ function OverviewView({ t, go, restReady, seed }) {
         <div className="r-card ov-streak" style={{ padding: 12, display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
           <div className="r-card-h" style={{ padding: 0 }}><span className="lbl"><b>Streak</b></span>
             {T.streak.current >= T.streak.best ? <span className="meta" style={{ color: "var(--accent)" }}>record!</span> : null}</div>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 7, marginTop: 0 }}>
-            <div className="r-stat-n" style={{ fontSize: 20 }}>{T.streak.current}</div>
-            <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>days</span>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginTop: 0 }}>
+            <div className="ov-n">{T.streak.current}</div>
+            <span className="ov-nr" style={{ color: "var(--ink-soft)" }}>days</span>
           </div>
           {(() => {
             const S = R.INSIGHTS && R.INSIGHTS.STREAK;
@@ -855,7 +857,7 @@ function OverviewView({ t, go, restReady, seed }) {
                     captions made: at .08em this line ran two characters past the 162px this card
                     gets at 1280 and ellipsised the record's end month. Down to .04em, and the
                     dash loses its spaces, so the whole span fits with room. */}
-                <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", letterSpacing: ".04em",
+                <div className="ov-eb" style={{ letterSpacing: ".04em",
                   whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}
                   title={S && S.start && S.end ? `longest run: ${T.streak.best} days, ${S.start} to ${S.end}` : undefined}>
                   best <span style={{ color: "var(--accent)" }}>{T.streak.best}</span>
@@ -867,7 +869,7 @@ function OverviewView({ t, go, restReady, seed }) {
                   <div className="ov-daybar" title="the last 60 days — one bar a day, empty where nothing played">
                     {run.map((c, i) => <i key={i} style={c ? { background: "var(--accent)", opacity: 0.32 + 0.68 * Math.min(1, c / mx) } : { background: "var(--bg-3)" }} />)}
                   </div>
-                  <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", letterSpacing: ".06em" }}>last 60 days</div>
+                  <div className="ov-eb" style={{ letterSpacing: ".06em" }}>last 60 days</div>
                 </>)}
               </div>
             );
@@ -952,22 +954,27 @@ function OverviewView({ t, go, restReady, seed }) {
             {/* The link is ONE WORD (2026-09-19). At this card's ~185px the 10px meta ran just
                 past the room left beside "Recent", so the ↗ dropped to a second line on its own
                 and the header stood two rows tall. Dropped to the 8.5px footnote size (the other
-                half of the eyebrow pair) and pinned nowrap: the arrow belongs to the address. */}
+                half of the eyebrow pair) and pinned nowrap: the arrow belongs to the address.
+                The size stays INLINE rather than moving to .ov-eb: this anchor keeps .meta for
+                its margin-left:auto, and .r-card-h .meta outranks a bare role class, so a class
+                here would silently lose and the link would go back to 10px. */}
             <div className="r-card-h" style={{ padding: 0, marginBottom: 3, flexWrap: "nowrap" }}>
               <span className="lbl"><b>Recent</b></span>
               <a className="meta r-extlink-lf" href="https://www.last.fm/user/fuadex" target="_blank" rel="noopener noreferrer"
                 style={{ color: "var(--ink-faint)", textDecoration: "none", fontSize: 8.5, whiteSpace: "nowrap", flex: "none" }}>last.fm/fuadex ↗</a></div>
             <div className="ov-rl" style={{ display: "grid", gap: 1, flex: 1, alignContent: "center" }}>
               {recent3.map(r => (
-                <div key={r.id} className="ov-hovrow" onClick={() => { if (r.artist && r.track) go("track", R.slug(r.artist) + "~" + R.slug(r.track)); }} title={`${r.track} →`} style={{ display: "flex", alignItems: "center", gap: 9,
+                <div key={r.id} className="ov-hovrow" onClick={() => { if (r.artist && r.track) go("track", R.slug(r.artist) + "~" + R.slug(r.track)); }} title={`${r.track} →`} style={{ display: "flex", alignItems: "center", gap: 8,
                   padding: "3px 0", borderRadius: 4, cursor: "pointer", minWidth: 0 }}>
                   <GenCover hue={r.hue} name={r.artist} image={r.img || undefined} size={22} radius={2} />
                   <div style={{ minWidth: 0, flex: 1 }}>
-                    <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.track}</div>
+                    <div className="ov-tx">{r.track}</div>
+                    {/* sans at 10px, so not .ov-nr — the artist under a track title is a NAME and
+                        reads as one; the mono grades are for counts and labels. */}
                     <div style={{ fontSize: 10, color: "var(--ink-faint)", cursor: "pointer", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }} title={`${r.artist} →`}
                       onClick={e => { e.stopPropagation(); go("artist", r.artistId); }}>{r.artist}</div>
                   </div>
-                  <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", flex: "none" }}>{r.when}</span>
+                  <span className="ov-nr" style={{ flex: "none" }}>{r.when}</span>
                 </div>
               ))}
             </div>
@@ -1006,6 +1013,43 @@ function OverviewView({ t, go, restReady, seed }) {
       </div>
 
       <style>{`
+        /* ══ EIGHT TYPE ROLES FOR THE OVERVIEW (2026-09-19) ═══════════════════════════
+           The move rotation-views3.jsx made for the Stories feed (.st-mi / .st-nr / .st-tx), run
+           over Overview. Sixty-odd inline declarations across this file and rotation-insights.jsx
+           were re-deriving the same handful of faces by hand, so a row and the row under it could
+           disagree by half a pixel and nothing in the file said which was right.
+             .ov-eb      the 8.5px footnote grade — captions, axis labels, strip legends
+             .ov-eb-on   the same thing while a filter is on: tracked, capped, accent
+             .ov-mi      the 9px micro-label (the mono sub-line under a name)
+             .ov-nr      a 10px count or caption, usually at a row's trailing edge
+             .ov-tx      a row's primary name
+             .ov-tx-soft secondary prose beside it
+             .ov-n       a pulse numeral
+             .ov-quote   the serif italic aside
+           Each role carries FACE, SIZE and INK and nothing else, exactly as .st-mi does. Tracking,
+           caps, truncation, flex and margins stay at the call site, because those are facts about
+           one row rather than about the type: the 8.5px grade runs sentence-case more often than
+           capped, and its tracking is tuned per card down to .04em where a line has to fit a
+           measured width (see the streak-line and strip-caption notes below). .ov-eb-on is the one
+           exception — the filtered chip is always a capped .1em chip, so it owns both. */
+        .ov-eb { font-family: var(--mono); font-size: 8.5px; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+        .ov-eb-on { letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+        .ov-mi { font-family: var(--mono); font-size: 9px; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+        .ov-nr { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+        .ov-tx { font-family: var(--sans); font-size: 12px; font-weight: 500; color: var(--ink);
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .ov-tx-soft { font-family: var(--sans); font-size: 12.5px; color: var(--ink-soft); }
+        /* the pulse numeral: .r-stat-n's own face, pinned to the one size this row uses. It
+           replaces .ov-ins-fig, which wore it for the insight figures and lost its last element
+           when SubjectStat went. The Stat tiles in the strip stay on .r-stat-n — they are the
+           clamped ones, and .ov-stat-link's hover is bound to that class. */
+        .ov-n { font-family: var(--serif); font-weight: 400; font-size: 20px; color: var(--ink);
+          letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1; }
+        /* 12.5px/1.35, not the 13px/1.4 the review sketched: this is On this day's "Biggest:" line,
+           and that card sets the pulse row's height — a 13px line grows it 1.3px and takes the
+           whole row with it. The role is the file's own measurement. */
+        .ov-quote { font-family: var(--serif); font-style: italic; font-size: 12.5px; line-height: 1.35;
+          color: var(--ink-soft); }
         /* Kicker-only header (2026-08-20). .r-kicker carries a 12px bottom margin to stand off the
            title beneath it, and .r-viewhead adds pad*1.35 below the pair — with the title commented
            out, both were holding open space for something that is not there. Delete this rule at the
@@ -1155,7 +1199,7 @@ function OverviewView({ t, go, restReady, seed }) {
         .ov-pd-fig { font-size: 9.5px; color: var(--ink-faint); flex: none; white-space: nowrap; }
         .ov-pd-via { color: var(--accent); font-weight: 600; cursor: pointer; }
         .ov-pd-via:hover { text-decoration: underline; }
-        .ov-stat-link { transition: color .15s; } .ov-stat-link:hover .r-stat-n { color: var(--accent); } .ov-stat-link:hover { color: var(--accent); }
+        .ov-stat-link:hover .r-stat-n { color: var(--accent); } .ov-stat-link:hover { color: var(--accent); }
         /* HOVER TRANSITIONS FOR THE OVERVIEW (2026-09-19), the same audit rotation-views3.jsx ran
            over the Stories feed on 2026-09-14. Five things here change background, border or
            colour on hover and declared no transition, so each one snapped while the feed eased.
@@ -1163,20 +1207,27 @@ function OverviewView({ t, go, restReady, seed }) {
            setting currentTarget.style.background in JS on enter and clearing it on leave — four
            hand-rolled copies of one rule, and an inline style swap is exactly the thing a CSS
            transition cannot smooth, since it is the transition that has to be declared first. */
-        .ov-hovrow, .ov-wback, .ov-calsel, .ov-caltitle, .ov-pd-foot {
+        /* Round two of the same sweep (wave 3). Two more colour swaps were snapping:
+           · .ov-stat-link declared the easing on ITSELF, so the caption faded and the numeral
+             inside it — a different element, and the one you are actually looking at — jumped.
+             The stat tile's number is named here so both halves move together.
+           · The last.fm link in the Recent header wears .r-extlink-lf without .r-extlink, and
+             the .15s lives on .r-extlink; the red-on-hover had nothing to ease. Scoped to the
+             card so the pill-shaped .r-extlink uses elsewhere keep their own timing.
+           Not folded in: .ov-pd-via's hover, which only adds an underline — there is nothing
+           there to interpolate. */
+        .ov-hovrow, .ov-wback, .ov-calsel, .ov-caltitle, .ov-pd-foot,
+        .ov-stat-link, .ov-stat-link .r-stat-n, .ov-recent .r-extlink-lf {
           transition: background .16s ease, border-color .16s ease, color .16s ease;
         }
         @media (prefers-reduced-motion: reduce) {
-          .ov-hovrow, .ov-wback, .ov-calsel, .ov-caltitle, .ov-pd-foot { transition: none; }
+          .ov-hovrow, .ov-wback, .ov-calsel, .ov-caltitle, .ov-pd-foot,
+          .ov-stat-link, .ov-stat-link .r-stat-n, .ov-recent .r-extlink-lf { transition: none; }
         }
         .ov-hovrow:hover { background: var(--bg-3); }
-        /* ONE FACE FOR THE PULSE ROW'S NUMERALS (2026-09-19). .ov-ins-fig was a class with no rule
-           behind it, so the two insight figures in this row fell back to whatever they were given
-           inline — the mono face at 10px in flat white — while Scrobbles and Streak carried the
-           serif at 20px beside them. The rule is the pulse row's own: same family, same size, same
-           ink, tabular so the digits sit in columns. */
-        .ov-ins-fig { font-family: var(--serif); font-size: 20px; color: var(--ink);
-          font-variant-numeric: tabular-nums; line-height: 1.05; }
+        /* .ov-ins-fig lived here from 2026-09-19 until later the same day: it gave the pulse row's
+           insight figures the serif face, and its only element was SubjectStat, which went when its
+           last caller did. The face it carried is .ov-n, at the top of this block. */
         /* STREAK'S 60-DAY RUN (2026-09-19). Sixty bars and fifty-nine 1px gaps inside a ~161px
            card column leaves each bar under 2px, which is the point: this is a texture, not a
            chart — you read the density and the gaps, not any one day. flex-basis 0 with a 0 min
@@ -1191,7 +1242,7 @@ function OverviewView({ t, go, restReady, seed }) {
            holds its segments unbreakable: a caption that still runs long drops a whole phrase.
            The whole strip is measured against the NARROWEST case — the 366px the map band's
            middle column gives it at 1280px — because that is where it breaks first. */
-        .ov-stat-sub { letter-spacing: .06em; }
+        .ov-stat-sub { letter-spacing: .06em; text-transform: uppercase; }
         .ov-stat-sub > span { white-space: nowrap; }
         .ov-stat-lt { white-space: nowrap; opacity: .6; }
         /* .eqbar and its @keyframes went on 2026-09-19 — the five animated bars belonged to the

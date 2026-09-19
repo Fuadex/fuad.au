@@ -22,41 +22,13 @@ const _jitter = (id, now) => (_hash(id + _dayKey(now)) % 1000) / 1000 * 0.06;
 const _id = (name) => { const R = window.ROTATION; return (name && R.idForName(name)) || R.slug(name || ""); };
 const _hue = (name) => { const R = window.ROTATION, e = R.byId[_id(name)] || (R.expById && R.expById[_id(name)]); return e && e.hue != null ? e.hue : 210; };
 
-// ── SUBJECT CARD (Fuad 2026-08-20) ──────────────────────────────────────────────────────────────
-// Every insight that is ABOUT an artist, album or track renders the same way: the number and its
-// unit on the first line, the name under it, one quiet line of context, and the cover at the RIGHT
-// edge. Three things drove this:
-//   · "if it's relative to an artist, an album or song, there should be a thumbnail somewhere".
-//     GenCover already resolves a real photo from the name alone, so the thumbnail is free — these
-//     cards simply never asked for one.
-//   · The old shape said the name THREE times: `meta` in the header, `sub` under the number, and
-//     again inside `note`. Once, next to its own picture, is enough.
-//   · COVER RIGHT, NOT LEFT (Fuad 2026-08-20: "the blocks need to align vertically, the widths are
-//     uneven"). The first pass put the cover first, which pushed the number ~48px in from the card's
-//     padding edge — so in a row of four cards, three had their big number on the left margin and
-//     this one did not. Nothing else in the row is indented, so the card was the odd one out. Moving
-//     the cover to the trailing edge puts every number on the same vertical line and still leaves
-//     the picture beside the thing it belongs to.
-// Callers pass `name` for the cover lookup and `title` for what to print, because a track card
-// looks the artist up but shows the song.
-function SubjectStat({ name, title, big, unit, foot, size }) {
-  return (
-    <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
-      <div style={{ minWidth: 0, flex: 1 }}>
-        <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
-          {/* the face is .ov-ins-fig's now (2026-09-19) — it used to carry r-mono at 10px/#fff
-              inline, which beat the class and left these figures the only numerals in the pulse
-              row wearing the mono face at a footnote size. */}
-          <div className="ov-ins-fig">{big}</div>
-          {unit && <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>{unit}</span>}
-        </div>
-        <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginTop: 3 }}>{title || name}</div>
-        {foot && <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{foot}</div>}
-      </div>
-      <GenCover hue={_hue(name)} name={name} size={size || 38} radius={2} style={{ flex: "none" }} />
-    </div>
-  );
-}
+// SubjectStat — the shared "number, name, cover at the right edge" card — was DELETED on
+// 2026-09-19. It rendered the artist/album/track insights (Fuad 2026-08-20: "if it's relative to
+// an artist, an album or song, there should be a thumbnail somewhere"), and the last two callers
+// left on the same day: the artist milestone moved to the artist page and the scrobble milestone
+// folded into the Overview's Scrobbles card. The rule it wore, .ov-ins-fig, went with it — the
+// pulse row's numeral face is .ov-n in rotation-views1.jsx now. If a subject card comes back it
+// comes back on the type roles, not on its own inline set.
 
 const PROVIDERS = [
   // ── anniversary of your first scrobble — climbs as it nears, hidden the rest of the year ──
@@ -124,17 +96,17 @@ const PROVIDERS = [
           {rows.map(t => (
             <div key={t.id} className="ov-hovrow" onClick={(e) => { e.stopPropagation(); ctx.go("artist", t.id); }}
               title={`${t.name} — ${t.share}% of their plays fall in ${t.window} →`}
-              style={{ display: "flex", alignItems: "center", gap: 9, cursor: "pointer", padding: "3px 0", borderRadius: 4, minWidth: 0 }}>
+              style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", padding: "3px 0", borderRadius: 4, minWidth: 0 }}>
               <GenCover hue={t.hue} name={t.name} size={22} radius={2} style={{ flex: "none" }} />
               <div style={{ flex: "1 1 0", minWidth: 0 }}>
-                <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.name}</div>
+                <div className="ov-tx">{t.name}</div>
                 {/* the play count sits at the trailing edge, not in this line: "98% in Sep–Nov ·
                     162 plays" wants 140px and a pulse card's sub-line has 128, so the count was
                     the half that got ellipsised. On repeat's rows already park their figure out
                     there (37×), so the row keeps both numbers and the family's shape. */}
-                <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.share}% in {t.window}</div>
+                <div className="ov-mi" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.share}% in {t.window}</div>
               </div>
-              <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", flex: "none" }}>{_fmtN(t.plays)}</span>
+              <span className="ov-mi" style={{ flex: "none" }}>{_fmtN(t.plays)}</span>
             </div>
           ))}
         </div>
@@ -154,7 +126,9 @@ const PROVIDERS = [
   },
 
   // ── week in review (live sync) — PROMOTED to the Overview pulse row (Fuad 2026-07-05);
-  // returns null here so the deck doesn't duplicate it. Kept for reference/rollback.
+  // returns null here so the deck doesn't duplicate it. Kept for reference/rollback — and left on
+  // its own inline type declarations for the same reason: a rollback wants the card it was, not a
+  // half-migrated one.
   (ctx) => {
     if (true) return null;
     const w = window.ROTATION_LIVE && window.ROTATION_LIVE.week; if (!w) return null;
@@ -209,13 +183,13 @@ const PROVIDERS = [
             // .ov-hovrow (rotation-views1.jsx) IS that swap now (2026-09-19) — four rows across
             // two files were each doing it by hand in JS, which no transition could ever reach.
             <div key={t.name + t.artist} className="ov-hovrow" onClick={(e) => { e.stopPropagation(); ctx.go("track", R.slug(t.artist) + "~" + R.slug(t.name)); }}
-              style={{ display: "flex", alignItems: "center", gap: 9, cursor: "pointer", padding: "3px 0", borderRadius: 4, minWidth: 0 }}>
+              style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", padding: "3px 0", borderRadius: 4, minWidth: 0 }}>
               <GenCover hue={_hue(t.artist)} name={t.artist} size={22} radius={2} style={{ flex: "none" }} />
               <div className="ov-rep-txt" style={{ flex: "1 1 0", minWidth: 0 }}>
-                <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.name}</div>
-                <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.artist}</div>
+                <div className="ov-tx">{t.name}</div>
+                <div className="ov-mi" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.artist}</div>
               </div>
-              <span className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", flex: "none" }}>{t.plays}×</span>
+              <span className="ov-mi" style={{ flex: "none" }}>{t.plays}×</span>
             </div>
           ))}
         </div>
@@ -291,18 +265,20 @@ const PROVIDERS = [
       // Riser's score, not Movement's — this is the card Riser was, with two more kinds of row.
       id: "this-week", category: "this-week", score: 0.72, label: "This week",
       render: (
-        <div style={{ display: "grid", gap: 5, gridTemplateColumns: "minmax(0, 1fr)" }}>
+        <div style={{ display: "grid", gap: 4, gridTemplateColumns: "minmax(0, 1fr)" }}>
           {/* the Riser row, tagged: the tag leads, then the cover and the name/detail column the
               other deck rows use. Three of these fit the rank; the cover comes down to 20px and
               the padding to 2px so the third row doesn't push past its neighbours. */}
           {lines.slice(0, 3).map(l => (
             <div key={l.tag + l.id} className="ov-hovrow" title={l.title} onClick={(e) => { e.stopPropagation(); ctx.go("artist", l.id); }}
-              style={{ display: "flex", alignItems: "center", gap: 7, cursor: "pointer", padding: "2px 0", borderRadius: 4, minWidth: 0 }}>
+              style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", padding: "2px 0", borderRadius: 4, minWidth: 0 }}>
+              {/* 8px, half a step under .ov-eb: BACK at .12em has to clear a 23px column, and the
+                  footnote grade puts it over. The column is what is fixed here, not the type. */}
               <span className="r-mono" style={{ fontSize: 8, letterSpacing: ".12em", color: "var(--accent)", flex: "none", width: 23 }}>{l.tag}</span>
               <GenCover hue={_hue(l.name)} name={l.name} size={20} radius={2} style={{ flex: "none" }} />
               <div style={{ flex: "1 1 0", minWidth: 0 }}>
-                <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{l.name}</div>
-                <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{l.detail}</div>
+                <div className="ov-tx">{l.name}</div>
+                <div className="ov-mi" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{l.detail}</div>
               </div>
             </div>
           ))}
@@ -321,7 +297,7 @@ const PROVIDERS = [
     return {
       id: "mood", category: "mood", score: 0.66, label: "Mood lately",
       render: (
-        <div style={{ display: "flex", gap: 13, alignItems: "center" }}>
+        <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
           <svg viewBox="0 0 90 90" style={{ width: 84, height: 84, flex: "none" }}>
             <rect x="6" y="6" width="78" height="78" fill="none" stroke="var(--rule)" strokeWidth="0.5" />
             <line x1="45" y1="6" x2="45" y2="84" stroke="var(--rule)" strokeWidth="0.4" />
@@ -331,7 +307,9 @@ const PROVIDERS = [
             <circle cx={px(m.energy)} cy={py(m.valence)} r="4.5" fill="var(--accent)" />
           </svg>
           <div>
-            <div className="r-mono" style={{ fontSize: 8.5, letterSpacing: ".06em", color: "var(--ink-faint)" }}>→ energy · ↑ mood</div>
+            <div className="ov-eb" style={{ letterSpacing: ".06em" }}>→ energy · ↑ mood</div>
+            {/* not .ov-quote: this line is the card's whole statement and carries full ink, where
+                the role is the aside under something else, in --ink-soft. */}
             <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 13.5, lineHeight: 1.35, marginTop: 6 }}>Lately: {eW} & {vW} than usual.</div>
           </div>
         </div>
@@ -352,12 +330,14 @@ const PROVIDERS = [
           <div onClick={(e) => { e.stopPropagation(); ctx.go("artist", _id(y.topArtist.name)); }} style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }}>
             <GenCover hue={y.topArtist.hue} name={y.topArtist.name} size={34} radius={3} />
             <div style={{ minWidth: 0 }}>
-              <div className="r-mono" style={{ fontSize: 8.5, color: "var(--ink-faint)", letterSpacing: ".1em", textTransform: "uppercase" }}>top artist</div>
+              <div className="ov-eb" style={{ letterSpacing: ".1em", textTransform: "uppercase" }}>top artist</div>
+              {/* 14.5/600, a size above .ov-tx: this card names ONE artist and the name IS the
+                  figure — there is no numeral over it to be the headline. */}
               <div style={{ fontSize: 14.5, fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{y.topArtist.name}</div>
-              <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)" }}>{_fmtN(y.topArtist.plays)} plays</div>
+              <div className="ov-mi">{_fmtN(y.topArtist.plays)} plays</div>
             </div>
           </div>
-          {y.topTrack && <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-soft)", marginTop: 9, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>♪ {y.topTrack.title} — {y.topTrack.artist}</div>}
+          {y.topTrack && <div className="ov-mi" style={{ color: "var(--ink-soft)", marginTop: 8, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>♪ {y.topTrack.title} — {y.topTrack.artist}</div>}
         </div>
       ),
     };
@@ -375,7 +355,7 @@ const PROVIDERS = [
           <div style={{ display: "flex", alignItems: "flex-end", gap: 1, height: 46, marginTop: 6 }}>
             {c.bins.map((v, i) => <div key={i} style={{ flex: 1, height: Math.max(2, v / max * 46), background: v ? "var(--accent)" : "var(--bg-3)", opacity: v ? 0.5 + 0.5 * (v / max) : 1, borderRadius: 1 }} title={v + " plays"} />)}
           </div>
-          <div className="r-mono" style={{ display: "flex", justifyContent: "space-between", fontSize: 8.5, color: "var(--ink-faint)", marginTop: 6 }}>
+          <div className="ov-eb" style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
             <span>72h ago</span><span>{_fmtN(sum)} plays</span><span>now</span>
           </div>
         </div>
@@ -411,14 +391,17 @@ const PROVIDERS = [
           <div style={{ display: "grid", gap: 5 }}>
             {rows.slice(0, 3).map(r => (
               <div key={r.y} onClick={(e) => { e.stopPropagation(); ctx.go("artist", r.artistId); }} style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer" }}>
-                <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-faint)", width: 28 }}>{r.y}</span>
+                <span className="ov-nr" style={{ width: 28 }}>{r.y}</span>
                 <GenCover hue={r.hue} name={r.artist} size={20} radius={2} />
+                {/* .ov-tx's size doing .ov-tx's job, but at 400: these rows are led by the YEAR in
+                    the column before them, and a rank of 500-weight names would out-shout it.
+                    Weight is a design call, so this one was not absorbed with the rest. */}
                 <div style={{ flex: 1, minWidth: 0, fontSize: 12, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.artist}</div>
-                <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", flex: "none" }}>{r.plays}</span>
+                <span className="ov-mi" style={{ flex: "none" }}>{r.plays}</span>
               </div>
             ))}
           </div>
-          {standout && <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 12.5, color: "var(--ink-soft)", lineHeight: 1.35, marginTop: 9 }}>Biggest: {standout.y}, {standout.plays} plays — {standout.artist}.</div>}
+          {standout && <div className="ov-quote" style={{ marginTop: 9 }}>Biggest: {standout.y}, {standout.plays} plays — {standout.artist}.</div>}
         </div>
       ),
     };
@@ -507,8 +490,8 @@ function storyOfDayProvider(ctx) {
       render: (
         <div>
           <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 17, lineHeight: 1.3, marginBottom: 7 }}>{pick.t}</div>
-          <div style={{ fontSize: 12.5, color: "var(--ink-soft)", lineHeight: 1.5 }}>{pick.teaser}</div>
-          <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--ink-faint)", marginTop: 10 }}>read the story →</div>
+          <div className="ov-tx-soft" style={{ lineHeight: 1.5 }}>{pick.teaser}</div>
+          <div className="ov-mi" style={{ letterSpacing: ".12em", textTransform: "uppercase", marginTop: 10 }}>read the story →</div>
         </div>
       ),
     };
@@ -567,12 +550,14 @@ function InsightCard({ ins, span }) {
           play count clean out of the card instead of being truncated. */}
       <div style={{ flex: 1, minWidth: 0, minHeight: 0, display: "flex", flexDirection: "column", justifyContent: "center" }}>
         {ins.render ? ins.render : (<>
-        <div style={{ display: "flex", alignItems: "baseline", gap: 7 }}>
+        {/* stays on .r-stat-n, not .ov-n: this figure is a step down from the pulse numerals, and
+            .ov-pulseslot overrides the class by name when the card rides that row. */}
+        <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
           <div className="r-stat-n" style={{ fontSize: 23, lineHeight: 1.05, color: ins.accent ? "var(--accent)" : "var(--ink)" }}>{ins.big}</div>
-          {ins.bigUnit && <span className="r-mono" style={{ fontSize: 10, color: "var(--ink-soft)" }}>{ins.bigUnit}</span>}
+          {ins.bigUnit && <span className="ov-nr" style={{ color: "var(--ink-soft)" }}>{ins.bigUnit}</span>}
         </div>
-        {ins.sub && <div className="r-mono" style={{ fontSize: 9, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--ink-faint)", marginTop: 2 }}>{ins.sub}</div>}
-        {ins.note && <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 12, color: "var(--ink-soft)", lineHeight: 1.3, marginTop: 3 }}>{ins.note}</div>}
+        {ins.sub && <div className="ov-mi" style={{ letterSpacing: ".1em", textTransform: "uppercase", marginTop: 2 }}>{ins.sub}</div>}
+        {ins.note && <div className="ov-quote" style={{ marginTop: 4 }}>{ins.note}</div>}
         </>)}
       </div>
     </div>
