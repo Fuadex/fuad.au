@@ -59,8 +59,52 @@ const unproxy = (e) => {
   const el = e.currentTarget, orig = el.dataset && el.dataset.orig;
   if (orig && el.src !== orig) el.src = orig;
 };
+// The ONE place a raw poster src becomes the URL that actually gets requested (tmdbSize
+// rewrite, then the proxy swap). LazyImg's <img> and warmNeighbours' prefetch both call this,
+// so a warmed URL can never drift from the URL LazyImg later paints — a warm() on any other
+// derivation would just fill the browser cache under a URL nothing ever requests.
+const lazyImgUrl = (src, size) => { const url = tmdbSize(src, size); return { url, prox: proxied(url) }; };
 
-function LazyImg({ src, alt, className, draggable, size = 'w185' }) {
+// Prefetch dedupe (Fuad 2026-09-21, "peek" warming below) — module-level so it survives every
+// LazyImg instance for the session; a URL warmed once by row A is never re-fetched when row B's
+// neighbour warming reaches the same cover.
+const warmed = new Set();
+function warm(url) {
+  if (!url || warmed.has(url)) return;
+  if (navigator.connection && navigator.connection.saveData) return;   // respect Data Saver
+  warmed.add(url);
+  try { new Image().src = url; } catch (_) { /* best-effort only */ }
+}
+// Warms up to 5 neighbours on EACH side of the item that just revealed, so a fast fling across
+// a shelf finds covers already in the browser cache instead of popping in behind the IO+network
+// round trip. `peek` is { list, index }: list = the row's raw (pre-derivation) srcs in display
+// order, index = this item's position in it — same shape at every call site, so this loop never
+// needs to know whether it's a shelf, a wrapping grid, or a 3-card deal.
+function warmNeighbours(peek, size) {
+  if (!peek) return;
+  const { list, index } = peek;
+  if (!list || index == null) return;
+  for (let d = 1; d <= 5; d++) {
+    if (index - d >= 0) warm(lazyImgUrl(list[index - d], size).prox);
+    if (index + d < list.length) warm(lazyImgUrl(list[index + d], size).prox);
+  }
+}
+
+// LazyImg — real off-screen deferral for shelf/grid covers (2026-09-21: now also warms
+// row neighbours; see `peek` below). Native loading="lazy" does NOT
+// defer images inside horizontally-scrolling shelves (they share the viewport's vertical band, so
+// the browser fetches the whole row) — on a phone that fired ~170 poster requests on first paint
+// (audit 2026-07-18). A viewport-rooted IntersectionObserver only reveals src once a cover is
+// actually near view, in ANY scroll direction. The container carries fixed CSS dimensions (.item
+// is 144px tall, .xcover is aspect-ratio 2/3, .hall-card sized), so withholding src never
+// collapses layout — off-screen cards stay off-screen and never intersect.
+// PEEK (Fuad 2026-09-21): on mobile a fast fling still outran reveal+fetch and covers popped in
+// visibly rough. `peek` is optional row context — { list, index } — the ordered raw srcs for
+// the row this item sits in, plus this item's position. When the observer reveals THIS image, we
+// also warm (not render — a bare `new Image()` fetch, see warm() above) up to 5 neighbours each
+// side via the SAME url derivation LazyImg itself uses, so by the time the user scrolls past them
+// they're already in cache. No `peek` prop → exactly the pre-2026-09-21 behaviour.
+function LazyImg({ src, alt, className, draggable, size = 'w185', peek }) {
   const ref = React.useRef(null);
   const [show, setShow] = React.useState(false);
   const [direct, setDirect] = React.useState(false);   // proxy failed once → go direct
@@ -70,13 +114,15 @@ function LazyImg({ src, alt, className, draggable, size = 'w185' }) {
     if (!el) return;
     if (typeof IntersectionObserver === 'undefined') { setShow(true); return; }
     const io = new IntersectionObserver((ents) => {
-      for (const e of ents) if (e.isIntersecting) { setShow(true); io.disconnect(); return; }
+      for (const e of ents) if (e.isIntersecting) {
+        setShow(true); io.disconnect(); warmNeighbours(peek, size); return;
+      }
     }, { rootMargin: '400px' });
     io.observe(el);
     return () => io.disconnect();
   }, [show, src]);
-  const url = tmdbSize(src, size);   // LazyImg only ever paints small covers (96px shelf / 88px
-  const prox = proxied(url);         // hall / 48-58px wall) — w185 is the honest ask there.
+  const { url, prox } = lazyImgUrl(src, size);   // LazyImg only ever paints small covers (96px
+  // shelf / 88px hall / 48-58px wall) — w185 is the honest ask there.
   return <img ref={ref} className={className} alt={alt || ''} draggable={draggable}
     src={show ? (direct ? url : prox) : undefined} loading="lazy" decoding="async"
     onError={() => { if (!direct && prox !== url) setDirect(true); }} />;
@@ -670,17 +716,21 @@ function TagBadgeExplorer({ items, onOpenItem }) {
           </div>
           <div className="explorer-count">{results.length} match{results.length !== 1 ? 'es' : ''}<button className="xclear" onClick={() => setSel([])}>clear</button></div>
           <div className="explorer-wall">
-            {results.slice(0, 140).map(it => {
-              const img = it.poster || it.tmdbPoster || it.igdbCover || it.bookCover;
-              return (
-                <a key={it.id} className="xcover" role="button" tabIndex={0} aria-label={displayTitle(it)}
-                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onOpenItem && onOpenItem(it); } }}
-                  onClick={() => onOpenItem && onOpenItem(it)} title={`${displayTitle(it)} (${it.year || ''})`}>
-                  {img ? <LazyImg src={img} alt="" />
-                       : <span className="xcover-fallback" style={{ '--pf-bg': spineBodyColor(it) }}>{MG[it.medium] || '•'}</span>}
-                </a>
-              );
-            })}
+            {(() => {
+              const wall = results.slice(0, 140);
+              const wallSrcs = wall.map(it => it.poster || it.tmdbPoster || it.igdbCover || it.bookCover);
+              return wall.map((it, i) => {
+                const img = wallSrcs[i];
+                return (
+                  <a key={it.id} className="xcover" role="button" tabIndex={0} aria-label={displayTitle(it)}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onOpenItem && onOpenItem(it); } }}
+                    onClick={() => onOpenItem && onOpenItem(it)} title={`${displayTitle(it)} (${it.year || ''})`}>
+                    {img ? <LazyImg src={img} alt="" peek={{ list: wallSrcs, index: i }} />
+                         : <span className="xcover-fallback" style={{ '--pf-bg': spineBodyColor(it) }}>{MG[it.medium] || '•'}</span>}
+                  </a>
+                );
+              });
+            })()}
           </div>
         </div>
       )}
@@ -947,10 +997,11 @@ function WishlistPicker({ items, seenItems, onOpenItem }) {
     <div className="wl-pick-row">
       <div className="wl-pick-head"><span className="stats-section-title">{title}</span>{sub}</div>
       <div className="explorer-wall">
-        {list.map(it => { const img = it.poster || it.tmdbPoster || it.igdbCover || it.bookCover; return (
+        {(() => { const listSrcs = list.map(it => it.poster || it.tmdbPoster || it.igdbCover || it.bookCover);
+        return list.map((it, i) => { const img = listSrcs[i]; return (
           <a key={it.id} className="xcover" onClick={() => onOpenItem && onOpenItem(it)} title={`${displayTitle(it)} (${it.year || ''})${wlScore(it) ? ' · ⌀ ' + wlScore(it) : ''}`}>
-            {img ? <LazyImg src={img} alt="" /> : <span className="xcover-fallback" style={{ '--pf-bg': spineBodyColor(it) }}>{MG[it.medium] || '•'}</span>}
-          </a>); })}
+            {img ? <LazyImg src={img} alt="" peek={{ list: listSrcs, index: i }} /> : <span className="xcover-fallback" style={{ '--pf-bg': spineBodyColor(it) }}>{MG[it.medium] || '•'}</span>}
+          </a>); }); })()}
       </div>
     </div>
   );
@@ -1053,6 +1104,7 @@ function Halls({ items, onOpenItem }) {
       {HALLS.map(([badge, title, sub]) => {
         const list = withBadge(badge);
         if (!list.length) return null;
+        const listSrcs = list.map(posterOf);
         return (
           <div className="hall" key={badge}>
             <div className="hall-head">
@@ -1062,10 +1114,10 @@ function Halls({ items, onOpenItem }) {
             </div>
             <div className="hall-sub">{sub}</div>
             <div className="hall-grid">
-              {list.map(it => (
+              {list.map((it, i) => (
                 <button className="hall-card" key={it.id} onClick={() => onOpenItem(it)} title={displayTitle(it)}>
-                  {posterOf(it)
-                    ? <LazyImg src={posterOf(it)} alt="" />
+                  {listSrcs[i]
+                    ? <LazyImg src={listSrcs[i]} alt="" peek={{ list: listSrcs, index: i }} />
                     : <span className="hall-card-glyph">{displayTitle(it)}</span>}
                   <span className="hall-card-t">{displayTitle(it)}</span>
                 </button>
@@ -1456,6 +1508,10 @@ function ShelfRow({ medium, items, idx, mode, sort, sortDir, mixSeed, onOpenItem
     }
     return mode === 'spines' ? arr : centerOrder(arr);
   }, [items, mode, sort, sortDir]);
+  // Raw srcs in the same display order, for LazyImg's `peek` (neighbour warming) below —
+  // kept alongside `ordered` so both stay in lockstep and every item shares one array.
+  const orderedSrcs = React.useMemo(() =>
+    ordered.map(it => it.poster || it.tmdbPoster || it.igdbCover || it.bookCover), [ordered]);
 
   // Mix mode = size-aware & UNIFORM: a shelf (after any active filter/search) with fewer than
   // MIX_COVER_MAX items shows them ALL as covers — nicer to scan a handful — while a bigger shelf
@@ -1765,7 +1821,8 @@ function ShelfRow({ medium, items, idx, mode, sort, sortDir, mixSeed, onOpenItem
         onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleClick(item); } }}
       >
         {(item.poster || item.tmdbPoster || item.igdbCover || item.bookCover)
-          ? <LazyImg className="layer-img" src={item.poster || item.tmdbPoster || item.igdbCover || item.bookCover} alt={item.title} />
+          ? <LazyImg className="layer-img" src={item.poster || item.tmdbPoster || item.igdbCover || item.bookCover} alt={item.title}
+              peek={{ list: orderedSrcs, index: i }} />
           : <div className="poster-fallback" style={{ '--pf-bg': bodyColor }}>
               <span className="pf-title">{displayTitle(item)}</span>
               <span className="pf-meta">{item.year || ''}</span>
@@ -1793,7 +1850,7 @@ function ShelfRow({ medium, items, idx, mode, sort, sortDir, mixSeed, onOpenItem
         <span className="pick-dot"/>
       </div>
     );
-  }), [ordered, mode, justPickedId, pickedSet, reshuffling, isSpineFor, handleEnter, handleLeave, handleClick, handleAuxClick, spineValue]);
+  }), [ordered, orderedSrcs, mode, justPickedId, pickedSet, reshuffling, isSpineFor, handleEnter, handleLeave, handleClick, handleAuxClick, spineValue]);
 
   return (
     <section className={`shelf${isPicking ? ' is-picking' : ''}${sorting ? ' sorting' : ''}`}>
@@ -2495,7 +2552,7 @@ function weightedSample(pool, n, excludeIds, weightFn) {
   return first;
 }
 
-function TonightCard({ item, pinned, onPin, onOpen }) {
+function TonightCard({ item, pinned, onPin, onOpen, peek }) {
   const { MEDIA_SHORT, MEDIA_GLYPH } = window.CULTURE;
   const img = item.poster || item.tmdbPoster || item.igdbCover || item.bookCover;
   const mins = itemDurationMinutes(item);
@@ -2507,7 +2564,7 @@ function TonightCard({ item, pinned, onPin, onOpen }) {
   return (
     <div className={`tonight-card${isConviction ? ' conviction' : ''}`}>
       <div className="tonight-card-poster" onClick={() => onOpen(item)}>
-        {img ? <LazyImg src={img} alt="" />
+        {img ? <LazyImg src={img} alt="" peek={peek} />
              : <span className="tonight-poster-fallback" style={{ '--pf-bg': spineBodyColor(item) }}>{MEDIA_GLYPH[item.medium] || '•'}</span>}
       </div>
       <div className="tonight-card-body">
@@ -2856,9 +2913,11 @@ function TonightView({ items: wishlistPool, seenItems: seenPool, onOpenItem, onE
 
       {deal.length > 0 ? (
         <div className="tonight-deal">
-          {deal.map(it => (
-            <TonightCard key={it.id} item={it} pinned={pin && pin.id === it.id} onPin={savePin} onOpen={onOpenItem} />
-          ))}
+          {(() => { const dealSrcs = deal.map(it => it.poster || it.tmdbPoster || it.igdbCover || it.bookCover);
+          return deal.map((it, i) => (
+            <TonightCard key={it.id} item={it} pinned={pin && pin.id === it.id} onPin={savePin} onOpen={onOpenItem}
+              peek={{ list: dealSrcs, index: i }} />
+          )); })()}
         </div>
       ) : (
         <div className="tonight-empty">
