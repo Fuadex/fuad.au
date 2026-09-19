@@ -230,6 +230,20 @@ function StoriesView({ t, go, seed }) {
     if (window.ROTATION_MEDIA) { if (!mediaReady) setMediaReady(true); return; }
     if (window.loadScript) window.loadScript("media-index.js", "rotation-media-js", () => setMediaReady(true));
   }, []);
+  // THE READING (2026-09-21) — the listening portrait + four era digests. Authored prose, not a
+  // computed insight, so it lives in its own tracked file (reading.js) instead of the rebuilt data
+  // shards, and index.html does not carry it: ~5 KB of text nobody needs until they reach this
+  // feed. Same lazy idiom as the album index above and day-series on Overview — id-guarded
+  // loadScript, state set on arrival, module renders nothing until then (no placeholder: a card
+  // that flashes an empty frame is worse than one that simply appears). Declared here with the
+  // other hooks, ABOVE every early return — a hook under a conditional return is React #310 at
+  // runtime and check-jsx cannot see it.
+  const [reading, setReading] = React.useState(window.ROTATION_READING || null);
+  React.useEffect(() => {
+    if (window.ROTATION_READING) { setReading(window.ROTATION_READING); return; }
+    if (window.loadScript) window.loadScript("reading.js", "rotation-reading-js", () => setReading(window.ROTATION_READING || null));
+  }, []);
+  const [readingOpen, setReadingOpen] = React.useState({});   // era index → expanded? (all collapsed at rest, any number may be open)
   // keyed album\x00artist, the same key rotation-calendar builds
   const albumCover = React.useMemo(() => {
     const M = window.ROTATION_MEDIA; if (!M || !M.albums || !M.artists) return {};
@@ -273,7 +287,12 @@ function StoriesView({ t, go, seed }) {
       { rootMargin: "-12% 0px -72% 0px" });
     for (const it of items) { const el = document.getElementById(it.id); if (el) obs.observe(el); }
     return () => obs.disconnect();
-  }, [seed]);
+    // `reading` is a dependency because The Reading is the first section in the feed that MOUNTS
+    // LATE (2026-09-21): its content arrives on a lazy script, so at first paint there is no
+    // section to find and the rail would have been permanently one crumb short. Re-running is
+    // cheap — a querySelectorAll over ~30 sections plus a fresh observer — and the seed scroll it
+    // also repeats lands on the same element, milliseconds after mount.
+  }, [seed, reading]);
   const jump = (id) => {
     const el = document.getElementById(id); if (!el) return;
     el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -1371,6 +1390,48 @@ function StoriesView({ t, go, seed }) {
           );
         })()}
 
+        {/* THE READING (2026-09-21) — Chapters' sibling in argument: that card says where the SOUND
+            shifted, this one says what the WORDS were doing. Deliberately its own section rather
+            than extra rows grafted onto the TASTE_ERAS list above, for one hard reason: those eras
+            are auto-segmented and RE-CUT on every rebuild, so a digest pinned to "era 2" would
+            silently come to describe a different span. These four are fixed editorial cuts,
+            authored once against the fable reads and tracked in reading.js. The year spans echo
+            the Chapters rows (same 88px mono column) so the rhyme reads even though nothing is
+            shared between them. Renders nothing until the lazy script lands. */}
+        {reading && reading.portrait && reading.eras && reading.eras.length > 0 && (
+          <section className="st-card st-hero st-reading">
+            <div className="st-label">The Reading</div>
+            <div className="st-big">{reading.portrait.title}</div>
+            <div className="st-sub">
+              Read across the fable reads — four era digests below, each speaking only for the artists read closely in its years.
+            </div>
+            <p>{reading.portrait.text}</p>
+            <div style={{ display: "grid", gap: 2, marginTop: 16 }}>
+              {reading.eras.map((e, i) => {
+                const on = !!readingOpen[i];
+                return (
+                  <div key={i} style={{ minWidth: 0 }}>
+                    <button type="button" aria-expanded={on}
+                      onClick={() => setReadingOpen(o => ({ ...o, [i]: !o[i] }))}>
+                      <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)", paddingTop: 4, whiteSpace: "nowrap" }}>{e.span}</span>
+                      {/* no nowrap here — at 360px the title is the one thing that MUST wrap rather
+                          than clip, and .st-title-sm's bottom margin is for a standalone heading */}
+                      <span className="st-title-sm" style={{ marginBottom: 0, minWidth: 0 }}>{e.title}</span>
+                      <i aria-hidden="true">▸</i>
+                    </button>
+                    {on && (
+                      <div>
+                        <p>{e.text}</p>
+                        <div className="st-mi" style={{ marginTop: 11 }}>read from {e.coverage}% of this era's plays</div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
         {/* audio DNA drift — how the play-weighted average sound profile shifted year over year */}
         {I.AUDIO_DRIFT && I.AUDIO_DRIFT.years && I.AUDIO_DRIFT.years.length >= 12 && (() => {
           // skip pre-scrobbling synthetic years (undated remapped scrobbles)
@@ -2418,6 +2479,40 @@ function StoriesView({ t, go, seed }) {
         .st-chapter span { font-family: var(--mono); font-style: normal; font-size: 9.5px;
           letter-spacing: .13em; color: var(--accent); }
         .st-chapter::after { content: ""; flex: 1; height: 1px; background: var(--rule); align-self: center; }
+
+        /* ── The Reading (2026-09-21) ── the feed's only long-form prose, and the one type role it
+           did not already have: .st-sub is a caption face (13.5/1.5) that goes soupy past ~150
+           words, .st-tx is a table value. So ONE scoped class — a step up from .st-sub in size and
+           leading, with a hard 64ch measure, because the card runs 780–900px on desktop and an
+           uncapped paragraph there is a 100-character line. Everything else in the module rides
+           roles that already exist (.st-big, .st-sub, .st-title-sm, .st-mi, .r-mono) plus inline
+           grid, exactly as the Chapters card above does; the rules below are element selectors
+           under that one class rather than five more names in the .st-* space. */
+        .st-reading p { max-width: 64ch; margin: 13px 0 0; color: var(--ink); font-size: 14.5px; line-height: 1.66; }
+        /* era rows: a real <button>, so keyboard, Enter/Space and aria-expanded come for free, then
+           reset until it looks like the Chapters rows it rhymes with — same 88px mono column, and
+           the negative margin lets the hover wash bleed out to the card's padding edge the way
+           .st-row's already does. minmax(0,1fr) on the title track is the 360px fix: a grid item's
+           min-width is auto, so without it a long era title pushes the row past the viewport. */
+        .st-reading button { display: grid; grid-template-columns: 88px minmax(0, 1fr) auto; gap: 14px;
+          align-items: start; width: calc(100% + 18px); margin: 0 -9px; padding: 9px; border: 0;
+          border-radius: 6px; background: transparent; color: var(--ink); font: inherit; text-align: left;
+          cursor: pointer; transition: background .16s ease; }
+        .st-reading button:hover { background: var(--bg-3); }
+        .st-reading button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+        /* a caret, not a plus: ▸/▾ is already this file's expander glyph (the genre cascade uses it),
+           and ONE rotating triangle can be eased where swapping two characters cannot. */
+        .st-reading i { font-style: normal; font-size: 12px; line-height: 1; color: var(--ink-soft);
+          padding-top: 5px; transition: transform .18s ease, color .18s ease; }
+        .st-reading button[aria-expanded="true"] i { transform: rotate(90deg); color: var(--accent); }
+        /* the open body indents to the title column so an era reads as one block rather than as a
+           second row — but only where there is room for it; at phone widths the indent is the
+           measure. */
+        .st-reading button + div { padding: 2px 0 16px 102px; }
+        @media (max-width: 700px) { .st-reading button + div { padding-left: 0; } }
+        @media (prefers-reduced-motion: reduce) {
+          .st-reading button, .st-reading i { transition: none; }
+        }
 
         /* Stories TOC as a vertical breadcrumb rail pinned to the left edge (wide screens).
            Dots-only by default so it never sits over content; labels reveal on hover only.
