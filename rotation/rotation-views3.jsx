@@ -2332,9 +2332,14 @@ function StoriesView({ t, go, seed }) {
         .st-yir-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 13px; }
         .st-yir-h { font-family: var(--mono); font-size: 10px; color: var(--ink-faint); letter-spacing: .12em;
           text-transform: uppercase; margin-bottom: 10px; }
-        .st-yir-jump { margin-top: 11px; padding: 9px 12px; background: var(--bg-3); border-radius: 5px; font-size: 13.5px; cursor: default; }
+        /* NO RESTING BOX (Fuad 2026-09-21: "a highlight behind Biggest jump... feels distracting").
+           It sat on --bg-3 permanently, and its hover swapped to var(--bg-4, --bg-3) — --bg-4 is
+           not defined anywhere, so the hover resolved to the SAME colour: a highlight that never
+           moved and a link that never answered. Transparent at rest, the wash arrives ON hover —
+           the same grammar as .st-row beside it. */
+        .st-yir-jump { margin-top: 11px; padding: 9px 12px; background: transparent; border-radius: 5px; font-size: 13.5px; cursor: default; }
         .st-yir-jump[data-link="true"] { cursor: pointer; }
-        .st-yir-jump[data-link="true"]:hover { background: var(--bg-4, var(--bg-3)); }
+        .st-yir-jump[data-link="true"]:hover { background: var(--bg-3); }
         .st-geo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 7px; margin-top: 14px; }
         .st-geo-c { display: flex; gap: 11px; align-items: center; padding: 7px 10px; border: 1px solid var(--rule); border-radius: 6px; }
         .st-geo-flag { font-size: 18px; line-height: 1; flex: none; width: 30px; text-align: center; }
@@ -2521,8 +2526,11 @@ function StoriesView({ t, go, seed }) {
            "stat is not defined" crash, same day). */
         .st-rd-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .34s ease; }
         .st-rd-body[data-open="1"] { grid-template-rows: 1fr; }
-        .st-rd-body > div { overflow: hidden; min-height: 0; padding: 0 0 0 102px; }
-        @media (max-width: 700px) { .st-rd-body > div { padding-left: 0; } }
+        /* NO INDENT (Fuad 2026-09-21: "keep the same tabulation for all text and let it go from
+           left to right instead of mid-way") — the 102px title-column indent made a digest start
+           mid-card while the portrait above ran from the left edge; all prose now shares one left
+           margin and only the row HEADERS keep the two-column rhyme. */
+        .st-rd-body > div { overflow: hidden; min-height: 0; }
         @media (prefers-reduced-motion: reduce) {
           .st-reading button, .st-reading i, .st-rd-body { transition: none; }
         }
