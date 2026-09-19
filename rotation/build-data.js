@@ -10,8 +10,9 @@ const path = require("path");
 const CSV_PATH = path.join(__dirname, "fuadex.csv");
 const OUT_PATH = path.join(__dirname, "music-core.js");    // eager core (Phase 0 split)
 const REST_PATH = path.join(__dirname, "music-rest.js");   // deferred rest, injected post-paint
-// last.fm exports timestamps in UTC; shift to local listening time (AEST)
-const TZ_OFFSET_HOURS = 10;
+// last.fm exports timestamps in UTC; parseDate shifts them to the listener's local wall
+// clock — see the TZ ERAS block above parseDate. (This used to be a flat +10, which put
+// 47% of the catalogue on the wrong hour.)
 // scrobbles with lost timestamps (1970) are legacy plays from before scrobbling
 // began — spread them evenly from here to the first real scrobble. They count
 // toward eras/years/discovery but not the clock, streaks, or top-day stats.
@@ -45,12 +46,104 @@ function parseLine(line) {
   return out;
 }
 
+// ─────────── TZ ERAS — the local wall clock, era by era ───────────
+// Every clock stat in here (CLOCK.grid, NIGHT_OWLS, CLOCK_BY_YEAR, ARTIST_CLOCK, day-hours)
+// asks the same question: what did the WALL CLOCK say when this played. last.fm gives us UTC,
+// so we have to add back the offset that was in force at the listener's actual location — and
+// that location moved. A flat +10 was right for roughly half the catalogue and put the other
+// half 8–9 hours out, which is enough to turn an evening into a small-hours listen.
+//
+// TZ_ERAS is a residency table derived from the owner's Google Timeline export: per calendar
+// month, the dominant location cluster, then contiguous months collapsed into runs. It is
+// COARSE ON PURPOSE. Month granularity is the whole design — a scrobble's hour is a soft stat,
+// and chasing every flight would trade a bounded ~2% of rows misassigned near a boundary for a
+// table nobody can audit. Short trips are deliberately NOT encoded: a fortnight abroad leaves
+// the era it sits inside. Entries are [firstMonth, zone], sorted, each running until the next.
+//   "EU" — Central Europe, Europe/Warsaw rules (CET +1 / CEST +2)
+//   "AU" — Australian east coast, Australia/Sydney rules (AEST +10 / AEDT +11)
+//   "OTHER" — a longer stay elsewhere; third element is a fixed whole-hour offset, no DST,
+//             since we only know the longitude band, not the jurisdiction's DST politics.
+// Only zone labels and dates live here; the export itself never enters the repo.
+// Pre-2009 predates the timeline entirely — EU is assumed, which the first dated scrobbles
+// (2010, Poland) and the undated 1970 rows remapped to UNDATED_REMAP_START both inherit.
+const TZ_ERAS = [
+  ["2006-01", "EU"],           // assumed: scrobbling starts before the timeline does
+  ["2014-09", "AU"],
+  ["2015-12", "OTHER", 2],
+  ["2016-01", "AU"],
+  ["2016-07", "EU"],
+  ["2016-08", "AU"],
+  ["2016-09", "EU"],           // ~11 months back in Europe
+  ["2017-08", "AU"],
+  ["2017-12", "EU"],
+  ["2018-01", "AU"],
+  ["2018-07", "OTHER", 8],
+  ["2018-08", "AU"],
+  ["2019-02", "OTHER", -5],    // ~4 months in the Americas
+  ["2019-06", "EU"],
+  ["2019-09", "AU"],           // the long settled stretch — 2019-09 → 2024-04
+  ["2022-04", "EU"],
+  ["2022-05", "AU"],
+  ["2023-09", "EU"],
+  ["2023-10", "AU"],
+  ["2024-05", "EU"],
+  ["2024-06-25", "AU"],
+  ["2026-02", "OTHER", 9],
+  ["2026-04", "EU"],
+];
+// era boundaries as UTC ms, resolved once
+const TZ_ERA_MS = TZ_ERAS.map(e => Date.UTC(+e[0].slice(0, 4), +e[0].slice(5, 7) - 1, +e[0].slice(8, 10) || 1));
+
+// DST rules are written in UTC, so the Sunday arithmetic is too. Date.UTC(y, m + 1, 0) is
+// "day 0 of next month" = the last day of month m, which is how we walk back to its Sunday.
+const nthSundayUTC = (y, mon, n) => {          // n = 1 → first Sunday, midnight UTC
+  const dow = new Date(Date.UTC(y, mon, 1)).getUTCDay();
+  return Date.UTC(y, mon, 1 + ((7 - dow) % 7) + (n - 1) * 7);
+};
+const lastSundayUTC = (y, mon) => {
+  const last = Date.UTC(y, mon + 1, 0);
+  return last - new Date(last).getUTCDay() * 86400e3;
+};
+
+// EU (Europe/Warsaw): +1, and +2 from the last Sunday of March 01:00 UTC to the last Sunday
+// of October 01:00 UTC. The directive fixes both switches at 01:00 UTC, so this is the same
+// arithmetic across the whole EU — and it has been stable since 1996, well before 2006.
+function euOffsetHours(ms) {
+  const y = new Date(ms).getUTCFullYear();
+  const on = lastSundayUTC(y, 2) + 3600e3, off = lastSundayUTC(y, 9) + 3600e3;
+  return ms >= on && ms < off ? 2 : 1;
+}
+// AU (Australia/Sydney): +10, and +11 for the summer season, which STRADDLES new year —
+// it opens on the first Sunday of October and closes on the first Sunday of April, so a
+// January timestamp belongs to the season that began the PREVIOUS October. Both switches
+// happen to land on the same UTC instant, 16:00 on the preceding Saturday: DST starts at
+// 02:00 AEST (02:00 − 10) and ends at 03:00 AEDT (03:00 − 11). Hence the shared −8h from
+// Sunday midnight UTC. These are the post-2008 NSW dates; every AU era here starts 2014.
+function auOffsetHours(ms) {
+  const y = new Date(ms).getUTCFullYear();
+  const opens = nthSundayUTC(y, 9, 1) - 8 * 3600e3;   // first Sunday of October
+  const closes = nthSundayUTC(y, 3, 1) - 8 * 3600e3;  // first Sunday of April
+  return (ms >= opens || ms < closes) ? 11 : 10;
+}
+
+// The offset in force at a UTC instant. Boundaries are compared in UTC — at month granularity
+// the few hours of slop either side of a 1st is noise against the trips we already round off.
+function tzOffsetHours(utcMs) {
+  let lo = 0, hi = TZ_ERA_MS.length - 1;       // last era starting at or before utcMs
+  while (lo < hi) { const mid = (lo + hi + 1) >> 1; if (TZ_ERA_MS[mid] <= utcMs) lo = mid; else hi = mid - 1; }
+  const era = TZ_ERAS[lo];                     // anything older than the table rides era 0
+  if (era[1] === "EU") return euOffsetHours(utcMs);
+  if (era[1] === "AU") return auOffsetHours(utcMs);
+  return era[2];
+}
+
 const MONTHS = { Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5, Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11 };
 function parseDate(s) {
   // "25 May 2026 15:39"
   const m = /^(\d{2}) (\w{3}) (\d{4}) (\d{2}):(\d{2})$/.exec(s);
   if (!m) return null;
-  const ms = Date.UTC(+m[3], MONTHS[m[2]], +m[1], +m[4], +m[5]) + TZ_OFFSET_HOURS * 3600e3;
+  const utc = Date.UTC(+m[3], MONTHS[m[2]], +m[1], +m[4], +m[5]);
+  const ms = utc + tzOffsetHours(utc) * 3600e3;
   return new Date(ms); // read with getUTC* = local listening time
 }
 
