@@ -842,19 +842,8 @@ function OverviewView({ t, go, restReady, seed }) {
           <div style={{ marginTop: 2 }}>
             <Spark data={trend} w={300} h={22} run={seen} fill="var(--accent-bg)" />
           </div>
-          {/* THE MILESTONE CARD, FOLDED IN (2026-09-19) — see the `mile` memo above. The bar is
-              the retired card's bar at a smaller gauge, and it takes the DECADES rim values
-              (chroma 0.08 / alpha 0.42), not the weather ones: this is a footnote under a number,
-              so it wants an edge rather than a drawn line. Alpha lives in the background colour
-              only — put `opacity` on the element and the border fades with the wash it encloses. */}
-          <div className="ov-mile-line" style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4, minWidth: 0 }}>
-            <div style={{ flex: 1, minWidth: 0, height: 5, borderRadius: 3, background: "var(--bg-3)", position: "relative" }}>
-              <div style={{ position: "absolute", inset: "0 auto 0 0", width: mile.pct + "%",
-                background: "oklch(0.72 0.15 350 / 0.22)", border: "1px solid oklch(0.66 0.08 350 / 0.42)",
-                boxSizing: "border-box", borderRadius: 3 }} />
-            </div>
-            <span className="ov-mi" style={{ flex: "none", whiteSpace: "nowrap" }}>→ {fmt(mile.next)}</span>
-          </div>
+          {/* The milestone BAR retired 2026-09-21 (Fuad: redundant, and it grew the whole row).
+              The last-crossing line below is what remains of the folded-in milestone card. */}
           {mile.last && <div className="ov-eb" style={{ letterSpacing: ".06em",
             whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
             last: {kAbbr(mile.last.n)} — {mile.last.artist}, {mile.last.track}</div>}
@@ -1299,7 +1288,6 @@ function OverviewView({ t, go, restReady, seed }) {
           /* the milestone bar and its target stay on one line; wrapping put "→ 325,000" under the
              bar and off its baseline, which is the misalignment Fuad saw. The row moved into the
              Scrobbles card on 2026-09-19 and kept the class — the rule is still what it needs. */
-          .ov-mile-line { flex-wrap: nowrap !important; }
           /* the fade that keeps a long song title from shoving the play count off-screen */
           .ov-rep-txt > div {
             -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 14px), transparent 100%);
