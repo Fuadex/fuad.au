@@ -3359,10 +3359,17 @@ if (hasBios) {
   for (const a of ARTISTS.slice(0, 100)) {
     const sims = realSimilar(a.name) || [];
     sims.forEach((simName, idx) => {
-      if (byName[simName]) return;                 // already one of your kept artists
-      if ((artistPlays.get(simName) || 0) >= 15) return; // you already play them enough
-      if (!rec.has(simName)) rec.set(simName, { name: simName, count: 0, via: [], weight: 0 });
-      const r = rec.get(simName);
+      // FOLD-AWARE GUARDS (2026-09-21; Fuad caught Scars on Broadway offered as a blind spot):
+      // last.fm similar lists carry last.fm's own billing ("Daron Malakian and Scars on
+      // Broadway"), while byName and artistPlays live in the POST-FOLD key space — so a folded
+      // library artist sailed both guards under its unfolded billing and surfaced as
+      // never-pressed-play. Route through canon() first, and key the candidate map by the
+      // canonical name so two billings of one unplayed artist can't split their weight.
+      const cSim = canon(simName);
+      if (byName[cSim]) return;                    // already one of your kept artists
+      if ((artistPlays.get(cSim) || 0) >= 15) return; // you already play them enough
+      if (!rec.has(cSim)) rec.set(cSim, { name: simName, count: 0, via: [], weight: 0 });
+      const r = rec.get(cSim);
       r.count++;
       r.weight += (8 - Math.min(idx, 7)) * a.plays;
       if (r.via.length < 3) r.via.push({ name: a.name, hue: a.hue, artistId: a.id });
@@ -3372,7 +3379,7 @@ if (hasBios) {
     .filter(r => r.count >= 2)                      // recommended by ≥2 of your favourites
     .sort((x, y) => y.weight - x.weight).slice(0, 12)
     .map(r => ({ name: r.name, count: r.count, via: r.via, hue: hueOf(r.name),
-      listeners: listenersOf(r.name), plays: artistPlays.get(r.name) || 0 }));
+      listeners: listenersOf(r.name), plays: artistPlays.get(canon(r.name)) || 0 }));
   if (list.length) RECOMMENDATIONS = { artists: list };
 }
 
