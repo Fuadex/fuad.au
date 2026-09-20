@@ -528,7 +528,11 @@ function OvBlindCard({ go, restReady }) {
 const Stat = ({ n, f, sub, big, onClick, from, dur, title }) => (
   <div onClick={onClick} title={title} style={onClick ? { cursor: "pointer" } : null} className={onClick ? "ov-stat-link" : ""}>
     <div className="r-stat-n" style={{ fontSize: big ? "clamp(28px,3.4vw,40px)" : 20 }}>
-      {typeof n === "number" && isFinite(n) ? <TweenNum v={n} f={f} from={from} dur={dur} /> : n}</div>
+      {/* STRING VALUES CROSS-FADE (Fuad 2026-09-21: "years changing need to transition as well").
+          A year deliberately never tweens — counting through 1,974 reads as a date glitch — but a
+          hard swap snapped while every numeric neighbour eased. The key remounts the span on each
+          new value, and .ov-yrswap fades it in; reduced-motion turns it off with the rest. */}
+      {typeof n === "number" && isFinite(n) ? <TweenNum v={n} f={f} from={from} dur={dur} /> : <span key={String(n)} className="ov-yrswap">{n}</span>}</div>
     {/* the ↗ is gone (Fuad 2026-08-20). It marked the stat as clickable, but every stat in the
         strip is, so it marked nothing — and it inflated captions that are already tight once a
         filter name is concatenated in. .ov-stat-link still carries the hover affordance. */}
@@ -1266,6 +1270,12 @@ function OverviewView({ t, go, restReady, seed }) {
           .ov-stat-link, .ov-stat-link .r-stat-n, .ov-recent .r-extlink-lf { transition: none; }
         }
         .ov-hovrow:hover { background: var(--bg-3); }
+        /* year tiles (SINCE / PEAK YEAR): the string branch of Stat cross-fades on value change —
+           see the comment at the render site. Animation, not transition: the span REMOUNTS via its
+           key, so there is no old state to transition from. */
+        @keyframes ov-yr-in { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+        .ov-yrswap { display: inline-block; animation: ov-yr-in .28s ease; }
+        @media (prefers-reduced-motion: reduce) { .ov-yrswap { animation: none; } }
         /* .ov-ins-fig lived here from 2026-09-19 until later the same day: it gave the pulse row's
            insight figures the serif face, and its only element was SubjectStat, which went when its
            last caller did. The face it carried is .ov-n, at the top of this block. */

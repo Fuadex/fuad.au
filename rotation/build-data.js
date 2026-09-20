@@ -2351,7 +2351,10 @@ for (const [w, W] of weeks) {
   const o = { weekStart: iso(WEEK0 + w * 7 * 86400e3), total: W.total, artist, plays, share: Math.round(share * 100) / 100, hue: hueFor(artist) };
   if (!obsByArtist.has(artist) || obsByArtist.get(artist).plays < plays) obsByArtist.set(artist, o);
 }
-const OBSESSIONS = [...obsByArtist.values()].sort((a, b) => b.plays - a.plays).slice(0, 10);
+// 12 and 9, not 10 and 8 (Fuad 2026-09-21: full rows — Stories renders both in a 3-column grid,
+// so 10 left a 4th row with one tile and 8 left a 3rd row with two; "3 columns, 4 rows need 12
+// artists not 10").
+const OBSESSIONS = [...obsByArtist.values()].sort((a, b) => b.plays - a.plays).slice(0, 12);
 
 // album obsessions: weeks one ALBUM ate everything (the "Flip Phone Fantasy week")
 const albumWeeks = new Map();
@@ -2374,7 +2377,7 @@ for (const [w, W] of albumWeeks) {
     plays, share: Math.round(share * 100) / 100, hue: hueFor(artist), artistId: slug(artist) };
   if (!obsByAlbum.has(key) || obsByAlbum.get(key).plays < plays) obsByAlbum.set(key, o);
 }
-const ALBUM_OBSESSIONS = [...obsByAlbum.values()].sort((a, b) => b.plays - a.plays).slice(0, 8);
+const ALBUM_OBSESSIONS = [...obsByAlbum.values()].sort((a, b) => b.plays - a.plays).slice(0, 9);
 
 // flameouts: tracks where 40%+ of lifetime plays happened in a single week — the songs
 // that exploded then disappeared (opposite of LIFETIME_TRACKS).

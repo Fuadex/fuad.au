@@ -1440,7 +1440,14 @@ function StoriesView({ t, go, seed }) {
           const sole = S.rarest.filter(r => r.artists.length === 1).length;
           // solo salvage from the retired scene boxes (Fuad 2026-09-21) — CI-computed, may be
           // absent on an older payload; when no scene carries one this falls through untouched.
-          const solos = (S.scenes || []).filter(sc => sc.solo).slice(0, 6);
+          // UMBRELLA SCENES OUT (Fuad 2026-09-21, on the first render: "The Alternative Metal to
+          // Electro are really redundant, I'd phase these out"). A solo carrier of a broad umbrella
+          // style is a tagging artifact, not a biography — deadmau5 "carrying Electro alone" says
+          // nothing; Spiritbox carrying Metalcore does. Named skips, not a plays threshold: the
+          // scene list is small, stable and build-ordered, and a threshold would silently eat a
+          // narrow scene the day its plays grow.
+          const skip = new Set(["Alternative Rock", "Heavy Metal", "Hard Rock", "Industrial", "Electro"]);
+          const solos = (S.scenes || []).filter(sc => sc.solo && !skip.has(sc.style)).slice(0, 6);
           return (
             <section className="st-card">
               <div className="st-label">Style atlas</div>
@@ -1951,7 +1958,9 @@ function StoriesView({ t, go, seed }) {
                 Your most seasonal:
               </div>
               <div className="st-ug-cuts">
-                {S.top.slice(0, 8).map(a => (
+                {/* 9, not 8 (Fuad 2026-09-21: full rows — at the feed's 3-column width, 8 left the
+                    last row a tile short; SEASONALITY ships 12 so the 9th is free) */}
+                {S.top.slice(0, 9).map(a => (
                   <div key={a.id} className="st-ug-cut" data-link={true} onClick={() => go("artist", a.id)}>
                     <GenCover hue={a.hue} name={a.name} size={40} radius={4} />
                     <div style={{ minWidth: 0 }}>
