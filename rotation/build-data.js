@@ -430,16 +430,32 @@ const mblMembersOf = (name) => {
 // the full member list in the {name,gender} shape the Wikidata slice uses, so LINEUPS can swap
 // sources without a second code path.
 const mblLineupOf = (name) => { const e = mblOf(name); if (!e || !Array.isArray(e.members)) return []; return e.members.filter(m => m && m.name); };
+// CURRENT-MEMBER PREFIX (mc, owner-approved 2026-09-21). The artist payload's members[] is
+// mblMembersOf's current-first list, then MB rels, then Discogs, de-duped and capped -- so "who is
+// in the band NOW" is a PREFIX of it, and one int tells the client where the prefix ends. Counting
+// the prefix (rather than trusting mblMembersOf's cur.length) survives the Set de-dupe and the cap,
+// and stays honest when a person holds both a current and an ended membership row.
+// Returns {} when the dump has no entry for this artist: ABSENT mc = unknown, mc:0 = the dump knows
+// the band and says none of these names are current. Never fabricates a 0 for an unlisted artist.
+const _mblCurrentNames = (name) => { const e = mblOf(name); if (!e || !Array.isArray(e.members)) return null; return new Set(e.members.filter(m => m && m.name && m.current).map(m => m.name)); };
+const mcOf = (name, list) => { const cur = _mblCurrentNames(name); if (!cur) return {}; let i = 0; while (i < list.length && cur.has(list[i])) i++; return { mc: i }; };
 // vocalist pick — the SAME lead-vocals-first ladder _MB_VOX_GENDER/membersVoxCode run, against
 // `roles` instead of `i[]` and `current` instead of t==="". Lead vocals wins regardless of era;
 // recency only breaks ties inside a credit tier (the ミドリ lesson, see _MB_VOX_GENDER above).
 const _mblVox = (name) => {
   const ms = mblLineupOf(name); if (!ms.length) return null;
   const has = (m, re) => (m.roles || []).some(r => re.test(r));
-  return ms.find(m => m.current && has(m, /lead vocals/i))
-    || ms.find(m => has(m, /lead vocals/i))
-    || ms.find(m => m.current && has(m, /vocals/i))
-    || ms.find(m => has(m, /vocals/i)) || null;
+  // TIES INSIDE A CREDIT TIER GO TO TENURE LENGTH, NOT ARRAY ORDER (2026-09-22, the Cranberries
+  // bug from the gender/vx audit): two members tagged "lead vocals", neither current, and the old
+  // .find() took whoever MB listed first — Niall Quinn (1989–1990, one year) over Dolores
+  // O'Riordan (1990–2018). The band's voice is whoever HELD the job, so within a tier the longest
+  // tenure wins; an open-ended stint counts to the present.
+  const _len = (m) => { const b = +String(m.begin || "").slice(0, 4) || 0; if (!b) return 0; const e = +String(m.end || "").slice(0, 4) || new Date().getUTCFullYear(); return Math.max(0, e - b); };
+  const pick = (list) => list.length ? list.slice().sort((a, b) => _len(b) - _len(a))[0] : null;
+  return pick(ms.filter(m => m.current && has(m, /lead vocals/i)))
+    || pick(ms.filter(m => has(m, /lead vocals/i)))
+    || pick(ms.filter(m => m.current && has(m, /vocals/i)))
+    || pick(ms.filter(m => has(m, /vocals/i))) || null;
 };
 // "m"/"f"/"n" vocals code, or undefined when the vocalist carries no usable gender (never fabricate).
 const mblVoxCode = (name) => {
@@ -2076,14 +2092,22 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
     fm: familyMembersByName(name),   // family MEMBERSHIP set (1–3, dominant first) — filter surfaces test fm, not sub-derived
     firstYear: new Date(firstSeen.get(name)).getUTCFullYear(),
     debut: debutOf(name),
-    members: [...new Set([...mblMembersOf(name), ...membersOf(name), ...dgMembersOf(name)])].slice(0, 10), // MB lineups (current first) + MB rels + Discogs
+    // members + mc (2026-09-21): the list is current-first, and mc says how many of the LEADING
+    // entries are current -- so the artist page can split "now" from "formerly" without a second
+    // source. mc is ABSENT for artists mb-lineups.json has never heard of (see mcOf).
+    ...(() => {
+      const mem = [...new Set([...mblMembersOf(name), ...membersOf(name), ...dgMembersOf(name)])].slice(0, 10); // MB lineups (current first) + MB rels + Discogs
+      return { members: mem, ...mcOf(name, mem) };
+    })(),
 
     listeners: listenersOf(name),
     styles: stylesOf(name),
     discogsGenres: dGenresOf(name),
     origin: originOf(name),
     country: meta.country || (originOf(name) ? originOf(name).country.toLowerCase() : ""),
-    gender: genderOf(name),     // "Male"/"Female"/"Other"/"" — solo artists only
+    gender: genderOf(name),     // "Male"/"Female"/"Other"/"" — the artist's own MB gender for solo
+                                // acts, else the lead vocalist's via mb-lineups/mb-artists (the
+                                // "solo artists only" this comment used to claim was stale, 2026-09-22)
     ...(() => { let vx = vocalsCodeBySlug(slug(name)); if (vx === undefined) vx = mblVoxCode(name); if (vx === undefined) vx = membersVoxCode(name); return vx === undefined ? {} : { vx }; })(),  // vocals code (m/f/n, ""=instrumental; mb-lineups then artist-members fallback); absent = no data
     life: lifeOf(name),         // { type, ended, end } → active/disbanded/deceased badge
     wd: wdOf(name),             // Wikidata slice: formation city+coords, dissolved, lineup+gender
@@ -4694,11 +4718,15 @@ fs.writeFileSync(path.join(__dirname, "artist-days.js"), _adFile, "utf8");
 console.log(`artist-days.js: ${Object.keys(_adOut).length} artists ≥${ARTIST_DAYS_MIN_PLAYS} plays (${(_adFile.length / 1024).toFixed(0)} KB)`);
 
 // ─────────── MB LINEUP (generated lazy file) ───────────
-// Per-artist MusicBrainz lineup distill (mb-artists.json, a committed workshop input) re-keyed
-// by the canonical artist slug so keys match artist ids exactly. Powers the artist page's
-// "The lineup" card. Ships type/area/from/to (+ aka + members); the q/mbid stay client-side out.
+// Per-artist MusicBrainz lineup distill, re-keyed by the canonical artist slug so keys match
+// artist ids exactly. Powers the artist page's lineup roster (rendered inside the Family tree card).
+// TWO SOURCES since 2026-09-21: mb-artists.json (a committed workshop input) carries the band
+// HEADER -- type/area/from/to/aka -- for 395 artists and, until today, their members too;
+// mb-lineups.json now OVERWRITES those member lists and adds ~600 artists it never covered.
+// Ships type/area/from/to (+ aka + members); the q/mbid stay client-side out.
 const _MBRAW = _readJson("mb-artists.json");
 const _mbOut = {};
+const _mblSeen = new Set();   // artist ids the mb-lineups overlay has already claimed (first -- i.e. most-played -- name wins)
 for (const entry of Object.values(_MBRAW)) {
   if (!entry || !entry.q) continue;
   const id = slug(entry.q);
@@ -4712,11 +4740,59 @@ for (const entry of Object.values(_MBRAW)) {
   if (members.length) rec.members = members;
   _mbOut[id] = rec;
 }
+// -- mb-lineups.json OVERLAY (owner-approved 2026-09-21) -- the PRIMARY member source --
+// mb-artists.json gives 395 artists a thin roster: 2,123 members whose only current/past signal is
+// an end date. mb-lineups.json is the 2026-09-19 member-of-band sweep -- 1,001 bands / 4,633
+// members -- with real role lists, begin/end tenure, member gender (4,106 gendered) and an EXPLICIT
+// `current` flag. It wins WHOLESALE wherever it has the artist; the mb-artists members survive only
+// for the artists the dump lacks. Two things it fixes that no end-date heuristic could: 81 past
+// members carry no end date at all (the card's `!m.t` rule called every one of them current), and
+// ~600 library artists had no roster in the card whatsoever.
+// Keyed by the LIBRARY artist slug, so we walk the library's own names (highest-play first, so a
+// slug collision between fold variants resolves to the artist that actually gets played) and let
+// mblOf() run its full name -> fold-alias -> slug -> normalised ladder. Artists the mb-artists pass
+// never created are created HEADER-LESS ({type,area,from,to} all ""): the card simply draws no
+// "type . area . years" line above the roster.
+// PER-MEMBER SHAPE is a strict superset of the mb-artists one ({n,g,i[],f,t}) plus `c` (1 current /
+// 0 past), so a stale shard from an older CI build still renders -- the card falls back to the old
+// end-date rule for any member with no `c` (see rotation-artist.jsx).
+const _MBL_QUAL = new Set(["additional", "original", "eponymous", "principal", "task"]);   // MB relationship ATTRIBUTES, not instruments -- they would read as roles in the chip row
+// MB hands the roles back unordered, so rank before the cap: vocals, then the core band
+// instruments, then the rest, stable inside each tier. Keeps a chip row from opening on
+// "saxophone" for a member MB happens to list saxophone-first (Reznor's row does exactly that).
+const _mblRoleRank = (r) => /vocals/i.test(r) ? 0 : /guitar|bass|drum|keyboard|piano|synth|percussion/i.test(r) ? 1 : 2;
+const _mblRoles = (m) => {
+  const seen = [];
+  for (const r of (m.roles || [])) { const t = String(r).trim(); if (t && !_MBL_QUAL.has(t.toLowerCase()) && !seen.includes(t)) seen.push(t); }
+  // backing/other/choir/spoken vocals next to "lead vocals" spends a chip saying nothing new
+  const kept = seen.some(r => /^lead vocals$/i.test(r)) ? seen.filter(r => /^lead vocals$/i.test(r) || !/vocals/i.test(r)) : seen;
+  return kept.map((r, i) => [r, i]).sort((a, b) => (_mblRoleRank(a[0]) - _mblRoleRank(b[0])) || (a[1] - b[1])).slice(0, 4).map(x => x[0]);   // 4 = the card's own chip cap; 93% of members carry <=2 anyway
+};
+const _mblYear = (d) => d ? String(d).slice(0, 4) : "";   // dump dates are YYYY | YYYY-MM | YYYY-MM-DD; the card prints years
+const _MBL_GCODE = { male: "M", female: "F", nonbinary: "X" };   // "X" joins the estate's f/m/x glyph vocabulary
+let _mblShardHits = 0, _mblShardNew = 0;
+for (const [name] of [...artistPlays.entries()].sort((a, b) => b[1] - a[1])) {
+  const id = slug(name); if (!id || _mblSeen.has(id)) continue;
+  const e = mblOf(name); if (!e || !Array.isArray(e.members)) continue;
+  const members = e.members.filter(m => m && m.name).map(m => ({
+    n: m.name,
+    g: _MBL_GCODE[String(m.gender || "").toLowerCase()] || "",
+    i: _mblRoles(m),
+    f: _mblYear(m.begin),
+    t: _mblYear(m.end),
+    c: m.current ? 1 : 0,
+  }));
+  if (!members.length) continue;
+  if (!_mbOut[id]) { _mbOut[id] = { type: "", area: "", from: "", to: "" }; _mblShardNew++; }
+  _mbOut[id].members = members;
+  _mblSeen.add(id);
+  _mblShardHits++;
+}
 aliasSidecarBySlug(_mbOut);   // fold-alias: canonical artist slug inherits a folded variant's lineup
 const _mbFile = "// GENERATED by build-data.js — per-artist MusicBrainz lineup distill (lazy-loaded on ArtistView).\n"
   + "window.ROTATION_MB = " + JSON.stringify(_mbOut) + ";\n";
 fs.writeFileSync(path.join(__dirname, "mb-lineup.js"), _mbFile, "utf8");
-console.log(`mb-lineup.js: ${Object.keys(_mbOut).length} artists (${(_mbFile.length / 1024).toFixed(0)} KB)`);
+console.log(`mb-lineup.js: ${Object.keys(_mbOut).length} artists \u00b7 ${_mblShardHits} rosters from mb-lineups.json (${_mblShardNew} of them artists it adds outright) \u00b7 ${(_mbFile.length / 1024).toFixed(0)} KB raw / ${(require("zlib").gzipSync(_mbFile).length / 1024).toFixed(0)} KB gz`);
 
 // lazy per-track audio detail (loaded only on a TrackView) — keyed slug(artist)~slug(track), same id TrackView routes by.
 const _taOut = "// GENERATED by build-data.js — per-track Spotify audio features + stats (lazy-loaded on TrackView).\n"
@@ -5365,7 +5441,7 @@ for (const a of EXPLORE) {
     const bio = bioOf(a.name) || dgProfileOf(a.name);          // last.fm bio, else Discogs profile
     if (bio) rec.bio = bio.length > 700 ? bio.slice(0, 700).replace(/\s+\S*$/, "") + "…" : bio;
     const mem = [...new Set([...mblMembersOf(a.name), ...membersOf(a.name), ...dgMembersOf(a.name)])].slice(0, 12);   // mb-lineups first (2026-09-21)
-    if (mem.length) rec.mem = mem;
+    if (mem.length) { rec.mem = mem; Object.assign(rec, mcOf(a.name, mem)); }   // mc = current-member prefix length, same law as the core payload
     const sim = realSimilar(a.name);                           // last.fm similar artists (names)
     if (sim && sim.length) rec.sim = sim.slice(0, 6);
     if (Object.keys(rec).length) DETAIL[a.id] = rec;
@@ -6453,7 +6529,7 @@ fs.writeFileSync(path.join(__dirname, "sim-img.js"), _simImgOut, "utf8");
 //    already reference) BEFORE _restLoaded flips, so every post-rest consumer sees identical
 //    records to today. The build itself keeps the FULL records (STYLE_ATLAS bridges reads
 //    a.styles at line ~1564, connections mutation at ~1984, etc.), so we only split at emit time.
-const ARTIST_HEAVY = ["bio", "wd", "members", "topTracks", "topAlbums", "similar", "similarNames", "styles", "discogsGenres", "spotGenres", "origin"];
+const ARTIST_HEAVY = ["bio", "wd", "members", "mc", "topTracks", "topAlbums", "similar", "similarNames", "styles", "discogsGenres", "spotGenres", "origin"];
 const ARTIST_X = {};       // id → { heavy fields } — deferred, merged by music-rest.js
 const ARTISTS_CORE = ARTISTS.map(a => {
   const core = {}, heavy = {};

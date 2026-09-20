@@ -751,13 +751,16 @@ function ArtistTourCard({ a, go }) {
 // ─────────────────────────────────────────────────────────────────
 //  Former-members block for "The lineup" — faint rule + collapse past 10
 // ─────────────────────────────────────────────────────────────────
-function LineupFormer({ former, Row }) {
+// "bare" (2026-09-21): mb-lineups.json knows plenty of bands with no current member left, so this
+// block can now be the only thing in the roster. Drop the divider rule when nothing sits above it --
+// a hairline with clear air over it reads as a mistake.
+function LineupFormer({ former, Row, bare }) {
   const [open, setOpen] = React.useState(false);
   const LIMIT = 10;
   const shown = open ? former : former.slice(0, LIMIT);
   const extra = former.length - LIMIT;
   return (
-    <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid var(--rule)" }}>
+    <div style={bare ? {} : { marginTop: 12, paddingTop: 12, borderTop: "1px solid var(--rule)" }}>
       <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 8 }}>formerly</div>
       <div style={{ display: "grid", gap: 1 }}>{shown.map(Row)}</div>
       {extra > 0 && (
@@ -774,14 +777,17 @@ function LineupFormer({ former, Row }) {
 //  Shows header + aka + a one-line summary; tapping unravels full rows.
 // ─────────────────────────────────────────────────────────────────
 function LineupCard({ mb }) {
-  const glyph = (g) => g === "F" ? "♀" : g === "M" ? "♂" : "";
+  const glyph = (g) => g === "F" ? "♀" : g === "M" ? "♂" : g === "X" ? "⚧" : "";   // X = mb-lineups' non-binary
   const years = mb.from ? (mb.to ? mb.from + "–" + mb.to : mb.from + " →") : "";
   const headBits = [mb.type, mb.area, years].filter(Boolean);
   const aka = mb.aka || [];
   const isPerson = mb.type === "Person";
   const members = (!isPerson && mb.members) ? mb.members : [];
-  const current = members.filter(m => !m.t);
-  const former = members.filter(m => m.t);
+  // same contract as the Family tree card's roster (2026-09-21): mb-lineups.json's per-member "c"
+  // flag decides, and only an entry that has none falls back to the old end-date rule.
+  const isCur = (m) => m.c == null ? !m.t : !!m.c;
+  const current = members.filter(isCur);
+  const former = members.filter(m => !isCur(m));
   const tenure = (m) => m.f ? (m.t ? m.f + "–" + m.t : m.f + " →") : (m.t ? "–" + m.t : "");
   const Row = (m, i) => (
     <div key={m.n + i} style={{ display: "flex", gap: 8, alignItems: "baseline", flexWrap: "wrap", padding: "3px 0" }}>
@@ -2080,13 +2086,28 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
             const mbAka = (mb && mb.aka) || [];
             const isPerson = mb && mb.type === "Person";
             const mbMembers = (mb && !isPerson && mb.members) ? mb.members : [];
-            const mbCurrent = mbMembers.filter(m => !m.t);
-            const mbFormer = mbMembers.filter(m => m.t);
-            const tenure = (m) => m.f ? (m.t ? m.f + "-" + m.t : m.f + " ->") : (m.t ? "-" + m.t : "");
+            // CURRENT/PAST SPLIT (2026-09-21). mb-lineups.json ships an explicit per-member "c" flag
+            // (1 current / 0 past); the older mb-artists member shape has none, so an absent "c"
+            // falls back to the end-date rule this card has always used. That fallback is the whole
+            // point of the flag: 81 members in the dump left their band with NO end date recorded,
+            // and the old "no end date = still in the band" rule read every one of them as current.
+            // It also means a stale shard -- an older CI build, a cached mb-lineup.js -- keeps
+            // rendering exactly as it did before.
+            const mbIsCurrent = (m) => m.c == null ? !m.t : !!m.c;
+            const mbCurrent = mbMembers.filter(mbIsCurrent);
+            const mbFormer = mbMembers.filter(m => !mbIsCurrent(m));
+            // a band with nobody current (disbanded, or MB simply never closed the question) still
+            // deserves a summary line, so the collapsed row counts and samples the past roster then.
+            const mbSummary = mbCurrent.length ? mbCurrent : mbFormer;
+            // an open arrow means "still in the band", so only a CURRENT member gets one. 81 members
+            // in the dump left with no end date recorded (Soundgarden's whole surviving lineup among
+            // them) -- they get a bare trailing dash: started then, ended at some point MB never wrote
+            // down. Members with no "c" flag at all (legacy mb-artists shape) keep the old arrow.
+            const tenure = (m) => m.f ? (m.t ? m.f + "-" + m.t : mbIsCurrent(m) ? m.f + " ->" : m.f + "-") : (m.t ? "-" + m.t : "");
             const normInstr = (raw) => { const s = raw.toLowerCase().trim(); if (s.includes("vocal")) return "vocals"; if (s.includes("drum")) return "drums"; return raw; };
             const instrSummary = (() => {
               const seen = [], seenSet = new Set();
-              for (const m of mbCurrent) {
+              for (const m of mbSummary) {
                 for (const instr of (m.i || [])) {
                   const n = normInstr(instr);
                   if (!seenSet.has(n)) { seenSet.add(n); seen.push(n); }
@@ -2097,7 +2118,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
               return seen;
             })();
             const MbRow = (m, i) => {
-              const gg = genderGlyph(m.g === "F" ? "f" : m.g === "M" ? "m" : (m.g || ""));
+              const gg = genderGlyph(m.g === "F" ? "f" : m.g === "M" ? "m" : m.g === "X" ? "x" : (m.g || ""));   // "X" = mb-lineups' non-binary (2026-09-21)
               return (
                 <div key={m.n + i} style={{ display: "flex", gap: 8, alignItems: "baseline", flexWrap: "wrap", padding: "3px 0" }}>
                   <span style={{ fontSize: 13, color: "var(--ink)" }}>{m.n}</span>
@@ -2126,7 +2147,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                       {!open && (
                         <div className="av-lineuprow" onClick={() => setOpen(true)}>
                           <span style={{ fontSize: 12, color: "var(--ink-soft)" }}>
-                            <b style={{ color: "var(--ink)" }}>{mbCurrent.length}</b>{" member"}{mbCurrent.length !== 1 ? "s" : ""}
+                            <b style={{ color: "var(--ink)" }}>{mbSummary.length}</b>{mbCurrent.length ? " member" : " past member"}{mbSummary.length !== 1 ? "s" : ""}
                             {instrSummary.length > 0 && (
                               <span style={{ color: "var(--ink-faint)" }}>{" — "}{instrSummary.join(" · ")}</span>
                             )}
@@ -2136,7 +2157,7 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                       )}
                       <div className="av-lineupbody">
                         {mbCurrent.length > 0 && <div style={{ display: "grid", gap: 1 }}>{mbCurrent.map(MbRow)}</div>}
-                        {mbFormer.length > 0 && <LineupFormer former={mbFormer} Row={MbRow} />}
+                        {mbFormer.length > 0 && <LineupFormer former={mbFormer} Row={MbRow} bare={mbCurrent.length === 0} />}
                         {open && <button className="av-more" style={{ marginTop: 10 }} onClick={() => setOpen(false)}>{"▴ collapse"}</button>}
                       </div>
                     </div>
