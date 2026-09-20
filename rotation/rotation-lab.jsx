@@ -723,7 +723,7 @@ function TasteFingerprint() {
           <b style={{ color: LAB_INK }}>{picked.name}</b> sits inside your comfort band on <b style={{ color: LAB_INK }}>{hits.length} of 6</b> axes{miss.length ? <> — the outliers: {miss.map(b => `${FP_LABEL[b.name].toLowerCase()} ${picked.vals[b.name]} vs your ${b.p25}–${b.p75}`).join(", ")}.</> : " — squarely your sound."}
         </div>;
       })()}
-      {!picked && pick && <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: LAB_FAINT, marginTop: 8 }}>no audio row for that name (top-400 artists carry one)</div>}
+      {!picked && pick && <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: LAB_FAINT, marginTop: 8 }}>no audio row for that name (measured DNA covers ~6,465 artists once the rest shard loads)</div>}
     </div>
   );
 }
