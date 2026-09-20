@@ -50,7 +50,12 @@ const yr = (d) => (d && /^\d{4}/.test(d)) ? parseInt(d.slice(0, 4), 10) : null;
 async function fetchDeep(mbid) {
   const u = `https://musicbrainz.org/ws/2/artist/${encodeURIComponent(mbid)}?inc=release-groups+artist-rels&fmt=json`;
   const { json } = await getJSON(u);
-  if (!json) return null;
+  // 2026-09-21: a parseable body is NOT proof of an answer. MusicBrainz returns JSON for its own
+  // failures too ({"error":"Not Found"} on a dead mbid, the 503 rate-limit body, maintenance
+  // pages), and those used to fall straight through and build an all-empty release/relation
+  // shape that reads exactly like a real "this artist has nothing" answer. An artist document
+  // always carries its own `id`; a body without one is a FAILURE, and null says so.
+  if (!json || !json.id) return null;
 
   // release groups → debut/latest year + a compact [title, year, type] list (albums/EPs only)
   const rgs = (json["release-groups"] || [])
@@ -93,14 +98,19 @@ async function fetchDeep(mbid) {
   let done = 0, failed = 0;
 
   // fetch one artist and store into cache (fully replacing any existing record)
+  // 2026-09-21: a failure writes NOTHING. The old blank-with-error:true record froze one bad
+  // minute at MusicBrainz into a permanent "no releases" stub — and since `todo` only picks up
+  // names that are NOT in the cache, the stub also blocked every future retry, which is how the
+  // 594-entry blank-stub class was born. Skipping the write leaves the name uncached so the next
+  // run refetches it, and in the refresh lane it leaves the existing good record untouched
+  // rather than clobbering it with a blank.
   async function fetchInto(name) {
     try {
       const d = await fetchDeep(stats[name].mbid);
-      cache[name] = d ? { ...d, fetched: today } : { debut: null, latest: null, rgCount: 0, releases: [], rels: [], fetched: today, error: true };
-      if (!d) failed++;
+      if (!d) { failed++; return; }   // answerless/failed → no write, retried next run
+      cache[name] = { ...d, fetched: today };
     } catch (e) {
-      cache[name] = { debut: null, latest: null, rgCount: 0, releases: [], rels: [], fetched: today, error: true };
-      failed++;
+      failed++;                        // same: no write, so the next run retries
     }
   }
 

@@ -55,7 +55,12 @@ async function searchMbid(name) {
 async function fetchOrigin(mbid) {
   const u = `https://musicbrainz.org/ws/2/artist/${encodeURIComponent(mbid)}?fmt=json`;
   const { json } = await getJSON(u);
-  if (!json) return { country: "", area: "", beginArea: "", type: "", gender: "", begin: "", end: "", ended: false };
+  // 2026-09-21: a parseable body is NOT proof of an answer. MusicBrainz returns JSON for its own
+  // failures too ({"error":"Not Found"} on a dead mbid, the 503 rate-limit body, maintenance
+  // pages), and returning the blank shape here froze one bad minute into a permanent "no country,
+  // no life-span" record. An artist document always carries its own `id`; a body without one is
+  // a FAILURE, and null says so — every caller below skips the write on null.
+  if (!json || !json.id) return null;
   // `country` is the ISO code (e.g. "JP", "AU"); `area.name` is the human form ("Japan");
   // `begin-area.name` is finer when it exists (e.g. "Tokyo"). type is "Group"/"Person".
   // gender is set for Person artists only. life-span.{begin,end,ended} → active/disbanded(/deceased).
@@ -96,7 +101,10 @@ async function fetchOrigin(mbid) {
     const mbid = await searchMbid(name);
     await sleep(DELAY_MS);
     if (!mbid) { done++; continue; }
-    try { cache[name] = { ...await fetchOrigin(mbid), mbidVia: "search", fetched: today }; }
+    try {
+      const o = await fetchOrigin(mbid);      // null ⇒ answerless/failed: skip the write (2026-09-21)
+      if (o) cache[name] = { ...o, mbidVia: "search", fetched: today }; else failed++;
+    }
     catch (e) { failed++; }
     done++;
     if (done % 25 === 0) { fs.writeFileSync(CACHE_PATH, JSON.stringify(cache, null, 0), "utf8"); console.log(`  search ${done}/${noMbid.length}…`); }
@@ -104,11 +112,14 @@ async function fetchOrigin(mbid) {
   }
   done = 0;
   for (const name of todo) {
+    // 2026-09-21: a failure writes NOTHING — see fetchOrigin. The old blank-with-error:true record
+    // froze a transient MusicBrainz failure into a permanent stub, and because `todo` only picks
+    // up names not already cached, the stub blocked the retry too (the 661-entry blank class).
     try {
-      cache[name] = { ...await fetchOrigin(stats[name].mbid), fetched: today };
+      const o = await fetchOrigin(stats[name].mbid);
+      if (o) cache[name] = { ...o, fetched: today }; else failed++;
     } catch (e) {
-      cache[name] = { country: "", area: "", beginArea: "", type: "", gender: "", begin: "", end: "", ended: false, fetched: today, error: true };
-      failed++;
+      failed++;                        // no write, so the next run retries
     }
     done++;
     if (done % 25 === 0) {
@@ -138,11 +149,12 @@ async function fetchOrigin(mbid) {
 
     let rdone = 0;
     for (const { name } of candidates) {
+      // 2026-09-21: never clobber a good cached record with a blank on a transient failure.
       try {
-        cache[name] = { ...await fetchOrigin(stats[name].mbid), fetched: today };
+        const o = await fetchOrigin(stats[name].mbid);
+        if (o) cache[name] = { ...o, fetched: today }; else failed++;
       } catch (e) {
-        cache[name] = { country: "", area: "", beginArea: "", type: "", gender: "", begin: "", end: "", ended: false, fetched: today, error: true };
-        failed++;
+        failed++;                      // no write: the existing record stands, retried later
       }
       rdone++; done++;
       if (rdone % 25 === 0) {
