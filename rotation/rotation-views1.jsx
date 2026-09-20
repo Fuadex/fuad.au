@@ -701,6 +701,29 @@ function OverviewView({ t, go, restReady, seed }) {
   // 10,485 → "10.5k". The strip and the milestone line both want a round number small enough to
   // ride inside a caption; fmt() spells every digit and is too wide for either.
   const kAbbr = (n) => n >= 10000 ? (Math.round(n / 100) / 10) + "k" : fmt(n);
+  // PACE + MILESTONE ETA for the Scrobbles card (Fuad 2026-09-21, his own spec: "'26 pace 29.3k ·
+  // 300k in ~41 days — except take into account that we already do have over 300k"). Two live
+  // facts in the Streak card's best-line grammar: this year's projected total (year-to-date over
+  // day-of-year, the live delta riding on top of the baked day-series so today's plays count),
+  // and when the NEXT round five-thousand lands at that pace — the folded milestone card's own
+  // grain, and ceil() from the live total, so the line can never name a milestone already crossed.
+  // Day-of-year clamps to 7 so the first week of January doesn't project one wild afternoon into
+  // a 60k year.
+  const paceEta = React.useMemo(() => {
+    if (!days || !days.counts || !days.start) return null;
+    const startMs = new Date(days.start + "T00:00:00Z").getTime();
+    const y = new Date().getUTCFullYear();
+    const jan1 = Date.UTC(y, 0, 1);
+    const idx0 = Math.max(0, Math.round((jan1 - startMs) / 86400e3));
+    let ytd = 0; for (let i = idx0; i < days.counts.length; i++) ytd += days.counts[i];
+    ytd += Math.max(0, liveTotal - (T.scrobbles || 0));
+    const doy = Math.max(7, Math.floor((Date.now() - jan1) / 86400e3) + 1);
+    const perDay = ytd / doy;
+    if (!(perDay > 0)) return null;
+    const next = Math.ceil((liveTotal + 1) / 5000) * 5000;
+    return { yy: String(y).slice(2), pace: Math.round(perDay * 365), next,
+      eta: Math.max(1, Math.round((next - liveTotal) / perDay)) };
+  }, [days, liveTotal, T.scrobbles]);
   // THE "· lifetime" MARKER IS GONE, AND SO IS WHAT IT WAS APOLOGISING FOR (Fuad 2026-09-21:
   // "after filtering 'lifetime' popping up under Albums is no good, it blows up a row" /
   // "Overall it'd be better if we had numbers updating with filters"). It was added on 2026-09-19
@@ -861,6 +884,11 @@ function OverviewView({ t, go, restReady, seed }) {
           </div>
           <div className="ov-n" style={{ margin: "1px 0 0" }}>
             <TweenNum v={liveTotal} f={fmt} from={0} dur={1400} /></div>
+          {/* pace + ETA line, the Streak best-line's seat on this card — see the paceEta memo */}
+          {paceEta && <div className="ov-eb" style={{ letterSpacing: ".04em", whiteSpace: "nowrap",
+            overflow: "hidden", textOverflow: "ellipsis", margin: "2px 0 0" }}
+            title={`${fmt(paceEta.pace)} plays if this year's rate holds · ${fmt(paceEta.next)} at ~${paceEta.eta} days away`}>
+            '{paceEta.yy} pace {kAbbr(paceEta.pace)} · {kAbbr(paceEta.next)} in ~{paceEta.eta}d</div>}
           <div style={{ marginTop: 2 }}>
             <Spark data={trend} w={300} h={22} run={seen} fill="var(--accent-bg)" />
           </div>

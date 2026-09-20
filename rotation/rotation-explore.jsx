@@ -2221,8 +2221,23 @@ function ExploreView({ t, go, setPop, seed }) {
         @media (max-width: 1200px) { .xp-cardgrid { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
         @media (max-width: 900px) { .xp-cardgrid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
         @media (max-width: 520px) { .xp-cardgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-        .xp-carditem { cursor: pointer; min-width: 0; }
+        .xp-carditem { cursor: pointer; min-width: 0; transition: transform .16s ease; }
         .xp-carditem[data-link="false"] { cursor: default; opacity: .6; }
+        /* GRID HOVER (Fuad 2026-09-21: "on Explore's page, we need hover effects on grid similar
+           to how it works on overview") — the card grid was the one clickable surface on the page
+           with no hover answer at all (.xp-row had its wash all along). Same grammar as the
+           Overview rows: a declared transition so nothing snaps, the name warming to the accent,
+           and — since a cover tile has no background box to wash — a 2px lift with a gentle
+           brightness on the sleeve standing in for the bg-3 wash. */
+        .xp-carditem .xp-cardnm { transition: color .16s ease; }
+        .xp-carditem > div:first-child { transition: filter .16s ease; }
+        .xp-carditem[data-link="true"]:hover { transform: translateY(-2px); }
+        .xp-carditem[data-link="true"]:hover > div:first-child { filter: brightness(1.12); }
+        .xp-carditem[data-link="true"]:hover .xp-cardnm { color: var(--accent); }
+        @media (prefers-reduced-motion: reduce) {
+          .xp-carditem, .xp-carditem .xp-cardnm, .xp-carditem > div:first-child { transition: none; }
+          .xp-carditem[data-link="true"]:hover { transform: none; }
+        }
         .xp-cardrk { position: absolute; top: 3px; left: 4px; font-family: var(--mono); font-size: 8px; color: rgba(255,255,255,.85); text-shadow: 0 1px 2px #000; }
         .xp-cardnm { font-size: 10px; margin-top: 5px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .xp-cardsub { font-family: var(--mono); font-size: 8px; color: var(--ink-faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
