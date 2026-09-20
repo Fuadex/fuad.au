@@ -390,10 +390,74 @@ const _MB_VOX_GENDER = (() => {
   } catch (err) {}
   return m;
 })();
+// ─────────── MB BAND LINEUPS (mb-lineups.json — the 2026-09-19 member-of-band sweep) ───────────
+// INTEGRATED 2026-09-21 (owner-approved): the dump was fetched and deliberately parked. It is now
+// the PRIMARY lineup/gender source, because it is the richest one the estate holds: 1,001 bands /
+// 4,633 members / 4,106 of them gendered — 727 bands carry at least one member gender, against
+// Wikidata's 316 over the same names — and unlike mb-artists.json every member carries ROLES
+// ("lead vocals", "electric guitar", …), tenure (begin/end) and a `current` flag.
+//   shape: name → { mbid, fetched, members:[{ name, mbid, gender, roles[], begin, end, current }] }
+// PRECEDENCE at every use site below: MB lineups WIN where present; Wikidata (wdOf/LINEUPS),
+// artist-members.json (membersVoxCode) and Discogs (dgMembersOf) fill the rest. Purely additive —
+// each use site is a fallback chain, nothing that resolved before stops resolving.
+// EXCEPTION: vocals.json stays first for the vx code — verified data always wins (same law as the
+// artist-members.json fallback it now sits in front of).
+const MBL = _readJson("mb-lineups.json");
+// The dump is DISPLAY-NAME keyed (the name we queried MB with), so it resolves through the same
+// machinery as every other name-keyed store: canonical name → fold-alias name (aliasedByName), then
+// by SLUG so casing/punctuation drift still lands ("MY FIRST STORY" vs "My First Story"), with the
+// fold-alias slug list as the last hop (aliasedBySlug).
+const MBL_BY_SLUG = (() => { const o = {}; for (const [k, v] of Object.entries(MBL)) { const s = slug(k); if (s && !(s in o)) o[s] = v; } return o; })();
+// LAST-RESORT NORMALISED HOP (2026-09-21, QC on the integration run): 8 of the dump's 9 unmatched
+// bands were pure billing drift — a leading "The " one side lacks (Crystal Method / The Sisters of
+// Mercy / The Smashing Pumpkins / The Bloodhound Gang / Devin Townsend Project), an ASCII-vs-
+// diacritic key ("Motorhead": slug() deletes non-ASCII, so "Motörhead" slugs to mot-rhead and can
+// never meet motorhead), or a parenthetical disambiguator ("The Prodigy (Dance)"). One aggressive
+// normalisation on BOTH sides — NFKD-fold diacritics BEFORE slug, drop a trailing "(...)", strip a
+// leading "the-" — recovers all of them; ~90 members. First-wins on collisions, and the hop runs
+// only after the exact and fold-alias lookups miss, so it can never override a real key.
+const _mblNorm = (name) => slug(String(name || "").normalize("NFKD").replace(/[̀-ͯ]/g, "").replace(/\s*\([^)]*\)\s*$/, "")).replace(/^the-/, "");
+const MBL_BY_NORM = (() => { const o = {}; for (const [k, v] of Object.entries(MBL)) { const n = _mblNorm(k); if (n && !(n in o)) o[n] = v; } return o; })();
+const mblOf = (name) => aliasedByName(MBL, name) || aliasedBySlug(MBL_BY_SLUG, slug(name)) || MBL_BY_NORM[_mblNorm(name)];
+// named members, CURRENT first then past (each in MB's own order) — so the artist payload's cap of
+// 10 keeps the lineup that is actually on stage rather than an alphabetical slice of ex-members.
+const mblMembersOf = (name) => {
+  const e = mblOf(name); if (!e || !Array.isArray(e.members)) return [];
+  const cur = [], past = [];
+  for (const m of e.members) { if (m && m.name) (m.current ? cur : past).push(m.name); }
+  return [...cur, ...past];
+};
+// the full member list in the {name,gender} shape the Wikidata slice uses, so LINEUPS can swap
+// sources without a second code path.
+const mblLineupOf = (name) => { const e = mblOf(name); if (!e || !Array.isArray(e.members)) return []; return e.members.filter(m => m && m.name); };
+// vocalist pick — the SAME lead-vocals-first ladder _MB_VOX_GENDER/membersVoxCode run, against
+// `roles` instead of `i[]` and `current` instead of t==="". Lead vocals wins regardless of era;
+// recency only breaks ties inside a credit tier (the ミドリ lesson, see _MB_VOX_GENDER above).
+const _mblVox = (name) => {
+  const ms = mblLineupOf(name); if (!ms.length) return null;
+  const has = (m, re) => (m.roles || []).some(r => re.test(r));
+  return ms.find(m => m.current && has(m, /lead vocals/i))
+    || ms.find(m => has(m, /lead vocals/i))
+    || ms.find(m => m.current && has(m, /vocals/i))
+    || ms.find(m => has(m, /vocals/i)) || null;
+};
+// "m"/"f"/"n" vocals code, or undefined when the vocalist carries no usable gender (never fabricate).
+const mblVoxCode = (name) => {
+  const v = _mblVox(name); if (!v || !v.gender) return undefined;
+  if (/^f/i.test(v.gender)) return "f";
+  if (/^m/i.test(v.gender)) return "m";
+  if (/^n/i.test(v.gender)) return "n";
+  return undefined;
+};
+// "Female"/"Male"/"Non-binary" for the gender glyph — same lead-vocalist rule as _MB_VOX_GENDER.
+const mblVoxGender = (name) => { const c = mblVoxCode(name); return c === "f" ? "Female" : c === "m" ? "Male" : c === "n" ? "Non-binary" : ""; };
 const genderOf = (name) => {
   const pn = pinOf(name); if (pn && "gender" in pn) return pn.gender;
   const o = aliasedByName(ORIGINS, name);
-  return (o && o.gender) || _MB_VOX_GENDER.get(name) || "";
+  // 2026-09-21: mb-lineups.json is consulted BEFORE mb-artists.json for the band-carries-its-lead-
+  // vocalist's-gender rule — same derivation, newer fetch, real role strings (mb-artists' i[] is
+  // empty for most entries) and it can say Non-binary. The artist's OWN MB gender still wins.
+  return (o && o.gender) || mblVoxGender(name) || _MB_VOX_GENDER.get(name) || "";
 };
 // ─────────── VOCALS (vocals.json, assembled from the phased MB/LLM/web vocals derivation) ───────────
 // slug → ["male","female","nonbinary",…] in lineup order. [] = instrumental act; ABSENT = unknown.
@@ -2012,7 +2076,7 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
     fm: familyMembersByName(name),   // family MEMBERSHIP set (1–3, dominant first) — filter surfaces test fm, not sub-derived
     firstYear: new Date(firstSeen.get(name)).getUTCFullYear(),
     debut: debutOf(name),
-    members: [...new Set([...membersOf(name), ...dgMembersOf(name)])].slice(0, 10), // MB + Discogs members
+    members: [...new Set([...mblMembersOf(name), ...membersOf(name), ...dgMembersOf(name)])].slice(0, 10), // MB lineups (current first) + MB rels + Discogs
 
     listeners: listenersOf(name),
     styles: stylesOf(name),
@@ -2020,7 +2084,7 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
     origin: originOf(name),
     country: meta.country || (originOf(name) ? originOf(name).country.toLowerCase() : ""),
     gender: genderOf(name),     // "Male"/"Female"/"Other"/"" — solo artists only
-    ...(() => { let vx = vocalsCodeBySlug(slug(name)); if (vx === undefined) vx = membersVoxCode(name); return vx === undefined ? {} : { vx }; })(),  // vocals code (m/f/n, ""=instrumental; MB-lineup fallback); absent = no data
+    ...(() => { let vx = vocalsCodeBySlug(slug(name)); if (vx === undefined) vx = mblVoxCode(name); if (vx === undefined) vx = membersVoxCode(name); return vx === undefined ? {} : { vx }; })(),  // vocals code (m/f/n, ""=instrumental; mb-lineups then artist-members fallback); absent = no data
     life: lifeOf(name),         // { type, ended, end } → active/disbanded/deceased badge
     wd: wdOf(name),             // Wikidata slice: formation city+coords, dissolved, lineup+gender
   };
@@ -3280,22 +3344,34 @@ if (GENIUS_THEMES._themes) {
   }
 }
 
-// ─────────── LINEUPS (Wikidata band-member gender — enrich-wikidata.js) ───────────
-// The layer MusicBrainz can't give us: MB's `gender` is null for Groups, so at the artist
-// level a band is genderless. Wikidata's P527→P21 exposes the members and their gender, so
+// ─────────── LINEUPS (band-member gender — mb-lineups.json, Wikidata fallback) ───────────
+// The layer MusicBrainz couldn't give us at the ARTIST level: MB's `gender` is null for Groups,
+// so a band is genderless there. Wikidata's P527→P21 exposes the members and their gender, so
 // we can finally ask "how much of my band-listening involves women musicians?" — play-weighted
 // over groups whose lineup gender is actually known. Solo artists (no members) are excluded
 // here on purpose; their gender lives in the MB origins layer.
+// 2026-09-21 (owner-approved): MusicBrainz CAN give us this after all — the member-of-band sweep
+// in mb-lineups.json carries per-member gender for 727 of its 1,001 bands (Wikidata covers 316 of
+// the same names), so MB is now the PRIMARY source here and Wikidata fills the rest. Selection is
+// "the source that can actually answer the question": MB wins whenever it has ≥2 gendered members,
+// or simply more of them than Wikidata — so coverage only ever grows, never shrinks.
 let LINEUPS = null;
 {
   let bandsAnalyzed = 0, bandsWithWomen = 0, playsWithWomen = 0, playsAllMale = 0;
+  let srcMb = 0, srcWd = 0;                            // which store answered, for the build log
   const featured = [], allWomen = [], biggestLineups = [];
   for (const [name, plays] of artistPlays) {
     if (plays < 20) continue;
     const w = aliasedByName(WIKIDATA, name);
-    if (!w || !w.members || w.members.length === 0) continue;
-    const gendered = w.members.filter(m => m.gender);
-    biggestLineups.push({ name, artistId: slug(name), hue: hueFor(name), plays, memberCount: w.members.length });
+    const wdMembers = (w && Array.isArray(w.members)) ? w.members.filter(m => m && m.name) : [];
+    const mbMembers = mblLineupOf(name);
+    const mbG = mbMembers.filter(m => m.gender).length, wdG = wdMembers.filter(m => m.gender).length;
+    const useMb = mbMembers.length > 0 && (mbG >= 2 || mbG > wdG);
+    const members = useMb ? mbMembers : wdMembers;
+    if (members.length === 0) continue;
+    if (useMb) srcMb++; else srcWd++;
+    const gendered = members.filter(m => m.gender);
+    biggestLineups.push({ name, artistId: slug(name), hue: hueFor(name), plays, memberCount: members.length });
     if (gendered.length < 2) continue;                 // need a knowable lineup to judge
     bandsAnalyzed++;
     const women = gendered.filter(m => /female|trans woman/i.test(m.gender));
@@ -3314,6 +3390,7 @@ let LINEUPS = null;
   allWomen.sort((a, b) => b.plays - a.plays);
   biggestLineups.sort((a, b) => b.memberCount - a.memberCount);
   const denom = playsWithWomen + playsAllMale;
+  console.log(`lineups: ${bandsAnalyzed} bands judged (${srcMb} mb-lineups · ${srcWd} wikidata) · ${bandsWithWomen} with women`);
   if (bandsAnalyzed >= 20) LINEUPS = {
     bandsAnalyzed, bandsWithWomen,
     womenBandShare: denom ? Math.round(playsWithWomen / denom * 100) / 100 : 0,
@@ -3321,6 +3398,17 @@ let LINEUPS = null;
     allWomen: allWomen.slice(0, 6),
     biggestLineups: biggestLineups.filter(b => b.memberCount >= 8).slice(0, 6),
   };
+}
+// mb-lineups reach — how much of the parked dump the library can actually use. Display-name keyed,
+// so a miss is usually a spelling/fold gap worth a folds.json line, not a missing band (2026-09-21).
+{
+  // counts through the SAME normalised hop mblOf ends on (2026-09-21 QC) — the first cut of this
+  // counter tested raw slugs only and reported 992 while the actual joins already reached 999.
+  const libSlugs = new Set(), libNorms = new Set();
+  for (const [n] of artistPlays) { const s = slug(n); if (!s) continue; libSlugs.add(s); libNorms.add(_mblNorm(n)); for (const a of (ALIAS_SLUGS.get(s) || [])) libSlugs.add(a); }
+  const total = Object.keys(MBL).length; const miss = [];
+  for (const k of Object.keys(MBL)) if (!libSlugs.has(slug(k)) && !libNorms.has(_mblNorm(k))) miss.push(k);
+  console.log(`mb-lineups: ${total - miss.length}/${total} dump bands matched a library artist${miss.length ? " (" + miss.slice(0, 3).join(", ") + (miss.length > 3 ? ", …" : "") + ")" : ""}`);
 }
 
 // ─────────── CONNECTIONS (shared band members — the "same drummer" graph) ───────────
@@ -5161,7 +5249,9 @@ for (const [name, plays] of rankedArtists) {
   // vocals code (m/f/n; ""=instrumental) — powers the Explore vocals chip; absent = no data.
   // Primary: vocals.json (verified). Fallback: MB member lineup (artist-members.json) for bands
   // whose wikidata carried no lineup — same lead-vocals-first selection, so ZERO classifier change.
-  let _vx = vocalsCodeBySlug(rec.id); if (_vx === undefined) _vx = membersVoxCode(name);
+  // 2026-09-21: mb-lineups.json sits between them — richer roles + `current` flag, and 727 bands
+  // carry member gender where artist-members.json mostly carries an empty instrument list.
+  let _vx = vocalsCodeBySlug(rec.id); if (_vx === undefined) _vx = mblVoxCode(name); if (_vx === undefined) _vx = membersVoxCode(name);
   if (_vx !== undefined) rec.vx = _vx;
   const _rg = dominantReg(name); if (_rg != null) rec.rg = _rg;   // dominant register (REG_VOCAB idx) — powers the Explore Register filter row
   const _lf = lifeOf(name); if (_lf) { rec.ty = _lf.type[0].toLowerCase(); if (_lf.ended) { rec.ed = 1; if (_lf.end) rec.en = +_lf.end || 0; } }
@@ -5274,7 +5364,7 @@ for (const a of EXPLORE) {
     if (al.length) rec.al = al;
     const bio = bioOf(a.name) || dgProfileOf(a.name);          // last.fm bio, else Discogs profile
     if (bio) rec.bio = bio.length > 700 ? bio.slice(0, 700).replace(/\s+\S*$/, "") + "…" : bio;
-    const mem = [...new Set([...membersOf(a.name), ...dgMembersOf(a.name)])].slice(0, 12);
+    const mem = [...new Set([...mblMembersOf(a.name), ...membersOf(a.name), ...dgMembersOf(a.name)])].slice(0, 12);   // mb-lineups first (2026-09-21)
     if (mem.length) rec.mem = mem;
     const sim = realSimilar(a.name);                           // last.fm similar artists (names)
     if (sim && sim.length) rec.sim = sim.slice(0, 6);
