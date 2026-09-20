@@ -348,7 +348,7 @@
   },
   "Diva": {
     "spotify": "3eAdyHcHAUbAiLQYrznu5u",
-    "clearImage": true,
+    "clearLife": true, "clearImage": true,
     "clearStyles": true,
     "origin": {
       "country": "NO",
