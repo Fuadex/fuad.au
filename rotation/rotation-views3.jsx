@@ -23,11 +23,43 @@ const hueOfName = (name) => (window.ROTATION.byId[window.ROTATION.slug(name)] ||
 // position — the two disagree on four of six slots.
 const ST_FP_LABEL = { energy: "Energy", valence: "Positivity", dance: "Danceability", acoustic: "Acoustic", instr: "Instrumental", tempo: "Tempo" };
 const ST_FP_COL = { energy: 0, valence: 1, acoustic: 2, tempo: 3, dance: 4, instr: 5 };
-// Lyrical diet: a theme's colour is a pure function of its index in THEMES.names, so all 18 (and
-// any the classifier adds later) stay distinguishable and a theme never changes colour between
-// renders. The golden angle rather than an even 360/n split: even spacing gives ADJACENT indices
-// adjacent hues, and adjacent indices are exactly what stack against each other in the bars.
-const ST_DIET_HUE = (i) => Math.round((i * 137.508) % 360);
+// ── Lyrical diet: the semantic colour wheel ──────────────────────────────────────────────────
+// Fuad 2026-09-21: "since we have so many colors, we can figure out a way to sort it more nicely
+// to make a gradient or/and associate colors with themes." BOTH, and they are the same table.
+// What this replaces: ST_DIET_HUE(i) = i x 137.508 mod 360, a golden-angle spin on the theme's
+// INDEX in THEMES.names. Maximally distinct and maximally arbitrary — grief came out gold, party
+// came out blue, and eighteen index-neighbours stacked as confetti. Hue is now hand-assigned by
+// MEANING (reds for the violent themes, golds for the appetites, greens for the outdoors and the
+// exits, blues for the cold city, indigo and violet for the dead and the damaged, rose for the
+// heart) and the STACK IS SORTED BY IT, so every year's bar climbs the same wheel: blood at the
+// foot, rose at the crown.
+// Listed IN WHEEL ORDER, which is exactly the stack order — keep the numbers monotonic and the
+// table keeps reading as its own documentation. Neighbours sit 12-34 degrees apart; the tightest
+// run is the violet-to-rose tail, where six themes share a quarter of the wheel, which is the
+// price of honouring the semantic grouping over even spacing. Keyed by NAME, not index, so the
+// degraded top-6 arc payload colours identically to the full matrix; a theme the classifier adds
+// later falls through to a hashed hue rather than going colourless.
+const ST_DIET_HUES = {
+  "violence & murder": 12,             // blood
+  "anger & defiance": 30,              // red
+  "war & battle": 48,                  // ember
+  "nostalgia & memory": 70,            // amber
+  "money & the street": 88,            // old gold
+  "party & hedonism": 104,             // bright gold
+  "nature & the elements": 138,        // green
+  "freedom & escape": 162,             // spring green
+  "identity & becoming": 186,          // teal
+  "politics & society": 212,           // steel
+  "night & the city": 240,             // deep blue
+  "alienation & emptiness": 262,       // cold blue
+  "death & grief": 282,                // indigo
+  "faith & the occult": 300,           // deep purple
+  "madness & the mind": 318,           // violet
+  "addiction & self-destruction": 332, // violet-magenta
+  "heartbreak & loss": 346,            // rose
+  "love & desire": 358,                // pink
+};
+const ST_DIET_HUE = (th) => (ST_DIET_HUES[th] != null ? ST_DIET_HUES[th] : hashInt(String(th), 7) % 360);
 
 
 // ── Who rose, who fell: the artist rows of the slope chart ───────────────────────────────────
@@ -269,7 +301,8 @@ function StoriesView({ t, go, seed }) {
   // EVERY hook below sits here with the rest, ABOVE every early return: a hook under a
   // conditional is React #310 at runtime and check-jsx cannot see it (same note as The Reading).
   const [czPick, setCzPick] = React.useState("");        // comfort-zone scorer input
-  const [dietSel, setDietSel] = React.useState(null);    // lyrical-diet theme pulled out of the stack
+  const [dietSel, setDietSel] = React.useState(null);    // lyrical-diet theme PINNED by a chip click — drives the stack AND the exemplar panel
+  const [dietHot, setDietHot] = React.useState(null);    // …and the one merely hovered (2026-09-21): previews the stack, NEVER the panel
   const [dietAll, setDietAll] = React.useState(false);   // …and whether the long tail of chips is open
   const [genPick, setGenPick] = React.useState("");      // genealogy tracer input
   // genealogy.js is lazy (slug → [who you heard just before, first play]); the module renders
@@ -354,22 +387,29 @@ function StoriesView({ t, go, seed }) {
       years = T.arc.years.map(y => ({ year: y.year, plays: y.plays || 0, v: names.map(th => y.byTheme[th] || 0) }));
     } else return null;
     const shares = (T.shares || []).filter(s => s.theme);
-    // Colour key: position in THEMES.names where we have it, so a theme keeps its hue whether
-    // the stack is the full eighteen or the degraded six. EVERY theme a chip can carry needs an
-    // entry, not only the ones drawn — on a matrix-less payload the chips come from shares and
-    // reach past the arc's six, and a theme with no hue used to fall out of the selectable test
-    // and leave a dead chip.
+    // Colour key: the theme's NAME through ST_DIET_HUES (2026-09-21 — it used to be its position
+    // in THEMES.names through the golden angle), so a theme keeps its hue whether the stack is
+    // the full eighteen or the degraded six, and the degrade path needs no separate mapping.
+    // EVERY theme a chip can carry still needs an entry, not only the ones drawn — on a
+    // matrix-less payload the chips come from shares and reach past the arc's six, and a theme
+    // with no hue falls out of the selectable test and leaves a dead chip.
     const key = ((T.names && T.names.length) ? T.names : names).slice();
     for (const s of shares) if (key.indexOf(s.theme) < 0) key.push(s.theme);
     for (const th of names) if (key.indexOf(th) < 0) key.push(th);
     const hue = {};
-    key.forEach((th, i) => { hue[th] = ST_DIET_HUE(i); });
+    for (const th of key) hue[th] = ST_DIET_HUE(th);
+    // STACK ORDER (Fuad 2026-09-21: "sort it more nicely to make a gradient"). ONE hue-sorted
+    // order, computed once and used by every year, so the bars agree on where a theme lives and
+    // the column reads as a climb up the wheel. `draw` is that order REVERSED: the column is
+    // justify-content:flex-end, so the FIRST child sits highest and the LAST drawn lands at the
+    // foot — the low hues have to go out last to sit at the bottom.
+    const draw = names.map((_, j) => j).sort((a, b) => hue[names[a]] - hue[names[b]]).reverse();
     // The headline: first-three-years average against the last three, in percentage POINTS.
     const n = years.length, w = Math.min(3, n);
     const first = years.slice(0, w), last = years.slice(-w);
     const mean = (arr, j) => arr.reduce((s, y) => s + (y.v[j] || 0), 0) / arr.length;
     const shift = names.map((th, j) => ({ th, j, d: (mean(last, j) - mean(first, j)) * 100 })).sort((a, b) => b.d - a.d);
-    return { full, names, years, hue, riser: shift[0], fader: shift[shift.length - 1], chips: shares.slice(0, 8), rest: shares.slice(8) };
+    return { full, names, years, hue, draw, riser: shift[0], fader: shift[shift.length - 1], chips: shares.slice(0, 8), rest: shares.slice(8) };
   }, []);
 
   // ── WHO BROUGHT YOU HERE ── gateways ranked by INTRODUCED PLAYS, plus the library's heaviest
@@ -2445,24 +2485,47 @@ function StoriesView({ t, go, seed }) {
             2026-09-21: "not just a limited selection") — THEMES.matrix carries every theme's
             per-mille share per year, so the WHOLE diet stacks and the picker reaches all of it
             rather than the arc's top six. Lyric themes up in chapter III still answers "what is it
-            about"; this one answers "what changed". */}
+            about"; this one answers "what changed".
+            RESTYLED + REWIRED 2026-09-21 on three rulings. (1) "the bars to not contain fill
+            color, only strokes, a la style on overview" — every segment is an outline now, the
+            register the Overview strips use, and only the ACTIVE theme takes a fill (18%). (2)
+            "make the interaction hoverable" — hovering any band lights that theme across every
+            year; a chip click still PINS one, and the pin beats the hover. (3) the colours are
+            semantic and the stack is sorted by them (ST_DIET_HUES, top of file). */}
         {diet && (() => {
           const D = diet, T = I.THEMES, H = 168;
+          // TWO SELECTIONS, ONE OF THEM DISPOSABLE. `sel` is PINNED (a chip click) and is the only
+          // one the exemplar panel below ever reads — that panel opens tracks and artists, so it
+          // must not flicker as the pointer crosses the chart. `hot` is the hover preview and
+          // reaches the BARS and the CHIPS only. Pin wins outright: while something is pinned,
+          // hot is forced null, so a hover can never move the chart out from under the panel.
           const sel = D.hue[dietSel] != null ? dietSel : null;
-          const selJ = sel ? D.names.indexOf(sel) : -1;
+          const hot = !sel && dietHot && D.hue[dietHot] != null ? dietHot : null;
+          const act = sel || hot;
+          const actJ = act ? D.names.indexOf(act) : -1;
           // a theme can be pickable without being drawn (the degraded arc stacks six but the
           // chips reach eight) — then its exemplars still open and the chart simply does not dim.
-          const dim = selJ >= 0;
+          const dim = actJ >= 0;
           const pts = (d) => (d > 0 ? "+" : "−") + Math.abs(d).toFixed(1);
-          const band = (th, on) => on ? `oklch(0.68 0.145 ${D.hue[th]})` : `oklch(0.42 0.05 ${D.hue[th]})`;
+          // three skins on one hue, all stroke-first: at rest a 60%-alpha outline over a 10% wash;
+          // ACTIVE, a near-solid outline over 18%; QUIET (some other theme is active) a 28%
+          // outline over 5%, which keeps the stack legible as a stack without competing.
+          const seg = (th, state, px) => {
+            const h = D.hue[th];
+            if (state === "on") return { height: px, borderColor: `oklch(0.82 0.16 ${h} / 0.95)`, background: `oklch(0.74 0.17 ${h} / 0.18)` };
+            if (state === "quiet") return { height: px, borderColor: `oklch(0.62 0.09 ${h} / 0.28)`, background: `oklch(0.62 0.09 ${h} / 0.05)` };
+            return { height: px, borderColor: `oklch(0.68 0.13 ${h} / 0.60)`, background: `oklch(0.68 0.13 ${h} / 0.10)` };
+          };
           const ex = sel ? ((T.exemplarsAll || T.exemplars || {})[sel] || []) : [];
           const fed = sel ? (T.artists || []).filter(a => (a.themes || []).some(t => t.theme === sel)).slice(0, 6) : [];
           const chip = (s) => (
             <button key={s.theme} type="button" className="st-diet-chip" data-on={sel === s.theme ? "true" : undefined}
+              data-hot={hot === s.theme ? "true" : undefined}
               onClick={() => setDietSel(sel === s.theme ? null : s.theme)}
+              onMouseEnter={() => setDietHot(s.theme)}
               style={sel === s.theme
                 ? { background: `oklch(0.72 0.15 ${D.hue[s.theme]})`, borderColor: `oklch(0.72 0.15 ${D.hue[s.theme]})` }
-                : { borderColor: `oklch(0.50 0.08 ${D.hue[s.theme]})` }}>
+                : { borderColor: `oklch(${hot === s.theme ? "0.72 0.15" : "0.50 0.08"} ${D.hue[s.theme]})` }}>
               {s.theme} · {Math.round(s.share * 100)}%
             </button>
           );
@@ -2476,9 +2539,14 @@ function StoriesView({ t, go, seed }) {
               <div className="st-sub">
                 Play-weighted shares of what the words are about, year by year, over {fmt(T.covered)} theme-classified
                 tracks ({Math.round(T.coveredPlays / T.totalPlays * 100)}% of plays).
-                {D.full ? ` All ${D.names.length} themes stack here` : " Only the six biggest themes are in this payload"} — pick one to pull it out of the mix.
+                {D.full ? ` All ${D.names.length} themes stack here` : " Only the six biggest themes are in this payload"}, stacked in colour
+                order — blood at the foot of each bar, rose at the crown. Hover a band to follow that theme across every
+                year; pick one to pull its songs out of the mix.
               </div>
-              <div className="st-diet" style={{ height: H + 26 }}>
+              {/* onMouseLeave on the CONTAINER, not on each band: moving between two touching
+                  segments fires leave-then-enter, and clearing on the segment's own leave would
+                  blink the whole chart between every pair. One clear at the edge of the chart. */}
+              <div className="st-diet" style={{ height: H + 26 }} onMouseLeave={() => setDietHot(null)}>
                 {D.years.map(y => {
                   const drawn = y.v.reduce((s, x) => s + x, 0);
                   const rem = 1 - drawn;
@@ -2488,14 +2556,17 @@ function StoriesView({ t, go, seed }) {
                           sum to ~1000 per-mille (rounding puts them at 998–1002), so on today's
                           payload this never draws — it exists for the degraded arc, which really
                           is only six themes deep. */}
-                      {rem > 0.005 && <div className="st-diet-seg" style={{ height: Math.round(rem * H), background: "var(--bg-3)" }} title="every other theme" />}
-                      {/* reversed: the column is justify-content:flex-end, so the FIRST child sits
-                          highest — names[0] has to be drawn last to land at the bottom. */}
-                      {D.names.map((_, k) => {
-                        const j = D.names.length - 1 - k, th = D.names[j], v = y.v[j] || 0;
+                      {rem > 0.005 && <div className="st-diet-seg" style={{ height: Math.round(rem * H), borderColor: "var(--rule)" }} title="every other theme" />}
+                      {/* D.draw is the hue order REVERSED (built once in the memo): the column is
+                          justify-content:flex-end, so the FIRST child sits highest and the low
+                          hues have to go out last to land at the foot. Same order in every year,
+                          which is what lets a theme's band be followed across the row. */}
+                      {D.draw.map((j) => {
+                        const th = D.names[j], v = y.v[j] || 0;
                         if (v <= 0) return null;
-                        return <div key={th} className="st-diet-seg"
-                          style={{ height: Math.max(1, Math.round(v * H)), background: band(th, !dim || j === selJ), opacity: dim && j !== selJ ? 0.55 : 1 }}
+                        return <div key={th} className="st-diet-seg" data-on={dim && j === actJ ? "true" : undefined}
+                          style={seg(th, dim ? (j === actJ ? "on" : "quiet") : "rest", Math.max(2, Math.round(v * H)))}
+                          onMouseEnter={() => setDietHot(th)}
                           title={`${th} · ${(v * 100).toFixed(1)}% of ${y.year}`} />;
                       })}
                       <div className="st-diet-yr">{String(y.year).slice(2)}</div>
@@ -2503,11 +2574,11 @@ function StoriesView({ t, go, seed }) {
                   );
                 })}
               </div>
-              <div className="st-diet-chips">
+              <div className="st-diet-chips" onMouseLeave={() => setDietHot(null)}>
                 {D.chips.map(chip)}
                 {D.full && D.rest.length > 0 && (
                   <button type="button" className="st-diet-chip st-diet-more" onClick={() => setDietAll(v => !v)}
-                    aria-expanded={dietAll}>
+                    onMouseEnter={() => setDietHot(null)} aria-expanded={dietAll}>
                     {dietAll ? "fewer" : `all ${D.names.length} themes`}
                   </button>
                 )}
@@ -3103,17 +3174,35 @@ function StoriesView({ t, go, seed }) {
            pushed earlier story rows past the viewport edge. */
         .st-diet { display: flex; gap: 3px; margin-top: 18px; }
         .st-diet-col { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; justify-content: flex-end; }
-        /* flex:none on both — a column flex item shrinks by default, and these carry explicit
+        /* OUTLINED, NOT FILLED (Fuad 2026-09-21: "the bars to not contain fill color, only
+           strokes, a la style on overview"). Every segment is a 1px stroke in its theme's hue over
+           a ~10% wash of the same colour — the register the Overview strips keep — and the stack
+           still reads as a stack because those strokes double up at every boundary. The ACTIVE
+           theme (pinned by a chip, or previewed by hovering any of its bands) fills to 18% and
+           brightens its stroke; every other theme drops to a whisper. All three skins are inline,
+           because the hue is the theme's and comes from ST_DIET_HUES at the top of this file.
+           box-sizing:border-box so the stroke rides INSIDE the height the share bought and the
+           stack still sums to H. min-height:2px because a border-box shorter than its own two
+           borders gets snapped up to them anyway — the JS clamps to the same 2, so the layout and
+           the arithmetic agree instead of drifting a pixel per thin theme.
+           flex:none on both — a column flex item shrinks by default, and these carry explicit
            pixel heights that must not be negotiated away if a stack ever rounds past the box. */
-        .st-diet-seg { flex: none; transition: opacity .2s ease, background .2s ease; }
+        .st-diet-seg { flex: none; box-sizing: border-box; min-height: 2px; border: 1px solid transparent;
+          border-radius: 1.5px; background: transparent; transition: background .2s ease, border-color .2s ease; }
         .st-diet-yr { flex: none; font-family: var(--mono); font-size: 8px; color: var(--ink-faint); text-align: center; margin-top: 5px; }
         .st-diet-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 15px; }
         /* chip grammar borrowed from .se-modes in the search overlay — outline at rest, filled
-           when on. The hue is inline (it comes from the theme's index), the geometry is here. */
+           when on. The hue is inline (the theme's own, from ST_DIET_HUES), the geometry is here;
+           the chips stay SHARE-RANKED while the bars run in hue order, because this row is a
+           legend and a menu, and a reader looks up the big themes here, not the red ones. */
         .st-diet-chip { font-family: var(--mono); font-size: 9.5px; letter-spacing: .04em; padding: 5px 11px;
           border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink-soft);
           cursor: pointer; transition: color .14s ease, border-color .14s ease, background .14s ease; }
         .st-diet-chip:hover { color: var(--ink); }
+        /* data-hot = the hover preview (2026-09-21), set from EITHER a chip or a band in the
+           chart, so hovering a stripe in the bars also names itself down here. Only a ring and a
+           brighter word: the filled state below stays the exclusive mark of a PINNED theme. */
+        .st-diet-chip[data-hot="true"] { color: var(--ink); }
         .st-diet-chip[data-on="true"] { color: var(--bg); font-weight: 600; }
         .st-diet-more { border-style: dashed; border-color: var(--rule-2); color: var(--ink-faint); }
         .st-diet-pick { margin-top: 15px; border-top: 1px solid var(--rule); padding-top: 13px; }
