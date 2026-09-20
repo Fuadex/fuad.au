@@ -691,13 +691,8 @@ function OverviewView({ t, go, restReady, seed }) {
   // What the card actually added was the DISTANCE to the next round five thousand, so that is what
   // comes across: a bar under the sparkline, the target as an end-cap, and the last crossing named
   // underneath (INSIGHTS.MILESTONES is the build's ledger of them — biggest n is the most recent).
-  const mile = React.useMemo(() => {
-    const next = Math.ceil((liveTotal + 1) / 5000) * 5000;
-    const pct = Math.max(0, Math.min(100, Math.round((5000 - (next - liveTotal)) / 5000 * 100)));
-    const ms = (R.INSIGHTS && R.INSIGHTS.MILESTONES) || [];
-    let last = null; for (const m of ms) if (!last || m.n > last.n) last = m;
-    return { next, pct, last };
-  }, [liveTotal, R]);
+  // The `mile` memo (next round 5k + pct + last crossing from INSIGHTS.MILESTONES) went with its
+  // last consumer, the "last: 300k — …" line, on 2026-09-21. paceEta above computes its own next.
   // 10,485 → "10.5k". The strip and the milestone line both want a round number small enough to
   // ride inside a caption; fmt() spells every digit and is too wide for either.
   const kAbbr = (n) => n >= 10000 ? (Math.round(n / 100) / 10) + "k" : fmt(n);
@@ -892,11 +887,11 @@ function OverviewView({ t, go, restReady, seed }) {
           <div style={{ marginTop: 2 }}>
             <Spark data={trend} w={300} h={22} run={seen} fill="var(--accent-bg)" />
           </div>
-          {/* The milestone BAR retired 2026-09-21 (Fuad: redundant, and it grew the whole row).
-              The last-crossing line below is what remains of the folded-in milestone card. */}
-          {mile.last && <div className="ov-eb" style={{ letterSpacing: ".06em",
-            whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-            last: {kAbbr(mile.last.n)} — {mile.last.artist}, {mile.last.track}</div>}
+          {/* The folded-in milestone card is now FULLY unwound: the bar retired 2026-09-21 (Fuad:
+              redundant, and it grew the whole row), and the last-crossing line — "last: 300k —
+              Poppy, Nothing" — followed on 2026-09-21 (Fuad: "let's remove this bit for now").
+              What the card says about milestones now is only the pace/ETA line above, which looks
+              FORWARD; INSIGHTS.MILESTONES still ships if a crossing memory ever earns a seat back. */}
         </div>
 
         {/* streak — current run + when the all-time best happened (INSIGHTS.STREAK carries the range) */}
