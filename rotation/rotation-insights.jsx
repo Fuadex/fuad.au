@@ -412,19 +412,26 @@ const PROVIDERS = [
               THE BIGGEST LINE WENT TOO (2026-09-21), for the same reason one step further: three
               rows plus an italic still set the row's height, and the italic was the least of them —
               it named a year that is usually already in the three rows, in a sentence, under a card
-              whose whole point is the rank. Rows only now; the row levels at ~118px. */}
-          <div style={{ display: "grid", gap: 5 }}>
-            {/* .ov-hovrow (2026-09-21): these rows were the one clickable rank on the pulse row
-                with no hover at all — every sibling module's rows ease to --bg-3. */}
-            {rows.slice(0, 3).map(r => (
-              <div key={r.y} className="ov-hovrow" onClick={(e) => { e.stopPropagation(); ctx.go("artist", r.artistId); }} style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", minWidth: 0, overflow: "hidden" }}>
-                <span className="ov-nr" style={{ width: 28 }}>{r.y}</span>
-                <GenCover hue={r.hue} name={r.artist} size={20} radius={2} />
-                {/* .ov-tx's size doing .ov-tx's job, but at 400: these rows are led by the YEAR in
-                    the column before them, and a rank of 500-weight names would out-shout it.
-                    Weight is a design call, so this one was not absorbed with the rest. */}
-                <div style={{ flex: 1, minWidth: 0, fontSize: 12, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.artist}</div>
-                <span className="ov-mi" style={{ flex: "none" }}>{r.plays}</span>
+              whose whole point is the rank. Rows only now; the row levels at ~118px.
+              TWO ROWS NOW (2026-09-21, later the same day): restyled to read like In season's rows
+              — cover · name · an .ov-mi sub-line carrying the metric · a trailing count — which
+              spends the row's second line on the year instead of the old leading rank column. Two
+              is what that shape holds at the settled ~118px without the row growing again the
+              moment it gained a line back; rows stay newest-first. Cover moved to 22px to match
+              In season's size (was 20). */}
+          <div style={{ display: "grid", gap: 6, gridTemplateColumns: "minmax(0, 1fr)" }}>
+            {/* .ov-hovrow (2026-09-19… see above): these rows were the one clickable rank on the
+                pulse row with no hover at all — every sibling module's rows ease to --bg-3. */}
+            {rows.slice(0, 2).map(r => (
+              <div key={r.y} className="ov-hovrow" onClick={(e) => { e.stopPropagation(); ctx.go("artist", r.artistId); }}
+                title={`${r.artist} — ${r.y}, ${_fmtN(r.plays)} plays →`}
+                style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", padding: "3px 0", borderRadius: 4, minWidth: 0 }}>
+                <GenCover hue={r.hue} name={r.artist} size={22} radius={2} style={{ flex: "none" }} />
+                <div style={{ flex: "1 1 0", minWidth: 0 }}>
+                  <div className="ov-tx">{r.artist}</div>
+                  <div className="ov-mi" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.y} · {sameDay ? "on this day" : `on ${used.getUTCDate()} ${MON[used.getUTCMonth()]}`}</div>
+                </div>
+                <span className="ov-mi" style={{ flex: "none" }}>{_fmtN(r.plays)}</span>
               </div>
             ))}
           </div>

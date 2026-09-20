@@ -1733,36 +1733,13 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
                 <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 5 }}>listeners ww</div></div>
             )}
           </div>
-          {/* ABOUT TO TIP OVER, ON THE PAGE IT IS ABOUT (2026-09-19). This was an Overview pulse
-              card: it scanned the top 80 artists, picked whichever happened to be nearest a round
-              total, and printed them in a row otherwise framed on the last seven days — so the
-              card changed subject every few weeks and said nothing about the artist you were
-              actually reading. The fact belongs under THIS artist's own play count, and only when
-              the number is genuinely close: the retired provider's bar was 40 plays, and that bar
-              is kept. Thresholds are every 500 up to 5k and every 1,000 above (the provider ran a
-              hand-written ladder — 50/100/250/1500/7500 — which made "500 away" mean something
-              different at every rung). The bar is the Scrobbles milestone bar at a smaller gauge:
-              one line, a 4px rail, no header of its own. */}
-          {(() => {
-            const p = a.plays || 0;
-            const next = p < 5000 ? Math.ceil((p + 1) / 500) * 500 : Math.ceil((p + 1) / 1000) * 1000;
-            if (next - p > 40) return null;
-            const step = next <= 5000 ? 500 : 1000;
-            const pct = Math.max(0, Math.min(100, (p - (next - step)) / step * 100));
-            return (
-              <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 10, minWidth: 0 }}
-                title={`${fmt(next - p)} plays from ${fmt(next)}`}>
-                <div style={{ flex: 1, minWidth: 0, height: 4, borderRadius: 3, background: "var(--bg-3)", position: "relative" }}>
-                  {/* alpha lives in the background colour only — `opacity` on this element would
-                      fade the border along with the wash it encloses (the Scrobbles card's note). */}
-                  <div style={{ position: "absolute", inset: "0 auto 0 0", width: pct + "%",
-                    background: "oklch(0.72 0.15 350 / 0.22)", border: "1px solid oklch(0.66 0.08 350 / 0.42)",
-                    boxSizing: "border-box", borderRadius: 3 }} />
-                </div>
-                <span className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", flex: "none", whiteSpace: "nowrap" }}>{fmt(p)} → {fmt(next)}</span>
-              </div>
-            );
-          })()}
+          {/* MILESTONE BAR REMOVED (2026-09-21). Fuad: "I'm not sure the progress bar on artists'
+              pages is necessary." This was the "About to tip over" rail added 2026-09-19 when the
+              Overview's artist-milestone pulse card relocated here — top-80-nearest-round-number
+              pick became this artist's own next round, same 40-play bar, same 500-to-5k-then-1,000
+              ladder. The Overview's own Scrobbles card lost ITS milestone bar the same day for the
+              same objection ("redundant, and it grew the whole row" — rotation-views1.jsx); this
+              one didn't survive the second look either. */}
         </div>
       </div>
 
@@ -2137,27 +2114,54 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
 
             // lineup open/close state — stored in the IIFE via a ref trick: React.useState
             // can't be called inside an IIFE, so we lift it to a small inner component.
+            // ROSTER DEFAULT-STATE (2026-09-21): the progress bar came off the artist header today
+            // for the same objection this answers — the owner wants who's CURRENTLY in the band
+            // visible without a click. mbCurrent now always renders (same MbRow: chips + tenure),
+            // right under the shares-members-with lines; only FORMERLY — still 10-capped with
+            // "+N more" — sits behind an expander, reworded from "N members — ... ▾ full lineup"
+            // (that line used to describe BOTH lists at once) to "▾ N former members" now that
+            // it's former-only. A band with nobody current has nothing to put ahead of the fold,
+            // so it keeps the OLD fully-collapsed card whole (mbSummary already falls back to
+            // mbFormer for exactly this case, above) — a wall of past members shouldn't unfold on
+            // page load just because the current list is empty.
             const LineupRoster = () => {
               const [open, setOpen] = React.useState(false);
+              if (mbMembers.length === 0) return null;
+              if (!mbCurrent.length) {
+                return (
+                  <div className={"av-lineupwrap" + (open ? " open" : "")}>
+                    {!open && (
+                      <div className="av-lineuprow" onClick={() => setOpen(true)}>
+                        <span style={{ fontSize: 12, color: "var(--ink-soft)" }}>
+                          <b style={{ color: "var(--ink)" }}>{mbSummary.length}</b>{" past member"}{mbSummary.length !== 1 ? "s" : ""}
+                          {instrSummary.length > 0 && (
+                            <span style={{ color: "var(--ink-faint)" }}>{" — "}{instrSummary.join(" · ")}</span>
+                          )}
+                        </span>
+                        <span className="av-lineup-toggle">{"▾ full lineup"}</span>
+                      </div>
+                    )}
+                    <div className="av-lineupbody">
+                      <LineupFormer former={mbFormer} Row={MbRow} bare />
+                      {open && <button className="av-more" style={{ marginTop: 10 }} onClick={() => setOpen(false)}>{"▴ collapse"}</button>}
+                    </div>
+                  </div>
+                );
+              }
               return (
                 <React.Fragment>
-                  {/* same full-read-style toggle + hover-peek as the primary lineup card (#7) */}
-                  {mbMembers.length > 0 && (
-                    <div className={"av-lineupwrap" + (open ? " open" : "")}>
+                  <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 8 }}>Members</div>
+                  <div style={{ display: "grid", gap: 1 }}>{mbCurrent.map(MbRow)}</div>
+                  {mbFormer.length > 0 && (
+                    <div className={"av-lineupwrap" + (open ? " open" : "")}
+                      style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid var(--rule)" }}>
                       {!open && (
                         <div className="av-lineuprow" onClick={() => setOpen(true)}>
-                          <span style={{ fontSize: 12, color: "var(--ink-soft)" }}>
-                            <b style={{ color: "var(--ink)" }}>{mbSummary.length}</b>{mbCurrent.length ? " member" : " past member"}{mbSummary.length !== 1 ? "s" : ""}
-                            {instrSummary.length > 0 && (
-                              <span style={{ color: "var(--ink-faint)" }}>{" — "}{instrSummary.join(" · ")}</span>
-                            )}
-                          </span>
-                          <span className="av-lineup-toggle">{"▾ full lineup"}</span>
+                          <span className="av-lineup-toggle">{"▾ "}{mbFormer.length}{" former member"}{mbFormer.length !== 1 ? "s" : ""}</span>
                         </div>
                       )}
                       <div className="av-lineupbody">
-                        {mbCurrent.length > 0 && <div style={{ display: "grid", gap: 1 }}>{mbCurrent.map(MbRow)}</div>}
-                        {mbFormer.length > 0 && <LineupFormer former={mbFormer} Row={MbRow} bare={mbCurrent.length === 0} />}
+                        <LineupFormer former={mbFormer} Row={MbRow} bare />
                         {open && <button className="av-more" style={{ marginTop: 10 }} onClick={() => setOpen(false)}>{"▴ collapse"}</button>}
                       </div>
                     </div>
