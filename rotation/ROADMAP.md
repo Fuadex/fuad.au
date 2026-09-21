@@ -640,9 +640,7 @@ separately — do NOT fold it into portrait gists; gists stay stats-free (ALBUM_
   Approved direction: expand/dynamize (risers–fallers strip vs baseline, lately⇄all-time toggle
   on the top wall, story-of-the-day big bento card, live count-up). Any *substantial* change or
   purge of other existing cards → ask first, Fuad reviews.
-- **Stories overhaul — GREENLIT**: chapters (Depth&Taste / Time&Rhythm / Geography&Scenes /
-  Life&Death) + sticky TOC + per-story deep links, freshness-based ordering, more interactive
-  cards (Their Era / Flameouts / Constants get controls like Year-in-Review).
+- **Stories overhaul — SHIPPED 2026-09-21**: nine chapters (Depth & discovery / Years & seasons / The burn / What lasted / Habits & landmarks / People & places / Sound & style / Words & moods / The verdict), 41 sections, The Reading closes the feed; the old 4-chapter scheme is history.
 - **Design overhaul wanted**: mobile responsiveness still patchy, desktop needs a real pass.
 - **Bug:** literal `[object Object]` — Fuad reports it near **Daine**. Hunted 2026-07-03 without
   a hit: comebacks, style-atlas, gateways, search overlay, ArtistMeta, artist-flow, adetail all

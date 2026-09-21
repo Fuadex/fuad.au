@@ -602,7 +602,8 @@ function StoriesView({ t, go, seed }) {
           </section>
         )}
 
-        <div className="st-chapter"><span>I</span> Depth &amp; taste</div>
+        {/* CHAPTER I (feed re-cut 2026-09-21) — the nine-chapter re-cut lands here: what the library is made of, and how it got that way */}
+        <div className="st-chapter"><span>I</span> Depth &amp; discovery</div>
 
         {/* underground index */}
         {I.UNDERGROUND && I.UNDERGROUND.deepCuts && I.UNDERGROUND.deepCuts.length > 0 && (() => {
@@ -629,6 +630,50 @@ function StoriesView({ t, go, seed }) {
                     </div>
                   </div>
                 ))}
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* when the taste turned — share of yearly discoveries that were underground */}
+        {I.UNDERGROUND && I.UNDERGROUND.discoveryShape && I.UNDERGROUND.discoveryShape.length >= 10 && (() => {
+          const D = I.UNDERGROUND.discoveryShape.filter(y => y.withStats >= 10);
+          // headline year: max under-10k count
+          const peak = D.slice().sort((a, b) => b.under10k - a.under10k)[0];
+          // turning year: first year where ≥ 50% of new discoveries were under 50k
+          const turn = D.find(y => y.under50k / y.withStats >= 0.5);
+          const series50 = D.map(y => y.under50k / y.withStats);
+          const series10 = D.map(y => y.under10k / y.withStats);
+          const last = D[D.length - 1];
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">When the taste turned</div>
+              <div className="st-big">
+                In <em>{peak.year}</em> you discovered <em>{peak.under10k}</em> artists with
+                under <em>10k listeners</em> worldwide.
+              </div>
+              <div className="st-sub">
+                <em>{turn ? turn.year : "—"}</em> was the first year more than half your new artists were under 50k
+                listeners — {last.year} sits at <em>{Math.round(last.under50k / last.withStats * 100)}%</em>.
+              </div>
+              <div className="st-turn">
+                <div className="st-turn-row">
+                  <div className="st-turn-label">under 50k listeners</div>
+                  <Spark data={series50} w={520} h={36} run={true} labels={D.map(y => y.year)} fmtV={(v) => Math.round(v * 100) + "%"}
+                    stroke="var(--accent)" fill="var(--accent-bg)" />
+                  <div className="st-turn-n">{Math.round(last.under50k / last.withStats * 100)}%</div>
+                </div>
+                <div className="st-turn-row">
+                  <div className="st-turn-label">under 10k listeners</div>
+                  <Spark data={series10} w={520} h={36} run={true} labels={D.map(y => y.year)} fmtV={(v) => Math.round(v * 100) + "%"}
+                    stroke="oklch(0.75 0.16 320)" fill="oklch(0.75 0.16 320 / .15)" />
+                  <div className="st-turn-n">{Math.round(last.under10k / last.withStats * 100)}%</div>
+                </div>
+                <div className="st-turn-axis">
+                  <span>{D[0].year}</span>
+                  <span>{D[Math.floor(D.length / 2)].year}</span>
+                  <span>{last.year}</span>
+                </div>
               </div>
             </section>
           );
@@ -692,6 +737,9 @@ function StoriesView({ t, go, seed }) {
           );
         })()}
 
+        {/* the songs you own twice — cross-library shared works (MB works graph) */}
+        <CoversStory go={go} />
+
         {/* blind spots — taste-gap recommendations */}
         {I.RECOMMENDATIONS && I.RECOMMENDATIONS.artists.length > 0 && (() => {
           const RC = I.RECOMMENDATIONS;
@@ -734,116 +782,48 @@ function StoriesView({ t, go, seed }) {
           );
         })()}
 
-        {/* revisit — favourites gone quiet */}
-        {I.REVISIT && I.REVISIT.artists.length > 0 && (() => {
-          const RV = I.REVISIT;
-          const top = RV.artists[0];
-          const MON = window.MON;
-          const monthName = (ym) => { if (!ym) return ""; const [y, m] = ym.split("-"); return MON[+m - 1] + " " + y; };
-          const ago = (mo) => mo >= 18 ? Math.round(mo / 12) + " years" : mo >= 11 ? "a year" : mo + " months";
+        {/* CHAPTER II (feed re-cut 2026-09-21) — the same listening zoomed out to the calendar, era spine first then year, season, hour */}
+        <div className="st-chapter"><span>II</span> Years &amp; seasons</div>
+
+        {/* taste eras — auto-segmented chapters (Phase 3): where the genre mix actually shifted */}
+        {I.TASTE_ERAS && I.TASTE_ERAS.eras && I.TASTE_ERAS.eras.length >= 3 && (() => {
+          const eras = I.TASTE_ERAS.eras;
+          const yr = (m) => m.slice(0, 4);
+          const big = eras.slice(1).filter(e => e.shift && e.shift.up).sort((a, b) => b.shift.up.d - a.shift.up.d)[0];
           return (
             <section className="st-card st-hero">
-              <div className="st-label">Gathering dust</div>
-              <div className="st-big" data-link={clickable(top.name)} onClick={() => goIf(top.name)}>
-                You played <em style={{ color: `oklch(0.78 0.14 ${top.hue})` }}>{top.name}</em> {fmt(top.plays)} times — and haven't pressed play in {ago(top.monthsSince)}.
-              </div>
-              <div className="st-sub">Artists you once lived in, now gone quiet.</div>
-              <div className="st-ug-cuts">
-                {RV.artists.slice(0, 6).map(a => (
-                  <div key={a.name} className="st-ug-cut" data-link={clickable(a.name)} onClick={() => goIf(a.name)}>
-                    <GenCover hue={a.hue} name={a.name} size={40} radius={4} />
-                    <div style={{ minWidth: 0 }}>
-                      <div className="st-row-name">{a.name}</div>
-                      <div className="st-row-sub">{fmt(a.plays)} plays · peak {monthName(a.peakMonth)} · {ago(a.monthsSince)} ago</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          );
-        })()}
-
-        {/* the songs you own twice — cross-library shared works (MB works graph) */}
-        <CoversStory go={go} />
-
-        <div className="st-chapter"><span>II</span> Lives &amp; years</div>
-
-        {/* lifespan — bands that ended while you were listening, graves you dug up, the elders */}
-        {I.LIFESPAN && I.LIFESPAN.whileListening.length > 0 && (() => {
-          const L = I.LIFESPAN;
-          const top = L.whileListening[0];
-          const verb = (w) => w.person ? "died" : "disbanded";
-          return (
-            <section className="st-card st-hero">
-              <div className="st-label">The ones that ended</div>
-              <div className="st-big" data-link={clickable(top.name)} onClick={() => goIf(top.name)}>
-                <em style={{ color: `oklch(0.78 0.14 ${top.hue})` }}>{top.name}</em> {verb(top)} in {top.end} —
-                you'd already played them <em>{fmt(top.before)}</em> times.
+              <div className="st-label">Chapters</div>
+              <div className="st-big">
+                {big
+                  ? <>Around {yr(big.start)}, <em style={{ color: `oklch(0.78 0.14 ${big.shift.up.hue})` }}>{big.shift.up.fam}</em> took over — up {big.shift.up.d} points in one turn.</>
+                  : <>Your taste falls into <em>{eras.length} distinct chapters</em>.</>}
               </div>
               <div className="st-sub">
-                Of the {fmt(L.known)} artists with a documented life-span, <b style={{ color: "var(--ink)" }}>{L.endedCount} have ended</b> ({Math.round(L.endedShare * 100)}%) —
-                and these ended <i>while you were listening</i>.
+                Found by watching the genre mix month by month and marking where it genuinely shifted.
               </div>
-              <div className="st-ug-cuts">
-                {L.whileListening.map(w => (
-                  <div key={w.name} className="st-ug-cut" data-link={clickable(w.name)} onClick={() => goIf(w.name)}>
-                    <GenCover hue={w.hue} name={w.name} size={40} radius={4} />
+              <div style={{ display: "grid", gap: 13, marginTop: 6 }}>
+                {eras.map((e, i) => (
+                  <div key={i} style={{ display: "grid", gridTemplateColumns: "88px 1fr", gap: 14, alignItems: "start" }}>
+                    <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)", paddingTop: 2, whiteSpace: "nowrap" }}>{yr(e.start)}–{yr(e.end)}</div>
                     <div style={{ minWidth: 0 }}>
-                      <div className="st-row-name">{w.name}</div>
-                      <div className="st-row-sub">{verb(w)} {w.end} · {fmt(w.before)} plays while alive{w.after >= 20 ? ` · ${fmt(w.after)} since` : ""}</div>
+                      {/* HOLLOW, NOT FILLED (Fuad 2026-09-21: "hollow fills and strokes on
+                          chapters to fit the style of the rest of Rotation") — the era share
+                          bars drop their solid blocks for the stroke-first skin the Lyrical
+                          diet and Overview's bars draw in: 1px hue stroke over a 12% wash,
+                          segments separated by a 2px seam instead of a clipped fill. */}
+                      <div style={{ display: "flex", height: 11, gap: 2, marginBottom: 6 }}>
+                        {e.topFams.map((f, j) => <div key={j} title={`${f.fam} ${f.share}%`} style={{ width: f.share + "%",
+                          boxSizing: "border-box", borderRadius: 2, border: `1px solid oklch(0.70 0.14 ${f.hue} / 0.65)`,
+                          background: `oklch(0.70 0.14 ${f.hue} / 0.12)` }} />)}
+                      </div>
+                      <div style={{ fontSize: 12, color: "var(--ink-soft)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                        {e.topFams.map(f => f.fam).join(" · ")}
+                        {e.shift && e.shift.up && <span style={{ color: `oklch(0.8 0.13 ${e.shift.up.hue})`, marginLeft: 8 }}>↑ {e.shift.up.fam}</span>}
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
-              {L.graves.length > 0 && (
-                <div className="st-sub" style={{ marginTop: 18 }}>
-                  And the graves you dug up: {L.graves.map((g, i) => (
-                    <span key={g.name}>{i > 0 ? " · " : ""}<b className="st-inline-link" data-link={clickable(g.name)} onClick={() => goIf(g.name)}>{g.name}</b> ({g.gap} yrs after the end)</span>
-                  ))}.
-                  {L.elders.length > 0 && <> Still standing after everything: <b style={{ color: "var(--ink)" }}>{L.elders[0].name}</b>, going since {L.elders[0].begin}.</>}
-                </div>
-              )}
-            </section>
-          );
-        })()}
-
-        {/* the concert effect (wave F insight 3) — plays in the 30 days before vs after each
-            attended show. Ships once CI rebuilds. */}
-        {I.CONCERT_EFFECT && I.CONCERT_EFFECT.boosted && I.CONCERT_EFFECT.boosted.length >= 3 && (() => {
-          const CE = I.CONCERT_EFFECT;
-          const top = CE.boosted[0];
-          return (
-            <section className="st-card st-hero">
-              <div className="st-label">The concert effect</div>
-              <div className="st-big" data-link={clickable(top.artist)} onClick={() => goIf(top.artist)}>
-                <em style={{ color: `oklch(0.78 0.14 ${top.hue})` }}>{top.artist}</em> went <em>{top.before} → {top.after}</em> plays
-                in the month around {top.venue || top.city}.
-              </div>
-              <div className="st-sub">
-                Each attended show, plays in the 30 days before vs after — <b style={{ color: "var(--ink)" }}>{CE.boostShare}%</b> of
-                {" "}{CE.gigs} measurable gigs lifted the month that followed.
-              </div>
-              <div style={{ display: "grid", gap: 7, marginTop: 14, maxWidth: 560 }}>
-                {CE.boosted.map(b => (
-                  <div key={b.artist + b.date} className="st-row" data-link={clickable(b.artist)} onClick={() => goIf(b.artist)}>
-                    <GenCover hue={b.hue} name={b.artist} size={36} radius={4} />
-                    <div style={{ minWidth: 0, flex: 1 }}>
-                      <div className="st-row-name" style={{ fontSize: 13.5 }}>{b.artist}</div>
-                      <div className="st-row-sub">{b.city} · {b.date}</div>
-                    </div>
-                    <div className="st-row-right"><span className="st-num">{b.before} → {b.after}<small> plays</small></span></div>
-                  </div>
-                ))}
-              </div>
-              {CE.faded && CE.faded.length >= 2 && (
-                <div className="st-sub" style={{ marginTop: 14 }}>
-                  And the ones a show put to rest: {CE.faded.slice(0, 3).map((f, i) => (
-                    <React.Fragment key={f.artist + f.date}>{i > 0 ? " · " : ""}
-                      <b className="st-inline-link" data-link={clickable(f.artist)} onClick={() => goIf(f.artist)}>{f.artist}</b>
-                      {" "}({f.before} → {f.after})</React.Fragment>
-                  ))}.
-                </div>
-              )}
             </section>
           );
         })()}
@@ -1082,7 +1062,1106 @@ function StoriesView({ t, go, seed }) {
           );
         })()}
 
-        <div className="st-chapter"><span>III</span> Words &amp; moods</div>
+        {/* seasonality — artists you only reach for at one time of year (Phase 3) */}
+        {I.SEASONALITY && I.SEASONALITY.top && I.SEASONALITY.top.length >= 4 && (() => {
+          const S = I.SEASONALITY, top = S.top[0];
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">Music for a season</div>
+              <div className="st-big" data-link={true} onClick={() => go("artist", top.id)}>
+                You play <em style={{ color: `oklch(0.78 0.14 ${top.hue})` }}>{top.name}</em> almost only in {top.window} —
+                {" "}<em>{top.share}%</em> of every spin lands in those three months.
+              </div>
+              <div className="st-sub">
+                Some artists you reach for at just one time of year — the same window, across the years.
+                Your most seasonal:
+              </div>
+              <div className="st-ug-cuts">
+                {/* 9, not 8 (Fuad 2026-09-21: full rows — at the feed's 3-column width, 8 left the
+                    last row a tile short; SEASONALITY ships 12 so the 9th is free) */}
+                {S.top.slice(0, 9).map(a => (
+                  <div key={a.id} className="st-ug-cut" data-link={true} onClick={() => go("artist", a.id)}>
+                    <GenCover hue={a.hue} name={a.name} size={40} radius={4} />
+                    <div style={{ minWidth: 0 }}>
+                      <div className="st-row-name">{a.name}</div>
+                      <div className="st-row-sub">{a.share}% in {a.window} · {fmt(a.plays)} plays</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* night owls */}
+        <section className="st-card">
+          <div className="st-label">After midnight</div>
+          <div className="st-title-sm">What only the small hours hear.</div>
+          <div className="st-list">
+            {I.NIGHT_OWLS.slice(0, 6).map(n => (
+              <ArtistRow key={n.artist} name={n.artist} hue={n.hue}
+                right={<span className="st-num">{Math.round(n.nightShare * 100)}%<small> 12–5am</small></span>}>
+                {fmt(n.plays)} plays, mostly while the rest of the city sleeps
+              </ArtistRow>
+            ))}
+          </div>
+          {/* wave F insight 4 — the sound by hour (UTC, same clock as the module itself). The
+              axis with the biggest day swing tells the story; if nothing swings, THAT is the
+              story: the clock does not touch this library. */}
+          {I.HOUR_SOUND && I.HOUR_SOUND.hours && (() => {
+            const HS = I.HOUR_SOUND.hours.filter(Boolean);
+            if (HS.length < 18) return null;
+            const axes = [["energy", "Energy"], ["tempo", "Tempo"], ["dance", "Danceable"]];
+            const pick = axes.map(([k, name]) => {
+              const hi = HS.reduce((m, x) => x[k] > m[k] ? x : m, HS[0]);
+              const lo = HS.reduce((m, x) => x[k] < m[k] ? x : m, HS[0]);
+              return { k, name, hi, lo, swing: hi[k] - lo[k] };
+            }).sort((a, b) => b.swing - a.swing)[0];
+            const hh = (h) => (h % 24) + ":00";
+            const max = Math.max(...HS.map(x => x[pick.k]));
+            const min = Math.min(...HS.map(x => x[pick.k]));
+            return (
+              <div style={{ marginTop: 16 }}>
+                <div className="st-sub" style={{ marginBottom: 8 }}>
+                  {pick.swing >= 5
+                    ? <>The clock moves the sound: <b style={{ color: "var(--ink)" }}>{pick.name.toLowerCase()}</b> peaks
+                        at {hh(pick.hi.h)} ({pick.hi[pick.k]}) and bottoms out at {hh(pick.lo.h)} ({pick.lo[pick.k]}).</>
+                    : <>The clock barely touches the sound — 3am runs as hard as 3pm
+                        ({pick.name.toLowerCase()} swings only {pick.swing} points all day).</>}
+                </div>
+                <div style={{ display: "flex", alignItems: "flex-end", gap: 2, height: 44 }}>
+                  {Array.from({ length: 24 }, (_, h) => {
+                    const x = I.HOUR_SOUND.hours[h];
+                    const v = x ? x[pick.k] : null;
+                    const norm = v === null ? 0 : (v - min) / Math.max(max - min, 1);
+                    return (
+                      <div key={h} title={v === null ? "" : hh(h) + " · " + pick.name.toLowerCase() + " " + v}
+                        style={{ flex: 1, height: v === null ? 2 : (8 + norm * 34),
+                          background: h < 5 || h >= 23 ? "var(--accent)" : "var(--rule-2)", borderRadius: 2 }} />
+                    );
+                  })}
+                </div>
+                <div className="st-arc-axis"><span>0:00</span><span>12:00</span><span>23:00</span></div>
+              </div>
+            );
+          })()}
+        </section>
+
+        {/* CHAPTER III (feed re-cut 2026-09-21) — the anatomy of an obsession, zoomed from the month to the single day */}
+        <div className="st-chapter"><span>III</span> The burn</div>
+
+        {/* lifecycle — the shape of an obsession, and the ones burning now (Phase 3) */}
+        {I.LIFECYCLE && (I.LIFECYCLE.burningNow.length >= 2 || I.LIFECYCLE.flameout.length >= 2) && (() => {
+          const L = I.LIFECYCLE, hot = L.burningNow[0];
+          const MO = window.MON;
+          const moL = (ym) => { const p = (ym || "").split("-"); return p.length === 2 ? MO[+p[1] - 1] + " " + p[0] : ym; };
+          const names = (arr) => arr.slice(0, 4).map(a => a.name).join(", ");
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">Right now</div>
+              <div className="st-big">
+                {hot
+                  ? <>Right now it's <em style={{ color: `oklch(0.78 0.14 ${hot.hue})` }} onClick={() => go("artist", hot.id)}>{hot.name}</em> — {fmt(hot.recentPlays)} plays since {moL(hot.since)}, <em>{hot.flarePct}%</em> of everything you've ever played by them.</>
+                  : <>Every obsession has an arc — some burn fast, some never leave.</>}
+              </div>
+              <div className="st-sub">
+                Most of these plays landed in the last four months — the shape a flameout makes, mid-flight.
+              </div>
+              <div className="st-ug-cuts">
+                {L.burningNow.map(a => (
+                  <div key={a.id} className="st-ug-cut" data-link={true} onClick={() => go("artist", a.id)}>
+                    <GenCover hue={a.hue} name={a.name} size={40} radius={4} />
+                    <div style={{ minWidth: 0 }}>
+                      <div className="st-row-name">{a.name}</div>
+                      <div className="st-row-sub">{fmt(a.recentPlays)} in 4 months · {a.flarePct}% of all-time · since {moL(a.since)}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="st-sub" style={{ marginTop: 14 }}>
+                {L.flameout.length >= 2 && <>Ones that already burned out: <b style={{ color: "var(--ink)" }}>{names(L.flameout)}</b> — each 55%+ of their plays in a single six-month window, long gone quiet. </>}
+                {L.perennial.length >= 2 && <>The constants that never faded: <b style={{ color: "var(--ink)" }}>{names(L.perennial)}</b>, steady across {L.perennial[0].years}+ years.</>}
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* incubation — how long from first-play to peak-week, per top artist */}
+        {I.INCUBATION && I.INCUBATION.length >= 6 && (() => {
+          const N = I.INCUBATION;
+          const slow = N.slice(0, 5);
+          const fast = N.slice().reverse().slice(0, 5);
+          const maxDays = slow[0].incubDays;
+          const fmtIncub = (d) => d < 30 ? `${d || 0} day${d === 1 ? "" : "s"}` :
+            d < 365 ? `${Math.round(d / 30)} months` : `${(d / 365).toFixed(1)} years`;
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">The incubation</div>
+              <div className="st-big">
+                <em>{slow[0].artist}</em> took <em>{(slow[0].incubDays / 365).toFixed(1)} years</em> to peak.
+                <em> {fast[0].artist}</em> took <em>{fast[0].incubDays || "zero"} {fast[0].incubDays === 1 ? "day" : "days"}</em>.
+              </div>
+              <div className="st-sub">
+                The gap between first play and peak week — some sat for years, others caught the week you found them.
+              </div>
+              <div className="st-incub">
+                <div>
+                  <div className="st-yir-h">Slow burners</div>
+                  {slow.map(a => (
+                    <div key={a.artist} className="st-incub-row" data-link={artistHasPage(a.artistId)} onClick={() => artistHasPage(a.artistId) && go("artist", a.artistId)}>
+                      <GenCover hue={a.hue} name={a.artist} size={32} radius={3} />
+                      <div className="st-incub-main">
+                        <div className="st-row-name">{a.artist}</div>
+                        <div className="st-incub-bar"><i style={{ width: (a.incubDays / maxDays * 100) + "%", background: `oklch(0.62 0.16 ${a.hue})` }} /></div>
+                        <div className="st-row-sub">{fmtDate(a.firstHeard)} → {fmtDate(a.peakWeek)}</div>
+                      </div>
+                      <div className="st-incub-n">{fmtIncub(a.incubDays)}</div>
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  <div className="st-yir-h">Instant addictions</div>
+                  {fast.map(a => (
+                    <div key={a.artist} className="st-incub-row" data-link={artistHasPage(a.artistId)} onClick={() => artistHasPage(a.artistId) && go("artist", a.artistId)}>
+                      <GenCover hue={a.hue} name={a.artist} size={32} radius={3} />
+                      <div className="st-incub-main">
+                        <div className="st-row-name">{a.artist}</div>
+                        <div className="st-incub-bar"><i style={{ width: Math.max(2, a.incubDays / maxDays * 100) + "%", background: `oklch(0.62 0.16 ${a.hue})` }} /></div>
+                        <div className="st-row-sub">discovered {fmtDate(a.firstHeard)} · peaked {fmtDate(a.peakWeek)}</div>
+                      </div>
+                      <div className="st-incub-n">{fmtIncub(a.incubDays)}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* their era — the calendar month each top artist owned the listening (share %) */}
+        {I.ARTIST_ERAS && I.ARTIST_ERAS.length >= 6 && (() => {
+          const E = I.ARTIST_ERAS;
+          const top = E[0];
+          const monthLabel = (mk) => {
+            const d = new Date(mk + "-15");
+            return window.MON[d.getUTCMonth()] + " " + d.getUTCFullYear();
+          };
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">Their era</div>
+              <div className="st-big">
+                <em>{monthLabel(top.month)}</em> was <em>{Math.round(top.share * 100)}%</em>
+                {" "}<span data-link={artistHasPage(top.artistId)} onClick={() => artistHasPage(top.artistId) && go("artist", top.artistId)}
+                  style={{ color: `oklch(0.78 0.14 ${top.hue})`, cursor: R.byId[top.artistId] ? "pointer" : "default", fontStyle: "italic" }}>{top.artist}</span>.
+              </div>
+              <div className="st-sub">
+                The single month each artist owned the highest <em>share</em> of your listening — not the most plays, the most crowding-out.
+              </div>
+              <div className="st-life">
+                {E.slice(0, 6).map((e, i) => (
+                  <div key={e.artist + e.month} className="st-life-row"
+                    data-link={artistHasPage(e.artistId)} onClick={() => artistHasPage(e.artistId) && go("artist", e.artistId)}>
+                    <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)", width: 24 }}>{String(i + 1).padStart(2, "0")}</span>
+                    <GenCover hue={e.hue} name={e.artist} size={36} radius={3} />
+                    <div style={{ minWidth: 0, flex: 1 }}>
+                      <div className="st-row-name">{e.artist}</div>
+                      <div className="st-row-sub">{monthLabel(e.month)} · {e.plays} of the {e.total} plays that month</div>
+                    </div>
+                    <div className="st-flame-pct" style={{ color: `oklch(0.78 0.14 ${e.hue})` }}>{Math.round(e.share * 100)}%</div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* obsessions */}
+        <section className="st-card">
+          <div className="st-label">Obsessions</div>
+          <div className="st-title-sm">Weeks one artist ate everything.</div>
+          <div className="st-grid">
+            {I.OBSESSIONS.map(o => (
+              <div key={o.artist + o.weekStart} className="st-obs" data-link={clickable(o.artist)} onClick={() => goIf(o.artist)}>
+                <div className="st-obs-top">
+                  <GenCover hue={o.hue} name={o.artist} size={38} radius={4} />
+                  <div className="st-obs-txt">
+                    <div className="st-row-name">{o.artist}</div>
+                    <div className="st-row-sub">{o.plays} plays · week of {fmtDate(o.weekStart)}</div>
+                  </div>
+                  <div className="st-obs-share" style={{ color: `oklch(0.78 0.14 ${o.hue})` }}>{Math.round(o.share * 100)}%</div>
+                </div>
+                <div className="st-obs-bar"><i style={{ width: (o.share * 100) + "%", background: `oklch(0.62 0.15 ${o.hue})` }} /></div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* album obsessions — the same lens, one album-deep */}
+        {I.ALBUM_OBSESSIONS && I.ALBUM_OBSESSIONS.length > 0 && (
+          <section className="st-card">
+            <div className="st-label">Album weeks</div>
+            <div className="st-title-sm">Weeks one record ate everything.</div>
+            <div className="st-grid">
+              {I.ALBUM_OBSESSIONS.map(o => (
+                <div key={o.artist + o.album + o.weekStart} className="st-obs"
+                  data-link={artistHasPage(o.artistId)} onClick={() => artistHasPage(o.artistId) && go("artist", o.artistId)}>
+                  <div className="st-obs-top">
+                    <GenCover hue={o.hue} name={o.album} size={38} radius={4}
+                      image={albumCover[o.album + "\x00" + o.artist] || ""} thumb={albumCover[o.album + "\x00" + o.artist] || ""} />
+                    <div className="st-obs-txt">
+                      <div className="st-row-name st-row-name-alb">{o.album}</div>
+                      <div className="st-row-sub">{o.artist} · {o.plays} plays · week of {fmtDate(o.weekStart)}</div>
+                    </div>
+                    <div className="st-obs-share" style={{ color: `oklch(0.78 0.14 ${o.hue})` }}>{Math.round(o.share * 100)}%</div>
+                  </div>
+                  <div className="st-obs-bar"><i style={{ width: (o.share * 100) + "%", background: `oklch(0.62 0.15 ${o.hue})` }} /></div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* flameouts — songs that owned a single week and were never replayed (pair with constants) */}
+        {I.FLAMEOUTS && I.FLAMEOUTS.length >= 5 && (
+          <section className="st-card">
+            <div className="st-label">Flameouts</div>
+            <div className="st-title-sm">Songs that owned one week, then vanished.</div>
+            <div className="st-sub" style={{ marginBottom: 14 }}>
+              Tracks where 40%+ of every play came in a single week — a one-off obsession, then silence.
+            </div>
+            <div className="st-life">
+              {I.FLAMEOUTS.slice(0, 6).map((t, i) => (
+                <div key={t.artist + t.title} className="st-life-row"
+                  data-link={t.kept} onClick={() => t.kept && go("artist", t.artistId)}>
+                  <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)", width: 24 }}>{String(i + 1).padStart(2, "0")}</span>
+                  <GenCover hue={t.hue} name={t.artist} size={36} radius={3} />
+                  <div style={{ minWidth: 0, flex: 1 }}>
+                    <div className="st-row-name" style={{ fontStyle: "italic" }}>{t.title}</div>
+                    <div className="st-row-sub">{t.artist} · {t.peakPlays} of {t.plays} plays in the week of {fmtDate(t.peakWeek)}</div>
+                  </div>
+                  <div className="st-flame-pct" style={{ color: `oklch(0.78 0.14 ${t.hue})` }}>{Math.round(t.peakShare * 100)}%</div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* one-day wonders */}
+        <section className="st-card">
+          <div className="st-label">One-day wonders</div>
+          <div className="st-title-sm">Burned bright. Once.</div>
+          <div className="st-list">
+            {I.WONDERS.slice(0, 6).map(w => (
+              <ArtistRow key={w.artist} name={w.artist} hue={w.hue}
+                right={<span className="st-num">{w.plays}<small> plays</small></span>}>
+                everything on {fmtDate(w.date)} — then never again
+              </ArtistRow>
+            ))}
+          </div>
+        </section>
+
+        {/* CHAPTER IV (feed re-cut 2026-09-21) — the counterweight to III: the ones that faded, returned, or never left */}
+        <div className="st-chapter"><span>IV</span> What lasted</div>
+
+        {/* revisit — favourites gone quiet */}
+        {I.REVISIT && I.REVISIT.artists.length > 0 && (() => {
+          const RV = I.REVISIT;
+          const top = RV.artists[0];
+          const MON = window.MON;
+          const monthName = (ym) => { if (!ym) return ""; const [y, m] = ym.split("-"); return MON[+m - 1] + " " + y; };
+          const ago = (mo) => mo >= 18 ? Math.round(mo / 12) + " years" : mo >= 11 ? "a year" : mo + " months";
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">Gathering dust</div>
+              <div className="st-big" data-link={clickable(top.name)} onClick={() => goIf(top.name)}>
+                You played <em style={{ color: `oklch(0.78 0.14 ${top.hue})` }}>{top.name}</em> {fmt(top.plays)} times — and haven't pressed play in {ago(top.monthsSince)}.
+              </div>
+              <div className="st-sub">Artists you once lived in, now gone quiet.</div>
+              <div className="st-ug-cuts">
+                {RV.artists.slice(0, 6).map(a => (
+                  <div key={a.name} className="st-ug-cut" data-link={clickable(a.name)} onClick={() => goIf(a.name)}>
+                    <GenCover hue={a.hue} name={a.name} size={40} radius={4} />
+                    <div style={{ minWidth: 0 }}>
+                      <div className="st-row-name">{a.name}</div>
+                      <div className="st-row-sub">{fmt(a.plays)} plays · peak {monthName(a.peakMonth)} · {ago(a.monthsSince)} ago</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* comebacks */}
+        <section className="st-card">
+          <div className="st-label">Comebacks</div>
+          <div className="st-title-sm">Gone for years. Then suddenly not.</div>
+          <div className="st-list">
+            {I.COMEBACKS.slice(0, 6).map(c => (
+              <ArtistRow key={c.artist} name={c.artist} hue={c.hue}
+                right={<span className="st-num">{yearsOf(c.gapDays)}<small> yr away</small></span>}>
+                silent after {fmtDate(c.left)} — back {fmtDate(c.back)}, {fmt(c.playsAfter)} plays since
+              </ArtistRow>
+            ))}
+          </div>
+        </section>
+
+        {/* lifetime tracks — songs that survived every era (year-span first sort, plays tiebreak) */}
+        {I.LIFETIME_TRACKS && I.LIFETIME_TRACKS.length >= 5 && (() => {
+          const L = I.LIFETIME_TRACKS;
+          const hero = L[0];
+          return (
+            <section className="st-card">
+              <div className="st-label">The constants</div>
+              <div className="st-title-sm">Songs that survived every era.</div>
+              <div className="st-sub" style={{ marginBottom: 14 }}>
+                Played across <em>{hero.yearSpan} different years</em> and still in rotation — "<i>{hero.title}</i>"
+                leads, {hero.plays} plays from {hero.firstYr} to {hero.lastYr}.
+              </div>
+              <div className="st-life">
+                {L.slice(0, 6).map((t, i) => (
+                  <div key={t.artist + t.title} className="st-life-row"
+                    data-link={t.kept} onClick={() => t.kept && go("artist", t.artistId)}>
+                    <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)", width: 24 }}>{String(i + 1).padStart(2, "0")}</span>
+                    <GenCover hue={t.hue} name={t.artist} size={36} radius={3} />
+                    <div style={{ minWidth: 0, flex: 1 }}>
+                      <div className="st-row-name" style={{ fontStyle: "italic" }}>{t.title}</div>
+                      <div className="st-row-sub">{t.artist} · {t.plays} plays across {t.yearSpan} years</div>
+                    </div>
+                    <div className="st-life-span">
+                      <span className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-soft)" }}>'{String(t.firstYr).slice(2)}</span>
+                      <div className="st-life-bar" style={{ background: `oklch(0.6 0.16 ${t.hue})` }} />
+                      <span className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-soft)" }}>'{String(t.lastYr).slice(2)}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* streak */}
+        <section className="st-card st-hero">
+          <div className="st-label">The streak</div>
+          <div className="st-big"><em>{I.STREAK.best} days</em> without missing one.</div>
+          <div className="st-sub">From {fmtDate(I.STREAK.start)} to {fmtDate(I.STREAK.end)} you scrobbled
+            every single day — nearly a year of unbroken listening. Current run: {I.STREAK.current} days.</div>
+        </section>
+
+        {/* CHAPTER V (feed re-cut 2026-09-21) — how the listening physically happens, and what the counter recorded */}
+        <div className="st-chapter"><span>V</span> Habits &amp; landmarks</div>
+
+        {/* sessions — how you actually listen (Phase 3): sittings, binge-vs-shuffle, album runs */}
+        {I.SESSIONS && (() => {
+          const S = I.SESSIONS, L = S.longest[0], topAlb = S.sittings.top[0];
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">How you listen</div>
+              <div className="st-big" data-link={L.artistId ? true : undefined} onClick={() => L.artistId && go("artist", L.artistId)}>
+                Your longest sitting: <em style={{ color: `oklch(0.78 0.14 ${L.hue})` }}>{fmt(L.tracks)} tracks</em> in one go —
+                {" "}{L.hours}h on {fmtDate(L.date)}{L.share >= 55 ? <>, almost all {L.artist}</> : null}.
+              </div>
+              <div className="st-sub">
+                {fmt(S.total)} sessions, a typical one {S.median} tracks — <b style={{ color: "var(--ink)" }}>{S.bingeShare}%</b> lock onto
+                a single artist{topAlb ? <>, and you've played <b style={{ color: "var(--ink)" }}>{topAlb.album}</b> front-to-back <b style={{ color: "var(--ink)" }}>{topAlb.count} times</b></> : null}.
+              </div>
+              <div className="st-ug-cuts">
+                {S.sittings.top.slice(0, 9).map(a => (
+                  <div key={a.aid} className="st-ug-cut" data-link={true} onClick={() => go("album", a.aid)}>
+                    <GenCover hue={a.hue} name={a.album} size={40} radius={4} />
+                    <div style={{ minWidth: 0 }}>
+                      <div className="st-row-name">{a.album}</div>
+                      <div className="st-row-sub">{a.artist} · {a.count}× front-to-back</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* the unfinished records (wave F insight 2) — albums whose plays never reach side B,
+            the mirror of the front-to-back records above. Ships once CI rebuilds. */}
+        {I.ALBUM_DECAY && I.ALBUM_DECAY.albums && I.ALBUM_DECAY.albums.length >= 3 && (() => {
+          const AD = I.ALBUM_DECAY;
+          const top = AD.albums[0];
+          return (
+            <section className="st-card">
+              <div className="st-label">The unfinished records</div>
+              <div className="st-title-sm">Albums you never let reach side B.</div>
+              <div className="st-sub" style={{ marginBottom: 12 }}>
+                Across {AD.sampled} albums with known tracklists the median album keeps {AD.median}% of its plays
+                on the front half — these never recover: <b style={{ color: "var(--ink)" }}>{top.album}</b> is {top.frontShare}% front-loaded.
+              </div>
+              <div className="st-ug-cuts">
+                {AD.albums.map(a => (
+                  <div key={a.artistId + a.album} className="st-ug-cut" data-link={clickable(a.artist)} onClick={() => goIf(a.artist)}>
+                    <GenCover hue={a.hue} name={a.artist} size={40} radius={4} />
+                    <div style={{ minWidth: 0 }}>
+                      <div className="st-row-name">{a.album}</div>
+                      <div className="st-row-sub">{a.artist} · {a.frontShare}% front-loaded · {fmt(a.plays)} plays</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* segue graph — what you play right after what (Phase 3) */}
+        {I.SESSIONS && I.SESSIONS.segues && I.SESSIONS.segues.length >= 3 && (() => {
+          const segs = I.SESSIONS.segues, top = segs[0];
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">What follows what</div>
+              <div className="st-big">
+                Put on <em style={{ color: `oklch(0.78 0.14 ${top.hue})`, cursor: "pointer" }} onClick={() => go("track", top.fromId)}>{top.fromTrack}</em> and,
+                {" "}<em>{top.pct}%</em> of the time, <span data-link={true} onClick={() => go("track", top.toId)}>{top.toTrack}</span> comes next.
+              </div>
+              <div className="st-sub">
+                One play, then almost always the same next one — your strongest segues, mostly crossing artists entirely.
+              </div>
+              <div style={{ display: "grid", gap: 9, marginTop: 4 }}>
+                {segs.slice(0, 10).map((s, i) => (
+                  <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", gap: 12, alignItems: "center" }}>
+                    <div style={{ textAlign: "right", minWidth: 0 }} data-link={true} onClick={() => go("track", s.fromId)}>
+                      <div className="st-row-name" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{s.fromTrack}</div>
+                      <div className="st-row-sub" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{s.fromArtist}</div>
+                    </div>
+                    <div className="r-mono" style={{ fontSize: 10, color: `oklch(0.74 0.14 ${s.hue})`, whiteSpace: "nowrap" }}>{s.pct}% →</div>
+                    <div style={{ minWidth: 0 }} data-link={true} onClick={() => go("track", s.toId)}>
+                      <div className="st-row-name" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{s.toTrack}</div>
+                      <div className="st-row-sub" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{s.toArtist}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* year peaks + milestones — ONE RECORD BOOK (2026-09-21). Milestones was its own card
+            440 lines up the feed, asking the same question this one asks — what did the tally
+            land on — at a different unit: one row per YEAR here, one row per 50,000th scrobble
+            there. They are folded as two blocks rather than interleaved because neither axis
+            lines up: a heavy year carries two milestones and a thin one carries none, and the
+            rows are different animals (a peak is four text columns, a milestone is a sleeve).
+            Wave C's shape applies — one label, one title, two compact facets — and the
+            "Milestones" TOC crumb left with its label. */}
+        <section className="st-card">
+          <div className="st-label">Heaviest days</div>
+          <div className="st-title-sm">Annual single-day records — and what the counter landed on.</div>
+          <div className="st-peaks">
+            {I.YEAR_PEAKS.map(p => (
+              <div key={p.year} className="st-peak" data-link={clickable(p.artist)} onClick={() => goIf(p.artist)}>
+                <span className="st-peak-y">{p.year}</span>
+                <span className="st-peak-n">{p.count}</span>
+                <span className="st-peak-a" style={{ color: `oklch(0.74 0.12 ${p.hue})` }}>{p.artist}</span>
+                <span className="st-peak-d">{fmtDate(p.date).slice(0, -5)}</span>
+              </div>
+            ))}
+          </div>
+          {I.MILESTONES && I.MILESTONES.length > 0 && (
+            <div style={{ marginTop: 20 }}>
+              <div className="st-yir-h">Milestones — every 50,000th scrobble</div>
+              <div className="st-miles">
+                {I.MILESTONES.map(m => (
+                  <div key={m.n} className="st-mile" data-link={clickable(m.artist)} onClick={() => goIf(m.artist)}>
+                    <span className="st-mile-n">{m.n / 1000}k</span>
+                    <GenCover hue={m.hue} name={m.artist} size={38} radius={3} />
+                    <div style={{ minWidth: 0 }}>
+                      <div className="st-row-name">{m.track}</div>
+                      <div className="st-row-sub">{m.artist} · {fmtDate(m.date)}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </section>
+
+        {/* CHAPTER VI (feed re-cut 2026-09-21) — who made these records, who led you to them, and where they are from */}
+        <div className="st-chapter"><span>VI</span> People &amp; places</div>
+
+        {/* discoveries */}
+        <section className="st-card">
+          <div className="st-label">First contact</div>
+          <div className="st-title-sm">The track that started each obsession.</div>
+          <div className="st-list">
+            {I.DISCOVERIES.slice(0, 6).map(d => (
+              <ArtistRow key={d.artist} name={d.artist} hue={d.hue}
+                right={<span className="st-num">{fmt(d.plays)}<small> since</small></span>}>
+                “{d.track}” · {fmtDate(d.date)}
+              </ArtistRow>
+            ))}
+          </div>
+        </section>
+
+        {/* WHO BROUGHT YOU HERE (2026-09-21) — the #lab GenealogyLab, graduated and sat beside
+            First contact because the two are siblings: first contact is the TRACK that started
+            each obsession, this is who led to whom. genealogy.js is lazy (~183 KB of slug → [the
+            artist you heard just before, first play]) and the whole module is guarded on it the
+            way The Reading is guarded on reading.js — nothing renders until the shard lands, and
+            a 404 simply means this section never appears.
+            The lab ranked gateways by how many artists they opened; this ranks by how many PLAYS
+            walked through (Fuad 2026-09-21), which is a different list — one 5,000-play
+            introduction outweighs six twenty-play ones. */}
+        {gen && gen.gateways.length > 0 && (() => {
+          const top = gen.gateways[0];
+          // both the specimen chain and the tracer's ancestry draw with this: the lab's
+          // arrow-and-dates line, moved off the prototype's mono into the feed's serif.
+          const thread = (nodes) => (
+            <div className="st-gen-chain">
+              {nodes.map((c, i) => (
+                <React.Fragment key={c.id}>
+                  {i > 0 && <span className="st-gen-arrow">→</span>}
+                  <span className="st-gen-node" data-link={hasPage(c.id)} onClick={() => hasPage(c.id) && go("artist", c.id)}>
+                    {c.name}<i>{c.date ? c.date.slice(0, 7) : ""}</i>
+                  </span>
+                </React.Fragment>
+              ))}
+            </div>
+          );
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">Who brought you here</div>
+              <div className="st-big" data-link={hasPage(top.id)} onClick={() => hasPage(top.id) && go("artist", top.id)}>
+                <em>{top.name}</em> opened {top.n} door{top.n === 1 ? "" : "s"} — <em>{fmt(top.introduced)}</em> plays walked through.
+              </div>
+              <div className="st-sub">
+                Reconstructed from listening sessions — the artist heard just before your first play. A guess, not a memory.
+              </div>
+              {gen.chain && (
+                <div style={{ marginTop: 20 }}>
+                  <div className="st-yir-h">The heaviest line in the library</div>
+                  {thread(gen.chain)}
+                  <div className="st-mi" style={{ marginTop: 7 }}>
+                    {gen.chain.length} artists · {fmt(gen.chainPlays)} plays along the line
+                  </div>
+                </div>
+              )}
+              <div style={{ marginTop: 20 }}>
+                <div className="st-yir-h">Your biggest gateways</div>
+                <div className="st-list">
+                  {gen.gateways.slice(0, 3).map(g => (
+                    <ArtistRow key={g.id} name={g.name} hue={g.hue}
+                      right={<span className="st-num">{fmt(g.introduced)}<small> plays in</small></span>}>
+                      {g.n} artist{g.n === 1 ? "" : "s"} · heaviest: {gen.nameOf(g.kids[0])} ({fmt(gen.playsOf(g.kids[0]))})
+                    </ArtistRow>
+                  ))}
+                </div>
+              </div>
+              <div style={{ marginTop: 18 }}>
+                <input className="st-in" list="st-gen-artists" value={genPick} onChange={e => setGenPick(e.target.value)}
+                  aria-label="trace an artist's ancestry" placeholder="trace an artist…" />
+                <datalist id="st-gen-artists">{artistOptions}</datalist>
+                {genTrace && genTrace.found && (
+                  <div style={{ marginTop: 14 }}>
+                    <div className="st-yir-h">Ancestry</div>
+                    {genTrace.chain.length > 1
+                      ? thread(genTrace.chain)
+                      : <div className="st-sub" style={{ marginTop: 0 }}>Nobody — <b style={{ color: "var(--ink)" }}>{genTrace.name}</b> is where a thread starts. Their first play opened a session rather than continuing one.</div>}
+                    {genTrace.kids.length > 0 && (
+                      <>
+                        <div className="st-yir-h" style={{ marginTop: 16 }}>
+                          {genTrace.name} introduced {genTrace.kids.length} artist{genTrace.kids.length === 1 ? "" : "s"}
+                        </div>
+                        <div className="st-gen-kids">
+                          {genTrace.kids.slice(0, 18).map(k => (
+                            <span key={k} className="st-bandchip" data-link={hasPage(k)} onClick={() => hasPage(k) && go("artist", k)}>
+                              {gen.nameOf(k)}<i className="st-gen-kidn">{fmt(gen.playsOf(k))}</i>
+                            </span>
+                          ))}
+                          {genTrace.kids.length > 18 && (
+                            <span className="st-mi" style={{ alignSelf: "center" }}>+{genTrace.kids.length - 18} more</span>
+                          )}
+                        </div>
+                      </>
+                    )}
+                  </div>
+                )}
+                {genTrace && !genTrace.found && (
+                  <div className="st-mi" style={{ marginTop: 8 }}>
+                    No entry for that name — the map only reaches dated plays from artists you played at least five times.
+                  </div>
+                )}
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* connections — shared members / side-projects threading the library */}
+        {I.CONNECTIONS && I.CONNECTIONS.links && I.CONNECTIONS.links.length > 0 && (() => {
+          const C = I.CONNECTIONS;
+          const top = C.links[0];
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">Connected by blood</div>
+              <div className="st-big" data-link={clickable(top.artists[0].name)} onClick={() => goIf(top.artists[0].name)}>
+                <em>{top.person}</em> ties together {top.artists.length} acts you play.
+              </div>
+              <div className="st-sub">
+                {fmt(C.totalLinks)} hidden threads run through the library — shared members, side-projects,
+                the same hands on different records.
+              </div>
+              <div style={{ display: "grid", gap: 12, marginTop: 6 }}>
+                {C.links.slice(0, 6).map(l => (
+                  <div key={l.person} style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+                    <span className="st-person">{l.person}</span>
+                    {l.artists.map(a => (
+                      <span key={a.name} className="st-bandchip" data-link={clickable(a.name)} onClick={() => goIf(a.name)}>
+                        <span className="st-bandchip-dot" style={{ background: `oklch(0.62 0.16 ${a.hue})` }} />
+                        {a.name}
+                      </span>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* lineups — Wikidata band-member gender (the layer MB can't give us) */}
+        {I.LINEUPS && I.LINEUPS.featured && I.LINEUPS.featured.length >= 4 && (() => {
+          const L = I.LINEUPS;
+          return (
+            <section className="st-card">
+              <div className="st-label">Lineups</div>
+              <div className="st-big">
+                <em>{Math.round(L.womenBandShare * 100)}%</em> of your band-listening has women in the lineup.
+              </div>
+              <div className="st-sub">
+                Of the {L.bandsAnalyzed} groups whose members Wikidata knows by name, <b style={{ color: "var(--ink)" }}>{L.bandsWithWomen}</b> have
+                at least one woman on stage{L.allWomen.length > 0 ? <> — {L.allWomen.length} all-women</> : null}.
+              </div>
+              <div className="st-ug-cuts" style={{ marginTop: 18 }}>
+                {L.featured.slice(0, 6).map(b => (
+                  <div key={b.artistId} className="st-ug-cut" data-link={hasPage(b.artistId)}
+                    onClick={() => hasPage(b.artistId) && go("artist", b.artistId)}>
+                    <GenCover hue={b.hue} name={b.name} size={40} radius={4} />
+                    <div style={{ minWidth: 0 }}>
+                      <div className="st-row-name">{b.name}</div>
+                      <div className="st-row-sub">{b.women.join(", ")}{b.memberCount > b.women.length ? ` · ${b.women.length}/${b.memberCount}` : ""} · {fmt(b.plays)} plays</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* lifespan — bands that ended while you were listening, graves you dug up, the elders */}
+        {I.LIFESPAN && I.LIFESPAN.whileListening.length > 0 && (() => {
+          const L = I.LIFESPAN;
+          const top = L.whileListening[0];
+          const verb = (w) => w.person ? "died" : "disbanded";
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">The ones that ended</div>
+              <div className="st-big" data-link={clickable(top.name)} onClick={() => goIf(top.name)}>
+                <em style={{ color: `oklch(0.78 0.14 ${top.hue})` }}>{top.name}</em> {verb(top)} in {top.end} —
+                you'd already played them <em>{fmt(top.before)}</em> times.
+              </div>
+              <div className="st-sub">
+                Of the {fmt(L.known)} artists with a documented life-span, <b style={{ color: "var(--ink)" }}>{L.endedCount} have ended</b> ({Math.round(L.endedShare * 100)}%) —
+                and these ended <i>while you were listening</i>.
+              </div>
+              <div className="st-ug-cuts">
+                {L.whileListening.map(w => (
+                  <div key={w.name} className="st-ug-cut" data-link={clickable(w.name)} onClick={() => goIf(w.name)}>
+                    <GenCover hue={w.hue} name={w.name} size={40} radius={4} />
+                    <div style={{ minWidth: 0 }}>
+                      <div className="st-row-name">{w.name}</div>
+                      <div className="st-row-sub">{verb(w)} {w.end} · {fmt(w.before)} plays while alive{w.after >= 20 ? ` · ${fmt(w.after)} since` : ""}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {L.graves.length > 0 && (
+                <div className="st-sub" style={{ marginTop: 18 }}>
+                  And the graves you dug up: {L.graves.map((g, i) => (
+                    <span key={g.name}>{i > 0 ? " · " : ""}<b className="st-inline-link" data-link={clickable(g.name)} onClick={() => goIf(g.name)}>{g.name}</b> ({g.gap} yrs after the end)</span>
+                  ))}.
+                  {L.elders.length > 0 && <> Still standing after everything: <b style={{ color: "var(--ink)" }}>{L.elders[0].name}</b>, going since {L.elders[0].begin}.</>}
+                </div>
+              )}
+            </section>
+          );
+        })()}
+
+        {/* the concert effect (wave F insight 3) — plays in the 30 days before vs after each
+            attended show. Ships once CI rebuilds. */}
+        {I.CONCERT_EFFECT && I.CONCERT_EFFECT.boosted && I.CONCERT_EFFECT.boosted.length >= 3 && (() => {
+          const CE = I.CONCERT_EFFECT;
+          const top = CE.boosted[0];
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">The concert effect</div>
+              <div className="st-big" data-link={clickable(top.artist)} onClick={() => goIf(top.artist)}>
+                <em style={{ color: `oklch(0.78 0.14 ${top.hue})` }}>{top.artist}</em> went <em>{top.before} → {top.after}</em> plays
+                in the month around {top.venue || top.city}.
+              </div>
+              <div className="st-sub">
+                Each attended show, plays in the 30 days before vs after — <b style={{ color: "var(--ink)" }}>{CE.boostShare}%</b> of
+                {" "}{CE.gigs} measurable gigs lifted the month that followed.
+              </div>
+              <div style={{ display: "grid", gap: 7, marginTop: 14, maxWidth: 560 }}>
+                {CE.boosted.map(b => (
+                  <div key={b.artist + b.date} className="st-row" data-link={clickable(b.artist)} onClick={() => goIf(b.artist)}>
+                    <GenCover hue={b.hue} name={b.artist} size={36} radius={4} />
+                    <div style={{ minWidth: 0, flex: 1 }}>
+                      <div className="st-row-name" style={{ fontSize: 13.5 }}>{b.artist}</div>
+                      <div className="st-row-sub">{b.city} · {b.date}</div>
+                    </div>
+                    <div className="st-row-right"><span className="st-num">{b.before} → {b.after}<small> plays</small></span></div>
+                  </div>
+                ))}
+              </div>
+              {CE.faded && CE.faded.length >= 2 && (
+                <div className="st-sub" style={{ marginTop: 14 }}>
+                  And the ones a show put to rest: {CE.faded.slice(0, 3).map((f, i) => (
+                    <React.Fragment key={f.artist + f.date}>{i > 0 ? " · " : ""}
+                      <b className="st-inline-link" data-link={clickable(f.artist)} onClick={() => goIf(f.artist)}>{f.artist}</b>
+                      {" "}({f.before} → {f.after})</React.Fragment>
+                  ))}.
+                </div>
+              )}
+            </section>
+          );
+        })()}
+
+        {/* taste geography — Origins with Map drift and Gateways folded in (wave C 2026-09-17:
+            three adjacent modules cycled the same six countries, each with its own label, headline
+            and sub; one label now carries three compact facets — totals, movement, first doors). */}
+        {I.GEOGRAPHY && I.GEOGRAPHY.coverage > 0.3 && (() => {
+          const G = I.GEOGRAPHY;
+          const top = G.countries[0];
+          const A = G.arc;
+          const huesByCC = { US: 30, GB: 240, AU: 50, CA: 0, DE: 110, JP: 340 };
+          const GW = (G.gateways || []).slice(0, 10);
+          const fmtMonth = (iso) => { const d = new Date(iso); return window.MON[d.getUTCMonth()] + " " + d.getUTCFullYear(); };
+          const drift = A && A.years && A.years.length >= 10 ? (() => {
+            const firstYears = A.years.slice(0, 3), lastYears = A.years.slice(-3);
+            const mover = A.countries.map(c => {
+              const before = firstYears.reduce((s, y) => s + (y[c.code] || 0), 0) / firstYears.length;
+              const after = lastYears.reduce((s, y) => s + (y[c.code] || 0), 0) / lastYears.length;
+              return { ...c, delta: after - before, after };
+            }).sort((a, b) => b.delta - a.delta)[0];
+            const moverYear = A.years.find(y => (y[mover.code] || 0) >= mover.after * 0.4);
+            return { mover, moverYear };
+          })() : null;
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">Origins</div>
+              <div className="st-big">
+                <em>{Math.round(top.share * 100)}%</em> {top.flag} <em>{top.name}</em>
+                <span style={{ color: "var(--ink-soft)", fontSize: ".55em", fontStyle: "normal", marginLeft: 14 }}>
+                  · {G.totalCountries} countries on the map
+                </span>
+              </div>
+              <div className="st-sub">
+                Of the {Math.round(G.coverage * 100)}% of plays we can place on a map, the rest scatter:&nbsp;
+                {G.countries.slice(1, 6).map((c, i) => (
+                  <React.Fragment key={c.code}>{i > 0 ? ", " : ""}{c.flag} <b style={{ color: "var(--ink)" }}>{c.name}</b> ({Math.round(c.share * 100)}%)</React.Fragment>
+                ))}.
+              </div>
+              <div className="st-geo-grid">
+                {G.countries.slice(0, 12).map(c => (
+                  <div key={c.code} className="st-geo-c">
+                    <div className="st-geo-flag">{c.flag || c.code}</div>
+                    <div style={{ minWidth: 0 }}>
+                      <div className="st-row-name">{c.name}</div>
+                      <div className="st-row-sub">{fmt(c.plays)} plays · {c.artists} artists</div>
+                    </div>
+                    <div className="st-geo-pct">{Math.round(c.share * 100)}%</div>
+                  </div>
+                ))}
+              </div>
+              {drift && (
+                <div style={{ marginTop: 20 }}>
+                  <div className="st-yir-h">How it moved</div>
+                  <div className="st-sub" style={{ marginBottom: 10 }}>
+                    {drift.mover.flag} <b style={{ color: "var(--ink)" }}>{drift.mover.name}</b> crept in around
+                    {" "}{drift.moverYear ? drift.moverYear.year : "—"} — now {Math.round(drift.mover.after * 100)}% of what
+                    we can place; {A.years[0].year} was {Math.round(A.years[0].US * 100)}% American.
+                  </div>
+                  <div className="st-arc">
+                    {A.countries.map(c => {
+                      const series = A.years.map(y => y[c.code] || 0);
+                      const now = series[series.length - 1];
+                      const hue = huesByCC[c.code] || 200;
+                      return (
+                        <div key={c.code} className="st-arc-row">
+                          <div className="st-arc-head">
+                            <span className="st-arc-flag">{c.flag}</span>
+                            <span className="st-arc-name">{c.name}</span>
+                            <span className="st-arc-now" style={{ color: `oklch(0.7 0.16 ${hue})` }}>{Math.round(now * 100)}%</span>
+                          </div>
+                          <Spark data={series} w={420} h={24} run={true} labels={A.years.map(y => y.year)} fmtV={(v) => Math.round(v * 100) + "%"}
+                            stroke={`oklch(0.7 0.16 ${hue})`} fill={`oklch(0.7 0.16 ${hue} / .12)`} />
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="st-arc-axis">
+                    <span>{A.years[0].year}</span>
+                    <span>{A.years[Math.floor(A.years.length / 2)].year}</span>
+                    <span>{A.years[A.years.length - 1].year}</span>
+                  </div>
+                </div>
+              )}
+              {GW.length >= 5 && (
+                <div style={{ marginTop: 20 }}>
+                  <div className="st-yir-h">Gateways — the first door into each lane</div>
+                  <div className="st-gates">
+                    {GW.map(g => (
+                      <div key={g.code} className="st-gate" data-link={g.kept} onClick={() => g.kept && go("artist", g.artistId)}>
+                        <div className="st-gate-stamp">
+                          <span className="st-gate-flag">{g.flag}</span>
+                          <span className="st-gate-date">{fmtMonth(g.firstHeard)}</span>
+                        </div>
+                        <div style={{ minWidth: 0, flex: 1 }}>
+                          <div className="st-gate-country">{g.country}</div>
+                          <div className="st-row-name" style={{ fontSize: 14, marginTop: 2 }}>via {g.artist}</div>
+                        </div>
+                        <div className="st-gate-n">{fmt(g.plays)} <small style={{ color: "var(--ink-faint)" }}>plays since</small></div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {G.cities && G.cities.length > 0 && (
+                <div style={{ marginTop: 16 }}>
+                  <div className="st-yir-h">Cities you tap into</div>
+                  <div className="st-geo-cities">
+                    {G.cities.slice(0, 8).map(c => (
+                      <span key={c.country + c.city} className="r-chip" style={{ fontSize: 11 }}>
+                        {c.flag} {c.city} <span style={{ color: "var(--ink-faint)", fontSize: 10 }}>· {c.artists}</span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </section>
+          );
+        })()}
+
+        {/* CHAPTER VII (feed re-cut 2026-09-21) — from where they are from to what they sound like, and how that moved */}
+        <div className="st-chapter"><span>VII</span> Sound &amp; style</div>
+
+        {/* TOP OF EACH SCENE + BRIDGE ARTISTS — RETIRED (Fuad 2026-09-21: bridges measure Discogs
+            tag co-occurrence, not connection, and the scene boxes are a directory the Explore page
+            already provides). Both sections used to render here off I.STYLE_ATLAS.scenes/.bridges.
+            The one atom worth keeping — each scene's solo artist, who exists ONLY in that scene for
+            this listener — moved into Style atlas below as its opening "Carried alone" rows. */}
+
+        {/* style atlas — discogs styles only you (or 1-2 artists) keep alive in this library */}
+        {I.STYLE_ATLAS && I.STYLE_ATLAS.rarest && I.STYLE_ATLAS.rarest.length > 3 && (() => {
+          const S = I.STYLE_ATLAS;
+          const sole = S.rarest.filter(r => r.artists.length === 1).length;
+          // solo salvage from the retired scene boxes (Fuad 2026-09-21) — CI-computed, may be
+          // absent on an older payload; when no scene carries one this falls through untouched.
+          // CARRIED ALONE — RETIRED IN FULL (Fuad 2026-09-21, second ruling: "Nu Metal, Hardcore,
+          // Thrash and Metalcore need a phase-out... it just doesn't work here. Others are fine.")
+          // The block was the salvage of the retired Top-of-each-scene module: first the umbrella
+          // scenes went (Alternative Rock through Electro — tagging artifacts), and the narrow-scene
+          // survivors turned out not to earn the card either. That empties the set, so the whole
+          // block and its solos computation are gone; Style atlas is the rarest rows alone again,
+          // which was always its good half. sc.solo still ships in the build should a better home
+          // ever appear.
+          return (
+            <section className="st-card">
+              <div className="st-label">Style atlas</div>
+              <div className="st-title-sm">Only one or two artists hold these for you.</div>
+              <div className="st-sub" style={{ marginBottom: 14 }}>
+                Of <em>{S.uniqueStyles}</em> distinct styles across {S.artistsCovered} Discogs-indexed artists, these hang
+                on the narrowest set of carriers{sole > 0 && <> — <em>{sole}</em> on a single artist</>}.
+              </div>
+              <div className="st-atlas">
+                {S.rarest.map(r => (
+                  <div key={r.style} className="st-atlas-row">
+                    <div className="st-atlas-style">{r.style}</div>
+                    <div className="st-atlas-via">
+                      via {r.artists.map((a, i) => (
+                        <React.Fragment key={a.name}>
+                          {i > 0 ? <span style={{ color: "var(--ink-faint)" }}> + </span> : null}
+                          <span data-link={clickable(a.name)} onClick={() => goIf(a.name)}
+                            style={{ color: `oklch(0.78 0.14 ${a.hue})`, cursor: clickable(a.name) ? "pointer" : "default", fontWeight: 500 }}>
+                            {a.name}
+                          </span>
+                        </React.Fragment>
+                      ))}
+                    </div>
+                    <div className="st-atlas-n">{fmt(r.plays)}<small> plays</small></div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* audio DNA drift — how the play-weighted average sound profile shifted year over year */}
+        {I.AUDIO_DRIFT && I.AUDIO_DRIFT.years && I.AUDIO_DRIFT.years.length >= 12 && (() => {
+          // skip pre-scrobbling synthetic years (undated remapped scrobbles)
+          const Y = I.AUDIO_DRIFT.years.filter(y => y.coverage >= 1500);
+          if (Y.length < 8) return null;
+          const labels = {
+            energy: "Energy",
+            valence: "Mood",
+            acoustic: "Acoustic",
+            dance: "Danceable",
+            tempo: "Tempo",
+            instr: "Instrumental",
+          };
+          // deltas: last-3-year avg minus first-3-year avg, pick biggest absolute mover
+          const first3 = Y.slice(0, 3), last3 = Y.slice(-3);
+          const avg = (arr, ax) => arr.reduce((s, y) => s + y[ax], 0) / arr.length;
+          const order = Object.keys(labels)
+            .map(ax => ({ ax, delta: avg(last3, ax) - avg(first3, ax) }))
+            .sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
+          const hue = { energy: 18, valence: 60, acoustic: 140, dance: 280, tempo: 200, instr: 340 };
+          const top = order[0], second = order[1];
+          const dir = d => d > 0 ? "climbed" : "dropped";
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">Sound drift</div>
+              <div className="st-big">
+                <em>{labels[top.ax]}</em> {dir(top.delta)} {Math.round(Math.abs(top.delta) * 100)} pts.
+                {" "}<em>{labels[second.ax]}</em> {dir(second.delta)} {Math.round(Math.abs(second.delta) * 100)}.
+              </div>
+              <div className="st-sub">
+                The play-weighted sound profile per year, {Y[0].year}–{Y[Y.length - 1].year} — only the movers drawn.
+              </div>
+              <div className="st-turn">
+                {order.slice(0, 2).map(({ ax }) => {
+                  const series = Y.map(y => y[ax]);
+                  return (
+                    <div key={ax} className="st-turn-row">
+                      <div className="st-turn-label">{labels[ax]}</div>
+                      <Spark data={series} w={520} h={32} run={true} labels={Y.map(y => y.year)} fmtV={(v) => Math.round(v * 100)}
+                        stroke={`oklch(0.7 0.16 ${hue[ax]})`} fill={`oklch(0.7 0.16 ${hue[ax]} / .12)`} />
+                      <div className="st-turn-n">{Math.round(Y[Y.length - 1][ax] * 100)}</div>
+                    </div>
+                  );
+                })}
+                <div className="st-turn-axis">
+                  <span>{Y[0].year}</span>
+                  <span>{Y[Math.floor(Y.length / 2)].year}</span>
+                  <span>{Y[Y.length - 1].year}</span>
+                </div>
+              </div>
+              <div className="st-sub" style={{ marginTop: 10 }}>
+                The rest barely moved: {order.slice(2).map((o, i) => (
+                  <React.Fragment key={o.ax}>{i > 0 ? " · " : ""}{labels[o.ax]} {Math.round(Y[Y.length - 1][o.ax] * 100)}</React.Fragment>
+                ))}.
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* THE COMFORT ZONE (2026-09-21) — graduated from the #lab TasteFingerprint prototype and
+            parked directly under Sound drift on purpose: drift is how the sound MOVED, this is
+            where it lives. The strip is the prototype's one genuinely good graphic and its
+            anatomy survives intact — label · density strip · range — restyled off every LAB_*
+            constant onto the site's tokens, so the density ramp follows the tweak panel's accent
+            hue rather than a hard-coded pink.
+            Two precomputed rows carry the story at rest; the scorer under them is the prototype's
+            interaction, kept because the reader gets to aim it (Fuad: "interactivity is key,
+            providing power to the audience"). */}
+        {comfort && (() => {
+          const C = comfort, TZ = C.tight;
+          // A band pinned against the floor reads as broken in the "sits between X and Y" frame —
+          // acoustic is 0–1 here, and "between 0 and 1" looks like a bug rather than a finding.
+          // Same fact, phrased as a ceiling.
+          const pinned = TZ.p25 === 0 && TZ.p75 <= 3;
+          const ramp = (b) => "linear-gradient(90deg," + b.dens.filter((_, j) => j % 2 === 0)
+            .map((d, j) => "oklch(0.74 0.13 var(--acc-h) / " + (d / (b.max || 1) * 0.9).toFixed(2) + ") " + (j * 2) + "%").join(",") + ")";
+          const P = czScore && czScore.found ? czScore : null;
+          return (
+            <section className="st-card st-hero">
+              <div className="st-label">The comfort zone</div>
+              <div className="st-big">
+                {pinned
+                  ? <>Half of everything you play scores <em>{TZ.p75} or less</em> out of 100 on <em>{TZ.label.toLowerCase()}</em>.</>
+                  : <>Half of everything you play sits between <em>{TZ.p25}</em> and <em>{TZ.p75}</em> on <em>{TZ.label.toLowerCase()}</em>.</>}
+              </div>
+              <div className="st-sub">
+                Every play, weighted, poured onto each audio axis — the shaded mass is where they land,
+                the bracket is the middle 50% that is your comfort band, and the tick is the median.
+              </div>
+              <div className="st-cz">
+                {C.bands.map(b => {
+                  const v = P ? P.vals[b.name] : null;
+                  const inB = v !== null && v >= b.p25 && v <= b.p75;
+                  return (
+                    <div key={b.name} className="st-cz-row">
+                      <div className="st-cz-lbl">{b.label}</div>
+                      <div className="st-cz-strip" title={`${b.label} · comfort band ${b.p25}–${b.p75} · median ${b.p50}`}>
+                        <div className="st-cz-dens" style={{ backgroundImage: ramp(b) }} />
+                        <div className="st-cz-band" style={{ left: b.p25 + "%", width: Math.max(1.4, b.p75 - b.p25) + "%" }} />
+                        <div className="st-cz-med" style={{ left: `calc(${b.p50}% - 1px)` }} />
+                        {v !== null && <i className="st-cz-dot" data-in={inB ? "true" : "false"}
+                          style={{ left: `calc(${v}% - 5.5px)` }} title={`${P.name} · ${v}`} />}
+                      </div>
+                      <div className="st-cz-n">{b.p25}–{b.p75}</div>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="st-mi st-mi-soft" style={{ marginTop: 11 }}>
+                Tightest: {C.tight.label.toLowerCase()} {C.tight.p25}–{C.tight.p75} · loosest: {C.loose.label.toLowerCase()} {C.loose.p25}–{C.loose.p75}
+              </div>
+              {C.inside && C.outside && (
+                <div className="st-cz-pair">
+                  <div style={{ minWidth: 0 }}>
+                    <div className="st-yir-h">Squarely your sound</div>
+                    <ArtistRow name={C.inside.name} hue={C.inside.hue}
+                      right={<span className="st-num">{fmt(C.inside.plays)}<small> plays</small></span>}>
+                      inside the band on {C.inside.hits} of {C.bands.length} axes
+                    </ArtistRow>
+                  </div>
+                  <div style={{ minWidth: 0 }}>
+                    <div className="st-yir-h">The outlier you love anyway</div>
+                    <ArtistRow name={C.outside.name} hue={C.outside.hue}
+                      right={<span className="st-num">{fmt(C.outside.plays)}<small> plays</small></span>}>
+                      outside the band on {C.outside.miss.length} of {C.bands.length} axes
+                    </ArtistRow>
+                    <div className="st-mi st-cz-miss">
+                      {C.outside.miss.map((m, i) => (
+                        <React.Fragment key={m.name}>{i > 0 ? " · " : ""}{m.label.toLowerCase()} {m.v} vs {m.p25}–{m.p75}</React.Fragment>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+              <div style={{ marginTop: 18 }}>
+                <input className="st-in" list="st-cz-artists" value={czPick} onChange={e => setCzPick(e.target.value)}
+                  aria-label="score an artist against your comfort band"
+                  placeholder="score an artist against your fingerprint…" />
+                <datalist id="st-cz-artists">{artistOptions}</datalist>
+                {P && (
+                  <div className="st-sub" style={{ marginTop: 10 }}>
+                    <b className="st-inline-link" data-link={hasPage(P.id)} onClick={() => hasPage(P.id) && go("artist", P.id)}>{P.name}</b> sits
+                    inside your comfort band on <b style={{ color: "var(--ink)" }}>{P.hits.length} of {C.bands.length}</b> axes
+                    {P.miss.length
+                      ? <> — the outliers: {P.miss.map((b, i) => (
+                          <React.Fragment key={b.name}>{i > 0 ? ", " : ""}{b.label.toLowerCase()} {P.vals[b.name]} vs your {b.p25}–{b.p75}</React.Fragment>
+                        ))}.</>
+                      : <> — squarely your sound.</>}
+                  </div>
+                )}
+                {czScore && !czScore.found && (
+                  <div className="st-mi" style={{ marginTop: 8 }}>
+                    No measured audio row for that name — sound ships for the {fmt(Object.keys(R.AUDIO || {}).length)} artists with enough of a catalogue to average.
+                  </div>
+                )}
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* CHAPTER VIII (feed re-cut 2026-09-21) — from the sound to the text; the mood card is the hinge and must be read after both */}
+        <div className="st-chapter"><span>VIII</span> Words &amp; moods</div>
 
         {/* the languages you listen in — from Genius lyrics language detection */}
         {I.LANGUAGE && I.LANGUAGE.shares.length > 1 && (() => {
@@ -1090,6 +2169,27 @@ function StoriesView({ t, go, seed }) {
           const max = L.shares[0].plays;
           const top = L.shares.slice(0, 8);
           const topNon = L.topNonEn[0];
+          // LANGUAGE DRIFT, FOLDED IN (2026-09-21) — it lived directly below as its own card:
+          // six sparklines off the SAME I.LANGUAGE payload, answering "and how did that move"
+          // for a card whose own sub already names the biggest non-English voice. Wave C's shape
+          // (Map drift into Origins, Emotional weather into Sounds happy): the arithmetic is
+          // unchanged, the section becomes a facet under one label, and its own st-big headline
+          // demotes to the facet sub. The "Language drift" TOC crumb left with the label.
+          const A = L.arc;
+          const huesByLang = { pl: 15, de: 110, ja: 340, sv: 210, es: 40, fr: 260, ko: 300, fi: 190, ru: 350, pt: 60 };
+          const drift = A && A.years && A.years.length >= 6 ? (() => {
+            // mover: the non-English language that gained the most share, early years → last 3 avg
+            const firstYears = A.years.slice(0, 3), lastYears = A.years.slice(-3);
+            const mover = A.langs.map(l => {
+              const before = firstYears.reduce((s, y) => s + (y.byLang[l.lang] || 0), 0) / firstYears.length;
+              const after = lastYears.reduce((s, y) => s + (y.byLang[l.lang] || 0), 0) / lastYears.length;
+              return { ...l, delta: after - before, after };
+            }).sort((a, b) => b.delta - a.delta)[0];
+            const moverYear = A.years.find(y => (y.byLang[mover.lang] || 0) >= mover.after * 0.5);
+            const nonEnSeries = A.years.map(y => y.nonEnPct);
+            const peakNonEn = A.years[nonEnSeries.indexOf(Math.max(...nonEnSeries))];
+            return { mover, moverYear, peakNonEn };
+          })() : null;
           return (
             <section className="st-card st-hero">
               <div className="st-label">Languages</div>
@@ -1108,10 +2208,45 @@ function StoriesView({ t, go, seed }) {
                     <div style={{ height: 7, background: "var(--bg-3)", borderRadius: 4, overflow: "hidden" }}>
                       <div style={{ height: "100%", width: (s.plays / max * 100) + "%", background: s.lang === "en" ? "var(--rule-2)" : "var(--accent)", borderRadius: 4 }} />
                     </div>
-                    <span className="r-mono" className="st-nr">{fmt(s.plays)}</span>
+                    <span className="r-mono st-nr">{fmt(s.plays)}</span>
                   </div>
                 ))}
               </div>
+              {drift && (
+                <div style={{ marginTop: 20 }}>
+                  <div className="st-yir-h">How it moved</div>
+                  <div className="st-sub" style={{ marginBottom: 10 }}>
+                    <b style={{ color: "var(--ink)" }}>{drift.mover.name}</b> crept in around
+                    {" "}{drift.moverYear ? drift.moverYear.year : "—"} — now {Math.round(drift.mover.after * 100)}% of a
+                    year's lyrics; the most non-English year was {drift.peakNonEn.year} at {Math.round(drift.peakNonEn.nonEnPct * 100)}%.
+                  </div>
+                  <div className="st-arc">
+                    {A.langs.map(l => {
+                      const series = A.years.map(y => y.byLang[l.lang] || 0);
+                      const now = series[series.length - 1];
+                      const peak = Math.max(...series);
+                      const peakYr = A.years[series.indexOf(peak)].year;
+                      const hue = huesByLang[l.lang] || 200;
+                      return (
+                        <div key={l.lang} className="st-arc-row">
+                          <div className="st-arc-head">
+                            <span className="st-arc-name">{l.name}</span>
+                            <span className="st-arc-now" style={{ color: `oklch(0.7 0.16 ${hue})` }}>{Math.round(now * 100)}%</span>
+                          </div>
+                          <Spark data={series} w={420} h={32} run={true} labels={A.years.map(y => y.year)} fmtV={(v) => Math.round(v * 100) + "%"}
+                            stroke={`oklch(0.7 0.16 ${hue})`} fill={`oklch(0.7 0.16 ${hue} / .12)`} />
+                          <div className="st-arc-peak">peak {Math.round(peak * 100)}% in '{String(peakYr).slice(2)}</div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="st-arc-axis">
+                    <span>{A.years[0].year}</span>
+                    <span>{A.years[Math.floor(A.years.length / 2)].year}</span>
+                    <span>{A.years[A.years.length - 1].year}</span>
+                  </div>
+                </div>
+              )}
               {L.topNonEn.length > 1 && (
                 <div className="st-ug-cuts" style={{ marginTop: 18 }}>
                   {L.topNonEn.slice(0, 6).map(t => (
@@ -1125,60 +2260,6 @@ function StoriesView({ t, go, seed }) {
                   ))}
                 </div>
               )}
-            </section>
-          );
-        })()}
-
-        {/* language arc — how the non-English share moved across years */}
-        {I.LANGUAGE && I.LANGUAGE.arc && I.LANGUAGE.arc.years.length >= 6 && (() => {
-          const A = I.LANGUAGE.arc;
-          const huesByLang = { pl: 15, de: 110, ja: 340, sv: 210, es: 40, fr: 260, ko: 300, fi: 190, ru: 350, pt: 60 };
-          // mover: the non-English language that gained the most share, early years → last 3 avg
-          const firstYears = A.years.slice(0, 3), lastYears = A.years.slice(-3);
-          const mover = A.langs.map(l => {
-            const before = firstYears.reduce((s, y) => s + (y.byLang[l.lang] || 0), 0) / firstYears.length;
-            const after = lastYears.reduce((s, y) => s + (y.byLang[l.lang] || 0), 0) / lastYears.length;
-            return { ...l, delta: after - before, after };
-          }).sort((a, b) => b.delta - a.delta)[0];
-          const moverYear = A.years.find(y => (y.byLang[mover.lang] || 0) >= mover.after * 0.5);
-          const nonEnSeries = A.years.map(y => y.nonEnPct);
-          const peakNonEn = A.years[nonEnSeries.indexOf(Math.max(...nonEnSeries))];
-          return (
-            <section className="st-card st-hero">
-              <div className="st-label">Language drift</div>
-              <div className="st-big">
-                <em>{mover.name}</em> crept in around <em>{moverYear ? moverYear.year : "—"}</em> —
-                now <em>{Math.round(mover.after * 100)}%</em> of a year's lyrics.
-              </div>
-              <div className="st-sub">
-                Each line is a language's share of that year's lyric plays — the most non-English
-                year was <b style={{ color: "var(--ink)" }}>{peakNonEn.year}</b> at {Math.round(peakNonEn.nonEnPct * 100)}%.
-              </div>
-              <div className="st-arc">
-                {A.langs.map(l => {
-                  const series = A.years.map(y => y.byLang[l.lang] || 0);
-                  const now = series[series.length - 1];
-                  const peak = Math.max(...series);
-                  const peakYr = A.years[series.indexOf(peak)].year;
-                  const hue = huesByLang[l.lang] || 200;
-                  return (
-                    <div key={l.lang} className="st-arc-row">
-                      <div className="st-arc-head">
-                        <span className="st-arc-name">{l.name}</span>
-                        <span className="st-arc-now" style={{ color: `oklch(0.7 0.16 ${hue})` }}>{Math.round(now * 100)}%</span>
-                      </div>
-                      <Spark data={series} w={420} h={32} run={true} labels={A.years.map(y => y.year)} fmtV={(v) => Math.round(v * 100) + "%"}
-                        stroke={`oklch(0.7 0.16 ${hue})`} fill={`oklch(0.7 0.16 ${hue} / .12)`} />
-                      <div className="st-arc-peak">peak {Math.round(peak * 100)}% in '{String(peakYr).slice(2)}</div>
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="st-arc-axis">
-                <span>{A.years[0].year}</span>
-                <span>{A.years[Math.floor(A.years.length / 2)].year}</span>
-                <span>{A.years[A.years.length - 1].year}</span>
-              </div>
             </section>
           );
         })()}
@@ -1333,1068 +2414,11 @@ function StoriesView({ t, go, seed }) {
             the arc does not even carry, which those Sparks would have drawn as a flat zero).
             The TOC rail self-registers off .st-label, so the "Lyric themes" crumb left with it. */}
 
-        <div className="st-chapter"><span>IV</span> Scenes &amp; places</div>
-
-        {/* connections — shared members / side-projects threading the library */}
-        {I.CONNECTIONS && I.CONNECTIONS.links && I.CONNECTIONS.links.length > 0 && (() => {
-          const C = I.CONNECTIONS;
-          const top = C.links[0];
-          return (
-            <section className="st-card st-hero">
-              <div className="st-label">Connected by blood</div>
-              <div className="st-big" data-link={clickable(top.artists[0].name)} onClick={() => goIf(top.artists[0].name)}>
-                <em>{top.person}</em> ties together {top.artists.length} acts you play.
-              </div>
-              <div className="st-sub">
-                {fmt(C.totalLinks)} hidden threads run through the library — shared members, side-projects,
-                the same hands on different records.
-              </div>
-              <div style={{ display: "grid", gap: 12, marginTop: 6 }}>
-                {C.links.slice(0, 6).map(l => (
-                  <div key={l.person} style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
-                    <span className="st-person">{l.person}</span>
-                    {l.artists.map(a => (
-                      <span key={a.name} className="st-bandchip" data-link={clickable(a.name)} onClick={() => goIf(a.name)}>
-                        <span className="st-bandchip-dot" style={{ background: `oklch(0.62 0.16 ${a.hue})` }} />
-                        {a.name}
-                      </span>
-                    ))}
-                  </div>
-                ))}
-              </div>
-            </section>
-          );
-        })()}
-
-        {/* lineups — Wikidata band-member gender (the layer MB can't give us) */}
-        {I.LINEUPS && I.LINEUPS.featured && I.LINEUPS.featured.length >= 4 && (() => {
-          const L = I.LINEUPS;
-          return (
-            <section className="st-card">
-              <div className="st-label">Lineups</div>
-              <div className="st-big">
-                <em>{Math.round(L.womenBandShare * 100)}%</em> of your band-listening has women in the lineup.
-              </div>
-              <div className="st-sub">
-                Of the {L.bandsAnalyzed} groups whose members Wikidata knows by name, <b style={{ color: "var(--ink)" }}>{L.bandsWithWomen}</b> have
-                at least one woman on stage{L.allWomen.length > 0 ? <> — {L.allWomen.length} all-women</> : null}.
-              </div>
-              <div className="st-ug-cuts" style={{ marginTop: 18 }}>
-                {L.featured.slice(0, 6).map(b => (
-                  <div key={b.artistId} className="st-ug-cut" data-link={hasPage(b.artistId)}
-                    onClick={() => hasPage(b.artistId) && go("artist", b.artistId)}>
-                    <GenCover hue={b.hue} name={b.name} size={40} radius={4} />
-                    <div style={{ minWidth: 0 }}>
-                      <div className="st-row-name">{b.name}</div>
-                      <div className="st-row-sub">{b.women.join(", ")}{b.memberCount > b.women.length ? ` · ${b.women.length}/${b.memberCount}` : ""} · {fmt(b.plays)} plays</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          );
-        })()}
-
-        {/* TOP OF EACH SCENE + BRIDGE ARTISTS — RETIRED (Fuad 2026-09-21: bridges measure Discogs
-            tag co-occurrence, not connection, and the scene boxes are a directory the Explore page
-            already provides). Both sections used to render here off I.STYLE_ATLAS.scenes/.bridges.
-            The one atom worth keeping — each scene's solo artist, who exists ONLY in that scene for
-            this listener — moved into Style atlas below as its opening "Carried alone" rows. */}
-
-        {/* style atlas — discogs styles only you (or 1-2 artists) keep alive in this library */}
-        {I.STYLE_ATLAS && I.STYLE_ATLAS.rarest && I.STYLE_ATLAS.rarest.length > 3 && (() => {
-          const S = I.STYLE_ATLAS;
-          const sole = S.rarest.filter(r => r.artists.length === 1).length;
-          // solo salvage from the retired scene boxes (Fuad 2026-09-21) — CI-computed, may be
-          // absent on an older payload; when no scene carries one this falls through untouched.
-          // CARRIED ALONE — RETIRED IN FULL (Fuad 2026-09-21, second ruling: "Nu Metal, Hardcore,
-          // Thrash and Metalcore need a phase-out... it just doesn't work here. Others are fine.")
-          // The block was the salvage of the retired Top-of-each-scene module: first the umbrella
-          // scenes went (Alternative Rock through Electro — tagging artifacts), and the narrow-scene
-          // survivors turned out not to earn the card either. That empties the set, so the whole
-          // block and its solos computation are gone; Style atlas is the rarest rows alone again,
-          // which was always its good half. sc.solo still ships in the build should a better home
-          // ever appear.
-          return (
-            <section className="st-card">
-              <div className="st-label">Style atlas</div>
-              <div className="st-title-sm">Only one or two artists hold these for you.</div>
-              <div className="st-sub" style={{ marginBottom: 14 }}>
-                Of <em>{S.uniqueStyles}</em> distinct styles across {S.artistsCovered} Discogs-indexed artists, these hang
-                on the narrowest set of carriers{sole > 0 && <> — <em>{sole}</em> on a single artist</>}.
-              </div>
-              <div className="st-atlas">
-                {S.rarest.map(r => (
-                  <div key={r.style} className="st-atlas-row">
-                    <div className="st-atlas-style">{r.style}</div>
-                    <div className="st-atlas-via">
-                      via {r.artists.map((a, i) => (
-                        <React.Fragment key={a.name}>
-                          {i > 0 ? <span style={{ color: "var(--ink-faint)" }}> + </span> : null}
-                          <span data-link={clickable(a.name)} onClick={() => goIf(a.name)}
-                            style={{ color: `oklch(0.78 0.14 ${a.hue})`, cursor: clickable(a.name) ? "pointer" : "default", fontWeight: 500 }}>
-                            {a.name}
-                          </span>
-                        </React.Fragment>
-                      ))}
-                    </div>
-                    <div className="st-atlas-n">{fmt(r.plays)}<small> plays</small></div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          );
-        })()}
-
-        {/* taste eras — auto-segmented chapters (Phase 3): where the genre mix actually shifted */}
-        {I.TASTE_ERAS && I.TASTE_ERAS.eras && I.TASTE_ERAS.eras.length >= 3 && (() => {
-          const eras = I.TASTE_ERAS.eras;
-          const yr = (m) => m.slice(0, 4);
-          const big = eras.slice(1).filter(e => e.shift && e.shift.up).sort((a, b) => b.shift.up.d - a.shift.up.d)[0];
-          return (
-            <section className="st-card st-hero">
-              <div className="st-label">Chapters</div>
-              <div className="st-big">
-                {big
-                  ? <>Around {yr(big.start)}, <em style={{ color: `oklch(0.78 0.14 ${big.shift.up.hue})` }}>{big.shift.up.fam}</em> took over — up {big.shift.up.d} points in one turn.</>
-                  : <>Your taste falls into <em>{eras.length} distinct chapters</em>.</>}
-              </div>
-              <div className="st-sub">
-                Found by watching the genre mix month by month and marking where it genuinely shifted.
-              </div>
-              <div style={{ display: "grid", gap: 13, marginTop: 6 }}>
-                {eras.map((e, i) => (
-                  <div key={i} style={{ display: "grid", gridTemplateColumns: "88px 1fr", gap: 14, alignItems: "start" }}>
-                    <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)", paddingTop: 2, whiteSpace: "nowrap" }}>{yr(e.start)}–{yr(e.end)}</div>
-                    <div style={{ minWidth: 0 }}>
-                      {/* HOLLOW, NOT FILLED (Fuad 2026-09-21: "hollow fills and strokes on
-                          chapters to fit the style of the rest of Rotation") — the era share
-                          bars drop their solid blocks for the stroke-first skin the Lyrical
-                          diet and Overview's bars draw in: 1px hue stroke over a 12% wash,
-                          segments separated by a 2px seam instead of a clipped fill. */}
-                      <div style={{ display: "flex", height: 11, gap: 2, marginBottom: 6 }}>
-                        {e.topFams.map((f, j) => <div key={j} title={`${f.fam} ${f.share}%`} style={{ width: f.share + "%",
-                          boxSizing: "border-box", borderRadius: 2, border: `1px solid oklch(0.70 0.14 ${f.hue} / 0.65)`,
-                          background: `oklch(0.70 0.14 ${f.hue} / 0.12)` }} />)}
-                      </div>
-                      <div style={{ fontSize: 12, color: "var(--ink-soft)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                        {e.topFams.map(f => f.fam).join(" · ")}
-                        {e.shift && e.shift.up && <span style={{ color: `oklch(0.8 0.13 ${e.shift.up.hue})`, marginLeft: 8 }}>↑ {e.shift.up.fam}</span>}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          );
-        })()}
-
-        {/* audio DNA drift — how the play-weighted average sound profile shifted year over year */}
-        {I.AUDIO_DRIFT && I.AUDIO_DRIFT.years && I.AUDIO_DRIFT.years.length >= 12 && (() => {
-          // skip pre-scrobbling synthetic years (undated remapped scrobbles)
-          const Y = I.AUDIO_DRIFT.years.filter(y => y.coverage >= 1500);
-          if (Y.length < 8) return null;
-          const labels = {
-            energy: "Energy",
-            valence: "Mood",
-            acoustic: "Acoustic",
-            dance: "Danceable",
-            tempo: "Tempo",
-            instr: "Instrumental",
-          };
-          // deltas: last-3-year avg minus first-3-year avg, pick biggest absolute mover
-          const first3 = Y.slice(0, 3), last3 = Y.slice(-3);
-          const avg = (arr, ax) => arr.reduce((s, y) => s + y[ax], 0) / arr.length;
-          const order = Object.keys(labels)
-            .map(ax => ({ ax, delta: avg(last3, ax) - avg(first3, ax) }))
-            .sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
-          const hue = { energy: 18, valence: 60, acoustic: 140, dance: 280, tempo: 200, instr: 340 };
-          const top = order[0], second = order[1];
-          const dir = d => d > 0 ? "climbed" : "dropped";
-          return (
-            <section className="st-card st-hero">
-              <div className="st-label">Sound drift</div>
-              <div className="st-big">
-                <em>{labels[top.ax]}</em> {dir(top.delta)} {Math.round(Math.abs(top.delta) * 100)} pts.
-                {" "}<em>{labels[second.ax]}</em> {dir(second.delta)} {Math.round(Math.abs(second.delta) * 100)}.
-              </div>
-              <div className="st-sub">
-                The play-weighted sound profile per year, {Y[0].year}–{Y[Y.length - 1].year} — only the movers drawn.
-              </div>
-              <div className="st-turn">
-                {order.slice(0, 2).map(({ ax }) => {
-                  const series = Y.map(y => y[ax]);
-                  return (
-                    <div key={ax} className="st-turn-row">
-                      <div className="st-turn-label">{labels[ax]}</div>
-                      <Spark data={series} w={520} h={32} run={true} labels={Y.map(y => y.year)} fmtV={(v) => Math.round(v * 100)}
-                        stroke={`oklch(0.7 0.16 ${hue[ax]})`} fill={`oklch(0.7 0.16 ${hue[ax]} / .12)`} />
-                      <div className="st-turn-n">{Math.round(Y[Y.length - 1][ax] * 100)}</div>
-                    </div>
-                  );
-                })}
-                <div className="st-turn-axis">
-                  <span>{Y[0].year}</span>
-                  <span>{Y[Math.floor(Y.length / 2)].year}</span>
-                  <span>{Y[Y.length - 1].year}</span>
-                </div>
-              </div>
-              <div className="st-sub" style={{ marginTop: 10 }}>
-                The rest barely moved: {order.slice(2).map((o, i) => (
-                  <React.Fragment key={o.ax}>{i > 0 ? " · " : ""}{labels[o.ax]} {Math.round(Y[Y.length - 1][o.ax] * 100)}</React.Fragment>
-                ))}.
-              </div>
-            </section>
-          );
-        })()}
-
-
-        {/* THE COMFORT ZONE (2026-09-21) — graduated from the #lab TasteFingerprint prototype and
-            parked directly under Sound drift on purpose: drift is how the sound MOVED, this is
-            where it lives. The strip is the prototype's one genuinely good graphic and its
-            anatomy survives intact — label · density strip · range — restyled off every LAB_*
-            constant onto the site's tokens, so the density ramp follows the tweak panel's accent
-            hue rather than a hard-coded pink.
-            Two precomputed rows carry the story at rest; the scorer under them is the prototype's
-            interaction, kept because the reader gets to aim it (Fuad: "interactivity is key,
-            providing power to the audience"). */}
-        {comfort && (() => {
-          const C = comfort, TZ = C.tight;
-          // A band pinned against the floor reads as broken in the "sits between X and Y" frame —
-          // acoustic is 0–1 here, and "between 0 and 1" looks like a bug rather than a finding.
-          // Same fact, phrased as a ceiling.
-          const pinned = TZ.p25 === 0 && TZ.p75 <= 3;
-          const ramp = (b) => "linear-gradient(90deg," + b.dens.filter((_, j) => j % 2 === 0)
-            .map((d, j) => "oklch(0.74 0.13 var(--acc-h) / " + (d / (b.max || 1) * 0.9).toFixed(2) + ") " + (j * 2) + "%").join(",") + ")";
-          const P = czScore && czScore.found ? czScore : null;
-          return (
-            <section className="st-card st-hero">
-              <div className="st-label">The comfort zone</div>
-              <div className="st-big">
-                {pinned
-                  ? <>Half of everything you play scores <em>{TZ.p75} or less</em> out of 100 on <em>{TZ.label.toLowerCase()}</em>.</>
-                  : <>Half of everything you play sits between <em>{TZ.p25}</em> and <em>{TZ.p75}</em> on <em>{TZ.label.toLowerCase()}</em>.</>}
-              </div>
-              <div className="st-sub">
-                Every play, weighted, poured onto each audio axis — the shaded mass is where they land,
-                the bracket is the middle 50% that is your comfort band, and the tick is the median.
-              </div>
-              <div className="st-cz">
-                {C.bands.map(b => {
-                  const v = P ? P.vals[b.name] : null;
-                  const inB = v !== null && v >= b.p25 && v <= b.p75;
-                  return (
-                    <div key={b.name} className="st-cz-row">
-                      <div className="st-cz-lbl">{b.label}</div>
-                      <div className="st-cz-strip" title={`${b.label} · comfort band ${b.p25}–${b.p75} · median ${b.p50}`}>
-                        <div className="st-cz-dens" style={{ backgroundImage: ramp(b) }} />
-                        <div className="st-cz-band" style={{ left: b.p25 + "%", width: Math.max(1.4, b.p75 - b.p25) + "%" }} />
-                        <div className="st-cz-med" style={{ left: `calc(${b.p50}% - 1px)` }} />
-                        {v !== null && <i className="st-cz-dot" data-in={inB ? "true" : "false"}
-                          style={{ left: `calc(${v}% - 5.5px)` }} title={`${P.name} · ${v}`} />}
-                      </div>
-                      <div className="st-cz-n">{b.p25}–{b.p75}</div>
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="st-mi st-mi-soft" style={{ marginTop: 11 }}>
-                Tightest: {C.tight.label.toLowerCase()} {C.tight.p25}–{C.tight.p75} · loosest: {C.loose.label.toLowerCase()} {C.loose.p25}–{C.loose.p75}
-              </div>
-              {C.inside && C.outside && (
-                <div className="st-cz-pair">
-                  <div style={{ minWidth: 0 }}>
-                    <div className="st-yir-h">Squarely your sound</div>
-                    <ArtistRow name={C.inside.name} hue={C.inside.hue}
-                      right={<span className="st-num">{fmt(C.inside.plays)}<small> plays</small></span>}>
-                      inside the band on {C.inside.hits} of {C.bands.length} axes
-                    </ArtistRow>
-                  </div>
-                  <div style={{ minWidth: 0 }}>
-                    <div className="st-yir-h">The outlier you love anyway</div>
-                    <ArtistRow name={C.outside.name} hue={C.outside.hue}
-                      right={<span className="st-num">{fmt(C.outside.plays)}<small> plays</small></span>}>
-                      outside the band on {C.outside.miss.length} of {C.bands.length} axes
-                    </ArtistRow>
-                    <div className="st-mi st-cz-miss">
-                      {C.outside.miss.map((m, i) => (
-                        <React.Fragment key={m.name}>{i > 0 ? " · " : ""}{m.label.toLowerCase()} {m.v} vs {m.p25}–{m.p75}</React.Fragment>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
-              <div style={{ marginTop: 18 }}>
-                <input className="st-in" list="st-cz-artists" value={czPick} onChange={e => setCzPick(e.target.value)}
-                  aria-label="score an artist against your comfort band"
-                  placeholder="score an artist against your fingerprint…" />
-                <datalist id="st-cz-artists">{artistOptions}</datalist>
-                {P && (
-                  <div className="st-sub" style={{ marginTop: 10 }}>
-                    <b className="st-inline-link" data-link={hasPage(P.id)} onClick={() => hasPage(P.id) && go("artist", P.id)}>{P.name}</b> sits
-                    inside your comfort band on <b style={{ color: "var(--ink)" }}>{P.hits.length} of {C.bands.length}</b> axes
-                    {P.miss.length
-                      ? <> — the outliers: {P.miss.map((b, i) => (
-                          <React.Fragment key={b.name}>{i > 0 ? ", " : ""}{b.label.toLowerCase()} {P.vals[b.name]} vs your {b.p25}–{b.p75}</React.Fragment>
-                        ))}.</>
-                      : <> — squarely your sound.</>}
-                  </div>
-                )}
-                {czScore && !czScore.found && (
-                  <div className="st-mi" style={{ marginTop: 8 }}>
-                    No measured audio row for that name — sound ships for the {fmt(Object.keys(R.AUDIO || {}).length)} artists with enough of a catalogue to average.
-                  </div>
-                )}
-              </div>
-            </section>
-          );
-        })()}
-
-        {/* when the taste turned — share of yearly discoveries that were underground */}
-        {I.UNDERGROUND && I.UNDERGROUND.discoveryShape && I.UNDERGROUND.discoveryShape.length >= 10 && (() => {
-          const D = I.UNDERGROUND.discoveryShape.filter(y => y.withStats >= 10);
-          // headline year: max under-10k count
-          const peak = D.slice().sort((a, b) => b.under10k - a.under10k)[0];
-          // turning year: first year where ≥ 50% of new discoveries were under 50k
-          const turn = D.find(y => y.under50k / y.withStats >= 0.5);
-          const series50 = D.map(y => y.under50k / y.withStats);
-          const series10 = D.map(y => y.under10k / y.withStats);
-          const last = D[D.length - 1];
-          return (
-            <section className="st-card st-hero">
-              <div className="st-label">When the taste turned</div>
-              <div className="st-big">
-                In <em>{peak.year}</em> you discovered <em>{peak.under10k}</em> artists with
-                under <em>10k listeners</em> worldwide.
-              </div>
-              <div className="st-sub">
-                <em>{turn ? turn.year : "—"}</em> was the first year more than half your new artists were under 50k
-                listeners — {last.year} sits at <em>{Math.round(last.under50k / last.withStats * 100)}%</em>.
-              </div>
-              <div className="st-turn">
-                <div className="st-turn-row">
-                  <div className="st-turn-label">under 50k listeners</div>
-                  <Spark data={series50} w={520} h={36} run={true} labels={D.map(y => y.year)} fmtV={(v) => Math.round(v * 100) + "%"}
-                    stroke="var(--accent)" fill="var(--accent-bg)" />
-                  <div className="st-turn-n">{Math.round(last.under50k / last.withStats * 100)}%</div>
-                </div>
-                <div className="st-turn-row">
-                  <div className="st-turn-label">under 10k listeners</div>
-                  <Spark data={series10} w={520} h={36} run={true} labels={D.map(y => y.year)} fmtV={(v) => Math.round(v * 100) + "%"}
-                    stroke="oklch(0.75 0.16 320)" fill="oklch(0.75 0.16 320 / .15)" />
-                  <div className="st-turn-n">{Math.round(last.under10k / last.withStats * 100)}%</div>
-                </div>
-                <div className="st-turn-axis">
-                  <span>{D[0].year}</span>
-                  <span>{D[Math.floor(D.length / 2)].year}</span>
-                  <span>{last.year}</span>
-                </div>
-              </div>
-            </section>
-          );
-        })()}
-
-        {/* taste geography — Origins with Map drift and Gateways folded in (wave C 2026-09-17:
-            three adjacent modules cycled the same six countries, each with its own label, headline
-            and sub; one label now carries three compact facets — totals, movement, first doors). */}
-        {I.GEOGRAPHY && I.GEOGRAPHY.coverage > 0.3 && (() => {
-          const G = I.GEOGRAPHY;
-          const top = G.countries[0];
-          const A = G.arc;
-          const huesByCC = { US: 30, GB: 240, AU: 50, CA: 0, DE: 110, JP: 340 };
-          const GW = (G.gateways || []).slice(0, 10);
-          const fmtMonth = (iso) => { const d = new Date(iso); return window.MON[d.getUTCMonth()] + " " + d.getUTCFullYear(); };
-          const drift = A && A.years && A.years.length >= 10 ? (() => {
-            const firstYears = A.years.slice(0, 3), lastYears = A.years.slice(-3);
-            const mover = A.countries.map(c => {
-              const before = firstYears.reduce((s, y) => s + (y[c.code] || 0), 0) / firstYears.length;
-              const after = lastYears.reduce((s, y) => s + (y[c.code] || 0), 0) / lastYears.length;
-              return { ...c, delta: after - before, after };
-            }).sort((a, b) => b.delta - a.delta)[0];
-            const moverYear = A.years.find(y => (y[mover.code] || 0) >= mover.after * 0.4);
-            return { mover, moverYear };
-          })() : null;
-          return (
-            <section className="st-card st-hero">
-              <div className="st-label">Origins</div>
-              <div className="st-big">
-                <em>{Math.round(top.share * 100)}%</em> {top.flag} <em>{top.name}</em>
-                <span style={{ color: "var(--ink-soft)", fontSize: ".55em", fontStyle: "normal", marginLeft: 14 }}>
-                  · {G.totalCountries} countries on the map
-                </span>
-              </div>
-              <div className="st-sub">
-                Of the {Math.round(G.coverage * 100)}% of plays we can place on a map, the rest scatter:&nbsp;
-                {G.countries.slice(1, 6).map((c, i) => (
-                  <React.Fragment key={c.code}>{i > 0 ? ", " : ""}{c.flag} <b style={{ color: "var(--ink)" }}>{c.name}</b> ({Math.round(c.share * 100)}%)</React.Fragment>
-                ))}.
-              </div>
-              <div className="st-geo-grid">
-                {G.countries.slice(0, 12).map(c => (
-                  <div key={c.code} className="st-geo-c">
-                    <div className="st-geo-flag">{c.flag || c.code}</div>
-                    <div style={{ minWidth: 0 }}>
-                      <div className="st-row-name">{c.name}</div>
-                      <div className="st-row-sub">{fmt(c.plays)} plays · {c.artists} artists</div>
-                    </div>
-                    <div className="st-geo-pct">{Math.round(c.share * 100)}%</div>
-                  </div>
-                ))}
-              </div>
-              {drift && (
-                <div style={{ marginTop: 20 }}>
-                  <div className="st-yir-h">How it moved</div>
-                  <div className="st-sub" style={{ marginBottom: 10 }}>
-                    {drift.mover.flag} <b style={{ color: "var(--ink)" }}>{drift.mover.name}</b> crept in around
-                    {" "}{drift.moverYear ? drift.moverYear.year : "—"} — now {Math.round(drift.mover.after * 100)}% of what
-                    we can place; {A.years[0].year} was {Math.round(A.years[0].US * 100)}% American.
-                  </div>
-                  <div className="st-arc">
-                    {A.countries.map(c => {
-                      const series = A.years.map(y => y[c.code] || 0);
-                      const now = series[series.length - 1];
-                      const hue = huesByCC[c.code] || 200;
-                      return (
-                        <div key={c.code} className="st-arc-row">
-                          <div className="st-arc-head">
-                            <span className="st-arc-flag">{c.flag}</span>
-                            <span className="st-arc-name">{c.name}</span>
-                            <span className="st-arc-now" style={{ color: `oklch(0.7 0.16 ${hue})` }}>{Math.round(now * 100)}%</span>
-                          </div>
-                          <Spark data={series} w={420} h={24} run={true} labels={A.years.map(y => y.year)} fmtV={(v) => Math.round(v * 100) + "%"}
-                            stroke={`oklch(0.7 0.16 ${hue})`} fill={`oklch(0.7 0.16 ${hue} / .12)`} />
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div className="st-arc-axis">
-                    <span>{A.years[0].year}</span>
-                    <span>{A.years[Math.floor(A.years.length / 2)].year}</span>
-                    <span>{A.years[A.years.length - 1].year}</span>
-                  </div>
-                </div>
-              )}
-              {GW.length >= 5 && (
-                <div style={{ marginTop: 20 }}>
-                  <div className="st-yir-h">Gateways — the first door into each lane</div>
-                  <div className="st-gates">
-                    {GW.map(g => (
-                      <div key={g.code} className="st-gate" data-link={g.kept} onClick={() => g.kept && go("artist", g.artistId)}>
-                        <div className="st-gate-stamp">
-                          <span className="st-gate-flag">{g.flag}</span>
-                          <span className="st-gate-date">{fmtMonth(g.firstHeard)}</span>
-                        </div>
-                        <div style={{ minWidth: 0, flex: 1 }}>
-                          <div className="st-gate-country">{g.country}</div>
-                          <div className="st-row-name" style={{ fontSize: 14, marginTop: 2 }}>via {g.artist}</div>
-                        </div>
-                        <div className="st-gate-n">{fmt(g.plays)} <small style={{ color: "var(--ink-faint)" }}>plays since</small></div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-              {G.cities && G.cities.length > 0 && (
-                <div style={{ marginTop: 16 }}>
-                  <div className="st-yir-h">Cities you tap into</div>
-                  <div className="st-geo-cities">
-                    {G.cities.slice(0, 8).map(c => (
-                      <span key={c.country + c.city} className="r-chip" style={{ fontSize: 11 }}>
-                        {c.flag} {c.city} <span style={{ color: "var(--ink-faint)", fontSize: 10 }}>· {c.artists}</span>
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </section>
-          );
-        })()}
-
-        {/* sessions — how you actually listen (Phase 3): sittings, binge-vs-shuffle, album runs */}
-        {I.SESSIONS && (() => {
-          const S = I.SESSIONS, L = S.longest[0], topAlb = S.sittings.top[0];
-          return (
-            <section className="st-card st-hero">
-              <div className="st-label">How you listen</div>
-              <div className="st-big" data-link={L.artistId ? true : undefined} onClick={() => L.artistId && go("artist", L.artistId)}>
-                Your longest sitting: <em style={{ color: `oklch(0.78 0.14 ${L.hue})` }}>{fmt(L.tracks)} tracks</em> in one go —
-                {" "}{L.hours}h on {fmtDate(L.date)}{L.share >= 55 ? <>, almost all {L.artist}</> : null}.
-              </div>
-              <div className="st-sub">
-                {fmt(S.total)} sessions, a typical one {S.median} tracks — <b style={{ color: "var(--ink)" }}>{S.bingeShare}%</b> lock onto
-                a single artist{topAlb ? <>, and you've played <b style={{ color: "var(--ink)" }}>{topAlb.album}</b> front-to-back <b style={{ color: "var(--ink)" }}>{topAlb.count} times</b></> : null}.
-              </div>
-              <div className="st-ug-cuts">
-                {S.sittings.top.slice(0, 9).map(a => (
-                  <div key={a.aid} className="st-ug-cut" data-link={true} onClick={() => go("album", a.aid)}>
-                    <GenCover hue={a.hue} name={a.album} size={40} radius={4} />
-                    <div style={{ minWidth: 0 }}>
-                      <div className="st-row-name">{a.album}</div>
-                      <div className="st-row-sub">{a.artist} · {a.count}× front-to-back</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          );
-        })()}
-
-        {/* the unfinished records (wave F insight 2) — albums whose plays never reach side B,
-            the mirror of the front-to-back records above. Ships once CI rebuilds. */}
-        {I.ALBUM_DECAY && I.ALBUM_DECAY.albums && I.ALBUM_DECAY.albums.length >= 3 && (() => {
-          const AD = I.ALBUM_DECAY;
-          const top = AD.albums[0];
-          return (
-            <section className="st-card">
-              <div className="st-label">The unfinished records</div>
-              <div className="st-title-sm">Albums you never let reach side B.</div>
-              <div className="st-sub" style={{ marginBottom: 12 }}>
-                Across {AD.sampled} albums with known tracklists the median album keeps {AD.median}% of its plays
-                on the front half — these never recover: <b style={{ color: "var(--ink)" }}>{top.album}</b> is {top.frontShare}% front-loaded.
-              </div>
-              <div className="st-ug-cuts">
-                {AD.albums.map(a => (
-                  <div key={a.artistId + a.album} className="st-ug-cut" data-link={clickable(a.artist)} onClick={() => goIf(a.artist)}>
-                    <GenCover hue={a.hue} name={a.artist} size={40} radius={4} />
-                    <div style={{ minWidth: 0 }}>
-                      <div className="st-row-name">{a.album}</div>
-                      <div className="st-row-sub">{a.artist} · {a.frontShare}% front-loaded · {fmt(a.plays)} plays</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          );
-        })()}
-
-        {/* segue graph — what you play right after what (Phase 3) */}
-        {I.SESSIONS && I.SESSIONS.segues && I.SESSIONS.segues.length >= 3 && (() => {
-          const segs = I.SESSIONS.segues, top = segs[0];
-          return (
-            <section className="st-card st-hero">
-              <div className="st-label">What follows what</div>
-              <div className="st-big">
-                Put on <em style={{ color: `oklch(0.78 0.14 ${top.hue})`, cursor: "pointer" }} onClick={() => go("track", top.fromId)}>{top.fromTrack}</em> and,
-                {" "}<em>{top.pct}%</em> of the time, <span data-link={true} onClick={() => go("track", top.toId)}>{top.toTrack}</span> comes next.
-              </div>
-              <div className="st-sub">
-                One play, then almost always the same next one — your strongest segues, mostly crossing artists entirely.
-              </div>
-              <div style={{ display: "grid", gap: 9, marginTop: 4 }}>
-                {segs.slice(0, 10).map((s, i) => (
-                  <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", gap: 12, alignItems: "center" }}>
-                    <div style={{ textAlign: "right", minWidth: 0 }} data-link={true} onClick={() => go("track", s.fromId)}>
-                      <div className="st-row-name" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{s.fromTrack}</div>
-                      <div className="st-row-sub" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{s.fromArtist}</div>
-                    </div>
-                    <div className="r-mono" style={{ fontSize: 10, color: `oklch(0.74 0.14 ${s.hue})`, whiteSpace: "nowrap" }}>{s.pct}% →</div>
-                    <div style={{ minWidth: 0 }} data-link={true} onClick={() => go("track", s.toId)}>
-                      <div className="st-row-name" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{s.toTrack}</div>
-                      <div className="st-row-sub" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{s.toArtist}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          );
-        })()}
-
-        {/* seasonality — artists you only reach for at one time of year (Phase 3) */}
-        {I.SEASONALITY && I.SEASONALITY.top && I.SEASONALITY.top.length >= 4 && (() => {
-          const S = I.SEASONALITY, top = S.top[0];
-          return (
-            <section className="st-card st-hero">
-              <div className="st-label">Music for a season</div>
-              <div className="st-big" data-link={true} onClick={() => go("artist", top.id)}>
-                You play <em style={{ color: `oklch(0.78 0.14 ${top.hue})` }}>{top.name}</em> almost only in {top.window} —
-                {" "}<em>{top.share}%</em> of every spin lands in those three months.
-              </div>
-              <div className="st-sub">
-                Some artists you reach for at just one time of year — the same window, across the years.
-                Your most seasonal:
-              </div>
-              <div className="st-ug-cuts">
-                {/* 9, not 8 (Fuad 2026-09-21: full rows — at the feed's 3-column width, 8 left the
-                    last row a tile short; SEASONALITY ships 12 so the 9th is free) */}
-                {S.top.slice(0, 9).map(a => (
-                  <div key={a.id} className="st-ug-cut" data-link={true} onClick={() => go("artist", a.id)}>
-                    <GenCover hue={a.hue} name={a.name} size={40} radius={4} />
-                    <div style={{ minWidth: 0 }}>
-                      <div className="st-row-name">{a.name}</div>
-                      <div className="st-row-sub">{a.share}% in {a.window} · {fmt(a.plays)} plays</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          );
-        })()}
-
-        {/* streak */}
-        <section className="st-card st-hero">
-          <div className="st-label">The streak</div>
-          <div className="st-big"><em>{I.STREAK.best} days</em> without missing one.</div>
-          <div className="st-sub">From {fmtDate(I.STREAK.start)} to {fmtDate(I.STREAK.end)} you scrobbled
-            every single day — nearly a year of unbroken listening. Current run: {I.STREAK.current} days.</div>
-        </section>
-
-        {/* milestones */}
-        <section className="st-card">
-          <div className="st-label">Milestones</div>
-          <div className="st-title-sm">What the counter landed on.</div>
-          <div className="st-miles">
-            {I.MILESTONES.map(m => (
-              <div key={m.n} className="st-mile" data-link={clickable(m.artist)} onClick={() => goIf(m.artist)}>
-                <span className="st-mile-n">{m.n / 1000}k</span>
-                <GenCover hue={m.hue} name={m.artist} size={38} radius={3} />
-                <div style={{ minWidth: 0 }}>
-                  <div className="st-row-name">{m.track}</div>
-                  <div className="st-row-sub">{m.artist} · {fmtDate(m.date)}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* lifecycle — the shape of an obsession, and the ones burning now (Phase 3) */}
-        {I.LIFECYCLE && (I.LIFECYCLE.burningNow.length >= 2 || I.LIFECYCLE.flameout.length >= 2) && (() => {
-          const L = I.LIFECYCLE, hot = L.burningNow[0];
-          const MO = window.MON;
-          const moL = (ym) => { const p = (ym || "").split("-"); return p.length === 2 ? MO[+p[1] - 1] + " " + p[0] : ym; };
-          const names = (arr) => arr.slice(0, 4).map(a => a.name).join(", ");
-          return (
-            <section className="st-card st-hero">
-              <div className="st-label">Right now</div>
-              <div className="st-big">
-                {hot
-                  ? <>Right now it's <em style={{ color: `oklch(0.78 0.14 ${hot.hue})` }} onClick={() => go("artist", hot.id)}>{hot.name}</em> — {fmt(hot.recentPlays)} plays since {moL(hot.since)}, <em>{hot.flarePct}%</em> of everything you've ever played by them.</>
-                  : <>Every obsession has an arc — some burn fast, some never leave.</>}
-              </div>
-              <div className="st-sub">
-                Most of these plays landed in the last four months — the shape a flameout makes, mid-flight.
-              </div>
-              <div className="st-ug-cuts">
-                {L.burningNow.map(a => (
-                  <div key={a.id} className="st-ug-cut" data-link={true} onClick={() => go("artist", a.id)}>
-                    <GenCover hue={a.hue} name={a.name} size={40} radius={4} />
-                    <div style={{ minWidth: 0 }}>
-                      <div className="st-row-name">{a.name}</div>
-                      <div className="st-row-sub">{fmt(a.recentPlays)} in 4 months · {a.flarePct}% of all-time · since {moL(a.since)}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="st-sub" style={{ marginTop: 14 }}>
-                {L.flameout.length >= 2 && <>Ones that already burned out: <b style={{ color: "var(--ink)" }}>{names(L.flameout)}</b> — each 55%+ of their plays in a single six-month window, long gone quiet. </>}
-                {L.perennial.length >= 2 && <>The constants that never faded: <b style={{ color: "var(--ink)" }}>{names(L.perennial)}</b>, steady across {L.perennial[0].years}+ years.</>}
-              </div>
-            </section>
-          );
-        })()}
-
-        {/* obsessions */}
-        <section className="st-card">
-          <div className="st-label">Obsessions</div>
-          <div className="st-title-sm">Weeks one artist ate everything.</div>
-          <div className="st-grid">
-            {I.OBSESSIONS.map(o => (
-              <div key={o.artist + o.weekStart} className="st-obs" data-link={clickable(o.artist)} onClick={() => goIf(o.artist)}>
-                <div className="st-obs-top">
-                  <GenCover hue={o.hue} name={o.artist} size={38} radius={4} />
-                  <div className="st-obs-txt">
-                    <div className="st-row-name">{o.artist}</div>
-                    <div className="st-row-sub">{o.plays} plays · week of {fmtDate(o.weekStart)}</div>
-                  </div>
-                  <div className="st-obs-share" style={{ color: `oklch(0.78 0.14 ${o.hue})` }}>{Math.round(o.share * 100)}%</div>
-                </div>
-                <div className="st-obs-bar"><i style={{ width: (o.share * 100) + "%", background: `oklch(0.62 0.15 ${o.hue})` }} /></div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* flameouts — songs that owned a single week and were never replayed (pair with constants) */}
-        {I.FLAMEOUTS && I.FLAMEOUTS.length >= 5 && (
-          <section className="st-card">
-            <div className="st-label">Flameouts</div>
-            <div className="st-title-sm">Songs that owned one week, then vanished.</div>
-            <div className="st-sub" style={{ marginBottom: 14 }}>
-              Tracks where 40%+ of every play came in a single week — a one-off obsession, then silence.
-            </div>
-            <div className="st-life">
-              {I.FLAMEOUTS.slice(0, 6).map((t, i) => (
-                <div key={t.artist + t.title} className="st-life-row"
-                  data-link={t.kept} onClick={() => t.kept && go("artist", t.artistId)}>
-                  <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)", width: 24 }}>{String(i + 1).padStart(2, "0")}</span>
-                  <GenCover hue={t.hue} name={t.artist} size={36} radius={3} />
-                  <div style={{ minWidth: 0, flex: 1 }}>
-                    <div className="st-row-name" style={{ fontStyle: "italic" }}>{t.title}</div>
-                    <div className="st-row-sub">{t.artist} · {t.peakPlays} of {t.plays} plays in the week of {fmtDate(t.peakWeek)}</div>
-                  </div>
-                  <div className="st-flame-pct" style={{ color: `oklch(0.78 0.14 ${t.hue})` }}>{Math.round(t.peakShare * 100)}%</div>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* one-day wonders */}
-        <section className="st-card">
-          <div className="st-label">One-day wonders</div>
-          <div className="st-title-sm">Burned bright. Once.</div>
-          <div className="st-list">
-            {I.WONDERS.slice(0, 6).map(w => (
-              <ArtistRow key={w.artist} name={w.artist} hue={w.hue}
-                right={<span className="st-num">{w.plays}<small> plays</small></span>}>
-                everything on {fmtDate(w.date)} — then never again
-              </ArtistRow>
-            ))}
-          </div>
-        </section>
-
-        {/* lifetime tracks — songs that survived every era (year-span first sort, plays tiebreak) */}
-        {I.LIFETIME_TRACKS && I.LIFETIME_TRACKS.length >= 5 && (() => {
-          const L = I.LIFETIME_TRACKS;
-          const hero = L[0];
-          return (
-            <section className="st-card">
-              <div className="st-label">The constants</div>
-              <div className="st-title-sm">Songs that survived every era.</div>
-              <div className="st-sub" style={{ marginBottom: 14 }}>
-                Played across <em>{hero.yearSpan} different years</em> and still in rotation — "<i>{hero.title}</i>"
-                leads, {hero.plays} plays from {hero.firstYr} to {hero.lastYr}.
-              </div>
-              <div className="st-life">
-                {L.slice(0, 6).map((t, i) => (
-                  <div key={t.artist + t.title} className="st-life-row"
-                    data-link={t.kept} onClick={() => t.kept && go("artist", t.artistId)}>
-                    <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)", width: 24 }}>{String(i + 1).padStart(2, "0")}</span>
-                    <GenCover hue={t.hue} name={t.artist} size={36} radius={3} />
-                    <div style={{ minWidth: 0, flex: 1 }}>
-                      <div className="st-row-name" style={{ fontStyle: "italic" }}>{t.title}</div>
-                      <div className="st-row-sub">{t.artist} · {t.plays} plays across {t.yearSpan} years</div>
-                    </div>
-                    <div className="st-life-span">
-                      <span className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-soft)" }}>'{String(t.firstYr).slice(2)}</span>
-                      <div className="st-life-bar" style={{ background: `oklch(0.6 0.16 ${t.hue})` }} />
-                      <span className="r-mono" style={{ fontSize: 10.5, color: "var(--ink-soft)" }}>'{String(t.lastYr).slice(2)}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          );
-        })()}
-
-        {/* their era — the calendar month each top artist owned the listening (share %) */}
-        {I.ARTIST_ERAS && I.ARTIST_ERAS.length >= 6 && (() => {
-          const E = I.ARTIST_ERAS;
-          const top = E[0];
-          const monthLabel = (mk) => {
-            const d = new Date(mk + "-15");
-            return window.MON[d.getUTCMonth()] + " " + d.getUTCFullYear();
-          };
-          return (
-            <section className="st-card st-hero">
-              <div className="st-label">Their era</div>
-              <div className="st-big">
-                <em>{monthLabel(top.month)}</em> was <em>{Math.round(top.share * 100)}%</em>
-                {" "}<span data-link={artistHasPage(top.artistId)} onClick={() => artistHasPage(top.artistId) && go("artist", top.artistId)}
-                  style={{ color: `oklch(0.78 0.14 ${top.hue})`, cursor: R.byId[top.artistId] ? "pointer" : "default", fontStyle: "italic" }}>{top.artist}</span>.
-              </div>
-              <div className="st-sub">
-                The single month each artist owned the highest <em>share</em> of your listening — not the most plays, the most crowding-out.
-              </div>
-              <div className="st-life">
-                {E.slice(0, 6).map((e, i) => (
-                  <div key={e.artist + e.month} className="st-life-row"
-                    data-link={artistHasPage(e.artistId)} onClick={() => artistHasPage(e.artistId) && go("artist", e.artistId)}>
-                    <span className="r-mono" style={{ fontSize: 11, color: "var(--ink-faint)", width: 24 }}>{String(i + 1).padStart(2, "0")}</span>
-                    <GenCover hue={e.hue} name={e.artist} size={36} radius={3} />
-                    <div style={{ minWidth: 0, flex: 1 }}>
-                      <div className="st-row-name">{e.artist}</div>
-                      <div className="st-row-sub">{monthLabel(e.month)} · {e.plays} of the {e.total} plays that month</div>
-                    </div>
-                    <div className="st-flame-pct" style={{ color: `oklch(0.78 0.14 ${e.hue})` }}>{Math.round(e.share * 100)}%</div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          );
-        })()}
-
-        {/* incubation — how long from first-play to peak-week, per top artist */}
-        {I.INCUBATION && I.INCUBATION.length >= 6 && (() => {
-          const N = I.INCUBATION;
-          const slow = N.slice(0, 5);
-          const fast = N.slice().reverse().slice(0, 5);
-          const maxDays = slow[0].incubDays;
-          const fmtIncub = (d) => d < 30 ? `${d || 0} day${d === 1 ? "" : "s"}` :
-            d < 365 ? `${Math.round(d / 30)} months` : `${(d / 365).toFixed(1)} years`;
-          return (
-            <section className="st-card st-hero">
-              <div className="st-label">The incubation</div>
-              <div className="st-big">
-                <em>{slow[0].artist}</em> took <em>{(slow[0].incubDays / 365).toFixed(1)} years</em> to peak.
-                <em> {fast[0].artist}</em> took <em>{fast[0].incubDays || "zero"} {fast[0].incubDays === 1 ? "day" : "days"}</em>.
-              </div>
-              <div className="st-sub">
-                The gap between first play and peak week — some sat for years, others caught the week you found them.
-              </div>
-              <div className="st-incub">
-                <div>
-                  <div className="st-yir-h">Slow burners</div>
-                  {slow.map(a => (
-                    <div key={a.artist} className="st-incub-row" data-link={artistHasPage(a.artistId)} onClick={() => artistHasPage(a.artistId) && go("artist", a.artistId)}>
-                      <GenCover hue={a.hue} name={a.artist} size={32} radius={3} />
-                      <div className="st-incub-main">
-                        <div className="st-row-name">{a.artist}</div>
-                        <div className="st-incub-bar"><i style={{ width: (a.incubDays / maxDays * 100) + "%", background: `oklch(0.62 0.16 ${a.hue})` }} /></div>
-                        <div className="st-row-sub">{fmtDate(a.firstHeard)} → {fmtDate(a.peakWeek)}</div>
-                      </div>
-                      <div className="st-incub-n">{fmtIncub(a.incubDays)}</div>
-                    </div>
-                  ))}
-                </div>
-                <div>
-                  <div className="st-yir-h">Instant addictions</div>
-                  {fast.map(a => (
-                    <div key={a.artist} className="st-incub-row" data-link={artistHasPage(a.artistId)} onClick={() => artistHasPage(a.artistId) && go("artist", a.artistId)}>
-                      <GenCover hue={a.hue} name={a.artist} size={32} radius={3} />
-                      <div className="st-incub-main">
-                        <div className="st-row-name">{a.artist}</div>
-                        <div className="st-incub-bar"><i style={{ width: Math.max(2, a.incubDays / maxDays * 100) + "%", background: `oklch(0.62 0.16 ${a.hue})` }} /></div>
-                        <div className="st-row-sub">discovered {fmtDate(a.firstHeard)} · peaked {fmtDate(a.peakWeek)}</div>
-                      </div>
-                      <div className="st-incub-n">{fmtIncub(a.incubDays)}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </section>
-          );
-        })()}
-
-        {/* album obsessions — the same lens, one album-deep */}
-        {I.ALBUM_OBSESSIONS && I.ALBUM_OBSESSIONS.length > 0 && (
-          <section className="st-card">
-            <div className="st-label">Album weeks</div>
-            <div className="st-title-sm">Weeks one record ate everything.</div>
-            <div className="st-grid">
-              {I.ALBUM_OBSESSIONS.map(o => (
-                <div key={o.artist + o.album + o.weekStart} className="st-obs"
-                  data-link={artistHasPage(o.artistId)} onClick={() => artistHasPage(o.artistId) && go("artist", o.artistId)}>
-                  <div className="st-obs-top">
-                    <GenCover hue={o.hue} name={o.album} size={38} radius={4}
-                      image={albumCover[o.album + "\x00" + o.artist] || ""} thumb={albumCover[o.album + "\x00" + o.artist] || ""} />
-                    <div className="st-obs-txt">
-                      <div className="st-row-name st-row-name-alb">{o.album}</div>
-                      <div className="st-row-sub">{o.artist} · {o.plays} plays · week of {fmtDate(o.weekStart)}</div>
-                    </div>
-                    <div className="st-obs-share" style={{ color: `oklch(0.78 0.14 ${o.hue})` }}>{Math.round(o.share * 100)}%</div>
-                  </div>
-                  <div className="st-obs-bar"><i style={{ width: (o.share * 100) + "%", background: `oklch(0.62 0.15 ${o.hue})` }} /></div>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* comebacks */}
-        <section className="st-card">
-          <div className="st-label">Comebacks</div>
-          <div className="st-title-sm">Gone for years. Then suddenly not.</div>
-          <div className="st-list">
-            {I.COMEBACKS.slice(0, 6).map(c => (
-              <ArtistRow key={c.artist} name={c.artist} hue={c.hue}
-                right={<span className="st-num">{yearsOf(c.gapDays)}<small> yr away</small></span>}>
-                silent after {fmtDate(c.left)} — back {fmtDate(c.back)}, {fmt(c.playsAfter)} plays since
-              </ArtistRow>
-            ))}
-          </div>
-        </section>
-
-        {/* night owls */}
-        <section className="st-card">
-          <div className="st-label">After midnight</div>
-          <div className="st-title-sm">What only the small hours hear.</div>
-          <div className="st-list">
-            {I.NIGHT_OWLS.slice(0, 6).map(n => (
-              <ArtistRow key={n.artist} name={n.artist} hue={n.hue}
-                right={<span className="st-num">{Math.round(n.nightShare * 100)}%<small> 12–5am</small></span>}>
-                {fmt(n.plays)} plays, mostly while the rest of the city sleeps
-              </ArtistRow>
-            ))}
-          </div>
-          {/* wave F insight 4 — the sound by hour (UTC, same clock as the module itself). The
-              axis with the biggest day swing tells the story; if nothing swings, THAT is the
-              story: the clock does not touch this library. */}
-          {I.HOUR_SOUND && I.HOUR_SOUND.hours && (() => {
-            const HS = I.HOUR_SOUND.hours.filter(Boolean);
-            if (HS.length < 18) return null;
-            const axes = [["energy", "Energy"], ["tempo", "Tempo"], ["dance", "Danceable"]];
-            const pick = axes.map(([k, name]) => {
-              const hi = HS.reduce((m, x) => x[k] > m[k] ? x : m, HS[0]);
-              const lo = HS.reduce((m, x) => x[k] < m[k] ? x : m, HS[0]);
-              return { k, name, hi, lo, swing: hi[k] - lo[k] };
-            }).sort((a, b) => b.swing - a.swing)[0];
-            const hh = (h) => (h % 24) + ":00";
-            const max = Math.max(...HS.map(x => x[pick.k]));
-            const min = Math.min(...HS.map(x => x[pick.k]));
-            return (
-              <div style={{ marginTop: 16 }}>
-                <div className="st-sub" style={{ marginBottom: 8 }}>
-                  {pick.swing >= 5
-                    ? <>The clock moves the sound: <b style={{ color: "var(--ink)" }}>{pick.name.toLowerCase()}</b> peaks
-                        at {hh(pick.hi.h)} ({pick.hi[pick.k]}) and bottoms out at {hh(pick.lo.h)} ({pick.lo[pick.k]}).</>
-                    : <>The clock barely touches the sound — 3am runs as hard as 3pm
-                        ({pick.name.toLowerCase()} swings only {pick.swing} points all day).</>}
-                </div>
-                <div style={{ display: "flex", alignItems: "flex-end", gap: 2, height: 44 }}>
-                  {Array.from({ length: 24 }, (_, h) => {
-                    const x = I.HOUR_SOUND.hours[h];
-                    const v = x ? x[pick.k] : null;
-                    const norm = v === null ? 0 : (v - min) / Math.max(max - min, 1);
-                    return (
-                      <div key={h} title={v === null ? "" : hh(h) + " · " + pick.name.toLowerCase() + " " + v}
-                        style={{ flex: 1, height: v === null ? 2 : (8 + norm * 34),
-                          background: h < 5 || h >= 23 ? "var(--accent)" : "var(--rule-2)", borderRadius: 2 }} />
-                    );
-                  })}
-                </div>
-                <div className="st-arc-axis"><span>0:00</span><span>12:00</span><span>23:00</span></div>
-              </div>
-            );
-          })()}
-        </section>
-
-        {/* discoveries */}
-        <section className="st-card">
-          <div className="st-label">First contact</div>
-          <div className="st-title-sm">The track that started each obsession.</div>
-          <div className="st-list">
-            {I.DISCOVERIES.slice(0, 6).map(d => (
-              <ArtistRow key={d.artist} name={d.artist} hue={d.hue}
-                right={<span className="st-num">{fmt(d.plays)}<small> since</small></span>}>
-                “{d.track}” · {fmtDate(d.date)}
-              </ArtistRow>
-            ))}
-          </div>
-        </section>
-
-
-        {/* WHO BROUGHT YOU HERE (2026-09-21) — the #lab GenealogyLab, graduated and sat beside
-            First contact because the two are siblings: first contact is the TRACK that started
-            each obsession, this is who led to whom. genealogy.js is lazy (~183 KB of slug → [the
-            artist you heard just before, first play]) and the whole module is guarded on it the
-            way The Reading is guarded on reading.js — nothing renders until the shard lands, and
-            a 404 simply means this section never appears.
-            The lab ranked gateways by how many artists they opened; this ranks by how many PLAYS
-            walked through (Fuad 2026-09-21), which is a different list — one 5,000-play
-            introduction outweighs six twenty-play ones. */}
-        {gen && gen.gateways.length > 0 && (() => {
-          const top = gen.gateways[0];
-          // both the specimen chain and the tracer's ancestry draw with this: the lab's
-          // arrow-and-dates line, moved off the prototype's mono into the feed's serif.
-          const thread = (nodes) => (
-            <div className="st-gen-chain">
-              {nodes.map((c, i) => (
-                <React.Fragment key={c.id}>
-                  {i > 0 && <span className="st-gen-arrow">→</span>}
-                  <span className="st-gen-node" data-link={hasPage(c.id)} onClick={() => hasPage(c.id) && go("artist", c.id)}>
-                    {c.name}<i>{c.date ? c.date.slice(0, 7) : ""}</i>
-                  </span>
-                </React.Fragment>
-              ))}
-            </div>
-          );
-          return (
-            <section className="st-card st-hero">
-              <div className="st-label">Who brought you here</div>
-              <div className="st-big" data-link={hasPage(top.id)} onClick={() => hasPage(top.id) && go("artist", top.id)}>
-                <em>{top.name}</em> opened {top.n} door{top.n === 1 ? "" : "s"} — <em>{fmt(top.introduced)}</em> plays walked through.
-              </div>
-              <div className="st-sub">
-                Reconstructed from listening sessions — the artist heard just before your first play. A guess, not a memory.
-              </div>
-              {gen.chain && (
-                <div style={{ marginTop: 20 }}>
-                  <div className="st-yir-h">The heaviest line in the library</div>
-                  {thread(gen.chain)}
-                  <div className="st-mi" style={{ marginTop: 7 }}>
-                    {gen.chain.length} artists · {fmt(gen.chainPlays)} plays along the line
-                  </div>
-                </div>
-              )}
-              <div style={{ marginTop: 20 }}>
-                <div className="st-yir-h">Your biggest gateways</div>
-                <div className="st-list">
-                  {gen.gateways.slice(0, 3).map(g => (
-                    <ArtistRow key={g.id} name={g.name} hue={g.hue}
-                      right={<span className="st-num">{fmt(g.introduced)}<small> plays in</small></span>}>
-                      {g.n} artist{g.n === 1 ? "" : "s"} · heaviest: {gen.nameOf(g.kids[0])} ({fmt(gen.playsOf(g.kids[0]))})
-                    </ArtistRow>
-                  ))}
-                </div>
-              </div>
-              <div style={{ marginTop: 18 }}>
-                <input className="st-in" list="st-gen-artists" value={genPick} onChange={e => setGenPick(e.target.value)}
-                  aria-label="trace an artist's ancestry" placeholder="trace an artist…" />
-                <datalist id="st-gen-artists">{artistOptions}</datalist>
-                {genTrace && genTrace.found && (
-                  <div style={{ marginTop: 14 }}>
-                    <div className="st-yir-h">Ancestry</div>
-                    {genTrace.chain.length > 1
-                      ? thread(genTrace.chain)
-                      : <div className="st-sub" style={{ marginTop: 0 }}>Nobody — <b style={{ color: "var(--ink)" }}>{genTrace.name}</b> is where a thread starts. Their first play opened a session rather than continuing one.</div>}
-                    {genTrace.kids.length > 0 && (
-                      <>
-                        <div className="st-yir-h" style={{ marginTop: 16 }}>
-                          {genTrace.name} introduced {genTrace.kids.length} artist{genTrace.kids.length === 1 ? "" : "s"}
-                        </div>
-                        <div className="st-gen-kids">
-                          {genTrace.kids.slice(0, 18).map(k => (
-                            <span key={k} className="st-bandchip" data-link={hasPage(k)} onClick={() => hasPage(k) && go("artist", k)}>
-                              {gen.nameOf(k)}<i className="st-gen-kidn">{fmt(gen.playsOf(k))}</i>
-                            </span>
-                          ))}
-                          {genTrace.kids.length > 18 && (
-                            <span className="st-mi" style={{ alignSelf: "center" }}>+{genTrace.kids.length - 18} more</span>
-                          )}
-                        </div>
-                      </>
-                    )}
-                  </div>
-                )}
-                {genTrace && !genTrace.found && (
-                  <div className="st-mi" style={{ marginTop: 8 }}>
-                    No entry for that name — the map only reaches dated plays from artists you played at least five times.
-                  </div>
-                )}
-              </div>
-            </section>
-          );
-        })()}
-
-        {/* year peaks */}
-        <section className="st-card">
-          <div className="st-label">Heaviest days</div>
-          <div className="st-title-sm">Annual single-day records.</div>
-          <div className="st-peaks">
-            {I.YEAR_PEAKS.map(p => (
-              <div key={p.year} className="st-peak" data-link={clickable(p.artist)} onClick={() => goIf(p.artist)}>
-                <span className="st-peak-y">{p.year}</span>
-                <span className="st-peak-n">{p.count}</span>
-                <span className="st-peak-a" style={{ color: `oklch(0.74 0.12 ${p.hue})` }}>{p.artist}</span>
-                <span className="st-peak-d">{fmtDate(p.date).slice(0, -5)}</span>
-              </div>
-            ))}
-          </div>
-        </section>
-
+        {/* CHAPTER IX (feed re-cut 2026-09-21) — the closing couplet, both placements owner-approved: the chart, then the portrait naming it */}
+        <div className="st-chapter"><span>IX</span> The verdict</div>
 
         {/* LYRICAL DIET (2026-09-21) — the feed's last chart, and it sits here rather than up in
-            chapter III on purpose: it is the quantitative shadow of the portrait's "the words run
+            the words chapter (VIII) on purpose: it is the quantitative shadow of the portrait's "the words run
             darker" line. The chart shows the drift, The Reading immediately below names it, and
             the feed closes on the naming.
             Graduated from the #lab prototype with the one thing the lab could not do (Fuad
@@ -2419,7 +2443,7 @@ function StoriesView({ t, go, seed }) {
                           the module on the names behind the colours.
             Label kept as "Lyrical diet": a diet is already both halves — what gets eaten and how
             that changes — and it is the crumb the TOC rail has been registering. The tombstone in
-            chapter III lists what was dropped as a duplicate rather than carried across. */}
+            the old words-chapter card lists what was dropped as a duplicate rather than carried across. */}
         {diet && (() => {
           const D = diet, T = I.THEMES, H = 168;
           // TWO SELECTIONS, ONE OF THEM DISPOSABLE. `sel` is PINNED (a chip click) and is the only
@@ -2563,7 +2587,7 @@ function StoriesView({ t, go, seed }) {
                   )}
                 </div>
               )}
-              {/* THE WHO — absorbed 2026-09-21 from chapter III's card, where these fourteen were
+              {/* THE WHO — absorbed 2026-09-21 from the old Lyric-themes card, where these fourteen were
                   a bare "Signature obsessions: name (theme)" line with no numbers. THEMES.artists
                   is the heaviest theme-classified artists with their top two themes and each
                   theme's grip on that artist's OWN plays, and it is the only place the payload
