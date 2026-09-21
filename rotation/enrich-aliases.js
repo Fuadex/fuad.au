@@ -13,9 +13,22 @@ const https = require("https");
 const TOP_N = parseInt(process.argv[2], 10) || 1000;
 const CACHE_PATH = path.join(__dirname, "artist-aliases.json");
 const STATS_PATH = path.join(__dirname, "artist-stats.json");
+const PINS_PATH = path.join(__dirname, "pins.json");
 const INDEX_PATH = path.join(__dirname, "search-index.js");
 const DELAY_MS = 1100;
 const UA = "RotationEnricher/0.1 ( fuadex@gmail.com )";
+
+// ─────────── PINNED MBIDs WIN (Fuad 2026-09-21: "make sure all these folds are recorded
+// somewhere so that future scrapes or so don't undo the fixes") ───────────
+// artist-stats.json's `mbid` is whatever last.fm resolved the scrobble name to, and last.fm
+// resolves a short/common name to the wrong act often enough that dozens have been hand-corrected
+// across repair waves. That field is rewritten by every enrich-stats.js run, so a stats-side mbid
+// is NOT durable — a pin is. pins.json is the ledger of every verified correction, and this makes
+// that promise true here too: a pinned id wins over the stats-side one before we fetch MB aliases
+// under it (a poisoned id would otherwise pull in the WRONG artist's alternate name forms).
+// Exact scrobble-name keys only (build-data's alias resolution isn't available here).
+const PINS = (() => { try { const p = JSON.parse(fs.readFileSync(PINS_PATH, "utf8")); delete p._doc; return p; } catch (e) { return {}; } })();
+const mbidFor = (stats, name) => (PINS[name] && PINS[name].mbid) || (stats[name] && stats[name].mbid) || "";
 
 function getJSON(url) {
   return new Promise((resolve) => {
@@ -47,15 +60,15 @@ async function fetchAliases(mbid) {
   const ranked = rows.slice(0, TOP_N).map(r => r[0]);
 
   const cache = fs.existsSync(CACHE_PATH) ? JSON.parse(fs.readFileSync(CACHE_PATH, "utf8")) : {};
-  const todo = ranked.filter(name => !(name in cache) && stats[name] && stats[name].mbid);
-  const noMbid = ranked.filter(name => !stats[name] || !stats[name].mbid).length;
+  const todo = ranked.filter(name => !(name in cache) && mbidFor(stats, name));
+  const noMbid = ranked.filter(name => !mbidFor(stats, name)).length;
   console.log(`${ranked.length} target artists · ${todo.length} to fetch · ${Object.keys(cache).length} cached · ${noMbid} no-mbid skipped`);
 
   let done = 0, withAliases = 0;
   const today = new Date().toISOString().slice(0, 10);
   for (const name of todo) {
     try {
-      const aliases = await fetchAliases(stats[name].mbid);
+      const aliases = await fetchAliases(mbidFor(stats, name));   // pinned id wins over stats (2026-09-21)
       cache[name] = { aliases, fetched: today };
       if (aliases.length) withAliases++;
     } catch (e) {

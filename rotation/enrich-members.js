@@ -51,11 +51,24 @@ const STATS_PATH   = path.join(__dirname, "artist-stats.json");
 const ORIGINS_PATH = path.join(__dirname, "artist-origins.json");
 const VOCALS_PATH  = path.join(__dirname, "vocals.json");
 const MBART_PATH   = path.join(__dirname, "mb-artists.json");
+const PINS_PATH    = path.join(__dirname, "pins.json");
 const INDEX_PATH   = path.join(__dirname, "search-index.js");
 const TOP_PLAYS = 500;      // top-N-by-plays share priority class 0 with ended bands in the refresh lane
 const DELAY_MS  = 1100;     // ~1 req/sec (MusicBrainz rate limit)
 const UA = "RotationEnricher/0.2 ( fuadex@gmail.com )";
 const MEMBERS_KEY = "_members";   // reserved cache key: distinct-member gender sidecar {mbid→{g,fetched}}
+
+// ─────────── PINNED MBIDs WIN (Fuad 2026-09-21: "make sure all these folds are recorded
+// somewhere so that future scrapes or so don't undo the fixes") ───────────
+// artist-stats.json's `mbid` is whatever last.fm resolved the scrobble name to, and last.fm
+// resolves a short/common name to the wrong act often enough that dozens have been hand-corrected
+// across repair waves. That field is rewritten by every enrich-stats.js run, so a stats-side mbid
+// is NOT durable — a pin is. pins.json is the ledger of every verified correction, and this makes
+// that promise true here too: a pinned id wins over the stats-side one before we pull the band's
+// member relations (a poisoned id would otherwise fetch the WRONG artist's lineup entirely).
+// Exact scrobble-name keys only (build-data's alias resolution isn't available here).
+const PINS = (() => { try { const p = JSON.parse(fs.readFileSync(PINS_PATH, "utf8")); delete p._doc; return p; } catch (e) { return {}; } })();
+const mbidFor = (stats, name) => (PINS[name] && PINS[name].mbid) || (stats[name] && stats[name].mbid) || "";
 
 function getJSON(url) {
   return new Promise((resolve) => {
@@ -145,7 +158,7 @@ async function fetchMemberGender(mbid) {
   const isTarget = (name) => {
     const o = origins[name];
     if (!o || o.type !== "Group") return false;             // classified Group only
-    if (!stats[name] || !stats[name].mbid) return false;    // need an mbid to fetch
+    if (!mbidFor(stats, name)) return false;                // need an mbid to fetch
     if (name in cache) return false;                        // already have this band
     if (slug(name) in vocals) return false;                 // verified vocals data already
     if (mbLineupUsable(mbByName[name])) return false;       // mb-lineup already gives the classifier a vox
@@ -173,7 +186,7 @@ async function fetchMemberGender(mbid) {
   // fetch one band + its members' genders, store into cache (fully replacing any existing record).
   async function fetchInto(name) {
     try {
-      const raw = await fetchBandMembers(stats[name].mbid);
+      const raw = await fetchBandMembers(mbidFor(stats, name));   // pinned id wins over stats (2026-09-21)
       req++;
       await sleep(DELAY_MS);
       if (!raw) { cache[name] = { members: [], fetched: today, error: true }; failed++; return; }
@@ -205,7 +218,7 @@ async function fetchMemberGender(mbid) {
     const isEnded = (name) => !!(origins[name] && origins[name].ended);
     const priClass = (name) => (isEnded(name) || topPlaysSet.has(name)) ? 0 : 1;
     const candidates = Object.keys(cache)
-      .filter(name => name !== MEMBERS_KEY && stats[name] && stats[name].mbid)
+      .filter(name => name !== MEMBERS_KEY && mbidFor(stats, name))
       .map(name => ({ name, pc: priClass(name), fetched: cache[name].fetched || "" }))
       .sort((a, b) => (a.pc - b.pc) || (a.fetched < b.fetched ? -1 : a.fetched > b.fetched ? 1 : 0))
       .slice(0, REFRESH_N);

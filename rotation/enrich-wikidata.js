@@ -34,12 +34,25 @@ const REFRESH_N = REFRESH_ARG ? Math.max(0, parseInt(REFRESH_ARG.split("=")[1], 
 const CACHE_PATH = path.join(__dirname, "wikidata-cache.json");
 const STATS_PATH = path.join(__dirname, "artist-stats.json");
 const ORIGINS_PATH = path.join(__dirname, "artist-origins.json");
+const PINS_PATH = path.join(__dirname, "pins.json");
 const INDEX_PATH = path.join(__dirname, "search-index.js");
 const ENDPOINT = "https://query.wikidata.org/sparql";
 const BATCH = 40;
 const TOP_PLAYS = 500; // top-N-by-plays that share priority class 0 with ended artists
 const DELAY_MS = 1200;
 const UA = "RotationEnricher/0.1 ( fuadex@gmail.com )";
+
+// ─────────── PINNED MBIDs WIN (Fuad 2026-09-21: "make sure all these folds are recorded
+// somewhere so that future scrapes or so don't undo the fixes") ───────────
+// artist-stats.json's `mbid` is whatever last.fm resolved the scrobble name to, and last.fm
+// resolves a short/common name to the wrong act often enough that dozens have been hand-corrected
+// across repair waves. That field is rewritten by every enrich-stats.js run, so a stats-side mbid
+// is NOT durable — a pin is. pins.json is the ledger of every verified correction, and this makes
+// that promise true here too: a pinned id wins over the stats-side one before we query Wikidata's
+// P434 (a poisoned id would otherwise join the WRONG entity's inception/members/coords/country).
+// Exact scrobble-name keys only (build-data's alias resolution isn't available here).
+const PINS = (() => { try { const p = JSON.parse(fs.readFileSync(PINS_PATH, "utf8")); delete p._doc; return p; } catch (e) { return {}; } })();
+const mbidFor = (stats, name) => (PINS[name] && PINS[name].mbid) || (stats[name] && stats[name].mbid) || "";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -186,7 +199,7 @@ function parsePoint(wkt) {
   const mbidToName = {};
   for (const name of ranked) {
     if (name in cache) continue; // includes null-cached (no-entity) artists → skipped
-    const mbid = stats[name] && stats[name].mbid;
+    const mbid = mbidFor(stats, name);   // pinned id wins over stats (2026-09-21)
     if (!mbid) continue;
     mbidToName[mbid] = name;
     todo.push(mbid);
@@ -204,10 +217,10 @@ function parsePoint(wkt) {
       return (isEnded(name) || topPlaysSet.has(name)) ? 0 : 1;
     };
     const refreshCands = Object.keys(cache)
-      .filter((name) => stats[name] && stats[name].mbid)
+      .filter((name) => mbidFor(stats, name))
       .map((name) => {
         const rec = cache[name];
-        return { name, mbid: stats[name].mbid, pc: priClass(name, rec), fetched: (rec && rec.fetched) || "" };
+        return { name, mbid: mbidFor(stats, name), pc: priClass(name, rec), fetched: (rec && rec.fetched) || "" };   // pinned id wins over stats (2026-09-21)
       })
       // (priority-class asc, fetched-date asc); null rows have fetched "" → sort first
       // within class 2 but the class ordering keeps them behind all entity rows.

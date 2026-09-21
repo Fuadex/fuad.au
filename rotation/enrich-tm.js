@@ -44,8 +44,23 @@ const norm = (s) => (s || "").toLowerCase().normalize("NFKD").replace(/[^a-z0-9]
 const byNorm = new Map(); // norm(name) â†’ [name, rank]
 rows.forEach((r, i) => { const n = norm(r[0]); if (n && !byNorm.has(n)) byNorm.set(n, [r[0], i + 1]); });
 const STATS = JSON.parse(fs.readFileSync(path.join(__dirname, "artist-stats.json"), "utf8"));
+const PINS_PATH = path.join(__dirname, "pins.json");
+
+// ----------- PINNED MBIDs WIN (Fuad 2026-09-21: "make sure all these folds are recorded
+// somewhere so that future scrapes or so don't undo the fixes") -----------
+// artist-stats.json's `mbid` is whatever last.fm resolved the scrobble name to, and last.fm
+// resolves a short/common name to the wrong act often enough that dozens have been hand-corrected
+// across repair waves. That field is rewritten by every enrich-stats.js run, so a stats-side mbid
+// is NOT durable - a pin is. pins.json is the ledger of every verified correction, and this makes
+// that promise true here too: a pinned id wins over the stats-side one before we build the join
+// key against Ticketmaster's externalLinks.musicbrainz id (a poisoned id would otherwise match
+// the WRONG artist's tour dates, or miss real ones entirely). Exact scrobble-name keys only
+// (build-data's alias resolution isn't available here).
+const PINS = (() => { try { const p = JSON.parse(fs.readFileSync(PINS_PATH, "utf8")); delete p._doc; return p; } catch (e) { return {}; } })();
+const mbidFor = (stats, name) => (PINS[name] && PINS[name].mbid) || (stats[name] && stats[name].mbid) || "";
+
 const byMbid = new Map(); // mbid â†’ name (only names we actually play)
-for (const [name, s] of Object.entries(STATS)) if (s && s.mbid && byNorm.has(norm(name))) byMbid.set(s.mbid, name);
+for (const name of Object.keys(STATS)) { const mb = mbidFor(STATS, name); if (mb && byNorm.has(norm(name))) byMbid.set(mb, name); }   // pinned id wins over stats (2026-09-21)
 console.log(`library: ${byNorm.size} names, ${byMbid.size} with mbid`);
 
 function getJSON(url) {

@@ -36,7 +36,7 @@ async function fetchInfo(artist) {
   return {
     listeners: +(a.stats && a.stats.listeners) || 0,
     playcount: +(a.stats && a.stats.playcount) || 0,
-    mbid: a.mbid || "",
+    mbid: a.mbid || "",  // raw last.fm-resolved id; pins.json is the correction layer that WINS over this downstream (2026-09-21 owner ruling) — see mbidFor() in enrich-mb.js/enrich-origins.js
   };
 }
 
