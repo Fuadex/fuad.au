@@ -1480,14 +1480,14 @@ function StoriesView({ t, go, seed }) {
           const sole = S.rarest.filter(r => r.artists.length === 1).length;
           // solo salvage from the retired scene boxes (Fuad 2026-09-21) — CI-computed, may be
           // absent on an older payload; when no scene carries one this falls through untouched.
-          // UMBRELLA SCENES OUT (Fuad 2026-09-21, on the first render: "The Alternative Metal to
-          // Electro are really redundant, I'd phase these out"). A solo carrier of a broad umbrella
-          // style is a tagging artifact, not a biography — deadmau5 "carrying Electro alone" says
-          // nothing; Spiritbox carrying Metalcore does. Named skips, not a plays threshold: the
-          // scene list is small, stable and build-ordered, and a threshold would silently eat a
-          // narrow scene the day its plays grow.
-          const skip = new Set(["Alternative Rock", "Heavy Metal", "Hard Rock", "Industrial", "Electro"]);
-          const solos = (S.scenes || []).filter(sc => sc.solo && !skip.has(sc.style)).slice(0, 6);
+          // CARRIED ALONE — RETIRED IN FULL (Fuad 2026-09-21, second ruling: "Nu Metal, Hardcore,
+          // Thrash and Metalcore need a phase-out... it just doesn't work here. Others are fine.")
+          // The block was the salvage of the retired Top-of-each-scene module: first the umbrella
+          // scenes went (Alternative Rock through Electro — tagging artifacts), and the narrow-scene
+          // survivors turned out not to earn the card either. That empties the set, so the whole
+          // block and its solos computation are gone; Style atlas is the rarest rows alone again,
+          // which was always its good half. sc.solo still ships in the build should a better home
+          // ever appear.
           return (
             <section className="st-card">
               <div className="st-label">Style atlas</div>
@@ -1496,24 +1496,6 @@ function StoriesView({ t, go, seed }) {
                 Of <em>{S.uniqueStyles}</em> distinct styles across {S.artistsCovered} Discogs-indexed artists, these hang
                 on the narrowest set of carriers{sole > 0 && <> — <em>{sole}</em> on a single artist</>}.
               </div>
-              {solos.length > 0 && (
-                <>
-                  <div className="st-yir-h">Carried alone</div>
-                  <div className="st-atlas" style={{ marginBottom: 16 }}>
-                    {solos.map(sc => (
-                      <div key={sc.style} className="st-atlas-row" data-link={clickable(sc.solo.name)}
-                        onClick={() => goIf(sc.solo.name)} style={{ cursor: clickable(sc.solo.name) ? "pointer" : "default" }}>
-                        <div className="st-atlas-style">{sc.style}</div>
-                        <div className="st-atlas-via" style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                          <GenCover hue={sc.solo.hue} name={sc.solo.name} size={32} radius={3} />
-                          <span style={{ color: `oklch(0.78 0.14 ${sc.solo.hue})`, fontWeight: 500 }}>{sc.solo.name}</span>
-                        </div>
-                        <div className="st-atlas-n">{fmt(sc.solo.plays)}<small> plays</small></div>
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )}
               <div className="st-atlas">
                 {S.rarest.map(r => (
                   <div key={r.style} className="st-atlas-row">
@@ -1558,8 +1540,15 @@ function StoriesView({ t, go, seed }) {
                   <div key={i} style={{ display: "grid", gridTemplateColumns: "88px 1fr", gap: 14, alignItems: "start" }}>
                     <div className="r-mono" style={{ fontSize: 11, color: "var(--ink-soft)", paddingTop: 2, whiteSpace: "nowrap" }}>{yr(e.start)}–{yr(e.end)}</div>
                     <div style={{ minWidth: 0 }}>
-                      <div style={{ display: "flex", height: 9, borderRadius: 5, overflow: "hidden", background: "var(--bg-3)", marginBottom: 6 }}>
-                        {e.topFams.map((f, j) => <div key={j} title={`${f.fam} ${f.share}%`} style={{ width: f.share + "%", background: `oklch(0.62 0.15 ${f.hue})` }} />)}
+                      {/* HOLLOW, NOT FILLED (Fuad 2026-09-21: "hollow fills and strokes on
+                          chapters to fit the style of the rest of Rotation") — the era share
+                          bars drop their solid blocks for the stroke-first skin the Lyrical
+                          diet and Overview's bars draw in: 1px hue stroke over a 12% wash,
+                          segments separated by a 2px seam instead of a clipped fill. */}
+                      <div style={{ display: "flex", height: 11, gap: 2, marginBottom: 6 }}>
+                        {e.topFams.map((f, j) => <div key={j} title={`${f.fam} ${f.share}%`} style={{ width: f.share + "%",
+                          boxSizing: "border-box", borderRadius: 2, border: `1px solid oklch(0.70 0.14 ${f.hue} / 0.65)`,
+                          background: `oklch(0.70 0.14 ${f.hue} / 0.12)` }} />)}
                       </div>
                       <div style={{ fontSize: 12, color: "var(--ink-soft)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                         {e.topFams.map(f => f.fam).join(" · ")}
