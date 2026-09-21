@@ -498,7 +498,13 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
       : (CD[calPeriod.gran] && CD[calPeriod.gran][calPeriod.key]);   // fall back to the stored record
     if (!P) return null;
     const NM = CD.names;
-    const arts = (P.a || []).map(([ni, p]) => { const name = NM[ni]; const id = (R.idForName && R.idForName(name)) || R.slug(name); const rec = R.byId[id] || (R.expById && R.expById[id]); return { a: { id, name, hue: rec ? rec.hue : 210 }, p }; });
+    // SPREAD THE RESOLVED RECORD, don't mint a bare {id,name,hue} (2026-09-21, backend audit's
+    // live find): this line already looks the real record up for its hue and then THREW IT AWAY,
+    // which is the single root of the bare-row class — every downstream field read (debutYears'
+    // d, the READS bar's lv, peak-year's yp) either null'd out under a calendar pick or had to
+    // grow its own recOf. Carrying the whole record here kills the class at the source; the
+    // mint-shape fields stay last so id/name always win.
+    const arts = (P.a || []).map(([ni, p]) => { const name = NM[ni]; const id = (R.idForName && R.idForName(name)) || R.slug(name); const rec = R.byId[id] || (R.expById && R.expById[id]); return { a: { ...(rec || {}), id, name, hue: rec ? rec.hue : 210 }, p }; });
     const albums = (P.al || []).map(([ti, ai, p]) => { const artist = NM[ai]; const id = (R.idForName && R.idForName(artist)) || R.slug(artist); return { title: NM[ti], artist, aid: id, plays: p }; });
     const songs = (P.s || []).map(([ti, ai, p]) => { const artist = NM[ai]; const id = (R.idForName && R.idForName(artist)) || R.slug(artist); return { title: NM[ti], artist, aid: id, plays: p }; });
     return { arts, albums, songs, label: calPeriod.key + (calPeriod.gran === "week" ? " (week)" : "") };
