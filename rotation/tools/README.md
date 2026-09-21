@@ -110,7 +110,8 @@ turns UTF-8 punctuation into parse errors. Keep it that way.
 | `lyric-refetch.py` | **stage 0.** Fetches the keys no store holds from LRCLIB and writes them into the scratch lyric store, caching a negative for anything that genuinely has none. Stdlib + langdetect, no GPU |
 | `lyric-extract.py` | **the only script that opens a lyric store.** Resolves keys → text from the on-disk stores, writes a scratch JSONL. Target modes: `--missing-from`, `--scored-sample`, `--themed-sample`, `--keys-file` |
 | `mood-score.py` | the scorer. Verbatim prompt + decoding, strict-JSON parse, register remap, append-only crash-safe resumable store |
-| `mood-emit.js` | merges scores into `genius-mood.json` with four proofs. Dry-run by default |
+| `mood-emit.js` | merges scores into `genius-mood.json` with four proofs. Dry-run by default. **The default write path** |
+| `mood-update.js` | updates EXISTING `genius-mood.json` rows in place, from an explicit printed allowlist, with mutation-shaped proofs. Dry-run by default. The exception, not the default — see *Updating existing rows* |
 | `mood-fidelity.js` | re-score vs the 2026-08 raw outputs: valence MAD, register top-1, mask agreement |
 | `themes-embed.py` | the themes classifier + the calibration gate (`--calibrate`) |
 | `themes-emit.js` | merges themes into `genius-themes.json` with four proofs. Dry-run by default |
@@ -286,6 +287,51 @@ write** if any proof fails:
    `keysAfter - keysBefore == created`
 
 Both files are single-line minified JSON on disk (`JSON.stringify`, no indent). Keep it.
+
+### Updating existing rows — `mood-update.js`
+
+**The append emitter remains the default path.** `mood-emit.js` creates rows and proves it
+never touched one that already existed; anything that can be expressed as a new row goes
+through it, and a run that wants to change rows should first be re-examined for whether it
+really does.
+
+Mutation is legitimate in exactly one case: **the instrument of record has superseded the
+row**. A row written by an earlier, weaker instrument — a pre-Qwen three-element row whose
+valence is NULL, or whose NRC valence carries no register — is not data the whole-lyric model
+is overwriting out of preference; it is a row that has since been *read*. Re-scoring is not a
+second opinion there, it is the first one. Everything else — a nicer number, a re-run of an
+already-read row, a taste edit — is not a reason, and the tool refuses the case by name:
+a row already carrying flag/register is `already-full-read`, and the run asserts that no such
+key reached the allowlist.
+
+What the tool does, and how it proves it:
+
+- **Allowlist.** Nothing is written that is not on an explicit allowlist derived from the
+  input and **printed in full**, row-before → row-after. A key joins it only if it has a
+  usable score, already exists in `genius-mood.json` (an update cannot create), its existing
+  row is a three-element pre-model row, it clears the same coherence gate, and its register
+  maps through the same vocabulary. `--roster` reconciles the allowlist, the gate refusals
+  and the keys that never reached the scorer back to the full input roster.
+- **NRC's columns are preserved.** Only valence, `flag` and `regIdx` are written; `emoIdx`
+  and `words` are copied through verbatim, per MOOD_PIPELINE.md §2.
+- **Proofs**, printed as a dry run and then re-run against the bytes on disk after the write:
+  **A** masked serialisation — the store serialised with every allowlisted row replaced by a
+  sentinel is byte-identical before and after, same sentinel count on both sides, key
+  sequence unchanged (so every non-allowlisted row is byte-identical and no key was added,
+  removed or reordered — the mutation-shaped replacement for emit's byte-prefix proof);
+  **B** schema — every updated row is the documented five-element row, NRC's columns intact,
+  count equal to the allowlist; **C** round trip — re-parses and re-serialises to the same
+  bytes at the same key count; **D** fault injection — nine synthetic rows with a bad key or
+  a bad shape pushed through the same classifier the real pass uses, each of which must be
+  refused **by name**.
+- Dry-run by default, `--write` gated on every proof, a pre-write copy kept in the scratch
+  dir, and the run exits non-zero telling you to restore it if the post-write re-verification
+  fails.
+
+```powershell
+node rotation\tools\mood-update.js --store $S\mood-work\straggler-scores.jsonl --roster $S\mood-work\stragglers.txt
+node rotation\tools\mood-update.js --store $S\mood-work\straggler-scores.jsonl --roster $S\mood-work\stragglers.txt --write
+```
 
 ---
 
@@ -504,13 +550,13 @@ instead of 88.53%.
   valence over `angry`/`anguished`, which on a new row has no NRC valence to fall back on
   and so is refused rather than flagged `2`. The 277 are tracks the anchor space genuinely
   has no bucket for: near-wordless hooks, ad-libs, spoken intros.
-- **The 59 pre-Qwen straggler rows are scored but NOT written.** 49 of them carry a NULL
-  valence and 10 an NRC valence with no register; all 59 are three-element rows from before
-  the model pass. 52 have obtainable lyrics and were scored on this instrument; 51 clear both
-  gates. Writing them means **mutating existing rows**, which every emit proof here exists to
-  forbid — proofs 1 and 2 fail by construction on an in-place update. Their scores wait in
-  `.sptmp/mood-work/straggler-scores.jsonl`; putting them in needs an update path and the
-  owner's ruling, not a maintenance run.
+- **The 59 pre-Qwen straggler rows: 51 written, 8 left.** 49 carried a NULL valence and 10 an
+  NRC valence with no register; all 59 were three-element rows from before the model pass. 52
+  had obtainable lyrics and were scored on this instrument; 51 cleared both gates and were
+  written in place by `mood-update.js` on the owner's ruling (row count unchanged at 28,752,
+  flag `1` rows 27,767 → 27,818). The remaining 8 are untouched three-element rows: 3
+  instrumental and 4 LRCLIB not-found, which never reached the scorer, and 1 refused by the
+  coherence gate (a bright valence over `angry`, with no NRC valence to fall back on).
 - 362 corpus tracks were already accepted as having no obtainable lyric (MOOD_PIPELINE.md
   §6) and are cached as negatives.
 - The ten rejected gap-fill reads from 2026-08 still sit in
