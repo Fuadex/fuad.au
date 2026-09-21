@@ -129,10 +129,19 @@ if (!about) {
     // every key referenced by the index exists in the source
     const badKeyRef = (I.keys || []).some(k => !srcKeys.has(k));
     ok(!badKeyRef, "theme index: every index key exists in llm-about");
-    // spot-check: token id refs are in range and resolve to real keys
+    // spot-check: token id refs are in range and resolve to real keys.
+    // v2 (2026-09-22): postings are delta+base36 strings ("c,9x,2" — see shard-about.js); decode
+    // with the same split + prefix-sum the consumer uses. v1 int arrays still accepted, and a
+    // string that decodes non-monotonic or NaN counts as a bad ref.
+    const postings = (p) => {
+      if (Array.isArray(p)) return p;
+      const parts = String(p).split(","), out = new Array(parts.length);
+      let acc = 0; for (let i = 0; i < parts.length; i++) { const d = parseInt(parts[i], 36); if (!(d >= 0)) return [NaN]; acc += d; out[i] = acc; }
+      return out;
+    };
     let refBad = 0, checked = 0;
-    for (const t in I.tok) { for (const id of I.tok[t]) { checked++; if (!(id >= 0 && id < I.keys.length)) refBad++; } if (checked > 20000) break; }
-    ok(refBad === 0, `theme index: token→id refs in range (${checked} sampled)`);
+    for (const t in I.tok) { let prev = -1; for (const id of postings(I.tok[t])) { checked++; if (!(id >= 0 && id < I.keys.length) || id <= prev) refBad++; prev = id; } if (checked > 20000) break; }
+    ok(refBad === 0, `theme index: token→id refs in range + ascending (${checked} sampled)`);
   }
 }
 
