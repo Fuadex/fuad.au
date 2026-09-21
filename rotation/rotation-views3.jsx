@@ -3482,7 +3482,7 @@ function TourCal({ events, gran, setGran, selKey, setSelKey, keyOf }) {
       <div className="gv-tcal-head">
         <span className="r-mono gv-tcal-hint">
           {selKey ? <>filtering <b>{selKey}</b> · <em onClick={() => setSelKey(null)}>clear ✕</em></>
-            : `when — click a ${gran === "d" ? "day" : gran === "w" ? "week" : "month"} to filter`}
+            : <>when — <span className="r-fine">click</span><span className="r-coarse">tap</span> a {gran === "d" ? "day" : gran === "w" ? "week" : "month"} to filter</>}
         </span>
         <div className="r-seg r-seg-sm">
           {["d", "w", "m"].map(k => <button key={k} data-on={gran === k} onClick={() => { setGran(k); setSelKey(null); }}>{k}</button>)}
@@ -3867,9 +3867,17 @@ function TourMap({ events, allEvents, city, setCity, hiPath, hiHue, routes, focu
   return (
     <div className="gv-tmap-wrap">
       <div className="gv-tmap-svgwrap">
-        <svg ref={svgRef} className="gv-tmap" viewBox="0 70 1000 315" role="img" aria-label="upcoming events map — scroll to zoom, drag to pan, click a city to filter"
+        {/* touch-action: none -> pan-y (audit B6, 2026-09-22). This map opens ALREADY zoomed (the
+            Europe fit, k~1.9) and sits mid-page above the gig list, so "none" meant a finger that
+            landed anywhere on it panned the map and the page under it would not move — the one
+            gesture a phone reader needs most, from the one element in the way. pan-y hands a
+            vertical swipe back to the document and keeps the sideways one for the pan; the pan is
+            still free in both axes once the gesture has started horizontally, two-finger pinch is
+            untouched, and the +/−/⟲ buttons remain the precise path. (Same three-way as the shelf
+            scrubber, audit B5.) */}
+        <svg ref={svgRef} className="gv-tmap" viewBox="0 70 1000 315" role="img" aria-label="upcoming events map — pinch or scroll to zoom, drag to pan, tap a city to filter"
           onPointerDown={nav.onDown} onPointerLeave={nav.onLeave}
-          style={{ cursor: "grab", touchAction: "none" }}>
+          style={{ cursor: "grab", touchAction: "pan-y" }}>
           <g ref={gRef} transform={`translate(${tf.x} ${tf.y}) scale(${tf.k})`}>
             {landEls}
             {/* routes for the selected city's bands — links the clicked circle to their other dates */}
@@ -3970,12 +3978,12 @@ function TourSection({ go, gigDate }) {
     for (const r of arr) r.events.sort((p, q) => (p.d < q.d ? -1 : 1));
     return arr.sort((p, q) => q.plays - p.plays);
   }, [pool, gkey, sub, city, selKey, gran]);
-  const T = R.TOUR;
-  if (!T) return null;
-  const hiArt = hi ? artists.find(a => a.id === hi) : null;
-  const hiPath = hiArt ? hiArt.events.filter(e => e.ll).map(e => [(e.ll[1] + 180) / 360 * 1000, (90 - e.ll[0]) / 180 * 500]) : null;
   // routes are opt-in per artist via the row checkboxes (drawing every band at once was a mess —
   // Fuad). Each checked artist's FULL itinerary (within the genre/time filter, all cities) is drawn.
+  // HOISTED ABOVE THE EARLY RETURN (2026-09-22): this memo and the page-reset effect below sat
+  // under `if (!T) return null` — the latent React #310 the B6 recon flagged. If TOUR data ever
+  // transitioned absent→present across renders the hook count would change and the view would
+  // crash; check-jsx cannot see it (house rule 14).
   const checkedRoutes = React.useMemo(() => {
     if (!checked.size) return null;
     const byA = new Map();
@@ -3986,9 +3994,28 @@ function TourSection({ go, gigDate }) {
     }
     return [...byA.values()].filter(r => r.pts.length >= 2);
   }, [mapEvents, checked]);
-  const anyFilt = gkey != null || sub != null || city != null || selKey != null || seenFilt !== "all";
   React.useEffect(() => { setLimit(20); }, [gkey, sub, city, selKey, gran]);   // fresh slice → back to the first page
+  const T = R.TOUR;
+  if (!T) return null;
+  const hiArt = hi ? artists.find(a => a.id === hi) : null;
+  const hiPath = hiArt ? hiArt.events.filter(e => e.ll).map(e => [(e.ll[1] + 180) / 360 * 1000, (90 - e.ll[0]) / 180 * 500]) : null;
+  const anyFilt = gkey != null || sub != null || city != null || selKey != null || seenFilt !== "all";
   const shown = artists.slice(0, limit);
+  // 2026-09-22 (audit B6) — the map's per-stop readout. Every dot carries a <title> ("London (GB)
+  // · 391 events") and a native tooltip is a HOVER, so a phone could select a city and never read
+  // the count it just selected. The foot line under the map already swaps by state, so the selected
+  // stop goes there — the same words the tooltip has, in a slot that exists on every device. Not a
+  // cursor readout: the 2026-07-12 call against printing cities under the pointer stands; this only
+  // names the one stop you deliberately picked, and nothing prints until you pick.
+  // Deliberately NOT a useMemo: the nearest hook site is below this component's `if (!T) return
+  // null`, and nothing goes under an early return (house rule). It is a single guarded pass over
+  // mapEvents that only runs while a stop is actually selected.
+  const cityRead = (() => {
+    if (!city) return null;
+    const i = city.indexOf("|"), cc = city.slice(0, i), name = city.slice(i + 1);
+    let n = 0; for (const x of mapEvents) if (x.e.cc === cc && x.e.city === name) n++;
+    return { cc, name, n };
+  })();
   const chips = [];
   if (selKey) chips.push([selKey, () => setSelKey(null)]);
   if (city) chips.push([city.split("|")[1], () => setCity(null)]);
@@ -4041,7 +4068,8 @@ function TourSection({ go, gigDate }) {
           <div className="gv-tmap-foot">
             <span className="r-mono gv-tmap-hint">{hiArt ? <>tracing <b>{hiArt.name}</b>'s route — dots numbered in date order</>
               : checked.size ? <>mapping <b>{(checkedRoutes || []).length}</b> route{(checkedRoutes || []).length !== 1 ? "s" : ""} — tick artists below to add · <em style={{ cursor: "pointer", color: "var(--accent)" }} onClick={() => setChecked(new Set())}>clear ✕</em></>
-              : "where — scroll to zoom · drag to pan · click a city to filter · tick artists below to draw their tour routes"}</span>
+              : cityRead ? <><b>{cityRead.name}</b> ({cityRead.cc}) — {cityRead.n} event{cityRead.n !== 1 ? "s" : ""} in this slice · <em style={{ cursor: "pointer", color: "var(--accent)" }} onClick={() => setCity(null)}>clear ✕</em></>
+              : <>where — <span className="r-fine">scroll to zoom · drag to pan · click a city to filter</span><span className="r-coarse">pinch to zoom · drag sideways to pan · tap a city to filter</span> · tick artists below to draw their tour routes</>}</span>
           </div>
           <TourCal events={calEvents} gran={gran} setGran={setGran} selKey={selKey} setSelKey={setSelKey} keyOf={keyOf} />
         </div>

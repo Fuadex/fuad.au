@@ -248,6 +248,16 @@ function MapView({ go, embedded, extYear, onYear, calPeriod, onStats, calSlot, s
   const ptrs = React.useRef(new Map());
   const pinch = React.useRef(null);
   const moved = React.useRef(false);
+  // 2026-09-22 (audit B6) — TOUCH READOUT. The bubbles hovered on mouseEnter and opened on click,
+  // which on a finger collapsed into one event: a tap flew straight into the country and the line
+  // above the map — flag, name, plays, artist count — was unreadable on a phone, though it is the
+  // only place those numbers appear before you commit. Touch now gets the two moves a mouse has:
+  // the first tap READS the bubble (the hover equivalent, pinned), a second tap on the same bubble
+  // OPENS it. ptrKind says which device the click came from (set on the svg's pointerdown, which
+  // bubbles from the circle and always precedes the click); tapRead remembers which bubble a
+  // finger has already read. Mouse passes through both refs untouched — one click, same as ever.
+  const ptrKind = React.useRef("mouse");
+  const tapRead = React.useRef(null);
   React.useEffect(() => { viewRef.current = view; }, [view]);
   // Pan/zoom by writing the <g> transform directly each frame — re-rendering the whole map (land +
   // bubbles) on every pointermove crashes mobile browsers (GPU/memory). We commit to React state once
@@ -376,6 +386,7 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
   }, [world]);
   const onDown = (e) => {
     setViewAnim(false);   // dragging must be instant, not eased
+    ptrKind.current = e.pointerType;   // audit B6 2026-09-22 — a bubble's click needs to know
     ptrs.current.set(e.pointerId, { x: e.clientX, y: e.clientY }); moved.current = false;
     if (ptrs.current.size === 1) drag.current = { x: e.clientX, y: e.clientY, vx: viewRef.current.x, vy: viewRef.current.y }; // mouse, or one finger when zoomed
   };
@@ -405,9 +416,20 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
     // no active gesture → the cursor fisheye owns the move (mouse only; touch has no hover)
     if (e.pointerType === "mouse") runFisheye(e.clientX, e.clientY);
   };
-  const onUp = (e) => { if (e && e.pointerId != null) ptrs.current.delete(e.pointerId); if (ptrs.current.size < 2) pinch.current = null; if (ptrs.current.size === 0) { drag.current = null; commitView(); } };
+  const onUp = (e) => {
+    if (e && e.pointerId != null) ptrs.current.delete(e.pointerId); if (ptrs.current.size < 2) pinch.current = null; if (ptrs.current.size === 0) { drag.current = null; commitView(); }
+    // 2026-09-22 (audit B6) — a finger that lands on open water releases the pinned readout and the
+    // "already read" arming with it, so the next tap on a bubble reads it rather than flying to it.
+    // Guarded on the target: a bubble's own pointerup bubbles through here too.
+    if (ptrKind.current === "touch" && !moved.current && e && e.target && !(e.target.classList && e.target.classList.contains("mp-bub"))) { tapRead.current = null; setHi(null); }
+  };
   // only clear hover on leave — never drop an active drag/pinch (pointer capture keeps the gesture
   // alive past the edge; the window pointerup/cancel handler below does the real cleanup on release)
+  // Deliberately NOT guarded against touch (audit B6, 2026-09-22): a finger's pointerleave fires on
+  // release, but the compatibility click is dispatched AFTER it, so the tap re-pins the readout the
+  // leave just cleared — and a gesture that leaves WITHOUT a click (a drag off the bubble) correctly
+  // ends up with no readout at all. Don't "fix" this by skipping touch here; that keeps a stale
+  // bubble lit after a pan.
   const onLeave = () => { setHi(null); resetFisheye(); };
   // a gesture can end off the map (finger/mouse released outside its bounds) — clear drag state globally
   React.useEffect(() => {
@@ -880,25 +902,41 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
         </div>
       </div>
 
-      {/* fixed-height + nowrap so hover text (with its taller flag glyph) can NEVER reflow the map below */}
-      <div style={{ fontFamily: "var(--serif)", fontSize: 15, color: "var(--ink-soft)", margin: "10px 0", height: 26, lineHeight: "26px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+      {/* fixed-height + nowrap so hover text (with its taller flag glyph) can NEVER reflow the map
+          below. Those rules moved into .mp-hint (audit B6, 2026-09-22) — unchanged for a mouse, but
+          a coarse pointer gets a fixed TWO-line box instead, because at 360 one nowrap line cut
+          "scroll to zoom, drag to pan" off mid-word behind an ellipsis. Two lines, always, readout
+          or help: the height is the same either way, so the map below still never moves. */}
+      <div className="mp-hint">
         {focus ? <><span style={{ cursor: "pointer", color: "var(--accent)", fontFamily: "var(--mono)", fontSize: 12 }} onClick={reset}>‹ world</span> &nbsp;
             {/* 2026-08-28: show selected city after country when user drills country → city */}
             {sel && sel.kind === "city"
               ? <><b style={{ color: "var(--ink)" }}>{focusName}</b><span style={{ color: "var(--ink-faint)" }}> · </span>{selFlag && <><span style={{ fontSize: 18 }}>{selFlag}</span> </>}<b style={{ color: "var(--ink)" }}>{selName}</b></>
-              : <>cities of <b style={{ color: "var(--ink)" }}>{focusName}</b> — click one for its scene</>}</>
+              : <>cities of <b style={{ color: "var(--ink)" }}>{focusName}</b> — <span className="r-fine">click one for its scene</span><span className="r-coarse">tap one twice for its scene</span></>}</>
           : hb ? (hb.kind === "city"
             ? <><span style={{ fontSize: 18 }}>{hb.c.flag}</span> <b style={{ color: "var(--ink)" }}>{hb.c.city}</b>, {hb.c.country} — {fmt(yearIdx != null ? sizeOf(hb.c) : hb.c.plays)} plays{yearIdx != null ? " in " + geoYears[yearIdx] : " · " + hb.c.artists + " artists"}</>
-            : <><span style={{ fontSize: 18 }}>{hb.c.flag}</span> <b style={{ color: "var(--ink)" }}>{hb.c.name}</b> — {fmt(yearIdx != null ? sizeOf(hb.c) : hb.c.plays)} plays{yearIdx != null ? " in " + geoYears[yearIdx] : " · " + hb.c.artists + " artists"} <span style={{ color: "var(--ink-faint)", fontSize: 12 }}>(click to zoom in)</span></>)
+            : <><span style={{ fontSize: 18 }}>{hb.c.flag}</span> <b style={{ color: "var(--ink)" }}>{hb.c.name}</b> — {fmt(yearIdx != null ? sizeOf(hb.c) : hb.c.plays)} plays{yearIdx != null ? " in " + geoYears[yearIdx] : " · " + hb.c.artists + " artists"} <span style={{ color: "var(--ink-faint)", fontSize: 12 }}><span className="r-fine">(click to zoom in)</span><span className="r-coarse">(tap again to zoom in)</span></span></>)
             : sel && sel.kind === "city" ? <>{selFlag && <><span style={{ fontSize: 18 }}>{selFlag}</span> </>}<b style={{ color: "var(--ink)" }}>{selName}</b>{/* 2026-08-28: city selected in flat city mode */}</>
             : filtSums ? <>showing <b style={{ color: "var(--ink)" }}>{filt.sub != null ? R.SUBS[filt.sub].name : R.FAMILIES[filt.fam].family}</b> across {mode === "city" ? "cities" : "the world"} — bigger means it ran deeper there{list[0] ? <> · led by <b style={{ color: "var(--ink)" }}>{list[0].flag} {list[0].code ? list[0].name : list[0].city}</b></> : null}</>
-            : <span style={{ color: "var(--ink-faint)" }}>{mode === "city" ? "every dot a city — hover to read, click for its scene" : "click a country to zoom into its cities · scroll to zoom, drag to pan"}</span>}
+            : <span style={{ color: "var(--ink-faint)" }}>
+                {/* the same sentence in both dialects (audit B6, 2026-09-22): a finger has no
+                    hover and no wheel, and it reads a bubble on the first tap, opens on the second. */}
+                <span className="r-fine">{mode === "city" ? "every dot a city — hover to read, click for its scene" : "click a country to zoom into its cities · scroll to zoom, drag to pan"}</span>
+                <span className="r-coarse">{mode === "city" ? "every dot a city — tap to read it, tap again for its scene" : "tap a country to read it, again to zoom in · pinch to zoom, drag to pan"}</span>
+              </span>}
       </div>
 
       <div className="mp-grid">
       <div className="mp-map">
       <div className="r-card" style={{ padding: 0, overflow: "hidden", background: "var(--bg-2)" }}>
-        <svg ref={svgRef} viewBox={`0 0 ${world.w} ${world.h}`} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: view.s > 1 ? "none" : "pan-y" }}
+        {/* touch-action was pan-y at rest and "none" once zoomed — so the moment you drilled into a
+            country the map ate every vertical swipe and the page under it could not be scrolled at
+            all, with no visible way back except the ‹ world link. pan-y at every zoom level now
+            (audit B6, 2026-09-22): a vertical swipe always belongs to the page, and the single-
+            finger pan survives as a gesture that STARTS sideways — once the browser hands the
+            gesture over, the pan is free in both axes. Two-finger pinch/pan is unaffected, and it
+            matches what the Explore clouds and the gigs map settled on in the same pass. */}
+        <svg ref={svgRef} viewBox={`0 0 ${world.w} ${world.h}`} style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "pan-y" }}
           onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onPointerCancel={onUp} onPointerLeave={onLeave}>
           <g ref={gRef} transform={`translate(${view.x} ${view.y}) scale(${view.s})`}>
             {world.land.map((d, i) => <path key={i} d={d} fill="var(--bg-3)" stroke="var(--rule-2)" strokeWidth={0.4 / view.s} strokeOpacity={coastFade(view.s)} />)}
@@ -930,7 +968,14 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
                 stroke={inPeriod ? "var(--accent)" : col} strokeWidth={((inPeriod ? 1.8 : on ? 1.6 : 0.7)) / view.s}
                 style={{ cursor: "pointer", pointerEvents: b.r ? "auto" : "none",   // the shrunk-away lens must not eat clicks
                   transition: "r .6s cubic-bezier(.3,.8,.3,1), fill .5s, fill-opacity .12s" }}
-                onMouseEnter={() => setHi(b.key)} onClick={(e) => { e.stopPropagation(); if (!moved.current) openBubble(b); }} />;
+                onPointerEnter={() => setHi(b.key)} onClick={(e) => {
+                  e.stopPropagation();
+                  if (moved.current) return;
+                  // audit B6 2026-09-22 — first tap reads, second opens (see ptrKind/tapRead above)
+                  if (ptrKind.current === "touch" && tapRead.current !== b.key) { tapRead.current = b.key; setHi(b.key); return; }
+                  tapRead.current = null;
+                  openBubble(b);
+                }} />;
             })}
           </g>
         </svg>
@@ -1104,6 +1149,22 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
       </div>
 
       <style>{`.map-ctl { display: flex; gap: 14px 18px; flex-wrap: wrap; align-items: center; margin-top: 6px; }
+        /* THE LINE ABOVE THE MAP (audit B6, 2026-09-22). It carries three states — the help copy,
+           the hovered/tapped bubble's readout, the focused-country breadcrumb — and its height is
+           load-bearing: it must not change between them, or the map jumps whenever you read a dot.
+           Fine pointers keep the exact rules it shipped with (one 26px nowrap line, ellipsis).
+           Coarse pointers get TWO 19px lines and normal wrapping: at 360 the help copy is 456px of
+           text in a 328px box, so the one-line version simply deleted the second half of the
+           sentence. Still a fixed height, so the no-reflow guarantee holds on a phone too. */
+        .mp-hint { font-family: var(--serif); font-size: 15px; color: var(--ink-soft); margin: 10px 0;
+          height: 26px; line-height: 26px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        @media (pointer: coarse) {
+          .mp-hint { height: 38px; line-height: 19px; white-space: normal; font-size: 13.5px;
+            /* two lines, then an ellipsis — the genre-spread state ("showing X across the world…")
+               is the one message that can still outrun the box, and it should say so rather than
+               vanish. line-clamp is the only way to get an ellipsis on a wrapped line. */
+            display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+        }
         /* the map band's columns must never grow past their share: bare fr / block children have an
            implicit min-width:auto, so a wide flow/results/list — or drilling a subgenre — could blow
            the whole band past the viewport. Pin every child + track to a 0 min (Fuad 2026-07-16). */

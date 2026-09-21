@@ -179,6 +179,23 @@ body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
    footnote. Only .ov-pulseslot forces 27px, so the fix belongs there; see rotation-views1.jsx. */
 .r-mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
 
+/* ───── pointer-dependent copy (2026-09-22, audit B6) ─────
+   Every flagship chart tells you how to work it — "hover a day", "click to pick it", "scroll to
+   zoom" — and on a phone all three name a device that isn't there. Write BOTH wordings into the
+   same sentence, mark the mouse half .r-fine and the touch half .r-coarse, and the media query
+   picks one. CSS rather than a matchMedia hook on purpose: no state, no re-render, nothing to
+   re-run when a 2-in-1 is folded from laptop to tablet mid-session, and it cannot desync from
+   the styling that already keys off (pointer: coarse) elsewhere (.bc-handle's 44px grips in
+   rotation-calendar.jsx; .mp-hint, .cal-detail and .xp-scat-read joined it in the same pass).
+   .r-coarse is the one that hides by default, so a renderer that ignores the query still shows a
+   complete sentence rather than a blank hint. Keep the two halves SHORT — a coarse viewport is a
+   360px one, and these lines live in fixed-height rows. */
+.r-coarse { display: none; }
+@media (pointer: coarse) {
+  .r-fine { display: none; }
+  .r-coarse { display: inline; }
+}
+
 /* ───── generative cover ───── */
 .gc { position: relative; overflow: hidden; border-radius: 3px; background: #0c0a08;
   box-shadow: inset 0 0 0 1px rgba(255,255,255,.05), 0 2px 10px rgba(0,0,0,.4); flex: none; }

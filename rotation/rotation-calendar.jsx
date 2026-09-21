@@ -582,7 +582,7 @@ function BarcodeScrubber({ years, selYear, onYear, gran, setGran, setSel, custom
             <button className="bc-clear" onClick={() => setCustomRange(null)} title="clear range">✕</button></>;
         })() : hoverInfo
           ? <span><b>{fDd(hoverInfo.ms)}</b> · {fmt(hoverInfo.v)} plays · <span className="bc-hov">{hoverInfo.tier}</span></span>
-          : <span className="bc-hint">click a year to clip a range, then drag the edges</span>}
+          : <span className="bc-hint"><span className="r-fine">click</span><span className="r-coarse">tap</span> a year to clip a range, then drag the edges</span>}
       </div>
       <div className="r-seg bc-seg bc-viewseg">
         {[["barcode", "barcode"], ["horizon", "horizon"]].map(([k, l]) =>
@@ -877,7 +877,12 @@ function CalendarView({ go, seed }) {
       <div className="cal-detail">
         {hov
           ? <><b style={{ color: "var(--ink)" }}>{hov.date}</b>{hov.count ? <> · {fmt(hov.count)} plays{hov.top ? <> — mostly <span className="cal-art" onClick={() => go("artist", R.slug(hov.top[0]))}>{hov.top[0]}</span> ({hov.top[1]})</> : null}</> : <span style={{ color: "var(--ink-faint)" }}> · quiet</span>}</>
-          : <span style={{ color: "var(--ink-faint)" }}>hover a day, or click to open the {gran} overview below…</span>}
+          : <span style={{ color: "var(--ink-faint)" }}>
+              {/* the gesture this reader actually has (audit B6, 2026-09-22) — on a phone there is
+                  no hover, and tapping a day now fills this same line in. */}
+              <span className="r-fine">hover a day, or click to open the {gran} overview below…</span>
+              <span className="r-coarse">tap a day to read it — and to open the {gran} overview below…</span>
+            </span>}
       </div>
 
       <div className="cal-heatwrap">
@@ -901,7 +906,14 @@ function CalendarView({ go, seed }) {
                   return <rect key={d} x={leftPad + col * step} y={gy + row * step} width={cell} height={cell} rx={1.5}
                     fill={color(cv)} stroke={onSel ? "var(--accent)" : onHov ? "var(--ink)" : "none"} strokeWidth={onSel ? 1.4 : onHov ? 1 : 0}
                     style={{ cursor: "pointer" }}
-                    onMouseEnter={() => setHover({ y, d, count: cv, top: selArr ? null : (Y.tops[d] || null) })}
+                    /* onMouseEnter -> onPointerEnter (audit B6, 2026-09-22). Identical for a mouse
+                       (React synthesises both from the same over/out pair), but a FINGER also
+                       raises pointerover on the cell it lands on — so the day readout above the
+                       grid, which a touch device could never reach, now fills in on tap. The svg
+                       still clears on mouseleave only, so a tapped day stays read until the next
+                       tap: pinned, not flickering. Touch's implicit pointer capture keeps a
+                       sideways scroll of the grid from re-reading every cell it slides over. */
+                    onPointerEnter={() => setHover({ y, d, count: cv, top: selArr ? null : (Y.tops[d] || null) })}
                     onClick={() => pick(y, d)} />;
                 })}
               </g>
@@ -912,7 +924,7 @@ function CalendarView({ go, seed }) {
 
       <div style={{ display: "flex", alignItems: "center", gap: 7, marginTop: 12, fontFamily: "var(--mono)", fontSize: 10, color: "var(--ink-faint)" }}>
         less{[0, 0.18, 0.4, 0.68, 1].map((f, i) => <span key={i} style={{ width: 11, height: 11, borderRadius: 2, background: f === 0 ? "var(--bg-3)" : color(f * max) }} />)}more
-        <span style={{ marginLeft: "auto" }}>click the grid to open a {gran} ↓</span>
+        <span style={{ marginLeft: "auto" }}><span className="r-fine">click</span><span className="r-coarse">tap</span> the grid to open a {gran} ↓</span>
       </div>
       </div>
       {/* rhythm — the vertical hour clock (moved from Explore), sitting to the right of the calendar.
@@ -1141,6 +1153,17 @@ function CalendarView({ go, seed }) {
         .cal-heatwrap > .cal-clock { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 88px); overflow-y: auto; }
         @media (max-width: 900px) { .cal-heatwrap { grid-template-columns: 1fr; } .cal-heatwrap > .cal-clock { position: static; max-height: none; overflow-y: visible; } }
         .cal-detail { font-family: var(--serif); font-size: 15px; color: var(--ink-soft); margin-bottom: 12px; min-height: 22px; }
+        /* THE ROW MUST NOT RESIZE WHEN IT SWAPS (audit B6, 2026-09-22). On a phone the help copy
+           wraps to two lines and a day readout is usually one, so filling this line in shrank it by
+           20px and pulled the whole grid up under the finger — measured: a tap whose pointerover
+           read 2 Apr 2011 had moved the grid 32px by the time the click landed, and the panel
+           opened on April 2012. One tap, two different days. Freezing the height on coarse (two
+           lines, clamped) makes the grid stand still, which is the same guarantee .mp-hint gives
+           the Overview map. Fine pointers keep min-height: both states are one line there. */
+        @media (pointer: coarse) {
+          .cal-detail { height: 42px; min-height: 0; line-height: 21px; overflow: hidden;
+            display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+        }
         .cal-art { color: var(--accent); cursor: pointer; border-bottom: 1px solid currentColor; }
         .cal-art:hover { opacity: .8; }
         .cal-ov-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; }

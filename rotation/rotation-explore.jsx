@@ -924,21 +924,49 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
     const vy = vb[1] + (evt.clientY - rect.top) / rect.height * vb[3];
     return { x: vx, y: vy };
   };
+  // nearest dot to a pixel-space point — the hover hit test, lifted out of onMove so a TAP can run
+  // the same test at pointerdown (audit B6, 2026-09-22).
+  const nearest = (p) => {
+    let best = null, bd = 26 * 26;
+    for (const pt of pts) { if (isPageDim(pt.row)) continue; const dx = pt.px - p.x, dy = pt.py - p.y, d = dx * dx + dy * dy; if (d < bd) { bd = d; best = pt; } }
+    return best;
+  };
+  // 2026-09-22 (audit B6) — TOUCH. This chart was pointer-EVENT driven but mouse-SHAPED: the
+  // readout and the click target both came from `hover`, which only ever got set on pointermove,
+  // and a finger produces no move between pointerdown and pointerup. So a tap arrived with hover
+  // null, fell into the empty-space branch, and did precisely nothing — no readout, no pick.
+  // Now: a touch pointerdown runs the hit test itself and pins the readout (tap = the hover
+  // equivalent), and the hit rides on dragRef so pointerup reads it from a ref instead of racing
+  // React's flush. The brush waits for the gesture to declare itself, the same three-way the shelf
+  // scrubber settled on (audit B5, rotation-shelves.jsx): sideways travel brushes, a vertical move
+  // hands the gesture back to the page, a tap that never travelled commits as a click. Mouse keeps
+  // brush-on-press exactly as before — moved is seeded true for it, so it never enters the gate.
   const onDown = (evt) => {
     if (evt.button != null && evt.button !== 0) return;
     const p = toLocal(evt); if (!p) return;
-    dragRef.current = p;
-    setBrush({ x0: p.x, y0: p.y, x1: p.x, y1: p.y });
+    const touch = evt.pointerType === "touch";
+    const hit = touch ? nearest(p) : null;
+    dragRef.current = { x: p.x, y: p.y, touch, cx: evt.clientX, cy: evt.clientY, moved: !touch, hit };
+    if (touch) setHover(hit);                                 // the tap's readout lands on press
+    else setBrush({ x0: p.x, y0: p.y, x1: p.x, y1: p.y });
     try { evt.currentTarget.setPointerCapture(evt.pointerId); } catch (e) {}
   };
   const onMove = (evt) => {
     const p = toLocal(evt); if (!p) return;
-    if (dragRef.current) { setBrush({ x0: dragRef.current.x, y0: dragRef.current.y, x1: p.x, y1: p.y }); return; }
-    let best = null, bd = 26 * 26;
-    for (const pt of pts) { if (isPageDim(pt.row)) continue; const dx = pt.px - p.x, dy = pt.py - p.y, d = dx * dx + dy * dy; if (d < bd) { bd = d; best = pt; } }
-    setHover(best);
+    const d = dragRef.current;
+    if (d) {
+      if (!d.moved) {                                          // touch only — mouse seeds moved true
+        const dx = Math.abs(evt.clientX - d.cx), dy = Math.abs(evt.clientY - d.cy);
+        if (dy > dx) { dragRef.current = null; setBrush(null); return; }   // a page scroll after all
+        if (dx < 6) return;                                    // under the slop: still a tap
+        d.moved = true; setHover(null);
+      }
+      setBrush({ x0: d.x, y0: d.y, x1: p.x, y1: p.y }); return;
+    }
+    setHover(nearest(p));
     fish.run(evt.clientX, evt.clientY);   // proximity fisheye (paused while brushing via dragRef)
   };
+  const onCancel = () => { dragRef.current = null; setBrush(null); };
   const onUp = () => {
     // guard on the REF (always current) — the `brush` STATE can lag a crisp click (setBrush from
     // onDown may not have committed yet), which silently swallowed subgenre/artist clicks (Fuad 2026-07-18).
@@ -946,22 +974,31 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
     dragRef.current = null;
     if (start) {
       const w = brush ? Math.abs(brush.x1 - brush.x0) : 0, h = brush ? Math.abs(brush.y1 - brush.y0) : 0;
-      if (brush && w > 6 && h > 6) { setBrushed({ x0: Math.min(brush.x0, brush.x1), x1: Math.max(brush.x0, brush.x1), y0: Math.min(brush.y0, brush.y1), y1: Math.max(brush.y0, brush.y1) }); setSingleSel(null); setClickSel(null); }
+      if (brush && start.moved && w > 6 && h > 6) { setBrushed({ x0: Math.min(brush.x0, brush.x1), x1: Math.max(brush.x0, brush.x1), y0: Math.min(brush.y0, brush.y1), y1: Math.max(brush.y0, brush.y1) }); setSingleSel(null); setClickSel(null); }
       else {
         // a CLICK (not a drag): subgenre mode toggles that one subgenre's selection (multi stays
         // on drag); artists grain TOGGLES the dot in/out of a picked list — click once to add,
         // again to subtract (Fuad 2026-07-18). Empty-space click clears everything.
+        // A TAP reads its dot off the gesture (start.hit, measured at pointerdown) rather than off
+        // `hover` — same dot, but a ref can't be stale (audit B6, 2026-09-22).
+        const hv = start.touch ? start.hit : hover;
         setBrushed(null);
-        if (hover && mode === "subgenres") setSingleSel(s => s === hover.row.id ? null : hover.row.id);
-        else if (hover) {
+        if (hv && mode === "subgenres") setSingleSel(s => s === hv.row.id ? null : hv.row.id);
+        else if (hv) {
           setSingleSel(null);
-          setClickSel(s => { const n = new Set(s || []); if (n.has(hover.row.id)) n.delete(hover.row.id); else n.add(hover.row.id); return n.size ? n : null; });
+          setClickSel(s => { const n = new Set(s || []); if (n.has(hv.row.id)) n.delete(hv.row.id); else n.add(hv.row.id); return n.size ? n : null; });
         } else { setSingleSel(null); setClickSel(null); }
       }
     }
     setBrush(null);
   };
-  const onLeave = () => { if (!dragRef.current) { setHover(null); fish.reset(); } };
+  // A finger's pointerleave arrives WITH the lift, so clearing on it would wipe the readout the
+  // tap just pinned. Only a mouse leaving the chart resets it; a touch readout stays until the
+  // next tap says otherwise (audit B6, 2026-09-22).
+  const onLeave = (evt) => {
+    if (evt && evt.pointerType === "touch") return;
+    if (!dragRef.current) { setHover(null); fish.reset(); }
+  };
 
   const inBrush = React.useCallback((pt) => brushed ? (pt.px >= brushed.x0 && pt.px <= brushed.x1 && pt.py >= brushed.y0 && pt.py <= brushed.y1) : true, [brushed]);
   const isDimFam = React.useCallback((row) => famDim != null && row.fam !== famDim, [famDim]);
@@ -1085,8 +1122,9 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
 
   return (
     <div style={{ padding: "10px 14px 12px", position: "relative" }}>
-      {/* HOVER READOUT */}
-      <div className="r-mono" style={{ minHeight: 16, marginBottom: 6, fontSize: 11, color: hoverRow ? "var(--ink)" : "var(--ink-faint)", letterSpacing: ".03em" }}>
+      {/* HOVER READOUT — .xp-scat-read reserves the gutter the zoom cluster floats in; without it
+          the help line runs UNDER the +/−/⌂ buttons and reads "drag to br…" (audit B6, 2026-09-22). */}
+      <div className="r-mono xp-scat-read" style={{ minHeight: 16, marginBottom: 6, fontSize: 11, color: hoverRow ? "var(--ink)" : "var(--ink-faint)", letterSpacing: ".03em" }}>
         {hoverRow ? (
           <span>
             <b style={{ color: `oklch(0.7 0.16 ${hoverRow.hue != null ? hoverRow.hue : 300})` }}>{hoverRow.name}</b>
@@ -1095,7 +1133,12 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
             {"  ·  " + (hoverRow.plays || 0).toLocaleString("en-US") + " plays"}
             {mode !== "subgenres" && hoverRow.seenLive ? "  ·  seen live" : ""}
           </span>
-        ) : <span>hover a dot for its values{mode !== "subgenres" ? " · click to pick it (click again to remove)" : ""} · drag to brush a region · scroll to zoom</span>}
+        ) : <span>
+            <span className="r-fine">hover a dot for its values{mode !== "subgenres" ? " · click to pick it (click again to remove)" : ""} · drag to brush a region · scroll to zoom</span>
+            {/* the touch half of the same sentence (audit B6, 2026-09-22) — a finger has no hover,
+                no wheel, and can only brush sideways; ± is the zoom cluster in the corner. */}
+            <span className="r-coarse">tap a dot for its values{mode !== "subgenres" ? " · tap it again to drop it" : ""} · drag sideways to brush · ± to zoom</span>
+          </span>}
       </div>
       <ZoomControls z={z} />
       <div style={{ display: "flex", alignItems: "stretch" }}>
@@ -1105,10 +1148,15 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
         </div>
         <div style={{ position: "relative", flex: 1 }}>
           {/* keep useZoom's ref (wheel-zoom is bound via that ref) + viewBox + --zk, but DON'T spread
-              its mouse pan handlers — this chart's drag is the brush, not a pan. Wheel + reset zoom. */}
+              its mouse pan handlers — this chart's drag is the brush, not a pan. Wheel + reset zoom.
+              touch-action: none -> pan-y (audit B6, 2026-09-22). "none" made the chart a dead zone
+              on a phone: a finger that landed on it could neither brush (no readout, no commit) nor
+              scroll the page past it. pan-y hands a vertical swipe back to the document and keeps
+              the sideways gesture for the brush — the same call the texture / mood / family clouds
+              in this file already ship (see their svg styles). */}
           <svg ref={svgRef} viewBox={z.bind.viewBox}
-            style={{ width: "100%", height: "auto", display: "block", background: "var(--bg-2, #0b0a0f)", borderRadius: 6, touchAction: "none", cursor: "crosshair", "--zk": z.k }}
-            onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onPointerLeave={onLeave}>
+            style={{ width: "100%", height: "auto", display: "block", background: "var(--bg-2, #0b0a0f)", borderRadius: 6, touchAction: "pan-y", cursor: "crosshair", "--zk": z.k }}
+            onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onPointerLeave={onLeave} onPointerCancel={onCancel}>
             {yTicks.map((t, i) => { const y = PAD_T + (1 - t.frac) * PH; return <line key={"gy" + i} x1={PAD_L} x2={W - PAD_R} y1={y} y2={y} stroke="var(--rule)" strokeWidth="1" opacity="0.5" vectorEffect="non-scaling-stroke" />; })}
             {xTicks.map((t, i) => { const x = PAD_L + t.frac * PW; return <line key={"gx" + i} x1={x} x2={x} y1={PAD_T} y2={H - PAD_B} stroke="var(--rule)" strokeWidth="1" opacity="0.5" vectorEffect="non-scaling-stroke" />; })}
             <line x1={PAD_L} x2={PAD_L} y1={PAD_T} y2={H - PAD_B} stroke="var(--ink-faint)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
@@ -1150,7 +1198,7 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
           <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: 8 }}>
             {brushed
               ? <>{listPts.length} in region — top {Math.min(40, listPts.length)} by plays{mode !== "subgenres" ? " · tap to open" : ""}</>
-              : <>{listPts.length} picked — click a dot again to remove it · tap a row to open</>}
+              : <>{listPts.length} picked — <span className="r-fine">click a dot again to remove it</span><span className="r-coarse">tap a dot again to drop it</span> · tap a row to open</>}
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: "2px 16px" }}>
             {listPts.map((pt) => (
@@ -1969,7 +2017,7 @@ function ExploreView({ t, go, setPop, seed }) {
           </div>
           {cells.size > 0 && kind !== "artists" && <div className="r-mono xp-note">filtered to {kind} by artists active in the selected slots</div>}
           {attrSel && lens === "attributes" && attrSel.keys.size > 0 && (
-            <div className="r-mono xp-note">filtered to the brushed region — {attrSel.keys.size} {attrSel.mode === "subgenres" ? "subgenres" : "artists"} · clear the brush (click the chart) to reset</div>
+            <div className="r-mono xp-note">filtered to the brushed region — {attrSel.keys.size} {attrSel.mode === "subgenres" ? "subgenres" : "artists"} · clear the brush (<span className="r-fine">click</span><span className="r-coarse">tap</span> the chart) to reset</div>
           )}
           {items.length === 0
             ? <div className="r-card xp-empty">Nothing in this slice — loosen a filter.</div>
@@ -2193,6 +2241,23 @@ function ExploreView({ t, go, setPop, seed }) {
           border: 1px solid var(--rule); border-radius: 999px; padding: 5px 9px; cursor: pointer; }
         .xp-zoomreset:hover { color: var(--ink); border-color: var(--ink-faint); }
         /* +/−/⌂ zoom cluster, top-right of a scatter — the touch/no-wheel path (Fuad 2026-07-18) */
+        /* The zoom cluster FLOATS over the chart column, and the attribute scatter's help line is
+           the first row of that column — so the two overlapped and the buttons sat on top of the
+           words. At 360 that ate the tail of two clauses ("click to p|ick", "drag to br|ush");
+           it bit on desktop too whenever the line wrapped to the button's height. Reserve the
+           gutter instead of moving the buttons: 30px of control + 10px of air, so the text wraps
+           clear of them at every width. (audit B6, 2026-09-22) */
+        .xp-scat-read { padding-right: 40px; }
+        /* and on a phone it keeps a fixed height: the help copy is three lines there and a dot's
+           values are one or two, so filling it in used to yank the chart up mid-tap. The scatter
+           reads its tapped dot off the gesture, not off the element under the finger, so the jump
+           was cosmetic here rather than wrong (it was NOT in the calendar — see .cal-detail) — but
+           a chart that hops every time you touch it is still a chart you cannot aim at.
+           (audit B6, 2026-09-22) */
+        @media (pointer: coarse) {
+          .xp-scat-read { height: 42px; line-height: 14px; overflow: hidden;
+            display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+        }
         .xp-zoomctl { position: absolute; top: 8px; right: 10px; z-index: 4; display: flex; flex-direction: column; gap: 5px; }
         .xp-zoomctl button { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
           font-family: var(--sans); font-size: 16px; line-height: 1; color: var(--ink-soft);
