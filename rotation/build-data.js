@@ -1155,7 +1155,13 @@ const CANON = new Map();
 {
   const groups = new Map();
   for (const name of _rawCount.keys()) {
-    const mb = STATS[name] && STATS[name].mbid;
+    // 2026-09-21 (owner ruling: the folds must survive future scrapes): a PINNED mbid wins over
+    // artist-stats' last.fm-resolved one here too. This key decides which scrobble spellings are
+    // one artist, so a poisoned id doesn't just mislabel a row — it MERGES two real acts. That
+    // happened: "Eville" (367 plays, the Brighton band) carried the real Evile's id, so the
+    // 4-play "Evile" folded into it. enrich-stats.js rewrites STATS[].mbid from last.fm on every
+    // run; pins.json doesn't move, so reading the pin first keeps the un-merge permanent.
+    const _pn = PINS[name]; const mb = (_pn && _pn.mbid) || (STATS[name] && STATS[name].mbid);  // exact key: ALIAS_NAMES isn't built yet here
     const key = mb ? "mb:" + mb : "nm:" + _normName(name);
     if (!key || key === "nm:") continue;
     if (!groups.has(key)) groups.set(key, []);
@@ -3451,7 +3457,9 @@ if (hasMB || Object.keys(DGA).length > 0) {
     // Discogs members fill the gap for artists MusicBrainz has no relations for (underground)
     for (const p of dgMembersOf(name)) addEdge(p, name);
   }
-  const mbidOf = (name) => (STATS[name] && STATS[name].mbid) || null;
+  // pinned id wins over artist-stats' last.fm-resolved one (2026-09-21) — same reason as CANON:
+  // this is an identity key, and a poisoned id collapses two different bands into one node.
+  const mbidOf = (name) => { const p = pinOf(name); return (p && p.mbid) || (STATS[name] && STATS[name].mbid) || null; };
   const links = [];
   for (const [person, bandSet] of personBands) {
     if (bandSet.size < 2) continue;

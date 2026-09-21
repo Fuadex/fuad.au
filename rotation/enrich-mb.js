@@ -1,6 +1,6 @@
 // enrich-mb.js — deep MusicBrainz pull: release-groups (adoption-lag) + artist relations
 // (connection graph: members / bands / collaborations) in ONE request per artist.
-// Uses mbids already in artist-stats.json. Writes artist-mb.json:
+// Uses mbids from pins.json (verified corrections, they win) else artist-stats.json. Writes artist-mb.json:
 //   { name → { debut, latest, rgCount, releases:[[title,year,type]], rels:[[type,name,mbid]], fetched } }
 // MusicBrainz: 1 req/sec, UA required, no API key. Cached + incremental.
 // Usage:  node enrich-mb.js [topN] [--refresh=N]   (default topN=6000, refresh=0)
@@ -24,6 +24,7 @@ const REFRESH_N = REFRESH_ARG ? Math.max(0, parseInt(REFRESH_ARG.split("=")[1], 
 const CACHE_PATH = path.join(__dirname, "artist-mb.json");
 const STATS_PATH = path.join(__dirname, "artist-stats.json");
 const ORIGINS_PATH = path.join(__dirname, "artist-origins.json");
+const PINS_PATH = path.join(__dirname, "pins.json");
 const INDEX_PATH = path.join(__dirname, "search-index.js");
 const TOP_PLAYS = 500; // top-N-by-plays that share priority class 0 with ended artists
 const DELAY_MS = 1100; // ~1 req/sec
@@ -46,6 +47,19 @@ function getJSON(url) {
 }
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 const yr = (d) => (d && /^\d{4}/.test(d)) ? parseInt(d.slice(0, 4), 10) : null;
+
+// ─────────── PINNED MBIDs WIN (Fuad 2026-09-21: "make sure all these folds are recorded
+// somewhere so that future scrapes or so don't undo the fixes") ───────────
+// artist-stats.json's `mbid` is whatever last.fm resolved the scrobble name to, and last.fm
+// resolves a short/common name to the wrong act often enough that 90 of them have now been
+// hand-corrected across three repair waves. That field is rewritten by every enrich-stats.js
+// run, so a stats-side mbid is NOT durable — a pin is. pins.json is the ledger of every
+// verified correction (see its _doc: "enrichers should prefer a pinned id"), and this makes
+// that promise true: a pinned id wins here, so a future last.fm sync can re-poison
+// artist-stats.json without ever re-poisoning what we fetch from MusicBrainz.
+// Exact scrobble-name keys only (build-data's alias resolution isn't available here).
+const PINS = (() => { try { const p = JSON.parse(fs.readFileSync(PINS_PATH, "utf8")); delete p._doc; return p; } catch (e) { return {}; } })();
+const mbidFor = (stats, name) => (PINS[name] && PINS[name].mbid) || (stats[name] && stats[name].mbid) || "";
 
 async function fetchDeep(mbid) {
   const u = `https://musicbrainz.org/ws/2/artist/${encodeURIComponent(mbid)}?inc=release-groups+artist-rels&fmt=json`;
@@ -90,8 +104,8 @@ async function fetchDeep(mbid) {
   const topPlaysSet = new Set(rows.slice(0, TOP_PLAYS).map(r => r[0]));
 
   const cache = fs.existsSync(CACHE_PATH) ? JSON.parse(fs.readFileSync(CACHE_PATH, "utf8")) : {};
-  const todo = ranked.filter(name => !(name in cache) && stats[name] && stats[name].mbid);
-  const noMbid = ranked.filter(name => !stats[name] || !stats[name].mbid).length;
+  const todo = ranked.filter(name => !(name in cache) && mbidFor(stats, name));
+  const noMbid = ranked.filter(name => !mbidFor(stats, name)).length;
   console.log(`${ranked.length} targets · ${todo.length} to fetch · ${Object.keys(cache).length} cached · ${noMbid} no-mbid · refresh=${REFRESH_N}`);
 
   const today = new Date().toISOString().slice(0, 10);
@@ -106,7 +120,7 @@ async function fetchDeep(mbid) {
   // rather than clobbering it with a blank.
   async function fetchInto(name) {
     try {
-      const d = await fetchDeep(stats[name].mbid);
+      const d = await fetchDeep(mbidFor(stats, name));   // pinned id wins over stats (2026-09-21)
       if (!d) { failed++; return; }   // answerless/failed → no write, retried next run
       cache[name] = { ...d, fetched: today };
     } catch (e) {
@@ -134,7 +148,7 @@ async function fetchDeep(mbid) {
     const isEnded = (name) => !!(origins[name] && origins[name].ended);
     const priClass = (name) => (isEnded(name) || topPlaysSet.has(name)) ? 0 : 1;
     const candidates = Object.keys(cache)
-      .filter(name => stats[name] && stats[name].mbid)
+      .filter(name => mbidFor(stats, name))
       .map(name => ({ name, pc: priClass(name), fetched: cache[name].fetched || "" }))
       // (priority-class asc, fetched-date asc): ended/top-500 first, oldest within each class
       .sort((a, b) => (a.pc - b.pc) || (a.fetched < b.fetched ? -1 : a.fetched > b.fetched ? 1 : 0))

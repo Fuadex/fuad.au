@@ -63,30 +63,34 @@
     "note": "Belgian post-hardcore trio (formed ~2013). MB matched an unrelated 1960s act → bogus 'since 1966' elder."
   },
   "Loathe": {
+    "mbid": "56eb02c4-1f16-4613-8bb3-b4a752283fc3",
     "origin": {
       "country": "GB",
       "area": "England",
       "city": "Liverpool"
     },
-    "note": "Liverpool metalcore/shoegaze band (formed ~2014). MB matched an unrelated Maltese 'Loathe' → wrongly placed the map bubble in Malta."
+    "note": "Liverpool metalcore/shoegaze band (formed ~2014). MB matched an unrelated Maltese 'Loathe' → wrongly placed the map bubble in Malta. MBID songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Maltese death metal band."
   },
   "Ok Goodnight": {"gender": "Female", "note": "Casey Lee Williams (lead vocals, correctly picked from the MB lineup) is female across every public bio; MusicBrainz's own entity carries a stale Non-binary tag — this routes around upstream, not around our data (gender/vx audit, Fuad-approved 2026-09-21)."},
-  "Bloodywood": {"gender": "Male", 
+  "Bloodywood": {
+    "mbid": "4e478f4f-a1e5-4ac9-84a3-f58f5c6454ab",
+    "gender": "Male",
     "origin": {
       "country": "IN",
       "area": "India",
       "city": "New Delhi"
     },
-    "note": "New Delhi folk-metal band. MB matched a wrong Chinese entity → the bubble landed in China."
+    "note": "New Delhi folk-metal band. MB matched a wrong Chinese entity → the bubble landed in China. MBID songs-verified 2026-09-21; the stats-side last.fm mbid resolved to Bloody Woods, a Chinese neo-folk act."
   },
   "Lisa": {
+    "mbid": "85d76093-9865-4605-97fa-8c910929d366",
     "spotify": "0blbVefuxOGltDBa00dspv",
     "tags": [
       "j-pop",
       "j-rock",
       "anime"
     ],
-    "note": "This is LiSA (Risa Oribe), the Japanese anime-tied singer (Gurenge, ADAMAS, dawn) — stylized LiSA. Enrichment collided with same-name artists: Discogs held the American Lisa, Spotify held BLACKPINK's Lisa. spotify-cache repointed to the real LiSA id (JP-market search, exact-casing match); tags overridden to j-pop/j-rock/anime.",
+    "note": "This is LiSA (Risa Oribe), the Japanese anime-tied singer (Gurenge, ADAMAS, dawn) — stylized LiSA. Enrichment collided with same-name artists: Discogs held the American Lisa, Spotify held BLACKPINK's Lisa. spotify-cache repointed to the real LiSA id (JP-market search, exact-casing match); tags overridden to j-pop/j-rock/anime. MBID songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a 'wai wai music resort' JP stub.",
     "clearImage": true
   },
   "Ashen": {
@@ -156,13 +160,14 @@
     "note": "Sydney pop-punk band (Self Care, 2020). discogs-artist matched a 'vocal soul trio' — that entity also dragged RnB/Swing, Soul, Boogie and Rhythm & Blues into the style rails, so styles go with the image. Spotify (pop punk / emo pop) is the right act."
   },
   "Hyde": {
+    "mbid": "be702739-f872-413a-89fb-0a5afee100a9",
     "clearImage": true,
     "origin": {
       "country": "JP",
       "area": "Japan",
       "city": "Wakayama"
     },
-    "note": "HYDE — Takarai Hideto, vocalist of L'Arc~en~Ciel and VAMPS (FAKE DIVINE, MAD QUALIA, 監獄ROCK). discogs-artist matched an American producer/engineer born 1964, and artist-origins placed him in BRAZIL. Spotify (anime / visual kei / j-rock) is the right act; origin hard-set to Wakayama, where he was born."
+    "note": "HYDE — Takarai Hideto, vocalist of L'Arc~en~Ciel and VAMPS (FAKE DIVINE, MAD QUALIA, 監獄ROCK). discogs-artist matched an American producer/engineer born 1964, and artist-origins placed him in BRAZIL. Spotify (anime / visual kei / j-rock) is the right act; origin hard-set to Wakayama, where he was born. MBID songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Brazilian psytrance act."
   },
   "Nothing": {
     "clearImage": true,
@@ -226,6 +231,7 @@
     "note": "Wolfsburg neue deutsche haerte band (Augen auf, Sandmann, Labyrinth). discogs-cache matched an ambiguous entity with TWO releases and returned KLEZMER, plus Pop and Folk/World genres — nonsense for this band and enough to skew the style rails. Spotify (industrial metal / industrial rock / ebm) is right; the image already comes from Spotify, so no clearImage needed."
   },
   "Alex": {
+    "mbid": "c78362cb-d6c7-4835-946e-a668682150db",
     "spotify": "65sChHf6etCvSFdXn8NPUO",
     "clearImage": true,
     "clearStyles": true,
@@ -241,7 +247,7 @@
       "synthpop"
     ],
     "bio": "ALEX is Alex Davidson, an Edinburgh electronic producer working in synthwave and darksynth since 2016. His records include the AKUMA collaboration with Tokyo Rose, Simulations (2018) and NARCISSIST (2023), released through NewRetroWave and TimeSlave Recordings.",
-    "note": "Every enrichment had the wrong Alex. discogs-artist matched Alex Sadkin, the American producer who died in 1987, and brought Disco/Funk/Schlager styles with him; there was no Spotify entry at all. Identified from the played titles — AKUMA, Simulations, NARCISSIST, LEXXI and the Tech Noir live version are all one Edinburgh synthwave act. spotify-cache seeded with the correct id."
+    "note": "Every enrichment had the wrong Alex. discogs-artist matched Alex Sadkin, the American producer who died in 1987, and brought Disco/Funk/Schlager styles with him; there was no Spotify entry at all. Identified from the played titles — AKUMA, Simulations, NARCISSIST, LEXXI and the Tech Noir live version are all one Edinburgh synthwave act. spotify-cache seeded with the correct id. MBID verified 2026-09-19; the stats-side last.fm mbid resolved to an empty stub."
   },
   "Hyper": {
     "spotify": "6DFJfhZxwWe1yKQvRDJmdl",
@@ -261,6 +267,7 @@
     "note": "The five played albums are ONE artist, not two — Lies, Suicide Tuesday, Cyberpunk EP, Android Kid Pt 2 and Bully all trace to Guy Hatfield's discography, so no fold is needed. spotify-cache held a different, obscure Hyper (32RaA7TgQ8WDXFG7xYBxXE); repointed to 6DFJfhZxwWe1yKQvRDJmdl."
   },
   "Hana": {
+    "mbid": "8632eeb4-33f4-460d-9288-f54f4cb160f5",
     "spotify": "224Zsim3dmWXWYUXFuHv0o",
     "clearImage": true,
     "clearStyles": true,
@@ -275,7 +282,7 @@
       "indie pop"
     ],
     "bio": "HANA is Hana Pestle, an American singer, songwriter and producer based in Los Angeles. She moved from folk-pop to electropop after 2015, and wrote and recorded her album HANADRIEL (2019) over four weeks on Twitch livestreams.",
-    "note": "Three-way collision. discogs-artist matched the 1997 American trip-hop duo Greinke/Romero and dragged Ethereal and Trip Hop into the styles; spotify-cache held a Japanese artist, hence the j-pop tag. The played titles — HANADRIEL, Anxious Alien, Black Orchid, Chimera 2.0, Orca — are all Hana Pestle. Two other Spotify ids exist for this name: 40lmBYyahQHhNiutO05hUn is her earlier folk-pop identity, 1xwcjLUe5fzwxhg9lnWFfg is the Japanese act."
+    "note": "Three-way collision. discogs-artist matched the 1997 American trip-hop duo Greinke/Romero and dragged Ethereal and Trip Hop into the styles; spotify-cache held a Japanese artist, hence the j-pop tag. The played titles — HANADRIEL, Anxious Alien, Black Orchid, Chimera 2.0, Orca — are all Hana Pestle. Two other Spotify ids exist for this name: 40lmBYyahQHhNiutO05hUn is her earlier folk-pop identity, 1xwcjLUe5fzwxhg9lnWFfg is the Japanese act. MBID songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a cover artist."
   },
   "Frau": {
     "spotify": "14E6albdtD5YWzbat5lWKo",
@@ -312,6 +319,7 @@
     "note": "The site held two different people at once: the bio described Kozloff while artist-origins described Anna Lena Bruland, the Norwegian musician in Berlin who shares the name. The played titles settle it — the Waste Walker remix is by Snow Strippers, a Surf Gang act, and Cant Stop Wasting Time is Surf Gang SG010. Bruland's record is discarded for this listener."
   },
   "Figures": {
+    "mbid": "02bc0355-846a-4510-8027-dac5d3b80c06",
     "spotify": "5ucQrQ0aaegm0EqQfxjVA3",
     "clearStyles": true,
     "origin": {
@@ -326,7 +334,7 @@
       "djent"
     ],
     "bio": "Figures are a five-piece alternative metal band from Melbourne, formed around 2013. After two EPs they released their debut album Operating in Unsafe Mode in 2020, taking cues from Deftones, Tool and Karnivool.",
-    "note": "Image was already correct (Spotify id 5ucQrQ0aaegm0EqQfxjVA3 matched what research found) — the wrong data was everything around it. artist-origins placed them in Antwerp as a solo male born 1989, and Discogs supplied Jungle/IDM/New Wave from an unrelated act. Every played track is on the Operating in Unsafe Mode tracklist."
+    "note": "Image was already correct (Spotify id 5ucQrQ0aaegm0EqQfxjVA3 matched what research found) — the wrong data was everything around it. artist-origins placed them in Antwerp as a solo male born 1989, and Discogs supplied Jungle/IDM/New Wave from an unrelated act. Every played track is on the Operating in Unsafe Mode tracklist. MBID songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Belgian drum & bass artist."
   },
   "Future Foundation": {
     "spotify": "5u1zkwhy0Y015qfTAfL6P5",
@@ -431,6 +439,7 @@
     "fam": "Electronic/DnB"
   },
   "Chalk": {
+    "mbid": "d8339825-470a-4dde-9792-d5c724e14e18",
     "spotify": "3qa9pv6B0dmiBVETLQOCpi",
     "clearImage": true,
     "origin": {
@@ -439,6 +448,330 @@
       "city": "Belfast"
     },
     "bio": "Chalk are a noise-rock and post-punk band from Belfast, working in blown-out electronics and hard, repetitive drum programming. Their run of singles — Conditions, Static, Pain, Claw, Velodrome, Asking, Pool Scene — led to the album Crystalpunk.",
-    "note": "Owner-flagged 2026-09-01: tags were right, picture and description were not. IMAGE: discogs-artist matched ANDREW CHALK, the British experimental/drone musician active since 1985 (Ferial Confine, Organum, Mirror, brainwashed.com) — his portrait was the artist photo, and Discogs sits ahead of Spotify in the image chain. clearImage falls through to Spotify, which is verifiably the right band: the dump holds exactly ONE artist named Chalk (17,915 followers) and it is the one that released Claw, Velodrome, Pool Scene, Conditions and Asking, all of which are in the played set. BIO: was last.fm's seven-way disambiguation blob; the correct entry was its item 6, 'a noise rock/post-punk band from Belfast, Northern Ireland'. ORIGIN: artist-origins had US/Columbus — wrong act. The played track 'Beal Feirste' (Irish for Belfast) corroborates the correction. TAGS LEFT ALONE — post-punk/noise rock were already correct, per the owner. NOT FIXED HERE: the Crystalpunk album tracks (Tongue, I.D.C., Longer, One-Nine-Eight-Zero, Beal Feirste, Skem, Ache) have NO Spotify data at all — no preview, no ISRC, no features — while every single does, so the harvest matched the singles and missed the album. That is why the album has no needle drop."
+    "note": "Owner-flagged 2026-09-01: tags were right, picture and description were not. IMAGE: discogs-artist matched ANDREW CHALK, the British experimental/drone musician active since 1985 (Ferial Confine, Organum, Mirror, brainwashed.com) — his portrait was the artist photo, and Discogs sits ahead of Spotify in the image chain. clearImage falls through to Spotify, which is verifiably the right band: the dump holds exactly ONE artist named Chalk (17,915 followers) and it is the one that released Claw, Velodrome, Pool Scene, Conditions and Asking, all of which are in the played set. BIO: was last.fm's seven-way disambiguation blob; the correct entry was its item 6, 'a noise rock/post-punk band from Belfast, Northern Ireland'. ORIGIN: artist-origins had US/Columbus — wrong act. The played track 'Beal Feirste' (Irish for Belfast) corroborates the correction. TAGS LEFT ALONE — post-punk/noise rock were already correct, per the owner. NOT FIXED HERE: the Crystalpunk album tracks (Tongue, I.D.C., Longer, One-Nine-Eight-Zero, Beal Feirste, Skem, Ache) have NO Spotify data at all — no preview, no ISRC, no features — while every single does, so the harvest matched the singles and missed the album. That is why the album has no needle drop. MBID songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Columbus, Ohio hardcore band."
+  },
+  "Eville": {
+    "mbid": "91fb21b9-0f85-42cd-a05e-df321cd02686",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to Evile, the UK thrash band."
+  },
+  "Resolve": {
+    "mbid": "eb787615-da9d-4dd9-bc9f-feb3cb1092de",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Boston, MA alt-rock band."
+  },
+  "Cheem": {
+    "mbid": "79df188a-758e-4de3-8dc3-6395be562c35",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to an unrelated electronic group."
+  },
+  "TSS": {
+    "mbid": "b5d4b65a-6a07-42b5-9c79-a61dc722d215",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a UK EDM producer."
+  },
+  "Saviour": {
+    "mbid": "a03bf115-d836-4b6e-ba31-f9c38777c783",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a grime/dubstep artist."
+  },
+  "Reaper": {
+    "mbid": "102952f1-2762-4b83-9153-0f0007cf2dd7",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a German electro-industrial act."
+  },
+  "Thrown": {
+    "mbid": "fd012922-72b2-4aa7-b796-012f2177c5af",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a 2000s Swedish doom/black metal band."
+  },
+  "Nightdive": {
+    "mbid": "7c80fb4f-fc7f-4ff1-aa0e-344a4b78227e",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to an empty German NightDive entity."
+  },
+  "Aviana": {
+    "mbid": "2bbc7a00-ead2-42cb-85ae-1d666893e7ab",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to an empty US Person stub."
+  },
+  "Himalayas": {
+    "mbid": "79b26a95-2fb2-4d90-b170-293f49b862b6",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a New York ambient brass band."
+  },
+  "Covet": {
+    "mbid": "20b144e3-dd0e-4359-ae0c-0af7188c443b",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to Fallon Nieves' industrial project."
+  },
+  "Wayside": {
+    "mbid": "5dc07dbe-9b40-4d5b-aa79-527938f2caee",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Florida emo band dissolved in 1996."
+  },
+  "Willow": {
+    "mbid": "6bbfc71b-5f18-4e61-82fb-bee0c2a6b5f9",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to an Austrian band."
+  },
+  "Floral": {
+    "mbid": "b623c0d9-6795-489c-9dfc-d1d4bf03a500",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a deep-house artist."
+  },
+  "Lite": {
+    "mbid": "ef3a1aab-6676-4ad1-89a2-6c6bd828e0b0",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a US rapper."
+  },
+  "Disclosure": {
+    "mbid": "ae65c507-d9a0-4d42-9a6c-2b1f82158b9f",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Ben Arp project."
+  },
+  "Orchards": {
+    "mbid": "759aaef0-2008-4b99-b94e-f6c770afdb38",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to an unrelated 'Storm Windows' act."
+  },
+  "Soil": {
+    "mbid": "39a1b293-8e17-4a1c-b50b-034c40e24461",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Berklee student band."
+  },
+  "Jools": {
+    "mbid": "3253f686-dce8-4df2-b3f8-97dfff19d8c7",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to an undisambiguated 'JooLs' stub."
+  },
+  "Superlove": {
+    "mbid": "3f103716-8fb1-4b80-8cbf-d5d0837260a0",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to an Italian Eurobeat project."
+  },
+  "Creeper": {
+    "mbid": "31890398-c88d-44ef-b108-2419c996966b",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Dallas act."
+  },
+  "Prison": {
+    "mbid": "c86c20fc-6873-4181-8618-4d242221bf24",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to Jamie Grimes, an Irish artist."
+  },
+  "Zascha": {
+    "mbid": "ebb09719-8ad8-48ee-a70f-c817d7cdd38a",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to an empty German Person stub."
+  },
+  "FAVST": {
+    "mbid": "1893b07f-80d6-4ba2-acb9-52d2280f74b6",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to an empty group stub."
+  },
+  "Kayzo": {
+    "mbid": "e57634b1-01f3-4dc9-bd6b-0672c8e0665c",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to an empty French entity."
+  },
+  "Scowl": {
+    "mbid": "c81f7820-ee5b-46ef-9b78-027d38b9a1aa",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a UK punk band."
+  },
+  "Satyr": {
+    "mbid": "174c2a1d-63ea-42d0-ad0a-c12722c51185",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Serbian rock act."
+  },
+  "Flow": {
+    "mbid": "a0387b9b-236d-475f-8846-b2dea4af1112",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Spanish band around Fernando Vacas."
+  },
+  "Kitty": {
+    "mbid": "8eeed89b-a5e6-47c4-a0fd-49707b1d0c1b",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to The Bridge Music Project."
+  },
+  "Notions": {
+    "mbid": "6fb521b8-86df-4f05-b1e2-d15e3f69e1c9",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a German punk band."
+  },
+  "Stake": {
+    "mbid": "bed54ad9-696a-4a58-a14f-031f111727c1",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Brussels thrash/hardcore band."
+  },
+  "Enfants": {
+    "mbid": "6cf44b75-4cb4-496b-b319-2b2c46ec0522",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to an undisambiguated French stub."
+  },
+  "Senna": {
+    "mbid": "80707ab9-b5eb-42c6-b795-4ee69c722962",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a guest feature on a Cilvaringz track."
+  },
+  "Zerosum": {
+    "mbid": "45efdce8-6fb9-4f11-b4e7-1a11187ec8d2",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to an EDM artist."
+  },
+  "Maraton": {
+    "mbid": "99fdb5c6-bdc3-4e9c-9f39-f56066650cbe",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Hungarian metal band."
+  },
+  "Tulip": {
+    "mbid": "b0e04182-66dc-4a09-9553-196af79ca01a",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to an undisambiguated stub."
+  },
+  "Kloud": {
+    "mbid": "dd768111-188f-453c-ab43-bb7f68d626c1",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to an undisambiguated stub."
+  },
+  "Tanuki": {
+    "mbid": "d74b6f1e-ede7-4413-919a-deeba7a37495",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Cat Jams label act."
+  },
+  "Rega": {
+    "mbid": "88a5b354-9168-4934-835c-3f1272e8917f",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to an Indonesian band."
+  },
+  "Inmates": {
+    "mbid": "bf8552ab-3a5d-45cf-87ab-d6dfdb79cb76",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Belgian act."
+  },
+  "Shinigami": {
+    "mbid": "50186ab6-0d30-4af1-804d-68de8d62e805",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to an empty Person stub."
+  },
+  "Elita": {
+    "mbid": "b265e8c2-b76c-4889-9b86-2ac789d51648",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Yugoslav composer."
+  },
+  "Ratbag": {
+    "mbid": "7b4af06f-c760-4e5a-9fb0-3ff03e15b0c2",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to Julian Percy, German noise/industrial."
+  },
+  "Bish": {
+    "mbid": "39bbdaa5-d30b-49e3-b191-943cfe31fde4",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a UK male Person (id now dead on MB)."
+  },
+  "M.O.D.": {
+    "mbid": "64c49632-5bd2-4926-87bf-81299611257b",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Swedish house duo."
+  },
+  "provoker": {
+    "mbid": "35d030b7-f38b-4d28-ae37-6eb6ce39b139",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a video-game arrangement act."
+  },
+  "Mono": {
+    "mbid": "ffe02aed-ef7e-4736-a186-c2f1dd55ce8d",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Turkish producer."
+  },
+  "Graystone": {
+    "mbid": "f93d75af-cfc2-4848-b25b-17b4f223e47d",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to an undisambiguated group stub."
+  },
+  "Amoura": {
+    "mbid": "28017a89-1c30-486b-8b03-ef41a5c087c1",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a 'Roar with Justine' credit."
+  },
+  "Leap": {
+    "mbid": "56419bf8-9acf-4920-b951-7f4957dd44a7",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to an empty group stub."
+  },
+  "Dearest": {
+    "mbid": "4ddcd343-a4b4-4c1c-980b-30916ee54e22",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Belfast indie-twang act."
+  },
+  "Waveshaper": {
+    "mbid": "571fb58d-b957-4cfc-8c7d-5cbf13519227",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a trance artist."
+  },
+  "Tymek": {
+    "mbid": "2946e5a3-0368-43a0-964c-5f143827975e",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to an unrelated electronic act."
+  },
+  "Squid": {
+    "mbid": "5422ef5d-00d4-4c7a-81ab-03cb8fc3cc45",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a 'Nuestra cosa' act."
+  },
+  "Zetra": {
+    "mbid": "91193ab6-1835-424e-848b-702a3f96d724",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a US producer/DJ (ericdoa collaborator)."
+  },
+  "Ezekiel": {
+    "mbid": "66ecd3db-6c9a-4e8f-8982-df193c945312",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Monterrey, Mexico electronic/hip-hop artist."
+  },
+  "B-Side": {
+    "mbid": "525c441b-facb-477b-bf6b-20e2e36cae2e",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a THE IDOLM@STER.KR entity."
+  },
+  "Bones": {
+    "mbid": "e3f7631b-e50b-4923-9049-2fa84dfcaf71",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a blankstairs compilation entity."
+  },
+  "Spiritbox": {
+    "mbid": "9c935736-7530-41e4-b776-1dbcf534c061",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Dutch post-rock act."
+  },
+  "Skywalker": {
+    "mbid": "5bddd47f-d9f9-4cbe-b8d4-ca5c313076da",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a German house-producer group."
+  },
+  "Aimer": {
+    "mbid": "9388cee2-7d57-4598-905f-106019b267d3",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to an Italian guitarist."
+  },
+  "Seatbelts": {
+    "mbid": "b5fb0f1a-2cd4-4759-9d80-648643f70c43",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to The Seatbelts, a 1976 US rock band."
+  },
+  "Kat": {
+    "mbid": "d03c6e2a-24b9-4607-bddd-120f27ff5c9d",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Ukrainian hardcore punk act."
+  },
+  "Muzz": {
+    "mbid": "6cfdec30-4730-4513-bfb4-5db3ff566900",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to an unattributed rapper."
+  },
+  "Nero": {
+    "mbid": "bd057a0c-a7b6-47bf-8dc3-45e0efac1798",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to an obscure Canadian jam band."
+  },
+  "Rezz": {
+    "mbid": "2eaf4267-4dd6-412a-9bb0-596afb90215b",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a 'Des Rezz' stub."
+  },
+  "Bex": {
+    "mbid": "0026e0f7-1ac0-4af6-95d1-11daa479b3bb",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a C64 chiptune remixer."
+  },
+  "Bisz": {
+    "mbid": "e1927cc6-5333-4904-8243-7a28f7cc741a",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Romanian producer."
+  },
+  "Jinjer": {
+    "mbid": "51b37017-859c-465e-8810-2d2dd41a401e",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a junk featured-artist stub."
+  },
+  "CQ": {
+    "mbid": "5eb0d1a5-c0e4-4535-bd28-b71d9f8023d1",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Dutch skacore band."
+  },
+  "HeXeN": {
+    "mbid": "da2e07d4-9f00-4549-b5b3-27348cc9203c",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a psytrance-producer stub."
+  },
+  "Turnstile": {
+    "mbid": "7b748dac-f5ce-45a7-9b95-c1d8b5b013ed",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Spanish punk-rock band."
+  },
+  "S.O.D.": {
+    "mbid": "00b0a363-2fbc-4af7-b67d-70cf035829e7",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to Signal of Distress, same acronym."
+  },
+  "Nolo": {
+    "mbid": "2951b05e-f366-4dc5-a879-32ca345c7dc1",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to an Argentine musician."
+  },
+  "Iota": {
+    "mbid": "b7fc6234-9e53-45e2-931d-8fcc60fcd57a",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a cover-singer stub."
+  },
+  "Trails": {
+    "mbid": "0a14f27b-deea-47bd-9e00-ebcad042d70f",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a 'probably US rapper' stub."
+  },
+  "Alura": {
+    "mbid": "e5eb58f1-59d8-4ad6-a948-45aed0e9f067",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a Swiss DJ/AV artist."
+  },
+  "Frayle": {
+    "mbid": "b016df0b-6422-4499-8c9b-32846de8f22f",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a latin reggae artist."
+  },
+  "Riot": {
+    "mbid": "ca04e657-2ffc-4949-9150-cb43d9f231e2",
+    "note": "Songs-verified 2026-09-21; the stats-side last.fm mbid resolved to a UK hip-hop act."
+  },
+  "Poppy": {
+    "mbid": "4ad8190b-d2fd-46f8-a3d9-c0f55c034976",
+    "note": "Verified 2026-09-19; the stats-side last.fm mbid resolved to a Houston rapper."
+  },
+  "Romes": {
+    "mbid": "41c21728-09aa-45dd-8597-d8aa07c2b73a",
+    "note": "Verified 2026-09-19; the stats-side last.fm mbid resolved to a US rapper."
   }
 }

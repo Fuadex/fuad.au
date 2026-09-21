@@ -1,5 +1,6 @@
-// enrich-origins.js — fetch artist country/area from MusicBrainz using mbids already
-// stored in artist-stats.json. Writes artist-origins.json: { name → { country, area, type, fetched } }.
+// enrich-origins.js — fetch artist country/area from MusicBrainz using the artist's mbid:
+// pins.json first (verified corrections win), else artist-stats.json's last.fm-resolved id.
+// Writes artist-origins.json: { name → { country, area, type, fetched } }.
 // MusicBrainz rate limit: 1 req/sec, requires UA. No API key.
 // Usage:  node enrich-origins.js [topN] [--refresh=N]   (default topN=2000, refresh=0)
 // Cached + incremental. Artists without an mbid are skipped.
@@ -22,6 +23,7 @@ const REFRESH_ARG = args.find(a => /^--refresh=/.test(a));
 const REFRESH_N = REFRESH_ARG ? Math.max(0, parseInt(REFRESH_ARG.split("=")[1], 10) || 0) : 0;
 const CACHE_PATH = path.join(__dirname, "artist-origins.json");
 const STATS_PATH = path.join(__dirname, "artist-stats.json");
+const PINS_PATH = path.join(__dirname, "pins.json");
 const INDEX_PATH = path.join(__dirname, "search-index.js");
 const TOP_PLAYS = 500; // top-N-by-plays that share priority class 0 with ended artists
 const DELAY_MS = 1100; // MusicBrainz: ~1 req/sec
@@ -37,6 +39,19 @@ function getJSON(url) {
   });
 }
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+// ─────────── PINNED MBIDs WIN (Fuad 2026-09-21: "make sure all these folds are recorded
+// somewhere so that future scrapes or so don't undo the fixes") ───────────
+// artist-stats.json's `mbid` is whatever last.fm resolved the scrobble name to, and last.fm
+// resolves a short/common name to the wrong act often enough that 90 of them have now been
+// hand-corrected across three repair waves. That field is rewritten by every enrich-stats.js
+// run, so a stats-side mbid is NOT durable — a pin is. pins.json is the ledger of every
+// verified correction (see its _doc: "enrichers should prefer a pinned id"), and this makes
+// that promise true: the pin wins over stats, AND over the blind name search below (a pinned
+// name is never guessed at again). Exact scrobble-name keys only (build-data's alias
+// resolution isn't available here).
+const PINS = (() => { try { const p = JSON.parse(fs.readFileSync(PINS_PATH, "utf8")); delete p._doc; return p; } catch (e) { return {}; } })();
+const mbidFor = (stats, name) => (PINS[name] && PINS[name].mbid) || (stats[name] && stats[name].mbid) || "";
 
 // mbid fallback for artists last.fm has no mbid for (Ling Tosite Sigure class): MB name search,
 // accepted ONLY on a score-100 hit whose name or alias matches exactly (case-insensitive) —
@@ -91,8 +106,9 @@ async function fetchOrigin(mbid) {
   const cache = fs.existsSync(CACHE_PATH) ? JSON.parse(fs.readFileSync(CACHE_PATH, "utf8")) : {};
   // fetch new artists AND backfill cached entries missing the newer fields (gender/life-span).
   // Artists without a last.fm mbid go through the exact-match MB name search (2 requests each).
-  const todo = ranked.filter(name => (!(name in cache) || !("gender" in cache[name])) && stats[name] && stats[name].mbid);
-  const noMbid = ranked.filter(name => (!(name in cache) || cache[name].error) && (!stats[name] || !stats[name].mbid));
+  const todo = ranked.filter(name => (!(name in cache) || !("gender" in cache[name])) && mbidFor(stats, name));
+  // a pinned name always has an id, so it never falls through to the blind name search
+  const noMbid = ranked.filter(name => (!(name in cache) || cache[name].error) && !mbidFor(stats, name));
   console.log(`${ranked.length} target artists · ${todo.length} to fetch · ${Object.keys(cache).length} cached · ${noMbid.length} no-mbid → search fallback · refresh=${REFRESH_N}`);
 
   let done = 0, failed = 0;
@@ -116,7 +132,7 @@ async function fetchOrigin(mbid) {
     // froze a transient MusicBrainz failure into a permanent stub, and because `todo` only picks
     // up names not already cached, the stub blocked the retry too (the 661-entry blank class).
     try {
-      const o = await fetchOrigin(stats[name].mbid);
+      const o = await fetchOrigin(mbidFor(stats, name));   // pinned id wins over stats (2026-09-21)
       if (o) cache[name] = { ...o, fetched: today }; else failed++;
     } catch (e) {
       failed++;                        // no write, so the next run retries
@@ -138,7 +154,7 @@ async function fetchOrigin(mbid) {
     const isEnded = (name) => !!(cache[name] && cache[name].ended);
     const priClass = (name) => (isEnded(name) || topPlaysSet.has(name)) ? 0 : 1;
     const candidates = Object.keys(cache)
-      .filter(name => stats[name] && stats[name].mbid)
+      .filter(name => mbidFor(stats, name))
       .map(name => ({ name, pc: priClass(name), fetched: (cache[name] && cache[name].fetched) || "" }))
       // (priority-class asc, fetched-date asc): ended/top-500 first, oldest within each class
       .sort((a, b) => (a.pc - b.pc) || (a.fetched < b.fetched ? -1 : a.fetched > b.fetched ? 1 : 0))
@@ -151,7 +167,7 @@ async function fetchOrigin(mbid) {
     for (const { name } of candidates) {
       // 2026-09-21: never clobber a good cached record with a blank on a transient failure.
       try {
-        const o = await fetchOrigin(stats[name].mbid);
+        const o = await fetchOrigin(mbidFor(stats, name));  // pinned id wins over stats (2026-09-21)
         if (o) cache[name] = { ...o, fetched: today }; else failed++;
       } catch (e) {
         failed++;                      // no write: the existing record stands, retried later
