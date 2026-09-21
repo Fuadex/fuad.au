@@ -955,10 +955,13 @@ function OverviewView({ t, go, restReady, seed }) {
             the window the calendar is standing in right now.
             ON THIS DAY AND LAST 72H TRADE PLACES (Fuad 2026-09-22: "Let's Switch 'on this day'
             with 'last 72h'"): the clock72 strip — pinned into the insight grid's lead cell the
-            same morning — moves up to this seat, and On this day takes that cell below. otd
-            joins the omit so a null clock72 (live-data missing) cannot backfill the card the
-            grid is already rendering. */}
-        <InsightRow go={go} n={2} span="auto" only={["clock72", "in-season"]}
+            same morning — moves up to this seat. otd stays in the omit so a null clock72
+            (live-data missing) cannot backfill a card the grid row may be rendering.
+            THEN THIS WEEK ARRIVED (Fuad 2026-09-22, fourth seat order of the day: "swap this
+            week with in season"): This week — which had just taken the grid's lead cell — rides
+            up beside the strip, and In season goes down to that cell. Both pulse pins are
+            now the two NOW-shaped cards, which is where this row's name always pointed. */}
+        <InsightRow go={go} n={2} span="auto" only={["clock72", "this-week"]}
           omit={["otd", "week", "story-day"]} />
         </div>{/* /ov-pulseslot */}
 
@@ -1003,18 +1006,16 @@ function OverviewView({ t, go, restReady, seed }) {
             card here landed a few px off the one above it, and the drift compounded across the row.
             One template and one gap for both. */}
         <div className="ov-insgrid" style={{ gridColumn: "span 8", display: "grid", gridTemplateColumns: "repeat(4, minmax(0, 1fr))", gap: "var(--gap)" }}>
-          {/* THIS WEEK takes the lead cell, ON THIS DAY back to the lottery (Fuad 2026-09-22:
-              "Let's swap this week with on this day" — the third seat order of the day, after
-              the ticker→clock72 swap and the clock72→pulse trade). ONE call now renders all four
-              cells: `only` pins this-week first and the other three seats go to the ranked
-              remainder — which On this day rejoins (0.68, the score that lost it the lottery
-              before 09-19 pinned it; with the riser folded into This week it usually wins a seat
-              now). One call, one selection pass: the pinned-cell-vs-deck backfill collision that
-              two adjacent InsightRows carried (a null pin backfills with a card the deck also
-              picks) cannot happen inside a single runInsights, where `seen` dedupes.
-              in-season and clock72 stay omitted — both hold pulse-row pins above; week and mood
+          {/* IN SEASON takes the lead cell (Fuad 2026-09-22: "swap this week with in season" —
+              This week held this seat for all of an hour before riding up to the pulse row).
+              ONE call renders all four cells: `only` pins in-season first and the other three
+              seats go to the ranked remainder, which On this day rejoined earlier today (0.68;
+              with the riser folded into This week it usually wins a seat). One call, one
+              selection pass: the pinned-cell-vs-deck backfill collision two adjacent InsightRows
+              carried cannot happen inside a single runInsights, where `seen` dedupes.
+              this-week and clock72 are omitted — both hold pulse-row pins above; week and mood
               are the long-retired ids. */}
-          <InsightRow go={go} n={4} only={["this-week"]} omit={["in-season", "week", "mood", "clock72"]} />
+          <InsightRow go={go} n={4} only={["in-season"]} omit={["this-week", "week", "mood", "clock72"]} />
         </div>
 
         {/* emotional weather — last-90d sounds/reads only now (the decades strip moved up to the
