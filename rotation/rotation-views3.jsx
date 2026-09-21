@@ -4838,12 +4838,21 @@ function SearchOverlay({ open, onClose, go }) {
       if (!words.length) return { keys: [], needle, wbIds: new Set() };
       let acc = null;
       const wbIds = new Set();
+      // v2 postings are delta+base36 strings ("c,9x,2"); v1 were plain int arrays. Decode on
+      // the fly (split + prefix-sum) and keep accepting arrays so a stale cached index still
+      // searches (shard-about.js carries the why, 2026-09-21).
+      const postings = (p) => {
+        if (Array.isArray(p)) return p;
+        const parts = String(p).split(","), out = new Array(parts.length);
+        let acc = 0; for (let i = 0; i < parts.length; i++) { acc += parseInt(parts[i], 36); out[i] = acc; }
+        return out;
+      };
       for (const w of words) {
         const hit = new Set();
         for (const tok in IDX.tok) {
           if (tok.indexOf(w) < 0) continue;
           const exact = tok === w;
-          for (const id of IDX.tok[tok]) { hit.add(id); if (exact) wbIds.add(id); }
+          for (const id of postings(IDX.tok[tok])) { hit.add(id); if (exact) wbIds.add(id); }
         }
         acc = acc === null ? hit : new Set([...acc].filter(id => hit.has(id)));
         if (!acc.size) break;
