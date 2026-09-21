@@ -952,9 +952,14 @@ function OverviewView({ t, go, restReady, seed }) {
             library happened to be nearest a round total, which is a fact about that artist and not
             about this week, and it now rides under their own play count on the artist page. Its
             seat goes to In season: the two or three artists whose listening only ever happens in
-            the window the calendar is standing in right now. */}
-        <InsightRow go={go} n={2} span="auto" only={["otd", "in-season"]}
-          omit={["week", "story-day"]} />
+            the window the calendar is standing in right now.
+            ON THIS DAY AND LAST 72H TRADE PLACES (Fuad 2026-09-22: "Let's Switch 'on this day'
+            with 'last 72h'"): the clock72 strip — pinned into the insight grid's lead cell the
+            same morning — moves up to this seat, and On this day takes that cell below. otd
+            joins the omit so a null clock72 (live-data missing) cannot backfill the card the
+            grid is already rendering. */}
+        <InsightRow go={go} n={2} span="auto" only={["clock72", "in-season"]}
+          omit={["otd", "week", "story-day"]} />
         </div>{/* /ov-pulseslot */}
 
         {/* STORY OF THE DAY temporarily off (Fuad 2026-08-20) — the pulse modules take this
@@ -998,50 +1003,17 @@ function OverviewView({ t, go, restReady, seed }) {
             card here landed a few px off the one above it, and the drift compounded across the row.
             One template and one gap for both. */}
         <div className="ov-insgrid" style={{ gridColumn: "span 8", display: "grid", gridTemplateColumns: "repeat(4, minmax(0, 1fr))", gap: "var(--gap)" }}>
-          {/* LAST 72 HOURS in the ticker's seat (Fuad 2026-09-22: "the only thing I like is the
-              last 72h ... Let's put this in instead of recent as the only module substitution" —
-              the whole of the B4-overhaul verdict). Same fixed lead cell, for the same reason the
-              ticker held it: a fixed card is steadier at an edge than wedged between three that
-              reshuffle by score every day. The strip is the live sync's clock72 — 72 hourly bins,
-              newest at the right — read at render time: live-data.js is a deferred script ahead
-              of the app bundle (index.html), so it has already run by first render, and if its
-              fetch ever failed outright the card degrades to the quiet header. The ranked deck
-              omits "clock72" or the page could print the same strip twice. The last.fm address
-              stays in the header: it is the page's only outbound link to the account, and this
-              card draws from the same live feed the ticker did. */}
-          <div className="r-card ov-last72" style={{ padding: "8px 11px", display: "flex", flexDirection: "column" }}>
-            {/* The link is ONE WORD at 8.5px nowrap — the Recent-era sizing (git history): at this
-                card's ~185px anything larger dropped the ↗ to its own line. The size stays INLINE:
-                this anchor keeps .meta for its margin-left:auto, and .r-card-h .meta outranks a
-                bare role class, so a class here would silently lose. */}
-            <div className="r-card-h" style={{ padding: 0, marginBottom: 3, flexWrap: "nowrap" }}>
-              {/* "Last 72h", not "Last 72 hours" (render QC 2026-09-22): the full label plus the
-                  address measured to this card's ~185px exactly and wrapped the header to two
-                  lines at 1340 — and it is Fuad's own name for the module. The caption row
-                  underneath still spells the window out. */}
-              <span className="lbl"><b>Last 72h</b></span>
-              <a className="meta r-extlink-lf" href="https://www.last.fm/user/fuadex" target="_blank" rel="noopener noreferrer"
-                style={{ color: "var(--ink-faint)", textDecoration: "none", fontSize: 8.5, whiteSpace: "nowrap", flex: "none" }}>last.fm/fuadex ↗</a></div>
-            {(() => {
-              const c = window.ROTATION_LIVE && window.ROTATION_LIVE.clock72;
-              if (!c || !c.bins || !c.bins.length) return null;   // shard not landed → quiet header-only card
-              const sum = c.bins.reduce((a, b) => a + b, 0);
-              const max = Math.max(...c.bins, 1);
-              // the deck card's own geometry (46px bars, eyebrow caption), centred in the taller
-              // fixed cell. sum CAN be 0 on a silent stretch: the flat baseline and "0 plays" are
-              // the honest render, where the scored card would simply have skipped its turn.
-              return (
-                <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                  <div style={{ display: "flex", alignItems: "flex-end", gap: 1, height: 46 }}>
-                    {c.bins.map((v, i) => <div key={i} style={{ flex: 1, height: Math.max(2, v / max * 46), background: v ? "var(--accent)" : "var(--bg-3)", opacity: v ? 0.5 + 0.5 * (v / max) : 1, borderRadius: 1 }} title={v + " plays"} />)}
-                  </div>
-                  <div className="ov-eb" style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
-                    <span>72h ago</span><span>{fmt(sum)} plays</span><span>now</span>
-                  </div>
-                </div>
-              );
-            })()}
-          </div>
+          {/* ON THIS DAY in the ticker's old seat (Fuad 2026-09-22: "Let's Switch 'on this
+              day' with 'last 72h'"). The morning's clock72 card moved up to the pulse-row pin
+              and this fixed lead cell takes On this day — pinned by `only` (the codebase's
+              idiom for a fixed seat) rather than hand-rolled, so the provider keeps its ±3-day
+              fallback and there is one rendering of it in the file. The omit list is everything
+              this page renders elsewhere: a null otd (no date entry within ±3 days) must not
+              backfill a card from the pulse row or the deck beside it.
+              The last.fm header link died with the hand-rolled card — it was the Recent
+              ticker's chrome, carried along on 5181ee3, and a provider card has no header slot
+              for an anchor. Flagged to Fuad rather than re-homed. */}
+          <InsightRow go={go} n={1} only={["otd"]} omit={["clock72", "in-season", "week", "mood"]} />
           {/* three scored cards beside it. otd + in-season are pinned into the pulse row above and
               `week` is retired, so all three are omitted here or the page shows them twice.
               (scrob-mile left this list on 2026-09-19 along with the provider itself; artist-mile
@@ -1049,8 +1021,8 @@ function OverviewView({ t, go, restReady, seed }) {
               second merged into "This week", and neither can return a card to omit.)
               `last` went with movement, which was the only id it ever pinned. Position is back to
               score order here; if a card needs a fixed cell again, `last` is still in runInsights.
-              clock72 joined on 2026-09-22: the strip owns the fixed cell where the ticker sat,
-              and a card cannot be in both. */}
+              clock72 joined on 2026-09-22 (it holds a pulse-row seat since the same day's swap;
+              otd holds the fixed cell beside this row) — a card cannot be in two rows. */}
           <InsightRow go={go} n={3} omit={["otd", "in-season", "week", "mood", "clock72"]} />
         </div>
 
@@ -1272,18 +1244,15 @@ function OverviewView({ t, go, restReady, seed }) {
            · .ov-stat-link declared the easing on ITSELF, so the caption faded and the numeral
              inside it — a different element, and the one you are actually looking at — jumped.
              The stat tile's number is named here so both halves move together.
-           · The last.fm link in the Last-72-hours header wears .r-extlink-lf without .r-extlink, and
-             the .15s lives on .r-extlink; the red-on-hover had nothing to ease. Scoped to the
-             card so the pill-shaped .r-extlink uses elsewhere keep their own timing.
            Not folded in: .ov-pd-via's hover, which only adds an underline — there is nothing
            there to interpolate. */
         .ov-hovrow, .ov-wback, .ov-calsel, .ov-caltitle, .ov-pd-foot,
-        .ov-stat-link, .ov-stat-link .r-stat-n, .ov-last72 .r-extlink-lf {
+        .ov-stat-link, .ov-stat-link .r-stat-n {
           transition: background .16s ease, border-color .16s ease, color .16s ease;
         }
         @media (prefers-reduced-motion: reduce) {
           .ov-hovrow, .ov-wback, .ov-calsel, .ov-caltitle, .ov-pd-foot,
-          .ov-stat-link, .ov-stat-link .r-stat-n, .ov-last72 .r-extlink-lf { transition: none; }
+          .ov-stat-link, .ov-stat-link .r-stat-n { transition: none; }
         }
         .ov-hovrow:hover { background: var(--bg-3); }
         /* year tiles (SINCE / PEAK YEAR): the string branch of Stat cross-fades on value change —
