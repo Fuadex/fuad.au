@@ -259,7 +259,9 @@ function StoriesView({ t, go, seed }) {
   const I = R.INSIGHTS;
   // ── TOC / chapters / deep links ──
   // Sections self-register: after render we read each card's .st-label from the DOM (conditional
-  // cards are handled for free), assign stable ids, build the sticky TOC, and scrollspy it.
+  // cards are handled for free) and assign stable ids — that id set is what #stories/<slug> resolves
+  // against, for all 41 of them. The RAIL is a level above: the nine .st-chapter dividers, also read
+  // out of the DOM in order, scroll-spied by range (2026-09-21 — see the registration effect).
   const feedRef = React.useRef(null);
   const [toc, setToc] = React.useState([]);
   const [active, setActive] = React.useState("");
@@ -480,31 +482,117 @@ function StoriesView({ t, go, seed }) {
     return () => { window.removeEventListener("scroll", onScroll); if (raf) cancelAnimationFrame(raf); };
   }, []);
   const _slugify = (s) => (s || "").toLowerCase().split("·")[0].trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  // THE RAIL IS THE NINE CHAPTERS (2026-09-21) — it used to be all 41 module crumbs, which on the
+  // horizontal (sub-1420px) bar measured 4,336px of strip at a 360px viewport: twelve screens of
+  // sideways scrolling to find anything, and the active crumb usually off-screen. The feed now has
+  // nine .st-chapter dividers, so the rail follows THEM and the per-module crumbs are gone from it
+  // (option a). Why not nest the active chapter's modules under it: the rail has exactly two shapes
+  // and neither takes a second level cleanly. Wide, it is a fixed, vertically CENTRED dot column
+  // (translateY(-50%)) — a group that grows and shrinks as you scroll past a chapter boundary
+  // re-anchors the whole column, so every dot would slide under the cursor mid-scroll, and the
+  // weighted-slide hack below exists precisely to stop that kind of movement. Narrow, it is a
+  // single-row sticky strip — an inline group would reflow the strip under the reader's thumb on
+  // every boundary and put chapter VI's seven crumbs straight back into the width problem. The
+  // modules keep their ids (pass 1), their deep links, and their names in the row's tooltip.
   React.useEffect(() => {
     const feed = feedRef.current; if (!feed) return;
-    const items = [];
-    for (const sec of feed.querySelectorAll("section")) {
-      const lbl = sec.querySelector(".st-label"); if (!lbl) continue;
-      const label = lbl.textContent.split("·")[0].trim();
-      const id = "st-" + _slugify(label);
-      sec.id = id;
-      items.push({ id, label });
-    }
-    setToc(items);
-    if (seed) {
-      const el = document.getElementById("st-" + _slugify(decodeURIComponent(seed)));
-      if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
-    }
-    const obs = new IntersectionObserver((es) => { for (const e of es) if (e.isIntersecting) setActive(e.target.id); },
-      { rootMargin: "-12% 0px -72% 0px" });
-    for (const it of items) { const el = document.getElementById(it.id); if (el) obs.observe(el); }
-    return () => obs.disconnect();
-    // `reading` is a dependency because The Reading is the first section in the feed that MOUNTS
-    // LATE (2026-09-21): its content arrives on a lazy script, so at first paint there is no
-    // section to find and the rail would have been permanently one crumb short. Re-running is
-    // cheap — a querySelectorAll over ~30 sections plus a fresh observer — and the seed scroll it
-    // also repeats lands on the same element, milliseconds after mount.
+    let seeded = false;
+    const register = () => {
+      // PASS 1 — every section still self-registers its slug id. The rail no longer lists them, but
+      // the ROUTER is a separate path: #stories/<slug> arrives as `seed` and resolves against the
+      // ids stamped here, so all 41 module deep links keep working whatever shape the rail takes.
+      const labelOf = {};
+      for (const sec of feed.querySelectorAll("section")) {
+        const lbl = sec.querySelector(".st-label"); if (!lbl) continue;
+        const label = lbl.textContent.split("·")[0].trim();
+        sec.id = "st-" + _slugify(label);
+        labelOf[sec.id] = label;
+      }
+      // PASS 2 — the rail rows, read off the dividers in DOM order (zero bookkeeping: re-cut the
+      // feed and the rail re-cuts itself). Sections before the first divider — the "On this day"
+      // hero — get their own row at the top rather than being folded into chapter I: the hero is
+      // outside the chapter structure, tapping I must land on I's rule and not on a card above it,
+      // and the span from the top of the page down to that rule needs an owner or nothing reads as
+      // active there. It is conditional (no entry for today = no card), and being DOM-derived the
+      // row simply is not there on those days.
+      const rows = []; let cur = null;
+      for (const node of feed.querySelectorAll("section, .st-chapter")) {
+        if (node.classList.contains("st-chapter")) {
+          const num = (node.firstElementChild ? node.firstElementChild.textContent : "").trim();
+          const label = node.textContent.slice(num.length).trim();
+          cur = { id: "st-ch-" + _slugify(label), num, label, members: [] };
+          node.id = cur.id;
+          rows.push(cur);
+        } else if (node.id) {
+          if (!cur) { cur = { id: node.id, num: "", label: labelOf[node.id] || "Today", members: [] }; rows.push(cur); }
+          cur.members.push({ id: node.id, label: labelOf[node.id] || node.id });
+        }
+      }
+      setToc(rows);
+      if (seed && !seeded) {
+        const el = document.getElementById("st-" + _slugify(decodeURIComponent(seed)));
+        if (el) { seeded = true; setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "start" }), 80); }
+      }
+    };
+    register();
+    // LAZY SECTIONS MOUNT AFTER THIS EFFECT (2026-09-21, caught by the probe at 41-vs-40 ids): The
+    // Reading and "The songs you own twice" arrive on their own scripts, and the covers card is a
+    // CHILD component holding its own state — StoriesView never re-renders for it, so whether that
+    // section ever got an id came down to which script won the race (a re-render for `reading`
+    // happened to re-register it, or it stayed id-less and its deep link was dead). An observer on
+    // the feed ends the race for every late module, present and future: it re-registers only while
+    // a labelled section is still missing an id, so setToc's own re-render cannot loop it.
+    const pending = () => [...feed.querySelectorAll("section:not([id])")].some(s => s.querySelector(".st-label"));
+    const mo = new MutationObserver(() => { if (pending()) register(); });
+    mo.observe(feed, { childList: true, subtree: true });
+    return () => mo.disconnect();
+    // `reading` stays a dependency: the observer covers the ids, but a deep link INTO a late module
+    // also wants its scroll re-attempted once the target exists, and `seeded` keeps that to once.
   }, [seed, reading]);
+  // ACTIVE CHAPTER = the one whose span contains the viewport top. A chapter is a RANGE (divider to
+  // next divider), not an element, so this is a scroll read rather than the IntersectionObserver the
+  // per-module crumbs used — an observer on the dividers alone would go quiet in the middle of a
+  // long chapter and leave the rail showing nothing. rAF-throttled, ten getBoundingClientRects a
+  // frame, and setActive with an unchanged string is a React bail-out, not a render.
+  React.useEffect(() => {
+    if (!toc.length) return;
+    let raf = 0;
+    const pick = () => {
+      raf = 0;
+      // The line we test against is exactly where a jump PARKS a row — the scroll-margin the rules
+      // and cards already carry (78px wide, 112px narrow, both declared in the style block) plus a
+      // few px of tolerance. Measured rather than hard-coded, because a constant 96 made tapping a
+      // chapter land its rule at 112px and leave the PREVIOUS chapter lit: the highlight has to
+      // agree with the scroll, or the rail argues with itself on every tap.
+      const first = document.getElementById(toc[0].id);
+      const y = window.scrollY + (first ? (parseFloat(getComputedStyle(first).scrollMarginTop) || 0) + 4 : 100);
+      let id = toc[0].id;
+      for (const r of toc) {
+        const el = document.getElementById(r.id); if (!el) continue;
+        if (el.getBoundingClientRect().top + window.scrollY > y) break;
+        id = r.id;
+      }
+      setActive(id);
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(pick); };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    pick();
+    return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); if (raf) cancelAnimationFrame(raf); };
+  }, [toc]);
+  // …and on the narrow strip, keep the active chapter in view. Nine rows is ~1,100px of strip at
+  // 360px — a quarter of what it was, but still wider than the screen, and a highlight you cannot
+  // see is no highlight. scrollLeft arithmetic on the nav itself, never scrollIntoView, which would
+  // scroll the PAGE as well; the guard is the rail's own overflow, so the wide (overflow:visible)
+  // dot column is left alone without asking the viewport how wide it is.
+  React.useEffect(() => {
+    const el = tocRef.current; if (!el || !active) return;
+    if (el.scrollWidth <= el.clientWidth + 1) return;
+    const btn = el.querySelector("[data-id=\"" + active + "\"]"); if (!btn) return;
+    const l = btn.offsetLeft, r = l + btn.offsetWidth;
+    if (l < el.scrollLeft + 12) el.scrollTo({ left: Math.max(0, l - 12), behavior: "smooth" });
+    else if (r > el.scrollLeft + el.clientWidth - 12) el.scrollTo({ left: r - el.clientWidth + 12, behavior: "smooth" });
+  }, [active]);
   const jump = (id) => {
     const el = document.getElementById(id); if (!el) return;
     el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -574,16 +662,23 @@ function StoriesView({ t, go, seed }) {
       {toc.length > 3 && (() => {
         const activeIdx = toc.findIndex(it => it.id === active);
         return (
-        <nav className="st-toc" aria-label="stories" ref={tocRef}>
-          {toc.map((it, idx) => (
-            <button key={it.id} data-on={active === it.id}
-              data-reached={activeIdx >= 0 && idx <= activeIdx ? "true" : undefined}
-              onClick={() => jump(it.id)}
-              title={fresh[it.id] ? "changed recently" : undefined}>
-              <span className="st-node" />
-              <span className="st-toc-lbl">{it.label}{fresh[it.id] ? <i className="st-fresh" /> : null}</span>
-            </button>
-          ))}
+        <nav className="st-toc" aria-label="story chapters" ref={tocRef}>
+          {toc.map((it, idx) => {
+            // freshness rolls UP: a chapter pulses when any module inside it changed recently, and
+            // the tooltip names that chapter's modules — the one thing the dropped crumbs were
+            // still doing for a reader hunting a particular story.
+            const hot = it.members.some(m => fresh[m.id]);
+            const names = it.members.map(m => m.label).join(" · ");
+            return (
+              <button key={it.id} data-id={it.id} data-on={active === it.id}
+                data-reached={activeIdx >= 0 && idx <= activeIdx ? "true" : undefined}
+                onClick={() => jump(it.id)}
+                title={(names || it.label) + (hot ? " — changed recently" : "")}>
+                <span className="st-node" />
+                <span className="st-toc-lbl">{it.num ? <b className="st-toc-num">{it.num}</b> : null}{it.num ? " " : null}{it.label}{hot ? <i className="st-fresh" /> : null}</span>
+              </button>
+            );
+          })}
         </nav>
         );
       })()}
@@ -1547,7 +1642,7 @@ function StoriesView({ t, go, seed }) {
             lines up: a heavy year carries two milestones and a thin one carries none, and the
             rows are different animals (a peak is four text columns, a milestone is a sleeve).
             Wave C's shape applies — one label, one title, two compact facets — and the
-            "Milestones" TOC crumb left with its label. */}
+            "Milestones" deep-link slug left with its label. */}
         <section className="st-card">
           <div className="st-label">Heaviest days</div>
           <div className="st-title-sm">Annual single-day records — and what the counter landed on.</div>
@@ -2174,7 +2269,7 @@ function StoriesView({ t, go, seed }) {
           // for a card whose own sub already names the biggest non-English voice. Wave C's shape
           // (Map drift into Origins, Emotional weather into Sounds happy): the arithmetic is
           // unchanged, the section becomes a facet under one label, and its own st-big headline
-          // demotes to the facet sub. The "Language drift" TOC crumb left with the label.
+          // demotes to the facet sub. The "Language drift" deep-link slug left with the label.
           const A = L.arc;
           const huesByLang = { pl: 15, de: 110, ja: 340, sv: 210, es: 40, fr: 260, ko: 300, fi: 190, ru: 350, pt: 60 };
           const drift = A && A.years && A.years.length >= 6 ? (() => {
@@ -2412,7 +2507,7 @@ function StoriesView({ t, go, seed }) {
             themes, not three), and the riser/faller Sparks (the stacked chart IS that turn, drawn
             off the full matrix rather than the arc's six — and the merged riser can be a theme
             the arc does not even carry, which those Sparks would have drawn as a flat zero).
-            The TOC rail self-registers off .st-label, so the "Lyric themes" crumb left with it. */}
+            Section ids self-register off .st-label, so the "Lyric themes" deep link left with it. */}
 
         {/* CHAPTER IX (feed re-cut 2026-09-21) — the closing couplet, both placements owner-approved: the chart, then the portrait naming it */}
         <div className="st-chapter"><span>IX</span> The verdict</div>
@@ -2442,7 +2537,7 @@ function StoriesView({ t, go, seed }) {
               THE WHO     the artist theme-profiles, which only the old card ever showed, closing
                           the module on the names behind the colours.
             Label kept as "Lyrical diet": a diet is already both halves — what gets eaten and how
-            that changes — and it is the crumb the TOC rail has been registering. The tombstone in
+            that changes — and it is the label the section's deep-link slug is built from. The tombstone in
             the old words-chapter card lists what was dropped as a duplicate rather than carried across. */}
         {diet && (() => {
           const D = diet, T = I.THEMES, H = 168;
@@ -2704,6 +2799,9 @@ function StoriesView({ t, go, seed }) {
            every jump hid its own label behind the bar. Below 1420px the story rail is sticky at the
            top as well, adding its own row, so the offset is larger there. */
         .st-feed > section { scroll-margin-top: 78px; }
+        /* the rail targets the chapter RULES now (2026-09-21), and they are dividers, not sections —
+           without the same offset every chapter jump parks its rule behind the sticky header. */
+        .st-feed > .st-chapter { scroll-margin-top: 78px; }
         /* THE YEAR SWAP. Remounted by its key, so the animation runs on arrival and needs no exit
            state — a year change is a replacement, not a transition between two things on screen at
            once. Short and small: this fires on every arrow press, so anything longer than ~260ms
@@ -2712,6 +2810,7 @@ function StoriesView({ t, go, seed }) {
         @keyframes st-swap-in { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
         @media (prefers-reduced-motion: reduce) { .st-swap { animation: none; } }
         @media (max-width: 1419px) { .st-feed > section { scroll-margin-top: 112px; } }
+        @media (max-width: 1419px) { .st-feed > .st-chapter { scroll-margin-top: 112px; } }
         .st-hero { padding: 22px 21px; }
         /* SHARED TYPE ROLES (Fuad 2026-09-14: "the text in a lot of the Stories modules varies a bit
            too much font-style-wise ... make sure we have a rather standardized style"). The feed
@@ -2996,6 +3095,11 @@ function StoriesView({ t, go, seed }) {
         .st-toc button:hover { color: var(--ink); }
         .st-toc button[data-on="true"] { color: var(--accent); }
         .st-toc button[data-on="true"]::after { background: var(--accent-dim); }
+        /* the roman numeral inside a rail row (2026-09-21) — the same mono-accent glyph the chapter
+           rule itself carries, so the row and the divider it points at read as one label. No size or
+           spacing of its own: it inherits the crumb's face and is separated by a word space. */
+        .st-toc-num { color: var(--accent-dim); font-weight: 400; margin-right: 4px; }
+        .st-toc button[data-on="true"] .st-toc-num { color: var(--accent); }
         .st-fresh { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--accent);
           margin-right: 6px; vertical-align: 1px; }
         .st-chapter { display: flex; align-items: baseline; gap: 10px; margin: 14px 2px 0;
