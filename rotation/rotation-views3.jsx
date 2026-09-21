@@ -1316,95 +1316,22 @@ function StoriesView({ t, go, seed }) {
           );
         })()}
 
-        {/* themes — what the lyrics are ABOUT (embedding themes, not sentiment) */}
-        {I.THEMES && I.THEMES.shares.length >= 6 && (() => {
-          const T = I.THEMES;
-          const top = T.shares[0];
-          const max = top.plays;
-          // movers: biggest riser/faller between the first 3 and last 3 arc years
-          let riser = null, faller = null;
-          if (T.arc) {
-            const A = T.arc.years, f3 = A.slice(0, 3), l3 = A.slice(-3);
-            const deltas = T.arc.themes.map(th => {
-              const before = f3.reduce((s, y) => s + (y.byTheme[th] || 0), 0) / f3.length;
-              const after = l3.reduce((s, y) => s + (y.byTheme[th] || 0), 0) / l3.length;
-              return { th, delta: after - before, after };
-            }).sort((a, b) => b.delta - a.delta);
-            riser = deltas[0]; faller = deltas[deltas.length - 1];
-          }
-          return (
-            <section className="st-card st-hero">
-              <div className="st-label">Lyric themes</div>
-              <div className="st-big">
-                <em>{Math.round(top.share * 100)}%</em> of what you play is about <em>{top.theme}</em>.
-              </div>
-              <div className="st-sub">
-                What the words are <i>about</i> — read from {fmt(T.covered)} tracks ({Math.round(T.coveredPlays / T.totalPlays * 100)}% of plays)
-                {riser && faller && riser.delta > 0.02 ? <> — <b style={{ color: "var(--ink)" }}>{riser.th}</b> rising, <b style={{ color: "var(--ink)" }}>{faller.th}</b> fading</> : null}.
-              </div>
-              <div style={{ display: "grid", gap: 7, marginTop: 18, maxWidth: 560 }}>
-                {T.shares.slice(0, 8).map(s => (
-                  <div key={s.theme} style={{ display: "grid", gridTemplateColumns: "170px 1fr 44px", gap: 10, alignItems: "center" }}>
-                    <span className="st-tx">{s.theme}</span>
-                    <div style={{ height: 7, background: "var(--bg-3)", borderRadius: 4, overflow: "hidden" }}>
-                      <div style={{ height: "100%", width: (s.plays / max * 100) + "%", background: "var(--accent)", borderRadius: 4 }} />
-                    </div>
-                    <span className="r-mono" className="st-nr">{Math.round(s.share * 100)}%</span>
-                  </div>
-                ))}
-              </div>
-              {T.exemplars[top.theme] && (
-                <div className="st-ug-cuts" style={{ marginTop: 18 }}>
-                  {T.shares.slice(0, 3).flatMap(s => (T.exemplars[s.theme] || []).slice(0, 2).map(e => (
-                    <div key={e.id} className="st-ug-cut" data-link={true} onClick={() => go("track", e.id)}>
-                      <GenCover hue={e.hue} name={e.artist} size={40} radius={4} />
-                      <div style={{ minWidth: 0 }}>
-                        <div className="st-row-name">{e.title}</div>
-                        <div className="st-row-sub">{e.artist} · {s.theme} · {fmt(e.plays)} plays</div>
-                      </div>
-                    </div>
-                  )))}
-                </div>
-              )}
-              {/* wave F insight 5 — the turn drawn, not just named: the riser and the faller
-                  as year arcs (T.arc ships today, no CI wait). */}
-              {T.arc && riser && faller && riser.delta > 0.02 && (() => {
-                const Ys = T.arc.years;
-                const row = (th, hue) => (
-                  <div className="st-arc-row" key={th}>
-                    <div className="st-arc-head"><span className="st-arc-name">{th}</span>
-                      <span className="st-arc-now" style={{ color: `oklch(0.72 0.14 ${hue})` }}>
-                        {Math.round((Ys[Ys.length - 1].byTheme[th] || 0) * 100)}%</span></div>
-                    <Spark data={Ys.map(y => y.byTheme[th] || 0)} w={420} h={24} run={true}
-                      labels={Ys.map(y => y.year)} fmtV={(v) => Math.round(v * 100) + "%"}
-                      stroke={`oklch(0.72 0.14 ${hue})`} fill={`oklch(0.72 0.14 ${hue} / .12)`} />
-                  </div>
-                );
-                return (
-                  <div style={{ marginTop: 18 }}>
-                    <div className="st-yir-h">How the turn happened</div>
-                    <div className="st-arc">
-                      {row(riser.th, 145)}
-                      {row(faller.th, 25)}
-                    </div>
-                    <div className="st-arc-axis"><span>{Ys[0].year}</span><span>{Ys[Ys.length - 1].year}</span></div>
-                  </div>
-                );
-              })()}
-              {T.artists.length >= 5 && (
-                <div className="st-sub" style={{ marginTop: 18 }}>
-                  Signature obsessions: {T.artists.slice(0, 6).map((a, i) => (
-                    <React.Fragment key={a.artistId}>{i > 0 ? " · " : ""}
-                      <b className="st-inline-link" data-link={hasPage(a.artistId)}
-                        onClick={() => hasPage(a.artistId) && go("artist", a.artistId)}>{a.name}</b>
-                      {a.themes[0] ? <span style={{ color: "var(--ink-faint)" }}> ({a.themes[0].theme})</span> : null}
-                    </React.Fragment>
-                  ))}.
-                </div>
-              )}
-            </section>
-          );
-        })()}
+        {/* LYRIC THEMES — MERGED AWAY 2026-09-21 ──────────────────────────────────────────────
+            A second theme card lived here: the overall shares as a bar list, the top-3 themes'
+            exemplar cuts, a riser/faller Spark pair, and a "Signature obsessions" artist line.
+            It answered "what is it about"; Lyrical diet at the foot of the feed answered "what
+            changed" off the SAME THEMES payload — two cards on one subject, a thousand lines
+            apart, each forced to declare the same coverage caveat (Fuad: "I wonder if we could
+            combine Lyrical Diet with Lyric Themes. It'd become a larger story but well").
+            What was only here moved there: the overall claim is the merged module's headline, and
+            the artist theme-profiles (THEMES.artists — the payload's only answer to WHO feeds a
+            theme) are its closing block, now with their share numbers instead of a name and a
+            theme in brackets. What was a second copy died here: the bar list (the chips carry the
+            same percentages), the exemplar cuts (the pinned panel opens tracks for all eighteen
+            themes, not three), and the riser/faller Sparks (the stacked chart IS that turn, drawn
+            off the full matrix rather than the arc's six — and the merged riser can be a theme
+            the arc does not even carry, which those Sparks would have drawn as a flat zero).
+            The TOC rail self-registers off .st-label, so the "Lyric themes" crumb left with it. */}
 
         <div className="st-chapter"><span>IV</span> Scenes &amp; places</div>
 
@@ -2473,21 +2400,34 @@ function StoriesView({ t, go, seed }) {
             Graduated from the #lab prototype with the one thing the lab could not do (Fuad
             2026-09-21: "not just a limited selection") — THEMES.matrix carries every theme's
             per-mille share per year, so the WHOLE diet stacks and the picker reaches all of it
-            rather than the arc's top six. Lyric themes up in chapter III still answers "what is it
-            about"; this one answers "what changed".
+            rather than the arc's top six.
             RESTYLED + REWIRED 2026-09-21 on three rulings. (1) "the bars to not contain fill
             color, only strokes, a la style on overview" — every segment is an outline now, the
             register the Overview strips use, and only the ACTIVE theme takes a fill (18%). (2)
             "make the interaction hoverable" — hovering any band lights that theme across every
             year; a chip click still PINS one, and the pin beats the hover. (3) the colours are
-            semantic and the stack is sorted by them (ST_DIET_HUES, top of file). */}
+            semantic and the stack is sorted by them (ST_DIET_HUES, top of file).
+            MERGED 2026-09-21 (Fuad: "I wonder if we could combine Lyrical Diet with Lyric
+            Themes. It'd become a larger story but well"). Chapter III's card read the same
+            payload and answered the other half of the question, so this is now the WHOLE theme
+            story, told largest first:
+              THE CLAIM   the biggest theme's lifetime share — the old card's headline, and the
+                          plainest thing the data says;
+              THE CHANGE  the riser/fader sentence and the stacks, untouched, because the drift
+                          is the half only a chart can carry;
+              THE WHO     the artist theme-profiles, which only the old card ever showed, closing
+                          the module on the names behind the colours.
+            Label kept as "Lyrical diet": a diet is already both halves — what gets eaten and how
+            that changes — and it is the crumb the TOC rail has been registering. The tombstone in
+            chapter III lists what was dropped as a duplicate rather than carried across. */}
         {diet && (() => {
           const D = diet, T = I.THEMES, H = 168;
           // TWO SELECTIONS, ONE OF THEM DISPOSABLE. `sel` is PINNED (a chip click) and is the only
           // one the exemplar panel below ever reads — that panel opens tracks and artists, so it
           // must not flicker as the pointer crosses the chart. `hot` is the hover preview and
-          // reaches the BARS and the CHIPS only. Pin wins outright: while something is pinned,
-          // hot is forced null, so a hover can never move the chart out from under the panel.
+          // reaches the BARS, the CHIPS and the profile rows only. Pin wins outright: while
+          // something is pinned, hot is forced null, so a hover can never move the chart out from
+          // under the panel.
           const sel = D.hue[dietSel] != null ? dietSel : null;
           const hot = !sel && dietHot && D.hue[dietHot] != null ? dietHot : null;
           const act = sel || hot;
@@ -2506,7 +2446,15 @@ function StoriesView({ t, go, seed }) {
             return { height: px, borderColor: `oklch(0.68 0.13 ${h} / 0.60)`, background: `oklch(0.68 0.13 ${h} / 0.10)` };
           };
           const ex = sel ? ((T.exemplarsAll || T.exemplars || {})[sel] || []) : [];
-          const fed = sel ? (T.artists || []).filter(a => (a.themes || []).some(t => t.theme === sel)).slice(0, 6) : [];
+          // FED BY, WITH THE NUMBER (2026-09-21, out of the merge). The old chapter-III card spent
+          // these profiles on a flat "Signature obsessions: name (theme)" line; the share is the
+          // half that means something, so the pinned panel carries it now. THEMES.artists is
+          // play-ordered, so the slice is the theme's heaviest feeders and not an arbitrary six.
+          const fedAll = sel ? (T.artists || []).map(a => {
+            const hit = (a.themes || []).find(t => t.theme === sel);
+            return hit ? { a: a, share: hit.share } : null;
+          }).filter(Boolean) : [];
+          const fed = fedAll.slice(0, 6);
           const chip = (s) => (
             <button key={s.theme} type="button" className="st-diet-chip" data-on={sel === s.theme ? "true" : undefined}
               data-hot={hot === s.theme ? "true" : undefined}
@@ -2518,19 +2466,30 @@ function StoriesView({ t, go, seed }) {
               {s.theme} · {Math.round(s.share * 100)}%
             </button>
           );
+          // THE HEADLINE, CLAIM FIRST (2026-09-21 merge). The share sentence is the old card's
+          // hero; the movement sentence is this module's own, numbers untouched. The two COLLIDE
+          // on today's data — the biggest theme is also the fastest riser — and naming it twice in
+          // three lines reads as a stutter, so when they are the same theme the claim keeps going
+          // instead of restating the name.
+          const top = (T.shares && T.shares[0]) || null;
+          const same = !!(top && D.riser && top.theme === D.riser.th);
+          const turn = same
+            ? <>— and still climbing, up <em>{pts(D.riser.d)} points</em> on your first years, while <em>{D.fader.th}</em> is down <em>{pts(D.fader.d)}</em>.</>
+            : <><em>{D.riser.th}</em> is up <em>{pts(D.riser.d)} points</em> on your first years, <em>{D.fader.th}</em> down <em>{pts(D.fader.d)}</em>.</>;
           return (
             <section className="st-card st-hero">
               <div className="st-label">Lyrical diet</div>
               <div className="st-big">
-                <em>{D.riser.th}</em> is up <em>{pts(D.riser.d)} points</em> on your first years.
-                {" "}<em>{D.fader.th}</em> is down <em>{pts(D.fader.d)}</em>.
+                {top ? <><em>{Math.round(top.share * 100)}%</em> of what you play is about <em>{top.theme}</em>{same ? " " : ". "}</> : null}
+                {turn}
               </div>
               <div className="st-sub">
                 Play-weighted shares of what the words are about, year by year, over {fmt(T.covered)} theme-classified
                 tracks ({Math.round(T.coveredPlays / T.totalPlays * 100)}% of plays).
                 {D.full ? ` All ${D.names.length} themes stack here` : " Only the six biggest themes are in this payload"}, stacked in colour
-                order — blood at the foot of each bar, rose at the crown. Hover a band to follow that theme across every
-                year; pick one to pull its songs out of the mix.
+                order — blood at the foot of each bar, rose at the crown. Every chip below carries that theme's share of
+                everything you play; hover a band to follow one across the years, pick one to pull its songs and its
+                feeders out of the mix.
               </div>
               {/* onMouseLeave on the CONTAINER, not on each band: moving between two touching
                   segments fires leave-then-enter, and clearing on the segment's own leave would
@@ -2592,14 +2551,53 @@ function StoriesView({ t, go, seed }) {
                   ) : <div className="st-mi">No exemplar tracks shipped for this theme.</div>}
                   {fed.length > 0 && (
                     <div className="st-sub" style={{ marginTop: 10 }}>
-                      Fed by: {fed.map((a, i) => (
-                        <React.Fragment key={a.artistId}>{i > 0 ? " · " : ""}
-                          <b className="st-inline-link" data-link={hasPage(a.artistId)}
-                            onClick={() => hasPage(a.artistId) && go("artist", a.artistId)}>{a.name}</b>
+                      Fed by, as a share of their own themed plays: {fed.map((f, i) => (
+                        <React.Fragment key={f.a.artistId}>{i > 0 ? " · " : ""}
+                          <b className="st-inline-link" data-link={hasPage(f.a.artistId)}
+                            onClick={() => hasPage(f.a.artistId) && go("artist", f.a.artistId)}>{f.a.name}</b>
+                          <span style={{ color: "var(--ink-faint)" }}> {Math.round(f.share * 100)}%</span>
                         </React.Fragment>
-                      ))}.
+                      ))}
+                      {fedAll.length > fed.length ? ` and ${fedAll.length - fed.length} more in the list below` : ""}.
                     </div>
                   )}
+                </div>
+              )}
+              {/* THE WHO — absorbed 2026-09-21 from chapter III's card, where these fourteen were
+                  a bare "Signature obsessions: name (theme)" line with no numbers. THEMES.artists
+                  is the heaviest theme-classified artists with their top two themes and each
+                  theme's grip on that artist's OWN plays, and it is the only place the payload
+                  answers who feeds what — which is what earned it the trip across rather than the
+                  tombstone. Hovering a row lights that artist's dominant theme in the chart above
+                  (the same dietHot a band or a chip sets), so the block doubles as a legend: point
+                  at Rammstein and party & hedonism lights up across every year at once. A pin
+                  still wins, so a reader who has parked a theme can read down the list without
+                  losing it — and the rows answer back instead, every line carrying the active
+                  theme brightening while it is held. */}
+              {(T.artists || []).length >= 5 && (
+                <div className="st-diet-who">
+                  <div className="st-yir-h">Who feeds which theme · share of their own themed plays</div>
+                  <div className="st-thp" onMouseLeave={() => setDietHot(null)}>
+                    {T.artists.map(a => (
+                      <div key={a.artistId} className="st-row" data-link={hasPage(a.artistId)}
+                        onClick={() => hasPage(a.artistId) && go("artist", a.artistId)}
+                        onMouseEnter={() => setDietHot(a.themes && a.themes[0] ? a.themes[0].theme : null)}>
+                        <GenCover hue={a.hue} name={a.name} size={34} radius={4} />
+                        <div style={{ minWidth: 0, flex: 1 }}>
+                          <div className="st-row-name">{a.name}</div>
+                          <div className="st-thp-th">
+                            {(a.themes || []).map(t => (
+                              <span key={t.theme} className="st-thp-one" data-on={act === t.theme ? "true" : undefined}>
+                                <i style={{ background: `oklch(0.70 0.15 ${D.hue[t.theme] != null ? D.hue[t.theme] : 0})` }} />
+                                {t.theme} <b>{Math.round(t.share * 100)}%</b>
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="st-row-right"><span className="st-mi">{fmt(a.plays)}</span></div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
             </section>
@@ -3197,6 +3195,38 @@ function StoriesView({ t, go, seed }) {
         .st-diet-pick { margin-top: 15px; border-top: 1px solid var(--rule); padding-top: 13px; }
         @media (prefers-reduced-motion: reduce) { .st-diet-seg, .st-diet-chip { transition: none; } }
         @media (max-width: 420px) { .st-diet { gap: 2px; } }
+
+        /* ── who feeds which theme ── the artist profiles, merged in from chapter III's "Lyric
+           themes" card on 2026-09-21. Fourteen rows, and .st-row already owns the cover, the
+           name, the hover wash and the pointer, so the only new geometry is the pair of theme
+           lines under the name and the two-column grid they sit in.
+           minmax(min(320px, 100%), 1fr) is measured against the card's ~750px interior: two
+           columns, and one the moment the card is narrower than about 674px — no media query
+           needed, auto-fill does it. The min() is not decoration: a bare minmax(320px, 1fr) track
+           REFUSES to shrink under its floor, so at 360px the 313px card grew a 320px track, and
+           the rows (which bleed 9px each side for their hover wash) crossed the viewport edge by
+           six. Measured at w=360 before and after.
+           The play count goes away under 560px rather than the theme name: measured at 360, the
+           longest label ("addiction & self-destruction 14%") was the only thing being ellipsised,
+           and the count is a reading aid for an order the list already carries top to bottom.
+           The rows do NOT carry their own colour beyond a 6px dot in the theme's hue: fourteen
+           rows fully tinted would out-shout the chart they are a legend for. */
+        /* the column gutter is wide on purpose: each row ends in a right-aligned play count, and
+           at a narrow gap that number sits against the next column's cover and reads as if it
+           belonged to the artist on its right. */
+        .st-thp { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 0 34px; }
+        .st-thp-th { display: grid; gap: 2px; margin-top: 4px; }
+        .st-thp-one { font-family: var(--mono); font-size: 9px; letter-spacing: .03em; color: var(--ink-faint);
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color .16s ease; }
+        .st-thp-one i { display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+          margin-right: 5px; vertical-align: middle; }
+        .st-thp-one b { color: var(--ink-soft); font-weight: 600; margin-left: 3px; }
+        /* lit while that theme is the one pinned or hovered in the chart above — the profile rows
+           answer the stack rather than repeating it. */
+        .st-thp-one[data-on="true"], .st-thp-one[data-on="true"] b { color: var(--ink); }
+        .st-diet-who { margin-top: 22px; border-top: 1px solid var(--rule); padding-top: 14px; }
+        @media (prefers-reduced-motion: reduce) { .st-thp-one { transition: none; } }
+        @media (max-width: 560px) { .st-thp .st-row-right { display: none; } }
 
         /* ── who brought you here ── the chain wraps rather than scrolls: a seven-name line runs
            to four rows at 360px, which reads fine, where a horizontal scroller inside a vertical
