@@ -65,6 +65,11 @@ const STRAY_MAP = {
   corrosive: 'angry',
   dominant: 'angry',
   belligerent: 'angry',
+  // owner ruling 2026-09-21: a "hard" register is swagger, not rage. The model reached for
+  // it once in the 09-21 pilot; this emitter refused that row as unmapped, as designed. It
+  // maps to defiant, not angry - and defiant, unlike angry, is absent from the DARK set
+  // below, so a bright valence over it is coherent rather than a refusal.
+  hard: 'defiant',
 };
 
 function resolveReg(raw) {

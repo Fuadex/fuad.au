@@ -71,7 +71,12 @@ $VPY  = 'C:\Users\Fuad\Documents\GitHub\.sptmp\mlenv\Scripts\python.exe'
 $env:HF_HOME = 'C:\Users\Fuad\Documents\GitHub\.sptmp\models'
 $S    = 'C:\Users\Fuad\Documents\GitHub\.sptmp'
 
-# 2. resolve the work queue to lyric text (scratch only)
+# 2a. OPTIONAL — go and get the keys no store holds yet (network, no GPU, any python)
+node   rotation\tools\lyric-names.js  --out $S\refetch-work\name-index.json
+python rotation\tools\lyric-refetch.py --plan          # what it would fetch, and why
+python rotation\tools\lyric-refetch.py --workers 5     # fetch + merge into the store
+
+# 2b. resolve the work queue to lyric text (scratch only)
 & $VPY rotation\tools\lyric-extract.py --missing-from mood --out $S\mood-work\todo.jsonl
 
 # 3. score (resumable — re-run after any crash, it picks up where it stopped)
@@ -101,6 +106,8 @@ turns UTF-8 punctuation into parse errors. Keep it that way.
 | `requirements-mlenv.lock.txt` | exact freeze of a known-good build |
 | `probe-mlenv.py` | refuses the environment unless CUDA is live, VRAM is sufficient, and bitsandbytes / transformers / sentence-transformers all import. Setup aborts on failure |
 | `fetch-models.py` | pulls both models into `HF_HOME` (= `.sptmp/models`) |
+| `lyric-names.js` | resolves lyric KEYS back to the REAL artist/track names, by replaying the scrobble CSV through the coherency ledger (`folds.json` + `track-merge.json`) and keying it with `lib-slug`. The prerequisite for any fetch — de-slugging a key is forbidden |
+| `lyric-refetch.py` | **stage 0.** Fetches the keys no store holds from LRCLIB and writes them into the scratch lyric store, caching a negative for anything that genuinely has none. Stdlib + langdetect, no GPU |
 | `lyric-extract.py` | **the only script that opens a lyric store.** Resolves keys → text from the on-disk stores, writes a scratch JSONL. Target modes: `--missing-from`, `--scored-sample`, `--themed-sample`, `--keys-file` |
 | `mood-score.py` | the scorer. Verbatim prompt + decoding, strict-JSON parse, register remap, append-only crash-safe resumable store |
 | `mood-emit.js` | merges scores into `genius-mood.json` with four proofs. Dry-run by default |
@@ -118,7 +125,7 @@ and `lyric-extract.py` searches them in this order:
 
 | store | rows | what it is |
 |---|---|---|
-| `.sptmp/lrclib-lyrics.json` | 36,111 keys, 14,260 with text | the LRCLIB fetch cache. Also caches negatives (`{ok:false}`), fetch errors (`{err}`) and instrumentals (`{instrumental:true}`) so nothing refetches them |
+| `.sptmp/lrclib-lyrics.json` | 36,111 keys, 14,260 with text before the 09-21 refetch | the LRCLIB fetch cache, and the store `lyric-refetch.py` writes back into. Also caches negatives (`{ok:false}`), too-short bodies (`{short:n}`), fetch errors (`{err}`) and instrumentals (`{instrumental:true}`) so nothing refetches them. Rows written from 2026-09-21 also carry `lang` (langdetect on *that* transcription) and `via`; older rows have neither and fall back to `genius-lyrics.json`'s language exactly as before |
 | `.sptmp/genius-text.json` | 7,220 | extracted dump text |
 | `.sptmp/nrc-audit/*.jsonl` | ~26k across four files | the 2026-08 extractions (`rest_`, `surgical_`, `calib_`, `gap-`). These carry text for keys that are *already* scored — they are what the fidelity re-score runs on |
 | `rotation/archive_genius.zip` | 3.26 GB | the original dump stream. Opt-in (`--sources ...,zip`), minutes per run, needs `.sptmp/our-tracks.json` for its artist/title index |
@@ -129,6 +136,53 @@ all six emitters, `REJECTED_READS.md`, and `llm_scores.json` — the raw model o
 record of what the instrument said before the emit gates touched it.
 
 ---
+
+## The refetch stage
+
+`lyric-extract.py` can only resolve a key some store already holds. Everything else — never
+fetched, a cached fetch error, a not-found, a body too short to score — is simply absent
+from the work queue and the pipelines can never reach it. `lyric-refetch.py` is what goes
+and gets it, and it is the *only* networked script in this directory.
+
+**Source.** LRCLIB, live and crowd-sourced. The dump caps at 2022, and the 2026-09-19
+fresher-source hunt confirmed there is no bulk successor, so targeted LRCLIB queries are the
+whole remaining supply.
+
+**By real names, never de-slugged.** The standing rule since the 2026-08-28 Japanese gap
+fill. A key is a slug and slugs are lossy — `rammstein~wei-es-fleisch` de-slugs to nonsense
+and only the corpus knows the title is "Weisses Fleisch". `lyric-names.js` reconstructs the
+names by replaying the scrobble CSV through the coherency ledger, which is also why a title
+that was *folded* after its lyric key was minted still resolves.
+
+**Exact, then fuzzy behind the artist gate.** `/api/get` on the real names first; on a miss,
+`/api/search`, and a candidate counts only when the **artist** matches. A fuzzy title alone
+must never attach another song's lyric — that is the preview-audit law.
+
+**Shortest qualifying text wins.** The 2026-09-19 correction, and the part most worth
+keeping. LRCLIB hosts an English fan translation and the original under one title; the older
+longest-text selection preferred the translation, and eleven entries — the whole Midori
+catalogue among them — came back mis-tagged as English, dragging three langdetect absurdities
+(Gurenge as Swahili, Monochrome as Welsh) in with them. Ranking candidates by *shortest*
+qualifying body picks the original. The fuzzy pass always ranks that way; the exact pass
+escalates to it only when what it got does not detect as the language the corpus expects.
+`langdetect` is the detector of record, seeded — **not** the older cld3/fasttext pair.
+
+**Cached negatives.** Anything genuinely without a lyric is written back as a negative so it
+never costs another request. A transport failure is recorded as `{err}` instead and stays
+retryable: a 429 is not evidence of absence.
+
+**Dependencies.** Stdlib plus `langdetect` — no CUDA, no torch, no ML venv, so it runs on
+whatever python is on PATH (`pip install langdetect`). Without the detector it still fetches
+and still caches negatives; only the language escalation goes quiet, so a missing dependency
+degrades the pick rather than failing the run. Deliberately kept out of
+`requirements-mlenv.txt`: the venv exists for the 4-bit model, and a network tool has no
+business pinning itself to it.
+
+**Crash-safe and resumable.** Every fetch appends one fsynced line to a scratch JSONL
+journal; the journal folds into the store at the end (`--merge-only` replays it with no
+network). Re-running skips everything the journal already has. Workers overlap LRCLIB's
+long-tail latency while a single global pacer holds the request rate — the politeness knob
+is `--sleep`, not `--workers`.
 
 ## The mood pipeline
 
@@ -325,26 +379,138 @@ passed.
 
 ### Open rulings
 
-- **`"hard"` is a new stray register** — the model produced it once in the pilot and it is
-  not in `STRAY_MAP`. The scorer flagged it and the emitter refused the row, as designed.
-  It wants a mapping (`angry`? `defiant`?) before the corpus run. Owner's call.
+- ~~**`"hard"` is a new stray register**~~ — **RULED 2026-09-21: `hard` → `defiant`.** A
+  "hard" register is swagger, not rage. The mapping is now in `STRAY_MAP` in both
+  `mood-score.py` and `mood-emit.js`, and the refused row rescored under it without the
+  model being re-run — the store keeps the raw register and the emitter resolves it. Note
+  the consequence: `defiant` is absent from the coherence gate's `DARK` set, so the bright
+  valence that came with it is coherent rather than a refusal. (The row was `poppy~hard`:
+  the model had echoed the song's own title back as a register.)
 - The language-stratified brightness skew above.
-- The 974 keys with no lyric text on disk (below).
+- ~~The 974 keys with no lyric text on disk~~ — **the refetch stage is built and has run;
+  see below.**
+
+## Corpus run of record — 2026-09-21
+
+The pilot's successor: the whole backlog, on one instrument, written for real. Three owner
+rulings authorised it — the `hard` mapping, building the refetch stage, and the full runs.
+
+### Refetch
+
+949 unclassified keys had no lyric text anywhere on disk; 943 of them were fetchable (6 were
+already cached as instrumental). 48 of the 59 straggler rows were in the same state, 41 of
+them not already in the queue — **984 keys fetched in all**. `lyric-names.js` named **949 of
+949** of the queue: the ledger-aware pass resolves every key, including the 119 the raw
+scrobble CSV alone could not, because their titles were folded after the lyric key was minted
+(`Rainbow (feat. The Partysquad)` → `Rainbow`, `Weisses Fleisch` → `Weißes Fleisch`).
+
+| | fetched | recovered | % |
+|---|---|---|---|
+| cached fetch-errors (mostly 2026-07 429s) | 245 | **229** | 93.5% |
+| never fetched | 639 | **539** | 84.4% |
+| cached not-found | 80 | **34** | 42.5% |
+| too short to score | 20 | **4** | 20.0% |
+| **all** | **984** | **806** | **81.9%** |
+
+The rest is now cached as an honest negative: 114 genuinely absent, 51 instrumental, 13 still
+too short. **Zero transport errors remain** — the four that survived the main run were
+retried and three of them landed. 18.5 minutes for the main 918 at five workers on a 0.35 s
+pacer; the HTTP tail is what costs, not the rate limit (972×200, 141×404, 69 timeouts, 4×525,
+1×503, and **no 429 at all**).
+
+Route: 742 exact `/api/get`, 43 fuzzy `/api/search` behind the artist gate, and **21 taken by
+the shortest-qualifying escalation** — 21 rows where the exact hit did not detect as the
+language the corpus expected and a shorter candidate did. That is the 2026-09-19 translation
+class caught live: `babymetal~megitsune` en→ja, `babymetal~iine` hr→ja,
+`korpiklaani~keep-on-galloping` en→fi, `gipsy-kings~baila-me` it→es. langdetect agreed with
+`genius-lyrics.json` on 754 of the 786 comparable hits; the 32 disagreements are short-body
+detector noise (`sr`→`hr`, `la`→`ca`) rather than a second mistag class.
+
+### Scoring
+
+| | tracks | wall | rate |
+|---|---|---|---|
+| mood — backlog with text | 2,231 | 37.0 min | 60.3 /min |
+| mood — the refetch reclaim | 765 | 12.4 min | 61.6 /min |
+| mood — straggler rows | 52 | 49 s | 63.2 /min |
+| **mood total** | **3,048** | **50.3 min** | — |
+| themes — embedding | 3,156 | 3.1 s | 1,029 /s |
+
+**Zero unparseable replies in 3,048 generations**, and zero unmapped registers — the `hard`
+ruling was the last one outstanding. Run in resumable chunks throughout; the store is
+append-only and fsynced per row, so no chunk boundary is a risk.
+
+### The emits
+
+Both dry-run first, every proof printed, then written.
+
+| | mood | themes |
+|---|---|---|
+| store rows examined | 2,996 | 2,909 |
+| **created** | **2,905** | **2,909** |
+| refused | 91 incoherent · 0 unmapped · 0 already present | 0 |
+| proofs | 4/4 PASS | 4/4 PASS |
+| appended bytes | 122,617 | 152,918 |
+| rows before → after | 25,847 → **28,752** | 25,466 → **28,375** (+`_themes`) |
+| lyric keys covered, of 28,755 | 25,582 → **28,487** (88.97% → **99.07%**) | 25,456 → **28,365** (88.53% → **98.64%**) |
+
+Coverage is counted against `genius-lyrics.json`, not as rows ÷ keys: `genius-mood.json`
+holds 265 rows (and `genius-themes.json` 10) for keys the lyric layer no longer lists —
+folds and retired spellings — and counting those would flatter the number.
+
+Byte prefix re-verified against a pre-write copy *after* each write, on the file as it now
+sits on disk: both hold, `_themes` is byte-identical and still first.
+
+### What it did to the corpus
+
+The point of a 12% enlargement is that it should not move the distribution, and it does not:
+
+| mood | before | after |
+|---|---|---|
+| median valence | 30 | **30** |
+| mean valence | 39.38 | 39.46 |
+| 41–60 "mushy middle" | 9.84% | 9.87% |
+| `anguished` share | 50.34% | 50.63% |
+| `angry` share | 5.19% | 4.95% |
+| `joyful` share | 1.85% | 1.90% |
+| flag `1` rows | 24,862 | 27,767 |
+
+Every register moves by less than a third of a point. The §5 reference gates hold on the new
+rows read alone (median 30, middle 9.8%, mask 63.4% against the 64.5% disposition).
+
+Themes moves as little: picks per track 2.949 → 2.949, score mean 41.13 → 41.14. The largest
+share move in eighteen buckets is `madness & the mind` +0.97 pts (49.53% → 50.50%);
+`faith & the occult` −0.47 and `addiction & self-destruction` +0.41 are next, and the other
+fifteen move by under 0.4. **The Lyrical diet's coverage denominator is the real change** —
+it now rests on 28,375 themed tracks instead of 25,466, and on 98.64% of the lyric layer
+instead of 88.53%.
 
 ## Known limits
 
-- **The work queue, measured 2026-09-21.** `genius-lyrics.json` holds 28,755 keys;
-  `genius-mood.json` 25,847 and `genius-themes.json` 25,466 (+`_themes`).
+- **The work queue is drained** (see the corpus run above). What is left, per
+  `genius-lyrics.json`'s 28,755 keys:
 
-  | | unclassified | lyric text on disk | needs a refetch |
-  |---|---|---|---|
-  | mood | 3,173 | **2,231** | 942 |
-  | themes | 3,299 | **2,661** | 638 |
+  | still unclassified | mood | themes |
+  |---|---|---|
+  | no obtainable lyric — LRCLIB not-found | 110 | 73 |
+  | instrumental (correctly absent) | 54 | 29 |
+  | body too short to score | 13 | 11 |
+  | scored, refused by the coherence gate | 91 | — |
+  | no theme above the 0.24 floor | — | 277 |
+  | **total** | **268** | **390** |
 
-  The mood shortfall breaks down as 594 never fetched, 243 cached fetch-errors, 79
-  not-found, 20 too short to score, 6 instrumental. **The refetch stage is not built** —
-  LRCLIB fetchers exist in `.sptmp/nrc-audit/fetch-lrclib*.js` and fetch **by real names,
-  never de-slugged**; whether to run one is the owner's call.
+  The two refusal classes are the interesting ones and neither is a gap in the data. The 91
+  are the *triumphant aggression* failure the coherence gate exists to catch — a bright
+  valence over `angry`/`anguished`, which on a new row has no NRC valence to fall back on
+  and so is refused rather than flagged `2`. The 277 are tracks the anchor space genuinely
+  has no bucket for: near-wordless hooks, ad-libs, spoken intros.
+- **The 59 pre-Qwen straggler rows are scored but NOT written.** 49 of them carry a NULL
+  valence and 10 an NRC valence with no register; all 59 are three-element rows from before
+  the model pass. 52 have obtainable lyrics and were scored on this instrument; 51 clear both
+  gates. Writing them means **mutating existing rows**, which every emit proof here exists to
+  forbid — proofs 1 and 2 fail by construction on an in-place update. Their scores wait in
+  `.sptmp/mood-work/straggler-scores.jsonl`; putting them in needs an update path and the
+  owner's ruling, not a maintenance run.
 - 362 corpus tracks were already accepted as having no obtainable lyric (MOOD_PIPELINE.md
   §6) and are cached as negatives.
 - The ten rejected gap-fill reads from 2026-08 still sit in

@@ -125,7 +125,11 @@ class Stores:
             if isinstance(v, dict) and isinstance(v.get("lyrics"), str):
                 body = clean(v["lyrics"])
                 if len(body) >= MIN_BODY:
-                    return body, ""
+                    # rows written by lyric-refetch.py carry the language langdetect saw in
+                    # THIS transcription, which can differ from genius-lyrics.json's note on
+                    # the song. Every pre-2026-09-21 row has no `lang` field and falls back
+                    # to the metadata exactly as before.
+                    return body, (v.get("lang") or "")[:2]
         elif source == "genius":
             v = self._genius().get(key)
             if isinstance(v, str):

@@ -88,6 +88,11 @@ STRAY_MAP = {
     'corrosive':   'angry',
     'dominant':    'angry',
     'belligerent': 'angry',
+    # owner ruling 2026-09-21: a "hard" register is swagger, not rage. The model reached
+    # for it once in the 09-21 pilot; the scorer flagged it and the emitter refused the
+    # row, as designed. It maps to defiant, not angry - and defiant, unlike angry, is not
+    # in the coherence gate's DARK set, so a bright valence over it is not a refusal.
+    'hard':        'defiant',
 }
 
 
@@ -193,11 +198,13 @@ def main():
             ln = ln.strip()
             if ln:
                 rows.append(json.loads(ln))
-    todo = [r for r in rows if r['key'] not in done]
-    if args.limit:
-        todo = todo[:args.limit]
-    print(f'input rows: {len(rows)} · already scored: {len(rows) - len(todo)} · '
-          f'todo: {len(todo)}', flush=True)
+    pending = [r for r in rows if r['key'] not in done]
+    todo = pending[:args.limit] if args.limit else pending
+    # `already scored` counts the STORE, not the limit - reporting it as len(rows)-len(todo)
+    # made every chunked run look as though the store already held the tracks --limit had
+    # merely deferred.
+    print(f'input rows: {len(rows)} · already scored: {len(rows) - len(pending)} · '
+          f'pending: {len(pending)} · this chunk: {len(todo)}', flush=True)
     if not todo:
         store_stats(done)
         return
