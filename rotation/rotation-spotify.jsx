@@ -9,6 +9,24 @@ const SpStat = ({ n, l, accent, size }) => (
     <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 4 }}>{l}</div></div>
 );
 
+// ─── the Spotify section's sub-nav (2026-09-21, audit A11) ───────────────────────────────────
+// The navbar tab is now "Spotify" and lands HERE; Liked became its sub-view, so the two pages
+// need a switch between them instead of the old one-way "♥ liked songs →" button, which had no
+// counterpart on the Liked side at all. It is a plain r-seg — the segmented control BOTH pages
+// already use for their own switches (the year chips below, the sort lozenge on Liked) — so it
+// reads as native furniture and needs no new CSS. Labels stay short mono rather than echoing the
+// page title word for word; the long form rides in the tooltips. Liked's ♥ carries the accent
+// only while that tab is idle (active fills with the accent, where a tinted glyph would vanish).
+const SpotifyTabs = ({ go, active }) => (
+  <div className="r-seg" style={{ marginBottom: 16 }}>
+    <button data-on={active === "spotify"} onClick={() => go("spotify")}
+      title="What held my attention — real listening time, skips and session shape from the Spotify export">Attention</button>
+    <button data-on={active === "liked"} onClick={() => go("liked")}
+      title="Your liked songs — the saved-track library as a sortable, tunable playlist">
+      <span style={{ color: active === "liked" ? "inherit" : "var(--accent)" }}>♥</span> Liked songs</button>
+  </div>
+);
+
 function SpotifyView({ go }) {
   const [d, setD] = React.useState(window.ROTATION_SPOTIFY || null);
   const [P, setP] = React.useState(window.ROTATION_PERSONA || null);
@@ -40,12 +58,15 @@ function SpotifyView({ go }) {
 
   return (
     <div className="r-view">
+      {/* 2026-09-21 (audit A11): the header's one-way "♥ liked songs →" r-back is retired into
+          this pair — same destination, but it now also says where you are and has a twin on the
+          Liked page, which had no way back at all. */}
+      <SpotifyTabs go={go} active="spotify" />
       <div className="r-viewhead">
         <div>
           <div className="r-kicker">Spotify · extended history · {d.totals.span[0]} → {d.totals.span[1]}</div>
           <h1 className="r-title">What held my <em>attention</em><span className="dot">.</span></h1>
         </div>
-        <button className="r-back" style={{ marginBottom: 0 }} onClick={() => go("liked")}>♥ liked songs →</button>
       </div>
       <div className="r-card" style={{ padding: "10px 16px", marginBottom: "var(--gap)", fontFamily: "var(--mono)", fontSize: 11, color: "var(--ink-faint)" }}>
         the export knows what last.fm can't: how long each song actually played, how it ended, and the shape of every session
@@ -1153,8 +1174,11 @@ function LikedView({ go }) {
           .lk-quiet .lk-resettune:not(.lk-tuneon) { display: none; }
         }
       `}</style>
-      {/* (the "← spotify" back button was removed on request — Fuad 2026-08-12; Liked is now a
-          first-class navbar destination, so the up-navigation was noise) */}
+      {/* Up-navigation returns 2026-09-21 (audit A11), as the section pair rather than the old
+          "← spotify" r-back: the navbar tab is Spotify now and Liked is its sub-view, so the
+          2026-08-12 removal ("Liked is a first-class navbar destination, the up-nav is noise")
+          no longer holds — without this the attention page is unreachable from here. */}
+      <SpotifyTabs go={go} active="liked" />
       {/* header row: title on the left, the DNA TUNE control hugging the right (stacks under the
           title on narrow screens via flex-wrap). */}
       {/* title hidden (Fuad 2026-08-20); .r-headbare closes the gap it leaves. */}

@@ -27,8 +27,13 @@ const NAV_FULL = [
   ["stories", "Stories"],
   ["calendar", "Time"],
   ["gigs", "Gigs"],
-  ["liked", "Liked"],   // promoted to the navbar 2026-08-13 (Fuad: "this is becoming something nice")
-  // ["spotify", "Spotify"],   // hidden again 2026-07-18 (Fuad) — page stays routable at #spotify
+  // 2026-09-21 (audit A11): the tab is SPOTIFY and lands on SpotifyView ("What held my
+  // attention"). It had zero inbound links site-wide while its own sibling owned the tab —
+  // SpotifyView already linked to Liked, never the other way. Liked is now the sub-view: the
+  // #liked ROUTE is untouched (deep links, bookmarks, muscle memory all still land on
+  // LikedView) and lights this tab through NAV_SUB below; the pages carry a sub-nav pair.
+  // (Liked was promoted to the navbar 2026-08-13; Spotify was hidden 2026-07-18 — both reversed here.)
+  ["spotify", "Spotify"],
 ];
 // Hide tabs with no data behind them — avoids a dead-end. "Live" needs upcoming-concert cities;
 // "Gigs" needs the attended-shows dataset (setlist.fm → gigs.json → ROTATION.GIGS).
@@ -41,6 +46,11 @@ const NAV = NAV_FULL.filter(([k]) => {
 const LEGACY = { charts: "explore", clock: "explore", sound: "explore", eras: "explore", mood: "explore", journey: "overview", map: "overview",
   // display renames (2026-08-06) — the new nav names work as deep links too
   time: "calendar", records: "shelves" };
+// Routes that are NOT tabs but belong UNDER one — the tab stays lit while you are down there.
+// #artist rides Explore (long-standing); #liked rides Spotify (2026-09-21, audit A11) so a
+// #liked deep link looks exactly like navigating into the Spotify section, not like a dead tab.
+const NAV_SUB = { explore: ["artist"], spotify: ["liked"] };
+const navOn = (k, v) => v === k || (NAV_SUB[k] || []).indexOf(v) >= 0;
 
 // URL state — a lightweight hash handle per view/artist (e.g. #artist/nine-inch-nails) so pages are
 // deep-linkable and the browser back/forward works. No router lib, no separate pages.
@@ -160,7 +170,7 @@ function RotationApp() {
         </div>
         <nav className="r-nav">
           {NAV.map(([k, lbl]) => (
-            <button key={k} data-on={v === k || (k === "explore" && v === "artist")} onClick={() => go(k)}>
+            <button key={k} data-on={navOn(k, v)} onClick={() => go(k)}>
               <span className="gl" />{lbl}
             </button>
           ))}
