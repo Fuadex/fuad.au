@@ -99,6 +99,11 @@ jobs:
       #    (see stage-site.js). Installed here, in CI only — never committed.
       - name: Install Babel (precompile only)
         run: npm install --no-save @babel/standalone@7.29.0
+      # 6b) validate every rotation .jsx actually transforms + evaluates (audit 2026-09, A4/R6):
+      #     the tool existed for months but only ran when a human remembered.
+      - name: Validate rotation JSX (check-jsx)
+        working-directory: rotation
+        run: node check-jsx.js --babel ../node_modules/@babel/standalone/babel.min.js
       - name: Stage site
         env:
           CI: "true"
