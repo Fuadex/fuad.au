@@ -62,6 +62,22 @@ for (const [file, g] of emits) {
     } catch (e) { ok(false, "music-rest.js parses — " + e.message); }
   }
 }
+// artist-x.js merges the twelve heavy per-artist fields onto the SAME records (audit 2026-09-22,
+// B1 — they used to ride music-rest.js). The topAlbums checks further down read them, so this must
+// run first, in the same window object the two files above built.
+{
+  const p = path.join(__dirname, "artist-x.js");
+  if (!fs.existsSync(p)) ok(false, "artist-x.js exists");
+  else {
+    const w = { ROTATION: loaded.ROTATION || {} };
+    try {
+      new Function("window", fs.readFileSync(p, "utf8"))(w);
+      const n = (w.ROTATION.ARTISTS || []).filter(a => a.topAlbums && a.topAlbums.length).length;
+      ok(w.ROTATION._artistXLoaded === true && n > 200,
+        `artist-x merges the heavy per-artist fields onto ROTATION.ARTISTS (${n} carry topAlbums)`);
+    } catch (e) { ok(false, "artist-x.js parses — " + e.message); }
+  }
+}
 
 console.log("── committed key files join against the slug contract");
 const about = loadGlobal("llm-about.js", "ROTATION_LLM_ABOUT").value;

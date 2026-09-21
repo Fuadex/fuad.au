@@ -30,6 +30,7 @@ try {
   vm.createContext(ctx);
   vm.runInContext(fs.readFileSync(path.join(__dirname, "music-core.js"), "utf8"), ctx);
   vm.runInContext(fs.readFileSync(path.join(__dirname, "music-rest.js"), "utf8"), ctx);   // merges EXPLORE
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "artist-x.js"), "utf8"), ctx);   // merges the kept artists' similarNames (split out of rest, audit 2026-09-22 B1)
   R = ctx.window.ROTATION;
 } catch (e) { console.error("could not load music-core/rest — run node build-data.js first: " + e.message); process.exit(1); }
 // artist-detail.js carries the explorable artists' similar lists (`sim`) — the OTHER half of the

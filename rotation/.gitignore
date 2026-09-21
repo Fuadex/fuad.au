@@ -28,6 +28,7 @@ IDEAS.md
 # artifact, never committed (see ROADMAP A2). world-map.js is static and STAYS committed.
 music-core.js
 music-rest.js
+artist-x.js
 day-series.js
 day-hours.js
 pulse.js

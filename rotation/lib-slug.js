@@ -14,9 +14,25 @@ function _slugHash(s) {
   return h.toString(36);
 }
 
+// MEMOISED (2026-09-22, audit B3/R10): slug() was 6.2% of build-data.js CPU (~2.1 s of 30.9 s)
+// across 152 call sites, almost all of them re-slugging the SAME artist / album / track names over
+// and over. The function is pure, so a module-level cache cannot change the frozen contract —
+// smoke-test.js's slug invariants still assert it byte-for-byte. The key is `s || ""`, exactly the
+// value the body uses, so every falsy input (null/undefined/""/0) shares the one correct entry.
+// Non-string inputs still throw at .toLowerCase() as before, and throw BEFORE anything is cached.
+// The 1e6 cap keeps a long-running workshop script from growing the map without bound (the build
+// itself peaks far below it).
+const _slugCache = new Map();
+
 const slug = (s) => {
-  const t = (s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-  return t || ("a-" + _slugHash(s || "x").slice(0, 7));
+  const k = s || "";
+  const hit = _slugCache.get(k);
+  if (hit !== undefined) return hit;
+  const t = k.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  const v = t || ("a-" + _slugHash(k || "x").slice(0, 7));
+  if (_slugCache.size >= 1e6) _slugCache.clear();
+  _slugCache.set(k, v);
+  return v;
 };
 
 module.exports = { slug, _slugHash };

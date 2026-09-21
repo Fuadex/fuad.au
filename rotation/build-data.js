@@ -152,6 +152,22 @@ function parseDate(s) {
 const { slug, _slugHash } = require("./lib-slug");
 const hueOf = (name) => { let h = 0; for (const c of name) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h % 360; };
 
+// ─────────── day-key memo (2026-09-22, audit B3/R10) ───────────
+// `new Date(ms).toISOString().slice(0, 10)` was 8.2% of the build's CPU (~2.4 s) — six per-scrobble
+// loops formatting a UTC day key 323,520 times each. The value depends ONLY on the UTC day, so the
+// memo is keyed on the day index (ms / 86,400,000): ~7k distinct days carry every one of those
+// calls. Byte-identical output by construction — same expression, same input, just computed once
+// per day instead of once per play. Callers that need a month key take isoDay(ms).slice(0, 7).
+// (These ms are already TZ-shifted by parseDate, so getUTC*/toISOString read local listening time —
+// see the TZ ERAS block; the memo does not change that, it only caches the formatting.)
+const _dayKeyCache = new Map();
+const isoDay = (ms) => {
+  const i = Math.floor(ms / 86400000);
+  let v = _dayKeyCache.get(i);
+  if (v === undefined) { v = new Date(ms).toISOString().slice(0, 10); _dayKeyCache.set(i, v); }
+  return v;
+};
+
 // ─────────── mock-curated artist metadata (name → hue, country, tags, similar, audio) ───────────
 const META = {};
 [
@@ -1832,7 +1848,7 @@ for (const line of lines) {
   if (!artistYear.has(artist)) artistYear.set(artist, new Map());
   artistYear.get(artist).set(y, (artistYear.get(artist).get(y) || 0) + 1);
 
-  const key = d.toISOString().slice(0, 10);
+  const key = isoDay(ms);   // memoised day key (audit B3)
   dayCounts.set(key, (dayCounts.get(key) || 0) + 1);
   if (!dayTopArtist.has(key)) dayTopArtist.set(key, new Map());
   dayTopArtist.get(key).set(artist, (dayTopArtist.get(key).get(artist) || 0) + 1);
@@ -2421,7 +2437,7 @@ const RECENT = scrobbles.slice(0, 8).map((s, i) => ({
 }));
 
 // ─────────── INSIGHTS ───────────
-const iso = (ms) => new Date(ms).toISOString().slice(0, 10);
+const iso = isoDay;   // memoised day key (audit B3) — same expression, computed once per day
 const asc = [...scrobbles].reverse(); // oldest-first, timestamped only
 
 // milestones: every 50,000th timestamped scrobble
@@ -2533,7 +2549,7 @@ const LIFETIME_TRACKS = [...trackPlays.entries()]
 const monthPlays = new Map();
 const monthByArtist = new Map();
 for (const [artist, , , ms] of scrobbles) {
-  const mk = new Date(ms).toISOString().slice(0, 7);
+  const mk = isoDay(ms).slice(0, 7);   // memoised day key (audit B3) — month = its first 7 chars
   monthPlays.set(mk, (monthPlays.get(mk) || 0) + 1);
   if (!monthByArtist.has(mk)) monthByArtist.set(mk, new Map());
   const m = monthByArtist.get(mk);
@@ -5695,10 +5711,10 @@ console.log(`artist-flow.js written (${(fs.statSync(path.join(__dirname, "artist
   for (const [artist, album, track, ms] of scrobbles) {
     const dt = new Date(ms);
     if (dt.getUTCFullYear() < 2010) continue;
-    const dayKey = dt.toISOString().slice(0, 10);
+    const dayKey = isoDay(ms);   // memoised day key (audit B3)
     const monKey = dayKey.slice(0, 7);
     const dow = (dt.getUTCDay() + 6) % 7;
-    const weekKey = new Date(ms - dow * 86400e3).toISOString().slice(0, 10);  // Monday of the week
+    const weekKey = isoDay(ms - dow * 86400e3);  // Monday of the week (memoised, audit B3)
     const hour = dt.getUTCHours();
     let dh = dayHours.get(dayKey); if (!dh) { dh = new Array(24).fill(0); dayHours.set(dayKey, dh); } dh[hour]++;
     let mh = monthHourP.get(monKey); if (!mh) { mh = Array.from({ length: 24 }, mk); monthHourP.set(monKey, mh); }
@@ -5764,7 +5780,7 @@ console.log(`artist-flow.js written (${(fs.statSync(path.join(__dirname, "artist
     const dhByOffset = new Map();   // dayOffset → Array(24) counts
     for (const [, , , ms] of scrobbles) {
       const d = new Date(ms);
-      const dk2 = d.toISOString().slice(0, 10);
+      const dk2 = isoDay(ms);   // memoised day key (audit B3)
       const off = Math.round((new Date(dk2 + "T00:00:00Z").getTime() - startMs) / 86400e3);
       if (off < 0) continue;
       let arr = dhByOffset.get(off); if (!arr) { arr = new Array(24).fill(0); dhByOffset.set(off, arr); }
@@ -6530,24 +6546,51 @@ fs.writeFileSync(path.join(__dirname, "sim-img.js"), _simImgOut, "utf8");
   console.log(`sim-img.js: ${Object.keys(SIMIMG).length} keys (${_simDropped} placeholder-dropped, ${_simVariant} full-url variants) · ${(_simImgOut.length / 1024).toFixed(1)} KB raw / ${(_gz.length / 1024).toFixed(1)} KB gz`);
 }
 
-// ── ARTISTS field split (Phase 0.1): the heavy per-artist prose/relationship fields are only
-//    read by views that mount AFTER music-rest merges (ArtistView in rotation-views2.jsx,
-//    MapView in rotation-worldmap.jsx). Nothing on Overview's first paint — the FACT_RULES in
-//    rotation-lab2.jsx, TopArtistsPeek/OverviewView in rotation-views1.jsx, or storyOfDay in
-//    rotation-insights.jsx — touches them (verified field-by-field). So we strip them out of the
-//    eager ARTISTS array and ship them in an id-keyed map (ARTIST_X) inside music-rest.js. The
-//    rest file Object.assigns ARTIST_X[id] back onto the SAME record objects (which byId/expById
-//    already reference) BEFORE _restLoaded flips, so every post-rest consumer sees identical
-//    records to today. The build itself keeps the FULL records (STYLE_ATLAS bridges reads
-//    a.styles at line ~1564, connections mutation at ~1984, etc.), so we only split at emit time.
+// ── ARTISTS field split (Phase 0.1, re-homed 2026-09-22 by audit B1/R2): the heavy per-artist
+//    prose/relationship fields are read by the ARTIST page (rotation-artist.jsx) and the map band
+//    (rotation-worldmap.jsx) and by nothing else — Overview, Stories, Explore, Calendar, Shelves,
+//    Liked, Spotify, Book, Journey and the album/track pages touch NONE of the twelve (grepped
+//    field-by-field at the audit, re-verified here). They used to ride music-rest.js: 2.87 MB raw
+//    / 879 KB gz on EVERY route, 43% of that file and 23% of the whole every-route baseline. They
+//    now ship in their OWN lazy file, artist-x.js, fetched on demand by the two views that read
+//    them — the same move sim-img.js made out of this bundle for the same reason (2026-08-17).
+//    The build itself keeps the FULL records (STYLE_ATLAS bridges reads a.styles at line ~1564,
+//    connections mutation at ~1984, etc.), so we only split at emit time.
 const ARTIST_HEAVY = ["bio", "wd", "members", "mc", "topTracks", "topAlbums", "similar", "similarNames", "styles", "discogsGenres", "spotGenres", "origin"];
-const ARTIST_X = {};       // id → { heavy fields } — deferred, merged by music-rest.js
+const ARTIST_X = {};       // id → { heavy fields } — deferred, merged by artist-x.js
 const ARTISTS_CORE = ARTISTS.map(a => {
   const core = {}, heavy = {};
   for (const k in a) (ARTIST_HEAVY.includes(k) ? heavy : core)[k] = a[k];
   ARTIST_X[a.id] = heavy;
   return core;
 });
+// ── artist-x.js — the deferred heavy per-artist fields (audit 2026-09-22, B1/R2) ───────────────
+//    The merge is the one music-rest.js used to do, moved into this file's tail: Object.assign
+//    each heavy block onto the SAME record object R.byId already references, so a reader sees a
+//    record identical to the pre-split build — just later. Until it lands, a kept record simply
+//    LACKS those keys, which is the shape every reader already guards for (`a.topAlbums || []`,
+//    `a.bio && …`) — the same shape a long-tail artist has before artist-detail.js arrives.
+//    _artistXLoaded is the ready flag (music-core stubs it false, mirroring _restLoaded) and
+//    window.__rotArtistX is the one-shot callback rotation-core.jsx's ensureArtistX installs.
+//    BARE FILENAME, no ?v= — like sim-img.js and artist-detail.js. music-rest is epoch-locked by
+//    REST_V because a stale EXPLORE joins its `s` indexes against a fresh SUBS table and files
+//    artists under arbitrary families; this payload is id-keyed prose and lists with no index
+//    join into another table, so a stale pairing degrades (an old bio) rather than corrupting.
+const artistXOut = "// GENERATED by build-data.js — heavy per-artist fields: bio/wd/members/mc/topTracks/topAlbums/\n"
+  + "// similar/similarNames/styles/discogsGenres/spotGenres/origin. LAZY (audit 2026-09-22, B1):\n"
+  + "// injected by the artist page + the map band, merges onto the SAME records music-core built.\n"
+  + "(function () {\n"
+  + "  var R = window.ROTATION; if (!R) return;\n"
+  + "  var AX = " + JSON.stringify(ARTIST_X) + ";\n"
+  + "  for (var _id in AX) { var _rec = R.byId[_id]; if (_rec) { var _h = AX[_id]; for (var _f in _h) _rec[_f] = _h[_f]; } }\n"
+  + "  R._artistXLoaded = true;\n"
+  + "  if (typeof window.__rotArtistX === \"function\") { try { window.__rotArtistX(); } catch (e) {} }\n"
+  + "})();\n";
+fs.writeFileSync(path.join(__dirname, "artist-x.js"), artistXOut, "utf8");
+{
+  const _gz = require("zlib").gzipSync(artistXOut);
+  console.log(`artist-x.js: ${Object.keys(ARTIST_X).length} artists x ${ARTIST_HEAVY.length} heavy fields · ${(artistXOut.length / 1024).toFixed(1)} KB raw / ${(_gz.length / 1024).toFixed(1)} KB gz`);
+}
 // ── split emit (Phase 0): music-core.js (eager, everything Overview's first paint reads +
 //    the inputs the runtime helpers need) + music-rest.js (deferred, injected after paint).
 //    music-rest merges into window.ROTATION via Object.assign, so any Node consumer can
@@ -6574,7 +6617,6 @@ if (GEOGRAPHY) {
 }
 const REST = {
   EXPLORE, ALBUMS, AUDIO: AUDIO_OUT, ARTIST_CLOCK, SUB_ARTISTS, CLOCK_BY_YEAR,
-  ARTIST_X,   // id → heavy per-artist fields; folded back onto the ARTISTS records (see merge below)
   THUMBS_HI,  // id → full-res Discogs image; grid cards upgrade to it once rest loads (see GenCover)
   // SIMIMG moved to its own lazy file (sim-img.js → window.ROTATION_SIMIMG); GenCover fetches
   // it on-demand the first time it would draw a sim-only placeholder (audit 2026-08-17).
@@ -6642,6 +6684,10 @@ window.ROTATION = (function () {
   // (SIMIMG is no longer a ROTATION key — it lives in the lazy sim-img.js as window.ROTATION_SIMIMG,
   //  fetched on-demand by GenCover; nothing on ROTATION reads R.SIMIMG anymore.)
   D.expById = {}; D._restLoaded = false;
+  // the twelve heavy per-artist fields arrive later still, in artist-x.js (audit 2026-09-22, B1) —
+  // it Object.assigns them onto these same records and flips this flag. Until then a kept record
+  // simply lacks them, the shape every reader already guards for.
+  D._artistXLoaded = false;
   D.byId = Object.fromEntries(D.ARTISTS.map(a => [a.id, a]));
   D.slug = slug;
   D._slugHash = _slugHash;   // exposed so lazy loaders (llm-about shards) bucket via the canonical hash
@@ -6688,12 +6734,6 @@ const restOut = `// ─── Rotation — deferred data (music-rest.js) · GENE
   var R = window.ROTATION; if (!R) return;
   var REST = ${JSON.stringify(REST)};
   for (var k in REST) R[k] = REST[k];
-  // fold the heavy per-artist fields (ARTIST_X) back onto the SAME record objects the core built,
-  // which R.byId (and every post-rest consumer) already references — so ArtistView/MapView see full
-  // records identical to the pre-split build. Must run BEFORE _restLoaded flips.
-  var AX = REST.ARTIST_X || {};
-  for (var _id in AX) { var _rec = R.byId[_id]; if (_rec) { var _h = AX[_id]; for (var _f in _h) _rec[_f] = _h[_f]; } }
-  delete R.ARTIST_X;
   R.expById = {};
   for (var i = 0; i < R.EXPLORE.length; i++) R.expById[R.EXPLORE[i].id] = R.EXPLORE[i];
   R._restLoaded = true;

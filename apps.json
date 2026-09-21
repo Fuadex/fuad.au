@@ -47,6 +47,7 @@
         "rotation-app.jsx",
         "music-core.js",
         "music-rest.js",
+        "artist-x.js",
         "day-series.js",
         "day-hours.js",
         "pulse.js",

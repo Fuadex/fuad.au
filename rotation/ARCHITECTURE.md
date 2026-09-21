@@ -54,7 +54,8 @@ library — hash routing (`#view/id`) in `rotation-app.jsx` with `pushState` +
 |---|---|
 | `react(-dom).production.min.js` | runtime — **self-hosted** (Phase 0); Babel is dev-only + CI-only, absent from prod |
 | `music-core.js` (~2.1 MB raw) | `window.ROTATION` — light ARTISTS records + everything first paint reads; loaded with `defer` |
-| `music-rest.js` | 11 heavy per-artist fields (bio, wd, members, topTracks, topAlbums, similar, similarNames, styles, discogsGenres, spotGenres, origin) in an id-keyed `ARTIST_X` map — **injected by `rotation-app` after first mount**, folds fields back onto the same ARTISTS record objects via `Object.assign`, flips `_restLoaded` |
+| `music-rest.js` | EXPLORE, ALBUMS, AUDIO, ARTIST_CLOCK, SUB_ARTISTS, CLOCK_BY_YEAR, THUMBS_HI — **injected by `rotation-app` after first mount**, merges into `window.ROTATION`, rebuilds `expById`, flips `_restLoaded` |
+| `artist-x.js` | the 12 heavy per-artist fields (bio, wd, members, mc, topTracks, topAlbums, similar, similarNames, styles, discogsGenres, spotGenres, origin) in an id-keyed map — **LAZY, injected on demand by the artist page and the map band** (audit 2026-09-22, B1: 879 KB gz that every route used to pay inside `music-rest`). Folds the fields back onto the same ARTISTS record objects via `Object.assign`, flips `_artistXLoaded`, calls `window.__rotArtistX`. `rotation-core.jsx`'s `ensureArtistX(cb)` is the one loader |
 | `live-data.js` (~4 KB) | `window.ROTATION_LIVE` — daily live snapshot; loaded with `defer` |
 | `rotation-live.jsx` | `useLiveNow()` — now-playing from the snapshot (no client API calls, ever) |
 | `tweaks-panel.jsx` | design-tweaks drawer (accent hue, font, chart style, layout, density) |
@@ -422,15 +423,25 @@ without writing that logic first.
 
 **Core/rest split (Phase 0, 2026-07-07; artist-field split 2026-07-18):** `window.ROTATION` is
 assembled from **`music-core.js`** (loaded with `defer`, ~2.1 MB raw) + **`music-rest.js`**
-(injected by `rotation-app` after first mount). Core carries light ARTISTS records (without the 11
+(injected by `rotation-app` after first mount). Core carries light ARTISTS records (without the 12
 heavy prose/relationship fields) plus everything the Overview first paint reads (TOTALS, NOW,
 RECENT, TREND, INSIGHTS, YEARS, THUMBS, SPOTIMG, GIGS, TOUR, SUBS, GENRE_FLOW, FAMILIES, helpers)
 and **`EXPLORE_N`**. Rest carries: **EXPLORE, ALBUMS, AUDIO, ARTIST_CLOCK, SUB_ARTISTS,
-CLOCK_BY_YEAR**, plus **`ARTIST_X`** (an id-keyed map of the 11 heavy fields — bio, wd, members,
-topTracks, topAlbums, similar, similarNames, styles, discogsGenres, spotGenres, origin — that the
-rest file folds back onto the same ARTISTS record objects before `_restLoaded` flips). Core stubs
-deferred keys empty and sets `_restLoaded=false`; rest merges them, rebuilds `expById`, flips
-`_restLoaded=true`, and calls `window.__rotRest`. **Guard rule:** every non-Overview view reads a
+CLOCK_BY_YEAR, THUMBS_HI**. Core stubs deferred keys empty and sets `_restLoaded=false`; rest
+merges them, rebuilds `expById`, flips `_restLoaded=true`, and calls `window.__rotRest`.
+
+**Third tier — `artist-x.js` (audit 2026-09-22, B1).** The 12 heavy fields (bio, wd, members, mc,
+topTracks, topAlbums, similar, similarNames, styles, discogsGenres, spotGenres, origin) rode
+`music-rest` until this audit: 879 KB gz — 43% of that file, 23% of the entire every-route
+baseline — for data only the ARTIST page and the map band read. They now ship in their own lazy
+file, injected on demand by `rotation-core.jsx`'s `ensureArtistX(cb)` (the artist page asks at
+mount; the map band asks when a slice/period goes active or the albums/songs pane opens). Its tail
+does the same `Object.assign` onto the same records `R.byId` holds, then flips `_artistXLoaded`
+(core stubs it false) and calls `window.__rotArtistX`. **Until it lands a kept record simply LACKS
+those keys** — the shape every reader already guards (`a.topAlbums || []`) and the same shape a
+long-tail artist has before `artist-detail.js` arrives. Bare filename, no `?v=`: unlike EXPLORE
+(whose `s` indexes join a fresh SUBS table, hence `REST_V`), this payload is id-keyed prose and
+lists with no cross-table join, so a stale pairing degrades rather than corrupts. **Guard rule:** every non-Overview view reads a
 deferred key, so `rotation-app` gates them behind `restReady` (a "loading your library…" card) and
 mounts them FRESH once rest lands — so their `useMemo`s never cache empty. The Overview map band is
 gated the same way. Node consumers (smoke, sync-live, extract-audio, enrich-spotify) evaluate both
@@ -937,8 +948,9 @@ remains dormant until a concerts cache exists (ROADMAP M2).
 3. **Ship to main.** Production is the test environment; don't block on local verification.
 4. **Commit trailer:** `Co-Authored-By: Claude <model> <noreply@anthropic.com>`.
 5. **Weight discipline:** new data belongs in *lazy* generated files, not in `music-core.js`,
-   unless the Overview needs it at first paint. Heavy per-artist prose goes in `music-rest.js`
-   via the `ARTIST_X` map. Watch generated-file sizes (`build-data.js` prints them).
+   unless the Overview needs it at first paint. Heavy per-artist prose goes in `artist-x.js`
+   (lazy, artist page + map band only — not `music-rest.js`, which every route pays for).
+   Watch generated-file sizes (`build-data.js` prints them).
 6. **Insight, not mirrors:** features must derive something last.fm doesn't already show.
 7. **Data corrections have three lanes — pick the right one (clarified 2026-09-21).**
    (a) **`folds.json`** = identity: two spellings are the same entity (§5, stage 1). This is

@@ -18,6 +18,21 @@ ok(core && core._restLoaded === false && core.EXPLORE.length === 0 && core.EXPLO
 vm.runInContext(fs.readFileSync(here("music-rest.js"), "utf8"), ctx, { filename: "music-rest.js" });
 const R = ctx.window.ROTATION;
 ok(!!R && R._restLoaded === true, "music-rest.js merges → _restLoaded");
+// artist-x.js — the twelve heavy per-artist fields, split out of music-rest by the 2026-09-22
+// audit (B1). Evaluating it in the SAME context merges them onto the records core built, which is
+// exactly what the artist page and the map band do at runtime — so a node consumer reconstitutes
+// a full record by evaluating the three files in order. The BEFORE check is the one that matters:
+// it is what proves the 879 KB gz actually left the every-route payload.
+{
+  const before = R.ARTISTS.filter(a => a.topAlbums != null).length;
+  ok(before === 0, `core+rest alone carry NO heavy per-artist fields (${before} of ${R.ARTISTS.length} with topAlbums — want 0)`);
+  vm.runInContext(fs.readFileSync(here("artist-x.js"), "utf8"), ctx, { filename: "artist-x.js" });
+  ok(R._artistXLoaded === true, "artist-x.js merges → _artistXLoaded");
+  const after = R.ARTISTS.filter(a => a.topAlbums && a.topAlbums.length).length;
+  ok(after > 200, `artist-x.js folds the heavy fields onto the core records (${after} artists carry topAlbums)`);
+  ok(R.ARTISTS.some(a => a.bio) && R.ARTISTS.some(a => a.origin) && R.ARTISTS.some(a => a.similarNames),
+    "bio / origin / similarNames present on kept records after artist-x");
+}
 for (const k of ["ARTISTS", "ALBUMS", "TRACKS", "GENRES", "YEARS", "TOTALS", "INSIGHTS", "EXPLORE", "SUBS",
   "FAMILIES", "CLOCK", "CLOCK_BY_YEAR", "ARTIST_CLOCK", "SUB_ARTISTS", "AUDIO", "AUDIO_DIST", "GENRE_FLOW",
   "THUMBS", "SPOTIMG", "TREND", "NOW", "RECENT", "ERAS"])
@@ -35,7 +50,7 @@ ok(lctx.window.ROTATION_LIVE && lctx.window.ROTATION_LIVE.total > 0, "live-data.
 
 // 3) every lazy generated file exists, is non-trivial, and parses as JS
 for (const [f, min] of [["media-index.js", 3000], ["track-audio.js", 1000], ["track-previews.js", 500], ["artist-flow.js", 1000],
-  ["artist-detail.js", 500], ["calendar.js", 50], ["calendar-detail.js", 500], ["geo-detail.js", 100],
+  ["artist-detail.js", 500], ["artist-x.js", 1000], ["calendar.js", 50], ["calendar-detail.js", 500], ["geo-detail.js", 100],
   ["search-index.js", 100], ["world-map.js", 50], ["day-series.js", 5]]) {
   const p = here(f);
   const exists = fs.existsSync(p);
