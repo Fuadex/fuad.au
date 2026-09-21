@@ -70,7 +70,8 @@
     },
     "note": "Liverpool metalcore/shoegaze band (formed ~2014). MB matched an unrelated Maltese 'Loathe' → wrongly placed the map bubble in Malta."
   },
-  "Bloodywood": {
+  "Ok Goodnight": {"gender": "Female", "note": "Casey Lee Williams (lead vocals, correctly picked from the MB lineup) is female across every public bio; MusicBrainz's own entity carries a stale Non-binary tag — this routes around upstream, not around our data (gender/vx audit, Fuad-approved 2026-09-21)."},
+  "Bloodywood": {"gender": "Male", 
     "origin": {
       "country": "IN",
       "area": "India",
