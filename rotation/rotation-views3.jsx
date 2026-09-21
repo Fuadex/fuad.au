@@ -260,11 +260,6 @@ function StoriesView({ t, go, seed }) {
   const feedRef = React.useRef(null);
   const [toc, setToc] = React.useState([]);
   const [active, setActive] = React.useState("");
-  // WEIGHTED RAIL (Fuad 2026-08-13): when the chapter rail is taller than the viewport it used
-  // to spill past the bottom (fixed element — unreachable). --stp = page scroll progress 0..1;
-  // the CSS anchors the rail top at page top, bottom at page bottom, sliding in between, so the
-  // overflow flips to wherever you AREN'T.
-  const tocRef = React.useRef(null);
   // REAL ALBUM ART FOR "ALBUM WEEKS" (Fuad 2026-09-14: it showed "only placeholders currently").
   // GenCover draws a generated sleeve when it has no image, which is right for an ARTIST — there is
   // no canonical picture of one — but an album has an actual cover, and 19,948 of the media index's
@@ -464,35 +459,23 @@ function StoriesView({ t, go, seed }) {
     for (const al of M.albums) if (al[6]) out[al[0] + "\x00" + M.artists[al[1]]] = al[6];
     return out;
   }, [mediaReady]);
-  React.useEffect(() => {
-    let raf = 0;
-    const onScroll = () => {
-      if (raf) return;
-      raf = requestAnimationFrame(() => {
-        raf = 0;
-        const el = tocRef.current; if (!el) return;
-        const max = document.documentElement.scrollHeight - window.innerHeight;
-        const pr = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0.5;
-        el.style.setProperty("--stp", String(pr));
-      });
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => { window.removeEventListener("scroll", onScroll); if (raf) cancelAnimationFrame(raf); };
-  }, []);
   const _slugify = (s) => (s || "").toLowerCase().split("·")[0].trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
   // THE RAIL IS THE NINE CHAPTERS (2026-09-21) — it used to be all 41 module crumbs, which on the
   // horizontal (sub-1420px) bar measured 4,336px of strip at a 360px viewport: twelve screens of
   // sideways scrolling to find anything, and the active crumb usually off-screen. The feed now has
   // nine .st-chapter dividers, so the rail follows THEM and the per-module crumbs are gone from it
-  // (option a). Why not nest the active chapter's modules under it: the rail has exactly two shapes
-  // and neither takes a second level cleanly. Wide, it is a fixed, vertically CENTRED dot column
-  // (translateY(-50%)) — a group that grows and shrinks as you scroll past a chapter boundary
-  // re-anchors the whole column, so every dot would slide under the cursor mid-scroll, and the
-  // weighted-slide hack below exists precisely to stop that kind of movement. Narrow, it is a
-  // single-row sticky strip — an inline group would reflow the strip under the reader's thumb on
-  // every boundary and put chapter VI's seven crumbs straight back into the width problem. The
-  // modules keep their ids (pass 1), their deep links, and their names in the row's tooltip.
+  // (option a). The modules keep their ids (pass 1), their deep links, and their names in the
+  // row's tooltip.
+  //   FIXED AND CENTRED AT EVERY WIDTH (Fuad 2026-09-22: "since the legend collapse to chapters,
+  // now these should sit at the middle and not move with scrolling" / "just legend needs to sit at
+  // the middle"). That ruling retired BOTH earlier shapes and the machinery under them: the
+  // scroll-weighted hover slide (a scroll-progress custom property written by a listener here, so
+  // a tall rail's overflow fell where you weren't) and the sub-1420px sticky top strip with its
+  // scrollLeft chase. Ten rows never outgrow a viewport, so neither problem exists — one shape now,
+  // a fixed column at top:50%, differing only in FACE: dots with hover labels from 900px up,
+  // numerals only below it. Nesting the active chapter's modules under it stays refused — a group
+  // that grows and shrinks at a boundary re-anchors a centred column, sliding every row under the
+  // cursor mid-scroll, which is exactly the movement the ruling is about.
   React.useEffect(() => {
     const feed = feedRef.current; if (!feed) return;
     let seeded = false;
@@ -559,8 +542,8 @@ function StoriesView({ t, go, seed }) {
     const pick = () => {
       raf = 0;
       // The line we test against is exactly where a jump PARKS a row — the scroll-margin the rules
-      // and cards already carry (78px wide, 112px narrow, both declared in the style block) plus a
-      // few px of tolerance. Measured rather than hard-coded, because a constant 96 made tapping a
+      // and cards already carry (78px at every width since 2026-09-22, declared in the style block)
+      // plus a few px of tolerance. Measured rather than hard-coded, because a constant 96 made tapping a
       // chapter land its rule at 112px and leave the PREVIOUS chapter lit: the highlight has to
       // agree with the scroll, or the rail argues with itself on every tap.
       const first = document.getElementById(toc[0].id);
@@ -579,19 +562,6 @@ function StoriesView({ t, go, seed }) {
     pick();
     return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); if (raf) cancelAnimationFrame(raf); };
   }, [toc]);
-  // …and on the narrow strip, keep the active chapter in view. Nine rows is ~1,100px of strip at
-  // 360px — a quarter of what it was, but still wider than the screen, and a highlight you cannot
-  // see is no highlight. scrollLeft arithmetic on the nav itself, never scrollIntoView, which would
-  // scroll the PAGE as well; the guard is the rail's own overflow, so the wide (overflow:visible)
-  // dot column is left alone without asking the viewport how wide it is.
-  React.useEffect(() => {
-    const el = tocRef.current; if (!el || !active) return;
-    if (el.scrollWidth <= el.clientWidth + 1) return;
-    const btn = el.querySelector("[data-id=\"" + active + "\"]"); if (!btn) return;
-    const l = btn.offsetLeft, r = l + btn.offsetWidth;
-    if (l < el.scrollLeft + 12) el.scrollTo({ left: Math.max(0, l - 12), behavior: "smooth" });
-    else if (r > el.scrollLeft + el.clientWidth - 12) el.scrollTo({ left: r - el.clientWidth + 12, behavior: "smooth" });
-  }, [active]);
   const jump = (id) => {
     const el = document.getElementById(id); if (!el) return;
     el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -661,7 +631,7 @@ function StoriesView({ t, go, seed }) {
       {toc.length > 3 && (() => {
         const activeIdx = toc.findIndex(it => it.id === active);
         return (
-        <nav className="st-toc" aria-label="story chapters" ref={tocRef}>
+        <nav className="st-toc" aria-label="story chapters">
           {toc.map((it, idx) => {
             // freshness rolls UP: a chapter pulses when any module inside it changed recently, and
             // the tooltip names that chapter's modules — the one thing the dropped crumbs were
@@ -674,6 +644,11 @@ function StoriesView({ t, go, seed }) {
                 onClick={() => jump(it.id)}
                 title={(names || it.label) + (hot ? " — changed recently" : "")}>
                 <span className="st-node" />
+                {/* the narrow face (2026-09-22): below 900px the dot and its hover label are off and
+                    this is the whole row — the numeral alone, middot for the hero row, which has
+                    none. Its own copy of the freshness dot, because the label carrying the other
+                    one is display:none there; exactly one of the two is ever visible. */}
+                <span className="st-toc-min">{it.num || "·"}{hot ? <i className="st-fresh" /> : null}</span>
                 <span className="st-toc-lbl">{it.num ? <b className="st-toc-num">{it.num}</b> : null}{it.num ? " " : null}{it.label}{hot ? <i className="st-fresh" /> : null}</span>
               </button>
             );
@@ -2795,8 +2770,9 @@ function StoriesView({ t, go, seed }) {
         /* THE TOC LANDED SECTIONS UNDER THE HEADER (Fuad 2026-09-14: the breadcrumbs "do not seem to
            target correctly the modules when clicking"). scrollIntoView({block:"start"}) puts the
            section top at the VIEWPORT top, and .r-head is 64px of sticky chrome sitting over it — so
-           every jump hid its own label behind the bar. Below 1420px the story rail is sticky at the
-           top as well, adding its own row, so the offset is larger there. */
+           every jump hid its own label behind the bar. One number at every width since 2026-09-22:
+           the 112px narrow override existed only for the sticky top strip the rail used to become
+           below 1420px, and a fixed centred rail adds no row of its own. */
         .st-feed > section { scroll-margin-top: 78px; }
         /* the rail targets the chapter RULES now (2026-09-21), and they are dividers, not sections —
            without the same offset every chapter jump parks its rule behind the sticky header. */
@@ -2808,8 +2784,13 @@ function StoriesView({ t, go, seed }) {
         .st-swap { animation: st-swap-in .26s cubic-bezier(.22,.61,.36,1) both; }
         @keyframes st-swap-in { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
         @media (prefers-reduced-motion: reduce) { .st-swap { animation: none; } }
-        @media (max-width: 1419px) { .st-feed > section { scroll-margin-top: 112px; } }
-        @media (max-width: 1419px) { .st-feed > .st-chapter { scroll-margin-top: 112px; } }
+        /* the rail is fixed at left:5px below 900px (Fuad 2026-09-22) and the feed is only centred
+           while the viewport is wider than its 820px cap — under that the cards would run straight
+           under the numerals. A lane, not a margin, so the cap itself is untouched. 34px because
+           the widest row is VIII: four JetBrains Mono glyphs at 9px with .08em tracking is ~25px,
+           and the chapter rules start at the feed's own left edge — too narrow a lane and the
+           rail's numeral lands on the divider's numeral. */
+        @media (max-width: 899px) { .st-feed { padding-left: 34px; } }
         .st-hero { padding: 22px 21px; }
         /* SHARED TYPE ROLES (Fuad 2026-09-14: "the text in a lot of the Stories modules varies a bit
            too much font-style-wise ... make sure we have a rather standardized style"). The feed
@@ -3080,20 +3061,31 @@ function StoriesView({ t, go, seed }) {
         }
 
         /* ── TOC + chapters (Stories overhaul v1) ── */
-        .st-toc { position: sticky; top: 0; z-index: 30; display: flex; gap: 6px; overflow-x: auto;
-          padding: 10px 2px; margin: -6px 0 16px; background: var(--bg);
-          scrollbar-width: none; -webkit-overflow-scrolling: touch; }
-        .st-toc::-webkit-scrollbar { display: none; }
-        /* plain text crumbs — no pills/ellipsoids (Fuad 2026-07-05); active = accent + underbar */
-        .st-toc button { flex: none; padding: 6px 4px 8px; border: none; border-radius: 0;
-          background: transparent; color: var(--ink-faint); font-family: var(--mono); font-size: 9.5px;
-          letter-spacing: .1em; text-transform: uppercase; cursor: pointer; white-space: nowrap;
-          position: relative; transition: color .15s; }
-        .st-toc button::after { content: ""; position: absolute; left: 4px; right: 4px; bottom: 3px;
-          height: 2px; border-radius: 2px; background: transparent; transition: background .15s; }
+        /* ONE SHAPE, FIXED AND CENTRED (Fuad 2026-09-22: "since the legend collapse to chapters, now
+           these should sit at the middle and not move with scrolling"). What is gone: the sticky
+           top strip this rail used to be below 1420px (stuck to the top, scrolling sideways, its
+           own row of chrome — which is why the feed carried a second scroll-margin number), and
+           the scroll-weighted hover slide above it, which rode a custom property set from JS. Ten
+           rows are ~240px at most, so a centred column never spills off a viewport and neither
+           mechanism has anything left to solve. Below sits the face split at 900px — dots with
+           hover labels above it, numerals only under it — and nothing in either moves with scroll.
+           The underbar (::after) went with the strip: it was the horizontal bar's active marker. */
+        .st-toc { position: fixed; left: 16px; top: 50%; transform: translateY(-50%); z-index: 40;
+          display: flex; flex-direction: column; gap: 0; overflow: visible;
+          width: auto; max-height: none; margin: 0; padding: 0; background: none; }
+        /* plain text rows — no pills/ellipsoids (Fuad 2026-07-05); active = accent */
+        .st-toc button { position: relative; flex: none; display: flex; align-items: center; gap: 11px;
+          min-height: 24px; padding: 6px 0; border: none; border-radius: 0; background: none;
+          color: var(--ink-faint); font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em;
+          text-transform: uppercase; cursor: pointer; white-space: nowrap; text-align: left;
+          transition: color .15s; }
         .st-toc button:hover { color: var(--ink); }
         .st-toc button[data-on="true"] { color: var(--accent); }
-        .st-toc button[data-on="true"]::after { background: var(--accent-dim); }
+        /* the label chip is CLOSED here rather than inside the dot-face query: a viewport can land
+           between two integer breakpoints (Windows display scaling reports fractional CSS px), and
+           an unreserved label opens permanently in that sliver instead of merely losing its dot. */
+        .st-toc-lbl { max-width: 0; overflow: hidden; opacity: 0; border-radius: 5px;
+          transition: max-width .3s ease, opacity .2s ease, padding .3s ease; }
         /* the roman numeral inside a rail row (2026-09-21) — the same mono-accent glyph the chapter
            rule itself carries, so the row and the divider it points at read as one label. No size or
            spacing of its own: it inherits the crumb's face and is separated by a word space. */
@@ -3152,28 +3144,16 @@ function StoriesView({ t, go, seed }) {
           .st-reading button, .st-reading i, .st-rd-body { transition: none; }
         }
 
-        /* Stories TOC as a vertical breadcrumb rail pinned to the left edge (wide screens).
-           Dots-only by default so it never sits over content; labels reveal on hover only.
-           Breakpoint 1420px (was 1240): Windows-scaled laptops (e.g. P16 at 200% ≈ 1280 CSS px)
-           get the horizontal chip bar instead — the rail's hover labels were illegible there. */
-        @media (min-width: 1420px) {
-          /* at REST the rail sits centered as it always did; on HOVER it slides to the
-             scroll-weighted anchor so the expansion opens AWAY from where you are (at the
-             page bottom it grows upward; at the top, downward) — Fuad 2026-08-13, second
-             pass: the always-on slide read as drift, the shift belongs to the hover. */
-          .st-toc { position: fixed; left: 16px; top: 50%; transform: translateY(-50%);
-            transition: top .28s ease, transform .28s ease;
-            flex-direction: column; gap: 0; overflow: visible; margin: 0; padding: 0;
-            background: none; backdrop-filter: none; -webkit-backdrop-filter: none;
-            max-height: none; z-index: 40; width: auto; }
-          .st-toc:hover { top: calc(14px + var(--stp, .5) * (100vh - 28px));
-            transform: translateY(calc(var(--stp, .5) * -100%)); }
-          .st-toc button { position: relative; flex: none; display: flex; align-items: center; gap: 11px;
-            min-height: 24px; padding: 6px 0; border: none; border-radius: 0; background: none;
-            text-align: left; color: var(--ink-faint); white-space: nowrap; }
+        /* THE DOT FACE — the rail's wide shape: dots at rest so it never sits over content, labels
+           revealed on hover only. The breakpoint came down 1420 → 900 (Fuad 2026-09-22) with the
+           horizontal strip it used to fall back to. 1420 was set when the labels were a bare hover
+           overlay and Windows-scaled laptops (a P16 at 200% is ~1280 CSS px) rendered them
+           illegibly; they have been solid-surface chips with a real border since, and the geometry
+           is what decides now — the feed is 820px capped, so from 900px up there is a ~40px gutter
+           beside it for a column of 8px dots. Under that, see the numerals face below. */
+        @media (min-width: 900px) {
           .st-toc button::before { content: ""; position: absolute; left: 3.25px; top: -50%; height: 100%;
             width: 1.5px; background: var(--rule); z-index: 0; }
-          .st-toc button::after { display: none; }  /* the horizontal-bar underline doesn't apply to the rail */
           .st-toc button:first-child::before { display: none; }
           .st-toc button[data-reached="true"]::before { background: var(--accent-dim); }
           .st-node { position: relative; z-index: 1; width: 8px; height: 8px; flex: none; border-radius: 50%;
@@ -3182,16 +3162,31 @@ function StoriesView({ t, go, seed }) {
           .st-toc button[data-reached="true"] .st-node { border-color: var(--accent-dim); }
           .st-toc button[data-on="true"] .st-node { background: var(--accent); border-color: var(--accent);
             transform: scale(1.25); box-shadow: 0 0 0 4px var(--accent-bg); }
-          /* label chip: hidden until you hover the rail, then floats over content readably.
-             SOLID surface + real border (no rgba/backdrop tricks) so Dark Reader doesn't
-             render it as a boxy table, and text stays legible at any zoom. */
-          .st-toc-lbl { max-width: 0; overflow: hidden; opacity: 0; border-radius: 5px;
-            transition: max-width .3s ease, opacity .2s ease, padding .3s ease; }
+          /* label chip: closed in the base rules, revealed only while the rail is hovered, then it
+             floats over content readably. SOLID surface + real border (no rgba/backdrop tricks) so
+             Dark Reader doesn't render it as a boxy table, and text stays legible at any zoom. */
           .st-toc:hover .st-toc-lbl { max-width: 260px; opacity: 1; padding: 4px 10px;
             background: var(--panel); border: 1px solid var(--rule-2); font-size: 10px; }
-          .st-toc button[data-on="true"] { color: var(--accent); }
           .st-toc button[data-on="true"] .st-toc-lbl { color: var(--accent); }
-          .st-toc button:hover { color: var(--ink); }
+          .st-toc-min { display: none; }
+        }
+        /* THE NUMERALS FACE — under 900px there is no gutter, so the rail gives up the dots, the
+           connectors (dot geometry, nothing to join without them) and the hover labels, which a
+           touch screen cannot reveal anyway, and keeps the one glyph that names a chapter: its
+           roman numeral, a middot for the hero row above chapter I. It reads as position — where
+           you are in a book of nine — rather than as a label, and it fits the 34px lane the feed
+           opens above. Freshness survives as a tightened dot after the numeral (the 6px trailing
+           margin it carries in the label chip would spend a quarter of the lane); the tooltip
+           still names the modules for anything with a pointer. Rows stay 22px tall so a thumb has
+           something to hit. */
+        @media (max-width: 899px) {
+          .st-toc { left: 5px; }
+          .st-toc button { gap: 0; min-height: 22px; padding: 4px 0; }
+          .st-node, .st-toc-lbl { display: none; }
+          .st-toc-min { font-family: var(--mono); font-size: 9px; letter-spacing: .08em; color: var(--ink-faint); }
+          .st-toc-min .st-fresh { width: 4px; height: 4px; margin: 0 0 0 2px; }
+          .st-toc button[data-reached="true"] .st-toc-min { color: var(--accent-dim); }
+          .st-toc button[data-on="true"] .st-toc-min { color: var(--accent); }
         }
 
         /* ── mobile pass ── */
