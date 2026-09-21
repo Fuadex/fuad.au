@@ -9,7 +9,99 @@
 
 ---
 
-## ⓪ Status snapshot — 2026-08-26 (grounding-audit refresh)
+## ⓪ Status snapshot — 2026-09-21 (the data-integrity + Stories wave)
+
+**Shipped 2026-09-19 → 21** (feature detail in ARCHITECTURE.md §4/§5/§6/§8; method detail in
+MOOD_PIPELINE.md §7 and `rotation/tools/README.md`):
+
+- **THE PIN ARCHITECTURE — the wave's biggest structural change.** `pins.json` is now the
+  **durable correction ledger** (45 → **126 entries, 93 of them mbid pins**), and the three-layer
+  model is enforced in code: `artist-stats.json` stays the **raw last.fm layer** that pins beat,
+  every enricher that fetches or joins under an mbid takes the pin first via one `mbidFor()`
+  pattern (6 scripts; `enrich-stats.js` abstains **by design** and its write site says so), and
+  build-data's **two mbid-as-identity sites** (CANON grouping, `mbidOf`) take pins first. **There
+  is no re-poisoning vector left** — a future last.fm scrape can rewrite stats without a single
+  downstream store refetching under a poisoned id.
+- **87 poisoned MBIDs repaired, all songs-verified** (25 + 62 across two sweeps); 124 store rows
+  refetched clean; **47 artists went from rgCount 0 / debut null to a real catalogue**. Payload
+  flips verified in full builds (Seatbelts us→jp, Skywalker de→cz, Jinjer →ua, Kat debut
+  2016→1986, Hyde 2022→2002, Resolve us→fr, Loathe debut →2016, WILLOW →Willow Smith, and the
+  MONO/FLOW/LITE/rega/Enfants →Japan cluster). **EVILLE/EVILE un-merged** — the poisoned id was
+  the real Evile's, so CANON had been folding two real bands into one row; the pin-first guard at
+  the grouping site is what makes that split permanent.
+- **The songs-anchor identity law** (ARCHITECTURE §5), born of the same campaign: **9 of 12
+  applied vocals flips were REVERTED** because their identity step was missing. Re-derived
+  songs-anchored, plus 2 gender pins; vocals-vs-entity contradictions 20 → **5**, all in the
+  defensible class (guest vocalists; non-binary identities the binary-leaning `vx` schema cannot
+  hold).
+- **The enricher silent-empty fix.** An answerless-but-parseable MusicBrainz body is now a
+  FAILURE: skip the write, leave the name uncached, retry next run, never clobber a good record
+  with a blank. That closed the ~10.7% blank-stub class (594 + 661). Repair: 1,328 refetches →
+  317 + 359 records reclaimed with real data; **GEOGRAPHY 0.86 → 0.90** (82 countries, 939
+  cities), **ADOPTION 0.77 → 0.83**, LIFESPAN known **+133**. `checkedEmpty:true` marks the rest
+  as genuinely empty at source — a provenance tag only, read by nothing.
+- **`mb-lineups.json` is the primary lineup/gender source** — **1,061 bands / 4,919 members**
+  after the crawl extension. LINEUPS insight **223 → 670 bands judged** (156 with women, share
+  0.21 → **0.31**); artist `members` now **current-first** (318 lists reordered, none shortened);
+  the artist-page lineup card **395 → 927 artists** on the dump's own `c` flag rather than
+  inferred end dates (81 members had ended with no end date and every one had rendered as
+  current); new `mc` payload field; the vocalist ladder breaks ties by **tenure**, which flipped
+  the Cranberries' glyph with no data edit.
+- **The lyric corpus closed.** Both pipelines are now **tracked tools** at `rotation/tools/`
+  (owner rule: *"we can't have tools like these disposable"*), a refetch stage was built, and the
+  full runs took **mood to 28,752 rows / 99.07%** and **themes to 28,375 / 98.64%** of the lyric
+  layer — distribution unmoved (median valence 30 → 30). `THEMES` gained **`matrix`** (full
+  year × theme grid) and **`exemplarsAll`**.
+- **Stories overhaul** — nine chapters, 41 sections (see A4 below); The Reading closes the feed
+  as authored, tracked content (`reading.js`); the lab three graduated (comfort zone, Lyrical
+  diet, Who brought you here); five modules merged or retired; the chart skin went **stroke-first**
+  (DESIGN.md §3.6).
+- **Overview** — every strip tile now follows every filter (SINCE, PEAK YEAR, plays/artist,
+  albums/songs), pace + milestone ETA under Scrobbles, both milestone progress bars retired, the
+  strip's **never-actually-tweening** bug found and fixed, `ROLLING_12M`, Blind spots made
+  fold-aware, and the **`recOf` bare-row law** written down after the Decades outage (its third
+  instance — ARCHITECTURE §10.14).
+- **PWA offline v1** — `persist()`, route-shard warm-up, epoch carry-forward, the two-epoch
+  invariant (ARCHITECTURE §8 "PWA").
+- **Culture** — Reader open now demand-loads **both** lazy sets (the crossover row showed blank
+  from the Library until you'd visited the Wishlist tab), covers warm up to 5 row-neighbours each
+  direction ahead of a fling; `?v` epoch **169 → 171**.
+
+**Open queue — carried honestly:**
+
+1. **Sweep-3 of the MBID work: ~2,078 short-name mbids have never been songs-checked.** Sweeps 1
+   and 2 took the flagged and suspicious rows; this is the untriaged remainder, and short/common
+   names are exactly where the wrong-entity failure lives. *(Pool size is the campaign's own
+   count, not a figure derivable from a tracked file — re-measure before quoting it.)*
+2. **`enrich-tm.js` carries pre-existing double-encoded UTF-8 mojibake** — confirmed at byte
+   level, predates the pin work, deliberately left untouched so the pin commit stayed reviewable.
+   Needs its own cleanup pass.
+3. **Ratbag / Dearest** — owner-flagged for a second look; both are pinned and songs-noted
+   (`pins.json`), so this is a verdict to confirm, not a repair to run.
+4. **Two adjacent Stories pairs await the owner's on-screen judgment** — *Their era* / *Obsessions*
+   and *Flameouts* / *One-day wonders* sit next to each other **on purpose**, so the duplication
+   can be seen rather than argued about. Merge, differentiate, or leave.
+5. ~~**59 straggler mood rows are scored but unwritten.**~~ → **✅ CLOSED 2026-09-21**
+   (`599bed6`). Mutation got its own tool with mutation-shaped proofs — `tools/mood-update.js`,
+   an allowlist plus a masked-serialisation proof that every non-allowlisted row is
+   byte-identical — rather than weakening the emitters. 51 rows written, store unchanged at
+   28,752 (+120 bytes), 8 honestly left three-element. **The standing rule:** mutation is for a
+   *superseding first read* only, never a re-run over an already-read row; the append-only
+   emitter stays the default path.
+6. **The lyric ceilings are not a backlog** — 91 coherence-refused, 268 mood / 390 themes
+   unclassifiable (LIMITATIONS §8). Don't "fix" them by loosening a gate.
+7. **`mc` ships but no client reads it** (the UI uses the shard's per-member `c`). Either wire it
+   or decide it's redundant — a payload field nothing consumes is weight.
+8. ~~culture.css epoch~~ RESOLVED (2026-09-21): the stylesheet carries its own `?v=` epoch by design; the commit that last changed culture.css stamped `v=165`, so it is current, not drifted.
+9. **Stale in-code comments in `build-data.js`** still quote mb-lineups at 1,001 bands / 4,633
+   members (it is 1,061 / 4,919). Measure the file, don't quote the comment.
+10. **Gender-glyph coverage is at a curation ceiling, not a crawl fault** — for all 18 relevant
+    new bands, MusicBrainz's own member relations carry no vocals role to key the lead-vocalist
+    rule off. More crawling will not move it.
+11. Carried from 2026-08-26: reads campaign continuations (ALBUM_READS.md), long-tail Tier-2/3
+    enrichment, template extraction (Phase 5).
+
+## (superseded) Status snapshot — 2026-08-26 (grounding-audit refresh)
 
 **Shipped since 2026-08-13** (detail in ALBUM_READS.md batch logs + ARCHITECTURE.md §8):
 reads corpus grown to **15,019 entries** (~1.4k Fable-tier close reads + 351 footnotes) via
@@ -629,9 +721,12 @@ separately — do NOT fold it into portrait gists; gists stay stats-free (ALBUM_
   still not in the URL** (mode/focus/year/genre) — do when Map is next touched.
 - **Open:** unpkg is a single point of failure (SRI-pinned but availability-coupled). Consider
   self-hosting the three runtime files.
-- **Open:** name-ambiguity pins (Bleach-class) are manual — a `pins.json` the enrichers consult
-  (name → forced mbid/spotify/discogs id) would make them durable. **Required before the CAA
-  cover run** (Fuad explicitly wants no Bleach repeats).
+- ~~**Open:** name-ambiguity pins (Bleach-class) are manual — a `pins.json` the enrichers consult
+  (name → forced mbid/spotify/discogs id) would make them durable.~~ → **✅ SHIPPED 2026-09-21**
+  (`db310bf` + `c2dd66f`). `pins.json` is the durable correction ledger (126 entries / 93 mbid
+  pins) and **every** enricher that fetches or joins under an mbid consults it first, as do
+  build-data's two mbid-as-identity sites. `enrich-stats.js` abstains by design — it is the raw
+  layer pins beat. See ARCHITECTURE §4 "The pin architecture".
 
 ### A4 · UX / product
 - ~~No favicon/social meta/OG image~~ → shipped 2026-07-03 (favicon.svg + og.png + OG/twitter meta).
@@ -640,7 +735,7 @@ separately — do NOT fold it into portrait gists; gists stay stats-free (ALBUM_
   Approved direction: expand/dynamize (risers–fallers strip vs baseline, lately⇄all-time toggle
   on the top wall, story-of-the-day big bento card, live count-up). Any *substantial* change or
   purge of other existing cards → ask first, Fuad reviews.
-- **Stories overhaul — SHIPPED 2026-09-21**: nine chapters (Depth & discovery / Years & seasons / The burn / What lasted / Habits & landmarks / People & places / Sound & style / Words & moods / The verdict), 41 sections, The Reading closes the feed; the old 4-chapter scheme is history.
+- **Stories overhaul — SHIPPED 2026-09-21**: nine chapters (Depth & discovery / Years & seasons / The burn / What lasted / Habits & landmarks / People & places / Sound & style / Words & moods / The verdict), 41 sections, The Reading closes the feed; the old 4-chapter scheme is history. Five modules merged or retired in the same arc (Milestones → a Heaviest-days facet · Language drift → Languages · Lyric themes → Lyrical diet · Top of each scene + Bridge artists · Carried alone), each with a tombstone at its old site. Per-chapter inventory + the DOM-derived TOC rule: ARCHITECTURE §8 "Stories". **Still open:** the two deliberately-adjacent pairs awaiting Fuad's on-screen judgment (§⓪ open queue item 4).
 - **Design overhaul wanted**: mobile responsiveness still patchy, desktop needs a real pass.
 - **Bug:** literal `[object Object]` — Fuad reports it near **Daine**. Hunted 2026-07-03 without
   a hit: comebacks, style-atlas, gateways, search overlay, ArtistMeta, artist-flow, adetail all

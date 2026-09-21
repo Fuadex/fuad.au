@@ -13,6 +13,69 @@ The hub is three self-contained apps sharing one launcher and one deploy pipelin
 
 ---
 
+## 2026-09-21
+
+### Rotation
+- **Stories became a book.** The long-read feed is re-cut into **nine chapters and 41
+  sections** that ride a logical flow — what the library is made of, when it happened, what
+  burned, what lasted, the habits, the people, the sound, the words, and the verdict. The old
+  scheme had let one chapter swallow 29 of 43 sections under a title about geography. Five
+  modules merged or retired in the same pass rather than being left to overlap: Milestones
+  became the record book's second facet beside Heaviest days, Language drift folded into
+  Languages, the Lyric-themes card was absorbed by Lyrical diet, and two style-directory cards
+  went entirely. Every deleted claim was verified as duplicated first.
+- **The Reading closes the feed** — a listening portrait and four era digests, written rather
+  than computed, sitting last on purpose: everything above it is the evidence.
+- **Every tile on the Overview strip now follows every filter.** Two of them used to read only
+  the time window, so a place or genre filter left lifetime numbers sitting next to sliced ones;
+  they are now *since* and *peak year*, both computed from the current slice. One slot that had
+  been shape-shifting between three different quantities is now always plays-per-artist. The
+  Scrobbles card gained a forward-looking pace and milestone-ETA line and lost its progress bar,
+  as did the artist page.
+- **The strip also started actually animating.** It had been remounting on every render, and a
+  remounted counter begins at its destination — so the easing that had shipped months earlier
+  had never once been visible.
+- **Offline, for real.** The service worker used to precache only the shell, and the cache epoch
+  rotates most days — so a tab that had not opened *today's* epoch had nothing offline at all.
+  It now carries the still-valid pieces of yesterday's epoch forward at idle, warms the route
+  data for each view once per epoch, and asks the browser not to evict what it has stored.
+- **A durable correction ledger for artist identity.** Name-ambiguous artists could be joined to
+  the wrong real-world act, quietly poisoning a whole column of the data. Corrections now live in
+  a tracked ledger that every enrichment script and the build consult *before* the raw upstream
+  id — so a future refresh cannot undo them. 87 wrong ids were repaired, each verified by
+  checking that the proposed act's own catalogue actually contains the songs in the listening
+  history; one row that had been silently merging **two different bands of similar name** was
+  split back apart.
+- **"Verify against the songs" is now the rule for any per-artist claim** — gender, origin,
+  lineup, lifespan. Applied retroactively, it reversed nine of twelve recent vocal-credit
+  changes whose research had been done on the wrong act entirely.
+- **Enrichment stopped freezing its own failures.** The upstream service returns well-formed
+  responses for its own errors; the old guards stored those as empty records, which then blocked
+  their own retry forever. About a tenth of two stores had frozen that way. Fixed and repaired —
+  geography coverage rose from 0.86 to 0.90, adoption from 0.77 to 0.83.
+- **Band lineups became a first-class layer** — 1,061 bands with per-member roles, tenure and
+  gender. The artist-page lineup card grew from 395 to 927 artists, shows the current lineup
+  without a click, and tells current from past by recorded fact rather than by guessing from
+  missing end dates (which had shown long-disbanded bands as active).
+- **The lyric mood and theme layers are complete** — 99.1% and 98.6% of every lyric the library
+  has. A new recovery stage reclaimed 806 texts that earlier runs had written off, 93.5% of
+  which turned out to be old rate-limit scars rather than missing words. The enlargement left
+  the corpus distribution unmoved, which is the best evidence that the instrument is sound. The
+  tools that produce both layers are now versioned alongside the site instead of living as
+  disposable scratch.
+- Three prototypes graduated into Stories — the comfort zone, the lyrical diet and a
+  "who brought you here" gateway trace — and the charts they brought with them settled the house
+  style: outlined shapes over faint washes, hues keyed to meaning, hover to preview and click to
+  pin.
+
+### Culture
+- **The "on your wishlist — similar" row finally appears the first time.** Opening a reader from
+  the library scored the item against a pool that had not been loaded yet, so the row rendered
+  blank until you visited the wishlist tab and came back.
+- **Covers stop popping in mid-scroll.** When a cover appears, its row neighbours are warmed
+  ahead of the scroll, using the exact same image URL the page will paint — so the warm-up can
+  never miss. Skipped entirely under Data Saver.
+
 ## 2026-08-26
 
 ### Canvas

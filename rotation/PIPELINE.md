@@ -8,6 +8,18 @@ follow. The workshop scripts themselves live OUTSIDE the repo (untracked, at the
 `../.sptmp/`); this file is the committed record of the *shape* of the process, so it can be
 audited and re-run cold.
 
+> **Amendment 2026-09-21 — "we can't have tools like these disposable" (Fuad).** The
+> untracked-workshop rule above is the EDITORIAL-wave rule (batch drivers, merge scripts, one-off
+> apply scripts) and it still stands: those are per-wave scaffolding. It does **not** extend to a
+> *pipeline that can be re-run against the corpus*. The lyric mood + themes pipelines are now
+> tracked at **[`rotation/tools/`](tools/README.md)** — model, prompt, quantisation, gates and
+> emitters, reproduced character-for-character from the runs that built the existing rows — after
+> a `.sptmp` cleanup came close to destroying them. The rule now: **the things that rebuild an
+> environment are tracked; the environment itself (venv, model weights, lyric text, work JSONLs)
+> is not.** When you build a new pipeline, commit the runner in the same arc that ships its
+> output. Methodology for that pipeline stays in MOOD_PIPELINE.md; operations live in the tools
+> README.
+
 ## The five stages
 
 ```

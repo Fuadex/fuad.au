@@ -79,7 +79,7 @@ dataset sanity" (`smoke.js`). Push to `main` is the test environment.
 | **BACKLOG.md** | Open items, session checkpoints, key gotchas, pathways under consideration |
 | **CHANGELOG.md** | Feature/architecture milestones (public-safe; no provenance) |
 | **README.md** | Public-facing one-pager about the site |
-| **STATUS.md** | Cross-app status snapshot (refreshed 2026-08-26) |
+| **STATUS.md** | Cross-app status snapshot (2026-08-26, with a 2026-09-21 addendum at the foot) |
 | **STATS.md** | Raw scale of all three apps — the numbers, dated |
 | `PROJECT-AUDIT-2026-07-10.local.md` | Local-only deep audit (gitignored); never tracked |
 
@@ -90,7 +90,8 @@ dataset sanity" (`smoke.js`). Push to `main` is the test environment.
 | **rotation/ROADMAP.md** | Planning Rotation features — build queue, API catalogue, module plan |
 | **rotation/PIPELINE.md** | Running a reads/blurb wave (llm-about, canvas art reads, etc.) |
 | **rotation/ALBUM_READS.md** | Writing album "What's it about?" reads — coverage rule, gap classes, Opus-read + Fable-coda design |
-| **rotation/MOOD_PIPELINE.md** | Touching `genius-mood.json` or anything mood-driven — the valence/register taxonomy, provenance flags, coherence gate, cathartic class |
+| **rotation/MOOD_PIPELINE.md** | Touching `genius-mood.json` or anything mood-driven — the valence/register taxonomy, provenance flags, coherence gate, cathartic class (§7 = the 2026-09-21 corpus closure) |
+| **rotation/tools/README.md** | **Running** the lyric mood/themes pipelines — the tracked local-model tools: stack of record, quick start, per-file reference, emit proofs, run logs. Methodology stays in MOOD_PIPELINE.md; this is operations |
 | **rotation/READS_STRESS_TESTS.md** | Doubting the song-read methodology — the difficult-case ledger: worst gates, both limit directions, suite rulings, what each stress proved |
 | **rotation/LIMITATIONS.md** | Understanding known approximations and deferred fixes |
 | **rotation/SPOTIFY.md** | Working with the personal Spotify export integration |

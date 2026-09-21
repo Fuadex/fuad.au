@@ -28,6 +28,27 @@ as a dated snapshot. Cross-app status: [STATUS.md](STATUS.md).
 | Collaboration graph | 5,730 credit edges |
 | Spotify behavioral layer | 316k-play aggregates (2013 → 2026) · 3,592 liked tracks |
 
+### Rotation — what moved by 2026-09-21
+
+The table above stays as its 2026-08-26 measurement. These layers changed materially in the
+2026-09-19→21 wave (Rotation figures only; Culture and Canvas are unchanged):
+
+| Layer | 2026-08-26 | 2026-09-21 |
+|---|---|---|
+| Scrobbles | 322,640 | **323,510** |
+| Lyric mood layer | 25,286 scored | **28,752** — 99.07% of the lyric layer |
+| Lyric theme layer | 25,472 classified | **28,375** — 98.64% of the lyric layer |
+| Band lineups (per-member gender/roles/tenure) | — | **1,061 bands / 4,919 members** |
+| — bands judged by the LINEUPS insight | 223 | **670** (156 with women) |
+| — artists with a lineup card | 395 | **927** |
+| Entity-correction ledger (`pins.json`) | 45 entries | **126 entries / 93 mbid pins** |
+| Vocalist lineups verified (`vocals.json`) | 2,205 artists | 2,205 (12 flips, 9 reverted — net identity, not count) |
+
+Scrobble/insight figures come from the 2026-09-21 local build; the generated payload is a CI
+artifact, so re-measure rather than quoting these after a later rebuild. Store counts
+(`genius-*.json`, `mb-lineups.json`, `pins.json`, `vocals.json`) are read straight off tracked
+files and are exact.
+
 ## Culture — the personal canon
 
 | Layer | Scale |

@@ -70,8 +70,11 @@ map view isn't bookmarkable yet. Deferred.
 
 - "In your rotation, this track is…" gate is loose (weak outliers slip in); wants ≥85/≤15 +
   comparative wording. *(Partially tightened 2026-07-07 — see ROADMAP Phase 2 item 1.)*
-- Sounds/Reads CJK sentiment is n-gram NRC (no context model) — some JP tracks mislabelled;
-  the transformer re-score is queued.
+- ~~Sounds/Reads CJK sentiment is n-gram NRC (no context model) — some JP tracks mislabelled;
+  the transformer re-score is queued.~~ — **DONE.** The whole-lyric model replaced NRC valence
+  corpus-wide (2026-08-27/28, MOOD_PIPELINE §3), the Japanese gap-fill fetched CJK lyrics by
+  real name, and the 2026-09-21 refetch + full runs closed the corpus at 99.07% mood / 98.64%
+  themes of the lyric layer (§8 for what is left).
 - Tracks/artists without audio data silently drop the radar/quadrant cards (no "no data" note).
 - ~~`blurb-demo.js` still ships~~ — **retired 2026-07-18**; reads folded into `llm-about.js`.
 
@@ -83,16 +86,62 @@ Surfacing the deep features is wanted, but needs design thought first — don't 
   modules (it's already dense). Decide the Overview layout before adding.
 - **"No audio data" honesty note (Phase 2 item 4)** — needs a deliberate implementation (where/how
   it reads as data, not an error) rather than a quick line.
-- **Stories is getting large** — it's fine to keep adding, but Stories itself wants a
+- ~~**Stories is getting large** — it's fine to keep adding, but Stories itself wants a
   **restructure**, possibly into a quasi-**book** (chapters/table-of-contents/paging, a real
-  reading experience) rather than one long feed. Do this thinking before piling on more cards.
+  reading experience) rather than one long feed. Do this thinking before piling on more cards.~~
+  → **DONE 2026-09-21.** The book exists: nine chapters, 41 sections, a TOC rail, and The
+  Reading as the closing verdict. The thinking that was asked for happened at the re-cut, not
+  before each card — see ARCHITECTURE §8 "Stories" for the chapter inventory and the merge/
+  retirement rules that came with it. **The new standing constraint is placement, not size:**
+  a new module has to earn a chapter and an adjacency, and the chapter titles are the argument.
 - **Artist-page Phase-3 strips (item 5)** — surfacing per-artist segues / lifecycle shape /
   seasonality on the artist page. Cool, but future — pairs with the Stories restructure.
 
 ## 7. Platform nice-to-haves (deferred from Phase 0)
 
 - ~~PWA/offline~~ — **shipped 2026-07-18** (`manifest.webmanifest` + `sw.js` tiered cache +
-  icons; cache epoch = staged-content digest).
+  icons; cache epoch = staged-content digest); **genuinely offline since 2026-09-21** — see
+  ARCHITECTURE §8 "PWA", offline v1. Residual: per-artist data is still cache-on-use, so an
+  artist page never opened is not available offline, and a first-ever visit primes nothing.
 - **ListenBrainz mirror** of the scrobble history (insurance) — needs Fuad's LB account/token.
 - **Self-hosted fonts** — cosmetic-only failure mode; Google Fonts still a third-party request.
 - **MapView pan/zoom** uses the same state-per-frame idiom TourMap had — audit for the same fix.
+
+## 8. The lyric layer's ceilings — ✅ MEASURED 2026-09-21 (not a backlog)
+
+The mood/themes work queue is **drained**, so what is missing is now a ceiling with a named
+cause rather than an un-run batch. Against `genius-lyrics.json`'s 28,755 keys:
+
+| still unclassified | mood | themes |
+|---|---|---|
+| no obtainable lyric (LRCLIB not-found, cached negative) | 110 | 73 |
+| instrumental — correctly absent | 54 | 29 |
+| body too short to score | 13 | 11 |
+| scored, **refused by the coherence gate** | 91 | — |
+| no theme above the 0.24 anchor floor | — | 277 |
+| **total** | **268** | **390** |
+
+Two of those rows are *refusals*, not gaps, and they should not be "fixed" by loosening a gate:
+
+- **The 91** are MOOD_PIPELINE §4's *triumphant aggression* class — a bright valence over a
+  dark register, on a new row with no NRC valence to fall back on. The existing-row policy
+  (keep NRC, flag `2`, call it **cathartic**) has nothing to keep, so the honest answer is to
+  refuse the row. Scoring them anyway would put a wrong number in a store whose whole point is
+  that the number means something.
+- **The 277** are tracks the 18-anchor space genuinely has no bucket for: near-wordless hooks,
+  ad-libs, spoken intros. A bucket invented to absorb them would be a junk drawer that then
+  shows up in the Lyrical diet as if it were a theme.
+
+**Closed since this table was measured:** the 59 pre-Qwen straggler rows. They could not go in
+through the append-only emitters (writing them mutates existing rows, which the emit proofs
+forbid by construction), so mutation got its own tool with mutation-shaped proofs —
+`tools/mood-update.js`, MOOD_PIPELINE §7.6. **51 were written** (row count unchanged at 28,752;
+flag `1` rows 27,767 → 27,818 — a mutation, not a growth); **8 stay three-element honestly** —
+3 instrumental and 4 not-found never reached the scorer, and 1 was refused by the coherence
+gate. Those 8 are a separate set from the table above, which the write did not change.
+
+**Still open:** the 10 rejected 2026-08 gap-fill reads await the owner's study.
+
+Coverage is counted against the lyric layer, never as rows ÷ keys — both stores hold a few
+rows for keys the lyric layer no longer lists (folds, retired spellings) and counting those
+would flatter the number. Full method + run log: `rotation/tools/README.md`.

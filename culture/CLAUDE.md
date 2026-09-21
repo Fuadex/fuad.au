@@ -58,13 +58,40 @@ The heavy id-keyed overlays are split into two lazy sets and injected at runtime
 - **reader set** (`cast_data`, `omdb_data`, `books_data`, `game_imdb`, `filmweb_notes`,
   `notes_en`, `tmdb_data`, `script_mood`, `interpretations`) — loaded on first Reader open.
 - **wishlist set** (`wishlist`, `wishlist_cast`, `wishlist_pred`, `wishlist_blurbs`) —
-  loaded on first Wishlist or Tonight entry.
+  loaded on first Wishlist or Tonight entry, **and on any Reader open** (see below).
 
-Both sets are also preloaded by a 2.5-second idle timer after boot, so they are usually
-resident before the first click. A `dataTick` state counter triggers a re-run of
+**Corrected 2026-09-21 — a Reader open demands BOTH sets** (`culture-v2.jsx:2991`). The
+Reader's "On your wishlist — similar" row scores the open item against the **opposite** pool,
+so opening a Reader from the Library with only the reader set resident left
+`window.CULTURE_WISHLIST` empty and the row rendered blank — it only appeared after hopping to
+the Wishlist tab and back. The `dataTick` re-render machinery was already correct; the *request*
+was the missing piece.
+
+Only the **reader** set is idle-preloaded (2.5 s after boot, `culture-v2.jsx:2945`). The
+wishlist set (~2.5 MB) is deliberately **not** preloaded — it is demand-loaded by the Reader,
+the Wishlist/Tonight entry, or a deep link. A `dataTick` state counter triggers a re-run of
 `seenItems`/`wishlistItems` enrichment whenever a lazy set lands. Deep-linked `?open=`
 URLs wait for their pool before resolving; the Reader re-resolves its item by id after
 each tick.
+
+### Cover prefetch — warming a row's neighbours (2026-09-21)
+
+Lazy loading looked rough on mobile: covers popped in mid-fling because the
+IntersectionObserver plus the network could not stay ahead of the reveal. Now, when a cover
+reveals, up to **5 neighbours in EACH direction of its row** are warmed with a bare
+`new Image()` (`warmNeighbours`, `culture-v2.jsx:83-91`, fired from the observer callback at
+`:118`).
+
+Three rules keep it honest:
+
+- **One URL derivation, shared.** `lazyImgUrl` (`:66`) is the single place a raw poster `src`
+  becomes the requested URL, returning `{url, prox}`. Warm and render **cannot drift** — a
+  warmed URL that differs by one byte from what `LazyImg` later paints is a wasted request, not
+  a cache hit. Warming uses the **proxy-first** form, matching the `img`'s own first paint.
+- **Deduped module-wide** (a `warmed` Set) and **skipped under Data Saver** (`:71-77`).
+- **Degrades to nothing.** A `LazyImg` without row context behaves exactly as before. Wired at
+  all five ordered-list call sites (shelf rows, badge walls, halls, wishlist picker,
+  deal-three); detail-view heroes still load eagerly.
 
 ## Runtime assembly (`culture-v2.jsx`)
 
@@ -133,6 +160,11 @@ scrollable strip.
   fable→goodreads on this basis). `source` is hand-edit-preserved on re-import.
 - **Cache-busting**: every `<script>`/`<link>` in `index.html` has `?v=N`. **Bump N on any
   data/code change** or browsers serve cached files. `build_all.py` automates the bump.
+  Epoch went **169 → 170 → 171** across the 2026-09-21 wave (cover prefetch, then the Reader
+  dual-set load) — *all four script tags move together, or a returning visitor gets none of it.*
+NOT drift, verified 2026-09-21: `culture.css` sits on its own `?v=165` epoch, separate from
+  the four script tags (now 171) BY DESIGN - the same commit that last changed the css stamped
+  165, so the stylesheet epoch is current. Bump it only when culture.css itself changes.
 
 ## Golden rules
 

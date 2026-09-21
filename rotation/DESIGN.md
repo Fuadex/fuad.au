@@ -141,6 +141,54 @@ viewport and names every offending element. Two of the three failed attempts abo
 one attempt if it had been run first. It must be launched from PowerShell — the Bash sandbox
 blocks the browser process.
 
+### 3.6 Stroke-first fills (the chart skin, settled 2026-09-21)
+
+A data shape in Rotation is **outlined, not filled solid**. Fuad, on the first solid-fill render
+of the Lyrical diet and again on the Chapters bars: *"hollow fills and strokes… to fit the style
+of the rest of Rotation."* The contract:
+
+- **At rest:** a **1px stroke in the datum's hue** over a **10–12% wash** of the same hue.
+- **Selected / hovered:** the fill rises to ~18% with a brighter stroke, and **everything else
+  dims to a whisper** — emphasis is made by suppressing the rest, not by shouting.
+- **Segmented stacks** get a **2px seam** between segments rather than a shared edge.
+
+**Hue by NAME, not by index.** The diet's 18 theme hues are keyed off the theme's name (blood
+reds for violence/anger/war, golds for party/money, greens for nature/freedom, blues for
+night/alienation, indigo for death/faith, violets for madness/addiction, rose for
+heartbreak/love), and every stack **sorts by hue** so each bar reads as one gradient wheel —
+blood at the foot, rose at the crown. Name-keying is what makes a degrade path free: when an
+older payload can only supply the top-6 arc instead of the full matrix, it colours identically
+with no mapping table.
+
+**Hover previews, pin decides.** Where a chart has both: hovering a row lights that datum across
+every column and rings its chip; a click **pins**. **Pin beats hover, and only the pin drives any
+detail panel** — so hovering can never thrash the panel. Touch keeps the click/pin flow unchanged.
+
+### 3.7 Motion: what eases, what cross-fades, what never tweens
+
+1. **Numbers tween** (`TweenNum`, ~420ms). **Years do not** — counting up through 2013, 2014,
+   2015 reads as a date glitch. A year is rendered as a **string**, which is also the signal
+   `Stat` keys off: the non-numeric branch remounts a keyed span that **cross-fades** (~.28s)
+   instead. Neither a hard swap (snaps while numeric neighbours ease) nor a tween is right;
+   the fade is the third answer.
+2. **A clickable row wears `.ov-hovrow`** — the eased `--bg-3` wash. This is *the* hover grammar
+   for a ranked row anywhere in the app; a clickable surface with no hover answer is a bug, not
+   a style choice. Where a surface has **no background box to wash** (a cover tile in the Explore
+   grid), stand in with a **2px lift plus a gentle sleeve brightness** — same intent, same easing.
+3. **Collapsibles unfold on a `0fr → 1fr` grid track**, always mounted. `height: auto` cannot
+   transition and a mount/unmount has nothing to ease. Vertical space must ride the **text's own
+   margins**, never padding on the clipped div — padding pokes out of a 0fr track as a sliver.
+   Pair with `aria-hidden` so closed text leaves the accessibility tree.
+4. **Every one of these turns off under `prefers-reduced-motion`.** No exceptions.
+5. **Declare the transition before the change.** A component declared *inside* its parent mints a
+   new type on every render, React remounts it, and a remounted tween starts **at its target** —
+   the Overview strip looked tweened for weeks and measured as a one-frame swap. Hoist to module
+   scope.
+
+**Gotcha: `--bg-4` does not exist.** `var(--bg-4, var(--bg-3))` therefore resolves to `--bg-3`,
+which is how one link ended up with a permanent resting highlight and a hover that changed
+nothing. Rest transparent, wash on hover — and check a token exists before falling back to it.
+
 ## 4. Typography accents
 `r-mono` is the metadata voice (labels, credits, badges, tooltips-made-visible). Body prose
 stays in the app serif/sans stack. Attribution lines ("via Opus · Fable", "an alternative

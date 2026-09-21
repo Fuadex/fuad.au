@@ -45,10 +45,13 @@ browser via `@babel/standalone`; no bundler, no server. Production ships the sam
 a `?v=` cache-bust bump on every change. The app is a **PWA**: `manifest.webmanifest`,
 `sw.js` (tiered service-worker cache), and icons make it installable.
 
-**Lazy loading (2026-07-18).** `index.html` eagerly loads only `data.js`, `imports.js`,
-and `badges.js` (~830 KB). The heavy overlays are injected on demand by `loadLazySet()` —
-triggered by the first Reader open or Wishlist/Tonight entry, plus a 2.5-second idle
-preload. This removes ~12 MB of blocking JavaScript from the initial page load.
+**Lazy loading (2026-07-18; refined 2026-09-21).** `index.html` eagerly loads only `data.js`,
+`imports.js`, and `badges.js` (~830 KB). The heavy overlays are injected on demand by
+`loadLazySet()` — a Reader open pulls **both** the reader and wishlist sets (the Reader's
+crossover row scores against the opposite pool), Wishlist/Tonight entry pulls the wishlist set,
+and only the reader set is idle-preloaded 2.5 seconds after boot. This removes ~12 MB of
+blocking JavaScript from the initial page load. Covers additionally warm their row neighbours
+ahead of a scroll, so a fast fling doesn't outrun the images.
 
 **Data model: hand-authored canon + generated overlays.**
 

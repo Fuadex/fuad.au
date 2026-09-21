@@ -11,6 +11,10 @@
 > Last full audit of this document: **2026-07-18**. Phase 0 platform work (precompile,
 > self-hosted React, music-core/rest split, TourMap fix) folded in **2026-07-07** — see §2, §6.
 > PWA shell, boot path, attributes-lens dot fixes, and Gigs pagers updated **2026-07-18**.
+> **Documentation sweep 2026-09-21** — the pin architecture + answerless-body law (§4), the
+> songs-anchor identity law + mb-lineups as primary source (§5), THEMES matrix/exemplarsAll +
+> `mc` + the lineup shard (§6), the nine-chapter Stories re-cut + the Overview stat strip + PWA
+> offline v1 (§8), and three new conventions (§10 items 12-14).
 
 ---
 
@@ -159,16 +163,85 @@ into `../../.sptmp` (outside the repo), queried with DuckDB (`../../.dtmp/node_m
 ⚠ `node_modules` is **NOT** gitignored in this repo — never `npm install` here; use `../../.dtmp` /
 `../../.sptmp` / `../../.babelcheck` at the GitHub root.
 
-Known enrichment fragility: name-ambiguous artists can cache the wrong entity. The durable fix
-is **`pins.json`** (consulted by build-data at read time; enrichers should prefer a pinned id over
-a name search). Field inventory (2026-08-12): `mbid`/`spotify`/`discogs` canonical ids ·
+**`mb-lineups.json`** (crawl script local; see §5 "Lineups") — **1,061 bands / 4,919 member
+entries** as of 2026-09-21, `{mbid, fetched, members:[{name, mbid, gender, roles[], begin, end,
+current}]}`. It is the **primary** lineup/gender source (§5). *(The in-code comments quoting
+1,001 / 4,633 predate the 2026-09-21 crawl extension — measure the file, don't quote them.)*
+
+### The pin architecture (2026-09-21) — read this before touching any enricher
+
+Known enrichment fragility: name-ambiguous artists cache the **wrong entity**, and because
+every downstream store is fetched *under an mbid*, one poisoned id quietly poisons a whole
+column of the payload. The durable fix is a three-layer model:
+
+```
+  artist-stats.json  ← the RAW last.fm layer. Whatever last.fm resolved. Never corrected in place.
+        ↓ (beaten by)
+  pins.json          ← the DURABLE CORRECTION LEDGER. Hand-audited, songs-verified, tracked.
+        ↓ (both read by)
+  every enricher + build-data's two mbid-as-identity sites
+```
+
+- **`enrich-stats.js` stays the raw layer *by design*** — it never fetches under an mbid, so it
+  has nothing to correct; its write site says so in a comment (`enrich-stats.js:39`) and points
+  at pins as the layer that wins downstream. **Do not "fix" a wrong id there.** A future last.fm
+  scrape is expected to rewrite it, and that must not be able to re-poison anything.
+- **Every enricher that FETCHES OR JOINS under an artist mbid takes the pin first**, via one
+  identical helper — `const mbidFor = (stats, name) => (PINS[name] && PINS[name].mbid) ||
+  (stats[name] && stats[name].mbid) || ""`. Six scripts carry it: `enrich-mb.js:62`,
+  `enrich-origins.js:54`, `enrich-members.js:71`, `enrich-aliases.js:31`,
+  `enrich-wikidata.js:55` (the Wikidata P434 MBID→entity join), `enrich-tm.js:60` (the `byMbid`
+  Ticketmaster join). A **pinned name is also never blind name-searched again**
+  (`enrich-origins.js:111`). That set is the complete re-poisoning surface — if you add an
+  enricher that touches an mbid, it joins this list.
+- **`build-data.js` consults pins at read time** (`:357`, `pinOf` at `:358`, 17 consumption
+  sites) and, critically, at its **two mbid-as-identity sites**: the **CANON grouping key**
+  (`:1164` — `mb ? "mb:"+mb : "nm:"+normName`, which decides which scrobble spellings are one
+  artist; it uses raw `PINS[name]` rather than `pinOf` because ALIAS_NAMES isn't built yet at
+  that point) and **`mbidOf`** in the CONNECTIONS block (`:3462`, used at `:3470` to collapse
+  name variants into one graph node). **That first guard is what makes an un-merge permanent** —
+  see the Eville/Evile case in §5.
+
+**Ledger state 2026-09-21: 126 artist entries (plus a `_doc` key), 93 of them carrying an
+`mbid`.** Every entry carries a `note` saying what was verified and what the stats-side id had
+resolved to. Field inventory (counts measured 2026-09-21; the 2026-08-12 semantics below still
+hold):
+
+`note` 126 · `mbid` 93 · `clearImage` 25 · `origin` 20 · `clearStyles` 16 · `spotify` 15 ·
+`tags` 15 · `bio` 14 · `react` 5 · `life` 5 · `died` 4 · `dropTags` 3 · `fam` 2 · `clearLife` 2 ·
+`gender` 2 · `tmExclude` 1.
+
+Pins field semantics (2026-08-12): `mbid`/`spotify`/`discogs` canonical ids ·
 `clearStyles`/`clearLife` drop a wrong joined dataset · `origin`/`life`/`gender` hard overrides ·
 `react` force the Reactivated badge (hand-curated ledger) · `tmExclude` skip a wrong-entity
 Ticketmaster name-match (Bleach vs. an Italian tribute act) · `bio`/`tags`/`dropTags` override the
 shipped bio/tag chips (Bleach multi-band last.fm text; LiSA collision tags) · `clearImage` skip a
 wrong-entity Discogs/last.fm image and fall through to Spotify, whose cache entry can itself be
 repointed by pinned id (the LiSA case: Discogs held an American Lisa, Spotify held BLACKPINK's —
-cache repointed to the real LiSA by JP-market exact-casing search).
+cache repointed to the real LiSA by JP-market exact-casing search). *(No entry currently uses `discogs`.)*
+
+### The answerless-body law (2026-09-21) — a parseable body is not proof of an answer
+
+MusicBrainz returns **parseable JSON for its own failures** (`{"error":"Not Found"}` on a dead
+mbid, the 503 rate-limit body, maintenance pages). The old guards accepted those and wrote an
+**all-empty record**, which then **blocked its own retry** — `todo` skips cached names, so a
+transient failure froze as permanent. That is the origin of the ~10.7% blank-stub class in both
+`artist-mb.json` and `artist-origins.json` (the 594 + 661 entries).
+
+The rule now: **an artist document without its own `id` is a FAILURE.** `enrich-mb.js:67-72` and
+`enrich-origins.js:73-78` return `null` on `!json || !json.id`; every caller skips the write,
+leaves the name **uncached** so the next run retries it, and **never clobbers a good record with
+a blank** (`enrich-mb.js:124`; `enrich-origins.js:122/136/171`). Repair run: 1,328 rate-limited
+refetches reclaimed 317 + 359 records with real data.
+
+**`checkedEmpty: true` is a DATA-ONLY provenance tag, not a mechanism.** It marks records a
+repair pass re-checked against MusicBrainz and confirmed genuinely empty at source — "this blank
+is real, not a transient-failure stub". It currently sits on **262 rows in `artist-origins.json`
+and 222 in `artist-mb.json`**, and **no code writes or reads it** (it entered via an ad-hoc
+repair pass). It gates nothing; those records are skipped simply because they are in cache. It
+was safe to add because every consumer reads named fields defensively — which was verified
+before the marker went in. Treat it as a note to the next human, and don't build logic on it
+without writing that logic first.
 
 ## 5. Identity & cross-cutting systems
 
@@ -222,6 +295,55 @@ cache repointed to the real LiSA by JP-market exact-casing search).
   "Home" fold (a bulk-wave entry that renamed the canonical title INTO its bonus-track variant).
   Run it after any bulk fold wave; its only standing high scorers are the two deliberate
   LP-under-song-name exceptions (Nutronic, Daedric).
+- **THE SONGS-ANCHOR IDENTITY LAW (hard, 2026-09-21 — Fuad: *"we should include a song-based
+  test to follow-through"*).** Before **any** per-artist factual verdict — gender, vocals,
+  origin, lifespan, lineup, mbid, similar — you must first establish **which real-world act the
+  library artist IS**, by matching the owner's **scrobbled titles/albums** against the candidate
+  entity's MusicBrainz catalogue. The bar: **≥2 title matches, or 1 plus strong corroboration.**
+  Only then research that entity. A verdict whose identity step is missing is PLAUSIBLE at best,
+  never CONFIRMED, and must not be applied.
+
+  This is not a style preference; it is the lesson of a measured failure. The 2026-09 gender/vx
+  audit confirmed its verdicts against whatever entity the **stored** mbid named — and when the
+  songs test was applied retroactively, **9 of 12 applied vocals flips had to be reverted**: the
+  library's *Eville* is a Brighton band, not UK-thrash *Evile*; *Bish* is the Japanese idol group
+  BiSH (3 of 4 scrobbled titles), not a male UK DJ; *Aviana* is the metalcore band (12 of 16
+  titles), not a female US Person. **Short and common artist names routinely resolve to the wrong
+  real act, and research about the wrong act is worse than no research.**
+
+  **The canonical case — EVILLE/EVILE, un-merged.** The poisoned id on the library's Eville was
+  the *real Evile's* mbid, so CANON's `mb:` grouping key had been folding **two genuinely
+  different bands into one row**. The songs test named it, the pin fixed it, and the pin-first
+  guard at the CANON grouping site (§4) is what makes the split **permanent** against any future
+  scrape. Note also what the law *saves*: in the lineup crawl, the name-must-match rule refused
+  to attribute the Trent Reznor & Atticus Ross duo to solo Reznor, reporting no-match instead of
+  an attractive wrong answer. Verified corrections land in `pins.json` with a `note` recording
+  both the evidence and what the bad id had pointed at.
+
+- **Lineups — `mb-lineups.json` is the PRIMARY lineup/gender source (2026-09-21).** Loaded at
+  `build-data.js:405`; resolver ladder `mblOf` (`:421`): exact name → fold-alias → slug → a
+  **last-resort normalised hop** (`_mblNorm`, `:419` — NFKD fold + strip combining marks, drop a
+  trailing parenthetical, strip leading `the-`, both sides, tried **only** after the exact/alias
+  misses). That last arm is what lifts dump matching to 999/1,001; the residual misses are
+  correct rejections, not gaps. It feeds four things, each **ahead of** Wikidata / Discogs /
+  `artist-members`:
+  - the **LINEUPS insight** (`:3377-3431`; MB wins over Wikidata when it has ≥2 gendered members
+    or simply more — `useMb`, `:3399`). Now **670 bands judged, 156 with women, women-band share
+    0.31**, up from 223 / 43 / 0.21 before the integration.
+  - **artist `members`, current lineup first** (`mblMembersOf`, `:424-429`; emitted `:2105` core
+    and `:5451` long-tail). 318 lists reordered, none shortened.
+  - the **`vx` vocals fallback** (`mblVoxCode`, `:461-467`) — verified `vocals.json` still wins.
+  - **`genderOf`'s lead-vocalist rule** (`:470-477`), with `mblVoxGender` (`:469`) inserted
+    between the artist's own MB gender and the legacy `mb-artists` path.
+
+  **The vocalist ladder breaks ties by TENURE, not array order** (`_mblVox`, `:448-458`): four
+  credit tiers (current+lead vocals → any lead vocals → current+vocals → any vocals), and within
+  a tier the longest stint wins (an open-ended stint counts to this year). That one change flips
+  the Cranberries' glyph to Female with **no data edit** — two "lead vocals" members, neither
+  current, and array position had been picking Niall Quinn (one year) over Dolores O'Riordan
+  (28). The legacy `mb-artists` path (`:371-392`) still has no tiebreak; it is the fallback, and
+  fixing it is only worth doing if something still falls through to it.
+
 - **Colour system 1 — artist hue:** each artist inherits its genre **family** hue from the
   v2 wheel (15 families, 2026-08-13 — the full hue + Sound-Map position table is DESIGN.md
   §1.3; anchors: Thrash 4 red, Heavy/Doom 24, Hip-Hop 46, Alt/Indie 60, Jazz 40, Punk 96,
@@ -252,6 +374,51 @@ cache repointed to the real LiSA by JP-market exact-casing search).
 > `linerPrev`/`arcPrev` hold a superseded read for the flick face; `note2` is a footnote
 > rendered under the open full read. `liner2`/`arc2` are retired. Scrobble ingest drops
 > `NON_ARTISTS` (build-data.js) — news domains / trailers / video noise — before any counting.
+
+> **2026-09-21 additions.**
+>
+> **`INSIGHTS.THEMES`** (built `build-data.js:3291-3375`) now ships the full grid, additively —
+> existing consumers are untouched:
+> `{ names[18], covered, coveredPlays, totalPlays, shares[], exemplars, exemplarsAll, arc,
+> matrix, artists[14] }`.
+> - **`matrix` = `{ years[], plays[], rows[] }`**, parallel arrays: `rows[i][j]` is year
+>   `years[i]`'s **per-mille** share (an int — no float dance) of `names[j]`, for **every**
+>   theme, under the same `tot >= 400` year filter as the arc and folded into the arc's own walk
+>   (no extra pass). On the 2026-09-21 build: **17 qualifying years × 18 themes.** The arc stays
+>   the top-6 view; the matrix exists because the Lyrical diet must let the audience stack **any**
+>   theme across years, and a top-6 arc cannot feed that.
+> - **`exemplarsAll`** = the same row shape as `exemplars` (top-3 played tracks per theme) but
+>   for **every theme that has at least one** — 18 of 18 currently, against `exemplars`' top-8 —
+>   so a stacked year can be clicked through to real tracks whichever theme it names.
+> - Cost, measured on a real build: **+9.5 KB raw / +1.5 KB gzip** on `music-core.js` (most of
+>   the raw bytes are repeated key names and artist strings, which gzip already eats).
+> - **`covered` / `coveredPlays` / `totalPlays` are the honesty line** — 28,253 tracks carrying
+>   236,194 of 322,927 plays (**73.1%**) on that build. Any "what the words are about" copy that
+>   states a share must divide through these, not through the whole library.
+>
+> **Artist field `mc`** (`mcOf`, `build-data.js:441`; emitted `:2106` core and `:5452` long-tail;
+> in `ARTIST_HEAVY` `:6540`, so it rides the **deferred** shards — +0 bytes on first paint,
+> ~6.6 KB raw across rest/detail). It is the length of the **leading run** of `members[]` whose
+> names are in mb-lineups' `current:true` set — a prefix count rather than `cur.length`, so it
+> survives the Set de-dupe with the other member sources and the slice cap, and stays honest when
+> one person holds both a current and an ended membership row. **Absent = the dump has never
+> heard of this artist (unknown); `mc: 0` = the dump knows the band and says none of these are
+> current.** ⚠ Emitted but **not yet read by any client** — the artist card decides currency from
+> the lineup shard's per-member `c` flag instead (`rotation-artist.jsx:788`, `:2073`:
+> `m.c == null ? !m.t : !!m.c`).
+>
+> **`mb-lineup.js` shard** (built `build-data.js:4728-4803`; a **gitignored CI artifact**, so
+> never census it for counts you intend to publish). Key = canonical artist slug →
+> `{type, area, from, to, aka?, members:[{ n, g:"M"|"F"|"X"|"", i:[roles ≤4], f, t, c:1|0 }]}`.
+> Sourced **mb-lineups first, mb-artists as fallback** — a strict **superset** of the old shape
+> (adds `c` and the `X` gender), deliberately, so a stale cached shard renders exactly as before.
+> Roles are filtered of MB relationship *attributes* (`additional`/`original`/`eponymous`/…),
+> ranked vocals-first, backing/other vocals dropped when `lead vocals` is present, capped at the
+> card's own 4 chips. As of the local build: 927 artists, 849 with a roster.
+>
+> **`INSIGHTS.ROLLING_12M`** — top artist + top track over the 365 days ending at the **newest
+> dated scrobble** (data-relative on purpose, so a stale build stays honest). Feeds the Overview
+> card that used to say "2026 so far".
 
 **Core/rest split (Phase 0, 2026-07-07; artist-field split 2026-07-18):** `window.ROTATION` is
 assembled from **`music-core.js`** (loaded with `defer`, ~2.1 MB raw) + **`music-rest.js`**
@@ -292,6 +459,9 @@ timeline: ended-while-listening, graves, elders, median band life, worst year), 
 `sittings`{top,byAlbum} album front-to-back + `segues` X→Y), `SEASONALITY` (monthly + top
 seasonal artists), `TASTE_ERAS` (auto-segmented chapters w/ topFams + shift diffs),
 `LIFECYCLE` (flameout/perennial/slow-burn classes + `burningNow` w/ flare%).
+**Missing from the list above and shipping since (audited 2026-09-21, `build-data.js:3924-3930`):**
+`LANGUAGE`, `MOTHER_TONGUE`, `MOOD`, `THEMES`, `LINEUPS`, `AUDIO_DRIFT`, `HOUR_SOUND`,
+`CONCERT_EFFECT`, `ALBUM_DECAY`, `ROLLING_12M`, `STREAK`.
 
 **Artist audio row** — `R.AUDIO[artistId]` =
 `[energy, valence, acoustic, tempo, dance, instr (0–1), major, popularity 0–100, followers, loudness dB, speechiness, liveness, avgTrackSec]`.
@@ -363,6 +533,66 @@ popover layer; tweaks drawer.
   still needs a per-day geography export.
 - **"Where to dig"** chip strip · **"Your portrait"** prose verdict.
 
+**THE STAT STRIP — every tile follows every filter (2026-09-21).** The strip is `statSlot`,
+passed into `OvMapBand` from `rotation-views1.jsx:786-866`. Ten tiles in source order: hours ·
+artists · albums · **since** · songs · seen live · avg/day · **plays / artist** · **peak year** ·
+of plays. Three rules it now obeys:
+
+1. **No time-only impostors.** "days played" and "peak day" read the *day-series* time window
+   only — and day-series carries no place and no genre, so under a place/genre filter they
+   silently kept showing unsliced lifetime numbers next to sliced ones. They are now **SINCE**
+   (the earliest year the current slice has plays in, `:825`) and **PEAK YEAR** (the slice's
+   heaviest year, exact count in the tooltip, `:857-858`). Both come off a `year → plays`
+   aggregate the worldmap's `onStats` pass builds from each Results row's already-resident `yp`
+   (`rotation-worldmap.jsx:642-657`), **clamped to the picked window** under a year or calendar
+   pick (`calWindowYears`, `:415-421`) — so a 2013 pick can never report a lifetime 2017 peak.
+   `peakYear`/`sinceYear` ride the payload in all three report branches (`:661`, `:666`, `:669`).
+2. **One slot, one quantity.** The tile that used to shape-shift between depth / share% /
+   of-history is always **PLAYS / ARTIST** now (`:830-832`, `:847-849`). Unfiltered it reads
+   **lifetime over lifetime** (`T.scrobbles / T.artists`) on purpose — so the number is
+   rebuildable from the ARTISTS tile two cells over, which shows the whole library rather than
+   the Explore-eligible set; filtered it reads the slice over the slice's own artist count. The
+   caption is fitted (`.ov-stat-fit`) rather than amputated. *(Note: the tile the code's own
+   comment calls the "Tenth stat" is a different one — "of plays", the Results-list share at
+   `:859-864`.)*
+3. **Years are strings, and they cross-fade.** A year deliberately never tweens — counting
+   through intermediate years reads as a date glitch — but a hard swap snapped while every
+   numeric neighbour eased. `Stat` (`:535`) takes the non-numeric branch for a `String(...)`
+   value and remounts a keyed `.ov-yrswap` span with a ~.28s fade; reduced-motion turns it off.
+
+Albums and songs genuinely filter too (the Results machinery already computes the slice's
+albums/songs via `resultMedia`, so those counts ride the `onStats` payload), and "7 / sitting"
+became active **days** in the current slice.
+
+**The strip never actually tweened until 2026-09-21.** `Stat` was declared *inside*
+`OverviewView`, so every render minted a new component type, React remounted the whole strip,
+and a remounted `TweenNum` starts at its target — measured over CDP as a one-frame 7,800 → 23
+swap. Hoisting it to module scope is what finally delivered what the earlier TweenNum migration
+was for. `TweenNum`'s rAF step also gained a zero clamp (a first frame timestamped before the
+effect's `performance.now()` extrapolated backwards into negative millions).
+
+**Scrobbles card — pace + milestone ETA (2026-09-21).** Under the live total, one
+Streak-grammar line: `'26 pace 20.5k · 325k in ~54d` (memo `rotation-views1.jsx:707-721`,
+render `:883-886`, exact figures in the title tooltip). Year-to-date is summed off the baked
+day-series with the live delta added on top; **day-of-year clamps to 7** so early January
+can't project one wild afternoon into a 60k year; the ETA targets the **next round
+five-thousand via `ceil()` from the live total**, so it can never name a milestone already
+crossed. It looks *forward* — which is the whole point, because the milestone **progress bar**
+and the backward-looking "last crossing" line are both gone (`:890-894`; `INSIGHTS.MILESTONES`
+still ships and Stories' record book still reads it). The artist page's own milestone progress
+bar went the same way for the same objection (`rotation-artist.jsx:1736-1742`).
+
+**Other 2026-09-21 Overview rulings:** On this day dropped its "Biggest:" line and This week
+dropped the NEW row (both were stretching their pulse row, 161px → 126px, four cards level
+again); On-this-day year rows wear the eased `.ov-hovrow` wash like every sibling module's
+clickable rank, and compressed 3 rows → 2 in In-season's row grammar (22px cover, `.ov-tx` name
+over an `.ov-mi` "YYYY — on this day" sub, trailing count) so the pulse row reads as one family;
+"2026 so far" became **LAST 12 MONTHS** off a small `ROLLING_12M` insight (the 365 days ending
+at the newest dated scrobble — data-relative, so a stale build stays honest), rendering top
+artist *and* top track in the Recent/On-repeat row convention; `.xp-carditem` in Explore
+finally answers hover (a cover tile has no background box to wash, so a 2px lift plus a gentle
+sleeve brightness stands in).
+
 ### Insight engine (rotation-insights.jsx)
 Providers (score-ranked, de-duped, day-jittered): first-scrobble anniversary countdown, next
 round-total milestone, artist about to tip a round play count, distinct-artist milestone, week in
@@ -371,21 +601,74 @@ top of current year, last-72h histogram, on-this-day through the years (±3-day 
 comeback of the day, top-artist share, discovery rate, daily intake. Failures are swallowed
 per-provider.
 
-### Stories (the long-read feed)
-On this day · How deep it goes (underground index + deepest cuts) · How old the music was
-(adoption lag by decade + deepest digs) · Connected by blood (shared-member web) · Who's in the
-bands (LINEUPS / Wikidata lineups) · Blind spots
-(taste-gap recommendations) · Gathering dust (revisit/decay) · **A year in review** (scrubbable
-per-year deep dive) · Top of each scene (Discogs styles) · Bridge artists · Style atlas
-(styles only this library keeps alive) · Gateways (first artist per country) · **The ones that
-ended** (disbanded/died while you listened, graves dug up, elders — INSIGHTS.LIFESPAN) · How the
-sound drifted (yearly DNA drift) · When the taste turned (underground share of discoveries) ·
-How the map moved · Where the taste comes from · The streak · Milestones · Obsessions · Flameouts ·
-The constants · Their era · The incubation · Album weeks · Comebacks · One-day wonders ·
-After midnight · First contact · Heaviest day of every year. **Phase 3 (2026-07-07):** How you
-listen (sessions/sittings/binge + album front-to-back) · What follows what (segue graph) · Music
-for a season (seasonality) · The chapters of your taste (auto-segmented eras) · The shape of an
-obsession (lifecycle: flameout/perennial + "burning now" flameout prediction).
+### Stories — the long-read feed, RESTRUCTURED into nine chapters 2026-09-21
+
+The 2026-07 flat feed (and the four-chapter re-cut after it) is history: chapter IV had
+swallowed 29 of 43 sections and 60% of the feed under a title about geography. The feed now
+rides a **story** — what the library is made of, when it happened, what burned, what lasted,
+the habits, the people, the sound, the words, the verdict. **41 sections** (`rotation-views3.jsx`,
+`StoriesView` from line 257; the nine dividers are inline `.st-chapter` literals, not a list —
+lines 606 / 786 / 1151 / 1364 / 1452 / 1584 / 1950 / 2164 / 2418, each with a dated comment).
+
+| | chapter | sections |
+|---|---|---|
+| — | *(hero)* | On this day |
+| I | **Depth & discovery** | How deep it goes · When the taste turned · Music age · The songs you own twice · Blind spots |
+| II | **Years & seasons** | Chapters · A year in review · Who rose, who fell · Music for a season · After midnight |
+| III | **The burn** | Right now · The incubation · Their era · Obsessions · Album weeks · Flameouts · One-day wonders |
+| IV | **What lasted** | Gathering dust · Comebacks · The constants · The streak |
+| V | **Habits & landmarks** | How you listen · The unfinished records · What follows what · Heaviest days *(record book: year peaks + Milestones as its second facet)* |
+| VI | **People & places** | First contact · Who brought you here · Connected by blood · Lineups · The ones that ended · The concert effect · Origins |
+| VII | **Sound & style** | Style atlas · Sound drift · The comfort zone |
+| VIII | **Words & moods** | Languages *(Language drift folded in)* · Mother tongues · Sounds happy, reads dark |
+| IX | **The verdict** | Lyrical diet · **The Reading** |
+
+The order is the argument: everything above chapter IX is the evidence — sound, years, words,
+places — and **The Reading is the verdict, so it reads last.**
+
+**The TOC rail is DOM-derived, not declared** (`rotation-views3.jsx:482-507`): it walks
+`feed.querySelectorAll("section")`, takes each `.st-label`'s text, cuts at `·` and slugifies to
+`st-<slug>`. So the crumb list is *whatever actually rendered* — nearly every section sits
+behind a data guard, and the rail only mounts at all above three crumbs. Two consequences that
+are load-bearing: **a retired module's crumb disappears by construction** (delete the label,
+the crumb goes), and **a lazily-mounted section must be an effect dependency** or it never
+registers — which is why `reading` is one.
+
+**Merged / retired 2026-09-21** (each carries a tombstone comment at its old site):
+- **Milestones → a facet of Heaviest days** (`:1543`) — one record book. Not interleaved,
+  because the units don't align (one row per year vs one row per 50,000th scrobble).
+- **Language drift → folded into Languages** (`:2172`), the wave-C Origins precedent verbatim.
+- **Lyric themes → absorbed by Lyrical diet** (`:2400`, receiving tombstone `:2437-2450`).
+  Everything duplicated was *deleted with verification*, not repeated: the shares bar list (the
+  chips already say it), the hard-wired exemplars (`exemplarsAll` is a superset), the arc-only
+  riser/faller (the matrix computes them better — an off-arc riser was invisible to the old
+  code). What survived is the card's one unique asset, upgraded: all 14 artist theme-profiles.
+- **Top of each scene + Bridge artists → retired** (`:1952`) — bridges measured Discogs tag
+  co-occurrence, not connection (a big catalogue spans styles trivially), and the scene boxes
+  were a directory Explore already provides.
+- **Carried alone → retired in full** (`:1964`) — the surviving set was four broad-style solo
+  carriers, which is a tagging artifact rather than a biography. `sc.solo` still ships in the
+  build should a better home appear; Style atlas is the rarest rows alone again.
+
+Stale deep links (`#stories/milestones`, `/language-drift`) degrade to a silent no-scroll.
+
+**THE READING** (`rotation-views3.jsx:2641`, chapter IX) is the one **authored** module in the
+feed: a 115-word listening portrait plus four fixed editorial era digests (2006-2012, 2012-2015,
+2015-2018, 2018-2026), each expanded body closing on its own read-coverage margin. Its content
+lives in **`reading.js`** — a tracked, hand-edited content file (`window.ROTATION_READING =
+{portrait, eras[]}`), **not** a build artifact: edit it and the change ships with no rebuild.
+It is lazy-loaded on Stories mount via the house `loadScript` idiom
+(`rotation-views3.jsx:293`, `loadScript` at `rotation-core.jsx:568`), so `index.html` carries
+nothing. It is deliberately its own section rather than rows grafted onto `TASTE_ERAS` — those
+re-cut on every rebuild; these four cuts are fixed. **`reading.js` is in `apps.json`'s rotation
+`deploy` list (`apps.json:76`)** — committed is not shipped without it — and in the SW prime
+list (`index.html:122`).
+
+**Digest collapse idiom:** bodies are **always mounted** inside a `0fr → 1fr` grid track so
+opening eases (~.34s) instead of popping — `height:auto` cannot transition and a mount/unmount
+has nothing to ease. Vertical space rides the text's own margins, never padding on the clipped
+div (padding pokes out of a 0fr track as a sliver); `aria-hidden` keeps closed text out of the
+accessibility tree.
 
 ### Explore (the converged digger; reflowed 2026-07-05)
 One filter set — **time** (year chips + "play the decade"), **genre** (families → subgenres),
@@ -431,6 +714,22 @@ Albums** → **bottom row: How-they-played-out + family tree at their ~⅓ width
 all ~40 listed). **Sounds-like**: last.fm default 8 (⇄16), by-sound 8/16/24 (SoundSimilar's own
 selector). Mobile stacks. **How they played out** = album/song streamgraph (lazy artist-flow.js).
 Long-tail artists get **MiniArtistView** (explore record + Sound DNA + similar + lazy detail).
+
+**2026-09-21 — the roster card runs on mb-lineups.** The Family-tree card's lineup shard now
+sources `mb-lineups.json` first (`build-data.js:4728-4803`): **395 → 927 artists**, real rosters
+316 → 849, 517 artists gaining a roster outright (Judas Priest went from one line to the full
+family history). The **current lineup shows by default** under the shares-members-with lines —
+chips, gender glyphs and open tenures visible with no click — while **FORMERLY** stays behind an
+"N former members" toggle with its 10-cap; a **zero-current band** (disbanded, e.g. Led Zeppelin)
+keeps the old fully-collapsed card so a wall of past members never unfolds on load.
+
+The current/past split uses the dump's **`c` flag**, not an inference from end dates: **81
+members ended with no end date recorded**, and every one of them rendered as CURRENT under the
+old rule — Soundgarden, disbanded 2017, showed a live lineup. Open-arrow tenure is now only for
+the genuinely current (`rotation-artist.jsx:788`, `:2073` — `m.c == null ? !m.t : !!m.c`, which
+is also the fallback that keeps an mb-artists-only roster rendering). The header's **milestone
+progress bar is gone** (`rotation-artist.jsx:1736-1742`), and **On this day** compressed 3 rows
+→ 2 into In-season's row grammar so the pulse row reads as one family.
 
 ### Album page
 Cover (real or generative), release year/type/label (Spotify archive), stats (plays, ~hours,
@@ -494,6 +793,59 @@ handler drops the old one. SW registration is HTTPS-only (localhost excluded in 
 `?v`-hash stamping of JS/CSS references in `index.html` is automatic via `stage-site.js`'s
 `stampHashes`; this covers rotation, canvas (both have `sw.js`), and the hub root.
 
+**Offline v1 (2026-09-21) — the epoch problem, and the two messages that solve it.** The
+tiered cache above was never actually offline-capable, for a structural reason: the worker
+precached only the shell, so a tab that never opened *this* epoch had nothing offline — and
+the epoch rotates on most days, because `VERSION` is a whole-tree content digest and the sync
+cron runs daily. Every deploy orphaned yesterday's coverage wholesale. Three pieces fix it:
+
+- **`persist()`** — `index.html` calls `navigator.storage.persist()` right after registration
+  (`index.html:133`, inside `swWarm`): best effort, fire-and-forget, never blocks. It asks the
+  browser not to evict Cache Storage under general storage pressure.
+- **`EPOCH_HANDOFF`** (`sw.js:109-127`) — at idle the page posts the `?v=` asset URLs *this
+  document is actually running on* (`index.html:140-157`; it walks `script[src]`/`link[href]`
+  and appends `music-rest.js?v=` + `R.REST_V`, which is injected post-mount and not in the DOM
+  yet). The worker copies those entries out of the surviving previous epoch into the current
+  one, then drops every older epoch. Only **same-origin URLs carrying `?v=`** are carried —
+  an unversioned shard's URL doesn't change when its bytes do, so carrying it would let stale
+  bytes answer forever. Net effect: a byte-identical bundle stops re-downloading after every
+  deploy.
+- **`PRIME`** (`sw.js:134-149`) — the page then posts the per-view **route-shard list**
+  (`SW_PRIME`, `index.html:115-128`, 27 entries grouped by view — calendar/day-series, the
+  world map, filter-index, search-index, `reading.js`, the Records/Liked/Spotify/album/track
+  shards). The worker fetches only what this epoch lacks, one at a time at low priority,
+  storing (never executing). Idempotent: a second prime in the same epoch fetches nothing.
+  **~9.0 MB gzip / ~24.6 MB decompressed once per epoch** (the figure lives in the comment at
+  `index.html:111-114`). Skipped on a first-ever visit (`!navigator.serviceWorker.controller`
+  — everything is being downloaded anyway) and under Data Saver. Priming runs **in the worker**
+  on purpose: right after a deploy the page is still controlled by the *outgoing* worker (no
+  `clients.claim()`), so a page-side fetch would land in the cache about to be dropped.
+
+**The two-epoch invariant.** Cache names carry a content digest, so they have **no ordering** —
+`install` therefore writes a per-cache timestamp (`__sw-epoch`, `sw.js:25/32`) and `epochs()`
+(`sw.js:52-61`) splits the caches into `mine` / `older` / `newer`. `activate` deletes
+`older.slice(1)` — it keeps **exactly one** previous epoch rather than sweeping all, because
+that survivor is what `EPOCH_HANDOFF` reads from. If the handoff message never arrives, exactly
+one stale epoch lingers until the next `activate` bounds it again; it can never grow unbounded.
+A `newer` cache means a newer worker has already installed, and is neither ours to read nor to
+delete — `prime()` refuses outright when `newer.length` (`sw.js:137`), since warming a
+superseded epoch only fills a cache that is about to be thrown away.
+
+**Also load-bearing:** every cache lookup is **scoped by name** (`matchCore`/`matchImg`,
+`sw.js:92-93`) and never the origin-wide `caches.match()` — otherwise a surviving previous
+epoch could answer for an unversioned shard. The `IMG` cache is **deliberately unversioned**
+(`sw.js:18-19`) with a 300-entry LRU, so covers survive every deploy. Responses over 5 MB are
+never cached (`sw.js:21/80-81`) — which is also why `llm-about.js` is not in the prime list.
+Message handling is serialized through one promise chain (`sw.js:96`) so two messages can't
+interleave on the same cache. Every new path fails open to the network. Verified against a
+mock-CacheStorage harness driving the real `sw.js` through install/activate/message/fetch:
+fresh visit, same-epoch revisit (second prime = 0 fetches), deploy with and without handoff,
+superseded worker, offline serving, Data Saver, malformed messages, the 5 MB guard.
+
+**Still cache-on-use, on purpose:** per-artist data (`artist-flow`, `artist-detail`, the
+`about/*` buckets, the `mb-*` / `genius-*` stores). An artist page never opened is not
+available offline.
+
 ### Gigs
 The **Gigs** tab (`rotation-views3.jsx`) shows attended shows joined to the listening history,
 "on tour now" explorer, and coverage ledger. Incremental pagers (2026-07-18): tour artists
@@ -552,10 +904,15 @@ D/W/M calendar cross-filters remain as shipped 2026-07-06.
 one entry per line). `instrumentals.js` is a deployed data file (351 keys); TrackView shows
 "Instrumental — no words to read" for entries in `window.ROTATION_INSTRUMENTALS`.
 
-**`genius-mood.json`** (~25.8k keys) is the lyric-mood store behind the Reads bars, the
-calibrated/cathartic chips, the Explore register row and the emotional weather. Its schema,
-the valence/register taxonomy, provenance flags and coherence gate are documented end-to-end
-in **`MOOD_PIPELINE.md`** — read that before touching anything mood-driven.
+**`genius-mood.json`** (**28,752 rows** as of 2026-09-21, 99.07% of the lyric layer) is the
+lyric-mood store behind the Reads bars, the calibrated/cathartic chips, the Explore register row
+and the emotional weather; **`genius-themes.json`** (**28,375 rows** + a `_themes` names key,
+98.64%) is its sibling behind `INSIGHTS.THEMES` and the Lyrical diet. Schema, the
+valence/register taxonomy, provenance flags and the coherence gate are documented end-to-end in
+**`MOOD_PIPELINE.md`** — read that before touching anything mood-driven, and
+**`tools/README.md`** before *running* anything (both pipelines are tracked tools at
+`rotation/tools/` since 2026-09-21; the model, prompt and quantisation are the reproduction of
+record and are not a maintenance decision to change).
 
 **Opus reads are lyric-independent (invariant, enforced 2026-07-24):** every `opus` read
 must DISTIL the song, never quote or closely paraphrase its lyrics. Detector = shared
@@ -583,8 +940,19 @@ remains dormant until a concerts cache exists (ROADMAP M2).
    unless the Overview needs it at first paint. Heavy per-artist prose goes in `music-rest.js`
    via the `ARTIST_X` map. Watch generated-file sizes (`build-data.js` prints them).
 6. **Insight, not mirrors:** features must derive something last.fm doesn't already show.
-7. Data corrections go through `sync-csv.js fixRow()` (durable) or are logged in
-   CSV-OVERRIDES.md (cache pins, fragile).
+7. **Data corrections have three lanes — pick the right one (clarified 2026-09-21).**
+   (a) **`folds.json`** = identity: two spellings are the same entity (§5, stage 1). This is
+   the fold mechanism; diff it against the spine and re-check `track-merge.json` after any title
+   change. (b) **`pins.json`** = entity correction: the right entity was named but the wrong
+   *id* was joined — a tracked, durable, hand-audited ledger that every enricher and build-data
+   now consult (§4). Not "fragile" any more; it is the answer. (c) **`sync-csv.js`'s
+   `ARTIST_ALBUM_REMAP` / `TRACK_REMAP` / `fixRow()`** = **damaged source rows only** — rows
+   last.fm recorded wrong at scrobble time, applied on every pull and to the existing CSV via
+   `--fixcsv`. The canonical case is alt-J (`sync-csv.js:236-244`): a hyphen split the name at
+   scrobble time into ARTIST `"ALT"` / TRACK `"J (deltas) Breezeblocks"`, and the `ALT → Alt.`
+   spelling fold then dragged those plays into an unrelated Australian metalcore band as a
+   phantom 2013 debut. A remap is only safe when the raw string occurs on exactly the rows you
+   mean — check that first. CSV-OVERRIDES.md (local-only) stays the log.
 8. `archive.zip` and `spotify-audio-features.parquet` are large local-only inputs;
    never commit, keep them off the repo.
 9. **Mobile/visual verification tooling** (local): headless Edge screenshots
@@ -604,6 +972,20 @@ remains dormant until a concerts cache exists (ROADMAP M2).
 11. **Both labels ship; CSS picks one.** Genre chips, the tune-DNA pill and Canvas's mark filters
    all render the full and short forms and swap with `display` at the breakpoint. Nothing measures
    width in JS, and the full text stays reachable via `title`.
+12. **Correct an id in `pins.json`, never in `artist-stats.json`** (§4). Stats is the raw
+   last.fm layer; the next scrape is expected to rewrite it. Any new script that fetches or
+   joins under an artist mbid must take the pin first via the `mbidFor` pattern, or it becomes a
+   fresh re-poisoning vector.
+13. **Anchor identity on the songs before any per-artist verdict** (§5). No exceptions for
+   "obvious" acts — short and common names are exactly where this fails.
+14. **Bare rows resolve through `recOf` — every field, every time.** Calendar-period rows on the
+   Overview are the skeletal calendar-detail shape `{id, name, hue}` and carry **no `yp`, no
+   `d`, nothing else**. So **every per-row field read in the map band's `onStats` pass must go
+   through `recOf()`** (`rotation-worldmap.jsx:411`), never off `e.a` directly. The Decades
+   outage (a calendar pick emptied the `debutYears` histogram and unmounted the card) was the
+   **third** instance of this exact class — the peak-year aggregate got the resolution at birth,
+   `debutYears` had to be retrofitted (`:601-604`). Treat a new read off `e.a` as a bug until
+   you have checked it against the bare shape.
 
 ## 11. External accounts / identities
 
