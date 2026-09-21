@@ -1,0 +1,21 @@
+# Rotation lyric-ML venv — everything EXCEPT torch.
+# torch is installed separately by setup-mlenv.ps1 from the CUDA 12.6 index
+# (--index-url https://download.pytorch.org/whl/cu126); pinning it here would
+# silently pull the CPU wheel from PyPI and the scorer would fall back to CPU.
+#
+# Ranges, not exact pins: the exact resolved set is captured by
+#   setup-mlenv.ps1 -Freeze  ->  requirements-mlenv.lock.txt
+# which is the file to consult when reproducing a specific run.
+
+transformers>=4.44,<5
+accelerate>=0.33
+bitsandbytes>=0.45          # nf4 4-bit; Windows wheels from 0.45 on
+safetensors>=0.4
+sentencepiece>=0.2
+tokenizers>=0.19
+huggingface_hub>=0.24
+hf_xet>=1.0                 # Xet-backed repos download several times faster with it
+sentence-transformers>=3.0  # themes embedder (paraphrase-multilingual-MiniLM-L12-v2)
+numpy>=1.26
+scipy>=1.11
+tqdm>=4.66
