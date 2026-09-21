@@ -593,7 +593,15 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
     // a bar, and ~120 year buckets is small enough to hand over on every filter change where the
     // 6,000 artist rows behind them are not.
     const debutYears = {};
-    for (const e of resultArtists) { const y = e.a && e.a.d; if (y) debutYears[y] = (debutYears[y] || 0) + e.p; }
+    // THROUGH recOf, NOT e.a.d DIRECTLY (2026-09-21, Fuad: "after filtering by calendar, eras
+    // disappear from Overview"): calendar-period rows are the bare calendar-detail {id,name,hue}
+    // shape with no debut field, so this histogram came back EMPTY under any calendar pick and
+    // the Decades card — whose fy branch trusts an fStats.debutYears object once a filter is on —
+    // unmounted itself. Same resolution the peak-year aggregate got at birth, retrofitted here.
+    for (const e of resultArtists) {
+      const rec = (e.a && e.a.d != null) ? e.a : recOf(e.a && e.a.id);
+      const y = rec && rec.d; if (y) debutYears[y] = (debutYears[y] || 0) + e.p;
+    }
     // Play-weighted audio valence over the same rows, so Emotional weather's SOUNDS bar can follow
     // the filter. Artists with no measured vector drop out of both halves of the mean rather than
     // counting as neutral, and sndPlays is reported so the card can say how much of the slice it
