@@ -151,6 +151,7 @@ function MapView({ go, embedded, extYear, onYear, calPeriod, onStats, calSlot, s
   const _if = initFilter || {};   // seeded from the Overview hash (genre + mode); place-select is transient
 
   const [world, setWorld] = React.useState(window.ROTATION_WORLD || null);
+  const [worldGone, setWorldGone] = React.useState(false);   // world-map.js settled with no data (audit B2 2026-09-22)
   const [mode, setMode] = React.useState(_if.mode || "country");   // countries are the default lens (Fuad, 2026-07-16)
   const [colorBy, setColorBy] = React.useState("dominant"); // dominant | top
   const [focus, setFocus] = React.useState(null);
@@ -202,18 +203,28 @@ function MapView({ go, embedded, extYear, onYear, calPeriod, onStats, calSlot, s
   });
   const setResViewPersist = (v) => { setResView(v); try { localStorage.setItem("rot-ov-results-view", v); } catch (e) {} };
   const [adetail, setADetail] = React.useState(window.ROTATION_ADETAIL || null); // lazy tracks/albums for the long tail
+  // artist-x.js — the KEPT artists' own top albums/songs and their `origin`, split out of
+  // music-rest.js by the 2026-09-22 audit (B1). This band is the only reader outside the artist
+  // page, and it reads exactly two things: resultMedia's kept-artist branch (topAlbums/topTracks,
+  // the mirror of adetail's tail branch right beside it) and periodPlaces' origin fallback —
+  // kept records carry NO co/ci, so origin is their only place field, while EXPLORE rows carry
+  // co/ci directly and are unaffected. ON DEMAND, NOT AT MOUNT: unlike adetail (idle-warmed just
+  // below, because its counts are load-bearing from the first report), neither of these surfaces
+  // until the reader engages the map — the albums/songs pane, or a slice/period that makes the
+  // filtered counts visible (the Overview tiles fall back to lifetime totals while `active` is
+  // false). So the 880 KB gz stays off the landing page entirely unless it is asked for, which is
+  // the whole point of the split. axReady = SETTLED (landed or failed); it re-runs the two memos.
+  const [axReady, setAxReady] = React.useState(() => !!(R && R._artistXLoaded));
+  const ensureArtistXHere = React.useCallback(() => {
+    if (window.ensureArtistX) window.ensureArtistX(() => setAxReady(true));
+  }, []);
   // song→album cover lookup: if ROTATION_MEDIA is already loaded, build a title+artist keyed map
   // so each song row can show its album cover instead of the artist/generative cover. Falls back
   // to artist art when the media-index isn't loaded or the track isn't found in it.
   // media index loaded here explicitly (covers were hit-or-miss before) + an ALBUM cover map —
   // album tiles had no cover source at all (Fuad 2026-07-14)
   const [mediaReady2, setMediaReady2] = React.useState(!!window.ROTATION_MEDIA);
-  React.useEffect(() => {
-    if (window.ROTATION_MEDIA) return;
-    let sM = document.getElementById("media-index-js");
-    if (!sM) { sM = document.createElement("script"); sM.id = "media-index-js"; sM.src = "media-index.js"; sM.onerror = () => {}; document.head.appendChild(sM); }
-    sM.addEventListener("load", () => setMediaReady2(true));
-  }, []);
+  React.useEffect(() => window.ensureShard("media-index.js", "ROTATION_MEDIA", () => setMediaReady2(true)), []);   // audit B2 2026-09-22 — one tag, shared with every other media-index site
   const songAlbumCover = React.useMemo(() => {
     const M = window.ROTATION_MEDIA; if (!M || !M.tracks || !M.albums || !M.artists) return {};
     const out = {};
@@ -292,25 +303,31 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
   };
   React.useEffect(() => () => { if (fishRaf.current) cancelAnimationFrame(fishRaf.current); }, []);
 
-  React.useEffect(() => {
-    if (window.ROTATION_WORLD) { setWorld(window.ROTATION_WORLD); return; }
-    let s = document.getElementById("rotation-world-js");
-    if (!s) { s = document.createElement("script"); s.id = "rotation-world-js"; s.src = "world-map.js"; document.head.appendChild(s); }
-    const on = () => setWorld(window.ROTATION_WORLD);
-    s.addEventListener("load", on);
-    return () => s.removeEventListener("load", on);
-  }, []);
-  const ensureADetail = () => {   // long-tail tracks/albums, so the results work without picking a place
-    if (window.ROTATION_ADETAIL) { setADetail(window.ROTATION_ADETAIL); return; }
-    let s = document.getElementById("rotation-adetail-js");
-    if (!s) { s = document.createElement("script"); s.id = "rotation-adetail-js"; s.src = "artist-detail.js"; document.head.appendChild(s); s.addEventListener("load", () => setADetail(window.ROTATION_ADETAIL)); }
-  };
+  // audit B2 2026-09-22 (4.3 + 4.4): "rotation-world-js" here vs "wm-lazy" on the gigs map meant
+  // the guard never held across the two routes, and no onerror meant the band never drew when
+  // world-map.js 404'd. One canonical tag, and worldGone names the miss in the gate below.
+  React.useEffect(() => window.ensureShard("world-map.js", "ROTATION_WORLD", () => {
+    const G = window.ROTATION_WORLD; if (G) setWorld(G); else setWorldGone(true);
+  }), []);
+  // long-tail tracks/albums, so the results work without picking a place. audit B2 2026-09-22:
+  // ensureShard also closes the hole where an EXISTING tag got no listener at all — the second
+  // caller (the pane button after the idle prefetch) then waited on an event already fired.
+  const ensureADetail = () => { window.ensureShard("artist-detail.js", "ROTATION_ADETAIL", () => setADetail(window.ROTATION_ADETAIL || null)); };
   // AT IDLE, NOT AT MOUNT (2026-09-21, audit A3, amended at QC): the audit prescribed deleting
   // this fetch outright, but resultMedia reads adetail for TAIL artists' albums/songs — without
   // it the strip's filtered media counts silently undercount until the pane button loads the
   // file. So the 1.71 MB gz leaves the landing critical path instead of the wire: idle-deferred,
   // pane button still ensures on demand, SW prime covers repeat visits.
   React.useEffect(() => { const idle = window.requestIdleCallback || ((f) => setTimeout(f, 2500)); idle(() => ensureADetail()); }, []);
+  // artist-x on demand (audit 2026-09-22, B1): the moment a place/genre/year/period slice goes
+  // active, resultMedia's albums/songs counts start being SHOWN (the Overview tiles switch off
+  // their lifetime fallback) and periodPlaces starts ringing origins — both of which need the
+  // kept artists' heavy fields. Until then nothing on screen depends on them, so nothing is
+  // fetched. The albums/songs pane buttons ensure it too, beside ensureADetail.
+  React.useEffect(() => {
+    if (axReady) return;
+    if (sel || focus || filt.fam != null || filt.sub != null || yearIdx != null || calPeriod) ensureArtistXHere();
+  }, [axReady, sel, focus, filt.fam, filt.sub, yearIdx, calPeriod, ensureArtistXHere]);
   const avg = React.useMemo(() => { const ks = ["energy", "valence", "acoustic", "tempo", "dance", "instr"]; return ks.map(k => R.ARTISTS.reduce((s, x) => s + x.audio[k], 0) / R.ARTISTS.length); }, []);
   React.useEffect(() => {
     if (!playing) return;
@@ -569,7 +586,7 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
     }
     albums.sort((x, y) => y.plays - x.plays); songs.sort((x, y) => y.plays - x.plays);
     return { albums, songs };
-  }, [filteredArtists, adetail, periodData, periodArtsFiltered]);
+  }, [filteredArtists, adetail, axReady, periodData, periodArtsFiltered]);   // axReady: kept artists' topAlbums/topTracks land with artist-x.js (audit B1)
   const resultDNA = React.useMemo(() => {
     const yr = yearIdx != null ? geoYears[yearIdx] : null;
     const acc = [0, 0, 0, 0, 0, 0]; let w = 0;
@@ -692,7 +709,7 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
       if (co) { cc.add(co); if (cty) ci.add(co + "|" + cty); }
     }
     return cc.size ? { cc, ci } : null;
-  }, [periodData, R]);
+  }, [periodData, R, axReady]);   // axReady: kept records' `origin` lands with artist-x.js (audit B1)
   // only plot country bubbles that actually have artists in EXPLORE — else a country whose only
   // artists fall below the EXPLORE cutoff (e.g. Jamaica/Morocco with a single low-play act) shows a
   // bubble that clicks through to an empty Results list (Fuad 2026-07-15).
@@ -797,7 +814,7 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
 
   if (!world) return (
     <div className={embedded ? "map-embed" : "r-view"}><div className="r-viewhead"><div><div className="r-kicker">Geography</div>{!embedded && <h1 className="r-title">Where it <em>comes from</em><span className="dot">.</span></h1>}</div></div>
-      <div style={{ padding: embedded ? 30 : 60, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 12 }}>loading the map…</div></div>
+      <div style={{ padding: embedded ? 30 : 60, textAlign: "center", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 12 }}>{worldGone ? "the map geometry isn’t available right now." : "loading the map…"}</div></div>
   );
 
   // Scope line + play count for the results module. Computed here rather than inside the results
@@ -975,7 +992,7 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
                 local pixel copy of its numbers (that copy is what kept drifting; Fuad 2026-08-24:
                 make them match by construction). */}
             <div className="r-seg r-seg-sm">
-              {[["artists", "artists"], ["albums", "albums"], ["songs", "songs"], ["dna", "dna"]].map(([k, l]) => <button key={k} data-on={pane === k} onClick={() => { setPane(k); if (k === "albums" || k === "songs") ensureADetail(); }}>{l}</button>)}
+              {[["artists", "artists"], ["albums", "albums"], ["songs", "songs"], ["dna", "dna"]].map(([k, l]) => <button key={k} data-on={pane === k} onClick={() => { setPane(k); if (k === "albums" || k === "songs") { ensureADetail(); ensureArtistXHere(); } }}>{l}</button>)}
             </div>
             {/* artists list/grid: word buttons replaced with the calendar's icon toggle (Fuad 2026-08-24) */}
             {pane === "artists" && <div className="r-seg r-seg-sm cal-view-seg" title="list / grid view">

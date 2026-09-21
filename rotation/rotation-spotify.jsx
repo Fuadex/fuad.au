@@ -34,21 +34,17 @@ function SpotifyView({ go }) {
   const [year, setYear] = React.useState(null);          // null = all-time
   const [failed, setFailed] = React.useState(false);     // insights file 404'd — say so instead of spinning forever
   React.useEffect(() => {
-    if (!window.ROTATION_SPOTIFY) {
-      const s = document.createElement("script"); s.src = "spotify-insights.js"; s.onload = () => setD(window.ROTATION_SPOTIFY);
-      s.onerror = () => setFailed(true);
-      document.head.appendChild(s);
-    }
-    if (!window.ROTATION_PERSONA) {
-      const s = document.createElement("script"); s.src = "spotify-persona.js"; s.onload = () => setP(window.ROTATION_PERSONA);
-      s.onerror = () => {};   // persona sections simply don't render without it
-      document.head.appendChild(s);
-    }
-    if (!window.ROTATION_SPOT_ATTN) {
-      const s = document.createElement("script"); s.src = "spotify-attention.js";
-      s.onload = () => setAt(window.ROTATION_SPOT_ATTN); s.onerror = () => {};
-      document.head.appendChild(s);
-    }
+    // audit B2 2026-09-22 — three id-less injections become three ensureShard calls. `failed`
+    // now keys off the DATA rather than the error event: a 200 that defines nothing spun the
+    // loader exactly like a 404 did, and both should say the same honest thing.
+    const offs = [
+      window.ensureShard("spotify-insights.js", "ROTATION_SPOTIFY", () => {
+        if (window.ROTATION_SPOTIFY) setD(window.ROTATION_SPOTIFY); else setFailed(true);
+      }),
+      window.ensureShard("spotify-persona.js", "ROTATION_PERSONA", () => setP(window.ROTATION_PERSONA || null)),        // persona sections simply don't render without it
+      window.ensureShard("spotify-attention.js", "ROTATION_SPOT_ATTN", () => setAt(window.ROTATION_SPOT_ATTN || null)),
+    ];
+    return () => offs.forEach(off => off());
   }, []);
   if (failed && !d) return <div className="r-rest-wait r-mono">Spotify history data isn't available right now.</div>;
   if (!d) return <div className="r-rest-wait r-mono">loading your Spotify history…</div>;
@@ -678,31 +674,21 @@ function LikedView({ go }) {
   const tuneRef = React.useRef(null);   // the DNA panel (now under the results) — header pill jumps here
 
   React.useEffect(() => {
-    if (!window.ROTATION_LIKED_META) {
-      const s = document.createElement("script"); s.src = "liked-meta.js";
-      s.onload = () => setReady(true); s.onerror = () => setFailed(true);
-      document.head.appendChild(s);
-    }
-    // media-index tells us which rows can deep-link to a TrackView (some saves were never scrobbled)
-    if (!window.ROTATION_MEDIA) {
-      const s = document.createElement("script"); s.src = "media-index.js";
-      s.onload = () => setMediaReady(true); s.onerror = () => {};
-      document.head.appendChild(s);
-    }
-    // track-audio blob carries the extra DNA axes (loudness/speech/live/pop/key/mode) per track. Shared
-    // with Explore/Album/Track views; only loaded once. The tuner degrades to tempo/energy/valence/dance
-    // until it lands, so the page is usable immediately.
-    if (!window.ROTATION_TRACKAUDIO) {
-      const id = "xp-track-audio-js";
-      if (!document.getElementById(id)) {
-        const s = document.createElement("script"); s.id = id; s.src = "track-audio.js";
-        s.onload = () => setTaReady(true); s.onerror = () => {};
-        document.head.appendChild(s);
-      } else {
-        const poll = setInterval(() => { if (window.ROTATION_TRACKAUDIO) { clearInterval(poll); setTaReady(true); } }, 120);
-        return () => clearInterval(poll);
-      }
-    }
+    // audit B2 2026-09-22 — ensureShard for all three (media-index.js was id-less here,
+    // track-audio.js carried Explore's "xp-track-audio-js" plus a 120 ms poll for the case where
+    // the tag already existed; the outcome registry replaces both).
+    const offs = [
+      window.ensureShard("liked-meta.js", "ROTATION_LIKED_META", () => {
+        if (window.ROTATION_LIKED_META) setReady(true); else setFailed(true);
+      }),
+      // media-index tells us which rows can deep-link to a TrackView (some saves were never scrobbled)
+      window.ensureShard("media-index.js", "ROTATION_MEDIA", () => setMediaReady(true)),
+      // track-audio blob carries the extra DNA axes (loudness/speech/live/pop/key/mode) per track. Shared
+      // with Explore/Album/Track views; only loaded once. The tuner degrades to tempo/energy/valence/dance
+      // until it lands, so the page is usable immediately.
+      window.ensureShard("track-audio.js", "ROTATION_TRACKAUDIO", () => setTaReady(true)),
+    ];
+    return () => offs.forEach(off => off());
   }, []);
 
   // the app loads music-rest.js at top level (rebuilds R.expById, carrying every explorable artist's

@@ -261,14 +261,10 @@ function SpiralPlot() {
 
 function SpiralWrapper() {
   const [ready, setReady] = React.useState(!!window.ROTATION_DAYS);
-  React.useEffect(() => {
-    if (window.ROTATION_DAYS) return;
-    const s = document.createElement("script");
-    s.src = "day-series.js";
-    s.onload = () => setReady(true);
-    s.onerror = () => setReady(true);
-    document.head.appendChild(s);
-  }, []);
+  // audit B2 2026-09-22: this one was id-LESS while RidgeWrapper below used "lab-day-series-js",
+  // and both render in the same pass — a genuine same-render double request for day-series.js.
+  // One canonical tag ends it.
+  React.useEffect(() => window.ensureShard("day-series.js", "ROTATION_DAYS", () => setReady(true)), []);
   return labCard(
     "Spiral Time Plot",
     "One ring per year, angle = week-of-year, ring thickness = plays that week — seasonal alignment becomes visible as radial spokes.",
@@ -345,19 +341,7 @@ function RidgeLine() {
 
 function RidgeWrapper() {
   const [ready, setReady] = React.useState(!!window.ROTATION_DAYS);
-  React.useEffect(() => {
-    if (window.ROTATION_DAYS) return;
-    const existing = document.getElementById("lab-day-series-js");
-    if (!existing) {
-      const s = document.createElement("script");
-      s.id = "lab-day-series-js"; s.src = "day-series.js";
-      s.onload = () => setReady(true); s.onerror = () => setReady(true);
-      document.head.appendChild(s);
-    } else {
-      const poll = setInterval(() => { if (window.ROTATION_DAYS) { clearInterval(poll); setReady(true); } }, 80);
-      return () => clearInterval(poll);
-    }
-  }, []);
+  React.useEffect(() => window.ensureShard("day-series.js", "ROTATION_DAYS", () => setReady(true)), []);   // audit B2 2026-09-22
   return labCard(
     "Ridgeline / Joyplot",
     "Month-of-year listening profile per year (each row normalised) — reveals whether your peak shifts between winter and summer across time.",
@@ -791,7 +775,9 @@ function GenealogyLab() {
   const [ready, setReady] = React.useState(!!window.ROTATION_GENEALOGY);
   const [pick, setPick] = React.useState("");
   React.useEffect(() => {
-    if (!window.ROTATION_GENEALOGY) window.loadScript("genealogy.js", "rotation-genealogy-js", () => setReady(true));
+    // audit B2 2026-09-22: ensureShard — fail-open, so a 404 stops the "loading the family
+    // tree…" card waiting on a file that will never arrive. G below falls back to {}.
+    return window.ensureShard("genealogy.js", "ROTATION_GENEALOGY", () => setReady(true));
   }, []);
   if (!ready) return labCard("Discovery Genealogy", "How did I get here? — who introduced whom, reconstructed from first plays inside listening sessions.",
     <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: LAB_FAINT }}>loading the family tree…</div>);

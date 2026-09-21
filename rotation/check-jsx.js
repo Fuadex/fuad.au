@@ -77,7 +77,9 @@ function makeSandbox() {
     setTimeout: () => 0, clearTimeout: noop, setInterval: () => 0, clearInterval: noop,
     devicePixelRatio: 1, innerWidth: 1440, innerHeight: 900, scrollTo: noop, getComputedStyle: () => ({ getPropertyValue: () => "" }),
     localStorage: { getItem: () => null, setItem: noop, removeItem: noop },
-    loadScript: noop, hashInt: () => 0, fetch: () => Promise.resolve({ json: () => Promise.resolve({}) }),
+    // ensureShard/loadScript are real runtime globals (rotation-core.jsx exports both); the shim
+    // returns an unsubscribe function because callers hand it straight back from a React effect.
+    ensureShard: () => () => {}, loadScript: noop, hashInt: () => 0, fetch: () => Promise.resolve({ json: () => Promise.resolve({}) }),
   };
   // index.html loads react-dom beside react, so it is a real global, not a leak in this stub.
   const ReactDOM = { createRoot: () => ({ render: noop, unmount: noop }), render: noop, flushSync: (f) => f && f() };

@@ -21,14 +21,10 @@ function ArtistFlow({ id, hue, go, drill: drillProp, setDrill: setDrillProp, onA
   React.useEffect(() => {
     if (onAlbum) onAlbum(drill != null && flow && flow.albums && flow.albums[drill] ? flow.albums[drill] : null);
   }, [drill, flow]);
-  React.useEffect(() => {
-    if (window.ROTATION_FLOW) { setFlow(get()); return; }
-    let s = document.getElementById("rotation-flow-js");
-    if (!s) { s = document.createElement("script"); s.id = "rotation-flow-js"; s.src = "artist-flow.js"; document.head.appendChild(s); }
-    const onLoad = () => setFlow(get());
-    s.addEventListener("load", onLoad);
-    return () => s.removeEventListener("load", onLoad);
-  }, [id]);
+  // audit B2 2026-09-22: ONE canonical tag for artist-flow.js (it was "rotation-flow-js" here and
+  // at the twin below). The settle fires on a 404 too, where get() returns null and the flowmap
+  // renders nothing — exactly what it already does for an artist with no flow record.
+  React.useEffect(() => window.ensureShard("artist-flow.js", "ROTATION_FLOW", () => setFlow(get())), [id]);
   React.useEffect(() => { setMode("albums"); setDrill(null); setHi(-1); }, [id]);  // reset on artist change
   if (!flow) return null;
   if ((flow.albums || []).length < 1 && (flow.tracks || []).length < 1) return null;
@@ -107,16 +103,16 @@ function ArtistFlow({ id, hue, go, drill: drillProp, setDrill: setDrillProp, onA
 // (interned, fetched once on first mini-page visit so the main payload stays lean).
 function MiniArtistDetail({ id, name, go }) {
   const [d, setD] = React.useState(window.ROTATION_ADETAIL || null);
+  // `settled` = the shard resolved, either way. Audit B2 2026-09-22 (4.4): this view sat on
+  // "loading the rest…" FOREVER when artist-detail.js 404'd, because the injection carried no
+  // onerror. ensureShard fires either way, so a miss now renders the same nothing the view
+  // already renders for an artist that is absent from the detail file.
+  const [settled, setSettled] = React.useState(!!window.ROTATION_ADETAIL);
   const [simTab, setSimTab] = React.useState("lastfm");
-  React.useEffect(() => {
-    if (window.ROTATION_ADETAIL) { setD(window.ROTATION_ADETAIL); return; }
-    let s = document.getElementById("rotation-adetail-js");
-    if (!s) { s = document.createElement("script"); s.id = "rotation-adetail-js"; s.src = "artist-detail.js"; document.head.appendChild(s); }
-    const on = () => setD(window.ROTATION_ADETAIL);
-    s.addEventListener("load", on);
-    return () => s.removeEventListener("load", on);
-  }, []);
-  if (!d) return <div className="r-card" style={{ padding: "16px 20px", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 12 }}>loading the rest…</div>;
+  React.useEffect(() => window.ensureShard("artist-detail.js", "ROTATION_ADETAIL", () => {
+    setD(window.ROTATION_ADETAIL || null); setSettled(true);
+  }), []);
+  if (!d) return settled ? null : <div className="r-card" style={{ padding: "16px 20px", color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 12 }}>loading the rest…</div>;
   const R = window.ROTATION, rec = d.d[id], NM = d.names;
   if (!rec) return null;
   const artistName = name || (R.expById && R.expById[id] && R.expById[id].name) || "";
@@ -194,14 +190,10 @@ function MiniArtistView({ a, go }) {
   // keep the existing layout untouched. Flow presence is read lazily so the decision settles once
   // artist-flow.js lands (mirrors ArtistFlow's own loader) rather than flickering.
   const [flowReady, setFlowReady] = React.useState(!!window.ROTATION_FLOW);
-  React.useEffect(() => {
-    if (window.ROTATION_FLOW) { setFlowReady(true); return; }
-    let s = document.getElementById("rotation-flow-js");
-    if (!s) { s = document.createElement("script"); s.id = "rotation-flow-js"; s.src = "artist-flow.js"; document.head.appendChild(s); }
-    const on = () => setFlowReady(true);
-    s.addEventListener("load", on);
-    return () => s.removeEventListener("load", on);
-  }, [a.id]);
+  // audit B2 2026-09-22: same shard, same canonical tag as ArtistFlow's loader above — whichever
+  // mounts first pays. flowRec below re-tests window.ROTATION_FLOW, so a 404 settles the decision
+  // as "no flow module" rather than leaving the layout undecided.
+  React.useEffect(() => window.ensureShard("artist-flow.js", "ROTATION_FLOW", () => setFlowReady(true)), [a.id]);
   // Header "needle drop" for a long-tail artist too — the most-played track that has a playable
   // preview from EITHER source: a Spotify hash (track-previews.js) OR a vetted iTunes URL
   // (preview-fallback.js, keyed artistSlug~trackSlug). Fractalize etc. get a preview here just like
@@ -209,17 +201,17 @@ function MiniArtistView({ a, go }) {
   // and re-render on each load, then let ShNeedle resolve whichever source the chosen key carries.
   const [prevReady, setPrevReady] = React.useState(!!(window.ROTATION_PREVIEWS && window.ROTATION_PREVIEW_FALLBACK && window.ROTATION_ADETAIL));
   React.useEffect(() => {
+    // audit B2 2026-09-22: the three-arg local loader is gone (two of its three calls passed no
+    // id at all). ensureShard derives one tag per file, so these share the very tags the artist
+    // page and the search overlay use, and bump runs on a 404 too — the needle then simply has
+    // no source, which ShNeedle already handles.
     const bump = () => setPrevReady(p => !p ? true : p);
-    const load = (src, glob, id) => {
-      if (window[glob]) return;
-      let s = id && document.getElementById(id);
-      if (!s) { s = document.createElement("script"); if (id) s.id = id; s.src = src; s.onerror = () => {}; document.head.appendChild(s); }
-      s.addEventListener("load", bump);
-    };
-    load("track-previews.js", "ROTATION_PREVIEWS");
-    load("preview-fallback.js", "ROTATION_PREVIEW_FALLBACK");
-    load("artist-detail.js", "ROTATION_ADETAIL", "rotation-adetail-js");
-    if (window.ROTATION_PREVIEWS && window.ROTATION_PREVIEW_FALLBACK && window.ROTATION_ADETAIL) setPrevReady(true);
+    const offs = [
+      window.ensureShard("track-previews.js", "ROTATION_PREVIEWS", bump),
+      window.ensureShard("preview-fallback.js", "ROTATION_PREVIEW_FALLBACK", bump),
+      window.ensureShard("artist-detail.js", "ROTATION_ADETAIL", bump),
+    ];
+    return () => offs.forEach(off => off());
   }, [a.id]);
   // {key, title} — see the twin in the artist page below. Falls through to the most-played track
   // when neither preview table has it, so ShNeedle can attempt a track-verified lookup instead of
@@ -710,13 +702,11 @@ function ArtistTourCard({ a, go }) {
   const R = window.ROTATION;
   const [tour, setTour] = React.useState(window.ROTATION_TOUR || null);
   React.useEffect(() => {
-    if (!a.onTour || window.ROTATION_TOUR) return;
-    const prev = document.getElementById("tm-tour-lazy-js");
-    if (prev) { prev.addEventListener("load", () => setTour(window.ROTATION_TOUR)); return; }
-    const s = document.createElement("script"); s.id = "tm-tour-lazy-js"; s.src = "tm-tour-lazy.js";
-    s.onload = () => setTour(window.ROTATION_TOUR);
-    s.onerror = () => setTour({ artists: [] });   // fail-open: card renders its no-dates state instead of spinning
-    document.head.appendChild(s);
+    if (!a.onTour) return;   // unchanged: no dates announced, so the file is never wanted
+    // audit B2 2026-09-22: ensureShard replaces the prev-tag / onload / onerror fork. The
+    // fail-open outcome is identical — a 404 leaves ROTATION_TOUR undefined, the card falls to
+    // the same empty {artists: []} and renders its no-dates state instead of spinning.
+    return window.ensureShard("tm-tour-lazy.js", "ROTATION_TOUR", () => setTour(window.ROTATION_TOUR || { artists: [] }));
   }, []);
   if (!a.onTour) return null;
   const dfmt = window.fmtDate;   // core's "8 Mar 2026" formatter (dedup 2026-07-18)
@@ -928,14 +918,9 @@ function ArtistBarcode({ artistId, daysReady }) {
 // Shared by TrackWords (per-track) and PortraitCard (per-album).
 function useWordsLayer() {
   const [ready, setReady] = React.useState(!!window.ROTATION_WORDS);
-  React.useEffect(() => {
-    if (window.ROTATION_WORDS) { setReady(true); return; }
-    let s = document.getElementById("words-layer-js");
-    if (!s) { s = document.createElement("script"); s.id = "words-layer-js"; s.src = "words-layer.js"; s.onerror = () => {}; document.head.appendChild(s); }
-    const on = () => { if (window.ROTATION_WORDS) setReady(true); };
-    s.addEventListener("load", on);
-    return () => s.removeEventListener("load", on);
-  }, []);
+  // audit B2 2026-09-22 — ensureShard; the ready flag still turns on DATA, not on the load event,
+  // so a 404 leaves the overlay off exactly as an empty file would.
+  React.useEffect(() => window.ensureShard("words-layer.js", "ROTATION_WORDS", () => { if (window.ROTATION_WORDS) setReady(true); }), []);
   return ready ? (window.ROTATION_WORDS || null) : null;
 }
 
@@ -1126,36 +1111,14 @@ if (!document.getElementById("pv-shared-styles")) {
 function PortraitCard({ id, alt, showWords = true, go }) {
   const [pReady, setPReady] = React.useState(!!window.ROTATION_PORTRAITS);
   const [fReady, setFReady] = React.useState(!!window.ROTATION_PORTRAIT_FACTS);
-  React.useEffect(() => {
-    if (window.ROTATION_PORTRAITS) { setPReady(true); }
-    else {
-      let s = document.getElementById("portraits-js");
-      if (!s) { s = document.createElement("script"); s.id = "portraits-js"; s.src = "portraits.js"; s.onerror = () => {}; document.head.appendChild(s); }
-      const on = () => { if (window.ROTATION_PORTRAITS) setPReady(true); };
-      s.addEventListener("load", on);
-      return () => s.removeEventListener("load", on);
-    }
-  }, []);
-  React.useEffect(() => {
-    if (window.ROTATION_PORTRAIT_FACTS) { setFReady(true); return; }
-    let s = document.getElementById("portrait-facts-js");
-    if (!s) { s = document.createElement("script"); s.id = "portrait-facts-js"; s.src = "portrait-facts.js"; s.onerror = () => {}; document.head.appendChild(s); }
-    const on = () => { if (window.ROTATION_PORTRAIT_FACTS) setFReady(true); };
-    s.addEventListener("load", on);
-    return () => s.removeEventListener("load", on);
-  }, []);
+  // the three portrait shards below are all audit B2 2026-09-22 — ensureShard, data-gated flags
+  React.useEffect(() => window.ensureShard("portraits.js", "ROTATION_PORTRAITS", () => { if (window.ROTATION_PORTRAITS) setPReady(true); }), []);
+  React.useEffect(() => window.ensureShard("portrait-facts.js", "ROTATION_PORTRAIT_FACTS", () => { if (window.ROTATION_PORTRAIT_FACTS) setFReady(true); }), []);
   // EARNED BULLETS (Fuad 2026-08-27 #8): the build-emitted rule-pool chips. Loaded beside
   // the pilot facts file; where an artist has earned bullets they REPLACE the pilot chips
   // (album keys keep the pilot facts — the emitter only covers artists).
   const [bReady, setBReady] = React.useState(!!window.ROTATION_BULLETS);
-  React.useEffect(() => {
-    if (window.ROTATION_BULLETS) { setBReady(true); return; }
-    let s = document.getElementById("bullets-js");
-    if (!s) { s = document.createElement("script"); s.id = "bullets-js"; s.src = "bullets.js"; s.onerror = () => {}; document.head.appendChild(s); }
-    const on = () => { if (window.ROTATION_BULLETS) setBReady(true); };
-    s.addEventListener("load", on);
-    return () => s.removeEventListener("load", on);
-  }, []);
+  React.useEffect(() => window.ensureShard("bullets.js", "ROTATION_BULLETS", () => { if (window.ROTATION_BULLETS) setBReady(true); }), []);
   const [open, setOpen] = React.useState(false);   // full read (portrait/liner) toggle
   // The unravel animates to the read's MEASURED height. It used to transition to a flat
   // max-height:4000px over a fixed 220ms, which is why it felt off (Fuad 2026-08-20): on a 300px
@@ -1432,10 +1395,14 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
   // 30-s preview hashes for the header "needle drop" (plays the artist's most-played playable song)
   const [prevReady, setPrevReady] = React.useState(!!window.ROTATION_PREVIEWS);
   React.useEffect(() => {
-    if (!window.ROTATION_PREVIEWS) { const s = document.createElement("script"); s.src = "track-previews.js"; s.onload = () => setPrevReady(true); document.head.appendChild(s); }
-    else setPrevReady(true);
-    // vetted iTunes fallback table (preview-fallback.js) — PreviewBtn's non-Spotify source
-    if (!window.ROTATION_PREVIEW_FALLBACK) { const s = document.createElement("script"); s.src = "preview-fallback.js"; s.onload = () => setPrevReady(true); document.head.appendChild(s); }
+    // audit B2 2026-09-22: both were id-LESS injections (track-previews.js had five such sites
+    // across four files). One tag per file now, and the flag flips on a 404 too.
+    const offs = [
+      window.ensureShard("track-previews.js", "ROTATION_PREVIEWS", () => setPrevReady(true)),
+      // vetted iTunes fallback table (preview-fallback.js) — PreviewBtn's non-Spotify source
+      window.ensureShard("preview-fallback.js", "ROTATION_PREVIEW_FALLBACK", () => setPrevReady(true)),
+    ];
+    return () => offs.forEach(off => off());
   }, []);
   // flowmap album selection (drill lifted OUT of ArtistFlow) scopes Top tracks + Sound DNA
   // to that album (Fuad, 2026-07-07). selAlbum = the flow album object {name, tracks:[{name,vals}]}.
@@ -1446,8 +1413,10 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
   // per-track audio features load lazily the first time an album is drilled
   const [taReady, setTaReady] = React.useState(!!window.ROTATION_TRACKAUDIO);
   React.useEffect(() => {
-    if (!selAlbum || window.ROTATION_TRACKAUDIO) { if (window.ROTATION_TRACKAUDIO) setTaReady(true); return; }
-    const s = document.createElement("script"); s.src = "track-audio.js"; s.onload = () => setTaReady(true); document.head.appendChild(s);
+    if (!selAlbum) return;   // unchanged: the blob is only wanted once an album is drilled
+    // audit B2 2026-09-22: was id-less, so a drill during another view's in-flight fetch minted a
+    // second 3.77 MB tag. albumDna re-tests the global, so a 404 just leaves the radar empty.
+    return window.ensureShard("track-audio.js", "ROTATION_TRACKAUDIO", () => setTaReady(true));
   }, [selAlbum]);
   // album DNA = mean of the drilled album's per-track features (0–100 → radar's 0–1).
   // Kept ABOVE the early returns like every other hook here (hook order must stay stable).
@@ -1463,46 +1432,35 @@ function ArtistView({ t, id, go, setPop, city, setCity }) {
     for (const v of vs) for (let k = 0; k < 6; k++) m[k] += v[k];
     return { vec: m.map(x => x / vs.length / 100), n: vs.length, of: (selAlbum.tracks || []).length };
   }, [selAlbum, taReady, a.id]);
+  // artist-x.js — the twelve heavy per-artist fields (bio, top tracks/albums, similar, members,
+  // wd, the three genre rails, origin) split out of music-rest.js by the 2026-09-22 audit (B1):
+  // 879 KB gz that every route used to pay for data only THIS page and the map band read. They
+  // merge onto the very record `a` below already points at, so nothing here changes shape — the
+  // fields just arrive a beat later, exactly as ROTATION_MB / ROTATION_ADETAIL do. Every read of
+  // them downstream is already absence-guarded (`a.topAlbums || []`, `a.bio && …`, `a.styles &&
+  // …`), which is what makes the pre-load render safe rather than blank-with-a-crash. axReady
+  // means SETTLED (landed or failed) — it exists to re-render once they land, not to gate.
+  // ABOVE THE EARLY RETURNS, like every other hook in this component (React #310 — see the
+  // genOpen note below).
+  const [, setAxReady] = React.useState(() => !!(window.ROTATION && window.ROTATION._artistXLoaded));
+  React.useEffect(() => {
+    if (window.ensureArtistX) window.ensureArtistX(() => setAxReady(true));
+  }, []);
   // artist-days.js — lazy-loaded once; presence-only day offsets for the barcode strip
   const [daysReady, setDaysReady] = React.useState(!!window.ROTATION_ARTIST_DAYS);
-  React.useEffect(() => {
-    if (window.ROTATION_ARTIST_DAYS) { setDaysReady(true); return; }
-    let s = document.getElementById("artist-days-js");
-    if (!s) { s = document.createElement("script"); s.id = "artist-days-js"; s.src = "artist-days.js"; s.onerror = () => {}; document.head.appendChild(s); }
-    const onLoad = () => { if (window.ROTATION_ARTIST_DAYS) setDaysReady(true); };
-    s.addEventListener("load", onLoad);
-    return () => s.removeEventListener("load", onLoad);
-  }, []);
+  // the four MB/day shards below are all audit B2 2026-09-22 — ensureShard, data-gated flags
+  React.useEffect(() => window.ensureShard("artist-days.js", "ROTATION_ARTIST_DAYS", () => { if (window.ROTATION_ARTIST_DAYS) setDaysReady(true); }), []);
   // mb-lineup.js — lazy-loaded once on ArtistView mount (mirrors artist-days.js): MusicBrainz
   // lineup distill, powers "The lineup" card. Presence-gated — no entry → no card.
   const [mbReady, setMbReady] = React.useState(!!window.ROTATION_MB);
-  React.useEffect(() => {
-    if (window.ROTATION_MB) { setMbReady(true); return; }
-    let s = document.getElementById("mb-lineup-js");
-    if (!s) { s = document.createElement("script"); s.id = "mb-lineup-js"; s.src = "mb-lineup.js"; s.onerror = () => {}; document.head.appendChild(s); }
-    const onLoad = () => { if (window.ROTATION_MB) setMbReady(true); };
-    s.addEventListener("load", onLoad);
-    return () => s.removeEventListener("load", onLoad);
-  }, []);
+  React.useEffect(() => window.ensureShard("mb-lineup.js", "ROTATION_MB", () => { if (window.ROTATION_MB) setMbReady(true); }), []);
   // mb-kinds.js — GLOBAL MB release-group types (loads once; kept above the early returns
   // so hook order stays stable)
   const [, setKindsReady] = React.useState(!!window.ROTATION_MB_KINDS);
-  React.useEffect(() => {
-    if (window.ROTATION_MB_KINDS) return;
-    let sK = document.getElementById("mb-kinds-js");
-    if (!sK) { sK = document.createElement("script"); sK.id = "mb-kinds-js"; sK.src = "mb-kinds.js"; sK.onerror = () => {}; document.head.appendChild(sK); }
-    sK.addEventListener("load", () => setKindsReady(true));
-  }, []);
+  React.useEffect(() => window.ensureShard("mb-kinds.js", "ROTATION_MB_KINDS", () => setKindsReady(true)), []);
   // mb-artist-x.js — PILOT MB extras (label eras + producer/mix credits), same lazy pattern.
   const [mbxReady, setMbxReady] = React.useState(!!window.ROTATION_MBX);
-  React.useEffect(() => {
-    if (window.ROTATION_MBX) { setMbxReady(true); return; }
-    let s = document.getElementById("mb-artist-x-js");
-    if (!s) { s = document.createElement("script"); s.id = "mb-artist-x-js"; s.src = "mb-artist-x.js"; s.onerror = () => {}; document.head.appendChild(s); }
-    const onLoad = () => { if (window.ROTATION_MBX) setMbxReady(true); };
-    s.addEventListener("load", onLoad);
-    return () => s.removeEventListener("load", onLoad);
-  }, []);
+  React.useEffect(() => window.ensureShard("mb-artist-x.js", "ROTATION_MBX", () => { if (window.ROTATION_MBX) setMbxReady(true); }), []);
   // Instrument taxonomy strip — a compact "{N}-piece · {glyphs}" line derived from the
   // MusicBrainz CURRENT lineup (t === ""), shown up near the header. Solo artists (type
   // Person) and groups with no member data are skipped. Each member contributes up to 2

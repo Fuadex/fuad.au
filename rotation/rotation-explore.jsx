@@ -1183,19 +1183,9 @@ function AttrExplore({ R, go, grain, onBrushSel, activeIds, activeSub, activeFam
 
   const mode = grain === "artists" ? "artists" : "subgenres"; // reuse Explore's subs|artists seg
 
-  React.useEffect(() => {
-    if (window.ROTATION_TRACKAUDIO) { setTaReady(true); return; }
-    const existing = document.getElementById("xp-track-audio-js");
-    if (!existing) {
-      const s = document.createElement("script");
-      s.id = "xp-track-audio-js"; s.src = "track-audio.js";
-      s.onload = () => setTaReady(true); s.onerror = () => setTaReady(true);
-      document.head.appendChild(s);
-    } else {
-      const poll = setInterval(() => { if (window.ROTATION_TRACKAUDIO) { clearInterval(poll); setTaReady(true); } }, 80);
-      return () => clearInterval(poll);
-    }
-  }, []);
+  // audit B2 2026-09-22: was "xp-track-audio-js" here and id-less on the artist page — one tag
+  // now, and the poll branch goes with it (ensureShard replays an outcome that already landed).
+  React.useEffect(() => window.ensureShard("track-audio.js", "ROTATION_TRACKAUDIO", () => setTaReady(true)), []);
   React.useEffect(() => {
     if (!R || R._restLoaded) { setRestReady(true); return; }
     const poll = setInterval(() => { if (R._restLoaded) { clearInterval(poll); setRestReady(true); } }, 150);
@@ -1521,8 +1511,11 @@ function ExploreView({ t, go, setPop, seed }) {
   // albums/tracks now rank from the lazy media-index (full library depth) — load it the first time
   // one of those tabs is opened.
   React.useEffect(() => {
-    if (kind === "artists" || window.ROTATION_MEDIA) { if (window.ROTATION_MEDIA && !mediaReady) setMediaReady(true); return; }
-    window.loadScript("media-index.js", "rotation-media-idx-js", () => setMediaReady(true));
+    if (kind === "artists") return;   // unchanged: the artists tab never needs the album index
+    // audit B2 2026-09-22: loadScript is NOT fail-open (its onFail fires only on a real error and
+    // this site never passed one), so a 404 left the albums/tracks tabs ranking off nothing with
+    // no way to say so. ensureShard settles either way and the tab shows its empty list.
+    return window.ensureShard("media-index.js", "ROTATION_MEDIA", () => setMediaReady(true));
   }, [kind]);
 
   // filter-index (themes + release years) — needed for the theme chips AND the decades bar on every
@@ -1530,10 +1523,13 @@ function ExploreView({ t, go, setPop, seed }) {
   // Also pull media-index on mount: the theme/decade aggregation (track→artist/album ≥20% rule) and
   // the decades-bar play weights both read it, even on the artists tab (which otherwise skips it).
   React.useEffect(() => {
-    if (window.ROTATION_FILTER) { if (!filtReady) setFiltReady(true); }
-    else window.loadScript("filter-index.js", "rotation-filter-js", () => setFiltReady(true));
-    if (window.ROTATION_MEDIA) { if (!mediaReady) setMediaReady(true); }
-    else window.loadScript("media-index.js", "rotation-media-idx-js", () => setMediaReady(true));
+    // audit B2 2026-09-22 — ensureShard for both; the global-guard rung replaces the hand-rolled
+    // "already here?" branches, and both settle on a 404 so the chips/decades simply stay empty.
+    const offs = [
+      window.ensureShard("filter-index.js", "ROTATION_FILTER", () => setFiltReady(true)),
+      window.ensureShard("media-index.js", "ROTATION_MEDIA", () => setMediaReady(true)),
+    ];
+    return () => offs.forEach(off => off());
   }, []);
 
   // deep-link: arriving via #explore/<tag> (e.g. from an artist-page genre chip) preselects that

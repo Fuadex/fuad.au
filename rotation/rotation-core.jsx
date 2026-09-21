@@ -562,18 +562,61 @@ const FAM_TINY = {
   "Hip-Hop/Rap": "Rap", "Jazz/Funk": "Jazz/F",
 };
 const famTiny = (name) => FAM_TINY[name] || name;
-// the ONE lazy-script loader (audit 2026-07-18: the pattern was hand-rolled ~30× with
-// inconsistent id/onerror guarding — some scripts could inject twice, some failures hung
-// spinners forever). Guarded by element id; a second caller piggybacks on the load event.
+// ── THE ONE LAZY-SHARD LOADER ────────────────────────────────────────────────
+// (2026-09-22, audit B2 §4.3/§4.4. The 2026-07-18 loadScript fixed half of this and is kept
+// below as a shim; the audit found the other half still hand-rolled ~55×. media-index.js alone
+// was injected from 10 sites under FOUR different element ids with five more id-less, so the id
+// guard never held ACROSS routes and a route hop could re-parse ~8 MB mid-flight — and EIGHT
+// views hung on their loader forever when a shard 404'd, because the injection carried no
+// onerror at all.)
+//
+//   ensureShard(src, globalName, cb) → unsubscribe()
+//
+//   rung 1 · GLOBAL   window[globalName] already set → cb(true) synchronously, nothing injected.
+//   rung 2 · ELEMENT  ONE canonical id per FILE, derived from the path, so a second caller from
+//                     any route piggybacks on the in-flight tag — or on its recorded outcome,
+//                     which a bare addEventListener("load") could not see once it had fired.
+//   rung 3 · INJECT   load AND error both settle. FAIL-OPEN is the point: the callback fires
+//                     either way, so the view proceeds with the shard absent and shows its own
+//                     no-data state instead of spinning. The callback's `ok` argument says which
+//                     happened; a caller that cares about DATA should test window[globalName]
+//                     instead — a 200 that defines nothing looks identical to a 404 downstream.
+//
+// The return value unsubscribes THIS caller (the shared tag is never removed), so a React effect
+// hands it straight back — `return window.ensureShard(...)` — and an unmounted view never sets
+// state. Query strings are ignored when deriving the id: "music-rest.js?v=abc" and
+// "music-rest.js" are one shard, one tag, one guard.
+const _shardOutcome = Object.create(null);   // canonical id → "ok" | "err", once the load settled
+function shardId(src) {
+  const p = String(src || "").split("?")[0].split("#")[0].replace(/^\.?\//, "");
+  return "rot-shard-" + (p.replace(/[^A-Za-z0-9]+/g, "-").toLowerCase() || "x");
+}
+function ensureShard(src, globalName, cb) {
+  const done = typeof cb === "function" ? cb : null;
+  const noop = () => {};
+  if (typeof document === "undefined") { if (done) done(false); return noop; }
+  if (globalName && window[globalName]) { if (done) done(true); return noop; }
+  const id = shardId(src);
+  const seen = _shardOutcome[id];
+  if (seen) { if (done) done(seen === "ok"); return noop; }
+  let s = document.getElementById(id);
+  const fresh = !s;
+  if (fresh) { s = document.createElement("script"); s.id = id; s.src = src; }
+  let live = true;
+  const settle = (ok) => { _shardOutcome[id] = ok ? "ok" : "err"; if (live && done) done(ok); };
+  const onOk = () => settle(true), onErr = () => settle(false);
+  s.addEventListener("load", onOk); s.addEventListener("error", onErr);
+  if (fresh) document.head.appendChild(s);
+  return () => { live = false; s.removeEventListener("load", onOk); s.removeEventListener("error", onErr); };
+}
+// loadScript(src, id, onLoad, onFail) — the 2026-07-18 spelling, kept so any caller outside the
+// adopted set (a hidden lab page, a probe) keeps working. `id` is now IGNORED: ensureShard
+// derives one canonical id per file, which is the whole point of B2 — four ids for media-index.js
+// are four guards that never see each other. Returns the unsubscribe function rather than the
+// element; no caller ever read the element. NOTE it is NOT fail-open: onFail fires on a 404 and
+// nothing else does, which is exactly why the view code calls ensureShard directly instead.
 function loadScript(src, id, onLoad, onFail) {
-  const prev = document.getElementById(id);
-  if (prev) { if (onLoad) prev.addEventListener("load", onLoad); return prev; }
-  const s = document.createElement("script");
-  s.id = id; s.src = src;
-  if (onLoad) s.onload = onLoad;
-  s.onerror = onFail || (() => {});
-  document.head.appendChild(s);
-  return s;
+  return ensureShard(src, null, (ok) => { if (ok) { if (onLoad) onLoad(); } else if (onFail) onFail(); });
 }
 
 // ── romaji transliteration so Latin typing finds kana names (e.g. "midori" → ミドリ) ──
@@ -688,11 +731,44 @@ function _simImgUrl(name) {
 function _ensureSimImg() {
   if (_simImgRequested || typeof window === "undefined") return;
   _simImgRequested = true;
-  window.loadScript("sim-img.js", "rotation-sim-img-js", () => {
+  // ensureShard is fail-open by construction (2026-09-22, audit B2), so the old onFail arm is
+  // the same arm as the success one: stop asking either way, placeholders stand.
+  ensureShard("sim-img.js", "ROTATION_SIMIMG", () => {
     _simImgReady = true;
     const subs = _simImgSubs.splice(0);                   // one-shot: re-render every waiter, then clear
     for (const fn of subs) { try { fn(); } catch (e) {} }
-  }, () => { _simImgReady = true; });                     // fail-open: stop asking, placeholders stand
+  });
+}
+
+// ─────────── artist-x lazy loader (audit 2026-09-22, B1) ───────────
+// artist-x.js carries the twelve heavy per-artist fields — bio, wd, members, mc, topTracks,
+// topAlbums, similar, similarNames, styles, discogsGenres, spotGenres, origin — and merges them
+// onto the SAME records music-core built (R.byId), then flips R._artistXLoaded. They rode
+// music-rest.js until this audit: 879 KB gz on EVERY route, 43% of that file, for data ONLY the
+// artist page and the map band read. Those two views ask for it now; no other route pays.
+// A SUBSCRIPTION, not a one-shot flag (the sim-img pattern above): a caller hands in a re-render
+// callback and is called back once the fields have landed — or once the fetch has FAILED, so a
+// waiting view is bumped rather than left hanging. Reading a record before then is safe: the keys
+// are simply absent, which is the shape every reader already guards (`a.topAlbums || []`).
+let _artistXRequested = typeof window !== "undefined" && !!(window.ROTATION && window.ROTATION._artistXLoaded);
+let _artistXSettled = _artistXRequested;
+const _artistXSubs = [];
+function _artistXFlush() {
+  _artistXSettled = true;
+  const subs = _artistXSubs.splice(0);                 // one-shot: bump every waiter, then clear
+  for (const fn of subs) { try { fn(); } catch (e) {} }
+}
+function ensureArtistX(cb) {
+  if (typeof window === "undefined") return false;
+  if (_artistXSettled) { if (cb) { try { cb(); } catch (e) {} } return !!(window.ROTATION && window.ROTATION._artistXLoaded); }
+  if (cb) _artistXSubs.push(cb);
+  if (!_artistXRequested) {
+    _artistXRequested = true;
+    // fail-open: the same callback on error, so a view that is waiting on the fields renders
+    // without them instead of spinning (§4.4's hang class).
+    window.loadScript("artist-x.js", "rotation-artist-x-js", _artistXFlush, _artistXFlush);
+  }
+  return false;
 }
 
 // ─────────── generative cover ───────────
@@ -975,7 +1051,7 @@ class Boundary extends React.Component {
   }
 }
 
-Object.assign(window, { cssRotation, fmt, fmtK, hashInt, MON, fmtDate, FAM_SHORT, famShort, FAM_TINY, famTiny, loadScript, useCountUp, useInView, GenCover, Spark, TweenNum, Bars, Radar, kanaToRomaji, KANA_RE, Boundary, imgProxied });
+Object.assign(window, { cssRotation, fmt, fmtK, hashInt, MON, fmtDate, FAM_SHORT, famShort, FAM_TINY, famTiny, ensureShard, loadScript, useCountUp, useInView, GenCover, Spark, TweenNum, Bars, Radar, kanaToRomaji, KANA_RE, Boundary, imgProxied });
 
 // ─────────────────────────────────────────────────────────────────
 //  Singles→LP "absorb" resolver. album-absorb.js (window.ROTATION_ALBUM_ABSORB) maps a single's
@@ -985,7 +1061,7 @@ Object.assign(window, { cssRotation, fmt, fmtK, hashInt, MON, fmtDate, FAM_SHORT
 //  The flowmap's per-album aggregation is folded build-side (build-data.js ARTIST_FLOW), so this
 //  runtime resolver serves the nav/chip path; it's also consulted by the flow renderer's song→
 //  track hops (defensive). Sidecar is tiny — loaded once at boot, no-op until present.
-loadScript("album-absorb.js", "rotation-absorb-js");
+ensureShard("album-absorb.js", "ROTATION_ALBUM_ABSORB");   // audit B2 2026-09-22: one canonical id
 // absorbAlbum(key) → the LP key an absorbed single points at, else the key unchanged.
 window.ROTATION_absorbAlbum = (key) =>
   (key && window.ROTATION_ALBUM_ABSORB && window.ROTATION_ALBUM_ABSORB[key]) || key;

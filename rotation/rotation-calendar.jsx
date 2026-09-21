@@ -13,19 +13,11 @@ function ClockCard({ R, selHours, setSelHours, customRange }) {
   // histogram over ONLY the range's days; otherwise fall back to the all-time clock grid.
   const [dayHours, setDayHours] = React.useState(window.ROTATION_DAY_HOURS || null);
   React.useEffect(() => {
-    if (!customRange) return;
-    if (window.ROTATION_DAY_HOURS) { setDayHours(window.ROTATION_DAY_HOURS); return; }
-    let s = document.getElementById("day-hours-js");
-    if (!s) {
-      s = document.createElement("script");
-      s.id = "day-hours-js"; s.src = "day-hours.js";
-      s.onload = () => setDayHours(window.ROTATION_DAY_HOURS);
-      s.onerror = () => setDayHours(null);
-      document.head.appendChild(s);
-    } else {
-      const poll = setInterval(() => { if (window.ROTATION_DAY_HOURS) { clearInterval(poll); setDayHours(window.ROTATION_DAY_HOURS); } }, 80);
-      return () => clearInterval(poll);
-    }
+    if (!customRange) return;   // unchanged: only a custom range wants the file
+    // audit B2 2026-09-22: ensureShard subscribes to the shared tag instead of polling it every
+    // 80 ms, and settles on a 404 — dayHours stays null, rangeActive stays false and the clock
+    // falls back to the all-time grid, which is the degrade the old onerror already chose.
+    return window.ensureShard("day-hours.js", "ROTATION_DAY_HOURS", () => setDayHours(window.ROTATION_DAY_HOURS || null));
   }, [customRange]);
 
   const rangeActive = !!(customRange && dayHours);
@@ -382,24 +374,10 @@ function BarcodeScrubber({ years, selYear, onYear, gran, setGran, setSel, custom
     el.style.bottom = off + "px";
   }, [days]);
 
-  React.useEffect(() => {
-    if (window.ROTATION_DAYS) { setDays(window.ROTATION_DAYS); return; }
-    // Reuse the lab's shared script tag id so we don't double-load.
-    let s = document.getElementById("lab-day-series-js");
-    if (!s) {
-      s = document.createElement("script");
-      s.id = "lab-day-series-js"; s.src = "day-series.js";
-      s.onload = () => setDays(window.ROTATION_DAYS);
-      s.onerror = () => setDays(null);
-      document.head.appendChild(s);
-    } else {
-      // Script tag exists but data may not be ready yet; poll.
-      const poll = setInterval(() => {
-        if (window.ROTATION_DAYS) { clearInterval(poll); setDays(window.ROTATION_DAYS); }
-      }, 80);
-      return () => clearInterval(poll);
-    }
-  }, []);
+  // audit B2 2026-09-22: the "reuse the lab's tag id" convention is now structural — ensureShard
+  // derives the id from day-series.js itself, so the lab, the Overview and this strip share one
+  // tag without agreeing on a spelling, and the poll fallback is gone with it.
+  React.useEffect(() => window.ensureShard("day-series.js", "ROTATION_DAYS", () => setDays(window.ROTATION_DAYS || null)), []);
 
   const setViewPersist = (v) => { setView(v); try { localStorage.setItem("rot-cal-strip-view", v); } catch (e) {} };
 
@@ -711,6 +689,7 @@ function BarcodeScrubber({ years, selYear, onYear, gran, setGran, setSel, custom
 function CalendarView({ go, seed }) {
   const R = window.ROTATION;
   const [cal, setCal] = React.useState(window.ROTATION_CAL || null);
+  const [calGone, setCalGone] = React.useState(false);   // calendar.js settled with no data (audit B2 2026-09-22)
   const [detail, setDetail] = React.useState(window.ROTATION_CAL_DETAIL || null);
   const [hover, setHover] = React.useState(null);     // { y, d, count, top }
   // deep link: #calendar/YYYY-MM-DD opens straight onto that day (the Overview mini-cal uses it)
@@ -743,19 +722,16 @@ function CalendarView({ go, seed }) {
   // period / range / hour filter) so a fresh list starts at the top with only panelN covers loaded.
   React.useEffect(() => { setRowCap(panelN); }, [pane, sel, gran, rangeCommit, selHours, panelN]);
 
-  React.useEffect(() => {
-    if (window.ROTATION_CAL) { setCal(window.ROTATION_CAL); return; }
-    let s = document.getElementById("rotation-cal-js");
-    if (!s) { s = document.createElement("script"); s.id = "rotation-cal-js"; s.src = "calendar.js"; document.head.appendChild(s); }
-    const onLoad = () => setCal(window.ROTATION_CAL);
-    s.addEventListener("load", onLoad);
-    return () => s.removeEventListener("load", onLoad);
-  }, []);
-  const ensureDetail = () => {
-    if (window.ROTATION_CAL_DETAIL) { setDetail(window.ROTATION_CAL_DETAIL); return; }
-    let s = document.getElementById("rotation-cal-detail-js");
-    if (!s) { s = document.createElement("script"); s.id = "rotation-cal-detail-js"; s.src = "calendar-detail.js"; document.head.appendChild(s); s.addEventListener("load", () => setDetail(window.ROTATION_CAL_DETAIL)); }
-  };
+  // audit B2 2026-09-22 (4.4): calendar.js was injected with no onerror, so a 404 left this view
+  // on "loading the calendar…" forever. ensureShard settles either way and calGone turns the
+  // spinner into an honest empty state.
+  React.useEffect(() => window.ensureShard("calendar.js", "ROTATION_CAL", () => {
+    const C = window.ROTATION_CAL; if (C) setCal(C); else setCalGone(true);
+  }), []);
+  // audit B2 2026-09-22: one canonical tag shared with the Overview rail. It also closes a real
+  // hole — when the tag already existed the old code attached nothing at all, so a second caller
+  // arriving after the load event had fired waited forever; ensureShard replays the outcome.
+  const ensureDetail = () => { window.ensureShard("calendar-detail.js", "ROTATION_CAL_DETAIL", () => setDetail(window.ROTATION_CAL_DETAIL || null)); };
   const avg = React.useMemo(() => { const ks = ["energy", "valence", "acoustic", "tempo", "dance", "instr"]; return ks.map(k => R.ARTISTS.reduce((s, x) => s + x.audio[k], 0) / R.ARTISTS.length); }, []);
   // selected period → ms range, for highlighting cells cheaply. MUST be above the early return
   // below (otherwise the hook count changes once the calendar loads → React crash).
@@ -823,12 +799,10 @@ function CalendarView({ go, seed }) {
   // early return below — hooks after it change the hook count when calendar.js lazy-loads,
   // which is exactly React error #310 (crashed the view on first visit until 2026-07-17).
   const [mediaReady, setMediaReady] = React.useState(!!window.ROTATION_MEDIA);
-  React.useEffect(() => {
-    if (window.ROTATION_MEDIA) return;
-    let sM = document.getElementById("media-index-js");
-    if (!sM) { sM = document.createElement("script"); sM.id = "media-index-js"; sM.src = "media-index.js"; sM.onerror = () => {}; document.head.appendChild(sM); }
-    sM.addEventListener("load", () => setMediaReady(true));
-  }, []);
+  // audit B2 2026-09-22 — media-index.js was injected from ten sites under four ids; this was
+  // "media-index-js". One tag now, so a Calendar visit during the Overview map's in-flight fetch
+  // piggybacks instead of re-parsing ~8 MB.
+  React.useEffect(() => window.ensureShard("media-index.js", "ROTATION_MEDIA", () => setMediaReady(true)), []);
   const songAlbumCover = React.useMemo(() => {
     const M = window.ROTATION_MEDIA; if (!M || !M.tracks || !M.albums || !M.artists) return {};
     const out = {};
@@ -848,7 +822,7 @@ function CalendarView({ go, seed }) {
   if (!cal) return (
     <div className="r-view">
       <div className="r-viewhead r-headbare"><div><div className="r-kicker">Time</div>{/* <h1 className="r-title">Every <em>day</em><span className="dot">.</span></h1> */}</div></div>
-      <div style={{ padding: 40, color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 12 }}>loading the calendar…</div>
+      <div style={{ padding: 40, color: "var(--ink-faint)", fontFamily: "var(--mono)", fontSize: 12 }}>{calGone ? "the calendar data isn’t available right now." : "loading the calendar…"}</div>
     </div>
   );
 

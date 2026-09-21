@@ -1469,21 +1469,18 @@
   // ─────────────────────────────────────────────────────────────────────────────
   //  VENDOR LOADER
   // ─────────────────────────────────────────────────────────────────────────────
+  // audit B2 2026-09-22: ensureShard owns the tag and the piggyback, which retires the 60 ms
+  // poll the second caller used to run (it existed only because addEventListener("load") cannot
+  // see a load that already fired — ensureShard records the outcome instead). The vendor global
+  // is nested (window.St.PageFlip), so the global-guard rung is passed null and the check stays
+  // here; onFail still fires only on a real miss, which is what the error card needs.
   function loadVendor(cb, onFail) {
     if (window.St && window.St.PageFlip) { cb(); return; }
-    const existing = document.getElementById("vendor-page-flip-js");
-    if (existing) {
-      const poll = setInterval(() => {
-        if (window.St && window.St.PageFlip) { clearInterval(poll); cb(); }
-      }, 60);
-      return;
-    }
-    const s = document.createElement("script");
-    s.id = "vendor-page-flip-js";
-    s.src = "vendor-page-flip.js";
-    s.onload = () => cb();
-    s.onerror = () => { console.error("[BookSection] vendor-page-flip.js failed to load"); if (onFail) onFail(); };
-    document.head.appendChild(s);
+    window.ensureShard("vendor-page-flip.js", null, (ok) => {
+      if (ok && window.St && window.St.PageFlip) { cb(); return; }
+      console.error("[BookSection] vendor-page-flip.js failed to load");
+      if (onFail) onFail();
+    });
   }
 
   // ─────────────────────────────────────────────────────────────────────────────

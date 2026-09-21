@@ -273,30 +273,22 @@ function AlbumWordsBlock({ id }) {
 function AlbumView({ id, go }) {
   const R = window.ROTATION;
   const [ready, setReady] = React.useState(!!window.ROTATION_MEDIA);
-  React.useEffect(() => {
-    if (window.ROTATION_MEDIA) { setReady(true); return; }
-    const s = document.createElement("script"); s.src = "media-index.js"; s.onload = () => setReady(true); document.head.appendChild(s);
-  }, []);
+  // audit B2 2026-09-22 (4.3 + 4.4): an id-LESS injection with no onerror — AlbumView sat on
+  // "loading album…" forever when media-index.js 404'd. ensureShard settles either way and the
+  // view falls through to its own "Album not found." state one line below the gate.
+  React.useEffect(() => window.ensureShard("media-index.js", "ROTATION_MEDIA", () => setReady(true)), []);
   // 30-second "needle drop" previews (same as Shelves) — load the hash index on demand
   const [, setPrevReady] = React.useState(!!window.ROTATION_PREVIEWS);
-  React.useEffect(() => {
-    if (window.ROTATION_PREVIEWS) return;
-    const s = document.createElement("script"); s.src = "track-previews.js"; s.onload = () => setPrevReady(true); document.head.appendChild(s);
-  }, []);
+  React.useEffect(() => window.ensureShard("track-previews.js", "ROTATION_PREVIEWS", () => setPrevReady(true)), []);   // audit B2 2026-09-22
   // album "what it's about" blurb (Wikipedia themes section) — lazy + optional (404s harmlessly
   // if the build has no album-about layer yet)
   const [, setAaReady] = React.useState(!!window.ROTATION_ALBUM_ABOUT);
-  React.useEffect(() => {
-    if (window.ROTATION_ALBUM_ABOUT) return;
-    const s = document.createElement("script"); s.src = "album-about-lazy.js";
-    s.onload = () => setAaReady(true); s.onerror = () => setAaReady(true); document.head.appendChild(s);
-  }, []);
+  React.useEffect(() => window.ensureShard("album-about-lazy.js", "ROTATION_ALBUM_ABOUT", () => setAaReady(true)), []);   // audit B2 2026-09-22
   // per-track themes for the "mostly about…" roll-up — tiny extra render when it arrives
   const [themesReady, setThemesReady] = React.useState(!!window.ROTATION_TRACKTHEMES);
-  React.useEffect(() => {
-    if (window.ROTATION_TRACKTHEMES) return;
-    const s = document.createElement("script"); s.src = "genius-themes-lazy.js"; s.onload = () => setThemesReady(true); document.head.appendChild(s);
-  }, []);
+  // audit B2 2026-09-22: this site had no id and TrackView's twin used "rotation-tthemes-js" —
+  // a mismatched pair, so an album→track hop could fetch the same file twice. One tag now.
+  React.useEffect(() => window.ensureShard("genius-themes-lazy.js", "ROTATION_TRACKTHEMES", () => setThemesReady(true)), []);
   // FABLE themes for the roll-up (preferred over the lexicon TRACKTHEMES). They ride in the gist
   // shard (about/g-NN.js), keyed artistSlug~trackSlug, first = primary — same source TrackView uses.
   // One album's tracks all share the artist's bucket, so a single loadAbout covers the whole record;
@@ -309,38 +301,22 @@ function AlbumView({ id, go }) {
   }, [id]);
   // album-level covers rollup (core feature) (MB works) — same file as the track bios, lazy + optional
   const [, setBioReady] = React.useState(!!window.ROTATION_ALBBIO);
-  React.useEffect(() => {
-    if (window.ROTATION_ALBBIO) return;
-    const s = document.createElement("script"); s.src = "mb-track-bio.js";
-    s.onload = () => setBioReady(true); s.onerror = () => setBioReady(true); document.head.appendChild(s);
-  }, []);
+  // NB the flag here is ALBBIO but the file defines ROTATION_TRACKBIO too, so the global guard
+  // names the file's own primary global — one tag shared with TrackView's bio load (audit B2).
+  React.useEffect(() => window.ensureShard("mb-track-bio.js", "ROTATION_ALBBIO", () => setBioReady(true)), []);
   // the album SPINE (core feature) — the canonical MB release as tracklist skeleton (true disc
   // boundaries, official order), with your plays hung off it. Lazy + optional.
   const [, setSpineReady] = React.useState(!!window.ROTATION_ALBSPINE);
-  React.useEffect(() => {
-    if (window.ROTATION_ALBSPINE) return;
-    const s = document.createElement("script"); s.src = "mb-album-spine.js";
-    s.onload = () => setSpineReady(true); s.onerror = () => setSpineReady(true); document.head.appendChild(s);
-  }, []);
+  React.useEffect(() => window.ensureShard("mb-album-spine.js", "ROTATION_ALBSPINE", () => setSpineReady(true)), []);   // audit B2 2026-09-22
   // per-album LINEUP — members whose tenure covers the record's year (mb-lineup.js, lazy)
   const [, setMbReady] = React.useState(!!window.ROTATION_MB);
-  React.useEffect(() => {
-    if (window.ROTATION_MB) return;
-    let s = document.getElementById("mb-lineup-js");
-    if (!s) { s = document.createElement("script"); s.id = "mb-lineup-js"; s.src = "mb-lineup.js"; s.onerror = () => {}; document.head.appendChild(s); }
-    s.addEventListener("load", () => setMbReady(true));
-  }, []);
+  React.useEffect(() => window.ensureShard("mb-lineup.js", "ROTATION_MB", () => setMbReady(true)), []);   // audit B2 2026-09-22
   // album extras (deluxe/bonus tracks + absorbed-edition names) — lazy + optional (404 = feature off).
   // shared script tag so every AlbumView reuses one load; graceful onerror keeps the page working.
   const [, setExReady] = React.useState(!!window.ROTATION_ALBUM_EXTRAS);
-  React.useEffect(() => {
-    if (window.ROTATION_ALBUM_EXTRAS) return;
-    let s = document.getElementById("album-extras-js");
-    if (!s) { s = document.createElement("script"); s.id = "album-extras-js"; s.src = "album-extras.js"; document.head.appendChild(s); }
-    const done = () => setExReady(true);
-    s.addEventListener("load", done); s.addEventListener("error", done);
-    return () => { s.removeEventListener("load", done); s.removeEventListener("error", done); };
-  }, []);
+  // this site was already load-and-error symmetric — ensureShard is the same contract, shared
+  // (audit B2 2026-09-22). 404 = feature off, page keeps working.
+  React.useEffect(() => window.ensureShard("album-extras.js", "ROTATION_ALBUM_EXTRAS", () => setExReady(true)), []);
   const hueOf = (s) => { let h = 0; for (const c of (s || "")) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h % 360; };
 
   const data = React.useMemo(() => {
@@ -1200,7 +1176,7 @@ function BlurbSwitcher({ id, about }) {
   // GIST first (light default read); DEEP loads only when a deep source / Interpretation opens.
   React.useEffect(() => {
     if (R && R.loadAbout) R.loadAbout(id, bump);
-    if (!window.ROTATION_INSTRUMENTALS) { const s = document.createElement("script"); s.src = "instrumentals.js"; s.onload = bump; s.onerror = bump; document.head.appendChild(s); }
+    window.ensureShard("instrumentals.js", "ROTATION_INSTRUMENTALS", bump);   // audit B2 2026-09-22 (was id-less)
   }, [id]);
   const [pick, setPick] = React.useState(null);
   const [mode, setMode] = React.useState("info");     // "info" | "deep" (Fable interpretation)
@@ -1419,14 +1395,21 @@ function TrackView({ id, go }) {
   const R = window.ROTATION;
   const [ready, setReady] = React.useState(!!(window.ROTATION_MEDIA && window.ROTATION_TRACKAUDIO));
   React.useEffect(() => {
-    let need = 0; const done = () => { if (--need <= 0) setReady(true); };
-    const load = (src, glob) => { if (window[glob]) return; need++; const s = document.createElement("script"); s.src = src; s.onload = done; document.head.appendChild(s); };
-    load("media-index.js", "ROTATION_MEDIA"); load("track-audio.js", "ROTATION_TRACKAUDIO");
-    load("track-previews.js", "ROTATION_PREVIEWS"); load("preview-fallback.js", "ROTATION_PREVIEW_FALLBACK");
-    load("genius-mood-lazy.js", "ROTATION_MOOD");
-    load("genius-about-lazy.js", "ROTATION_ABOUT");
-    load("mb-track-bio.js", "ROTATION_TRACKBIO");   // song bios (writers/covers/versions) via MusicBrainz
-    if (need === 0) setReady(true);
+    // audit B2 2026-09-22 (4.3 + 4.4): seven id-LESS injections behind a counting gate with no
+    // onerror anywhere — ONE 404 among them and TrackView sat on "loading track…" forever, the
+    // worst of the eight hanging views. The counter now settles on either outcome, so a missing
+    // file costs its own card rather than the page; `data` re-tests ROTATION_MEDIA and
+    // ROTATION_TRACKAUDIO and the view falls through to "Track not found."
+    const want = [
+      ["media-index.js", "ROTATION_MEDIA"], ["track-audio.js", "ROTATION_TRACKAUDIO"],
+      ["track-previews.js", "ROTATION_PREVIEWS"], ["preview-fallback.js", "ROTATION_PREVIEW_FALLBACK"],
+      ["genius-mood-lazy.js", "ROTATION_MOOD"], ["genius-about-lazy.js", "ROTATION_ABOUT"],
+      ["mb-track-bio.js", "ROTATION_TRACKBIO"],   // song bios (writers/covers/versions) via MusicBrainz
+    ];
+    let need = want.length;
+    const done = () => { if (--need <= 0) setReady(true); };
+    const offs = want.map(([src, glob]) => window.ensureShard(src, glob, done));   // already-loaded globals settle inline
+    return () => offs.forEach(off => off());
   }, []);
   // the gist shard carries themes/means for the mood card (the switcher pulls the same shard —
   // loadAbout is cached, so asking twice costs one fetch)
@@ -1500,25 +1483,16 @@ function TrackView({ id, go }) {
   // the embedding-theme store, for the fallback below. Same lazy idiom AlbumView uses; fetched only
   // when this page actually needs it, and the tag is reused if AlbumView already pulled it.
   const [themesReady, setThemesReady] = React.useState(!!window.ROTATION_TRACKTHEMES);
-  React.useEffect(() => {
-    if (window.ROTATION_TRACKTHEMES) { if (!themesReady) setThemesReady(true); return; }
-    let s = document.getElementById("rotation-tthemes-js");
-    if (!s) {
-      s = document.createElement("script"); s.id = "rotation-tthemes-js"; s.src = "genius-themes-lazy.js";
-      document.head.appendChild(s);
-    }
-    const on = () => setThemesReady(true);
-    s.addEventListener("load", on);
-    return () => s.removeEventListener("load", on);
-  }, []);
+  React.useEffect(() => window.ensureShard("genius-themes-lazy.js", "ROTATION_TRACKTHEMES", () => setThemesReady(true)), []);   // audit B2 2026-09-22 (was "rotation-tthemes-js" vs AlbumView's id-less twin)
   // filter-index — the MERGED 28-bucket theme masks (reasoned themes winning over embeddings) that
   // the "Same themes" list below matches on. Explore already pulls this file through the same
   // id-keyed loader, so arriving from there costs nothing; arriving cold it lands after paint and
   // the section appears when it does. Declared here with the other hooks, above every early return.
   const [filtReady, setFiltReady] = React.useState(!!window.ROTATION_FILTER);
   React.useEffect(() => {
-    if (window.ROTATION_FILTER) { if (!filtReady) setFiltReady(true); return; }
-    if (window.loadScript) window.loadScript("filter-index.js", "rotation-filter-js", () => setFiltReady(true));
+    // audit B2 2026-09-22: ensureShard — same tag Explore uses, and fail-open, so a 404 leaves
+    // the "Same themes" list empty instead of permanently un-ready.
+    return window.ensureShard("filter-index.js", "ROTATION_FILTER", () => setFiltReady(true));
   }, []);
   // THEMES: reasoned first, embeddings as the fallback (Fuad 2026-09-13). The fable read wins
   // wherever one exists — it is a close reading of the words. Where none does, the lyric-embedding

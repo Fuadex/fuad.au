@@ -223,12 +223,7 @@ function usePairNav(ref, prev, next) {
 // Each entry: {t: title, w: [writers], p: [[artistSlug, artistName, trackSlug|null]]}
 function CoversStory({ go }) {
   const [d, setD] = React.useState(window.ROTATION_COVSTORY || null);
-  React.useEffect(() => {
-    if (window.ROTATION_COVSTORY) return;
-    const s = document.createElement("script"); s.src = "mb-covers-story.js";
-    s.onload = () => setD(window.ROTATION_COVSTORY); s.onerror = () => {};
-    document.head.appendChild(s);
-  }, []);
+  React.useEffect(() => window.ensureShard("mb-covers-story.js", "ROTATION_COVSTORY", () => setD(window.ROTATION_COVSTORY || null)), []);   // audit B2 2026-09-22
   if (!d || !d.length) return null;
   const top = d.slice(0, 12);
   return (
@@ -278,8 +273,9 @@ function StoriesView({ t, go, seed }) {
   // default. Declared with the other hooks, above every early return.
   const [mediaReady, setMediaReady] = React.useState(!!window.ROTATION_MEDIA);
   React.useEffect(() => {
-    if (window.ROTATION_MEDIA) { if (!mediaReady) setMediaReady(true); return; }
-    if (window.loadScript) window.loadScript("media-index.js", "rotation-media-js", () => setMediaReady(true));
+    // audit B2 2026-09-22: this was the fourth id for media-index.js ("rotation-media-js").
+    // One tag now, so a Stories→Explore hop can no longer re-parse ~8 MB mid-flight.
+    return window.ensureShard("media-index.js", "ROTATION_MEDIA", () => setMediaReady(true));
   }, []);
   // THE READING (2026-09-21) — the listening portrait + four era digests. Authored prose, not a
   // computed insight, so it lives in its own tracked file (reading.js) instead of the rebuilt data
@@ -291,8 +287,9 @@ function StoriesView({ t, go, seed }) {
   // runtime and check-jsx cannot see it.
   const [reading, setReading] = React.useState(window.ROTATION_READING || null);
   React.useEffect(() => {
-    if (window.ROTATION_READING) { setReading(window.ROTATION_READING); return; }
-    if (window.loadScript) window.loadScript("reading.js", "rotation-reading-js", () => setReading(window.ROTATION_READING || null));
+    // audit B2 2026-09-22 — ensureShard; the module still renders nothing until data lands, and
+    // a 404 now resolves to that same nothing instead of an un-fired callback.
+    return window.ensureShard("reading.js", "ROTATION_READING", () => setReading(window.ROTATION_READING || null));
   }, []);
   const [readingOpen, setReadingOpen] = React.useState({});   // era index → expanded? (all collapsed at rest, any number may be open)
 
@@ -313,9 +310,11 @@ function StoriesView({ t, go, seed }) {
   const [genReady, setGenReady] = React.useState(!!window.ROTATION_GENEALOGY);
   React.useEffect(() => {
     if (window.ROTATION_GENEALOGY) { if (!genReady) setGenReady(true); return; }
-    // the lab uses this same script id on purpose: loadScript is id-guarded, so whichever route
-    // asks first pays for the fetch and the other piggybacks on its load event.
-    if (window.loadScript) window.loadScript("genealogy.js", "rotation-genealogy-js", () => setGenReady(!!window.ROTATION_GENEALOGY));
+    // the lab pulls the same file: ensureShard derives one tag from the filename (audit B2
+    // 2026-09-22), so whichever route asks first pays and the other piggybacks — no longer a
+    // convention two call sites have to agree on. genReady still turns on DATA, so the
+    // intended degrade (404 → the section never appears) is unchanged.
+    return window.ensureShard("genealogy.js", "ROTATION_GENEALOGY", () => setGenReady(!!window.ROTATION_GENEALOGY));
   }, []);
   // ONE memoised option list under BOTH datalists below. A React element array is an immutable
   // description, so the same array may hang under two parents; what it saves is rebuilding 1,061
@@ -3742,17 +3741,16 @@ const TMAP_REGIONS = {
 };
 function TourMap({ events, allEvents, city, setCity, hiPath, hiHue, routes, focus }) {
   const [world, setWorld] = React.useState(window.ROTATION_WORLD || null);
+  const [worldGone, setWorldGone] = React.useState(false);   // world-map.js settled with no data (audit B2 2026-09-22)
   const [off, setOff] = React.useState(() => new Set());   // "cc|city" keys toggled OFF via a chip
   const svgRef = React.useRef(null);
   const gRef = React.useRef(null);       // the transformed <g>
-  React.useEffect(() => {
-    if (window.ROTATION_WORLD) return;
-    const on = () => setWorld(window.ROTATION_WORLD);
-    const ex = document.getElementById("wm-lazy");
-    if (ex) { ex.addEventListener("load", on); return () => ex.removeEventListener("load", on); }
-    const s = document.createElement("script"); s.id = "wm-lazy"; s.src = "world-map.js"; s.onload = on;
-    document.head.appendChild(s);
-  }, []);
+  // audit B2 2026-09-22: world-map.js had TWO ids — "wm-lazy" here, "rotation-world-js" on the
+  // Geography page — so the guard never held across the two routes. One tag now, and the settle
+  // fires on a 404 so the empty state below is reachable.
+  React.useEffect(() => window.ensureShard("world-map.js", "ROTATION_WORLD", () => {
+    const G = window.ROTATION_WORLD; if (G) setWorld(G); else setWorldGone(true);
+  }), []);
   const cities = React.useMemo(() => {
     const m = new Map();
     for (const x of events) {
@@ -3864,7 +3862,7 @@ function TourMap({ events, allEvents, city, setCity, hiPath, hiHue, routes, focu
       ))}
     </React.Fragment>);
   }, [hiPath, hiHue, rk]);
-  if (!world) return <div className="gv-tmap-empty r-mono">the map loads…</div>;
+  if (!world) return <div className="gv-tmap-empty r-mono">{worldGone ? "map unavailable" : "the map loads…"}</div>;
   const anyDrift = off.size > 0 || nav.drifted || tf.k > 1;
   return (
     <div className="gv-tmap-wrap">
@@ -3904,13 +3902,10 @@ function TourSection({ go, gigDate }) {
   const [checked, setChecked] = React.useState(() => new Set());  // artists whose routes are mapped
   const toggleCheck = (id) => setChecked(s => { const n = new Set(s); n.has(id) ? n.delete(id) : n.add(id); return n; });
   React.useEffect(() => {
-    if (window.ROTATION_TOUR || !R.TOUR) return;
-    const prev = document.getElementById("tm-tour-lazy-js");
-    if (prev) { prev.addEventListener("load", () => setTour(window.ROTATION_TOUR)); return; }
-    const s = document.createElement("script"); s.id = "tm-tour-lazy-js"; s.src = "tm-tour-lazy.js";
-    s.onload = () => setTour(window.ROTATION_TOUR);
-    s.onerror = () => setTour({ artists: [] });   // fail-open instead of "loading tour dates…" forever
-    document.head.appendChild(s);
+    if (!R.TOUR) return;   // unchanged: no tour layer in this build, so the file is never wanted
+    // audit B2 2026-09-22 — ensureShard; same fail-open outcome as before (a 404 leaves
+    // ROTATION_TOUR undefined → empty {artists: []} rather than "loading tour dates…" forever).
+    return window.ensureShard("tm-tour-lazy.js", "ROTATION_TOUR", () => setTour(window.ROTATION_TOUR || { artists: [] }));
   }, []);
   const hueOf = (s) => { let h = 0; for (const c of (s || "")) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h % 360; };
   const wkOf = (d) => { const t = new Date(d + "T00:00:00Z"); t.setUTCDate(t.getUTCDate() - (t.getUTCDay() + 6) % 7); return t.toISOString().slice(0, 10); };
@@ -4851,10 +4846,16 @@ function SearchOverlay({ open, onClose, go }) {
     // calendar, track pages…) may have pulled media-index.js in first, and if we skip the callback
     // the ready flag never flips, leaving slugMap null and Theme search stuck on "reading your
     // library…" forever (Fuad 2026-07-19).
-    const load = (src, has, done) => { if (window[has]) { done && done(); return; } const s = document.createElement("script"); s.src = src; s.onload = done; document.head.appendChild(s); };
-    load("search-index.js", "ROTATION_SEARCH", () => setReady(true));
-    load("media-index.js", "ROTATION_MEDIA", () => setMediaReady(true));   // albums + songs (big, lazy)
+    // audit B2 2026-09-22 (4.3 + 4.4): the local loader honoured the NB above but still had no
+    // onerror, so a 404 on either file left the overlay on "reading your library…" forever.
+    // ensureShard keeps the NB true by construction — an already-settled shard replays its
+    // outcome — and adds the missing half.
+    const offs = [
+      window.ensureShard("search-index.js", "ROTATION_SEARCH", () => setReady(true)),
+      window.ensureShard("media-index.js", "ROTATION_MEDIA", () => setMediaReady(true)),   // albums + songs (big, lazy)
+    ];
     setTimeout(() => inputRef.current && inputRef.current.focus(), 40);
+    return () => offs.forEach(off => off());
   }, [open]);
 
   // theme mode pulls in the inverted theme INDEX (about/index.js) on demand — small, not the
@@ -4871,7 +4872,9 @@ function SearchOverlay({ open, onClose, go }) {
   // resolved to a display row. Built ONCE when the media index lands. The blurb keys are ~7k, so
   // we index only what we need to join against.
   const slugMap = React.useMemo(() => {
-    const M = window.ROTATION_MEDIA; if (!M) return null;
+    // audit B2 2026-09-22 (4.4): once mediaReady has SETTLED, a missing index means an empty map,
+    // not "still loading" — null here is what kept Theme search on "reading your library…".
+    const M = window.ROTATION_MEDIA; if (!M) return mediaReady ? {} : null;
     const map = {};
     for (const t of M.tracks) {
       const k = R.slug(M.artists[t[1]]) + "~" + R.slug(t[0]);

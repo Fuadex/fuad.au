@@ -40,16 +40,16 @@ function OvCalRail({ go, onYear, onPeriod, init, extYear }) {
     // page's critical path for a file only a period pick reads. A seeded deep-link period still
     // fetches immediately (the seed needs it to filter at all); everyone else pays after first
     // paint. The SW prime warms it for repeat visits, so idle here is a cold-visit-only cost.
-    const inject = () => {
-      let s = document.getElementById("rotation-cal-detail-js");
-      if (!s) { s = document.createElement("script"); s.id = "rotation-cal-detail-js"; s.src = "calendar-detail.js"; document.head.appendChild(s); }
-      s.addEventListener("load", () => setDetReady(true));
-    };
+    // audit B2 2026-09-22: ensureShard — the same canonical tag the Calendar view's ensureDetail
+    // uses, and it settles on a 404 (a period pick then simply has no detail to filter by). WHEN
+    // it fires is untouched: seeded deep-link immediately, everyone else at idle.
+    const inject = () => { window.ensureShard("calendar-detail.js", "ROTATION_CAL_DETAIL", () => setDetReady(true)); };
     if (init && init.period) { inject(); return; }
     const idle = window.requestIdleCallback || ((f) => setTimeout(f, 2500));
     idle(inject);
   }, []);
   const [cal, setCal] = React.useState(window.ROTATION_CAL || null);
+  const [calGone, setCalGone] = React.useState(false);   // calendar.js settled with no data (audit B2 2026-09-22)
   const now = new Date();
   const _ip = init && init.period, _ik = _ip && init.period.key;
   const [yr, setYr] = React.useState((_ik && +_ik.slice(0, 4)) || (init && init.year) || now.getUTCFullYear());
@@ -64,18 +64,15 @@ function OvCalRail({ go, onYear, onPeriod, init, extYear }) {
     if (extYear == null) return;
     setYr(y => (y === extYear ? y : extYear));
   }, [extYear]);
-  React.useEffect(() => {
-    if (window.ROTATION_CAL) return;
-    let s = document.getElementById("rotation-cal-js");
-    if (!s) { s = document.createElement("script"); s.id = "rotation-cal-js"; s.src = "calendar.js"; document.head.appendChild(s); }
-    const on = () => setCal(window.ROTATION_CAL);
-    s.addEventListener("load", on);
-    return () => s.removeEventListener("load", on);
-  }, []);
+  // audit B2 2026-09-22 (4.4): no onerror here meant the Overview rail read "calendar…" forever
+  // when calendar.js 404'd. ensureShard settles either way; calGone names the outcome below.
+  React.useEffect(() => window.ensureShard("calendar.js", "ROTATION_CAL", () => {
+    const C = window.ROTATION_CAL; if (C) setCal(C); else setCalGone(true);
+  }), []);
   const years = cal ? Object.keys(cal.byYear).map(Number).sort((a, b) => b - a) : [];
   const y = cal && cal.byYear[yr];
   const MON = window.MON;
-  if (!y) return <div className="r-card ov-nr" style={{ padding: 16 }}>calendar…</div>;
+  if (!y) return <div className="r-card ov-nr" style={{ padding: 16 }}>{calGone ? "calendar unavailable" : "calendar…"}</div>;
   const counts = y.counts || [];
   const mx = Math.max(1, ...counts);
   const first = Date.UTC(yr, mo, 1), dim = new Date(Date.UTC(yr, mo + 1, 0)).getUTCDate();
@@ -580,11 +577,9 @@ function OverviewView({ t, go, restReady, seed }) {
   // Phase 1 — flat per-day play counts make avg/day, heaviest-day and share-of-history react to
   // the active date filter (year scrub or calendar day/week/month). Loaded lazily; tiny (~10 KB gz).
   const [days, setDays] = React.useState(window.ROTATION_DAYS || null);
-  React.useEffect(() => {
-    if (window.ROTATION_DAYS) { setDays(window.ROTATION_DAYS); return; }
-    const s = document.createElement("script"); s.src = "day-series.js";
-    s.onload = () => setDays(window.ROTATION_DAYS); document.head.appendChild(s);
-  }, []);
+  // audit B2 2026-09-22: was one of four day-series.js sites, two of them id-less. One tag now,
+  // and a 404 leaves days null — the stats fall back to lifetime, which is the no-filter state.
+  React.useEffect(() => window.ensureShard("day-series.js", "ROTATION_DAYS", () => setDays(window.ROTATION_DAYS || null)), []);
   const dyn = React.useMemo(() => {
     if (!days || (mapYear == null && !mapPeriod)) return null;   // lifetime → static stats
     const startMs = new Date(days.start + "T00:00:00Z").getTime();

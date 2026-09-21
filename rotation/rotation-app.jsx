@@ -85,27 +85,26 @@ function RotationApp() {
   React.useEffect(() => {
     if (!R || R._restLoaded) { setRestReady(true); return; }
     window.__rotRest = () => setRestReady(true);
-    const s = document.createElement("script");
     // epoch-locked: REST_V (rest content hash, stamped into core at build) versions the URL so
-    // the SW can never serve a stale rest against a fresh core (index-join corruption class)
-    s.src = "music-rest.js" + (R && R.REST_V ? "?v=" + R.REST_V : "");
-    s.onerror = () => setRestReady(true);   // fail-open: mount views (deferred reads are guarded) rather than hang
-    document.head.appendChild(s);
+    // the SW can never serve a stale rest against a fresh core (index-join corruption class).
+    // ensureShard (2026-09-22, audit B2) strips the query when deriving the element id, so the
+    // version can never fork the guard; its settle is fail-open, which is exactly the old
+    // onerror arm — mount the views either way, every deferred read is guarded.
+    const off = window.ensureShard("music-rest.js" + (R && R.REST_V ? "?v=" + R.REST_V : ""), null, () => setRestReady(true));
     // safety net in case onload/callback never fire
     const tid = setTimeout(() => setRestReady(r => r || !!(window.ROTATION && window.ROTATION._restLoaded)), 8000);
-    return () => clearTimeout(tid);
+    return () => { off(); clearTimeout(tid); };
   }, []);
 
   // Spotify ♥/engagement overlays — injected post-mount (they only decorate artist/track
   // rows, which read window.ROTATION_LIKED/ROTATION_ENGAGE opportunistically at render;
   // a heart appearing a beat late on a page beats 733 KB blocking first paint).
   React.useEffect(() => {
-    for (const [src, id, glob] of [["spotify-liked.js", "sp-liked-js", "ROTATION_LIKED"], ["spotify-engagement.js", "sp-engage-js", "ROTATION_ENGAGE"]]) {
-      if (window[glob] || document.getElementById(id)) continue;
-      const s = document.createElement("script");
-      s.id = id; s.src = src;
-      s.onerror = () => {};   // overlays are optional decoration — absent file just means no hearts
-      document.head.appendChild(s);
+    // audit B2 2026-09-22: ensureShard owns the global guard, the element guard and the
+    // optional-file onerror (an absent overlay just means no hearts), so the loop only pairs
+    // each file with the global it defines. No callback — rows read these opportunistically.
+    for (const [src, glob] of [["spotify-liked.js", "ROTATION_LIKED"], ["spotify-engagement.js", "ROTATION_ENGAGE"]]) {
+      window.ensureShard(src, glob);
     }
   }, []);
 

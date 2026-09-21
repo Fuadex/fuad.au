@@ -335,7 +335,7 @@ function ShShelf({ id, name, hue, albums, depth, cap, onMore, splittable, splitL
   const visible = albums.slice(0, cap);
   const rowRef = React.useRef(null), barRef = React.useRef(null), pctRef = React.useRef(null), progRef = React.useRef(null), trackRef = React.useRef(null);
   const drag = React.useRef({ down: false, moved: false });
-  const progDrag = React.useRef(false);
+  const progDrag = React.useRef(null);   // the live scrub gesture (see onProgDown)
   const syncProg = () => {
     const el = rowRef.current; if (!el) return;
     const max = el.scrollWidth - el.clientWidth;
@@ -345,8 +345,21 @@ function ShShelf({ id, name, hue, albums, depth, cap, onMore, splittable, splitL
     const thumb = Math.max(8, (el.clientWidth / el.scrollWidth) * 100);
     if (barRef.current) { barRef.current.style.width = thumb + "%"; barRef.current.style.marginLeft = (pct * (100 - thumb)) + "%"; }
     if (pctRef.current) pctRef.current.textContent = String(Math.round(pct * 100)).padStart(2, "0") + "%";
+    if (trackRef.current) trackRef.current.setAttribute("aria-valuenow", String(Math.round(pct * 100)));
   };
   React.useEffect(() => { syncProg(); }, [cap, albums.length]);
+  // 2026-09-22 (audit B5) — the thumb was only re-measured on scroll and on [cap, albums.length],
+  // so any change to the ROW's own width left it describing a shelf that no longer existed: a
+  // phone rotated from 360 to 800 kept the 8% stub it had computed for the narrow viewport. One
+  // observer per shelf, reading numbers that are already laid out when it fires (no forced reflow,
+  // no loop: the bar it writes to is a sibling of the row it watches).
+  React.useEffect(() => {
+    const el = rowRef.current;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    const ro = new ResizeObserver(() => syncProg());
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
   // arrows (Culture-style) — scroll a screenful; appear only on row hover via CSS
   const arrow = (dir) => { const el = rowRef.current; if (el) el.scrollBy({ left: dir * el.clientWidth * 0.82, behavior: "smooth" }); };
   // the progress bar itself is a scrubber: click or drag anywhere on the track to seek the row
@@ -356,9 +369,34 @@ function ShShelf({ id, name, hue, albums, depth, cap, onMore, splittable, splitL
     const frac = Math.max(0, Math.min(1, (clientX - r.left) / r.width));
     el.scrollLeft = frac * (el.scrollWidth - el.clientWidth); syncProg();
   };
-  const onProgDown = (e) => { progDrag.current = true; try { e.currentTarget.setPointerCapture(e.pointerId); } catch (_) {} seek(e.clientX); e.preventDefault(); };
-  const onProgMove = (e) => { if (progDrag.current) seek(e.clientX); };
-  const onProgUp = () => { progDrag.current = false; };
+  // 2026-09-22 (audit B5) — TOUCH. A finger that lands on a 20px-tall strip under a horizontal
+  // scroller is very often starting a VERTICAL page scroll, and seek-on-press flung the shelf to
+  // wherever that finger happened to touch. Touch now commits only when the gesture says so: a
+  // horizontal drag scrubs, a tap that ends without travel jumps, and a vertical move hands the
+  // gesture back to the page (touch-action: pan-y on the track lets the browser take it).
+  // Mouse keeps the immediate seek-on-press a scrubber is expected to have.
+  const onProgDown = (e) => {
+    const touch = e.pointerType === "touch";
+    progDrag.current = { touch, x: e.clientX, y: e.clientY, moved: false };
+    try { e.currentTarget.setPointerCapture(e.pointerId); } catch (_) {}
+    if (!touch) { seek(e.clientX); e.preventDefault(); }
+  };
+  const onProgMove = (e) => {
+    const d = progDrag.current; if (!d) return;
+    if (d.touch && !d.moved) {
+      const dx = Math.abs(e.clientX - d.x), dy = Math.abs(e.clientY - d.y);
+      if (dy > dx) { progDrag.current = null; return; }   // it was a page scroll after all
+      if (dx < 4) return;                                  // below the slop threshold: still a tap
+      d.moved = true;
+    }
+    seek(e.clientX);
+  };
+  const onProgUp = (e) => {
+    const d = progDrag.current;
+    if (d && d.touch && !d.moved) seek(e.clientX);        // a tap on the track jumps there
+    progDrag.current = null;
+  };
+  const onProgCancel = () => { progDrag.current = null; };
   const onDown = (e) => { if (e.button !== 0) return; drag.current = { down: true, x: e.clientX, sl: rowRef.current.scrollLeft, moved: false }; };
   React.useEffect(() => {
     const onMove = (e) => {
@@ -405,7 +443,8 @@ function ShShelf({ id, name, hue, albums, depth, cap, onMore, splittable, splitL
         <button className="sh-arrow sh-arrow-r" onClick={() => arrow(1)} aria-label="scroll right" tabIndex={-1}>›</button>
       </div>
       <div className="sh-prog" ref={progRef}>
-        <div className="sh-prog-track" ref={trackRef} onPointerDown={onProgDown} onPointerMove={onProgMove} onPointerUp={onProgUp} onPointerCancel={onProgUp} title="drag to scan the shelf"><i ref={barRef} style={{ "--h": hue }} /></div>
+        <div className="sh-prog-track" ref={trackRef} onPointerDown={onProgDown} onPointerMove={onProgMove} onPointerUp={onProgUp} onPointerCancel={onProgCancel}
+          role="scrollbar" aria-orientation="horizontal" aria-label={"scan the " + name + " shelf"} title="drag to scan the shelf"><i ref={barRef} style={{ "--h": hue }} /></div>
         <span ref={pctRef} className="r-mono">0%</span></div>
     </section>
   );
@@ -458,24 +497,34 @@ function ShelvesView({ go, seed }) {
   }, [mode, lens, labelGrouped]);
   const [unReady, setUnReady] = React.useState(!!window.ROTATION_UNPLAYED);
   React.useEffect(() => {
-    let need = 0; const done = () => { if (--need <= 0) setReady(true); };
-    const load = (src, glob) => { if (window[glob]) return; need++; const s = document.createElement("script"); s.src = src; s.onload = done; document.head.appendChild(s); };
-    load("media-index.js", "ROTATION_MEDIA"); load("track-previews.js", "ROTATION_PREVIEWS");
-    if (need === 0) setReady(true);
+    // audit B2 2026-09-22 (4.3 + 4.4): two id-less injections with no onerror — ShelvesView was
+    // stuck "stocking the shelves…" forever if either 404'd. Settling either way lets the gate
+    // below distinguish "still loading" from "the index never arrived".
+    let need = 2;
+    const done = () => { if (--need <= 0) setReady(true); };
+    const offs = [
+      window.ensureShard("media-index.js", "ROTATION_MEDIA", done),
+      window.ensureShard("track-previews.js", "ROTATION_PREVIEWS", done),
+    ];
+    return () => offs.forEach(off => off());
   }, []);
   React.useEffect(() => {   // shrinkwrap data loads only when the mode is first opened
-    if (mode !== "wrap" || window.ROTATION_UNPLAYED) { if (window.ROTATION_UNPLAYED && !unReady) setUnReady(true); return; }
-    const s = document.createElement("script"); s.src = "shelves-unplayed.js"; s.onload = () => setUnReady(true); document.head.appendChild(s);
+    if (mode !== "wrap") return;   // unchanged: the shrinkwrap data loads on first open only
+    return window.ensureShard("shelves-unplayed.js", "ROTATION_UNPLAYED", () => setUnReady(true));   // audit B2 2026-09-22
   }, [mode]);
   React.useEffect(() => {   // label data + parent map load only when the labels lens is first opened
     if (lens !== "labels") return;
     const haveAll = () => window.ROTATION_ALB_LABELS && window.ROTATION_LABEL_PARENTS;
     if (haveAll()) { if (!labelsReady) setLabelsReady(true); return; }
-    let need = 0; const done = () => { if (--need <= 0 && haveAll()) setLabelsReady(true); };
-    const load = (src, glob) => { if (window[glob]) return; need++; const s = document.createElement("script"); s.src = src; s.onload = done; document.head.appendChild(s); };
-    load("mb-album-labels.js", "ROTATION_ALB_LABELS");
-    load("label-parents.js", "ROTATION_LABEL_PARENTS");
-    if (need === 0) setLabelsReady(true);
+    // audit B2 2026-09-22 — ensureShard; the flag still turns on haveAll(), so a 404 on either
+    // file leaves the labels lens empty rather than half-drawn.
+    let need = 2;
+    const done = () => { if (--need <= 0 && haveAll()) setLabelsReady(true); };
+    const offs = [
+      window.ensureShard("mb-album-labels.js", "ROTATION_ALB_LABELS", done),
+      window.ensureShard("label-parents.js", "ROTATION_LABEL_PARENTS", done),
+    ];
+    return () => offs.forEach(off => off());
   }, [lens]);
 
   // one pass over the media index → album records with family/sub + top-track preview key
@@ -556,7 +605,10 @@ function ShelvesView({ go, seed }) {
     return { albums, shelves: shGroupShelves(albums, R) };
   }, [unReady, R]);
 
-  if (!ready || !data) return <div className="r-view"><div className="r-mono" style={{ color: "var(--ink-faint)", padding: 40 }}>stocking the shelves…</div></div>;
+  if (!ready) return <div className="r-view"><div className="r-mono" style={{ color: "var(--ink-faint)", padding: 40 }}>stocking the shelves…</div></div>;
+  // audit B2 2026-09-22 (4.4): `ready` can now settle with media-index.js absent, so say so
+  // instead of stocking forever — data is null only when ROTATION_MEDIA never arrived.
+  if (!data) return <div className="r-view"><div className="r-mono" style={{ color: "var(--ink-faint)", padding: 40 }}>the library index isn’t available right now.</div></div>;
 
   // lens-aware shelf splitting: genre → subgenre rows · decade → 5-year bins · mood → by depth
   const SPLIT_LABELS = { genre: "split into subgenres", decade: "split into 5-year bins", mood: "split by depth" };
@@ -846,11 +898,27 @@ function ShelvesView({ go, seed }) {
         .sh-arrow:hover { opacity: 1; color: var(--accent); }
         @media (hover: none) { .sh-arrow { display: none; } }
         .sh-prog { display: flex; align-items: center; gap: 8px; margin-top: 5px; }
-        /* the track is a scrubber: 12px hit area (via padding) around a 2px visual line */
-        .sh-prog-track { flex: 1; height: 2px; background: var(--bg-3); border-radius: 2px; position: relative;
-          padding: 6px 0; background-clip: content-box; cursor: pointer; touch-action: none; }
+        /* the track is a scrubber: 12px hit area (via padding) around a 2px visual line.
+           2026-09-22 (audit B5): the ground used to be --bg-3, which at 2px on a --bg page is
+           not a line you can see. The thumb therefore read as a decorative tick with no extent
+           behind it, which is why the audit recorded the shelf as having no position indicator
+           at all: the POSITION was drawn, the WHOLE it sits in was not. --rule is visible but
+           stays a step under the 3px --rule-2 shelf board above it, so the two never read as a
+           doubled rule.
+           box-sizing is the reason it was never drawn: the global reset makes every box
+           border-box, so a 2px height under 12px of hit-area padding resolved to a ZERO-height
+           content box, and background-clip: content-box then had nothing to paint. The ground
+           has been authored and invisible for as long as the control has existed. content-box
+           here restores it; the padding is trimmed by 1px a side so the control keeps exactly
+           the 12px it occupies today and desktop does not shift.
+           touch-action is pan-y, not none: a finger that lands on the track must still be able
+           to scroll the page vertically. The horizontal axis is left to the page so the scrub
+           gesture keeps getting pointermove (see onProgDown). */
+        .sh-prog-track { flex: 1; box-sizing: content-box; height: 2px; background: var(--rule); border-radius: 2px; position: relative;
+          padding: 5px 0; background-clip: content-box; cursor: pointer; touch-action: pan-y; }
         .sh-prog-track i { display: block; height: 2px; width: 0; background: oklch(0.55 0.11 var(--h, 260) / .8); border-radius: 2px; }
         .sh-prog-track:hover i { background: oklch(0.65 0.13 var(--h, 260)); }
+        .sh-prog-track:active i { background: oklch(0.72 0.145 var(--h, 260)); }
         .sh-prog > span { font-size: 8.5px; color: var(--ink-faint); width: 30px; text-align: right; }
         .sh-reveal { animation: shReveal .32s cubic-bezier(.25,.8,.35,1) both; }
         @keyframes shReveal { from { opacity: 0; transform: translateY(-10px); } }
@@ -965,6 +1033,13 @@ function ShelvesView({ go, seed }) {
           .sh-spine.on { width: 108px; }
           .sh-cover { width: 108px; height: 108px; }
           .sh-more { height: 108px; }
+          /* 2026-09-22 (audit B5) — at 360 a genre shelf is a ~10,850px scroller with the hover
+             arrows suppressed, so this line is the only map of it AND the only way to cross it
+             in one gesture. Finger-scale: a 3px stroke instead of a hairline and a 26px hit
+             band around it (padding, not height, so the line itself stays thin). */
+          .sh-prog { gap: 10px; margin-top: 3px; }
+          .sh-prog-track { height: 3px; padding: 10px 0; }
+          .sh-prog-track i { height: 3px; }
         }
       `}</style>
     </div>
