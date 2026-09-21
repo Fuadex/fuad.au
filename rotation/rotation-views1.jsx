@@ -669,19 +669,6 @@ function OverviewView({ t, go, restReady, seed }) {
   const now = useLiveNow(); const nowArtist = R.byId[now.artistId] || { hue: 200, tags: [] };
   const npKnown = !!(R.byId[now.artistId] || (R.expById && R.expById[now.artistId]) || (R.played && R.played(now.artist)));
 
-  // Recently played: prefer the daily last.fm snapshot (live-data.js) so the feed stays fresh between
-  // full CSV re-exports; fall back to the baked R.RECENT if the snapshot hasn't loaded.
-  const recent = React.useMemo(() => {
-    const LV = window.ROTATION_LIVE;
-    if (!LV || !LV.recent || !LV.recent.length) return R.RECENT;
-    const MON = window.MON;
-    const when = (uts) => { if (!uts) return ""; const d = new Date(uts * 1000); return d.getUTCDate() + " " + MON[d.getUTCMonth()]; };
-    const hueOf = (id) => { const e = R.byId[id] || (R.expById && R.expById[id]); return e && e.hue != null ? e.hue : 210; };
-    return LV.recent.map((r, i) => ({ id: "lv" + i, artistId: r.artistId, artist: r.artist, track: r.track, when: when(r.uts), hue: hueOf(r.artistId), img: r.img || "" }));
-  }, [R]);
-  // just the last 2 played (was 3; the shallower 96px pulse row fits two cleanly — Fuad 2026-07-18)
-  const recent3 = React.useMemo(() => recent.slice(0, 2), [recent]);
-
   // 26-week scrobble trend (real if the build provides it)
   const trend = React.useMemo(() => R.TREND || Array.from({ length: 26 }, (_, i) =>
     180 + Math.round(Math.sin(i / 3) * 60 + (hashInt("wk" + i, 5) % 90) + i * 3)), []);
@@ -1011,44 +998,49 @@ function OverviewView({ t, go, restReady, seed }) {
             card here landed a few px off the one above it, and the drift compounded across the row.
             One template and one gap for both. */}
         <div className="ov-insgrid" style={{ gridColumn: "span 8", display: "grid", gridTemplateColumns: "repeat(4, minmax(0, 1fr))", gap: "var(--gap)" }}>
-          {/* recent ticker — moved down out of the pulse row (Fuad 2026-08-20) to make room for
-              Riser and Next milestone. It leads this row rather than sitting mid-deck: it is the one
-              FIXED card here, and a fixed card is steadier at an edge than wedged between three that
-              reshuffle by score every day. */}
-          <div className="r-card ov-recent" style={{ padding: "8px 11px", display: "flex", flexDirection: "column" }}>
-            {/* Just "Recent", always (Fuad 2026-08-20). The first attempt swapped the full label out
-                below 980px, which was the wrong axis: this card is one of four in a row, so it is
-                narrow on a 4K monitor too — the VIEWPORT is wide and the CARD is not. The label plus
-                the last.fm link left the rows so little width that both entries crushed together.
-                A container query would also fix it, but the short word is what was asked for and it
-                cannot fall out of sync with a layout that keeps moving. */}
-            {/* The link is ONE WORD (2026-09-19). At this card's ~185px the 10px meta ran just
-                past the room left beside "Recent", so the ↗ dropped to a second line on its own
-                and the header stood two rows tall. Dropped to the 8.5px footnote size (the other
-                half of the eyebrow pair) and pinned nowrap: the arrow belongs to the address.
-                The size stays INLINE rather than moving to .ov-eb: this anchor keeps .meta for
-                its margin-left:auto, and .r-card-h .meta outranks a bare role class, so a class
-                here would silently lose and the link would go back to 10px. */}
+          {/* LAST 72 HOURS in the ticker's seat (Fuad 2026-09-22: "the only thing I like is the
+              last 72h ... Let's put this in instead of recent as the only module substitution" —
+              the whole of the B4-overhaul verdict). Same fixed lead cell, for the same reason the
+              ticker held it: a fixed card is steadier at an edge than wedged between three that
+              reshuffle by score every day. The strip is the live sync's clock72 — 72 hourly bins,
+              newest at the right — read at render time: live-data.js is a deferred script ahead
+              of the app bundle (index.html), so it has already run by first render, and if its
+              fetch ever failed outright the card degrades to the quiet header. The ranked deck
+              omits "clock72" or the page could print the same strip twice. The last.fm address
+              stays in the header: it is the page's only outbound link to the account, and this
+              card draws from the same live feed the ticker did. */}
+          <div className="r-card ov-last72" style={{ padding: "8px 11px", display: "flex", flexDirection: "column" }}>
+            {/* The link is ONE WORD at 8.5px nowrap — the Recent-era sizing (git history): at this
+                card's ~185px anything larger dropped the ↗ to its own line. The size stays INLINE:
+                this anchor keeps .meta for its margin-left:auto, and .r-card-h .meta outranks a
+                bare role class, so a class here would silently lose. */}
             <div className="r-card-h" style={{ padding: 0, marginBottom: 3, flexWrap: "nowrap" }}>
-              <span className="lbl"><b>Recent</b></span>
+              {/* "Last 72h", not "Last 72 hours" (render QC 2026-09-22): the full label plus the
+                  address measured to this card's ~185px exactly and wrapped the header to two
+                  lines at 1340 — and it is Fuad's own name for the module. The caption row
+                  underneath still spells the window out. */}
+              <span className="lbl"><b>Last 72h</b></span>
               <a className="meta r-extlink-lf" href="https://www.last.fm/user/fuadex" target="_blank" rel="noopener noreferrer"
                 style={{ color: "var(--ink-faint)", textDecoration: "none", fontSize: 8.5, whiteSpace: "nowrap", flex: "none" }}>last.fm/fuadex ↗</a></div>
-            <div className="ov-rl" style={{ display: "grid", gap: 1, flex: 1, alignContent: "center" }}>
-              {recent3.map(r => (
-                <div key={r.id} className="ov-hovrow" onClick={() => { if (r.artist && r.track) go("track", R.slug(r.artist) + "~" + R.slug(r.track)); }} title={`${r.track} →`} style={{ display: "flex", alignItems: "center", gap: 8,
-                  padding: "3px 0", borderRadius: 4, cursor: "pointer", minWidth: 0 }}>
-                  <GenCover hue={r.hue} name={r.artist} image={r.img || undefined} size={22} radius={2} />
-                  <div style={{ minWidth: 0, flex: 1 }}>
-                    <div className="ov-tx">{r.track}</div>
-                    {/* sans at 10px, so not .ov-nr — the artist under a track title is a NAME and
-                        reads as one; the mono grades are for counts and labels. */}
-                    <div style={{ fontSize: 10, color: "var(--ink-faint)", cursor: "pointer", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }} title={`${r.artist} →`}
-                      onClick={e => { e.stopPropagation(); go("artist", r.artistId); }}>{r.artist}</div>
+            {(() => {
+              const c = window.ROTATION_LIVE && window.ROTATION_LIVE.clock72;
+              if (!c || !c.bins || !c.bins.length) return null;   // shard not landed → quiet header-only card
+              const sum = c.bins.reduce((a, b) => a + b, 0);
+              const max = Math.max(...c.bins, 1);
+              // the deck card's own geometry (46px bars, eyebrow caption), centred in the taller
+              // fixed cell. sum CAN be 0 on a silent stretch: the flat baseline and "0 plays" are
+              // the honest render, where the scored card would simply have skipped its turn.
+              return (
+                <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                  <div style={{ display: "flex", alignItems: "flex-end", gap: 1, height: 46 }}>
+                    {c.bins.map((v, i) => <div key={i} style={{ flex: 1, height: Math.max(2, v / max * 46), background: v ? "var(--accent)" : "var(--bg-3)", opacity: v ? 0.5 + 0.5 * (v / max) : 1, borderRadius: 1 }} title={v + " plays"} />)}
                   </div>
-                  <span className="ov-nr" style={{ flex: "none" }}>{r.when}</span>
+                  <div className="ov-eb" style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
+                    <span>72h ago</span><span>{fmt(sum)} plays</span><span>now</span>
+                  </div>
                 </div>
-              ))}
-            </div>
+              );
+            })()}
           </div>
           {/* three scored cards beside it. otd + in-season are pinned into the pulse row above and
               `week` is retired, so all three are omitted here or the page shows them twice.
@@ -1056,8 +1048,10 @@ function OverviewView({ t, go, restReady, seed }) {
               and movement followed on the same day — the first moved to the artist page, the
               second merged into "This week", and neither can return a card to omit.)
               `last` went with movement, which was the only id it ever pinned. Position is back to
-              score order here; if a card needs a fixed cell again, `last` is still in runInsights. */}
-          <InsightRow go={go} n={3} omit={["otd", "in-season", "week", "mood"]} />
+              score order here; if a card needs a fixed cell again, `last` is still in runInsights.
+              clock72 joined on 2026-09-22: the strip owns the fixed cell where the ticker sat,
+              and a card cannot be in both. */}
+          <InsightRow go={go} n={3} omit={["otd", "in-season", "week", "mood", "clock72"]} />
         </div>
 
         {/* emotional weather — last-90d sounds/reads only now (the decades strip moved up to the
@@ -1151,7 +1145,6 @@ function OverviewView({ t, go, restReady, seed }) {
           */
           /* the slot takes Story's old eight columns; Decades keeps 9-12 beside it */
           .ov-pulseslot { grid-column: 1 / span 8 !important; }
-          .ov-recent .ov-rl { max-height: none; overflow: visible; align-content: start; }
           /* The 92px cap belonged to the OLD pulse row, where these shared a band with nothing
              taller and the cap kept it lean. They sit beside Decades now (Fuad 2026-08-20), and the
              cap was the only thing stopping them reaching that row's height — leaving their headers
@@ -1184,9 +1177,6 @@ function OverviewView({ t, go, restReady, seed }) {
              instead and had to be reverted. */
           .ov-scrob .spark { max-height: 30px; }
           .ov-np { max-height: 92px; overflow: hidden; }
-          /* Recent does not scroll (Fuad 2026-09-13). This overrode the rule ~30 lines above,
-             which already sets overflow visible; the list is two rows, so there was nothing to
-             scroll to and the scroller only ever ate a drag. */
           .ov-strip    { grid-column: 1 / span 8 !important; grid-template-columns: repeat(5, 1fr) !important; gap: 10px !important; }
           .ov-strip .r-stat-n { font-size: 20px !important; }
           /* Decades takes cols 9-12, the same span the weather card uses on the row below
@@ -1282,18 +1272,18 @@ function OverviewView({ t, go, restReady, seed }) {
            · .ov-stat-link declared the easing on ITSELF, so the caption faded and the numeral
              inside it — a different element, and the one you are actually looking at — jumped.
              The stat tile's number is named here so both halves move together.
-           · The last.fm link in the Recent header wears .r-extlink-lf without .r-extlink, and
+           · The last.fm link in the Last-72-hours header wears .r-extlink-lf without .r-extlink, and
              the .15s lives on .r-extlink; the red-on-hover had nothing to ease. Scoped to the
              card so the pill-shaped .r-extlink uses elsewhere keep their own timing.
            Not folded in: .ov-pd-via's hover, which only adds an underline — there is nothing
            there to interpolate. */
         .ov-hovrow, .ov-wback, .ov-calsel, .ov-caltitle, .ov-pd-foot,
-        .ov-stat-link, .ov-stat-link .r-stat-n, .ov-recent .r-extlink-lf {
+        .ov-stat-link, .ov-stat-link .r-stat-n, .ov-last72 .r-extlink-lf {
           transition: background .16s ease, border-color .16s ease, color .16s ease;
         }
         @media (prefers-reduced-motion: reduce) {
           .ov-hovrow, .ov-wback, .ov-calsel, .ov-caltitle, .ov-pd-foot,
-          .ov-stat-link, .ov-stat-link .r-stat-n, .ov-recent .r-extlink-lf { transition: none; }
+          .ov-stat-link, .ov-stat-link .r-stat-n, .ov-last72 .r-extlink-lf { transition: none; }
         }
         .ov-hovrow:hover { background: var(--bg-3); }
         /* year tiles (SINCE / PEAK YEAR): the string branch of Stat cross-fades on value change —
