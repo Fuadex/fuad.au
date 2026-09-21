@@ -27,13 +27,12 @@ const NAV_FULL = [
   ["stories", "Stories"],
   ["calendar", "Time"],
   ["gigs", "Gigs"],
-  // 2026-09-21 (audit A11): the tab is SPOTIFY and lands on SpotifyView ("What held my
-  // attention"). It had zero inbound links site-wide while its own sibling owned the tab —
-  // SpotifyView already linked to Liked, never the other way. Liked is now the sub-view: the
-  // #liked ROUTE is untouched (deep links, bookmarks, muscle memory all still land on
-  // LikedView) and lights this tab through NAV_SUB below; the pages carry a sub-nav pair.
-  // (Liked was promoted to the navbar 2026-08-13; Spotify was hidden 2026-07-18 — both reversed here.)
-  ["spotify", "Spotify"],
+  // 2026-09-22 (Fuad: "Bring it back into the navbar and hide Spotify please"): the tab is
+  // LIKED again, un-doing A11's one-day swap — back to the 2026-08-13 arrangement, with
+  // Spotify hidden as it had been since 2026-07-18. What A11 built stays: the #spotify ROUTE
+  // is live (deep links land on SpotifyView and light this tab through NAV_SUB below), and
+  // the pages' sub-nav pair is now the one door into it from the site.
+  ["liked", "Liked"],
 ];
 // Hide tabs with no data behind them — avoids a dead-end. "Live" needs upcoming-concert cities;
 // "Gigs" needs the attended-shows dataset (setlist.fm → gigs.json → ROTATION.GIGS).
@@ -47,9 +46,10 @@ const LEGACY = { charts: "explore", clock: "explore", sound: "explore", eras: "e
   // display renames (2026-08-06) — the new nav names work as deep links too
   time: "calendar", records: "shelves" };
 // Routes that are NOT tabs but belong UNDER one — the tab stays lit while you are down there.
-// #artist rides Explore (long-standing); #liked rides Spotify (2026-09-21, audit A11) so a
-// #liked deep link looks exactly like navigating into the Spotify section, not like a dead tab.
-const NAV_SUB = { explore: ["artist"], spotify: ["liked"] };
+// #artist rides Explore (long-standing); #spotify rides Liked (2026-09-22 — the A11 swap
+// reversed, so the relationship flipped with it): a #spotify deep link keeps working and reads
+// as stepping into the Liked section's second page, not as a dead tab.
+const NAV_SUB = { explore: ["artist"], liked: ["spotify"] };
 const navOn = (k, v) => v === k || (NAV_SUB[k] || []).indexOf(v) >= 0;
 
 // URL state — a lightweight hash handle per view/artist (e.g. #artist/nine-inch-nails) so pages are

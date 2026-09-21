@@ -9,10 +9,12 @@ const SpStat = ({ n, l, accent, size }) => (
     <div className="r-mono" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: ".12em", textTransform: "uppercase", marginTop: 4 }}>{l}</div></div>
 );
 
-// ─── the Spotify section's sub-nav (2026-09-21, audit A11) ───────────────────────────────────
-// The navbar tab is now "Spotify" and lands HERE; Liked became its sub-view, so the two pages
-// need a switch between them instead of the old one-way "♥ liked songs →" button, which had no
-// counterpart on the Liked side at all. It is a plain r-seg — the segmented control BOTH pages
+// ─── the section's sub-nav (2026-09-21, audit A11) ───────────────────────────────────
+// Born under A11 (navbar tab = Spotify, Liked the sub-view); on 2026-09-22 Fuad flipped that
+// back — the tab is LIKED and Spotify left the navbar — and this pair became the one door into
+// the attention page from the site, so it matters more now, not less. The two pages need a
+// switch between them either way, instead of the old one-way "♥ liked songs →" button, which
+// had no counterpart on the Liked side at all. It is a plain r-seg — the segmented control BOTH pages
 // already use for their own switches (the year chips below, the sort lozenge on Liked) — so it
 // reads as native furniture and needs no new CSS. Labels stay short mono rather than echoing the
 // page title word for word; the long form rides in the tooltips. Liked's ♥ carries the accent
@@ -1020,7 +1022,11 @@ function LikedView({ go }) {
   }, []);
 
   if (failed && !ready) return (
-    <div className="r-view"><button className="r-back" onClick={() => go("spotify")}>← spotify</button>
+    <div className="r-view">
+      {/* the pair, not an "← spotify" r-back (2026-09-22): Liked is the navbar tab again and
+          Spotify is hidden, so "back" pointed at a page you never came from. The seg still
+          offers the attention page as the way out of a dead data state. */}
+      <SpotifyTabs go={go} active="liked" />
       <div className="r-rest-wait r-mono">Liked-songs data isn't available right now.</div></div>
   );
   if (!ready && !window.ROTATION_LIKED_META) return <div className="r-view"><div className="r-rest-wait r-mono">loading your liked songs…</div></div>;
@@ -1160,10 +1166,10 @@ function LikedView({ go }) {
           .lk-quiet .lk-resettune:not(.lk-tuneon) { display: none; }
         }
       `}</style>
-      {/* Up-navigation returns 2026-09-21 (audit A11), as the section pair rather than the old
-          "← spotify" r-back: the navbar tab is Spotify now and Liked is its sub-view, so the
-          2026-08-12 removal ("Liked is a first-class navbar destination, the up-nav is noise")
-          no longer holds — without this the attention page is unreachable from here. */}
+      {/* Up-navigation returned 2026-09-21 (audit A11) as the section pair; the 2026-09-22 flip
+          (Liked back in the navbar, Spotify hidden) KEEPS it for the opposite reason — the pair
+          is now the attention page's only inbound link site-wide, so the 2026-08-12 removal
+          ("Liked is a first-class navbar destination, the up-nav is noise") stays reversed. */}
       <SpotifyTabs go={go} active="liked" />
       {/* header row: title on the left, the DNA TUNE control hugging the right (stacks under the
           title on narrow screens via flex-wrap). */}
