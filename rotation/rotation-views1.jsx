@@ -1003,27 +1003,18 @@ function OverviewView({ t, go, restReady, seed }) {
             card here landed a few px off the one above it, and the drift compounded across the row.
             One template and one gap for both. */}
         <div className="ov-insgrid" style={{ gridColumn: "span 8", display: "grid", gridTemplateColumns: "repeat(4, minmax(0, 1fr))", gap: "var(--gap)" }}>
-          {/* ON THIS DAY in the ticker's old seat (Fuad 2026-09-22: "Let's Switch 'on this
-              day' with 'last 72h'"). The morning's clock72 card moved up to the pulse-row pin
-              and this fixed lead cell takes On this day — pinned by `only` (the codebase's
-              idiom for a fixed seat) rather than hand-rolled, so the provider keeps its ±3-day
-              fallback and there is one rendering of it in the file. The omit list is everything
-              this page renders elsewhere: a null otd (no date entry within ±3 days) must not
-              backfill a card from the pulse row or the deck beside it.
-              The last.fm header link died with the hand-rolled card — it was the Recent
-              ticker's chrome, carried along on 5181ee3, and a provider card has no header slot
-              for an anchor. Flagged to Fuad rather than re-homed. */}
-          <InsightRow go={go} n={1} only={["otd"]} omit={["clock72", "in-season", "week", "mood"]} />
-          {/* three scored cards beside it. otd + in-season are pinned into the pulse row above and
-              `week` is retired, so all three are omitted here or the page shows them twice.
-              (scrob-mile left this list on 2026-09-19 along with the provider itself; artist-mile
-              and movement followed on the same day — the first moved to the artist page, the
-              second merged into "This week", and neither can return a card to omit.)
-              `last` went with movement, which was the only id it ever pinned. Position is back to
-              score order here; if a card needs a fixed cell again, `last` is still in runInsights.
-              clock72 joined on 2026-09-22 (it holds a pulse-row seat since the same day's swap;
-              otd holds the fixed cell beside this row) — a card cannot be in two rows. */}
-          <InsightRow go={go} n={3} omit={["otd", "in-season", "week", "mood", "clock72"]} />
+          {/* THIS WEEK takes the lead cell, ON THIS DAY back to the lottery (Fuad 2026-09-22:
+              "Let's swap this week with on this day" — the third seat order of the day, after
+              the ticker→clock72 swap and the clock72→pulse trade). ONE call now renders all four
+              cells: `only` pins this-week first and the other three seats go to the ranked
+              remainder — which On this day rejoins (0.68, the score that lost it the lottery
+              before 09-19 pinned it; with the riser folded into This week it usually wins a seat
+              now). One call, one selection pass: the pinned-cell-vs-deck backfill collision that
+              two adjacent InsightRows carried (a null pin backfills with a card the deck also
+              picks) cannot happen inside a single runInsights, where `seen` dedupes.
+              in-season and clock72 stay omitted — both hold pulse-row pins above; week and mood
+              are the long-retired ids. */}
+          <InsightRow go={go} n={4} only={["this-week"]} omit={["in-season", "week", "mood", "clock72"]} />
         </div>
 
         {/* emotional weather — last-90d sounds/reads only now (the decades strip moved up to the
