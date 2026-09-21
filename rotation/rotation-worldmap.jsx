@@ -305,7 +305,12 @@ const mpRadExp = (s) => 0.8 + 0.15 * Math.min(1, (s - 1) / 5);   // bubbles shri
     let s = document.getElementById("rotation-adetail-js");
     if (!s) { s = document.createElement("script"); s.id = "rotation-adetail-js"; s.src = "artist-detail.js"; document.head.appendChild(s); s.addEventListener("load", () => setADetail(window.ROTATION_ADETAIL)); }
   };
-  React.useEffect(() => { ensureADetail(); }, []);
+  // AT IDLE, NOT AT MOUNT (2026-09-21, audit A3, amended at QC): the audit prescribed deleting
+  // this fetch outright, but resultMedia reads adetail for TAIL artists' albums/songs — without
+  // it the strip's filtered media counts silently undercount until the pane button loads the
+  // file. So the 1.71 MB gz leaves the landing critical path instead of the wire: idle-deferred,
+  // pane button still ensures on demand, SW prime covers repeat visits.
+  React.useEffect(() => { const idle = window.requestIdleCallback || ((f) => setTimeout(f, 2500)); idle(() => ensureADetail()); }, []);
   const avg = React.useMemo(() => { const ks = ["energy", "valence", "acoustic", "tempo", "dance", "instr"]; return ks.map(k => R.ARTISTS.reduce((s, x) => s + x.audio[k], 0) / R.ARTISTS.length); }, []);
   React.useEffect(() => {
     if (!playing) return;

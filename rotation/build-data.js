@@ -483,7 +483,8 @@ const VOCALS = (() => { try { const v = JSON.parse(fs.readFileSync(path.join(__d
 const _VOX_CH = { male: "m", female: "f", nonbinary: "n" };
 // returns the code string, "" for instrumental, or undefined when the slug has no vocals data.
 const vocalsCodeBySlug = (s) => {
-  if (!(s in VOCALS)) return undefined;
+  // alias rung (2026-09-21, audit A6): a fold-variant slug now reaches the canonical row too.
+  if (!(s in VOCALS)) { const al = ALIAS_SLUGS.get(s); const hit = al && [...al].find(a => a in VOCALS); if (!hit) return undefined; s = hit; }
   return (VOCALS[s] || []).map(g => _VOX_CH[g] || "").join("");
 };
 // ── MB member lineups (artist-members.json, by enrich-members.js) — VOCALS FALLBACK ──
@@ -2085,12 +2086,14 @@ const ARTISTS = rankedArtists.filter(([name]) => include.has(name)).map(([name, 
     topTracks: (_tBy.get(name) || []).slice(0, TRACKS_PER_ARTIST),
     topAlbums: (_aBy.get(name) || []).slice(0, ALBUMS_PER_ARTIST_VIEW).map(a => { const kind = albumKind(name, a.title); const rec = { ...a, cover: albArt(name, a.title), kind }; if (kind === "single") { const on = singleHostSlug(name, a.title); if (on) rec.on = on; } return rec; }),
     spotGenres: (aliasedByName(SPOTGEN, name) || []).slice(0, 8),   // Spotify's own genre tags
-    audio: AUDIO[name]
-      ? { energy: AUDIO[name].energy, valence: AUDIO[name].valence, acoustic: AUDIO[name].acoustic, tempo: AUDIO[name].tempo, dance: AUDIO[name].dance, instr: AUDIO[name].instr }
+    // alias-aware (2026-09-21, audit A6): raw AUDIO[name] silently lost fold-variant names
+    // (Scars on Broadway was the measured casualty); :6458 already did it right.
+    audio: (aliasedByName(AUDIO, name))
+      ? (({ energy, valence, acoustic, tempo, dance, instr }) => ({ energy, valence, acoustic, tempo, dance, instr }))(aliasedByName(AUDIO, name))
       : meta.audio
         ? { energy: meta.audio[0], valence: meta.audio[1], acoustic: meta.audio[2], tempo: meta.audio[3], dance: meta.audio[4], instr: meta.audio[5] }
         : tagAudio(cachedTags(name)),
-    am: AUDIO[name] ? 1 : 0,   // 1 = measured DNA (Spotify), 0 = inferred from tags
+    am: aliasedByName(AUDIO, name) ? 1 : 0,   // 1 = measured DNA (Spotify), 0 = inferred from tags
     era: counts.map(c => c === 0 ? 0 : Math.max(1, Math.round(9 * c / max))),
     // raw per-year plays (sparse) + primary family index — powers the Explore ranking filter
     yp: Object.fromEntries(years.map(y => [y, yc.get(y) || 0]).filter(e => e[1] > 0)),
@@ -3791,7 +3794,7 @@ let HOUR_SOUND = null;
     const td = sTrack ? TRACKDATA[slug(sArtist) + "~" + slug(sTrack)] : null;
     let e, tp, d;
     if (td && td.length >= 10) { e = td[4] / 100; tp = td[7] / 100; d = td[8] / 100; }
-    else { const a = AUDIO[sArtist]; if (!a) continue; e = a.energy; tp = a.tempo; d = a.dance; }
+    else { const a = aliasedByName(AUDIO, sArtist); if (!a) continue; e = a.energy; tp = a.tempo; d = a.dance; }  // alias-aware (audit A6)
     const A = acc[h]; A.e += e; A.tp += tp; A.d += d; A.n++;
   }
   const hours = acc.map((A, h) => A.n >= 200

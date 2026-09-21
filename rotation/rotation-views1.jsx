@@ -36,10 +36,18 @@ function OvCalRail({ go, onYear, onPeriod, init, extYear }) {
   const [detReady, setDetReady] = React.useState(!!window.ROTATION_CAL_DETAIL);
   React.useEffect(() => {   // period → results filtering needs the detail file; fetch it lazily
     if (window.ROTATION_CAL_DETAIL) return;
-    let s = document.getElementById("rotation-cal-detail-js");
-    if (!s) { s = document.createElement("script"); s.id = "rotation-cal-detail-js"; s.src = "calendar-detail.js"; document.head.appendChild(s); }
-    const on = () => setDetReady(true); s.addEventListener("load", on);
-    return () => s.removeEventListener("load", on);
+    // AT IDLE, NOT AT MOUNT (2026-09-21, audit A3): this 1.02 MB gz fetch sat on the landing
+    // page's critical path for a file only a period pick reads. A seeded deep-link period still
+    // fetches immediately (the seed needs it to filter at all); everyone else pays after first
+    // paint. The SW prime warms it for repeat visits, so idle here is a cold-visit-only cost.
+    const inject = () => {
+      let s = document.getElementById("rotation-cal-detail-js");
+      if (!s) { s = document.createElement("script"); s.id = "rotation-cal-detail-js"; s.src = "calendar-detail.js"; document.head.appendChild(s); }
+      s.addEventListener("load", () => setDetReady(true));
+    };
+    if (init && init.period) { inject(); return; }
+    const idle = window.requestIdleCallback || ((f) => setTimeout(f, 2500));
+    idle(inject);
   }, []);
   const [cal, setCal] = React.useState(window.ROTATION_CAL || null);
   const now = new Date();
