@@ -2,7 +2,8 @@
 // over a SINGLE side-by-side surface: the sound map (left, sticky) and the ranked results
 // (right) are the same universe (window.ROTATION.EXPLORE — every tagged artist), so clicking a
 // subgenre bubble filters the list and a click is never empty. Genres are grouped under families
-// (FamiliesGrid) — filter by family or subgenre; subgenres morph smoothly as you scrub years.
+// (FamiliesGrid) — filter by any number of families and/or subgenres (they union); subgenres morph
+// smoothly as you scrub years.
 
 const _inflate = (flat) => Array.from({ length: 7 }, (_, r) => flat.slice(r * 24, r * 24 + 24));
 const _zeros = () => Array.from({ length: 7 }, () => new Array(24).fill(0));
@@ -86,6 +87,23 @@ function recInFam(R, rec, fam) {
 // weight) when present, else `s` (display subs). Keeps a stray tag from making an artist filterable.
 const _filtSubs = (rec) => (rec && rec.sq) ? rec.sq : ((rec && rec.s) || []);
 
+// THE GENRE LAYER (multiselect, 2026-09-22). Families and subgenres are two INDEPENDENT selections —
+// `fams` a Set of family indices, `subIdxs` a Set of SUBS indices — and they compose as a UNION: a
+// record passes if it sits in ANY selected family OR carries ANY selected subgenre. Union, not
+// intersection: a subgenre can be picked while its family isn't (and vice versa), and stacking two
+// families has to widen the slice rather than empty it. Both sets empty = no genre constraint at
+// all, exactly what the old single fam/sub null pair meant. Replaces the old
+// "sub wins, else family" branch that every filter site used to spell out inline.
+function recInGenre(R, rec, fams, subIdxs) {
+  const nf = fams ? fams.size : 0, ns = subIdxs ? subIdxs.size : 0;
+  if (!nf && !ns) return true;
+  if (ns) { const fs = _filtSubs(rec); for (const si of subIdxs) if (fs.indexOf(si) >= 0) return true; }
+  if (nf) { for (const fi of fams) if (recInFam(R, rec, fi)) return true; }
+  return false;   // a record with no record at all (rec undefined) falls through to here
+}
+// is the genre layer constrained at all? (lets callers skip the walk entirely when it isn't)
+const _genreOn = (fams, subIdxs) => !!((fams && fams.size) || (subIdxs && subIdxs.size));
+
 // ── artist Sort specs ──
 // One entry per Sort chip beyond plays. `v(a, af, plays)` returns the sortable number (or null to
 // DROP the artist from this sort, mirroring how audio sorts drop artists without measured audio);
@@ -139,7 +157,7 @@ const SND_HINT = {
 // years = Set of selected listening years (empty = all-time). yearsPlays(rec) sums a rec's plays
 // across the selection (0 if none) — the multiselect union of the old single-year `a.yp[year]`.
 function exploreRank(R, kind, f, limit = 40) {
-  const { years, fam, subIdx, cells } = f;
+  const { years, fams, subIdxs, cells } = f;
   const hasYears = years && years.size > 0;
   const yearsPlays = (yp) => { if (!yp) return 0; let s = 0; for (const y of years) s += yp[y] || 0; return s; };
   const vocals = f.vocals && f.vocals !== "any" ? f.vocals : null;   // active vocals filter, or null
@@ -152,8 +170,7 @@ function exploreRank(R, kind, f, limit = 40) {
     for (const a of R.EXPLORE) {
       if (hasYears && !yearsPlays(a.yp)) continue;
       if (pass && !pass.art.has(a.id)) continue;   // theme/decade: artist keeps ≥20% of matched-track plays
-      if (subIdx >= 0) { if (_filtSubs(a).indexOf(subIdx) < 0) continue; }
-      else if (!recInFam(R, a, fam)) continue;
+      if (!recInGenre(R, a, fams, subIdxs)) continue;   // genre layer: union of the selected families + subgenres
       if (vocals && !vocalsPass(a.vx, vocals)) continue;   // vocals dimension (hides no-data artists)
       if (regSet && !registerPass(a.rg, regSet)) continue;   // register dimension (hides no-data artists)
       if (f.attrSel) {  // attributes-lens brush/click: filter the FULL universe, not the top-40 slice
@@ -203,8 +220,7 @@ function exploreRank(R, kind, f, limit = 40) {
     }
     src = [...merged.values()];
   }
-  if (subIdx >= 0) src = src.filter(it => { const e = R.expById[it.aid]; return e && _filtSubs(e).indexOf(subIdx) >= 0; });
-  else if (fam != null) src = src.filter(it => { const e = R.expById[it.aid]; return recInFam(R, e, fam); });
+  if (_genreOn(fams, subIdxs)) src = src.filter(it => recInGenre(R, R.expById[it.aid], fams, subIdxs));
   if (hasCells) src = src.filter(it => tsPlays(R, it.aid, cells) > 0);
   if (pass) src = src.filter(it => kind === "albums" ? pass.alb.has(it.id) : pass.trk(it.id));   // it.id = artSlug~titleSlug
   if (vocals) src = src.filter(it => { const e = R.expById[it.aid] || R.byId[it.aid]; return e && vocalsPass(e.vx, vocals); });   // vocals dimension
@@ -271,7 +287,7 @@ const inMoodZone = (af, z) => !z || zoneOf(af[1], af[0]) === z;
 // (vocalsPass hides no-data artists; pass.art already folds theme AND decade at artist granularity),
 // so the left-surface charts' active slice tracks the ranked results. Both fail open when inactive.
 function sliceArtists(R, f, applyZone) {
-  const A = R.AUDIO || {}, { years, fam, subIdx, cells, moodZone } = f;
+  const A = R.AUDIO || {}, { years, fams, subIdxs, cells, moodZone } = f;
   const hasYears = years && years.size > 0;
   const inYears = (yp) => { if (!yp) return false; for (const y of years) if (yp[y]) return true; return false; };
   const hasCells = cells && cells.size > 0;
@@ -283,7 +299,7 @@ function sliceArtists(R, f, applyZone) {
     const af = A[a.id]; if (!af) continue;
     if (hasYears && !inYears(a.yp)) continue;
     if (pass && !pass.art.has(a.id)) continue;   // theme/decade: artist keeps ≥20% of matched-track plays
-    if (subIdx >= 0) { if (_filtSubs(a).indexOf(subIdx) < 0) continue; } else if (!recInFam(R, a, fam)) continue;
+    if (!recInGenre(R, a, fams, subIdxs)) continue;   // genre layer: union of the selected families + subgenres
     if (hasCells && !tsPlays(R, a.id, cells)) continue;
     if (vocals && !vocalsPass(a.vx, vocals)) continue;   // vocals dimension (hides no-data artists)
     if (regSet && !registerPass(a.rg, regSet)) continue;   // register dimension (hides no-data artists)
@@ -303,7 +319,7 @@ const _hueHash = (s) => window.hashInt(s || "", 0) % 360;
 function mediaRank(M, R, meta, kind, f, limit) {
   const rows = kind === "albums" ? M.albums : M.tracks;
   const tailIdx = kind === "albums" ? 5 : 4;
-  const { years, fam, subIdx, cells, moodZone } = f;
+  const { years, fams, subIdxs, cells, moodZone } = f;
   const vocals = f.vocals && f.vocals !== "any" ? f.vocals : null;   // active vocals filter, or null
   const regSet = f.reg && f.reg.size ? f.reg : null;   // active register filter (Set of REG_VOCAB labels)
   const pass = f.pass && f.pass.active ? f.pass : null;   // theme/decade filter (filter-index)
@@ -315,8 +331,7 @@ function mediaRank(M, R, meta, kind, f, limit) {
     const m = meta[row[1]]; if (!m) continue;   // guard: a media row whose artist idx has no meta (index desync) — skip, don't throw
     const rec = m.rec;
     if (pass) { const aname = M.artists[row[1]] || "", key = R.slug(aname) + "~" + R.slug(row[0]); if (kind === "albums" ? !pass.alb.has(key) : !pass.trk(key)) continue; }
-    if (subIdx >= 0) { if (!rec || _filtSubs(rec).indexOf(subIdx) < 0) continue; }
-    else if (fam != null) { if (!recInFam(R, rec, fam)) continue; }
+    if (!recInGenre(R, rec, fams, subIdxs)) continue;   // genre layer: union of the selected families + subgenres (an unprofiled rec fails it)
     if (vocals) { const vx = (rec && rec.vx !== undefined) ? rec.vx : (R.byId[m.aid] && R.byId[m.aid].vx); if (!vocalsPass(vx, vocals)) continue; }   // vocals dimension
     if (regSet) { const rg = (rec && rec.rg !== undefined) ? rec.rg : (R.byId[m.aid] && R.byId[m.aid].rg); if (!registerPass(rg, regSet)) continue; }   // register dimension (by artist's dominant register)
     if (moodZone) { const af = R.AUDIO[m.aid]; if (!af || !inMoodZone(af, moodZone)) continue; }
@@ -623,9 +638,10 @@ function ArtistCloud({ pts, activeIds, go }) {
 
 // SubMoodScatter — the "subgenres" granularity for the MOOD lens: each subgenre bubbled at its
 // members' mean valence × energy (sized by plays), on the same quadrant canvas as MoodQuadrant.
-// Tap a bubble to filter by subgenre; tap a quadrant to scope by mood zone. Far fewer points than
-// the artist cloud, so it's the cheap default.
-function SubMoodScatter({ subs, activeSub, activeFam, onPick, moodZone, setMoodZone }) {
+// Tap a bubble to toggle that subgenre in the filter; tap a quadrant to scope by mood zone. Far
+// fewer points than the artist cloud, so it's the cheap default.
+// activeSubs = Set of selected subgenre names, activeFams = Set of selected family indices.
+function SubMoodScatter({ subs, activeSubs, activeFams, onPick, moodZone, setMoodZone }) {
   const [hi, setHi] = React.useState(null);
   const z = useZoom(1000, 560);
   const QW = 1000, QH = 560, qp = 40;
@@ -635,8 +651,10 @@ function SubMoodScatter({ subs, activeSub, activeFam, onPick, moodZone, setMoodZ
   // bubbles memoized without the zoom factor; radius/label ride the --zk CSS var so zoom
   // rescales them natively without re-reconciling every subgenre bubble (Fuad 2026-07-09).
   const bubbles = React.useMemo(() => subs.map((s, i) => {
-    const on = activeSub ? activeSub === s.name : (activeFam != null && s.fam === activeFam);
-    const dim = activeSub ? activeSub !== s.name : (activeFam != null && s.fam !== activeFam);
+    // lit when the bubble is itself selected OR its family is (the union the page filters by);
+    // everything else dims as soon as ANY genre selection exists
+    const on = activeSubs.has(s.name) || activeFams.has(s.fam);
+    const dim = !on && (activeSubs.size > 0 || activeFams.size > 0);
     const foc = hi === s.name;
     const baseR = 9 + (s.w / maxW) * 40;
     const baseFs = Math.min(13, baseR / 3.2);
@@ -649,7 +667,7 @@ function SubMoodScatter({ subs, activeSub, activeFam, onPick, moodZone, setMoodZ
           style={{ r: `calc(${baseR.toFixed(2)}px * var(--zk) * var(--fk, 1))`, transition: `fill-opacity .45s cubic-bezier(.3,.8,.3,1) ${i * 0.008}s` }} />
         {baseR > 16 && <text x={qx(s.x)} y={qy(s.y)} textAnchor="middle" dominantBaseline="middle" fill="var(--ink)" fontFamily="var(--sans)" fontWeight="500" style={{ pointerEvents: "none", fontSize: `calc(${baseFs.toFixed(2)}px * var(--zk))` }}>{s.name.length > 13 ? s.name.split(" ")[0] : s.name}</text>}
       </g>);
-  }), [subs, maxW, activeSub, activeFam, hi, onPick]);
+  }), [subs, maxW, activeSubs, activeFams, hi, onPick]);
   const mid = 0.5;
   const zones = [
     { z: "dark-intense", x: qp, y: qp, w: qx(mid) - qp, h: qy(mid) - qp },
@@ -823,8 +841,9 @@ function attrFmtVal(row, key) {
 // AttrScatter — the zoomable attribute plot. X/Y pickers, artists|subgenres, hover readout, brush.
 // Reuses useZoom / --zk / non-scaling-stroke exactly like the other Explore charts, so dots are
 // memoized without the zoom factor and zoom only mutates the viewBox + a CSS var (no React reconcile
-// of the cloud). Colours ride the family hue; the legend below dims by family.
-function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pageActiveOf }) {
+// of the cloud). Colours ride the family hue; the legend below dims by family (famDims = the Set of
+// selected family indices — empty means no family selection, so nothing dims).
+function AttrScatter({ rows, mode, xKey, yKey, shade, famDims, go, onBrushSel, pageActiveOf }) {
   const [hover, setHover] = React.useState(null);
   const [brush, setBrush] = React.useState(null);    // live pixel rect while dragging
   const [brushed, setBrushed] = React.useState(null); // committed rect
@@ -1001,7 +1020,7 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
   };
 
   const inBrush = React.useCallback((pt) => brushed ? (pt.px >= brushed.x0 && pt.px <= brushed.x1 && pt.py >= brushed.y0 && pt.py <= brushed.y1) : true, [brushed]);
-  const isDimFam = React.useCallback((row) => famDim != null && row.fam !== famDim, [famDim]);
+  const isDimFam = React.useCallback((row) => famDims.size > 0 && !famDims.has(row.fam), [famDims]);
   // dimmed because it's outside the page's active time/genre/clock slice (the filter conjunction).
   // Treated like the family-dim: non-members drop out of the brush region and can't be opened.
   const isPageDim = React.useCallback((row) => pageActiveOf ? !pageActiveOf(row) : false, [pageActiveOf]);
@@ -1050,7 +1069,7 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
   // transitioning on every path regardless; that's handled separately in the style.
   const lensKey = xKey + "|" + yKey + "|" + mode;
   // filter signature: anything that changes which dots are shown / dimmed but is NOT the lens.
-  const filterSig = React.useMemo(() => rows.length + "|" + String(famDim) + "|" + String(!!pageActiveOf), [rows, famDim, pageActiveOf]);
+  const filterSig = React.useMemo(() => rows.length + "|" + [...famDims].join(".") + "|" + String(!!pageActiveOf), [rows, famDims, pageActiveOf]);
   const prevFilterSigRef = React.useRef(filterSig);
   const prevLensRef = React.useRef(lensKey);
   const prevUnderCeilRef = React.useRef(visCount <= ATTR_ANIM_MAX);
@@ -1217,7 +1236,7 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDim, go, onBrushSel, pa
 
 // AttrExplore — the "attributes" lens wrapper: lazy-loads track-audio.js, memoises the centroid
 // pass, owns the X/Y/shade pickers + the family colour key (click a family to dim the rest).
-function AttrExplore({ R, go, grain, onBrushSel, activeIds, activeSub, activeFam, onFam, filtersActive, xKey, yKey, setXKey, setYKey }) {
+function AttrExplore({ R, go, grain, onBrushSel, activeIds, activeSubs, activeFams, onFam, filtersActive, xKey, yKey, setXKey, setYKey }) {
   const [taReady, setTaReady] = React.useState(!!window.ROTATION_TRACKAUDIO);
   const [restReady, setRestReady] = React.useState(!!(R && R._restLoaded));
   const [shade, setShade] = React.useState("none");
@@ -1226,8 +1245,9 @@ function AttrExplore({ R, go, grain, onBrushSel, activeIds, activeSub, activeFam
   // own `famDim` state that dimmed dots inside this component and nothing else, so picking
   // Thrash/Death here and picking it in the grid below did visibly different things, and the ranked
   // list, the era band and the Active chips never heard about this one at all. Same state now, so
-  // there is one genre filter on the page instead of two that look identical.
-  const famDim = activeFam;
+  // there is one genre filter on the page instead of two that look identical. Multiselect since
+  // 2026-09-22: this is the page's whole family Set, so the key lights every selected family.
+  const famDims = activeFams;
 
   const mode = grain === "artists" ? "artists" : "subgenres"; // reuse Explore's subs|artists seg
 
@@ -1251,7 +1271,7 @@ function AttrExplore({ R, go, grain, onBrushSel, activeIds, activeSub, activeFam
   // FILTER CONJUNCTION — the attributes lens now honours the page's time/genre/clock slice exactly
   // like the texture/mood charts: dots outside the active slice dim (and go non-interactive), and the
   // brush refines WITHIN that dimmed view. artists grain reads the shared `activeIds` set (moodActive,
-  // same as ArtistCloud/MoodQuadrant); subs grain reads activeSub/activeFam like ExploreScatter. When
+  // same as ArtistCloud/MoodQuadrant); subs grain reads activeSubs/activeFams like ExploreScatter. When
   // no page filter is set, everything renders full strength (pageFiltered=false → pageActiveOf=true).
   // `filtersActive` ALONE decides that. Not activeIds.size: an empty set means the slice matched
   // nothing, which is the opposite of no filter being set, and the old `activeIds.size > 0` guard
@@ -1260,16 +1280,17 @@ function AttrExplore({ R, go, grain, onBrushSel, activeIds, activeSub, activeFam
   // artists honour the whole slice (year/genre/clock via activeIds); subs dim by genre only, exactly
   // like ExploreScatter (which ignores year/clock for its subgenre dimming).
   const pageFiltered = mode === "subgenres"
-    ? (activeSub != null || activeFam != null)
+    ? (activeSubs.size > 0 || activeFams.size > 0)
     : (!!filtersActive && activeIds != null);
   const pageActiveOf = React.useCallback((row) => {
     if (!pageFiltered) return true;
     if (mode === "subgenres") {
+      // union, same as the page filter: the row's own subgenre is selected, or its family is
       const nm = (row.sub != null && R.SUBS[row.sub]) ? R.SUBS[row.sub].name : row.name;
-      return activeSub != null ? nm === activeSub : (activeFam != null ? row.fam === activeFam : true);
+      return activeSubs.has(nm) || activeFams.has(row.fam);
     }
     return activeIds ? activeIds.has(row.id) : true;
-  }, [pageFiltered, mode, activeSub, activeFam, activeIds, R]);
+  }, [pageFiltered, mode, activeSubs, activeFams, activeIds, R]);
 
   // families actually present in the current rows, for the colour key (ordered by FAMILIES index)
   const legendFams = React.useMemo(() => {
@@ -1309,15 +1330,16 @@ function AttrExplore({ R, go, grain, onBrushSel, activeIds, activeSub, activeFam
           <select value={shade} onChange={e => setShade(e.target.value)} style={selBox}>{shadeOpts.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}</select></div>
       </div>
 
-      <AttrScatter rows={rows} mode={mode} xKey={xKey} yKey={yKey} shade={shade} famDim={famDim} go={go} onBrushSel={onBrushSel} pageActiveOf={pageActiveOf} />
+      <AttrScatter rows={rows} mode={mode} xKey={xKey} yKey={yKey} shade={shade} famDims={famDims} go={go} onBrushSel={onBrushSel} pageActiveOf={pageActiveOf} />
 
-      {/* family colour key — tap a family to isolate it (dim the rest); tap again to clear */}
+      {/* family colour key — tap a family to add/drop it (the rest dim); "clear" drops them all.
+          onFam(i) TOGGLES that family on the page, onFam(null) clears the whole family set. */}
       <div className="xp-attr-legend">
         {legendFams.map(f => {
-          const on = famDim === f.i;
+          const on = famDims.has(f.i);
           return (
-            <button key={f.i} className="xp-attr-legitem" data-on={on} data-dim={famDim != null && !on}
-              onClick={() => onFam && onFam(famDim === f.i ? null : f.i)} title={"filter to " + f.family}>
+            <button key={f.i} className="xp-attr-legitem" data-on={on} data-dim={famDims.size > 0 && !on}
+              onClick={() => onFam && onFam(f.i)} title={"filter to " + f.family}>
               <span className="xp-attr-swatch" style={{ background: `oklch(0.62 0.16 ${f.hue})` }} />
               {/* Full names on desktop, phone labels below 760px (Fuad 2026-08-21, revising his
                   2026-08-20 call that this key should always read complete — that held while the
@@ -1327,7 +1349,7 @@ function AttrExplore({ R, go, grain, onBrushSel, activeIds, activeSub, activeFam
             </button>
           );
         })}
-        {famDim != null && <button className="xp-attr-legitem xp-attr-legclear" onClick={() => onFam && onFam(null)}>clear</button>}
+        {famDims.size > 0 && <button className="xp-attr-legitem xp-attr-legclear" onClick={() => onFam && onFam(null)}>clear</button>}
       </div>
 
       <div className="r-mono xp-attr-foot">
@@ -1521,8 +1543,12 @@ function ExploreView({ t, go, setPop, seed }) {
   const hasYears = years.size > 0;                        // any year constraint active?
   // toggle one year in/out of the selection; used by the Time chiprow
   const toggleYear = (y) => setYears(prev => { const n = new Set(prev); n.has(y) ? n.delete(y) : n.add(y); return n; });
-  const [fam, setFam] = React.useState(null);             // family index, or null
-  const [sub, setSub] = React.useState(null);             // subgenre NAME, or null
+  // Genre filter is MULTISELECT and the two halves are INDEPENDENT (2026-09-22): `fams` = Set of
+  // family indices, `subs` = Set of subgenre NAMEs. Picking toggles membership, and picking a family
+  // no longer clears the subgenres (or the other way round) — they union (see recInGenre), so a
+  // record qualifies via ANY selected family OR ANY selected subgenre. Both empty = no genre filter.
+  const [fams, setFams] = React.useState(() => new Set());
+  const [subs, setSubs] = React.useState(() => new Set());
   const [cells, setCells] = React.useState(() => new Set());
   const [vocals, setVocals] = React.useState("any");      // vocals dimension: any/male/female/mixed/nb/instrumental
   const [playing, setPlaying] = React.useState(false);
@@ -1587,12 +1613,24 @@ function ExploreView({ t, go, setPop, seed }) {
     if (!seed) return;
     const norm = (x) => (x || "").toLowerCase().replace(/[^a-z0-9]/g, "");
     if (seed.includes("=")) {   // restore a shared/bookmarked slice (";"-separated; parseHash already url-decoded)
-      const p = {}; for (const kv of seed.split(";")) { const i = kv.indexOf("="); if (i > 0) p[kv.slice(0, i)] = kv.slice(i + 1); }
+      // s= and f= carry ";"-separated NAME LISTS, but ";" is also this format's pair separator — so a
+      // list arrives as one pair-shaped token followed by bare continuation tokens ("s=Djent;Math
+      // Rock;f=Prog" → "s=Djent" · "Math Rock" · "f=Prog"). A token only opens a new pair when its
+      // key looks like one of this format's short keys; anything else continues the key we're on
+      // (only s/f ever take a list). Old single-value links parse exactly as they always did.
+      const p = {}; let lastK = null;
+      for (const kv of seed.split(";")) {
+        const i = kv.indexOf("=");
+        if (i > 0 && /^[a-z]{1,3}$/.test(kv.slice(0, i))) { lastK = kv.slice(0, i); p[lastK] = kv.slice(i + 1); }
+        else if (kv && (lastK === "s" || lastK === "f")) p[lastK] += ";" + kv;
+      }
       // y = selected listening years. Multiselect encodes a "."-separated list ("2015.2019");
       // a bare single year ("y=2015") still restores (backward compat with old single-year links).
       if (p.y) { const ys = String(p.y).split(".").map(Number).filter(n => !isNaN(n)); if (ys.length) setYears(new Set(ys)); }
-      if (p.s) { const s = R.SUBS.find(x => norm(x.name) === norm(p.s)); if (s) { setFam(null); setSub(s.name); } }
-      else if (p.f) { const fm = _resolveFamParam(R, p.f); if (fm) { setSub(null); setFam(fm.i); } }
+      // s = subgenres, f = families. Both can be present now (they're independent), each resolves
+      // per token — unknown names drop, the v1→v2 family bridge runs on every f token.
+      if (p.s) { const ns = p.s.split(";").map(n => R.SUBS.find(x => norm(x.name) === norm(n))).filter(Boolean).map(x => x.name); if (ns.length) setSubs(new Set(ns)); }
+      if (p.f) { const fs = p.f.split(";").map(n => _resolveFamParam(R, n)).filter(Boolean).map(x => x.i); if (fs.length) setFams(new Set(fs)); }
       if (p.m && MOOD_ZONES.includes(p.m)) setMoodZone(p.m);
       if (p.c) setCells(new Set(p.c.split(".").map(Number).filter(n => n >= 0 && n < 168)));
       if (p.t) setThemeSel(new Set(p.t.split(".").map(Number).filter(n => n >= 0 && n < 28)));
@@ -1606,11 +1644,11 @@ function ExploreView({ t, go, setPop, seed }) {
       if (p.ay && ATTR_AXES.some(a => a.key === p.ay)) setAttrY(p.ay);
       return;
     }
-    const q = norm(seed);
+    const q = norm(seed);   // bare #explore/<tag> is always ONE tag (an artist-page genre chip)
     const s = R.SUBS.find(x => norm(x.name) === q);
-    if (s) { setFam(null); setSub(s.name); return; }
+    if (s) { setSubs(new Set([s.name])); return; }
     const fm = _resolveFamParam(R, seed);
-    if (fm) { setSub(null); setFam(fm.i); }
+    if (fm) setFams(new Set([fm.i]));
   }, [seed, R]);
 
   // keep the active slice in the URL (replaceState — no history spam, no popstate loops) so any
@@ -1621,8 +1659,9 @@ function ExploreView({ t, go, setPop, seed }) {
     if (!(window.location.hash || "").startsWith("#explore")) return;      // only while Explore owns the URL
     const parts = [];
     if (years.size) parts.push("y=" + [...years].sort((a, b) => a - b).join("."));
-    if (sub) parts.push("s=" + encodeURIComponent(sub));
-    else if (fam != null) { const fm = R.FAMILIES.find(f => f.i === fam); if (fm) parts.push("f=" + encodeURIComponent(fm.family)); }
+    // both genre params ship independently, each a ";"-joined name list; empty sets write nothing
+    if (subs.size) parts.push("s=" + [...subs].map(encodeURIComponent).join(";"));
+    if (fams.size) { const fn = [...fams].map(i => (R.FAMILIES.find(f => f.i === i) || {}).family).filter(Boolean); if (fn.length) parts.push("f=" + fn.map(encodeURIComponent).join(";")); }
     if (moodZone) parts.push("m=" + moodZone);
     if (cells.size) parts.push("c=" + [...cells].sort((a, b) => a - b).join("."));
     if (themeSel.size) parts.push("t=" + [...themeSel].sort((a, b) => a - b).join("."));
@@ -1636,11 +1675,13 @@ function ExploreView({ t, go, setPop, seed }) {
     if (attrY !== "popularity") parts.push("ay=" + attrY);
     const target = "#explore" + (parts.length ? "/" + parts.join(";") : "");
     if ((window.location.hash || "") !== target) window.history.replaceState(null, "", target);
-  }, [kind, years, fam, sub, moodZone, cells, themeSel, regSel, relDec, relYear, attrX, attrY, R]);
+  }, [kind, years, fams, subs, moodZone, cells, themeSel, regSel, relDec, relYear, attrX, attrY, R]);
 
   const yearKeys = React.useMemo(() => Object.keys(R.CLOCK_BY_YEAR).map(Number).sort((a, b) => a - b), [R]);
   const subNames = React.useMemo(() => R.SUBS.map(s => s.name), [R]);
-  const subIdx = sub == null ? -1 : R.SUBS.findIndex(s => s.name === sub);
+  // the selected subgenre NAMEs as SUBS indices — what every filter site tests. Memoised so the Set
+  // identity is stable across renders (it rides a dozen dependency arrays below).
+  const subIdxs = React.useMemo(() => { const n = new Set(); R.SUBS.forEach((s, i) => { if (subs.has(s.name)) n.add(i); }); return n; }, [R, subs]);
 
   // "play the decade" scrubs one year at a time — it REPLACES the multiselect with the single
   // advancing year each tick (so the map/list animate exactly as before). curYear = the sole year
@@ -1769,7 +1810,7 @@ function ExploreView({ t, go, setPop, seed }) {
     // era band unmoved, while the search box, which lands in `picks`, moved it. `sel` covers both the
     // artists grain (keys are artist ids) and the subgenres grain (keys are sub indices).
     const sel = (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null;
-    const anyFilter = hasYears || fam != null || subIdx >= 0 || cells.size > 0 || vocals !== "any"
+    const anyFilter = hasYears || _genreOn(fams, subIdxs) || cells.size > 0 || vocals !== "any"
       || regSel.size > 0 || picks.size > 0 || !!sel || !!moodZone;
     if (!anyFilter) return null;   // null = count everything, and skip the per-track Set lookup
     const inYears = (yp) => { if (!yp) return false; for (const y of years) if (yp[y]) return true; return false; };
@@ -1777,7 +1818,7 @@ function ExploreView({ t, go, setPop, seed }) {
     for (const a of R.EXPLORE) {
       if (picks.size && !picks.has(a.id)) continue;
       if (hasYears && !inYears(a.yp)) continue;
-      if (subIdx >= 0) { if (_filtSubs(a).indexOf(subIdx) < 0) continue; } else if (!recInFam(R, a, fam)) continue;
+      if (!recInGenre(R, a, fams, subIdxs)) continue;
       if (cells.size && !tsPlays(R, a.id, cells)) continue;
       if (vocals !== "any" && !vocalsPass(a.vx, vocals)) continue;
       if (regSel.size && !registerPass(a.rg, regSel)) continue;   // register dimension (hides no-data artists, like vocals)
@@ -1789,7 +1830,7 @@ function ExploreView({ t, go, setPop, seed }) {
       out.add(a.id);
     }
     return out;
-  }, [R, years, hasYears, fam, subIdx, cells, vocals, regSel, picks, attrSel, lens, moodZone]);
+  }, [R, years, hasYears, fams, subIdxs, cells, vocals, regSel, picks, attrSel, lens, moodZone]);
 
   const decadeData = React.useMemo(() => {
     const F = window.ROTATION_FILTER; if (!F) return null;
@@ -1826,19 +1867,19 @@ function ExploreView({ t, go, setPop, seed }) {
   const mediaItems = React.useMemo(() => {
     if (kind === "artists" || !mediaReady || !mediaArtMeta) return null;
     // fetch a lookahead past what's visible so "load more" has rows ready and `more` is detectable
-    return mediaRank(window.ROTATION_MEDIA, R, mediaArtMeta, kind, { years, fam, subIdx, cells, moodZone, vocals, reg: regSel, pass, picks, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null }, visN + 40);
-  }, [kind, mediaReady, mediaArtMeta, years, fam, subIdx, cells, moodZone, vocals, regSel, pass, visN, R, attrSel, lens, picks]);
+    return mediaRank(window.ROTATION_MEDIA, R, mediaArtMeta, kind, { years, fams, subIdxs, cells, moodZone, vocals, reg: regSel, pass, picks, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null }, visN + 40);
+  }, [kind, mediaReady, mediaArtMeta, years, fams, subIdxs, cells, moodZone, vocals, regSel, pass, visN, R, attrSel, lens, picks]);
   // the attributes-lens selection now filters INSIDE the rank functions (full universe,
   // pre-slice) — the old post-filter ran on the top-40 and starved the list (Fuad 2026-07-14)
   const items = (kind !== "artists" && mediaItems) ? mediaItems.items
     // artists get the same visN+40 lookahead as mediaRank, so "load more" keeps expanding
     // past 40 instead of hitting the old hard cap (Fuad 2026-07-26)
-    : exploreRank(R, kind, { years, fam, subIdx, cells, sound, dir: sndDir, moodZone, vocals, reg: regSel, pass, picks, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null }, visN + 40);
+    : exploreRank(R, kind, { years, fams, subIdxs, cells, sound, dir: sndDir, moodZone, vocals, reg: regSel, pass, picks, attrSel: (lens === "attributes" && attrSel && attrSel.keys.size) ? attrSel : null }, visN + 40);
   // more rows to reveal? true whenever the ranked pool has more than we're currently showing —
   // works for artists (full list) AND albums/tracks (media pool), so load-more applies to all three.
   const more = items.length > visN;
   // a new slice resets the load-more expansion (the chosen 16/32/64 base stays)
-  React.useEffect(() => { setExtra(0); }, [kind, years, fam, subIdx, cells, moodZone, vocals, regSel, attrSel, themeMask, relLo, relHi, picks]);
+  React.useEffect(() => { setExtra(0); }, [kind, years, fams, subIdxs, cells, moodZone, vocals, regSel, attrSel, themeMask, relLo, relHi, picks]);
   // how many artists the ACTIVE vocals filter drops purely for lacking vocals data — same "N without
   // data" honesty as the Liked audio sliders. Counts artists that pass every OTHER filter but have no
   // vx (kind === "artists" only; the note is about artists either way).
@@ -1850,12 +1891,12 @@ function ExploreView({ t, go, setPop, seed }) {
       if (a.vx !== undefined) continue;                 // has data — not a no-data drop
       if (hasYears && !(a.yp && [...years].some(y => a.yp[y]))) continue;
       if (pass && !pass.art.has(a.id)) continue;
-      if (subIdx >= 0) { if (_filtSubs(a).indexOf(subIdx) < 0) continue; } else if (!recInFam(R, a, fam)) continue;
+      if (!recInGenre(R, a, fams, subIdxs)) continue;
       if (cells.size && !tsPlays(R, a.id, cells)) continue;
       n++;
     }
     return n;
-  }, [R, vocals, years, fam, subIdx, cells, passAgg]);
+  }, [R, vocals, years, fams, subIdxs, cells, passAgg]);
   // mood-lens slices. The quadrant renders a STABLE universe of points (so dots persist across filter
   // changes and can transition opacity/size) and toggles which are "active" for the current slice;
   // facts/arc reflect the chosen zone too.
@@ -1870,13 +1911,13 @@ function ExploreView({ t, go, setPop, seed }) {
   // nothing about picks, so the intersection happens outside it rather than by threading a new key
   // through every caller.
   const moodActive = React.useMemo(() => {
-    const s = new Set(sliceArtists(R, { years, fam, subIdx, cells, vocals, reg: regSel, pass }, false).map(a => a.id));
+    const s = new Set(sliceArtists(R, { years, fams, subIdxs, cells, vocals, reg: regSel, pass }, false).map(a => a.id));
     if (!picks.size) return s;
     const n = new Set();
     for (const id of picks) if (s.has(id)) n.add(id);
     return n;
-  }, [R, years, fam, subIdx, cells, vocals, regSel, pass, picks]);
-  const moodSet = React.useMemo(() => sliceArtists(R, { years, fam, subIdx, cells, moodZone, vocals, reg: regSel, pass }, true), [R, years, fam, subIdx, cells, moodZone, vocals, regSel, pass]);
+  }, [R, years, fams, subIdxs, cells, vocals, regSel, pass, picks]);
+  const moodSet = React.useMemo(() => sliceArtists(R, { years, fams, subIdxs, cells, moodZone, vocals, reg: regSel, pass }, true), [R, years, fams, subIdxs, cells, moodZone, vocals, regSel, pass]);
   // ── granularity data (built once from the universe; independent of the active slice) ──
   // subMood: each subgenre bubbled at its members' play-weighted mean valence × energy.
   const subMood = React.useMemo(() => {
@@ -1889,8 +1930,12 @@ function ExploreView({ t, go, setPop, seed }) {
   // because per-sub x/y live on the year-weighted map, not on R.SUBS).
   const artTexture = React.useMemo(() => R.EXPLORE.filter(a => R.AUDIO[a.id])
     .map(a => { const af = R.AUDIO[a.id]; return { id: a.id, name: a.name, hue: a.hue, plays: a.plays, x: Math.max(0, Math.min(1, 1 - af[2])), y: Math.max(0, Math.min(1, af[0])) }; }), [R]);
-  const pickSub = (name) => { setFam(null); setSub(s => s === name ? null : name); };
-  const pickFam = (f) => { setSub(null); setFam(x => x === f ? null : f); };
+  // toggle one subgenre / one family in or out of its own Set. Neither clears the other: the two
+  // selections are independent and union (2026-09-22), so a subgenre can stay picked while its
+  // family is picked, dropped or never touched at all.
+  const pickSub = (name) => setSubs(prev => { const n = new Set(prev); n.has(name) ? n.delete(name) : n.add(name); return n; });
+  const pickFam = (f) => setFams(prev => { const n = new Set(prev); n.has(f) ? n.delete(f) : n.add(f); return n; });
+  const clearGenre = () => { setFams(new Set()); setSubs(new Set()); };
   const toggleCell = (c) => setCells(prev => { const n = new Set(prev); n.has(c) ? n.delete(c) : n.add(c); return n; });
   const toggleMany = (list) => setCells(prev => { const n = new Set(prev); const all = list.every(c => n.has(c)); list.forEach(c => all ? n.delete(c) : n.add(c)); return n; });
 
@@ -1910,8 +1955,10 @@ function ExploreView({ t, go, setPop, seed }) {
 
   const chips = [];
   if (hasYears) chips.push(["time", yearsLabel(years), () => { setPlaying(false); setYears(new Set()); }]);
-  if (sub) chips.push(["subgenre", sub, () => setSub(null)]);
-  else if (fam != null) chips.push(["genre", famShort((R.FAMILIES.find(f => f.i === fam) || {}).family), () => setFam(null)]);
+  // one chip per selected subgenre and per selected family — same reason the picked artists get one
+  // each: you have to be able to drop the wrong one without losing the rest.
+  for (const nm of subs) chips.push(["subgenre", nm, () => pickSub(nm)]);
+  for (const fi of fams) chips.push(["genre", famShort((R.FAMILIES.find(f => f.i === fi) || {}).family), () => pickFam(fi)]);
   if (moodZone) chips.push(["mood", MOOD_LABELS[moodZone], () => setMoodZone(null)]);
   if (cells.size) chips.push(["clock", cells.size + " slot" + (cells.size > 1 ? "s" : ""), () => setCells(new Set())]);
   if (vocals !== "any") chips.push(["vocals", ({ male: "male", female: "female", mixed: "mixed", nb: "non-binary", instrumental: "instrumental" })[vocals] || vocals, () => setVocals("any")]);
@@ -1933,7 +1980,7 @@ function ExploreView({ t, go, setPop, seed }) {
         </div>
         <div className="xp-head-right">
           <ExploreSearch R={R} yearKeys={yearKeys} subNames={subNames} go={go}
-            onArtist={addPick} onSub={setSub} onYear={(y) => { setPlaying(false); setYears(new Set([y])); }} onCells={(arr) => setCells(new Set(arr))} />
+            onArtist={addPick} onSub={pickSub} onYear={(y) => { setPlaying(false); setYears(new Set([y])); }} onCells={(arr) => setCells(new Set(arr))} />
         </div>
       </div>
 
@@ -1954,8 +2001,9 @@ function ExploreView({ t, go, setPop, seed }) {
             <div className="xp-active">
               <span className="xp-flabel">Active</span>
               <div className="xp-chiprow">
-                {chips.map(([k, v, clr]) => <button key={k} className="xp-chip xp-chip-active" onClick={clr}><span className="xp-ck">{k}</span> {v} <span className="xp-x">✕</span></button>)}
-                <button className="xp-chip xp-clearall" onClick={() => { setPlaying(false); setYears(new Set()); setFam(null); setSub(null); setCells(new Set()); setMoodZone(null); setVocals("any"); clearTheme(); clearReg(); clearRel(); setPicks(new Set()); }}>clear all</button>
+                {/* key carries the value: several chips now share a kind (genre, subgenre, artist) */}
+                {chips.map(([k, v, clr]) => <button key={k + "|" + v} className="xp-chip xp-chip-active" onClick={clr}><span className="xp-ck">{k}</span> {v} <span className="xp-x">✕</span></button>)}
+                <button className="xp-chip xp-clearall" onClick={() => { setPlaying(false); setYears(new Set()); clearGenre(); setCells(new Set()); setMoodZone(null); setVocals("any"); clearTheme(); clearReg(); clearRel(); setPicks(new Set()); }}>clear all</button>
               </div>
             </div>
           )}
@@ -1990,15 +2038,17 @@ function ExploreView({ t, go, setPop, seed }) {
               <span className="xp-lens-cap">{lens === "texture" ? "organic ↔ electronic" : lens === "mood" ? "valence × energy" : "pick any two axes"}</span>
             </div>
             <div className="xp-chartwrap">
+            {/* AttrExplore's family key drives the page's family Set: onFam(i) toggles that family,
+                onFam(null) is its "clear" button and drops them all. */}
             {lens === "attributes"
-              ? <AttrExplore R={R} go={go} grain={grain} onBrushSel={setAttrSel} activeIds={moodActive} activeSub={sub} activeFam={fam} onFam={(f) => { setSub(null); setFam(f); }} filtersActive={hasYears || fam != null || sub != null || cells.size > 0 || vocals !== "any" || regSel.size > 0 || filtActive || picks.size > 0} xKey={attrX} yKey={attrY} setXKey={setAttrX} setYKey={setAttrY} />
+              ? <AttrExplore R={R} go={go} grain={grain} onBrushSel={setAttrSel} activeIds={moodActive} activeSubs={subs} activeFams={fams} onFam={(f) => f == null ? setFams(new Set()) : pickFam(f)} filtersActive={hasYears || _genreOn(fams, subIdxs) || cells.size > 0 || vocals !== "any" || regSel.size > 0 || filtActive || picks.size > 0} xKey={attrX} yKey={attrY} setXKey={setAttrX} setYKey={setAttrY} />
               : lens === "texture"
               ? (grain === "subs"
-                ? <ExploreScatter subs={weights} seen={seen} activeSub={sub} activeFam={fam} onPick={pickSub} expressive={t.chart === "expressive"} setPop={setPop} />
+                ? <ExploreScatter subs={weights} seen={seen} activeSubs={subs} activeFams={fams} onPick={pickSub} expressive={t.chart === "expressive"} setPop={setPop} />
                 : <ArtistCloud pts={artTexture} activeIds={moodActive} go={go} />)
               : (grain === "artists"
                 ? <MoodQuadrant pts={moodUniverse} activeIds={moodActive} go={go} moodZone={moodZone} setMoodZone={setMoodZone} />
-                : <SubMoodScatter subs={subMood} activeSub={sub} activeFam={fam} onPick={pickSub} moodZone={moodZone} setMoodZone={setMoodZone} />)}
+                : <SubMoodScatter subs={subMood} activeSubs={subs} activeFams={fams} onPick={pickSub} moodZone={moodZone} setMoodZone={setMoodZone} />)}
             </div>
           </div>
         </div>
@@ -2124,7 +2174,7 @@ function ExploreView({ t, go, setPop, seed }) {
           Stories as a lifetime section. MoodContext (above) + moodSet are kept for that follow-up. */}
 
       {/* genres grouped under families — 6 columns per row, each card scrollable (Fuad) */}
-      <FamiliesGrid order={order} weights={weights} fam={fam} sub={sub} pickFam={pickFam} pickSub={pickSub} year={curYear} seen={seen} expressive={t.chart === "expressive"} />
+      <FamiliesGrid order={order} weights={weights} fams={fams} subs={subs} pickFam={pickFam} pickSub={pickSub} year={curYear} seen={seen} expressive={t.chart === "expressive"} />
 
       {/* Rhythm (the 7×24 clock) moved to the Calendar page (2026-07-05) — time-of-day lives with time. */}
       {/* per-year stat card only makes sense for a single selected year (multiselect has no single "year") */}
@@ -2445,7 +2495,8 @@ function ExploreView({ t, go, setPop, seed }) {
 }
 
 // scatter where bubbles ARE subgenres; click selects/filters; radius morphs with the year
-function ExploreScatter({ subs, seen, activeSub, activeFam, onPick, expressive, setPop }) {
+// activeSubs = Set of selected subgenre names, activeFams = Set of selected family indices.
+function ExploreScatter({ subs, seen, activeSubs, activeFams, onPick, expressive, setPop }) {
   const W = 1000, H = 560, pad = 46;
   const [hi, setHi] = React.useState(null);   // hovered subgenre — bottom status line (popover phased out, Fuad 2026-07-14)
   const maxW = Math.max(1, ...subs.map(s => s.w));
@@ -2459,8 +2510,10 @@ function ExploreScatter({ subs, seen, activeSub, activeFam, onPick, expressive, 
   const bubbles = React.useMemo(() => subs.map((s, i) => {
         const present = s.w > 0;
         const baseR = present ? 9 + (s.w / maxW) * 42 : 0;
-        const on = activeSub ? activeSub === s.name : (activeFam != null && s.fam === activeFam);
-        const dim = activeSub ? activeSub !== s.name : (activeFam != null && s.fam !== activeFam);
+        // lit when the bubble is itself selected OR its family is (the union the page filters by);
+        // everything else dims as soon as ANY genre selection exists
+        const on = activeSubs.has(s.name) || activeFams.has(s.fam);
+        const dim = !on && (activeSubs.size > 0 || activeFams.size > 0);
         const foc = hi && hi.name === s.name;                        // the bubble under the cursor
         const col = expressive ? `oklch(0.62 0.17 ${s.hue})` : "var(--accent)";
         const baseFs = Math.min(13, baseR / 3.2);
@@ -2479,7 +2532,7 @@ function ExploreScatter({ subs, seen, activeSub, activeFam, onPick, expressive, 
             {baseR > 17 && <text x={px(s.x)} y={py(s.y)} textAnchor="middle" dominantBaseline="middle" fill="var(--ink)" fontFamily="var(--sans)" fontWeight="500" style={{ pointerEvents: "none", fontSize: `calc(${baseFs.toFixed(2)}px * var(--zk))` }}>{s.name.length > 13 ? s.name.split(" ")[0] : s.name}</text>}
           </g>
         );
-      }), [subs, maxW, activeSub, activeFam, expressive, seen, onPick, hi]);
+      }), [subs, maxW, activeSubs, activeFams, expressive, seen, onPick, hi]);
   return (
     <div style={{ position: "relative" }}>
       <ZoomControls z={z} />
@@ -2504,10 +2557,13 @@ function ExploreScatter({ subs, seen, activeSub, activeFam, onPick, expressive, 
   );
 }
 
-// genres grouped under families — the breakdown you liked, restored. Family header filters by
-// family; each subgenre row filters by subgenre. Order is stable (all-time); only the bars move
-// when you scrub years, so play-the-decade animates instead of reflowing.
-function FamiliesGrid({ order, weights, fam, sub, pickFam, pickSub, year, seen, expressive }) {
+// genres grouped under families — the breakdown you liked, restored. Family header toggles that
+// family in the filter; each subgenre row toggles that subgenre. Both are multiselect and
+// independent (2026-09-22): every selected family card highlights and keeps its own subgenre list
+// unfolded beneath it, and a subgenre can be lit while its family is not. Order is stable
+// (all-time); only the bars move when you scrub years, so play-the-decade animates instead of
+// reflowing.
+function FamiliesGrid({ order, weights, fams, subs, pickFam, pickSub, year, seen, expressive }) {
   const [famH, setFamH] = React.useState(148);
   const startResize = (e) => { if (e.button !== 0) return; const y0 = e.clientY, h0 = famH;
     const mv = (ev) => setFamH(Math.max(100, Math.min(1000, h0 + (ev.clientY - y0))));
@@ -2522,7 +2578,7 @@ function FamiliesGrid({ order, weights, fam, sub, pickFam, pickSub, year, seen, 
         {order.map((g, gi) => {
           const fw = g.subs.reduce((s, su) => s + (weights[su.idx].w || 0), 0);
           const fmax = Math.max(1, ...g.subs.map(su => weights[su.idx].w || 0));
-          const onFam = fam === g.fam;
+          const onFam = fams.has(g.fam);
           return (
             <div key={g.fam} className="r-card" style={{ padding: 16, boxShadow: onFam ? "inset 0 0 0 1px var(--accent)" : "none", transition: ".15s" }}>
               <div className="xp-fam-head" data-on={onFam} onClick={() => pickFam(g.fam)}>
@@ -2534,7 +2590,7 @@ function FamiliesGrid({ order, weights, fam, sub, pickFam, pickSub, year, seen, 
                 {g.subs.map((su, si) => {
                   const w = weights[su.idx].w || 0;
                   return (
-                    <div key={su.name} className="xp-sub-row" data-on={sub === su.name} onClick={() => pickSub(su.name)} style={{ opacity: w === 0 ? 0.4 : 1 }} title={su.name}>
+                    <div key={su.name} className="xp-sub-row" data-on={subs.has(su.name)} onClick={() => pickSub(su.name)} style={{ opacity: w === 0 ? 0.4 : 1 }} title={su.name}>
                       <span style={{ fontSize: 11.5, color: "var(--ink-soft)", flex: 1, minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{su.name}</span>
                       <div style={{ width: 80, height: 5, background: "var(--bg-3)", borderRadius: 3, overflow: "hidden", margin: "0 8px" }}>
                         <div style={{ height: "100%", width: (seen ? w / fmax * 100 : 0) + "%", background: expressive ? `oklch(0.6 0.16 ${g.hue})` : "var(--accent)", borderRadius: 3, transition: `width .7s cubic-bezier(.3,.8,.3,1) ${(gi * 0.02 + si * 0.03)}s` }} />
