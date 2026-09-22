@@ -1023,10 +1023,7 @@ function LikedView({ go }) {
 
   if (failed && !ready) return (
     <div className="r-view">
-      {/* the pair, not an "← spotify" r-back (2026-09-22): Liked is the navbar tab again and
-          Spotify is hidden, so "back" pointed at a page you never came from. The seg still
-          offers the attention page as the way out of a dead data state. */}
-      <SpotifyTabs go={go} active="liked" />
+      {/* section pair hidden on Liked (Fuad 2026-09-22) — the attention page is URL-only now */}
       <div className="r-rest-wait r-mono">Liked-songs data isn't available right now.</div></div>
   );
   if (!ready && !window.ROTATION_LIKED_META) return <div className="r-view"><div className="r-rest-wait r-mono">loading your liked songs…</div></div>;
@@ -1166,11 +1163,9 @@ function LikedView({ go }) {
           .lk-quiet .lk-resettune:not(.lk-tuneon) { display: none; }
         }
       `}</style>
-      {/* Up-navigation returned 2026-09-21 (audit A11) as the section pair; the 2026-09-22 flip
-          (Liked back in the navbar, Spotify hidden) KEEPS it for the opposite reason — the pair
-          is now the attention page's only inbound link site-wide, so the 2026-08-12 removal
-          ("Liked is a first-class navbar destination, the up-nav is noise") stays reversed. */}
-      <SpotifyTabs go={go} active="liked" />
+      {/* section pair hidden on Liked (Fuad 2026-09-22), un-reversing the A11 up-nav return:
+          the 2026-08-12 ruling ("Liked is a first-class navbar destination, the up-nav is
+          noise") stands again, and the attention page is reachable by URL only. */}
       {/* header row: title on the left, the DNA TUNE control hugging the right (stacks under the
           title on narrow screens via flex-wrap). */}
       {/* title hidden (Fuad 2026-08-20); .r-headbare closes the gap it leaves. */}
