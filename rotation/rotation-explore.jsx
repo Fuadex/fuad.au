@@ -1153,7 +1153,7 @@ function AttrScatter({ rows, mode, xKey, yKey, shade, famDims, go, onBrushSel, p
             {mode !== "subgenres" && hoverRow.seenLive ? "  ·  seen live" : ""}
           </span>
         ) : <span>
-            <span className="r-fine">hover a dot for its values{mode !== "subgenres" ? " · click to pick it (click again to remove)" : ""} · drag to brush a region · scroll to zoom</span>
+            <span className="r-fine">hover a dot for its values{mode !== "subgenres" ? " · click to pick it" : ""} · drag to brush a region · scroll to zoom</span>
             {/* the touch half of the same sentence (audit B6, 2026-09-22) — a finger has no hover,
                 no wheel, and can only brush sideways; ± is the zoom cluster in the corner. */}
             <span className="r-coarse">tap a dot for its values{mode !== "subgenres" ? " · tap it again to drop it" : ""} · drag sideways to brush · ± to zoom</span>
