@@ -11,6 +11,12 @@ Fable coda rendered as an *italic* line by `PortraitCard` (rotation-views2.jsx),
 `"Opus"` or `"Opus · Fable"` when a coda rides. Artist `portrait` entries are a separate,
 older pilot — untouched by this pipeline.
 
+**Model pin (2026-09-24).** Every Opus step in this pipeline runs on Opus 5.5. Dispatch it as
+the `reads-opus` agent type, which is pinned to `claude-opus-5-5`, and do not pass a per-call
+model, since that would override the pin. After each batch, run
+`rotation/tools/check-subagent-models.py` before applying anything: the `opus` alias alone has
+drifted between versions without warning.
+
 ## The design (settled over four test rounds)
 
 **One Opus subagent read per album, synthesized from the album's existing track reads,

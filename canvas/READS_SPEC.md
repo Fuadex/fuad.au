@@ -815,6 +815,13 @@ Info line alone — that error produced the discarded Orsay drafts of 2026-08-13
 Fuad's verdict, 2026-08-05, same six works through both models: *"opus feels very mechanical
 compared to sonnet which I prefer."* Sonnet is the `deep` voice. Opus keeps the tour layer.
 
+**Opus means Opus 5.5 (Fuad 2026-09-24).** Every Opus stage runs as the `canvas-opus` agent type,
+which is pinned to `claude-opus-5-5`: tours, hook/eye/research passes, crop QC, lens sweeps,
+repairs, fused Infos, de-gram and trim passes, and verifiers. Do not pass a per-call `model`,
+since it overrides the pin. After each wave, audit with `rotation/tools/check-subagent-models.py`
+before merging. New Opus credits read `by: "Opus 5.5"`. Interpretation drafting stays Sonnet
+under the verdict above, unless Fuad rules otherwise.
+
 **ONE SONNET AGENT PER ARTWORK** (Fuad 2026-08-13, tightening the earlier swarm rule). The
 original instruction was "do a swarm instead of just one subagent" (2026-07-30) because one
 agent handling ~10 works in a row drifts into sameness — repeated openers, repeated rhythm,
