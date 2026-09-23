@@ -774,8 +774,12 @@ const smoothPath = (pts) => {
   return out;
 };
 
+// Divergence, time spent and the fingerprint are hidden, not removed (Fuad 2026-09-24).
+const SHOW_TASTE_DETAIL = false;
+
 function TasteProfile({ items, onOpenItem }) {
   const [axis, setAxis] = React.useState('filmweb');   // community baseline
+  const [hoverYear, setHoverYear] = React.useState(null);   // index into timeline.years
 
   const contrarian = React.useMemo(() => {
     const rows = [];
@@ -849,6 +853,7 @@ function TasteProfile({ items, onOpenItem }) {
         <div className="stats-section-title">Palette — explore by badge × tag</div>
         <TagBadgeExplorer items={items} onOpenItem={onOpenItem} />
       </div>
+      {SHOW_TASTE_DETAIL && <React.Fragment>
       <div className="stats-section">
         <div className="stats-section-title-row">
           <div className="stats-section-title">Where your taste diverges{contrarian.n ? '' : ' — needs rated titles with a community score'}</div>
@@ -899,6 +904,7 @@ function TasteProfile({ items, onOpenItem }) {
           </div>
         </div>
       </div>
+      </React.Fragment>}
 
       {timeline && (() => {
         // SMALL MULTIPLES (Fuad 2026-09-13). Seven series in one 76px box tangled on any scale that
@@ -921,10 +927,19 @@ function TasteProfile({ items, onOpenItem }) {
         // next) and log(0) is -Infinity, while log1p sends 0 to 0 and leaves the baseline exactly
         // where the eye expects it.
         const Y = c => H - PAD - (Math.log1p(c) / Math.log1p(vmax)) * (H - PAD * 2);
+        // Hovering any row picks the nearest year for ALL rows at once, so one column of dots reads
+        // straight down; each row's count column shows that year's figure while the pointer is in.
+        const hy = hoverYear != null && hoverYear < n ? hoverYear : null;
+        const pickYear = (e) => {
+          const r = e.currentTarget.getBoundingClientRect();
+          const f = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+          setHoverYear(Math.round(f * (n - 1)));
+        };
         return (
           <div className="stats-section" style={{ marginBottom: 0 }}>
-            <div className="stats-section-title">Titles seen per year — {timeline.total} dated · peak {timeline.peak} in {timeline.peakYear} · log scale, shared</div>
-            <div className="taste-sm">
+            <div className="stats-section-title">Titles seen per year — {timeline.total} dated · peak {timeline.peak} in {timeline.peakYear} · log scale, shared
+              {hy != null && <span className="tsm-hover-note"> · {ys[hy]}: {timeline.totals[hy]} titles</span>}</div>
+            <div className="taste-sm" onPointerLeave={() => setHoverYear(null)}>
               {timeline.mediums.map(m => {
                 const s = timeline.series[m];
                 const tot = s.reduce((a, b) => a + b, 0);
@@ -932,10 +947,11 @@ function TasteProfile({ items, onOpenItem }) {
                 const hue = MEDIUM_MAP_HUE[m] || MEDIUM_MAP_HUE['All'];
                 const d = smoothPath(ys.map((_, i) => [X(i), Y(s[i])]));
                 return (
-                  <div className="tsm-row" key={m} title={`${m} — ${tot} titles · peak ${s[pk]} in ${ys[pk]}`}>
+                  <div className="tsm-row" key={m} title={hy == null ? `${m} — ${tot} titles · peak ${s[pk]} in ${ys[pk]}` : undefined}>
                     <span className="tsm-swatch" style={{ background: hue }} />
                     <span className="tsm-name">{m}</span>
-                    <span className="tsm-cnt">{tot}</span>
+                    <span className={`tsm-cnt${hy != null ? ' on' : ''}`}>{hy != null ? s[hy] : tot}</span>
+                    <div className="tsm-plot" onPointerMove={pickYear} onPointerDown={pickYear}>
                     {/* preserveAspectRatio="none" so every row is the same height whatever the column
                         width; non-scaling-stroke keeps the line 1.3 device px through that stretch */}
                     <svg className="tsm-spark" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none">
@@ -948,11 +964,17 @@ function TasteProfile({ items, onOpenItem }) {
                       <path fill="none" stroke={hue} strokeWidth="1.3" strokeLinecap="round"
                         strokeLinejoin="round" vectorEffect="non-scaling-stroke" d={d} />
                     </svg>
+                    {/* the dot is HTML, not SVG: the stretched viewBox would draw a circle as an ellipse */}
+                    {hy != null && <React.Fragment>
+                      <span className="tsm-guide" style={{ left: `${X(hy) / W * 100}%` }} />
+                      <span className="tsm-dot" style={{ left: `${X(hy) / W * 100}%`, top: `${Y(s[hy]) / H * 100}%`, background: hue }} />
+                    </React.Fragment>}
+                    </div>
                   </div>
                 );
               })}
               <div className="tsm-axis">
-                {ys.map(y => <span key={y}>{"’" + y.slice(2)}</span>)}
+                {ys.map((y, i) => <span key={y} className={i === hy ? 'on' : ''}>{"’" + y.slice(2)}</span>)}
               </div>
             </div>
           </div>
@@ -1075,19 +1097,10 @@ function MyTaste({ items }) {
   );
 }
 
-// ─────────── Halls (Stats → "Halls" tab) — curated best-of by marquee badge + legend ───────────
-function Halls({ items, onOpenItem }) {
-  const HALLS = [
-    ['cognitive',   'The Cognitive Shift',  'Work that changed how you see the world, the medium itself — or one concrete thing, forever (world-lens · medium-lens · close-lens).'],
-    ['formal-exec', 'Formal Execution',     'A chosen constraint, pushed to its absolute limit.'],
-    ['singular',    'One of a Kind',        'Unrepeatable objects that fit no formula and no genre.'],
-    ['ahead',       'Ahead of Its Time',    'They saw it coming before everyone else did.'],
-    ['worldbuilding','A World Unto Itself',  'Places complete enough to live inside.'],
-  ];
-  const posterOf = (it) => it.poster || it.tmdbPoster || it.igdbCover || it.bookCover;
-  const withBadge = (b) => items.filter(it => (it.highlights || []).includes(b))
-    .sort((a, c) => (parseFloat(c.rating) || 0) - (parseFloat(a.rating) || 0) || displayTitle(a).localeCompare(displayTitle(c)));
-
+// ─────────── Halls (Stats → "Halls" tab) — the badge legend, then the taste read ───────────
+// The per-badge poster halls that used to sit under the legend doubled up with Explore's badge ×
+// tag palette, so My Taste took their place (Fuad 2026-09-24).
+function Halls({ items }) {
   return (
     <div className="stats-section halls">
       <div className="badge-legend">
@@ -1101,31 +1114,7 @@ function Halls({ items, onOpenItem }) {
           ))}
         </div>
       </div>
-      {HALLS.map(([badge, title, sub]) => {
-        const list = withBadge(badge);
-        if (!list.length) return null;
-        const listSrcs = list.map(posterOf);
-        return (
-          <div className="hall" key={badge}>
-            <div className="hall-head">
-              <span className="hall-emoji">{HIGHLIGHTS[badge].emoji}</span>
-              <span className="hall-title">{title}</span>
-              <span className="hall-count">{list.length}</span>
-            </div>
-            <div className="hall-sub">{sub}</div>
-            <div className="hall-grid">
-              {list.map((it, i) => (
-                <button className="hall-card" key={it.id} onClick={() => onOpenItem(it)} title={displayTitle(it)}>
-                  {listSrcs[i]
-                    ? <LazyImg src={listSrcs[i]} alt="" peek={{ list: listSrcs, index: i }} />
-                    : <span className="hall-card-glyph">{displayTitle(it)}</span>}
-                  <span className="hall-card-t">{displayTitle(it)}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        );
-      })}
+      <MyTaste items={items} />
     </div>
   );
 }
@@ -1171,7 +1160,6 @@ function StatsModal({ allItems, library, seenItemsForTaste, onClose, onOpenItem,
         </div>
         <div className="stats-tabs">
           <button className={`stats-tab${tab === 'charts' ? ' active' : ''}`} onClick={() => setTab('charts')}>Charts</button>
-          <button className={`stats-tab${tab === 'mytaste' ? ' active' : ''}`} onClick={() => setTab('mytaste')}>My Taste</button>
           <button className={`stats-tab${tab === 'halls' ? ' active' : ''}`} onClick={() => setTab('halls')}>Halls</button>
           <button className={`stats-tab${tab === 'taste' ? ' active' : ''}`} onClick={() => setTab('taste')}>Explore</button>
         </div>
@@ -1182,8 +1170,7 @@ function StatsModal({ allItems, library, seenItemsForTaste, onClose, onOpenItem,
           ))}
         </div>
 
-        {tab === 'mytaste' && <MyTaste items={statItems} />}
-        {tab === 'halls' && <Halls items={statItems} onOpenItem={onOpenItem} />}
+        {tab === 'halls' && <Halls items={statItems} />}
         {tab === 'taste' && <TasteProfile items={statItems} onOpenItem={onOpenItem} />}
 
         {tab === 'charts' && <React.Fragment>
