@@ -687,6 +687,30 @@ function TagBadgeExplorer({ items, onOpenItem }) {
     ? items.filter(it => ands.every(c => has(it, c)) && (!ors.length || ors.some(c => has(it, c))))
     : [], [items, sel]);
 
+  // Live availability once something is picked. A chip's count becomes how many of the current
+  // matches also carry it, i.e. what one more AND would leave. It is only UNREACHABLE when no item
+  // passing the AND group carries it, since then neither half of the chip can return anything; an
+  // OR chip joins the OR group, which still has to satisfy every AND.
+  const avail = React.useMemo(() => {
+    if (!sel.length) return null;
+    const tally = (list) => {
+      const m = new Map();
+      list.forEach(it => {
+        (it.highlights || []).forEach(h => { const k = 'badge:' + h; m.set(k, (m.get(k) || 0) + 1); });
+        new Set((it.tags || []).map(t => String(t).toLowerCase())).forEach(t => { const k = 'tag:' + t; m.set(k, (m.get(k) || 0) + 1); });
+      });
+      return m;
+    };
+    const inResults = tally(results);
+    const reach = ors.length ? tally(items.filter(it => ands.every(c => has(it, c)))) : inResults;
+    return { inResults, reach };
+  }, [items, sel, results]);
+  const chipState = (k, total) => {
+    if (!avail) return { n: total, dead: false, off: false };
+    const n = avail.inResults.get(k) || 0;
+    return { n, dead: n === 0, off: !selMap.has(k) && !avail.reach.get(k) };
+  };
+
   const cls = op => `xchip${op ? ' sel ' + op.toLowerCase() : ''}`;
   return (
     <div className="explorer">
@@ -694,16 +718,16 @@ function TagBadgeExplorer({ items, onOpenItem }) {
         ? <span>Next chip: <b>left = AND</b>, <b>right = OR</b>. Mix badges + subtags.</span>
         : <span>Pick a chip to start. Mix badges + subtags.</span>}</div>
       <div className="explorer-rail">
-        {badges.map(([h, c]) => { const op = selMap.get('badge:' + h); return (
-          <button key={h} className={cls(op) + ' badge'} onClick={e => click(e, 'badge', h)} title={opHint}>
-            {op && showOps ? <span className="xop">{op === 'OR' ? '∨' : '∧'}</span> : null}{HIGHLIGHTS[h].emoji} {HIGHLIGHTS[h].label}<span className="xc">{c}</span>
+        {badges.map(([h, c]) => { const op = selMap.get('badge:' + h); const st = chipState('badge:' + h, c); return (
+          <button key={h} className={cls(op) + ' badge' + (st.dead && !op ? ' dead' : '')} disabled={st.off} onClick={e => click(e, 'badge', h)} title={st.off ? 'No match with the current picks' : opHint}>
+            {op && showOps ? <span className="xop">{op === 'OR' ? '∨' : '∧'}</span> : null}{HIGHLIGHTS[h].emoji} {HIGHLIGHTS[h].label}<span className="xc">{st.n}</span>
           </button>
         ); })}
       </div>
       {tags.length > 0 && <div className="explorer-cloud">
-        {tags.map(([t, c]) => { const op = selMap.get('tag:' + t); return (
-          <button key={t} className={cls(op) + ' tag' + (notableSet.has(t) ? ' notable' : '')} onClick={e => click(e, 'tag', t)} title={opHint}>
-            {op && showOps ? <span className="xop">{op === 'OR' ? '∨' : '∧'}</span> : null}{t}<span className="xc">{c}</span>
+        {tags.map(([t, c]) => { const op = selMap.get('tag:' + t); const st = chipState('tag:' + t, c); return (
+          <button key={t} className={cls(op) + ' tag' + (notableSet.has(t) ? ' notable' : '') + (st.dead && !op ? ' dead' : '')} disabled={st.off} onClick={e => click(e, 'tag', t)} title={st.off ? 'No match with the current picks' : opHint}>
+            {op && showOps ? <span className="xop">{op === 'OR' ? '∨' : '∧'}</span> : null}{t}<span className="xc">{st.n}</span>
           </button>
         ); })}
       </div>}
