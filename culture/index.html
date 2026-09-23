@@ -1,23 +1,23 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<title>Culture · fuad.au</title>
-<meta name="description" content="Films, TV, games, books — a personal canon on browsable shelves, with notes, stats, and a wishlist.">
+<title>Culture Â· fuad.au</title>
+<meta name="description" content="Films, TV, games, books â€” a personal canon on browsable shelves, with notes, stats, and a wishlist.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#14110d">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="fuad.au">
-<meta property="og:title" content="Culture — films, games, books: a personal canon">
-<meta property="og:description" content="A personal media canon on browsable shelves — notes, badges, stats, and a wishlist with predictions.">
+<meta property="og:title" content="Culture â€” films, games, books: a personal canon">
+<meta property="og:description" content="A personal media canon on browsable shelves â€” notes, badges, stats, and a wishlist with predictions.">
 <meta property="og:url" content="https://fuad.au/culture/">
 <meta property="og:image" content="https://fuad.au/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Culture — films, games, books: a personal canon">
+<meta name="twitter:title" content="Culture â€” films, games, books: a personal canon">
 <meta name="twitter:image" content="https://fuad.au/og.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,7 +30,7 @@
 </style>
 
 <!-- App styles extracted from culture-v2.jsx. Bump ?v= to force a fresh load. -->
-<link rel="stylesheet" href="culture.css?v=166">
+<link rel="stylesheet" href="culture.css?v=167">
 
 <!-- Production React builds: smaller + faster, no dev warnings. (SRI integrity
      hashes were for the development builds, so they're dropped on the prod URLs.) -->
@@ -42,15 +42,15 @@
 <script defer src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
 <!-- Local data + app. Bump ?v= on any of these to bypass the browser cache.
      LAZY LOADING (audit 2026-07-18): only the shelf-critical files ship eagerly
-     (data + imports + badges, ~830 KB). The heavy id-keyed overlays (~12 MB —
+     (data + imports + badges, ~830 KB). The heavy id-keyed overlays (~12 MB â€”
      omdb, cast, wishlist*, tmdb, notes, mood, interpretations) are injected on
      demand by culture-v2's loadLazySet (Reader open / Wishlist entry / idle
-     preload), using this page's shared ?v= epoch. Keep the epoch MANUAL here —
+     preload), using this page's shared ?v= epoch. Keep the epoch MANUAL here â€”
      the injected URLs reuse it, so per-file auto-hashing would break them. -->
-<script src="data.js?v=173"></script>
-<script src="imports.js?v=173"></script>
-<script src="badges.js?v=173"></script>
-<script type="text/babel" src="culture-v2.jsx?v=173"></script>
+<script src="data.js?v=174"></script>
+<script src="imports.js?v=174"></script>
+<script src="badges.js?v=174"></script>
+<script type="text/babel" src="culture-v2.jsx?v=174"></script>
 </head>
 <body>
 <div id="root"></div>
@@ -59,7 +59,7 @@
   root.render(<App/>);
 </script>
 <script>
-  // PWA shell — https only, so local dev (http) never registers a worker
+  // PWA shell â€” https only, so local dev (http) never registers a worker
   if ("serviceWorker" in navigator && location.protocol === "https:")
     addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
 </script>
