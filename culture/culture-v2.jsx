@@ -668,75 +668,83 @@ function TagBadgeExplorer({ items, onOpenItem }) {
                                 : prev.map(c => keyOf(c.kind, c.value) === k ? { ...c, op } : c);
     return [...prev, { kind, value, op }];
   });
+  const has = (it, c) => c.kind === 'badge'
+    ? (it.highlights || []).includes(c.value)
+    : (it.tags || []).some(t => String(t).toLowerCase() === c.value);
+
+  // Picks read LEFT TO RIGHT in the order they were clicked: each chip combines with everything
+  // picked before it, AND narrowing and OR widening, so "Horrifying, then anthology as OR" means
+  // either one. The first chip has no operator of its own. (Grouping every AND ahead of every OR
+  // made a first pick behave as a hard AND whatever came after it.)
+  const results = React.useMemo(() => {
+    if (!sel.length) return [];
+    let acc = new Set(items.filter(it => has(it, sel[0])));
+    for (const c of sel.slice(1)) {
+      acc = c.op === 'OR'
+        ? new Set(items.filter(it => acc.has(it) || has(it, c)))
+        : new Set([...acc].filter(it => has(it, c)));
+    }
+    return items.filter(it => acc.has(it));
+  }, [items, sel]);
+
+  // Live availability once something is picked: a chip's count is how many of the current
+  // matches also carry it, i.e. what an AND would leave. A chip with no overlap is faded and
+  // shows what an OR would ADD instead; clicking it adds it as OR whichever half is hit, since
+  // an AND could only empty the results.
+  const overlap = React.useMemo(() => {
+    if (!sel.length) return null;
+    const m = new Map();
+    results.forEach(it => {
+      (it.highlights || []).forEach(h => { const k = 'badge:' + h; m.set(k, (m.get(k) || 0) + 1); });
+      new Set((it.tags || []).map(t => String(t).toLowerCase())).forEach(t => { const k = 'tag:' + t; m.set(k, (m.get(k) || 0) + 1); });
+    });
+    return m;
+  }, [results, sel]);
+  const chipState = (k, total) => {
+    if (!overlap || selMap.has(k)) return { n: overlap ? (overlap.get(k) || 0) : total, dead: false };
+    const n = overlap.get(k) || 0;
+    return n ? { n, dead: false } : { n: '+' + total, dead: true };
+  };
+
   const click = (e, kind, value) => {
     const k = keyOf(kind, value);
-    // AND/OR only means anything from the second chip on: the first selection (and a
-    // re-click of a lone selection) ignores the left/right halves.
-    if (!sel.length || (sel.length === 1 && selMap.has(k))) return choose(kind, value, selMap.get(k) || 'AND');
+    // The first pick has no operator, so clicking it anywhere just removes it.
+    if (!sel.length || (sel.length && keyOf(sel[0].kind, sel[0].value) === k))
+      return setSel(prev => prev.length && keyOf(prev[0].kind, prev[0].value) === k ? prev.slice(1).map((c, i) => i ? c : { ...c, op: 'AND' }) : [...prev, { kind, value, op: 'AND' }]);
+    if (!selMap.has(k) && !(overlap && overlap.get(k))) return choose(kind, value, 'OR');
     const r = e.currentTarget.getBoundingClientRect();
     choose(kind, value, (e.clientX - r.left) > r.width / 2 ? 'OR' : 'AND');
   };
   const opHint = sel.length ? 'Left half = AND · right half = OR' : undefined;
-  const showOps = sel.length > 1;
-
-  const has = (it, c) => c.kind === 'badge'
-    ? (it.highlights || []).includes(c.value)
-    : (it.tags || []).some(t => String(t).toLowerCase() === c.value);
-  const ands = sel.filter(c => c.op === 'AND'), ors = sel.filter(c => c.op === 'OR');
-  const results = React.useMemo(() => sel.length
-    ? items.filter(it => ands.every(c => has(it, c)) && (!ors.length || ors.some(c => has(it, c))))
-    : [], [items, sel]);
-
-  // Live availability once something is picked. A chip's count becomes how many of the current
-  // matches also carry it, i.e. what one more AND would leave. It is only UNREACHABLE when no item
-  // passing the AND group carries it, since then neither half of the chip can return anything; an
-  // OR chip joins the OR group, which still has to satisfy every AND.
-  const avail = React.useMemo(() => {
-    if (!sel.length) return null;
-    const tally = (list) => {
-      const m = new Map();
-      list.forEach(it => {
-        (it.highlights || []).forEach(h => { const k = 'badge:' + h; m.set(k, (m.get(k) || 0) + 1); });
-        new Set((it.tags || []).map(t => String(t).toLowerCase())).forEach(t => { const k = 'tag:' + t; m.set(k, (m.get(k) || 0) + 1); });
-      });
-      return m;
-    };
-    const inResults = tally(results);
-    const reach = ors.length ? tally(items.filter(it => ands.every(c => has(it, c)))) : inResults;
-    return { inResults, reach };
-  }, [items, sel, results]);
-  const chipState = (k, total) => {
-    if (!avail) return { n: total, dead: false, off: false };
-    const n = avail.inResults.get(k) || 0;
-    return { n, dead: n === 0, off: !selMap.has(k) && !avail.reach.get(k) };
-  };
+  const firstKey = sel.length ? keyOf(sel[0].kind, sel[0].value) : null;
+  const labelOf = c => c.kind === 'badge' ? HIGHLIGHTS[c.value].label : c.value;
 
   const cls = op => `xchip${op ? ' sel ' + op.toLowerCase() : ''}`;
   return (
     <div className="explorer">
       <div className="explorer-hint">{sel.length
-        ? <span>Next chip: <b>left = AND</b>, <b>right = OR</b>. Mix badges + subtags.</span>
+        ? <span>Next chip: <b>left = AND</b> narrows, <b>right = OR</b> widens; picks combine in the order clicked. Faded chips share nothing with the matches and add as OR.</span>
         : <span>Pick a chip to start. Mix badges + subtags.</span>}</div>
       <div className="explorer-rail">
         {badges.map(([h, c]) => { const op = selMap.get('badge:' + h); const st = chipState('badge:' + h, c); return (
-          <button key={h} className={cls(op) + ' badge' + (st.dead && !op ? ' dead' : '')} disabled={st.off} onClick={e => click(e, 'badge', h)} title={st.off ? 'No match with the current picks' : opHint}>
-            {op && showOps ? <span className="xop">{op === 'OR' ? '∨' : '∧'}</span> : null}{HIGHLIGHTS[h].emoji} {HIGHLIGHTS[h].label}<span className="xc">{st.n}</span>
+          <button key={h} className={cls(op) + ' badge' + (st.dead && !op ? ' dead' : '')} onClick={e => click(e, 'badge', h)} title={st.dead ? 'Nothing in common with the current matches — adds as OR' : opHint}>
+            {op && firstKey !== 'badge:' + h ? <span className="xop">{op === 'OR' ? '∨' : '∧'}</span> : null}{HIGHLIGHTS[h].emoji} {HIGHLIGHTS[h].label}<span className="xc">{st.n}</span>
           </button>
         ); })}
       </div>
       {tags.length > 0 && <div className="explorer-cloud">
         {tags.map(([t, c]) => { const op = selMap.get('tag:' + t); const st = chipState('tag:' + t, c); return (
-          <button key={t} className={cls(op) + ' tag' + (notableSet.has(t) ? ' notable' : '') + (st.dead && !op ? ' dead' : '')} disabled={st.off} onClick={e => click(e, 'tag', t)} title={st.off ? 'No match with the current picks' : opHint}>
-            {op && showOps ? <span className="xop">{op === 'OR' ? '∨' : '∧'}</span> : null}{t}<span className="xc">{st.n}</span>
+          <button key={t} className={cls(op) + ' tag' + (notableSet.has(t) ? ' notable' : '') + (st.dead && !op ? ' dead' : '')} onClick={e => click(e, 'tag', t)} title={st.dead ? 'Nothing in common with the current matches — adds as OR' : opHint}>
+            {op && firstKey !== 'tag:' + t ? <span className="xop">{op === 'OR' ? '∨' : '∧'}</span> : null}{t}<span className="xc">{st.n}</span>
           </button>
         ); })}
       </div>}
       {sel.length > 0 && (
         <div className="explorer-results">
           <div className="explorer-query">
-            {ands.length > 0 && <span><b>all of:</b> {ands.map(c => c.kind === 'badge' ? HIGHLIGHTS[c.value].label : c.value).join(' · ')}</span>}
-            {ands.length > 0 && ors.length > 0 && <span className="qjoin">  and  </span>}
-            {ors.length > 0 && <span><b>any of:</b> {ors.map(c => c.kind === 'badge' ? HIGHLIGHTS[c.value].label : c.value).join(' · ')}</span>}
+            {sel.map((c, i) => <React.Fragment key={keyOf(c.kind, c.value)}>
+              {i > 0 && <span className="qjoin"> {c.op === 'OR' ? 'or' : 'and'} </span>}<b>{labelOf(c)}</b>
+            </React.Fragment>)}
           </div>
           <div className="explorer-count">{results.length} match{results.length !== 1 ? 'es' : ''}<button className="xclear" onClick={() => setSel([])}>clear</button></div>
           <div className="explorer-wall">
@@ -2709,11 +2717,12 @@ function TonightView({ items: wishlistPool, seenItems: seenPool, onOpenItem, onE
   const budgetMax = (TONIGHT_BUDGETS.find(b => b.key === budget) || {}).max || Infinity;
   const selMap = new Map(moodSel.map(c => [c.value, c.op]));
   const chooseMood = (e, value) => {
-    // Same rule as the palette explorer: AND/OR halves only kick in from the second
-    // chip; the first pick (and a re-click of a lone pick) is a plain toggle.
+    // Same rule as the palette explorer: picks combine left to right in click order, the first
+    // has no operator, so it is a plain toggle whichever half is hit.
+    if (!moodSel.length || moodSel[0].value === value)
+      return setMoodSel(prev => prev.length && prev[0].value === value ? prev.slice(1).map((c, i) => i ? c : { ...c, op: 'AND' }) : [...prev, { value, op: 'AND' }]);
     let op;
-    if (!moodSel.length || (moodSel.length === 1 && selMap.has(value))) op = selMap.get(value) || 'AND';
-    else {
+    {
       const r = e.currentTarget.getBoundingClientRect();
       op = (e.clientX - r.left) > r.width / 2 ? 'OR' : 'AND';
     }
@@ -2745,16 +2754,16 @@ function TonightView({ items: wishlistPool, seenItems: seenPool, onOpenItem, onE
   // The filtered pool given all constraints. fablePick items are floated: they
   // survive filtering even if a mood/budget would drop them.
   const pool = React.useMemo(() => {
-    const ands = moodSel.filter(c => c.op === 'AND'), ors = moodSel.filter(c => c.op === 'OR');
     const hasBadge = (it, k) => (it.highlights || []).includes(k);
+    const moodOk = (it) => moodSel.slice(1).reduce((v, c) => c.op === 'OR' ? v || hasBadge(it, c.value) : v && hasBadge(it, c.value),
+      hasBadge(it, moodSel[0].value));
     const hookLc = hook.trim().toLowerCase();
     return items.filter(it => {
       if (it.fablePick) return true;   // conviction always survives
       if (mediums.size && !mediums.has(it.medium)) return false;
       const mins = itemDurationMinutes(it);
       if (budgetMax !== Infinity && mins > 0 && mins > budgetMax) return false;  // unknown runtime passes
-      if (ands.length && !ands.every(c => hasBadge(it, c.value))) return false;
-      if (ors.length && !ors.some(c => hasBadge(it, c.value))) return false;
+      if (moodSel.length && !moodOk(it)) return false;
       if (hookLc) {
         // Genres and tags join the note text (Fuad 2026-08-20: "consider tags and subtags
         // to widen the search"). Note prose is where a hook like "grief" lives, but "samurai"
@@ -2870,7 +2879,7 @@ function TonightView({ items: wishlistPool, seenItems: seenPool, onOpenItem, onE
                 return (
                   <button key={h} className={`tonight-chip mood${op ? ' sel ' + op.toLowerCase() : ''}`}
                     onClick={e => chooseMood(e, h)} title={moodSel.length ? 'Left half = AND · right half = OR' : undefined}>
-                    {op && moodSel.length > 1 ? <span className="tonight-op">{op === 'OR' ? '∨' : '∧'}</span> : null}
+                    {op && moodSel[0].value !== h ? <span className="tonight-op">{op === 'OR' ? '∨' : '∧'}</span> : null}
                     {HIGHLIGHTS[h].emoji} {HIGHLIGHTS[h].label}<span className="tonight-c">{c}</span>
                   </button>
                 );
