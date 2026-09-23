@@ -3,6 +3,26 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "leon-bonnat-henry-white": {
+   "about": "Bonnat's 1882 canvas shows the American Henry White (1794–1882) at about eighty-eight, painted in the year of his death and signed at the lower left with that date — an upright oil, 147 by 116 centimetres.",
+   "deep": "The man who owned all three of this family's portraits gave two of them to the Corcoran in 1949 and kept this one. The two that went were his parents — his father by the same painter in 1880, his mother by Sargent in 1883 — and the Sargent's record carries twenty-six entries. His great-grandfather's canvas stayed in the family another sixty-nine years, and its own file is still blank. The most careful work in it was not aimed at anyone who would ever own it: it becomes legible at 412 megapixels, to a reader nobody in that chain could have expected.",
+   "by": "Opus 5"
+  },
+ "william-merritt-chase-gathering-autumn-flowers": {
+   "about": "Signed and undated, shown at the National Academy of Design from 10 December 1894 — Chase's oil, thirty-eight inches wide against twenty-one high, three white figures set back across a field gone rose and gold.",
+   "deep": "Not one of the three has a face. A back turned; a cream oval with no feature in it; under the near bonnet, at the full resolution the museum publishes, no eyes. The method Chase taught is exact about light and has no equipment for a likeness, so the record's disagreement has nothing to appeal to: the museum names nobody and calls that turned back a woman; the literature calls all three his daughters. A year after the Academy show it was lot 1169 in the Chase sale of 7 January 1896, the year he left the Art Students League for a school under his name; then Louis Ettlinger, then seventy years with no owner named, then Paul Mellon's bequest of 1999, arriving 2012.",
+   "by": "Opus 5"
+  },
+ "alexandre-calame-an-ancient-pine-forest-with-a-mountain-stream": {
+   "about": "Calame's 1847 sheet — watercolour and gouache worked over a charcoal underdrawing on wove paper, catalogued as a drawing, 61 by 84 centimetres: brush-signed on a rock in the scene, and carrying no date of its own.",
+   "deep": "The catalogue record gives this sheet a single subject keyword, Waterfall, and the paper contains no such thing: foam would rank among the brightest notes here, and virtually every note that bright lies up in the valley gap. An index can name an event, so the record named one; the drawing has no event in it — nothing walks, nothing is built, nothing breaks the water's edge. Its subject is elapsed time, and the timber keeps it: what a living branch gathers when nothing disturbs it, and what is left of the wood that died where it stands. At the foot of it the pool holds, mirroring its banks, outlasting the timber it reflects.",
+   "by": "Opus 5"
+  },
+ "adolphe-joseph-thomas-monticelli-madame-cahen": {
+   "about": "Monticelli's 1869 portrait of a woman in black — oil on canvas at 132 centimetres, big for a painter whose habit was small reused wood panels, and listed no. 1 in a 1932 Derain and Vlaminck exhibition.",
+   "deep": "Her name reached this canvas from outside it; his is the only one on it, centre right, Monticelli / 1869 — a firm year from a painter whose dates are mostly guesses. Hers is a surname without a forename, spelled three ways by three catalogues; the provenance reaches her only through a man the file calls \"a descendent of the sitter\". What is left of her is optical: an iris still an iris at the limit of the Gallery's own file, brow hairs drawn under half a millimetre wide, on paint thin enough to print the weave. She is described to a fraction of a millimetre in the one language that carries no names.",
+   "by": "Opus 5"
+  },
 "ludwik-de-laveaux-plac-opery-w-paryzu": {
  "about": "De Laveaux's unsigned canvas of about 1893, one of his Paris nocturnes — a letter of December 1892 has him going into the city after dark to paint street studies. Tuberculosis killed him in 1894, at twenty-five.",
  "by": "Opus 5",
@@ -3619,9 +3639,7 @@ by: "Fable" },
 about: "The kołomyjka is a Hutsul whirling dance, and this 1895 canvas is the painting that fixed Axentowicz's name to the Carpathian highlanders he returned to all his career. Fresh from a decade in Paris and newly appointed professor in Kraków, he gave Polish art one of its defining folk images — motion first, ethnography second.",
 by: "Fable" },
 
-"charles-francois-daubigny-untitled-2": {
-about: "Salon-bound in 1874 — the very spring the first Impressionist exhibition opened elsewhere in Paris — from the Barbizon elder who had done most to smooth the young rebels' way, famously resigning from the 1870 jury when it refused Monet. Two metres of June field under poppies: the plein-air creed at establishment scale.",
-by: "Fable" },
+"charles-francois-daubigny-untitled-2": {"about":"Salon-bound in 1874 — the very spring the first Impressionist exhibition opened elsewhere in Paris — from the Barbizon elder who had done most to smooth the young rebels' way, famously resigning from the 1870 jury when it refused Monet. Two metres of June field under poppies: the plein-air creed at establishment scale.","deep":"For about a fortnight in 1874 the city held both shows at once — the Société anonyme from 15 April at 35 boulevard des Capucines, the official Salon from 1 May at the Palais de l'Industrie — and this canvas went to the second. Which makes it evidence about the first. Almost every liberty the independents were supposed to be claiming is taken here, across two metres: a flower is one mark, a person four or five strokes, the ground comes nearer without coming clearer, and the whitest paint under a sky that fills half the canvas is a sleeve and a pack animal's back. None of that kept it out of the Palais.","by":"Fable"},
 
 "edgar-degas-untitled-2": {
 about: "Four dancers in matching blue, none aware of being watched — Degas by 1890 had long stopped painting performance and painted preparation instead: straps adjusted, shoulders checked, the wings rather than the stage. The four bodies are near-repetitions of a single pose turned in space, his sculptor's trick for making a crowd from one figure studied hard.",
