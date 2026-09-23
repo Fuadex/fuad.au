@@ -3,6 +3,36 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "tiepolo-study-for-a-ceiling-with-the-personification-of-counsel": {
+  "about": "Tiepolo's proposal for a ceiling, oil on a 27-by-49-centimetre canvas, before about 1762. The ceiling — probably one in Saint Petersburg — is gone, and this is thought to be a fragment cut from a larger sketch.",
+  "deep": "Everything this canvas is now called was settled elsewhere, on paper. For fifty-five years it was catalogued as *The Apotheosis of a Poet* — a flying child taken to be crowning a bearded man — and that reading stood partly because nobody doubted the composition was complete. The title held through catalogues of 1975 and 1985 and into a 1993 exhibition of Tiepolo's oil sketches. Only in 1996 did Diane De Grazia match the old man instead to Counsel, as Cesare Ripa's emblem handbook prescribes him. The outer date comes off a collector's bill, the probable destination off a line in Giandomenico Tiepolo's catalogue of prints, and the object bears no writing at all.",
+  "by": "Opus 5",
+  "deepBy": "Opus 5"
+ },
+ "rubens-peter-paul-rubens": {
+  "about": "Rubens is the sitter, not the painter — a small panel of about 1620, put on a magazine cover in 1926 as a newly discovered self-portrait and struck off the master's list by Julius Held in 1947.",
+  "deep": "Two things are missing from this panel, and one office accounts for both. The sitter is Rubens, and he wears no gold chain of court appointment; the hand that made it is unnamed in the record, because — on Arnout Balis's account — the appointment that chain stood for exempted his workshop from registering with Antwerp's guild of painters, and only three assistants ever reached that register at all. So the blank in a modern database is four hundred years old by design, and the panel gives a rate of work instead of a name: slow exact marks at the eyes, and below the beard two or three sweeps over bare ground.",
+  "by": "Opus 5",
+  "deepBy": "Opus 5"
+ },
+ "jean-jacques-henner-standing-woman": {
+  "about": "Red hair had been Henner's signature since 1872, and a caricaturists' joke by 1887 — worn here by an unidentified woman, three-quarter length on a metre of canvas, signed but undated and catalogued as about 1903.",
+  "deep": "Two institutions place him at opposite ends of one century. This canvas is entered in the catalogue as Impressionist; the Paris museum his family founded titled its 2007 exhibition Face à l'impressionnisme, le dernier des romantiques — the last of the Romantics. The surface takes both sides and sorts them by value. The dissolving that fits the first label happens wherever the light is behind her; the drawing that answers to the second is put down in the dark — a lid, a nostril, an edge of skirt near the bottom. The year the catalogue guesses at, about 1903, was his last Salon and his promotion to Grand Officier of the Legion of Honour.",
+  "by": "Opus 5",
+  "deepBy": "Opus 5"
+ },
+ "childe-hassam-nude-seated": {
+  "about": "Hassam signed and dated this himself at the top right, 1912, on a canvas twenty-four inches by twenty-two — all that is known of the occasion, since the record names no sitter and no room.",
+  "deep": "Seventeen years separate the date he put in the corner from the first showing anyone has recorded, and by 1929 the canvas was somebody else's property: out of the dealer's hands three years earlier, knocked down as lot 88 in a Brooklyn owner's sale, and thereafter Chester Dale's, whose collection accounts for four of the five exhibitions on the list. Scholarship took it up the same way, as an example of a kind: chosen in 1961 for a survey of the American nude, cited in 1974 in the standard history of that subject. The woman was in the picture at every one of those occasions and is named in none of them.",
+  "by": "Opus 5",
+  "deepBy": "Opus 5"
+ },
+ "alfred-sisley-the-banks-of-the-oise": {
+  "about": "Signed lower left and carrying no date, so the 1877/1878 is a catalogue judgment — Sisley's summer river with working boats drawn up along both banks, and no documented campaign of his on this water.",
+  "deep": "Another of his canvases, the flooded street at Port-Marly, left his hands for 180 francs and reached Comte Isaac de Camondo at 43,000 in March 1900, fourteen months after his death. The count that gets repeated has Durand-Ruel buying 216 Sisleys between 1880 and 1886 and selling 40. This one's history runs to four lines with one date in it: no owner before a dealer's stockroom, then a sale on 9 June 1926 to Chester Dale, and no showing on record before 1965. That first date falls twenty-seven years after he died, by which time nobody was left to say where the picture had been painted.",
+  "by": "Opus 5",
+  "deepBy": "Opus 5"
+ },
  "leon-bonnat-henry-white": {
    "about": "Bonnat's 1882 canvas shows the American Henry White (1794–1882) at about eighty-eight, painted in the year of his death and signed at the lower left with that date — an upright oil, 147 by 116 centimetres.",
    "deep": "The man who owned all three of this family's portraits gave two of them to the Corcoran in 1949 and kept this one. The two that went were his parents — his father by the same painter in 1880, his mother by Sargent in 1883 — and the Sargent's record carries twenty-six entries. His great-grandfather's canvas stayed in the family another sixty-nine years, and its own file is still blank. The most careful work in it was not aimed at anyone who would ever own it: it becomes legible at 412 megapixels, to a reader nobody in that chain could have expected.",
@@ -3628,8 +3658,11 @@ about: "Exhibited in 1846, five years before Turner's death, when critics had de
 by: "Fable" },
 
 "claude-monet-the-roses": {
-about: "Among the last canvases Monet painted — roses from the Giverny garden, finished in 1926, the year he died at eighty-six. The eye operations of 1923 had returned blue to his palette after the cataract browns, and the late pictures spend it freely: sky and blossom in loose ribbons, the garden less described than remembered in colour.",
-by: "Fable" },
+  "about": "Among the last canvases Monet painted — roses from the Giverny garden, finished in 1926, the year he died at eighty-six. The eye operations of 1923 had returned blue to his palette after the cataract browns, and the late pictures spend it freely: sky and blossom in loose ribbons, the garden less described than remembered in colour.",
+  "deep": "Every date this canvas carries was supplied by somebody else — a surgeon's calendar for 1923, a catalogue's two-year bracket for the making, a son's will for 1966. That son, Michel, had been turned away by the national museums over the Water Lilies, one reason he left the state out of it; the salons that inherited his father's pictures had no room for the largest of them, so a room was dug beneath the garden, and in 1970 the canvases went up, most of them never shown before. Forty-four years, and the only chronology the canvas supplies is the order of its own making: the drawing first, the colour into it after.",
+  "by": "Fable",
+  "deepBy": "Opus 5"
+ },
 
 "claude-monet-twilight-venice": {
 about: "From Monet's only visit to Venice — three months in the autumn of 1908, aged sixty-eight, that yielded some thirty-seven canvases. San Giorgio Maggiore stands against the afterglow across the basin. He kept finishing the series from memory at Giverny and didn't show the Venices until 1912, when Bernheim-Jeune presented twenty-nine at once.",
@@ -3952,8 +3985,11 @@ about: "Klimt painted this at the crest of his \"golden\" turn, on commission fr
 by: "Opus · Fable" },
 
 "w-adys-aw-podkowinski-portret-wincentyny-karskiej": {
-about: "In the summer of 1891 Podkowiński came to the Mazovian estate of Chrzęsne at the invitation of his friend, the painter Julian Maszyński, and painted the manor's heiress. The result is counted the first portrait in Polish art executed en plein air, its impressionist palette carried outdoors rather than built up in the studio. Karska recalled that he worked at feverish speed, chasing a single fall of light almost within one afternoon.",
-by: "Opus · Fable" },
+  "about": "In the summer of 1891 Podkowiński came to the Mazovian estate of Chrzęsne at the invitation of his friend, the painter Julian Maszyński, and painted the manor's heiress. The result is counted the first portrait in Polish art executed en plein air, its impressionist palette carried outdoors rather than built up in the studio. Karska recalled that he worked at feverish speed, chasing a single fall of light almost within one afternoon.",
+  "deep": "She was not Karska yet. In the summer he signed, she was Wincentyna Koskowska, and the place written into that bare ground was hers — she had inherited the palace and lands at Chrzęsne, and married Zygmunt Karski between 1892 and 1898. The painter went first, at twenty-eight, in January 1895. Her sister Ewa's portrait, from the same year and the same hand, took a Zachęta prize in January 1892 and is a catalogued war loss, never recovered. This canvas was taken in the war, and handed back from the USSR on 16 September 1956; driven from Chrzęsne by then, she was alive for it, and died the next year.",
+  "by": "Opus · Fable",
+  "deepBy": "Opus 5"
+ },
 
 "adolph-von-menzel-mondschein-uber-der-friedrichsgracht-im-al": {
 about: "A working Berlin canal at night, 1855 — barges roped up under a moon the mist has half eaten. Menzel kept small oils like this private; nobody saw them until a memorial show fifty years later.",
@@ -4070,8 +4106,11 @@ about: "A forest road was a motif Shishkin returned to again and again, and this
 by: "Opus · Fable" },
 
 "hendrick-van-balen-the-elder-la-chute-des-reprouves": {
-about: "This is a looted picture: catalogued as MNR 414, one of the Musées Nationaux Récupération works recovered in Germany after the war and still held on behalf of an owner never traced, it passed through the Deutsches Historisches Museum in 1946–47 before returning to France and being deposited at Pau. Hendrick van Balen the Elder, who died in 1632, painted it as a small oil after Rubens — a cabinet-scale reduction, 81 by 54 centimetres, of Rubens's monumental \"Fall of the Damned\" now in Munich, its swirling avalanche of bodies condensed onto a single panel.",
-by: "Opus · Fable" },
+  "about": "This is a looted picture: catalogued as MNR 414, one of the Musées Nationaux Récupération works recovered in Germany after the war and still held on behalf of an owner never traced, it passed through the Deutsches Historisches Museum in 1946–47 before returning to France and being deposited at Pau. Hendrick van Balen the Elder, who died in 1632, painted it as a small oil after Rubens — a cabinet-scale reduction, 81 by 54 centimetres, of Rubens's monumental \"Fall of the Damned\" now in Munich, its swirling avalanche of bodies condensed onto a single panel.",
+  "deep": "Only this object's custody is dated to the day. The German dealer Walter Bornheim bought it at Juan-les-Pins for 275,000 francs through Brimo de Laroussilhe; it entered the Munich Central Collecting Point on 22 May 1946 as number 30946, was repatriated on 25 March 1947 and deposited at Pau on 9 March 1952. France files it as an \"Œuvre dont l'historique est incomplet entre 1933 et 1945\", owner still unidentified. The sheet carries its own evidence: a quarter of the field is a settled company on cloud, none of it falling. The Louvre catalogues it after Rubens under a title naming the fall alone; the one before was Esquisse pour le Ciel et l'Enfer.",
+  "by": "Opus · Fable",
+  "deepBy": "Opus 5"
+ },
 
 "odilon-redon-untitled-8": {
 about: "A pale youth clamped to the breast of a dark eagle, around 1900 — no serene cupbearer borne aloft but prey, limbs splayed, face swallowed into the bird, on a canvas barely larger than a sheet of paper.",
@@ -4102,8 +4141,11 @@ about: "Makart was Vienna's great decorator and history painter, the man of Cleo
 by: "Opus · Fable" },
 
 "stanis-aw-witkiewicz-droga-w-lesie": {
-about: "This is the father, Stanisław Witkiewicz — critic, founder of the Zakopane Style, evangelist of the Tatra highlands — and not his son Witkacy. By the time of this 1910 forest study he had already left Zakopane for the Adriatic resort of Lovran, where tuberculosis kept him from 1908 until his death, so the woodland he had spent a career championing was reached from exile rather than from its floor. The oil is tiny, barely 19 by 14 centimetres, a private-scale glimpse rather than an exhibition landscape.",
-by: "Opus · Fable" },
+  "about": "This is the father, Stanisław Witkiewicz — critic, founder of the Zakopane Style, evangelist of the Tatra highlands — and not his son Witkacy. By the time of this 1910 forest study he had already left Zakopane for the Adriatic resort of Lovran, where tuberculosis kept him from 1908 until his death, so the woodland he had spent a career championing was reached from exile rather than from its floor. The oil is tiny, barely 19 by 14 centimetres, a private-scale glimpse rather than an exhibition landscape.",
+  "deep": "The road declines to recede and the date refuses to narrow; what the catalogue can still read on the sheet is a place-name. Below the lit gap its left bank keeps to the middle of the board the whole way down while the right crosses a third of the width, which is not how a road going away from you behaves: the ground runs down and quits at the corner. The transcription gives his name, then Zakopane, then a year that stops after three figures. He left for Lovran in 1908 and died there on 5 September 1915; his coffin, carried across a Europe at war, reached Zakopane on the thirteenth.",
+  "by": "Opus · Fable",
+  "deepBy": "Opus 5"
+ },
 
 "vincent-van-gogh-still-life-with-three-birds-nests": {
 about: "In the autumn of 1885, near the end of his Nuenen years, Van Gogh painted a short run of nest still lifes fed by his own hoard of nests from some thirty different birds, kept in cupboards alongside mosses and stuffed specimens. He had gone hunting with a peasant boy and come back with six, \"from which the young had already flown, so that one could take them without too many pangs of conscience.\" Grouping three of them here, he told Theo the pictures should appeal to nature lovers \"because of the colours of the moss, dry leaves and grasses, clay &c.\"",
@@ -4188,8 +4230,11 @@ deepBy: "Sonnet 4.6",
 by: "Opus · Fable" },
 
 "henry-brokmann-la-croix-dans-la-brume-bretagne": {
-about: "Henry Brokman was a Dane, Copenhagen-born in 1868 and academy-trained there before Paris pulled him toward plein-air work and what critics called a systematic pursuit of light — a chase that later took him to Italy, Egypt and Syria, with Turner the acknowledged shadow over his weather studies. This 1905 canvas turns that instinct on Brittany: a roadside calvary, one of the region's stone crosses, met in sea-mist.",
-by: "Opus · Fable" },
+  "about": "Henry Brokman was a Dane, Copenhagen-born in 1868 and academy-trained there before Paris pulled him toward plein-air work and what critics called a systematic pursuit of light — a chase that later took him to Italy, Egypt and Syria, with Turner the acknowledged shadow over his weather studies. This 1905 canvas turns that instinct on Brittany: a roadside calvary, one of the region's stone crosses, met in sea-mist.",
+  "deep": "Brittany supplied one fixed motif and the weather supplied the variable. Croix et vague, Bretagne, of about 1905, sits one inventory number away and was given by the same son on the same December day: the same motif under a wave instead of mist, on a canvas less than half as wide. Run that way, the cross is the constant and the weather is the subject, and this canvas has no need to say where it stood. Another of his 1905 canvases repeats this one's dimensions to within half a centimetre — a study made on a schooner's stern — though nothing traces that boat to this coast.",
+  "by": "Opus · Fable",
+  "deepBy": "Opus 5"
+ },
 
 "giovanni-boldini-untitled-2": {
 about: "By 1920 Boldini's eyesight was failing and his manner had gone loose and dark; no longer living by commissioned portraits, he painted what he pleased. This gallant scene of amorous dalliance, a fête-galante subject in the old Watteau vein, belongs to that final self-directed phase near the close of his working life.",

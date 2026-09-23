@@ -97,6 +97,824 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+ "tiepolo-study-for-a-ceiling-with-the-personification-of-counsel": {
+  "mv": 5,
+  "see": "Sky fills the upper half and a terracotta cloud-bank the lower, its silhouette high at the left, dropping to a well at the centre, lifting again across the right. Figures lie along that silhouette in two groups, one at each end, with a long emptiness between them. A single child flies, upper left. A white cloth sits on the bank at the centre; below it, alone in the brown, a small dark mark. Toward the right the blue gives out and a warm expanse runs to the edge. The range is narrow — brown, buff, pale blue — and warm right through the lower half, so what saturation there is collects in a few small reds: a throat in the left group, a head in the right, and the drape at the corner.",
+  "about": "Everything on this canvas was drawn up to persuade somebody. Paintings of this kind were made to show a patron what a ceiling would look like: an argument in oil, small enough to carry, for a surface many times its size. What the argument was for has gone. The ceiling is lost, known now from an etching made after it and a drawing nobody can locate, and no photograph of the finished work exists. The museum's catalogue concludes that this canvas was probably cut out of a larger proposal, so the argument survives in pieces, and the personification the title names is left without the scheme that would have explained him.",
+  "craft": "The support is a coarse plain weave prepared with a red ground, and that red is nowhere fully covered. It surfaces as orange speckle through the thin blue of the sky, and it stands as a warm line at contours where one paint halts before the next begins. Broad areas are laid in a few flat passes and then left alone; the drawing comes later, over paint that has set. Figures in shadow are carried almost wholly in the brown family and contoured with a darker brown. A fine craquelure runs through sky, bank and bare field alike, and small white specks stand out through the browns.",
+  "context": "Oil on canvas, 27 by 49 centimetres. Washington dates it “before about 1762”, an upper limit and not a date: the reasoning runs through an etching after the composition, which appears on a collector's bill paid around that year. The canvas itself carries neither a date nor an inscription of any kind. Specialists have placed it anywhere across four decades and still disagree. Where that design was headed is given as probable and no more: a ceiling for Saint Petersburg, whose main components Tiepolo reused in the lower left of his Madrid throne-room proposal — a painting hanging today in the same Washington room.",
+  "deeper": [
+   {
+    "t": "Where the blue gives out",
+    "x": 0.76,
+    "y": 0.02,
+    "w": 0.21,
+    "h": 0.5,
+    "body": "The sky does not end at a contour here; it runs out. Its last stretch before the warm expanse thins into separate bristle tracks with the preparation standing between them, the mark of a dry brush pulled across a layer that had already set. Past that line the surface is warm buff-pink all the way to the right edge, something close to a ninth of the painted area. Blankness is the easy reading, and measurement refuses it. Sampled in 1200-pixel squares at native scale, fine surface incident in the warm zone runs 5.3 to 7.0 in a 0.14 to 0.52 millimetre band, against 5.9 to 6.6 for open sky and 4.7 to 5.7 for the brown bank. It is as worked as the fields around it. Drawing is the one thing this stretch never got — no contour, nothing modelled — while two pale cloud-stripes cross it lower down and thin away without stopping."
+   },
+   {
+    "t": "The drape at the right edge",
+    "x": 0.87,
+    "y": 0.6,
+    "w": 0.13,
+    "h": 0.2,
+    "body": "The coral-pink drape at the lower right is dragged on in bristled sweeps that change direction where they cross a crest, and its upper contour is simply the edge of that paint, scalloped where the brush lifted and pressed, with no line drawn afterwards to confirm it. Dark red-brown strokes are then pulled across the pink for the folds, and at the left end the coral thins to a dry drag. Sampled at native in 90-pixel squares, the drape and the warm field it lies against return the same red — 175 against 174 of a possible 255 — and part company only in the green and blue, which the pink has had taken out of it. Followed right, the drape neither tapers nor turns: coral and brown are still travelling when the canvas stops."
+   },
+   {
+    "t": "The face that shows its jaw",
+    "x": 0.75,
+    "y": 0.59,
+    "w": 0.11,
+    "h": 0.16,
+    "body": "Among the bodies collapsing rightward, one face is constructed entirely from beneath. The features are pushed down into the lower third of the head: the nostrils read as two dark dots because they are being looked up into, the mouth is a smear below them, and the cranium swells away above and takes most of the area. Very little paint does the work — four or five dark touches on a field of warm brown-pink, with one brown hook for the ear. Everything decided about this head assumes a viewer standing under it, which is the first thing a ceiling design has to settle and the one thing a small canvas lying on a table cannot itself demonstrate."
+   },
+   {
+    "t": "The white cloth, and the folds drawn over it",
+    "x": 0.4,
+    "y": 0.45,
+    "w": 0.19,
+    "h": 0.24,
+    "body": "The white cloth across the middle of the bank is the one passage where the paint has real body. Its upper contour is a stack of loaded curls, each laid and left, standing high enough for the ridges to catch light along one flank. Measured at native in 1200-pixel squares, the spread of light and dark in a 0.4 to 2.4 millimetre band runs 9 to 14 across the cloth against 3.3 to 5.9 for every broad field sampled — sky, bank and warm zone alike — and the weakest square on the cloth still reads above the strongest of those. The pale drapery just below and to the right is flat by comparison, and the folds across it are drawn in a warm red-brown with a brush almost out of paint: the line splits into six and eight parallel bristle tracks, and it skips over the ridges, leaving white showing inside the stroke. A dry brush cannot behave that way on wet paint, so the fields here were laid down, left to set, and drawn over afterwards."
+   },
+   {
+    "t": "The mark left alone in the brown",
+    "x": 0.42,
+    "y": 0.78,
+    "w": 0.17,
+    "h": 0.2,
+    "body": "Low at the centre, in the emptiest stretch of the bank, sits a dark shape with nothing modelled around it: two upright points above a rounded head, a hunched body, a limb trailing to the lower right and, separated from it by a run of bare brown, a long horizontal stroke ending in a flattened oval. At full resolution it comes to about a dozen dragged strokes, several still showing the split of the bristles, and it stops improving there. It was not meant to improve. On a design of this kind an attribute has to carry as a silhouette and a position — this one sits directly beneath the well where the bank's silhouette drops lowest — because whoever came to execute the ceiling would work it up at many times the size."
+   },
+   {
+    "t": "The thread at the silhouette",
+    "x": 0.1,
+    "y": 0.25,
+    "w": 0.16,
+    "h": 0.22,
+    "body": "Where the sky meets the brown summit at the left, the two paints do not quite touch. Along the flanks a warm thread of the preparation stands between them, a hairline in reddish buff, and that hairline is what separates the form from the air: the contour there is a gap and not a stroke. At the crest the thread gives out and the summit's own dark brown abuts the blue directly. The same warm layer surfaces as orange speckle through the thin blue overhead, so thread and speckle read as one substance, and where it runs the form is set off the sky by the layer that lies under both."
+   },
+   {
+    "t": "The flier's back",
+    "x": 0.2,
+    "y": 0,
+    "w": 0.22,
+    "h": 0.26,
+    "body": "The one airborne figure is turned away and downward, so the nearest mass is the rump and the head, small and auburn, is the furthest part of him from the viewer. Foreshortening is got by rotating the body through the picture plane, the gentlest of the solutions a ceiling painter had. Around the arm and turning with the shoulder runs a warm red-orange edge, and the pink is brushed inside it in short curved strokes that follow the muscle and stop just short of it, so the warm line carries the whole outline. The grey wing above him is scrubbed thin along its upper margin and feathers into the blue there; down its other side the same warm line reappears, a red-orange band of bare preparation lying between wing and sky."
+   },
+   {
+    "t": "The four edges",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Step back and put one instrument on all four edges. At native resolution, following every run of dark paint a hundred pixels deep that reaches the boundary: along the bottom it comes as one continuous stretch from a tenth of the way across to four fifths, some nineteen thousand of the 30,901 columns; down the left only below mid-height, fewer than four thousand rows of 17,501; down the right only in the lowest third, about two thousand; along the top, nothing. Every stretch that touches is the same brown bank, which is where the instrument stops: any picture with air above and dark weight below returns that asymmetry, so the count cannot tell a cut from a composition. Radiography cannot settle it either, the adhesive used to line the canvas blocking the image. What is left is the edges themselves — a coral drape carried off the right without a taper, and along the top every form halting short, the flying child's wing nearest at 175 pixels and still clear of it."
+   }
+  ],
+  "beside": "Also in this collection is a small oil whose ceiling is likewise gone. Perseus and Andromeda, at the Frick Collection, is catalogued thirty-two years earlier: a modello of about 1730 for a fresco in Milan's Palazzo Archinto, which Allied bombing destroyed in 1943. The sketch is now the record of that ceiling, down to the detail Tiepolo changed — Perseus up on Pegasus, where Ovid had given the hero winged sandals. There a small canvas stands in for a ceiling nobody will see again; here the canvas is thought to be a piece taken out of a proposal that has not survived either.",
+  "refs": [
+   {
+    "id": "perseus-and-andromeda",
+    "text": "Perseus and Andromeda, at the Frick Collection,"
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "rubens-peter-paul-rubens": {
+  "mv": 5,
+  "see": "Light falls from high on our left onto a bearded man, bust length, head turned to his own right, lids lowered. Behind him the background shifts from ochre at the top to a hot orange-red at his left shoulder. The light lands in two places, the bald crown and a white collar at the throat. Nearly half the surface sits in darkness, and the lit flesh covers about a thirtieth of it. Everything is earth colour, and the whole range runs from a warm cream to a brown so dark it passes for black. Otherwise the picture is empty: no hands, no attribute.",
+  "about": "Three roles have to be filled for this panel: the man shown, the master whose manner it is in, and whoever held the brush. The National Gallery of Art gives the same name to the first two and leaves the third blank - Studio of Sir Peter Paul Rubens on the label, an unnamed hand in the painter field, Rubens beside it as the related artist that qualifier points to. He is indexed here as the subject. The Gallery reads the object as informal, and argues from two absences: the gold chain of Rubens's court appointment, and the broad-brimmed hat of the self-portraits. Neither is in the picture, and what is left is a head of the man the shop was named for.",
+  "craft": "One preparation lies under the whole picture: a warm gold imprimatura on a smooth panel, left to serve as the middle tone. Value is then a matter of how much paint is carried over it - lights loaded until the gold is buried, half-tones dragged thin enough for it to come up through them, darks laid in a transparent brown that lets the ground read through. The brush is stiff and carried dry, which is why the strokes do not cover evenly: they land in broken tracks and miss in between. What separates the lightest passage from the darkest is how completely that gold has been shut out, and with what.",
+  "context": "Oil on panel, 41.3 by 33.7 centimetres. Nothing is written on it, no signature and no date, so about 1620 is inferred: tree-ring analysis says the board was available for use around then, and the sitter looks the 43 Rubens reached in June 1620. The name has moved repeatedly: a magazine cover called it a newly found self-portrait in 1926; Detroit hung it as Rubens in 1936; Julius Held struck that out in 1947; it reached Washington in 1960 as School of Rubens, was printed as by Rubens again in Tel Aviv in 1995, and is Studio of today. For an ancestor the museum offers one line in a 1689 Antwerp inventory, a head of Rubens painted by Van Dyck, now lost.",
+  "deeper": [
+   {
+    "t": "Gold in the skips",
+    "x": 0.215,
+    "y": 0.105,
+    "w": 0.25,
+    "h": 0.16,
+    "body": "Every pale stroke across this skull is short of paint. The brush was stiff, barely loaded and dragged, so it rode the high points of the panel and left the warm gold preparation showing in hundreds of small dashes, each one stretched along the direction of its stroke. That is the entire modelling system here: light is not brighter paint, it is more cover, and the dome falls away toward its edges because less pale flesh was carried there. Two further populations of mark cross this passage and are worth separating. The short hatchings, grouped and parallel, stop where the forms stop, and they are the painter's. The long dark lines run the whole width of the dome, straight over the turns of form that bring the hatchings up short."
+   },
+   {
+    "t": "An edge with no line",
+    "x": 0.06,
+    "y": 0.135,
+    "w": 0.185,
+    "h": 0.09,
+    "body": "On this side the head ends without a line. The pale flesh runs out of paint as it nears the silhouette, and a warm brown band takes over - half a centimetre of it through most of this stretch, close to a centimetre at its widest. Measured at full resolution that band is darker than the background beside it, darker than the flesh above it, and darker again than the gold reads where it surfaces up on the crown. Bare preparation will not account for it on its own. Whether a shadow was carried up to the head here, or the background brought in to meet it, is not something a photograph can settle; what it does settle is that nothing along this contour was ever drawn."
+   },
+   {
+    "t": "The ear, and one firm stroke",
+    "x": 0.568,
+    "y": 0.265,
+    "w": 0.118,
+    "h": 0.119,
+    "body": "The ear is four or five pale strokes and a hook of paint at the lobe. One cream stroke curves down its front edge with real conviction, among the few places in this head where an edge is stated by a line instead of by a fading; the inside of the ear stays a rust-coloured smear with no bowl and no inner rim. Dark hair was flicked across its upper edge afterwards, which fixes the order. The Gallery's published case for keeping Rubens's own hand out of the panel names this exact feature: weaknesses in the modelling of the ears and lips, which it says lack real form and structure. That was written by curators with the object in front of them, and what the crop shows is consistent with it."
+   },
+   {
+    "t": "Three whites",
+    "x": 0.325,
+    "y": 0.29,
+    "w": 0.185,
+    "h": 0.135,
+    "body": "Three separate touches of white sit in this eye and each has a different job. A short comma rides the top of the iris, where the wet cornea catches the light. A thin dash lies along the margin of the lower lid, which is not the eye at all but the film of moisture on the lid's edge. A single dot marks the inner corner, set into a patch of hot vermilion. Below the lid the flesh is hatched with a fine brush, in strokes laid along its length that can be counted one by one, and a vermilion line draws the lashes. All of this is slow work with a small brush, and below the beard the panel has none of it. One reflex to retire here: the white of the eye looks cool grey and is nothing of the kind. Sampled at full resolution it is a warm olive, its blue under half its red, greener and darker than the cheek beside it. It reads cool by comparison alone, and there is no blue anywhere on this panel from which a cool could be made."
+   },
+   {
+    "t": "The order of work",
+    "x": 0.27,
+    "y": 0.43,
+    "w": 0.195,
+    "h": 0.14,
+    "body": "The nostril is a single dark comma, thick where the brush touched down and tapering as it lifted. One thin vermilion line goes round the wing of the nose and continues through the philtrum in an unbroken pass. Over both of them the moustache arrives last, pale grey-cream flicks that cross the red line and sit on the brown shadow beneath the nose. So the sequence was contour, then shadow, then hair, and it is invisible at any distance where the face reads as a face. The shadow under the nose also carries a tight closed crack net, quite unlike the wide polygons in the lit flesh above it."
+   },
+   {
+    "t": "The broken white",
+    "x": 0.59,
+    "y": 0.375,
+    "w": 0.155,
+    "h": 0.19,
+    "body": "One descending wedge of warm white, and it is deliberately not solid: dark ground pits the paint the whole way down, in the gaps a half-dry brush leaves when it is dragged across a surface it does not fill. Starched linen, creased and catching the light unevenly, got without one fold being drawn. Under it three or four scalloped dabs stand in for lace, and not a thread in them is described. The light here is worth measuring instead of ranking. This collar and the lit crown reach the same height, and both run into the top of what the photograph can record: at full resolution about half the pixels in a patch of the lit crown are already at the limit of the scale, and about a quarter of the collar's white is too, so no ranking of brightness between them survives. Density is what separates them: a sixth of the wedge itself falls into dark between its lit passages, where the same measure on the crown returns half a per cent."
+   },
+   {
+    "t": "Fur made of ground",
+    "x": 0.125,
+    "y": 0.74,
+    "w": 0.29,
+    "h": 0.195,
+    "body": "Not one hair in this passage is painted. Transparent dark brown was scrubbed over the same warm gold with a splayed dry brush, and the gold surviving between the bristle tracks is the fur. Lower down the sweeps broaden and begin crossing each other, and at a glance the crossing reads as coarse canvas. A woven support holds one direction across a whole picture; these change direction from sweep to sweep. The record calls the support panel, and the surface gives no reason to argue with it."
+   },
+   {
+    "t": "One hand, unequal attention",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "At the bottom edge the brown is carried so thin that the warm ground comes up through the drag in wide streaks, and stepping back from there the whole rectangle sorts itself by effort. Eyes and nostril carry a second campaign of small deliberate marks. The collar takes one full load. Below the beard the picture is a few sweeps of transparent brown over bare ground, and that accounts for roughly the bottom third of the panel. The brush itself never changes: the same stiff dry drag makes the crown, the hair, the coat and the air behind the head, and every passage stands on the same gold. One hand, then, working at very different speeds on one small board, which is what a studio replica looks like at close range and equally what a portrait taken fast from a living sitter looks like. The catalogue logs one change of attribution since the bequest, does not say when it was made, and names nobody as the painter."
+   }
+  ],
+  "beside": "Anonymity swaps ends in a Rembrandt elsewhere in this collection. A Polish Nobleman, at the National Gallery of Art and seventeen years on from this panel, is neither Polish nor a nobleman: the sitter was a hired model, kitted out from the studio's props — beaver hat, fur cloak, gold chain — and the picture painted for the open market. Every borrowed thing that man wears, this head does without except the fur, and the absent hat and chain are just what the Gallery cites when it calls this portrait informal. Here the sitter is named and the painter is not; there the painter is named and the sitter never was.",
+  "refs": [
+   {
+    "id": "a-polish-nobleman",
+    "text": "A Polish Nobleman"
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "jean-jacques-henner-standing-woman": {
+  "mv": 5,
+  "see": "The value structure arrives before the person does: a pale vertical shaft of flesh down a very tall dark rectangle, a bar of blue-green across it, a red-gold mass above, an opening of turquoise at upper right and a fainter grey-green glow at upper left. She stands frontal and close, cut by the bottom edge, her raised right hand climbing into the hair at her temple, her eyes dark under heavy lids. Low on the viewer's left a large half-buried form rises through the ground. Below the waist the canvas goes dark and stays dark.",
+  "about": "Henner's reputation is softness, and the surface refuses it. The canvas draws, it also dissolves, and not at random: the line goes in where the ground behind the figure is dark and vanishes where it is light, which reverses what a soft painter is expected to do. Between its finest drawn stroke and its softest merged edge the picture runs near thirty to one. Behind that sits a device the painter's own museum sets out plainly: red as a true colour, flooded through a canvas or held to the hair to catch the eye in a picture of heavy shadow, propped against its complement, blue-green.",
+  "craft": "Two kinds of thin paint carry most of the surface: a cool scumble across the sky and a brown glaze over the ground behind the figure, both laid once and neither built up. Where the paint is opaque it goes on dry and broken and in one pass, so the layer beneath keeps coming through the colour. On the lit flesh it is worked smooth instead, one tone into the next with nothing left standing. As high-pass deviation against local mean on native 425-pixel crops, the weave reads five to ten times more present in the darks than in the lit flesh: a proportion, since the absolute figures overlap.",
+  "context": "No date is written on the picture: the inscription is a signature, 'lower left: J J Henner', so the year printed against it is an estimate - about 1903, the year of his last Salon; he died in 1905. What has been written about the canvas itself runs to two exhibition lines and not one bibliography entry, where his other paintings in the same collection carry four to eight. It reached the Corcoran on the Walker bequest of 1937 and the National Gallery in 2015. The practice is documented where the object is not: the scholar who catalogued him argues he is the victim of a false reputation, since more than three hundred near-identical small red-haired heads have passed through public sale since 1900 - too many, she writes, to be authentic. Those are little portraits; this is a metre of standing figure whose attribution carries no qualifier.",
+  "deeper": [
+   {
+    "t": "Where the brush shows",
+    "x": 0.335,
+    "y": 0.098,
+    "w": 0.25,
+    "h": 0.105,
+    "body": "The hair parts on a channel of near-black underlayer that was never painted over, and orange, ochre and a near-pure yellow run out of it on both sides in dozens of separate dry drags. The brush was close to empty for every one of them: at full scale the individual bristle tracks can be counted, and the dark beneath shows wherever the load gave out. Nothing in the flesh or the ground is made this way. What reads at a distance as one red is three colours laid beside one another on a dark preparation and never blended, which is why the temperature keeps shifting as the mass falls. The motif was already thirty years old when this canvas was painted: his first red-haired Salon picture went up in 1872."
+   },
+   {
+    "t": "The eye is drawn",
+    "x": 0.415,
+    "y": 0.2,
+    "w": 0.205,
+    "h": 0.108,
+    "body": "The upper lid of her left eye is a single stroke. It begins at the inner corner, carries over the arc and comes down past the outer one without a break or a reload, and where it tapers it measures nineteen to twenty-five pixels, about a millimetre of paint here. A second, fainter line states the lower lid; a short hook closes the inner corner. Then the thing that drawing sets up is withheld. Nothing inside the eye rises above about 143 on a 0-255 luminance scale: no white of the eye and no catch-light is painted anywhere in it, and an eye described this precisely cannot look out of the picture. The economy runs down the face. The nostril is a hook so abrupt and dark it reads as engraved, the only mark in the face bounded hard on both sides. The mouth is a single loaded red closed by a dark accent at her left corner and left open at the other. Each of these marks falls on a feature blending cannot produce: the edge of a lid, the opening of a nostril, the corner of a mouth."
+   },
+   {
+    "t": "The face pitched under the body",
+    "x": 0.425,
+    "y": 0.235,
+    "w": 0.4,
+    "h": 0.225,
+    "body": "Measured at native under three luminance definitions, the brightest five-hundred-pixel square the lit face can muster is beaten by the brightest on the bare shoulder below it: 227.7 against 200.1 on Rec.709, and the gap holds to within half a unit on the other two. The ranking does not come from the peaks, which top out at the same value, 253, on both. It comes from density. Eighty-five per cent of the shoulder patch sits above 220 against ten per cent of the face's, better than eight to one; adjacent patches inside the shoulder itself differ by at most fourteen units, half the gap. The face is held a full step under the chest, so the eye arriving at the top of the canvas is caught by the hair and the shoulder before it reaches her."
+   },
+   {
+    "t": "Two boundaries, no line",
+    "x": 0.27,
+    "y": 0.395,
+    "w": 0.47,
+    "h": 0.16,
+    "body": "The drapery is laid in broad flat drags that leave the weave and the brush's path in the paint; the flesh above is blended until no stroke survives. Where they meet, ten-to-ninety profiles at native in sixty-column blocks put the upper boundary between 255 and 1,014 pixels and the lower between 169 and 725 - under a millimetre to four and a half of ramp - and which is the softer moves with the column and the instrument. Neither is a line, and both fall on lit flesh. The drapery means about 16 red, 49 green and 60 blue: the blue-green the hair is propped against. Nothing of a seam or a fastening is painted in it; the garment exists as a colour and a diagonal, never as cloth."
+   },
+   {
+    "t": "The dark was worked",
+    "x": 0.022,
+    "y": 0.475,
+    "w": 0.315,
+    "h": 0.152,
+    "body": "A large form with a rounded top rises through the lower half of the picture here, a pale contour drawn down its left side, a shape the painting states as an object and then buries under the ground's dark. To its left, pale grey-green strokes cross at angles beneath the brown veil, one of them carrying a short bar across it. They are strokes and not scratches: they have brush character, they thin at their ends, and the glaze runs over them unbroken, which puts them on the canvas before the ground was finished. All of it reads at native with no brightening applied, in a passage that at ordinary distance is a wall of brown."
+   },
+   {
+    "t": "A line where nobody looks",
+    "x": 0.232,
+    "y": 0.855,
+    "w": 0.14,
+    "h": 0.125,
+    "body": "The skirt's left contour, low on the canvas, is a painted line about thirty pixels wide, a millimetre and a third of actual paint. Averaged over forty native rows it drops to about 10 on a 0-255 scale, against brown ground running 17 to 24 on one side and dark blue-green running 21 to 27 on the other. Without it the skirt and the ground are the same value and there is no edge between them to see. It ends in a blunt thickened stop where the brush was lifted, about three and a half centimetres above the bottom edge."
+   },
+   {
+    "t": "The side that faces the light",
+    "x": 0.655,
+    "y": 0.225,
+    "w": 0.215,
+    "h": 0.165,
+    "body": "On this side of the head the silhouette is not drawn at all. The auburn passes into the turquoise over several hundred pixels of stipple with nothing resembling a contour in it, and just below, where the lit shoulder enters the hair, averaged profiles give between about 670 and 850 pixels from ninety per cent down to ten, three to nearly four centimetres of transition. The turquoise is a single thin scumble over the warm ground, so brown survives in the interstice of every weave crossing: thousands of small dots, and the reason this sky reads chalky and airless instead of deep. The dark mass was pulled across it afterwards with a nearly dry brush, which is why its boundary is a comb of broken dark with turquoise peaks surviving between the teeth. The same brush that drew a contour into the black of the skirt left this edge with nothing in it at all."
+   },
+   {
+    "t": "The one thing left to decide",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Stand back: the warm key is measurable everywhere. Sampled at native, red runs nine to thirty-seven units above blue across the dark ground and fifty-six above in the core of the hair; on the whole plate the pixels where blue leads red, three tenths of the surface, fall in two places only, the turquoise opening at upper right and the garment. The canvas does both halves of the method at once: the warm flooded through the field and concentrated in the hair, its complement planted twice as a foil. All of that is settled before the first mark. What is left to decide is where the line goes, and the answer holds across the surface: in against the dark, withheld against the light, which puts the drawing where this picture is hardest to see."
+   }
+  ],
+  "beside": "The same painter's dark ground is a place in one canvas and nowhere in this one. That canvas is Eglogue, also in this collection, at the Petit Palais — shown at the Salon of 1879, twenty-four years before the date this one carries, and recorded too as Effet du soir: three metres of near-black woodland and evening, a green sky, a flat pond, two figures who never look at each other. The cool note that hangs there as a green sky is worn here as a blue-green dress. There the dark has an hour in it; here it holds one shape the picture leaves unnamed, and nothing that says where or when.",
+  "refs": [
+   {
+    "id": "jean-jacques-henner-eglogue",
+    "text": "Eglogue"
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "childe-hassam-nude-seated": {
+  "mv": 5,
+  "see": "Her back is turned, and she runs nearly the whole height of a small upright canvas, at her widest low down. Behind her a dark olive hanging sprigged with small slanted dabs holds the left edge, and past it a golden-ochre field is dragged in long dry verticals. A thin bright line marks the junction where the two meet. A grid of cool grey-green bars crosses the field's lower third. At the bottom the paint thickens into a bunched blue-green wrap over a sheet whose white is a warm grey. Against that the body holds still, its colour nearer cream than pink.",
+  "about": "The Gallery can follow this canvas through every owner it has had and quote what the painter wrote in the corner. It cannot say who sat for it, or where. The room is the same: no wall meets a floor, and the drapery runs off the bottom edge with nothing under it. Nor is there a light source: the gold shows neither an aperture nor a falloff, and two columns of it measured top to bottom on the unreduced scan drift in opposite directions, which is mottle in the cloth and not light. He has made an interior with nothing in it to light her, and lit her anyway, from a side the room never accounts for.",
+  "craft": "He works thin and dry over a warm ground and lets the cloth do half the work: the weave prints through the gold field, the olive hanging and the flesh alike, and gives out where a loaded brush has crossed a contour. A silhouette that is re-cut is re-cut last, with paint laid across what it bounds; not every contour in the picture gets that second pass. Pattern arrives as one compound touch per motif: a rust stroke, a dark core, a turquoise neighbour, half a centimetre long. The working is graded: a veil that barely moves on the body, long dry drags in the field, short crossing strokes in the sheet and the wrap.",
+  "context": "Oil on canvas, sixty-one by fifty-six centimetres, under two feet across. He dated it himself in the upper right, 1912, so the year needs no estimate. It went from a first owner called Our Lady of Elms, probably a gift from the artist, though the Gallery cannot say where that house stood, to Knoedler, then a Brooklyn buyer, an auction lot, and Chester Dale, whose 1963 bequest brought it to Washington. Five recorded exhibitions, ten bibliography entries and a full systematic-catalogue entry sit around it. A nude is no departure for him either: the Gallery's holdings have him back at the subject in 1918 and again in 1927, both times as prints.",
+  "deeper": [
+   {
+    "t": "A seam of light, three millimetres wide",
+    "x": 0.055,
+    "y": 0.05,
+    "w": 0.19,
+    "h": 0.58,
+    "body": "Where the olive hanging meets the gold, a vertical line of light runs the junction's height. The bright core is about three millimetres wide, measured at eight heights on the unreduced scan at half its brightness above the gold; the coloured junction around it is nearer a centimetre. Cut across that junction at 1:1 low down, near the cloth, and it is not one colour but four in a fixed order: the olive, then a scarlet line, then a chrome-yellow core whose blue drops to about a fifth of its red, then a band of cool pale grey-green in which red and green come level, and only then the gold. Warm on the dark side, cool on the lit side. He is colouring this edge as well as lightening it, and the cool member earns as much of the separation as the bright one does. The line also holds: row by row on the unreduced scan, a five-and-a-half-centimetre strip at the junction carries the higher peak in more than nine rows in ten against any equally wide strip of open gold, and two of those strips set against each other divide the rows evenly."
+   },
+   {
+    "t": "The same recipe, out in the open and unlit",
+    "x": 0.835,
+    "y": 0.375,
+    "w": 0.13,
+    "h": 0.175,
+    "body": "A vermilion stroke six centimetres long stands upright in the gold far out to the right, with a ropy chrome-yellow ridge pressed along one side of it and a cool grey-green band beyond that. Three loads in the order used at the hanging's edge, mirrored left for right and made small. What it is not is bright: on a native crop the vermilion core averages below the gold immediately around it. There is no gap here for light to come through, and nothing for the stroke to describe. The yellow ridge is also raised — the weave prints through the gold on either side of it and stops dead underneath. Which settles what the first mark is: a way of building a vertical, carried to a place where the picture needed none."
+   },
+   {
+    "t": "Bars over the gold, and one of them passes behind her",
+    "x": 0.215,
+    "y": 0.585,
+    "w": 0.765,
+    "h": 0.29,
+    "body": "A grid of cool grey-green bars lies over the gold in the lower third, horizontals and verticals meeting in large rectangular cells, with a single orange dash left showing inside one of them. The obvious instrument misses all of it. Run a brightness profile across these rows and the bars are not there, because they sit at the ground's own lightness; run a warmth profile across the same rows and they appear at once. In a native column to her right, red-minus-blue drops by about twenty-five where the topmost bar crosses while the luminance moves by six. That bar stands at very nearly the same height on both sides of her: to her left it crosses the wedge of gold between her arm and her side, where a turquoise-loaded stroke meets a vertical at the corner of a cell; to her right the same cells run out to the canvas edge. One structure, and she is sitting in front of it. Above the topmost bar the field carries no grid whatever — two-thirds of a canvas of gold with not a horizontal in it."
+   },
+   {
+    "t": "Where the paint is actually spent",
+    "x": 0.505,
+    "y": 0.25,
+    "w": 0.2,
+    "h": 0.24,
+    "body": "Across the turn of her shoulder the light resolves into an ordered sequence, and the order carries the whole effect. From the inside out: the cool grey-green of the back, a celadon half-tone, a loaded cream crest about a centimetre and a half wide whose strokes run along the curve instead of across it, then a warm pink-brown sliver some five millimetres wide, then gold. The warm note sits outside the crest and not within it, which is what turns the form away from us; an edge blended in the usual way would have cooled there and gone flat. And the canvas grain, unmistakable in the gold a centimetre off, is buried in the cream. On the same crop, by the same measure, the weave lattice registers at least twice as strongly in the field as it does inside the crest, which is what it looks like when one paint fills the cloth and the other only stains it."
+   },
+   {
+    "t": "The crown, re-cut last",
+    "x": 0.305,
+    "y": 0,
+    "w": 0.34,
+    "h": 0.3,
+    "body": "The hair is dry umber scrubbed over the warm ground, thin enough that the priming glints through the dark in orange points. Around the crown, cream strokes lie on top of the hair's silhouette and eat into it: loaded, laid over dry paint, following no contour the hair itself set. The outline was cut last, with a brush full of light, and cut inward. A head drawn first and filled in afterwards cannot end with its edge overlapping its own dark. On the right of the knot, a bundle of cream, chrome yellow and salmon reads as an ear at arm's length and resolves at 1:1 into three loaded touches on a lit roll of hair; no ear is drawn, and nothing on the head resolves into a drawn feature at the closest look the canvas allows."
+   },
+   {
+    "t": "The heat under the back belongs to the canvas",
+    "x": 0.35,
+    "y": 0.41,
+    "w": 0.23,
+    "h": 0.21,
+    "body": "The flesh here is a cool grey-green film laid thin enough that the warm priming reads through it on the crown of every thread. The effect is a hue and not a value: taken as red over green, the warmest eighth of the pixels inside this patch sits about three times as far off neutral as the coolest, while the grey level between them shifts by a few per cent. The film is also cooler than the room it sits in, the gold behind her standing about two and a half times as far off neutral by the same measure. So the warmth of the body was never mixed. He put down a cool veil and let what was already on the canvas supply the blood, which is how this passage can carry almost no incident and still look alive."
+   },
+   {
+    "t": "Where the arm releases",
+    "x": 0.62,
+    "y": 0.68,
+    "w": 0.235,
+    "h": 0.24,
+    "body": "The forearm comes down with a warm lit edge along its inner side and then simply stops: the contour releases, and the same pale paint carries on as linen. No finger is separately drawn. Nothing here is a smear, though — at 1:1 the passage is a bank of separate directional strokes in pale blue-white, cream and chrome yellow, each one placed, and the mass is weighted and lit like something taking her weight. The description is allowed to end at the wrist, and the picture never comes back to repair it."
+   },
+   {
+    "t": "The one thing the canvas states",
+    "x": 0.775,
+    "y": 0.05,
+    "w": 0.215,
+    "h": 0.145,
+    "body": "Upper right, in thin red-brown script over dry gold: Childe Hassam, and beneath it four figures. The weave prints straight through every letter, so the name went on with the same unloaded touch as the field it sits on, and none of the brush that built her shoulder was spent here. A small hooked stroke stands by itself above and to the left of the first letter, touching nothing. The final digits carry an abrasion, a dark blot and a dab of chrome yellow across them; enlarged four times on a native crop the figures still read 1912, put down in the same thin red-brown as the name above them."
+   }
+  ],
+  "beside": "The same year produced another interior by this hand, and its documents run in the opposite direction. The New York Window, at the National Gallery of Art, is 1912 as well — no years between them — and gives its woman a window to have turned from. Its record starts before the paint: a frame ordered from Carrig-Rohane in October 1910, eighteen months early, cut for a horizontal picture, its twin now on Golden Afternoon at the Metropolitan. There the paper reaches the picture ahead of the brush and is exact down to the joinery; here it follows behind, owner after owner, and stops outside a room that has no window and no wall.",
+  "refs": [
+   {
+    "id": "childe-hassam-the-new-york-window",
+    "text": "The New York Window"
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "alfred-sisley-the-banks-of-the-oise": {
+  "mv": 5,
+  "see": "The river opens from the upper left and runs out at the lower right, seen from the bank the viewer stands on. Two collisions of light and dark carry the picture at distance, on a diagonal: a tall pale sail crossing the wooded far ground, and a near-black hull laid along lit water at the centre. The touch between them changes kind from zone to zone. Tone darkens downward and to the right, into the chopped near-black water of the near corner. Both shores are in full leaf and the meadow is bleached and flowering.",
+  "about": "Both banks are given over to boats. Small craft stand along the near shore with their canvas spread on spars, one beached under a hanging sail; a barge lies out in the channel with a man aboard; a hooped hull sits at the near bank's edge; pale hulls are drawn up under the trees opposite. The picture's care goes to the particulars of that trade — a rail, the colour of a bottom strake, a spar laid across a hull. Against so much specific looking, the paint never supplies the mark that would say which river this is, and the title is left carrying the claim alone.",
+  "craft": "Sisley works the same paint two ways on one canvas: scrubbed to a stain where he wants air, and put on in separate marks that keep their own edges where he wants weight. The unit is one pull of a loaded brush: a mark is a stroke's length, so a tree or a figure is however many pulls it takes. A figure on the path is drags of blue-violet with a knot of saturated orange set on for a head, and it still holds a stance. Glitter on the water is cream and yellow flecked over the blue, soft at the edges where the two meet.",
+  "context": "Oil on canvas, 54.3 by 64.7 centimetres. The National Gallery of Art dates it 1877/1878, and the reason for the two-year straddle is on the canvas: it is signed at the lower left and carries no date, so those years are a curator's reading and not the painter's. A flat 1877 circulates widely; that figure is the museum's opening year quoted alone. Sisley's documented working ground is the Seine, the Loing and the Thames, and the Gallery's other Sisley paintings run Argenteuil, Marly, Port-Marly and Veneux-Nadon. This is the single Oise among them, and nothing in the record names a town or a reach of that river.",
+  "deeper": [
+   {
+    "t": "A sail that is not sailing",
+    "x": 0.01,
+    "y": 0.45,
+    "w": 0.25,
+    "h": 0.305,
+    "body": "The pale triangle holding the left half is a sail, and it is not in use. Its mast is a single navy stroke, dead vertical, and the cloth falls straight down the mast's left side in long parallel drags of cream, ochre and lavender, with no curve in it anywhere — the shape canvas takes when it hangs, not the shape wind gives it. A sail is the one object in a river view that declares a boat is going somewhere, so which of those two shapes a painter puts down settles what the whole bank is for. Follow the mast to its foot: it comes down onto a dark hull lying against the sand, the pale path running underneath. More cloths are spread open on dark diagonal spars to the left, and past the figures on the right a second, smaller sail hangs the same slack way, its foot among the same spars."
+   },
+   {
+    "t": "The man in the barge",
+    "x": 0.335,
+    "y": 0.69,
+    "w": 0.237,
+    "h": 0.095,
+    "body": "The long hull in the channel is where the picture stops breaking its touch. A dark blue-black runs unbroken from end to end, and the shadow laid under it in the water is one continuous stroke where every other reflection is chopped to pieces. Amidships it thickens into a rounded form with a maroon shoulder, and two slender uprights stand from the hull beside it — a seated man with his pole, at the scale of a thumbnail. The charge against this generation of painters was that everything is left unresolved, and it misses the rationing: continuous drawing is kept for a handful of objects, and most of them here are boats."
+   },
+   {
+    "t": "Hoops over a maroon hull",
+    "x": 0.435,
+    "y": 0.755,
+    "w": 0.155,
+    "h": 0.095,
+    "body": "What looks like chopped water at whole scale is a boat. Curved members arc up out of the hull one behind another, each one a single loaded sweep; a pale cream line runs beneath them as a gunwale; under that the hull deepens to maroon, with red laid along the bottom of it — at three times native not one line but a row of separate touches that closes into a line as you step back. Broken handling is taken for a painter declining to specify, and the test is whether the marks resolve into distinctions only a real object would carry."
+   },
+   {
+    "t": "Two people the meadow absorbs",
+    "x": 0.232,
+    "y": 0.762,
+    "w": 0.1,
+    "h": 0.078,
+    "body": "Two figures sit low in the bank meadow, and at whole-picture scale they are grass. One has a warm tan back with a red-orange head turned left; the other is smaller, in lavender under a pale bonnet. What hides them is value, not size. Measured on the full-resolution file, the seated figure's back holds a median brightness near 130 out of 255, while small patches of grass along the same line run anywhere from about 80 to 200 — the figure falls inside the range the meadow already covers."
+   },
+   {
+    "t": "The far bank, end to end",
+    "x": 0.32,
+    "y": 0.585,
+    "w": 0.68,
+    "h": 0.175,
+    "body": "The far shore carries the same trade as the near one. Under the trees at the left of this band, pale forms resolve into small hulls drawn up on the grass — one shows a curled stem with a shadowed interior beneath it — and long dark shapes lie along the waterline below. Where the tall trees take over, a soft lavender-grey band runs on beneath them, olive grass under that and a rust-coloured line at the water. That band is the picture's one candidate for something built, and it declines the part: read at full resolution at three points along its length, it carries no coursing and no vertical joint. A stone quay of this date is laid in courses and shows its joints, so what the paint gives here is bare ground with trees standing directly on it."
+   },
+   {
+    "t": "A screen built of separate columns",
+    "x": 0.615,
+    "y": 0.375,
+    "w": 0.385,
+    "h": 0.315,
+    "body": "The block of trees on the right reads at whole-picture scale as one flat dark screen, and the reading is wrong in a measurable way. At the top, separate pointed crowns rise one beside another against the sky, with narrow wedges of pale sky let down between them. Below the crowns the mass is built of long vertical drags, one brush-length to a column, alternating blue-green with olive-sage, and not one trunk is drawn in it. Measured on the full-resolution file, the values inside the block scatter five times as far from their own average as the open sky's do from theirs — 0.64 of that average against 0.12, taken in light itself. That relative form is the one that holds, because the block is dark and the sky is bright and a raw spread of values does not count the same in each. It holds under a change of measure too: two further brightness definitions and a half-scale reading of the same two patches return ratios between five and six. The mass reads dark because a great many different darks have been set side by side."
+   },
+   {
+    "t": "The meadow with nothing beneath it",
+    "x": 0.02,
+    "y": 0.79,
+    "w": 0.37,
+    "h": 0.21,
+    "body": "The foreground grass is the control for the trees, and close looking finds nothing in it to resolve. In the block each column of drags stands for a tree; in the meadow nothing is drawn underneath any of it — no contour for the bank, no stem or stalk beneath the leaves — and nothing there stands for a thing you could name. There are only separate touches: sabre-drags of ochre and cream, leaf-dabs of sage, emerald, rose and violet, flecks of unmixed yellow, thick white specks for flowers, laid beside one another until density alone reads as meadow. The signature sits in it at lower left, navy strokes dragged across the wet green with no patch cleared for them, one descender pulled in a brighter cobalt. The two passages together are what make the measurement on the tree block mean something."
+   },
+   {
+    "t": "Green in the blue",
+    "x": 0,
+    "y": 0,
+    "w": 0.46,
+    "h": 0.32,
+    "body": "Just over half the canvas is sky, and the blue in it is a stain. It is scrubbed thin enough that the canvas weave reads through the whole field, with cream-yellow flecks caught in its hollows. Into that thin blue go strokes of teal and emerald, sitting on top as separate marks and legible only at full resolution — a cool green put deliberately into an open sky. The clouds break that thinness: twisted ribbons of white and cream-yellow laid over the blue, with lines of coral and rose drawn through their undersides."
+   },
+   {
+    "t": "Where the land meets the sky",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Step back and the canvas sorts into three bands: a worked sky across the top, an unbroken line of vegetation through the middle, and below that a floor of water and bank busy with craft. The middle band is the one the title depends on. In a French river view of this date the skyline is where the motif gets named — a spire, or a mill above a roofline — the first place a viewer of 1878 would look to fix the spot. Scanned across the full width at two brightness thresholds, this skyline holds nothing of the kind: it runs its whole length as wooded ground, and every vertical breaking clear of it is either a tree crown or the mast of a boat that is going nowhere."
+   }
+  ],
+  "beside": "The same river turns up again elsewhere in this collection, and there the name arrives with an address. Pierre-Isidore Bureau's Clair de lune sur les bords de l'Oise, à l'Isle-Adam, at the Musée d'Orsay, is a decade older: moonlight on the water at the reach he worked habitually, with the town and the hour written into the title. He showed at the first Impressionist exhibition of 1874, died in 1876, and has been nearly erased since. Here the painter is the one history kept and the place is what nothing supplies; there the place is fixed by its own name and the painter is what went missing.",
+  "refs": [
+   {
+    "id": "pierre-isidore-bureau-untitled",
+    "text": "Clair de lune sur les bords de l'Oise, à l'Isle-Adam"
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "hendrick-van-balen-the-elder-la-chute-des-reprouves": {
+  "mv": 5,
+  "see": "The sheet stands half again as tall as it is wide and is packed with figures. A settled, level bank of them runs across the top quarter; below it a torrent of bodies pours down the middle between two dark flanking masses; at its foot a shoal has stopped moving. A continuous shelf of cloud divides the two, and winged figures stand and kneel along its lower lip. The eye takes the centre first, is carried down and left by a diagonal of falling limbs, strikes the bottom, and is returned up the right flank. A head below the shelf runs two to three times the size of one above.",
+  "about": "Two facts about this sheet have travelled in opposite directions. What is on it has not changed — a settled company above, a fall of bodies below, a floor of arrivals at the bottom — and a reader can still count the heads on it. What is attached to it has changed a great deal. Its owner has withdrawn the painter's name, and the date that came with that name has nothing left holding it up: the year was only ever back-calculated from that painter's working life. What can be said about this picture with any confidence now has to be found on the sheet itself.",
+  "craft": "The picture is built as a drawing that has been filled in. A body is bounded first by a darker drawn line; the interior is then laid in as a pale opaque fill, and where a limb turns away the line thickens and a broader dark passage is washed against it. The lights are separate blunt touches on a knee, a shoulder, a brow. Where two bodies touch, that drawn line is all there is between them, and it is what keeps a pile stacked this deep from closing into a single mass.",
+  "context": "The support is the surprise. It is oil on paper, marouflaged onto a canvas that has itself been relined, and the sheet measures 81 by 54 centimetres. The Louvre owns the picture and catalogues it as Southern Netherlands, school of Rubens, after Rubens; the name our own label carries, Hendrick van Balen the Elder, is recorded there as the former attribution. That record gives no date beyond the seventeenth century, and its former title named heaven as well as hell. It is on long-term deposit at the Musée des Beaux-Arts de Pau.",
+  "deeper": [
+   {
+    "t": "The staffed ledge",
+    "x": 0,
+    "y": 0.175,
+    "w": 1,
+    "h": 0.15,
+    "body": "A ledge of cloud crosses the sheet at about a quarter of the height, dipping and rising as it goes. Above it every figure has its weight under it — seated, standing, reclining, heads level. Below it nothing does. Pictures of this subject usually part the two orders with a device: a band of radiance, or a cornice with a judge enthroned over it. Neither is here, and the upper zone is worked in the same material as everything under it. What marks the change instead is a row of winged figures along the lower lip, kneeling, leaning out, reaching down into the space below. One of them stands square on the edge with both wings spread and its back turned, one leg already over the side. So the boundary is staffed rather than drawn: the change of state is performed by figures who are visibly doing the work. Anyone hunting this division as a shift of tone will come away empty, because a profile of drawn structure taken down the whole image at native size registers nothing whatever at this height."
+   },
+   {
+    "t": "Bent over the edge",
+    "x": 0.345,
+    "y": 0.095,
+    "w": 0.21,
+    "h": 0.185,
+    "body": "Left of centre a robed figure is bent head-first over the ledge, seen from above and behind, its head down and turned away, one arm dropping below the edge into the fall. The drapery comes down in broad unbroken folds, an expanse of cloth in a zone otherwise made up of small separate marks, and it works as a chute: the eye slides off it straight into the cascade. Where the body sits matters more. Its shoulders are among the seated company while its head and one arm are already in the drop, so the figure is divided between the two registers along its own length. The others along the lip keep their feet under them as they reach; this one has let its weight go over the edge."
+   },
+   {
+    "t": "Ranks on cloud",
+    "x": 0.62,
+    "y": 0,
+    "w": 0.38,
+    "h": 0.22,
+    "body": "Ranks of figures sit and stand on banks of cloud in the upper right, several leaning into one another, one with an arm across a neighbour's shoulders, and the outermost of a standing file is cut clean by the right border. The ground above and beside them is left bare, a clear field of some size in a register that is otherwise filled to its borders. The ranks recede: each row sits behind and above the one before it, diminishing as it goes back. Below the ledge that stops. Head sizes measured at native size do not diminish from a third of the way down to the bottom edge, and the fall is one plane of bodies laid over bodies."
+   },
+   {
+    "t": "How a body is made",
+    "x": 0.32,
+    "y": 0.355,
+    "w": 0.26,
+    "h": 0.235,
+    "body": "A child's face is turned up and out at mid-height here, level with a head thrown back beside it, and a third body lies diagonally across them both. The order of operations is visible in this passage: contour first and closed all the way round, the pale fill laid inside it, and the shadow under a knee or an armpit made by that same line thickened. Depth in the pile is made by overlap alone. The bodies do not get smaller as they stack, so none of them is further off than any other, and sequence is the only spatial information on offer. The sheet is 81 centimetres tall, which puts a head in this passage at roughly a centimetre and a half across, and the drawing carries at that size."
+   },
+   {
+    "t": "The book at the centre",
+    "x": 0.53,
+    "y": 0.48,
+    "w": 0.2,
+    "h": 0.23,
+    "body": "At the middle of the sheet a figure in a short belted tunic stands with its arms folded across its chest, head tilted, a wing rising behind the shoulder on our right, its feet on a rounded pale form. An open book is held at its waist, pages spread, by a hand that comes up from below, and a child's head is at its knee with a tangle of thin implements across it. The centre of a picture like this is normally where the violence is worst. Here it is given to a figure at rest, whose arms are not lowered but crossed and held. A judgment is settled by what is written down, and the writing stands open at the very moment the fall is under way, which makes the catastrophe an administered one. The composition needs this figure as much as the doctrine does. Everything within reach of it is rotating — bodies turning, inverted, crossing one another — and a vertical that holds still gives the eye its measure of how far the rest have gone over."
+   },
+   {
+    "t": "Where the fall lands",
+    "x": 0.27,
+    "y": 0.72,
+    "w": 0.44,
+    "h": 0.25,
+    "body": "The bodies along the bottom are horizontal and resting against the ground: one flat on her back with her head thrown back and her mouth open, one propped on an elbow, one sitting up with her face raised. A man stands among them with his back to us and a pale cloth at his hip. The bottom edge is a floor here; these figures have arrived, and they are not still falling. What the arrival does is turn the attention around. Their faces go back and up, toward the ledge they came off, so a picture whose entire motion has been downward reverses direction in its last few centimetres. The standing man gives the reader the same line: he faces into the sheet and looks up."
+   },
+   {
+    "t": "The corner still going",
+    "x": 0.66,
+    "y": 0.7,
+    "w": 0.34,
+    "h": 0.3,
+    "body": "Bodies on the right at the same height are still head-down — one sprawled head-first across the corner, another with hair hanging toward the border, and long dark forms running off the bottom right. The picture is running two endings at one level. On the left the bottom edge arrests the fall; on this side it does not, and the bodies are heading out of the frame with nothing under them. A single resolved bottom would have given the whole fall a conclusion, and a third of it has been withheld."
+   },
+   {
+    "t": "Four borders",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Step back to the four borders. Figures run into the left, the right and the top and simply stop where the sheet stops — a torso cut mid-turn at the left flank, a standing file cut at the right. The bottom behaves differently: under the left two thirds a band of ground runs clear beneath the lowest bodies and nothing crosses it. Three borders that sever and one that closes is internal evidence about the physical object, and it is the kind of evidence a sheet keeps regardless of what a catalogue says about it. The proportions hold at this distance too. A quarter of the height is the settled company, three quarters the fall. Counted across the plate in twelve non-overlapping crops at native size, between 240 and 340 heads are legible, about a third of them above the ledge, and that is a lower bound, not a total, since many bodies show only a torso. All of it went onto one sheet of paper eighty-one centimetres from top to bottom."
+   }
+  ],
+  "beside": "Crossed arms hold the middle of another hell in this collection, to opposite effect. Bouguereau's Dante and Virgil in Hell, at the Musée d'Orsay, dates from 1850, at least a century and a half later: Inferno XXX, the pit of the falsifiers, two naked men locked into one shape, one's teeth in the other's neck, and a demon overhead folding his arms and grinning. No one administers that punishment; the damned do it to each other. Here the crossed arms stand at the centre with a book held open at the waist while the bodies come down, so the stillness belongs to the judging; there, it belongs to a spectator with nothing to do.",
+  "refs": [
+   {
+    "id": "dante-and-virgil-in-hell",
+    "text": "Dante and Virgil in Hell"
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "stanis-aw-witkiewicz-droga-w-lesie": {
+  "mv": 5,
+  "see": "Dark green fills almost the whole of this small upright board, and the light gathers into the middle, thinning away well before either side. A thicket stands full height on the left, grey trunks in it; on the right a broad near trunk and hanging foliage; overhead, heavy boughs sweep in from both sides and arch over the centre. At eye level the wall opens onto a glade of lit grass, pale trunks standing across it, a short chalky stretch of path, and one string of red. Below that the ground tips and darkens, and a broad dim road runs down to the bottom edge. Pale stones are dropped along it, crowded where it leaves the light and singly further down.",
+  "about": "Witkiewicz spent the 1890s and 1900s inventing a way for one valley to build. The Koliba villa of 1892–93 was the first house in it, and he set the style down in two volumes, the second of them on carpentry. That is public work at architectural scale, made to be lived in and copied, and the taste for it was thinning while he was still building. The sheet is the same argument at its private end: a piece of card small enough for a coat pocket, signed, as the museum reads it, at Zakopane. The houses are what the style became; the first is now a museum of it. Nothing on this card was ever going to house anybody.",
+  "craft": "Opaque body colour goes on in discrete small touches, each a separate load, set beside its neighbours and not blended into them. Transparent washes are dragged in long passes wherever no opacity is wanted. Trunks and stems are pulled as single vertical strokes with the bristle striation left showing. Fine dark lines are drawn with a pointed brush over paint that has already set. Highlights and accents are pressed on unmodelled, one touch apiece. Where the opaque and the transparent meet along the bank of the road they abut.",
+  "context": "Muzeum Narodowe w Warszawie holds this as MP 725: gouache, oil and watercolour on cardboard, 18.7 by 14.2 centimetres. Its date field commits to nothing beyond po 1900 — after 1900. The flat 1910 attached to the sheet elsewhere is a data artefact: a timestamp recorded at a precision coarser than a year, then read as one. Records calling the support a wooden panel, or the medium oil by itself, are likewise not the museum's. Otherwise the file is almost bare — no bibliography and no exhibition history, and nothing published on its technical examination — behind one line of history: removed during the Second World War, restituted from Kraków on 29 May 1946.",
+  "deeper": [
+   {
+    "t": "The bough goes on last",
+    "x": 0.31,
+    "y": 0.065,
+    "w": 0.38,
+    "h": 0.29,
+    "body": "Follow the dark bough entering at the left and dipping across the middle of this crop. It runs over the yellow-green leaf-touches and covers them, so the boughs were drawn after the foliage was finished and dry, the reverse of the order a wood is usually built in, where the armature goes down first and the leaves are hung on it. The leaves are separate loads, most of them about a millimetre long on a board 187 mm high, set beside one another and never stirred together, so that a chrome yellow, a sage and a blue-grey each stay themselves and the mixing is left to the eye. The bough is the other kind of mark: one continuous pull of a fine brush, thinning as the bristles empty."
+   },
+   {
+    "t": "One pull, thirteen centimetres",
+    "x": 0.07,
+    "y": 0.18,
+    "w": 0.15,
+    "h": 0.77,
+    "body": "The pale trunk holding the left side shut is a single drag of the brush. Tracked at full resolution, its bark stays continuous from about a fifth of the way down the plate to nine-tenths of it: close to 13 cm of unbroken mark at a median width near a millimetre and a half, on a board 14.2 cm across. The longest thing in the picture is about as long as the picture is wide, and one pass made it, the bristle furrows running the whole length without a reload. Dark leaf-shapes lie over its lower half, so it went down before the near thicket and was then partly buried by it."
+   },
+   {
+    "t": "All the red in one place",
+    "x": 0.55,
+    "y": 0.33,
+    "w": 0.3,
+    "h": 0.24,
+    "body": "Every saturated red in the painting is inside this crop. Test the painted rectangle for pixels where red leads green by a fixed margin and the survivors fall in one patch about three centimetres square; tighten or widen the margin and the patch holds its place. Altogether they come to roughly a tenth of one percent of the painted surface. Each is one pressed touch of opaque paint laid on dry green, unmodelled, with no reflected light worked into it — except where the reds cross the pale trunk, and those sit straight on the bark. What makes so little paint legible is that it is gathered rather than distributed; the same quantity spread through the wood would have read as flecking on the greens."
+   },
+   {
+    "t": "The lit ground is a thumbnail",
+    "x": 0.4,
+    "y": 0.54,
+    "w": 0.3,
+    "h": 0.19,
+    "body": "The chalky patch at the foot of the glade is the only lit stretch of path in the picture, and it is very small. Testing the painted rectangle for pale near-neutral material, continuous runs more than a few millimetres wide occur only between 0.62 and 0.72 of its height: about 18 mm tall and at most 15 mm across. Higher up the same test returns runs of two and a half to five millimetres, and those are the trunks, not more path. The patch itself is one flat chalky value carried straight across with almost no modulation. A single drawn green edge closes its top, and what lies behind that edge is unbroken grass."
+   },
+   {
+    "t": "The bank that will not converge",
+    "x": 0.4,
+    "y": 0.625,
+    "w": 0.575,
+    "h": 0.35,
+    "body": "Take the road's left edge, where the greens give out to earth, and measure it row by row. From 0.66 of the painted rectangle's height down to the bottom, that edge stays near half the rectangle's width: band by band it runs between 0.49 and 0.56. It is flat. Measured identically over the same rows, the right edge goes from under 0.60 out past 0.87. No ordinary road does that. One that recedes narrows, its two edges leaning toward a common point; one that arrives at your feet opens on both sides at once. Holding one edge vertical while the other swings out is neither. So what comes out of the lit gap is a surface: it runs down without getting nearer or further, and leaves by the lower right corner."
+   },
+   {
+    "t": "Two ways of loading a brush",
+    "x": 0.42,
+    "y": 0.75,
+    "w": 0.32,
+    "h": 0.18,
+    "body": "At the left of this crop the bank is stacked opaque slabs, its dark greens granular where pigment has settled into the support's pits; at the right the road is one transparent wash, warm russet showing under cool grey-violet, dragged in long near-horizontal passes. The bank's silhouette was never drawn. It is the sum of the points at which separate strokes were lifted, and that is what scallops the edge, a contour arrived at by stopping instead of by outlining. Measured across that edge, the greenness separating bank from road changes over about a millimetre and a half, the width of one leaf-touch; the same profile six millimetres inside the bank, where there is no edge to find, moves a sixtieth as far. In two-millimetre cells the road's luminance varies about four times less than the canopy's, and dividing each cell's variation by its own brightness, so that the road's darkness cannot flatter it, still leaves it around three times steadier. The board reads through the wash as a fine even speckle and vanishes under the opaque greens."
+   },
+   {
+    "t": "What the rabbet took",
+    "x": 0.03,
+    "y": 0.928,
+    "w": 0.38,
+    "h": 0.062,
+    "body": "A line of pale grey-green strokes runs along the bottom left, every one of them cut on the same dead-straight line: the frame's inner lip. Anything below it is inside the rabbet. Measured at native scale, what stands above the cut is between 0.8 and 2.7 mm tall, median about 1.8, the order of size of one berry-touch, and no digit is legible anywhere on the sheet. Reading the object out of its frame, the museum records two lines at this corner, the artist's name and then a place with a year beginning 190. What a photograph of the framed sheet can offer is this one interrupted band of ascenders; the most informative mark on the object is the part of it a reproduction cannot corroborate."
+   },
+   {
+    "t": "One lamp, one standing place",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Step back to the whole board. Nine-tenths of the painted rectangle sits below mid-grey; the area above a bright threshold is under eight percent of it, centred almost exactly in the middle, with 97 percent of that light above three-quarters height, and raising the threshold barely moves the centre. A test for blue leading green returns ninety pixels in twelve million, so nothing overhead opens. Every route the eye takes is turned aside, the boughs closing over, the lit path ending in grass, the road leaving at the side, and the whole of it was worked at arm's length on a piece of card you could hold in one hand."
+   }
+  ],
+  "beside": "The same kind of mark builds another wood in this collection, and builds it toward the opposite end. Gustav Klimt's Avenue in the Park of Schloss Kammer, at the Upper Belvedere, is dated 1912; this sheet's date stays open, so no interval between the two can be stated. His canopy, like this one, is a mass of separate green dabs, and the avenue beneath it drives dead straight away from the viewer to one small sunlit chateau at the far end. There the trees hand over a building you could walk to; here the lit stretch stops in grass and the road leaves by the corner.",
+  "refs": [
+   {
+    "id": "avenue-in-the-park-of-schloss-kammer",
+    "text": "Avenue in the Park of Schloss Kammer"
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "w-adys-aw-podkowinski-portret-wincentyny-karskiej": {
+  "mv": 5,
+  "see": "From far enough back the picture reads as one narrow column of blue in a tall pale slot, black-green pressing down from above and a floor of light spreading below. She stands close to frontal, her head turned hard toward the viewer's left and stopping just short of full profile; one arm hangs with a straw hat in the hand, the other is bent with the hand at her waist. The hedge runs off the top edge and no sky appears anywhere; the path leaves the picture through the left. The eye takes her face, slides down the blue, catches on a spark of orange at her foot, and is left with bare ground and a signature in it.",
+  "about": "Take the canvas's own measure and the emptiness turns out to be the argument. The figure runs from about a seventh of the height down to a little past four-fifths of it; above her lies a band of hedge, below her a band of bare ground about a quarter deeper again. The larger nothing is the one under her feet, and the light in this picture is on bare ground, not on her. At just over 2.8 times as tall as it is wide, among the narrowest shapes this collection holds, the canvas strands her in leaf and dust.",
+  "craft": "Contours here are made by abutting colour and hardly ever by drawing: an edge appears because one hue is set beside another. Colour crosses the silhouette in both directions — the hedge's green is admitted inside her outline, and her own warm colour is carried out onto the ground. Paint is laid dry and open over the ground and over most of the dress, closing into a skin that covers only in a few passages. Finish is graded region by region and on purpose, spent at the head and rationed downward from it: some passages are modelled to marks a few pixels across, others left standing as one shape.",
+  "context": "Podkowiński went to Paris with Józef Pankiewicz in spring 1889 for under a year; what told was Monet's retrospective at the Galerie Georges Petit that June. Home by 1890, those canvases at Krywult's salon set off a press argument about Impressionism. The summer of 1891 was a rest cure: friends who thought him under-appreciated took him to the country to mend his frail health. He lodged at one estate and painted at the neighbouring one, whose name he wrote on the canvas. The Polish account has him working Paris through across the summers of 1891 and 1892, which puts this at the opening of it. He died in January 1895, at twenty-eight.",
+  "deeper": [
+   {
+    "t": "The eye, and the edge he kept",
+    "x": 0.33,
+    "y": 0.135,
+    "w": 0.33,
+    "h": 0.105,
+    "body": "Under the black of the lash line runs a pale ridge of skin taking light from below: the lower lid, separately painted. The dark of the eye measures about twenty pixels across on the full file, and inside that dark he has still set two touches apart, a small pale crescent at one end with a darker core beside it, the brow given its own violet arc above. Follow the profile down and the contour holds unbroken from brow to nose-tip to the small dark tick of the nostril, one continuous decision laid against green. At the top of the head there is no contour at all, and the stipple of the hair runs into the leaves without either agreeing on a boundary. A painter working in front of a hedge has to decide which edges survive contact with the background; he kept the one that carries a likeness and surrendered the other. The flesh beneath is unblended: pink, cream, lilac and warm greys tipped toward olive set side by side, the rose of the cheek and the flush of the ear laid on as patches."
+   },
+   {
+    "t": "One pink mass at the waist",
+    "x": 0.5,
+    "y": 0.334,
+    "w": 0.215,
+    "h": 0.094,
+    "body": "At her waist the near hand is a single mass of pink and cream, its warm flesh running about eighty pixels across at the widest on the full file, roughly four times the dark of that eye, and nothing inside it is divided from anything else. The thumb is one tapering spur. Its only stated edge is on the bodice side, a dark blue-violet line; toward the wrist the pink simply becomes cuff with no mark at the change. Finish here has not run out, it has been assigned, and the wedge of green showing through the gap between arm and body means the silhouette was never sealed against its background."
+   },
+   {
+    "t": "A hat in a dozen strokes",
+    "x": 0.1,
+    "y": 0.495,
+    "w": 0.275,
+    "h": 0.155,
+    "body": "A single lemon-yellow curve carries the brim, greened where it turns from the light, and that stroke is the whole of the hat's drawing. Within it sit a slate-violet band for the crown, a broad white cloth folded across, and a near-black trim holding one stroke of crimson at its lower tip — a red that has to be judged on the full file, since reduction averages more than half its warmth away. Descending onto the brim from the pale wrist above are two thin violet ticks, and those ticks are her grip on it. Economy is allotted object by object here: a hat needs a silhouette and one local colour to be a hat, and a hand closing on a brim needs two marks put in the right place."
+   },
+   {
+    "t": "Knotted paint on the plainest cloth",
+    "x": 0.3,
+    "y": 0.212,
+    "w": 0.42,
+    "h": 0.095,
+    "body": "The pale bib across her chest is neither white nor smooth. It is a warm oatmeal tissue of small knotted crumbs of paint, the thickest material anywhere on the upper figure, while the blue below it is dragged thin enough for the canvas tooth to read through. A red-brown seam descends from under the chin, through the collar, and dies where the bodice cuts across. That cut is not drawn at all: it is the blunt ends of stopped strokes, sagging through its middle and combing up into the pale where the shoulder rises. Thickness is a decision separate from finish, and he takes it separately — the material goes where the light falls, which in this picture is a plain panel at the front of a day dress."
+   },
+   {
+    "t": "The hedge, and the edge that stays a line",
+    "x": 0.595,
+    "y": 0.238,
+    "w": 0.345,
+    "h": 0.148,
+    "body": "Beside the sleeve the hedge breaks into separate flat dabs — mint, grey-blue, yellow-olive — each one a single loading of the brush set at its own angle over a black-green underlayer. Track that same shape of mark into the sleeve and it is there too: the blue goes on in strokes of the same size and separateness, grey-white among them, unmixed and running with the folds. Where the two masses meet, the sleeve's outer edge holds a hard straight diagonal, the one contour on this side of her that he lets stay a line. Figure and setting are built from one vocabulary of mark, and that is what holds an outdoor portrait together before any question of matching light arises."
+   },
+   {
+    "t": "Where the alley runs out",
+    "x": 0,
+    "y": 0,
+    "w": 0.4,
+    "h": 0.38,
+    "body": "Read down the left-hand edge and the picture is hedge for about the first seventh of its height; just below that the colour turns over and pale ground takes the edge. That crossing is the alley's far end, and it is not in the picture: the path is cut off at its narrowest by the canvas edge, level with the sitter's head. Above it the hedge leaves through the top with no crown to it. Between those two cut ends the ground is a climb in value — along that strip the mean luminance rises from about 92 at the crossing to roughly 181 a third of the way down, then flattens and stays broadly level. Nearly all the recession is packed into the upper quarter of the ground."
+   },
+   {
+    "t": "The orange toe and the shadow it throws",
+    "x": 0.055,
+    "y": 0.748,
+    "w": 0.925,
+    "h": 0.082,
+    "body": "Flame orange, loaded and ridged, the toe is one long tapering swipe standing up off a ground scrubbed nearly flat. Measured as red minus the greater of green and blue on the full file, in blocks of 20, 40, 60 and 90 pixels, this shoe is the warmest passage on the canvas at all four sizes, her cheek the only other place that climbs near it. Out of the shoe the shadow runs rightward, red-brown and violet through its whole length, a thick band crossing beneath the skirt and finishing past the skirt's own right edge, with a thin line of yellow ochre along its underside where the ground picks the light up again. The second shoe is one gold toe buried inside that band. This shadow is the only place the picture states where the sun is standing."
+   },
+   {
+    "t": "Three lines in the bare ground",
+    "x": 0,
+    "y": 0.825,
+    "w": 1,
+    "h": 0.175,
+    "body": "Three lines of thin violet-brown sit low on the right, drawn straight into the dry scumble, whose granules break the strokes as they go. The first is a name with a capital D standing upright in its middle. The second is a place: eight characters, the fifth dropping a descender about an x-height below the feet of the others, a tail the photograph will not close into a hook. The third is a pair of figures and one terminal mark that will not resolve at any magnification this file supports, which leaves the 1891 on the label the museum's reading of the object and not the photograph's. Around the writing the canvas is empty — from a little past four-fifths of the height downward, ground holds the full width — and in blocks of 60, 100, 150 and 240 pixels the eight brightest at each size fall on that bare ground, none of them on the sitter. He worked that band hard even so: rose and lilac drifts laid horizontally into an off-white scumble, ochre flecks scattered through them."
+   }
+  ],
+  "beside": "A hand is where this picture leaves off, and one canvas in this collection leaves off in the same place for the opposite reason. Velázquez's The Needlewoman, at the National Gallery of Art, comes two hundred and fifty-one years earlier. She bows over her sewing, eyes lost under the brow, her hands coming apart into pale hooks that close on nothing. It had not left the painter's lodgings when he died in 1660, listed in the inventory as a woman sewing. There the hands stop because the picture stopped; here the canvas is signed with its place and its year, and the hand laid at her waist still has no finger in it.",
+  "refs": [
+   {
+    "id": "velazquez-the-needlewoman",
+    "text": "Velázquez's The Needlewoman"
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "henry-brokmann-la-croix-dans-la-brume-bretagne": {
+  "mv": 5,
+  "see": "The canvas is long and low, and almost all of it is weather. Mist fills the upper half; below it a single breaker runs the whole width, with a band of near foam across the foreground. Well right of centre stands a plain cross, shaft and one straight bar — the one upright in the picture, and its only object. Almost nothing is dark. It all lives in a close range of pale grey, and the cross is only a little darker than the air around it. No horizon is drawn. In the bottom left corner, small dark letters give the year and the painter’s name, spelled with one n.",
+  "about": "Everything that would let you place or measure this cross has been kept out, and the title gives nothing back: it names a region and no site. The record keeps the same silence. Brokman was Danish, and the standard accounts of his life — an encyclopaedia entry, a museum biography — have him in Paris, in Egypt, in Italy, and never once in Brittany. They name no host and no dates, and none of them says how long he stayed. Two canvases are the entire evidence that he ever stood on that coast. The going left no trace except the pictures it produced.",
+  "craft": "Colour temperature carries the picture: the paint runs warm, red over blue, in the upper right and swings some twenty units cold toward the lower left. Nothing is outlined: every edge in the picture, the cross included, is a change of tone and not a contour. He keeps the whole canvas inside a narrow band of light greys and lets almost nothing go dark, so in the flattest passages ten or fifteen steps of difference must do a dark’s work. The density of the surface is graded — in some passages the paint fills the canvas grain and covers it, in others the weave shows through. The brushwork is graded with it, from long continuous drags to separate broken touches.",
+  "context": "The year is on the canvas: Brokman signed and dated it, so 1905 is inscribed, not assigned. The picture is at the Petit Palais as PPP3654, oil on canvas, 59.5 by 110 centimetres. It stayed in the family three-quarters of a century, reaching a public collection only in December 1979 — forty-six years after the painter’s death — as a gift from his son Erik, whom he had painted as a child in 1895. Three loans followed: a symbolism show in 1988, a touring exhibition that reached Japan in 1999 and Iceland and Norway in 2001, and a Pierre Loti exhibition in 2006.",
+  "deeper": [
+   {
+    "t": "Two members, and nothing on them",
+    "x": 0.618,
+    "y": 0.176,
+    "w": 0.092,
+    "h": 0.108,
+    "body": "The whole head is in this crop: two members and nothing else. The shaft ends bluntly; one straight bar crosses it, square at both ends, the arms even to within a few pixels. No figure is on it, nothing hangs from it, and no letter is cut anywhere. The bar crosses in the top tenth of the shaft’s visible run, so nine-tenths of what can be seen of the thing is bare upright. What refuses to resolve is the material. Enlarged as far as the file goes, it stays an even grey with no grain and no tooling, and its red-over-blue balance follows whatever lies behind it — warm at the top, cold near the water, never five units apart down its bare length while the ground swings twenty from head to foot. Painted as a value and never as a substance, it gives nothing that separates dressed stone from weathered timber. The small dark speck up and left of the shaft is not painting: at more than twice the contrast the cross carries, it is one of eight of its size scattered through sky and water alike, and belongs to the canvas’s condition."
+   },
+   {
+    "t": "The one fitting",
+    "x": 0.632,
+    "y": 0.302,
+    "w": 0.058,
+    "h": 0.072,
+    "body": "A third of the way down, the shaft swells to about twice its width and comes back — the only interruption on a run of nearly a metre. Row by row it goes from eleven to sixteen pixels wide out to twenty-five, holds there for some sixteen rows, then narrows again. The swelling carries no extra darkness; its depth against the paint around it stays near twenty steps above the swell, at it, and below it. So it is added bulk and not a shadow: a joint, a bracket, or a fitting of some kind. The plate does not say which, and neither does the record."
+   },
+   {
+    "t": "Where it thickens",
+    "x": 0.615,
+    "y": 0.495,
+    "w": 0.105,
+    "h": 0.18,
+    "body": "The shaft is visibly broader here than at its head. Averaged over bands of rows, measured as half-depth against the paint on either side, it runs about thirteen pixels wide below the bar and half as wide again low down. A tapered member thickening toward its base is the one cue to distance the picture gives beyond the faintness itself, there being no ground under it and no horizon behind it. The crop also holds the other thing the shaft passes through: rose-grey air becomes cool grey water down the height of it with no line drawn anywhere, and the shaft’s edge and contrast register nothing at the crossing."
+   },
+   {
+    "t": "The foot goes out at full strength",
+    "x": 0.608,
+    "y": 0.718,
+    "w": 0.108,
+    "h": 0.152,
+    "body": "A mist picture invites the sentence that everything fades, and the bottom of this shaft refuses it. Traced at the plate’s ceiling, the last row the shaft can be followed to shifts by fifteen pixels — under half a centimetre of canvas — as the detection threshold drops from sixteen luminance steps to six, a nearly threefold change of sensitivity. A true atmospheric fade slides a long way with the threshold; this does not move. At that last row the shaft is still about sixteen steps below the paint around it, the ordinary contrast it has carried the whole way down; six rows further, two millimetres of canvas, there is nothing. What takes it is the band of near foam, which crosses the entire picture at this height and passes in front. So the picture withholds the footing: there is no base, and no ground for a base to stand on. Whether the cross stands in water, on a rock, or on a shore with the surf breaking in front of it, the canvas declines to say, and the decision was made here, inside four centimetres of paint."
+   },
+   {
+    "t": "The emptiest paint",
+    "x": 0.425,
+    "y": 0.295,
+    "w": 0.185,
+    "h": 0.15,
+    "body": "At ordinary distance this passage is nothing, flat dove-grey between the spray and the cross. It is the most solidly laid surface in the picture. Across this canvas the strongest recurring fine interval is 4.3 pixels, the linen’s own thread spacing, and it reads that way in the open sky above, in the broken water below, and in the corner under the signature. Here it does not read at all: the finest interval that recurs is nearer twelve pixels, and the share of fine detail sitting at the weave’s own spacing falls from roughly a third to under a quarter. Canvas grain shows through a thin layer and stops showing once the paint has filled it. Under a hard contrast stretch the passage opens into close, continuous horizontal drag."
+   },
+   {
+    "t": "Where the weave comes back",
+    "x": 0.07,
+    "y": 0.738,
+    "w": 0.315,
+    "h": 0.198,
+    "body": "The near foam is the opposite case, made by opposite means. Here the weave reads straight through the paint at the linen’s own 4.3-pixel spacing, the same figure that governs the open sky. Over an equal area this band holds about three times the tonal range of the mist above it — some forty-eight luminance steps against fifteen — and five times as many separate light touches, counted at eight steps above a local mean. All the incident in the picture is banked here, at the near edge, where it can be spent without competing with anything. Long shallow bands of lighter water and darker hollows run through it, and the grain that vanishes in the mist is legible down to the single thread."
+   },
+   {
+    "t": "Out of plumb",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "The cross is out of plumb. Fitting its axis from the shaft’s centroid in twelve bands of rows, on the full-resolution plate, gives about a degree and a half off vertical, top carried right, with a residual under two pixels over more than half the canvas’s height — the head stands roughly two of its own widths right of its foot. The bar is rotated the same way, right end lower. The control sits in the far corner: the signature, which a painter has every reason to lay level, fits within half a degree of horizontal, measured on the weighted centre of its ink across the whole run. The plate is square and the object is not. That signature is also where the darkness collects: with the dark strips along the file’s extreme left and right margins left out, being edge and not painting, ninety-six of every hundred of the deepest pixels fall inside it, and the cross never comes within fifty steps of that darkness. A lean is what an object acquires by being put up and left standing, and of everything in this canvas it is the detail that most reads as observed and not arranged."
+   }
+  ],
+  "beside": "The same bargain gets struck twice: empty a marine canvas to one grey field, then let what little is left in it carry the picture. Caspar David Friedrich's Sea beach in the fog, at the Upper Belvedere, struck it ninety-eight years earlier — 1807, sky and sea gone into one grey, two ships set in it and legible as silhouettes, no further. There the fog is taking them, and Friedrich made that taking his subject; here the mist takes nothing away, and the upright is still at its ordinary darkness where the surf crosses and ends it.",
+  "refs": [
+   {
+    "id": "sea-beach-in-the-fog",
+    "text": "Sea beach in the fog"
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "claude-monet-the-roses": {
+  "mv": 5,
+  "see": "Growth enters at the top left, runs the top edge for about seven tenths of the width, then turns down right of centre almost to the bottom, leaving the right tenth clear of it. The lower left and centre are given to pale air, with three canes dropping through it and a thin branch climbing across from the left. Left to right the canvas cools, column mean b* +11.6 at the left tenth against -4.7 at the right, though most of that swing is at the two margins and the middle six tenths sit within a unit and a half of each other.",
+  "about": "Where this canvas is dark it is coloured, and where it is light it is close to neutral. Sorted by lightness, the darkest three tenths of the surface carry a mean chroma of 14 to 15 against 6 to 10 across the lightest six, and the ladder holds in each third of the width taken separately and with the plant at the left edge removed. The case for what his eyes did here is generally made from the crowded passage right of centre, and measured for colour that paint is at the canvas's own level, mean chroma 11.1 against 10.5 and no higher by saturation. What is exceptional there is the amount happening, not the colour.",
+  "craft": "Two instruments are at work and nothing lies between them: a line pulled in one continuous run, and opaque colour laid down a patch at a time. The pale blue-white is one of those patches and not a background - in the crowded paint it turns up inside the growth with green closing round it. The warm priming is left to act as a colour and a value. It is also left bare, about a twentieth of the surface all told, and unevenly: a narrow band along the bottom edge is over half bare, the matching band at the left a quarter, the one at the right under a tenth.",
+  "context": "The object will not date itself: no signature, no inscription, and a museum bracket of 1925 to 1926 instead of a year. The surgery is dated precisely. Three interventions in 1923, all on the right eye: an iridectomy in January, the lens out in February, a capsulotomy at Giverny in July. The left was never operated, because he refused it, so his last three years were worked with two differently filtered eyes. He died in December 1926. Those operations are usually credited with giving him back blue; measured here it is a weak blue and not much of it, a sixth of the coloured paint at a moderate chroma threshold, a thirtieth at a strong one.",
+  "deeper": [
+   {
+    "t": "Three canes, one pull",
+    "x": 0.02,
+    "y": 0.58,
+    "w": 0.19,
+    "h": 0.42,
+    "body": "Three dark canes drop through the palest quarter of the canvas. Follow the strongest: it can be traced from the upper part of this box down almost to the bottom of the painted field, close to a third of the picture's height, and it arrives within about a brush-width of the column it set out in. Its weakest point along that whole run still sits about ten lightness units below the paint beside it. That absence of a weak point is the finding. A dark stroke this long across pale paint gets one chance, because a second pass picks up the light paint on either side and leaves a grey break where the two runs meet, and there is no such break anywhere on this cane. Measured for tonal edges, this quarter of the canvas runs at about half the plate average, quiet without being the quietest paint here. The firmest mark in the picture is laid across it, and it stops in mid-air, short of the bare ground that takes the corner."
+   },
+   {
+    "t": "Roses that are only outlines",
+    "x": 0.13,
+    "y": 0.003,
+    "w": 0.19,
+    "h": 0.127,
+    "body": "Along the top edge the ground is bare, and the rose heads on it are purple-brown hoops of line with nothing inside them: a closed loop and a stem. Two blossoms beside them were carried all the way to solid paint, one with an orange-red core. The sequence is therefore on view in a single band. The drawing goes down first in a dry, broken, scratchy line, and the colour is packed into it afterwards; in a released Monet that stage lies buried under everything that follows it. The ground is not white but a warm cream, measurably on the yellow side of neutral, and the pinks sit on it the way watercolour sits on tinted paper. The two solid blossoms are keyed to the same cream."
+   },
+   {
+    "t": "The mosaic, and what it cannot do",
+    "x": 0.52,
+    "y": 0.24,
+    "w": 0.24,
+    "h": 0.26,
+    "body": "Nothing in this passage is drawn. Green, blue, crimson, cream and olive arrive as separate opaque touches butted against their neighbours, each covering whatever it lands on, and no contour appears anywhere inside the box. It is the busiest paint on the canvas: counting tonal edges across a 175-pixel window at the plate's full resolution, it runs about two and a half times the plate average, and the single busiest such window falls within these bounds. Define busyness by chroma instead and the peak jumps to a different passage, lower and further right, which is worth knowing before anyone calls this the centre of the picture. The touches are large, many of them forty to seventy pixels along the long axis, and the dominant surface period measured here is no finer than it is out in the open air. This method can build a mass and it cannot state a direction, which is why the structure of this painting had to be somewhere else."
+   },
+   {
+    "t": "The branch, and the leaves put on after",
+    "x": 0.26,
+    "y": 0.59,
+    "w": 0.38,
+    "h": 0.18,
+    "body": "One thin dark line crosses the open middle, entering low at the left and climbing steadily until it delivers into foliage at the far end: a run of roughly a third of the canvas's width, at about half the width of the canes below it. Small green dabs sit on top of that line at intervals, strung along it like beads. They went on after the line was down, which settles the order of work in this half of the picture as plainly as the hoops settle it along the top. By measurement the band the line crosses is cooler and less coloured than the canvas as a whole, at about two thirds of the plate's mean chroma, though its tonal activity sits level with the plate average and not below it. The longest continuous gesture in the painting is laid where the colour thins out, not where the paint crowds, and it ties the two halves of the picture together."
+   },
+   {
+    "t": "Where the colour actually is",
+    "x": 0,
+    "y": 0.38,
+    "w": 0.14,
+    "h": 0.34,
+    "body": "Olive, ochre, violet and umber are crushed into the left margin, the plant jammed against the edge of the support with no room conceded to it. About thirty-one percent of the pixels here pass a chroma of 20, against thirteen percent across the plate, and it is the darkest region I measured, averaging some fourteen lightness units below the canvas as a whole. The corner also anchors the warm end of the picture's cooling from left to right, a gradient that holds inside the pale air by itself and inside the coloured paint by itself, so it belongs to the scheme and not to where the plant happens to stand. In a picture named for its flowers, the strongest colour is in this tangle at the edge."
+   },
+   {
+    "t": "The grey under the white",
+    "x": 0.3,
+    "y": 0.75,
+    "w": 0.25,
+    "h": 0.22,
+    "body": "This field reads as white light. Measured, it is grey: mean chroma of about four, and across some four hundred thousand pixels not one of them reaches the chroma that an eighth of the canvas reaches. What makes it worth standing in front of is that it is not thin. Pink and green ghost up through the covering white, and dark strokes lie buried under it that surface nowhere else, an earlier state of this passage painted out with a near-neutral that covers without quite hiding. The quietest region on the canvas is among the most worked, and its greyness was arrived at over colour that was already there."
+   },
+   {
+    "t": "Handwriting",
+    "x": 0.82,
+    "y": 0.55,
+    "w": 0.15,
+    "h": 0.19,
+    "body": "Out in the open air at the right, three or four olive scrolls float with no stem attaching them to anything. Each is a single looped ribbon of green with the bristle tracks legible inside it, and each loop closes on itself the way a written character does. Whatever they are meant to be, and the plate will not settle it, they have stopped describing a leaf and become a notation for one. Monet did not go back and tie them to the plant."
+   },
+   {
+    "t": "Where the paint runs out",
+    "x": 0.73,
+    "y": 0.82,
+    "w": 0.27,
+    "h": 0.18,
+    "body": "The blue in this corner is a veil. Warm ground reads through it across the whole passage, and the measurement agrees: this blue sits on the yellow side of neutral, while the sky at the top right of the canvas sits on the cool side. What looks like colour down here is mostly priming with a thin lavender scrub over it. Then it ends, in a scalloped rim where the brush lifted, with bare priming taking the bottom band and the corner."
+   },
+   {
+    "t": "What the open third does not hold",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Step back and sort the canvas by how much is happening on it. About a third carries almost no tonal edges at all, and the long lines are not in that third. Mask a line out and measure the paint it runs through: on either side of the cane and of the branch the surface falls in the second quartile of the canvas's activity, the quieter half, not the empty part. The emptiest paint, below the centre and along the right edge, takes no long line at all, and the hoops along the top cut the other way, drawing laid into a band that measures above the canvas average. The crowded paint, the part that gets called late Monet, has no line in it anywhere I looked. You have stood in front of this one, so you know what a reproduction removes: at two metres wide these lines have to be taken in by walking, and a print turns them into details. The drawing sits in the middle of this canvas's range of activity, at neither end of it."
+   }
+  ],
+  "beside": "Colour laid patch by patch and left unblended can carry a whole picture, or share the canvas with drawing. Signac's Thonier à Concarneau, in the Artizon Museum and within a year of this one, is the first case: a Breton tuna boat at anchor under a coral sky, built end to end out of separate brick-like tiles of colour that fuse into light only when the viewer steps back from them. Here the same unblended patch takes the crowded passage and stops at its edge. There the tile is the whole vocabulary; here it shares the picture with long unbroken lines that run through the quieter paint.",
+  "refs": [
+   {
+    "id": "thonier-a-concarneau",
+    "text": "Thonier à Concarneau"
+   }
+  ],
+  "by": "Opus 5"
+ },
  "charles-francois-daubigny-untitled-2": {
    "mv": 5,
    "see": "The horizon runs level a little below the middle, and everything under it is one field, unstopped at both edges. Above it a thin dragged sky takes more than half the surface, holding a small moon left of centre and three separate companies of birds. Trees screen the far left; low bushes, a few rust-coloured crowns and a row of cone-shaped stacks run along the middle distance. A ladder-framed wagon with two dark horses and three white-shirted figures sits left of centre; further right one small figure alone; further right again two women and a white long-eared pack animal. Red begins some way under the horizon and reaches the bottom edge.",
