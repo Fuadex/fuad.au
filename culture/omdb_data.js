@@ -2628,18 +2628,6 @@ window.CULTURE_OMDB = {
   ],
   "PlotShort": "A cyborg policewoman and her partner hunt a mysterious and powerful hacker called the Puppet Master."
  },
- "siec": {
-  "imdbID": "tt0496186",
-  "imdbRating": "6.0",
-  "imdbVotes": "10",
-  "Poster": "https://m.media-amazon.com/images/M/MV5BMzc0YzkwMTYtNjFkYS00ZTRiLWFiMWYtNzRlNWJiNTFjZDRiXkEyXkFqcGdeQXVyMTc4MzI2NQ@@._V1_SX300.jpg",
-  "Ratings": [
-   {
-    "Source": "Internet Movie Database",
-    "Value": "6.0/10"
-   }
-  ]
- },
  "imp-f-child": {
   "imdbID": "tt1014763",
   "imdbRating": "6.4",
@@ -15953,27 +15941,27 @@ window.CULTURE_OMDB = {
   "PlotShort": "After a botched bank robbery lands his younger brother in prison, Connie Nikas embarks on a twisted odyssey through New York City's underworld to get his brother Nick out of jail."
  },
  "imp-f-715674": {
-  "imdbID": "tt1653665",
-  "imdbRating": "7.1",
-  "imdbVotes": "31,409",
-  "Metascore": "54",
-  "Awards": "2 wins & 3 nominations total",
-  "Poster": "https://m.media-amazon.com/images/M/MV5BZGVmNWZiNDgtMzk2YS00ZGM2LWFjOTQtODk5OGRkZmMzNmYzXkEyXkFqcGc@._V1_SX300.jpg",
+  "imdbID": "tt4575576",
+  "imdbRating": "7.2",
+  "imdbVotes": "89,573",
+  "Metascore": "60",
+  "Awards": "Nominated for 1 Oscar. 2 wins & 13 nominations total",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BMjAzOTM2OTAyNF5BMl5BanBnXkFtZTgwNTg5ODg1NTM@._V1_SX300.jpg",
   "Ratings": [
    {
     "Source": "Internet Movie Database",
-    "Value": "7.1/10"
+    "Value": "7.2/10"
    },
    {
     "Source": "Rotten Tomatoes",
-    "Value": "64%"
+    "Value": "73%"
    },
    {
     "Source": "Metacritic",
-    "Value": "54/100"
+    "Value": "60/100"
    }
   ],
-  "PlotShort": "The relationship between writer AA Milne and his son, Christopher Robin, and how this became the inspiration for Winnie the Pooh."
+  "PlotShort": "A working-class family man, Christopher Robin, encounters his childhood friend Winnie-the-Pooh, who helps him to rediscover the joys of life."
  },
  "imp-f-95938": {
   "imdbID": "tt0348836",
@@ -17603,9 +17591,17 @@ window.CULTURE_OMDB = {
   "PlotShort": "IMF agent Ethan Hunt comes into conflict with a dangerous and sadistic arms dealer who threatens his life and his fiancée in response."
  },
  "imp-f-896": {
-  "imdbID": "tt0079565",
-  "Poster": "https://m.media-amazon.com/images/M/MV5BMDgwYTM1ZDAtMzBhNi00NjIxLWExZTgtZmQ5OGY5NzRiYjRmL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMjUyNDk2ODc@._V1_SX300.jpg",
-  "Ratings": []
+  "imdbID": "tt0082755",
+  "imdbRating": "8.1",
+  "imdbVotes": "7,258",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BY2I4ZTU1MmYtOTE1OS00OTIwLTg5ZTAtMzA0NjU4OTkzYjZkXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "8.1/10"
+   }
+  ],
+  "PlotShort": "The paradox-filled, often darkly humorous life of the sports club chairman, navigating the absurdities of communist Poland."
  },
  "imp-f-moby-the-void-pacific-choir-are-you-lost-in-the-world-like-m": {
   "imdbID": "tt6160814",
@@ -65019,6 +65015,19 @@ window.CULTURE_OMDB = {
   "Poster": "https://m.media-amazon.com/images/M/MV5BYjQ4YTQ3YTMtMTJjZC00ODMwLThiYjgtZmZiOTlmODBjMDQ2XkEyXkFqcGdeQXVyNzc5NDg5Mjc@._V1_SX300.jpg",
   "Ratings": [],
   "PlotShort": "The time has come for the people to atone for the sins of their fathers."
+ },
+ "imp-s-324560": {
+  "imdbID": "tt0845738",
+  "imdbRating": "7.8",
+  "imdbVotes": "7,154",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BYzU2ZWMwOGMtOWU4Mi00NzkyLTg1YTAtNDQzYWU4Y2JiYWZiXkEyXkFqcGc@._V1_SX300.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "7.8/10"
+   }
+  ],
+  "PlotShort": "The story of a group of young friends and the mysterious events that occur in the rural village of Hinamizawa."
  },
  "nobody-2026": {
   "imdbID": "tt39315060",

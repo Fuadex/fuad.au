@@ -5352,39 +5352,6 @@
   "Response": "True",
   "PlotShort": "A cyborg policewoman and her partner hunt a mysterious and powerful hacker called the Puppet Master."
  },
- "siec": {
-  "Title": "Wielkie rzeczy: Siec",
-  "Year": "2000",
-  "Rated": "N/A",
-  "Released": "03 May 2001",
-  "Runtime": "50 min",
-  "Genre": "Drama",
-  "Director": "Krzysztof Krauze",
-  "Writer": "Joanna Kos-Krauze, Krzysztof Krauze, Jaroslaw Sokól",
-  "Actors": "Jowita Budnik, Cezary Kosinski, Ewa Konstancja Bulhak",
-  "Plot": "N/A",
-  "Language": "Polish",
-  "Country": "Poland",
-  "Awards": "N/A",
-  "Poster": "https://m.media-amazon.com/images/M/MV5BMzc0YzkwMTYtNjFkYS00ZTRiLWFiMWYtNzRlNWJiNTFjZDRiXkEyXkFqcGdeQXVyMTc4MzI2NQ@@._V1_SX300.jpg",
-  "Ratings": [
-   {
-    "Source": "Internet Movie Database",
-    "Value": "6.0/10"
-   }
-  ],
-  "Metascore": "N/A",
-  "imdbRating": "6.0",
-  "imdbVotes": "10",
-  "imdbID": "tt0496186",
-  "Type": "movie",
-  "DVD": "N/A",
-  "BoxOffice": "N/A",
-  "Production": "N/A",
-  "Website": "N/A",
-  "Response": "True",
-  "PlotShort": ""
- },
  "imp-f-child": {
   "Title": "Child 44",
   "Year": "2015",
@@ -31841,45 +31808,45 @@
   "PlotShort": "After a botched bank robbery lands his younger brother in prison, Connie Nikas embarks on a twisted odyssey through New York City's underworld to get his brother Nick out of jail."
  },
  "imp-f-715674": {
-  "Title": "Goodbye Christopher Robin",
-  "Year": "2017",
+  "Title": "Christopher Robin",
+  "Year": "2018",
   "Rated": "PG",
-  "Released": "29 Sep 2017",
-  "Runtime": "107 min",
-  "Genre": "Biography, Drama, Family",
-  "Director": "Simon Curtis",
-  "Writer": "Frank Cottrell Boyce, Simon Vaughan",
-  "Actors": "Domhnall Gleeson, Margot Robbie, Kelly Macdonald",
-  "Plot": "A rare glimpse into the relationship between beloved children's author A. A. Milne (Domhnall Gleeson) and his son Christopher Robin, whose toys inspired the magical world of Winnie the Pooh. Along with his mother Daphne (Margot Robbie), and his nanny Olive, Christopher Robin and his family are swept up in the international success of the books; the enchanting tales bringing hope and comfort to England after the First World War. But with the eyes of the world on Christopher Robin, what will the cost be to the family?",
+  "Released": "03 Aug 2018",
+  "Runtime": "104 min",
+  "Genre": "Adventure, Comedy, Drama",
+  "Director": "Marc Forster",
+  "Writer": "A.A. Milne, Ernest Shepard, Alex Ross Perry",
+  "Actors": "Ewan McGregor, Hayley Atwell, Bronte Carmichael",
+  "Plot": "An adult Christopher Robin, who is now focused on his new life, work, and family, suddenly meets his old friend Winnie the Pooh, who returns to his unforgotten childhood past to help him return to the Hundred Acre Wood and help find Pooh's lost friends.",
   "Language": "English",
-  "Country": "United Kingdom, United States",
-  "Awards": "2 wins & 3 nominations total",
-  "Poster": "https://m.media-amazon.com/images/M/MV5BZGVmNWZiNDgtMzk2YS00ZGM2LWFjOTQtODk5OGRkZmMzNmYzXkEyXkFqcGc@._V1_SX300.jpg",
+  "Country": "United Kingdom, United States, Australia, Canada, Denmark",
+  "Awards": "Nominated for 1 Oscar. 2 wins & 13 nominations total",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BMjAzOTM2OTAyNF5BMl5BanBnXkFtZTgwNTg5ODg1NTM@._V1_SX300.jpg",
   "Ratings": [
    {
     "Source": "Internet Movie Database",
-    "Value": "7.1/10"
+    "Value": "7.2/10"
    },
    {
     "Source": "Rotten Tomatoes",
-    "Value": "64%"
+    "Value": "73%"
    },
    {
     "Source": "Metacritic",
-    "Value": "54/100"
+    "Value": "60/100"
    }
   ],
-  "Metascore": "54",
-  "imdbRating": "7.1",
-  "imdbVotes": "31,409",
-  "imdbID": "tt1653665",
+  "Metascore": "60",
+  "imdbRating": "7.2",
+  "imdbVotes": "89,573",
+  "imdbID": "tt4575576",
   "Type": "movie",
   "DVD": "N/A",
-  "BoxOffice": "$1,735,251",
+  "BoxOffice": "$99,215,042",
   "Production": "N/A",
   "Website": "N/A",
   "Response": "True",
-  "PlotShort": "The relationship between writer AA Milne and his son, Christopher Robin, and how this became the inspiration for Winnie the Pooh."
+  "PlotShort": "A working-class family man, Christopher Robin, encounters his childhood friend Winnie-the-Pooh, who helps him to rediscover the joys of life."
  },
  "imp-f-95938": {
   "Title": "Gothika",
@@ -35128,32 +35095,37 @@
   "PlotShort": "IMF agent Ethan Hunt comes into conflict with a dangerous and sadistic arms dealer who threatens his life and his fiancée in response."
  },
  "imp-f-896": {
-  "Title": "Mis relaciones con Ana",
-  "Year": "1979",
+  "Title": "Teddy Bear",
+  "Year": "1981",
   "Rated": "N/A",
-  "Released": "N/A",
-  "Runtime": "N/A",
+  "Released": "04 May 1981",
+  "Runtime": "111 min",
   "Genre": "Comedy",
-  "Director": "Rafael Moreno Alba",
-  "Writer": "N/A",
-  "Actors": "José María Caffarel, Gisela Callejón, Pedro Díez del Corral",
-  "Plot": "N/A",
-  "Language": "Spanish",
-  "Country": "Spain",
+  "Director": "Stanislaw Bareja",
+  "Writer": "Stanislaw Bareja, Stanislaw Tym",
+  "Actors": "Stanislaw Tym, Barbara Burska, Christine Paul",
+  "Plot": "The main character is the manager of a sport club, nicknamed \"Teddy Bear\" by his friends and acquaintances. One day he is detained at the border just as his sport team is off to a tournament - somebody has torn out a few pages from his passport. It occurs to him that perhaps his ex-wife has done so to get her hands on their joint account in a London bank. Therefore, he has to get to London as soon as possible in order to transfer the money to a different bank. The solution is a movie, made by his friend. The script requires a double role, thus the search for a character is announced. The double has to apply for the passport, and that is solved through a girlfriend who agrees to play dope's new fiancée. At the engagement party he is slipped a drug, and Teddy Bear runs off to the airport with the false passport. On the plane, however, he meets his ex-wife...",
+  "Language": "Polish, English",
+  "Country": "Poland",
   "Awards": "N/A",
-  "Poster": "https://m.media-amazon.com/images/M/MV5BMDgwYTM1ZDAtMzBhNi00NjIxLWExZTgtZmQ5OGY5NzRiYjRmL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMjUyNDk2ODc@._V1_SX300.jpg",
-  "Ratings": [],
+  "Poster": "https://m.media-amazon.com/images/M/MV5BY2I4ZTU1MmYtOTE1OS00OTIwLTg5ZTAtMzA0NjU4OTkzYjZkXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "8.1/10"
+   }
+  ],
   "Metascore": "N/A",
-  "imdbRating": "N/A",
-  "imdbVotes": "N/A",
-  "imdbID": "tt0079565",
+  "imdbRating": "8.1",
+  "imdbVotes": "7,258",
+  "imdbID": "tt0082755",
   "Type": "movie",
   "DVD": "N/A",
   "BoxOffice": "N/A",
   "Production": "N/A",
   "Website": "N/A",
   "Response": "True",
-  "PlotShort": ""
+  "PlotShort": "The paradox-filled, often darkly humorous life of the sports club chairman, navigating the absurdities of communist Poland."
  },
  "imp-f-moby-the-void-pacific-choir-are-you-lost-in-the-world-like-m": {
   "Title": "Moby & the Void Pacific Choir: Are You Lost in the World Like Me",
@@ -85952,39 +85924,6 @@
   "Response": "True",
   "PlotShort": "The Derby is an 1896 British short black-and-white silent documentary film, produced and directed by Birt Acres for exhibition on Robert W. Paul's Kinetoscopes, featuring the end of the 29 May 1895 Epsom Derby viewed from a raised..."
  },
- "imp-f-the-derby-1896-2": {
-  "Title": "The Derby",
-  "Year": "1896",
-  "Rated": "N/A",
-  "Released": "N/A",
-  "Runtime": "1 min",
-  "Genre": "Documentary, Short, Sport",
-  "Director": "Robert W. Paul",
-  "Writer": "N/A",
-  "Actors": "N/A",
-  "Plot": "The Derby is an 1896 British short black-and-white silent documentary film, produced and directed by Birt Acres for exhibition on Robert W. Paul's Kinetoscopes, featuring the end of the 29 May 1895 Epsom Derby viewed from a raised position close to the finishing line with the main stand in the distance. A stationary camera looks diagonally across a racetrack toward the infield showing the horses as they pass. Once the horses have passed the camera it is clear that the race has come to an end and there is a close finish between three horses. Once the race is over police officers run onto the field. The camera also displays various members of the audience moving around.",
-  "Language": "None, English",
-  "Country": "United Kingdom",
-  "Awards": "N/A",
-  "Poster": "https://m.media-amazon.com/images/M/MV5BNTU2NmY3YTMtYWNkMy00MTEwLWExNjctMTUxMjk3YTM2ZjhiL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNDE4OTY5NzI@._V1_SX300.jpg",
-  "Ratings": [
-   {
-    "Source": "Internet Movie Database",
-    "Value": "5.0/10"
-   }
-  ],
-  "Metascore": "N/A",
-  "imdbRating": "5.0",
-  "imdbVotes": "413",
-  "imdbID": "tt0815451",
-  "Type": "movie",
-  "DVD": "N/A",
-  "BoxOffice": "N/A",
-  "Production": "N/A",
-  "Website": "N/A",
-  "Response": "True",
-  "PlotShort": "The Derby is an 1896 British short black-and-white silent documentary film, produced and directed by Birt Acres for exhibition on Robert W. Paul's Kinetoscopes, featuring the end of the 29 May 1895 Epsom Derby viewed from a raised..."
- },
  "imp-f-the-derby-1895": {
   "Title": "The Derby 1895",
   "Year": "1895",
@@ -133232,9 +133171,34 @@
   "_y": 2023
  },
  "imp-s-324560": {
-  "Response": "False",
-  "_q": "Higurashi no Naku Koroni",
-  "_y": 2006
+  "Title": "When They Cry",
+  "Year": "2006",
+  "Rated": "TV-MA",
+  "Released": "05 Apr 2006",
+  "Runtime": "24 min",
+  "Genre": "Animation, Drama, Horror",
+  "Director": "N/A",
+  "Writer": "Toshifumi Kawase, Ryukishi07",
+  "Actors": "Sôichirô Hoshi, Mai Nakahara, Satsuki Yukino",
+  "Plot": "Higurashi no Naku Koro ni is a story of many chapters. It's about the town of Hinamizawa, and the people who live there, Rena Ryugu, Mion Sonozaki, Satoko Hojo, and Rika Furude, as well as friends, relatives, and visitors dealing with Lord Oyashiro's curse. Every year on the night of Watanagashi, people mysteriously disappear and are murdered which is rumored to be a curse, though it has yet to be proven. However, certain people don't believe it, especially with the odd behaviors of some of of the residents of Hinamizawa. This story is explained in many Question and Answer chapters.",
+  "Language": "Japanese",
+  "Country": "Japan",
+  "Awards": "N/A",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BYzU2ZWMwOGMtOWU4Mi00NzkyLTg1YTAtNDQzYWU4Y2JiYWZiXkEyXkFqcGc@._V1_SX300.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "7.8/10"
+   }
+  ],
+  "Metascore": "N/A",
+  "imdbRating": "7.8",
+  "imdbVotes": "7,154",
+  "imdbID": "tt0845738",
+  "Type": "series",
+  "totalSeasons": "1",
+  "Response": "True",
+  "PlotShort": "The story of a group of young friends and the mysterious events that occur in the rural village of Hinamizawa."
  },
  "imp-f-jak-nauka-wysz-a-z-lasu": {
   "Response": "False",
