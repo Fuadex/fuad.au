@@ -33205,30 +33205,17 @@ window.CULTURE_OMDB = {
   ]
  },
  "imp-f-danse-serpentine": {
-  "imdbID": "tt0203883",
-  "imdbRating": "5.7",
-  "imdbVotes": "399",
-  "Poster": "https://m.media-amazon.com/images/M/MV5BNTQyY2Q5N2EtMGFhNy00Y2M5LWE2OTUtOWU5Yzg1ODJkYjc4XkEyXkFqcGc@._V1_SX300.jpg",
+  "imdbID": "tt1219047",
+  "imdbRating": "6.8",
+  "imdbVotes": "1,105",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BNDNiOWE1MTItMjQ3NS00MGRlLWE3ZDUtMzIzNzgwNjdkZWI2XkEyXkFqcGc@._V1_SX300.jpg",
   "Ratings": [
    {
     "Source": "Internet Movie Database",
-    "Value": "5.7/10"
+    "Value": "6.8/10"
    }
   ],
-  "PlotShort": "Annabelle (Whitford) Moore performs her popular serpentine dance routine. She twirls around, and as she does so, she uses her long skirts to create a variety of patterns."
- },
- "imp-f-danse-serpentine-1896": {
-  "imdbID": "tt0203883",
-  "imdbRating": "5.7",
-  "imdbVotes": "399",
-  "Poster": "https://m.media-amazon.com/images/M/MV5BNTQyY2Q5N2EtMGFhNy00Y2M5LWE2OTUtOWU5Yzg1ODJkYjc4XkEyXkFqcGc@._V1_SX300.jpg",
-  "Ratings": [
-   {
-    "Source": "Internet Movie Database",
-    "Value": "5.7/10"
-   }
-  ],
-  "PlotShort": "Annabelle (Whitford) Moore performs her popular serpentine dance routine. She twirls around, and as she does so, she uses her long skirts to create a variety of patterns."
+  "PlotShort": "Angelic and demonic serpentine dances from dawn of cinema by the Lumière Brothers film, called the Serpentine Dance. The dancer is Loie Fuller; the pioneer modern dancer. Recorded in 1896 in Paris, and hand-colored frame by frame."
  },
  "imp-f-danse-tyrolienne": {
   "imdbID": "tt1654008",
@@ -65009,6 +64996,29 @@ window.CULTURE_OMDB = {
   "Poster": "https://m.media-amazon.com/images/M/MV5BMjE3NDA0MDQwM15BMl5BanBnXkFtZTcwNDExNDM5Ng@@._V1_SX300.jpg",
   "Ratings": [],
   "PlotShort": "A young woman works through finding herself by exploring new avenues and shedding old attachments that stifle her."
+ },
+ "imp-f-trzy-kolory-niebieski": {
+  "imdbID": "tt0108394",
+  "imdbRating": "7.8",
+  "imdbVotes": "118,266",
+  "Metascore": "87",
+  "Awards": "22 wins & 19 nominations total",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BNWMxNWE2NGYtMzYwOS00NmJhLTgwNjAtNGM3ODIwNjU5MTZiXkEyXkFqcGc@._V1_SX300.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "7.8/10"
+   },
+   {
+    "Source": "Rotten Tomatoes",
+    "Value": "98%"
+   },
+   {
+    "Source": "Metacritic",
+    "Value": "87/100"
+   }
+  ],
+  "PlotShort": "A woman struggles to find a way to live her life after the death of her husband and child."
  },
  "edge-of-time": {
   "imdbID": "tt20852926",

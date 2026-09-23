@@ -28182,6 +28182,9 @@ window.CULTURE_CAST = {
     ]
   },
   "imp-f-danse-serpentine": {
+    "cast": [
+      "Caroline Hipple Holpin"
+    ],
     "productionCompanies": [
       "Lumière"
     ],
@@ -28191,7 +28194,7 @@ window.CULTURE_CAST = {
     "genres": [
       "Documentary"
     ],
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/umI8go82CGenKJGMca4zkm8DvWV.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/dNLfpXPiv0TPVSwnKMi5sorzP6a.jpg"
   },
   "imp-f-belfast-queen-s-bridge": {
     "productionCompanies": [
@@ -31044,16 +31047,13 @@ window.CULTURE_CAST = {
     "tmdbPoster": "https://image.tmdb.org/t/p/w500/oickNn985JcN4a9jMZ9XB0qVi0i.jpg"
   },
   "imp-f-danse-serpentine-1896": {
+    "cast": [
+      "Loïe Fuller"
+    ],
     "productionCompanies": [
-      "Lumière"
+      "Star Film"
     ],
-    "tags": [
-      "short film"
-    ],
-    "genres": [
-      "Documentary"
-    ],
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/umI8go82CGenKJGMca4zkm8DvWV.jpg"
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/qxBBxpERrxZ9BMLazT74lARTo3D.jpg"
   },
   "imp-f-danseuses-des-rues": {
     "cast": [
@@ -113573,5 +113573,55 @@ window.CULTURE_CAST = {
       "Mystery"
     ],
     "tmdbPoster": "https://image.tmdb.org/t/p/w500/m71gbHge6qp1kbWGJD5PsSWZpzI.jpg"
+  },
+  "imp-f-trzy-kolory-niebieski": {
+    "cast": [
+      "Juliette Binoche",
+      "Benoît Régent",
+      "Florence Pernel",
+      "Charlotte Véry",
+      "Hélène Vincent",
+      "Philippe Volter",
+      "Claude Duneton",
+      "Hugues Quester",
+      "Emmanuelle Riva",
+      "Florence Vignon",
+      "Daniel Martin",
+      "Jacek Ostaszewski",
+      "Catherine Therouenne",
+      "Yann Trégouët",
+      "Alain Ollivier",
+      "Isabelle Sadoyan",
+      "Pierre Forget",
+      "Philippe Manesse",
+      "Arno Chevrier",
+      "Idit Cebula",
+      "Stanislas Nordey",
+      "Jacques Disses"
+    ],
+    "cinematographer": "Sławomir Idziak",
+    "composer": "Zbigniew Preisner",
+    "writer": "Krzysztof Kieślowski, Krzysztof Piesiewicz",
+    "productionCompanies": [
+      "CED Productions",
+      "France 3 Cinéma",
+      "CAB Productions",
+      "Studio Filmowe Tor",
+      "MK2 Productions"
+    ],
+    "tags": [
+      "france",
+      "paris, france",
+      "composer",
+      "pain",
+      "to compose",
+      "loss of loved one",
+      "psychological drama",
+      "french"
+    ],
+    "genres": [
+      "Drama"
+    ],
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/33wsWxzsNstI8N7dvuwzFmj1qBd.jpg"
   }
 };
