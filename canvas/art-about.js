@@ -3,6 +3,18 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "tiepolo-wealth-and-benefits-of-the-spanish-monarchy-under-charles-iii": {
+  "about": "Tiepolo's proposal for the throne-room ceiling of Charles III's new palace in Madrid — oil on canvas, nearly 1.82 metres tall, carried out of Italy on 31 March 1762. He signed the finished fresco in 1764.",
+  "deep": "Both of the titles this canvas wore before its present one describe ceilings. The World Pays Homage to Spain was first used by Sack in 1910 for the Madrid fresco; publications attached it to this modello from 1945 to 1985, and a Paris exhibition still printed it, in French, in 1998. Morassi's Apotheosis of Spain of 1955 names the subject of the Saleta, another room of the palace. The 1996 catalogue set both aside, the first on a point checkable against the paint: \"The entire world is not represented, only those areas conquered or belonging to Spain.\" By that reckoning the plumed and armed figures along the flanks are a roll of Spain's domains, and the present title claims no more than the canvas holds.",
+  "by": "Opus 5.5",
+  "deepBy": "Opus 5.5"
+ },
+ "claude-monet-woman-seated-under-the-willows": {
+  "about": "Monet's 1880 canvas, its date and his name inscribed at lower left — pollarded willows parting on pale sky over a village, and a woman in a straw hat seated low in the meadow at right.",
+  "deep": "The canvas names one Monet, in letters at lower left, and for twenty-three years the record named a second. Seven entries in the gallery's bibliography, from 1942 to 1965, print the picture as \"Madame Monet under the Willows\"; from 1968 the note is gone, and the record never says why. The painting does not step in. Its inscription gives a year and a painter and nothing of a sitter; she sits small in the meadow, her head bent, her face turned nearly into profile under the brim. The title that stands now names only what the paint shows, a woman seated under willows, and leaves her name as open as the record does.",
+  "by": "Opus 5.5",
+  "deepBy": "Opus 5.5"
+ },
  "tiepolo-study-for-a-ceiling-with-the-personification-of-counsel": {
   "about": "Tiepolo's proposal for a ceiling, oil on a 27-by-49-centimetre canvas, before about 1762. The ceiling — probably one in Saint Petersburg — is gone, and this is thought to be a fragment cut from a larger sketch.",
   "deep": "Everything this canvas is now called was settled elsewhere, on paper. For fifty-five years it was catalogued as *The Apotheosis of a Poet* — a flying child taken to be crowning a bearded man — and that reading stood partly because nobody doubted the composition was complete. The title held through catalogues of 1975 and 1985 and into a 1993 exhibition of Tiepolo's oil sketches. Only in 1996 did Diane De Grazia match the old man instead to Counsel, as Cesare Ripa's emblem handbook prescribes him. The outer date comes off a collector's bill, the probable destination off a line in Giandomenico Tiepolo's catalogue of prints, and the object bears no writing at all.",
@@ -3951,8 +3963,11 @@ deepBy: "Sonnet 4.6",
 by: "Opus · Fable" },
 
 "edouard-manet-a-game-of-croquet": {
-about: "In 1873 Manet set up his easel in the Paris garden of the Belgian painter Alfred Stevens and worked en plein air for the first time. The players are his own circle: Stevens himself, the model Victorine Meurent — the nude of Olympia and Le Déjeuner sur l'herbe — the model Alice Lecouvé, and his friend Paul Roudier behind them. Croquet was the fashionable pastime of private gardens, and the idle scene is a calculated one: its bourgeois couples are in fact artists paired with their models.",
-by: "Opus · Fable" },
+  "about": "Manet's 1873 canvas, set in the Paris garden of the painter Alfred Stevens — the catalogue names the four as Victorine Meurent, Alice Legouvé, Paul Roudier and, probably, Stevens. He never exhibited it and never sold it.",
+  "deep": "For a long time nobody could name this canvas, though the record names every person on it. Manet kept it to the end: number 19 in the inventory taken after his death, lot 44 at the Drouot sale of February 1884, and then, by the catalogue raisonné's account, lost, until an actor called Dorival paid forty francs for it in a second-hand shop in Bern. The two kinds of naming run in opposite directions. Inside the frame, the names are the paperwork's contribution and never the composition's, and the paperwork itself hedges the man seen from behind. Outside it, the paperwork had mislaid the picture, and the name came back from another painter: Renoir identified it.",
+  "by": "Opus 5.5",
+  "deepBy": "Opus 5.5"
+ },
 
 "j-m-w-turner-tell-s-chapel-lake-lucerne": {
 about: "Turner at Lake Lucerne, 1841 — a watercolour of the chapel marking where William Tell was said to have leapt ashore and started the Swiss revolt, painted so small at the cliff's foot you can miss it.",
@@ -4090,8 +4105,11 @@ about: "Years before the manifestos, Boccioni kept painting the one model who ne
 by: "Opus · Fable" },
 
 "bruno-liljefors-autumn-landscape-with-partridges": {
-about: "A hunter before he was a painter, Bruno Liljefors built camouflaged hides and kept a private menagerie of foxes, hawks and grouse at Villa Wigwam in Ytterjärna, where he lived from 1905 to 1917. That fieldcraft is the argument of this wide 1913 oil, nearly a metre across: its partridges dropped into an autumn field and painted to almost vanish into it, prey rendered as the disappearance its survival depends on. The low, panoramic format lets the ground itself do the hiding.",
-by: "Opus · Fable" },
+  "about": "Signed and dated 1913 at lower left, Liljefors's oil is just short of a metre wide — a covey of partridges in dead autumn grass, which its catalogue entry ties to Darwin's ideas on adaptation and survival.",
+  "deep": "Every stage of a bird emerging from grass is laid out on one field, and the image is the painter's own: of his Snipe of 1906 he said the bird looked as if it grew forth from the grass. Low in the cluster a barred mass of folded wing resists assignment, another bird or more of a bird the count already holds. Below the gold tussock a head lies on the ground, its body still under the field. The pair high on the right has fully surfaced, dark-edged against pale ground. So the count will not settle between seven and eight: the eighth, if there is one, has not finished growing.",
+  "by": "Opus 5.5",
+  "deepBy": "Opus 5.5"
+ },
 
 "adolphe-joseph-thomas-monticelli-echo-in-the-wood": {
 about: "Around 1856 Monticelli fell in with Narcisse Díaz de la Peña, who dragged him on painting trips into the Forest of Fontainebleau and coaxed him toward heavier, loaded paint and small figures tucked among the trees. This 1863 woodland canvas comes out of that lesson and the Paris decade that followed, when he was reworking Watteau's fête galante into thickly crusted forest reveries; its title reaches past mere scenery to the nymph Echo, folding a mythological voice into the undergrowth. Van Gogh's famous devotion to him came only later.",

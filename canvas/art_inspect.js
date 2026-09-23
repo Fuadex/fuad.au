@@ -45,7 +45,7 @@
 //                than forwarded as they arrive. Corrects the stop band to median ≤135 / spread ≥50 /
 //                per-stop 80–200 (the old "100–135 hard, aim 110–125" could not coexist with
 //                spread ≥50). Wave 11.
-//   mv 6 (0)   — OPUS 5.5 (Fuad 2026-09-24). The mv-5 lean cascade with nothing else changed: every
+//   mv 6 (1)   — OPUS 5.5 (Fuad 2026-09-24). The mv-5 lean cascade with nothing else changed: every
 //                Opus stage, including the merged Interpretation + Info agent, is pinned to Opus 5.5
 //                (claude-opus-5-5) and audited from the subagent transcripts before merge. Waves
 //                before this ran on Opus 5, although their credits say "Opus 4.8".
@@ -101,6 +101,314 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+ "tiepolo-wealth-and-benefits-of-the-spanish-monarchy-under-charles-iii": {
+  "mv": 5,
+  "see": "A tall upright seen from directly underneath. A painted grey-white cornice frames all four sides, running to the canvas's very edge; behind it the sky opens, and figures stand on ledges and cloud with their feet nearer the border than their heads. A ship reaches in at the upper left, feathered and armed peoples line both flanks, a horse and parapet run along the foot, and a gilt oval sits in each corner. Between the flanks, below the middle, stands a fountain with two statues and a small crowned figure, and a winged herald flies across the blue above it. Measured in rings from just inside the cornice to the centre, luminance climbs steadily from 17 to 60, while red-minus-blue, near +40 through the outer rings, falls to −13: the picture cools as it lightens inward.",
+  "about": "The canvas is a proposal, carried to Madrid to be shown: a ceiling for the throne room of the new royal palace. The room and the canvas are not the same shape. The National Gallery of Art's catalogue puts the vault at 2.7 to 1 and this modello at about 1.74 to 1; the unrounded dimensions, 181.8 by 104.3 cm, give 1.743. Scaled to the vault's proportions at the same width, it would have stood a metre taller. Tiepolo had asked for the room's measurements in his letter of acceptance, 28 September 1761. The entry offers two explanations — a wrong length supplied, or a stock-size canvas taken — and settles on neither.",
+  "craft": "In the upper field a warm ground, barely covered by thin grey paint, serves as the mid-tone. That ground, the museum's technical study found by cross-section and X-ray fluorescence, is a double preparation: red iron oxide over the whole fabric, then yellow over the centre only, stopping five centimetres short of the edges. Contours are found with one charged stroke and abandoned. Three registers are held apart by colour: fictive stucco in chalk grey-white, living figures in flesh and cloth, passages carried in a wash so thin the ground reads through the bodies.",
+  "context": "The commission runs through seven dated letters between September 1761 and March 1762: the first instructs the king's agent in Venice to open negotiations, the Spanish ambassador asks Tiepolo to come at once, and he accepts with work in Verona unfinished. He left Italy on 31 March 1762 carrying this canvas, and signed the finished vault two years later — “Tiepolo F.1764”, beneath the Columbus scene — where it survives over the throne room of the Palacio Real. The catalogue prints no contract and no fee for the commission, and says that no document explains what the figures mean; specialists disagree over who devised the programme and how to read it. Nobody disputes the date of the canvas.",
+  "deeper": [
+   {
+    "t": "The ship's quarter",
+    "x": 0.015,
+    "y": 0.15,
+    "w": 0.345,
+    "h": 0.18,
+    "body": "Off the end of a spar at the upper left hangs a round dark disc, and up to its left a maroon panel curves away with red-brown trim ruled along its edge. At the scale a reader meets first these are diagonals and a smudge. At full resolution they are the carved quarter of a large ship: a panelled counter, standing rigging drawn as single hairline strokes, a dark pennant on its staff, and a man in an ochre coat and red cap working his way over the rail. A modello had to settle a programme in front of the people paying for it, and the settling is specific: a vessel of a particular build, with a crew on it. The sky behind is warm ground barely covered, its cloud laid over it in dragged greys and a few whiter touches."
+   },
+   {
+    "t": "Courses without a rule",
+    "x": 0.055,
+    "y": 0.745,
+    "w": 0.27,
+    "h": 0.145,
+    "body": "A pale pyramid, steeply foreshortened, rises from the lower left into the picture and narrows to a small flat top, one face lit and one in shadow, with a pedimented front set into its base and a man in a grey-green coat lifting a tool beside it. The lit face appears to be ruled into courses of masonry. At full resolution no rule was used: the courses are short broken touches of grey-brown over cream, uneven in length and in spacing, with the pink of the ground showing between them. The precision is carried by the long contour, a single unbroken stroke of dark paint. The courses inside that line are approximate, and from any distance the stone reads as exact."
+   },
+   {
+    "t": "The near edge",
+    "x": 0.345,
+    "y": 0.858,
+    "w": 0.33,
+    "h": 0.126,
+    "body": "Along the foot of the canvas runs an olive ledge with a gilt bead-moulding, and a bay horse rears up behind it while a man in green and grey-blue braces against its chest with his head thrown back and his mouth open. Beyond the horse stands a mooring post with an iron ring; a pail sits on the stone. In a construction seen from directly beneath, the bottom border is the near edge — the part of the fiction that would hang closest to anyone standing under it — and that is where the weight has been put: masonry, an animal, a man's effort and the working gear of a quay."
+   },
+   {
+    "t": "The gold oval, bare",
+    "x": 0.81,
+    "y": 0.898,
+    "w": 0.155,
+    "h": 0.098,
+    "body": "A flat gold oval sits inside a white rocaille cartouche, garlanded with blue flowers, a sculpted white figure laid along its rim and a fluted shell spreading behind it. The four corners answer one another element for element. Magnified, the gold is a stain and not a covering: the diagonal thread crossings of the canvas are individually countable through it, and the field carries no device, no letter or numeral, only two or three pale strokes that resolve into nothing. A few millimetres away the blue flowers are dense enough to close the weave completely — two kinds of paint side by side. A cartouche of that shape, in that position, is where arms go in this idiom. All four ovals, checked at full resolution, carry no legible device."
+   },
+   {
+    "t": "A dome of pale light",
+    "x": 0.29,
+    "y": 0.32,
+    "w": 0.4,
+    "h": 0.29,
+    "body": "Cream-white paint is swept across the blue in a shallow dome, its crest a little above the halfway line and its limbs running down and out to both sides; two putti tumble through it, a third falls just inside its left limb, and two birds cross the blue above. Measured at full resolution down the canvas's own centreline, the blue a little above the band sits at lightness 83 with its blue-yellow balance near −8; inside the band lightness rises to between 85 and 87 and that balance crosses onto the yellow side, to about +5 to +7, so the band is lighter and warmer than the sky it crosses. The local warmth sits inside a much larger cooling. Down the full vertical axis lightness runs 50, then 83, then 39, while the blue-yellow balance runs +25 at the top, −8 here and +14 at the foot, and chroma sits at about 7 to 12 through the open sky against 13 to 26 toward either end. The open sky measures less chromatic than the median pixel of the whole canvas. So the middle parts from the loaded rim on all three counts together: lighter, cooler and lower in colour intensity."
+   },
+   {
+    "t": "The second trumpet",
+    "x": 0.455,
+    "y": 0.52,
+    "w": 0.235,
+    "h": 0.115,
+    "body": "A winged figure flies on its side above the fountain with a long straight trumpet at its lips, one arm extended to hold it out. A second trumpet rises bell-up from behind the body, unsounded; only its bell and a short length of tube clear the drapery, and the bell matches the first. The figure is built from greys, creams and a wing of long dragged strokes with the ground reading through the feathers, and the two trumpets are picked out in gold."
+   },
+   {
+    "t": "Two centimetres of regalia",
+    "x": 0.435,
+    "y": 0.6,
+    "w": 0.13,
+    "h": 0.1,
+    "body": "Against the fountain's curved back wall sits a small figure in heavy drapery wearing a closed arched crown with a cross finial, a crenellated form standing to either side; the head and crown rise clear of the wall into open sky, with a band of deeper blue behind. The drapery is a pale buff, lighter than the stone of the two statues on plinths that flank the basin, with a few warm touches carried into the face. At full resolution the crown measures about 215 pixels across on a plate 9599 pixels wide, a little over two per cent. The canvas is 104.3 cm wide, which puts the plate at 92 pixels to the centimetre, making the crown about 2.3 cm of painted regalia. Its centre falls 62 pixels off the vertical axis — under one per cent — sixty-three per cent of the way down. For a picture that takes its name from a monarchy, its only royal crown is thumbnail-sized, set below the middle of the canvas, and worn by a small seated figure at the back of a fountain."
+   }
+  ],
+  "beside": "Where this canvas paints its own frame, Perseus and Andromeda leaves the frame unmade. That sketch, at the Frick Collection, was made thirty-two years earlier for a ceiling in Milan's Palazzo Archinto, and it proposes only a centre: eight smaller mythologies and heavy stucco were to ring the fresco, the fictive architecture still unsettled when the sketch was painted. Its figures climb one narrow band up the right side, and a quarter of its field stays bare gold. Here the surround belongs to the proposal, a grey-white cornice run to the canvas edge with a gilt cartouche in each corner; there the surround was left to be decided later, and the sketch keeps clear of it.",
+  "refs": [
+   {
+    "id": "perseus-and-andromeda",
+    "text": "Perseus and Andromeda"
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "bruno-liljefors-autumn-landscape-with-partridges": {
+  "mv": 5,
+  "see": "Ground from corner to corner, and no sky in it: standing dead grass in bleached white, cream, straw and raw ochre, with olive and grey-brown pressed into the gaps. Nothing of known size is in it and no horizon to measure against, so until a bird turns up there is no telling whether this is a metre of field or fifty. Seen whole, the surface reads as one mat of splayed strokes. Two things pull against it: a gold tussock left of centre, a standing bird at the upper right. Partridges are in the grass — low and centre, below the tussock, one against the left edge.",
+  "about": "The field is a task, and the picture is precise about what it costs. Seven heads carry a painted eye. A further barred mass low and centre resolves at full resolution into folded wing and cannot be assigned — an eighth bird, or the body of one already counted — so the answer is seven or eight, and which depends on what a viewer will accept as a bird. A local colour-and-tone test finds no respect in which the birds stand out from their surroundings more than the field stands out from itself: it returns 3.77 for the seven and 4.20 for six grass patches from the band most of them sit in. The test found no difference, which is not the same as showing there is none.",
+  "craft": "The field's unit is a splayed fan radiating from a darker root, laid wet into wet with the bristle furrows left in. High in the picture the paint is dragged thin and dry; low and left of centre it goes heavy, broken with olive and bare earth. Long single blades go on last, each pulled over dry paint in one stroke. Plumage takes the same size of mark and ranks it in rows: small dry bars over pale shaft-streaks. Measured in twenty-pixel cells, the coolest paint goes to bills, necks and breasts; the field's paint drops as low in yellow only where it darkens, as in its shadowed hollows and bare earth.",
+  "context": "Signed at the lower left, Bruno Liljefors over 1913, so the date is on the canvas and not only in a ledger. After that the object goes quiet. Stockholm's entry for NM 6745 gives medium, support and measurements to the half-centimetre, then stops: no earlier owner, no literature, and sixty-nine years unaccounted for before the museum's Friends presented it in 1982. The one piece of curatorial prose attached to it names Charles Darwin and a species' capacity to adapt, and it sits in the object's entry, not a wall text. Eleven exhibition loans were approved between 1996 and 2023, for a picture whose earlier whereabouts nobody recorded.",
+  "deeper": [
+   {
+    "t": "The gold fan",
+    "x": 0.305,
+    "y": 0.385,
+    "w": 0.205,
+    "h": 0.27,
+    "body": "A fan of orange-gold grass opens left of centre, radiating from a dark root. It holds the strongest colour on the canvas, and that is a measurement: three definitions of saturation were run over the painted rectangle in forty-pixel cells — HSV saturation, CIE Lab chroma, and the plain spread between a pixel's highest and lowest channel. Each nominates a different single cell, so no exact spot survives the choice of definition; all three land inside this fan, and none of them lands on a bird. Its chroma measures near 49 where the head of the upper-right bird measures near 30. Anything that searches this picture by colour lands here, on grass."
+   },
+   {
+    "t": "The bird at the upper right",
+    "x": 0.63,
+    "y": 0.35,
+    "w": 0.19,
+    "h": 0.265,
+    "body": "The standing bird at the upper right reads whole at the whole view, head, neck, back and wing separating, and what makes it read is not the amount of colour in it. Its head carries about as much red as the gold tussock and a little over half the yellow, b* 27 against 48. That leaves the head at the thirtieth percentile of the canvas for chroma: seven-tenths of this picture carries more chroma than the head that catches attention first. What the head has instead is a hue redder than the straw's, one the field rarely reaches, and under it the dark disc of the eye with its catchlight, where the paint falls from a surrounding ring at luma 110–136 to 9–19 inside — more than a hundred levels across five millimetres. The folded wing below is worked bar by bar, each one drawn separately."
+   },
+   {
+    "t": "Three heads in the grass",
+    "x": 0.51,
+    "y": 0.53,
+    "w": 0.175,
+    "h": 0.185,
+    "body": "Three heads overlap low and centre: one with a long grey-blue neck running down to a pale-edged wing, one showing a crown, an eye and only the tip of a bill, one with an emphatic bill. At the best whole view obtainable, a thousand pixels across the painting, the heads are already there at about fifty pixels each; what that view reduces to a speck is the eye in each of them, four to seven pixels wide. At a little over half the full resolution the specks become dark discs; at full resolution each head carries an eye, a bill and its own contour. Most of the painted eyes measure 28 to 40 pixels of the 6222 that span the painted rectangle. The museum's canvas is 99.5 by 70.5 centimetres, of which the frame's rebate hides under a centimetre at each edge, so those pixels run about sixty-three to the centimetre, the same figure across as down, and an eye is about half a centimetre of paint. The three sit inside fourteen centimetres of canvas, overlapping at three depths."
+   },
+   {
+    "t": "A head and no body",
+    "x": 0.355,
+    "y": 0.655,
+    "w": 0.1,
+    "h": 0.11,
+    "body": "A head lies clear of the grass below the tussock with no body attached to it: a crown flecked dark over a buff cheek, one eye, a short blue-grey bill, and beneath the throat the animal has gone into the field. The head measures under five centimetres of paint, and at the whole view it is already a head; what magnification adds is the crown's flecking, mark by mark. The picture's habit shows here in miniature, with no crowd around it — it hands over the part that identifies and keeps the rest."
+   },
+   {
+    "t": "Against the left edge",
+    "x": 0.107,
+    "y": 0.565,
+    "w": 0.131,
+    "h": 0.22,
+    "body": "Hard against the left edge a whole bird stands up out of the grass — head raised, bill clear of it, the breast smooth and laid without any of the field's texture, chestnut marks down the flank. Two things here are worth more than the likeness. The pale strokes that build the grass run straight across that breast: the same cream, the same length, the same lean, so the bird is given the field's own mark to wear. And the two things that organise this surface — the drift of pale paint from the upper left, the broken darker band low and left of centre — both pass this bird by, so it is not the composition that delivers it."
+   },
+   {
+    "t": "Where the weave shows through",
+    "x": 0.255,
+    "y": 0.425,
+    "w": 0.115,
+    "h": 0.115,
+    "body": "The paint is at its thinnest here and the canvas is doing the drawing: at full resolution the weave stands through a dragged scumble, and at lower magnification the broken paint it leaves reads as more fine stalks, so a share of the grass in this zone was woven and not painted. The zone is also the brightest on the canvas, with the caution that brightest is a plateau and not a point — scores of cells of the same forty-pixel grid sit within five per cent of the maximum, most of them along a band that runs well to the left of this crop. The fan-shaped stroke here is the one used across the field; what changes is how little paint is on the brush."
+   },
+   {
+    "t": "The broken band, and the field",
+    "x": 0.1043,
+    "y": 0.134,
+    "w": 0.7916,
+    "h": 0.7321,
+    "body": "Across the lower third, left of centre, the handling coarsens: broken olive, bare earth between matted stems, the strokes shorter and heavier. That band is where the picture keeps its darks, and the quantity is measurable. A 900-pixel window of the pale upper field holds no pixel below luma 45 in 810,000; a window of the same kind low and left of centre, with no bird in it, holds seven per cent. The head below the tussock lies inside that band and the cluster runs along its upper right edge, both set into ground whose own tone has already come down to meet them. The two that read at once are the pair at the upper right, whose dark contours stand in pale open field. Between those two conditions the field is built of the one splayed fan, and wherever the birds are, what magnification adds is not the heads but the detail inside them: the eye, the crown's flecking, the contour."
+   }
+  ],
+  "beside": "Both pictures build bird and ground out of one exchange of marks, and run the exchange in opposite directions. Curlew, painted six years earlier in 1907 and also at Nationalmuseum, gives a single wader whole on open moor, its plumage laid in ranked courses against the moor's radiating fans. Level with the bird the ground throws up two tussocks of that same fan, each with a body's bulk and no eye. There the field makes shapes of birds that are not there; here a bird that is there, upright at the left edge, has the field's cream strokes laid straight across its breast.",
+  "refs": [
+   {
+    "id": "bruno-liljefors-curlew",
+    "text": "Curlew"
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "edouard-manet-a-game-of-croquet": {
+  "mv": 5,
+  "see": "A garden picture, much wider than tall, leaf closed over the whole top and no opening of sky. The light is held in a belt across the middle, so the lit lawn reads as the floor of a green room. Four people are spread across the width: a man on the grass in white, a woman in deep blue, a woman in white with a mallet, a man at the far right in pale yellow. Between the blue dress and the white the canvas holds a watering can, a trestle and a spray of leaves. Croquet gear stands and lies in the dark grass at the lower right.",
+  "about": "Everyone in this picture has a name in the record, and the composition is arranged around none of them. Its structural centre holds no person at all; what stands there is garden equipment. Of the four, exactly one is playing — the woman bent to her mallet on the right. A second stands at rest with a shaft in her hands. Nothing resolves as an implement in the hands of the other two. The objects the title names are all present and checkable on the surface, and most of the picture is not using them. The painting sets its four named people two and two on either side of a watering can.",
+  "craft": "Depth here is carried by size and by where the feet meet the ground. The three standing figures get smaller from left to right, with no converging edge to help them. Implied eye level comes out above all four heads. Measured off the Frankfurt photograph, the blue dress carries the strongest colour any of the four wears, and the two whites are the least coloured passages anywhere in the picture.",
+  "context": "Oil on canvas, 72 by 106 centimetres, signed lower left; 1873 is catalogued, not inscribed. The catalogue title is “La Partie de croquet à Paris” and the garden is Alfred Stevens’s, in the rue des Martyrs. The catalogue raisonné names the company — Victorine Meurent, Alice Legouvé, Paul Roudier — and of the seated man will say only that he “would probably be” Stevens, the one name it will not commit to. Manet exhibited it nowhere and sold it to nobody. 1873 brought him his first broad success, with “Le Bon Bock” at the Salon, and a summer at Berck-sur-Mer; this canvas stayed in the studio until he died, and Frankfurt’s museum society bought it in 1912.",
+  "deeper": [
+   {
+    "t": "What stands in the middle",
+    "x": 0.355,
+    "y": 0.33,
+    "w": 0.255,
+    "h": 0.375,
+    "body": "A galvanised watering can stands in the grass at the middle of the canvas, spout curving left, a strap handle over the top. Behind it run the horizontal rails of a trestle, and behind those a fountain of long pale blades. Measured across at this height, the strip between the last of the blue skirt on the left and the first of the white dress on the right comes to 0.27 of the width — about 29 centimetres of a canvas 106 centimetres across — and it contains no person. That emptiness is a fact a poor reproduction cannot touch, because placement and vacancy survive a printing screen: the two photographs this tour works from, a scan of a print and the Frankfurt photograph, agree on where both edges fall. The brightest patch of open ground anywhere in the picture also falls inside the strip, up by the trestle. Manet gave his structural centre, and the best light he had on the ground, to the working corner of a garden."
+   },
+   {
+    "t": "The lightest thing here",
+    "x": 0.065,
+    "y": 0.5,
+    "w": 0.25,
+    "h": 0.345,
+    "body": "The white shirt stretched across this man’s back is the lightest passage on the canvas, and that is a measurement and not an impression: the brightest small patch falls on this same square of shirt in both photographs of the painting, and it keeps winning whichever definition of brightness is used. He is sitting on the ground with his back three-quarters turned, one forearm across a raised knee, in a straw boater with a black band. Nothing resolves as an implement in either hand. His shoulder and upper arm pass in front of the blue skirt behind him, which is the only place in the picture where one figure crosses another — everywhere else each person is given clear ground on every side. The high point of the picture is a man with his back to it."
+   },
+   {
+    "t": "Blue, and its buttons",
+    "x": 0.195,
+    "y": 0.215,
+    "w": 0.19,
+    "h": 0.62,
+    "body": "A row of small pale buttons runs from the white collar down the front of the bodice and on down the skirt. On the scanned print the dress comes close to black, and it is not: measured off the Frankfurt photograph, the shadowed folds carry nearly three times as much blue as red, and Manet has run the whole scale of it, from a light blue where the sleeve catches the sun to something close to ink at the back of the skirt. Against that, the buttons and the collar stand out pale. She is the tallest figure on the canvas. She stands squarely upright, head level and in profile under a black hat, both hands resting on the top of a slender pale shaft that runs down to the grass. It is the attitude of someone leaning on a stick while waiting."
+   },
+   {
+    "t": "The one at play",
+    "x": 0.575,
+    "y": 0.2,
+    "w": 0.2,
+    "h": 0.54,
+    "body": "Both hands are on the shaft at hip height, one below the other, and its head rests in the grass at her feet. Head down, weight forward — the one body in the picture doing what the title describes. A long veil falls from the bonnet down her back and past her waist, and the dress under it is white with a dark sash and a dark hem — clothes for paying a call. This canvas was prepared on paper first: the catalogue raisonné records a series of drawings made toward it and a separate study after one of the sitters."
+   },
+   {
+    "t": "An open hand",
+    "x": 0.775,
+    "y": 0.125,
+    "w": 0.2,
+    "h": 0.395,
+    "body": "His right hand reaches out and down over the foliage, and at the finest detail either photograph holds it is open and empty, with a bright shirt cuff behind it. The other hand is tucked out of sight at his hip. Nothing resolves as an implement in either one. He is the smallest of the standing figures — barely more than half the height of the woman nearest the front — and his shoes meet the ground just above the middle of the canvas, which is where Manet has put the far end of the lawn. Behind him the turf gives way to a pale ochre path, and the leaf closes over that. Of four people, the fourth is fitted into the last sixth of the width, and his outstretched hand reaches back out of it."
+   },
+   {
+    "t": "Peg, hoop, mallet",
+    "x": 0.735,
+    "y": 0.625,
+    "w": 0.25,
+    "h": 0.29,
+    "body": "A slender upright stands in the turf, banded black, then white, then red down a pale shaft. To its left a thin wire arch rises out of the grass on two legs, one catching the light and the other dark against the turf. Below both, a mallet lies flat, its head at the right-hand end. Peg, hoop and dropped mallet are left together in the dark bottom corner of the canvas, unattended, with the peg nearly a quarter of the width away from the one figure at play."
+   },
+   {
+    "t": "One ball, alone",
+    "x": 0.37,
+    "y": 0.7,
+    "w": 0.19,
+    "h": 0.19,
+    "body": "A compact warm mark sits on the grass, lit along the crown and shadowed underneath, and it is the one thing in the picture that reads unmistakably as a ball. It lies out on the open turf with no mallet near it. Through the band just below it, nine tenths of the surface falls under mid-grey, and both photographs of the canvas agree on that — a shelf a fifth of the picture deep that has to be looked over to reach the light. And that dark is a deep blue-green rather than a black, carried right across the foreground."
+   },
+   {
+    "t": "Four, unevenly spaced",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "At whole scale the four are spread across the width, and the intervals between them are not equal: centre to centre they run about 0.10 of the width, then 0.38, then 0.24. The largest gap is nearly four times the smallest, and it is the one in the middle. Each standing figure meets the ground higher on the canvas than the last, so the lawn runs away to the right and the fourth of them ends up small at the edge of it. Dark paint clamps the top, both sides and the bottom; the leaf never opens to sky; the light stays in its belt through the middle. What holds the canvas together is the interval between the four."
+   }
+  ],
+  "beside": "Within the same year Manet divided a title’s subject from the attention of the people painted under it once more, and divided it the other way. The Railway, at the National Gallery of Art in Washington, also dates from 1873: a seated woman looks up from the book in her lap before a screen of iron railings, and a small girl beside her, back turned and one hand laid on a bar, stares into white steam. No train appears on the canvas. Here peg, hoop and mallet are all out on the lawn and one person in four is playing; there the railway itself is missing, and the child gives it her whole attention.",
+  "refs": [
+   {
+    "id": "the-railway",
+    "text": "The Railway"
+   }
+  ],
+  "by": "Opus 5"
+ },
+ "claude-monet-woman-seated-under-the-willows": {
+  "mv": 6,
+  "see": "An upright canvas looks through a screen of pollarded willows. A row of trunks stands at the left, the largest left of centre, and a second group rises at the right edge; their thin stems fan up to the top of the picture and part in the middle on a pale opening of sky. At the foot of that opening a village sits above a flat, pale band, and a meadow of yellow-greens and blue-greens fills the lower third. A woman in a pale blouse and straw hat sits low in the grass at the right. The composition steers the eye down the opening to the houses, down a thin sapling into the grass and across to her.",
+  "about": "The picture is organised around where paint covers the ground and where it leaves it showing. A warm pinkish-tan ground shows through much of the canopy on the left, doing duty as the colour of the air among the leaves; at the centre of the far opening the sky is closed up with close-laid strokes. In 80 evenly spaced native samples, pixels classed as ground by one colour definition average 18% in the upper three-fifths of the plate and under 8% in the lower two-fifths. The left-hand willows are where the samples find the most ground, and the centre of the opening, just beyond them, is among the most fully covered places sampled.",
+  "craft": "A warm pinkish-tan ground is used as a working colour, left showing between strokes over much of the upper plate and in patches lower down. Leaf colours go on in short dashes and in dots at the spacing of the canvas weave, with ground between them. At the centre of the opening the sky is covered with short cream strokes laid in several directions. The grass varies: broad pale-green drags at the left, upright yellow flicks below the pale band, loops and curls along the bottom, with opaque yellow dashes for flowers. The handling changes from zone to zone, and so does how much ground is left between the marks.",
+  "context": "The National Gallery of Art records the inscription at lower left as “1880 Claude Monet” and catalogues the canvas under that date as oil on canvas, 81.1 by 60 centimetres; it is no. 613 in Wildenstein’s catalogue raisonné. The recorded provenance runs from the artist to the dealers Durand-Ruel, New York and Paris, who sold it on 22 November 1927 to the New York collector Chester Dale. Dale’s bequest brought it to the NGA in 1963, as part of the Chester Dale Collection (1963.10.178). Two exhibitions are recorded: Durand-Ruel’s New York loan exhibition of late nineteenth-century French masterpieces in 1928, as no. 13, and the NGA’s Chester Dale Bequest display in 1965.",
+  "deeper": [
+   {
+    "t": "The canopy left open",
+    "x": 0,
+    "y": 0.02,
+    "w": 0.38,
+    "h": 0.5,
+    "body": "At the left edge, a little above halfway down, the willow leaves are a scatter of blue, sea-green and cream dashes on the warm ground, and between the dashes the ground lies bare. At native resolution many of the dashes come apart into separate dots spaced at the pitch of the canvas weave, a little under a millimetre apart. The stems crossing the passage are single lines of dark blue and teal, drawn straight onto the ground and broken into dots along their length. Of 80 native patches spread evenly over the plate and sorted pixel by pixel on one colour definition of the ground, the one here is 50.5% ground, the highest of the set; and within the upper three-fifths, the patches in the left half average 23.4% against 12.7% in the right half. The willows on the left are where the sampled paint leaves the most ground showing."
+   },
+   {
+    "t": "The opening, covered",
+    "x": 0.39,
+    "y": 0.35,
+    "w": 0.37,
+    "h": 0.21,
+    "body": "At the centre of the opening between the two groups of willows the handling changes. Cream and pale yellow go down in short strokes running several ways at once, overlapping until the ground is reduced to specks in the gaps between them. On one colour definition of the ground, the sample patch taken here is 1.3% ground. Higher in the opening, among the blue scallops of hanging leaves, the ground shows again in open patches between translucent greens. The cream is not uniform in value either. Measured on the whole-plate image, average brightness in a strip across the opening rises steadily from those hanging leaves to just above the houses, and the brightest 64-pixel block of that image sits there, low in the opening above the right-hand group of roofs."
+   },
+   {
+    "t": "The village in blue strokes",
+    "x": 0.37,
+    "y": 0.52,
+    "w": 0.4,
+    "h": 0.17,
+    "body": "Below the cream, the houses are set down in blue: strokes pulled downward for walls and windows and slanted for roofs, with red-orange touches on a few roofs and one taller blue form streaked with green at the left of the group. Between the blue strokes the warm ground shows again in speckled patches, so the house fronts are more thinly covered than the sky directly above them. Under them lies a flat, pale band of lilac, cream and light blue, laid in long horizontal drags that let the canvas grain through, with a few dark blue dashes near its upper edge. Horizontal drags are the stroke for a level surface, and here they run between rising stems on either side."
+   },
+   {
+    "t": "The sapling",
+    "x": 0.5,
+    "y": 0.34,
+    "w": 0.09,
+    "h": 0.4,
+    "body": "Of two thin stems that drop almost vertically through the opening, this one runs a little left of its middle, from the hanging leaves down into the grass. Its colour changes with what lies behind it. Against the cream sky it is a blue line, broken into dots at the pitch of the weave, with a paler stroke running beside it; crossing the houses it turns a yellowish cream edged with blue; over the pale band and into the meadow it becomes yellow-green. Down to the band it takes a colour close to the opposite of its backdrop, blue against warm cream, yellow-green against lilac, which keeps a line a few millimetres wide legible until it enters the grass, where its yellow-green sits on yellow-green and the line soon becomes hard to follow."
+   },
+   {
+    "t": "The left pollard",
+    "x": 0.19,
+    "y": 0.5,
+    "w": 0.22,
+    "h": 0.28,
+    "body": "Where the stems of the big willow at left spring from its cut-back trunk, line gives way to cluster: short green hooks and curls packed round the crown, a hatch of red-brown on its left side and several broad dabs of yellow ochre on its right. From that knot the stems rise as long single lines of teal, deep green and red-brown, beaded along their length and laid over bare ground. Pollarding, cutting a willow back to the trunk at intervals so that it throws up a crown of straight rods, produces this form: a swollen head with a fan of shoots above it. Across the gap, the group at the right edge repeats the form, so the opening is framed by cut willows on both sides."
+   },
+   {
+    "t": "The woman in the grass",
+    "x": 0.41,
+    "y": 0.68,
+    "w": 0.41,
+    "h": 0.28,
+    "body": "She sits low at the lower right, seen partly from behind, her face in near profile toward the left and her head bent forward under a straw hat with a blue-green crown and a red-orange band. Under the brim, the pinks of face and neck are laid thinly enough that the canvas weave reads through them. Her outline is a broken line of saturated blue, set down in dots, which runs round the dark bun, along the underside of the brim and down the back of her shoulder. That is the touch of the willow stems, turned to drawing a figure. The blouse is dragged downward in creams, pale greens and light blues, the colours of the grass around her, and red-orange strokes mark a line at the collar and gather at her lap. Red and green sit opposite each other on the colour wheel, so those strokes set the meadow’s complement on her."
+   },
+   {
+    "t": "Loops that read as script",
+    "x": 0.8,
+    "y": 0.89,
+    "w": 0.2,
+    "h": 0.11,
+    "body": "In the lower right corner, on the whole-plate image, a run of dark loops looks like a second line of handwriting, a pendant to the inscription at lower left. At native resolution it is grass: green strokes turned in loops and figure-of-eight curls, swirls of blue, a few opaque yellow dashes for flowers. Loops of this kind turn up in the grass elsewhere along the bottom of the canvas, and at a small enough scale a looping stroke and a letter are the same kind of mark, a line with a turn in it."
+   },
+   {
+    "t": "The date in the grass",
+    "x": 0,
+    "y": 0.93,
+    "w": 0.3,
+    "h": 0.065,
+    "body": "The inscription runs along the bottom edge at left in thin brush letters, its numerals about a centimetre and a half tall, and the name ends roughly a quarter of the way across the canvas. At native resolution “1880” is clear. The name that follows is partly broken, and how it breaks depends on what lies under it. Where the letters cross smooth green grass strokes they stay solid; where they cross bare ground they turn to lace, the ground’s weave showing in dots through each stroke. The same break runs through the willow stems and the blue line round the woman’s back, so the inscription meets the canvas in the way the painting’s drawn lines do."
+   }
+  ],
+  "beside": "Two canvases of 1880, all but identical in size, each seat a woman in a hat outdoors, her face in profile, and divide the format oppositely. Édouard Manet's Madame Manet at Bellevue, at The Metropolitan Museum of Art, measures 80.6 by 60.3 centimetres to this picture's 81.1 by 60. Its sitter fills the upright: hat and veiled profile high in the frame, coat and curved bench back below, the garden a green wall close behind her. Here willows, opening and village take the height, and the woman is kept to a corner of the meadow. There the garden is the backdrop to a woman; here the woman is one small figure in a view.",
+  "refs": [
+   {
+    "id": "edouard-manet-madame-manet-suzanne-leenhoff-1830-1906-at-bel",
+    "text": "Madame Manet at Bellevue"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
  "tiepolo-study-for-a-ceiling-with-the-personification-of-counsel": {
   "mv": 5,
   "see": "Sky fills the upper half and a terracotta cloud-bank the lower, its silhouette high at the left, dropping to a well at the centre, lifting again across the right. Figures lie along that silhouette in two groups, one at each end, with a long emptiness between them. A single child flies, upper left. A white cloth sits on the bank at the centre; below it, alone in the brown, a small dark mark. Toward the right the blue gives out and a warm expanse runs to the edge. The range is narrow — brown, buff, pale blue — and warm right through the lower half, so what saturation there is collects in a few small reds: a throat in the left group, a head in the right, and the drape at the corner.",
