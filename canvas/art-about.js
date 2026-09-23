@@ -1791,8 +1791,8 @@ by: "Opus 4.8" },
 },
 
 "the-railway": {
-about: "Mocked at the 1874 Salon, Manet's 1873 painting: Victorine Meurent at iron railings, book closed in her lap, a child beside her gripping the bars and staring into the steam where the locomotive should be.",
-deep: "The bars are the argument. Manet presses the iron fence to the surface so the picture has almost no depth — the eye reaches the rails and stops. Sharp things live in front, soft things behind; it is exactly backwards from how a traditional picture organises space. Three living figures: Victorine watches us, book closed on a finger; the child grips the bars and watches the steam; the puppy asleep in the dark blue coat watches nothing. The steam is the loosest paint in the picture — a wet smear with no edges, the emotional centre, the one thing that has no shape. The refusal to supply an event is what made it modern.",
+about: "Mocked at the 1874 Salon, Manet's 1873 painting: Victorine Meurent at iron railings, an open book in her lap, a child beside her gripping a bar and staring into the steam where the locomotive should be.",
+deep: "The bars are the argument. Manet presses the iron fence to the surface so the picture has almost no depth — the eye reaches the rails and stops. Sharp things live in front, soft things behind; it is exactly backwards from how a traditional picture organises space. Three living figures: Victorine watches us, book open, a finger keeping her place; the child grips a bar and watches the steam; the puppy asleep in the dark blue coat watches nothing. The steam is the loosest paint in the picture — a wet smear with no edges, the emotional centre, the one thing that has no shape. The refusal to supply an event is what made it modern.",
 deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
