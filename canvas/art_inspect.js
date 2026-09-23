@@ -45,6 +45,10 @@
 //                than forwarded as they arrive. Corrects the stop band to median ≤135 / spread ≥50 /
 //                per-stop 80–200 (the old "100–135 hard, aim 110–125" could not coexist with
 //                spread ≥50). Wave 11.
+//   mv 6 (0)   — OPUS 5.5 (Fuad 2026-09-24). The mv-5 lean cascade with nothing else changed: every
+//                Opus stage, including the merged Interpretation + Info agent, is pinned to Opus 5.5
+//                (claude-opus-5-5) and audited from the subagent transcripts before merge. Waves
+//                before this ran on Opus 5, although their credits say "Opus 4.8".
 // A tour's mv is the standard it CURRENTLY MEETS, not the one it was born under — a retro-repair
 // that lifts an older tour raises its stamp. 33 tours born at mv 1 sit at mv 2 because later passes
 // gave them the companion apparatus (`beside` + `refs`). Nothing has been raised to mv 3: measured

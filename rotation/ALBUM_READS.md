@@ -11,7 +11,9 @@ Fable coda rendered as an *italic* line by `PortraitCard` (rotation-views2.jsx),
 `"Opus"` or `"Opus · Fable"` when a coda rides. Artist `portrait` entries are a separate,
 older pilot — untouched by this pipeline.
 
-**Model pin (2026-09-24).** Every Opus step in this pipeline runs on Opus 5.5. Dispatch it as
+**Model pin, METHODOLOGY v3.0 (2026-09-24).** Every Opus step in this pipeline runs on Opus 5.5.
+The version moved from v2.9.5 to v3.0 for this change alone. Entries written from now on carry
+`mv: "3.0"`, and track reads carry `fvr: "3.0"`. Dispatch it as
 the `reads-opus` agent type, which is pinned to `claude-opus-5-5`, and do not pass a per-call
 model, since that would override the pin. After each batch, run
 `rotation/tools/check-subagent-models.py` before applying anything: the `opus` alias alone has
@@ -642,7 +644,7 @@ the play weighting and was sealed; the Harakiri fnote re-told its read and was r
 lacked, which is now the rule for fnotes. Portraits after: 424.
 
 ## Methodology stamp (2026-09-05)
-Entries in portraits.js carry `mv: "2.6"` when their liner/gist/portrait were produced under PORTRAIT METHODOLOGY v2.6 (liners 100–140w that argue rather than tour, ≤4 named tracks, one music sentence, images resolving in-paragraph; gists ≤2 named; artist entries with a music sentence). Entries without `mv` predate it. Superseded texts sit on `linerPrev` / `gistPrev` / `portraitPrev` / `notePrev` so old and new can be flicked; the new text is always the front one.
+Entries in portraits.js carry `mv: "2.6"` when their liner/gist/portrait were produced under PORTRAIT METHODOLOGY v2.6 (liners 100–140w that argue rather than tour, ≤4 named tracks, one music sentence, images resolving in-paragraph; gists ≤2 named; artist entries with a music sentence). Entries without `mv` predate it. From 2026-09-24, entries drafted on Opus 5.5 carry `mv: "3.0"` (METHODOLOGY v3.0: the v2.9.5 rules unchanged, Opus steps pinned to Opus 5.5). Entries drafted on an earlier model keep their earlier stamp even if applied later. Superseded texts sit on `linerPrev` / `gistPrev` / `portraitPrev` / `notePrev` so old and new can be flicked; the new text is always the front one.
 
 **Rule 12 (2026-09-06): gist is the frame, liner extends it.** An album gist holds year, form, the library tenure (first year, last year, how the plays fell) and at most one clause of thesis; the liner argues through the songs and never restates a gist sentence, and a fact that both could carry belongs to whichever does something with it. Model: the Nine Inch Nails entries. Piloted on Pendulum's In Silico.
 

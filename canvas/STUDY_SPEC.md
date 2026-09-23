@@ -2228,6 +2228,22 @@ measure), rule 7 (verify a reviewer's wording as well as its diagnosis), rule 11
 hook), rule 12 (refresh stale workshop copies), the ratio-flag rule (name the rectangle measured),
 the scratch-path rule (every temp file carries its work id). None of these is a re-read; all stay.
 
+## mv 6 — Opus 5.5 (Fuad 2026-09-24, binding)
+
+mv 6 IS mv 5, the lean recipe above, with one change and nothing else: **every Opus stage runs on
+Opus 5.5.** That covers eye, research, fusion + tour, crop QC, lens sweep, the merged Interpretation + Info +
+`beside` agent, repair, and any verifier or de-gram pass.
+- Dispatch these as `subagent_type: "canvas-opus"` (`.claude/agents/canvas-opus.md`, pinned to
+  `claude-opus-5-5`). **Pass no per-call `model`**, because it overrides the pin. If the agent type is not
+  loaded (definitions load at session start), fall back to `model: "opus"`.
+- Before merge, run `python rotation/tools/check-subagent-models.py --since <window>`. Any `BAD` line is
+  reported to Fuad before merging.
+- Stamp `mv: 6` at merge. Credits are `by: "Opus 5.5"` for both tiers, with no `deepBy`.
+- Sonnet keeps the non-drafting jobs the mv-5 model split gives it.
+- Why the version moved: the `opus` alias pointed at Opus 5 for every wave through wave 13 and the
+  first stages of wave 14. It moved to Opus 5.5 on 2026-09-24. Work drafted on Opus 5 stays at mv 5
+  even if it merges later. It becomes mv 6 only if the texts are redrafted on Opus 5.5.
+
 ## QC lessons (accumulated — read before drafting/QC)
 
 - **Text-only QC cannot catch visual misreads** (2026-08-24 — the audit that reshaped

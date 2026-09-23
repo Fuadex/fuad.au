@@ -128,7 +128,10 @@ real defects that were live on the site until a corrective commit (`3b1741a` →
    correct when nothing changed between them. Document the new band in the `art_inspect.js` header
    at the same time, or the number is meaningless to the next reader. Current bands: 1 four-lens,
    2 hi-res cascade (fused Info + `beside`), 2.1 wave-2 hardening, 3 proportion rules,
-   4 parallel eye/research front end, 4.1 zoom + allocation + stack-wide verify (wave 7).
+   4 parallel eye/research front end, 4.1 zoom + allocation + stack-wide verify (wave 7),
+   5 the lean cascade (wave 11), **6 Opus 5.5**: the mv-5 cascade unchanged, with every Opus
+   stage pinned to `claude-opus-5-5` (Fuad 2026-09-24). This is a model change, not a shape change.
+   It takes the integer at Fuad's instruction, to move in step with Rotation's methodology v3.0.
    **mv 3 is measurable and should be re-checked, not trusted:** the proportion gate over the whole
    store passes 2/389 at mv 1 and 0/85 at mv 2 (the spread failure — every stop the same length —
    is exactly the samey-ness the rules were written to kill), against 6/10 at both mv 3 and mv 4.
@@ -749,7 +752,8 @@ time it recurs.)*
    has run 15 and then 20 twice. The gates scale, but seal load scales worse than linearly —
    wave 3 needed 7 fix agents post-seal. 20 is the current practical ceiling for one
    orchestrator context.
-9. **Interpretations are drafted by Sonnet, not Opus. ADOPTED (standing).** §5b does not name
+9. *[Superseded for new work, 2026-09-24: from mv 6, Interpretations are drafted on Opus 5.5 by the merged
+   reads agent. See §2.]* **Interpretations are drafted by Sonnet, not Opus. ADOPTED (standing).** §5b does not name
    models. Sonnet drafts interps in-band reliably; it reuses tour phrasing systematically
    (wave 2: 17/20, wave 3: 18/20 over cap) and an Opus de-gram pass is now an expected stage,
    not an exception.
@@ -819,8 +823,11 @@ compared to sonnet which I prefer."* Sonnet is the `deep` voice. Opus keeps the 
 which is pinned to `claude-opus-5-5`: tours, hook/eye/research passes, crop QC, lens sweeps,
 repairs, fused Infos, de-gram and trim passes, and verifiers. Do not pass a per-call `model`,
 since it overrides the pin. After each wave, audit with `rotation/tools/check-subagent-models.py`
-before merging. New Opus credits read `by: "Opus 5.5"`. Interpretation drafting stays Sonnet
-under the verdict above, unless Fuad rules otherwise.
+before merging. New Opus credits read `by: "Opus 5.5"`. **Interpretations are Opus 5.5 too**
+(Fuad 2026-09-24). Since mv 5 they have been written by the one merged Interpretation + Info agent per work,
+and from mv 6 that agent is `canvas-opus`. The 08-05 Sonnet-voice verdict above and item 9 of the deviations ledger
+describe earlier waves and no longer govern new work. Sonnet keeps the non-drafting jobs the
+mv-5 model split gives it (builders, pools, gates, merge dry runs).
 
 **ONE SONNET AGENT PER ARTWORK** (Fuad 2026-08-13, tightening the earlier swarm rule). The
 original instruction was "do a swarm instead of just one subagent" (2026-07-30) because one
@@ -1034,7 +1041,7 @@ the deep deepen the shared fact or merely repeat it? **The §5 4-gram test canno
 all** — it flagged 0 of the 8 works the word-share measure caught, because re-telling in fresh
 wording shares no 4-grams.
 
-**Model (Fuad 2026-08-24): Sonnet drafts Interpretations, Opus trims afterwards where they
+*[Earlier-wave rule; from mv 6 both tiers are Opus 5.5, see §2.]* **Model (Fuad 2026-08-24): Sonnet drafts Interpretations, Opus trims afterwards where they
 overrun.** Badge `deepBy: "Sonnet 4.6"` — the read stays substantially Sonnet's. Where Opus
 re-cut both tiers wholesale, the pair carries `by: "Opus 4.8"` and no `deepBy`.
 
@@ -1087,6 +1094,8 @@ field was added for this (commit a67c492); both sites resolve
 - Opus Info + Sonnet Interpretation → `by: "Opus 4.8"`, `deepBy: "Sonnet 4.6"`.
 - Both tiers Sonnet (work had no prior Info) → `by: "Sonnet 4.6"`, no `deepBy`.
 - Never launder a Sonnet read under the Opus badge.
+- From mv 6 (2026-09-24): both tiers are drafted on Opus 5.5 → `by: "Opus 5.5"`, no `deepBy`. The
+  credit names the model the transcripts show actually ran, which `check-subagent-models.py` reports.
 
 ## 8. Two production modes (do not conflate)
 
