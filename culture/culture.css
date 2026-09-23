@@ -58,7 +58,7 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   margin: 0 12px;
   opacity: .6;
 }
-.site-head .right { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
+.site-head .right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
 .site-head .tagline {
   font-family: var(--serif);
   font-style: italic;
@@ -74,18 +74,18 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
 .br-group { display: contents; }
 .btn-pick {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   background: var(--accent);
   color: #fff;
   border: 0;
-  padding: 12px 18px;
+  padding: 7px 14px;
   border-radius: 999px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 7px;
   transition: filter .15s, transform .15s;
 }
 .btn-pick:hover { filter: brightness(1.1); transform: translateY(-1px); }
@@ -98,7 +98,7 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   display: inline-flex;
   border: 1px solid var(--rule);
   border-radius: 999px;
-  padding: 3px;
+  padding: 2px;
   background: rgba(255,255,255,.02);
 }
 .mode-toggle button {
@@ -109,7 +109,7 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   background: transparent;
   border: 0;
   color: var(--ink-soft);
-  padding: 8px 14px;
+  padding: 5px 11px;
   border-radius: 999px;
   cursor: pointer;
   transition: background .15s, color .15s;
@@ -129,7 +129,7 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   display: inline-flex;
   border: 1px solid var(--rule);
   border-radius: 999px;
-  padding: 3px;
+  padding: 2px;
   background: rgba(255,255,255,.02);
 }
 .library-toggle button {
@@ -140,7 +140,7 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   background: transparent;
   border: 0;
   color: var(--ink-soft);
-  padding: 8px 14px;
+  padding: 5px 11px;
   border-radius: 999px;
   cursor: pointer;
   transition: background .15s, color .15s;
@@ -158,7 +158,7 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   color: var(--ink-soft);
   border: 1px solid var(--rule);
   border-radius: 999px;
-  padding: 8px 30px 8px 14px;
+  padding: 5px 26px 5px 12px;
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
@@ -191,7 +191,7 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   color: var(--ink);
   border: 1px solid var(--rule);
   border-radius: 999px;
-  padding: 8px 30px 8px 32px;
+  padding: 5px 28px 5px 30px;
   outline: none;
   width: 264px;
   transition: border-color .15s, color .15s;
@@ -219,7 +219,7 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   color: var(--ink-faint);
   border: 1px solid var(--rule);
   border-radius: 999px;
-  width: 29px; height: 29px;
+  width: 25px; height: 25px;
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
@@ -1179,12 +1179,12 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
 /* sort direction button */
 .sort-dir-btn {
   font-family: var(--mono);
-  font-size: 13px;
+  font-size: 12px;
   background: rgba(255,255,255,.02);
   color: var(--ink-soft);
   border: 1px solid var(--rule);
   border-radius: 999px;
-  padding: 7px 12px;
+  padding: 5px 10px;
   cursor: pointer;
   line-height: 1;
   transition: color .15s, border-color .15s;
@@ -1576,9 +1576,9 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
 }
 /* stats button in header */
 .btn-stats {
-  font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
   background: rgba(255,255,255,.03); color: var(--ink-soft);
-  border: 1px solid var(--rule); padding: 10px 16px; border-radius: 999px;
+  border: 1px solid var(--rule); padding: 6px 12px; border-radius: 999px;
   cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
   transition: color .15s, border-color .15s;
 }
@@ -1774,7 +1774,7 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
 .btn-tonight {
   font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
   background: transparent; border: 1px solid var(--accent); border-radius: 999px;
-  color: var(--accent); padding: 6px 13px; cursor: pointer; transition: background .15s, color .15s;
+  color: var(--accent); padding: 5px 12px; cursor: pointer; transition: background .15s, color .15s;
 }
 .btn-tonight:hover { background: var(--accent); color: #fff; }
 
