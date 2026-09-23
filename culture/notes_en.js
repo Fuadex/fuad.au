@@ -1003,5 +1003,6 @@ window.CULTURE_NOTES_EN = {
  "imp-f-le-squelette-joyeux": "Great idea!",
  "imp-f-star-wars-the-rise-of-skywalker": "I fell asleep while watching :c",
  "imp-f-the-black-ghiandola": "Very weak, but once I found out where it came from, I decided not to rate it.",
- "imp-f-the-execution-of-mary-stuart": "OK, wow — it left me wondering whether it was actually real or not."
+ "imp-f-the-execution-of-mary-stuart": "OK, wow — it left me wondering whether it was actually real or not.",
+ "imp-f-trzy-kolory-bia-y": "Overall weaker than Blue, but the narrative progression is excellent, with a superb, absolutely first-rate culmination."
 };
