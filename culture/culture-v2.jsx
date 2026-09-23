@@ -3376,7 +3376,7 @@ function App() {
     <div className="page">
       <header className="site-head">
         <div>
-          <h1>Culture<span className="dot">.</span></h1>
+          {/* "Culture." title hidden (Fuad 2026-09-24); the meta line now heads the page. */}
           <div className="meta">
             {library === 'wishlist' ? 'What I want to watch, play & read next' : 'A library of what shaped me'}
             <span className="sep"/>
