@@ -574,6 +574,26 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
               0 0 0 1px rgba(255,255,255,.06) !important;
 }
 
+/* Spine unravel (Fuad 2026-09-24, borrowed from Rotation's Records wall): hovering a spine
+   widens it into its cover in place and pushes the rest of the row along, instead of lifting
+   a thin strip. Posters are already warm — LazyImg loads them 400px ahead even while hidden.
+   A spine gets no scale: a 96px poster at 1.18× would swamp its neighbours. Width runs at
+   Records' 0.22s both ways; a slower collapse makes the row slide under the cursor mid-sweep. */
+.item.as-spine {
+  transition: width .22s cubic-bezier(.3,.8,.3,1),
+              margin .55s cubic-bezier(.2,.7,.3,1),
+              transform .22s cubic-bezier(.3,.8,.3,1),
+              box-shadow .22s,
+              opacity .25s;
+}
+.item.as-spine:hover {
+  width: 96px;
+  transform: translateY(-4px) !important;
+}
+.as-spine:hover .layer-img,
+.as-spine:hover .poster-fallback { opacity: 1; transition: opacity .15s ease; }
+.as-spine:hover .layer-spine { opacity: 0; transition: opacity .1s ease; }
+
 /* Just-picked lift — applies for a clear, lasting highlight. */
 .item[data-pos="just-picked"] {
   transform: translateY(-20px) scale(1.22) !important;

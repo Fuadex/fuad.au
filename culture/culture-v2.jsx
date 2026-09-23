@@ -1748,7 +1748,10 @@ function ShelfRow({ medium, items, idx, mode, sort, sortDir, mixSeed, onOpenItem
     setHoverIdx(i);
     if (popupTimer.current) clearTimeout(popupTimer.current);
     const r = el.getBoundingClientRect();
-    setPopupPos({ x: r.left + r.width / 2, y: r.top });
+    // A hovered spine unravels to 96px from its left edge (culture.css), so centre the card on
+    // the cover it is about to become, not on the strip measured before it grows.
+    const w = el.classList.contains('as-spine') ? 96 : r.width;
+    setPopupPos({ x: r.left + w / 2, y: r.top });
   }, [closeNow]);
   const handleLeave = React.useCallback(() => {
     if (popupTimer.current) clearTimeout(popupTimer.current);
