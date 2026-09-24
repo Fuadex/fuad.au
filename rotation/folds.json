@@ -2147,6 +2147,24 @@
     "to": "Intensive Battery Brooding",
     "type": "spelling",
     "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan mb-refetch 2026-09-17)"
+   },
+   {
+    "from": "Childs Play",
+    "to": "Child's Play",
+    "type": "spelling",
+    "reason": "spelling: apostrophe-less duplicate row of Swansong track 5; sleeve spells it Child's Play (Carcass reads campaign 2026-09-24, DV sleeve)"
+   },
+   {
+    "from": "Blood Slpattered Banner",
+    "to": "Blood Spattered Banner",
+    "type": "spelling",
+    "reason": "spelling: library typo of a streaming-service misspelling; sleeve and label copy read Blood Spattered Banner (Carcass reads campaign 2026-09-24)"
+   },
+   {
+    "from": "Pyosisified (Still Rotten To The Core)",
+    "to": "Pyosisified (Still Rotten To The Gore)",
+    "type": "spelling",
+    "reason": "spelling: subtitle is Gore on the Tools of the Trade EP / Wake Up sleeve, not Core (Carcass reads campaign 2026-09-24)"
    }
   ]
  },
