@@ -216,7 +216,8 @@
   "haunting"
  ],
  "ghost-hound": [
-  "horrifying"
+  "horrifying",
+  "score"
  ],
  "gits-movie": [
   "atmosphere",
@@ -1897,14 +1898,17 @@
   "atmosphere"
  ],
  "imp-f-babylon": [
-  "acting"
+  "acting",
+  "style"
  ],
  "imp-f-interview-with-the-vampire-the-vampire-chronicles": [
-  "acting"
+  "acting",
+  "style"
  ],
  "imp-f-victor-victoria": [
   "acting",
-  "funny"
+  "funny",
+  "style"
  ],
  "imp-f-dekalog-viii": [
   "atmosphere"
@@ -2079,5 +2083,17 @@
  ],
  "wic": [
   "writing"
+ ],
+ "imp-f-the-grand-budapest-hotel": [
+  "style"
+ ],
+ "imp-f-pi": [
+  "style"
+ ],
+ "imp-f-loom": [
+  "score"
+ ],
+ "gurren-lagann": [
+  "score"
  ]
 }

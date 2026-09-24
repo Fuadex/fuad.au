@@ -224,7 +224,8 @@ window.CULTURE_BADGES = {
   "haunting"
  ],
  "ghost-hound": [
-  "horrifying"
+  "horrifying",
+  "score"
  ],
  "gits-movie": [
   "atmosphere",
@@ -244,6 +245,9 @@ window.CULTURE_BADGES = {
  ],
  "gunnm": [
   "atmosphere"
+ ],
+ "gurren-lagann": [
+  "score"
  ],
  "haibane": [
   "bittersweet",
@@ -370,7 +374,8 @@ window.CULTURE_BADGES = {
   "gem"
  ],
  "imp-f-babylon": [
-  "acting"
+  "acting",
+  "style"
  ],
  "imp-f-bad-boy-bubby": [
   "gem",
@@ -510,7 +515,8 @@ window.CULTURE_BADGES = {
   "cinematography"
  ],
  "imp-f-interview-with-the-vampire-the-vampire-chronicles": [
-  "acting"
+  "acting",
+  "style"
  ],
  "imp-f-io": [
   "direction"
@@ -548,6 +554,9 @@ window.CULTURE_BADGES = {
  ],
  "imp-f-life-of-brian": [
   "absurdist"
+ ],
+ "imp-f-loom": [
+  "score"
  ],
  "imp-f-marcel-the-shell-with-shoes-on": [
   "gentle"
@@ -611,6 +620,9 @@ window.CULTURE_BADGES = {
  ],
  "imp-f-peter-rabbit-2-the-runaway": [
   "writing"
+ ],
+ "imp-f-pi": [
+  "style"
  ],
  "imp-f-porno": [
   "funny"
@@ -683,6 +695,9 @@ window.CULTURE_BADGES = {
  "imp-f-the-gold-rush": [
   "bittersweet"
  ],
+ "imp-f-the-grand-budapest-hotel": [
+  "style"
+ ],
  "imp-f-the-great-dictator": [
   "satire"
  ],
@@ -749,7 +764,8 @@ window.CULTURE_BADGES = {
  ],
  "imp-f-victor-victoria": [
   "acting",
-  "funny"
+  "funny",
+  "style"
  ],
  "imp-f-viskningar-och-rop": [
   "acting"
