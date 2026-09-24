@@ -1319,6 +1319,9 @@ window.CULTURE_BADGES = {
   "worldbuilding",
   "writing"
  ],
+ "wic": [
+  "writing"
+ ],
  "wl-b-fbl-a-perfect-vacuum": [
   "cognitive",
   "satire"
