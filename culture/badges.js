@@ -924,7 +924,8 @@ window.CULTURE_BADGES = {
  ],
  "la-haine": [
   "social-xray",
-  "direction"
+  "direction",
+  "haunting"
  ],
  "lain": [
   "atmosphere"
