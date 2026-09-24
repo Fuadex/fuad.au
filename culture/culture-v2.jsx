@@ -1486,7 +1486,7 @@ const HIGHLIGHTS = {
   ahead:        { emoji: '🕰️', label: 'Ahead of its time', desc: 'Saw it coming before everyone else.' },
   singular:     { emoji: '🃏', label: 'One-of-a-kind', desc: 'An unrepeatable object — no formula, no genre slot.' },
   cognitive:    { emoji: '🪞', label: 'A cognitive shift', desc: 'A shift you kept — you see the world, the medium, or one concrete thing differently a month later.' },
-  worldbuilding:{ emoji: '🗺️', label: 'A world unto itself', desc: 'A place complete enough to live in.' },
+  worldbuilding:{ emoji: '🗺️', label: 'A world unto itself', desc: 'A very unique world, full of life — one that goes the extra mile.' },
   'social-xray':{ emoji: '🔬', label: 'Social x-ray', desc: 'Dissects a society, class or institution under pressure.' },
   'formal-exec':{ emoji: '📐', label: 'Formal execution', desc: 'A chosen constraint, pushed to its limit — the format is the achievement.' },
   squirm:       { emoji: '😬', label: 'Squirm comedy', desc: 'Comedy of discomfort — you laughed and flinched.' },

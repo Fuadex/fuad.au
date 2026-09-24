@@ -15,7 +15,8 @@
  ],
  "angels-egg": [
   "atmosphere",
-  "singular"
+  "singular",
+  "visuals"
  ],
  "animal-farm": [
   "ahead",
@@ -30,7 +31,8 @@
  ],
  "apocalypse-now": [
   "acting",
-  "intense"
+  "intense",
+  "writing"
  ],
  "atlanta": [
   "absurdist",
@@ -48,11 +50,13 @@
   "impact"
  ],
  "belladonna": [
-  "horrifying"
+  "horrifying",
+  "devastating"
  ],
  "berserk": [
   "worldbuilding",
-  "writing"
+  "writing",
+  "impact"
  ],
  "better-call-saul": [
   "gem",
@@ -113,7 +117,8 @@
  "corpus-christi": [
   "devastating",
   "impact",
-  "social-xray"
+  "social-xray",
+  "cinematography"
  ],
  "cosmos": [
   "singular"
@@ -133,7 +138,8 @@
  ],
  "dead-set": [
   "horrifying",
-  "social-xray"
+  "social-xray",
+  "acting"
  ],
  "deer-hunter": [
   "intense",
@@ -153,18 +159,21 @@
   "devastating"
  ],
  "ernest-celestine": [
-  "gentle"
+  "gentle",
+  "writing"
  ],
  "escape-cinema": [
   "funny",
-  "satire"
+  "satire",
+  "absurdist"
  ],
  "eva": [
   "impact",
   "mindbending"
  ],
  "face-of-another": [
-  "horrifying"
+  "horrifying",
+  "direction"
  ],
  "fallout": [
   "satire"
@@ -176,7 +185,9 @@
  ],
  "fight-club": [
   "cerebral",
-  "mindbending"
+  "mindbending",
+  "acting",
+  "ahead"
  ],
  "firewatch": [
   "bittersweet"
@@ -190,7 +201,8 @@
   "bittersweet",
   "devastating",
   "funny",
-  "squirm"
+  "squirm",
+  "acting"
  ],
  "fma-brotherhood": [
   "devastating",
@@ -227,14 +239,17 @@
  ],
  "haibane": [
   "bittersweet",
-  "devastating"
+  "devastating",
+  "gentle"
  ],
  "heavy-rain": [
   "thrilling",
   "impact"
  ],
  "hilda": [
-  "gentle"
+  "gentle",
+  "visuals",
+  "score"
  ],
  "human-condition": [
   "acting",
@@ -254,7 +269,8 @@
   "cerebral"
  ],
  "imp-f-10026657": [
-  "horrifying"
+  "horrifying",
+  "direction"
  ],
  "imp-f-107201": [
   "cinematography",
@@ -268,13 +284,16 @@
   "horrifying"
  ],
  "imp-f-30387": [
-  "gem"
+  "gem",
+  "writing",
+  "style"
  ],
  "imp-f-32090": [
   "thrilling"
  ],
  "imp-f-35459": [
-  "cerebral"
+  "cerebral",
+  "social-xray"
  ],
  "imp-f-3808": [
   "cerebral"
@@ -299,7 +318,8 @@
   "gem"
  ],
  "imp-f-bad-boy-bubby": [
-  "gem"
+  "gem",
+  "writing"
  ],
  "imp-f-children-of-men": [
   "cinematography"
@@ -332,13 +352,15 @@
   "cinematography"
  ],
  "imp-f-faces": [
-  "gem"
+  "gem",
+  "direction"
  ],
  "imp-f-gake-no-ue-no-ponyo": [
   "visuals"
  ],
  "imp-f-gi-saeng-chung": [
-  "social-xray"
+  "social-xray",
+  "impact"
  ],
  "imp-f-h-hokekyo-tonari-no-yamada-kun": [
   "satire"
@@ -365,7 +387,9 @@
   "absurdist"
  ],
  "imp-f-mayak": [
-  "gem"
+  "gem",
+  "atmosphere",
+  "cinematography"
  ],
  "imp-f-monsieur-verdoux": [
   "gem"
@@ -380,16 +404,19 @@
   "intense"
  ],
  "imp-f-orfeu-negro": [
-  "gem"
+  "gem",
+  "acting"
  ],
  "imp-f-perfect-blue": [
   "horrifying"
  ],
  "imp-f-personel": [
-  "gem"
+  "gem",
+  "cinematography"
  ],
  "imp-f-refren": [
-  "cerebral"
+  "cerebral",
+  "bittersweet"
  ],
  "imp-f-samog-oska": [
   "gem"
@@ -417,7 +444,8 @@
   "gem"
  ],
  "imp-f-tren-zb-ja": [
-  "gem"
+  "gem",
+  "visuals"
  ],
  "imp-f-ucho": [
   "gem",
@@ -428,7 +456,8 @@
   "haunting"
  ],
  "imp-f-wake-in-fright": [
-  "gem"
+  "gem",
+  "social-xray"
  ],
  "imp-f-west-beyrouth": [
   "gem"
@@ -523,7 +552,8 @@
  ],
  "kino-journey": [
   "atmosphere",
-  "cerebral"
+  "cerebral",
+  "visuals"
  ],
  "kite": [
   "gem",
@@ -533,13 +563,15 @@
   "formal-exec"
  ],
  "la-haine": [
-  "social-xray"
+  "social-xray",
+  "direction"
  ],
  "lain": [
   "atmosphere"
  ],
  "laputa": [
-  "score"
+  "score",
+  "visuals"
  ],
  "ldr": [
   "horrifying"
@@ -558,7 +590,8 @@
   "mindbending"
  ],
  "macross-plus": [
-  "score"
+  "score",
+  "impact"
  ],
  "mad-men": [
   "acting",
@@ -576,7 +609,8 @@
  ],
  "mary-and-max": [
   "bittersweet",
-  "writing"
+  "writing",
+  "style"
  ],
  "mass-effect": [
   "worldbuilding"
@@ -590,7 +624,8 @@
  "midnight-gospel": [
   "absurdist",
   "cerebral",
-  "funny"
+  "funny",
+  "mindbending"
  ],
  "mirrors-edge": [
   "atmosphere",
@@ -617,7 +652,8 @@
  ],
  "network": [
   "satire",
-  "social-xray"
+  "social-xray",
+  "acting"
  ],
  "no-country": [
   "acting",
@@ -633,7 +669,9 @@
   "singular"
  ],
  "oldboy": [
-  "devastating"
+  "devastating",
+  "direction",
+  "impact"
  ],
  "opm": [
   "satire"
@@ -643,12 +681,14 @@
   "cerebral"
  ],
  "paranoia-agent": [
-  "horrifying"
+  "horrifying",
+  "writing"
  ],
  "peasants": [
   "devastating",
   "social-xray",
-  "style"
+  "style",
+  "writing"
  ],
  "pierwsza-milosc": [
   "cerebral"
@@ -695,10 +735,15 @@
  ],
  "pygmalion": [
   "gem",
-  "satire"
+  "satire",
+  "direction",
+  "acting"
  ],
  "red-desert": [
-  "impact"
+  "impact",
+  "direction",
+  "acting",
+  "slowburn"
  ],
  "redline": [
   "gem"
@@ -712,7 +757,8 @@
   "cerebral"
  ],
  "samurai-champloo": [
-  "funny"
+  "funny",
+  "atmosphere"
  ],
  "scavengers-reign": [
   "cerebral",
@@ -723,20 +769,25 @@
  ],
  "severance": [
   "atmosphere",
-  "cerebral"
+  "cerebral",
+  "impact"
  ],
  "short-film-killing": [
-  "haunting"
+  "haunting",
+  "cinematography"
  ],
  "silent-voice": [
   "bittersweet"
  ],
  "six-feet-under": [
   "bittersweet",
-  "funny"
+  "funny",
+  "style",
+  "singular"
  ],
  "skins": [
-  "social-xray"
+  "social-xray",
+  "writing"
  ],
  "sonny-boy": [
   "mindbending"
@@ -793,7 +844,8 @@
  ],
  "terror-resonance": [
   "devastating",
-  "thrilling"
+  "thrilling",
+  "score"
  ],
  "the-expanse": [
   "worldbuilding",
@@ -808,7 +860,8 @@
  ],
  "the-shield": [
   "acting",
-  "gem"
+  "gem",
+  "writing"
  ],
  "the-shining": [
   "horrifying",
@@ -826,7 +879,8 @@
   "worldbuilding"
  ],
  "there-will-be-blood": [
-  "direction"
+  "direction",
+  "atmosphere"
  ],
  "tlou": [
   "horrifying"
@@ -838,7 +892,8 @@
  "tokyo-godfathers": [
   "bittersweet",
   "funny",
-  "visuals"
+  "visuals",
+  "direction"
  ],
  "trigun": [
   "worldbuilding",
@@ -892,9 +947,7 @@
  "westworld": [
   "acting",
   "visuals",
-  "worldbuilding"
- ],
- "wic": [
+  "worldbuilding",
   "writing"
  ],
  "wl-b-fbl-a-perfect-vacuum": [
@@ -1633,7 +1686,8 @@
  "wolfs-rain": [
   "atmosphere",
   "devastating",
-  "score"
+  "score",
+  "singular"
  ],
  "woman-under": [
   "formal-exec",
@@ -1641,15 +1695,384 @@
  ],
  "wonder-egg": [
   "devastating",
-  "haunting"
+  "haunting",
+  "writing",
+  "mindbending"
  ],
  "yamadas": [
   "gentle",
   "satire",
-  "social-xray"
+  "social-xray",
+  "writing",
+  "style"
  ],
  "your-name": [
   "bittersweet",
   "score"
+ ],
+ "imp-f-10031652": [
+  "writing"
+ ],
+ "imp-f-the-lego-batman-movie": [
+  "writing"
+ ],
+ "imp-g-739049": [
+  "writing"
+ ],
+ "imp-f-9765": [
+  "writing"
+ ],
+ "imp-f-drog-wka": [
+  "writing"
+ ],
+ "imp-f-fantastic-mr-fox": [
+  "writing",
+  "style"
+ ],
+ "imp-f-komornik": [
+  "writing"
+ ],
+ "shame": [
+  "writing"
+ ],
+ "imp-s-10014569": [
+  "writing",
+  "style"
+ ],
+ "imp-f-finding-dory": [
+  "writing"
+ ],
+ "imp-f-the-little-mermaid": [
+  "writing"
+ ],
+ "imp-g-754389": [
+  "writing"
+ ],
+ "imp-f-dekalog-iv": [
+  "writing"
+ ],
+ "imp-f-dekalog-vii": [
+  "writing",
+  "direction"
+ ],
+ "imp-f-dirty-harry": [
+  "writing",
+  "score"
+ ],
+ "imp-f-peter-rabbit-2-the-runaway": [
+  "writing"
+ ],
+ "imp-f-serenity": [
+  "writing"
+ ],
+ "imp-f-the-boy-in-the-striped-pyjamas": [
+  "writing"
+ ],
+ "imp-f-thor-love-and-thunder": [
+  "writing"
+ ],
+ "imp-f-trzy-kolory-bia-y": [
+  "writing"
+ ],
+ "imp-s-32585": [
+  "writing"
+ ],
+ "imp-f-fate-stay-night-heaven-s-feel-i-presage-flower": [
+  "visuals"
+ ],
+ "imp-f-over-the-moon": [
+  "visuals"
+ ],
+ "imp-f-avatar-the-way-of-water": [
+  "visuals"
+ ],
+ "imp-f-nostalghia": [
+  "visuals",
+  "direction",
+  "atmosphere"
+ ],
+ "imp-f-duet": [
+  "visuals"
+ ],
+ "imp-f-lebensader": [
+  "visuals"
+ ],
+ "imp-f-natural-attraction": [
+  "visuals"
+ ],
+ "imp-f-when-the-day-breaks": [
+  "visuals"
+ ],
+ "korra": [
+  "visuals"
+ ],
+ "konosuba": [
+  "visuals",
+  "absurdist"
+ ],
+ "imp-f-onward": [
+  "visuals"
+ ],
+ "imp-g-739050": [
+  "visuals"
+ ],
+ "imp-f-beau-travail": [
+  "visuals",
+  "atmosphere"
+ ],
+ "tori-no-uta": [
+  "visuals"
+ ],
+ "imp-f-dekalog-v": [
+  "direction",
+  "cinematography",
+  "social-xray"
+ ],
+ "imp-f-offret-sacrificatio": [
+  "direction"
+ ],
+ "imp-f-stalker": [
+  "direction"
+ ],
+ "imp-f-zerkalo": [
+  "direction",
+  "atmosphere"
+ ],
+ "imp-f-dekalog-iii": [
+  "direction",
+  "cinematography"
+ ],
+ "imp-f-dekalog-ix": [
+  "direction"
+ ],
+ "imp-f-tora-no-o-wo-fumu-otokotachi": [
+  "direction"
+ ],
+ "imp-f-trzy-kolory-niebieski": [
+  "direction"
+ ],
+ "imp-f-roma": [
+  "direction"
+ ],
+ "imp-f-io": [
+  "direction"
+ ],
+ "imp-f-okja": [
+  "direction"
+ ],
+ "imp-f-the-king-of-comedy": [
+  "direction",
+  "squirm"
+ ],
+ "imp-f-rew-ffwd": [
+  "direction"
+ ],
+ "imp-f-754800": [
+  "acting",
+  "style"
+ ],
+ "imp-f-viskningar-och-rop": [
+  "acting"
+ ],
+ "imp-f-dallas-buyers-club": [
+  "acting",
+  "cinematography"
+ ],
+ "imp-f-the-whale": [
+  "acting"
+ ],
+ "imp-f-what-s-eating-gilbert-grape": [
+  "acting"
+ ],
+ "imp-f-chappie": [
+  "acting"
+ ],
+ "imp-f-the-irishman": [
+  "acting",
+  "atmosphere"
+ ],
+ "imp-f-the-revenant": [
+  "acting",
+  "atmosphere"
+ ],
+ "imp-f-babylon": [
+  "acting"
+ ],
+ "imp-f-interview-with-the-vampire-the-vampire-chronicles": [
+  "acting"
+ ],
+ "imp-f-victor-victoria": [
+  "acting",
+  "funny"
+ ],
+ "imp-f-dekalog-viii": [
+  "atmosphere"
+ ],
+ "imp-f-c-era-una-volta-il-west": [
+  "atmosphere"
+ ],
+ "imp-f-la-dolce-vita": [
+  "atmosphere"
+ ],
+ "imp-f-yume": [
+  "atmosphere",
+  "score"
+ ],
+ "imp-f-razorback": [
+  "atmosphere",
+  "cinematography"
+ ],
+ "imp-f-iblard-jikan": [
+  "atmosphere"
+ ],
+ "imp-f-la-jet-e": [
+  "atmosphere",
+  "formal-exec"
+ ],
+ "imp-f-paris-texas": [
+  "cinematography"
+ ],
+ "imp-f-31445": [
+  "cinematography"
+ ],
+ "imp-f-solyaris": [
+  "cinematography"
+ ],
+ "imp-f-the-french-dispatch": [
+  "cinematography",
+  "style"
+ ],
+ "imp-f-33013": [
+  "cinematography"
+ ],
+ "imp-f-mission-impossible-fallout": [
+  "cinematography"
+ ],
+ "imp-f-trois-couleurs-rouge": [
+  "cinematography"
+ ],
+ "imp-f-postrzy-yny": [
+  "style"
+ ],
+ "imp-f-817420": [
+  "style"
+ ],
+ "imp-f-psiconautas-los-ni-os-olvidados": [
+  "style"
+ ],
+ "hinterland": [
+  "style"
+ ],
+ "imp-f-kellerkind": [
+  "style"
+ ],
+ "solo-na-ugorze": [
+  "style"
+ ],
+ "edith-finch": [
+  "impact"
+ ],
+ "imp-f-10029803": [
+  "impact"
+ ],
+ "imp-f-joker": [
+  "impact"
+ ],
+ "imp-f-31581": [
+  "impact"
+ ],
+ "imp-f-a-monster-calls": [
+  "impact"
+ ],
+ "imp-f-evangelion-shin-gekij-ban-ha": [
+  "impact"
+ ],
+ "imp-f-once-were-warriors": [
+  "impact"
+ ],
+ "imp-s-878089": [
+  "social-xray"
+ ],
+ "imp-f-the-mist": [
+  "social-xray",
+  "impact",
+  "horrifying"
+ ],
+ "imp-s-615608": [
+  "social-xray"
+ ],
+ "imp-f-gok-seong": [
+  "singular"
+ ],
+ "imp-f-edward-scissorhands": [
+  "singular"
+ ],
+ "imp-f-tian-bian-yi-duo-yun": [
+  "singular"
+ ],
+ "imp-f-zdj-cie": [
+  "formal-exec"
+ ],
+ "imp-f-film-balkonowy": [
+  "formal-exec"
+ ],
+ "imp-f-porno": [
+  "funny"
+ ],
+ "imp-f-scary-movie": [
+  "funny"
+ ],
+ "imp-f-querelle-enfantine": [
+  "funny"
+ ],
+ "hellsing": [
+  "thrilling"
+ ],
+ "imp-s-385781": [
+  "thrilling"
+ ],
+ "imp-f-top-gun-maverick": [
+  "thrilling"
+ ],
+ "imp-f-marcel-the-shell-with-shoes-on": [
+  "gentle"
+ ],
+ "imp-f-the-magician-s-elephant": [
+  "gentle"
+ ],
+ "imp-s-665315": [
+  "mindbending"
+ ],
+ "imp-f-kung-fu": [
+  "absurdist"
+ ],
+ "imp-f-the-banshees-of-inisherin": [
+  "devastating",
+  "cinematography"
+ ],
+ "imp-f-la-vita-bella": [
+  "bittersweet"
+ ],
+ "imp-f-crackerjack": [
+  "gem"
+ ],
+ "imp-g-612896": [
+  "intense"
+ ],
+ "imp-s-870863": [
+  "cerebral"
+ ],
+ "imp-f-super-deluxe": [
+  "cinematography"
+ ],
+ "imp-f-874687": [
+  "style",
+  "atmosphere"
+ ],
+ "imp-f-117957": [
+  "absurdist"
+ ],
+ "imp-f-child": [
+  "cinematography"
  ]
 }

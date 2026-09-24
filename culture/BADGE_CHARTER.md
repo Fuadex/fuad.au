@@ -83,6 +83,10 @@ neighbours (the cerebral/mindbending/cognitive trio especially).
   *kept*, a haunt eventually fades; a haunt can also carry no new lens at all, just weight.
   Test: **weeks later, did it come back to you when nothing prompted it?** Founders (named
   by Fuad): Spec Ops: The Line, Black Mirror, Antichamber · band ≈ 12–15.
+  **Clarified by Fuad 2026-09-24: haunting is when it LINGERS** — it hits you at the time and
+  you leave the watch still affected by it for a longer while. e.g. La Haine, Spec Ops: The
+  Line, Come and See. A theme that replays whenever something cues it is not haunting
+  (Cinema Paradiso: ruled out).
 - **💀 horrifying** — *designed to disturb / dread.* e.g. Possession, Made in Abyss, Hereditary.
 - **🩸 intense** — *sustained brutality / pressure* (a state, not a jolt). e.g. Uncut Gems,
   Whiplash, Come and See.
@@ -108,11 +112,18 @@ neighbours (the cerebral/mindbending/cognitive trio especially).
 
 - **🎬 direction** · **✍️ writing** · **📷 cinematography** · **🎭 acting** · **🎵 score** —
   standout in that discipline. Reserve for genuine standouts, not "good".
+  **Routing for crafts with no badge of their own (Fuad 2026-09-24):** scenography / set design
+  ("scenografia") → 📷 cinematography (The Banshees of Inisherin, Super Deluxe); sound design
+  ("udźwiękowienie") → 🎵 score; production design and makeup ("charakteryzacja") → 🕶️ style
+  (Barbie's set design). Game mechanics: no home yet, left open on purpose.
 - **🎨 visuals** — *gorgeous* (beauty of image). **Over-broad at 113 — needs a pruning pass**
   (see IDEAS): should not be a synonym for "is animation". Target ≤ 60.
 - **🕶️ style** — *bold/quirky aesthetic identity* (distinct from gorgeous). e.g. A Clockwork
   Orange, Mr. Robot, Fear and Loathing.
 - **🗺️ worldbuilding** — *a world unto itself.* e.g. The Expanse, BioShock, Nausicaä.
+  **Tightened by Fuad 2026-09-24:** a very unique world, full of life, that goes an extra mile —
+  an interesting setting or a well-realised premise is not enough (Treasure Planet, Brütal
+  Legend, Equilibrium, Blinded by the Lights: ruled out).
 - **📐 formal execution** *(new)* — *a chosen constraint, exhausted; the format IS the
   achievement.* Distinct from 🃏 singular (unrepeatable object) — this is a *deliberate
   limit* pushed to its limit. e.g. 12 Angry Men (one room), Dekalog (ten films / one
@@ -131,6 +142,9 @@ neighbours (the cerebral/mindbending/cognitive trio especially).
   `audit_gems.py` still surfaces high-rating / low-reach candidates as a discovery aid, but
   reach is a signal, not a gate. No demotions applied.
 - **🕰️ ahead** — *ahead of its time.* e.g. Network, Blade Runner, RoboCop.
+  **Fuad 2026-09-24:** being a pioneer or a milestone is not enough on its own — prefer the
+  relatively recent; a classic qualifies only if it is incredible (Citizen Kane might make the
+  cut). The 1890s–1900s forerunners and André and Wally B.: ruled out.
 - **🃏 singular** — *an unrepeatable object, no formula, no genre slot.* e.g. Belladonna, Kiwi!,
   Holy Motors. (Tightened away from formal-execution: 🃏 = *sui generis*; 📐 = *constraint
   exhausted*.)

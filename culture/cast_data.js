@@ -40120,56 +40120,6 @@ window.CULTURE_CAST = {
     ],
     "tmdbPoster": "https://image.tmdb.org/t/p/w500/clq4So9spa9cXk3MZy2iMdqkxP2.jpg"
   },
-  "imp-f-child": {
-    "cast": [
-      "Tom Hardy",
-      "Gary Oldman",
-      "Noomi Rapace",
-      "Fares Fares",
-      "Joel Kinnaman",
-      "Paddy Considine",
-      "Jason Clarke",
-      "Mark Lewis Jones",
-      "Vincent Cassel",
-      "Nikolaj Lie Kaas",
-      "Charles Dance",
-      "Xavier Atkins",
-      "Karel Dobrý",
-      "Agnieszka Grochowska",
-      "Petr Vaněk",
-      "Jana Stryková",
-      "Ursina Lardi",
-      "Michael Nardone",
-      "Finbar Lynch",
-      "Tara Fitzgerald",
-      "Josef Altin",
-      "Sam Spruell"
-    ],
-    "cinematographer": "Oliver Wood",
-    "composer": "Jon Ekstrand",
-    "writer": "Tom Rob Smith, Richard Price",
-    "productionCompanies": [
-      "Summit Entertainment",
-      "Worldview Entertainment",
-      "Lionsgate",
-      "Scott Free Productions"
-    ],
-    "tags": [
-      "based on novel or book",
-      "child murder",
-      "soviet union",
-      "murder",
-      "serial killer",
-      "military",
-      "stalinism",
-      "1950s"
-    ],
-    "genres": [
-      "Crime",
-      "Thriller"
-    ],
-    "tmdbPoster": "https://image.tmdb.org/t/p/w500/p8uTx2xm72vXqI0H4W5kU3ku9ND.jpg"
-  },
   "imp-f-mee": {
     "cast": [
       "Catalina Caraus",

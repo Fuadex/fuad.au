@@ -19,7 +19,8 @@ window.CULTURE_BADGES = {
  ],
  "angels-egg": [
   "atmosphere",
-  "singular"
+  "singular",
+  "visuals"
  ],
  "animal-farm": [
   "ahead",
@@ -34,7 +35,8 @@ window.CULTURE_BADGES = {
  ],
  "apocalypse-now": [
   "acting",
-  "intense"
+  "intense",
+  "writing"
  ],
  "atlanta": [
   "absurdist",
@@ -52,11 +54,13 @@ window.CULTURE_BADGES = {
   "impact"
  ],
  "belladonna": [
-  "horrifying"
+  "horrifying",
+  "devastating"
  ],
  "berserk": [
   "worldbuilding",
-  "writing"
+  "writing",
+  "impact"
  ],
  "better-call-saul": [
   "gem",
@@ -117,7 +121,8 @@ window.CULTURE_BADGES = {
  "corpus-christi": [
   "devastating",
   "impact",
-  "social-xray"
+  "social-xray",
+  "cinematography"
  ],
  "cosmos": [
   "singular"
@@ -137,7 +142,8 @@ window.CULTURE_BADGES = {
  ],
  "dead-set": [
   "horrifying",
-  "social-xray"
+  "social-xray",
+  "acting"
  ],
  "deer-hunter": [
   "intense",
@@ -148,6 +154,9 @@ window.CULTURE_BADGES = {
   "cerebral",
   "formal-exec"
  ],
+ "edith-finch": [
+  "impact"
+ ],
  "eizouken": [
   "funny",
   "visuals",
@@ -157,18 +166,21 @@ window.CULTURE_BADGES = {
   "devastating"
  ],
  "ernest-celestine": [
-  "gentle"
+  "gentle",
+  "writing"
  ],
  "escape-cinema": [
   "funny",
-  "satire"
+  "satire",
+  "absurdist"
  ],
  "eva": [
   "impact",
   "mindbending"
  ],
  "face-of-another": [
-  "horrifying"
+  "horrifying",
+  "direction"
  ],
  "fallout": [
   "satire"
@@ -180,7 +192,9 @@ window.CULTURE_BADGES = {
  ],
  "fight-club": [
   "cerebral",
-  "mindbending"
+  "mindbending",
+  "acting",
+  "ahead"
  ],
  "firewatch": [
   "bittersweet"
@@ -194,7 +208,8 @@ window.CULTURE_BADGES = {
   "bittersweet",
   "devastating",
   "funny",
-  "squirm"
+  "squirm",
+  "acting"
  ],
  "fma-brotherhood": [
   "devastating",
@@ -231,14 +246,23 @@ window.CULTURE_BADGES = {
  ],
  "haibane": [
   "bittersweet",
-  "devastating"
+  "devastating",
+  "gentle"
  ],
  "heavy-rain": [
   "thrilling",
   "impact"
  ],
+ "hellsing": [
+  "thrilling"
+ ],
  "hilda": [
-  "gentle"
+  "gentle",
+  "visuals",
+  "score"
+ ],
+ "hinterland": [
+  "style"
  ],
  "human-condition": [
   "acting",
@@ -258,12 +282,22 @@ window.CULTURE_BADGES = {
   "cerebral"
  ],
  "imp-f-10026657": [
-  "horrifying"
+  "horrifying",
+  "direction"
+ ],
+ "imp-f-10029803": [
+  "impact"
+ ],
+ "imp-f-10031652": [
+  "writing"
  ],
  "imp-f-107201": [
   "cinematography",
   "devastating",
   "direction"
+ ],
+ "imp-f-117957": [
+  "absurdist"
  ],
  "imp-f-138782": [
   "gem"
@@ -272,13 +306,25 @@ window.CULTURE_BADGES = {
   "horrifying"
  ],
  "imp-f-30387": [
-  "gem"
+  "gem",
+  "writing",
+  "style"
+ ],
+ "imp-f-31445": [
+  "cinematography"
+ ],
+ "imp-f-31581": [
+  "impact"
  ],
  "imp-f-32090": [
   "thrilling"
  ],
+ "imp-f-33013": [
+  "cinematography"
+ ],
  "imp-f-35459": [
-  "cerebral"
+  "cerebral",
+  "social-xray"
  ],
  "imp-f-3808": [
   "cerebral"
@@ -290,20 +336,57 @@ window.CULTURE_BADGES = {
  "imp-f-686419": [
   "cerebral"
  ],
+ "imp-f-754800": [
+  "acting",
+  "style"
+ ],
+ "imp-f-817420": [
+  "style"
+ ],
+ "imp-f-874687": [
+  "style",
+  "atmosphere"
+ ],
  "imp-f-94612": [
   "gem"
+ ],
+ "imp-f-9765": [
+  "writing"
  ],
  "imp-f-a-king-in-new-york": [
   "gem"
  ],
+ "imp-f-a-monster-calls": [
+  "impact"
+ ],
  "imp-f-annie-hall": [
   "bittersweet"
+ ],
+ "imp-f-avatar-the-way-of-water": [
+  "visuals"
  ],
  "imp-f-bab-el-hadid": [
   "gem"
  ],
+ "imp-f-babylon": [
+  "acting"
+ ],
  "imp-f-bad-boy-bubby": [
-  "gem"
+  "gem",
+  "writing"
+ ],
+ "imp-f-beau-travail": [
+  "visuals",
+  "atmosphere"
+ ],
+ "imp-f-c-era-una-volta-il-west": [
+  "atmosphere"
+ ],
+ "imp-f-chappie": [
+  "acting"
+ ],
+ "imp-f-child": [
+  "cinematography"
  ],
  "imp-f-children-of-men": [
   "cinematography"
@@ -315,19 +398,64 @@ window.CULTURE_BADGES = {
   "absurdist",
   "intense"
  ],
+ "imp-f-crackerjack": [
+  "gem"
+ ],
+ "imp-f-dallas-buyers-club": [
+  "acting",
+  "cinematography"
+ ],
+ "imp-f-dekalog-iii": [
+  "direction",
+  "cinematography"
+ ],
+ "imp-f-dekalog-iv": [
+  "writing"
+ ],
+ "imp-f-dekalog-ix": [
+  "direction"
+ ],
+ "imp-f-dekalog-v": [
+  "direction",
+  "cinematography",
+  "social-xray"
+ ],
+ "imp-f-dekalog-vii": [
+  "writing",
+  "direction"
+ ],
+ "imp-f-dekalog-viii": [
+  "atmosphere"
+ ],
  "imp-f-die-nash-rner": [
   "gem"
+ ],
+ "imp-f-dirty-harry": [
+  "writing",
+  "score"
  ],
  "imp-f-dr-strangelove-or-how-i-learned-to-stop-worrying-and-love-th": [
   "satire"
  ],
+ "imp-f-drog-wka": [
+  "writing"
+ ],
  "imp-f-duck-amuck": [
   "absurdist"
+ ],
+ "imp-f-duet": [
+  "visuals"
  ],
  "imp-f-edge-of-tomorrow": [
   "intense",
   "mindbending",
   "thrilling"
+ ],
+ "imp-f-edward-scissorhands": [
+  "singular"
+ ],
+ "imp-f-evangelion-shin-gekij-ban-ha": [
+  "impact"
  ],
  "imp-f-ex-machina": [
   "cerebral"
@@ -336,19 +464,40 @@ window.CULTURE_BADGES = {
   "cinematography"
  ],
  "imp-f-faces": [
-  "gem"
+  "gem",
+  "direction"
+ ],
+ "imp-f-fantastic-mr-fox": [
+  "writing",
+  "style"
+ ],
+ "imp-f-fate-stay-night-heaven-s-feel-i-presage-flower": [
+  "visuals"
+ ],
+ "imp-f-film-balkonowy": [
+  "formal-exec"
+ ],
+ "imp-f-finding-dory": [
+  "writing"
  ],
  "imp-f-gake-no-ue-no-ponyo": [
   "visuals"
  ],
  "imp-f-gi-saeng-chung": [
-  "social-xray"
+  "social-xray",
+  "impact"
+ ],
+ "imp-f-gok-seong": [
+  "singular"
  ],
  "imp-f-h-hokekyo-tonari-no-yamada-kun": [
   "satire"
  ],
  "imp-f-heavy-metal": [
   "intense"
+ ],
+ "imp-f-iblard-jikan": [
+  "atmosphere"
  ],
  "imp-f-inception": [
   "thrilling"
@@ -359,17 +508,56 @@ window.CULTURE_BADGES = {
  "imp-f-innocence": [
   "cinematography"
  ],
+ "imp-f-interview-with-the-vampire-the-vampire-chronicles": [
+  "acting"
+ ],
+ "imp-f-io": [
+  "direction"
+ ],
  "imp-f-j-i-uchi-hairy-tsuma-shimatsu": [
   "devastating"
  ],
  "imp-f-jiang-hu-er-nu": [
   "gem"
  ],
+ "imp-f-joker": [
+  "impact"
+ ],
+ "imp-f-kellerkind": [
+  "style"
+ ],
+ "imp-f-komornik": [
+  "writing"
+ ],
+ "imp-f-kung-fu": [
+  "absurdist"
+ ],
+ "imp-f-la-dolce-vita": [
+  "atmosphere"
+ ],
+ "imp-f-la-jet-e": [
+  "atmosphere",
+  "formal-exec"
+ ],
+ "imp-f-la-vita-bella": [
+  "bittersweet"
+ ],
+ "imp-f-lebensader": [
+  "visuals"
+ ],
  "imp-f-life-of-brian": [
   "absurdist"
  ],
+ "imp-f-marcel-the-shell-with-shoes-on": [
+  "gentle"
+ ],
  "imp-f-mayak": [
-  "gem"
+  "gem",
+  "atmosphere",
+  "cinematography"
+ ],
+ "imp-f-mission-impossible-fallout": [
+  "cinematography"
  ],
  "imp-f-monsieur-verdoux": [
   "gem"
@@ -377,26 +565,83 @@ window.CULTURE_BADGES = {
  "imp-f-monty-python-and-the-holy-grail": [
   "absurdist"
  ],
+ "imp-f-natural-attraction": [
+  "visuals"
+ ],
  "imp-f-nie-wiem": [
   "cerebral"
+ ],
+ "imp-f-nostalghia": [
+  "visuals",
+  "direction",
+  "atmosphere"
+ ],
+ "imp-f-offret-sacrificatio": [
+  "direction"
+ ],
+ "imp-f-okja": [
+  "direction"
  ],
  "imp-f-once-upon-a-time-in-america": [
   "intense"
  ],
+ "imp-f-once-were-warriors": [
+  "impact"
+ ],
+ "imp-f-onward": [
+  "visuals"
+ ],
  "imp-f-orfeu-negro": [
-  "gem"
+  "gem",
+  "acting"
+ ],
+ "imp-f-over-the-moon": [
+  "visuals"
+ ],
+ "imp-f-paris-texas": [
+  "cinematography"
  ],
  "imp-f-perfect-blue": [
   "horrifying"
  ],
  "imp-f-personel": [
-  "gem"
+  "gem",
+  "cinematography"
+ ],
+ "imp-f-peter-rabbit-2-the-runaway": [
+  "writing"
+ ],
+ "imp-f-porno": [
+  "funny"
+ ],
+ "imp-f-postrzy-yny": [
+  "style"
+ ],
+ "imp-f-psiconautas-los-ni-os-olvidados": [
+  "style"
+ ],
+ "imp-f-querelle-enfantine": [
+  "funny"
+ ],
+ "imp-f-razorback": [
+  "atmosphere",
+  "cinematography"
  ],
  "imp-f-refren": [
-  "cerebral"
+  "cerebral",
+  "bittersweet"
+ ],
+ "imp-f-rew-ffwd": [
+  "direction"
+ ],
+ "imp-f-roma": [
+  "direction"
  ],
  "imp-f-samog-oska": [
   "gem"
+ ],
+ "imp-f-scary-movie": [
+  "funny"
  ],
  "imp-f-seksmisja": [
   "absurdist",
@@ -405,11 +650,34 @@ window.CULTURE_BADGES = {
  "imp-f-seppuku": [
   "devastating"
  ],
+ "imp-f-serenity": [
+  "writing"
+ ],
+ "imp-f-solyaris": [
+  "cinematography"
+ ],
+ "imp-f-stalker": [
+  "direction"
+ ],
+ "imp-f-super-deluxe": [
+  "cinematography"
+ ],
  "imp-f-szpital": [
   "cerebral"
  ],
+ "imp-f-the-banshees-of-inisherin": [
+  "devastating",
+  "cinematography"
+ ],
+ "imp-f-the-boy-in-the-striped-pyjamas": [
+  "writing"
+ ],
  "imp-f-the-bridge-on-the-river-kwai": [
   "intense"
+ ],
+ "imp-f-the-french-dispatch": [
+  "cinematography",
+  "style"
  ],
  "imp-f-the-gold-rush": [
   "bittersweet"
@@ -417,25 +685,101 @@ window.CULTURE_BADGES = {
  "imp-f-the-great-dictator": [
   "satire"
  ],
+ "imp-f-the-irishman": [
+  "acting",
+  "atmosphere"
+ ],
+ "imp-f-the-king-of-comedy": [
+  "direction",
+  "squirm"
+ ],
  "imp-f-the-last-wave": [
   "gem"
  ],
+ "imp-f-the-lego-batman-movie": [
+  "writing"
+ ],
+ "imp-f-the-little-mermaid": [
+  "writing"
+ ],
+ "imp-f-the-magician-s-elephant": [
+  "gentle"
+ ],
+ "imp-f-the-mist": [
+  "social-xray",
+  "impact",
+  "horrifying"
+ ],
+ "imp-f-the-revenant": [
+  "acting",
+  "atmosphere"
+ ],
+ "imp-f-the-whale": [
+  "acting"
+ ],
+ "imp-f-thor-love-and-thunder": [
+  "writing"
+ ],
+ "imp-f-tian-bian-yi-duo-yun": [
+  "singular"
+ ],
+ "imp-f-top-gun-maverick": [
+  "thrilling"
+ ],
+ "imp-f-tora-no-o-wo-fumu-otokotachi": [
+  "direction"
+ ],
  "imp-f-tren-zb-ja": [
-  "gem"
+  "gem",
+  "visuals"
+ ],
+ "imp-f-trois-couleurs-rouge": [
+  "cinematography"
+ ],
+ "imp-f-trzy-kolory-bia-y": [
+  "writing"
+ ],
+ "imp-f-trzy-kolory-niebieski": [
+  "direction"
  ],
  "imp-f-ucho": [
   "gem",
   "social-xray"
+ ],
+ "imp-f-victor-victoria": [
+  "acting",
+  "funny"
+ ],
+ "imp-f-viskningar-och-rop": [
+  "acting"
  ],
  "imp-f-voskhozhdeniye": [
   "gem",
   "haunting"
  ],
  "imp-f-wake-in-fright": [
-  "gem"
+  "gem",
+  "social-xray"
  ],
  "imp-f-west-beyrouth": [
   "gem"
+ ],
+ "imp-f-what-s-eating-gilbert-grape": [
+  "acting"
+ ],
+ "imp-f-when-the-day-breaks": [
+  "visuals"
+ ],
+ "imp-f-yume": [
+  "atmosphere",
+  "score"
+ ],
+ "imp-f-zdj-cie": [
+  "formal-exec"
+ ],
+ "imp-f-zerkalo": [
+  "direction",
+  "atmosphere"
  ],
  "imp-g-608591": [
   "mindbending"
@@ -448,6 +792,22 @@ window.CULTURE_BADGES = {
   "devastating",
   "score",
   "worldbuilding"
+ ],
+ "imp-g-612896": [
+  "intense"
+ ],
+ "imp-g-739049": [
+  "writing"
+ ],
+ "imp-g-739050": [
+  "visuals"
+ ],
+ "imp-g-754389": [
+  "writing"
+ ],
+ "imp-s-10014569": [
+  "writing",
+  "style"
  ],
  "imp-s-10034646": [
   "funny"
@@ -471,6 +831,9 @@ window.CULTURE_BADGES = {
  "imp-s-324560": [
   "horrifying"
  ],
+ "imp-s-32585": [
+  "writing"
+ ],
  "imp-s-329991": [
   "cerebral"
  ],
@@ -479,12 +842,21 @@ window.CULTURE_BADGES = {
   "funny",
   "satire"
  ],
+ "imp-s-385781": [
+  "thrilling"
+ ],
  "imp-s-427201": [
   "impact"
  ],
  "imp-s-469752": [
   "absurdist",
   "funny"
+ ],
+ "imp-s-615608": [
+  "social-xray"
+ ],
+ "imp-s-665315": [
+  "mindbending"
  ],
  "imp-s-680486": [
   "intense"
@@ -495,6 +867,9 @@ window.CULTURE_BADGES = {
  "imp-s-767241": [
   "absurdist"
  ],
+ "imp-s-870863": [
+  "cerebral"
+ ],
  "imp-s-870925": [
   "gentle"
  ],
@@ -503,6 +878,9 @@ window.CULTURE_BADGES = {
  ],
  "imp-s-875459": [
   "gentle"
+ ],
+ "imp-s-878089": [
+  "social-xray"
  ],
  "in-the-fall": [
   "devastating"
@@ -527,7 +905,8 @@ window.CULTURE_BADGES = {
  ],
  "kino-journey": [
   "atmosphere",
-  "cerebral"
+  "cerebral",
+  "visuals"
  ],
  "kite": [
   "gem",
@@ -536,14 +915,23 @@ window.CULTURE_BADGES = {
  "kiwi": [
   "formal-exec"
  ],
+ "konosuba": [
+  "visuals",
+  "absurdist"
+ ],
+ "korra": [
+  "visuals"
+ ],
  "la-haine": [
-  "social-xray"
+  "social-xray",
+  "direction"
  ],
  "lain": [
   "atmosphere"
  ],
  "laputa": [
-  "score"
+  "score",
+  "visuals"
  ],
  "ldr": [
   "horrifying"
@@ -562,7 +950,8 @@ window.CULTURE_BADGES = {
   "mindbending"
  ],
  "macross-plus": [
-  "score"
+  "score",
+  "impact"
  ],
  "mad-men": [
   "acting",
@@ -580,7 +969,8 @@ window.CULTURE_BADGES = {
  ],
  "mary-and-max": [
   "bittersweet",
-  "writing"
+  "writing",
+  "style"
  ],
  "mass-effect": [
   "worldbuilding"
@@ -594,7 +984,8 @@ window.CULTURE_BADGES = {
  "midnight-gospel": [
   "absurdist",
   "cerebral",
-  "funny"
+  "funny",
+  "mindbending"
  ],
  "mirrors-edge": [
   "atmosphere",
@@ -621,7 +1012,8 @@ window.CULTURE_BADGES = {
  ],
  "network": [
   "satire",
-  "social-xray"
+  "social-xray",
+  "acting"
  ],
  "no-country": [
   "acting",
@@ -637,7 +1029,9 @@ window.CULTURE_BADGES = {
   "singular"
  ],
  "oldboy": [
-  "devastating"
+  "devastating",
+  "direction",
+  "impact"
  ],
  "opm": [
   "satire"
@@ -647,12 +1041,14 @@ window.CULTURE_BADGES = {
   "cerebral"
  ],
  "paranoia-agent": [
-  "horrifying"
+  "horrifying",
+  "writing"
  ],
  "peasants": [
   "devastating",
   "social-xray",
-  "style"
+  "style",
+  "writing"
  ],
  "pierwsza-milosc": [
   "cerebral"
@@ -699,10 +1095,15 @@ window.CULTURE_BADGES = {
  ],
  "pygmalion": [
   "gem",
-  "satire"
+  "satire",
+  "direction",
+  "acting"
  ],
  "red-desert": [
-  "impact"
+  "impact",
+  "direction",
+  "acting",
+  "slowburn"
  ],
  "redline": [
   "gem"
@@ -716,7 +1117,8 @@ window.CULTURE_BADGES = {
   "cerebral"
  ],
  "samurai-champloo": [
-  "funny"
+  "funny",
+  "atmosphere"
  ],
  "scavengers-reign": [
   "cerebral",
@@ -727,20 +1129,31 @@ window.CULTURE_BADGES = {
  ],
  "severance": [
   "atmosphere",
-  "cerebral"
+  "cerebral",
+  "impact"
+ ],
+ "shame": [
+  "writing"
  ],
  "short-film-killing": [
-  "haunting"
+  "haunting",
+  "cinematography"
  ],
  "silent-voice": [
   "bittersweet"
  ],
  "six-feet-under": [
   "bittersweet",
-  "funny"
+  "funny",
+  "style",
+  "singular"
  ],
  "skins": [
-  "social-xray"
+  "social-xray",
+  "writing"
+ ],
+ "solo-na-ugorze": [
+  "style"
  ],
  "sonny-boy": [
   "mindbending"
@@ -797,7 +1210,8 @@ window.CULTURE_BADGES = {
  ],
  "terror-resonance": [
   "devastating",
-  "thrilling"
+  "thrilling",
+  "score"
  ],
  "the-expanse": [
   "worldbuilding",
@@ -812,7 +1226,8 @@ window.CULTURE_BADGES = {
  ],
  "the-shield": [
   "acting",
-  "gem"
+  "gem",
+  "writing"
  ],
  "the-shining": [
   "horrifying",
@@ -830,7 +1245,8 @@ window.CULTURE_BADGES = {
   "worldbuilding"
  ],
  "there-will-be-blood": [
-  "direction"
+  "direction",
+  "atmosphere"
  ],
  "tlou": [
   "horrifying"
@@ -842,6 +1258,10 @@ window.CULTURE_BADGES = {
  "tokyo-godfathers": [
   "bittersweet",
   "funny",
+  "visuals",
+  "direction"
+ ],
+ "tori-no-uta": [
   "visuals"
  ],
  "trigun": [
@@ -896,9 +1316,7 @@ window.CULTURE_BADGES = {
  "westworld": [
   "acting",
   "visuals",
-  "worldbuilding"
- ],
- "wic": [
+  "worldbuilding",
   "writing"
  ],
  "wl-b-fbl-a-perfect-vacuum": [
@@ -1637,7 +2055,8 @@ window.CULTURE_BADGES = {
  "wolfs-rain": [
   "atmosphere",
   "devastating",
-  "score"
+  "score",
+  "singular"
  ],
  "woman-under": [
   "formal-exec",
@@ -1645,12 +2064,16 @@ window.CULTURE_BADGES = {
  ],
  "wonder-egg": [
   "devastating",
-  "haunting"
+  "haunting",
+  "writing",
+  "mindbending"
  ],
  "yamadas": [
   "gentle",
   "satire",
-  "social-xray"
+  "social-xray",
+  "writing",
+  "style"
  ],
  "your-name": [
   "bittersweet",

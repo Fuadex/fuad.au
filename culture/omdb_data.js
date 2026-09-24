@@ -2628,29 +2628,6 @@ window.CULTURE_OMDB = {
   ],
   "PlotShort": "A cyborg policewoman and her partner hunt a mysterious and powerful hacker called the Puppet Master."
  },
- "imp-f-child": {
-  "imdbID": "tt1014763",
-  "imdbRating": "6.4",
-  "imdbVotes": "79,417",
-  "Metascore": "41",
-  "Awards": "2 nominations total",
-  "Poster": "https://m.media-amazon.com/images/M/MV5BMTk1NTkxOTc5Nl5BMl5BanBnXkFtZTgwODI0NTg0NDE@._V1_SX300.jpg",
-  "Ratings": [
-   {
-    "Source": "Internet Movie Database",
-    "Value": "6.4/10"
-   },
-   {
-    "Source": "Rotten Tomatoes",
-    "Value": "30%"
-   },
-   {
-    "Source": "Metacritic",
-    "Value": "41/100"
-   }
-  ],
-  "PlotShort": "A disgraced member of the Russian military police investigates a series of child murders during the Stalin-era Soviet Union."
- },
  "imp-f-day-night": {
   "imdbID": "tt1620446",
   "imdbRating": "8.0",
