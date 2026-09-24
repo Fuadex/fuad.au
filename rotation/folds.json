@@ -12521,6 +12521,30 @@
     "from": "ROCK N ROLL IS ASLEEP",
     "to": "SONIC TRASH",
     "type": "absorb"
+   },
+   {
+    "from": "the dread",
+    "to": "SONIC TRASH",
+    "type": "absorb"
+   },
+   {
+    "from": "DISSOLVER",
+    "to": "SONIC TRASH",
+    "type": "absorb"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "DISSOLVER - Wire One Remix",
+    "to": "DISSOLVER",
+    "type": "variant",
+    "reason": "variant: Feb-2026 remix by Wire One of the SONIC TRASH track, link to canonical for reads (DV 09-24 (romes campaign, Fuad approved 09-24))"
+   },
+   {
+    "from": "Fever. - Sebastien 1979 Remix",
+    "to": "Fever.",
+    "type": "variant",
+    "reason": "variant: remix on the My Demons expanded edition, link to canonical for reads (DV 09-24 (romes campaign, Fuad approved 09-24))"
    }
   ]
  },
