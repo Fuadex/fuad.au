@@ -943,7 +943,7 @@ window.CANVAS_ARTWORKS = [
     seenAt: "artizon", seenConfidence: "sure", floored: true },
   { id: "wincenty-kasprzycki-wystawa-sztuk-pieknych-w-warszawie-w-182", title: "Wystawa Sztuk Pięknych w Warszawie w 1828 roku", artist: "Wincenty Kasprzycki", artistId: "wincenty-kasprzycki", qid: "Q9380394", qidTrusted: true, year: 1828,
     seenAt: "mnw", seenConfidence: "sure", loved: true },
-  { id: "pierre-auguste-renoir-the-england-pear", title: "The England pear", artist: "Pierre-Auguste Renoir", artistId: "renoir", qid: "Q17493177", qidTrusted: true, year: 1870,
+  { id: "pierre-auguste-renoir-the-england-pear", title: "Le Poirier d'Angleterre", artist: "Pierre-Auguste Renoir", artistId: "renoir", qid: "Q17493177", qidTrusted: true, year: 1873,
     seenAt: "orsay", seenConfidence: "sure", floored: true },
   { id: "claude-monet-sur-la-falaise-de-dieppe", title: "Sur la falaise de Dieppe", artist: "Claude Monet", artistId: "monet", qid: "Q123985174", qidTrusted: true, year: 1897,
     seenAt: "artizon", seenConfidence: "sure", loved: true },

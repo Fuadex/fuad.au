@@ -45,7 +45,7 @@
 //                than forwarded as they arrive. Corrects the stop band to median ≤135 / spread ≥50 /
 //                per-stop 80–200 (the old "100–135 hard, aim 110–125" could not coexist with
 //                spread ≥50). Wave 11.
-//   mv 6 (1)   — OPUS 5.5 (Fuad 2026-09-24). The mv-5 lean cascade with nothing else changed: every
+//   mv 6 (3)   — OPUS 5.5 (Fuad 2026-09-24). The mv-5 lean cascade with nothing else changed: every
 //                Opus stage, including the merged Interpretation + Info agent, is pinned to Opus 5.5
 //                (claude-opus-5-5) and audited from the subagent transcripts before merge. Waves
 //                before this ran on Opus 5, although their credits say "Opus 4.8".
@@ -101,6 +101,168 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+ "pierre-auguste-renoir-the-england-pear": {
+  "mv": 6,
+  "see": "An orchard in leaf. One great tree takes the right two-thirds of the canvas, its crown running off the top edge above a thick trunk. At the left a thinner tree stands against a blue sky with cream clouds, and a pale path climbs from the bottom edge. Three small figure-sites sit in the green: a man in a straw hat at the right, something red low in the grass at bottom centre, a figure under a white mass at the path's end. Standing before it, you meet the tree first; the eye drops to the lit grass at its foot, is caught by the man's white shirt and the red, and finds the figure on the path last.",
+  "about": "The great tree takes most of the canvas, but most of the red and the lightest paint gather in a few small places. Counted pixel by pixel on the Orsay's photograph, one threshold each, the bulk of the reddish paint lies in the seated group's patch, and the bulk of the lightest is split between the man's shirt and the white mass over the path's figure. None of the figures is more than about seven centimetres high. The rest is scattered, red down the trunk and along the crown's edge, light in the sky and leaves. So the accents cluster where the scale is set: at figures that let the tree be measured, and at a white the paint leaves unexplained.",
+  "craft": "In the great crown the foliage is short, curved strokes in overlapping bands that tend to lean the same way, so a mass of leaves is read by the grain of the brush; the small tree at the left is laid in thin separate patches, and the trees behind it in soft rounded masses. Sky and cloud are blended into one another, smoother than the separate touches below. Figures are a handful of separate touches set into the green, with no contour drawn round them. Drawn line turns up as thin dark or pale strokes, in branches and the slim trunks at mid-left.",
+  "context": "Le Poirier d'Angleterre, also catalogued as Verger à Louveciennes, is oil on canvas, 66.5 by 81.5 centimetres, in the Musée d'Orsay as RF 2012 5. It is signed lower left, “A. Renoir”, and carries no date, so its date is assigned. The Orsay gives about 1873; the French state's heritage register gives about 1874 and notes that a Renoir exhibition catalogue had put it at 1869. It passed through the dealer Diot to the collector Gustave Cahen. At the Cahen sale at the Galerie Georges Petit on 24 May 1929 it was lot 74, bought by Paul Rosenberg for 350,000 francs. It stayed with Rosenberg's gallery until 1933, when it passed to the Fauchier-Delavigne collection.",
+  "deeper": [
+   {
+    "t": "The red in the grass",
+    "x": 0.547,
+    "y": 0.781,
+    "w": 0.129,
+    "h": 0.168,
+    "body": "Low in the grass at bottom centre, just under the dark shade the big tree throws forward, sits a patch of rose-red about 1.8 by 2.3 centimetres, with pink below it, a dark blue mass beside it and a straw-yellow head above. Tested pixel by pixel on the Orsay photograph against one threshold of redness, about three in four of the reddish pixels on the painted surface fall inside this patch. Red is green's complementary, and the picture's median colour sits well into the greens, so the touch has almost nothing to compete with. Who is here stays open: straw hat, blue bodice and red skirt may make one seated figure, or the blue and the red may be two people side by side, and neither photograph separates them."
+   },
+   {
+    "t": "The man and his pole",
+    "x": 0.806,
+    "y": 0.664,
+    "w": 0.135,
+    "h": 0.161,
+    "body": "At the right a man stands waist-deep in a blue-green bush: yellow straw hat, white shirt, dark waistcoat, a patch of blue trousers before the leaves close over him. From hat to the last visible blue he measures about 6.7 centimetres. The shirt is one of the two places where most of the lightest paint gathers: by one high threshold of lightness on the Orsay photograph, 36 of the 88 lightest pixels fall on it. Across his body runs a pole, a pale stroke laid almost level from his hands out to the right into the bush. The touches around him are short and curved, and the pole is laid in straight, a made thing drawn with a different stroke from the growing things around it, though the paint does not show what he is using it for."
+   },
+   {
+    "t": "The path and the figure at its end",
+    "x": 0.129,
+    "y": 0.62,
+    "w": 0.247,
+    "h": 0.368,
+    "body": "A pale track enters at the bottom edge, left of centre, and climbs into the grass, narrowing and bending left until it reaches a small figure. What sets it apart from the grass is above all its hue: on the Orsay photograph a box on the path has lost most of the grass's green, a strip of meadow with the green drawn out of it. Its lightness is another matter and varies by side. Against the grass to its left a box on it differs by under three points on a scale of a hundred, while boxes on the grass to its right, nearer the shade, sit some ten to fifteen points darker than it. At its end stands the figure: a dark head, a tan body with a blue-white light at one shoulder, and no legs, the lower body thinning into the grass. Over the head sits a white and pale-yellow mass wider than the figure, holding 42 of the 88 lightest pixels, the largest single share. Whether it is a load carried on the head or a flowering shrub behind, the paint does not decide."
+   },
+   {
+    "t": "The dark under the crown",
+    "x": 0.376,
+    "y": 0.314,
+    "w": 0.235,
+    "h": 0.526,
+    "body": "Under the left-centre of the great crown the foliage comes down dark towards the far grass. Above is the crown's shaded core; below, past a strip of middling grass, lies the broad shadow the tree lays on the ground towards us. Measured one box on each on the Orsay photograph, the core and the left part of that shadow are painted at nearly the same depth, averaging about 23 and 24 on a lightness scale of 100. The shade inside the tree and the shade it throws are keyed close together, though the grass between keeps them apart as places. Held that close in value, the shadow reads as the crown's own dark laid down on the field, and the tree seems to weigh on the ground beneath it."
+   },
+   {
+    "t": "The trunk against lit grass",
+    "x": 0.635,
+    "y": 0.533,
+    "w": 0.188,
+    "h": 0.335,
+    "body": "The trunk is short and thick, about five centimetres wide, and it stands in front of a band of lit yellow-green grass behind its base. Its left side is dark grey, laid in long downward strokes. Down the centre and over the lower half go pale dabs, and on the Orsay photograph they are not neutral greys: they sit in the same yellow-green family as the lit grass behind, only greyer. A few thin rust-red strokes run down the lower right, and cool blue-grey touches gather at the foot where the trunk meets the bush. Higher up, where the trunk enters the leaves and forks, the bark darkens steeply: a box there averages about 18 on the lightness scale, against about 31 for the lit lower trunk, and it is darker than the boxes on the crown's shade and its shadow. Modelled below in the meadow's own colours, the lower bark seems to take the light from the grass around it, and the trunk reads as standing inside that light, not pasted in front of it."
+   },
+   {
+    "t": "Grain in the right-hand foliage",
+    "x": 0.659,
+    "y": 0.102,
+    "w": 0.329,
+    "h": 0.482,
+    "body": "In the right half of the leaf mass the foliage is not drawn leaf by leaf. It is short curved strokes, each a comma of green or yellow-green, packed in overlapping bands. Measured on the visitor's photograph, the sharper of the two files, these strokes lean on average from upper left to lower right; it is a bias, and plenty run other ways, but it is enough to make the whole mass seem to pour in one direction. Towards the top right the leaves turn lighter and yellower than the crown's core, and at the outer edge the bands break up into separate dark sprigs against the blue, so the outline there is set by single touches."
+   },
+   {
+    "t": "The open tree at the left",
+    "x": 0.035,
+    "y": 0.285,
+    "w": 0.229,
+    "h": 0.365,
+    "body": "The smaller tree at the left stands against the sky and is built the other way from the great crown. Its foliage is laid thin, in separated patches of yellow-green with blue showing between them, and through that thin cover its limbs are drawn as lines, brown and pale, forking up from a short stem. In the big crown a few pale limbs surface near the top and the rest is massed; here much of the branching is on view. Side by side, the two trees show the canvas building foliage two ways, as an opaque mass and as an open screen."
+   },
+   {
+    "t": "The sky kept down",
+    "x": 0.007,
+    "y": 0.012,
+    "w": 0.346,
+    "h": 0.28,
+    "body": "Step back to the upper left. The sky is laid in soft blended passages of blue, and the clouds are rounded cream shapes with no hard edge. On the Orsay photograph the change in lightness from one pixel to the next is a third or less here of what it is inside the crowns. Its lightest touches are kept down as well: by the high threshold of lightness the man's shirt passes, this stretch of sky has a single pixel over the line, at a cloud edge beside the crown. Counted in single touches, most of the day's highest notes of light are laid where it lands, on the shirt and on the white mass over the path, and the sky that sends it is painted just under them."
+   }
+  ],
+  "beside": "Undated beside their signatures, this canvas and Pissarro's View from Louveciennes both leave a tree to stand in for the year. Pissarro's picture, at the National Gallery in London, was painted three or four years earlier on the two museums' own dates, and the trees at its left are in white blossom, out before the leaves: a window short enough for the Gallery to fix spring 1869 or spring 1870, with nothing in the paint to choose between them. There the blossom pins the season and leaves a choice of years; here the great tree stands in leaf, a season that lasts for months, and the year falls to catalogues that spread it across five.",
+  "refs": [
+   {
+    "id": "camille-pissarro-view-from-louveciennes",
+    "text": "View from Louveciennes"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "jan-ciaglinski-szkic-do-obrazu-vita-i": {
+  "mv": 6,
+  "see": "A long pale nude lies at the near edge of a stretch of water at dusk, head at the left, the body reaching well past the middle of the picture. Above it a sky of thin grey warms toward the horizon; at the left a dark mass of trees steps down to a flat far shore, and the water between is grey, with a streak of mauve just under that shore. At the right, where the pale strokes run out, a small dark owl with two orange eyes sits on a thin stem, and the path along the body ends at it.",
+  "about": "The sketch sets a long pale shape against a small point of strong colour. The shape is the body, the lightest mass under the horizon; the point is the owl's pair of orange eyes at the body's far end, the strongest colour in the paint when saturation is measured in squares smaller than one eye. The large canvas this sketch prepared, Vita, keeps the pale body lying by water at dusk under dark trees, and a thin dark stem stands at about the place where the owl perched; on the finished picture as photographed, no owl can be made out there. What the sketch has, and that photograph does not show, is the pairing.",
+  "craft": "The support is a cut piece of canvas laid on board, and the sky is scumbled thin over its weave, a near-neutral grey at the top warming toward the horizon to cream and, at the right, to a pale apricot, with warm buff blotches floating in it. The darks of trees, far shore and foreground go on with a dry brush that catches the threads and leaves bare canvas showing between them. Much of the figure is laid down as long curving edges drawn with the brush: below the head they stay lines over the dark ground, and toward the back, edges of the same kind are filled with horizontal pulls of cream, with greys drawn through the cream for the shadows. The strongest colour in the paint comes in small separate touches, above all the owl's two orange dashes.",
+  "context": "The National Museum in Warsaw holds this sketch as MP 1803 and dates it 1906; it carries no signature and no inscription, and the museum's record gives no description. The next inventory number, MP 1804, is the finished Vita: oil on canvas, 178 × 213.5 cm, signed lower right, dated about 1906, and tagged by the museum as symbolism. Both came to the museum from the Państwowe Zbiory Sztuki, the state collections that received the painter's estate after his death in St Petersburg in 1913.",
+  "deeper": [
+   {
+    "t": "A face in a few touches",
+    "x": 0.153,
+    "y": 0.472,
+    "w": 0.188,
+    "h": 0.227,
+    "body": "The head is laid in with the same warm cream as the body. Into it the face is set with four or five dark-brown touches: two short marks where the eyes sit, a darker mark for the mouth, a shadow down one side of the nose, and a hooked stroke across the crown. The hair is massed in a brown barely deeper than the skin. Contour is sparse: a brown arc runs down one side of the face into the hair and a dark olive stroke down the other side of the head, and elsewhere the head holds against the near-black scrub behind it by being lighter. With that little the sketch fixes the tilt, cheek laid low and face turned outward, and fixes the head's place at the dark left end of the pale body."
+   },
+   {
+    "t": "Four touches of white",
+    "x": 0.132,
+    "y": 0.437,
+    "w": 0.188,
+    "h": 0.378,
+    "body": "Four small bright touches stand apart from the paint around them: three near the head, above and beside it, and one lower down in the dark ground between the long pale curves. Each is a small cluster of cool, faintly green white, set down and left, and yellow comes as strokes of its own laid against the white, clearly in two of them and faintly in a third; enlarged, their edges break where the brush lifted away. The passages round them are pulled: the water in long grey swipes, the ground scrubbed thin enough for the weave to show through. Against that handling the four are placed one at a time, and three of them gather at the head."
+   },
+   {
+    "t": "Curves drawn with the brush",
+    "x": 0.089,
+    "y": 0.64,
+    "w": 0.299,
+    "h": 0.247,
+    "body": "Below the head, long curving strokes of flesh-brown swing down toward the lower left, and one sweeps under the body in a wide loop before running out leftward. Each is a single loaded pass of a broad brush, bristle tracks visible along its length, and each lays down an edge. Between the curves the dark ground stays dry scrub with gold weave showing, and no modelling has been added inside them. Beside the back to the right, where contours of the same kind are filled with cream, the passage shows the order of work: edges drawn first with the brush, flesh after, and here not yet. A grey-white horizontal band runs beneath along the bottom, stated as a shape and left at that."
+   },
+   {
+    "t": "The lightest mass under the horizon",
+    "x": 0.4,
+    "y": 0.553,
+    "w": 0.318,
+    "h": 0.262,
+    "body": "Averaged over patches about a sixtieth of the painted field's width, the shoulder and back are the lightest area below the far shore; the dusk sky just above that shore is lighter still. The light is built from a few broad horizontal pulls of cream-white, with grey drawn through them where the body turns, the edges softened where the two met. Even at its lightest the paint is thin enough for the weave to print through as a regular grid of darker points. Along the underside of the hip a single dark stroke is dragged to set the lower contour, and below it the brush has left the ground so thin that warm canvas shows between the threads."
+   },
+   {
+    "t": "A shoreline dragged dry",
+    "x": 0.294,
+    "y": 0.393,
+    "w": 0.644,
+    "h": 0.131,
+    "body": "The far shore, a solid dark line when the picture is seen whole, is a dry brush dragged across the canvas. The dark caught the weave and skipped between threads, so the band breaks into gold flecks set in a regular grid at the threads' own spacing, which marks them as canvas left uncovered; paint dabbed on would not fall into a grid. To put a number on the uncovered canvas, small squares of the surface were counted as bare when warm, mid-toned and showing their weave; on that definition about one square in forty inside the fully painted field qualifies, and about a third of those fall inside this narrow band."
+   },
+   {
+    "t": "Where the paint stops",
+    "x": 0.9,
+    "y": 0,
+    "w": 0.1,
+    "h": 1,
+    "body": "Down the right side the picture ends before the canvas does. In the sky the grey stops along a nearly straight vertical line, and beyond it a strip of canvas carries no image paint; lower down, the dark scrub of the ground crosses that line and runs raggedly toward the edge, narrowing the strip. The canvas edge itself is cut and fraying. Past it, at top and bottom, a cream board shows, with a brown wooden edge beyond: a piece of canvas laid on board. Along the top, the sky paint runs right up to that cut edge. Measured inside these borders, the painted field is about six units wide to five high, between about 1.17 and 1.22 to 1 depending on how the ragged right side is read, and the finished Vita's recorded proportion, 1.199 to 1, falls inside that range."
+   },
+   {
+    "t": "Two orange dashes",
+    "x": 0.705,
+    "y": 0.52,
+    "w": 0.14,
+    "h": 0.19,
+    "body": "The owl's eyes are two dashes of orange, each a single opaque touch laid flat, each about a twelfth of the owl's height. Measured for saturation, a colour's strength against its own brightness, in squares smaller than one dash, the four most saturated squares in the fully painted field all fall on these two dashes; halve the squares and the twelve most saturated still do, and the next, dark browns, sit well below them and are much darker. Measured for chroma instead, a yellow stroke beside the head joins the dashes near the top. Single pixels of bare canvas in the ground's weave come out strongly saturated too, about three times as many of them as on the dashes, but they are canvas, not paint. Around each dash the head's strokes curl in concentric rings, with fine pale bristle tracks running through them, and those rings are the owl's facial disc, drawn by the direction of the brush alone. A thin mint-white stroke touches the outer edge of the left dash. Below, two long curving strokes cross over the body like folded wings. The two dashes sit level, so the face is square to the picture plane."
+   },
+   {
+    "t": "The perch, and the large canvas",
+    "x": 0.682,
+    "y": 0.48,
+    "w": 0.259,
+    "h": 0.378,
+    "body": "The owl's talons are a few dark strokes gripping the point where a grey stem and two thin dark branches meet. The stem bends down into the dense bush below; the branches rise to the right toward the unpainted strip; and pale strokes from the body's far end run in behind the stem, so the light passage and the perch meet. In the finished Vita, measured as fractions of each field, a thin dark forked stem stands at about the same place, a little over four-fifths of the way across and about two-thirds of the way down. No owl can be made out on it in the museum's published photograph, and a small dark form at its foot does not resolve. In that picture the body ends a little past halfway across, with dark water between it and the stem. Measured in the same squares, and for the same saturation, used on the owl's eyes, the most saturated patch anywhere in that photograph falls a third short of the weakest square on the sketch's dashes."
+   }
+  ],
+  "beside": "The walk along a pale nude ends in opposite places here and in a picture from the same hand a year later. In Pocałunek słońca, 1907, also in the National Museum in Warsaw, a naked woman is flung on a diagonal across bare silvery light, head dropped back, eyes closed, alone on empty ground, so the eye runs from the arm thrown toward the top left to the loose hand at the lower right. The sketch lays its body along a shore at dusk and runs the eye the same way. There the journey ends in the figure's own hand; here it ends outside the body, at an owl on a stem.",
+  "refs": [
+   {
+    "id": "jan-ciaglinski-poca-unek-s-onca",
+    "text": "Pocałunek słońca"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
  "tiepolo-wealth-and-benefits-of-the-spanish-monarchy-under-charles-iii": {
   "mv": 5,
   "see": "A tall upright seen from directly underneath. A painted grey-white cornice frames all four sides, running to the canvas's very edge; behind it the sky opens, and figures stand on ledges and cloud with their feet nearer the border than their heads. A ship reaches in at the upper left, feathered and armed peoples line both flanks, a horse and parapet run along the foot, and a gilt oval sits in each corner. Between the flanks, below the middle, stands a fountain with two statues and a small crowned figure, and a winged herald flies across the blue above it. Measured in rings from just inside the cornice to the centre, luminance climbs steadily from 17 to 60, while red-minus-blue, near +40 through the outer rings, falls to −13: the picture cools as it lightens inward.",

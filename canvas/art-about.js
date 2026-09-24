@@ -3695,8 +3695,11 @@ about: "Some forty Waterloo Bridges came out of Monet's window at the Savoy Hote
 by: "Fable" },
 
 "pierre-auguste-renoir-the-england-pear": {
-about: "An orchard at Louveciennes, painted around 1870 when the villages along this bend of the Seine — Louveciennes, Marly, Voisins — were becoming the open-air laboratory of the future Impressionists. Renoir's parents had retired there, which made the pear tree a family orchard as much as a motif; Pissarro and Sisley were painting the same lanes.",
-by: "Fable" },
+  "about": "Renoir's orchard at Louveciennes, about 1873 — a great tree in leaf over small figures. France's heritage register calls it one of his most beautiful landscapes, of the same period as Chemin montant dans les hautes herbes.",
+  "deep": "The French state protected this canvas for sixty years before it owned it. An arrêté of 9 November 1951 classed it a Monument historique while it was in private hands, and in 2012 the state accepted it as a dation, in payment of the duties owed on two donations-partage. That paper trail dates its acts to the day, and it names nobody under the tree. The indexes weigh the picture much as the paint does: the museum's gives the tree twice, as arbre fruitier and poirier, and the people once, as personnage, while the photo agency's keywords go further than the paint can follow, listing homme, femme and fillette.",
+  "by": "Opus 5.5",
+  "deepBy": "Opus 5.5"
+ },
 
 "henry-fuseli-thor-battering-the-midgard-serpent": {
 about: "The picture Fuseli deposited with the Royal Academy on his election in 1790 — every new Academician owed a diploma work, and he chose Norse myth when almost no one in London painted it: Thor hauling the Midgard Serpent from the deep while the giant Hymir cowers in the boat. The painter of The Nightmare moved the nightmare into daylight and gave it muscles.",
@@ -4180,8 +4183,11 @@ deepBy: "Sonnet 4.6",
 by: "Opus · Fable" },
 
 "jan-ciaglinski-szkic-do-obrazu-vita-i": {
-about: "By 1906 Ciągliński had spent two decades in St. Petersburg, teaching at the Imperial Academy and running the private school that turned out Filonov, Bilibin and Annenkov; his loose, high-keyed handling earned him a reputation as an early Russian Impressionist. The oil went into a larger allegorical composition built around the Hippocratic maxim \"Vita brevis, ars longa\" — life short, art long. This is the first of the numbered oil studies he laid in for that \"Vita,\" a working sketch rather than a finished picture, and the National Museum in Warsaw holds the sequence.",
-by: "Opus · Fable" },
+  "about": "Ciągliński's 1906 oil sketch for his large picture Vita — a pale nude lying by water at dusk, an owl perched at its far end, brushed thin on cut canvas laid on board.",
+  "deep": "Vita, life, is one of two names the record gives this composition. The museum also catalogues the finished canvas as \"Topielica\", a drowned woman, and its 1936 catalogue of the painter's legacy already listed a composition for Vita with Topielica in brackets, dated 1906. The sketch leaves the choice between them open. It lays the body along the near shore, out of the water, cheek low, and whether its eyes are closed or only lowered stays unresolved. The large canvas moves both ways at once: the body sinks into mist over dark water while the head lifts, eyes open, one hand raised to the hair.",
+  "by": "Opus 5.5",
+  "deepBy": "Opus 5.5"
+ },
 
 "chaim-soutine-ente-auf-blauem-grund": {
 about: "For his mid-1920s still lifes, Soutine hauled carcasses back from the La Villette slaughterhouses north of Paris and rigged them up in his studio, dousing them with blood to keep the color from dying while he worked; the results answer to seventeenth-century Dutch market pieces and to Rembrandt's flayed ox. This 1925 duck belongs to that run of hanging fowl, its bird set alone against a blue ground rather than the usual dark interior. Painted from a real dead animal, it treats the poultry less as market fare than as a body in extremity.",
