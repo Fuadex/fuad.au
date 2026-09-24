@@ -155,7 +155,8 @@ window.CULTURE_BADGES = {
   "formal-exec"
  ],
  "edith-finch": [
-  "impact"
+  "impact",
+  "style"
  ],
  "eizouken": [
   "funny",
