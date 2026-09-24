@@ -16689,6 +16689,19 @@
     "from": "Fuck My Computer",
     "to": "I Love My Computer",
     "type": "absorb"
+   },
+   {
+    "from": "WANNACRY",
+    "to": "WannaCry",
+    "type": "spelling"
+   }
+  ],
+  "tracks": [
+   {
+    "from": "WANNACRY",
+    "to": "WannaCry",
+    "type": "spelling",
+    "reason": "spelling: the official title is WannaCry (ninajirachi campaign, DV 2026-09-25)"
    }
   ]
  },
