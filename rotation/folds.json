@@ -12510,7 +12510,8 @@
    {
     "from": "the dread",
     "to": "SONIC TRASH",
-    "type": "variant"
+    "type": "absorb",
+    "reason": "DV 09-24: the five-track EP folds onto SONIC TRASH (all its tracks are LP tracks); was variant, re-ruled absorb 09-24"
    },
    {
     "from": "GLASS EYED IDOLS",
@@ -12519,16 +12520,6 @@
    },
    {
     "from": "ROCK N ROLL IS ASLEEP",
-    "to": "SONIC TRASH",
-    "type": "absorb"
-   },
-   {
-    "from": "the dread",
-    "to": "SONIC TRASH",
-    "type": "absorb"
-   },
-   {
-    "from": "DISSOLVER",
     "to": "SONIC TRASH",
     "type": "absorb"
    }
