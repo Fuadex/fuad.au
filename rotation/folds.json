@@ -11482,11 +11482,122 @@
     "to": "エンドロールに間に合うように",
     "type": "spelling",
     "reason": "mojibake: corrupted unicode character(s) restored to intended title"
+   },
+   {
+    "from": "Hashire",
+    "to": "走れ",
+    "type": "spelling",
+    "reason": "DV 09-24 (tricot campaign, Fuad approved 09-24): romaji/JP pair = one recording, sleeve prints the Japanese"
+   },
+   {
+    "from": "Tobe",
+    "to": "飛べ",
+    "type": "spelling",
+    "reason": "DV 09-24 (tricot campaign, Fuad approved 09-24): romaji/JP pair = one recording, sleeve prints the Japanese"
+   },
+   {
+    "from": "OMOTENASHI",
+    "to": "おもてなし",
+    "type": "spelling",
+    "reason": "DV 09-24 (tricot campaign, Fuad approved 09-24): romaji/JP pair = one recording, sleeve prints the Japanese"
+   },
+   {
+    "from": "Ochansensu-su",
+    "to": "おちゃんせんすぅす",
+    "type": "spelling",
+    "reason": "DV 09-24 (tricot campaign, Fuad approved 09-24): romaji/JP pair = one recording, sleeve prints the Japanese"
+   },
+   {
+    "from": "Hatsumimi",
+    "to": "初耳",
+    "type": "spelling",
+    "reason": "DV 09-24 (tricot campaign, Fuad approved 09-24): romaji/JP pair = one recording, sleeve prints the Japanese"
+   },
+   {
+    "from": "Tarattaratta",
+    "to": "タラッタラッタ",
+    "type": "spelling",
+    "reason": "DV 09-24 (tricot campaign, Fuad approved 09-24): romaji/JP pair = one recording, sleeve prints the Japanese"
+   },
+   {
+    "from": "Oyasumi",
+    "to": "おやすみ",
+    "type": "spelling",
+    "reason": "DV 09-24 (tricot campaign, Fuad approved 09-24): romaji/JP pair = one recording, sleeve prints the Japanese"
+   },
+   {
+    "from": "Bakuretsu Panie San",
+    "to": "爆裂パニエさん",
+    "type": "spelling",
+    "reason": "DV 09-24 (tricot campaign, Fuad approved 09-24): romaji/JP pair = one recording, sleeve prints the Japanese"
+   },
+   {
+    "from": "Anamein",
+    "to": "アナメイン",
+    "type": "spelling",
+    "reason": "DV 09-24 (tricot campaign, Fuad approved 09-24): romaji/JP pair = one recording, sleeve prints the Japanese"
+   },
+   {
+    "from": "Ah-ah",
+    "to": "あーあ",
+    "type": "spelling",
+    "reason": "DV 09-24 (tricot campaign, Fuad approved 09-24): romaji/JP pair = one recording, sleeve prints the Japanese"
+   },
+   {
+    "from": "End roll",
+    "to": "エンドロールに間に合うように",
+    "type": "spelling",
+    "reason": "DV 09-24 (tricot campaign, Fuad approved 09-24): romaji/JP pair = one recording, sleeve prints the Japanese"
+   },
+   {
+    "from": "餌に��なれない",
+    "to": "餌にもなれない",
+    "type": "spelling",
+    "reason": "mojibake: corrupted unicode character restored to intended title (上出来 #6)"
+   },
+   {
+    "from": "Pieeen (A N D version)",
+    "to": "Pieeen",
+    "type": "variant",
+    "reason": "variant: A N D re-recording of the E single track, link to canonical for reads (DV 09-24)"
+   },
+   {
+    "from": "On the boom - Audiotree Live Version",
+    "to": "On the Boom",
+    "type": "variant",
+    "reason": "variant: second Audiotree row of the same session song, link to canonical for reads (DV 09-24)"
    }
   ],
   "albums": [
    {
     "from": "Dogs and Ducks",
+    "to": "上出来",
+    "type": "absorb"
+   },
+   {
+    "from": "THE",
+    "to": "T H E",
+    "type": "spelling",
+    "reason": "DV 09-24: one 2013 debut album under two metadata spellings; sleeve prints T H E"
+   },
+   {
+    "from": "Bakuretsu Tricot San",
+    "to": "爆裂トリコさん",
+    "type": "spelling",
+    "reason": "DV 09-24: romaji metadata spelling of the 2011 EP 爆裂トリコさん"
+   },
+   {
+    "from": "End Roll",
+    "to": "不出来",
+    "type": "absorb"
+   },
+   {
+    "from": "エンドロールに間に合うように",
+    "to": "不出来",
+    "type": "absorb"
+   },
+   {
+    "from": "餌にもなれない",
     "to": "上出来",
     "type": "absorb"
    }
@@ -17667,6 +17778,12 @@
    "track": "GEMINI",
    "toAlbum": "ROCKWAVE",
    "reason": "DV 2026-09-12 (Bandcamp sleeve): Rockwave track 6; the row had no album string"
+  },
+  {
+   "artist": "tricot",
+   "track": "不出来 - Instrumental",
+   "toAlbum": "不出来",
+   "reason": "DV 09-24 (Discogs 27145821): the instrumental belongs to 不出来 CD2 #11; library had it filed under 上出来"
   }
  ],
  "Anathema": {
