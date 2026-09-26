@@ -3398,8 +3398,7 @@ function App() {
         <div>
           <h1>Culture<span className="dot">.</span></h1>
           <div className="meta">
-            {library === 'wishlist' ? 'What I want to watch, play & read next' : 'A library of what shaped me'}
-            <span className="sep"/>
+            {library === 'wishlist' && <>{'What I want to watch, play & read next'}<span className="sep"/></>}
             <b>{ITEMS.length}</b>&nbsp;entries
             <span className="sep"/>
             <b>{new Set(ITEMS.map(i => i.medium)).size}</b>&nbsp;shelves
