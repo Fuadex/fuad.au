@@ -5,13 +5,13 @@
 window.CANVAS_ART_ABOUT = {
  "tiepolo-wealth-and-benefits-of-the-spanish-monarchy-under-charles-iii": {
   "about": "Tiepolo's proposal for the throne-room ceiling of Charles III's new palace in Madrid — oil on canvas, nearly 1.82 metres tall, carried out of Italy on 31 March 1762. He signed the finished fresco in 1764.",
-  "deep": "Both of the titles this canvas wore before its present one describe ceilings. The World Pays Homage to Spain was first used by Sack in 1910 for the Madrid fresco; publications attached it to this modello from 1945 to 1985, and a Paris exhibition still printed it, in French, in 1998. Morassi's Apotheosis of Spain of 1955 names the subject of the Saleta, another room of the palace. The 1996 catalogue set both aside, the first on a point checkable against the paint: \"The entire world is not represented, only those areas conquered or belonging to Spain.\" By that reckoning the plumed and armed figures along the flanks are a roll of Spain's domains, and the present title claims no more than the canvas holds.",
+  "deep": "This canvas is the ceiling as Tiepolo imagined it before he reached Madrid, and Spain kept arriving after it was finished. The theme was not his own devising, and he worked it up in Italy down to the peoples ranged along its flanks, Spain’s own lands and its conquests rather than the whole world. In Madrid he was given fuller information on Spanish costume and produce, and the ceiling moved on; the canvas stayed as it was. The fresco gained a rainbow linking the foreign domains along the cornice, a device the sketch had not yet conceived. X-rays find a rainbow here too, above the figure of Faith, painted out.",
   "by": "Opus 5.5",
   "deepBy": "Opus 5.5"
  },
  "claude-monet-woman-seated-under-the-willows": {
-  "about": "Monet's 1880 canvas, its date and his name inscribed at lower left — pollarded willows parting on pale sky over a village, and a woman in a straw hat seated low in the meadow at right.",
-  "deep": "The canvas names one Monet, in letters at lower left, and for twenty-three years the record named a second. Seven entries in the gallery's bibliography, from 1942 to 1965, print the picture as \"Madame Monet under the Willows\"; from 1968 the note is gone, and the record never says why. The painting does not step in. Its inscription gives a year and a painter and nothing of a sitter; she sits small in the meadow, her head bent, her face turned nearly into profile under the brim. The title that stands now names only what the paint shows, a woman seated under willows, and leaves her name as open as the record does.",
+  "about": "Monet dated this canvas 1880, the year he broke ranks. For the Salon he built a view of the village of Lavacourt in the studio, “something more sensible, more bourgeois”, knowing he would be called “a deserter by the whole gang”. Then, back at work in Vétheuil, he painted the same village through a curtain of willows.",
+  "deep": "The canvas names one Monet, in letters at lower left, and for twenty-three years the record named a second. Seven entries in the gallery's bibliography, from 1942 to 1965, print the picture as \"Madame Monet under the Willows\"; from 1968 the note is gone, and the record never says why. The painting does not step in. Its inscription gives a year and a painter and nothing of a sitter; she sits small in the meadow, her head bent, her face turned nearly into profile under the brim. The title that stands now names only what the paint shows, a woman seated under willows, and leaves her name as open as the gallery's own record does.",
   "by": "Opus 5.5",
   "deepBy": "Opus 5.5"
  },
@@ -3695,8 +3695,8 @@ about: "Some forty Waterloo Bridges came out of Monet's window at the Savoy Hote
 by: "Fable" },
 
 "pierre-auguste-renoir-the-england-pear": {
-  "about": "Renoir's orchard at Louveciennes, about 1873 — a great tree in leaf over small figures. France's heritage register calls it one of his most beautiful landscapes, of the same period as Chemin montant dans les hautes herbes.",
-  "deep": "The French state protected this canvas for sixty years before it owned it. An arrêté of 9 November 1951 classed it a Monument historique while it was in private hands, and in 2012 the state accepted it as a dation, in payment of the duties owed on two donations-partage. That paper trail dates its acts to the day, and it names nobody under the tree. The indexes weigh the picture much as the paint does: the museum's gives the tree twice, as arbre fruitier and poirier, and the people once, as personnage, while the photo agency's keywords go further than the paint can follow, listing homme, femme and fillette.",
+  "about": "Renoir’s orchard at Louveciennes, about 1873, is a picture France guarded for sixty years before it owned it. The state classed it a Monument historique in November 1951, while it was still in private hands, and took possession only in 2012, accepting it in place of the duties owed on two family gifts.",
+  "deep": "In his 2007 book on Renoir’s landscapes, Colin Bailey reads this orchard as a place at work: a man in the same straw hat and waistcoat as the lone walker of Renoir’s Springtime (in Chatou), a peasant woman at left with hay on her head, and a woman in a kerchief gathering fruit at the tree’s foot. The paint grants him the hat and waistcoat. His hay is the white mass over the figure on the path, or a flowering shrub behind it; his fruit-gatherer would be the red at the tree’s foot, or two people sitting there. Renoir set the orchard’s labour down at a size where it can be found but not settled.",
   "by": "Opus 5.5",
   "deepBy": "Opus 5.5"
  },
@@ -4108,7 +4108,7 @@ about: "Years before the manifestos, Boccioni kept painting the one model who ne
 by: "Opus · Fable" },
 
 "bruno-liljefors-autumn-landscape-with-partridges": {
-  "about": "Signed and dated 1913 at lower left, Liljefors's oil is just short of a metre wide — a covey of partridges in dead autumn grass, which its catalogue entry ties to Darwin's ideas on adaptation and survival.",
+  "about": "In the late 1880s Liljefors painted the landscape backdrops for a natural-history diorama in Uppsala, a collaboration with the conservator Gustaf Kolthoff that in 1893 produced Stockholm's Biologiska museet. In 1913 the backdrop is the whole picture: partridges set into dead autumn grass by a painter who read wild lives through what biology called protective resemblance.",
   "deep": "Every stage of a bird emerging from grass is laid out on one field, and the image is the painter's own: of his Snipe of 1906 he said the bird looked as if it grew forth from the grass. Low in the cluster a barred mass of folded wing resists assignment, another bird or more of a bird the count already holds. Below the gold tussock a head lies on the ground, its body still under the field. The pair high on the right has fully surfaced, dark-edged against pale ground. So the count will not settle between seven and eight: the eighth, if there is one, has not finished growing.",
   "by": "Opus 5.5",
   "deepBy": "Opus 5.5"
@@ -4183,8 +4183,8 @@ deepBy: "Sonnet 4.6",
 by: "Opus · Fable" },
 
 "jan-ciaglinski-szkic-do-obrazu-vita-i": {
-  "about": "Ciągliński's 1906 oil sketch for his large picture Vita — a pale nude lying by water at dusk, an owl perched at its far end, brushed thin on cut canvas laid on board.",
-  "deep": "Vita, life, is one of two names the record gives this composition. The museum also catalogues the finished canvas as \"Topielica\", a drowned woman, and its 1936 catalogue of the painter's legacy already listed a composition for Vita with Topielica in brackets, dated 1906. The sketch leaves the choice between them open. It lays the body along the near shore, out of the water, cheek low, and whether its eyes are closed or only lowered stays unresolved. The large canvas moves both ways at once: the body sinks into mist over dark water while the head lifts, eyes open, one hand raised to the hair.",
+  "about": "Ciągliński's 1906 oil sketch for Vita, his large canvas of a pale nude lying by water at dusk. The composition has gone by two names since at least 1936, and they pull opposite ways — Vita, life, and Topielica, a drowned woman.",
+  "deep": "Between life and a drowned woman, the sketch does not choose. Its body lies along the near shore, cheek low, eyes closed or only lowered, and nothing on that shore says whether it sleeps or is dead. Around these years Ciągliński was telling his pupils to renounce the object, since the object is a small quantity and the patch of colour infinite; the sketch holds its figure at that stage, a pale shape before it is anyone. The large canvas has to decide, and decides both ways: the body goes under a veil of mist over dark water, and the head comes up out of it, eyes open, one hand at the hair.",
   "by": "Opus 5.5",
   "deepBy": "Opus 5.5"
  },
