@@ -11,7 +11,11 @@ data.js / imports.js fields.
 
 One OMDb request per title (the whole payload comes back in that single call):
   GET https://www.omdbapi.com/?apikey=KEY&t={enTitle||title}&y={year}&type=movie|series&plot=full
-A miss retries once without the year, then is logged (no extra calls burned).
+A miss retries once without the year; if TMDB_API_KEY is set it then falls back to a
+TMDb title search → external_ids → OMDb ?i={imdbID} (rescues Polish titles, shorts and
+anime series whose OMDb title search finds nothing), then is logged.
+--retry-misses re-queues ONLY the cached Response:False entries through that chain
+(before 2026-09 misses were parked in the cache forever and never retried).
 
 Processing order (so the most-wanted data is filled first under the daily cap):
   data.js curated  →  imports.js highest-rated seen  →  rest seen  →  wishlist
@@ -39,6 +43,7 @@ MISSES = os.path.join(SD, 'omdb_misses.txt')
 DRY   = '--dry-run' in sys.argv
 FORCE = '--force' in sys.argv
 EMIT_ONLY = '--emit-only' in sys.argv
+RETRY_MISSES = '--retry-misses' in sys.argv
 LIMIT = next((int(sys.argv[i + 1]) for i, a in enumerate(sys.argv)
               if a == '--limit' and i + 1 < len(sys.argv)), None)
 
@@ -99,8 +104,27 @@ def omdb_get(url):
         return None
 
 
-def omdb_fetch(key, item):
-    """One primary call (whole payload). On a miss, one retry without the year."""
+def tmdb_imdb_id(tmdb_key, item):
+    """Rescue path for titles OMDb's own search can't match (Polish titles, shorts,
+    anime series): TMDb title search → /external_ids → imdbID. Returns None quietly
+    when TMDb has nothing either."""
+    if not tmdb_key:
+        return None
+    kind = 'movie' if item['medium'] in MOVIE else 'tv'
+    for t in dict.fromkeys(x for x in (item['en'], item['title']) if x):
+        tid, _score = uc.tmdb_search(kind, tmdb_key, t, item['year'] or 0)
+        if not tid:
+            continue
+        ext = uc.http_get(f'{uc.TMDB}/{kind}/{tid}/external_ids?api_key={tmdb_key}')
+        imdb = ext and ext.get('imdb_id')
+        if imdb:
+            return imdb
+    return None
+
+
+def omdb_fetch(key, item, tmdb_key=''):
+    """One primary call (whole payload). On a miss, one retry without the year,
+    then the TMDb→imdbID fallback (when a TMDb key is available)."""
     typ = 'movie' if item['medium'] in MOVIE else 'series'
     title = item['en'] or item['title']
     base = {'apikey': key, 't': title, 'plot': 'full', 'type': typ}
@@ -109,12 +133,17 @@ def omdb_fetch(key, item):
         params['y'] = item['year']
     data = omdb_get(OMDB + '?' + urlencode(params))
     if data and data.get('Response') == 'True':
-        return data, False
+        return data, ''
     if item['year']:
         data = omdb_get(OMDB + '?' + urlencode(base))  # retry, no year
         if data and data.get('Response') == 'True':
-            return data, True
-    return None, False
+            return data, 'no-year'
+    imdb = tmdb_imdb_id(tmdb_key, item)
+    if imdb:
+        data = omdb_get(OMDB + '?' + urlencode({'apikey': key, 'i': imdb, 'plot': 'full'}))
+        if data and data.get('Response') == 'True':
+            return data, 'tmdb-id'
+    return None, ''
 
 
 def omdb_short(key, imdb_id):
@@ -179,6 +208,7 @@ def main():
 
     env = uc.load_env()
     key = env.get('OMDB_API_KEY', '')
+    tmdb_key = env.get('TMDB_API_KEY', '')
     if not key:
         print('ERROR: OMDB_API_KEY not found in .env (get a free key at omdbapi.com/apikey.aspx).')
         sys.exit(1)
@@ -198,7 +228,11 @@ def main():
     # Order: data.js curated → imports highest-rated → rest seen → wishlist.
     items.sort(key=lambda x: (x['_rank'], -x['rating'], x['title'].lower()))
 
-    todo = [x for x in items if FORCE or x['id'] not in cache]
+    if RETRY_MISSES:
+        todo = [x for x in items if isinstance(cache.get(x['id']), dict)
+                and cache[x['id']].get('Response') == 'False']
+    else:
+        todo = [x for x in items if FORCE or x['id'] not in cache]
     if LIMIT:
         todo = todo[:LIMIT]
     cached_n = len([x for x in items if x['id'] in cache])
@@ -221,7 +255,7 @@ def main():
     review = []
     for n, it in enumerate(todo, 1):
         try:
-            data, no_year = omdb_fetch(key, it)
+            data, via = omdb_fetch(key, it, tmdb_key)
         except QuotaExhausted:
             quota_dead = True
             print(f'\n  !! OMDb quota exhausted (HTTP 401) at item {n}/{len(todo)} — '
@@ -235,7 +269,8 @@ def main():
             if flag:
                 low += 1
                 review.append(f"{it['id']}\t{it['title']} ({it['year']})\t→ {data.get('Title')} ({data.get('Year')})\tscore {ts:.2f}{' year?' if not yok else ''}")
-            print(f"  ✓ {it['title']} ({it['year']}) → {data.get('Title')} [{data.get('imdbID')}]{flag}")
+            print(f"  ✓ {it['title']} ({it['year']}) → {data.get('Title')} [{data.get('imdbID')}]"
+                  f"{' via ' + via if via else ''}{flag}")
         else:
             cache[it['id']] = {'Response': 'False', '_q': it['en'] or it['title'], '_y': it['year']}
             misses += 1

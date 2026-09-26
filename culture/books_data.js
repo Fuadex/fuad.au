@@ -134,6 +134,35 @@ window.CULTURE_BOOKS = {
   "director": "Inio Asano",
   "pages": 224
  },
+ "imp-b-160014": {
+  "bookCover": "https://covers.openlibrary.org/b/id/12993656-L.jpg",
+  "summary": "Fahrenheit 451 is a 1953 dystopian novel by American writer Ray Bradbury. Often regarded as one of his best works, the novel presents a future American society where books are outlawed and \"firemen\" burn any that are found. The book's tagline explains the title as \"'the temperature at which book paper catches fire, and burns\": the autoignition temperature of paper. The lead character, Guy Montag, is a fireman who becomes disillusioned with his role of censoring literature and destroying knowledge, eventually quitting his job and committing himself to the preservation of literary and cultural writings.\r\n\r\nThe novel has been the subject of interpretations focusing on the historical role of book burning in suppressing dissenting ideas for change. In a 1956 radio interview, Bradbury said that he wrote Fahrenheit 451 because of his concerns at the time (during the McCarthy era) about the threat of book burning in the United States. In later years, he described the book as a commentary on how mass media reduces interest in reading literature.\r\n\r\nIn 1954, Fahrenheit 451 won the American Academy of Arts and Letters Award in Literature and the Commonwealth Club of California Gold Medal. It later won the Prometheus \"Hall of Fame\" Award in 1984 and a \"Retro\" Hugo Award, one of a limited number of Best Novel Retro Hugos ever given, in 2004. Bradbury was honored with a Spoken Word Grammy nomination for his 1976 audiobook version.",
+  "genres": [
+   "Mechanical Hound",
+   "girl next door",
+   "Terrorismo estatal",
+   "Censura"
+  ],
+  "tags": [
+   "Mechanical Hound",
+   "girl next door",
+   "Terrorismo estatal",
+   "Censura",
+   "Novela",
+   "Totalitarismo",
+   "science fiction",
+   "political fiction",
+   "satire",
+   "Zukunft",
+   "State-sponsored terrorism",
+   "Totalitarianism",
+   "Book burning",
+   "Censorship",
+   "American Science fiction"
+  ],
+  "director": "Ray Bradbury",
+  "pages": 172
+ },
  "imp-b-57282096": {
   "summary": "Goodnight Punpun (Japanese: おやすみプンプン, Hepburn: Oyasumi Punpun) is a Japanese manga series written and illustrated by Inio Asano. It was initially serialized in Shogakukan's seinen manga magazine Weekly Young Sunday between 2007 and 2008, and was later transferred to Weekly Big Comic Spirits, where it ran from 2008 to 2013. Its chapters were collected in thirteen tankōbon volumes. In North America, it was licensed for English release by Viz Media.",
   "genres": [
@@ -488,6 +517,35 @@ window.CULTURE_BOOKS = {
   ],
   "director": "George Orwell",
   "pages": 298
+ },
+ "imp-b-4381": {
+  "bookCover": "https://covers.openlibrary.org/b/id/12993656-L.jpg",
+  "summary": "Fahrenheit 451 is a 1953 dystopian novel by American writer Ray Bradbury. Often regarded as one of his best works, the novel presents a future American society where books are outlawed and \"firemen\" burn any that are found. The book's tagline explains the title as \"'the temperature at which book paper catches fire, and burns\": the autoignition temperature of paper. The lead character, Guy Montag, is a fireman who becomes disillusioned with his role of censoring literature and destroying knowledge, eventually quitting his job and committing himself to the preservation of literary and cultural writings.\r\n\r\nThe novel has been the subject of interpretations focusing on the historical role of book burning in suppressing dissenting ideas for change. In a 1956 radio interview, Bradbury said that he wrote Fahrenheit 451 because of his concerns at the time (during the McCarthy era) about the threat of book burning in the United States. In later years, he described the book as a commentary on how mass media reduces interest in reading literature.\r\n\r\nIn 1954, Fahrenheit 451 won the American Academy of Arts and Letters Award in Literature and the Commonwealth Club of California Gold Medal. It later won the Prometheus \"Hall of Fame\" Award in 1984 and a \"Retro\" Hugo Award, one of a limited number of Best Novel Retro Hugos ever given, in 2004. Bradbury was honored with a Spoken Word Grammy nomination for his 1976 audiobook version.",
+  "genres": [
+   "Mechanical Hound",
+   "girl next door",
+   "Terrorismo estatal",
+   "Censura"
+  ],
+  "tags": [
+   "Mechanical Hound",
+   "girl next door",
+   "Terrorismo estatal",
+   "Censura",
+   "Novela",
+   "Totalitarismo",
+   "science fiction",
+   "political fiction",
+   "satire",
+   "Zukunft",
+   "State-sponsored terrorism",
+   "Totalitarianism",
+   "Book burning",
+   "Censorship",
+   "American Science fiction"
+  ],
+  "director": "Ray Bradbury",
+  "pages": 158
  },
  "imp-b-11590296": {
   "bookCover": "https://covers.openlibrary.org/b/id/7825328-L.jpg",
@@ -2550,33 +2608,6 @@ window.CULTURE_BOOKS = {
    "Death--comic books, strips, etc"
   ]
  },
- "wl-b-new-sun": {
-  "summary": "The Book of the New Sun (1980–1983, 1987) is a four-volume science fantasy novel written by the American author Gene Wolfe. The work is in four parts with a fifth novel acting as a coda to the main story. It inaugurated the \"Solar Cycle\" that Wolfe continued by setting other works in the same universe (The Book of the Long Sun series, and The Book of the Short Sun series). It chronicles the journey of Severian, a journeyman torturer from the Order of the Seekers for Truth and Penitence. After helping a client kill herself, he is exiled in disgrace to journey to the distant city of Thrax where he is to live out his days as their executioner.",
-  "genres": [
-   "Novel"
-  ],
-  "tags": [
-   "Novel"
-  ]
- },
- "wl-b-fbl-invisible-cities": {
-  "summary": "Invisible Cities (Italian: Le città invisibili) is a postmodern novel by the Italian writer Italo Calvino. It was published in Italy in 1972 by Einaudi.",
-  "genres": [
-   "Fiction, general"
-  ],
-  "tags": [
-   "Fiction, general"
-  ]
- },
- "wl-b-fbl-the-futurological-congress": {
-  "summary": "The Futurological Congress (Polish: Kongres futurologiczny) is a 1971 black humour science fiction novel by Polish author Stanisław Lem. It details the exploits of the hero of a number of his stories, Ijon Tichy, as he visits the Eighth World Futurological Congress at a Hilton Hotel in Costa Rica.[note 1] The book is Lem's take on the science fictional trope of an apparently Utopian future that turns out to be an illusion.",
-  "genres": [
-   "Novel"
-  ],
-  "tags": [
-   "Novel"
-  ]
- },
  "wl-b-fbl-darkness-at-noon": {
   "bookCover": "https://upload.wikimedia.org/wikipedia/commons/7/78/DarknessAtNoon.jpg",
   "summary": "Darkness at Noon (German: Sonnenfinsternis, lit. 'Solar eclipse') is a novel by Austrian-Hungarian-born novelist Arthur Koestler, first published in 1940. His best known work, it is the tale of Rubashov, an Old Bolshevik who is arrested, imprisoned, and tried for treason against the government that he had helped to create. The novel is set between 1938 and 1940, after the Great Purge and Moscow show trials. Despite being based on real events, the novel does not name either Russia or the Soviets, and tends to use generic terms to describe people and organizations; for example, the Soviet government is referred to as \"the Party\" and Nazi Germany is referred to as \"the Dictatorship\".",
@@ -2639,15 +2670,6 @@ window.CULTURE_BOOKS = {
    "Fiction, general"
   ]
  },
- "wl-b-fbl3-the-wind-up-bird-chronicle": {
-  "summary": "The Wind-Up Bird Chronicle (ねじまき鳥クロニクル, Nejimakidori Kuronikuru) is a novel published in 1994–1995 by Japanese author Haruki Murakami. The American translation and its British adaptation, dubbed the \"only official translations\" (English), are by Jay Rubin and were first published in 1997. For this novel, Murakami received the Yomiuri Literary Award, which was awarded to him by one of his harshest former critics, Kenzaburō Ōe.",
-  "genres": [
-   "Novel"
-  ],
-  "tags": [
-   "Novel"
-  ]
- },
  "wl-b-fire-punch-3": {
   "bookCover": "https://covers.openlibrary.org/b/id/14450410-L.jpg",
   "summary": "In a frozen dystopia where inhabitants eat flesh to survive, can the destructive powers of fire bring salvation?\r\n\r\nIn the not-too-distant past, the Ice Witch blankets the world in snow, starvation, and madness, leading the inhabitants to seek their salvation in fire. With that, an unusual destiny unfolds for two young orphans, Agni and Luna, blessed with the ability to regenerate. But will this ability prove to be more of a curse than a blessing?\r\n\r\nAfter receiving Togata's upgrade, Agni heads to Behemdorg to exact his vengeance on Doma, unaware that Togata has flipped the script entirely. There, instead of finding Doma, Agni is to be pitted against the worst, most violent Blessed that Behemdorg has to offer. But on the way, Agni's heart fills with a new resolve, ruining Togata's much-anticipated climax!",
@@ -2658,27 +2680,9 @@ window.CULTURE_BOOKS = {
    "Comics & graphic novels, horror"
   ]
  },
- "wl-b-the-sandman-endless-nights": {
-  "summary": "The Sandman: Endless Nights is a graphic novel written by Neil Gaiman as a follow-up to his Sandman series. The book is divided into seven chapters, each devoted to one of the Endless, a family of siblings who are physical manifestations of the metaphysical concepts Dream, Death, Desire, Destruction, Delirium, Despair and Destiny. It was published by DC Comics in 2003. It won the Bram Stoker Award for Best Illustrated Narrative. It is also the first comic book to ever be on the New York Times Bestseller List. Each tale is stylistically different, and illustrated by a different artist. Most of the tales are independent of each other; however, Destruction's tale relates to and immediately follows Delirium's.",
-  "genres": [
-   "Novel"
-  ],
-  "tags": [
-   "Novel"
-  ]
- },
  "wl-b-swamp-thing-vol-1-saga-of-the-swamp-thin": {
   "bookCover": "https://upload.wikimedia.org/wikipedia/commons/0/03/Rick_Veitch.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
   "summary": "Richard Veitch (; born May 7, 1951) is an American comics artist and writer who has worked in mainstream, underground, and alternative comics.",
-  "genres": [
-   "Comics"
-  ],
-  "tags": [
-   "Comics"
-  ]
- },
- "wl-b-transmetropolitan-vol-1-back-on-the-stre": {
-  "summary": "Transmetropolitan is a cyberpunk transhumanist comic book series written by Warren Ellis and drawn by Darick Robertson, and was published by the American company DC Comics in 1997–2002. The series was originally part of the short-lived DC Comics imprint Helix, but upon the end of the book's first year the series was moved to the Vertigo imprint after DC Comics shut down their Helix imprint. Transmetropolitan chronicles the battles of Spider Jerusalem, an infamous renegade gonzo journalist of the future. Spider Jerusalem dedicates himself to fighting the corruption and abuse of power of two successive United States presidents.",
   "genres": [
    "Comics"
   ],
@@ -2790,9 +2794,6 @@ window.CULTURE_BOOKS = {
    "American Fantasy fiction"
   ]
  },
- "wl-b-they-a-sequence-of-unease": {
-  "summary": "This article contains information about the literary events and publications of 1977."
- },
  "wl-b-ozymandias": {
   "bookCover": "https://covers.openlibrary.org/b/id/9446685-L.jpg",
   "summary": "\"Ozymandias\" ( OZ-im-AN-dee-əs) is the title of a sonnet published in 1818 by Horace Smith (1779–1849). Smith wrote the poem in friendly competition with his friend and fellow poet Percy Bysshe Shelley. Shelley wrote and published \"Ozymandias\" in 1818. Smith's poem was published in The Examiner three weeks after Shelley's, on 1 February 1818. It explores the fates of history and the ravages of time.",
@@ -2802,9 +2803,6 @@ window.CULTURE_BOOKS = {
   "tags": [
    "Poetry"
   ]
- },
- "wl-b-anatomia-pekniecia": {
-  "summary": "Nagrody „Nowej Fantastyki” – nagrody literackie przyznawane od 2014 roku przez redakcję czasopisma „Nowa Fantastyka”. Do Nagród nominowane są książki i publikacje wydane w kalendarzowym roku poprzedzającym. Od momentu ustanowienia Nagrody przyznawane są stale w dwóch kategoriach: Książka Roku oraz Reflektor (nagroda przyznawana młodemu autorowi, który zdaniem jury zasługuje swoim talentem na zwrócenie uwagi czytelników). Liczba kategorii rosła z biegiem lat – w roku 2020 przyznano aż 6 Nagród. O tym, kto zostanie nominowany oraz do kogo ostatecznie powędrują wyróżnienia decyduje Jury Nagrody, w skład którego wchodzą redaktorzy „Nowej Fantastyki” i zaproszeni przez nich współpracownicy pisma."
  },
  "wl-b-inne-piesni": {
   "bookCover": "https://covers.openlibrary.org/b/id/6372667-L.jpg",
@@ -2865,5 +2863,121 @@ window.CULTURE_BOOKS = {
  },
  "wl-b-white-nights": {
   "bookCover": "https://covers.openlibrary.org/b/id/14598226-L.jpg"
+ },
+ "wl-b-transmetropolitan-vol-1-back-on-the-stre": {
+  "bookCover": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Transmetropolitan_smiley.png/500px-Transmetropolitan_smiley.png?utm_source=pl.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "summary": "Transmetropolitan – postcyberpunkowa amerykańska seria komiksowa, której autorami są Warren Ellis (scenariusz) i Darick Robertson (rysunki), publikowana przez DC Comics imprincie Vertigo w latach 1997–2002. Seria ukazała się pierwotnie w 60 zeszytach. Po polsku Transmetropolitan było wydawane w formie tomów zbiorczych, najpierw nakładem wydawnictwa Mandragora, a następnie przez Egmont Polska, które opublikowało serię w całości.",
+  "genres": [
+   "Comics"
+  ],
+  "tags": [
+   "Comics"
+  ]
+ },
+ "wl-b-new-sun": {
+  "bookCover": "https://covers.openlibrary.org/b/id/7029509-L.jpg",
+  "summary": "The Shadow of the Torturer is the first volume in the four-volume series, The Book of the New Sun. It is the tale of young Severian, an apprentice in the Guild of Torturers on the world called Urth, exiled for committing the ultimate sin of his profession -- showing mercy toward his victim -- and follows subsequent journey out of his home city of Nessus.",
+  "genres": [
+   "Fantasy fiction"
+  ],
+  "tags": [
+   "Fantasy fiction"
+  ]
+ },
+ "wl-b-fbl-invisible-cities": {
+  "bookCover": "https://covers.openlibrary.org/b/id/963147-L.jpg",
+  "summary": "\"Kublai Khan does not necessarily believe everything Marco Polo says when he describes the cities visited on his expeditions, but the emperor of the Tartars does continue listening to the young Venetian with greater attention and curiosity than he shows any other messenger or explorer of his.\" So begins Italo Calvino's compilation of fragmentary urban images. As Marco tells the khan about Armilla, which \"has nothing that makes it seem a city, except the water pipes that rise vertically where the houses should be and spread out horizontally where the floors should be,\" the spider-web city of Octavia, and other marvelous burgs, it may be that he is creating them all out of his imagination, or perhaps he is recreating fine details of his native Venice over and over again, or perhaps he is simply recounting some of the myriad possible forms a city might take.",
+  "genres": [
+   "Ficción",
+   "Explorers",
+   "Kings and rulers",
+   "Exploradores"
+  ],
+  "tags": [
+   "Ficción",
+   "Explorers",
+   "Kings and rulers",
+   "Exploradores",
+   "Tarot",
+   "Reyes y soberanos",
+   "Exploration",
+   "Urbanism",
+   "Travel literature",
+   "Fiction literature",
+   "Cities & Towns",
+   "open_syllabus_project",
+   "Fiction, biographical",
+   "Fiction, historical, general",
+   "Medieval Civilization"
+  ]
+ },
+ "wl-b-fbl-the-futurological-congress": {
+  "bookCover": "https://covers.openlibrary.org/b/id/4904082-L.jpg",
+  "summary": "The futurologists of the world have gathered at their Eighth World Congress at the Costa Rica Hilton to discuss the problem of overpopulation. Their deliberations, however, are interrupted by a revolution which the government attempts to quell with chemical weapons. The air and water are laden with \"benignimizers\" and other exotic drags which send futurologist Tichy careening into a hallucinatory tomorrow. Lem's view of the overcrowded future is original and disturbing. A pessimistic, mordantly funny book, well translated from the Polish by Michael Kandel -- Kirkus Review.",
+  "genres": [
+   "Polish fiction",
+   "Science fiction",
+   "future",
+   "Slavic philology"
+  ],
+  "tags": [
+   "Polish fiction",
+   "Science fiction",
+   "future",
+   "Slavic philology",
+   "Polish Science fiction"
+  ]
+ },
+ "wl-b-fbl3-the-wind-up-bird-chronicle": {
+  "summary": "The Wind-Up Bird Chronicle (ねじまき鳥クロニクル, Nejimakidori Kuronikuru) is a novel published in 1994–1995 by Japanese author Haruki Murakami. The American translation and its British adaptation, dubbed the \"only official translations\" (English), are by Jay Rubin and were first published in 1997. For this novel, Murakami received the Yomiuri Literary Award, which was awarded to him by one of his harshest former critics, Kenzaburō Ōe.",
+  "genres": [
+   "Novel"
+  ],
+  "tags": [
+   "Novel"
+  ],
+  "bookCover": "https://covers.openlibrary.org/b/isbn/9780679775430-L.jpg"
+ },
+ "wl-b-the-sandman-endless-nights": {
+  "bookCover": "https://covers.openlibrary.org/b/id/7441897-L.jpg",
+  "summary": "Endless Nights is an original graphic novel written by Neil Gaiman as a follow-up to his Sandman series. The book is divided into seven chapters, each devoted to one of the Endless, a family of brothers and sisters who are physical manifestations of the metaphysical concepts Dream, Death, Desire, Destruction, Delirium, Despair, and Destiny.",
+  "genres": [
+   "Horror comic books, strips",
+   "Taverns (Inns)",
+   "Storytelling",
+   "Family"
+  ],
+  "tags": [
+   "Horror comic books, strips",
+   "Taverns (Inns)",
+   "Storytelling",
+   "Family",
+   "Travelers",
+   "Graphic novels",
+   "Sandman (Comic strip)",
+   "Roommates",
+   "Fantasy comic books, strips",
+   "Missing persons",
+   "Comic books, strips",
+   "Dreams",
+   "Families",
+   "American Fantasy fiction",
+   "Comics & graphic novels, horror"
+  ]
+ },
+ "wl-b-they-a-sequence-of-unease": {
+  "bookCover": "https://covers.openlibrary.org/b/id/4386916-L.jpg",
+  "summary": "This article contains information about the literary events and publications of 1977.",
+  "genres": [
+   "Fiction in English",
+   "Fiction, general"
+  ],
+  "tags": [
+   "Fiction in English",
+   "Fiction, general"
+  ]
+ },
+ "wl-b-anatomia-pekniecia": {
+  "summary": "Nagrody „Nowej Fantastyki” – nagrody literackie przyznawane od 2014 roku przez redakcję czasopisma „Nowa Fantastyka”. Do Nagród nominowane są książki i publikacje wydane w kalendarzowym roku poprzedzającym. Od momentu ustanowienia Nagrody przyznawane są stale w dwóch kategoriach: Książka Roku oraz Reflektor (nagroda przyznawana młodemu autorowi, który zdaniem jury zasługuje swoim talentem na zwrócenie uwagi czytelników). Liczba kategorii rosła z biegiem lat – w roku 2020 przyznano aż 6 Nagród. O tym, kto zostanie nominowany oraz do kogo ostatecznie powędrują wyróżnienia decyduje Jury Nagrody, w skład którego wchodzą redaktorzy „Nowej Fantastyki” i zaproszeni przez nich współpracownicy pisma."
  }
 };

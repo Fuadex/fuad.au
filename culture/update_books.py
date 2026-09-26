@@ -115,21 +115,39 @@ def ol_search(params):
 
 def ol_doc(isbn13, isbn10, title, author):
     """Best Open Library search doc: by ISBN first, else fuzzy title (+author)."""
-    fields = 'key,title,author_name,cover_i,first_publish_year,subject'
+    fields = 'key,title,author_name,cover_i,first_publish_year,subject,edition_count'
     for isbn in (isbn13, isbn10):
         if isbn:
             docs = ol_search({'isbn': isbn, 'fields': fields})
             if docs:
                 return docs[0]
     if title:
-        params = {'title': title, 'limit': 5, 'fields': fields}
+        params = {'title': title, 'limit': 10, 'fields': fields}
         if author:
             params['author'] = author
-        best, bs = None, 0.5
+        # Among matching titles prefer the CANONICAL work: OL is full of one-edition
+        # duplicate works with no cover (hit 2026-09: "Invisible Cities" matched a
+        # 1-edition dud while the real work sat below it). edition_count breaks ties.
+        best, bk = None, (0, 0)
         for d in ol_search(params):
             s = uc.match_score(title, d.get('title') or '')
-            if s > bs:
-                best, bs = d, s
+            if s < 0.5:
+                continue
+            k = (round(s, 2), d.get('edition_count') or 0)
+            if k > bk:
+                best, bk = d, k
+        if best and (best.get('edition_count') or 0) >= 2:
+            return best
+        # Translated classics: the canonical OL work often carries the ORIGINAL-language
+        # title ("Le città invisibili"), which the title= search never returns. A general
+        # q= search finds it first; accept on author match + a real edition count, since
+        # the title cannot match across languages. (Hit 2026-09: 7 wishlist books.)
+        if author:
+            for d in ol_search({'q': f'{title} {author}', 'limit': 5, 'fields': fields})[:3]:
+                a_ok = any(uc.match_score(author, a or '') >= 0.7
+                           for a in (d.get('author_name') or []))
+                if a_ok and (d.get('edition_count') or 0) >= 5:
+                    return d
         return best
     return None
 
@@ -145,6 +163,20 @@ def ol_books_api(isbn):
 def _accept_subject(name, tags):
     return (name and name.lower() not in SUBJECT_SKIP and name not in tags
             and len(name) < 32 and not any(ch.isdigit() for ch in name))
+
+
+def ol_edition_cover(work_key):
+    """Work-level cover_i is often null even for famous books whose editions all
+    carry covers (hit 2026-09 on Invisible Cities and seven other ISBN-less
+    wishlist books). Walk the work's editions and take the first real cover id."""
+    if not work_key:
+        return None
+    d = http_json(f'https://openlibrary.org{work_key}/editions.json?limit=20') or {}
+    for e in d.get('entries') or []:
+        good = [c for c in (e.get('covers') or []) if isinstance(c, int) and c > 0]
+        if good:
+            return f'https://covers.openlibrary.org/b/id/{good[0]}-L.jpg'
+    return None
 
 
 def ol_description(work_key):
@@ -284,6 +316,10 @@ def build(item, gr, cache):
                 break
         if not author and doc.get('author_name'):
             author = ', '.join(doc['author_name'][:2])
+
+    # No cover on the work doc → walk the work's editions (no ISBN needed).
+    if doc and not cover:
+        cover = ol_edition_cover(doc.get('key'))
 
     # Open Library Books API (jscmd=data) — reliable cover + subjects per ISBN,
     # fills what the search doc missed (work-level cover_i is often null).
