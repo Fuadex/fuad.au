@@ -65017,6 +65017,20 @@ window.CULTURE_OMDB = {
   ],
   "PlotShort": "Warrior and pacifist Princess Nausicaä desperately struggles to prevent two warring nations from destroying themselves and their dying planet."
  },
+ "odrzucone": {
+  "imdbID": "tt0234588",
+  "imdbRating": "7.9",
+  "imdbVotes": "9,254",
+  "Awards": "Nominated for 1 Oscar. 17 wins & 2 nominations total",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BMzU2NmQyZTAtY2RiNS00MmMyLTk0N2EtZGJmYmVhNTUzMmZkXkEyXkFqcGc@._V1_QL75_UX380_CR0,34,380,562_.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "7.9/10"
+   }
+  ],
+  "PlotShort": "A hilarious collection of animated television commercials that were rejected because of their creator's failing grip on sanity."
+ },
  "solo-na-ugorze": {
   "imdbID": "tt0834161",
   "imdbRating": "6.1",
@@ -65241,6 +65255,19 @@ window.CULTURE_OMDB = {
   ],
   "PlotShort": "A magician has a picture frame set up. He then proceeds to make a second version of himself appear inside it."
  },
+ "imp-f-les-aventures-de-guillaume-tell": {
+  "imdbID": "tt0222768",
+  "imdbRating": "6.1",
+  "imdbVotes": "618",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BZDQzYTkwYmItNzU3Yi00Nzc5LWJhYjItYzFjM2VkMTlkOTNkXkEyXkFqcGdeQXVyNDE5MTU2MDE@._V1_SX300.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "6.1/10"
+   }
+  ],
+  "PlotShort": "Atop a wonderful central pedestal, a happy clown puts the finishing touches on a William Tell's incomplete model, assembling the mannequin limb by limb with the intention of shooting a target off of its head with a potent crossbow."
+ },
  "imp-f-macross-plus-movie-edition": {
   "imdbID": "tt2330912",
   "imdbRating": "7.5",
@@ -65406,6 +65433,29 @@ window.CULTURE_OMDB = {
    }
   ],
   "PlotShort": "A collection of stories published in \"The French Dispatch Magazine\" comes to life in a fictional twentieth century French city."
+ },
+ "imp-f-trzy-kolory-bia-y": {
+  "imdbID": "tt0111507",
+  "imdbRating": "7.6",
+  "imdbVotes": "85,094",
+  "Metascore": "91",
+  "Awards": "2 wins & 6 nominations total",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BMWUyMWJiYTEtNmIzYi00OTYxLTlkYjEtMGFjMjY3NDc5Mjk0XkEyXkFqcGc@._V1_SX300.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "7.6/10"
+   },
+   {
+    "Source": "Rotten Tomatoes",
+    "Value": "91%"
+   },
+   {
+    "Source": "Metacritic",
+    "Value": "91/100"
+   }
+  ],
+  "PlotShort": "After his wife divorces him, a Polish immigrant plots to get even with her."
  },
  "imp-f-trzy-kolory-niebieski": {
   "imdbID": "tt0108394",
@@ -66702,6 +66752,19 @@ window.CULTURE_OMDB = {
   ],
   "PlotShort": "A short black and white film which documents the activities of a little girl and her cat."
  },
+ "imp-f-la-sortie-des-usines-lumi-re": {
+  "imdbID": "tt0000010",
+  "imdbRating": "6.8",
+  "imdbVotes": "7,738",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BYjdkY2I3ZDItMmY2MC00ZmU1LTk4NTYtMzcwMWM4MzYzOTA2XkEyXkFqcGc@._V1_SX300.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "6.8/10"
+   }
+  ],
+  "PlotShort": "Workers leaving the Lumière factory for lunch in Lyon, France in 1895; a place of great photographic innovation and one of the birth places of cinema."
+ },
  "imp-f-lancement-d-un-navire": {
   "imdbID": "tt0222137",
   "imdbRating": "6.2",
@@ -67080,6 +67143,19 @@ window.CULTURE_OMDB = {
   ],
   "Plot": "Procession du tapis sacré (1897) This Lumiere Brothers film is once again set in Egypt as we see some sort of procession through the streets. I'm going to guess that it was either someone important or at least someone rich as this here is a lot different than some of the other funeral processions that were filmed by the company. The ones in the streets with normal people were a lot more chaotic. This one here has the camera right by the street so we get a lot of nice action of the people going by. Obviously this film didn't change film history in any way but it still captures a certain point in time that is fascinating to watch today."
  },
+ "imp-f-promenade-des-congressistes-sur-le-bord-de-la-sa-ne": {
+  "imdbID": "tt0000013",
+  "imdbRating": "5.7",
+  "imdbVotes": "2,167",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BMTlhNmY1NjktYjMwOC00OTZlLTlhMDAtMTdmMjY0NWI5ZjRmXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "5.7/10"
+   }
+  ],
+  "PlotShort": "The photographers who need to participate in the congress of Lyon get off a boat in Neuville-sur-Saône, dividing to the right and left."
+ },
  "imp-f-retour-d-une-promenade-en-mer": {
   "imdbID": "tt0222320",
   "imdbRating": "5.0",
@@ -67387,6 +67463,24 @@ window.CULTURE_OMDB = {
   ],
   "PlotShort": "Multinational immigrants traveling from the old continent to the new encounter a nightmarish riddle aboard a second ship adrift on the open sea."
  },
+ "wl-f-34355": {
+  "imdbID": "tt0098967",
+  "imdbRating": "6.7",
+  "imdbVotes": "8,055",
+  "Awards": "1 win & 2 nominations total",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BMjIyZWJlMzMtY2FlMS00OTJhLThmYmUtZDYxYjM1YWYzZTgzXkEyXkFqcGc@._V1_SX300.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "6.7/10"
+   },
+   {
+    "Source": "Rotten Tomatoes",
+    "Value": "94%"
+   }
+  ],
+  "PlotShort": "Two disquieted junior baseball players seek revenge on the local yakuza for attacking their coach."
+ },
  "wl-f-644476": {
   "imdbID": "tt2125423",
   "imdbRating": "7.9",
@@ -67454,6 +67548,29 @@ window.CULTURE_OMDB = {
    }
   ],
   "PlotShort": "Abandoned in the barren wasteland of Kyoto, a savage, enraged orphan does whatever it takes to survive in the wild. When he crosses paths with civilization, he must learn to tame the beast within."
+ },
+ "wl-f-9641": {
+  "imdbID": "tt0094721",
+  "imdbRating": "7.4",
+  "imdbVotes": "417,656",
+  "Metascore": "71",
+  "Awards": "Won 1 Oscar. 7 wins & 11 nominations total",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BYjkwNzVlNDEtMTJlNy00OTdlLTljYWItM2RkZmZkYzY3YjM2XkEyXkFqcGc@._V1_QL75_UX380_CR0,2,380,562_.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "7.4/10"
+   },
+   {
+    "Source": "Rotten Tomatoes",
+    "Value": "83%"
+   },
+   {
+    "Source": "Metacritic",
+    "Value": "71/100"
+   }
+  ],
+  "PlotShort": "The spirits of a deceased couple are harassed by an unbearable family that has moved into their home, and hire a malicious spirit to drive them out."
  },
  "wl-s-875837": {
   "imdbID": "tt14721670",

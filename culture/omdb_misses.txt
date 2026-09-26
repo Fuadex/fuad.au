@@ -1,10 +1,129 @@
-wl-f-fbl3-camouflage	Camouflage (1976)	→ Camouflage (2001)	score 1.00 year?
-wl-s-fbl3-denno-coil	Dennō Coil (2007)	→ Den-Noh Coil (2007)	score 0.33
-wl-f-fbl3-kuroneko	Kuroneko (1968)	→ Sezaimaru Beniko no Jikenbo: Kuroneko no Sankaku (2015)	score 0.80 year?
-wl-s-fbl-les-revenants	Les Revenants (2012)	→ The Returned (2012–2015)	score 0.00
-wl-s-fbl-mushishi	Mushishi (2005)	→ Mushi-Shi (2005–2014)	score 0.00
-wl-f-fbl-secret-sunshine	Secret Sunshine (2007)	→ Secret Sunshine (2010)	score 1.00 year?
-wl-s-fbl3-seirei-no-moribito	Seirei no Moribito (2007)	→ Moribito: Guardian of the Spirit (2007)	score 0.20
-wl-f-fbl-trial-on-the-road	Trial on the Road (1971)	→ Trial on the Road (1986)	score 1.00 year?
-wl-s-fbl2-twin-peaks-return	Twin Peaks: The Return (2017)	→ Twin Peaks (1990–1991)	score 0.80 year?
-wl-f-fbl3-ziemia-obiecana	Ziemia obiecana (1974)	→ Ziemia obiecana (1927)	score 1.00 year?
+odrzucone	Odrzucone (2000)	NO MATCH
+imp-f-dla-elizy-bagatela-a-moll-woo-59	Dla Elizy Bagatela a-moll WoO 59 (1992)	NO MATCH
+imp-f-natural-attraction	Natural Attraction (2014)	NO MATCH
+imp-f-offret-sacrificatio	Offret Sacrificatio (1986)	NO MATCH
+imp-s-10005700	Bo Burnham: Inside (2021)	NO MATCH
+imp-f-das-begr-bnis-des-harald-kramer	Das Begräbnis des Harald Kramer (2013)	NO MATCH
+imp-f-egao	Egao (2003)	NO MATCH
+imp-s-10014569	Entergalactic (2022)	NO MATCH
+imp-f-gi-saeng-chung	Gi-saeng-chung (2019)	NO MATCH
+imp-s-665315	Kyousougiga (2012)	NO MATCH
+imp-f-la-marmite-diabolique	La marmite diabolique (1903)	NO MATCH
+imp-f-le-renard-et-l-oisille	Le Renard et l'Oisille (2019)	NO MATCH
+imp-f-les-aventures-de-guillaume-tell	Les Aventures de Guillaume Tell (1898)	NO MATCH
+imp-f-monstersymfonie	Monstersymfonie (2012)	NO MATCH
+imp-f-pianoid	Pianoid (2015)	NO MATCH
+imp-f-rondo-alla-turca-z-sonaty-a-dur-kv-331	Rondo Alla Turca z Sonaty A-dur KV 331 (1993)	NO MATCH
+imp-f-samog-oska	Samogłoska (1981)	NO MATCH
+imp-f-shin-gekij-ban-initial-d-legend-1-kakusei	Shin Gekijō-ban Initial D Legend 1 - Kakusei (2014)	NO MATCH
+imp-f-tren-zb-ja	Tren zbója (1967)	NO MATCH
+imp-f-trzy-kolory-bia-y	Trzy kolory: Biały (1994)	NO MATCH
+imp-f-anchiporuno	Anchiporuno (2016)	NO MATCH
+imp-f-boo-san-haeng	Boo-san-haeng (2016)	NO MATCH
+imp-f-lekcja-niesko-czono-ci	Lekcja nieskończoności (2008)	NO MATCH
+imp-f-night-spinning	Night Spinning (2017)	NO MATCH
+imp-f-sal-in-sui-choo-eok	Sal-in-sui Choo-eok (2003)	NO MATCH
+imp-f-shin-gekij-ban-initial-d-legend-2-t-s	Shin Gekijō-ban Initial D Legend 2 - Tōsō (2015)	NO MATCH
+imp-f-t-i-sekai	Tōi Sekai (1997)	NO MATCH
+imp-f-egnaj-paro	Żegnaj paro! (1974)	NO MATCH
+imp-f-10038861	Gojira Mainasu Wan (2023)	NO MATCH
+imp-f-kono-subarash-sekai-ni-shukufuku-o-2-kono-subarash-geijutsu-	Kono Subarashī Sekai ni Shukufuku o! 2: Kono Subarashī Geijutsu ni Shukufuku o! (2017)	NO MATCH
+imp-f-kuszenie-w-antoniego	Kuszenie św. Antoniego (1987)	NO MATCH
+imp-s-678476	Kōkaku Kidōtai Arise (2013)	NO MATCH
+imp-s-122540	Kōkaku Kidōtai S.A.C. 2nd GIG (2004)	NO MATCH
+imp-f-m-canique	Mécanique (2018)	NO MATCH
+imp-f-pan-do-ra	Pan-do-ra (2016)	NO MATCH
+imp-f-qian-xi-man-po	Qian Xi Man Po (2001)	NO MATCH
+imp-f-violet-evergarden-kitto-ai-o-shiru-hi-ga-kuru-no-dar	Violet Evergarden: Kitto Ai o Shiru Hi ga Kuru no Darō (2018)	NO MATCH
+imp-f-where-are-they-now	Where Are They Now? (2014)	NO MATCH
+imp-s-531034	Darker Than Black: Ryūsei no Gemini (2009)	NO MATCH
+imp-f-grunwald-walka-600-lecia	Grunwald. Walka 600-lecia (2010)	NO MATCH
+imp-f-kto-wypije-wi-cej	Kto wypije więcej (1986)	NO MATCH
+imp-s-735081	Kōkaku Kidōtai Arise: Alternative Architecture (2015)	NO MATCH
+imp-f-la-bo-te	La Boîte (2017)	NO MATCH
+imp-f-ostry-film-zaanga-owany-non-camera	Ostry film zaangażowany. Non Camera (1979)	NO MATCH
+imp-f-violet-evergarden-gaiden-eien-to-jid-shuki-ningy	Violet Evergarden Gaiden: Eien to Jidō Shuki Ningyō (2019)	NO MATCH
+imp-f-w-sumie-mogliby-my-nakr-ci-jaki-film	W sumie moglibyśmy nakręcić jakiś film (2014)	NO MATCH
+imp-f-yang-guang-pu-zhao	Yang Guang Pu Zhao (2019)	NO MATCH
+imp-f-adam-i-ewa	Adam i Ewa (1983)	NO MATCH
+imp-f-edward-psie-serce	Edward Psie Serce (2011)	NO MATCH
+imp-f-k-kaku-kid-tai-s-a-c-solid-state-society-3d	Kōkaku Kidōtai S.A.C. Solid State Society 3D (2011)	NO MATCH
+imp-f-323003	O-bal-tan (1961)	NO MATCH
+imp-f-goi-mool	Goi-mool (2006)	NO MATCH
+imp-f-syn-gwiazd	Syn Gwiazd (2006)	NO MATCH
+imp-f-budapest-cortege-dr-la-couronne	Budapest, cortege dr la Couronne (1896)	NO MATCH
+imp-s-259066	Detektyw (2001)	NO MATCH
+imp-f-dresde-vieux-quartier-allemand-i-exposition	Dresde, vieux quartier allemand à I'Exposition (1896)	NO MATCH
+imp-f-escamotage-d-une-dame-au-th-tre-robert-houdin	Escamotage d'une dame au théâtre Robert Houdin (1896)	NO MATCH
+imp-f-espagne-courses-de-taureaux-ii	Espagne : courses de taureaux, II (1897)	NO MATCH
+imp-f-exercices-de-ski-i	Exercices de ski, I (1904)	NO MATCH
+imp-f-exp-rience-du-ballon-dirigeable-de-m-santos-dumont-ii-le-bal	Expérience du ballon dirigeable de M. Santos-Dumont : II. Le ballon et son moteur (1900)	NO MATCH
+imp-f-f-tes-du-couronnement-de-s-m-le-tsar-nicolas-ii-saint-p-ters	Fêtes du couronnement de S.M. le Tsar Nicolas II: Saint-Pétersbourg, rue Tverskaïa (1896)	NO MATCH
+imp-f-gospodarze	Gospodarze (1972)	NO MATCH
+imp-s-103517	Grim and Evil (2001)	NO MATCH
+imp-f-ii-inauguration-longueur-8-m-tres	II. Inauguration (longueur : 8 mètres) (1896)	NO MATCH
+imp-f-jing-cha-gu-shi-iv-jian-dan-ren-wu	Jing cha gu shi IV: Jian dan ren wu (1996)	NO MATCH
+imp-f-la-f-e-au-pigeons	La Fée au pigeons (1906)	NO MATCH
+imp-f-la-gare	La gare (1896)	NO MATCH
+imp-f-la-mi-car-me-char-et-bataille-de-confettis	La Mi-Carême, Char et bataille de confettis (1899)	NO MATCH
+imp-f-la-m-tamorphose-du-papillon	La Métamorphose du papillon (1904)	NO MATCH
+imp-f-la-palestina-en-1896	La Palestina en 1896 (1897)	NO MATCH
+imp-f-la-sortie-des-usines-lumi-re	La sortie des usines Lumière (1895)	NO MATCH
+imp-f-la-vague	La vague (1891)	NO MATCH
+imp-f-le-char-fun-bre-1899	Le char funèbre (1899)	NO MATCH
+imp-f-le-march-aux-poissons	Le marché aux poissons (1896)	NO MATCH
+imp-f-le-scieur-de-bois-me-lomane	Le scieur de bois mélomane (1898)	NO MATCH
+imp-f-les-bains-de-diane-milan	Les Bains de Diane à Milan (1896)	NO MATCH
+imp-f-les-elks-champions-du-cake-walk	Les Elks champions du Cake-Walk (1903)	NO MATCH
+imp-f-lions-jardin-zoologique-londres	Lions, Jardin zoologique, Londres (1896)	NO MATCH
+imp-s-469399	Mickey Mouse and His Friends (1994)	NO MATCH
+imp-s-103881	Mitsubachi Maaya no Bōken (1975)	NO MATCH
+imp-f-new-york-arriv-e-d-un-train-bathery-place	New York, arrivée d'un train à Bathery Place (1896)	NO MATCH
+imp-f-nice-panorama-sur-la-ligne-de-beaulieu-monaco-iii	Nice : panorama sur la ligne de Beaulieu à Monaco, III (1900)	NO MATCH
+imp-s-224608	Olimpiada Bolka i Lolka (1983)	NO MATCH
+imp-f-panorama-du-grand-canal-vu-d-un-bateau	Panorama du Grand Canal vu d'un bateau (1896)	NO MATCH
+imp-f-panorama-du-havre-pris-d-un-bateau	Panorama du havre (pris d'un bateau) (1896)	NO MATCH
+imp-f-passage-en-chaises-porteurs-au-col-des-nuages-annam	Passage en chaises à porteurs au col des Nuages (Annam) (1900)	NO MATCH
+imp-f-promenade-des-congressistes-sur-le-bord-de-la-sa-ne	Promenade des congressistes sur le bord de la Saône (1895)	NO MATCH
+imp-f-scooby-doo-and-mummy-too	Scooby-Doo And Mummy Too (1969)	NO MATCH
+imp-f-sortie-de-la-grand-messe-de-l-glise-de-la-cath-drale	Sortie de la grand' messe de l'église de la cathédrale (1899)	NO MATCH
+imp-s-442479	The Donald Duck Show (1983)	NO MATCH
+imp-f-the-gay-brothers	The Gay Brothers (1895)	NO MATCH
+imp-s-194738	The Scooby-Doo/Dynomutt Hour (1976)	NO MATCH
+imp-f-une-partie-des-cartes	Une partie des cartes (1896)	NO MATCH
+imp-s-208863	W11 - wydział śledczy (2004)	NO MATCH
+imp-f-yat-goh-hiu-yan	Yat Goh Hiu Yan (1997)	NO MATCH
+wl-f-34355	3-4 x jūgatsu (1990)	NO MATCH
+wl-s-511352	A-i-ri-seu (2009)	NO MATCH
+wl-f-582678	A-jeo-ssi (2010)	NO MATCH
+wl-f-385134	A-joo Teuk-byeol-han Son-nim (2006)	NO MATCH
+wl-s-565378	Adventure Time with Finn and Jake (2010)	NO MATCH
+wl-f-335383	Babodeuli haengjin (1975)	NO MATCH
+wl-f-779249	Bam-eui hae-byeon-e-so hon-ja (2017)	NO MATCH
+wl-f-9641	Beetle Juice (1988)	NO MATCH
+wl-f-124550	Bok-su-neun Na-ui Geot (2002)	NO MATCH
+wl-f-200684	Chin-jeol-han Geum-ja-ssi (2005)	NO MATCH
+wl-f-471852	Choo-gyeok-ja (2008)	NO MATCH
+wl-f-300980	Chup Chup Ke: Love Meets Confusion Meets Love... (2006)	NO MATCH
+wl-f-192520	Chō Jikū Yōsai Macross: Ai, Oboete Imasu ka (1984)	NO MATCH
+wl-s-199379	Dekalog - Polska 93 (1993)	NO MATCH
+wl-f-300520	Hoshi o Katta Hi (2006)	NO MATCH
+wl-f-34372	Jūbee Ninpūchō (1993)	NO MATCH
+wl-f-197291	Keduldo urichurum (1990)	NO MATCH
+wl-f-738513	Little Witch Academia: Mahō Shikake no Parade (2015)	NO MATCH
+wl-f-39157	Neotpravlennoye pismo (1959)	NO MATCH
+wl-f-107197	Onna ga kaidan o agaru toki (1960)	NO MATCH
+wl-f-102466	Operatsiya Y i drugiye priklyucheniya Shurika (1965)	NO MATCH
+wl-f-587569	Pa-soo-ggoon (2010)	NO MATCH
+wl-f-771487	Parate (2010)	NO MATCH
+wl-f-897	Przypadek (1981)	NO MATCH
+wl-f-802959	Pul-ip-deul (2018)	NO MATCH
+wl-f-119750	Sat Pralat (2004)	NO MATCH
+wl-f-706740	Seoul-yeok (2016)	NO MATCH
+wl-f-802660	Seu-wing-ki-jeu (2017)	NO MATCH
+wl-s-750300	Si-geu-neol (2015)	NO MATCH
+wl-f-109360	Tae-geug-ki Hwi-nal-ri-myeo (2004)	NO MATCH
+wl-f-767386	Taek-si un-jeon-sa (2017)	NO MATCH
+wl-s-129542	Tenkū no Escaflowne (1996)	NO MATCH
+wl-f-99668	Topâzu (1992)	NO MATCH
+wl-f-99671	Ōritsu Uchūgu: Honneamise no Tsubasa (1987)	NO MATCH

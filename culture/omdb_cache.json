@@ -132765,9 +132765,37 @@
   "PlotShort": "Warrior and pacifist Princess Nausicaä desperately struggles to prevent two warring nations from destroying themselves and their dying planet."
  },
  "odrzucone": {
-  "Response": "False",
-  "_q": "Odrzucone",
-  "_y": 2000
+  "Title": "Rejected",
+  "Year": "2000",
+  "Rated": "Unrated",
+  "Released": "25 Jul 2000",
+  "Runtime": "9 min",
+  "Genre": "Animation, Short, Comedy",
+  "Director": "Don Hertzfeldt",
+  "Writer": "Don Hertzfeldt",
+  "Actors": "Robert May, Jennifer Nyholm, Don Hertzfeldt",
+  "Plot": "An animator's commissioned works, rejected because of their increasingly absurd and violent tone (reflecting the animator's own progressive breakdown), eventually find their entire animated world collapsing in upon itself.",
+  "Language": "English, Swedish",
+  "Country": "United States",
+  "Awards": "Nominated for 1 Oscar. 17 wins & 2 nominations total",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BMzU2NmQyZTAtY2RiNS00MmMyLTk0N2EtZGJmYmVhNTUzMmZkXkEyXkFqcGc@._V1_QL75_UX380_CR0,34,380,562_.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "7.9/10"
+   }
+  ],
+  "Metascore": "N/A",
+  "imdbRating": "7.9",
+  "imdbVotes": "9,254",
+  "imdbID": "tt0234588",
+  "Type": "movie",
+  "DVD": "N/A",
+  "BoxOffice": "N/A",
+  "Production": "N/A",
+  "Website": "N/A",
+  "Response": "True",
+  "PlotShort": "A hilarious collection of animated television commercials that were rejected because of their creator's failing grip on sanity."
  },
  "solo-na-ugorze": {
   "Title": "Solo na ugorze",
@@ -133397,9 +133425,37 @@
   "_y": 2019
  },
  "imp-f-les-aventures-de-guillaume-tell": {
-  "Response": "False",
-  "_q": "Les Aventures de Guillaume Tell",
-  "_y": 1898
+  "Title": "Adventures of William Tell",
+  "Year": "1898",
+  "Rated": "Not Rated",
+  "Released": "N/A",
+  "Runtime": "1 min",
+  "Genre": "Short, Comedy",
+  "Director": "Georges Méliès",
+  "Writer": "Friedrich Schiller",
+  "Actors": "N/A",
+  "Plot": "Atop a wonderful central pedestal, a happy clown puts the finishing touches on a William Tell's incomplete model, assembling the mannequin limb by limb with the intention of shooting a target off of its head with a potent, one-shot crossbow. But suddenly, the inanimate statue which has a completely different opinion on the matter comes to life and decides to defend himself--and much to the clown's disappointment--when he turns his back to see who hit him, the joker is, of course, lifeless again. Is this prank the result of the clown's vivid imagination or is the Swiss hero's statue alive after all?",
+  "Language": "None",
+  "Country": "France",
+  "Awards": "N/A",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BZDQzYTkwYmItNzU3Yi00Nzc5LWJhYjItYzFjM2VkMTlkOTNkXkEyXkFqcGdeQXVyNDE5MTU2MDE@._V1_SX300.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "6.1/10"
+   }
+  ],
+  "Metascore": "N/A",
+  "imdbRating": "6.1",
+  "imdbVotes": "618",
+  "imdbID": "tt0222768",
+  "Type": "movie",
+  "DVD": "N/A",
+  "BoxOffice": "N/A",
+  "Production": "N/A",
+  "Website": "N/A",
+  "Response": "True",
+  "PlotShort": "Atop a wonderful central pedestal, a happy clown puts the finishing touches on a William Tell's incomplete model, assembling the mannequin limb by limb with the intention of shooting a target off of its head with a potent crossbow."
  },
  "imp-f-macross-plus-movie-edition": {
   "Title": "Macross Plus Movie Edition",
@@ -133789,9 +133845,45 @@
   "_y": 1967
  },
  "imp-f-trzy-kolory-bia-y": {
-  "Response": "False",
-  "_q": "Trzy kolory: Biały",
-  "_y": 1994
+  "Title": "Three Colors: White",
+  "Year": "1994",
+  "Rated": "R",
+  "Released": "10 Jun 1994",
+  "Runtime": "92 min",
+  "Genre": "Comedy, Drama, Romance",
+  "Director": "Krzysztof Kieslowski",
+  "Writer": "Krzysztof Kieslowski, Krzysztof Piesiewicz, Agnieszka Holland",
+  "Actors": "Zbigniew Zamachowski, Julie Delpy, Janusz Gajos",
+  "Plot": "Karol (Polish) marries Dominique (French) and moves to Paris. The marriage breaks down and Dominique divorces Karol, forcing him into the life of a metro beggar and eventually back to Poland. However, he never forgets Dominique and while building a new life for himself in Warsaw he begins to plot.",
+  "Language": "Polish, French, English",
+  "Country": "France, Switzerland, Poland",
+  "Awards": "2 wins & 6 nominations total",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BMWUyMWJiYTEtNmIzYi00OTYxLTlkYjEtMGFjMjY3NDc5Mjk0XkEyXkFqcGc@._V1_SX300.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "7.6/10"
+   },
+   {
+    "Source": "Rotten Tomatoes",
+    "Value": "91%"
+   },
+   {
+    "Source": "Metacritic",
+    "Value": "91/100"
+   }
+  ],
+  "Metascore": "91",
+  "imdbRating": "7.6",
+  "imdbVotes": "85,094",
+  "imdbID": "tt0111507",
+  "Type": "movie",
+  "DVD": "N/A",
+  "BoxOffice": "$1,237,219",
+  "Production": "N/A",
+  "Website": "N/A",
+  "Response": "True",
+  "PlotShort": "After his wife divorces him, a Polish immigrant plots to get even with her."
  },
  "imp-f-trzy-kolory-niebieski": {
   "Title": "Three Colors: Blue",
@@ -137406,9 +137498,37 @@
   "PlotShort": "A short black and white film which documents the activities of a little girl and her cat."
  },
  "imp-f-la-sortie-des-usines-lumi-re": {
-  "Response": "False",
-  "_q": "La sortie des usines Lumière",
-  "_y": 1895
+  "Title": "Leaving the Factory",
+  "Year": "1895",
+  "Rated": "Not Rated",
+  "Released": "22 Mar 1895",
+  "Runtime": "1 min",
+  "Genre": "Documentary, Short",
+  "Director": "Louis Lumière",
+  "Writer": "N/A",
+  "Actors": "N/A",
+  "Plot": "A man opens the big gates to the Lumière factory. Through the gateway and a smaller doorway beside it, workers are streaming out, turning either left or right. Most of them are women in long dresses and big hats, but some are men. Suddenly a man with a long apron rushes out through the crowd, followed by a big dog. At last some men on bikes leave the gateway. When all workers have left the factory, the doorkeeper starts closing the gates again.",
+  "Language": "None",
+  "Country": "France",
+  "Awards": "N/A",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BYjdkY2I3ZDItMmY2MC00ZmU1LTk4NTYtMzcwMWM4MzYzOTA2XkEyXkFqcGc@._V1_SX300.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "6.8/10"
+   }
+  ],
+  "Metascore": "N/A",
+  "imdbRating": "6.8",
+  "imdbVotes": "7,738",
+  "imdbID": "tt0000010",
+  "Type": "movie",
+  "DVD": "N/A",
+  "BoxOffice": "N/A",
+  "Production": "N/A",
+  "Website": "N/A",
+  "Response": "True",
+  "PlotShort": "Workers leaving the Lumière factory for lunch in Lyon, France in 1895; a place of great photographic innovation and one of the birth places of cinema."
  },
  "imp-f-la-vague": {
   "Response": "False",
@@ -138451,9 +138571,37 @@
   "PlotShort": ""
  },
  "imp-f-promenade-des-congressistes-sur-le-bord-de-la-sa-ne": {
-  "Response": "False",
-  "_q": "Promenade des congressistes sur le bord de la Saône",
-  "_y": 1895
+  "Title": "The Photographical Congress Arrives in Lyon",
+  "Year": "1895",
+  "Rated": "Not Rated",
+  "Released": "12 Jun 1895",
+  "Runtime": "1 min",
+  "Genre": "Documentary, Short",
+  "Director": "Louis Lumière",
+  "Writer": "N/A",
+  "Actors": "Auguste Lumière, P.J.C. Janssen",
+  "Plot": "Members of the French Photographic Society arrive from a riverboat to their congress venue in Neuville-sur-Saône on a summer day. They go ashore across a wooden landing stage. Among the many men in straw hats are also a few women in long skirts. Some of the men lift their hats toward the photographer when passing. Many of them are carrying their own cameras.",
+  "Language": "None",
+  "Country": "France",
+  "Awards": "N/A",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BMTlhNmY1NjktYjMwOC00OTZlLTlhMDAtMTdmMjY0NWI5ZjRmXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "5.7/10"
+   }
+  ],
+  "Metascore": "N/A",
+  "imdbRating": "5.7",
+  "imdbVotes": "2,167",
+  "imdbID": "tt0000013",
+  "Type": "movie",
+  "DVD": "N/A",
+  "BoxOffice": "N/A",
+  "Production": "N/A",
+  "Website": "N/A",
+  "Response": "True",
+  "PlotShort": "The photographers who need to participate in the congress of Lyon get off a boat in Neuville-sur-Saône, dividing to the right and left."
  },
  "imp-f-retour-d-une-promenade-en-mer": {
   "Title": "Retour d'une promenade en mer",
@@ -139278,9 +139426,41 @@
   "PlotShort": "Multinational immigrants traveling from the old continent to the new encounter a nightmarish riddle aboard a second ship adrift on the open sea."
  },
  "wl-f-34355": {
-  "Response": "False",
-  "_q": "3-4 x jūgatsu",
-  "_y": 1990
+  "Title": "Boiling Point",
+  "Year": "1990",
+  "Rated": "Not Rated",
+  "Released": "19 Nov 1999",
+  "Runtime": "96 min",
+  "Genre": "Action, Comedy, Crime",
+  "Director": "Takeshi Kitano",
+  "Writer": "Takeshi Kitano",
+  "Actors": "Takeshi Kitano, Yûrei Yanagi, Yuriko Ishida",
+  "Plot": "Two members of a Japanese junior baseball team get mixed up with the local yakuza. After their coach is severely injured by the gangsters, the two boys set off to Okinawa to purchase a gun in order to get revenge. While in Okinawa they get befriended by a psychotic yakuza outcast who is planning a revenge of his own.",
+  "Language": "Japanese",
+  "Country": "Japan",
+  "Awards": "1 win & 2 nominations total",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BMjIyZWJlMzMtY2FlMS00OTJhLThmYmUtZDYxYjM1YWYzZTgzXkEyXkFqcGc@._V1_SX300.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "6.7/10"
+   },
+   {
+    "Source": "Rotten Tomatoes",
+    "Value": "94%"
+   }
+  ],
+  "Metascore": "N/A",
+  "imdbRating": "6.7",
+  "imdbVotes": "8,055",
+  "imdbID": "tt0098967",
+  "Type": "movie",
+  "DVD": "N/A",
+  "BoxOffice": "$1,471",
+  "Production": "N/A",
+  "Website": "N/A",
+  "Response": "True",
+  "PlotShort": "Two disquieted junior baseball players seek revenge on the local yakuza for attacking their coach."
  },
  "wl-f-644476": {
   "Title": "5 Broken Cameras",
@@ -139456,9 +139636,45 @@
   "_y": 2017
  },
  "wl-f-9641": {
-  "Response": "False",
-  "_q": "Beetle Juice",
-  "_y": 1988
+  "Title": "Beetlejuice",
+  "Year": "1988",
+  "Rated": "PG",
+  "Released": "30 Mar 1988",
+  "Runtime": "92 min",
+  "Genre": "Comedy, Fantasy",
+  "Director": "Tim Burton",
+  "Writer": "Michael McDowell, Warren Skaaren, Larry Wilson",
+  "Actors": "Alec Baldwin, Geena Davis, Michael Keaton",
+  "Plot": "Adam and Barbara are a normal couple...who happen to be dead. They have given their precious time to decorate their house and make it their own, but unfortunately a family is moving in, and not quietly. Adam and Barbara try to scare them out, but end up becoming the main attraction to the money making family. They call upon Beetlejuice to help, but Beetlejuice has more in mind than just helping.",
+  "Language": "English",
+  "Country": "United States",
+  "Awards": "Won 1 Oscar. 7 wins & 11 nominations total",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BYjkwNzVlNDEtMTJlNy00OTdlLTljYWItM2RkZmZkYzY3YjM2XkEyXkFqcGc@._V1_QL75_UX380_CR0,2,380,562_.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "7.4/10"
+   },
+   {
+    "Source": "Rotten Tomatoes",
+    "Value": "83%"
+   },
+   {
+    "Source": "Metacritic",
+    "Value": "71/100"
+   }
+  ],
+  "Metascore": "71",
+  "imdbRating": "7.4",
+  "imdbVotes": "417,656",
+  "imdbID": "tt0094721",
+  "Type": "movie",
+  "DVD": "N/A",
+  "BoxOffice": "$74,664,632",
+  "Production": "N/A",
+  "Website": "N/A",
+  "Response": "True",
+  "PlotShort": "The spirits of a deceased couple are harassed by an unbearable family that has moved into their home, and hire a malicious spirit to drive them out."
  },
  "wl-s-875837": {
   "Title": "Behawiorysta",
