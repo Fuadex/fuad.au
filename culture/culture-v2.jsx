@@ -1862,10 +1862,16 @@ function ShelfRow({ medium, items, idx, mode, sort, sortDir, mixSeed, onOpenItem
           <span className="spine-band bottom"/>
           {(() => {
             const isAvg = spineValue !== 'rating';
-            const raw = isAvg ? item[spineValue] : item.rating;
-            if (raw == null) return null;
+            let raw = isAvg ? item[spineValue] : item.rating, src = isAvg ? 'Filmweb average' : 'Your rating';
+            // Wishlist rows added by hand or by Fable never carry a Filmweb avg (it only comes from the
+            // Filmweb export) — fall back to the IMDb rating OMDb already fetched (Fuad 2026-09-27).
+            if (raw == null && isAvg) {
+              const r = item.omdb && item.omdb.imdbRating;
+              if (r && r !== 'N/A') { raw = parseFloat(r); src = 'IMDb rating'; }
+            }
+            if (raw == null || isNaN(raw)) return null;
             const shown = isAvg ? Math.round(raw) : raw;
-            return <span className={`spine-glyph spine-rating${isAvg ? ' is-avg' : ''}`}>{shown}</span>;
+            return <span className={`spine-glyph spine-rating${isAvg ? ' is-avg' : ''}`} title={`${src}: ${raw}`}>{shown}</span>;
           })()}
         </div>
         {item.source === 'fable' && <span className="fable-glyph" title="Fable pick — recommended by Claude">✦</span>}

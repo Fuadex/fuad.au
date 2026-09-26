@@ -73601,5 +73601,157 @@ window.CULTURE_OMDB = {
    }
   ],
   "PlotShort": "Three friends hope to build a factory but their plans are quickly jeopardized by local politics and one of the partner's dangerous love affair."
+ },
+ "masters-of-the-universe-2026": {
+  "imdbID": "tt0427340",
+  "imdbRating": "6.4",
+  "imdbVotes": "118,965",
+  "Metascore": "52",
+  "Awards": "6 nominations total",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BMTJjYTFkM2EtZjBmNy00OTk2LTg0NTAtNzYxYzlmNjhkMzQ5XkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "6.4/10"
+   },
+   {
+    "Source": "Metacritic",
+    "Value": "52/100"
+   }
+  ],
+  "PlotShort": "Prince Adam discovers that the strange memories shaping his life are real when the lost Sword of Power resurfaces, forcing him to return to Eternia and challenge the tyrant who shattered his family and kingdom."
+ },
+ "the-croods-a-new-age": {
+  "imdbID": "tt2850386",
+  "imdbRating": "6.9",
+  "imdbVotes": "60,294",
+  "Metascore": "56",
+  "Awards": "31 nominations total",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BZTI1OTFhYmQtMzM4NS00Y2NkLTlkMmEtNTJhMWU1YWI0ZGQ2XkEyXkFqcGc@._V1_SX300.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "6.9/10"
+   },
+   {
+    "Source": "Rotten Tomatoes",
+    "Value": "76%"
+   },
+   {
+    "Source": "Metacritic",
+    "Value": "56/100"
+   }
+  ],
+  "PlotShort": "The prehistoric family the Croods are challenged by a rival family the Bettermans, who claim to be better and more evolved."
+ },
+ "wl-f-dont-be-a-menace": {
+  "imdbID": "tt0116126",
+  "imdbRating": "6.5",
+  "imdbVotes": "66,024",
+  "Metascore": "53",
+  "Awards": "1 nomination total",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BZGM0NTAyMWEtNDBjNi00MjkwLWFhM2UtNDExNmVmMzEzNzExXkEyXkFqcGc@._V1_SX300.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "6.5/10"
+   },
+   {
+    "Source": "Rotten Tomatoes",
+    "Value": "32%"
+   },
+   {
+    "Source": "Metacritic",
+    "Value": "53/100"
+   }
+  ],
+  "PlotShort": "A parody of several U.S. films about being in the \"'hood\", for instance Boyz n the Hood (1991), South Central (1992), Menace II Society (1993), Higher Learning (1995), and Juice (1992)."
+ },
+ "wl-f-wrong-move": {
+  "imdbID": "tt0071483",
+  "imdbRating": "6.9",
+  "imdbVotes": "4,057",
+  "Awards": "6 wins & 1 nomination",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BOTFlNjMwMjYtYmFjYy00YWFlLWI3ZTktYmJkZDViYWQ5ZTExXkEyXkFqcGc@._V1_SX300.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "6.9/10"
+   }
+  ],
+  "PlotShort": "A writer goes on a road trip across West Germany with a group of eclectic people he meets along the way."
+ },
+ "wl-f-naga-wyspa": {
+  "imdbID": "tt0056049",
+  "imdbRating": "8.0",
+  "imdbVotes": "6,893",
+  "Awards": "Nominated for 1 BAFTA Award. 5 wins & 1 nomination total",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BOTE5ODM0NzItODlhOC00NmYyLTg5OGMtZDEyNjIyYjEwMDY0XkEyXkFqcGc@._V1_QL75_UX380_CR0,7,380,562_.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "8.0/10"
+   },
+   {
+    "Source": "Rotten Tomatoes",
+    "Value": "100%"
+   }
+  ],
+  "PlotShort": "A family of four are the sole inhabitants of a small island where they struggle each day to irrigate their crops."
+ },
+ "wl-f-faraway-so-close": {
+  "imdbID": "tt0107209",
+  "imdbRating": "7.2",
+  "imdbVotes": "9,714",
+  "Metascore": "61",
+  "Awards": "4 wins & 7 nominations total",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BNDUxMjAzYWQtOWFiNS00ZDczLTkyZTMtZThiMGUxYjMwOWI4XkEyXkFqcGc@._V1_SX300.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "7.2/10"
+   },
+   {
+    "Source": "Metacritic",
+    "Value": "61/100"
+   }
+  ],
+  "PlotShort": "A group of angels in the German capital look longingly upon the life of humans."
+ },
+ "wl-f-muramasa-tezuka": {
+  "imdbID": "tt3091122",
+  "imdbRating": "6.8",
+  "imdbVotes": "154",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BOWY5MWU2OTMtMWQ0MC00MmY1LTgwODEtZGQyODg3N2JkYTVjXkEyXkFqcGc@._V1_SX300.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "6.8/10"
+   }
+  ],
+  "PlotShort": "A samurai discovers a cursed sword thrust through the heart of a straw man. With this weapon he slays all who oppose him, and many who do not. Men are scythed down as if they were made of straw."
+ },
+ "wl-f-obsession-2026": {
+  "imdbID": "tt37287335",
+  "imdbRating": "7.9",
+  "imdbVotes": "291,494",
+  "Metascore": "77",
+  "Awards": "7 wins & 15 nominations total",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BYzc1NWUwMDgtNGZlMS00ZmYzLWIzMzktNmMxMmY1MTUzNWExXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "7.9/10"
+   },
+   {
+    "Source": "Rotten Tomatoes",
+    "Value": "93%"
+   },
+   {
+    "Source": "Metacritic",
+    "Value": "77/100"
+   }
+  ],
+  "PlotShort": "Baron \"Bear\" Bailey breaks a novelty charm to force his co-worker Nikki Freeman to love him, but the supernatural compulsion warps her mind into violent obsession, trapping him in a nightmare he cannot wish away."
  }
 };
