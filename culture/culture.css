@@ -836,7 +836,7 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
   font-weight: 400;
   line-height: 0.98;
   letter-spacing: -0.025em;
-  margin: 0 0 6px;
+  margin: 0 0 24px;
   color: var(--paper-ink);
   text-wrap: pretty;
 }
@@ -844,7 +844,7 @@ body { margin: 0; font-family: var(--sans); -webkit-font-smoothing: antialiased;
 /* original / localized title under the English headline */
 .reader-orig {
   font-family: var(--serif); font-style: italic; font-size: 15px;
-  color: #8a8175; margin: 2px 0 12px;
+  color: #8a8175; margin: -16px 0 24px;   /* sits snug under the title; the gap below moves here */
 }
 .reader-where {
   font-family: var(--mono);
