@@ -3070,4 +3070,6 @@ window.CULTURE_IMPORTS = [
   { id: 'arco',               title: 'Arco', year: 2025, medium: 'Feature Animation', favorite: false, region: 'eu', rating: '6', director: 'Ugo Bienvenu', watchedDate: '2026-06-27' },
   { id: 'camphor-tree',       title: 'The Keeper of the Camphor Tree', year: 2026, medium: 'Feature Animation', favorite: false, region: 'jp', rating: '6', director: 'Tomohiko Ito', studio: 'A-1 Pictures', watchedDate: '2026-06-27' },
   { id: 'the-odyssey',        title: 'The Odyssey', year: 2026, medium: 'Movies', favorite: false, region: 'us', rating: '7', director: 'Christopher Nolan', watchedDate: '2026-07-23' },
+  { id: 'masters-of-the-universe-2026', title: 'Masters of the Universe', year: 2026, medium: 'Movies', favorite: false, region: 'us', director: 'Travis Knight', runtime: 141, watchedDate: '2026-09-20' },
+  { id: 'the-croods-a-new-age', title: 'The Croods: A New Age', year: 2020, medium: 'Feature Animation', favorite: false, region: 'us', director: 'Joel Crawford', studio: 'DreamWorks Animation', runtime: 95, watchedDate: '2026-09-20' },
 ];

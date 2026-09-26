@@ -1529,4 +1529,10 @@ window.CULTURE_WISHLIST = [
 {"id": "wl-b-solaris", "title": "Solaris", "year": 1961, "medium": "Books", "director": "Stanisław Lem", "source": "goodreads", "addedDate": "2020-06-06"},
 {"id": "wl-b-white-nights", "title": "White Nights", "year": 1848, "medium": "Books", "director": "Fyodor Dostoevsky", "source": "goodreads", "addedDate": "2023-07-30"},
 {"id": "wl-f-the-servant", "title": "The Servant", "year": 1963, "medium": "Movies", "director": "Joseph Losey", "source": "own", "addedDate": "2026-09-01"},
+{"id": "wl-f-naga-wyspa", "title": "Hadaka no shima", "enTitle": "The Naked Island", "polishTitle": "Naga wyspa", "year": 1960, "medium": "Movies", "region": "jp", "director": "Kaneto Shindō", "runtime": 97, "source": "own", "addedDate": "2026-09-27"},
+{"id": "wl-f-dont-be-a-menace", "title": "Don't Be a Menace to South Central While Drinking Your Juice in the Hood", "polishTitle": "Chłopaczki z sąsiedztwa", "year": 1996, "medium": "Movies", "region": "us", "director": "Paris Barclay", "runtime": 89, "source": "own", "addedDate": "2026-09-27"},
+{"id": "wl-f-muramasa-tezuka", "title": "Muramasa", "year": 1987, "medium": "Shorts", "region": "jp", "director": "Osamu Tezuka", "runtime": 9, "source": "own", "addedDate": "2026-09-27"},
+{"id": "wl-f-obsession-2026", "title": "Obsession", "polishTitle": "Obsesja", "year": 2026, "medium": "Movies", "region": "us", "director": "Curry Barker", "runtime": 109, "source": "own", "addedDate": "2026-09-27"},
+{"id": "wl-f-faraway-so-close", "title": "In weiter Ferne, so nah!", "enTitle": "Faraway, So Close!", "polishTitle": "Tak daleko, tak blisko", "year": 1993, "medium": "Movies", "region": "de", "director": "Wim Wenders", "runtime": 147, "source": "own", "addedDate": "2026-09-27"},
+{"id": "wl-f-wrong-move", "title": "Falsche Bewegung", "enTitle": "Wrong Move", "polishTitle": "Fałszywy ruch", "year": 1975, "medium": "Movies", "region": "de", "director": "Wim Wenders", "runtime": 105, "source": "own", "addedDate": "2026-09-27"},
 ];
