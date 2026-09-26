@@ -2410,3 +2410,34 @@ Also unrun this wave: the beside candidate-pool stage. No `beside_candidates.jso
 builder for one exists in the repo, so the drafters chose companions freely. Grounding was verified
 by hand against the store instead (all five companions in canon, all shipping an Info). Building a
 pool after drafting is theatre — pools constrain the CHOICE, so they belong in the build stage.
+
+---
+
+## 2026-09-26 — THE 5.5-AUDIT RULES (Fuad: "methodology tweaks approved", on the audit of waves 14–16)
+
+Companion to READS_SPEC's rules of the same date; audit in memory `state-2026-09-26-canvas55-audit`.
+mv 6 changed no brief text — it is the mv 5 recipe with every agent on Opus 5.5 — and the defects
+below followed the model switch (wave 14's Opus 5 tours on the same briefs are clean).
+
+1. **CONTEXT ROLE CHECK (Fuad 2026-09-26).** `context` is the moment: it must carry at least one
+   dated event of the artist's life or of the work's making and world. A context whose every
+   sentence is a holder-record field (accession, dimensions, raisonné number, provenance chain,
+   exhibition list) FAILS the seal, however verified. The three mv6 contexts (Renoir, Monet,
+   Ciągliński) are the counter-specimens; wave 14's Tiepolo (the commission through its dated
+   letters) is the type specimen. This turns the long-carried "rich-record / thin-object context
+   template" gait prior into an actual seal check instead of a forecast note.
+2. **MEASUREMENT QUARANTINE (Fuad 2026-09-26).** Probe and eye-report numbers VERIFY claims; they
+   are not prose. Reader-facing text carries at most one measured figure per stop, none in the four
+   lenses unless the figure itself is the finding, and the vocabulary of the pipeline — "pixels",
+   "threshold", "sampled", "a lightness scale of 100", "median colour" — never reaches the reader.
+   Greppable at the seal. Counter-specimens: the Renoir about-lens ("36 of the 88 lightest
+   pixels"), the Monet about-lens ("80 evenly spaced native samples").
+3. **CROSS-WAVE TEMPLATE DIFF (Fuad 2026-09-26).** Before merge, the new deeps and Infos are read
+   against the last six shipped ones for a shared thesis shape, not just shared n-grams — five of
+   the six 5.5 deeps converged on one paint-vs-paperwork essay across three waves and per-wave QC
+   could not see it.
+4. **THE COUNTERWEIGHT PARAGRAPH (Fuad 2026-09-26).** Every drafting brief carries: the reader is a
+   person standing in front of a painting, and the record is scaffolding. When the verified pool is
+   thin, the answer is wider research or honest brevity — never a recitation of the file. Written
+   against Opus 5.5's habit of maximal compliance with verification rules at the cost of the
+   subject.

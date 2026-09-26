@@ -1470,3 +1470,31 @@ plan file.
 `art-about.js` only, though STUDY_SPEC has always had museum reads in scope.
 `scan-refs-museums.js` closes that gap and is where the 18 museum refs came from. Re-run **both**
 scanners when the band is next widened.
+
+---
+
+## 2026-09-26 — THE 5.5-AUDIT RULES (Fuad: "methodology tweaks approved", on the audit of waves 14–16)
+
+The audit (memory `state-2026-09-26-canvas55-audit`; trigger was Fuad calling the Renoir "messy…
+the info is not hooky at all") found three strands: Opus 5.5 transcribes the record where Opus 5
+dramatized it; the orchestrator's reservations starved 3/3 mv6 Infos; and no gate tested role or
+interest. These rules answer the second and third strands at this layer:
+
+1. **HOOK PRECEDENCE (Fuad 2026-09-26).** A claim may be RESERVED for the Interpretation only when
+   a second verified hook remains for the Info. A one-story work gives its story to the INFO; the
+   Interpretation then deepens it (DEEPEN-NEVER-RE-NAME already permits that). The wave-15/16
+   counter-specimens: Monet's title history, Renoir's classing/dation, Ciągliński's double title —
+   each reserved away from its Info, leaving a caption. Reserving a work's only hook is now a brief
+   defect, caught at the fusion review.
+2. **LABEL-CITATION GATE (Fuad 2026-09-26; mechanizes the 2026-08-15 voice lesson).** Reader-facing
+   prose states facts and never cites the apparatus: "the register calls it", "its catalogue entry
+   ties", "the record gives", "the museum catalogues it as" all FAIL the seal scan. Museums and
+   catalogues appear only as actors in a story (a purchase, a sale, an export battle). Shipped
+   violations that triggered this: the Renoir Info ("France's heritage register calls it one of his
+   most beautiful"), the Liljefors Info ("its catalogue entry ties to Darwin's ideas").
+3. **RESEARCH SCOPE (Fuad 2026-09-26).** Before a work is declared RECORD-THIN, research must
+   attempt at least ONE readable secondary source (monograph, curatorial essay, serious press) for
+   the artist-year moment — the wave-16 Renoir research read three catalogue records, killed the
+   biography as "widely repeated, unsourced", and never opened a monograph. And research reports
+   FACTS with sources; it does not issue allocation directives ("should not pad the landscape with
+   biography" was research overreach that the drafter obeyed maximally).
