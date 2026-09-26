@@ -2235,12 +2235,11 @@ function Reader({ item, onClose, onJump, allItems, otherItems, library, onFilter
             {item.episodes ? <React.Fragment><span className="sep"/><span>{item.episodes} eps</span></React.Fragment> : null}
             {item.totalMinutes ? <React.Fragment><span className="sep"/><span>{formatRuntime(item.totalMinutes)} total</span></React.Fragment> : null}
             {item.rating ? <React.Fragment><span className="sep"/><span>★ {item.rating}/10</span></React.Fragment> : null}
-            {!item.rating && item.pred ? <React.Fragment><span className="sep"/><span className="pred-chip" title={item.predWhy && item.predWhy.length ? 'Because: ' + item.predWhy.join('; ') : 'Fable-tuned prediction from your ratings'}>◇ predicted {item.pred}/10 for you</span></React.Fragment> : null}
             {item.genres && item.genres.length > 0 ? <React.Fragment><span className="sep"/><span>{item.genres.slice(0, 4).map((g, i) => <React.Fragment key={g}>{i > 0 && ' · '}<span className="meta-link" onClick={() => onFilter && onFilter(`genre:${g}`)}>{g}</span></React.Fragment>)}</span></React.Fragment> : null}
             {item.igdbFranchise ? <React.Fragment><span className="sep"/><span>Series: {item.igdbFranchise}</span></React.Fragment> : null}
             {item.watchedDate ? <React.Fragment><span className="sep"/><span>Rated {item.watchedDate}</span></React.Fragment> : null}
-            <span className="sep"/>
-            <span>№ {String(posInMedium).padStart(3,'0')} of {String(inMedium.length).padStart(3,'0')}</span>
+            {library !== 'wishlist' ? <React.Fragment><span className="sep"/><span>№ {String(posInMedium).padStart(3,'0')} of {String(inMedium.length).padStart(3,'0')}</span></React.Fragment> : null}
+            {!item.rating && item.pred ? <React.Fragment><span className="sep"/><span className="pred-chip" title={item.predWhy && item.predWhy.length ? 'Because: ' + item.predWhy.join('; ') : 'Fable-tuned prediction from your ratings'}>◇ predicted {item.pred}/10 for you</span></React.Fragment> : null}
           </div>
           {(item.director || item.writer || item.cinematographer || item.composer || item.animationDirector) && (
             <div className="reader-crew">
@@ -2269,7 +2268,6 @@ function Reader({ item, onClose, onJump, allItems, otherItems, library, onFilter
             const uniq = [...new Set(alts)];
             return uniq.length ? <div className="reader-orig">{uniq.join(' · ')}</div> : null;
           })()}
-          <div className="reader-where">Fuad's library &nbsp;/&nbsp; {item.medium}</div>
           <ReaderQuote key={'quote-' + item.id} item={item} />
           <ReaderSummary key={'summary-' + item.id} item={item} />
           {(() => {
