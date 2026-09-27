@@ -380,6 +380,9 @@ a { color: inherit; }
    have doubled the row's width, and the colour IS the label. The lit one carries a ring so the
    active sort is legible at a glance. */
 .cv-picks { display: inline-flex; align-items: center; gap: 4px; }
+/* phones keep only the custom colour well (Fuad 2026-09-28); the preset dots stay on wider screens.
+   A preset still active from a link is cleared by picking any sort in the dropdown. */
+@media (max-width: 620px) { .cv-picks .cv-pick-dot { display: none; } .cv-pick-custom { margin-left: 0; } }
 .cv-pick-dot { padding: 2px !important; border: 0 !important; background: none !important; line-height: 0; cursor: pointer; border-radius: 50%; }
 .cv-pick-dot i { display: block; width: 15px; height: 15px; border-radius: 50%; margin: 0;
   border: 1px solid rgba(58,47,34,.28); transition: transform .12s, box-shadow .12s; }
