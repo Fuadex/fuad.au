@@ -2109,10 +2109,12 @@ function Wall({ go, styleIds }) {
           {/* value="hang" stays unchanged — the default is omitted from permalinks and old links must
               keep working; only the display label was updated to name what the arrangement actually is
               (Fuad approved the trio 2026-08-27/28). */}
-          <option value="hang">salon rhythm</option>
-          <option value="affinity">by affinity</option>
-          <option value="tierhue">tier + hue</option>
-          {sort === "colour" && <option value="colour">by colour</option>}
+          {/* labels shortened (Fuad 2026-09-28: "abbreviate to RHYTHM, AFFINITY, TIER + HUE"); each
+              option carries a one-line hover gloss since the names alone stay a little opaque */}
+          <option value="hang" title="hung like a salon: a standout piece, then a short run of related works, repeated">rhythm</option>
+          <option value="affinity" title="grouped by artist, the artists you love most first">affinity</option>
+          <option value="tierhue" title="favourites, then liked, then the rest, each run through the colour wheel">tier + hue</option>
+          {sort === "colour" && <option value="colour" title="sorted toward the picked colour">colour</option>}
         </select>
         {/* RESHUFFLE (Fuad approved seeded shuffle, 2026-08-27). Only meaningful for the salon hang —
             the affinity, tierhue, and (hidden) colour sorts are fully determined, so the ↻ appears
@@ -2139,8 +2141,8 @@ function Wall({ go, styleIds }) {
             step, which is what "integrated" meant. Circles only, names on hover — ten labelled
             chips would have doubled the width of this row. */}
         <span className="cv-filt-div" aria-hidden="true" />
-        <span className="cv-pick-lbl">colour</span>
-        <span className="cv-picks">
+        {/* the "colour" label was dropped (Fuad 2026-09-28: "just takes space") — the swatches speak for themselves */}
+        <span className="cv-picks" role="group" aria-label="sort by colour">
           {SPECTRUM_PICKS.map(([hex, label]) => {
             const on = sort === "colour" && pick === hex;
             return (

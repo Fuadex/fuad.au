@@ -386,8 +386,6 @@ a { color: inherit; }
 .cv-pick-dot:hover i { transform: scale(1.18); }
 .cv-pick-dot[data-on="true"] i { box-shadow: 0 0 0 2px var(--paper), 0 0 0 3.5px var(--ink); transform: scale(1.12); }
 .cv-pick-ramp { background: conic-gradient(#b23b2e, #c8762a, #c2a53c, #4a7a45, #2f6285, #6b4b86, #b23b2e); }
-.cv-pick-lbl { font: 500 9.5px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase;
-  color: var(--ink-faint); align-self: center; }
 .cv-pick-custom { display: inline-flex; align-items: center; cursor: pointer; line-height: 0; margin-left: 2px; }
 .cv-pick-custom input { width: 15px; height: 15px; padding: 0; border: 1px solid rgba(58,47,34,.28);
   border-radius: 50%; background: none; cursor: pointer; transition: transform .12s, box-shadow .12s; }
@@ -622,7 +620,9 @@ a { color: inherit; }
     flex-wrap: wrap; gap: 0; overflow: visible; padding-right: 16px;
     -webkit-mask-image: none; mask-image: none;
   }
-  .cv-objrow .cv-objgrp { display: flex; width: 100%; padding: 6px 34px 0 0; }
+  /* no top padding: the row itself already sits 10px under the one above, like every other filter row
+     (Fuad 2026-09-28: quality→medium gap read looser than the rest on a phone) */
+  .cv-objrow .cv-objgrp { display: flex; width: 100%; padding: 0 34px 0 0; }
 }
 /* ——— YEAR RANGE (Fuad 2026-09-08) — replaces the era chip row: "a draggable time period handles
    over a line … more power and take less space than the current Era buttons". One band carries a
