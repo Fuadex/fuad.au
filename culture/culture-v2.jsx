@@ -1022,6 +1022,25 @@ function wlScore(it) {
   const i = it.omdb && it.omdb.imdbRating && it.omdb.imdbRating !== 'N/A' ? parseFloat(it.omdb.imdbRating) : null;
   return f != null ? f : i;
 }
+// One picker row. Defined at MODULE scope on purpose (Fuad 2026-09-28: re-rolling "Surprise me"
+// bounced the Stats modal to the top). As an inline component inside WishlistPicker it was a new
+// component type on every render, so a re-roll unmounted and rebuilt all three rows — the focused
+// re-roll button included — and the modal's scroller snapped back to 0.
+function WlPickRow({ title, list, sub, MG, onOpenItem }) {
+  if (!list.length) return null;
+  const listSrcs = list.map(it => it.poster || it.tmdbPoster || it.igdbCover || it.bookCover);
+  return (
+    <div className="wl-pick-row">
+      <div className="wl-pick-head"><span className="stats-section-title">{title}</span>{sub}</div>
+      <div className="explorer-wall">
+        {list.map((it, i) => { const img = listSrcs[i]; return (
+          <a key={it.id} className="xcover" onClick={() => onOpenItem && onOpenItem(it)} title={`${displayTitle(it)} (${it.year || ''})${wlScore(it) ? ' · ⌀ ' + wlScore(it) : ''}`}>
+            {img ? <LazyImg src={img} alt="" peek={{ list: listSrcs, index: i }} /> : <span className="xcover-fallback" style={{ '--pf-bg': spineBodyColor(it) }}>{MG[it.medium] || '•'}</span>}
+          </a>); })}
+      </div>
+    </div>
+  );
+}
 function WishlistPicker({ items, seenItems, onOpenItem }) {
   const [seed, setSeed] = React.useState(0);
   const MG = (window.CULTURE && window.CULTURE.MEDIA_GLYPH) || {};
@@ -1047,24 +1066,12 @@ function WishlistPicker({ items, seenItems, onOpenItem }) {
     return a.slice(0, 12);
   }, [items, seed]);
 
-  const Row = ({ title, list, sub }) => list.length > 0 && (
-    <div className="wl-pick-row">
-      <div className="wl-pick-head"><span className="stats-section-title">{title}</span>{sub}</div>
-      <div className="explorer-wall">
-        {(() => { const listSrcs = list.map(it => it.poster || it.tmdbPoster || it.igdbCover || it.bookCover);
-        return list.map((it, i) => { const img = listSrcs[i]; return (
-          <a key={it.id} className="xcover" onClick={() => onOpenItem && onOpenItem(it)} title={`${displayTitle(it)} (${it.year || ''})${wlScore(it) ? ' · ⌀ ' + wlScore(it) : ''}`}>
-            {img ? <LazyImg src={img} alt="" peek={{ list: listSrcs, index: i }} /> : <span className="xcover-fallback" style={{ '--pf-bg': spineBodyColor(it) }}>{MG[it.medium] || '•'}</span>}
-          </a>); }); })()}
-      </div>
-    </div>
-  );
   return (
     <div className="stats-section">
       <div className="stats-section-title" style={{ marginBottom: 10 }}>Pick your next watch — {items.length} on the list</div>
-      <Row title="Acclaimed & unseen" list={acclaimed} sub={<span className="wl-pick-sub">highest community score</span>} />
-      <Row title="More of what you love" list={tasteMatch} sub={<span className="wl-pick-sub">your top genres & directors</span>} />
-      <Row title="Surprise me" list={surprise} sub={<button className="xclear" onClick={() => setSeed(s => s + 1)}>re-roll</button>} />
+      <WlPickRow MG={MG} onOpenItem={onOpenItem} title="Acclaimed & unseen" list={acclaimed} sub={<span className="wl-pick-sub">highest community score</span>} />
+      <WlPickRow MG={MG} onOpenItem={onOpenItem} title="More of what you love" list={tasteMatch} sub={<span className="wl-pick-sub">your top genres & directors</span>} />
+      <WlPickRow MG={MG} onOpenItem={onOpenItem} title="Surprise me" list={surprise} sub={<button className="xclear" onClick={() => setSeed(s => s + 1)}>re-roll</button>} />
     </div>
   );
 }
