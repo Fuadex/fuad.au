@@ -1203,10 +1203,11 @@ function StatsModal({ allItems, library, seenItemsForTaste, onClose, onOpenItem,
         </div>
 
         {tab === 'halls' && <Halls items={statItems} />}
+        {/* the wishlist picker lives under Explore, not Charts (Fuad 2026-09-28: it landed on the first stats page) */}
+        {tab === 'taste' && library === 'wishlist' && <WishlistPicker items={statItems} seenItems={seenItemsForTaste || []} onOpenItem={onOpenItem} />}
         {tab === 'taste' && <TasteProfile items={statItems} onOpenItem={onOpenItem} />}
 
         {tab === 'charts' && <React.Fragment>
-        {library === 'wishlist' && <WishlistPicker items={statItems} seenItems={seenItemsForTaste || []} onOpenItem={onOpenItem} />}
         <div className="stats-section">
           <div className="stats-section-title-row">
             <div className="stats-section-title">
