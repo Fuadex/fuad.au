@@ -2813,6 +2813,7 @@ function DeepZoom({ work, onClose, onOsdFail }) {
 // then the long-form `deeper` study chapters. Any lens/chapter with an {x,y,w,h} anchor gets a
 // "⌖ look" button that flies the viewer there; when an anchored section scrolls into view (and
 // auto-follow is on) the viewer GENTLY flies there on its own — reading IS the tour.
+const SHOW_READER_NOTE = false;   // reader note quote hidden 2026-09-27 (see Reader)
 const STUDY_LENS_LABELS = { see: "What you see", about: "What it's about", craft: "Why it sings", context: "The moment" };
 const STUDY_LENS_ORDER = ["see", "about", "craft", "context"];
 
@@ -3258,7 +3259,9 @@ function Reader({ id, go }) {
               )}
             </div>
           )}
-          {w.note && <div className="cv-r-note">{w.note}</div>}
+          {/* Reader note quote HIDDEN (Fuad 2026-09-27: "hide in readers the quotes for now as they
+              don't carry anything"). Notes stay in artworks.js; flip SHOW_READER_NOTE to restore. */}
+          {SHOW_READER_NOTE && w.note && <div className="cv-r-note">{w.note}</div>}
           {/* The four-lens inspection panel (see / about / craft / context) was removed
               2026-08-24: "let's remove the inspection - a close reading by (...) element as it
               already lives as part of the tours". It duplicated the study tour's own four
