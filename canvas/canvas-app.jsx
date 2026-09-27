@@ -1268,8 +1268,22 @@ function affinityOrder(list) {
   // Assemble: declared → met → discovery tail → artist-less pool, each cluster internally ordered, then
   // the image-less works append in that same cluster sequence so the coda mirrors the wall's own order.
   const orderedClusters = [...declared, ...met, ...tail, ...(orphanCluster ? [orphanCluster] : [])];
+  // ARTISTS TAKE TURNS (Fuad 2026-09-28). Emitting each cluster whole opened the wall on 48 Monets in a
+  // row. Now a WINDOW of the 12 highest-ranked clusters rotates, each giving TURN works per pass; when
+  // a cluster runs dry the next one in rank order takes its seat. Rank order (declared → met → tail →
+  // artist-less) and the within-cluster order are unchanged, so a loved artist still arrives first and
+  // stays present until their works run out — they just share the wall while they do.
+  const WINDOW = 12, TURN = 2;
+  const queue = orderedClusters.map(c => ({ c, list: orderWithin(c), i: 0 }));
+  const seats = queue.splice(0, WINDOW);
   const out = [];
-  for (const c of orderedClusters) for (const w of orderWithin(c)) out.push(w);
+  while (seats.length) {
+    for (let k = 0; k < seats.length; k++) {
+      const st = seats[k];
+      for (let t = 0; t < TURN && st.i < st.list.length; t++) out.push(st.list[st.i++]);
+      if (st.i >= st.list.length) { const nx = queue.shift(); if (nx) seats[k] = nx; else { seats.splice(k, 1); k--; } }
+    }
+  }
 
   // Image-less coda: bucket the no-image works by the SAME cluster key and emit them in the cluster
   // order we just used, so an artist's picture-less works follow their pictured ones at the wall's end.
@@ -1311,14 +1325,7 @@ function affinityOrder(list) {
 // Returns a fresh array (same contract as salonOrder/affinityOrder). Complexity O(n log n).
 //
 // 2026-08-28
-function tierHueOrder(list) {
-  const imgd  = list.filter(w => w.imgGrid);
-  const noImg = list.filter(w => !w.imgGrid)
-    .sort((a, b) => weight(a) - weight(b) || palHueOf(a) - palHueOf(b) || String(a.id).localeCompare(String(b.id)));
-  const sorted = imgd.slice().sort((a, b) =>
-    weight(a) - weight(b) || palHueOf(a) - palHueOf(b) || String(a.id).localeCompare(String(b.id)));
-  return [...sorted, ...noImg];
-}
+// tierHueOrder was removed with the "tier + hue" sort (Fuad 2026-09-28) — see git history.
 
 // ── WALL PERMALINKS (Fuad approved 2026-08-27, "should extend to other buttons currently on the
 // wall"). The whole designed wall — marks, status, the year range, media, quality, MP floor, tour, sort,
@@ -1350,7 +1357,7 @@ const WALL_QUAL_KEYS = new Set(QUALITY.map(q => q[0]));
 // Valid non-hang sorts for permalinks. year/artist/museum retired 2026-08-28 and are deliberately
 // absent, so a legacy shared link carrying one of them fails this membership test in the parser and
 // silently falls back to hang (the default) rather than restoring a sort that no longer exists.
-const WALL_SORTS = new Set(["affinity", "tierhue", "colour"]);
+const WALL_SORTS = new Set(["affinity", "colour"]);   // "tierhue" retired 2026-09-28 — old links fall back to the hang
 const WALL_TOK_PREFIX = { artist: "a", museum: "m", city: "c", work: "w" };
 const WALL_TOK_TYPE = { a: "artist", m: "museum", c: "city", w: "work" };
 // `er=` PARSER — reads BOTH the current form and the retired one, so no shared wall URL ever rots.
@@ -1957,9 +1964,7 @@ function Wall({ go, styleIds }) {
     // runs on it. It reads only `arr`'s contents and module globals (AFFINITY/CANVAS_AFFINITY, weight,
     // isUnseen), so it needs no new memo dep. year/artist/museum branches removed the same day.
     else if (sort === "affinity") arr = affinityOrder(arr);
-    // "tier + hue" (Fuad 2026-08-28) — weight tier then hue drift; see tierHueOrder. Returns a fresh
-    // array. Reads only arr contents + module-scope weight/palHueOf — no new memo dep needed.
-    else if (sort === "tierhue") arr = tierHueOrder(arr);
+    // ("tier + hue" lived here until 2026-09-28, when Fuad retired it as too close to affinity.)
     else if (sort === "colour") {
       const target = pick ? rgbOf(pick) : null;
       if (target) arr.sort((a, b) => palDistTo(a, target) - palDistTo(b, target) || weight(a) - weight(b));
@@ -2162,7 +2167,8 @@ function Wall({ go, styleIds }) {
               option carries a one-line hover gloss since the names alone stay a little opaque */}
           <option value="hang" title="hung like a salon: a standout piece, then a short run of related works, repeated">rhythm</option>
           <option value="affinity" title="grouped by artist, the artists you love most first">affinity</option>
-          <option value="tierhue" title="favourites, then liked, then the rest, each run through the colour wheel">tier + hue</option>
+          {/* "tier + hue" RETIRED (Fuad 2026-09-28): it read too much like affinity — both open on your
+              favourites, and its hue drift was invisible because most paintings sit in the same warm browns. */}
           {sort === "colour" && <option value="colour" title="sorted toward the picked colour">colour</option>}
         </select>
         {/* RESHUFFLE (Fuad approved seeded shuffle, 2026-08-27). Only meaningful for the salon hang —
