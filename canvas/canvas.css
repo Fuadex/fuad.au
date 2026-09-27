@@ -1598,3 +1598,9 @@ a { color: inherit; }
   /* the eye is drawn, not typed: it sits as a block and the pill loses the text-side padding */
   .cv-mus-filt:has(.cv-eye) { padding: 4px 9px; }
 }
+
+/* STABLE MASONRY (Fuad 2026-09-28) — the main wall and the artist wall deal tiles into fixed lanes in JS
+   (StableWall) instead of CSS columns, so "hang more" appends at the bottom and never re-deals what is
+   on screen. The class pair outranks every .cv-wall / .cv-a-wall column-count rule above. */
+.cv-wall.cv-wall-mason { column-count: auto; display: flex; align-items: flex-start; gap: 8px; }
+.cv-wall-mason .cv-wcol { flex: 1 1 0; min-width: 0; }

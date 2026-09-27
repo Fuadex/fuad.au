@@ -667,6 +667,55 @@ function ConfChip({ conf }) {
   return <span className="cv-chip" data-k={"conf-" + conf}>{label}</span>;
 }
 
+// ——— STABLE MASONRY (Fuad 2026-09-28: "when loading new objects, these tend to kind of rearrange the rows,
+// some paintings end up going to the top … ideally we'd just populate artworks at the bottom and not shuffle
+// anything that was first chosen"). CSS multi-column (the old .cv-wall) re-BALANCES every column whenever
+// content is added, so each "hang 48 more" re-dealt the tiles already on screen. Here every work is dealt
+// ONCE to the shortest column and keeps that slot: a batch appended to the same list only extends the
+// columns downward. The layout restarts only when the list stops being a prefix-extension of the last one
+// (a filter/sort/hang change) or the column count changes (a breakpoint). Heights are ESTIMATED from the
+// measured plate size (w.px — every imaged work but ~24) plus a rough label height; an estimate can only
+// make columns a little uneven, never move a tile. Breakpoints mirror the old column-count rules.
+const wallCols = (vw) => vw <= 620 ? 2 : vw <= 900 ? 3 : vw <= 1200 ? 4 : vw <= 1500 ? 5 : 6;
+function useWallCols() {
+  const [n, setN] = useState(() => wallCols(window.innerWidth));
+  useEffect(() => {
+    const on = () => setN(wallCols(window.innerWidth));
+    window.addEventListener("resize", on);
+    return () => window.removeEventListener("resize", on);
+  }, []);
+  return n;
+}
+function estCardH(w, colW) {
+  const hasImg = !!w.imgGrid;
+  const imgH = hasImg ? colW * (w.px ? w.px[1] / w.px[0] : 1.25) : 0;
+  const chars = Math.max(1, Math.floor((colW - 24) / 7.4));            // ~serif title glyphs per line
+  const lines = Math.min(3, Math.ceil((w.title || "").length / chars));
+  const label = 40 + 17 * lines + (hasImg ? 0 : 60);                    // byline + padding (+ text-card note)
+  return imgH + label + 8;                                              // + the 8px card margin
+}
+function StableWall({ works, className, go }) {
+  const cols = useWallCols();
+  const mem = useRef({ cols: 0, ids: [], at: [], h: [] });
+  const m = mem.current;
+  const prefixOK = m.cols === cols && m.ids.length <= works.length && m.ids.every((id, i) => works[i].id === id);
+  if (!prefixOK) { m.cols = cols; m.ids = []; m.at = []; m.h = new Array(cols).fill(0); }
+  const colW = Math.max(120, (Math.min(window.innerWidth, 2400) - 48 - 8 * (cols - 1)) / cols);
+  for (let i = m.ids.length; i < works.length; i++) {
+    let c = 0;
+    for (let k = 1; k < cols; k++) if (m.h[k] < m.h[c] - 1) c = k;   // shortest column, leftmost on ties
+    m.ids.push(works[i].id); m.at.push(c); m.h[c] += estCardH(works[i], colW);
+  }
+  // a SHRUNK list with the same prefix (pager reset) keeps its deal; just render what is present
+  const lanes = Array.from({ length: cols }, () => []);
+  for (let i = 0; i < works.length; i++) lanes[m.at[i]].push(works[i]);
+  return (
+    <div className={className + " cv-wall-mason"}>
+      {lanes.map((lane, c) => <div key={c} className="cv-wcol">{lane.map(w => <Card key={w.id} w={w} go={go} />)}</div>)}
+    </div>
+  );
+}
+
 function Card({ w, go }) {
   const img = w.imgGrid;
   const title = w.label && !/^TBC/.test(w.title) ? w.title : w.title.replace(/^TBC — /, "");
@@ -2307,7 +2356,7 @@ function Wall({ go, styleIds }) {
           {shown.length} {shown.length === 1 ? "work" : "works"} by artists working in {sel.join(" or ")}
         </div>
       )}
-      <div className="cv-wall">{vis.map(w => <Card key={w.id} w={w} go={go} />)}</div>
+      <StableWall works={vis} className="cv-wall" go={go} />
       {shown.length > visN && (
         <div className="cv-more"><button onClick={() => setExtra(e => e + CAP)}>hang {Math.min(CAP, shown.length - visN)} more</button></div>
       )}
@@ -4330,7 +4379,7 @@ function ArtistView({ artistId, go }) {
         </div>
       )}
       {/* FILTER FIRST, THEN SLICE — the pager pages the filtered wall, not the canon behind it */}
-      <div className="cv-wall cv-a-wall">{aWorks.slice(0, wallN).map(w => <Card key={w.id} w={w} go={go} />)}</div>
+      <StableWall works={aWorks.slice(0, wallN)} className="cv-wall cv-a-wall" go={go} />
       {aWorks.length === 0 && <p className="cv-a-filt-none">Nothing of theirs matches that.</p>}
       {aWorks.length > wallN && (
         <div className="cv-more">
