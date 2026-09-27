@@ -6592,6 +6592,7 @@ function SearchBar({ go }) {
       // it), free-text queries rank the whole read corpus by meaning — "quiet snow at dusk"
       // works. Until it loads (or if it failed), the Wikidata-token tier below answers
       // exactly as before. The keyword hunt index rides inside huntSearch as a boost only.
+      const terms = expandQuery(needle).map(fold);
       if (HUNT_STATE && needle.length >= 3) {
         const hits = huntSearch(q, 40);
         if (hits && hits.length) {
@@ -6601,10 +6602,24 @@ function SearchBar({ go }) {
             const it = byId.get(h.id);
             if (it) out.push({ kind: "work", ...it, via: "hunt" });
           }
-          if (out.length) return out;
+          if (out.length) {
+            // PER-WORK FALLBACK (Fuad 2026-09-28: "if no tour then wikidata as fallback"). The meaning
+            // tier only knows works with our own prose (~800); before this, once it loaded, the ~1,000
+            // works known only by their Wikidata subjects vanished from Subjects mode. Works WITHOUT
+            // prose now answer from their Wikidata tokens, listed after the ranked meaning hits.
+            // Works that DO have prose are left to the meaning tier alone, as designed.
+            if (!HUNT_STATE.idSet) HUNT_STATE.idSet = new Set(HUNT_STATE.workIds);
+            let extra = 0;
+            for (const it of SEARCH_INDEX) {
+              if (extra >= 40) break;
+              if (HUNT_STATE.idSet.has(it.id) || !it.stok || !terms.some(t => it.stok.has(t))) continue;
+              out.push({ kind: "work", ...it, via: "subject" });
+              extra++;
+            }
+            return out;
+          }
         }
       }
-      const terms = expandQuery(needle).map(fold);
       const out = [];
       for (const it of SEARCH_INDEX) {
         if (!it.stok || !terms.some(t => it.stok.has(t))) continue;
