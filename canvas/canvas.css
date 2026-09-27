@@ -1604,3 +1604,6 @@ a { color: inherit; }
    on screen. The class pair outranks every .cv-wall / .cv-a-wall column-count rule above. */
 .cv-wall.cv-wall-mason { column-count: auto; display: flex; align-items: flex-start; gap: 8px; }
 .cv-wall-mason .cv-wcol { flex: 1 1 0; min-width: 0; }
+
+/* phones drop the year from wall-card bylines (Fuad 2026-09-28) — at two columns it pushed the artist onto a second line */
+@media (max-width: 620px) { .cv-byline-yr { display: none; } }

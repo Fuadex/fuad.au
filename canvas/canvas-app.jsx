@@ -747,7 +747,8 @@ function Card({ w, go }) {
         : <LazyImg src={img} alt={w.title + " — " + byline} />)}
       <div className="cv-label">
         <div className="cv-title">{title}</div>
-        <div className="cv-byline">{byline}</div>
+        {/* the year sits in its own span so phones can drop it (Fuad 2026-09-28) — alt text keeps it */}
+        <div className="cv-byline">{w.artist.replace(/\s*\(.*\)$/, "")}{w.year ? <span className="cv-byline-yr">{" · " + w.year}</span> : null}</div>
         {!img && w.note && <div className="cv-note">{w.note.split(" NOTE:")[0].split(" Attribution")[0]}</div>}
         {!img && <div className="cv-why">{/TBC/.test(w.title) ? "awaiting the recall deck" : "image withheld — in-copyright artist"}</div>}
       </div>
