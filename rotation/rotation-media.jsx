@@ -1220,7 +1220,9 @@ function BlurbSwitcher({ id, about }) {
   // the track has no model read at all: 353 songs ship a Genius blurb and nothing else, and dropping
   // it outright would leave their "What it s about" panel empty. A single source renders no button
   // row, so no Genius button appears in that case either — just the text.
-  if (geniusText && !sources.length) sources.push({ m: "genius", label: "Genius", text: geniusText, link: about && about[1] ? `https://genius.com/songs/${about[1]}` : null });
+  // NO outbound Genius link (Fuad 2026-09-29: "pull down those genius lyric links") — the blurb keeps a
+  // plain-text "via Genius" credit (the brand span below), so community-written text stays attributed.
+  if (geniusText && !sources.length) sources.push({ m: "genius", label: "Genius", text: geniusText, link: null });
   if (!sources.length) {
     // no read exists — if the track is classified instrumental, say so instead of vanishing
     const inst = window.ROTATION_INSTRUMENTALS;
