@@ -4244,8 +4244,8 @@ about: "Fantin-Latour spent his last decades trying to make music visible in pai
 by: "Opus · Fable" },
 
 "jozef-che-monski-beldonek": {
-about: "The same year Chełmoński painted this, 1888, Adolf Dygasiński published his naturalist story \"Beldonek\" in Warsaw — the tale of a nine-year-old peasant boy who bolts from home after a beating by his uncle. This is that runaway given a face: the painter, just back from years in Paris and settling into rural Mazovia, fixes Dygasiński's outcast child as a portrait rather than one more figure lost in a landscape.",
-by: "Opus · Fable" },
+about: "Chełmoński's Beldonek (1888–89) is based on Adolf Dygasiński's story, serialised without pictures in Tygodnik Ilustrowany from 16 June 1888. Dygasiński's hero, an orphan of not quite nine in his uncle's house, runs away after his aunt beats him and his uncle flogs him with a rope, goes with a beggar on pilgrimage to Częstochowa, and comes home with money and respect. Chełmoński, back from Paris, was living in Warsaw.",
+by: "Opus 5.5" },
 
 "henri-jean-guillaume-martin-beaute": {
 about: "A young nude rising out of a field of white lilies, 1900. The lily was Martin's emblem of purity; she half-hides behind her own raised arm and smiles with her mouth closed.",

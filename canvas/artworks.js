@@ -13,7 +13,8 @@ window.CANVAS_ARTWORKS = [
   { id: "podkowinski-szal-uniesien", title: "Szał uniesień (Frenzy of Exultations)", artist: "Władysław Podkowiński", artistId: "podkowinski", qid: "Q4942269", year: 1894,
     seenAt: "sukiennice", seenConfidence: "probably", favorite: true, note: "One canvas exists (slashed by the artist, restored) — hangs in Sukiennice; the Warsaw memory was likely a loan or another Podkowiński." },
 
-  { id: "leech-the-sunshade", title: "The Sunshade", artist: "William John Leech", artistId: "leech", qid: null, year: 1913,
+  // qid: Wikidata Q77892544 = NGI.1246, the National Gallery of Ireland object (wave-17 research, 2026-09-29).
+  { id: "leech-the-sunshade", title: "The Sunshade", artist: "William John Leech", artistId: "leech", qid: "Q77892544", qidTrusted: true, year: 1913,
     seenAt: "ngi", seenConfidence: "sure", favorite: true, featured: true, note: "\"Gorgeous.\"",
     // hand-linked image (in-copyright artist — no Commons P18; hotlink, consider mirroring later)
     img: "https://i.redd.it/mnk7k7eypic91.jpg", imgGrid: "https://i.redd.it/mnk7k7eypic91.jpg", imgZoom: "https://i.redd.it/mnk7k7eypic91.jpg" },
@@ -688,6 +689,7 @@ window.CANVAS_ARTWORKS = [
     seenAt: "met-nyc", seenConfidence: "sure", liked: true },
   { id: "unknown-one-who-understands", title: "One Who Understands", artist: "Paul Klee", artistId: "klee", qid: "Q20198210", qidTrusted: true, year: 1934,
     seenAt: "met-nyc", seenConfidence: "sure", loved: true },
+  // year: the Met dates it ca. 1886–88 (object 438015); the range opens at 1886.
   { id: "georges-seurat-gray-weather-grande-jatte", title: "Gray Weather, Grande Jatte", artist: "Georges Seurat", artistId: "seurat", qid: "Q19905268", qidTrusted: true, year: 1886,
     seenAt: "met-nyc", seenConfidence: "sure", floored: true },
   { id: "pierre-auguste-renoir-in-the-meadow", title: "In the Meadow", artist: "Pierre-Auguste Renoir", artistId: "renoir", qid: "Q19905164", qidTrusted: true, year: 1890,
@@ -1250,7 +1252,9 @@ window.CANVAS_ARTWORKS = [
     seenAt: "orsay", seenConfidence: "sure", loved: true },
   { id: "meindert-hobbema-the-avenue-at-middelharnis", title: "The Avenue at Middelharnis", artist: "Meindert Hobbema", artistId: "meindert-hobbema", qid: "Q119917966", qidTrusted: true,
     seenAt: "national-gallery-london", seenConfidence: "sure", loved: true },
-  { id: "j-m-w-turner-death-on-a-pale-horse", title: "Death on a pale horse", artist: "J. M. W. Turner", artistId: "turner", qid: "Q18687288", qidTrusted: true, year: 1825,
+  // Tate retitled N05504 "The Fall of Anarchy (?)" and dates it c. 1833–4 (Sam Smiles, Tate Papers 25, 2016;
+  // Tate label Jan 2025); formerly "Death on a Pale Horse", c. 1825–30. The slug keeps the old title on purpose.
+  { id: "j-m-w-turner-death-on-a-pale-horse", title: "The Fall of Anarchy (?)", artist: "J. M. W. Turner", artistId: "turner", qid: "Q18687288", qidTrusted: true, year: 1833,
     seenAt: "tate-britain", seenConfidence: "sure", floored: true },
   { id: "j-m-w-turner-shade-and-darkness-the-evening-of-the-deluge", title: "Shade and Darkness - the Evening of the Deluge", artist: "J. M. W. Turner", artistId: "turner", qid: "Q15077736", qidTrusted: true, year: 1843,
     seenAt: "tate-britain", seenConfidence: "sure", floored: true },
@@ -3217,7 +3221,9 @@ window.CANVAS_ARTWORKS = [
     wish: true, floored: true },
   { id: "awataguchi-hisakuni-untitled", title: "(untitled)", artist: "Awataguchi Hisakuni", artistId: "awataguchi-hisakuni", qid: "Q107045152", qidTrusted: true,
     wish: true, liked: true },
-  { id: "ivan-aivazovsky-stormy-sea", title: "Stormy Sea", artist: "Ivan Aivazovsky", artistId: "ivan-aivazovsky", qid: "Q115907522", qidTrusted: true, year: 1850,
+  // UNDATED: signed, not dated (Sotheby's London, 26 Nov 2013, lot 325). The 1850 that shipped here was
+  // Wikidata's "19th century" read as a year. Do not restore it.
+  { id: "ivan-aivazovsky-stormy-sea", title: "Stormy Sea", artist: "Ivan Aivazovsky", artistId: "ivan-aivazovsky", qid: "Q115907522", qidTrusted: true,
     wish: true, floored: true },
   { id: "james-mcneill-whistler-nocturne-blue-and-silver-battersea-re", title: "Nocturne, Blue and Silver: Battersea Reach", artist: "James McNeill Whistler", artistId: "whistler", qid: "Q103838346", qidTrusted: true, year: 1875,
     wish: true, liked: true },
@@ -3284,6 +3290,7 @@ window.CANVAS_ARTWORKS = [
     wish: true, liked: true },
   { id: "jozef-che-monski-dziewczyna-przy-studni", title: "Dziewczyna przy studni", artist: "Józef Chełmoński", artistId: "che-monski", qid: "Q135183237", qidTrusted: true, year: 1908,
     wish: true, liked: true },
+  // year: 1888–89 per the 2024 catalogue raisonné (Głowacki & Micke-Broniarek, vol. 2, no. 155); the range opens at 1888.
   { id: "jozef-che-monski-beldonek", title: "Beldonek", artist: "Józef Chełmoński", artistId: "che-monski", qid: "Q135012550", qidTrusted: true, year: 1888,
     wish: true, floored: true },
   { id: "anders-zorn-marin-studie-fran-atlanten", title: "Marin. Studie från Atlanten", artist: "Anders Zorn", artistId: "zorn", qid: "Q110774743", qidTrusted: true, year: 1894,
@@ -3370,6 +3377,7 @@ window.CANVAS_ARTWORKS = [
     wish: true, liked: true },
   { id: "stanis-aw-ignacy-witkiewicz-witkacy-portret-tadeusza-ficowsk", title: "Witkacy - Portret Tadeusza Ficowskiego.jpg", artist: "Stanisław Ignacy Witkiewicz", artistId: "stanis-aw-ignacy-witkiewicz", qid: "Q106787463", qidTrusted: true, year: 1929,
     wish: true, liked: true },
+  // year: every holder and lender credit gives c. 1931 (NGA 2009, NGV 2017, Geelong 2023). Kerry Stokes Collection, Perth.
   { id: "clarice-beckett-taxi-rank", title: "Taxi Rank", artist: "Clarice Beckett", artistId: "clarice-beckett", qid: "Q110619464", qidTrusted: true, year: 1931,
     wish: true, floored: true },
   { id: "max-liebermann-gro-e-seestra-e-in-wannsee", title: "Große Seestraße in Wannsee", artist: "Max Liebermann", artistId: "max-liebermann", qid: "Q133275598", qidTrusted: true, year: 1923,
