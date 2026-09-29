@@ -605,7 +605,7 @@ about: "Podkowiński's Frenzy of Exultations, 1894: a naked woman in ecstasy cli
 deep: "Kraków laughed at it and gossiped about the model's identity; after five weeks on show Podkowiński walked in and took a knife to the canvas — then died within the year at 29, and the painting was restored with his cuts inside it. The image itself is pure fin-de-siècle: eros as a runaway animal, the horse's head a storm-cloud of black paint that stops depicting and becomes pure vortex. You likely saw it in the Sukiennice's quiet salon of 19th-century Polish art, where it still radiates exactly the scandal the varnish can't cover." },
 
 "leech-the-sunshade": {
-about: "William John Leech, c. 1913: a woman — his wife Elizabeth — under a parasol in strong Concarneau light, the Irish post-impressionist's answer to the French plein-air masters. (Image withheld: Leech is in copyright until 2039 — see it at the NGI.)",
+about: "William John Leech, c. 1913: a woman — his wife Elizabeth — under a parasol in strong Concarneau light, the Irish post-impressionist's answer to the French plein-air masters.",
 deep: "Leech was an Irishman painting in Brittany with French eyes: the parasol filters the light green, the same bounced-colour game Monet played with Camille's dress, and the whole picture is really about that filtered glow on white fabric. That you singled this out at the National Gallery of Ireland — and its sibling, A Convent Garden, Brittany — before knowing any of this context, is your taste being consistent: parasols, filtered sunlight, figures dissolved in it. It's the same painting-idea you floored twice under other names.",
 refs: {"deep":[{"id":"leech-convent-garden","text":"A Convent Garden, Brittany"}]} },
 
