@@ -18,7 +18,7 @@ const CACHE_PATH = path.join(__dirname, "discogs-artist.json");
 const DISCOGS_PATH = path.join(__dirname, "discogs-cache.json");
 const INDEX_PATH = path.join(__dirname, "search-index.js");
 const DELAY_MS = TOKEN ? 1100 : 2600;
-const UA = "RotationEnricher/0.3 ( fuadex@gmail.com )";
+const UA = "RotationEnricher/0.3 ( https://fuad.au )";
 
 function getJSON(url) {
   return new Promise((resolve) => {

@@ -55,7 +55,7 @@ const PINS_PATH    = path.join(__dirname, "pins.json");
 const INDEX_PATH   = path.join(__dirname, "search-index.js");
 const TOP_PLAYS = 500;      // top-N-by-plays share priority class 0 with ended bands in the refresh lane
 const DELAY_MS  = 1100;     // ~1 req/sec (MusicBrainz rate limit)
-const UA = "RotationEnricher/0.2 ( fuadex@gmail.com )";
+const UA = "RotationEnricher/0.2 ( https://fuad.au )";
 const MEMBERS_KEY = "_members";   // reserved cache key: distinct-member gender sidecar {mbid→{g,fetched}}
 
 // ─────────── PINNED MBIDs WIN (Fuad 2026-09-21: "make sure all these folds are recorded

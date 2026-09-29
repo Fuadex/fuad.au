@@ -10,7 +10,7 @@ const fs = require("fs"), path = require("path"), vm = require("vm");
 const HERE = __dirname;
 const CACHE_PATH = path.join(HERE, "wikidata_cache.json");
 const OUT_PATH = path.join(HERE, "art_data.js");
-const UA = "fuad.au-canvas/0.1 (https://fuad.au; fuadex@gmail.com)";
+const UA = "fuad.au-canvas/0.1 (https://fuad.au)";
 const FORCE = process.argv.includes("--force");
 
 function evalFile(file, glob) {

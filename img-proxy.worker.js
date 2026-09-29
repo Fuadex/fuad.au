@@ -81,7 +81,7 @@ export default {
 
     const upstream = base + url.pathname.slice(slash) + url.search;
     const up = await fetch(upstream, {
-      headers: { "User-Agent": "fuad.au-img-proxy/1.0 (https://fuad.au; fuadex@gmail.com)" },
+      headers: { "User-Agent": "fuad.au-img-proxy/1.0 (https://fuad.au)" },
       redirect: "follow",                                  // Special:FilePath is a redirect
       cf: { cacheEverything: true, cacheTtl: YEAR },
     });

@@ -8,7 +8,7 @@
 //
 //   node hires-commons.js   -> ../../.sptmp/hires-commons.json
 const fs = require("fs"), path = require("path");
-const UA = { "User-Agent": "fuad.au-canvas/0.1 (https://fuad.au; fuadex@gmail.com)" };
+const UA = { "User-Agent": "fuad.au-canvas/0.1 (https://fuad.au)" };
 const S = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "..", ".sptmp", "hires-scout.json"), "utf8"));
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 

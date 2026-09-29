@@ -25,7 +25,7 @@
 // report, never silently guessed.
 const fs = require("fs"), path = require("path");
 const HERE = __dirname;
-const UA = { "User-Agent": "fuad.au-canvas/0.1 (https://fuad.au; fuadex@gmail.com)" };
+const UA = { "User-Agent": "fuad.au-canvas/0.1 (https://fuad.au)" };
 const CACHE = path.join(HERE, "medium_cache.json");
 const LABELS = path.join(HERE, "medium_labels.json");   // P31 qid -> English label
 const WD_CACHE = path.join(HERE, "wikidata_cache.json"); // local Wikidata entity dump, keyed "ent:<qid>"

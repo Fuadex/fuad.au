@@ -40,7 +40,7 @@ const ENDPOINT = "https://query.wikidata.org/sparql";
 const BATCH = 40;
 const TOP_PLAYS = 500; // top-N-by-plays that share priority class 0 with ended artists
 const DELAY_MS = 1200;
-const UA = "RotationEnricher/0.1 ( fuadex@gmail.com )";
+const UA = "RotationEnricher/0.1 ( https://fuad.au )";
 
 // ─────────── PINNED MBIDs WIN (Fuad 2026-09-21: "make sure all these folds are recorded
 // somewhere so that future scrapes or so don't undo the fixes") ───────────

@@ -3,7 +3,7 @@
 // Output is a *.local.md, which the root .gitignore keeps out of the repo.
 const fs = require("fs"), path = require("path");
 const HERE = __dirname;
-const UA = { "User-Agent": "fuad.au-canvas/0.1 (https://fuad.au; fuadex@gmail.com)" };
+const UA = { "User-Agent": "fuad.au-canvas/0.1 (https://fuad.au)" };
 
 const g = {};
 for (const f of ["artworks.js", "art_imgsize.js", "art_hires.js", "art_inspect.js", "museums.js"])

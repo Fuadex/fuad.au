@@ -16,7 +16,7 @@
 //   good  >= 2000 — every derived size is real
 const fs = require("fs"), path = require("path");
 const HERE = __dirname;
-const UA = { "User-Agent": "fuad.au-canvas/0.1 (https://fuad.au; fuadex@gmail.com)" };
+const UA = { "User-Agent": "fuad.au-canvas/0.1 (https://fuad.au)" };
 const CACHE = path.join(HERE, "imgsize_cache.json");
 const load = (f, fb) => { try { return JSON.parse(fs.readFileSync(f, "utf8")); } catch (e) { return fb; } };
 const cache = load(CACHE, {});          // Commons file name -> [w, h] | null

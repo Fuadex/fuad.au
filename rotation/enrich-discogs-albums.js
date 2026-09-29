@@ -36,7 +36,7 @@ const LIMIT = LIMIT_ARG ? parseInt(LIMIT_ARG, 10) : Infinity;
 const CACHE_PATH = path.join(__dirname, "discogs-album.json");
 // 24 req/min unauthenticated → 2600ms; 60 req/min with token → 1100ms (matches enrich-discogs.js).
 const DELAY_MS = TOKEN ? 1100 : 2600;
-const UA = "RotationEnricher/0.1 ( fuadex@gmail.com )";
+const UA = "RotationEnricher/0.1 ( https://fuad.au )";
 
 function getJSON(url) {
   return new Promise((resolve) => {

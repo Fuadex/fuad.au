@@ -7,7 +7,7 @@ const fs = require("fs"), path = require("path"), vm = require("vm");
 const HERE = __dirname;
 const CACHE = path.join(HERE, "highlights_cache.json");
 const OUT = path.join(HERE, "museum_highlights.js");
-const UA = "fuad.au-canvas/0.1 (https://fuad.au; fuadex@gmail.com)";
+const UA = "fuad.au-canvas/0.1 (https://fuad.au)";
 const PER_MUSEUM = 100;
 const FORCE = process.argv.includes("--force");
 

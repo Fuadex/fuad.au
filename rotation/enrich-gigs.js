@@ -27,7 +27,7 @@ const KEY = readKey();
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 function getPage(p) {
-  const opts = { headers: { "x-api-key": KEY, Accept: "application/json", "User-Agent": "RotationEnricher/0.1 ( fuadex@gmail.com )" } };
+  const opts = { headers: { "x-api-key": KEY, Accept: "application/json", "User-Agent": "RotationEnricher/0.1 ( https://fuad.au )" } };
   const url = `https://api.setlist.fm/rest/1.0/user/${encodeURIComponent(USER)}/attended?p=${p}`;
   return new Promise((resolve) => {
     https.get(url, opts, (res) => {

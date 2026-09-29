@@ -5,7 +5,7 @@
 const fs = require("fs"), path = require("path");
 const HERE = __dirname;
 const WRITE = process.argv.includes("--write");
-const UA = { "User-Agent": "fuad.au-canvas/0.1 (https://fuad.au; fuadex@gmail.com)" };
+const UA = { "User-Agent": "fuad.au-canvas/0.1 (https://fuad.au)" };
 const SERVE_W = 3000;
 
 const g = {};

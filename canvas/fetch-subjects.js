@@ -13,7 +13,7 @@
 //   node fetch-subjects.js        (resumable; cache in subjects_cache.json)
 const fs = require("fs"), path = require("path");
 const HERE = __dirname;
-const UA = { "User-Agent": "fuad.au-canvas/0.1 (https://fuad.au; fuadex@gmail.com)" };
+const UA = { "User-Agent": "fuad.au-canvas/0.1 (https://fuad.au)" };
 const CACHE = path.join(HERE, "subjects_cache.json");     // work qid -> { d:[qids], g:[qids] }
 const LABELS = path.join(HERE, "subjects_labels.json");   // entity qid -> English label
 const load = (f, fb) => { try { return JSON.parse(fs.readFileSync(f, "utf8")); } catch (e) { return fb; } };

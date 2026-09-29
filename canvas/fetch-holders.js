@@ -31,7 +31,7 @@
 //      even though `works` still names only the one place a trip would go.
 const fs = require("fs"), path = require("path");
 const HERE = __dirname;
-const UA = { "User-Agent": "fuad.au-canvas/0.1 (https://fuad.au; fuadex@gmail.com)" };
+const UA = { "User-Agent": "fuad.au-canvas/0.1 (https://fuad.au)" };
 const CACHE = path.join(HERE, "holders_cache.json");
 const load = (f, fb) => { try { return JSON.parse(fs.readFileSync(f, "utf8")); } catch (e) { return fb; } };
 const cache = load(CACHE, {});

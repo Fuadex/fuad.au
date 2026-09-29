@@ -27,7 +27,7 @@ const PINS_PATH = path.join(__dirname, "pins.json");
 const INDEX_PATH = path.join(__dirname, "search-index.js");
 const TOP_PLAYS = 500; // top-N-by-plays that share priority class 0 with ended artists
 const DELAY_MS = 1100; // MusicBrainz: ~1 req/sec
-const UA = "RotationEnricher/0.1 ( fuadex@gmail.com )";
+const UA = "RotationEnricher/0.1 ( https://fuad.au )";
 
 function getJSON(url) {
   return new Promise((resolve) => {

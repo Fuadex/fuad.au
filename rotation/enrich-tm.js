@@ -65,7 +65,7 @@ console.log(`library: ${byNorm.size} names, ${byMbid.size} with mbid`);
 
 function getJSON(url) {
   return new Promise((resolve) => {
-    https.get(url, { headers: { "User-Agent": "RotationEnricher/0.1 ( fuadex@gmail.com )" } }, (res) => {
+    https.get(url, { headers: { "User-Agent": "RotationEnricher/0.1 ( https://fuad.au )" } }, (res) => {
       let b = ""; res.on("data", (c) => b += c);
       res.on("end", () => { try { resolve({ status: res.statusCode, json: JSON.parse(b) }); } catch { resolve({ status: res.statusCode, json: null }); } });
     }).on("error", () => resolve({ status: 0, json: null }));

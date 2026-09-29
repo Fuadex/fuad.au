@@ -11,7 +11,7 @@ const fs = require('fs');
 const path = require('path');
 
 const DIR = __dirname;
-const UA = 'fuad.au-canvas/0.1 (https://fuad.au; fuadex@gmail.com)';
+const UA = 'fuad.au-canvas/0.1 (https://fuad.au)';
 const CACHE_PATH = path.join(DIR, 'plate_audit_cache.json');
 const RESULTS_PATH = path.join(DIR, 'plate_audit_results.json');
 const SKIP_ID = 'wilhelm-gentz-einzug-des-kronprinzen-friedrich-wilhelm-von-p';

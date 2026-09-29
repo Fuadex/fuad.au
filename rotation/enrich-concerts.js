@@ -18,7 +18,7 @@ const TOP_N = parseInt(process.argv[2], 10) || 200;
 const CACHE_PATH = path.join(__dirname, "concerts-cache.json");
 const INDEX_PATH = path.join(__dirname, "search-index.js");
 const DELAY_MS = 220; // ~4.5 req/sec — under TM's 5/sec ceiling
-const UA = "RotationEnricher/0.1 ( fuadex@gmail.com )";
+const UA = "RotationEnricher/0.1 ( https://fuad.au )";
 
 function getJSON(url) {
   return new Promise((resolve) => {

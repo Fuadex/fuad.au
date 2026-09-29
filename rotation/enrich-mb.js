@@ -28,7 +28,7 @@ const PINS_PATH = path.join(__dirname, "pins.json");
 const INDEX_PATH = path.join(__dirname, "search-index.js");
 const TOP_PLAYS = 500; // top-N-by-plays that share priority class 0 with ended artists
 const DELAY_MS = 1100; // ~1 req/sec
-const UA = "RotationEnricher/0.2 ( fuadex@gmail.com )";
+const UA = "RotationEnricher/0.2 ( https://fuad.au )";
 
 // relation types worth keeping for the connection graph (artist↔artist edges)
 const REL_KEEP = new Set([

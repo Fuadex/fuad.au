@@ -5,7 +5,7 @@
 import json, re, io, time, urllib.request, os, subprocess
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-UA = {"User-Agent": "fuad.au-canvas/0.1 (https://fuad.au; fuadex@gmail.com)"}
+UA = {"User-Agent": "fuad.au-canvas/0.1 (https://fuad.au)"}
 CACHE = os.path.join(HERE, "palette_cache.json")
 
 # read art_data.js via node (single source of truth for parsing)
