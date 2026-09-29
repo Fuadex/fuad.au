@@ -3,6 +3,12 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "jean-jacques-henner-reclining-nude": {
+  "about": "Henner painted this small nude lying on her front beside a pool in a dark wood. A New York auction sold it in 1921 as a \"Reclining Nymph\"; the title has since dropped the nymph.",
+  "deep": "Nothing in the picture could date it. It has no clothes to go out of fashion and no face to fix a sitter's age, and Henner went back to his subjects years apart, sometimes never titling them. The critic Clarence Cook said he had one theme, \"the naked female figure in a rich gloaming ideal landscape\", and he was criticised for repeating himself. A canvas like this belongs to that long run, not to a year. Only the ground is particular: the pond and thickets of these pictures are the Sundgau of southern Alsace, his native region, German territory from 1871.",
+  "by": "Opus 5.5",
+  "deepBy": "Opus 5.5"
+ },
  "tiepolo-wealth-and-benefits-of-the-spanish-monarchy-under-charles-iii": {
   "about": "Tiepolo's proposal for the throne-room ceiling of Charles III's new palace in Madrid — oil on canvas, nearly 1.82 metres tall, carried out of Italy on 31 March 1762. He signed the finished fresco in 1764.",
   "deep": "This canvas is the ceiling as Tiepolo imagined it before he reached Madrid, and Spain kept arriving after it was finished. The theme was not his own devising, and he worked it up in Italy down to the peoples ranged along its flanks, Spain’s own lands and its conquests rather than the whole world. In Madrid he was given fuller information on Spanish costume and produce, and the ceiling moved on; the canvas stayed as it was. The fresco gained a rainbow linking the foreign domains along the cornice, a device the sketch had not yet conceived. X-rays find a rainbow here too, above the figure of Faith, painted out.",
@@ -605,9 +611,19 @@ about: "Podkowiński's Frenzy of Exultations, 1894: a naked woman in ecstasy cli
 deep: "Kraków laughed at it and gossiped about the model's identity; after five weeks on show Podkowiński walked in and took a knife to the canvas — then died within the year at 29, and the painting was restored with his cuts inside it. The image itself is pure fin-de-siècle: eros as a runaway animal, the horse's head a storm-cloud of black paint that stops depicting and becomes pure vortex. You likely saw it in the Sukiennice's quiet salon of 19th-century Polish art, where it still radiates exactly the scandal the varnish can't cover." },
 
 "leech-the-sunshade": {
-about: "William John Leech, c. 1913: a woman — his wife Elizabeth — under a parasol in strong Concarneau light, the Irish post-impressionist's answer to the French plein-air masters.",
-deep: "Leech was an Irishman painting in Brittany with French eyes: the parasol filters the light green, the same bounced-colour game Monet played with Camille's dress, and the whole picture is really about that filtered glow on white fabric. That you singled this out at the National Gallery of Ireland — and its sibling, A Convent Garden, Brittany — before knowing any of this context, is your taste being consistent: parasols, filtered sunlight, figures dissolved in it. It's the same painting-idea you floored twice under other names.",
-refs: {"deep":[{"id":"leech-convent-garden","text":"A Convent Garden, Brittany"}]} },
+  "about": "Elizabeth, Leech's new wife, posed under a parasol about 1913. By about 1919 the canvas was Percy Botterell's; his wife, May, became Leech's lover, gave it to the nation in 1952 and married Leech in 1953.",
+  "deep": "The sitter's money kept Leech while he painted her, and the household of May Botterell, who took her place as his model, kept the picture for three decades. Until 1919 Elizabeth had been wife, model and \"banker\"; afterwards he shielded the Botterells by showing nothing in public from 1927 to 1945, and the canvas was still in that household when Elizabeth died in 1951. None of that reached the surface. Up close the brow is still green where the silk lit it, and the years show instead in the heavy dark greens of the coat at the lower right, crazed into a fine net of cracks.",
+  "by": "Opus 5.5",
+  "deepBy": "Opus 5.5",
+  "refs": {
+   "deep": [
+    {
+     "id": "leech-convent-garden",
+     "text": "A Convent Garden, Brittany"
+    }
+   ]
+  }
+ },
 
 "peasants-houses-eragny": {
 about: "Pissarro, 1887: cottages at Éragny in his pointillist period — the patriarch of Impressionism borrowing the dot from Seurat, twenty years his junior. Found floored in, of all places, Sydney.",
@@ -3691,8 +3707,11 @@ about: "Four dancers in matching blue, none aware of being watched — Degas by 
 by: "Fable" },
 
 "claude-monet-waterloo-bridge-in-london": {
-about: "Some forty Waterloo Bridges came out of Monet's window at the Savoy Hotel across three London winters, 1899 to 1901 — he wanted the fog, complaining on clear days that London had lost its beauty. Like most of the series, this one was worked up and dated back at Giverny, the Thames rebuilt from memory and canvas-to-canvas comparison.",
-by: "Fable" },
+  "about": "Monet's 1902 bridge in London fog was bought around 1921 for the Kobe collector Kōjirō Matsukata, shown in Paris in 1924 for Japan's earthquake victims, sequestered by France in 1944 and handed to Japan in 1959.",
+  "deep": "The darkest paint on the canvas spells a name and a year, and the year is a verdict. The bridge is barely darker than the fog; the signature is hard blue-violet, and its 1902 is a year Monet spent away from London. In March 1903 he told Durand-Ruel that no London picture was \"completely finished\", and Geffroy, days later, that retouching had been a mistake he must see through. Either the year was written later, as on canvases he re-signed after reworking, or the letter overstated his doubt. Either way you are reading a judgement made in the studio, among the others; the sister canvas of Charing Cross Bridge carries a name and no year.",
+  "by": "Opus 5.5",
+  "deepBy": "Opus 5.5"
+ },
 
 "pierre-auguste-renoir-the-england-pear": {
   "about": "Renoir’s orchard at Louveciennes, about 1873, is a picture France guarded for sixty years before it owned it. The state classed it a Monument historique in November 1951, while it was still in private hands, and took possession only in 2012, accepting it in place of the duties owed on two family gifts.",
@@ -3721,8 +3740,11 @@ about: "Shown at the Royal Academy in 1842, this was the picture Turner claimed 
 by: "Opus · Fable" },
 
 "j-m-w-turner-death-on-a-pale-horse": {
-about: "Long catalogued as \"A Skeleton Falling Off a Horse in Mid-Air,\" this unfinished canvas of about 1825–30 was never exhibited and reached the nation only through the Turner Bequest. Its subject is now read as Death, last of the Four Horsemen of Revelation, and scholars have tied its strange tenderness to the death of the painter's father in 1829.",
-by: "Opus · Fable" },
+  "about": "Turner's unfinished canvas of a skeletal figure pitching head-down — once read as Death on Revelation's pale horse, now probably as Shelley's tyrant Anarchy overthrown, and redated from the late 1820s to about 1833–4.",
+  "deep": "Every reading of this figure has had to say what kind of dead body it is, and the newest lays Shelley's tyrant on the dissecting table. Lawrence Gowing suggested in 1966 that the death of Turner's father in 1829 lay behind it: private grief. Sam Smiles made it public. The bones, he argued, almost certainly follow a plate in Flaxman's anatomy book, published posthumously in 1833, which would move the canvas four years clear of that death. The modelled mass around them he read as flesh roughly flayed, pieces displaced, muscle laid open: a cadaver, painted soon after the Anatomy Act of 1832 gave the unclaimed bodies of the poor to the anatomists.",
+  "by": "Opus 5.5",
+  "deepBy": "Opus 5.5"
+ },
 
 "j-m-w-turner-shade-and-darkness-the-evening-of-the-deluge": {
 about: "Exhibited at the Royal Academy in 1843, this octagonal canvas was the darker half of a pair with \"Light and Colour (Goethe's Theory)\", Turner's twin meditations on the biblical flood. The companion engaged directly with Goethe's colour theory, then newly available in English translation, pitting the storm's cool shadow-tones against the warm glow of the morning after.",
@@ -3807,8 +3829,11 @@ by: "Opus · Fable" },
 
 
 "valentin-serov-madame-lwoff": {
-about: "The sitter of this 1895 portrait is Maria Yakovlevna Simonovich — Serov's own cousin, married into the Lwoff family — whom he had painted a decade earlier in the celebrated Girl in Sunlight.",
-by: "Opus · Fable" },
+  "about": "In 1895 Serov painted his cousin Maria, née Simonovich, indoors at the Domotkanovo estate, where seven years earlier she had posed outdoors for Girl in the Sunlight; her niece remembered the room as Maria's mother's.",
+  "deep": "Shown under her initials alone, her face held near the shelving's tone, she was read through the shelving. At the Wanderers' exhibition of 1895–96 the canvas hung as Portrait of Mme M. Ya. L., and Vladimir Stasov, as Arkady Kudrya's biography quotes him, judged from her gaze, her expression and all the setting around her that this remarkably elegant young woman was devoted \"to science, to knowledge\". That setting is mostly the rack above her, laid in with flat horizontal drags the eye takes for books, and Stasov supplied the scholar to go with them. She was a sculptor by training, who had gone to Paris in 1890 to study.",
+  "by": "Opus 5.5",
+  "deepBy": "Opus 5.5"
+ },
 
 "pierre-isidore-bureau-untitled": {
 about: "Bureau was a core French Impressionist now nearly erased from the record — a nocturne specialist who showed four works at the first Impressionist exhibition of 1874 and died in 1876, just after the second. This moonlit view along the Oise near L'Isle-Adam, where he mostly worked, predates the movement's public birth by seven years.",
@@ -3906,8 +3931,11 @@ deepBy: "Sonnet 4.6",
 by: "Opus · Fable" },
 
 "charles-angrand-man-and-woman-in-the-street": {
-about: "A founding exhibitor of the Société des Artistes Indépendants in 1884 — which he helped launch alongside Seurat, Signac and Odilon Redon — Charles Angrand painted plein air beside Seurat on the island of La Grande Jatte. 1887 marks his turn to divisionism: the same year he showed \"L'Accident,\" his first Neo-Impressionist canvas, at the Salon des Indépendants.",
-by: "Opus · Fable" },
+  "about": "Angrand's canvas sets a man and a woman, turned away from us, on a pale pavement. It dates from 1887, the first year of the few paintings, made alongside Seurat until 1891, on which his reputation rests.",
+  "deep": "The couple are made by opposite means, and only one of them is made of the street. He is a mass of dark touches, crowded until his edge is simply where they stop. She is worked in the pavement's pale criss-cross hatching, held as a figure by a gapped fence of darker dots. The picture largely keeps round dots for things and hatching for ground, which files her with the pavement and him with the walls and posts. The dark band at the waist carries his kind of touch into her; below it, the gap between them is the same pale weave that fills her skirt, so what parts them is her own substance.",
+  "by": "Opus 5.5",
+  "deepBy": "Opus 5.5"
+ },
 
 "maximilien-luce-morning-interior": {
 about: "Maximilien Luce painted his close friend Gustave Perrot, a fellow painter who died young, dressing at dawn in a Parisian garret — Luce's signature choice of working-artist life over polite subjects. A committed anarchist who illustrated Le Père Peinard, Luce was arrested in July 1894 and jailed forty-two days in Mazas Prison before his acquittal at the Trial of the Thirty.",
@@ -4062,8 +4090,11 @@ about: "A pupil of Gérôme, Paul Steck sent this near-lifesize canvas to the Sa
 by: "Opus · Fable" },
 
 "john-martin-the-last-judgement": {
-about: "After Martin died in 1854 the three Judgement canvases were sent out as a paying spectacle, touring Britain, Ireland, North America and Australia into the 1870s behind an explanatory pamphlet and sixpenny admission; audiences were later claimed in the millions. This central panel is the reckoning itself, Christ enthroned among the twenty-four elders as the saved and the damned split across a chasm. Martin collaged some forty real notables among the saved, More, Newton, Shakespeare, Washington, and an 1855 engraved key named them; a railway train lettered \"London\" and \"Paris\" plunges into the pit.",
-by: "Opus · Fable" },
+  "about": "Martin's 1853 canvas parts the saved from the damned across a chasm. Shown alone in London that June, it was touring with two companions by autumn, admission often sixpence; audiences were later claimed in the millions.",
+  "deep": "Its verdict was meant to be read figure by figure, \"with the descriptive key in hand\", as a reviewer advised in 1853. The saved include thirty-four named worthies, Shakespeare and Newton among them, a pantheon after James Barry's Elysium so thick with painters and poets that a critic remarked on it. Among the fallen are offices: a king, a bishop, lawyers, a priest going down before the Whore of Babylon; a train with carriages marked London and Paris plunges into the abyss. The sentence is the painter's, never the faint enthroned figure's: he seated his own trade in heaven, though the engraved key that fixed its names came out in 1855, after his death.",
+  "by": "Opus 5.5",
+  "deepBy": "Opus 5.5"
+ },
 
 "stanis-aw-ignacy-witkiewicz-portret-artura-schroedera": {
 about: "Artur Schroeder (1881-1934) was a Lwów writer, poet and art and theatre critic who later ran the Society of Friends of Fine Arts in Kraków. Witkacy caught him for the Portrait Firm \"S.I. Witkiewicz,\" whose 1925 price list sorted sitters into five types from the flattering, \"licked-clean\" A to the drugged caricatures of C. Schroeder drew Type B, the Firm's clause for a candid, characterful likeness \"without a shadow of caricature,\" the artist's stance held objective. Done fast in pastel, dated February 1931, the markings note no stimulants that day.",
@@ -4104,8 +4135,11 @@ about: "Monet painted this in the summer of 1874 at Argenteuil, where he, Renoir
 by: "Opus · Fable" },
 
 "umberto-boccioni-the-mother": {
-about: "Years before the manifestos, Boccioni kept painting the one model who never charged him: his mother, Cecilia Forlani, who followed her son from town to town and sat for him again and again. He made this 1907 portrait after joining her and his sister in Padua, catching the aging woman turned inward, her gaze dropped and distant, gray hair pinned high. It belongs to the run of intimate domestic studies from his Divisionist years, long before Futurist speed pulled him away from the quiet interior.",
-by: "Opus · Fable" },
+  "about": "Boccioni's mother, Cecilia Forlani, at her crochet by a window — a pastel inscribed \"Milano 1907\" and drawn in the first months after he moved, that September, into the Milan home she shared with his elder sister.",
+  "deep": "The light that lands on her is bought with the room's particulars, and a print he made of the same motif in the same Milan autumn shows the other side of the trade. Drawn in bare outline, it sets down a tiled floor, patterned panes in the door, scissors on the table and a ball of yarn at her feet with its thread climbing to her hands, and gives the woman the same thin contour as her chair, no paler than the door behind. The pastel has no tiles and no pattern: its floor is bands of hatching, its door glass plain, and its colour and palest strokes go where the window's light reaches her.",
+  "by": "Opus 5.5",
+  "deepBy": "Opus 5.5"
+ },
 
 "bruno-liljefors-autumn-landscape-with-partridges": {
   "about": "In the late 1880s Liljefors painted the landscape backdrops for a natural-history diorama in Uppsala, a collaboration with the conservator Gustaf Kolthoff that in 1893 produced Stockholm's Biologiska museet. In 1913 the backdrop is the whole picture: partridges set into dead autumn grass by a painter who read wild lives through what biology called protective resemblance.",
@@ -4232,8 +4266,11 @@ about: "Born Christian Emil Marie Küpper, Van Doesburg was self-taught, working
 by: "Opus · Fable" },
 
 "ivan-aivazovsky-stormy-sea": {
-about: "Ivan Aivazovsky worked almost entirely from memory, insisting that the sea's motion could be remembered and felt but never copied from life; the windows of his Feodosia studio looked onto a courtyard, not the water. This modest canvas, barely a metre wide, dates from 1850 — the same year he finished the monumental Ninth Wave, and it channels the same storm subject onto an intimate, portable scale.",
-by: "Opus · Fable" },
+  "about": "Aivazovsky painted a storm on open water, with no ship and no shore in sight. Cleaning before its 2013 sale at Sotheby's uncovered traces, at lower right, of a sinking ship he had painted out.",
+  "deep": "Painting out the ship took away the one thing in this storm whose size anyone knows. A hull, even one going under, tells how high a wave stands; without it the water can be measured only against more water, leaving the sea neither a victim nor a scale. The story changed too: a sinking ship turns weather into a shipwreck, an event with an outcome, and without one the storm has nothing to finish. Galina Churak, a Tretyakov curator, writes of a painter who worked extremely fast and, as a rule, did not rework what he had begun. Here, on the cleaning's evidence, he did, and the wreck is what he took out.",
+  "by": "Opus 5.5",
+  "deepBy": "Opus 5.5"
+ },
 
 "giovanni-boldini-fuoco-d-artificio": {
 about: "The title misleads: no night sky bursts here, only a woman Boldini never named, standing life-size in a white silk evening gown around 1890. The \"fireworks\" are his paint. Contemporaries read the slashing white strokes that dissolve her dress into a vaporous halo as sciabolate, saber strokes, and the nickname stuck to the canvas rather than the scene. The freedom edges toward abstraction at a moment when finished society portraiture was the expected currency, which is partly why an unidentified sitter carries a title about brushwork instead of a name.",
@@ -4265,8 +4302,11 @@ about: "By 1920 Boldini's eyesight was failing and his manner had gone loose and
 by: "Opus · Fable" },
 
 "clarice-beckett-taxi-rank": {
-about: "When Clarice Beckett died in 1935 she was all but forgotten; in 1970 the art historian Rosalind Hollinrake was led to an open-sided shed near Benalla where roughly two thousand of her canvases had been stored for decades, and rain and possums had left only some three hundred and sixty-nine salvageable. This 1931 picture is one of Beckett's Melbourne night-and-weather motorcar scenes — a rank of waiting cabs, their lamps smeared across a wet road — a subject she worked more than once, with a second version surviving in a separate collection.",
-by: "Opus · Fable" },
+  "about": "Clarice Beckett's cabs of c. 1931, waiting in wet weather, shown mostly as lamps. In 1931 The Age named a favourite subject: a car \"slipping ghost-like into the mist\", its tail light the only colour.",
+  "deep": "The blur is the accurate part. Wet air hides an unlit shape where a lamp still carries, and the canvas keeps to that law: the queue has gone into its lamps, unless the low dark at left is its nearest cab. In July 1931 The Age found the public unsure whether she was \"a futurist, or only a new and dangerous variety of Meldrumite\", calling her \"smudge\" \"a thoughtful interpretation in paint of an actual and veritable smudge in nature\". In October Percy Leason saw in her pictures \"a convincing illusion of actual space and air and light\", recalling Ruskin's demand that Whistler show \"finish\". Finish would mean painting back what the weather had taken.",
+  "by": "Opus 5.5",
+  "deepBy": "Opus 5.5"
+ },
 "giovanni-boldini-after-the-bath": {
 about: "Two women in a bathing room, one drying herself, one stretched on a carpet - and Boldini fitted all of it onto a panel twenty-five by thirty-four centimetres, with a single head modelled to the eyelash.",
 deep: "Measure the distance between two adjacent square centimetres. The eye is drawn - a lowered lid, a lash line, the pupil turned down to her own hands - and the plaster a centimetre from her cheek is dragged flat and scored. That ratio governs everything else: a body carried in a few long strokes, a cloth built until it stands off the wood, a carpet whose colours still sit where they left the palette, a bird whose whole tail is one charge of blue run dry at the edge. It is not carelessness. It is an argument about how little of a picture has to be true before a viewer will believe the rest.",
