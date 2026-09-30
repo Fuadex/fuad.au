@@ -67,7 +67,7 @@ const DENY_HOLDERS = new Set([
 // carry a pseudo qid (`met-<objectid>`, `nga-<objectid>`) and never enter the Wikidata P195
 // flow, so they sat holder-less even though the holder is IN THE ID. The prefix is the claim.
 // (The remaining holder-less residue is honest: P195 snaktype "somevalue" = private collection.)
-const PSEUDO_HOLDERS = { "met-": "Q160236", "nga-": "Q214867" };
+const PSEUDO_HOLDERS = { "met-": "Q160236", "nga-": "Q214867", "bm-": "Q6373" };   // bm- = British Museum registration number (2026-09-30)
 const holderOf = (w) => {
   const pfx = w.qid && Object.keys(PSEUDO_HOLDERS).find(p => w.qid.startsWith(p));
   if (pfx) return PSEUDO_HOLDERS[pfx];

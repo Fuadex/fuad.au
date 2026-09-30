@@ -2661,6 +2661,9 @@ const HIRES_SOURCE_LABEL = {
   // 2026-08-25 w17 — two flat-JPEG holders, both anchored on the holder's own accession
   gugg: "Solomon R. Guggenheim Museum",
   mnw: "National Museum in Warsaw",
+  // 2026-10-01 — KODE (DigitaltMuseum downloads) and the British Museum's own images, both flat JPEGs
+  kode: "KODE",
+  bm: "British Museum",
 };
 
 // Fly an OSD viewer to a normalized-image region {x,y,w,h} (all 0..1 fractions of the image).
@@ -3328,7 +3331,8 @@ function Reader({ id, go }) {
               entry in the links row below. */}
           <div className="cv-r-links">
             {hasDeepZoom && <button type="button" className="cv-r-deep" onClick={() => setDeep(true)}>⤢ Deep zoom</button>}
-            {w.qid && <a href={`https://www.wikidata.org/wiki/${w.qid}`} target="_blank" rel="noopener noreferrer">Wikidata ↗</a>}
+            {/* pseudo-qid works (met-, nga-, bm- …) have no Wikidata item — the link would 404 */}
+            {w.qid && /^Q\d+$/.test(w.qid) && <a href={`https://www.wikidata.org/wiki/${w.qid}`} target="_blank" rel="noopener noreferrer">Wikidata ↗</a>}
             {/* say what the file ACTUALLY is. "Full resolution" was a promise the data could not
                 keep for 844 works — Commons returns the original when asked for a bigger width,
                 so the link opened a 363px Monet under a label implying otherwise.

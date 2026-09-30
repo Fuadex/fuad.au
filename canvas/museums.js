@@ -5,7 +5,7 @@
 // and verify/correct every qid before anything trusts them.
 window.CANVAS_MUSEUMS = [
   { id: "artizon",        name: "Artizon Museum",                    city: "Tokyo",        country: "jp", qid: "Q913808",  kind: "art", visits: ["2026-03-24"],  note: "Big Monet/impressionist holdings (Ishibashi collection)." },
-  { id: "tokyo-met",      name: "Tokyo Metropolitan Art Museum",     city: "Tokyo",        country: "jp", qid: "Q864957",  kind: "art", visits: ["2026-01-28","2026-02-15"],  note: "Swedish Masters exhibition (the Fjæstad wood-pattern painting — floored)." },
+  { id: "tokyo-met",      name: "Tokyo Metropolitan Art Museum",     city: "Tokyo",        country: "jp", qid: "Q864957",  kind: "art", visits: ["2026-01-28","2026-02-15","2026-09-30"],  note: "Swedish Masters exhibition (the Fjæstad wood-pattern painting — floored)." },
   { id: "nga-dc",         name: "National Gallery of Art",           city: "Washington DC", country: "us", qid: "Q214867",  kind: "art", visits: ["TBC"],  note: "Woman with a Parasol." },
   { id: "met-nyc",        name: "The Metropolitan Museum of Art",    city: "New York",     country: "us", qid: "Q160236",   kind: "art", visits: ["2019-02-27"] },
   { id: "amnh",           name: "American Museum of Natural History", city: "New York",    country: "us", qid: "Q217717",   kind: "natural-history", visits: ["2019-03-20"], note: "Best museum ever visited, by far — and only ~2 bottom floors seen." },

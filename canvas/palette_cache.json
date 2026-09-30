@@ -15754,5 +15754,761 @@
 "#474a47",
 "#403a3b",
 "#69624e"
+],
+"nikolai-astrup-kollen": [
+"#b4b1a7",
+"#76756c",
+"#2d2b27",
+"#3f4845"
+],
+"nikolai-astrup-night-in-spring": [
+"#b4bab7",
+"#535247",
+"#3c3d36",
+"#666f5e"
+],
+"mathias-blumenthal-fire-ravaged-bergen": [
+"#867d73",
+"#b1aba5",
+"#302d2c",
+"#4a4944"
+],
+"mathias-blumenthal-the-garden-party": [
+"#4e423b",
+"#615b50",
+"#2a2a2b",
+"#7f7461"
+],
+"mathias-blumenthal-painting-i": [
+"#4e362b",
+"#5b5645",
+"#1f1d1b",
+"#8c8065"
+],
+"mathias-blumenthal-geniuses-of-war-and-peace": [
+"#2e2628",
+"#a19f97",
+"#816b63",
+"#c4c2bb"
+],
+"mathias-blumenthal-spring": [
+"#0a0807",
+"#5c2320",
+"#7a7f7e",
+"#a8b2b4"
+],
+"mathias-blumenthal-the-apotheosis-of-trade-and-shipping": [
+"#69605b",
+"#403431",
+"#84807b",
+"#a29b94"
+],
+"mathias-blumenthal-mercury": [
+"#585450",
+"#2f3133",
+"#737068",
+"#a19685"
+],
+"mathias-blumenthal-painting-iii": [
+"#202123",
+"#aaaca8",
+"#83837a",
+"#685e5a"
+],
+"mathias-blumenthal-ceiling-decorations-time-and-righteousnes": [
+"#594839",
+"#272f2b",
+"#edeae5",
+"#b1a993"
+],
+"johan-christian-dahl-view-of-nigardsbreen-in-jostedalen": [
+"#5f4e44",
+"#b0a9a2",
+"#21170f",
+"#34281f"
+],
+"hans-gude-mountain-landscape": [
+"#ccc9be",
+"#403124",
+"#b1aaa4",
+"#624c34"
+],
+"edvard-munch-inger-on-the-beach": [
+"#716d65",
+"#323530",
+"#8c9394",
+"#9cabaf"
+],
+"edvard-munch-jealousy": [
+"#0b0e0b",
+"#29130d",
+"#69452d",
+"#3e271d"
+],
+"edvard-munch-evening-on-karl-johan": [
+"#413a3c",
+"#222023",
+"#57575d",
+"#716c6c"
+],
+"edvard-munch-moonlight-on-the-beach": [
+"#3c4445",
+"#202f32",
+"#72665c",
+"#a29382"
+],
+"edvard-munch-melancholy": [
+"#1d1717",
+"#513330",
+"#775851",
+"#877271"
+],
+"edvard-munch-at-the-deathbed": [
+"#723822",
+"#211b1c",
+"#141113",
+"#9f836b"
+],
+"edvard-munch-woman-in-three-stages": [
+"#56524f",
+"#242022",
+"#9d8c78",
+"#282f33"
+],
+"edvard-munch-self-portrait-in-the-clinic": [
+"#070916",
+"#9c9872",
+"#474a48",
+"#a6c8d6"
+],
+"edvard-munch-bathing-boys": [
+"#917c7f",
+"#b49d96",
+"#524a5b",
+"#c8b2a3"
+],
+"harald-sohlberg-from-sagene-oslo": [
+"#5b4d23",
+"#aa9552",
+"#817443",
+"#afa065"
+],
+"adolph-tidemand-wedding-procession-through-the-forest": [
+"#383637",
+"#58524c",
+"#777064",
+"#979181"
+],
+"christian-krohg-struggle-for-survival": [
+"#302d28",
+"#94887d",
+"#655c50",
+"#c2b0a5"
+],
+"kitagawa-utamaro-myriad-birds-a-kyoka-competition": [
+"#eadcc0",
+"#eee0c2",
+"#5c554c",
+"#d5c7ad"
+],
+"unknown-haniwa-in-the-shape-of-a-woman": [
+"#565668",
+"#6c6774",
+"#473f44",
+"#dad6e2"
+],
+"katsushika-hokusai-fisherman-seated-on-a-rock": [
+"#4e3a26",
+"#d7cfbf",
+"#cdc5b3",
+"#a19b80"
+],
+"katsushika-hokusai-clear-day-with-a-southern-breeze-red-fuji": [
+"#0c1e43",
+"#787682",
+"#704a4a",
+"#c7d1dc"
+],
+"toshusai-sharaku-actor-arashi-ryuzo-ii-as-the-moneylender-is": [
+"#826139",
+"#ac8c53",
+"#cbc1a6",
+"#473a2b"
+],
+"unknown-portrait-of-young-prince-shotoku": [
+"#ffffff",
+"#655041",
+"#4c392b",
+"#896746"
+],
+"unknown-portrait-of-minamoto-no-yoritomo": [
+"#675d4a",
+"#eceae6",
+"#44433d",
+"#50493d"
+],
+"attributed-to-shokei-mountain-landscape": [
+"#000000",
+"#cdae89",
+"#927862",
+"#423326"
+],
+"shikibu-terutada-mountain-landscape": [
+"#84625a",
+"#c79f85",
+"#674b46",
+"#a47f71"
+],
+"unknown-tale-of-the-monkeys": [
+"#ccbda4",
+"#d6c8b0",
+"#ffffff",
+"#9f907a"
+],
+"sakurai-koun-tracing-of-a-painting-from-wall-no-9-in-the-kon": [
+"#e9dec5",
+"#7e8181",
+"#938670",
+"#d0c1a6"
+],
+"unknown-scenes-of-kyoto-with-people-performing-a-circular-da": [
+"#675148",
+"#2c282a",
+"#a27f68",
+"#cfaa89"
+],
+"unknown-chinese-hermits-xu-you-and-chao-fu-and-his-ox": [
+"#393633",
+"#ffffff",
+"#83755c",
+"#c6b595"
+],
+"kano-sogen-shigenobu-birds-and-flowers-of-autumn-and-winter": [
+"#b2957a",
+"#ffffff",
+"#6b5950",
+"#e2ceb2"
+],
+"unknown-hares-and-autumn-grasses": [
+"#040202",
+"#634b32",
+"#a3784f",
+"#c79163"
+],
+"attributed-to-ogata-korin-island-with-pine-tree-among-roilin": [
+"#6e553f",
+"#4e3c2b",
+"#89715a",
+"#aa9076"
+],
+"suzuki-kiitsu-thirty-six-immortal-poets": [
+"#463b2f",
+"#291f18",
+"#6e6457",
+"#998972"
+],
+"suzuki-shuitsu-enjoying-evening-cool-on-the-dry-riverbed-at": [
+"#c2b48c",
+"#d3c9a9",
+"#ffffff",
+"#776944"
+],
+"mashiyama-sessai-cockatoo-and-myna-bird": [
+"#7b6c4a",
+"#ffffff",
+"#413f38",
+"#a49270"
+],
+"sumiyoshi-hirotsura-hirosada-court-amusements-in-spring-and": [
+"#847a62",
+"#b69b7a",
+"#c5a782",
+"#383831"
+],
+"tani-buncho-dragon-in-clouds": [
+"#6f5941",
+"#46392c",
+"#927757",
+"#b2976e"
+],
+"shiokawa-bunrin-visit-to-hermitage-in-autumn": [
+"#c2a872",
+"#e9dbab",
+"#6f5e40",
+"#8e7b53"
+],
+"nakamura-hochu-flowers-and-plants-of-the-four-seasons": [
+"#e1b365",
+"#000000",
+"#4a361d",
+"#b1894c"
+],
+"kitagawa-utamaro-a-beauty-at-her-morning-toilette": [
+"#8b693a",
+"#937040",
+"#2a2622",
+"#805e32"
+],
+"kitagawa-utamaro-a-courtesan-reading-a-letter": [
+"#b38f5c",
+"#4f5546",
+"#cfad7f",
+"#533d29"
+],
+"chobunsai-eishi-yokihi-yang-guifei-playing-the-flute": [
+"#846b4b",
+"#ac9b7f",
+"#442b15",
+"#cab898"
+],
+"utagawa-toyokuni-i-segawa-michinosuke-i-as-shizuka-gozen": [
+"#a58662",
+"#ffffff",
+"#74593e",
+"#c9b59e"
+],
+"keisai-eisen-beauty-looking-in-a-hand-mirror": [
+"#a57b46",
+"#fffffe",
+"#614e37",
+"#c9ae88"
+],
+"utagawa-hiroshige-tora-gozen-seeing-off-soga-no-juro": [
+"#92735f",
+"#533526",
+"#795a48",
+"#9e7d67"
+],
+"katsushika-hokusai-the-warrior-hero-tametomo-and-the-inhabit": [
+"#131820",
+"#433024",
+"#796238",
+"#98814b"
+],
+"katsushika-hokusai-poem-diviner": [
+"#86754f",
+"#aca182",
+"#21190d",
+"#c6b994"
+],
+"katsushika-hokusai-ducks-in-flowing-water": [
+"#b7aa87",
+"#938464",
+"#21190e",
+"#cbbc92"
+],
+"kawanabe-kyosai-susano-o-no-mikoto-slaying-kuzuryu": [
+"#786e58",
+"#a69982",
+"#252016",
+"#c4b89d"
+],
+"kawanabe-kyosai-dancing-skeletons": [
+"#cfab86",
+"#daba9b",
+"#dfc0a3",
+"#e3c6ad"
+],
+"kawanabe-kyosai-humorous-sketches-of-animals-cat-on-a-gourd": [
+"#d6ccb3",
+"#d9d0ba",
+"#cfc4a9",
+"#89765e"
+],
+"hishikawa-moronobu-scenes-of-various-artisans-and-craftsmen": [
+"#8b7452",
+"#000000",
+"#917d59",
+"#705b3f"
+],
+"hishikawa-moronobu-scenes-in-theatre-teahouse": [
+"#afa282",
+"#c5b692",
+"#d0bc96",
+"#6a604f"
+],
+"miyagawa-choshun-scenes-of-pleasure-in-edo": [
+"#a6816f",
+"#c7a288",
+"#d7b398",
+"#3d2c2a"
+],
+"suzuki-harunobu-shrine-visit-at-the-hour-of-the-ox": [
+"#c4b089",
+"#b88851",
+"#d0bb8b",
+"#4e301d"
+],
+"suzuki-harunobu-young-man-and-woman-walking-in-the-snow": [
+"#bda884",
+"#caba97",
+"#c5b490",
+"#534535"
+],
+"suzuki-harunobu-a-modern-take-on-the-tales-of-ise-yatsuhashi": [
+"#d1bc85",
+"#d4c292",
+"#bfaa7b",
+"#6a5a40"
+],
+"suzuki-harunobu-camellia": [
+"#9e865b",
+"#bfa382",
+"#6f3922",
+"#d5b08b"
+],
+"suzuki-harunobu-young-man-and-woman-hunting-for-insects-at-n": [
+"#0f1015",
+"#e7c69d",
+"#fefdfb",
+"#30231f"
+],
+"suzuki-harunobu-clearing-storm-at-asakusa-from-the-series-ei": [
+"#ac977f",
+"#baa78f",
+"#ccad8d",
+"#665749"
+],
+"suzuki-harunobu-kagiya-osen-and-a-samurai": [
+"#d0bda0",
+"#a28d60",
+"#563d2a",
+"#cfb290"
+],
+"torii-kiyomasu-i-ichikawa-danzo-i-and-otani-oniji-i-in-kusaz": [
+"#a69781",
+"#9e8e77",
+"#9b684a",
+"#572818"
+],
+"attributed-to-sugimura-jihei-tokiwa-gozen-at-fushimi": [
+"#978b76",
+"#a69982",
+"#b0a38a",
+"#4f463b"
+],
+"torii-kiyonaga-a-child-and-his-mother-holding-a-dog": [
+"#af9c70",
+"#e1d1aa",
+"#604e3c",
+"#cdbd93"
+],
+"torii-kiyonaga-cherry-blossom-viewing-at-asukayama": [
+"#a69c6d",
+"#c4b990",
+"#625534",
+"#ebeceb"
+],
+"torii-kiyonaga-a-modern-take-on-ushiwakamaru-and-joruri-hime": [
+"#b1946b",
+"#c4ad86",
+"#625137",
+"#d6c4a5"
+],
+"torii-kiyonaga-ichikawa-danjuro-v-as-asama-zaemon-segawa-kik": [
+"#bda88f",
+"#d2c0a7",
+"#403326",
+"#8d7757"
+],
+"torii-kiyonaga-three-actors-on-a-boat-on-the-sumida-river": [
+"#dcceb2",
+"#574128",
+"#d1bf9c",
+"#ac936f"
+],
+"katsukawa-shunsho-bando-mitsugoro-i-and-otani-hiroemon-iii": [
+"#bfa17d",
+"#ccb398",
+"#c2af99",
+"#907558"
+],
+"kitagawa-utamaro-tojin-shishi-and-sumo-from-the-series-femal": [
+"#80746c",
+"#a69588",
+"#f2eeea",
+"#4b4643"
+],
+"kitagawa-utamaro-ofuji-and-naniwaya-okita": [
+"#dbd3bf",
+"#4e4d5e",
+"#ecebd7",
+"#c4bcaa"
+],
+"kitagawa-utamaro-needlework": [
+"#000000",
+"#ccb18b",
+"#ba9e7f",
+"#4a3e35"
+],
+"kitagawa-utamaro-a-modern-take-on-narihira-s-journey-to-the": [
+"#332f2d",
+"#d9caa6",
+"#d0bf9d",
+"#a98d6f"
+],
+"kitagawa-utamaro-act-seven-from-the-series-treasury-of-the-l": [
+"#ad8c73",
+"#49362b",
+"#fcebe0",
+"#cbae95"
+],
+"utagawa-kunisada-artisans-from-the-series-a-modern-day-match": [
+"#ebe2d5",
+"#bea38d",
+"#57625c",
+"#3f3229"
+],
+"toshusai-sharaku-matsumoto-koshiro-iv-as-sakanaya-gorobei": [
+"#c5b99e",
+"#14150e",
+"#867452",
+"#201f17"
+],
+"toshusai-sharaku-ichikawa-komazo-iii-as-shiga-daishichi": [
+"#493c32",
+"#0e1009",
+"#62584b",
+"#bfb49c"
+],
+"toshusai-sharaku-nakajima-wadaemon-as-bodara-chozaemon-and-n": [
+"#4a2516",
+"#d2c7b2",
+"#7f6c53",
+"#c1b59d"
+],
+"toshusai-sharaku-matsumoto-yonesaburo-as-shinobu-disguised-a": [
+"#c9bda4",
+"#0f110b",
+"#7d6b4f",
+"#3a3127"
+],
+"toshusai-sharaku-otani-oniji-iii-as-edobei": [
+"#d2c7b0",
+"#443b30",
+"#181811",
+"#847259"
+],
+"toshusai-sharaku-ichikawa-omezo-i-as-the-yakko-ippei": [
+"#1b1a14",
+"#4a4034",
+"#bc976f",
+"#ccc4ac"
+],
+"toshusai-sharaku-iwai-hanshiro-iv-as-shigenoi": [
+"#4c3f31",
+"#1f1d15",
+"#d1c3a8",
+"#af8f68"
+],
+"toshusai-sharaku-sanogawa-ichimatsu-iii-as-onayo-of-gion": [
+"#55553f",
+"#fbfeef",
+"#372d20",
+"#eff1c4"
+],
+"toshusai-sharaku-segawa-tomisaburo-ii-as-yadorigi": [
+"#47423a",
+"#14150e",
+"#806143",
+"#cfc5ab"
+],
+"toshusai-sharaku-ichikawa-yaozo-iii-as-fuwa-banzaemon-and-sa": [
+"#bdab8c",
+"#403220",
+"#c6b597",
+"#9d8662"
+],
+"utagawa-toyokuni-i-visit-to-enoshima": [
+"#d8c8a0",
+"#4a453f",
+"#a6947d",
+"#e2d4a9"
+],
+"utagawa-toyokuni-i-tachibanaya-ichikawa-yaozo-iii-from-the-s": [
+"#c0b095",
+"#cbbfa5",
+"#d2c5ac",
+"#6b5b45"
+],
+"utagawa-toyokuni-i-toraya-arashi-ryuzo-ii-from-the-series-po": [
+"#a79f8c",
+"#bbb19d",
+"#5b483a",
+"#c8bfa8"
+],
+"utagawa-toyokuni-i-segawa-kikunojo-iii-as-oishi-the-wife-of": [
+"#cbc1b7",
+"#c0ad9d",
+"#706476",
+"#d7d2c7"
+],
+"utagawa-toyokuni-i-nakamura-noshio-ii-as-sakuramaru-and-iwai": [
+"#bfb39d",
+"#2f2819",
+"#a68d6d",
+"#ece3cc"
+],
+"utagawa-toyokuni-i-ichikawa-yaozo-iii-as-takebe-genzo-and-iw": [
+"#cabc9a",
+"#3f3e2d",
+"#b09e7c",
+"#d9cca7"
+],
+"utagawa-kunimasa-ichikawa-yaozo-iii-as-umeomaru": [
+"#1c1911",
+"#baae93",
+"#d3c7aa",
+"#8c7960"
+],
+"utagawa-kunimasa-ichikawa-ebizo-as-usui-arataro-sadamitsu": [
+"#c6b389",
+"#d2c195",
+"#2a1a0e",
+"#916d4b"
+],
+"utagawa-kunisada-lantern-from-the-series-starfrost-contempor": [
+"#000000",
+"#9d7f6e",
+"#e0bfa1",
+"#6d4b3f"
+],
+"katsushika-hokusai-shrike-wild-strawberry-red-flanked-blueta": [
+"#a0b0a4",
+"#2b3546",
+"#d6cfb2",
+"#7d8878"
+],
+"katsushika-hokusai-bush-warbler-and-roses": [
+"#91a095",
+"#63543e",
+"#d8cdab",
+"#7c8c81"
+],
+"katsushika-hokusai-bullfinch-and-weeping-cherry": [
+"#173f78",
+"#032964",
+"#142e58",
+"#d0c5aa"
+],
+"katsushika-hokusai-abe-no-nakamaro-from-the-series-true-mirr": [
+"#253855",
+"#5a565f",
+"#8fabb8",
+"#6f879a"
+],
+"katsushika-hokusai-the-reed-gatherer-from-the-series-true-mi": [
+"#38383d",
+"#a2af9a",
+"#758175",
+"#c9cab6"
+],
+"katsushika-hokusai-avalokitesvara-seated-on-the-head-of-a-dr": [
+"#e8daad",
+"#776e5b",
+"#eadfc0",
+"#d5caa5"
+],
+"katsushika-hokusai-india-looking-after-a-large-elephant-from": [
+"#e5d7ad",
+"#ecdeb1",
+"#ece1c3",
+"#9d937a"
+],
+"katsushika-hokusai-bear-under-a-waterfall-from-illustrations": [
+"#e3d6ad",
+"#ece0c1",
+"#ebddb0",
+"#928872"
+],
+"katsushika-hokusai-two-cats-by-cotton-rose-from-illustration": [
+"#dfd1a5",
+"#e9dfc1",
+"#928a74",
+"#e7daaf"
+],
+"katsushika-hokusai-ise-from-the-series-one-hundred-poems-by": [
+"#63675a",
+"#37332c",
+"#d6c8a7",
+"#dfd2b2"
+],
+"utagawa-hiroshige-nihonbashi-morning-scene-from-the-series-t": [
+"#c7bb9e",
+"#45413a",
+"#8e8571",
+"#d5c9ac"
+],
+"utagawa-hiroshige-nihonbashi-the-procession-starts-out-from": [
+"#373225",
+"#d6caab",
+"#b7a989",
+"#786e57"
+],
+"utagawa-hiroshige-hakone-picture-of-the-lake-from-the-series": [
+"#1f2c34",
+"#4e4a3c",
+"#a4a37d",
+"#d7c8a4"
+],
+"utagawa-hiroshige-seba-from-the-series-the-sixty-nine-statio": [
+"#323a39",
+"#95a29a",
+"#687772",
+"#b4b6a5"
+],
+"utagawa-hiroshige-evening-cool-at-ryogoku-from-the-series-fa": [
+"#6f6c6a",
+"#363236",
+"#768e99",
+"#dfd9c0"
+],
+"utagawa-hiroshige-mountains-and-streams-of-the-kisoji": [
+"#dcd9c8",
+"#6f756b",
+"#cac7b5",
+"#e9e7d9"
+],
+"utagawa-hiroshige-rice-fields-at-asakusa-shrine-visiting-at": [
+"#e1ddbd",
+"#c5bda4",
+"#212f31",
+"#485d58"
+],
+"utagawa-hiroshige-sketchbook-famous-places-in-edo-and-other": [
+"#ffffff",
+"#b48f43",
+"#a67e36",
+"#c8bc9a"
+],
+"utagawa-hiroshige-sketchbook-famous-places-in-edo-and-other-2": [
+"#ffffff",
+"#a4853f",
+"#987737",
+"#bbae89"
+],
+"utagawa-kuniyoshi-sakata-kaidomaru": [
+"#473939",
+"#18345a",
+"#816969",
+"#8da6a3"
+],
+"utagawa-kuniyoshi-onoe-kikugoro-iii-as-tenjiku-kaja-sawamura": [
+"#8b7d64",
+"#4e3c29",
+"#e7c479",
+"#c3b591"
+],
+"utagawa-kuniyoshi-katsuo-bonito-from-the-series-cats-substit": [
+"#57756b",
+"#d9c4a2",
+"#414740",
+"#beb392"
+],
+"utagawa-kuniyoshi-popular-octopus-games": [
+"#3d474b",
+"#c3c3ab",
+"#bcb9a2",
+"#b4967d"
 ]
 }
