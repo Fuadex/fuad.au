@@ -3,6 +3,16 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "edvard-munch-seated-young-woman": {
+  "about": "Munch signed and dated this half-length young woman in a high-backed red chair in 1892, yet Gerd Woll, cataloguing his paintings in 2008, could neither identify the sitter nor trace the canvas in any early exhibition.",
+  "deep": "The crimson a sickroom name would read in her eyes also builds the chair and runs through her blouse. The canvas was once called \"Syk pike\", Sick girl, the name of Christian Krohg's painting of 1880–81 and of Munch's own Sick Child motif, and a plaque on its frame, made after his death, carried it. Read under that name, the figure is a set of symptoms: red rims, a pale face, a head turned aside in a high-backed chair. The canvas lays each down as paint. The pale face is smooth, almost free of shadow, set among loaded strokes, and the head turned aside faces our left.",
+  "by": "Opus 5.5"
+ },
+ "edvard-munch-nude-in-profile-towards-the-right": {
+  "about": "A lone red-haired nude of 1898 — the year Munch painted Man and Woman, a naked couple, and began Metabolism, which he called as important to the Frieze of Life \"as a buckle is for a belt\".",
+  "deep": "Two critics writing in 2022 needed her to answer a watcher, and nothing here answers: the lid is lowered, no eye shows, and she looks at no one, you included. Chloë Ashby, in ArtReview, saw Eve \"burning with shame\"; the painter Celia Paul, in the London Review of Books, found her \"at ease with the man who is observing her\". The face that would show either is bowed and dusky; the palest passage lies instead on the arm folded across the body, and both critics can claim that gesture. What Paul praised as \"the sureness of the brushmarks\" can be checked against the contours: orange down the back, crimson round the folded arms.",
+  "by": "Opus 5.5"
+ },
  "claude-monet-the-artist-s-garden-in-argenteuil-a-corner-of-t": {
   "about": "Monet's 1873 canvas of red, yellow and white dahlias heaped before a house — painted the year his sales more than doubled, to 24,800 francs, by a man whose Argenteuil ledger also paid for a gardener.",
   "deep": "The fence Monet painted stands far back, behind the couple on the right; between the viewpoint and the dahlias no barrier is painted at all. Renoir, painting Monet at his easel before the same house and flowers in 1873, set a wooden fence parallel to the picture plane which, in Richard Shone's reading, confines the dahlias to the neighbouring garden. Paul Hayes Tucker, as Shone reports, suggested Monet left it out for \"a less suburban, more open feeling\"; Shone asks whether the flowers were \"appropriated from next door\", and takes the house for a neighbour's new villa. In December 1873 the canvas was simply Les Dahlias; the garden entered its title later.",

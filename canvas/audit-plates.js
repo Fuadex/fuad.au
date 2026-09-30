@@ -318,7 +318,7 @@ const museumById = {}; for (const m of MUSEUMS) museumById[m.id] = m;
 const SRC_TO_MUSEUM = {
   nga: 'nga-dc', mnw: 'mnw', 'nationalmuseum-se': 'nationalmuseum', met: 'met-nyc', gugg: 'guggenheim',
   vgm: 'van-gogh-museum', 'kroller-muller': 'kroller-muller', rijksmuseum: 'rijksmuseum', 'ng-london': 'national-gallery-london',
-  vam: 'v-and-a', ycba: 'ycba', ngv: 'ngv', 'centre-pompidou': 'pompidou', agsa: 'agsa', whitney: 'whitney', orsay: 'orsay',
+  vam: 'v-and-a', ycba: 'ycba', ngv: 'ngv', 'centre-pompidou': 'pompidou', agsa: 'agsa', whitney: 'whitney', orsay: 'orsay', kode: 'kode',
   getty: 'getty-center', harvard: 'harvard-art',
   // aggregators / ambiguous: no single implied holder, skip
   commons: null, artuk: null, parismusees: null,

@@ -101,6 +101,168 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+ "edvard-munch-seated-young-woman": {
+  "mv": 6,
+  "see": "A young woman is shown half-length, seated in a high-backed red chair that fills the right edge of the canvas behind her. Her head is turned to our left, and her eyes go the same way. Her face is pale, and her dark hair is drawn up into a knot on the crown. She wears a high-collared red-and-blue blouse. Across the left side of the canvas, and above her and the chair, lies a background of long strokes in olive, green and red.",
+  "about": "The face is painted in a different manner from its surroundings. It is smooth and close in tone, its features set down in a few drawn lines. Around it, the blouse, the chair and the background are laid in long loaded strokes, and each of those zones keeps a direction of its own: level behind her, upright in the chair, slanting in the blouse. And the face is turned away: her look goes to our left, out of its smooth paint and into the background.",
+  "craft": "Outside the face, most strokes are single pulls of a loaded brush, and each is left as it lands, not smoothed into its neighbour afterwards: a red lies against a blue with its border still showing, so the colour of each zone is a sum of separate strokes. The bristles leave their tracks along the pulls, and many strokes thin to a taper where the brush lifted.",
+  "context": "Munch's solo show in the Tostrup building in Kristiania, in the autumn of 1892, brought an invitation to Berlin, and on 5 November fifty-five of his paintings opened at the Verein Berliner Künstler. A week later its members voted to close the show, a move pushed by Anton von Werner, the association's chairman, and over the following year Munch took his own version of it to Düsseldorf, Cologne, Dresden and Munich, among other cities. In 1892 he also painted Inger in Black and Violet, a full-length portrait of his sister.",
+  "deeper": [
+   {
+    "t": "Crossed strokes on the cheek",
+    "x": 0.48,
+    "y": 0.18,
+    "w": 0.24,
+    "h": 0.32,
+    "body": "Below the near eye the cheek is laid in fine strokes of pink over pale ochre, some slanting one way and others crossing them at another angle. Over the forehead the strokes curve in short arcs. No one direction takes over the face: the brush has gone back and forth until the surface lies smooth. The tones stay close as well. Forehead, cheeks and chin keep to one narrow range of cream, ochre and pink, and shadow comes down to a few patches of warmer ochre, at the root of the nose and on the cheek toward the ear. So the face is drawn more than it is shaded. The features are set onto this even field in a few strokes: two dark brown brows, a couple of orange-brown touches at the nostrils, lips of orange-pink edged in a deeper red-orange. This face and its ear make the one broad pale area on the canvas; elsewhere pale paint comes only in thin scattered streaks and flecks."
+   },
+   {
+    "t": "Where the eyes are aimed",
+    "x": 0.493,
+    "y": 0.233,
+    "w": 0.15,
+    "h": 0.121,
+    "body": "Each upper lid is one heavy line of blue-black, and it crosses the top of the iris, so both eyes are partly covered from above. In the near eye the dark pupil sits left of centre, with most of the pale of the eye on its right: the look is aimed off to your left. The lower rims are drawn in crimson, and over the near eye a second crimson line marks the crease of the lid. From each inner corner a short orange-vermilion stroke runs down beside the bridge of the nose. The irises are grey-blue with dark pupils and a single pale dab apiece, and the whites are close to the same grey-blue, so each opening reads as one cool shape set into the warm flesh of the face."
+   },
+   {
+    "t": "A red line from chin to ear",
+    "x": 0.547,
+    "y": 0.26,
+    "w": 0.173,
+    "h": 0.25,
+    "body": "From under the chin, where it meets the collar, a red-brown line runs up and back to just below the lobe of the ear, tapering as it climbs. It draws the underside of the jaw from chin to ear. Just above where it begins, on the chin, sits the palest passage on the canvas. Below it the neck turns a deeper orange-ochre. Head and neck are parted by that line and that change of colour, with no shaped shadow under the jaw. At the line's upper end the ear is worked up in more separate touches than the cheek beside it: cream, with a whiter rim, red in the bowl, and a thin grey-blue line down its front edge, all set against the near-black of the hair behind."
+   },
+   {
+    "t": "Green above, red below",
+    "x": 0.01,
+    "y": 0.04,
+    "w": 0.56,
+    "h": 0.56,
+    "body": "The lowest of the deep green streaks at the left runs just above the level of her mouth, and none of the others comes lower. Above that height the background is olive-brown and mauve, crossed by long green strokes that rise and fall a little as they go. Below it the red begins, brick, vermilion and crimson, growing stronger stroke by stroke over a few centimetres. The two zones are equally dark; what changes is the colour. And the lower red is more intense than the crimson of the chair: it is the strongest colour of any large area in the picture. Nothing in the field can be read as a place: no horizon crosses it, and no object stands in it."
+   },
+   {
+    "t": "Around the chair's crown",
+    "x": 0.71,
+    "y": 0.01,
+    "w": 0.287,
+    "h": 0.985,
+    "body": "Above the shoulder on our right, the chair's crown rises in a broad curve, and the olive and ochre strokes of the background bend down along it in arcs instead of running level. Below the crown the stroke turns upright. The chair is built of long crimson and madder pulls that waver as they fall, some swinging into S-curves, with pinker strokes high on the back. Behind her neck a darker red loop curls inside the chair's shape, and between her back and the chair runs a broad band of near-black purple that sets the figure off from it."
+   },
+   {
+    "t": "Vermilion dabs on the collar",
+    "x": 0.37,
+    "y": 0.427,
+    "w": 0.446,
+    "h": 0.573,
+    "body": "On the high dark-blue collar sit small flecks of vermilion, each set down in a touch or two and left alone. Below the collar the blouse is striped red and blue, and the stripes are never drawn as stripes. They are long slanting strokes laid side by side, ultramarine, vermilion, crimson and a dull purple, with a few pale blue-white touches among them, steeper down the body and flatter across the chest. Two blue-black lines are drawn over them, one around the edge of the collar and one down the front of the bodice. Colour changes more often here than anywhere else on the canvas: the most broken surface in the picture sits directly under the smooth face."
+   },
+   {
+    "t": "Where the hair runs out",
+    "x": 0.433,
+    "y": 0.013,
+    "w": 0.317,
+    "h": 0.25,
+    "body": "At the upper left of the topknot, the hair's brown sweeps never reach an edge. They run straight on into the background, and green streaks of the background lie among them, so for a short stretch head and background are painted in the same strokes. Lower on the same side, above the far temple, a thin blue-black line takes over and draws the front of the hair down to the forehead. Compare the back of the head, on the other side, where the dark of the hair ends in a firm curve against the background."
+   },
+   {
+    "t": "Width on the side she faces",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "A single half-length figure would fit an upright canvas with little to spare; this one is wider than it is tall, and the extra width is not shared out. She sits right of centre, backed by the red chair at the right edge. From the top down to her shoulders, the left two-fifths of the canvas holds nothing but background and the signature. That spare width lies on the side she faces. Across that side the background's strokes run level, while the chair's upright strokes close the canvas behind her."
+   }
+  ],
+  "beside": "The gap between this smooth face and what surrounds it opens again in Gustav Klimt's Portrait of Amalie Zuckerkandl, some twenty-five years later, now in the Belvedere in Vienna, and there it is a gap in time. Face, bare shoulders and a green ground of loose upright strokes are painted, and the eyes look straight out. Below the shoulders the gown is still largely a drawing: lines of folds, a hand and outlined flowers on bare canvas. On Munch's canvas the smooth face and the loaded strokes around it are both paint, side by side; Klimt died in 1918, with the gown unfinished.",
+  "refs": [
+   {
+    "id": "portrait-of-amalie-zuckerkandl",
+    "text": "Portrait of Amalie Zuckerkandl"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "edvard-munch-nude-in-profile-towards-the-right": {
+  "mv": 6,
+  "see": "Orange-red hair falls loose down the back of a naked woman who stands in strict profile, facing right, and the bottom edge cuts her at the upper thighs. Her head is bowed, and her arms are folded across her body under the breast, the near arm a long pale shape from shoulder to waist. A dark band hugs the front of the figure from the face downward. The ground is divided into upright zones: dark navy streaked with pale blue at the left, violet at the very edge; near-black behind her; a dull bottle green at the right. Standing before it, you see her in a gilded frame that covers the worn edges of the canvas.",
+  "about": "The light in this picture lands on the folded arm, not on the face. The palest passage on the canvas runs down the near arm as it crosses the body, while the bowed head is far darker than that arm. A portrait would put its light on the face, where the likeness is. Here the light falls on the gesture itself: arms drawn across the body, closing it.",
+  "craft": "The flesh is modelled in tone, darkening toward the front of the body, but its edges are drawn: Munch sets them down as lines of saturated colour, orange, green, crimson and blue, and where one form overlaps another, a coloured line marks the boundary. The paint builds up in the palest flesh and the brightest hair and lies thin over most of the rest.",
+  "context": "In July 1897 Munch bought a house of his own at Åsgårdstrand, and that September a major retrospective of his work opened in Kristiania. In 1898 he was in Berlin in March and April, in Paris by May, showing at the Salon des Indépendants, and back at Åsgårdstrand for the summer. In the autumn he met Tulla Larsen and began the affair that ended with a gunshot at Åsgårdstrand in 1902. In 1899 he went to Florence and Rome in the spring, and spent the autumn and winter in the Kornhaug sanatorium in Gudbrandsdalen.",
+  "deeper": [
+   {
+    "t": "One line between arm and flank",
+    "x": 0.219,
+    "y": 0.333,
+    "w": 0.349,
+    "h": 0.34,
+    "body": "Find the dark-ochre line that starts under the shoulder with a short fork and runs down and forward to the waist. It is the lower edge of the near arm, and over most of its length it is what parts the arm from the flank it lies against: both are cream, the arm a shade whiter and cooler. Only near the waist does the flank just below the line deepen, to broad strokes of strong ochre. The line has company: a softer orange-red stroke runs beside it on the arm's side, and a band of mauve-pink follows the arm's underside down to its rounded end. From fork to waist the dark line runs some twenty-two centimetres. Then the cream itself. It is laid in short curved drags that cross the arm's width, stacked from shoulder to waist like scales, and close to, their ridges catch the light as small bright flecks along each crescent."
+   },
+   {
+    "t": "Blue, crimson, then an orange loop",
+    "x": 0.483,
+    "y": 0.36,
+    "w": 0.252,
+    "h": 0.263,
+    "body": "Follow the figure's front edge down from the chest. Where the chest meets the dark, the edge is a thin blue line with olive-green inside it. Near the blue's lower end a crimson line starts just inside it, and when the blue gives out the crimson carries on alone, round the forward curve of the folded arms. Outside the crimson, over the dark ground, an orange line swings out in a loop and rejoins the body lower down. It may be the far arm showing past the front, or an earlier outline left standing; the paint does not say which. Inside the crimson edge the forms refuse to separate: olive, pink and orange strokes wind in curves, a few short orange hooks curl among them, and forearms and breast never come apart into parts you could name."
+   },
+   {
+    "t": "The lowered lid",
+    "x": 0.374,
+    "y": 0.087,
+    "w": 0.187,
+    "h": 0.207,
+    "body": "The head tips forward, chin toward the chest, and where the eye would be there is a domed lid of red-brown, darker than the cheek around it, with a dark slit running along it. No white shows, and no iris. Around the lid the face is dusky brown-ochre, its turns marked in colour: a green arc cups the lid, another runs under the jaw, a dab of orange-red sits near the tip of the nose, and the small closed mouth is mauve. Its palest touches are a short cream stroke across the brow and a warm pink patch on the cheek. A scatter of tiny yellow flecks lies over the whole face and runs on into the hair. The profile is drawn as an olive line against the dark red-brown beyond it, from the brow down the nose to the upper lip, while below the lips the chin's edge fades into the dark with no drawn line."
+   },
+   {
+    "t": "Dark hair on the far side",
+    "x": 0.487,
+    "y": 0.063,
+    "w": 0.264,
+    "h": 0.327,
+    "body": "In front of the face, the dark is not empty ground. Close to, it carries strands: long dark-red strokes in the same S-waves as the hair at her back, falling from the crown past the brow and chin toward the chest, with a few brighter red threads among them. This is the hair on the far side of the head, and it is far darker than the orange-red locks behind her, so the face is set against a near-black of her own hair. The fine white net over all of it is made of cracks in the dark paint, a matter of condition and no part of the drawing."
+   },
+   {
+    "t": "A lock that turns back on itself",
+    "x": 0.05,
+    "y": 0.02,
+    "w": 0.25,
+    "h": 0.64,
+    "body": "Near the crown the orange-red locks lie over a dark red-brown mass of hair; lower down they hang free over the near-black ground. The locks are long strokes, the wider ones built from strokes that overlap, waving in S-curves from the crown down, and this orange-red is the strongest colour on the canvas. Most of them merge into a neighbour or run under one before they end. Follow the lowest lock down and its stroke turns back on itself in a U: a hook, not a point. It hangs just above the waist, and there the hair stops."
+   },
+   {
+    "t": "The back's orange edge",
+    "x": 0.171,
+    "y": 0.32,
+    "w": 0.219,
+    "h": 0.68,
+    "body": "From under the hair at the shoulder, the back is one continuous edge: in to the waist, out over the buttock, and down to the bottom of the canvas. It is a broad band of orange, darker than the flesh inside it and far more intense in colour, and at the waist it is thick enough to show ridges. Outside it, between the orange and the near-black ground, runs a looser stroke of dark green flecked with yellow, widest from shoulder to waist and again low on the buttock. The edge is stepped through two colours, orange and then green, before the dark begins."
+   },
+   {
+    "t": "Green lines inside the thigh",
+    "x": 0.26,
+    "y": 0.587,
+    "w": 0.374,
+    "h": 0.413,
+    "body": "Down the thigh, well inside both of its painted edges, run several long dark-green lines, close to parallel, from about the waist to the bottom of the canvas. Each breaks into short dashes where it touched only the raised threads of the canvas, which is how a line dragged dry and light behaves. They are drawing, and none of them lies on the thigh's finished outline: they follow the long fall of the leg through the middle of the form. Near the bottom edge, broad red-brown strokes cross them diagonally in both directions, a hatching of warm colour across the cool drawn line."
+   },
+   {
+    "t": "From the level strokes out",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "At the lower right, in front of her thighs, the ground's strokes turn from upright to level: drags of grey-beige, slate and black laid sideways, while the green beyond them stays upright. It is the nearest the ground comes to a floor. Now take in the whole canvas. She fills its height, the hair's arc almost touching the top edge and the bottom edge cutting her at the upper thighs, so the bowed head sits high and close under the top. The canvas's centre falls in the knot of folded arms. And three things fall at nearly the same height, about two-thirds of the way down: the last hook of hair behind her, the rounded end of the arm in front, and the deepest inward turn of the back at the waist."
+   }
+  ],
+  "beside": "The dark line parting this woman's near arm from her flank has a counterpart twenty years on, made with a tool. In Modigliani's Nude on a Divan, 1918, at the National Gallery of Art, a woman lies corner to corner across a brown divan, head tilted sideways, and a short channel runs from her shoulder down to a small hook at the bend of the arm, pushed through the wet paint, with pale flecks along part of one lip. The arm is a pinker salmon than the breast, and the groove draws the edge between them. Munch's line is a stroke of dark paint, and for most of its length the cream on either side differs by a shade.",
+  "refs": [
+   {
+    "id": "amedeo-modigliani-nude-on-a-divan",
+    "text": "Nude on a Divan"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
  "claude-monet-the-artist-s-garden-in-argenteuil-a-corner-of-t": {
   "mv": 6,
   "see": "A bank of flowers, which the title names as dahlias, spreads across the lower left and centre of the canvas in reds, yellows, pinks and whites, swelling into a hump left of centre. Above it rises the upper part of a house with a dark roof and two chimney stacks, under a broken, cloudy sky. To the right the ground opens into a pale bed, and a woman and a man stand at its back, before a paling fence. A russet path runs along the foot of the bank from the lower left.",
