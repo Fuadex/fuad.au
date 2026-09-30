@@ -3,6 +3,11 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "claude-monet-the-artist-s-garden-in-argenteuil-a-corner-of-t": {
+  "about": "Monet's 1873 canvas of red, yellow and white dahlias heaped before a house — painted the year his sales more than doubled, to 24,800 francs, by a man whose Argenteuil ledger also paid for a gardener.",
+  "deep": "The fence Monet painted stands far back, behind the couple on the right; between the viewpoint and the dahlias no barrier is painted at all. Renoir, painting Monet at his easel before the same house and flowers in 1873, set a wooden fence parallel to the picture plane which, in Richard Shone's reading, confines the dahlias to the neighbouring garden. Paul Hayes Tucker, as Shone reports, suggested Monet left it out for \"a less suburban, more open feeling\"; Shone asks whether the flowers were \"appropriated from next door\", and takes the house for a neighbour's new villa. In December 1873 the canvas was simply Les Dahlias; the garden entered its title later.",
+  "by": "Opus 5.5"
+ },
  "jean-jacques-henner-reclining-nude": {
   "about": "Henner painted this small nude lying on her front beside a pool in a dark wood. A New York auction sold it in 1921 as a \"Reclining Nymph\"; the title has since dropped the nymph.",
   "deep": "Nothing in the picture could date it. It has no clothes to go out of fashion and no face to fix a sitter's age, and Henner went back to his subjects years apart, sometimes never titling them. The critic Clarence Cook said he had one theme, \"the naked female figure in a rich gloaming ideal landscape\", and he was criticised for repeating himself. A canvas like this belongs to that long run, not to a year. Only the ground is particular: the pond and thickets of these pictures are the Sundgau of southern Alsace, his native region, German territory from 1871.",
@@ -3976,8 +3981,10 @@ about: "Between 1899 and 1904 Monet worked some thirty-seven canvases of this Th
 by: "Opus · Fable" },
 
 "jean-baptiste-camille-corot-erinnerung-an-coubron": {
-about: "Corot invented the \"souvenir\" himself: a landscape painted not before the motif but from memory, the topography dissolved into mood and silvery atmosphere. He first came to Coubron, a hamlet east of Paris, in 1867; after the Commune he returned to a doctor friend there and worked up some five landscapes from those excursions. This one dates to 1872, three years before his death, when the late manner was in such demand that his estate sale drew buyers from across Europe and America.",
-by: "Opus · Fable" },
+  "about": "A woodcutter and a peasant woman in a meadow near a willow grove — Alfred Robaut's title for Corot's small canvas, dated to 1872 and named for Coubron, a village east of Paris near Montfermeil.",
+  "deep": "After the place name, this souvenir's full title names only kinds, never a person or a particular tree. Corot asked nature about kinds too. In 1867, just before going to Coubron, he told Théophile Silvestre that after six months of hunting for branches in the studio he needed natural ones: \"I want to know how willow leaves hold themselves in the air.\" The pollard at the left is painted to that question: high among its shoots the sky is worked into a soft grey veil, and the leaves sit on it as separate tapering strokes, sharper-edged than the grey beneath. The figures below are kinds as well: a bent back, a bowed head.",
+  "by": "Opus 5.5"
+ },
 
 "j-m-w-turner-sun-setting-over-a-lake": {
 about: "Scholars read the pale strokes at this canvas's right edge as snow-capped Alps — likely the mountains around Lucerne — tying it to Turner's late fixation on the Swiss lakes he toured again and again in his final travelling years. Beyond that hedged identification it keeps its secrets: no title of his own, no buyer, no showing in his lifetime.",
@@ -4078,16 +4085,20 @@ by: "Opus · Fable" },
 // shipped short-honest (subject research exhausted); Dahl verified as a sketchbook verso drawing.
 
 "johan-christian-dahl-utsikt-over-napoli-golfen-fra-monte-st": {
-about: "Dahl climbed Monte Sant'Angelo above Castellammare on 14 September 1820, during the Italian journey that shadowed the exiled Danish prince Christian Frederik; a companion leaf from the same day catches the prince, Caroline Amalie and Baron Herman Schubart resting near the summit. This sheet is a pencil-and-watercolour drawing on the verso of a leaf in that Italy-journey sketchbook, taking the Gulf of Naples from the mountaintop rather than the royal party.",
-by: "Opus · Fable" },
+  "about": "Dahl's pencil-and-watercolour sketchbook page of 14 September 1820 — drawn on the summit of Monte Sant'Angelo, the highest peak above the Sorrento peninsula, on a climb with Denmark's crown prince, and half of a two-page view.",
+  "deep": "Of the two verdicts on Dahl's ten months in Italy, this sheet bears out the second. He had married Emilie von Bloch in haste on 12 June 1820, after a two-month engagement, and left her in Dresden within days to join the crown prince; his biographer Marie Lødrup Bang calls the stay soured by longing for his waiting bride, and decisive for his art. The longing leaves no mark here. The blue goes to the gulf and round Capri, the humid, shimmering air Bang found in study after study, while the ground underfoot gets pale grey wash and pencil. In June 1821 he went north through the Tyrol to her.",
+  "by": "Opus 5.5"
+ },
 
 "edouard-vuillard-avenue": {
 about: "One of three decorative panels Vuillard made for the Romanian princes Antoine and Emmanuel Bibesco, friends since a 1901 trip to Spain; this one was commissioned by Emmanuel for the dining room of his new Paris apartment and worked up between November 1907 and February 1908. The large panel sets Lucy Hessel, the painter's longtime companion, in a pale mauve dress at the end of a sunlit path, and remains the biggest portrait Vuillard ever made of her.",
 by: "Opus · Fable" },
 
 "paul-steck-ophelie": {
-about: "A pupil of Gérôme, Paul Steck sent this near-lifesize canvas to the Salon of 1895, where the catalogue entry carried Laurent Tailhade's 1891 verses \"Les Fleurs d'Ophélie.\" Where Millais and most others kept Ophelia afloat among river flowers, Steck put the drowned girl fully beneath the surface, already sinking through green water toward the bottom, a rarer and colder resolution of the fin-de-siècle Ophelia craze.",
-by: "Opus · Fable" },
+  "about": "Steck's Ophelia went to the Salon of 1895 as no. 1771 with, in place of a title, two lines by Laurent Tailhade in which Ophelia has closed her eyes beneath white water lilies tinged with blood.",
+  "deep": "To a reader of Tailhade's whole poem, the canvas takes its drowning and leaves its jewellery. The lines Steck borrowed close it; before them, Nixes show Ophelia the way, and she drifts down to gardens of mother-of-pearl, under porches where the sun never gilds the pebbles. The canvas keeps her under, grants no guide and no gardens, and lets daylight in overhead: the verse has her travel, the paint has her hang. Even her eyes wavered between jewel and weed. Tailhade's 1891 printing, the one Steck quoted, made them aigue-marine, the gemstone, where the 1888 text had algue marine, sea-wrack. The canvas shows them shut, and hangs weed through the river.",
+  "by": "Opus 5.5"
+ },
 
 "john-martin-the-last-judgement": {
   "about": "Martin's 1853 canvas parts the saved from the damned across a chasm. Shown alone in London that June, it was touring with two companions by autumn, admission often sixpence; audiences were later claimed in the millions.",
@@ -4101,8 +4112,10 @@ about: "Artur Schroeder (1881-1934) was a Lwów writer, poet and art and theatre
 by: "Opus · Fable" },
 
 "vincent-van-gogh-enclosed-field-with-rising-sun": {
-about: "From his room at the Saint-Paul asylum in Saint-Rémy, Van Gogh had told Theo in May 1889 that \"through the iron-barred window I can make out a square of wheat in an enclosure, a perspective in the manner of Van Goyen, above which I see the sun rise in its glory.\" He worked that same walled field over and over through the year; this December canvas, F737, is the sunrise version he singled out to send to the Les XX exhibition in Brussels in 1890.",
-by: "Opus · Fable" },
+  "about": "Saint-Rémy asylum, May 1889 — Van Gogh wrote of a walled wheat field beyond his barred window, \"above which in the morning I see the sun rise in its glory.\" He painted it that November–December.",
+  "deep": "The field was painted as the calm half of an argument, the half with nothing to point at. Writing to Émile Bernard in November 1889, Van Gogh set it beside the asylum garden and its lightning-struck tree, his canvas for anxiety, and said that here he had \"tried to express calm, a great peace\"; against Bernard's biblical pictures, consolation needed no \"figures from the Sermon on the Mount\". The garden had a wounded tree to hold its feeling. Here there is no figure, and nothing happens but morning. He warned Theo it might need looking at \"for a while perhaps\"; Theo found it \"like a memory of something one has seen\".",
+  "by": "Opus 5.5"
+ },
 
 "thomas-cole-study-of-a-tree": {
 about: "In 1823, before Trumbull, Dunlap and Durand discovered him in 1825, Cole crossed Pennsylvania on foot from Pittsburgh to Philadelphia and began making, in his own account, \"small, but accurate studies of single objects\"—a tree, a leafless bough, every twig traced. This is one of those apprentice tree studies from that self-schooling, dated 1824, when the future Hudson River School founder was still a landscape painter teaching himself by copying nature one trunk at a time.",

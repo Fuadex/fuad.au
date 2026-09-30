@@ -101,6 +101,403 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+ "claude-monet-the-artist-s-garden-in-argenteuil-a-corner-of-t": {
+  "mv": 6,
+  "see": "A bank of flowers, which the title names as dahlias, spreads across the lower left and centre of the canvas in reds, yellows, pinks and whites, swelling into a hump left of centre. Above it rises the upper part of a house with a dark roof and two chimney stacks, under a broken, cloudy sky. To the right the ground opens into a pale bed, and a woman and a man stand at its back, before a paling fence. A russet path runs along the foot of the bank from the lower left.",
+  "about": "Depth in this picture is built by the body of the paint as much as by the shrinking of things. The flower bank at the front of the picture carries its hottest colour, laid on thick. Farther back the paint thins and cools, down to places where the canvas weave shows. The two kinds of depth work together: the flowers press forward, close to the surface and almost into the room, while the house, the trees and the two people recede behind them.",
+  "craft": "Monet paints across forms, not around them. A shape is laid in first, and the next colour is brought over its edge, sometimes from the nearer thing and sometimes from the thing behind. Where the overlapping stroke belongs to the nearer thing, the order of the layers helps say what stands in front.",
+  "context": "In December 1871 the Monets rented a house and garden at 2 rue Pierre Guienne in Argenteuil, a river town with an hourly train to the Gare Saint-Lazare. On 22 April 1873 Monet wrote to Pissarro about a plan for an independent exhibiting society, which everyone favoured except Manet. On 7 May he told Paul Alexis that \"a group of painters assembled in my home\" had read Alexis's article calling for an artists' corporation, and on 12 September he invited Pissarro to Argenteuil to work on the society's bylaws. The society was incorporated as the Société anonyme on 27 December. Its first exhibition opened on 15 April 1874, and there the title of Monet's Impression, Sunrise gave the group its name.",
+  "deeper": [
+   {
+    "t": "Red heads, curled in the paint",
+    "x": 0.32,
+    "y": 0.56,
+    "w": 0.27,
+    "h": 0.19,
+    "body": "The red heads low in the bank are knots of curved strokes worked round a centre, and the ridges left by the turning bristles still stand up from the canvas. A dahlia carries its petals in tight rings, and the curl of the brush supplies those rings without a single petal being drawn. One head near the middle of this cluster shows two reds at work: a darker crimson went down first, and a brighter orange-red was dragged round its right side while the crimson was still wet, so the two merge at a marbled seam. Most of its neighbours are one deep red worked round in several strokes. The leaves between them are flat strokes of dark green, one to a leaf. The heads were left as the brush dropped them, unsmoothed, so their ridges catch light as real relief. Most of the picture's most intense colour lies in this bank, in its yellows and oranges as well as in these reds."
+   },
+   {
+    "t": "Blue in the yellow heads",
+    "x": 0.32,
+    "y": 0.4,
+    "w": 0.13,
+    "h": 0.1,
+    "body": "Higher in the bank, two yellow heads are built the same way: a ring of heaped yellow turned about a centre, streaked with the green of the paint beneath. Into the middle of each goes a dab of turquoise or blue-green. A darker yellow would have described the flower's centre well enough. Monet sets a cool colour there instead, and it acts on both the centre and the ring around it. The dab sinks, reading as the cup of the flower, and it heats the yellow round it: set against a cool colour, a warm one looks warmer still, so each ring looks hotter for the blue-green at its heart."
+   },
+   {
+    "t": "Silver under the bank",
+    "x": 0.27,
+    "y": 0.66,
+    "w": 0.44,
+    "h": 0.29,
+    "body": "Below the red heads the foliage turns cool: silver, blue-grey and slate strokes over the russet earth, many of them slanting down to the right, the direction in which the whole bank falls from its crest. The shaded underside is not the leaf green made darker. It is a different family of colour, blue and grey, held between two warm things, the hot red heads above it and the earth below, and the bank passes from light into shade by that change of hue as much as by darkening. Set against the warm earth, the cool base also lifts the red mass off the ground, so the bank reads as a body with a shadowed side and a lit crown."
+   },
+   {
+    "t": "Two figures at the palings",
+    "x": 0.68,
+    "y": 0.53,
+    "w": 0.18,
+    "h": 0.18,
+    "body": "At the back right, before a fence of brown vertical palings, a woman and a man are each made from a few brief strokes. Her pale dress catches a yellow light down the front of the bodice and goes lilac-grey toward the hem, with a single pink touch at the waist and a white bonnet above. He wears a dark coat and a straw-coloured hat with a dark band, and is turned toward her. Each face is one pink dab, the same kind of touch that makes a petal in the bank. Scale is what places them. A red head at the front of the bank stands nearly half as tall as the man, and since the eye knows roughly how large a flower and a person are, that jump sets the pair well back beyond the pale bed. Their paint is flatter and quieter than the flowers', thin enough in the dress for the canvas texture to show, so the scale and the surface agree about the distance."
+   },
+   {
+    "t": "The garden laid over the house",
+    "x": 0.44,
+    "y": 0.27,
+    "w": 0.31,
+    "h": 0.23,
+    "body": "The house passes for white, but its front is a warm, faintly yellow cream, streaked with horizontal strokes, and it sits darker than the sky above the roof. The block to its left is cooler and bluer, and that change of temperature alone separates the two walls. The windows are flat blocks: lighter blue for the open shutters, darker blue-grey for the glass, a pale stroke for the mullion. Then the garden is painted over the wall. A thin yellow shrub is scumbled across the lower left of the house with the wall showing through it, and yellow-green leaf strokes are laid over the blue of the right-hand window. Because the plants are laid over the house, the house stays behind them, and the garden reaches up into it."
+   },
+   {
+    "t": "Dry roof, green chimneys",
+    "x": 0.47,
+    "y": 0.22,
+    "w": 0.26,
+    "h": 0.16,
+    "body": "The roof's grey-brown was dragged on with a brush carrying little paint, and along the weave the pale ground flecks through in small horizontal ticks. A dark shape laid that way keeps a scatter of light inside it. The dormer is a dark window crossed by two pale strokes. The chimney stacks are a grey-green close to the foliage, with rust-coloured pots, three on the left stack and two on the right, and the pale strokes of the sky bite into their edges and curl around them, so the outline of each stack is cut by the sky's own paint."
+   },
+   {
+    "t": "Bristle tracks and raised hooks",
+    "x": 0.24,
+    "y": 0.05,
+    "w": 0.22,
+    "h": 0.17,
+    "body": "Above and to the left of the house a grey cloud is laid over the pale sky. From its underside hang fine parallel grey lines, the tracks of separate bristles where a nearly dry brush was pulled downward. Beside them sit small raised hooks of white, the lip of paint a loaded brush leaves as it lifts away. So the sky is no thin wash. It is built of crossing strokes, some standing proud, and it stays back because most of those strokes run flat and sideways in pale, cool colour, lying along the surface where the flowers heap up."
+   },
+   {
+    "t": "A wedge that closes on the pair",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "The bank and the path make one large shape between them. The bank climbs from the left edge to a crest just left of the house, then falls away to the right, while the russet path rises from the lower left along its foot. The two lines close toward the pale bed, and just beyond the tip of that wedge stand the two figures by the palings. The house sits above it all, its lower part hidden by flowers and a shrub, held between a tree at each side. The second title, A Corner of the Garden with Dahlias, fits what the frame does: it sets the viewpoint on the path at the foot of the flowers, with the house glimpsed over the top of the bank."
+   }
+  ],
+  "beside": "Eight years later the same parts returned, the flowers split in two to let a path through. The Artist's Garden at Vétheuil, painted in 1881 and also at the National Gallery of Art, again sets massed flowers before a pale house, but on one axis: sunflowers taller than the people rise on both sides of a path climbing straight up the middle to a flight of steps, and a small child in white stands mid-path with his wagon. Here the dahlias stand across the view as one heaped mass and the path only skirts them; there the flowers stand aside as two walls and the path runs through them to the steps.",
+  "refs": [
+   {
+    "id": "claude-monet-the-artist-s-garden-at-vetheuil",
+    "text": "The Artist's Garden at Vétheuil"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "vincent-van-gogh-enclosed-field-with-rising-sun": {
+  "mv": 6,
+  "see": "A pale sun stands right of centre over a range of slate-grey hills, in a sky of yellow strokes. Below the hills a stone wall crosses the canvas and turns a corner at the far left; beyond it are a dark copse on the left and, on the right, a small farmhouse, a few dark trees and a hillside of pale flecks. Everything under the wall is one field of young wheat, with furrows fanning across it, a dark band along its top at the left and a rust-coloured line climbing across its middle toward the right.",
+  "about": "Almost every mark on this canvas is laid along a course: round the sun in the sky, with the rows of young wheat in the field, with the lie of the ground on the far slope. The view is assembled from those directions. The field is tipped up until the hills and sky take only the top third, so the ground and its rows fill most of the canvas, spread before the eye almost as a plan is. Seen that steeply, the field is a surface of courses more than a strip of distance, and the eye can travel it row by row up to the wall.",
+  "craft": "He models surfaces by the direction of the stroke: a turning plane is painted in turning strokes, and a change in the lie of the ground is a change in their angle, with little blended tone. The kind of touch also changes with the part of the view, so that sky, field, wall and far slope are each laid in a different mark. A continuous dark contour edges the hills, the trees and the top of the wall. Warm touches go into cool areas, cool greyed strokes into the yellows. On 7 December 1889, with this canvas in progress, he described his method for the large studies: washes thinned with spirits, then touches or hatchings with spaces between them.",
+  "context": "Van Gogh spent November 1889 in the olive groves near Saint-Rémy, painting five canvases of them the size of this one. Invited by Octave Maus in mid-November to show with Les XX in Brussels, he chose this canvas while it was still on the easel and held back a consignment for Theo to travel with it. He sent it on about 18 December, telling Theo he would do \"hardly any more things in impasto\" and putting that down to the secluded life he was leading. Within the week, a year after the Arles crisis, came another attack; while ill he told Peyron, the director of the asylum where he was a patient, that he would rather not exhibit, then took the refusal back.",
+  "deeper": [
+   {
+    "t": "The sun in rings",
+    "x": 0.14,
+    "y": 0,
+    "w": 0.68,
+    "h": 0.23,
+    "body": "The disc is the lightest passage on the canvas, a pale yellow, and the colour strengthens in the dashes around it. The sun's brightness is made by taking colour out, with the strong yellow kept for the halo. That halo has no rays. Its dashes are laid end to end along rings, each bent to the curve, so the eye is carried round the disc and not thrown outward from it. Near the sun the rings are tight and even. Toward the left of this passage they open into long upright strokes, the same rings at a wider radius, and at its far left edge the ring order has loosened into strokes that lie almost level. The lowest arcs are cut off by the dark contour of the hills, and the disc hangs clear above the dip in the skyline, already risen."
+   },
+   {
+    "t": "Two faces of the wall",
+    "x": 0,
+    "y": 0.24,
+    "w": 0.32,
+    "h": 0.21,
+    "body": "At the far left the wall turns and comes forward along the side of the field, and its two faces are painted in two different ways. The returning face is a brighter orange, drawn as a lattice of small outlined bricks. The long face running off to the right is a duller red-brown, its joints put in as separate dark upright strokes, with pale stones set among them farther along. The corner is turned by that change of handwriting and strength of colour, with no modelling to round it. It also fixes the viewpoint. The view runs along the inside of the side wall and over the far wall to the land beyond, which needs an eye raised above the masonry, and it shows the enclosure shut on two sides."
+   },
+   {
+    "t": "The dark band under the wall",
+    "x": 0,
+    "y": 0.29,
+    "w": 0.84,
+    "h": 0.19,
+    "body": "Under the left half of the wall, the top of the field is a band far darker than the ground below it: short, mostly upright dashes of dark green, struck through with small orange-red touches. Each orange-red touch is dropped into the green on its own, and together they keep the dark alive as colour. The band ends in a hard, nearly level edge, and the ground immediately beneath is pale yellow and whitish, so the lightest ground in this part of the field sits directly against the darkest. In this half of the field that edge is the one line that runs across the furrows; the other marks run along them. Beneath the sun the band narrows but does not stop. A thinner strip of green, darker than the wheat below it and carrying dark dashes, runs on along the foot of the wall to below the farmhouse and ends there in a curved edge; past that curve the field meets the wall light. What band and strip build together is a dark sill under most of the masonry, from which the lit field falls away toward the bottom of the canvas."
+   },
+   {
+    "t": "Where the furrows lead",
+    "x": 0,
+    "y": 0.17,
+    "w": 0.46,
+    "h": 0.5,
+    "body": "The furrows on the left are dark brown lines between long, pale strokes, and they are not parallel. Followed upward, they lean in toward one another and would meet just above the wall, at the foot of the dark copse at the left of the hills: far to the left of the sun and well below it. The ground has a vanishing point of its own, and it is not the source of light. The sky is ordered round the sun, the field round a spot on the land beyond the wall, and the two centres sit far apart. The pale strokes between the furrows share their lean, which is why they stand almost upright here: these rows run nearly straight away from the viewer."
+   },
+   {
+    "t": "The strokes lie down",
+    "x": 0.34,
+    "y": 0.34,
+    "w": 0.66,
+    "h": 0.37,
+    "body": "Carried rightward from the upright strokes of the left half, the field's touches lean over by degrees until, toward the right edge of the upper field, they lie almost flat. The change runs without a break, and it is how the field is drawn: rows that run straight away from a raised viewpoint look upright, rows seen more from the side look level, and each touch takes the angle a row of wheat would have at that place. Across the lower part of this passage a rust-brown line edged with ochre climbs from left to right. The strokes change angle where they meet it, and that change folds the ground into a low rise. The fold is made by a line and a turn in the direction of the marks, the same means the whole field uses to tilt away from the viewer."
+   },
+   {
+    "t": "Flecks on the far slope",
+    "x": 0.62,
+    "y": 0.08,
+    "w": 0.38,
+    "h": 0.23,
+    "body": "Beyond the farmhouse the hillside is written in a hand the sky and the field do not use: pale, blocky flecks set apart from one another, most of them edged in dark. They are laid in rows that tilt with the fall of the range above them, so this slope too is drawn along a direction. The dark edges repeat, in small, the continuous contour lines round the hills over them. Below the flecks the house is a red-brown roof and a yellow gable end, with a few dark upright trees at its left; against the tilted rows of flecks, their verticals and the roof's straight edge are what keep the slope reading as a hillside behind a farm."
+   },
+   {
+    "t": "Swathes over a low hump",
+    "x": 0.06,
+    "y": 0.63,
+    "w": 0.4,
+    "h": 0.34,
+    "body": "The bottom of the field is darker than its middle. Over a low hump left of centre the strokes stop running straight and bend into long curved swathes that follow the rise, yellow along the crest and brown in the hollows. At the hump's left lies a grey stone, drawn in a few curved strokes, with stepped slabs below it. The darker near ground frames the pale stretch beyond it, so the field's light gathers in the middle distance. The curves are where the straight rows of the fan meet lumps and hollows, and the brush follows each one."
+   },
+   {
+    "t": "A furrow in dashes",
+    "x": 0.57,
+    "y": 0.78,
+    "w": 0.19,
+    "h": 0.22,
+    "body": "Near the bottom edge a furrow is not drawn as a line. It is a row of separate near-black dashes, each a single touch, stepping down toward the frame over brown paint, with a shorter row beside it on the left. They are among the darkest marks in the field. From a step back the row closes into one continuous furrow; close to, it is a sequence of single touches, as separate as the strokes of the wheat around it."
+   },
+   {
+    "t": "The wall between field and sky",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "The wall runs the full width of the canvas, and both of the picture's large systems of direction end against it. The furrows climb from the bottom edge through the light and dark of the field and stop at its foot; the rings wind through the sky's yellows round the disc and stop at the contour of the hills. Neither crosses the masonry. In the stretch of land between, the house, the trees and the far slope keep marks of their own, and the wall's bricks and joints follow neither the furrows nor the rings. So the field's order and the sky's come together along a line that belongs to neither, a plain boundary wall, and do not mix."
+   }
+  ],
+  "beside": "The rings of touches wound round this sun are wound round each star in The Starry Night, painted at Saint-Rémy the same year and now at the Museum of Modern Art, and the two divide their view in opposite proportions. There the haloes hang in a sky that fills most of the canvas; the hills lie low, and under them sits a village he partly invented. Here one sun carries the rings, and the proportions turn over: the walled field fills the canvas up to a band of hills and sky. There the sky is the subject and the ground a low strip; here the ground is the subject, wall and all.",
+  "refs": [
+   {
+    "id": "the-starry-night",
+    "text": "The Starry Night"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "jean-baptiste-camille-corot-erinnerung-an-coubron": {
+  "mv": 6,
+  "see": "At the far left of a meadow under a wide sky stands a pollarded tree with a dark head. At its foot a man in a straw hat bends over a long branch, and a woman with a basket stands a little way to his right. Behind them a boat lies on a pale band of water, and far off a village with a spire sits under a low ridge. Slender trees rise near the centre. The right side fills with dense foliage, and in its shade another figure crouches beside a second pollard.",
+  "about": "The picture's light falls away from left to right: an open left, with the widest sky and a view out to the ridge, and a right where the trees close in and the canvas sinks into shade. Everything that happens is laid along a narrow strip at the bottom, with only trees and sky above it: a man at work, a woman beside him, a figure standing in a boat, another bent low in the shade. People and work are small here, set low in a large and quiet place, and the work is in the trees as much as in the figures, since both pollards are shapes made by cutting.",
+  "craft": "Corot lays the picture in as horizontal bands of paint, alternately light and dark (pale sky, ridge and far meadow greyer, pale water at the left, darker ground), and works his trees across them. Over a thinly scumbled sky the bare branches are drawn as single lines, the leaves as separate flicks and dabs; in the foliage and the foreground the weave shows through. Where a dark has to carry, the stroke is set against the lightest paint near it. The figures are flat touches of colour set side by side, with no line drawn round them. The most saturated colour comes in small separate touches on clothes, leaves and grass, the strongest of them the flower dabs.",
+  "context": "Corot was at Coubron in June 1872, the year this canvas is dated to, and again from 1 to 15 November. Between the two stays, on 11 July at Arras, friends marked fifty years of his painting. Buyers by then were claiming pictures he had not yet begun by chalking their names on the stretchers of blank canvases, and at the end of the year he had a studio built at Coubron, adjoining his friends' house, so that he could work out of the buyers' reach. He died on 22 February 1875, and four weeks later the review L'Art printed a wood engraving of this picture, drawn by Edmond Yon after Alfred Robaut, the friend who later catalogued Corot's work.",
+  "deeper": [
+   {
+    "t": "A black knot at the light end",
+    "x": 0,
+    "y": 0.38,
+    "w": 0.22,
+    "h": 0.38,
+    "body": "The left tree is a pollard, cut back again and again to the same point so that it throws a fresh crop of straight shoots. Its head is laid in with dragged strokes of a brown so deep it reads as black, a few paler strokes marking the knuckles. That head is the densest dark on the canvas, and it sits at the picture's light end, against the palest stretch of sky. The massed foliage at the right looks like the dark part of the picture, which makes it easy to miss that the deepest single note was placed at the other end, where the sky around it is widest and everything near it looks lighter for the contrast. The shoots rising from the head are drawn, not smudged: some are pale ochre lines, others brown strokes dragged so dry over the sky that the canvas grain breaks them into beads, and all of them thin to a faint grey as they climb."
+   },
+   {
+    "t": "The branch that ties the group",
+    "x": 0.01,
+    "y": 0.76,
+    "w": 0.46,
+    "h": 0.21,
+    "body": "The picture's one clear action happens at the tree's foot. A man bends double over a long forked branch, and he is put together from separate patches: an ochre straw hat, a face lost in shadow beneath it, a shirt in thick white strokes whose lights are as pale as the open sky, trousers of dark red-brown. The branch reads as a single line running about two-fifths of the way across the canvas. It starts left of the tree, passes behind the trunk and behind the man's hips, then from his hands drops to the ground, forks, and trails away past the woman, a pale stroke catching its upper edge. Dry strokes of rust are dragged over the ground beneath the fork. Strung along that one line, tree, man and woman become a single group, and figures this small under their trees still read as one event with a subject."
+   },
+   {
+    "t": "The woman with the basket",
+    "x": 0.23,
+    "y": 0.74,
+    "w": 0.13,
+    "h": 0.19,
+    "body": "A few paces to the right a woman stands still, her head bowed toward the man. She is about five and a half centimetres tall on the canvas, and nowhere is she drawn in outline: a pink headscarf, a red neckerchief, a dark bodice, a grey apron to the hem, an ochre skirt showing behind it and a round basket at her side are each a flat patch laid against the next, the face one shadowed smudge with a lowered eye. What keeps so small a figure legible is where she stands. Her dark bodice crosses the pale band of water behind her and reads at once as a silhouette, while below the waist, against the darker grass, her edges are worked into the ground with dark scumbled strokes."
+   },
+   {
+    "t": "A figure at the far edge of the water",
+    "x": 0.105,
+    "y": 0.755,
+    "w": 0.075,
+    "h": 0.05,
+    "body": "A dark flat hull with a reddish line along it lies at the far edge of the pale water, just right of the left tree's trunk, carrying a standing figure a little over half a centimetre tall: an upright dark stroke with one pale touch for a head. It is the smallest of the four figures and the easiest to miss, and its size is a clue to the depth of the scene. Behind the man and woman the water looks like a narrow strip. If the boatman is drawn to the same scale as they are, a figure so much smaller must be far off and the strip a broad stretch of water seen almost edge-on, though the picture's perspective is too loose for its scale to prove it."
+   },
+   {
+    "t": "The ridge and the village",
+    "x": 0.3,
+    "y": 0.52,
+    "w": 0.3,
+    "h": 0.28,
+    "body": "Beyond the figures the view runs across the far meadow to a low ridge, paler and greyer than the meadow before it, its contrast and colour weakened, and that loss is what sets it far back. A village lies beneath the ridge. Its red roofs are short horizontal strokes of brick red set over paler strokes for walls, and a blue-grey stroke lies level with them; further right a dark roof, a pinkish house front and a pale tower with a darker tapering spire are set down in a few more touches. They are the only buildings in the picture. The slender trunk near the centre rises in the gap between the two groups, red roofs to its left and tower to its right. Above the houses its pale bark is barred with short dabs of near-black laid one above another; where it passes between them it turns dark brown and near-black."
+   },
+   {
+    "t": "A red cap in the shade",
+    "x": 0.6,
+    "y": 0.64,
+    "w": 0.28,
+    "h": 0.32,
+    "body": "In the shade at the right a fourth figure crouches toward the ground: a curved touch of deep red for a cap, a brown body bent forward, one white touch on the back. Beside it stands a second pollard, short-trunked, with a lopped head, and a cluster of thin stems rises beside its trunk to the underside of the head. The head is a dense dark set among foliage nearly as dark as itself, yet it keeps its shape, a knotted mass of warmer brown than the leaves about it, and at its right edge it meets the light of a clearing beyond, paler than the nearby grass. In the grass below, dabs of blue, magenta and orange are dropped in singly, each a separate stroke of saturated paint."
+   },
+   {
+    "t": "Two pollards and a thread of red",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "The two pollards pair up across the canvas, the same lopped shape in two lights: the left one out in the open at the picture's edge, the right one some three-quarters of the way across, sunk in shade with more trees beyond it. Between them the figures are strung along the foot of the canvas, and a thread of red runs with them. The woman's neckerchief, the village roofs and the crouching figure's cap all sit within about three centimetres of the same height, carrying one warm note from the open left through the far distance into the shade."
+   }
+  ],
+  "beside": "The woodcutter's load reappears in Lhermitte's La Mort et le bûcheron, and there it has been set down. That canvas, owned by the Musée d'Orsay, came twenty-one years later and is well over two metres wide. A labourer has fallen back onto his firewood, a hooked blade across his thigh, and a shrouded skull faces him across the dead wood. In La Fontaine's fable he has called Death and will ask her only to help him shoulder the bundle again. Here the branch is still in hand, its fork in the grass, under a figure a few centimetres tall; there the load lies under him.",
+  "refs": [
+   {
+    "id": "leon-augustin-lhermitte-la-mort-et-le-bucheron",
+    "text": "La Mort et le bûcheron"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "paul-steck-ophelie": {
+  "mv": 6,
+  "see": "The pale figure of a young woman catches the eye first, body and dress together: Shakespeare's Ophelia, under water, hanging almost upright with her head thrown back, eyes closed, hands at her breast. From her head long copper hair rises toward a lit band of surface at the top, where flowers float and bubbles arrive. At the right a column of turquoise water stands beside a submerged ochre bank hung with weed. Her skirt spreads out to the lower right; reeds rise at the lower left, and the riverbed closes the bottom edge.",
+  "about": "Steck shows the drowning from inside the river. The viewer is under the water with her, the surface a lit ceiling overhead, with no shore to stand on and no onlooker above. What is loose about her is laid along the current: hair and skirt stream out to the right, one above her and one below, and flowers that have come free float around her head. She herself stays almost upright and still, face lifted, hands at her breast, with no gesture of struggle, so the picture shows the drowning as a state she is in.",
+  "craft": "Things that move with the water are laid in long, loaded strokes that follow the way they move, so the stroke runs with the hair, the reeds and the rims of the skirt. Over broader, softer paint the sharp drawing goes on top: thin dark lines for weed, small pale touches for bubbles and petals, firm edges on blades.",
+  "context": "Steck painted the canvas in Paris between 1894 and the spring of 1895, in his late twenties. By one account he was born Paul Albert Dugas, the son of two touring performers, took the surname of his stepfather, the conductor Arthur Steck, composed music as well as painting, and married in September 1894. When the Salon of the Société des artistes français opened on 1 May 1895, this canvas was his only exhibit, and that year brought his first Salon award, an honourable mention.",
+  "deeper": [
+   {
+    "t": "Pale as the surface",
+    "x": 0.19,
+    "y": 0.22,
+    "w": 0.46,
+    "h": 0.33,
+    "body": "The palest paint under the water is on her. Her upper chest, the hands and forearms at her breast, and the lit flank of her dress at the waist are all as pale as the lit underside of the surface at the top of the canvas. In a real river, light weakens as the water deepens, and she hangs well below the surface. Steck paints her at the surface's own brightness all the same, brighter than water that deep would allow. In the flesh the touch carries the effect. At close range it shows no stroke that can be followed: the paint lies in a fine, even grain, like the nap of velvet, softening its contours, with mauve and grey-blue in the shadows along the shoulder and in the shaded throat under the jaw. Against that grain, what lies on the skin is stroked: the translucent strap slipping down one shoulder, and the posy at her breast, whose pink petals and violets are separate, definite touches."
+   },
+   {
+    "t": "Hair, bubbles, loose flowers",
+    "x": 0.1,
+    "y": 0,
+    "w": 0.56,
+    "h": 0.32,
+    "body": "The hair is where the brush begins to travel. Each lock is a bundle of long parallel strokes of copper, brown and cream, with a cream line riding its crest, and the locks swing up and to the right in two broad S-bends. Near the surface they thin and pale, and the uppermost ends in a cream stroke that runs into the froth under the lit water, so hair and surface meet in the same kind of mark. Flowers ride in it: pinks at the temple, a small yellow flower, violets higher up. Others have already come free: violets and white daisies drift in the open water beside her face, and a mauve rose floats higher, beside the hair. Around and above her head the bubbles are open rings of pale paint, many with one bright catch, rising in chains from the hair and the flowers it carries; where the chains arrive they heap into foam. No chain begins at her closed lips. The hair bends sideways as it rises while the bubbles climb more steeply, the current bending the one and hardly the other."
+   },
+   {
+    "t": "The surface from underneath",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 0.1,
+    "body": "The canvas's top edge is set at the surface of the river. Floating blooms at the upper right, white streaked with red, are sliced by it, so they appear only from below, their stems hanging down into the water; neither sky nor bank shows above them. At the upper left the surface is a broad ceiling laid in wavering horizontal strokes of blue-white and grey-blue, the look of daylight coming through ripples seen from beneath. Toward the right the ceiling narrows to a single pale line, with weed and stems hanging through the water below it. The scene's light enters here, at the very edge of the canvas."
+   },
+   {
+    "t": "The cold column",
+    "x": 0.6,
+    "y": 0.03,
+    "w": 0.4,
+    "h": 0.47,
+    "body": "Down the right side runs a column of turquoise, a colour strongly cold against the ochre, olive and mauve-grey paint around it; lower down it turns green. Beside it, a submerged ochre-and-brown bank is painted in broken horizontal smears that wobble like a reflection, the way a solid thing looks through moving water. Over both, weeds hang from the surface, drawn in thin dark lines and yellow-green ribbons crisp enough to follow strand by strand. The bank, soft-edged, sinks back into the water, while the weed, drawn sharp, hangs close to the eye."
+   },
+   {
+    "t": "The skirt below the waist",
+    "x": 0.18,
+    "y": 0.5,
+    "w": 0.8,
+    "h": 0.42,
+    "body": "Below the waist no legs or feet are painted; the figure continues as cloth. At the left hip the hem curls up into a lit, trumpet-shaped lip, and from there the skirt pours down and out to the lower right in broad pale lobes. Their rims are drawn, each catching a line of cream light. Inside the rims the canvas weave shows through thin paint, and the folds are shaded with the water's own dark greens and mauves, so the river seems to pass through the fabric. A long reed blade arcs across the hip in front of her, and weed tendrils are drawn over the lowest lobes. Toward the bottom the lobes open into broad sweeps of pale paint."
+   },
+   {
+    "t": "Reeds that show the current",
+    "x": 0,
+    "y": 0.55,
+    "w": 0.35,
+    "h": 0.45,
+    "body": "At the lower left the reeds are long blades of loaded paint, the widest built up from several strokes, and as they rise they bend toward the right. Rooted things in a stream lean downstream, so these blades tell which way the river runs: from left to right. Among the stems, over an ochre patch, a tangle of pale branching lines is drawn fine and crisp. Beneath them the bed is painted loosely but not thinly: olive, blue-grey and dark brown strokes laid heavily enough to hide the weave, which shows instead through the thinner reed passage beside and above it."
+   },
+   {
+    "t": "One line through the height",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Figure and hair together make one long line through almost the whole height of the canvas: from the trailing skirt at the lower right, up the body, back to the head thrown toward the left, and out along the hair to the surface at the upper right. The line bends twice. The skirt and the hair both stream the way the reeds bend, while her torso stands upright across the flow. The tall format, far higher than wide, lets the river be read from surface to bed, with no horizon and no sky, and sets her face nearer the light than the reeds."
+   }
+  ],
+  "beside": "Both deaths are sung, and the two pictures stand on either side of the song. In Hamlet, Gertrude reports Ophelia singing snatches of old songs while her spread clothes bear her up; Tennyson's Lady of Shalott sings as the current carries her toward Camelot. John William Waterhouse's The Lady of Shalott, at Tate, painted in 1888, seven years before this canvas, takes the song while it lasts: the chain just loosed, she sits upright in a dark boat, lips parted, eyes fixed on something ahead. Here the song is over, eyes and lips closed, the river above her head; there it is still in her mouth, and the river runs under the keel.",
+  "refs": [
+   {
+    "id": "the-lady-of-shalott",
+    "text": "The Lady of Shalott"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "johan-christian-dahl-utsikt-over-napoli-golfen-fra-monte-st": {
+  "mv": 6,
+  "see": "Dahl drew this page in his Italian sketchbook, in pencil and watercolour on a sheet a little under 28 cm wide, looking west from a mountaintop over the sea. The upper third is bare paper. Lower down, a band of grey-blue wash runs above a pencilled horizon, and under that the sea opens in clear blue, with Capri on it. Nearer comes the end of the Sorrento peninsula: a high mound, a broad plain marked 'Sorrent', and two long capes reaching out into the water. The foreground holds scrub along a brow, two animals at the right and, at the left, a loose sketch like a tree, tangled with Dahl's dated inscription.",
+  "about": "On this sheet the finish runs backwards. The colour is in the distance: the sea is washed in blue, and the island and the end of the peninsula are shaded on it with grey-violet, while the slopes nearest the viewpoint carry a pale grey wash at most, and the scrub, the animals and the loose sketch are pencil alone. That order is the plainest evidence of what kind of object the page is. It reads as a working drawing, most likely made to hold the lie of the coast as it spread out below the mountaintop, with the ground at hand set down in line and left there.",
+  "craft": "Transparent watercolour has no white paint, so the lights on this page are reserved: the wash is taken round a shape, which keeps whatever lay beneath it. The pencil goes down first as an armature, and the brush follows its contours, now and then running a little over. The washes are few, a blue, a grey-blue, a grey-violet for shade and a pale grey for the near slopes. The broad ones are laid in long horizontal passes. Past the colour, the pencil carries the rest: contours, and loops and ticks that stand for scrub.",
+  "context": "On 23 May 1820 a letter reached Dahl in Dresden from Denmark's crown prince, Christian Frederik, inviting him to the Gulf of Naples with a stipend and the prospect of a Copenhagen professorship. Dresden had been meant as the first stop of a study tour of several years, two in Germany, one in Switzerland and two to four in Italy; instead he had stayed on and joined its academy. Now he dropped the Swiss leg to reach the prince sooner, and came to him at the Villa Quisisana near Castellammare. The other side of this leaf carries the right half of a summit view drawn the same day, the drawing behind his 1824 painting of the view from Monte Sant'Angelo.",
+  "deeper": [
+   {
+    "t": "A horizon of pencil dots",
+    "x": 0,
+    "y": 0.29,
+    "w": 1,
+    "h": 0.16,
+    "body": "The horizon is one pencil line drawn the full width of the page, and at close range it breaks into a string of grey dots: the graphite caught the raised tooth of the paper and skipped the hollows between. Above it a band of grey-blue wash is pulled across in long horizontal strokes, heaviest through its middle. The band stops short of the line, leaving a thin strip almost as pale as the empty sky, and from a normal distance that strip reads as light lying along the horizon. Below the line the sea starts pale and strengthens only further down. That is the old rule of aerial perspective, that distance thins and lightens colour, carried out by where each wash was allowed to reach."
+   },
+   {
+    "t": "Capri, made by the blue",
+    "x": 0.4,
+    "y": 0.385,
+    "w": 0.33,
+    "h": 0.12,
+    "body": "Capri was outlined in pencil first, and the blue was carried up to that outline from every side and stopped, so the island's light is the place the sea wash did not go. Along the lower edge the pencil still shows as a dotted rim just inside the blue. The modelling came afterwards: flat grey-violet patches with hard edges shade the cliff faces, and pencil squiggles inside them mark the rock. Across the lower flank the name 'Capri' is written in a darker, crisper stroke than any contour near it. A label on the view itself is a topographer's habit. It lets a sheet made on a summit serve later as evidence, when the draughtsman is back at a table and needs to know which shape was which."
+   },
+   {
+    "t": "Capes drawn to a needle point",
+    "x": 0.52,
+    "y": 0.47,
+    "w": 0.38,
+    "h": 0.19,
+    "body": "The two capes pointing into the gulf end in needle-fine tips. They are the edge of the blue, carried along a pencil contour and brought to a point, and where the wash dried the pigment gathered into a slightly darker rim that reads as a shoreline. Under the lower cape the pencil line shows just inside the blue, which fixes the order of work: line first, colour after. Behind the capes, rows of pencil ticks and short hatching mark the plain, notation for whatever covers it, and among them the word 'Sorrent' slants up with the land. At the water's edge a stroke of grey-violet partly overlaps the blue, and where the two lie together they darken into a tone neither wash has alone."
+   },
+   {
+    "t": "Shadows laid once",
+    "x": 0.32,
+    "y": 0.44,
+    "w": 0.26,
+    "h": 0.17,
+    "body": "The shadows on the plain are built from a few flat touches of grey-violet, each put down with a loaded brush and then left. The left-hand shadow is two strokes, an upper arc and a lower bar, joined only at their right end, with pale plain between them. The right-hand one is two touches set side by side, with a pale notch where they meet at the top, and the right touch deepens toward its far end, where the pigment gathered. Along their outer edges the pigment has settled into a faint darker line as the water dried, and the edges stay crisp against the white. Flatness like this is the sign of speed in watercolour: a wash of that size gets one pass, and working back into it while it dries lifts and muddies the colour. On the mound above, patches of the same grey-violet lie across its face and down its left flank, put down in the same way and left with the same hard edges."
+   },
+   {
+    "t": "The sea runs off the page",
+    "x": 0.82,
+    "y": 0.4,
+    "w": 0.18,
+    "h": 0.46,
+    "body": "The blue runs right to the edge of the page. Low on that edge a last headland, touched with pencil loops and ticks, sits above a bay of blue that the edge cuts short. Higher up, a darker second band of blue lies across the water, its lower margin fraying into the lighter wash beneath, the kind of fringe that forms when fresh wash meets paper that is still damp. The water carries on over the gutter onto the facing leaf, which continues the view north to Ischia and Procida and, at its far right, holds a small group of people, probably the prince and his party."
+   },
+   {
+    "t": "The near ground, in line",
+    "x": 0.15,
+    "y": 0.64,
+    "w": 0.72,
+    "h": 0.34,
+    "body": "Nearest the viewpoint, the drawing thins out where a painting would thicken. The slopes carry a pale grey wash in broad flat areas, and below its edge the page goes back to bare paper and pencil. The brow of the ground is a pencil line interrupted by scallops, loops and a few zigzags, a draughtsman's shorthand for scrub, readable as bushes from its place along the ridge. To the right, on bare paper, stands a beast with horns, and beside it a smaller, hunched shape; each is a few strokes of pencil, with tall upright lines crossing through both. Near as they are, neither is coloured. A finished landscape of the period would have built exactly this zone up, with rocks, foliage and figures in a dark, detailed foreground to frame the view and lead the eye into it. Here that machinery is reduced to notes, exact enough to be redrawn at a table if a painting called for them, and quick enough to record what was on the mountain that day in the time a line takes."
+   },
+   {
+    "t": "Title, date and a sketch across them",
+    "x": 0,
+    "y": 0.57,
+    "w": 0.37,
+    "h": 0.42,
+    "body": "In the lower-left corner Dahl wrote the page's title in Danish, 'Udsigten fra St Angelo', the view from St Angelo, and below it the date, 14 September 1820, and his name. Tangled through the same corner is a large pencil sketch of forked strokes and loops, like a tree or bush, whose lines run straight through the title and the date. Nothing joins them as one design; they share the corner the way notes share a margin. A travelling sketchbook was used like that, every blank patch available, one page taking a view, a loose sketch, place names and a date in whatever order the day produced them. With the viewpoint and the day written on it, the page records one excursion as well as a coast."
+   },
+   {
+    "t": "The first pass and the second",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "At arm's length the sheet sorts itself by light and dark, and the eye tends to follow that order more than it follows nearness. It comes down through the empty upper paper to the horizon, lands on the island, a pale shape set out on the blue, runs along the white capes into the darker water on the right, and leaves the page at the right edge, where the view goes on. The pencil foreground barely competes on that first pass. The scrub, the animals and the loose sketch at the left belong to a second, closer look."
+   }
+  ],
+  "beside": "The same Italian stay produced a canvas that gives the Bay of Naples the role this sheet gives its foreground. An Eruption of Vesuvius, at the Metropolitan Museum of Art, was painted about four years later, from sketches Dahl made at the crater in December 1820. Along its bottom edge the boulders are modelled one by one; behind them men gather with pack animals, saddles and harness painted in. The bay lies far off at the right, pale under an apricot sky, its town and ships' rigging drawn small. Here the gulf takes the colour and the nearest animals stay pencil; there the near ground carries the incident, and the gulf is the distance.",
+  "refs": [
+   {
+    "id": "johan-christian-dahl-an-eruption-of-vesuvius",
+    "text": "An Eruption of Vesuvius"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
  "leech-the-sunshade": {
   "mv": 6,
   "see": "Leech's wife Elizabeth stands right of centre, seen to the hips, under a green silk parasol whose canopy spreads over the upper left and behind her head. Her profile, tilted back and turned to the left, shows pale against that green beneath a dark violet hat. From there the parasol's shaft carries the eye down in one diagonal to her two hands at the front of a white blouse, and out to a loose woollen coat, yellow at the lower left. Beyond the parasol's rim lies a sunlit garden of wall, thin stems and flowers in the grass, and behind her at the right rises a tall, mottled khaki ground.",
