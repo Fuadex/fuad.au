@@ -220,22 +220,24 @@ const PROVIDERS = [
     const lines = [];
     // ▲ — the steepest riser. The old card listed two; beside BACK one is the row, and a second ▲
     // would push the other tag off the card.
-    let riser = null;
+    // Every candidate is scored once; the steepest that clears the full bar (15 plays, 2.5x pace) is
+    // the ▲ row. The runner-up list feeds the placeholder below.
+    const risers = [];
     for (const ta of (wk.topArtists || [])) {
-      if (ta.plays < 15) continue;
       const a = R.byId[ta.artistId]; if (!a || !a.firstYear) continue;
       const pace = a.plays / Math.max(26, (cy - a.firstYear + 1) * 52);
       const ratio = pace > 0 ? ta.plays / pace : 0;
-      if (ratio < 2.5 || (riser && ratio <= riser.ratio)) continue;
       // "50 this week · ~1/wk lifetime" wanted 157px and this row has ~102 once the tag and the
       // cover are in front of it, so it ellipsised mid-phrase — as it did on the old Riser card,
       // which had no tag and still ran over. Compressed to the comparison itself; the full
       // sentence rides in the row's title.
       const wkly = Math.max(1, Math.round(pace));
-      riser = { tag: "▲", id: ta.artistId, name: ta.name, ratio,
+      risers.push({ tag: "▲", id: ta.artistId, name: ta.name, ratio, plays: ta.plays,
         detail: `${ta.plays} vs ~${wkly}/wk`,
-        title: `${ta.name} — ${ta.plays} plays this week against a lifetime pace of ~${wkly} a week →` };
+        title: `${ta.name} — ${ta.plays} plays this week against a lifetime pace of ~${wkly} a week →` });
     }
+    risers.sort((x, y) => y.ratio - x.ratio);
+    const riser = risers.find(r => r.plays >= 15 && r.ratio >= 2.5) || null;
     if (riser) lines.push(riser);
     // BACK — a known artist in this week's top whose yearly plays go quiet for >=2 years
     // before now (year-grain dormancy; the current year is excluded since this week is in it).
@@ -249,6 +251,14 @@ const PROVIDERS = [
         detail: gap + " years quiet", title: `${t.name} — back this week after ${gap} quiet years →` };
     }
     if (back) lines.push(back);
+    // PLACEHOLDER RISER (Fuad 2026-10-01: "unless there is a BACK available, let's have another riser
+    // as a placeholder"). With no BACK, the second seat goes to the next-steepest riser. It clears a
+    // lighter bar than the ▲ row (8 plays, 1.5x its own lifetime pace) — a second 15-play / 2.5x
+    // riser in one week is rare, and anything under 1.5x is not rising at all, so it stays earned.
+    if (!back) {
+      const next = risers.find(r => r !== riser && r.plays >= 8 && r.ratio >= 1.5);
+      if (next) lines.push(next);
+    }
     if (!lines.length) return null;
     return {
       // Riser's score, not Movement's — this is the card Riser was, with another kind of row.
