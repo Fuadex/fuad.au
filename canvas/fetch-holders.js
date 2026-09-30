@@ -45,7 +45,7 @@ const musByQid = {}; MUS.forEach(m => { if (m.qid) musByQid[m.qid] = m; });
 // own row: the Louvre's Department of Paintings and the Pompidou's Musée National d'Art
 // Moderne are P195 values that must merge into the visited rows, not spawn phantom museums.
 // Tate (Q430682) is deliberately NOT aliased — the org qid can't pick Britain vs Modern.
-const HOLDER_ALIASES = { Q3044768: "louvre", Q1895953: "pompidou" };
+const HOLDER_ALIASES = { Q3044768: "louvre", Q1895953: "pompidou", Q1770313: "kode" }; // Q1770313 Art Museums of Bergen → KODE (merged 2007; 2026-09-30)
 for (const [q, id] of Object.entries(HOLDER_ALIASES)) {
   const m = MUS.find(x => x.id === id);
   if (m && !musByQid[q]) musByQid[q] = m;

@@ -4442,7 +4442,9 @@ window.CANVAS_ARTWORKS = [
 {"id":"turner-newark-abbey","title":"Newark Abbey","artist":"Joseph Mallord William Turner","artistId":"turner","qid":"Q23700449","qidTrusted":true,"year":1807,"wish":true},
 {"id":"turner-the-victory-returning-from-trafalgar-in-three-positions","title":"The Victory Returning from Trafalgar, in Three Positions","artist":"Joseph Mallord William Turner","artistId":"turner","qid":"Q23700453","qidTrusted":true,"year":1806,"wish":true},
 {"id":"turner-a-limekiln-possibly-at-briton-ferry-in-south-wales","title":"A Limekiln, Possibly at Briton Ferry in South Wales","artist":"Joseph Mallord William Turner","artistId":"turner","qid":"Q23700473","qidTrusted":true,"year":1797,"wish":true},
-{"id":"turner-inverary-pier-loch-fyne-morning","loved":true,"title":"Inverary Pier, Loch Fyne: Morning","artist":"Joseph Mallord William Turner","artistId":"turner","qid":"Q23731011","qidTrusted":true,"year":1845,"wish":true}
+{"id":"turner-inverary-pier-loch-fyne-morning","loved":true,"title":"Inverary Pier, Loch Fyne: Morning","artist":"Joseph Mallord William Turner","artistId":"turner","qid":"Q23731011","qidTrusted":true,"year":1845,"wish":true},
+{"id":"edvard-munch-seated-young-woman","title":"Seated Young Woman","artist":"Edvard Munch","artistId":"munch","qid":"Q18890782","qidTrusted":true,"year":1892,"seenAt":"kode","seenConfidence":"sure","floored":true,"note":"Seen at KODE, Bergen (Rasmus Meyer collection, RMS.M.00246), 2026-09-06."},
+{"id":"edvard-munch-nude-in-profile-towards-the-right","title":"Nude in Profile towards the Right","artist":"Edvard Munch","artistId":"munch","qid":"Q18890602","qidTrusted":true,"year":1898,"seenAt":"kode","seenConfidence":"sure","floored":true,"note":"Seen at KODE, Bergen (Rasmus Meyer collection, RMS.M.00256), 2026-09-06."}
 ];
 // seenAt may be a single museumId or an array (multi-venue bundles like Beksiński).
 
