@@ -4,7 +4,7 @@
 const fs = require("fs"), path = require("path"), vm = require("vm");
 const HERE = __dirname;
 const WRITE = process.argv.includes("--write");
-const UA = "fuad.au-canvas-importer/1.0 (personal art gallery; contact via github.com/Fuadex)";
+const UA = "fuad.au-canvas-importer/1.0 (https://fuad.au)";
 let cache = JSON.parse(fs.readFileSync(path.join(HERE, "wikidata_cache.json"), "utf8"));
 const D = require("./match_decisions.json");
 const proposal = require(path.join(HERE, "..", "..", ".sptmp", "import-proposal.json"));

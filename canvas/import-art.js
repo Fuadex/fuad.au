@@ -15,7 +15,7 @@
 //   every QID resolved live via Wikidata (verified, not trusted); non-painting / series dropped.
 const fs = require("fs"), path = require("path"), vm = require("vm");
 const HERE = __dirname;
-const UA = "fuad.au-canvas-importer/1.0 (personal art gallery; contact via github.com/Fuadex)";
+const UA = "fuad.au-canvas-importer/1.0 (https://fuad.au)";
 const CACHE_PATH = path.join(HERE, "wikidata_cache.json");
 let cache = {}; try { cache = JSON.parse(fs.readFileSync(CACHE_PATH, "utf8")); } catch (e) {}
 const saveCache = () => { try { fs.writeFileSync(CACHE_PATH, JSON.stringify(cache, null, 1)); } catch (e) {} };

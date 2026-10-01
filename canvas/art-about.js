@@ -626,7 +626,7 @@ about: "Podkowiński's Frenzy of Exultations, 1894: a naked woman in ecstasy cli
 deep: "Kraków laughed at it and gossiped about the model's identity; after five weeks on show Podkowiński walked in and took a knife to the canvas — then died within the year at 29, and the painting was restored with his cuts inside it. The image itself is pure fin-de-siècle: eros as a runaway animal, the horse's head a storm-cloud of black paint that stops depicting and becomes pure vortex. You likely saw it in the Sukiennice's quiet salon of 19th-century Polish art, where it still radiates exactly the scandal the varnish can't cover." },
 
 "leech-the-sunshade": {
-  "about": "Elizabeth, Leech's new wife, posed under a parasol about 1913. By about 1919 the canvas was Percy Botterell's; his wife, May, became Leech's lover, gave it to the nation in 1952 and married Leech in 1953.",
+  "about": "Elizabeth, the new wife Leech posed under a green parasol about 1913, painted too — small open-air studies of trees — and she decorated some of the frames he made himself for his own canvases.",
   "deep": "The sitter's money kept Leech while he painted her, and the household of May Botterell, who took her place as his model, kept the picture for three decades. Until 1919 Elizabeth had been wife, model and \"banker\"; afterwards he shielded the Botterells by showing nothing in public from 1927 to 1945, and the canvas was still in that household when Elizabeth died in 1951. None of that reached the surface. Up close the brow is still green where the silk lit it, and the years show instead in the heavy dark greens of the coat at the lower right, crazed into a fine net of cracks.",
   "by": "Opus 5.5",
   "deepBy": "Opus 5.5",
@@ -3722,7 +3722,7 @@ about: "Four dancers in matching blue, none aware of being watched — Degas by 
 by: "Fable" },
 
 "claude-monet-waterloo-bridge-in-london": {
-  "about": "Monet's 1902 bridge in London fog was bought around 1921 for the Kobe collector Kōjirō Matsukata, shown in Paris in 1924 for Japan's earthquake victims, sequestered by France in 1944 and handed to Japan in 1959.",
+  "about": "Monet's 1902 bridge in fog is one of nearly a hundred London canvases he began in 1899–1901 — the bridge lying downstream to his left from the Savoy Hotel, the motif whose vantage he varied most.",
   "deep": "The darkest paint on the canvas spells a name and a year, and the year is a verdict. The bridge is barely darker than the fog; the signature is hard blue-violet, and its 1902 is a year Monet spent away from London. In March 1903 he told Durand-Ruel that no London picture was \"completely finished\", and Geffroy, days later, that retouching had been a mistake he must see through. Either the year was written later, as on canvases he re-signed after reworking, or the letter overstated his doubt. Either way you are reading a judgement made in the studio, among the others; the sister canvas of Charing Cross Bridge carries a name and no year.",
   "by": "Opus 5.5",
   "deepBy": "Opus 5.5"
