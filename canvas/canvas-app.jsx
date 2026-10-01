@@ -2664,6 +2664,7 @@ const HIRES_SOURCE_LABEL = {
   // 2026-10-01 — KODE (DigitaltMuseum downloads) and the British Museum's own images, both flat JPEGs
   kode: "KODE",
   bm: "British Museum",
+  tate: "Tate",
 };
 
 // Fly an OSD viewer to a normalized-image region {x,y,w,h} (all 0..1 fractions of the image).

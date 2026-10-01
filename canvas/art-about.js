@@ -551,9 +551,24 @@ by: "Opus 4.8" },
 },
 
 "vincent-van-gogh-enclosed-field-with-peasant": {
-about: "Van Gogh painted this around 12 October 1889 from the asylum at Saint-Rémy, and told Theo it showed \"the same field as the one of the reaper\" — the walled plot he watched from his cell window, now turned to mounds of ploughed earth under parched background hills. He meant it as a deliberate pendant: this violet-keyed canvas, with its small stooped peasant dragging a bundle of straw across the furrows, was to answer the yellow-dominated Reaper he had made earlier that year. It is a distinct work from the sun-blazing Enclosed Field with Rising Sun (F737) he would paint in December, with no figure in it at all.",
-refs: [{"id":"vincent-van-gogh-enclosed-field-with-rising-sun","text":"Enclosed Field with Rising Sun"}],
-by: "Opus 4.8" },
+
+ "about": "In early October 1889 Van Gogh painted the walled field below his Saint-Rémy asylum window as a pendant to his yellow Reaper, telling Theo it was \"almost completely violet\", though its field reads straw and ochre.",
+
+ "refs": [
+
+  {
+
+   "id": "vincent-van-gogh-enclosed-field-with-rising-sun",
+
+   "text": "Enclosed Field with Rising Sun"
+
+  }
+
+ ],
+
+ "by": "Opus 4.8"
+
+},
 
 "vincent-van-gogh-self-portrait-2": {
 about: "Van Gogh painted this at the Saint-Rémy asylum in the late summer of 1889, in the weeks after the July breakdown that had briefly stopped him working. Facing himself with palette and brushes against a churning violet-blue ground, he was testing whether his hand and eye still held together as he came back to the studio. It belongs to a tight cluster of self-portraits he made inside the institution that season, and he sent it north to his brother Theo.",
@@ -2460,10 +2475,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "landscape-from-bretagne": {
-about: "Gauguin, 1889 Brittany: each field a flat zone of colour butted against the next — acid green, ochre, rust-red hedge — the ground tilted up to the surface, the Synthetist argument made plain.",
-deep: "Almost nothing here is allowed to be an event. The woman in her pale coiffe stands beside a tethered cow at the size of a thumbnail, painted in the same simplified planes as the parcels around her: the older, plainer France that Gauguin came to Brittany to find, never an anecdote. Look instead at the very bottom edge, where a tangle of bare fallen branches sprawls in loose writhing lines — the one restless passage in a calm picture, and nobody can say whether it is a woodpile, felled wood or exposed roots. It is there as rhythm, not report. The signature hides in that same wood-brown, tucked among the branches rather than announced.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Gauguin, 1889 Brittany: each field a flat zone of colour butted against the next — acid green, ochre, rust-red hedge — the ground stacked up beneath a high horizon, the Synthetist argument made plain.",
+
+ "deep": "Almost nothing here is allowed to be an event. Two women in pale coiffes, one bent double to the grass, and a dark-haired figure nearer by are painted in the same simplified planes as the parcels around them: the older, plainer France that Gauguin came to Brittany to find, never an anecdote. Look instead at the very bottom edge, where a tangle of bare fallen branches sprawls in loose writhing lines — the one restless passage in a calm picture, and nobody can say whether it is a woodpile, felled wood or exposed roots. It is there as rhythm, not report. The signature hides in that same wood-brown, tucked among the branches rather than announced.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "breakfast-time": {
 about: "One critic wrote that Hirsch-Pauli must have used the tablecloth to clean her brushes, yet this 1887 plein-air garden scene became a breakthrough work in the Nordic art world and is now in Nationalmuseum.",
@@ -4111,11 +4132,16 @@ by: "Opus · Fable" },
  },
 
 "john-martin-the-last-judgement": {
-  "about": "Martin's 1853 canvas parts the saved from the damned across a chasm. Shown alone in London that June, it was touring with two companions by autumn, admission often sixpence; audiences were later claimed in the millions.",
-  "deep": "Its verdict was meant to be read figure by figure, \"with the descriptive key in hand\", as a reviewer advised in 1853. The saved include thirty-four named worthies, Shakespeare and Newton among them, a pantheon after James Barry's Elysium so thick with painters and poets that a critic remarked on it. Among the fallen are offices: a king, a bishop, lawyers, a priest going down before the Whore of Babylon; a train with carriages marked London and Paris plunges into the abyss. The sentence is the painter's, never the faint enthroned figure's: he seated his own trade in heaven, though the engraved key that fixed its names came out in 1855, after his death.",
-  "by": "Opus 5.5",
-  "deepBy": "Opus 5.5"
- },
+
+ "about": "Martin's 1853 canvas parts the saved from the damned across a chasm. Shown alone in London that June, it was touring with two companions by autumn, admission often sixpence; audiences were later claimed in the millions.",
+
+ "deep": "Its verdict was meant to be read figure by figure, \"with the descriptive key in hand\", as a reviewer advised in 1853. The saved include thirty-four named worthies, Shakespeare and Newton among them, a pantheon after James Barry's Elysium so thick with painters and poets that a critic remarked on it. Among the fallen are offices: a king, a bishop, lawyers, a priest going down before the Whore of Babylon; a train with carriages marked London and Paris plunges into the abyss. Both crowds are judged by the enthroned figure, the saved at his right hand, the damned at his left. An engraved key followed in 1855, after Martin's death in 1854.",
+
+ "by": "Opus 5.5",
+
+ "deepBy": "Opus 5.5"
+
+},
 
 "stanis-aw-ignacy-witkiewicz-portret-artura-schroedera": {
 about: "Artur Schroeder (1881-1934) was a Lwów writer, poet and art and theatre critic who later ran the Society of Friends of Fine Arts in Kraków. Witkacy caught him for the Portrait Firm \"S.I. Witkiewicz,\" whose 1925 price list sorted sitters into five types from the flattering, \"licked-clean\" A to the drugged caricatures of C. Schroeder drew Type B, the Firm's clause for a candid, characterful likeness \"without a shadow of caricature,\" the artist's stance held objective. Done fast in pastel, dated February 1931, the markings note no stimulants that day.",
@@ -4325,11 +4351,16 @@ about: "By 1920 Boldini's eyesight was failing and his manner had gone loose and
 by: "Opus · Fable" },
 
 "clarice-beckett-taxi-rank": {
-  "about": "Clarice Beckett's cabs of c. 1931, waiting in wet weather, shown mostly as lamps. In 1931 The Age named a favourite subject: a car \"slipping ghost-like into the mist\", its tail light the only colour.",
-  "deep": "The blur is the accurate part. Wet air hides an unlit shape where a lamp still carries, and the canvas keeps to that law: the queue has gone into its lamps, unless the low dark at left is its nearest cab. In July 1931 The Age found the public unsure whether she was \"a futurist, or only a new and dangerous variety of Meldrumite\", calling her \"smudge\" \"a thoughtful interpretation in paint of an actual and veritable smudge in nature\". In October Percy Leason saw in her pictures \"a convincing illusion of actual space and air and light\", recalling Ruskin's demand that Whistler show \"finish\". Finish would mean painting back what the weather had taken.",
-  "by": "Opus 5.5",
-  "deepBy": "Opus 5.5"
- },
+
+ "about": "Clarice Beckett's cabs of c. 1931, waiting in wet weather, shown mostly as lamps. In 1931 The Age named a favourite subject: one car on a wet suburban road, its \"vanishing tail light\" the only strong colour.",
+
+ "deep": "The blur is the accurate part. Wet air hides an unlit shape where a lamp still carries, and the canvas keeps to that law: the queue has gone into its lamps, unless the low dark at left is its nearest cab. In July 1931 The Age found the public unsure whether she was \"a futurist, or only a new and dangerous variety of Meldrumite\", calling her \"smudge\" \"a thoughtful interpretation in paint of an actual and veritable smudge in nature\". In October Percy Leason saw in her pictures \"a convincing illusion of actual space and air and light\", recalling Ruskin's demand that Whistler show \"finish\". Finish would mean painting back what the weather had taken.",
+
+ "by": "Opus 5.5",
+
+ "deepBy": "Opus 5.5"
+
+},
 "giovanni-boldini-after-the-bath": {
 about: "Two women in a bathing room, one drying herself, one stretched on a carpet - and Boldini fitted all of it onto a panel twenty-five by thirty-four centimetres, with a single head modelled to the eyelash.",
 deep: "Measure the distance between two adjacent square centimetres. The eye is drawn - a lowered lid, a lash line, the pupil turned down to her own hands - and the plaster a centimetre from her cheek is dragged flat and scored. That ratio governs everything else: a body carried in a few long strokes, a cloth built until it stands off the wood, a carpet whose colours still sit where they left the palette, a bird whose whole tail is one charge of blue run dry at the edge. It is not carelessness. It is an argument about how little of a picture has to be true before a viewer will believe the rest.",
