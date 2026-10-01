@@ -1003,72 +1003,72 @@ window.CANVAS_INSPECT = {
     "t": "The pavement at his side",
     "x": 0.48,
     "y": 0.25,
-    "w": 0.28,
-    "h": 0.62,
+    "w": 0.27,
+    "h": 0.61,
     "body": "Go to the edge of the man's jacket on the side toward the lamp. The jacket is packed with near-black, red and green touches, a scatter of orange among them, with flecks of pale showing between. At the edge those dots stop along a firm line, without a fringe of stray touches thinning out into the street. Beyond it the pavement is laid in pale criss-cross strokes carrying only specks of colour, and it has been adjusted. The strip between his side and the lamp post is paler than the pavement just past the post, and the patch around his feet is paler still. From reading distance the adjustment does not show as a band; what shows is a figure that seems to stand in more light than the street around him. Chevreul's law of simultaneous contrast, published in 1839, holds that two tones set side by side each look more unlike the other. Angrand paints that push into the ground itself, lightening the pavement where it meets the darkest figure in the picture."
    },
    {
     "t": "The woman in pale",
-    "x": 0.25,
+    "x": 0.26,
     "y": 0.2,
-    "w": 0.23,
-    "h": 0.64,
+    "w": 0.22,
+    "h": 0.63,
     "body": "Her head is a pale oval set against the dotted wall, and at close range it turns out not to be made of dots. It is laid in the same short criss-cross strokes that pave the street, cream and white, and it is about as light as the pavement beside her. What keeps her from sinking into the wall is placed around her. On the left, the dark corner of the block behind her head presses against her crown. From the shoulder down, a loose chain of dark and green dots traces the side of her skirt, gap-toothed, and curls at the bottom into a dark hem. The eye closes the gaps and reads a continuous edge, though no stroke draws one. Inside the chain the centre of the skirt is the pavement's pale weave again, sown with coloured touches, pink and green among them. At the side of her head sits a small cluster of darker touches, and even close up it does not become a face or a ribbon, so whether she is seen from behind or in lost profile stays open."
    },
    {
     "t": "Where they touch",
-    "x": 0.3,
+    "x": 0.31,
     "y": 0.38,
-    "w": 0.23,
-    "h": 0.46,
+    "w": 0.22,
+    "h": 0.45,
     "body": "At waist height a band of near-black and red touches crosses her body on a slant and runs into his side. It is painted in the jacket's colours, and even close up it does not resolve into a sleeve or a hand; the paint leaves open whose arm it is. Just below, a small pale wedge opens between them and lengthens into a channel of bare pavement, laid in the street's pale strokes with hardly a dot in it, running between her skirt and his trouser leg down to the ground. Its banks are dotted: her skirt's chain on one side, on the other his lower leg, thinning below the knee to let orange and green in among the dark. The street's own ground is carried up between the two bodies until it meets the band."
    },
    {
     "t": "The dark block behind the heads",
-    "x": 0.27,
+    "x": 0.28,
     "y": 0,
-    "w": 0.44,
+    "w": 0.42,
     "h": 0.32,
     "body": "Behind the couple hangs a darker rectangle. Its left side is a close column of dark touches running down to the woman's head; right of the man's head it gives way abruptly to a pale straw wall with sparse flecks. Close up, the block is the wall's own mix of cream, green, red, orange and dark grey touches, with the darker and red ones more numerous and crowded tighter: its darkness is a count of touches. And it sits where the light cap and her pale head need it. His flat cap is inside it, light against it, while the head below the cap is darker than the block around it, and her head meets its lower-left corner. Where the pavement was lightened against his jacket, the block works the other way round, setting a darker field behind the cap and her head so both carry from a distance."
    },
    {
     "t": "A wall drawn in beads",
-    "x": 0,
+    "x": 0.01,
     "y": 0,
     "w": 0.3,
-    "h": 0.74,
+    "h": 0.73,
     "body": "The upper left is a building front, and its straight lines reward a close look. The verticals, and the doubled horizontal crossing the wall just above the height where the couple touch, are not ruled strokes. Each is a single file of separate dark dots, set like stitches, the same round touch that builds the figures. From a step back they read as the firm lines of a frame; close up they are perforated. At the far left a pale panel breaks the dotting, laid in the pavement's criss-cross strokes. Lower down the building has no base line: over a few centimetres of canvas the dots thin out and the pavement's strokes take over, so wall and street meet in a change of handwriting."
    },
    {
     "t": "What the shadows are made of",
     "x": 0.52,
-    "y": 0.46,
-    "w": 0.38,
+    "y": 0.45,
+    "w": 0.37,
     "h": 0.36,
     "body": "From the flared foot of the lamp post a short trail of oval green dabs runs off to the right, laid lengthwise one after another with pale pavement between them. That trail is the post's shadow. The man's shadow, a lozenge that leaves his feet and runs out to the right, is made in the same manner over a larger area. Look into it and it separates into round dots of rose, green and a cool grey-lilac, with the pavement's criss-cross strokes showing between them. It is moderately darker than the pavement around it, and noticeably less yellow. Both shadows are built the way the figures and the post are, out of separate touches, dabs for the post's and round dots for the man's, set into the hatched ground of the street."
    },
    {
     "t": "The walker at the edge",
-    "x": 0.83,
+    "x": 0.82,
     "y": 0.14,
     "w": 0.17,
-    "h": 0.32,
+    "h": 0.31,
     "body": "At the right edge a small man in a brimmed cap is walking out of the picture, leaning into his stride. Unlike the man in front, he is seen side-on, and he is built of dark grey touches flecked with orange, a shade less dark than the jacket. His back brushes the second, thinner post, a single file of dark dots that runs off the top of the canvas. He stands about a third as tall as the man in the foreground, and that drop in size, with that lighter dark and the steps by which the feet climb the canvas, from the couple's to the lamp's foot to his, gives the street its depth."
    },
    {
     "t": "The pavement's own hand",
-    "x": 0.36,
-    "y": 0.8,
-    "w": 0.64,
+    "x": 0.37,
+    "y": 0.79,
+    "w": 0.62,
     "h": 0.2,
     "body": "The bottom of the canvas is open pavement, and it is written in a different hand from the dotted world above it. Short strokes of straw, cream and white cross one another in loose, swinging arcs, like hatching done at speed, and among them lies only a thin sowing of small coloured flecks. Dark touches barely appear anywhere in it. Each stroke has a direction, where the dots that build the figures have none, so the ground carries a faint grain of movement under the round, still touches standing on it."
    },
    {
     "t": "Back to arm's length",
-    "x": 0,
+    "x": 0.01,
     "y": 0,
-    "w": 1,
-    "h": 1,
+    "w": 0.98,
+    "h": 0.99,
     "body": "Seen from where you would stand before it, the canvas is small, under forty centimetres high, and it reads as a quiet street scene with nothing insistent in it. The pavement reads as one pale ground, the lamp post and the walker lay the street out toward the right, and the couple sit at its near edge as one grouped shape. The decisions found at close range stay below notice from here: the pavement paled at the man's side and feet, the darker block set behind the cap and her head, the shadows made of green and rose touches, the ground kept in a stroke of its own. What arrives is their sum, a small street in which the couple read clearly against the pale ground around them."
    }
   ],

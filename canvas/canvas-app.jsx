@@ -4465,11 +4465,15 @@ function Artists({ go }) {
       const r = (by[w.artistId] = by[w.artistId] || { id: w.artistId, name: w.artist.replace(/\s*\(.*\)$/, ""), n: 0, fl: 0, lk: 0 });
       r.n++; if (isFloored(w)) r.fl++; if (softMark(w)) r.lk++;
     }
-    return Object.values(by).sort((a, b) => (b.fl * 3 + b.lk) - (a.fl * 3 + a.lk) || b.n - a.n);
+    // RANKED BY WORKS (Fuad 2026-10-02: "always lists the artists with highest amount of works").
+    // The old order (floored x3 + liked) let a single floored work outrank an artist with dozens;
+    // the marks now only break ties, then the name keeps equal counts in a stable order.
+    // "Unknown" (anonymous works) is a bucket, not an artist — it stays on the page but sorts last.
+    return Object.values(by).sort((a, b) => (a.id === "unknown") - (b.id === "unknown") || b.n - a.n || (b.fl * 3 + b.lk) - (a.fl * 3 + a.lk) || a.name.localeCompare(b.name));
   }, []);
   return (
     <div className="cv-artists">
-      <p className="cv-deck-sum">{rows.length} artists in the canon, ranked by how hard they hit.</p>
+      <p className="cv-deck-sum">{rows.length} artists in the canon, ranked by how many of their works it holds.</p>
       <div className="cv-artgrid">
         {rows.map(r => {
           const a = AD.artists[r.id] || {};
