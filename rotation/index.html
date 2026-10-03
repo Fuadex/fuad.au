@@ -106,6 +106,26 @@
   if ("serviceWorker" in navigator && location.protocol === "https:")
     addEventListener("load", () => navigator.serviceWorker.register("sw.js").then(swWarm).catch(() => {}));
 
+  // CONTENT-ADDRESSED RUNTIME SHARDS (2026-10-04). Every runtime-injected .js (portraits.js,
+  // media-index.js, llm-about.js …) is requested as file.js?v=<md5 of the staged file>:
+  // stage-site.js replaces the placeholder below with that map at deploy. Locally it stays a
+  // string, so shards load bare. Why: these shards carried no stamp, so a changed portraits.js
+  // sat behind the 4h edge/browser cache for hours after a deploy (the Mad Capsule Markets
+  // artist entry) — the same bug stampHashes fixed for the static script tags in 2026-07.
+  // A ?v= URL is cache-first in sw.js within its epoch, which is exact: the bytes cannot change
+  // without the hash (and the URL) changing. Unchanged shards keep their URL across deploys.
+  window.ROTATION_SHARD_V = "__SHARD_V__";
+  window.shardUrl = function (src) {
+    try {
+      var V = window.ROTATION_SHARD_V;
+      if (!V || typeof V !== "object") return src;
+      var s = String(src || "");
+      if (/^https?:|^\/\//.test(s) || s.indexOf("?") >= 0) return src;
+      var h = V[s.replace(/^\.?\//, "")];
+      return h ? s + "?v=" + h : src;
+    } catch (e) { return src; }
+  };
+
   // Per-VIEW route shards — the files each top-level tab injects the first time it is opened.
   // Warming them is what makes a tab you never opened this epoch work offline; the worker skips
   // whatever this epoch already holds, so a repeat run costs nothing. ~9.0 MB gzip over the wire
@@ -163,7 +183,7 @@
         try {
           if (!navigator.serviceWorker.controller) return;
           if (navigator.connection && navigator.connection.saveData) return;
-          w.postMessage({ type: "PRIME", assets: SW_PRIME });
+          w.postMessage({ type: "PRIME", assets: SW_PRIME.map(window.shardUrl) });   // the same ?v= URLs ensureShard requests
         } catch (e) {}
       }).catch(() => {});
     }, { timeout: 5000 });

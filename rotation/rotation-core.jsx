@@ -618,7 +618,9 @@ function ensureShard(src, globalName, cb) {
   if (seen) { if (done) done(seen === "ok"); return noop; }
   let s = document.getElementById(id);
   const fresh = !s;
-  if (fresh) { s = document.createElement("script"); s.id = id; s.src = src; }
+  // content-addressed URL (index.html's shardUrl, 2026-10-04): file.js → file.js?v=<staged md5>
+  // so a redeployed shard is never served from the 4h edge/browser cache; the id ignores the query.
+  if (fresh) { s = document.createElement("script"); s.id = id; s.src = window.shardUrl ? window.shardUrl(src) : src; }
   let live = true;
   const settle = (ok) => { _shardOutcome[id] = ok ? "ok" : "err"; if (live && done) done(ok); };
   const onOk = () => settle(true), onErr = () => settle(false);

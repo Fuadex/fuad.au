@@ -147,6 +147,23 @@ for (const app of manifest.apps) {
   console.log(`app: ${app.id}/`);
   for (const f of app.deploy) copy(path.join(app.id, f), path.join(OUT, app.id, f));
   if (app.precompile && babel) precompileApp(app, babel);
+  // RUNTIME SHARD MAP (2026-10-04): an index.html that carries the "__SHARD_V__" placeholder gets
+  // {file.js: md5-8} for every top-level staged .js, so shards injected at runtime (ensureShard)
+  // load as file.js?v=<hash> — stampHashes above only reaches the static tags. Unchanged files
+  // keep their hash and URL across deploys; a changed one is a new URL to every cache.
+  const appIdx = path.join(OUT, app.id, "index.html");
+  if (fs.existsSync(appIdx)) {
+    const html = fs.readFileSync(appIdx, "utf8");
+    if (html.includes('"__SHARD_V__"')) {
+      const map = {};
+      for (const f of fs.readdirSync(path.join(OUT, app.id)).sort()) {
+        if (!f.endsWith(".js") || f === "sw.js") continue;
+        map[f] = crypto.createHash("md5").update(fs.readFileSync(path.join(OUT, app.id, f))).digest("hex").slice(0, 8);
+      }
+      fs.writeFileSync(appIdx, html.replace('"__SHARD_V__"', JSON.stringify(map)), "utf8");
+      console.log(`  shard map: ${Object.keys(map).length} runtime .js stamped`);
+    }
+  }
   // PWA: stamp the service worker's cache epoch with the staged-content digest
   const swp = path.join(OUT, app.id, "sw.js");
   if (fs.existsSync(swp)) {
