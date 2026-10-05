@@ -44,7 +44,14 @@ for (const c of changes) {
       else { const k2 = field.replace(/^tour\./, ""); if (!["see", "about", "craft", "context"].includes(k2)) throw new Error("unknown field"); obj = t; key = k2; }
     }
     if (!obj) throw new Error("no entry");
-    if (obj[key] !== c.old) throw new Error(`old text mismatch on ${field}`);
+    // SPAN EDITS (2026-10-06, tranche-1 era repair): when `old` is not the whole field, it may be
+    // a contiguous span inside it — accepted only if it occurs EXACTLY once, replaced in place.
+    // Entries apply in file order, so a later span asserts against the already-edited field.
+    if (obj[key] !== c.old) {
+      const n = obj[key].split(c.old).length - 1;
+      if (n !== 1) throw new Error(`old text mismatch on ${field} (whole-field no, span x${n})`);
+      obj[key] = obj[key].replace(c.old, c.new); touched[store].add(id); console.log(`  ~ ${id} ${field} (span)`); continue;
+    }
     obj[key] = c.new; touched[store].add(id); console.log(`  ~ ${id} ${field}`);
   } catch (e) { problems.push(`${id} ${field}: ${e.message}`); }
 }
