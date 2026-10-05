@@ -2464,3 +2464,24 @@ reader already knew the brief; the 09-26 audit was the first cold read the mv6 b
    (benign explanations are recorded, not silently dropped), fixes go through the normal seal,
    and the wave's print carries the cold-pass table (flags by grade, kept/overruled). Max two
    firings per wave; a CRITICAL that survives firing two holds the work out of the merge.
+
+## 2026-10-06 — TWO-PHASE DRAFTING: the eye blind and first, the argument after research
+   (Fuad 2026-10-06: "I like your approach", replacing parallel draft-then-argue)
+
+6. **TWO-PHASE DRAFTING (Fuad 2026-10-06).** The old shape — a full blind draft and a research
+   file produced in parallel, then argued against each other — is retired: the argue step was
+   where the loops lived, two finished texts reconciled after the fact. The halves of a tour
+   want opposite answers, so the pipeline now splits them:
+   - **Phase 1 — the blind plate pass, unchanged and untouchable.** The drafting agent gets the
+     plate and the survey duty only: `survey`, the `deeper` stops and the `see` lens. It never
+     sees the research file, the holder record or the Info. This is the guard against
+     record-led seeing (the Le Poirier failure: a drafter with the record transcribes it), and
+     it is where the corpus's pure-looking quality comes from. Phase 1 may run in parallel with
+     research; the two must simply never meet in one context.
+   - **Phase 2 — the informed assembly.** Only after the research file lands: `context`,
+     `about`, the tour's thesis and (in its later pass) the `beside` are drafted WITH the
+     research in hand, treating the phase-1 material as fixed raw observation. Phase-1 stops
+     are touched only by factual seals (a dated claim contradicted by research), never
+     re-argued or re-seen.
+   - Record-thin works change nothing: phase 2 simply has less in hand, and honest brevity
+     applies (rule 4 above).
