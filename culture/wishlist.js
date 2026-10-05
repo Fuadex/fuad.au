@@ -1535,4 +1535,5 @@ window.CULTURE_WISHLIST = [
 {"id": "wl-f-obsession-2026", "title": "Obsession", "polishTitle": "Obsesja", "year": 2026, "medium": "Movies", "region": "us", "director": "Curry Barker", "runtime": 109, "source": "own", "addedDate": "2026-09-27"},
 {"id": "wl-f-faraway-so-close", "title": "In weiter Ferne, so nah!", "enTitle": "Faraway, So Close!", "polishTitle": "Tak daleko, tak blisko", "year": 1993, "medium": "Movies", "region": "de", "director": "Wim Wenders", "runtime": 147, "source": "own", "addedDate": "2026-09-27"},
 {"id": "wl-f-wrong-move", "title": "Falsche Bewegung", "enTitle": "Wrong Move", "polishTitle": "Fałszywy ruch", "year": 1975, "medium": "Movies", "region": "de", "director": "Wim Wenders", "runtime": 105, "source": "own", "addedDate": "2026-09-27"},
+{"id": "wl-s-summer-time-rendering", "title": "Summer Time Rendering", "year": 2022, "medium": "Animated Series", "region": "jp", "director": "Ayumu Watanabe", "source": "own", "addedDate": "2026-10-05"},
 ];
