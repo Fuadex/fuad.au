@@ -24,7 +24,7 @@ window.CANVAS_MUSEUMS = [
   { id: "harvard-art",    name: "Harvard Art Museums",               city: "Cambridge, MA", country: "us", qid: "Q3783572",  kind: "art", visits: ["TBC"], note: "Deck-only for now — grading the pageview-ranked majors (API pull 2026-07-13)." },
   // ——— Australia (visited; verdict \"only ok, at times even less\" — no works recalled yet) ———
   { id: "agnsw",          name: "Art Gallery of New South Wales",    city: "Sydney",       country: "au", qid: "Q705551",   kind: "art", visits: ["2014-2025 (45 visits)"] },
-  { id: "ngv",            name: "National Gallery of Victoria",      city: "Melbourne",    country: "au", qid: "Q1464509",  kind: "art", visits: ["2020-12-20","2021-05-01"] },
+  { id: "ngv",            name: "National Gallery of Victoria",      city: "Melbourne",    country: "au", qid: "Q1464509",  kind: "art", visits: ["2020-12-20", "2021-04-30", "2021-05-01"] },
   { id: "nga-canberra",   name: "National Gallery of Australia",     city: "Canberra",     country: "au", qid: "Q795228",   kind: "art", visits: ["2020-10-22"] },
   { id: "npg-canberra",   name: "National Portrait Gallery",         city: "Canberra",     country: "au", qid: "Q1489633",  kind: "art", visits: ["2020-10-22"],  note: "\"Canberra's two galleries\" — assumed NGA + NPG; correct if it was a different pair." },
   // ——— The Beksiński trail (seen in person, three venues) ———
@@ -90,7 +90,7 @@ window.CANVAS_MUSEUMS = [
   {id: "new-york-historical",name: "New York Historical",city: "New York",country: "us",qid: "Q1059456",kind: "art",visits: ["TBC"],note: ""},
   {id: "royal-castle-warsaw",name: "Zamek Królewski w Warszawie (Royal Castle)",city: "Warsaw",country: "pl",qid: "Q756098",kind: "art",visits: ["TBC"],note: ""},
   {id: "npg-london",name: "National Portrait Gallery",city: "London",country: "gb",qid: "Q238587",kind: "art",visits: ["2024-06-14"],note: ""},
-  {id: "louvre",name: "Louvre Museum",city: "Paris",country: "fr",qid: "Q19675",kind: "art",visits: ["2024-12-19"],note: ""},
+  {id: "louvre",name: "Louvre Museum",city: "Paris",country: "fr",qid: "Q19675",kind: "art",visits: ["2017-01-14", "2024-12-19"],note: ""},
   {id: "v-and-a",name: "Victoria and Albert Museum",city: "London",country: "gb",qid: "Q213322",kind: "art",visits: ["2024-06-14"],note: ""},
   {id: "science-museum",name: "Science Museum",city: "London",country: "gb",qid: "Q674773",kind: "art",visits: ["2024-06-17"],note: ""},
   {id: "neue-kunst-karlsruhe",name: "Museum für Neue Kunst Karlsruhe",city: "Karlsruhe",country: "de",qid: "Q1495745",kind: "art",visits: ["2026-05-07"],note: ""},
