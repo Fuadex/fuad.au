@@ -2441,3 +2441,26 @@ below followed the model switch (wave 14's Opus 5 tours on the same briefs are c
    thin, the answer is wider research or honest brevity — never a recitation of the file. Written
    against Opus 5.5's habit of maximal compliance with verification rules at the cost of the
    subject.
+
+## 2026-10-06 — THE VISITOR COLD PASS (Fuad: "Great idea, approved", on the 10-06 corpus assessment)
+
+Canvas QC gains the fresh-eyes stage the Rotation reads side has had since v2.9. Rationale: the
+paint-vs-paperwork deep template survived THREE waves because every wave QC'd only itself and every
+reader already knew the brief; the 09-26 audit was the first cold read the mv6 batch ever got.
+
+5. **VISITOR COLD PASS (Fuad 2026-10-06).** Before a wave merges, one cold Opus subagent per ~10
+   tours reads each tour (all lenses + stops, in shipped order) knowing NOTHING of the briefs,
+   drafts or probe data — the prompt gives only: "you are a gallery visitor on a reading pane
+   beside the zoomable painting; report where the text loses you." It grades flags LOW / MID /
+   BIG / CRITICAL on four questions:
+   (a) does any passage read as a lab note or a catalogue card rather than a person talking
+       beside a painting;
+   (b) does each stop's first sentence put the eye somewhere findable before arguing;
+   (c) do the lenses repeat each other or the stops;
+   (d) after the whole tour, can the visitor say in one line what makes THIS work worth the
+       stop — if not, the tour has no argument.
+   The cold reader proposes joins/rewords of ≤15 words; anything larger is a flag for the
+   orchestrator, never a redraft by the cold reader. Flags are adjudicated by the orchestrator
+   (benign explanations are recorded, not silently dropped), fixes go through the normal seal,
+   and the wave's print carries the cold-pass table (flags by grade, kept/overruled). Max two
+   firings per wave; a CRITICAL that survives firing two holds the work out of the merge.
