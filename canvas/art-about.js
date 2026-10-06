@@ -588,8 +588,12 @@ about: "The two oval rooms of the Orangerie: eight room-length panels of Monet's
 deep: "There is no horizon anywhere — you never see the sky, only the sky reflected. That single decision removes the ground you'd normally stand on as a viewer, which is why the rooms feel like floating. The panels follow the day around the ovals, dawn to dusk. Monet built them as a war memorial without a single soldier: an 'asylum of peaceful meditation', he called it, for a country that had just buried a generation. The scale is the argument — painting as an environment you enter, half a century before installation art had a name." },
 
 "the-clouds": {
-about: "One of the Orangerie's Water Lilies panels: clouds crossing the pond's surface — the sky existing only as its own reflection among the lilies.",
-deep: "Reading up this panel walks you down the sky. In a mirrored image the zenith lands nearest your feet and the far distance sits high, so the one passage with real bulk — piled cream and rose, low, two-thirds along — belongs to weather almost overhead: a whole hemisphere laid out in the wrong order. Find the small pink blossoms. They are the only things at a fixed location, and the instant your eye finds them the shimmer snaps into being water rather than fog. At the left end the pads are drawn as full ovals, further right as slivers. That is the entire perspective system, hidden in the corner after the horizon was taken away." },
+
+ "about": "One of the Orangerie's Water Lilies panels: clouds crossing the pond's surface — the sky existing only as its own reflection among the lilies.",
+
+ "deep": "Reading up this panel walks you down the sky. In a mirrored image the zenith lands nearest your feet and the far distance sits high, so the broad lavender-grey cloud lying low past the middle of the wall belongs to weather almost overhead: a whole hemisphere laid out in the wrong order. Find the small pink blossoms. With the pads, they are the only things at a fixed location, and the instant your eye finds them the shimmer snaps into being water rather than fog. At the left end, and again in the lowest right corner, the pads are drawn as full ovals; up and toward the middle, as slivers. That is the entire perspective system, hidden in the corner after the horizon was taken away."
+
+},
 
 "the-thinker": {
 about: "Rodin's seated giant, mid-thought — conceived in 1880 as 'The Poet' (Dante himself) for the top of the Gates of Hell, gazing down at his own damned, then enlarged into the world's most famous statue of thinking.",
@@ -613,16 +617,28 @@ deep: "The brushwork is deliberately invisible — porcelain skin with no visibl
 refs: {"deep":[{"id":"impression-sunrise","text":"Impression, Sunrise"}]} },
 
 "pont-de-l-europe-gare-saint-lazare": {
-about: "Monet inside Gare Saint-Lazare, 1877: the iron bridge and signals of the Pont de l'Europe, locomotives filling the station with steam — modernity painted as weather.",
-deep: "Monet asked the stationmaster to delay trains and stoke the engines so the steam would perform. That's the tell of what the series is: not a picture of a train station but of a new kind of sky, man-made, indoors. The iron geometry — bridge, tracks, glass roof — supplies the hard drawing, and the steam immediately dissolves it, the two halves of the industrial age (structure and vapour) fighting in one frame. It is the same painter who would spend his last decades on water lilies: already, here, the subject is what light does to something that won't hold still." },
+
+ "about": "Monet inside Gare Saint-Lazare, 1877: the iron bridge and signals of the Pont de l'Europe, locomotives filling the station with steam — modernity painted as weather.",
+
+ "deep": "Monet asked the stationmaster to delay trains and stoke the engines so the steam would perform. That's the tell of what the series is: not a picture of a train station but of a new kind of sky, man-made, indoors. The iron geometry — bridge, piers, tracks — supplies the hard drawing, and the steam immediately dissolves it, the two halves of the industrial age (structure and vapour) fighting in one frame. It is the same painter who would spend his last decades on water lilies: already, here, the subject is what light does to something that won't hold still."
+
+},
 
 "water-lilies-reflection-of-a-weeping-willow": {
-about: "Late Monet at the Marmottan: the pond at Giverny with a weeping willow doubled in the water — painted in the cataract years, when his eyes were failing and the colour loosened toward abstraction.",
-deep: "The willow was Monet's grief motif — he painted them through WWI, mourning trees for a mourning country, while his own sight clouded. Up close the canvas barely depicts: raw, dragged strokes, colours from memory as much as sight (the cataracts pushed everything toward hot reds and muddy yellows he couldn't fully see). It becomes a willow only when you step away. What you loved at the Marmottan is the hinge in art history: the last Impressionist canvases and the first abstract ones are, for a few years, the same objects." },
+
+ "about": "Late Monet at the Marmottan: the pond at Giverny with a weeping willow doubled in the water — painted in the cataract years, when his eyes were failing and the colour loosened toward abstraction.",
+
+ "deep": "The willow was Monet's grief motif — he painted them through WWI, mourning trees for a mourning country, while his own sight clouded. Up close the canvas barely depicts: raw, dragged strokes, colours from memory as much as sight. Where the cataracts pushed much of his late work toward hot reds and muddy yellows, this canvas holds to blue and lilac, its reds kept to a few blooms and flecks. It becomes a willow only when you step away. What you loved at the Marmottan is the hinge in art history: the last Impressionist canvases and the first abstract ones are, for a few years, the same objects."
+
+},
 
 "walk-near-argenteuil": {
-about: "Monet, 1875: Camille and Jean on a path through poppies and high summer grass at Argenteuil — the small domestic Monet, the family inside the landscape.",
-deep: "The figures barely have faces; the poppies get more paint than the people. That inversion is the quiet radicalism of the Argenteuil years — the family walk matters as a colour event (red spots against green, a blue parasol against sky), not as a portrait. It pairs with Woman with a Parasol, painted the same year: the same wife, the same son, the same wind — one monumental and seen from below, this one small and level, as if you were walking a few steps behind them." },
+
+ "about": "Monet, 1875: Camille and Jean on a path through poppies and high summer grass at Argenteuil — the small domestic Monet, the family inside the landscape.",
+
+ "deep": "The figures barely have faces; the poppies get more paint than the people. That inversion is the quiet radicalism of the Argenteuil years — the family walk matters as a colour event (red spots against green, dark green parasols behind pale hats), not as a portrait. It pairs with Woman with a Parasol, painted the same year: the same wife, the same son, the same wind — one monumental and seen from below, this one small and level, as if they were walking toward you."
+
+},
 
 "podkowinski-szal-uniesien": {
 about: "Podkowiński's Frenzy of Exultations, 1894: a naked woman in ecstasy clinging to a monstrous rearing black horse — Polish Symbolism's succès de scandale. One canvas exists, and it carries scars: the painter slashed it himself.",
@@ -645,8 +661,12 @@ about: "Pissarro, 1887: cottages at Éragny in his pointillist period — the pa
 deep: "Pissarro was the only painter in all eight Impressionist exhibitions, and here he is in his late fifties humbly adopting a younger man's technique — the divisionist dot — because he thought it truer. The dots force patience: the picture shimmers rather than describes, and the humble subject (backs of houses, a bit of garden) makes clear the method is the point. He later abandoned it as too slow, too rigid. Your one Australian floored work being a French field painted in dots is the taste-data equivalent of a signature." },
 
 "the-tuileries-study": {
-about: "Monet, 1876: the Tuileries gardens from a window above — a study, kept loose, Paris hazed in light with the garden's geometry dissolving under it.",
-deep: "It is labelled a study and that is its virtue: Monet at speed, the formal French garden — the most geometric landscape in Europe — melting into dabs. The view is from Victor Chocquet's apartment, looking down: the elevated viewpoint flattens the garden into bands of colour, a proto-aerial abstraction. Where the finished Monets of the period negotiate between drawing and light, here light simply wins." },
+
+ "about": "Monet, 1876: the Tuileries gardens from a window above — a study, kept loose, Paris small and pale under a thin sky, the formal garden set down in a few fast strokes.",
+
+ "deep": "Victor Chocquet's apartment gave Monet the Tuileries from above, and the study keeps faith with exactly what that window delivered. The big pavilion at the corner gets its dormer and cornices, the people in the garden barely a mark apiece, and Paris beyond is a band of bright specks under violet hills. Nothing is sharpened that distance had softened, and nothing softened that it had left clear. Working fast, Monet turns speed into a kind of accuracy."
+
+},
 
 "strindberg-underlandet": {
 about: "August Strindberg the playwright, painting in 1894: a wall of green-black paint troweled on with a palette knife, parting around an opening of pale light. He painted only in the years when writing failed him.",
@@ -661,10 +681,16 @@ by: 'Opus · Fable',
 study: "This is a small, fast, private thing — a drawing, not a monument — and its force comes from how little it uses. Sergel sets down a pair of embracing lovers in a few surging strokes, the bodies wrapped into a single knot of movement. There is no setting, no finish, no polish for a patron's eye: just the charged shorthand of a sculptor thinking on paper, the contour repeated and searched for, some passages barely indicated and others bitten in hard where the pressure of the hand increased. The scale is intimate; you lean in to it as you would to a note.\n\nWhat makes it work is speed and structure. Sergel builds the couple as a compact, almost spherical mass — limbs and torsos folded toward a common centre so that two figures read as one heavy, twisting volume. That is a sculptor's instinct: he is not describing surfaces so much as feeling for weight, balance and the axis around which the group turns. The line is investigative rather than decorative, laid down quickly and corrected in place, and the whitest paper is left to do the work of light on skin. The energy lives in the difference between the sure outer silhouette and the flurry of trial strokes inside it.\n\nSergel was the outstanding Swedish sculptor of the late eighteenth century, a Neoclassicist by public reputation who spent over a decade in Rome absorbing antique statuary — and running with Henry Fuseli's circle, whose fevered, abbreviated drawing manner sheets like this plainly share. His drawings are famously another register from his marble: spontaneous, physical, often erotic or satirical, made for himself and his friends rather than for exhibition. That contrast is the whole point of his afterlife — the man who carved cool, controlled gods drew with a heat and immediacy his finished sculpture rarely allowed itself, and sheets like this survive in the Nationalmuseum as evidence of that quicker private hand.\n\nThe irony is exactly that gap. Neoclassicism officially prized restraint, ideal form and moral gravity, yet here one of its accomplished practitioners turns its hard-won command of anatomy to something urgent, bodily and unguarded. The drawing joins a long argument about the difference between the public finished work and the living trace of the artist's hand — and comes down, quietly, on the side of the trace. It suggests that desire and drawing share a grammar: both are about pressure, contact and the search for a single unifying line.\n\nBecause the documented record for this sheet is thin, let the eye do the confirming. From reading distance, take in the whole knot of the couple and feel how it coheres as one turning mass. Then deep-zoom into a single passage — a shoulder, or the join where the two bodies meet — and follow one continuous contour: watch where Sergel began, where he lifted and reattacked the same edge, where a firmer stroke overrides a searching one. In that small stretch of corrected line you can see the drawing being decided in real time, which is the pleasure this sheet exists to give." },
 
 "women-in-the-garden": {
-about: "Monet at twenty-five, thinking enormous: nearly two and a half metres of canvas, four women in summer dresses among trees and flowerbeds, painted in 1866 — before Impressionism had a name. The real subject is already sunlight: how it sifts through leaves and lands on white fabric. Musée d'Orsay, Paris.",
-deep: "Monet insisted on painting it outdoors at full scale, digging a trench in the garden so the huge canvas could be lowered on a pulley and he could keep working at eye level. Camille, his companion, modelled for several of the figures, but the women are nearly a pretext. Watch the seated woman in the foreground shade: she goes cool grey-blue while the sunlit dresses behind stay warm, and her face is lit from below by light bouncing off her own dress — light, not story, organises everything. The Salon rejected it in 1867 as raw and unfinished. The joke came later: in 1921 the French state, heir to the jury that turned it down, bought it from the elderly Monet for 200,000 francs — a rejection repaid with half a century's interest.",
-by: 'Opus · Fable',
-study: "Women in the Garden is a big picture pretending to be a casual one. It is nearly life-size — a wall of canvas over two and a half metres tall — and it shows four fashionably dressed young women arranged around a garden path, among foliage and a flowering tree, in the flattening blaze of full summer sun. The palette is built on the collision of brilliant white dresses against saturated greens, with the path a pale scorched band and the shadows laid in as cool, decided shapes of blue-grey rather than muddy darkness. Everything is keyed to daylight; the picture wants you to feel heat and glare, not narrative.\n\nThe construction is quietly radical. Monet painted much of it outdoors, and to reach the top of so large a canvas he is said to have had it lowered into a trench in the garden, so the upper passages could be worked at eye level rather than finished from imagination in the studio. His companion Camille Doncieux is thought to have posed for several of the figures — which quietly undercuts the air of a chance social gathering: this is one model multiplied, a constructed candid. The whites are not blank but flecked with the greens and violets reflected up into them; the shadows carry colour; and the dresses read almost as pattern, great flat shapes locked around the tree and the turning path.\n\nThis is early Monet, made in his mid-twenties before Impressionism had a name — his bid for a modern figure painting on the ambitious scale of the Salon. The jury of the 1867 Salon turned it down. Bazille, his loyal and better-funded friend, bought the canvas in monthly instalments to keep him afloat; after Bazille was killed in the Franco-Prussian War it eventually found its way back to Monet, and there it stayed until 1921, when the French state bought it from the now-celebrated old man for 200,000 francs. The establishment that refused the picture ended by paying the painter a fortune for it, and he lived to bank the apology. It hangs today in the Musée d'Orsay as a landmark of the movement's beginnings.\n\nThe reversal worth holding onto is why it was refused: a canvas built to satisfy the Salon's appetite for large figure subjects treated those figures as vehicles for light rather than story or sentiment. The women are less characters than beautifully lit surfaces, and the modernity of the picture lies exactly in that demotion — the opening move in the coming Impressionist argument that the true subject of painting might be optical sensation itself.\n\nIn person, treat the scale as part of the experience. Because the figures are near life-size, standing close makes you a guest on the path — you share their light. Look hard at the white dresses and the shadowed ground for the coloured reflections and crisp blue shadows that so unsettled the jury. Then step well back, far enough that the brushwork settles and the flat shapes lock into a convincing sunlit garden. Moving between those two distances is the whole lesson: near, it is paint about light; far, it is a summer afternoon." },
+
+ "about": "Monet at twenty-five, thinking enormous: nearly two and a half metres of canvas, four women in summer dresses among trees and flowerbeds, painted in 1866 — before Impressionism had a name. The real subject is already sunlight: how it sifts through leaves and lands on white fabric. Musée d'Orsay, Paris.",
+
+ "deep": "Monet insisted on painting it outdoors at full scale, digging a trench in the garden so the huge canvas could be lowered on a pulley and he could keep working at eye level. Camille, his companion, modelled for several of the figures, but the women are nearly a pretext. Watch the seated woman in the foreground: under the parasol her face goes a flat cool grey while the flowers in her lap stay in full sun, and what light the face has bounces up off her own white dress — light, not story, organises everything. The Salon rejected it in 1867 as raw and unfinished. The joke came later: in 1921 the French state, heir to the jury that turned it down, bought it from the elderly Monet for 200,000 francs — a rejection repaid with half a century's interest.",
+
+ "by": "Opus · Fable",
+
+ "study": "Women in the Garden is a big picture pretending to be a casual one. It is nearly life-size — a wall of canvas over two and a half metres tall — and it shows four fashionably dressed young women arranged around a garden path, among foliage and a flowering tree, in the flattening blaze of full summer sun. The palette is built on the collision of brilliant white dresses against saturated greens, with the path a pale scorched band and the shadows laid in as cool, decided shapes of blue-grey rather than muddy darkness. Everything is keyed to daylight; the picture wants you to feel heat and glare, not narrative.\n\nThe construction is quietly radical. Monet painted much of it outdoors, and to reach the top of so large a canvas he is said to have had it lowered into a trench in the garden, so the upper passages could be worked at eye level rather than finished from imagination in the studio. His companion Camille Doncieux is thought to have posed for several of the figures — which quietly undercuts the air of a chance social gathering: this is one model multiplied, a constructed candid. The whites are not blank but flecked with the greens and violets reflected up into them; the shadows carry colour; and the dresses read almost as pattern, great flat shapes locked around the tree and the turning path.\n\nThis is early Monet, made in his mid-twenties before Impressionism had a name — his bid for a modern figure painting on the ambitious scale of the Salon. The jury of the 1867 Salon turned it down. Bazille, his loyal and better-funded friend, bought the canvas in monthly instalments to keep him afloat; after Bazille was killed in the Franco-Prussian War it eventually found its way back to Monet, and there it stayed until 1921, when the French state bought it from the now-celebrated old man for 200,000 francs. The establishment that refused the picture ended by paying the painter a fortune for it, and he lived to bank the apology. It hangs today in the Musée d'Orsay as a landmark of the movement's beginnings.\n\nThe reversal worth holding onto is why it was refused: a canvas built to satisfy the Salon's appetite for large figure subjects treated those figures as vehicles for light rather than story or sentiment. The women are less characters than beautifully lit surfaces, and the modernity of the picture lies exactly in that demotion — the opening move in the coming Impressionist argument that the true subject of painting might be optical sensation itself.\n\nIn person, treat the scale as part of the experience. Because the figures are near life-size, standing close makes you a guest on the path — you share their light. Look hard at the white dresses and the shadowed ground for the coloured reflections and crisp blue shadows that so unsettled the jury. Then step well back, far enough that the brushwork settles and the flat shapes lock into a convincing sunlit garden. Moving between those two distances is the whole lesson: near, it is paint about light; far, it is a summer afternoon."
+
+},
 
 "the-town": {
 about: "A late seascape by August Strindberg from 1903, his final period of painting. Stockholm — the town of the title — is a thin dark strip on the horizon; nearly everything else is storm, worked in heavy palette-knife impasto. Small, turbulent, close to abstract: landscape as a weather report from inside a mind. Nationalmuseum, Stockholm.",
@@ -706,9 +732,14 @@ deep: "The real subject is the seam where garden meets pond. Monet sets a rooted
 by: "Opus 4.8" },
 
 "claude-monet-the-manneporte-etretat": {
-about: "The Manneporte, largest of the Étretat sea arches on the Normandy coast, painted by Monet in 1883. A single span of chalk cliff crowds out the sky, met head-on and slightly from below, as if you stood on the rocks beneath it.",
-deep: "The arch is not a view onto a scene; it is the scene. Monet crops hard, pushing the span almost to the top edge so the sky shrinks to a thin afterthought and nothing competes with the stone. Colour, not line, does the drawing: the seaward face burns pale ochre and gold, dies into cool grey-violet as it turns, and that seam of temperature alone makes the pier read as a rounded, weight-bearing mass with no drawn edge. Below, the rock goes dragged and thin while the surf clots thick, white troweled over blue and green in loops that never settle. An early rehearsal for the serial method to come, weather made of pigment.",
-by: "Opus 4.8" },
+
+ "about": "The Manneporte, largest of the Étretat sea arches on the Normandy coast, painted by Monet in 1883. A single span of chalk cliff crowds the sky into its opening, met head-on and slightly from below, as if you stood on the rocks beneath it.",
+
+ "deep": "The arch is not a view onto a scene; it is the scene. Monet crops hard, running the span straight off the top edge so the sky survives only inside the arch and in a strip beyond it. Warmth does the modelling: the pier's inner face burns pale ochre and gold and cools to grey-violet as it turns from the light, and that change of hue, more than any contour, gives the pier its round, load-bearing bulk. Below it the handling splits, the stone dry and dragged, the surf heaped thick and unmixed, so weight and turbulence are told apart by the paint itself. An early rehearsal for the serial method to come, weather made of pigment.",
+
+ "by": "Opus 4.8"
+
+},
 
 "ferdinand-hodler-mount-niesen-seen-from-heustrich": {
 about: "Ferdinand Hodler's Mount Niesen, 1910 — a single green pyramid filling almost the whole frame, no lake, no path, no figure. A base-cutting bank of white cloud leaves it floating, less a view than a form held up for inspection.",
@@ -776,9 +807,14 @@ deep: "Watch how the paint changes between the girls and the meadow. The two fig
 by: "Opus 4.8" },
 
 "saule-pleureur-et-bassin-aux-nympheas": {
-about: "A single weeping-willow trunk at Giverny, Claude Monet, 1917 — the odd one out among his late water canvases. Instead of the pond's flat surface, he stands you at the tree's foot and looks straight up its bark, the lily basin surviving as a sliver at the right edge.",
-deep: "The willow's trunk crowds out the pond that made these late canvases famous. Monet builds the bark from long vertical strokes crossed by short diagonals, kept in complementary pairs — orange against violet, red beside green — set side by side so the eye mixes them and the trunk shimmers rather than sits still. It is the optical method he used on water, turned onto a solid vertical thing. The fronds are dragged wet, downward, pulling toward the earth against the trunk's upward climb; the base darkens into unreadable blue-green shadow. Painted through the war years, the drooping willow was his emblem of mourning — a record of feeling worked into paint, not a view of a garden.",
-by: "Opus 4.8" },
+
+ "about": "A single weeping-willow trunk at Giverny, Claude Monet, 1917 — one of a group of late canvases in which the willow, not the lily surface, holds the foreground. He stands you on the bank beside the trunk, with the lily basin opening to its right, so tree and water share the picture.",
+
+ "deep": "Monet gives the foreground to the trunk and leaves the pond that made these late canvases famous at its side. He builds the bark from long vertical strokes crossed by short diagonals, kept in complementary pairs — orange against violet, red beside green — set side by side so the eye mixes them and the trunk shimmers rather than sits still. It is the optical method he used on water, turned onto a solid vertical thing. The fronds are dragged wet, downward, pulling toward the earth against the trunk's upward climb; the base darkens to violet-black among clumps of blue-green leaves. Painted through the war years, the drooping willow was his emblem of mourning — a record of feeling worked into paint, not a view of a garden.",
+
+ "by": "Opus 4.8"
+
+},
 
 "theo-van-rysselberghe-coastal-scene": {
 about: "A shallow bay at rest, 1892, by Théo van Rysselberghe, the leading Belgian follower of Seurat. Water fills two-thirds of the canvas, and a band of reflected light lies across the middle, silver-green and brighter than either sky or hills.",
@@ -819,9 +855,14 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "the-magpie": {
-about: "Monet's The Magpie, 1868 — a lone bird on a gate in blue-shadowed snow. Rejected by the 1869 Salon as too pale, it holds some of his earliest coloured shadows: light painted where academics demanded black.",
-deep: "The only saturated colour here is two or three roofs at the upper right, and every cold note depends on them: a few square centimetres of warm reddish-brown against which the whole field reads as freezing. The thickest paint is on the hedge crest, a loaded ridge glowing above a tangle of ochre, slate and green: sun made visible along one edge. The source is kept faint — no disc, only a diffuse band at the horizon, scumbled until the distance loses substance, and it aims everything cast below. The gate is a few crossed sticks that would keep nothing in or out, dragged on dry and scratched — a perch, one horizontal to break the drifts.",
-by: "Opus 4.8" },
+
+ "about": "Monet's The Magpie, 1868 — a lone bird on a gate in blue-shadowed snow. Rejected by the 1869 Salon as too pale, it holds some of his earliest coloured shadows: light painted where academics demanded black.",
+
+ "deep": "A canvas of almost nothing, tuned so that one small thing can count. The snow carries every colour but plain white, cooled to blue where shadow slants across it and faintly warm where the low sun lands, and the sun itself never appears, only a brightening where snow meets sky. The darks are given jobs: the woven fence and the gate posts hold the middle of the field together. Black is spent once, on a magpie perched on the gate, off to the left and small enough to miss. With nowhere else to rest, the eye reaches it last and stays. The 1869 Salon saw only emptiness; the emptiness is the instrument, and the bird is the note it was tuned to sound.",
+
+ "by": "Opus 4.8"
+
+},
 
 "battle-of-grunwald": {
 about: "Ten metres of 1410 at the moment of collision: Poland-Lithuania breaking the Teutonic Order, painted in 1878 for a country that no longer existed. In 1939 Poles were tortured rather than say where it was hidden.",
@@ -1280,9 +1321,14 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "claude-monet-the-path-through-the-irises": {
-about: "The blaring, near-abstract color here owes partly to the double cataracts clouding Monet's sight; painted around 1914-17, it belongs to a series of some twenty iris views from his Giverny garden made in monumental scale during the First World War.",
-deep: "The real subject is entry with no exit. Monet plants you inside the iris bed rather than at the end of a receding lane, and the whole surface is built to make you stay there: no sky, no horizon, only blades closing in from both sides and a warm channel of gold that widens as it descends but never opens onto anything beyond itself. Every mark runs vertically — thick, raw sweeps of green and violet dragged upward — so the surface breathes as one rising motion rather than settling into a view. The blooms are dabs of pink set directly against green, vibrating by complementary contrast, never botanical. Toward the top, motif and atmosphere trade places until you cannot say where plant ends and air begins. What was a garden becomes a condition: the eye held, surrounded, unable to find the distance it normally reaches for.",
-by: "Opus 4.8" },
+
+ "about": "The blaring, near-abstract color here owes partly to the double cataracts clouding Monet's sight; painted around 1914-17, it belongs to a series of some twenty iris views from his Giverny garden made in monumental scale during the First World War.",
+
+ "deep": "The real subject is entry with no exit. Monet plants you inside the iris bed rather than at the end of a receding lane, and the whole surface is built to make you stay there: no sky, no horizon, only blades closing in from both sides and a warm channel of gold that swells in the lower centre but never opens onto anything beyond itself. Even the brushwork refuses recession: the blades climb while the gold between them is laid crosswise, so no stroke runs back into depth, and the blooms stay loose dabs of pink and lilac that never harden into things you could stand back and inspect. Toward the top the path climbs to the very edge, so ground fills the place where sky should be. What was a garden becomes a condition: the eye held, surrounded, unable to find the distance it normally reaches for.",
+
+ "by": "Opus 4.8"
+
+},
 
 "claude-monet-camille-monet-1847-1879-in-the-garden-at-argent": {
 about: "One of roughly ten canvases Monet painted of his rented house and garden in 1876, the last full year at Argenteuil; his wife Camille dissolves into a pale blue shape beside the flowering bed, the flowers overtaking her.",
@@ -3826,10 +3872,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus · Fable" },
 
 "claude-monet-a-corner-of-the-apartment": {
-about: "Monet indoors, 1875 — his son Jean posted dead-centre in a blue corridor of his Argenteuil house, plants hanging in from both edges like theatre wings. One of the few interiors a painter of the open air ever made.",
-deep: "The boy has no face. He stands dead-centre, small and near-black with a pale collar and a smear where features would go, exactly where the floorboards converge — a marker of scale rather than a portrait. Everything points past him at a curtained opening of blue-white streaks, and Monet hangs a dark lamp on its chain in front of it, eclipsing the one bright thing in the room. The parquet does the perspective — chevrons laid as dashes that tilt up and compress the depth. Camille is further back, dissolved. For a painter who lived outdoors, the coldness is the news: blues and slate greens throughout, the warmth exiled to flecks of leaf at the edges.",
-deepBy: "Sonnet 4.6",
-by: "Opus · Fable" },
+
+ "about": "Monet indoors, 1875 — his son Jean posted just off centre in a blue corridor of his Argenteuil house, plants hanging in from both edges like theatre wings. One of the few interiors a painter of the open air ever made.",
+
+ "deep": "The boy looks back. He stands just right of centre, near-black against the window with a pale collar, his small face plainly drawn and turned straight at us, his legs running down into their reflection in the polished floor. Everything points past him at a curtained opening of blue-white streaks, and Monet hangs a dark lamp on its chain in front of it, eclipsing the one bright thing in the room. The parquet does the perspective — chevrons laid as dashes that tilt up and compress the depth. Camille sits further back at the table, half-hidden in the leaves. For a painter who lived outdoors, the coldness is the news: blues and slate greens throughout, the warmth exiled to the red flecks of the patterned curtains at the edges.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus · Fable"
+
+},
 
 "w-adys-aw-podkowinski-sza-szkic": {
 about: "The idea traced back to Podkowiński's 1889 stay in Paris, but the oil sketches multiplied through the second half of 1893, driven by an unrequited passion that friends said had turned the twenty-seven-year-old feverish. This is the small trial run toward the three-metre canvas he unveiled at Warsaw's Zachęta in March 1894 — the one he returned to slash with a knife thirty-six days later, dying of tuberculosis within the year.",
