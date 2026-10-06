@@ -25,7 +25,11 @@ for (const p of P) {
   // forms: full title, the title without a trailing parenthetical (the prose rightly drops it), NFC
   const bare = title.replace(/\s*\([^)]*\)\s*$/, '');
   const forms = [...new Set([title, title.normalize('NFC'), bare, bare.normalize('NFC')])].filter(Boolean);
-  let text = forms.find(f => p.beside.split(f).length === 2);
+  // a wave file may carry its own verified ref span (refs[0].text); honour it when it matches the
+  // partner and occurs exactly once — canon titles can carry junk the prose rightly omits (10-07:
+  // "La Mort de Barbara Radziwiłł by Józef Simmler")
+  const given = (p.refs || []).find(r => r.id === p.partner);
+  let text = (given && p.beside.split(given.text).length === 2) ? given.text : forms.find(f => p.beside.split(f).length === 2);
   if (!text) { probs.push(p.id + ': partner title "' + title + '" not found once in beside'); continue; }
   t.beside = p.beside;
   // keep only refs whose text still occurs exactly once in the new beside (a reseal drops the old

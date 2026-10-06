@@ -554,18 +554,6 @@ by: "Opus 4.8" },
 
  "about": "In early October 1889 Van Gogh painted the walled field below his Saint-Rémy asylum window as a pendant to his yellow Reaper, telling Theo it was \"almost completely violet\", though its field reads straw and ochre.",
 
- "refs": [
-
-  {
-
-   "id": "vincent-van-gogh-enclosed-field-with-rising-sun",
-
-   "text": "Enclosed Field with Rising Sun"
-
-  }
-
- ],
-
  "by": "Opus 4.8"
 
 },
@@ -641,19 +629,16 @@ about: "Podkowiński's Frenzy of Exultations, 1894: a naked woman in ecstasy cli
 deep: "Kraków laughed at it and gossiped about the model's identity; after five weeks on show Podkowiński walked in and took a knife to the canvas — then died within the year at 29, and the painting was restored with his cuts inside it. The image itself is pure fin-de-siècle: eros as a runaway animal, the horse's head a storm-cloud of black paint that stops depicting and becomes pure vortex. You likely saw it in the Sukiennice's quiet salon of 19th-century Polish art, where it still radiates exactly the scandal the varnish can't cover." },
 
 "leech-the-sunshade": {
-  "about": "Elizabeth, the new wife Leech posed under a green parasol about 1913, painted too — small open-air studies of trees — and she decorated some of the frames he made himself for his own canvases.",
-  "deep": "The sitter's money kept Leech while he painted her, and the household of May Botterell, who took her place as his model, kept the picture for three decades. Until 1919 Elizabeth had been wife, model and \"banker\"; afterwards he shielded the Botterells by showing nothing in public from 1927 to 1945, and the canvas was still in that household when Elizabeth died in 1951. None of that reached the surface. Up close the brow is still green where the silk lit it, and the years show instead in the heavy dark greens of the coat at the lower right, crazed into a fine net of cracks.",
-  "by": "Opus 5.5",
-  "deepBy": "Opus 5.5",
-  "refs": {
-   "deep": [
-    {
-     "id": "leech-convent-garden",
-     "text": "A Convent Garden, Brittany"
-    }
-   ]
-  }
- },
+
+ "about": "Elizabeth, the new wife Leech posed under a green parasol about 1913, painted too — small open-air studies of trees — and she decorated some of the frames he made himself for his own canvases.",
+
+ "deep": "The sitter's money kept Leech while he painted her, and the household of May Botterell, who took her place as his model, kept the picture for three decades. Until 1919 Elizabeth had been wife, model and \"banker\"; afterwards he shielded the Botterells by showing nothing in public from 1927 to 1945, and the canvas was still in that household when Elizabeth died in 1951. None of that reached the surface. Up close the brow is still green where the silk lit it, and the years show instead in the heavy dark greens of the coat at the lower right, crazed into a fine net of cracks.",
+
+ "by": "Opus 5.5",
+
+ "deepBy": "Opus 5.5"
+
+},
 
 "peasants-houses-eragny": {
 about: "Pissarro, 1887: cottages at Éragny in his pointillist period — the patriarch of Impressionism borrowing the dot from Seurat, twenty years his junior. Found floored in, of all places, Sydney.",
