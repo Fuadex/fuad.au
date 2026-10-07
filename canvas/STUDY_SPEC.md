@@ -2508,3 +2508,15 @@ reader already knew the brief; the 09-26 audit was the first cold read the mv6 b
    "you saw it at X, so you know the room" is cut. This narrows the older voice rule (encounter lines
    allowed where `seenConfidence` is sure): sure is necessary, not sufficient. ~100 such lines exist
    corpus-wide; a sweep is queued.
+
+## 2026-10-07 — CRAFT DESCRIBES THE MAKING, NOT THE STOPS' FINDS (Fuad: "not a bad idea actually", on the wave-20 cold pass)
+
+9. **CRAFT MUST NOT PREVIEW THE STOPS (Fuad 2026-10-07).** The wave-20 cold reader felt Signac's stops as
+   confirmations: `craft` had already said "a rope, spar, stone joint or grass blade is a single file of
+   dabs", and four stops then found the rope, the spars, the joints and the blades. `craft` explains how the
+   picture was MADE — materials, process, sequence, tools, the decisions behind them — and names no object a
+   stop owns; the stops are where the method is found. Measured crudely (a craft lens sharing three or more
+   key words with its own stop titles): 76% of the corpus, 86% of mv1 tours, 43% of mv6 — this ages,
+   re-measure. No standalone sweep: the repair lanes take it — auditors report a craft lens that lists the
+   stops' finds as `ROLE` (MID), and the repair rewrites it as the making. New drafts carry it as wave-20
+   lesson 15.
