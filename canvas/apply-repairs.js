@@ -20,8 +20,14 @@ const eq = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 const changes = [];
 for (const f of files) { const j = JSON.parse(fs.readFileSync(f, "utf8")); changes.push(...(Array.isArray(j) ? j : j.changes || [j])); }
 const touched = { about: new Set(), inspect: new Set() }, newHires = [], problems = [];
+// STOP DELETION (2026-10-07, stop merges for the coverage guard): field "tour.deeper[i].delete", old = the
+// stop's exact title. Deletions are QUEUED and run after every other change, highest index first per tour,
+// so indices in the same proposal always refer to the PRE-deletion stop order and cannot land on a shifted stop.
+const deletions = [];
 for (const c of changes) {
   const { id, field } = c;
+  const dm = field.match(/^tour\.deeper\[(\d+)\]\.delete$/);
+  if (dm) { deletions.push({ id, i: +dm[1], old: c.old }); continue; }
   try {
     if (field === "art_hires") {
       if (data.hires[id]) throw new Error("already has a hires row");
@@ -56,6 +62,17 @@ for (const c of changes) {
   } catch (e) { problems.push(`${id} ${field}: ${e.message}`); }
 }
 // beside refs must still each occur exactly once
+// queued stop deletions — pre-deletion indices, applied highest first; title asserted against the ORIGINAL store
+for (const d of deletions.sort((a, b) => b.i - a.i)) {
+  try {
+    const orig = before.inspect[d.id]; const t = data.inspect[d.id];
+    if (!orig || !t) throw new Error("no tour");
+    if (!orig.deeper[d.i] || orig.deeper[d.i].t !== d.old) throw new Error(`delete: stop ${d.i} title is "${orig.deeper[d.i] && orig.deeper[d.i].t}", not "${d.old}"`);
+    // locate the same stop in the live (possibly edited) array by identity of position among undeleted stops
+    const liveIdx = d.i - deletions.filter(x => x.id === d.id && x.i < d.i && x.done).length;
+    t.deeper.splice(liveIdx, 1); d.done = true; touched.inspect.add(d.id); console.log(`  - ${d.id} stop ${d.i} deleted ("${d.old}")`);
+  } catch (e) { problems.push(`${d.id} delete ${d.i}: ${e.message}`); }
+}
 // refs come in TWO shapes (STUDY_SPEC *The two accepted shapes*): a bare array attaches to the default
 // paragraph (`beside` on a tour), a keyed object maps field -> refs. Check every ref against ITS field
 // (2026-10-07: a keyed-object tour crashed this loop, which read only the array shape).
