@@ -3,6 +3,21 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "philip-james-de-loutherbourg-the-falls-of-the-rhine-at-schaf": {
+  "about": "Loutherbourg painted these falls in Switzerland in 1787–88 with unusual fidelity, to answer critics who said he exaggerated nature — and London still called it unreal; one newspaper, on hearsay, took it for \"the Cataract of the Nile\".",
+  "deep": "The details a visitor could check are kept true, and the scale and drama heightened. The two green-topped rocks the English traveller William Coxe saw in mid-fall in 1776 are there. Yet the painter's cataloguer, Olivier Lefeuvre, lists changes, deliberate or not, by a man who in 1781 had opened his own miniature stage of storms and sunrises: the fall narrower and taller than the real one, and a wall of water where the river comes down in steps, here one tall drop under a thin band of rapids at the rim. Lefeuvre's last change: the modest mound below the castle has grown into a crag, grey rock breaking through its wood, lifting the battlements against the sky.",
+  "by": "Opus 5.5"
+ },
+ "anna-nordlander-at-the-suspended-cradle-study": {
+  "about": "Nordlander's 1870 study of a woman at a hanging cradle, the motif of the Sámi interior Johan Fredrik Höckert showed, about seventy times larger, at the 1857 Paris Salon. He had stayed at her family's rectory.",
+  "deep": "The Sámi mother in Höckert's painting was praised in an onlooker's terms. In 1881 Karl Warburg found her pull in the \"uncivilised grace\" poured over a woman tenderly watching a waking child, and quoted a critic who felt with that motherliness yet saw in it \"a bend, a turn\" belonging \"to a foreign race\". Each term needs a spectator outside the scene, and the study leaves that spectator little: her face, laid in two planes, gives no gaze to read; the bundle a tender gaze would rest on has no face; her own bend is a reach to the cradle with both arms. The paint stands up instead in ridged white fur between her hands.",
+  "by": "Opus 5.5"
+ },
+ "robert-delaunay-tour-eiffel": {
+  "about": "Delaunay's 1926 canvas looks down on the Eiffel Tower from the air, the Champ-de-Mars laid out round its legs. The same year he painted the tower from the other end: a sister canvas looking steeply up.",
+  "deep": "In Blaise Cendrars's telling, the view from the top defeated Delaunay in his first Towers, of 1910–11; this canvas keeps that view. Of those Towers Cendrars recalled that from its summit the tower sank into itself, and that the way out was to cut it short, tilt it and spread the looking over ten viewpoints, bird's-eye and ground-level. Fifteen years on, the looking stays aloft. The cut survives, the tilt has mostly left the iron for the ground, and where the first series multiplied places to stand, this one multiplies kinds of mark on the iron itself, while the eye keeps its one height.",
+  "by": "Opus 5.5"
+ },
  "paul-signac-women-by-the-well": {
   "about": "Signac’s first large canvas after Seurat’s death. The scholar Ferretti-Bocquillon reads its two women at a well as Seurat’s last picture, The Circus, moved south — its foreground shadow a phantom of the Circus clown, borrowed “no doubt unconsciously”.",
   "deep": "The loudness of this canvas was meant for a room without enough light. Shown at the Indépendants in 1893, it carried a title ending in a parenthesis, “decoration for a panel in half-light”: a picture to work on a dim wall as a window would. Signac later wrote of divided-colour canvases that give light back to the walls of modern apartments. With that purpose in view, its excesses look deliberate, the yellows and oranges pitched to keep glowing in shade, borders recoloured from both sides so shapes hold after the room goes grey. Under gallery light you get it undamped: the yellow ground below the women is at its most strident.",
@@ -451,9 +466,14 @@ deep: "A wedding portrait that supplies no proof of the marriage. Her eyes slip 
 by: "Opus 4.8" },
 
 "vincent-van-gogh-portrait-of-adeline-ravoux": {
-about: "Adeline Ravoux, thirteen, daughter of the innkeeper Van Gogh lodged with at Auvers in June 1890, weeks before he died — she sat once, he painted her three times, and she never thought it looked like her.",
-deep: "Adeline was thirteen. He aged her three years and turned her face away — writing to Theo about a girl of sixteen or so, in blue against a blue background, and painting her in strict profile, so what you get is contour instead of expression. Colour barely changes across the figure’s edge: the background is laid in short horizontal courses like brickwork, the dress falls in long verticals, the hair is combed, and direction alone separates her from the air. Warmth is rationed to four places — head, a chrome-yellow lozenge, two blunt ochre hands, the signature. Behind the head, the hair ribbon stands in ridges thicker than anything in the face.",
-by: "Opus 4.8" },
+
+ "about": "Adeline Ravoux, thirteen, daughter of the innkeeper Van Gogh lodged with at Auvers in June 1890, weeks before he died — she sat once, he painted her three times, and she saw no likeness in it.",
+
+ "deep": "Adeline was thirteen. He aged her three years and turned her face away, writing to Theo about a girl of sixteen or so, in blue against a blue background, and painting her in strict profile. Everything in the figure then points one way. The level eye, the line of the nose, both forearms laid along the lap and the hands, one over the other, reaching almost to the right edge: all of it is aimed at the open blue, where there is nothing to look at but short pale dashes moving like light on water. Behind her sits the furniture of being posed, a chair back and a ribbon bow; ahead lies only the blue he chose for her.",
+
+ "by": "Opus 4.8"
+
+},
 
 "wincenty-kasprzycki-wystawa-sztuk-pieknych-w-warszawie-w-182": {
 about: "Warsaw's 1828 art show, crammed into a university mineralogy cabinet for eight weeks — and Kasprzycki painted it so fast that the canvas went up in the very exhibition it records, the city's painters among the visitors.",
@@ -721,10 +741,16 @@ by: 'Opus · Fable',
 study: "Midsummer Dance catches the Swedish summer night at its strangest hour, when the sun barely sets and the light goes long, warm and low. Couples dance outdoors among the red timber buildings of a Dalarna village, the whole scene bathed in the pale nocturnal glow of the far north. The canvas has real depth of field: the foreground couple are large and specific, the dance recedes into a loose crowd, and the palette runs from the deep red of the buildings and the blues of folk costume to the strange bright pallor of a sky that never fully darkens. The mood is festive but faintly dreamlike — held in a light with no true night in it.\n\nZorn builds the picture on movement and a very particular handling of illumination. The foreground couple are swept slightly off balance, mid-turn, bodies angled into the dance, so the scene feels caught rather than posed. His brushwork is famously fluent — broad, confident, wet strokes that give a swirling skirt or a shirtsleeve in a few gestures — and he uses it to keep the eye travelling with the dancers down the receding line of the dance. But the light is the real subject. With the sun at or below the horizon there are no hard shadows: the glow comes from the sky itself, warm and cool at once, and Zorn tunes the entire tonal scheme to that single un-nocturnal radiance, which is what fuses dancers, buildings and ground into one atmosphere.\n\nBy the 1890s Zorn was one of the most internationally celebrated painters alive — a Swede who moved easily between Paris, London and the United States as a virtuoso portraitist of the wealthy and powerful. Midsummer Dance comes from the height of that success, painted the year after he had resettled for good in his native Mora, and it turns away from cosmopolitan portraiture toward the folk life of the province he championed. It became one of his signature Swedish subjects and a touchstone image of national midsummer, and it hangs in the Nationalmuseum as the defining work of his homeland manner.\n\nThe reversal is that a painter fluent in the salons of two continents made his most enduring image not of a duchess but of country people dancing in a farmyard. The picture belongs to the era's broad national-romantic turn — the search across late-nineteenth-century Europe for authentic local identity in folk custom and landscape — and it argues that case with dazzling metropolitan technique. The paradox is the point: only a painter of Zorn's international polish could render peasant midsummer with this much bravura, and the tension between humble subject and brilliant handling is what keeps the picture alive.\n\nIn person, start close to the foreground dancers, where the costumes dissolve into pure, loaded strokes of paint. Then step back and watch those strokes resolve into turning bodies as the crowd falls into depth. Above all, give time to the light: register how the sky stays pale and how the shadows soften under a sun that will not set, because that specific midsummer glow is what Zorn was really painting — the thing that lifts a village dance into something luminous and slightly unreal." },
 
 "the-starry-night": {
-about: "Van Gogh's 1889 night sky over a village, painted at the asylum in Saint-Rémy-de-Provence where he had committed himself. A cypress flames up the left edge; eleven stars and a crescent moon churn above the hills. You know it before you see it — which is the thing worth fighting. Museum of Modern Art, New York.",
-deep: "It looks like ecstatic reportage; it's a composite, painted by day in a downstairs studio — he wasn't allowed to work in his bedroom. The sky is from his east-facing window, but the village can't be seen from there, and the spire is a Dutch church smuggled in from memory. The one documented observation is the brightest light beside the cypress: Venus, the morning star, which he had written to Theo about watching before dawn. Around that fact he let go — thick curling strokes knotting the sky into two great spirals, the cypress, a tree he associated with death, binding earth to heaven while the village sleeps below in straight, sober lines. Turbulence organised against calm. Van Gogh judged the picture a failure, telling Bernard its abstraction had gone too far. Every gift shop on earth has since disagreed.",
-by: 'Opus · Fable',
-study: "The Starry Night is smaller and more physical than its fame suggests. It shows a night sky in violent motion over a quiet village, a great dark cypress rising like a flame at the left and a range of low hills behind. The palette is a taut duet of blues and yellows — cobalt and ultramarine against the acid gold of eleven stars and a swollen crescent moon — and the surface is built from thick, ropey strokes that curl and coil. Nothing here is smooth; the sky is made of rolling spirals, and even the calm village is set down in short, decisive dabs. You feel the paint as weather before you read it as scene.\n\nThe composition is a contest between turbulence and stillness. The upper two-thirds churn — coiling currents sweep across the sky, linking star to star — while the village below lies flat, orderly and small, its one church spire reaching thinly upward. The cypress bridges the two, a dark vertical tying settled earth to roiling heavens, and the yellow halos pulse against the deep blue in near-complementary contrast, which is what makes the stars seem to throb. The eye is driven in waves from left to right and back, so the sky reads less as a view than as a felt, moving force.\n\nVan Gogh painted it in June 1889 at the asylum of Saint-Rémy-de-Provence, where he had admitted himself after the breakdown in Arles. It is partly an invented picture: the view from his barred window gave him the hills and the sky, but the village is a composite — the spire looks more Dutch than Provençal — and he worked the canvas up by day, in the studio, from memory. Yet it is not pure fantasy either: the blazing light beside the cypress is Venus, which really did hang in the Provençal dawn that June, as astronomers have since confirmed. Observation and vision are fused past separating. Van Gogh himself was ambivalent about the result, ranking other studies higher — and he sold almost nothing in his lifetime.\n\nThat is the enduring reversal: a picture the artist half-doubted, made in confinement and illness, is now, from its wall at the Museum of Modern Art in New York, the popular emblem of the sublime night sky. It sits at the hinge of Post-Impressionism, taking the Impressionists' broken colour and bending stroke and hue toward feeling and cosmic scale rather than optical fact. The work argues that the visible world can be reshaped by the pressure of inner experience without becoming untrue — that a sky can be honestly painted as it is felt. The cypress, traditionally a graveyard tree, quietly threads mortality through all that blazing life.\n\nIn person, resist the postcard. Stand close enough to see how sculptural the paint is — the sky is a relief of raised, twisting ridges, the stars built up in thick concentric touches. Then step back until the separate strokes fuse and the whole sky moves as one current. Finally, find the middle distance where the blue-and-yellow contrast makes the halos vibrate: that shimmer is no accident of reproduction but the direct result of van Gogh's colour choices, and his refusal to let a single stroke lie flat." },
+
+ "about": "Van Gogh's 1889 night sky over a village, painted at the asylum in Saint-Rémy-de-Provence where he had committed himself. A cypress flames up at the left; eleven stars and a crescent moon churn above the hills.",
+
+ "deep": "Count the lights. Above, eleven stars and a moon, each wound in its own wheel of halo, the biggest of them wider than the church below. Beneath, the village shows a scatter of lit windows, small square dabs of the very yellow the stars are made of, set flat and still inside their walls. That shared colour is the thread between the two halves of the picture. The sky’s lights turn and spread past their edges into rings; the windows keep to their frames. So the picture sets one light at two scales: indoors, a lamp behind a pane, small and contained; overhead, the same yellow let loose and multiplied until it fills the night. The town lies under a sky lit with its own light, grown past all containing.",
+
+ "by": "Opus · Fable",
+
+ "study": "The Starry Night is smaller and more physical than its fame suggests. It shows a night sky in violent motion over a quiet village, a great dark cypress rising like a flame at the left and a range of low hills behind. The palette is a taut duet of blues and yellows — cobalt and ultramarine against the acid gold of eleven stars and a swollen crescent moon — and the surface is built from thick, ropey strokes that curl and coil. Nothing here is smooth; the sky is made of rolling spirals, and even the calm village is set down in short, decisive dabs. You feel the paint as weather before you read it as scene.\n\nThe composition is a contest between turbulence and stillness. The upper two-thirds churn — coiling currents sweep across the sky, linking star to star — while the village below lies flat, orderly and small, its one church spire reaching thinly upward. The cypress bridges the two, a dark vertical tying settled earth to roiling heavens, and the yellow halos pulse against the deep blue in near-complementary contrast, which is what makes the stars seem to throb. The eye is driven in waves from left to right and back, so the sky reads less as a view than as a felt, moving force.\n\nVan Gogh painted it in June 1889 at the asylum of Saint-Rémy-de-Provence, where he had admitted himself after the breakdown in Arles. It is partly an invented picture: the view from his barred window gave him the hills and the sky, but the village is a composite — the spire looks more Dutch than Provençal — and he worked the canvas up by day, in the studio, from memory. Yet it is not pure fantasy either: the blazing light beside the cypress is Venus, which really did hang in the Provençal dawn that June, as astronomers have since confirmed. Observation and vision are fused past separating. Van Gogh himself was ambivalent about the result, ranking other studies higher — and he sold almost nothing in his lifetime.\n\nThat is the enduring reversal: a picture the artist half-doubted, made in confinement and illness, is now, from its wall at the Museum of Modern Art in New York, the popular emblem of the sublime night sky. It sits at the hinge of Post-Impressionism, taking the Impressionists' broken colour and bending stroke and hue toward feeling and cosmic scale rather than optical fact. The work argues that the visible world can be reshaped by the pressure of inner experience without becoming untrue — that a sky can be honestly painted as it is felt. The cypress, traditionally a graveyard tree, quietly threads mortality through all that blazing life.\n\nIn person, resist the postcard. Stand close enough to see how sculptural the paint is — the sky is a relief of raised, twisting ridges, the stars built up in thick concentric touches. Then step back until the separate strokes fuse and the whole sky moves as one current. Finally, find the middle distance where the blue-and-yellow contrast makes the halos vibrate: that shimmer is no accident of reproduction but the direct result of van Gogh's colour choices, and his refusal to let a single stroke lie flat."
+
+},
 
 "fjaestad-wood-pattern": {
 about: "Gustaf Fjæstad's Winter Evening by a River, 1907 — a dark river at dusk whose tree-reflections are combed into dense vertical ripples until the water stops reading as water and becomes figured wood grain. Nationalmuseum, Stockholm.",
@@ -848,14 +874,24 @@ deep: "The quiet event here is an inversion: water outshining air. That horizont
 by: "Opus 4.8" },
 
 "vincent-van-gogh-the-olive-tree": {
-about: "An olive grove in Provence, painted by Van Gogh in 1889 during his year at the Saint-Remy asylum. Silvery foliage massed in blue-green clumps, blue hills behind, a coil of smoke-shaped cloud above ploughed orange earth.",
-deep: "The real subject is a single current running through everything. The same wave that coils the pale cloud rolls through the Alpilles, ripples the foliage, and swings the furrows of the ground, so your eye is pulled around the surface rather than held. Van Gogh builds the whole picture from short curved strokes, each following the form it describes, until paint and motion become one thing. He pushes orange earth beneath the cool blues and greens to make them vibrate, and compresses the distance so trees, hills, and sky press flat toward you. Not distress but conviction: a landscape seen as one breathing body, a tended working grove made to pulse.",
-by: "Opus 4.8" },
+
+ "about": "An olive grove in Provence, painted by Van Gogh in 1889 during his year at the Saint-Rémy asylum. Every tree, hill and crag is held in a dark line; only the clouds above go unbound.",
+
+ "deep": "Van Gogh rings each olive crown, each trunk, each swell of the hills and the winding green bank with heavy dark contour, and outlines the crags so hard that the two holes through them read as cut-outs. Only the clouds go without that line. Pale yellow lights the big cloud, and a greener pale yellow runs through the ground under the trees, so the picture is lit at its top and its foot, with the blue rock and green grove held between. The line marks out everything a person could walk on, plant or climb, and holds it in place; the sky he lets move.",
+
+ "by": "Opus 4.8"
+
+},
 
 "vincent-van-gogh-wheat-field-with-cypresses": {
-about: "A Provence wheat field days from harvest under a churning sky, Van Gogh, 1889 — painted from the asylum at Saint-Rémy. One dark cypress runs up the right side and grows straight out of the top edge, larger than the frame that holds it.",
-deep: "The real subject is speed. Four horizontal bands move at four rates: the sky rotating fastest in rolled spirals, the wheat streaming sideways, the ridge held nearly motionless, the cypress not moving at all — and every rate comes purely from how the brush is loaded and aimed, not from drawing. The cypress, cropped and outgrowing the frame, is the one immovable vertical you measure the drift against. Depth is done by paint alone: the mountains alone are thin, cool and dry, so they recede, while everything else advances in loaded impasto. Gold against violet-blue, broken into separate flickering strokes. Stand close and it comes apart into mosaic; step back and it burns.",
-by: "Opus 4.8" },
+
+ "about": "A Provence wheat field days from harvest under a churning sky, Van Gogh, 1889 — painted from the asylum at Saint-Rémy. Two dark cypresses rise on the right, the taller one running almost to the top of the canvas.",
+
+ "deep": "The real subject is a pairing left unresolved. Ripe gold fills the foreground, and at its far edge rise cypresses, the tree Provence planted against the wind and around its dead. Harvest and burial stand side by side, and nothing in the paint chooses between them: the gold is not elegiac, the green-black is not funereal, and the sky rolls over both alike. The trees carry no mourning in their making; they are flicked upward in the same quick strokes as the scrub around them, only darker. What the picture offers in place of comment is plenitude — the dark column and the ripe field held together in one weather, with no argument made between them.",
+
+ "by": "Opus 4.8"
+
+},
 
 "water-lilies": {
 
@@ -874,10 +910,16 @@ deep: "Atmosphere is the argument. Renoir refuses to give the scene a single pro
 by: "Opus 4.8" },
 
 "starry-night-over-the-rhone": {
-about: "Painted outdoors at night on the Arles quay, September 1888, with gaslight to see by — the Big Dipper hung over the town, the lamps falling into the Rhône in long trembling columns of gold.",
-deep: "The Big Dipper does not sit that way over that view; the sky is arranged, not recorded. The reflections are exaggerated too — real ones would not reach this far — but they haul the warmth of a lit town down to your feet in stacked dashes that make the light shiver. The stars get no reflection at all: the water carries only what people lit. Each is a core ringed with separate strokes, some tinged green, blooming the way bright light bleeds at night. Nine months later, at Saint-Rémy, the sky would start to swirl. Here it is still. The two figures at bottom right are not looking up; they face outward, toward the dark, arm in arm.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Painted outdoors at night on the Arles quay, September 1888, with gaslight to see by — the Big Dipper hung over the town, the lamps falling into the Rhône in long trembling columns of gold.",
+
+ "deep": "Everything warm in this night lies behind the two people walking out of it. The town and its lamps are across the water, the gold runs down the river and stops short of the bank they cross, and they come on towards us arm in arm, leaving the light where it is. The viewer stands where their walk is heading, on the near shore where no lamp burns, so the painting is seen from outside the lit world, from the place the couple are about to reach. The stars hang over both shores alike. What the couple bring out of the town towards us is not its light but each other.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "the-gleaners": {
 about: "Three peasant women stooping to salvage the grain the reapers left, 1857 — Millet painted them at the scale of history painting, and a Salon audience ten years after 1848 saw the scaffolds of 1793 in it.",
@@ -932,10 +974,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "the-potato-eaters": {
-about: "Van Gogh’s The Potato Eaters, 1885: five Nuenen peasants sharing potatoes under an oil lamp — the canvas his friend Anthon van Rappard savaged so harshly, mocking the figures’ proportions, that it broke off their friendship for good.",
-deep: "The palette is a single grey-green van Gogh compared to the colour of a dusty unpeeled potato — umber and bitumen dark, one warm blister of lamplight calculating every face by distance from the flame. He dragged paint thick so the surfaces take on a modelled, carved quality: knuckly, rough, like the skin of the thing they’re eating. The moral thesis is physical: hands that dug the earth, now digging their food, and the coarseness is the argument, not a failure. His father had died that March. He kept it his whole life as the work he was proudest of — not the sunflowers, this one.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Van Gogh’s The Potato Eaters, 1885: five Nuenen peasants sharing potatoes under an oil lamp — the composition his friend Anthon van Rappard savaged in its lithograph so harshly, mocking the figures’ proportions, that it broke off their friendship for good.",
+
+ "deep": "Of the four faces at this table, only one turns out of it. The man at left has his eyes on the young woman; the old woman looks down at her hand on the coffee pot; the man behind holds up his cup with his face turned in to the table. The young woman alone lifts her wide eyes off the meal and out of the picture, her fork still at the dish. Her look crosses the table to its near side, where we stand behind the child, and lands on us. She is the one who has noticed us, and her stare is the only greeting the room offers.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "guernica": {
 about: "Picasso's Guernica, 1937 — a grey mural of a bombed Basque town, screaming horse and fallen figures. He decreed it stay out of Spain until democracy returned, so it hung at New York's MoMA until 1981.",
@@ -1047,28 +1095,52 @@ by: "Opus 4.8" },
 },
 
 "the-church-at-auvers": {
-about: "The church at Auvers from behind, painted in 1890 weeks before Van Gogh shot himself — and the priest of this very church then refused him a funeral, as a Protestant and a suicide.",
-deep: "There is no door on this side. He shows the closed east end, and every lancet window is a flat lozenge of blue-black that seems to seep outward into the stone: light leaking out instead of passing in. The rooflines buckle at angles no builder would tolerate, and he could draw a true line when he wanted one. The walls are laid up from slabs of salmon, blue-grey and lilac that fuse into stone only at a distance, and the cobalt sky presses forward with no air behind it. One woman in dark clothes takes the left fork, walking away without turning — the pastor's son puts her on the path and keeps himself outside.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "The church at Auvers from behind, painted in 1890 weeks before Van Gogh shot himself — and the Catholic priest of this very church then refused him a church funeral and the parish hearse, as a Protestant and a suicide.",
+
+ "deep": "Where the eye expects an interior, this church gives back the outside world: the windows of its east end hold the blue of the sky. The building is drawn in a dark line that never runs true, and the sky above is worked as hard as the stone, darkening toward the top as if leaning down on it. Between the church and the bright ground lies a band of its own shadow, deep green worked with blue, and the paths swing round it on either side. The woman on the left one walks with her back to us, past the apse, and the viewer is left outside with her.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "self-portrait": {
-about: "Van Gogh at the Saint-Rémy asylum, September 1889, painted out of the same blue-green as the wall swirling behind him — only the orange-red beard breaks free. Among the last of some three dozen self-portraits.",
-deep: "The unrest has all been exiled to the wall. It spirals there in nested arabesques of blue, green and chalky white that never settle, while through the face the brushwork tightens into planes of sage and ochre and the eyes come out green-grey, aimed with something close to interrogation. Only the beard runs warm — orange laid inside a field of its exact opposite, each making the other more extreme. He sent the picture to Theo as evidence that he could still see straight, still be himself. The ear he shows you is the intact one; the wound was on the side turned away. Within a year he was dead.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Van Gogh at the Saint-Rémy asylum, September 1889, painted out of the same blue-green as the wall swirling behind him — only the orange-red beard and ginger hair break free. Among the last of some three dozen self-portraits.",
+
+ "deep": "The head is turned away, three-quarters to the left, far enough that lit cheek, hair and ear fill half of it; only the eyes come back, sliding round to find you. That split is the picture’s posture. In a mirror the eyes must return, but he has chosen the angle that makes their return a sidelong check rather than a square meeting, and the face around them agrees: the brow drawn together, the mouth pressed into a line. The light falls on the side turned toward us and leaves the leading side, the flank of the nose and the far eye, in green shadow, so what is offered most fully is the part of a head that cannot look back. Sent to Theo with word that his face had grown calmer, it shows self-possession as watchfulness, kept up at an angle.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "farmhouse-in-provence": {
-about: "Van Gogh's Farmhouse in Provence, Arles 1888 — a wall of ripe wheat in near-vertical brushstrokes, a lone worker dwarfed by the crop, the whole canvas tuned on orange-against-blue complementaries at high noon.",
-deep: "Direction of stroke does the drawing: wheat in near-vertical dashes, sky in curling horizontals, wall in shorter taps — texture alone separates hot field from cool air, no hard edge needed. Colour is never mixed; Van Gogh sets hue beside hue and lets the eye fuse them, which is why the field shimmers rather than settling into flat ochre. The worker at lower left — a few dabs, no face — fixes the scale: the grain comes past his waist, a speck of blue answering the sky. He was in Arles barely months, working fast before the season turned, and the picture carries that urgency in its surface.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Van Gogh's Farmhouse in Provence, Arles 1888 — a wall of ripe wheat in near-vertical brushstrokes, a lone worker walking away into it, the whole canvas tuned on orange-against-blue complementaries at high noon.",
+
+ "deep": "Everything in the near field leads in. The snaking wall runs from the flowers back to the left gatepost, the cream road climbs from the lower right to the gate, and the one man in the picture has his back to us, walking through the grain toward the farm. Yet the farm sits behind its wall, and wall and road both arrive at the same narrow opening between two posts rather than at a door. Beyond the right post a second road climbs away to the right, leading out again. The picture lets you approach the farm and stops you at its gate, so its abundance is seen from outside the wall.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "vincent-van-gogh-cypresse": {
-about: "Van Gogh’s Cypresses, 1889 — painted weeks into his year at the Saint-Rémy asylum, it launched his obsession with the trees he called ‘beautiful as regards lines and proportions, like an Egyptian obelisk.’",
-deep: "Van Gogh crops the tree. The cypress has no crown — it runs off the top edge, still climbing when the canvas ends. Denied a silhouette, it stops being an object and becomes a force. The foliage is built in curved ropes of impasto — green, black, acid yellow-green, never blended, mixing only in the eye. Step close and the illusion dissolves into worked relief; step back and it snaps into one dark flame. The sky is doing the same thing: not receding but rotating in the same restless strokes, so air and tree share one weather of movement. Fourteen months after this canvas, he was dead at Auvers.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Van Gogh’s Cypresses, 1889 — painted weeks into his year at the Saint-Rémy asylum, it launched his obsession with the trees he called ‘beautiful as regards lines and proportions, like an Egyptian obelisk.’",
+
+ "deep": "Look for the hour and the picture will not give it. The sky is the full turquoise of day, a cloud bank glows cream and pink like a summer afternoon, and yet a crescent moon hangs in the upper corner; the light falls from nowhere in particular. Under that undecided sky the two trees carry the picture's weight, a thick, worked green that churns as hard as the sky yet never gives ground. That is the real pairing here: a warm, weightless heaven that drifts, and a dense mass that heaves in place, rooted in the wheat. Painted weeks into his stay at the asylum, the picture takes a stand: something upright and heavy in a world that will not hold still.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "la-balancoire": {
 about: "Renoir's La Balançoire, 1876 — a woman on a swing in a sun-dappled garden; shown at the 1877 Impressionist exhibition, its dabs of pale, shifting light on clothing and ground drew particular scorn from critics.",
@@ -1434,16 +1506,28 @@ refs: [{"id":"woman-with-a-parrot","text":"Woman with a Parrot"}],
 by: "Opus 4.8" },
 
 "vincent-van-gogh-roses": {
-about: "These roses read as white now, but van Gogh painted them pink; the red pigment has bleached over time, erasing the pink-against-green contrast he intended. He made this in May 1890 as he prepared to leave the Saint-Remy asylum.",
-deep: "The fallen roses matter most. Two or three lie on the tabletop below the bunch, already separate — fullness in the act of passing. Van Gogh set himself these big calm still lifes as deliberate therapy in his last weeks at Saint-Rémy: no tormented marks, no dramatic light, just garden roses designed to be serene. That serenity runs on a locked harmony of greens — wall, vase, leaves all held within the same family, so the flowers glow as the one bright event. Look at the blooms close: each rose is a small storm of impasto, paint standing in ridges off the canvas, real relief catching gallery light and throwing shadows the image never had to describe.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "These roses read as white now, but van Gogh painted them pink; the red pigment has bleached over time, all but erasing the pink-against-green contrast he intended. He made this in May 1890 as he prepared to leave the Saint-Rémy asylum.",
+
+ "deep": "Van Gogh built this picture to hold still, and time has tested how well he built it. He had leaned on a warm flower against a cool field, a contrast that could have carried the canvas by itself. Most of that warmth is gone, and the picture stands anyway, on drawing and handling: heavy paint gives the flowers their body, and one dark blue line, run round petal, leaf and jar, keeps a bunch that leans and spills in every direction from flying apart. That order was not in the roses; it was put there stroke by stroke, and it is the part of his intention that time could not reach. He meant the calm to come from colour as well as structure. Structure alone has turned out to be enough.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "vincent-van-gogh-the-flowering-orchard": {
-about: "Van Gogh painted fourteen orchard canvases in barely a month, Arles spring 1888 — each blooming tree an event he knew would be gone in days, the whole campaign driven by a southern light he found almost violent.",
-deep: "The branches are drawn, not painted — each a single loaded stroke of dark red-brown tapering as the brush lifts, behaving like an ink line from the Japanese woodblock prints Van Gogh was copying that spring. Blossom sits on them as discrete dabs of cream and pink, each keeping its own edge, so the flowering reads as interval and rhythm rather than mass. The meadow is the picture's engine: short vertical strokes, greens threaded with orange and ochre placed raw beside each other so the grass vibrates rather than lies flat. At the trunk's foot a pale spade lies on turned reddish earth — the only human sign, and the thing that plants this airy image in actual soil.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Van Gogh painted fourteen orchard canvases in barely a month, Arles spring 1888 — each blooming tree an event he knew would be gone in days, the whole campaign driven by a southern light he found almost violent.",
+
+ "deep": "Nothing in this orchard is finished, and that is where its hope lies. The trees have only begun to flower, and the season's work beneath them has only begun as well; someone has been here and will be back. Van Gogh leaves his own surface in the same open state, unsmoothed, each touch left where it landed, as if the canvas were a piece of ground still being worked. The painting sets its maker's labour beside the gardener's, two kinds of tending on one patch of spring. Renewal, on these terms, is a job taken up again, and the picture is glad of it.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "gustave-caillebotte-untitled": {
 about: "Caillebotte, the wealthy painter who bankrolled and collected his fellow Impressionists, worked this snowbound Paris view around 1880 from his own apartment balcony, whose wrought-iron railing anchors the plunging aerial look down Boulevard Haussmann.",
@@ -3780,10 +3864,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "vincent-van-gogh-sonnenblumen": {
-about: "Twelve sunflowers against a pale turquoise wall, Arles, August 1888 — painted in a week for Gauguin's guest room. Fresh blooms, dried pom-poms, one drooping head: the whole arc of a flower's life crowded into one vase.",
-deep: "One flower has given up. It hangs over the right rim on a bent stem, petals shrivelled to a ragged fringe, face toward the floor — decay given the same care as the radiant blooms. The daring is yellow against yellow against yellow: table, vase, and blooms all from warm ochres, held apart by temperature alone and a barely-cool blue-green wall. Seed-centres are troweled in impasto, catching real light; petals beside them laid flat. On the belly of the vase he signed just Vincent. The collaboration with Gauguin ended in the December crisis within months. These canvases, made to welcome a friend, sat right at the hinge between his greatest hope and his breakdown.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Twelve sunflowers against a pale turquoise wall, Arles, August 1888 — painted at speed in the mornings for Gauguin's guest room. Fresh blooms, dried pom-poms, one drooping head: the whole arc of a flower's life crowded into one vase.",
+
+ "deep": "The picture argues with its own subject. Sunflowers are meant to stand for the sun, and the fresh heads along the top deliver that, lemon-bright and wide open. But most of the bouquet has already turned: bronze heads gone to seed, two dark heads wilting at the left, one hanging face-down on its own stem beside the vase. Among the flowers, the most worked paint goes to the heads that have turned, so the weight of the surface sits with what is passing rather than what is peaking. He made it as a welcome, for the room meant for Gauguin, and the welcome he chose was a bunch of flowers already going over.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "johan-christian-dahl-an-eruption-of-vesuvius": {
 about: "Dahl climbed Vesuvius during the December 1820 eruption and sketched from the crater's edge — the on-site study became the direct basis for this large canvas, c. 1824. Tiny figures at lower right measure a \"horribly wondrous sight.\"",
@@ -3805,10 +3895,21 @@ by: "Opus 4.8" },
 
 
 "cafe-terrace-at-night": {
-about: "Van Gogh set up his easel in the dark in Arles, September 1888 — his first canvas to fill the sky with stars, built without black paint, depth from complementary yellows and blues alone.",
-deep: "The cobblestones are where to look. Stand close and they dissolve into separate dabs — rose, ochre, pale blue, sage — never blended; step back and they snap into a wet, luminous street. Shadow is coded as violet and lilac; warm yellow recedes not by darkening but by the pressure of cool blue opposing it. The awning is a wedge lunging diagonally toward you, brushstrokes dragged lengthwise so the plane accelerates. Against it, the waiter is one upright smear of near-white anchoring the few loaded touches that stand for a full crowd. The sky thickens around each star into a halo, and the roofline cuts a hard silhouette against it — the only sharp edge in the picture.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+
+ "about": "Van Gogh's café terrace on the Place du Forum in Arles, September 1888: a lamplit yellow awning and terrace open onto a blue street under a starry sky, its depth built from complementary yellows and blues, its contours drawn in dark line.",
+
+
+ "deep": "The café is a lit room turned inside out. Wall, awning and floor carry the yellow of an interior, yet they stand open to the street, with tables set out on the paving as if the room had spilled through its own door. Van Gogh draws the whole town in the same dark contour — chairs, railings, the arc over every cobble — then lets colour decide what belongs to the room and what to the night. Nor does its light stay home: the slots of yellow in the dark houses, the lit shopfront under the tree and the ochre paving beyond the terrace all carry the café's yellow outward. Overhead the stars answer, the one light in the picture that no lamp has made.",
+
+
+ "deepBy": "Sonnet 4.6",
+
+
+ "by": "Opus 4.8"
+
+
+},
 
 "henri-matisse-auguste-pellerin-ii": {
 about: "Pellerin rejected the first portrait, so Matisse stripped the second to near-abstract austerity — the result looks startlingly like Cézanne in old age, which is odd considering Pellerin owned up to eighty Cézannes. 1917.",
