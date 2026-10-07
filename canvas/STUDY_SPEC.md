@@ -2485,3 +2485,26 @@ reader already knew the brief; the 09-26 audit was the first cold read the mv6 b
      re-argued or re-seen.
    - Record-thin works change nothing: phase 2 simply has less in hand, and honest brevity
      applies (rule 4 above).
+
+## 2026-10-07 — OVERSCAN AND THE RESOLUTION FLOOR; THE ENCOUNTER LINE (Fuad, on catch-up audit wave 2)
+
+7. **EVERY BOX IS PADDED, INCLUDING REPAIR BOXES — AND NO STOP ZOOMS PAST THE PLATE (Fuad 2026-10-07:**
+   *"all these stops were not zoomed in all the way but had a good bit of overscan, not all artworks are
+   super high res"*). The August padding transform (P 0.15 linear, full at max(w,h) ≤ 0.40, taper to zero
+   at ≥ 0.80, cap 0.96, edge boxes shift inward) applies to **every box any later pass places**, repair
+   and seal rounds included — the store-wide 08-25 pass did not cover boxes drawn afterwards, and the
+   audit-wave repair agents padded only about half of theirs. Then the **resolution floor**: no stop may
+   show the reader fewer than **600 real plate pixels on its long side**, or **40% of the plate's long
+   side** on a plate under 1,500 px (a 600-px floor on a 363-px plate would make every stop full-frame).
+   A box below the floor widens about its centre. Tool: `.dtmp/auditwave2/overscan.js` (plate size =
+   what the Study viewer serves: `art_hires` w/h, else the canon plate). ⛔ The floor must not import a
+   more prominent second object under a title naming the first — render the expanded box before
+   applying (a bearded face at the edge of the Déjeuner's "hand raised" stop is why small plates get the
+   40% figure, not 50%). The floor does not fix a poor plate; upgrading the plate does.
+8. **THE PERSONAL-ENCOUNTER LINE (Fuad 2026-10-07:** *"'you saw it at the Orsay' shouldn't be there
+   unless there is a direct correlation to what's happening in the painting"*). A line addressing Fuad's
+   own encounter ("you saw it at…", "when you stood before…") ships only where it ties to something in
+   the picture — what the room, the hang or the scale did to how the painting reads. A generic
+   "you saw it at X, so you know the room" is cut. This narrows the older voice rule (encounter lines
+   allowed where `seenConfidence` is sure): sure is necessary, not sufficient. ~100 such lines exist
+   corpus-wide; a sweep is queued.

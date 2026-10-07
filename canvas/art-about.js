@@ -727,9 +727,14 @@ deep: "The dress is enormous and the head inside it is small, so the social fact
 by: "Opus 4.8" },
 
 "claude-monet-agapanthes": {
-about: "Agapanthus, an African lily from the beds around Monet's Giverny water garden, rising at lower left against a half-dissolved field, with pond pads drifting to the right. A late study, painted around 1914-17 toward the vast Agapanthus triptych.",
-deep: "The real subject is the seam where garden meets pond. Monet sets a rooted plant against near-formless water-light and treats them as equal halves of one motif. Look how legibility works as a gradient: the two flower-heads are the most finished passages, clear-edged clusters of white, blue and rose atop single vertical stalks, while the leaves fan out in calligraphic blue-green over dark impasto earth, the heaviest paint here. Move right and the strokes lengthen, colours pale to lavender and buttery green, and the lily pads stop being drawn, cohering only as a rhythm of shadow and yellow flecks. Form loosens toward pure atmosphere. With no horizon, near flower and far water press into a single vertical field.",
-by: "Opus 4.8" },
+
+ "about": "Agapanthus, an African lily from the beds around Monet's Giverny water garden, rising at lower left against a half-dissolved field, with pond pads drifting to the right. A late study, painted around 1914-17 toward the vast Agapanthus triptych.",
+
+ "deep": "What Monet leaves out is the shore. A picture of a flower bed beside a pond would normally turn on the line where soil gives way to water, and here that line never arrives. The agapanthus grows straight up from the bottom edge, and by the time its stalks reach their flowers there is no sky behind them, only more pond tipped upright, so a garden plant opens against water as though it grew there. The lily pads at the top and the lilies at lower right are the only signs of which element you are in, and both keep to the right. The border between bed and pond, the plainest fact of the place, is the one thing he will not paint.",
+
+ "by": "Opus 4.8"
+
+},
 
 "claude-monet-the-manneporte-etretat": {
 
@@ -782,9 +787,14 @@ deep: "The real subject is light caught in shadow rather than any species of flo
 by: "Opus 4.8" },
 
 "nympheas-monet-2": {
-about: "A single stretch of Monet's Giverny pond, painted around 1918, tilted up until water fills the whole vertical frame with no horizon. A wedge of green bank holds the lower-left corner; near the centre, one tight cluster of white blooms.",
-deep: "The argument is that one corner keeps this pond real. Where many of Monet's late lily canvases let the water run to all four edges, here a triangle of warm, dry bank shoulders into the lower left, and that edge gives you a place to stand: above the water, looking down and slightly out. Everything else is surface and reflection, cool greys and lavenders combed downward into the water's memory of willows. Only two passages refuse to dissolve. The bank, scrubbed in olive and rust, and the central knot of white lilies, loaded thick with yellow hearts so they sit proud of the pond. Between an anchoring corner and a bloom that lands, the eye finally has somewhere to rest.",
-by: "Opus 4.8" },
+
+ "about": "A single stretch of Monet's Giverny pond, painted around 1918, tilted up until water fills the whole vertical frame with no horizon. A wedge of green bank holds the lower-left corner; near the centre, one tight cluster of white blooms.",
+
+ "deep": "The argument is that one corner keeps this pond real. Where many of Monet's late lily canvases let the water run to all four edges, here a triangle of grassy bank shoulders into the lower left, and that edge gives you a place to stand: above the water, looking down and slightly out. Everything else is surface and reflection, pale water above and darker reflection hanging below, a pond that could slip at any moment into pure atmosphere. What holds it is a pairing of solids: the ground in the corner, which fixes where you are, and the thick white of the central lilies, which fixes where you look. With a place to stand and a thing to look at, the picture stays a pond someone visited rather than a mood.",
+
+ "by": "Opus 4.8"
+
+},
 
 "odilon-redon-madame-arthur-fontaine-marie-escudier-born-1865": {
 about: "Marie Escudier, wife of civil servant Arthur Fontaine, in profile and absorbed in something white in her lap. Odilon Redon, 1901 — a solid, deep-yellow figure who dissolves into a haze of imagined violet blossom.",
@@ -832,9 +842,14 @@ deep: "The real subject is speed. Four horizontal bands move at four rates: the 
 by: "Opus 4.8" },
 
 "water-lilies": {
-about: "Monet's Giverny pond, 1917 — tilted up until water fills the frame, no sky and no far shore. A bruised violet runs edge to edge, and long vertical streaks of green and gold rain down it: the reflection of willow branches hanging into the water.",
-deep: "The picture is built on friction between two directions. The willow never appears as a tree; only its reflection does, falling straight down in green threads shot through with violet, each streak holding its separateness the whole way rather than blending into a wash. Across that downward fall the lily pads lie flat and horizontal, dark blunt marks resting on the same water. What drops and what floats, the mirrored world against the real leaves on top. Monet gives you no footing except one green wedge of bank in the lower-left, so vision finds nothing to hold and drifts on the violet itself — a depth with no floor and no horizon. That drift is the point.",
-by: "Opus 4.8" },
+
+ "about": "Monet's Giverny pond, 1917 — tilted up until water fills the frame, no sky and no far shore. A bruised violet runs edge to edge, and long vertical streaks of green and gold rain down it: the reflection of willow branches hanging into the water.",
+
+ "deep": "The picture is built on friction between two directions. The willow never appears as a tree; only its reflection does, falling straight down in green threads shot through with violet, each streak holding its separateness the whole way rather than blending into a wash. Across that downward fall the lily pads lie flat and horizontal, blunt marks, most of them dark, resting on the same water. What drops and what floats, the mirrored world against the real leaves on top. Monet gives you no footing except one green wedge of bank in the lower-left, so vision finds nothing to hold and drifts on the violet itself — a depth with no floor and no horizon. That drift is the point.",
+
+ "by": "Opus 4.8"
+
+},
 
 
 "bal-du-moulin-de-la-galette": {
@@ -960,15 +975,40 @@ by: "Opus 4.8" },
 
 
 "le-dejeuner-sur-l-herbe": {
-about: "Monet's Le Déjeuner sur l'herbe, 1865 — picnickers under dappled trees, his answer to Manet. Pawned to a landlord for unpaid rent, it rotted in a damp cellar; Monet cut it up, and only fragments survive.",
-deep: "What survives is a wound with ambitions still inside it. Monet began this as a monumental riposte — modern figures in real outdoor light, at Salon scale — but the canvas was never finished, mildewed in storage, and cut apart. What remains is the cloth: a great white sheet across the lower third, built from warm cream and cool grey-green patches that map the forest light, pulling the eye before any face does. The figures carry a Courbet solidity Monet would soon abandon, but the canopy above is already dissolving — thousands of small green touches painting the experience of light through leaves rather than the leaves themselves. The woman who turns to meet your gaze is the still point of a composition that, even truncated, insists the modern world deserves a monumental scale.",
-by: "Opus 4.8" },
+
+
+ "about": "Monet's Le Déjeuner sur l'herbe, 1865 — picnickers under dappled trees, his answer to Manet. Pawned to a landlord for unpaid rent, it rotted in a damp cellar; Monet cut it up, and only fragments survive.",
+
+
+ "deep": "What survives is a wound with ambitions still inside it. Monet began this as a monumental riposte — modern figures in real outdoor light, at Salon scale — but the canvas was never finished, mildewed in storage, and cut apart. What remains is the cloth: a great white sheet across the lower third, built from warm cream and cool grey-green patches that map the forest light, pulling the eye before any face does. The figures carry a Courbet solidity Monet would soon abandon, but the canopy above is already broken into touches — thousands of small green dabs painting the experience of light through leaves rather than the leaves themselves. Even cut down, with figures sliced off at both edges, the fragment still insists that the modern world deserves a monumental scale.",
+
+
+ "by": "Opus 4.8"
+
+
+},
 
 "train-in-the-snow": {
-about: "Monet's Train in the Snow, 1875: a locomotive nosing through Argenteuil's snow — he painted it from the station platform, and it foreshadowed his celebrated Gare Saint-Lazare series of 1877.",
-deep: "Monet turns the engine toward us — blunt, black, bearing down — yet the locomotive does not dominate. It condenses. Sky, snow and steam are held in one muffled grey key, and the machine sits within that key rather than against it, so the train reads less as iron cutting through weather than as iron emerging from it. Two lamps burn at the front, hot red-orange dabs that carry the only warmth in a frozen picture and make the whole dark mass suddenly alive and directed. Look at the snow on the ground and it is grey, cream, blue, touched with lilac — never simply white. That same restless coloring moves into the steam above, where machine-smoke and cloud are worked with identical loose touches until neither can be told from the other. The radical proposition is quiet: that the great modern subject and the great Impressionist subject were always the same subject.",
-refs: [{"id":"claude-monet-gare-saint-lazare-monet-series","text":"Gare Saint-Lazare"}],
-by: "Opus 4.8" },
+
+ "about": "Monet's Train in the Snow, 1875: a locomotive nosing through Argenteuil's snow — he painted it from the station platform, and it foreshadowed his celebrated Gare Saint-Lazare series of 1877.",
+
+ "deep": "The painting's wager is that a locomotive can be painted as part of a winter morning rather than as an event in it. Monet gives the engine every chance to be a threat, its blunt front swung toward us and its lamps lit, and then lets the morning take it in. Its iron is painted in the greys of the sky, only bluer and denser; its smoke climbs into the cloud cover until, high up, the two can no longer be told apart. The heat is gathered at the front, a small knot of red and gold, with one orange point further down the line, and everything else is held at the temperature of the snow. That restraint is the argument. Two years before the Gare Saint-Lazare canvases made the idea a programme, Monet is already treating the railway not as an intrusion on the landscape but as one more presence the winter air can hold.",
+
+ "refs": [
+
+  {
+
+   "id": "claude-monet-gare-saint-lazare-monet-series",
+
+   "text": "Gare Saint-Lazare"
+
+  }
+
+ ],
+
+ "by": "Opus 4.8"
+
+},
 
 "haystacks-midday": {
 about: "Monet's Haystacks, midday, 1890 — grainstacks in a Giverny field. Part of a series he painted at least 25 times chasing shifting light, most of which sold at once to American collectors.",
@@ -981,9 +1021,14 @@ deep: "The subject here is not a garden but a condition of seeing. Monet returns
 by: "Opus 4.8" },
 
 "the-water-lily-pond": {
-about: "Monet's The Water-Lily Pond, 1918 — the pond surface fills the whole canvas. Part of the roughly 250-work Nympheas cycle he painted at Giverny across three decades, later beloved by the Abstract Expressionists.",
-deep: "There is no horizon, no bank, no sky — only water tipped up to fill the frame, and the question of whether you are looking into depth or at a flat decorated surface is left unresolved by design. Monet collapses the pond and the canvas into the same problem: how a surface that never holds still can be painted again and again. The pads are short loaded brush-pulls set nearly horizontal to lie flat; reflections in the open center are cool blues scumbled over warmer ground, the weave catching and shimmering. Up close the strokes read as abstract weather; at distance they resolve into water. That gap between mark and image, deliberately widened, is the whole method. The picture is about duration: not a moment but an endless resettling of light on a surface that refuses to fix.",
-by: "Opus 4.8" },
+
+ "about": "Monet's The Water-Lily Pond, 1918 — the pond surface fills the whole canvas. Part of the roughly 250-work Nympheas cycle he painted at Giverny across three decades, later beloved by the Abstract Expressionists.",
+
+ "deep": "Monet turns the usual order of a picture inside out. What actually floats on the pond, the pads and their flowers, is pushed to the margins, while the open heart of the canvas, where a painter would normally set his subject, goes to things that are not in the picture at all: willows and sky somewhere overhead, present only as reflection. The water lilies of the title end up as a frame, crowded along the left and top edges, around a centre made of what is absent. The heaviest passages describe the plants at the edges; the palest and thinnest holds everything above the water. That is why the lilies, worked so hard, never quite become the subject: the eye keeps being carried past them into the pale middle, toward things it can only infer.",
+
+ "by": "Opus 4.8"
+
+},
 
 "the-church-at-auvers": {
 about: "The church at Auvers from behind, painted in 1890 weeks before Van Gogh shot himself — and the priest of this very church then refused him a funeral, as a Protestant and a suicide.",
@@ -1204,9 +1249,14 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "rouen-cathedral-portal-and-tower-saint-romain-in-the-sun": {
-about: "Monet's Rouen Cathedral, Portal and Tower Saint-Romain in the Sun, 1893 — one facade under shifting light. Monet painted more than thirty views of the same cathedral to track light across the hours; twenty were shown together in 1895.",
-deep: "Monet cuts in so close the cathedral has no surroundings, no ground, almost no sky — just stone pressed to the frame's edge so it cannot be seen as a building, only experienced as a surface. That surface works at two distances: from across the room it resolves into Gothic arches and towers; step closer and it dissolves into heaped pigment that follows no architectural edge. The deep portal arch is the tonal engine, a recess of layered blue and brownish violet that registers as depth without a single drawn contour. Around it shadow is never dark — it is coloured, violet and warm gold, so what looks like shade is another kind of light. The stone is not what Monet is recording; it is noon on a particular day in 1893, held still before it could move on.",
-by: "Opus 4.8" },
+
+ "about": "Monet's Rouen Cathedral, Portal and Tower Saint-Romain in the Sun, 1893 — one facade under shifting light. Monet painted more than thirty views of the same cathedral to track light across the hours; twenty were shown together in 1895.",
+
+ "deep": "Monet cuts in so close the cathedral has no surroundings, only a sliver of ground, almost no sky — just stone pressed to the frame's edge so it cannot be seen as a building, only experienced as a surface. That surface works at two distances: from across the room it resolves into Gothic arches and towers; step closer and the carving dissolves into heaped pigment, held only by a few long drawn lines. The great arch over the portal is the tonal engine, a recess of layered blue and brownish violet that registers as depth through colour more than contour. Around it shadow is never black — it is coloured, violet and warm gold, so what looks like shade is another kind of light. The stone is not what Monet is recording; it is noon on a particular day in 1893, held still before it could move on.",
+
+ "by": "Opus 4.8"
+
+},
 
 "edouard-manet-madame-manet-suzanne-leenhoff-1830-1906-at-bel": {
 about: "Manet's Madame Manet at Bellevue, 1880 — his last portrait of his wife Suzanne, painted the summer they spent in that Paris suburb, its rapid brushwork preceded by two drawings and an oil sketch.",
@@ -1253,10 +1303,16 @@ deep: "The regatta is a pretext. Monet gives you boats and a stretch of the Sein
 by: "Opus 4.8" },
 
 "nympheas": {
-about: "Monet dug the lily pond at Giverny himself, then spent his last decades painting almost nothing else — this 1916 panel, one of roughly 300 water-lily canvases, is all pond: no horizon, no bank, no shore.",
-deep: "Nothing tells you which way is up. The pads are flat green ovals that never shrink convincingly into distance — they just get smaller and drift, so you cannot say whether you are looking down onto water or straight across it. Colour does the spatial work drawing usually would: warm pinks lift the blossoms forward, cool bottle-greens pull the water's body back, and long vertical smears carry the reflected willows through both without a line separating them. The pattern runs off all four sides, wallpaper logic on an easel. For decades this was dismissed as the blurring of a half-blind old man; the abstract painters are the ones who claimed it back.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Monet dug the lily pond at Giverny himself, then spent his last decades painting almost nothing else — this 1916 panel, one of roughly 300 water-lily canvases, is all pond: no horizon, no bank, no shore.",
+
+ "deep": "This is a landscape laid on its back. Everything that would normally make a view, trees and sky, reaches you only as a mirror image, so to see the world above the pond you have to look down into it. The lilies and their leaves are the one thing truly present on the water, and Monet spreads them thinly: a band of flowers along the top, a knot of red-edged leaves at lower right, and between them pads that narrow as they go back. They are less the subject than the evidence of a surface. Take them away and the canvas would be only hanging willow and blue light, with no sign that it lies on water; keep them, and a whole upturned world rests on the leaves and flowers drifting across it.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "nympheas-monet-3": {
 about: "This 1903 canvas belongs to Monet's ~300-painting Nymphéas cycle and hangs in the Musée Marmottan Monet, home to the world's largest Monet collection; the pond surface holds only lilies, sky and reflected trees, no horizon.",
@@ -1299,9 +1355,14 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "claude-monet-poppy-fields-near-argenteuil": {
-about: "A single figure in a straw hat, waist-deep in the poppy plain at Gennevilliers, 1875 — one of four canvases Monet made of this field in a season, reworking the motif of his celebrated 1873 Poppies.",
-deep: "Not one poppy is drawn. Each is a single touch of red or orange laid wet over green — some a fleck, some a smear where the brush pressed and lifted — largest along the bottom edge, dwindling to pinpricks as the ground goes back. That is the whole perspective: dab-size, no ruled line anywhere. At the horizon the trees and few pale rooftops cool to blue-grey and go quiet, so the plain can feel vast. More than half the canvas is weather, grey cumulus dragged thin enough that blue shows through. The walker is a straw hat and a bluish dress, no face. Cover the figure with a thumb and the meadow loses its measure.",
-by: "Opus 4.8" },
+
+ "about": "A figure in a straw hat, waist-deep in the poppy plain at Gennevilliers, 1875 — one of four canvases Monet made of this field in a season, reworking the motif of his celebrated 1873 Poppies.",
+
+ "deep": "The painting takes the measure of a great open space with almost nothing. There is no path, furrow or fence to carry the eye back to the horizon, none of the ruled lines a landscape painter would normally lay across a plain. The size of the place is felt instead through the touch, which loosens as the field recedes until the flowers lose their edges and the far trees thin to a pale band, and through the people set into it at two distances, each a gauge of scale. The thickest paint is spent overhead, which turns the usual order around: the sky becomes the solid thing, and the land a thin, flowered skin beneath it. What results is less a view of one particular field than a record of standing in it and feeling its size.",
+
+ "by": "Opus 4.8"
+
+},
 
 "edgar-degas-two-dancers": {
 about: "The model tugging her shoulder strap in this 1879 study is Marie van Goethem, the young ballet pupil who posed for Degas's scandalous sculpture The Little Fourteen-Year-Old Dancer, drawn here in chalk on paper that keeps its original green tint.",
@@ -1331,9 +1392,14 @@ by: "Opus 4.8" },
 },
 
 "claude-monet-camille-monet-1847-1879-in-the-garden-at-argent": {
-about: "One of roughly ten canvases Monet painted of his rented house and garden in 1876, the last full year at Argenteuil; his wife Camille dissolves into a pale blue shape beside the flowering bed, the flowers overtaking her.",
-deep: "A portrait that swallows its sitter. The eye goes first to the mounded flowering bed — red and pink heat jabbed into cool green — then to the cream house half-dissolved in foliage. The small pale figure at the left margin takes searching. Monet has pushed Camille to the edge, shrunk her to a few soft vertical strokes, her edges bleeding into path and shadow so she reads as one more pale note among leaves. This is the picture's method and statement: broken-colour touches build flowers, house, tree, and woman from the same dabs, so the garden absorbs her. A leaning trunk divides the canvas, keeping Camille from the flowering centre. The intimacy is real but withheld — she is present as atmosphere, dissolving, on the way out of a summer that has no interest in keeping her.",
-by: "Opus 4.8" },
+
+ "about": "One of roughly ten canvases Monet painted of his rented house and garden in 1876, a year and a half before he left Argenteuil; his wife Camille stands as a pale blue shape beside the flowering bed, the flowers crowding her.",
+
+ "deep": "A portrait that swallows its sitter. The eye goes first to the mounded flowering bed — red and pink heat jabbed into cool green — then to the cream house half-hidden in foliage. The figure at the left margin comes later, pale on pale against the path. Monet has pushed Camille to the edge and built her from the same soft strokes, hat trim and mouth a dab of red each, so she reads as one more pale note among leaves. This is the picture's method and statement: broken-colour touches build flowers, house, tree, and woman from the same dabs, so the garden absorbs her. A near-vertical trunk divides the canvas, keeping Camille from the flowering centre. The intimacy is real but withheld — she is present at the edge, on the way out of a summer that has no interest in keeping her.",
+
+ "by": "Opus 4.8"
+
+},
 
 "pierre-auguste-renoir-still-life-with-peaches-and-grapes": {
 about: "A dozen peaches heaped in a blue-and-white faience bowl, grapes spilling onto the cloth — painted in summer 1881 at the Normandy house of his patron Paul Bérard, one of a matched pair; Bérard kept this one.",
@@ -1540,10 +1606,16 @@ about: "Monet donated a suite of monumental Nymphéas panels to France on Armist
 by: "Opus 4.8" },
 
 "vetheuil-in-the-fog": {
-about: "Vétheuil on the Seine reduced to a cold blue-lavender breath, 1879 — nothing in the canvas has an edge, and a thin seam of warm flecks at its waist is the only evidence that a town is there.",
-deep: "Even sympathetic eyes found these foggy canvases barely there, put off by how little was offered. Monet painted it at Vétheuil in a bleak year — broke, with Camille gravely ill; she died that autumn. The composition halves at a soft horizon and doubles below as reflection, so mist fills the space above the bank and the river shivers it back, and the eye finds no firm ground anywhere. The touches are short and dry, set side by side without blending, letting the blue vibrate rather than settle onto anything solid. Cover the thin seam of ochre and rose at the middle and the fog has nothing left to be fog around.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Vétheuil on the Seine reduced to a cold blue-lavender breath, 1879 — the village barely holds a shape, and a thin seam of warm flecks at its waist is the only evidence that a town is there.",
+
+ "deep": "Monet finds the town by its warmth rather than its shape. Air, river and distance are held in one cool register, and Vétheuil survives only as a change of temperature: gold and rust where the church rises, a dull rose along the bank, the same colour sinking into the water below. A whole village is given to us as the one patch of heat in a cold field. Read that way, the fog is not what hides the town. It is what makes so small a warmth count, and the picture’s real proposal is that a place can be known by its temperature alone.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "michel-monet-with-a-pompon": {
 about: "Painted roughly seven months after his mother Camille died in September 1879, this 1880 Monet portrait shows Michel, then barely two years old, wearing the pom-pom bonnet that gives the picture its name.",
@@ -2053,10 +2125,16 @@ about: "Courbet painted this 1862 nude as a direct riposte to Ingres's celebrate
 by: "Opus 4.8" },
 
 "regatta-at-sainte-adresse": {
-about: "Monet painted this 1867 canvas as one half of a deliberate pair with The Beach at Sainte-Adresse, the two works identical in size and viewpoints yards apart, setting bourgeois leisure at high tide against working fishermen in overcast low tide.",
-deep: "Read the brush and you have the method. The open sea is built from short horizontal dashes, greens and greys laid side by side — describing both the receding plane and the chop crossing it. Out near the yachts they cool and thin; in close they warm and thicken. The racing sails are struck bright against grey-green, each sharing the same lean, so repetition alone says direction and force. The watchers on the shingle are handled thickly and abruptly, solid where the far water dissolves, and the beached fishing boat sits heavy between them. Monet was twenty-six, already certain that a breezy afternoon on a particular Normandy shore was worth the full seriousness of a picture.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Monet painted this 1867 canvas as one half of a deliberate pair with The Beach at Sainte-Adresse, the two works identical in size and viewpoints yards apart, setting bourgeois leisure at high tide against working fishermen in overcast low tide.",
+
+ "deep": "The race that gives the picture its name takes up a narrow strip across the middle, and Monet is content to leave it there. Most of the canvas goes to what surrounds an event: a sky that outweighs everything beneath it, a long reach of open water between shore and fleet, and a beach where people have come to look. We are placed on the stones with them, not far from the woman under her parasol, at the same remove from the yachts as everyone else on shore. The painting records less a regatta than the experience of watching one, the sport held far enough off to become part of the weather. Even the blue skiff at the waterline, its own sail up, sits idle.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "two-tahitian-women": {
 about: "Bare-breasted, bearing a dish of blossoms usually called mango, the two women hold still against flat tropical green — Gauguin's 1899 Tahiti as an icon of unfallen calm, and one of his most debated canvases for exactly that reason.",
@@ -3608,10 +3686,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "claude-monet-the-four-trees": {
-about: "Four slim poplars cropped hard at the top, their trunks running into still-water reflections along the Epte near Giverny, 1891 — one canvas from a twenty-three-work series Monet finished before the lumber merchant could fell the trees.",
-deep: "The crowns are gone — sliced off so the trunks become abstract verticals, bars in a grid rather than trees. Strip the tops, compress the far bank into one horizontal ribbon, and a row of poplars becomes a woven screen. The foliage band crossing the middle dissolves up close into hundreds of separate dabs — rust, violet, and olive sitting unmixed, the eye doing the blending. At the far left a smaller tree burns warm orange-gold behind the first trunk; cover it and the left half goes cold. The sky is mauve-to-gold, warming toward the treeline — not generic daylight but one specific autumn hour on the Epte.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Four slim poplars cropped hard at the top, their trunks running into still-water reflections along the Epte near Giverny, 1891 — one canvas from a twenty-three-work series Monet finished before the lumber merchant could fell the trees.",
+
+ "deep": "The crowns are gone — sliced off so the trunks become abstract verticals, bars in a grid rather than trees. Strip the tops, compress the far bank into one horizontal ribbon, and a row of poplars becomes a woven screen. The foliage band crossing below the middle dissolves up close into hundreds of separate dabs — rust, violet, and olive sitting unmixed, the eye doing the blending. At the far left a second row of sunlit trees, pale gold and apricot, recedes behind the first trunk; cover it and the left half goes cold. The sky runs from pale blue to a warmer cream toward the treeline — not generic daylight but one specific autumn hour on the Epte.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "gustave-courbet-the-young-bather": {
 about: "Courbet's Realist answer to the Salon nude, 1866 — no Venus, no myth, a specific woman with weight and reddened knuckles at a stream's edge. A critic called her 'health itself — one could not be more true.'",
@@ -3686,10 +3770,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "claude-monet-ile-aux-orties-near-vernon": {
-about: "Monet's own island near Giverny, 1897 — he painted it four times, each time pressing the willows and their reflection closer together until water and foliage are barely separable, and the place he knew best looks half-imagined.",
-deep: "The picture turns on a single near-invisible seam: the waterline crossing the lower third, where bank meets reflection. Monet almost hides it — no drawn shore, just a slight change of touch, strokes curling above, lengthening below. Cover it mentally and the two halves nearly fold onto each other. The reflection repeats the mauve and rose of the bank but runs a touch cooler, every stroke pulled slightly downward, so you read moving liquid rather than glass. Then look at the pale yellow-green flecks low in the water — light on ripples that correspond to nothing solid above, pure surface incident. Here the motif is closest to the all-over water-surface that would become the Nymphéas.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Monet's own island near Giverny, 1897 — he painted it four times, each time pressing the willows and their reflection closer together until water and foliage nearly mirror each other, and the place he knew best looks half-imagined.",
+
+ "deep": "The picture turns on a single seam: the waterline just below the middle, where bank meets reflection. It is the darkest band in the picture, blue-green shadow at the island's foot, brushed rather than drawn — strokes curling above, lengthening below. Cover it mentally and the two halves nearly fold onto each other. The reflection repeats the mauve and rose of the bank but runs lighter and warmer, every stroke pulled slightly downward, so you read moving liquid rather than glass. Then look at the pale yellow-green flecks low in the water — light on ripples that correspond to nothing solid above, pure surface incident. Here the motif is closest to the all-over water-surface that would become the Nymphéas.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 
 "cafe-terrace-at-night": {
@@ -3866,10 +3956,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus · Fable" },
 
 "claude-monet-la-femme-a-l-ombrelle": {
-about: "Monet's stepdaughter Suzanne Hoschedé on a Giverny slope in 1886, seen from below against bare sky, her face left blank under the parasol's shadow — one of a mirrored pair he painted as trials, not portraits, and never sold.",
-deep: "He had painted this pose ten years earlier, with Camille in it. She died in 1879; here his stepdaughter takes the attitude and the face goes — a few strokes of blue-grey under the parasol's cast shadow, nothing to read at any distance, the gesture kept and the sitter given up. The rest is weather. Every mark rakes one way, veil, hem, grass heads, so a gust is painted without a single moving object drawn, and the veil is held so close to the value of the clouds that it seems to become them as it leaves her. The dress is never white: sky-blue scumbled across the lit side, violet in the folds.",
-deepBy: "Sonnet 4.6",
-by: "Opus · Fable" },
+
+ "about": "Monet's stepdaughter Suzanne Hoschedé on a Giverny slope in 1886, seen from below against bare sky, her face left blank under the parasol's shadow — one of a mirrored pair he painted as trials, not portraits, and never sold.",
+
+ "deep": "He had painted this pose ten years earlier, with Camille in it. She died in 1879; here his stepdaughter takes the attitude and the face goes — a few strokes of blue veil drawn across it in the parasol's shade, nothing to read at any distance, the gesture kept and the sitter given up. The rest is weather. Veil, hem and grass heads rake one way while the parasol leans back into them, so a gust is painted without a single moving object drawn, and the veil is laid in the same blue as the sky streaks, so it seems to become weather as it leaves her. The dress is never white: thick cream on the sunlit flank, pink, mauve and sky-blue in the shade.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus · Fable"
+
+},
 
 "claude-monet-a-corner-of-the-apartment": {
 

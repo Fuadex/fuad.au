@@ -56,7 +56,14 @@ for (const c of changes) {
   } catch (e) { problems.push(`${id} ${field}: ${e.message}`); }
 }
 // beside refs must still each occur exactly once
-for (const id of touched.inspect) { const t = data.inspect[id]; for (const r of (t.refs || [])) if ((t.beside || "").split(r.text).length !== 2) problems.push(`${id}: beside ref "${r.text}" no longer occurs exactly once`); }
+// refs come in TWO shapes (STUDY_SPEC *The two accepted shapes*): a bare array attaches to the default
+// paragraph (`beside` on a tour), a keyed object maps field -> refs. Check every ref against ITS field
+// (2026-10-07: a keyed-object tour crashed this loop, which read only the array shape).
+for (const id of touched.inspect) {
+  const t = data.inspect[id]; const R = t.refs;
+  const groups = !R ? [] : Array.isArray(R) ? [["beside", R]] : Object.entries(R);
+  for (const [fld, rs] of groups) for (const r of (rs || [])) if ((t[fld] || "").split(r.text).length !== 2) problems.push(`${id}: ${fld} ref "${r.text}" no longer occurs exactly once`);
+}
 if (problems.length) { console.log("\nPROBLEMS:\n  " + problems.join("\n  ")); console.log("\nnothing written"); process.exit(1); }
 console.log(`\n${changes.length} changes OK (${touched.about.size} Info/Interp entries, ${touched.inspect.size} tours, ${newHires.length} hires rows)`);
 if (!WRITE) { console.log("DRY RUN — add --write to apply."); process.exit(0); }
