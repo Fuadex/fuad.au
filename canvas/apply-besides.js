@@ -34,10 +34,15 @@ for (const p of P) {
   t.beside = p.beside;
   // keep only refs whose text still occurs exactly once in the new beside (a reseal drops the old
   // partner's stale ref — apply-repairs enforces this same invariant), then add the new partner
-  const dropped = (t.refs || []).filter(r => r.id !== p.partner && p.beside.split(r.text).length !== 2);
+  // refs come in TWO shapes (STUDY_SPEC): a bare array (attaches to `beside`) or a keyed object
+  // {field: refs}. Work on the beside list in whichever shape the entry already uses (10-07 fix).
+  const keyed = t.refs && !Array.isArray(t.refs);
+  const cur = keyed ? (t.refs.beside || []) : (t.refs || []);
+  const dropped = cur.filter(r => r.id !== p.partner && p.beside.split(r.text).length !== 2);
   for (const d of dropped) console.log('   -ref dropped on ' + p.id + ': ' + d.id);
-  t.refs = [...(t.refs || []).filter(r => r.id !== p.partner && p.beside.split(r.text).length === 2), { id: p.partner, text }];
-  for (const r of t.refs) if (t.beside.split(r.text).length !== 2) probs.push(p.id + ': ref "' + r.text + '" not exactly once');
+  const next = [...cur.filter(r => r.id !== p.partner && p.beside.split(r.text).length === 2), { id: p.partner, text }];
+  if (keyed) t.refs.beside = next; else t.refs = next;
+  for (const r of next) if (t.beside.split(r.text).length !== 2) probs.push(p.id + ': ref "' + r.text + '" not exactly once');
   console.log((p.replaces ? ' ~reseal  ' : ' +backfill') + ' ' + p.id);
 }
 if (probs.length) { console.log('PROBLEMS:\n  ' + probs.join('\n  ')); process.exit(1); }
