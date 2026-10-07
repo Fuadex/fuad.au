@@ -3,6 +3,16 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "paul-signac-women-by-the-well": {
+  "about": "Signac’s first large canvas after Seurat’s death. The scholar Ferretti-Bocquillon reads its two women at a well as Seurat’s last picture, The Circus, moved south — its foreground shadow a phantom of the Circus clown, borrowed “no doubt unconsciously”.",
+  "deep": "The loudness of this canvas was meant for a room without enough light. Shown at the Indépendants in 1893, it carried a title ending in a parenthesis, “decoration for a panel in half-light”: a picture to work on a dim wall as a window would. Signac later wrote of divided-colour canvases that give light back to the walls of modern apartments. With that purpose in view, its excesses look deliberate, the yellows and oranges pitched to keep glowing in shade, borders recoloured from both sides so shapes hold after the room goes grey. Under gallery light you get it undamped: the yellow ground below the women is at its most strident.",
+  "by": "Opus 5.5"
+ },
+ "leon-augustin-lhermitte-les-halles": {
+  "about": "Lhermitte's 1895 canvas of the Paris food market, over six metres long, was painted for a Hôtel de Ville room 4.5 metres across, too narrow to step far back. It spent 1942 to 2013 rolled up.",
+  "deep": "Its worth as a record lies in a trade's gear more than its buildings. A critic in La Paix is reported to have said in 1895 that it was made for the researchers of the year 2000; the wholesale market left central Paris in 1969, its pavilions demolished in the 1970s. The halls are left in thin washes; the close work goes to equipment, a paper-lined hamper, a ladle tipped over a bowl. A historian of the pavilions gets a setting; a historian of how a city's food was carried, packed and sold gets the substance, down to a handwritten tag on a crate and a lettered plaque on a hod.",
+  "by": "Opus 5.5"
+ },
  "edvard-munch-seated-young-woman": {
   "about": "Munch signed and dated this half-length young woman in a high-backed red chair in 1892, yet Gerd Woll, cataloguing his paintings in 2008, could neither identify the sitter nor trace the canvas in any early exhibition.",
   "deep": "The crimson a sickroom name would read in her eyes also builds the chair and runs through her blouse. The canvas was once called \"Syk pike\", Sick girl, the name of Christian Krohg's painting of 1880–81 and of Munch's own Sick Child motif, and a plaque on its frame, made after his death, carried it. Read under that name, the figure is a set of symptoms: red rims, a pale face, a head turned aside in a high-backed chair. The canvas lays each down as paint. The pale face is smooth, almost free of shadow, set among loaded strokes, and the head turned aside faces our left.",
@@ -4325,8 +4335,10 @@ by: "Opus · Fable" },
 // fireworks, Brokman(n) painter identified.
 
 "claude-monet-l-ete": {
-about: "Monet painted this in the summer of 1874 at Argenteuil, where he, Renoir and Manet were working side by side on the Seine. His wife Camille and their son Jean are both here, dissolved so completely into the sun-struck meadow that, as the Nationalgalerie puts it, they carry \"no more visual presence than the wind-blown trees\" — figures reduced to warm colored shadows on the grass. It entered the Berlin collection under Hugo von Tschudi, whose purchases from Durand-Ruel made the Nationalgalerie the first museum in the world to buy Impressionism.",
-by: "Opus · Fable" },
+  "about": "Monet's summer meadow of 1874, at Argenteuil toward Bezons — probably the very landscape he bought back himself for 190 francs in March 1875, when he, Renoir, Sisley and Morisot auctioned their pictures at the Hôtel Drouot.",
+  "deep": "Zola chose this picture in June 1876 as his example of Monet's sun-flooded landscapes, where one sees only a bit of field and two or three trees against the sky, and named nobody, though its darkest paint belongs to a seated woman. Close to us, her dark bodice sets off the straw ground beyond her; the two figures farther out, built from the field's yellow and the sky's lilac, mark two more distances. Placed to give the meadow its scale, the figures are the part of the view most easily left out of an account of it. The sun he praised lies at the foot of the violet hills, a long way past her.",
+  "by": "Opus 5.5"
+ },
 
 "umberto-boccioni-the-mother": {
   "about": "Boccioni's mother, Cecilia Forlani, at her crochet by a window — a pastel inscribed \"Milano 1907\" and drawn in the first months after he moved, that September, into the Milan home she shared with his elder sister.",
