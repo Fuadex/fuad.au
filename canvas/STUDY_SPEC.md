@@ -2520,3 +2520,16 @@ reader already knew the brief; the 09-26 audit was the first cold read the mv6 b
    re-measure. No standalone sweep: the repair lanes take it — auditors report a craft lens that lists the
    stops' finds as `ROLE` (MID), and the repair rewrites it as the making. New drafts carry it as wave-20
    lesson 15.
+
+## 2026-10-08 — THE BESIDE IS CHOSEN BY THEME (Fuad, on Woman with a Parasol)
+
+10. **A `beside` CAPTURES A DIRECT THEMATIC LINK (Fuad 2026-10-08:** *"I'd prefer a similar actual subject, the
+    underlying theme behind the painting"; "besides should actually attempt to capture a direct link of thematic
+    link/similar concept"*). The companion is chosen for sharing or mirroring what the picture is ABOUT — the theme its
+    tour's `about` and Interpretation state — not for a shared motif or look (two parasols, two night skies). A motif
+    match is the fallback when no thematic companion exists, and the `notes` say what was weighed. The rhyme must still
+    be VISIBLE on both canvases (the four parts stand: pointer, companion with museum and interval, visible rhyme,
+    stated reversal), and the companion is described only as its own plate shows. A same-artist companion is fine when
+    the theme carries it. Type case: Woman with a Parasol (a summer afternoon that reads as elegy) beside Camille on Her
+    Deathbed (the loss itself), replacing a Van Dyck chosen for its parasol. Existing motif-only besides are revisited
+    as their lanes come round, not in a standalone sweep.
