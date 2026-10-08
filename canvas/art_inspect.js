@@ -20659,11 +20659,11 @@ window.CANVAS_INSPECT = {
     "body": "The signature, dated, in the bottom-right corner — and worth the zoom, because '75 places the picture at a hinge. The canvas was painted in one or two outdoor sessions at Argenteuil in the summer of 1875, no commission, no buyer waiting, and shown the next spring at the second Impressionist exhibition under the title La Promenade. Look how the strokes stay separate everywhere — grass laid in flicks, clouds in drags, the parasol's underside in three or four greens — nothing blended, nothing corrected, decisions visible at the speed they were made. That speed was the scandal and the point: critics read it as unfinished, Monet meant it as finished-in-one-breath, the only finish a one-second subject can honestly have. The picture stayed essentially private for decades, passed through the Mellon collection, and entered the National Gallery of Art in Washington in 1983, where it now does the job the Salon machines once did: it's the painting people cross the room for."
    }
   ],
-  "beside": "Who holds the parasol decides what it is for. In Van Dyck's Marchesa Elena Grimaldi Cattaneo, at the National Gallery of Art and 252 years older, a woman in black is seen from below against broken cloud, turning her face out at us, with a red parasol open above her and its ribbed underside showing. She does not hold it. An attendant in ochre silk lifts the staff from behind, tipping it so far back that it shades nothing. There the parasol is a canopy carried over rank; here a woman holds her own, in one hand, tilted against the light.",
+  "beside": "A veil streams across Camille's face on this hill; four years later, in Camille sur son lit de mort, a white cloth is wound close around the same face, eyes shut, mouth fallen open. That face is the only passage on the canvas with any drawing in it. Around it the bedding, like the dress here, is a white built from other colours, violet, lilac and rose-grey, laid in long strokes that drag past and never settle. On the hill there was a tomorrow, and he could leave her features to the gust and the sky. On the bed there is none, and the face is the one thing he holds still.",
   "refs": [
    {
-    "id": "anthony-van-dyck-marchesa-elena-grimaldi-cattaneo",
-    "text": "Marchesa Elena Grimaldi Cattaneo"
+    "id": "claude-monet-camille-sur-son-lit-de-mort",
+    "text": "Camille sur son lit de mort"
    }
   ]
  },
