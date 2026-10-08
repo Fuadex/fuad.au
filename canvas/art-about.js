@@ -3,6 +3,16 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "albert-edelfelt-pasteur-s-portrait-by-edelfelt": {
+  "about": "Edelfelt, 1885 — by the last sitting Pasteur had him swap a microbe culture for a jar of spinal cord, “something nobody yet knows about”. Nine days later the boy Joseph Meister was treated with dried cord.",
+  "deep": "From 1887 to 1901 its painter kept measuring himself against this canvas. Copying it in 1887, with the head and hands his own work, he could not catch the “patine du temps” that a single year had given the original: “greater harmony, more depth in the tone.” In 1892 he recalled being captivated by “the glow under the rough surface”, words that fit the sitter and the paint alike, and in 1901 a success among artists was the first, he wrote, “since Pasteur”. Hold that glow to the beard and the phrase turns literal: a warm brown comes through wherever its pale strokes part.",
+  "by": "Opus 5.5"
+ },
+ "witold-pruszkowski-w-noc-swietojanska": {
+  "about": "Pruszkowski's lone young man in a night wood, 1875 — a legend subject painted inside Matejko's Kraków school, a year before the Mogiła monastery stay that, his obituarist said, turned him to folk subjects.",
+  "deep": "A man in a white shirt stands among birch, bush and fern at night, one arm raised to his head. In 1897 the painter's friend Juliusz Mien wrote that in fantasy subjects he \"forces his realist brush\" to render poetry: \"legend and character, everything is there\". Mien named other pictures, but the phrase can be tried on this one. The brush keeps describing where a legend invites invention: fronds keep their pinnae, the sleeve its creases. The legend is left to two things a realist can paint without leaving his trade: the colour of one light, low among the ferns, and the angle of one head.",
+  "by": "Opus 5.5"
+ },
  "philip-james-de-loutherbourg-the-falls-of-the-rhine-at-schaf": {
   "about": "Loutherbourg painted these falls in Switzerland in 1787–88 with unusual fidelity, to answer critics who said he exaggerated nature — and London still called it unreal; one newspaper, on hearsay, took it for \"the Cataract of the Nile\".",
   "deep": "The details a visitor could check are kept true, and the scale and drama heightened. The two green-topped rocks the English traveller William Coxe saw in mid-fall in 1776 are there. Yet the painter's cataloguer, Olivier Lefeuvre, lists changes, deliberate or not, by a man who in 1781 had opened his own miniature stage of storms and sunrises: the fall narrower and taller than the real one, and a wall of water where the river comes down in steps, here one tall drop under a thin band of rapids at the rim. Lefeuvre's last change: the modest mound below the castle has grown into a crag, grey rock breaking through its wood, lifting the battlements against the sky.",

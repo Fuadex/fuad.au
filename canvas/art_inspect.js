@@ -101,6 +101,168 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+ "albert-edelfelt-pasteur-s-portrait-by-edelfelt": {
+  "mv": 6,
+  "see": "A grey-bearded man in a dark coat stands at a laboratory table, turned three-quarters to our right, raising a stoppered glass flask toward his lowered eyes while his other forearm rests on a thick book. Behind him hangs a striped red curtain, and a cabinet of bottles stands beside a pale pillar; at left the room runs back to a window, a bottle-lined table and an empty chair. The table at right is crowded with flasks, bottles and a brass microscope. Light comes from the left and lays a bright band across the middle of the canvas, head, glass, hands and tabletop, above a lower third of close browns.",
+  "about": "Its subject is attention. A famous man is painted without the furniture of public life or any commanding gesture: his face is bent toward a glass vessel and both his hands are taken up with work. The likeness lives inside that absorption, and so does the character; what the man is like shows in how he spends a minute of his time. The bottles, instruments and tables around him are stocked for a working day, and he is caught at one moment inside it.",
+  "craft": "Edelfelt painted it from life in Pasteur's laboratory in the rue d'Ulm, at afternoon sittings from 16 May to 27 June 1885, on a canvas about a metre and a half tall: he had, he wrote, “such a mass of things to paint besides the old man”. He was painting the figure “strongly lit” from one side, then found the light he worked by “very bad”, hemmed in by chestnut trees that threw strange reflections onto the face. On 23 May he had Pasteur photographed standing in the pose, prints useful “for the drawing of clothes and accessories”.",
+  "context": "The portrait was Edelfelt's own idea. At thirty, a Finnish painter in Paris who reckoned a good likeness of Pasteur the surest way to make his name, he weighed the settings in letters home. Tailcoat and decorations would be “ridiculous”; among the animals in the cellar Pasteur would “look like a veterinarian”; the study “looks like any other office”. So, the laboratory. The sitter grew “hopelessly sleepy” but sat on through the June heat and told the painter “vous êtes un travailleur”; even the attendants judged it “c'est bien ça”. At the Salon of 1886 it met Léon Bonnat's portrait of the same man, which Edelfelt found prettified, “making his eyes shine”. Meissonier, by Edelfelt's account, called across: “voilà de la peinture.” The state bought it in 1887.",
+  "deeper": [
+   {
+    "t": "The curtain behind the head",
+    "x": 0.34,
+    "y": 0,
+    "w": 0.32,
+    "h": 0.4,
+    "body": "At top centre, a curtain of brick-red and buff stripes falls from the upper edge to the sitter's shoulder. Its red is the hottest colour in the background, and that colour stands directly behind the head and the raised flask. Trace the curtain's left edge downward: it meets the hair just right of the crown, so the face is split between two grounds. The lit side, with ear and temple, lies against a dull green-grey wall; the shadowed side, with cheek and beard, against the stripes. Light flesh is set off by dark; shaded flesh by hot colour. The stripes go on in long vertical pulls of thin, dry paint, and the cloth bunches slackly where it meets the cabinet: a household curtain hung in a room of glass and bare wood."
+   },
+   {
+    "t": "The lowered eyes",
+    "x": 0.33,
+    "y": 0.19,
+    "w": 0.19,
+    "h": 0.25,
+    "body": "Left of centre, the face turns three-quarters to our right with the eyes dropped so low that they read as two dark slits under the brows. That downward line points straight at the flask held at the height of the beard. The brows draw together, and the forehead is modelled in broad, fused touches of rose, ochre and grey that keep the bone of the brow firm under light from the left. The beard is dragged in grey and white over a warmer underlayer, soft in texture but holding a clear edge against the black bow tie. The face is not the lightest thing near it: the white shirtfront just below and the tabletop at right both go brighter."
+   },
+   {
+    "t": "The flask in his hand",
+    "x": 0.43,
+    "y": 0.27,
+    "w": 0.17,
+    "h": 0.24,
+    "body": "Just right of the beard, a tall cylindrical flask leans a little to the right in his right hand, and very little of it is painted as glass. The right side of its upper half is the curtain's red seen through it, its lower half the dark of the coat; the vessel itself is a few pale lines at the shoulder and rim and one long highlight down the side. Inside, a strip of spinal cord hangs on a thread from the stopper, painted deep red, and the mouth above is plugged with a puff of white laid on as a dry, edgeless dab. A paper label with a blue border carries a line of handwriting set down as strokes that never form letters. On the bottom lie lumps of white and pale ochre, and at the base a short side-neck juts to the left, closed with a cork. Every part is set down separately, the suspended strip, the heap beneath it, the plugged top, the second opening, so the flask reads as a working arrangement, described with the care given to the face."
+   },
+   {
+    "t": "Two hands, two tasks",
+    "x": 0.35,
+    "y": 0.4,
+    "w": 0.3,
+    "h": 0.2,
+    "body": "Below the flask, the two hands do separate work. The right closes under the flask's base, knuckles toward us and a white cuff at the wrist; the left, lower, rests its forearm on a thick book and pinches a thin white slip between thumb and fingers, its far end breaking into a few loose touches of white. On the tip of the index finger, where the slip begins, sits a small dab of red, darker than the strip in the flask but of the same family. The hands are built differently from the face, in squarer, more separate strokes, each knuckle and tendon set as its own plane of warm flesh. Glass raised to the eyes, slip held low at the book: the pose keeps both within one reach."
+   },
+   {
+    "t": "The tray of small flasks",
+    "x": 0.53,
+    "y": 0.5,
+    "w": 0.3,
+    "h": 0.19,
+    "body": "Right of his forearm, a shallow wooden tray sits on the table in front of the book, holding a cluster of small round-bellied flasks whose necks are drawn out into long, thin points. On the canvas each neck is a single fine upright stroke ending in a bead of light. One flask holds an amber liquid, the strongest colour on the table. Beside the tray stands a round flask of pale green-grey liquid, and past it a bent glass tube rises from another vessel and turns at a sharp angle. Behind them, in the cabinet's shadow, a brass microscope is picked out in vertical strokes of yellow with hard highlights on its pillar and stage, the only warm metal in this corner of glass and wood."
+   },
+   {
+    "t": "The second red strip",
+    "x": 0.8,
+    "y": 0.45,
+    "w": 0.2,
+    "h": 0.32,
+    "body": "At the right edge, among the bottles at the bright end of the table, a broad-shouldered clear bottle holds what the raised flask holds: a red strip hanging on a thread below a stopper capped in white. It is easy to pass over. The bottle is painted as broadly as its neighbours, its body mostly reflections of the tabletop and of a black block on the table behind it, and the strip is one vertical stroke of red with a darker core. Once the second strip is found, the flask in his hand is no longer a single object. It is one of at least two prepared the same way, and his gesture becomes an inspection: one vessel lifted from a set and held to the light."
+   },
+   {
+    "t": "The far room",
+    "x": 0,
+    "y": 0.15,
+    "w": 0.3,
+    "h": 0.45,
+    "body": "Left of the figure, the room runs back to a window: a tall strip of light, warm at its edges and greying toward its centre, above a long table lined with bottles. Those bottles are upright dabs of grey-green with a few pale flecks, far looser than the drawn glass on the near table, and that change of handling sets them deep in the room. A rush-seated chair stands empty at the table's front, the edge of its seat caught in one ochre line by the same light. The view makes the laboratory larger than the corner where he stands, a second workplace equipped and unoccupied, and the shoulder of his coat closes it at right, a dark silhouette against the far bottles and the foot of the window."
+   },
+   {
+    "t": "The coat on the lit floor",
+    "x": 0,
+    "y": 0.5,
+    "w": 0.42,
+    "h": 0.4,
+    "body": "Lower left, a patch of lit floor lies between the chair legs and the figure, and against it the long coat gets a firm outline down its back. Below the patch the coat sinks into the floor's shadow and the darkness under the table. Look into that dark and the clothes still separate: the coat is a warm, olive-tinged brown, while the waistcoat and trousers inside it are a cooler, more neutral black. Where the steps of value have almost gone, temperature does the separating. This mass is the picture's ballast, set under the bright band of face, glass and table."
+   },
+   {
+    "t": "Step back: the table's edge",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Step back and the long front edge of the table runs from its corner at lower right up toward his hands. The eye can travel the whole arrangement as a circuit: from the head against the curtain, down the gaze to the flask, to the slip and the book, across the tray and out to the bottles at the bright end, then back through the second strip to the first. The sitter never meets the viewer. He stands half-turned from the window, eyes on the glass, and the right side of the canvas belongs to his equipment. Low on the dark table front, the signature, A. EDELFELT, sits in dull ochre capitals with the year beneath, quiet against the wood but plain to read."
+   }
+  ],
+  "beside": "Painted at his work, a book at hand and his eyes kept from us, Pasteur has a counterpart 244 years older in Scholar at his desk, painted by Rembrandt in 1641 and now at the Royal Castle in Warsaw. The pieces are nearly the same: an old bearded man at a table, a thick book, the instrument of his trade in one hand. Rembrandt's scholar holds his quill beside the open book with its point off the page. His eyes are off the page too, turned out of the picture to our left, at nothing the painting shows. Pasteur's lowered eyes go into the flask in his hand.",
+  "refs": [
+   {
+    "id": "scholar-at-his-desk",
+    "text": "Scholar at his desk"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "witold-pruszkowski-w-noc-swietojanska": {
+  "mv": 6,
+  "see": "A young man in a white shirt and a dark coat edged in red stands in a thicket at night, one arm raised to his head. Around him the wood is nearly black: a canopy closes the top, a thin birch rises at the left, a bed of ferns at lower right holds a warm glow, and a dark bird spreads its wings on a branch at the right, just above the height of his head. Green points like fireflies hang in the dark to our right of him. The picture gives itself up slowly; the glow, the shirt and a few pale leaves show first, and the bird and the green points surface as the eye adjusts.",
+  "about": "The canvas carries two titles. W noc świętojańską names the night before the feast of St John, in June; Kwiat paproci, The Fern Flower, names what that night was believed to hold: a fern that blooms once a year, briefly, for whoever finds it, bringing power, wealth and happiness. Under the second title the picture becomes a legend, strangely told. Its seeker stands alone in a thicket, and the warm glow lies low among the ferns. Whether the glow is the flower is left unsettled: the canvas paints what the legend asks for, a midsummer night, a deep wood, a hidden light, but not the moment the flower is found.",
+  "craft": "The night is made of thin paint. Over most of the canvas the dark is an olive, with a red-brown scrubbed through it, and the wood is built into that dark touch by touch, the touch changing with distance. At the foot of the picture the touches are broad, flat and opaque; in the bushes at middle depth the pale paint is dragged dry, so that it breaks over the dark beneath; in the canopy, leaves give way to scrubbed colour. With the floor of the wood hidden under growth, this change of handling does much of the work of perspective.",
+  "context": "In 1875 Pruszkowski was twenty-nine and in Kraków, studying under Jan Matejko. Kazimierz Bartoszewicz remembered him arriving in high boots, a Cossack-cut burka and a lambskin cap, at once “a handsome young gentleman” and “a sturdy peasant”. His obituarist, Maryan Gawalewicz, reports Matejko repeating over his work “What a talent, what a talent!”, and finds “traces of a certain compulsion” in the history picture the pupil made under Matejko's eye, Offering of the Crown to Piast. Pruszkowski, he adds, hid his canvases until they were finished, ready to smear a begun one with his sleeve if an outsider saw it. In October 1896 that obituary named a Noc świętojańska, very probably this canvas, among pictures people had gazed at “as into poems sung out in colours, as into waking visions”.",
+  "deeper": [
+   {
+    "t": "The glow in the ferns",
+    "x": 0.47,
+    "y": 0.77,
+    "w": 0.45,
+    "h": 0.21,
+    "body": "At lower centre-right, in a bed of ferns, lies the brightest patch on the canvas, and its light is yellow. Elsewhere the leaves catch a cool grey-green and the shirt and the birch a pale grey, so this night holds two lights, and the warm one is down among the plants. Close to, nothing in it is shaped like a flower: short, loaded dabs of fern leaf, yellowing toward one point, and a single pale spark where two fronds cross. The fronds nearest that spark are the yellowest; a frond or two away they have cooled, and the fern at the right of this crop is back to the cold green of the bushes. The light is painted into the fern itself, with nothing shown that gives it off, and it sits near the bottom edge of a picture whose canopy is almost black."
+   },
+   {
+    "t": "A bird where the light ends",
+    "x": 0.58,
+    "y": 0.31,
+    "w": 0.38,
+    "h": 0.21,
+    "body": "At the right, just above the height of his head, where the pale bush gives way to dark, a bird spreads its wings above a branch that slants down to the right. The bird is a darker, redder brown on a near-black olive ground, and its outline reads most clearly where it cuts into the lit leaves at its left. What gives it away is a ringed yellow eye with a smaller glint beside it. Set it against the green speck at the right of this crop: the eye is warmer, a yellow crescent around a dark centre, placed as a separate, sharper touch over thin, dragged brown wings. The face is no more than a few feathered strokes. From a step back it is the dark wings that surface, and the eye shows only from close to."
+   },
+   {
+    "t": "The raised arm and the turned face",
+    "x": 0.25,
+    "y": 0.42,
+    "w": 0.31,
+    "h": 0.18,
+    "body": "Left of centre, the man's right arm is flung up over his brow, the sleeve ballooning, the hand a pale touch among the lit leaves at the edge of a cap banded in dull red. The sleeve is built of small curling strokes of pale grey, so the linen looks crumpled and still moving. The face is set down in a few broad planes: a lit brow under the band, one pale stroke down the nose and the near cheek, a paler chin, with the eyes and mouth as dark notches. The head turns three-quarters to our left, toward the raised arm. Behind it, at the right of this crop, are some of the palest leaves in the upper half of the picture, and against them his cap and the shadowed side of his face read as silhouette. The pose reads as a flinch: the arm thrown up as if to shield his head, the face turned aside."
+   },
+   {
+    "t": "The red edge and the thicket",
+    "x": 0.24,
+    "y": 0.55,
+    "w": 0.36,
+    "h": 0.32,
+    "body": "Below his chin a red line runs down the front of the figure almost to the knee: the edge of a dark coat worn open over a long shirt. It is a long, unbroken band with an orange lick along one side, a hard edge among soft ones. The shirt itself is a grey dragged thinly over a darker layer; it reads as white because everything around it is near-black. Lower down, the figure is handed over to the thicket. Dark and grey-green leaves pass in front of the shirt's hem, the coat's other flap at our left breaks into dull red patches between them, and below the knee the trousers go under the foliage with no foot reappearing."
+   },
+   {
+    "t": "The birch",
+    "x": 0.03,
+    "y": 0.3,
+    "w": 0.22,
+    "h": 0.58,
+    "body": "At the left, a young birch climbs through the dark, thin and leaning slightly right as it rises. Its trunk is a dim grey shaft laid in one run, with the white set on it in separate touches and dark marks between them, so the eye reads white bark marked with black. Leaves pass in front of it, setting it back behind the nearest growth. Near the top of this crop, pale leaves sit against it as single flat dabs, one touch to a leaf. Toward its foot the touches thin and dim until the trunk is lost in the undergrowth."
+   },
+   {
+    "t": "Points like fireflies",
+    "x": 0.6,
+    "y": 0.58,
+    "w": 0.4,
+    "h": 0.2,
+    "body": "Right of the man, in the black between the bushes, small points of yellow-green hang in the air: three close together at the left of this crop, others scattered toward the right edge, several low among a few red-orange touches. Each is built the same way, a small ring of green around a paler core, which is how a point of light blurs into a halo when it is seen in the dark. Set straight onto near-black ground, these tiny touches carry far beyond their size. They read as fireflies, scattered at different heights, and they make the black between the bushes read as air with something moving in it."
+   },
+   {
+    "t": "The side he turns from",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Step back to the whole canvas: a near-black olive field in which the light gathers in a few places. The yellow sits in the ferns at lower right; the pale bush rises behind the man's shoulder with the dark bird at its edge; the green points hang in the black to the right. All of them lie to our right of the man. His face and his raised arm turn the other way, to our left, toward the birch and the dark beyond it. Whatever the fern holds lies behind the turn of his head, and in plain view to us. Above everything, the canopy closes the top of the canvas, nearly unlit above the pale leaves at upper left, with only a few blue-grey gaps."
+   }
+  ],
+  "beside": "In 1875, the year of this night, Józef Chełmoński painted another young figure with one arm held up and a small passage of light close at hand: Gossamer, also at the National Museum in Warsaw. A barefoot girl lies on her back in a dun field, face tipped back beneath her raised hand, which pinches a strand of spider silk. Both pictures turn on how near the figure is to that light: Chełmoński's silk is a few faint, hair-thin lines, and she has it between her fingers; in Pruszkowski's ferns the glow is the strongest light in the picture, and his head is turned away from it.",
+  "refs": [
+   {
+    "id": "gossamer",
+    "text": "Gossamer"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
  "philip-james-de-loutherbourg-the-falls-of-the-rhine-at-schaf": {
   "mv": 6,
   "see": "The Rhine falls fill the middle of a wide canvas: a broad white cataract pouring between wooded hills into a calm green basin, split by rocky crags. At right a cliff rises to a castle, with a tall tower house at its foot; at left a village of gabled houses sits among trees. Small figures work, fish and ferry along the near shore, from a dark heap of barrels at lower left to an old man and a young woman standing together in front of the tower at right.",
