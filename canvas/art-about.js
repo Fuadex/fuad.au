@@ -451,9 +451,14 @@ deep: "Three men are pressed shoulder to shoulder and not one of them touches an
 by: "Opus 4.8" },
 
 "paul-cezanne-la-maison-du-pendu-auvers-sur-oise": {
-about: "Three roofs and a track at Auvers, 1873, painted beside Pissarro. Called 'the house of the hanged man', though there is no gallows and no crowd — and it was the first Cézanne any collector bought.",
-deep: "A village that gives you its back: blank flanks, sealed roofs, and the one wall facing you carrying two mismatched holes, used as weights rather than windows. The road comes in at the right and leaves at the left, reaching no door. Where the pale house meets the olive roof, a near-black wedge drops the full height of both, splitting it into a lit left and a heavy, near-empty right. The only depth is a thin band of valley, scraped to the bare weave, thinness alone reading as distance. Sixteen years on Cézanne wrote asking its owner to send it to the Exposition Universelle, unaware the man had swapped it away for a snow scene.",
-by: "Opus 4.8" },
+
+ "about": "Three roofs and a track at Auvers, 1873, painted beside Pissarro. Called 'the house of the hanged man', though there is no gallows and no crowd — and it was the first Cézanne any collector bought.",
+
+ "deep": "A village that gives you its back: blank flanks, sealed roofs, and the one wall facing you carrying two mismatched holes, used as weights rather than windows. The road climbs out of the foreground and arrives at a door, blue-grey and shut. Where the pale house meets the olive roof, a near-black wedge drops the full height of both, splitting it into a lit left and a heavy, near-empty right. The only depth is a thin band of valley, scraped to the bare weave, thinness alone reading as distance. Sixteen years on Cézanne wrote asking its owner to send it to the Exposition Universelle, unaware the man had swapped it away for a snow scene.",
+
+ "by": "Opus 4.8"
+
+},
 
 "pierre-auguste-renoir-claude-monet": {
 
@@ -1037,10 +1042,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "edward-hopper-house-by-the-railroad": {
-about: "Hopper's House by the Railroad, 1925 — a lone mansard-roofed mansion stranded above a rail track in hard light. Acquired in 1930 as the first painting in its collection; Hitchcock credited it for the Bates mansion in Psycho.",
-deep: "One horizontal band does all the damage. The track clips the foundation, so the house floats without ground and you have no foreground to walk in on. That cut also names the agent of abandonment: the railroad ran the town past this door. The windows compound it — dark rectangles, some half-covered by a drawn shade, none showing a face. Someone pulled those shades and stays invisible. The porch, built for sitting and watching the road, faces nothing but the track. Hopper lights the facade with a raking sun that picks out every bracket and cornice, a grand thing dressed for a street that is no longer there.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Hopper's House by the Railroad, 1925 — a lone mansard-roofed mansion stranded above a rail track in hard light. Acquired in 1930 as the first painting in its collection; Hitchcock credited it for the Bates mansion in Psycho.",
+
+ "deep": "One horizontal band does all the damage. The track clips the foundation, so the house floats without ground and you have no foreground to walk in on. That cut also names the agent of abandonment: the railroad ran the town past this door. The windows compound it — pale panes behind half-drawn shades, the shadowed ones dark, none showing a face. Someone pulled those shades and stays invisible. The porch, built for sitting and watching the road, faces nothing but the track. Hopper lights the facade with a raking sun that picks out every bracket and cornice, a grand thing dressed for a street that is no longer there.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "wassily-kandinsky-picture-with-an-archer": {
 about: "Kandinsky's Picture with an Archer, 1909: a horseman twists in his saddle to draw his bow over blue onion domes and bulbous hills — vibrating patchwork colour nearly overwhelms the figures, a threshold two years before full abstraction.",
@@ -1811,10 +1822,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "the-pont-neuf-and-the-samaritaine-at-night": {
-about: "In 1931 Marquet bought an apartment over the Pont Neuf and kept returning to the view; this 1937 nocturne takes it after dark, when the bridge survives only as a chain of white globes.",
-deep: "Not a thing here is lit; things are only near lights. La Samaritaine exists as the red bar of its rooftop sign and a grid of cream dabs where the windows are — no wall, no cornice, no outline anywhere; the mass exists because the dabs stop. The bridge is its lamps, perspective carried by spacing alone. Look at the red dragged down the wet road: the same colour as the sign above, only the brush direction changed, and that change alone says reflection. Nine tenths of the surface sits within a couple of steps of black, so some forty bright touches carry the entire contrast budget. No figure is legible anywhere, and every light is somebody out.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "In 1931 Marquet bought an apartment over the Pont Neuf and kept returning to the view; this 1937 nocturne takes it after dark, when the bridge survives only as a chain of white globes.",
+
+ "deep": "Not a thing here is lit; things are only near lights. La Samaritaine exists as the red bar of its rooftop sign and a grid of cream dabs where the windows are — no wall, no cornice, no outline anywhere; the mass exists because the dabs stop. The bridge is its lamps, perspective carried by spacing alone. Look at the red dragged down the wet road: the same colour as the sign above, only the brush direction changed, and that change alone says reflection. Nine tenths of the surface sits within a couple of steps of black, so some forty bright touches carry the entire contrast budget. The people are single dark dashes on the lit pavement, and every light is somebody out.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "la-ville-de-paris": {
 about: "Robert Delaunay worked this canvas over two years and sent it to the 1912 Salon des Indépendants at 267 by 406 centimetres. He lifted the three nudes from a postcard of a Pompeian fresco, fusing the ancient Graces with the Seine and the Eiffel Tower — the pivot from Cubist fragmentation toward pure colour abstraction, the ancient and the mechanical held in one high-keyed frame.",
@@ -2459,10 +2476,16 @@ about: "A visitor punched a three-branched tear through this Monet in 2012, and 
 by: "Opus 4.8" },
 
 "kitchen-scene-with-the-supper-in-emmaus": {
-about: "A 1933 cleaning revealed the risen Christ dining at Emmaus in a hatch behind the kitchen maid, recasting Velázquez's c.1618 bodegón as a painting in which the servant appears to overhear a miracle.",
-deep: "The drama is not the vision in the wall. Small and blazing in a hatch behind the maid, three figures sit at a lit table — the risen Christ blessing bread, two disciples suddenly knowing him. Velázquez shrinks that to a glimmer and fills the foreground with a young woman suspended mid-motion, head bowed, hands stopped. A raking light does the arguing: the brass bowl throws back a warm streak, the earthenware jug stays chalky and matte, the blue-and-white pitcher catches a wet highlight the clay never could. Each vessel is rendered to its own surface. The maid's face gets the same patient light — warm brown, softly modelled, the most important thing in the room.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "A 1933 cleaning revealed the risen Christ dining at Emmaus in a hatch behind the kitchen maid, recasting Velázquez's c.1618 bodegón as a painting in which the servant appears to overhear a miracle.",
+
+ "deep": "The drama is not the vision in the wall. Small and muted in a hatch behind the maid, three figures sit at a cloth-covered table — the risen Christ blessing bread, two disciples suddenly knowing him. Velázquez shrinks that to a dim vignette and fills the foreground with a young woman suspended mid-motion, head bowed, hands stopped. A raking light does the arguing: the brass bowl throws back a warm streak, the earthenware jug stays chalky and matte, the blue-and-white pitcher catches a wet highlight the clay never could. Each vessel is rendered to its own surface. The maid's face gets the same patient light — warm brown, softly modelled, the most important thing in the room.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "jacob-blessing-the-sons-of-joseph": {
 about: "Commissioned early in Guercino's career, this 1620 painting — sent to the Getty Conservation Institute for a landmark public restoration — shows the blind patriarch Jacob crossing his hands to bless Joseph's younger son Ephraim over the elder Manasseh.",
@@ -4872,7 +4895,7 @@ by: "Opus 4.8" },
 },
 "paul-serusier-farmhouse-at-le-pouldu": {
  "about": "Painting beside Gauguin at Le Pouldu in 1890—two years on from the Pont-Aven lesson that made him paint The Talisman—Sérusier presses a Breton farmyard into interlocking planes of hot ochre and cool blue, pattern standing in for depth.",
- "deep": "A whole farmyard becomes a screen of interlocking colour zones, and the argument is visible from the first glance: depth is refused, flatness is the truth. The enormous ochre wall presses against the canvas surface rather than receding into it, and a walking Breton woman — rendered as a small blue silhouette, type rather than person — anchors the left edge while rhyming across the hot field with the cool blue recess set into the wall. The tilted path draws the eye around in a loop: stones to woman to oven to haystack and back, a circuit that never settles. Sérusier makes pattern do what illusion once did.",
+ "deep": "A whole farmyard becomes a screen of interlocking colour zones, and the argument is visible from the first glance: depth is refused, flatness is the truth. The enormous ochre wall presses against the canvas surface rather than receding into it, and a walking Breton woman — rendered as a small blue silhouette, type rather than person — anchors the left edge while rhyming across the hot field with the cool blue recess set into the wall. The tilted path draws the eye around in a loop: stones to woman to doorway to haystack and back, a circuit that never settles. Sérusier makes pattern do what illusion once did.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
