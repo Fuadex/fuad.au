@@ -446,9 +446,14 @@ deep: "A village that gives you its back: blank flanks, sealed roofs, and the on
 by: "Opus 4.8" },
 
 "pierre-auguste-renoir-claude-monet": {
-about: "Monet in street clothes, cap on, palette across the bottom of the canvas, turned back mid-work — 1875, the year the Hôtel Drouot auction Renoir organised with him, Sisley and Morisot raised almost nothing.",
-deep: "There is more paint in his eyelid than in his whole hand. The fist at the left edge is three blunt strokes closing on a pale shaft that runs straight out of the picture. The coat is barely painted at all, blue-violet dragged so thin the weave shows through his chest, no folds anywhere — folds would make it a garment, and Renoir wants a shape. Everything is spent on the face instead, worked wet into wet until the flesh has body, a lit oval cut from black. Behind him, Monet's own subject in Renoir's shorthand, kept too rough to become a window. Monet painted almost nobody; Renoir painted him again and again.",
-by: "Opus 4.8" },
+
+ "about": "Monet in street clothes, cap on, palette across the bottom of the canvas, brush still in hand — 1875, the year the Hôtel Drouot auction Renoir organised with him, Sisley and Morisot raised almost nothing.",
+
+ "deep": "He stands between two lights. Behind him at the right is a tall window, the brightest thing in the picture, yet the light that turns his face and his brush hand falls on him from our side of the room. The window only sets off his silhouette; what makes him a person comes from the place the portrait is being painted from, and that is also where his look goes. He holds both tools and gives his attention past them to the friend at work on him, in the year their pictures fetched almost nothing at auction. The warmth in the picture and its regard travel the same short distance, from one painter to the other.",
+
+ "by": "Opus 4.8"
+
+},
 
 "salvador-dali-the-great-masturbator": {
 about: "A yellow mass that is both a cliff and a head lying cheek to the ground, eyes shut — Cadaqués, 1929, painted while Gala stayed on there and her husband Paul Éluard went back to Paris alone.",
@@ -854,9 +859,14 @@ deep: "The real subject is Renoir mid-crisis, staging his own indecision on one 
 by: "Opus 4.8" },
 
 "pierre-auguste-renoir-in-the-meadow": {
-about: "Two young women at rest in tall summer grass, gathering wildflowers — a Renoir idyll from his later, pearly manner, around 1890. The nearer figure turns her back in rose pink, drawing you into the scene rather than meeting your look.",
-deep: "Watch how the paint changes between the girls and the meadow. The two figures are modeled with soft, continuous strokes that keep them solid and rounded, skin pearly, dresses lit from within; around them the handling dissolves completely into short broken flecks of green, cream, gold, and lilac, with no drawn edge anywhere. This is Renoir returning from his dry, hard-edged Ingres phase: the figures hold the firm structure he drilled into himself, while the grass recovers his old Impressionist freedom. The near girl's arm blurs where hand meets meadow, and a discarded bonnet lies in the corner — the day warm enough to set a hat aside.",
-by: "Opus 4.8" },
+
+ "about": "Two young women at rest in tall summer grass, gathering wildflowers — a Renoir idyll from his later, pearly manner, around 1890. The nearer figure turns her back in rose pink, her companion in white bending over the flowers between them.",
+
+ "deep": "Neither girl gives us her face. The dark-haired one is turned wholly away, and the blonde shows only a lowered lost profile, eye and cheek bent to the small bunch of white flowers between them. Both heads lean toward that one point, which sits almost exactly at the centre of the canvas, so the composition closes into a ring with the viewer outside it. What the picture shows is attention rather than its object: the flowers are a handful of touches, while the bent profile above them is carefully drawn. Far down the valley the arrangement recurs in small, two figures on a path, a second pair the eye finds only after the first.",
+
+ "by": "Opus 4.8"
+
+},
 
 "saule-pleureur-et-bassin-aux-nympheas": {
 
@@ -905,9 +915,18 @@ by: "Opus 4.8" },
 
 
 "bal-du-moulin-de-la-galette": {
-about: "Renoir's Bal du moulin de la Galette, 1876 — a Sunday dance in a Montmartre garden, dappled sun falling through the crowd. He painted it twice; the smaller version sold for $78.1 million in 1990, its Japanese buyer joking he would be cremated with it.",
-deep: "Atmosphere is the argument. Renoir refuses to give the scene a single protagonist or a readable story, so what you get instead is a crowd felt as shimmer — the dappled Sunday-afternoon light breaking across shoulders, straw hats, a striped dress, the orange carafe. The color decisions drive everything: shadows are blue and violet, never brown, which keeps the paint surface luminous even in its darkest passages, and each figure is described just enough to dissolve into the next. Distance is made not by perspective but by loosening the touch, the dancers at the back becoming smears of blue and cream. Without a fixed focal centre, the eye ricochets endlessly through the crowd — that restlessness is the content. The picture is not about the dancing; it is about how a crowd is felt from inside it.",
-by: "Opus 4.8" },
+
+
+ "about": "Renoir's Bal du moulin de la Galette, 1876 — a Sunday dance in a Montmartre garden, dappled sun falling through the crowd. He painted it twice; the smaller version sold for $78.1 million in 1990, its Japanese buyer joking he would be cremated with it.",
+
+
+ "deep": "The picture is organised by where people look. At the bench a small circle closes on itself: the companion's hand rests on the seated woman's shoulder while the companion herself looks down and across toward the two figures seated with their backs to us, and the seated woman keeps her eyes lowered inside that ring. Nobody there looks at you. You are placed just behind the yellow chair, at the edge of a conversation already under way. The clearest look out of the picture comes from further off, from the woman in pale pink on the dance floor, who turns her face to you while her partner looks down. Renoir lets the viewer be noticed once, in passing, by someone busy dancing, and otherwise leaves them outside a company that has no need of them. The sun makes no distinctions; what sorts this crowd into insiders and onlooker is the direction of their eyes.",
+
+
+ "by": "Opus 4.8"
+
+
+},
 
 "starry-night-over-the-rhone": {
 
@@ -1143,19 +1162,34 @@ by: "Opus 4.8" },
 },
 
 "la-balancoire": {
-about: "Renoir's La Balançoire, 1876 — a woman on a swing in a sun-dappled garden; shown at the 1877 Impressionist exhibition, its dabs of pale, shifting light on clothing and ground drew particular scorn from critics.",
-deep: "Everything turns on a pause. The woman stands beside the swing rather than riding it, caught between stepping on and stepping away, and that small hesitation suspends the whole scene. Around her a man leans in to speak, another watches from behind the tree, a child stares up — a ring of attention with no answer at its centre. Renoir makes the suspension physical: his blue-violet dabs of sunlight scatter across every surface equally, democratizing the figures into the same shimmering paint so that no one person holds ground. The crowd of witnesses turns a private moment into a half-public performance. And the title names the object no one is using — the occasion, rather than the event. What the picture records is not a swing being ridden but the charged social geometry of an idle afternoon.",
-by: "Opus 4.8" },
+
+ "about": "Renoir's La Balançoire, 1876 — a woman standing on a swing in a sun-dappled garden; shown at the 1877 Impressionist exhibition, its dabs of pale, shifting light on clothing and ground drew particular scorn from critics.",
+
+ "deep": "Two kinds of looking meet at this swing. The couple's is closed: standing on the swing, she answers the near man, whose face we never see, with lowered eyes and a slight smile, and whatever passes between them stays between them. The child's look goes up to the adults and stays inside the group as well. Against that ring Renoir sets a single look that leaves it, from the bearded man half-hidden by the trunk, and the balance of the picture rests on that one exception. The courtship is played out in the open under the trees, and one witness turned toward the viewer is enough to make enjoying it a form of watching.",
+
+ "by": "Opus 4.8"
+
+},
 
 "girls-at-the-piano": {
-about: "Renoir's Girls at the Piano, 1892 — two girls reading music at a keyboard. A French government commission, it became the first Impressionist work bought for the national collection; Renoir refined it across five canvases.",
-deep: "The subject is not music but joint attention. Two heads incline toward a single score, and Renoir makes their absorption the whole scene — neither girl looks out, no narrative is offered, no drama resolved. His craft completes the idea: a narrow warm palette of rose, cream, and honey fuses the two figures into one mass of light so that the close physical fact of their shared lesson becomes an aesthetic one too. Every diagonal in the composition converges on the brightest, coolest white in the canvas: the sheet music, painted almost blank, the thing everyone's gaze flows toward. Step back and you feel a room of unhurried ease; step close and the girls' heads seem to draw tighter together. What Renoir offers is the pleasure of watching someone else be fully, quietly occupied.",
-by: "Opus 4.8" },
+
+ "about": "Renoir's Girls at the Piano, 1892 — two girls reading music at a keyboard. A French government commission, it became the first Renoir bought by the French state; Renoir refined it across five canvases.",
+
+ "deep": "Look at who is doing what. The seated girl carries the whole performance: one hand on the keys, the other holding the corner of the page, her profile bent to the notes. The standing girl does nothing with her hands at all. One forearm hangs loose from an elbow propped on the piano; the other arm reaches back to rest on the chair. She is there only to watch, leaning in close but leaving the page to the other. Renoir ties the pair together with colour rather than gesture: a small pink ribbon in the dark hair answers the blue one in the fair, the same small knot tied twice in two colours, one for each girl. The ease the picture offers comes from that split — one girl at work, one at rest, both held by the same page.",
+
+ "by": "Opus 4.8"
+
+},
 
 "mlle-irene-cahen-d-anvers": {
-about: "Renoir's portrait of eight-year-old Irène Cahen d'Anvers, 1880: the Jewish banker's daughter survived the war, but the canvas was Nazi-looted and passed to Göring before she recovered it and sold it to arms-dealer Bührle.",
-deep: "Hair is the real subject. That sheet of red-gold falling from crown to lap outweighs everything else: Renoir builds the whole picture to warm it, cool it, and stand back. The face against it is almost porcelain — smoothed, barely modeled, a pale oval — and the contrast is the argument. She looks left, absorbed in something the canvas refuses to name; that averted gaze transforms a commission into a reverie. The family's ambition is present in the dress and setting, but what survives is a child's interiority. The background never resolves into a real garden, just loose viridian dabs whose only job is to keep the eye from settling anywhere but her. The lower half dissolves into scumbled blue-white so the top holds everything. What you remember is not a banker's daughter posed for posterity but a particular eight-year-old, looking at nothing, caught.",
-by: "Opus 4.8" },
+
+ "about": "Renoir's portrait of eight-year-old Irène Cahen d'Anvers, 1880, a commission from her father, a Jewish banker; lost to wartime looting, it was recovered by Irène and sold to the arms dealer Bührle.",
+
+ "deep": "She looks into the darkest part of the picture. Just in front of her profile the thicket goes nearly black, and her lit face sits against it like a lamp held up to a hedge; whatever holds her attention is in there, and Renoir paints nothing in it to name. The colour does the rest. Set into all that red hair, the pale blue ribbon at the back of her head is a single cool note; it returns in her eye, and again in the shadows of the white dress, so a thread of blue runs from crown to lap. Even the dark red-brown at the lower left is the hair’s own colour sunk into shadow. The commission asked for a banker’s daughter; what came back is a child absorbed in something we cannot see, held in place by a colour scheme built around her.",
+
+ "by": "Opus 4.8"
+
+},
 
 "berthe-morisot-with-a-bouquet-of-violets": {
 about: "Manet's Berthe Morisot with a Bouquet of Violets, 1872 — the painter in mourning black. Paul Valéry ranked it above all Manet's work, comparing it to Vermeer's Girl with a Pearl Earring.",
@@ -1407,9 +1441,14 @@ about: "This 1903 canvas belongs to Monet's ~300-painting Nymphéas cycle and ha
 by: "Opus 4.8" },
 
 "a-girl-with-a-watering-can": {
-about: "The blond child's identity has never been pinned down; scholars think Renoir simply painted a neighborhood girl who pleased him. His 1876 canvas sets her on a garden path in Washington's National Gallery of Art.",
-deep: "Renoir plants the child dead center, frontal, still — portrait symmetry — then refuses her every convention of the formal portrait: no chair, no drapery, no floor, only garden dissolving in every direction. The picture is about that tension, the one crisp solid person against a world already softening into color and warmth. Her face, the white lace, the buttoned boots carry his tightest handling; everything around her breaks into separate, unmixed strokes of blue-green, rose, and cream that cohere only at a step back. She holds a watering can in one hand and picked flowers in the other — the tool and the result — and the can hangs slack because she has stopped mid-task to be looked at. Color rather than line ties figure to garden: the red bow answers the red flowers scattered at the canvas edge.",
-by: "Opus 4.8" },
+
+ "about": "The blond child's identity has never been pinned down; scholars think Renoir simply painted a neighborhood girl who pleased him. His 1876 canvas, now in Washington's National Gallery of Art, sets her on a garden path.",
+
+ "deep": "The picture's real subject is an interval of attention, and the child is the one who grants it. Everything about her says she was on her way somewhere: body and both boots set towards our right, a tool in one hand, flowers in the other. Her head goes with her; only the eyes come back, and the steadiness we take for portrait calm lasts exactly as long as that look. Renoir builds the canvas to hold that interval. Around her everything keeps moving, the beds in loose touches, the path running on up the right side and out of the picture, and the one thing at rest in it is a small girl whose attention, for as long as it lasts, is ours.",
+
+ "by": "Opus 4.8"
+
+},
 
 "lion-attacking-a-dromedary": {
 about: "A CT scan revealed the mounted rider in Verreaux's 1867 taxidermy diorama contains a real human skull and jaw; the orientalist scene of a lion mauling a camel and courier was built for the Paris Exposition.",
@@ -1490,9 +1529,14 @@ by: "Opus 4.8" },
 },
 
 "pierre-auguste-renoir-still-life-with-peaches-and-grapes": {
-about: "A dozen peaches heaped in a blue-and-white faience bowl, grapes spilling onto the cloth — painted in summer 1881 at the Normandy house of his patron Paul Bérard, one of a matched pair; Bérard kept this one.",
-deep: "A peach here is built exactly the way a cheek is: cream and pale yellow on the lit side, deepening through apricot to a rose flush, a breath of green at the stem, cool violet where it presses its neighbour. Nothing is outlined — roundness is warm colour swelling forward and cool turning away. Look at the 'white' cloth across the lower half: grey, blue and lilac in the folds, scarcely any white in it. At the right the grapes break containment, spilling onto the table in quicker, cooler dabs with a highlight flicked on each. It is signed 'Renoir 81' — the last of his purely Impressionist years, before Italy and Raphael firmed his hand.",
-by: "Opus 4.8" },
+
+ "about": "A dozen peaches heaped in a blue-and-white faience bowl, grapes spilling onto the cloth — painted in summer 1881 at the Normandy house of his patron Paul Bérard, one of a matched pair; Bérard kept this one.",
+
+ "deep": "Follow the leaves from left to right and the picture sorts itself. On the faience they are ornament, painted in blue and repeated at one size and spacing all along the bowl. In the heap they are packing, green leaves pushed between the peaches and all along the rim. At the right they are growth, still joined to the vine and climbing toward the edge of the canvas. The same form passes from pattern to arrangement to something still joined to the plant, and the fruit follows it, the peaches stacked into a pyramid inside a vessel, the grapes lying loose where they were set down. Renoir puts the most decorated object and the least arranged one side by side and lets the leaf be the thread between them.",
+
+ "by": "Opus 4.8"
+
+},
 
 "georges-seurat-grandcamp-un-soir": {
 about: "Seurat later framed this 1885 Normandy seascape with a painted dotted border of his own, extending the pointillist method onto the frame; the back carries the signature of his disciple Paul Signac, who once owned it.",
@@ -1535,14 +1579,24 @@ deep: "Everything follows from where you are standing. Caillebotte puts you at a
 by: "Opus 4.8" },
 
 "two-sisters": {
-about: "The pair were not sisters at all: eighteen-year-old aspiring actress Jeanne Darlot posed as the elder, and Renoir titled it simply Two Sisters in 1881, painting them on the Fournaise restaurant terrace at Chatou; his dealer added On the Terrace.",
-deep: "Renoir stages two arguments at once and refuses to resolve them. The elder girl's face is the most finished surface in the picture — skin fused smooth, features held in focus — while everything around her dissolves into loose dabs that refuse to settle. Portrait precision and Impressionist shimmer sit in open disagreement, and the navy dress holds the tension: the one quiet, unbroken plane the busy canvas needs to push against. He also builds a colour architecture across the surface, rhyming reds from hat to corsage to wool basket and answering them with blues across dress, pinafore and tub, so the eye ricochets. What the picture is about is leisure — the Parisian afternoon as a new kind of subject — but it earns that softness honestly, through paint working hard in two opposed directions at once.",
-by: "Opus 4.8" },
+
+ "about": "Renoir's Two Sisters, 1881 — a young woman and a small girl on the Fournaise restaurant terrace at Chatou, above the Seine. The pair were unrelated; the dealer's 1881 stock book lists only a woman on a terrace, and the sisters' title first appears in the 1882 Impressionist catalogue.",
+
+ "deep": "The title promises a family, and the picture stages one: the elder seated square, hands clasped low, the child planted in front of her, their hats answering each other in red and blue. But no look passes between them, and they do not even meet us in the same way; placement, not feeling, makes them a pair. Between them the contact is slight — the child's hand rests on the rim of the wool basket, not on the woman. Renoir found the pair rather than the kinship, and the painting lets the gap show: two people set side by side on a restaurant terrace, held together by colour more than by any glance between them.",
+
+ "by": "Opus 4.8"
+
+},
 
 "la-promenade": {
-about: "The woman a boater-hatted suitor leads up the wooded path is thought to be Lise Trehot, Renoir's lover and favorite early model; painted in 1870, it reworks a Fragonard-style Rococo courtship theme into open-air Impressionism.",
-deep: "Cover the joined hands with a thumb and the couple falls apart into two unrelated figures. That single sanctioned touch — a few smeared flesh-tones, dead centre where his diagonal crosses hers — carries every bit of the flirtation the wood implies. There is no sky and no gap in the trees, so the eye has nowhere to go but up the line from her white dress to his straw hat, the one hot note in a bottle-green field. At the hem the dress stops being cloth: white broken into flecks of green and grey, the thickest paint on the canvas, fused with the undergrowth. She hangs back; he is already climbing.",
-by: "Opus 4.8" },
+
+ "about": "The woman a straw-hatted suitor leads up the wooded path is thought to be Lise Trehot, Renoir's lover and favourite early model; painted in 1870, it reworks a Fragonard-style Rococo courtship theme into open-air Impressionism.",
+
+ "deep": "Look at what his other hand is doing. While one hand takes hers, the other grips a dark branch at the edge of the picture, and his whole body leans back against it: he is not simply leading her up the slope but bracing, his weight set back against hers. All that effort ends in a smile turned down at her from under the straw hat. She gives him her hand and nothing more — head bowed, eyes lowered, her free hand gathering a fold of her skirt. The courtship is in that imbalance, one person working openly and the other keeping her face to herself, while the wood closes over both of them.",
+
+ "by": "Opus 4.8"
+
+},
 
 "leonardo-da-vinci-st-john-the-baptist": {
 about: "This descends from Leonardo's Saint John the Baptist in the Louvre, traditionally counted his final painting and the apogee of his sfumato; the enigmatic smile, auburn curls and animal pelt emerging from a dark void were copied endlessly by his Leonardeschi followers.",
@@ -1617,9 +1671,14 @@ deep: "Seurat's wager is that feeling can be manufactured. He built this canvas 
 by: "Opus 4.8" },
 
 "dance-in-the-country": {
-about: "The smiling woman is Aline Charigot, Renoir's companion and future wife, who modeled for this 1883 canvas: a couple waltzing on a country inn terrace, one of a contrasting pair with the formal Dance in the City.",
-deep: "Renoir bets everything on one smile. The woman turns her flushed face straight out at us mid-turn, openly beaming under a red bonnet, and every other decision in the canvas is arranged to make that land. Her partner is given as a near-abstract block of dark navy — a mass that throws her brightness forward. The yellow gloves are placed as hot punctuation exactly where the two figures meet. The dropped straw hat at the bottom says what the picture will not say directly: someone was too glad to keep hold of it. Renoir builds the dance from soft, edgeless strokes so the dress breathes and the foliage blurs, keeping the whole surface warm and in motion — pleasure that has stopped caring how it looks.",
-by: "Opus 4.8" },
+
+ "about": "The smiling woman is Aline Charigot, Renoir's companion and future wife, who modeled for this 1883 canvas: a couple waltzing on a country inn terrace, one of a contrasting pair with the formal Dance in the City.",
+
+ "deep": "The embrace faces two ways at once. His eyes are closed, his face pressed into her hair, all of him turned inward to the dance; her eyes are open and aimed out of the picture, straight at us. She is held by one person and smiling at another, and that is the picture's charge: the private moment lets the viewer in by her choice, not his. The small face at the railing that also looks out repeats the point at the margin — this dance has an audience, and only the man, eyes shut, does not see it.",
+
+ "by": "Opus 4.8"
+
+},
 
 "the-wounded-man": {
 about: "Courbet asleep or dying, 1844 — a rust stain no bigger than a thumb, a sword half lost in the shadow. X-rays found a woman once leaning on that shoulder; he painted her out and added the wound.",
@@ -2800,10 +2859,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "woman-with-parrot": {
-about: "Lise Tréhot playing with a green parrot in a plush sealed room, 1871 — believed to be Renoir's farewell to the companion and model of his late twenties, who left him to marry an architect soon after.",
-deep: "The empty cage takes the hardest light in the picture — gilt bars flaring while the bird sits free on her fingers. Courbet and Manet had painted the woman-and-caged-bird before him, and the room lets the parallel stand without arguing it: no window, no exit, foliage and drapery pressing the space shut. Her head bends to the parrot in a closed loop that shuts the viewer out. Look at the black dress, built from browns and blue-greys rather than tube black, warmer and cooler darks with a sheen sliding across the bodice; then at the one scarlet ribbon down its left side. Cover the ribbon in your mind and that half of the canvas dies.",
-deepBy: "Sonnet 4.6",
-by: "Fable 5" },
+
+ "about": "Lise Tréhot playing with a green parrot in a plush sealed room, 1871 — believed to be Renoir's farewell to the companion and model of his late twenties, who left him to marry an architect soon after.",
+
+ "deep": "Everything in this room holds something. The cage is made to hold the bird, the gilt stand holds the pot and the pot the palm, the plants and the wall behind leave the room no way out, and the black gown gathers the woman into one heavy mass. The only thing out of its container is the parrot, and it has not gone far: it clings at her wrist with her other hand cupped beneath it, so even its liberty is a way of being held. Renoir never says whether it is about to go back. He leaves the woman, kept by the room as the bird is kept by her hands, bent over it in a care that is also custody.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Fable 5"
+
+},
 
 "several-circles": {
 about: "Coloured discs floating in deep black, 1926 — by his Bauhaus years Kandinsky had cut his vocabulary down to one form, the circle: the most modest of shapes, he said, and a link with the cosmic.",
@@ -2965,10 +3030,16 @@ about: "One half of a pair — its pendant Wisdom and Strength also hangs at the
 by: "Opus 4.8" },
 
 "mother-and-children": {
-about: "A woman and two small girls in matching fur-trimmed coats, around 1875 — a family stroll given the scale of an ambitious Salon picture, sent as the centrepiece of the second Impressionist exhibition, where most critics walked straight past.",
-deep: "The child is already rehearsing. The older girl cradles her doll exactly as a mother holds an infant — the same gesture stacked twice: woman leading children, girl mothering doll. Nothing else in the group touches. The one firm link is the joined hands, painted so loosely that glove, cuff and stocking merge and the fingers are felt more than seen. Look down at the feet: no drawn path, no perspective floor, just lilac-grey and green, so the party drifts toward you out of light rather than treading a patch of park. Behind them, dabbed strollers watch. The tenderness is public, and the picture asks you to find that charming rather than question it.",
-deepBy: "Sonnet 4.6",
-by: "Fable 5" },
+
+ "about": "A woman and two small girls on a park walk, their coats trimmed with fur, 1875–76 — shown in 1876 as La Promenade, the centrepiece of Renoir’s showing at the second Impressionist exhibition.",
+
+ "deep": "For all that she stands at the top of the group, the woman is the picture’s frame rather than its subject. Renoir gives her the most finish and the least to do: square, frontal, her face held still, she only stands behind the children with a hand laid on one of them. Everything that happens happens below her shoulders, in what the two girls wear, carry and keep their hands in. Her calm is what makes their small business count; against one still, grown-up figure, a muff and a doll become events. The walk is theirs, and she is its guardian, the fixed point that lets children’s things fill a canvas built to a woman’s full height.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Fable 5"
+
+},
 
 "self-portrait-rembrandt": {
 about: "Two years after declaring insolvency and surrendering his goods to creditors, Rembrandt painted himself enthroned in a fur-lined robe, commanding and immovable — one of the most defiant self-images in Western art, 1658.",
@@ -3810,10 +3881,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "pierre-auguste-renoir-bouquet-of-chrysanthemums": {
-about: "Renoir told the writer Rivière that flower paintings let him try out tones without fear of ruining a canvas. This 1881 bouquet — just after his Italian trip — shows a new classicism settling into the touch.",
-deep: "The vase is almost an afterthought — a dark narrow-necked vessel described with the fewest strokes — and that is the strategy. By spending nothing below, Renoir pools all the density and finish into the flowers, making the globe look impossibly top-heavy, more bloom than any vessel could hold. The reds and rusts at the centre run hottest, but he keeps them from shouting: whites are packed right against them, cooling each flower so the eye keeps circulating. Look along the right shoulder where the pale globe meets the darkest ground — no clean edge. Renoir drags petal-colour into shadow and shadow back into the petal, keeping the mass breathing outward rather than sitting still.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Renoir told the writer Rivière that flower paintings let him try out tones without fear of ruining a canvas. This bouquet dates from 1881, the year of his trips to Algeria and then Italy, before his turn to firmer drawing; here the touch is still loose and flicked.",
+
+ "deep": "Set the bouquet against its jar and the proportion is unreasonable: the blooms spread almost the full width of the canvas, more than three times the jar's breadth, and no stem goes down into it. The two red heads on the rim and the bud lying across them close the jar's mouth, and the leaves stay up inside the mass, mostly to the left. So the picture never explains how these flowers stand. They read less as a bunch drawn up out of water than as a heap set down on the jar, the way fruit is piled on a dish, every kind laid out at once and none held back. That is the picture's claim about flowers. It shows neither a plant nor an arrangement but a quantity, plenty offered whole, with the jar there only to hold it up to the eye.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "theodore-rousseau-the-forest-in-winter-at-sunset": {
 about: "Rousseau spent over two decades on these Fontainebleau oaks — begun in 1846, released only in 1867 at a friend's urging. Bare, massive, lit by a winter sunset the wood seems to absorb rather than reflect.",
@@ -4047,10 +4124,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus · Fable" },
 
 "pierre-auguste-renoir-danseuse": {
-about: "A girl in tulle standing against nothing but studio grey, 1874 — shown at the first Impressionist exhibition, where critics who dismissed the rest as unfinished sketches still made an exception and called her graceful.",
-deep: "The body inside the costume is a child's — narrow shoulders, flat chest, legs the tights make weightless — and the eyes meet yours wide and wary, without a performer's brightness. Watch the left hand: fingers half-curled around a wisp of pale fabric at the waist, not a dancer's pose but the fidget of a girl waiting. The model was almost certainly Henriette Henriot, an actress he painted again and again. The tutu is dragged on in dry feathered strokes until its edge stops being cloth and becomes air; the drawing is carried by four small darks — throat ribbon, sash, bracelet, pupils. After all that dissolving, only two things land: the face, and two pink slippers on the pale floor.",
-deepBy: "Sonnet 4.6",
-by: "Opus · Fable" },
+
+ "about": "A girl in tulle standing against nothing but a soft blue-green, 1874 — shown at the first Impressionist exhibition, where critics who dismissed the rest as unfinished sketches still made an exception and called her graceful.",
+
+ "deep": "The picture is built on a twist. Her head turns three-quarter to our left, while far below her left foot turns fully out to our right in a trained placement, and the tutu flares furthest on that same side. The dance has set the body in position; the head has turned the other way, and the eyes look out at us. Nothing around her settles the pull: the even blue-green gives her no place to face, and the two directions are held by the figure alone. The face stays calm across it, as if the training had reached her feet and not yet her head.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus · Fable"
+
+},
 
 "claude-monet-les-coquelicots": {
 about: "A summer walk at Argenteuil, 1873 — a woman with a parasol, a child drowned in poppies, and the same pair tiny by the treeline. Monet showed it in the 1874 exhibition that gave the Impressionists their mocking name.",
@@ -4154,10 +4237,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus · Fable" },
 
 "pierre-auguste-renoir-snow-covered-landscape": {
-about: "A field of half-melted snow under bare trees, 1875 — by a painter who called snow \"Mother Nature's leprosy\" and, on his own account, painted only this one winter landscape in his life.",
-deep: "He wanted nothing to do with the subject, and the reluctance produced a field that refuses to behave like snow. Look at the ground: violet-grey, cold blue in the hollows where the shadow borrows straight from the sky, ochre and dun where the thaw lets earth back through — barely a stroke of actual white. It is laid on in short half-dragged touches that never knit, so the surface flickers instead of settling. There is no path, no figure, nothing to lean on: dark trunks brace the left edge, a long lean of frosted branches drags the eye back toward house-fronts so faint the cold air has eaten their edges.",
-deepBy: "Sonnet 4.6",
-by: "Opus · Fable" },
+
+ "about": "A field of half-melted snow under bare trees, about 1875 — by a painter who told Vollard that snow was a blight on the face of nature. His only winter landscape, he said, was a large skating scene in the Bois de Boulogne, plus two or three small studies; this is one of them.",
+
+ "deep": "The picture is lit from the far side. The near field lies in blue-grey, and the brightest snow is a strip in the middle distance at the right, with a band of yellow-olive ground just above it, under the houses; the light is somewhere we are not. Between the dark mass on the left and that lit strip a single thin sapling stands in the open field, the only upright with nothing around it, and it marks the crossing from shade to light. Renoir disliked snow, and the painting keeps its distance from it as well: we stand in the cold part of the field and look across at a brighter one.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus · Fable"
+
+},
 
 "pierre-auguste-renoir-alphonsine-fournaise": {
 about: "Alphonsine Fournaise, painted in 1879 on the terrace of her family's boating restaurant on the island at Chatou - the daughter of the house, not a client, with the Seine behind her and her hand hanging over the rail.",
