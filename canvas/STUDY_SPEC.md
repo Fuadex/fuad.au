@@ -2542,8 +2542,8 @@ reader already knew the brief; the 09-26 audit was the first cold read the mv6 b
     companion (named, with museum and interval), the visible thematic rhyme and the stated reversal remain REQUIRED,
     but their ORDER and SHAPE are free: the reversal may come first or inside the description; the museum and
     interval may sit anywhere or in a short clause of their own; a paragraph may be two sentences or seven. The band
-    loosens to **70–130 words**, and a batch should SPREAD across it (gate-wave reports the spread). Banned as batch
+    loosens to **70–130 words**, and a batch should SPREAD across it (canvas/rule11-check.js <workshop> reports the spread, openers, closers and pet verbs). Banned as batch
     defaults: imperative openers ("Start at", "Find", "Follow", "Look at", "Measure"), the semicolon-pair close
     ("there…; here…", "X does A; Y does B") in more than one paragraph in five, and the pet verbs spend / pay / hand /
     ration. Each beside agent reads the batch's finished paragraphs before writing its own and makes its shape differ.
-    The existing 37 rule-10 besides (wave 5, cfe…) stay; this binds new waves.
+    The 37 rule-10 besides of wave 5 (0cb0f4b) stay as sealed; this binds new waves.
