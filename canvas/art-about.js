@@ -859,9 +859,14 @@ by: "Opus 4.8" },
 },
 
 "odilon-redon-madame-arthur-fontaine-marie-escudier-born-1865": {
-about: "Marie Escudier, wife of civil servant Arthur Fontaine, in profile and absorbed in something white in her lap. Odilon Redon, 1901 — a solid, deep-yellow figure who dissolves into a haze of imagined violet blossom.",
-deep: "The one firm thing here is a dress. Redon works its saturated yellow to real density, packed and burnished until it reads as heavy silk, while everything behind dissolves into loosely dabbed blossom with the paper showing through. Figure and setting share no crisp edge, so she seems to condense out of the atmosphere rather than pose in front of it. The face, strict profile, turned fully from you, is barely modelled with the flat of the stick — the most public part of a portrait made its most private. This is the Symbolist move: the flowers are not where she is but what she is like. A visionary who spent decades in black, late-arrived at colour, painting a temperament, not a likeness.",
-by: "Opus 4.8" },
+
+ "about": "Marie Escudier, wife of civil servant Arthur Fontaine, in profile and absorbed in something white held at her chest. Odilon Redon, 1901 — a solid, deep-yellow figure who dissolves into a haze of imagined violet blossom.",
+
+ "deep": "The one firm thing here is a dress. Redon works its saturated yellow to real density, packed and burnished until it reads as heavy silk, while everything behind dissolves into loosely dabbed blossom with the paper showing through. Figure and setting share no crisp edge, so she seems to condense out of the atmosphere rather than pose in front of it. The face, strict profile, turned fully from you, is barely modelled with the flat of the stick — the most public part of a portrait made its most private. This is the Symbolist move: the flowers are not where she is but what she is like. A visionary who spent decades in black, late-arrived at colour, painting a temperament, not a likeness.",
+
+ "by": "Opus 4.8"
+
+},
 
 "paul-signac-notre-dame-de-la-garde-la-bonne-mere": {
 about: "Paul Signac's 1905 view up the Old Port of Marseille toward Notre-Dame-de-la-Garde, the hilltop church locals call La Bonne-Mère. Built from square touches of unmixed colour, the whole harbour reads as a mosaic before it resolves into a scene.",
@@ -1228,9 +1233,14 @@ deep: "The body is a problem to be solved, not a beauty to be displayed. A woman
 by: "Opus 4.8" },
 
 "edgar-degas-dancer-with-a-fan": {
-about: "Degas's Dancer with a Fan, c.1890, pastel and charcoal — the doubled lines edging the fan conjure its fluttering motion, and the shadowy figure at right may be a dance instructor modeling the pose.",
-deep: "Fatigue is what the picture is really about — the fatigue a trained body is built to hide, exposed here because Degas refuses to watch it from the front. He positions himself above and to the side, a box-seat angle that tips the floor upward and presses the dancer flat against the backdrop, nowhere to project outward, nowhere to perform. Her back stays turned the whole time; no face, no invitation. The fan she holds is a prop of exhaustion, not display. He renders the body in bare tan paper, leaving the ground itself to stand in for flesh and cloth, and draws every contour two or three times over — not to correct but to keep the edge moving, still arriving rather than fixed. The result is a figure vibrating with contained life at the exact moment it has stopped trying to look alive.",
-by: "Opus 4.8" },
+
+ "about": "Degas's Dancer with a Fan, c.1890, pastel and charcoal — the doubled lines edging the fan conjure its fluttering motion, and the shadowy figure at right may be a dance instructor modeling the pose.",
+
+ "deep": "Fatigue is what the picture is really about — the fatigue a trained body is built to hide, exposed here because Degas refuses to watch it from the front. He positions himself above and to the side, a box-seat angle that tips the floor upward and presses the dancer flat against the backdrop, nowhere to project outward, nowhere to perform. She stays in profile the whole time, her eyes on nothing we can see; no invitation. The fan she holds is a prop of exhaustion, not display. He renders the body in bare tan paper, leaving the ground itself to stand in for flesh and cloth, and draws every contour two or three times over — not to correct but to keep the edge moving, still arriving rather than fixed. The result is a figure vibrating with contained life at the exact moment it has stopped trying to look alive.",
+
+ "by": "Opus 4.8"
+
+},
 
 "paul-cezanne-arlequin": {
 about: "Cézanne's Arlequin — the red-diamond commedia figure was posed by the painter's own son Paul in a Harlequin costume, the largest of three isolated Harlequins Cézanne made around 1888-90.",
@@ -1476,9 +1486,14 @@ about: "A CT scan revealed the mounted rider in Verreaux's 1867 taxidermy dioram
 by: "Opus 4.8" },
 
 "paul-cezanne-rochers-a-fontainebleau": {
-about: "Cézanne painted these Fontainebleau boulders around 1893 with thin, watercolor-like oil that flattens depth into a faceted surface, dissolving the forest rocks into shimmering planes of green, blue and purple. Louisine Havemeyer bought it, and it entered the Met with her 1929 bequest.",
-deep: "Depth is what Cézanne refuses you. He picks the most closed-off corner of the forest — a boulder-heap with no sky, no path — and presses it flat so near rock and far leaf sit at the same pressure. The real subject is the problem the motif poses to sight: mass that will not sort into clean near and far. His instrument is colour temperature; the central boulder is warm ochre on its crown, cool violet on its flank, and that shift does all the work of modelled shadow. Contours are left open so an edge belongs to two forms at once, planes bleeding into neighbours, depth collapsing to surface. Bare canvas shows through in places. The picture is less a view of rocks than a study of how the eye assembles solidity from patches of colour.",
-by: "Opus 4.8" },
+
+ "about": "Cézanne painted these Fontainebleau boulders around 1893 with thin, watercolor-like oil that flattens depth into a faceted surface, dissolving the forest rocks into shimmering planes of green, blue and purple. Louisine Havemeyer bought it, and it entered the Met with her 1929 bequest.",
+
+ "deep": "Depth is what Cézanne refuses you. He picks the most closed-off corner of the forest — a boulder-heap with only scraps of sky, no path — and presses it flat so near rock and far leaf sit at the same pressure. The real subject is the problem the motif poses to sight: mass that will not sort into clean near and far. His instrument is colour temperature; the central boulder is warm ochre on its crown, cool violet on its flank, and that shift does all the work of modelled shadow. Contours are left open so an edge belongs to two forms at once, planes bleeding into neighbours, depth collapsing to surface. Bare canvas shows through in places. The picture is less a view of rocks than a study of how the eye assembles solidity from patches of colour.",
+
+ "by": "Opus 4.8"
+
+},
 
 "claude-monet-chrysanthemums": {
 about: "One of some twenty floral still lifes Monet made between 1878 and 1883 to bring in reliable income, this vase of chrysanthemums, dated 1882, hung beside his Bouquet of Sunflowers at Durand-Ruel in 1883 and with the avant-garde group Les XX in Brussels in 1886.",
@@ -1759,9 +1774,14 @@ about: "The young painter is Morisot's niece and devoted pupil Paule Gobillard, 
 by: "Opus 4.8" },
 
 "au-bal": {
-about: "Shown at the 1876 Impressionist exhibition that a Figaro critic mocked as \"five or six alienated persons, one of them a woman,\" Morisot's 1875 study of a young woman raising a fan answered that jibe with silvery, ethereal refinement.",
-deep: "What the picture is about is not the ball but the pause inside it. Morisot crops so tight that there is no room, no floor, no other guests — only a woman who has momentarily stopped performing and turned inward. The downcast gaze, the slightly parted lips, the fan held up without being used: these are the signs of a public person in a private moment. Morisot enacts that through her paint. Everything except the face is left as suggestion: the gown assembled from loose parallel drags of blue-grey and lilac, the glove a single pale sweep, the background collapsing into unblended dabs of foliage and red. The one place she resolves anything is the small, quietly self-absorbed head at the centre. Finish, the picture insists, belongs to the self — not to what surrounds it.",
-by: "Opus 4.8" },
+
+ "about": "Shown at the 1876 Impressionist exhibition that a Figaro critic mocked as \"five or six alienated persons, one of them a woman,\" Morisot's 1875 study of a young woman raising a fan answered that jibe with silvery, ethereal refinement.",
+
+ "deep": "What the picture is about is not the ball but the pause inside it. Morisot crops so tight that there is no room, no floor, no other guests — only a woman who has momentarily stopped performing and turned inward. The downcast gaze, the closed lips, the fan held up without being used: these are the signs of a public person in a private moment. Morisot enacts that through her paint. Everything except the face is left as suggestion: the gown assembled from loose parallel drags of blue-grey and lilac, the glove a single pale sweep, the background collapsing into unblended dabs of foliage and red. The one place she resolves anything is the small, quietly self-absorbed head at the centre. Finish, the picture insists, belongs to the self — not to what surrounds it.",
+
+ "by": "Opus 4.8"
+
+},
 
 
 "portrait-de-mademoiselle-victorine-de-bellio": {
@@ -4895,7 +4915,7 @@ by: "Opus 4.8" },
 },
 "paul-serusier-farmhouse-at-le-pouldu": {
  "about": "Painting beside Gauguin at Le Pouldu in 1890—two years on from the Pont-Aven lesson that made him paint The Talisman—Sérusier presses a Breton farmyard into interlocking planes of hot ochre and cool blue, pattern standing in for depth.",
- "deep": "A whole farmyard becomes a screen of interlocking colour zones, and the argument is visible from the first glance: depth is refused, flatness is the truth. The enormous ochre wall presses against the canvas surface rather than receding into it, and a walking Breton woman — rendered as a small blue silhouette, type rather than person — anchors the left edge while rhyming across the hot field with the cool blue recess set into the wall. The tilted path draws the eye around in a loop: stones to woman to doorway to haystack and back, a circuit that never settles. Sérusier makes pattern do what illusion once did.",
+ "deep": "A whole farmyard becomes a screen of interlocking colour zones, and the argument is visible from the first glance: depth is refused, flatness is the truth. The enormous ochre roof presses against the canvas surface rather than receding into it, and a walking Breton woman — rendered as a small blue silhouette, type rather than person — anchors the left edge while rhyming across the hot field with the cool blue recess set into its dormer. The tilted path draws the eye around in a loop: stones to woman to doorway to haystack and back, a circuit that never settles. Sérusier makes pattern do what illusion once did.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
