@@ -3131,12 +3131,6 @@
 "#4c484a",
 "#717673"
 ],
-"leonardo-da-vinci-st-john-the-baptist": [
-"#1d120d",
-"#29190f",
-"#1b100b",
-"#865d2f"
-],
 "henri-matisse-porte-fenetre-a-collioure": [
 "#849593",
 "#222125",
@@ -16990,5 +16984,11 @@
 "#727c7e",
 "#838b8a",
 "#5b5f5c"
+],
+"leonardo-da-vinci-st-john-the-baptist": [
+"#101016",
+"#1e1d1f",
+"#89715f",
+"#0d0f16"
 ]
 }
