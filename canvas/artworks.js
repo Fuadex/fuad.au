@@ -1250,7 +1250,8 @@ window.CANVAS_ARTWORKS = [
     seenAt: "tokyo-met", seenConfidence: "sure", loved: true },
   { id: "camille-pissarro-chestnut-trees-at-osny", title: "Chestnut Trees at Osny", artist: "Camille Pissarro", artistId: "pissarro", qid: "Q21501712", qidTrusted: true, year: 1873,
     seenAt: "orsay", seenConfidence: "sure", loved: true },
-  { id: "meindert-hobbema-the-avenue-at-middelharnis", title: "The Avenue at Middelharnis", artist: "Meindert Hobbema", artistId: "meindert-hobbema", qid: "Q119917966", qidTrusted: true,
+  // NG830 (Q9210889). Was keyed to Q119917966, the Government Art Collection's later copy (GAC 17949), whose photo was the plate.
+  { id: "meindert-hobbema-the-avenue-at-middelharnis", title: "The Avenue at Middelharnis", artist: "Meindert Hobbema", artistId: "meindert-hobbema", qid: "Q9210889", qidTrusted: true, year: 1689,
     seenAt: "national-gallery-london", seenConfidence: "sure", loved: true },
   // Tate retitled N05504 "The Fall of Anarchy (?)" and dates it c. 1833–4 (Sam Smiles, Tate Papers 25, 2016;
   // Tate label Jan 2025); formerly "Death on a Pale Horse", c. 1825–30. The slug keeps the old title on purpose.
