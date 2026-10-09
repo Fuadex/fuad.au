@@ -441,9 +441,14 @@ deep: "Dress three sisters identically, seat them at one height, and what tells 
 by: "Opus 4.8" },
 
 "julian-fa-at-powrot-z-polowania-na-niedzwiedzia": {
-about: "A dozen village men carrying a dead bear home through the snow, 1892: two metres of studio canvas built from a Radziwiłł hunt at Nieśwież that, Fałat said, sent him back to Warsaw a different artist.",
-deep: "The kill is here; nobody who fired it is. Count the guns: one barrel, stowed on a back. Fałat takes a magnate's trophy commission and spends its scale and finish on the village that beat, hauled and carried. Look for the one true crimson — a thumbnail of red where the bear's jaw comes down on a bearer's shoulder, the only paint allowed to look wet. Animal head and man's head sit at the same height, both mouths open, and he turns the man's face away. Then the right half gives it all up: untouched snow, no churned track back to the treeline. The wood has already closed over it.",
-by: "Opus 4.8" },
+
+ "about": "A dozen village men carrying a dead bear home through the snow, 1892: two metres of studio canvas built from a Radziwiłł hunt at Nieśwież that, Fałat said, sent him back to Warsaw a different artist.",
+
+ "deep": "The kill is here; the shot is not. Count the guns: four barrels, slung or shouldered, none aimed. Fałat takes a magnate's trophy commission and spends its scale and finish on the village that beat, hauled and carried. Look for the one true crimson — a thumbnail of red where the bear's jaw comes down on a bearer's shoulder, the only paint allowed to look wet. Animal head and man's head sit at the same height, both mouths open, and he turns the man's face away. Then the right half gives it all up: untouched snow, no churned track back to the treeline. The wood has already closed over it.",
+
+ "by": "Opus 4.8"
+
+},
 
 "lovis-corinth-ecce-homo": {
 about: "Corinth's last history painting, 1925: three half-length figures jammed edge to edge, Christ in a slab of scarlet with his wrists lashed — painted over Easter in four days, his own pupil posing as Christ.",
@@ -496,9 +501,14 @@ by: "Opus 4.8" },
 },
 
 "wincenty-kasprzycki-wystawa-sztuk-pieknych-w-warszawie-w-182": {
-about: "Warsaw's 1828 art show, crammed into a university mineralogy cabinet for eight weeks — and Kasprzycki painted it so fast that the canvas went up in the very exhibition it records, the city's painters among the visitors.",
-deep: "Nobody in the room is just standing. Every posture is a variant of looking: a man in a black tailcoat folded almost double at a landscape hung near knee height, top hat clamped at his hip, his free hand flung out for balance. Hanging pictures that low forces a grown man into an undignified shape and he does it anyway. Kasprzycki grades postures the way another painter grades faces, and he withholds eye contact almost completely — until one man in the window chairs, sprawled with his back to the art, whose gaze comes straight out at you. Three years later the university was shut and its collections carried away.",
-by: "Opus 4.8" },
+
+ "about": "Warsaw's 1828 art show, crammed into a university mineralogy cabinet for eight weeks — and Kasprzycki painted it so fast that the canvas went up in the very exhibition it records, the city's painters among the visitors.",
+
+ "deep": "Nobody in the room is just standing. Every posture is a variant of looking: a man in a black tailcoat folded almost double at a landscape hung near knee height, top hat clamped at his hip, his free hand flung out for balance. Hanging pictures that low forces a grown man into an undignified shape and he does it anyway. Kasprzycki grades postures the way another painter grades faces, and he rations eye contact by wall: the crowd at the pictures withholds it, the men by the windows, backs to the art, return it, the nearest sprawled in a green coat with his gaze coming straight out at you. Three years later the university was shut and its collections carried away.",
+
+ "by": "Opus 4.8"
+
+},
 
 "christian-rohlfs-white-beeches-in-fall": {
 about: "Rohlfs was past fifty and thirty years into a career as a landscape painter when Nolde's friendship turned him Expressionist. This 1910 wood carries the wrong tree in English: his German title says birches.",
@@ -684,9 +694,9 @@ refs: {"deep":[{"id":"impression-sunrise","text":"Impression, Sunrise"}]} },
 
 "walk-near-argenteuil": {
 
- "about": "Monet, 1875: Camille and Jean on a path through poppies and high summer grass at Argenteuil — the small domestic Monet, the family inside the landscape.",
+ "about": "Monet, 1875: a man, a woman and a child on a path through poppies and high summer grass at Argenteuil — the small domestic Monet, the family inside the landscape.",
 
- "deep": "The figures barely have faces; the poppies get more paint than the people. That inversion is the quiet radicalism of the Argenteuil years — the family walk matters as a colour event (red spots against green, dark green parasols behind pale hats), not as a portrait. It pairs with Woman with a Parasol, painted the same year: the same wife, the same son, the same wind — one monumental and seen from below, this one small and level, as if they were walking toward you."
+ "deep": "The figures barely have faces; the poppies get more paint than the people. That inversion is the quiet radicalism of the Argenteuil years — the family walk matters as a colour event (red spots against green, dark green parasols behind pale hats), not as a portrait. It pairs with Woman with a Parasol, painted the same year: parasols, a child, the same wind — one monumental and seen from below, this one small and level, as if they were walking toward you."
 
 },
 
@@ -995,10 +1005,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "storks": {
-about: "Chełmoński's Storks, 1900 — a ploughman and his son break from the field to watch storks pass overhead. A monographer called it a hallowed symbol of Polishness; the returning stork augured spring, fertility and good fortune.",
-deep: "What the men have set down tells you who they are: a black hat and an ochre fiddle in the ploughman's lap, bare feet stretched into the grass. The composition is built to force you upward — low horizon, two heads thrown back, the vast sky where a loose file of storks drifts. Each bird is almost nothing: a stroke of white, a dark dash; the diagonal spacing gives the flight real depth. Behind the figures, russet oxen stand yoked to the plough on dark turned earth, explaining the pause without competing with it. Painted while Poland had no political map, the land and the returning bird carried the national feeling that a flag could not.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Chełmoński's Storks, 1900 — a ploughman and his son break from the field to watch storks pass overhead. A monographer called it a hallowed symbol of Polishness; the returning stork augured spring, fertility and good fortune.",
+
+ "deep": "What the ploughman has with him tells you who they are: a double clay pot in his lap, a wooden spoon stopped in his hand, a black hat on the grass, bare feet stretched out. The composition is built to force you upward — low horizon, two heads thrown back, the vast sky where a loose file of storks drifts. Each bird is almost nothing: a stroke of white, a dark dash; the diagonal spacing gives the flight real depth. Behind the figures, russet oxen stand yoked to the plough on dark turned earth, explaining the pause without competing with it. Painted while Poland had no political map, the land and the returning bird carried the national feeling that a flag could not.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "ginevra-de-benci": {
 about: "Leonardo's Ginevra de' Benci, c. 1476: a pale Florentine wreathed in juniper — ginepro, a pun on her name. The only Leonardo on public view in the Americas, and the panel as it survives is missing its lower third.",
@@ -1077,10 +1093,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "edvard-munch-night-in-saint-cloud": {
-about: "Munch's Night in Saint-Cloud, 1890 — a shadowed room, a cross of moonlight on the floor. Painted in the Paris suburb the year his father died; the seated figure, modeled on poet Emanuel Goldstein, reads as Munch's own grief.",
-deep: "The whole room is one colour: a midnight indigo that swallows the furniture and thins only where the window opens. Those panes glow a colder green-blue, scattered with warm pinpricks — the far bank's lamps reduced to sparks, a city going on without the mourner inside. Above the window hangs a lamp, unlit; all the illumination falls from the moon instead, landing on the floorboards as a pale parallelogram that the crossbars divide into a cross. Grief and geometry meet there: the one bright event in the room is the most loaded. The paint itself is thin, scraped until the weave shows through in the darkest passages — the surface giving way under the weight of it.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Munch's Night in Saint-Cloud, 1890 — a shadowed room, a cross of moonlight on the floor. Painted in the Paris suburb the year his father died; the seated figure, modeled on poet Emanuel Goldstein, reads as Munch's own grief.",
+
+ "deep": "The whole room is one colour: a midnight indigo that swallows the furniture and thins only where the window opens. Those panes glow a colder green-blue, scattered with warm pinpricks — the far bank's lamps reduced to sparks, a city going on without the mourner inside. Inside the window hangs a lamp, unlit; all the illumination falls from the moon instead, landing on the floorboards as a pale parallelogram that the crossbars divide into a cross. Grief and geometry meet there: the one bright event in the room is the most loaded. The paint itself is thin, scraped until the weave shows through in the darkest passages — the surface giving way under the weight of it.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 
 "le-dejeuner-sur-l-herbe": {
@@ -1533,10 +1555,16 @@ deep: "Before the curtain rises there is this: a girl tugging her shoulder strap
 by: "Opus 4.8" },
 
 "lovis-corinth-blumen-und-tochter-wilhelmine": {
-about: "Corinth's eleven-year-old daughter Wilhelmine stands beside a heaped blaze of amaryllis, arums and lilacs in this 1920 canvas — shy, still, watching the flowers rather than us, while the paint around her seethes.",
-deep: "The bouquet is not admired; it is attacked. Violets, whites and greens are dragged wet into wet, individual blooms dissolving at close range into a storm of loaded strokes. Then look at the girl beside it: she takes almost nothing — a dark eye, the line of the nose, a few decisive passes — yet she is completely alive. Corinth makes the perishable flowers and the living face from the same slashing brush, the same restless matter. A child at the start of her life, watching the thing she is being quietly measured against. No skull on a table, no written moral — just a father’s own daughter placed where the flowers must eventually fail.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Corinth's eleven-year-old daughter Wilhelmine stands beside a heaped blaze of amaryllis, arums and lilacs in this 1920 canvas — shy, still, head bowed and eyes lowered, while the paint around her seethes.",
+
+ "deep": "The bouquet is not admired; it is attacked. Violets, whites and greens are dragged wet into wet, individual blooms dissolving at close range into a storm of loaded strokes. Then look at the girl beside it: she takes almost nothing — a dark eye, the line of the nose, a few decisive passes — yet she is completely alive. Corinth makes the perishable flowers and the living face from the same slashing brush, the same restless matter. A child at the start of her life, eyes lowered beside the thing she is being quietly measured against. No skull on a table, no written moral — just a father’s own daughter placed where the flowers must eventually fail.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "gustave-courbet-the-source-of-the-loue": {
 about: "Courbet trowelled this 1864 grotto on with a palette knife, building the cliff's craggy surface in actual pigment — one of several versions he made of the Loue's cavernous source, the river of his native Ornans.",
@@ -1836,10 +1864,16 @@ about: "Julie Manet's own diary records that Morisot began this 1891 painting at
 by: "Opus 4.8" },
 
 "nympheas-effect-in-the-evening": {
-about: "Evening on the pond Monet dug at Giverny, 1897 — he had to petition the prefect to divert a river into it, neighbours objected that the plants would poison their cattle. Among the first of some 250 waterlily canvases.",
-deep: "The only thing telling you this is water and not a wall of colour is the lily pads: wide ovals at the bottom, thinning to edge-on crescents as they recede. Nothing else gives depth — no bank, no horizon, nothing to climb toward — so the eye settles onto the surface and reads reflection as substance. The two open blossoms are the only thick paint, cream and pink stroked out from a hot yellow centre, catching real light while the violet-grey water around them stays flat and cool. A few flicks of pink-orange at the lower right are all that make the hour evening: a sun you never see, inferred from the temperature of the pond.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Evening on the pond Monet dug at Giverny, 1897 — he had to petition the prefect to divert a river into it, neighbours objected that the plants would poison their cattle. Among the first of some 250 waterlily canvases.",
+
+ "deep": "The only thing telling you this is water and not a wall of colour is the lily pads: broad ovals drifting toward the top right, each kept full rather than thinned by distance. Nothing else gives depth — no bank, no horizon, nothing to climb toward — so the eye settles onto the surface and reads reflection as substance. The two open blossoms are the only thick paint, cream and pink stroked out from a hot yellow centre, catching real light while the violet-grey water around them stays flat and cool. A few flicks of pink-orange at the lower right are all that make the hour evening: a sun you never see, inferred from the temperature of the pond.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "the-pont-neuf-and-the-samaritaine-at-night": {
 
@@ -2010,9 +2044,14 @@ deep: "Nobody swims. They came by the new railway dressed as if for a boulevard 
 by: "Opus 4.8" },
 
 "banks-of-the-marne": {
-about: "Dealer Ambroise Vollard recalled this painting hanging in Cézanne's landmark 1895 Paris solo exhibition — his first — and it became the first Cézanne to enter the Art Gallery of New South Wales when acquired in 2008.",
-deep: "Windows are only darker rectangles, roofs are triangles, the big tree a mass of clustered patches that never resolves into leaves. Then the still water restates all of it in longer, thinner verticals — same colours, dragged and broken. That doubling is the argument, not an effect: the architecture of marks is asked to carry the same weight as the architecture of masonry, and it does. Notice how much is left open — the sky dragged so thin that bare ground shows through, the tree's crown biting into it with an unfinished edge, the figure by the boats barely more than a vertical accent.",
-by: "Opus 4.8" },
+
+ "about": "Dealer Ambroise Vollard recalled this painting hanging in Cézanne's landmark 1895 Paris solo exhibition — his first — and it became the first Cézanne to enter the Art Gallery of New South Wales when acquired in 2008.",
+
+ "deep": "Windows are only darker rectangles, roofs are triangles, the big tree a mass of clustered patches that never resolves into leaves. Then the still water restates it in long, thin horizontal bands — same colours, dragged and broken, no house legible. That restatement is the argument, not an effect: the architecture of marks is asked to carry the same weight as the architecture of masonry, and it does. Notice how much is left open — the sky dragged so thin that bare ground shows through, the tree's crown biting into it with an unfinished edge, the two figures in the boats barely more than dark accents.",
+
+ "by": "Opus 4.8"
+
+},
 
 "head-of-a-peasant": {
 about: "Van Gogh painted around forty peasant heads in Nuenen during 1884–85, each one a direct preparatory study for The Potato Eaters — this 1884 portrait is among the raw material from which his first major work was built.",
@@ -2564,10 +2603,16 @@ about: "The sitter lived for decades in a ménage à trois with the Duke of Devo
 by: "Opus 4.8" },
 
 "banks-of-a-canal-near-naples": {
-about: "A drainage canal on a flat plain near Naples, 1872, painted with no one in it — Caillebotte in his early twenties, running the same steep perspective down a farm ditch that he would later run down Haussmann's boulevards.",
-deep: "Two banks narrow toward a vanishing point set high in the haze, and that convergence does all the work of depth — no framing tree, no foreground prop, nothing to lean on. The water is grey-lilac rather than blue, laid smooth and flat so it carries the eye inward instead of sparkling; the one lit thing is a blocky stone sluice pier at centre, and it is the fulcrum the recession balances on, the only mark that tells you where the light falls. Then the near towpath: raw brown earth, dry dabbing strokes, weeds flicked in. Far half calm and general, near half tactile and particular. No figure, no boat, no picturesque alibi.",
-deepBy: "Sonnet 4.6",
-by: "Fable 5" },
+
+ "about": "A drainage canal on a flat plain near Naples, 1872, painted with no one in it — Caillebotte in his early twenties, running the same steep perspective down a farm ditch that he would later run down Haussmann's boulevards.",
+
+ "deep": "Two banks bend and narrow toward a vanishing point set high in the haze, and that convergence does all the work of depth — no framing tree, no foreground prop, nothing to lean on. The water is grey-lilac rather than blue, laid smooth and flat so it carries the eye inward instead of sparkling; the one lit thing is a blocky stone sluice pier at centre, and it is the fulcrum the recession balances on, the only mark that tells you where the light falls. Then the near towpath: raw brown earth, dry dabbing strokes, weeds flicked in. Far half calm and general, near half tactile and particular. No figure, no boat, no picturesque alibi.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Fable 5"
+
+},
 
 "children-on-the-sand-dunes-grandcamp": {
 about: "Gonzalès was Manet's only formal pupil, yet like him she refused to show with the Impressionists; this 1877 Normandy coast scene of two children and a fish basket reveals her plein-air lightness on her own terms.",
@@ -2657,10 +2702,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "four-trees": {
-about: "Among Schiele's rare serene landscapes, this autumnal row of chestnut trees against a blazing sunset is read as an allegory of life's stages, one bare tree standing for decline; Schiele painted it in 1917.",
-deep: "The bare tree is placed second from the left, just off centre — that offset is the whole argument. Put it at the end and you have a sequence; put it here and the eye stops, counts outward, reads each tree as a stage in the same fall. Its branches are stripped to thin dark filaments, the nervous line-work of Schiele's figure studies breaking through into landscape. The other three carry their autumn foliage in stippled clusters of rust and maroon. At the horizon, dead centre, a small flat disc of red sits going out — no glow, no rays. Schiele died the following year, aged twenty-eight, and the empire with him.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Among Schiele's rare serene landscapes, this autumnal row of chestnut trees against a blazing sunset is read as an allegory of life's stages, one bare tree standing for decline; Schiele painted it in 1917.",
+
+ "deep": "The bare tree is placed second from the left, just off centre — that offset is the whole argument. Put it at the end and you have a sequence; put it here and the eye stops, counts outward, reads each tree as a stage in the same fall. Its branches are stripped to thin dark filaments, the nervous line-work of Schiele's figure studies breaking through into landscape. The other three carry their autumn foliage in stippled clusters of rust and maroon. Just above the far ridge, dead centre, a small flat disc of red sits going out — no glow, no rays. Schiele died the following year, aged twenty-eight, and the empire with him.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "souls-on-the-banks-of-the-acheron": {
 about: "Hermes stands luminous before a surging crowd of the newly dead awaiting passage across the Acheron; Hirémy-Hirschl fused academic finish with Symbolist despair in this 1898 canvas, a centrepiece of the Belvedere collection.",
@@ -2784,10 +2835,16 @@ about: "Painted in Paris and praised at the 1892 Salon, this horse-tram interior
 by: "Opus 4.8" },
 
 "the-rope-dancer": {
-about: "Toulouse-Lautrec drew this entirely from memory while confined to a psychiatric clinic in 1899 to prove his mind was sound, making it one of a circus series produced without a single live reference.",
-deep: "The arms do not go out. A circus poster would fling them wide; here they stay low and tucked, balance happening inwardly, in the set of the shoulders. That choice quiets the figure and makes the concentration feel real. Look at the cable: one stroke across the full width, with a slight sag beneath the feet — that droop tells you the wire is loaded; a perfectly straight line would kill the sense of weight. Around the still body, dense churning green describes no place, only atmosphere: memory rather than a ring. The figure leans forward mid-step, a controlled fall recovered. The drawing enacts the same thing — command of hand and recall, balance sustained by nerve.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Toulouse-Lautrec drew this entirely from memory while confined to a psychiatric clinic in 1899 to prove his mind was sound, making it one of a circus series produced without a single live reference.",
+
+ "deep": "The arms do not go out. A circus poster would fling them wide; here they stay low and tucked, balance happening inwardly, in the set of the shoulders. That choice quiets the figure and makes the concentration feel real. Look at the cable: one stroke across the full width, with a slight sag beneath the feet — that droop tells you the wire is loaded; a perfectly straight line would kill the sense of weight. Around the still body, dense churning green describes no place, only atmosphere: memory rather than a ring. The torso stays upright over a long stride, the step tested before it is trusted. The drawing enacts the same thing — command of hand and recall, balance sustained by nerve.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "simeon-in-the-temple": {
 about: "Found unfinished on Rembrandt's easel when he died in October 1669, this is his last known work, its background left incomplete, giving the aged Simeon cradling the Christ child an unresolved, haunting quality.",
@@ -3185,10 +3242,16 @@ about: "Gainsborough painted this ca. 1783 scene of fashionable London promenade
 by: "Opus 4.8" },
 
 "the-white-horse": {
-about: "A towing-horse standing on a flat barge, being ferried across the Stour because the towpath switches banks — 1819, Constable's first six-foot canvas. He gave that non-event the scale reserved for history painting.",
-deep: "It worked. The Academy elected him an Associate the year he showed this, after years of being passed over for painting Suffolk instead of Italy — the valley where his father ran the mills. The horse sits dead centre, the palest solid form in the lower half, so the eye lands on it before it registers that nothing is happening; beside it a bargeman leans on his pole, sketched in a few strokes, and that is the entire cast. Look at the difference in handling between water and sky: the river smoothed to glass to double the light, the cumulus above left broken and restless. The event is up there, not on the barge.",
-deepBy: "Sonnet 4.6",
-by: "Fable 5" },
+
+ "about": "A towing-horse standing on a flat barge, being ferried across the Stour because the towpath switches banks — 1819, Constable's first six-foot canvas. He gave that non-event the scale reserved for history painting.",
+
+ "deep": "It worked. The Academy elected him an Associate the year he showed this, after years of being passed over for painting Suffolk instead of Italy — the valley where his father ran the mills. The horse stands low at the left bank, the palest solid form in the lower half, so the eye lands on it before it registers that nothing is happening; around it four bargemen lean, crouch and push with poles, each sketched in a few strokes, and that is the entire cast. Look at the difference in handling between water and sky: the river smoothed to glass to double the light, the cumulus above left broken and restless. The event is up there, not on the barge.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Fable 5"
+
+},
 
 "don-pedro-duque-de-osuna": {
 about: "Goya's third portrait of Pedro Téllez-Girón, ninth Duke of Osuna, around 1798, and by far the least official — no sword, no sash, not even the Golden Fleece he was entitled to, just a face surfacing from near-black.",
@@ -3229,10 +3292,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "supper-at-emmaus": {
-about: "A basket of fruit tips over the table's edge into the viewer's space while a disciple's arm thrusts forward in extreme foreshortening — the physical shock of the moment Christ is recognised as risen, mid-meal. Caravaggio, 1601.",
-deep: "The innkeeper stands behind the table, arms folded, and he is the key the picture hides in plain sight. Closest to Christ, he sees nothing — face in shadow, unmoved, faintly puzzled at the fuss. Caravaggio uses him as the control case: recognition is not about proximity, it is given to some and withheld from others. Uncover the disciples and the room detonates around him. One has flung a forearm so hard toward you that Caravaggio shortens it to almost nothing — palm and fingers crossing the picture plane. A pilgrim's shell is pinned to that shoulder: a man defined by walking to holy places, stopped cold because the holy thing arrived at his table.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "A basket of fruit tips over the table's edge into the viewer's space while a disciple's arm thrusts forward in extreme foreshortening — the physical shock of the moment Christ is recognised as risen, mid-meal. Caravaggio, 1601.",
+
+ "deep": "The innkeeper stands behind the table, one arm crooked at his side, and he is the key the picture hides in plain sight. Closest to Christ, he sees nothing — face in shadow, unmoved, faintly puzzled at the fuss. Caravaggio uses him as the control case: recognition is not about proximity, it is given to some and withheld from others. Uncover the disciples and the room detonates around him. One has flung a forearm so hard toward you that Caravaggio shortens it to almost nothing — palm and fingers crossing the picture plane. A pilgrim's shell is pinned to that shoulder: a man defined by walking to holy places, stopped cold because the holy thing arrived at his table.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "belshazzar-s-feast": {
 about: "The Hebrew words appear in vertical columns rather than right to left — Rembrandt borrowed this from his neighbour Menasseh ben Israel, who argued it explained why no wise man at the feast could read them. c. 1636–38.",
@@ -3251,10 +3320,16 @@ about: "A travelling lecturer pumps air from a glass vessel containing a white c
 by: "Opus 4.8" },
 
 "the-fighting-temeraire": {
-about: "A Trafalgar veteran towed to the breakers' yard by a black steam-tug against a blazing sunset — Turner called it his 'darling', refused every offer to buy it, and left it to the nation at his death. 1839.",
-deep: "The argument is almost entirely paint. Turner keeps the Temeraire high and thinly scumbled, so light seems to pass through her rather than off her — a 98-gun warship made weightless, already half-dissolved into the sky. The tug he loads with dense, opaque pigment: small, dark, sitting low and firm, a blunt fire-breathing machine dragging the giant as if the past weighed nothing. The composition doubles the theme: the sun sets on the right, the sky worked up in clotted scarlet and gold, while on the far left a cool disc of moon hangs rising. Two clocks running in opposite directions — sail going down, steam coming up — the whole exchange rendered as colour, not argument.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "A Trafalgar veteran towed to the breakers' yard by a black steam-tug against a blazing sunset — Turner called it his 'darling', refused every offer to buy it, and left it to the nation at his death. 1839.",
+
+ "deep": "The argument is almost entirely paint. Turner keeps the Temeraire high and thinly scumbled, so light seems to pass through her rather than off her — a 98-gun warship made weightless, already half-dissolved into the sky. The tug he loads with dense, opaque pigment: small, dark, sitting low and firm, a blunt fire-breathing machine dragging the giant as if the past weighed nothing. The composition doubles the theme: the sun sets on the right, the sky worked up in clotted scarlet and gold, while on the far left a cool crescent of moon hangs rising. Two clocks running in opposite directions — sail going down, steam coming up — the whole exchange rendered as colour, not argument.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "boy-bitten-by-a-lizard": {
 about: "Caravaggio, c.1594: a boy mid-flinch as a lizard bites his finger — painting a single frozen instant of involuntary shock was almost unknown, and the live-model immediacy made him famous almost overnight.",
@@ -3946,10 +4021,16 @@ by: "Opus 4.8" },
 },
 
 "theodore-rousseau-the-forest-in-winter-at-sunset": {
-about: "Rousseau spent over two decades on these Fontainebleau oaks — begun in 1846, released only in 1867 at a friend's urging. Bare, massive, lit by a winter sunset the wood seems to absorb rather than reflect.",
-deep: "From across the room it reads as a wall of dark. Stand long enough and it opens. Two breaches carry the light: a smoky band of ochre sky at the top, and a hotter ember burning low behind the trunks to the right. Against the sky, the outermost twigs are scratched on with a dry brush, bristling; below, darks are layered brown on brown until the clearing floor feels like packed earth. Pale stones and a dull pool catch what thin light survives. Rousseau gave the oaks the gravity of portrait sitters and kept the humans — two small figures at lower right — barely legible, dissolved into the undergrowth. The people merely pass through.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Rousseau spent over two decades on these Fontainebleau oaks — begun in 1846 and still in his hands in 1867, the year he died. Bare, massive, lit by a winter sunset the wood seems to absorb rather than reflect.",
+
+ "deep": "From across the room it reads as a wall of dark. Stand long enough and it opens. Two breaches carry the light: a smoky band of ochre sky at the top, and a hotter ember burning low behind the trunks to the right. Against the sky, the outermost twigs are scratched on with a dry brush, bristling; below, darks are layered brown on brown until the clearing floor feels like packed earth. Pale stones and a dull pool catch what thin light survives. Rousseau gave the oaks the gravity of portrait sitters and kept the humans — two small figures at lower right — barely legible, dissolved into the undergrowth. The people merely pass through.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "elisabeth-louise-vigee-le-brun-self-portrait-in-a-straw-hat": {
 about: "Vigée Le Brun, 1782 — palette and brushes in hand, fashionable silk on her shoulders, direct gaze: a deliberate answer to Rubens's outdoor light, and a refusal to choose between court lady and working painter.",
@@ -4171,10 +4252,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus · Fable" },
 
 "vincent-van-gogh-korenveld-met-cipressen": {
-about: "A wheatfield under a churning sky, one near-black cypress holding the right edge, September 1889 — painted from inside the asylum at Saint-Rémy, and the motif he prized above every other subject he found there.",
-deep: "The frenzy is deliberate — a studio canvas worked up from an outdoor study, every curl placed. One restless hooked mark runs across sky, scrub and grain, so the whole surface beats to a single rhythm, then breaks against the one hard vertical. The cypress is spiralled: short curved strokes wound around the trunk make a rooted tree look slowly rotating. Above it, nearly half the canvas is cloud rolled into commas that turn like water going down a drain — he was working through the mistral, and the sky wears that wind. At the near edge, small red and white dabs among the stalks: poppies, easy to miss, the one tender thing under all that motion.",
-deepBy: "Sonnet 4.6",
-by: "Opus · Fable" },
+
+ "about": "A wheatfield under a churning sky, one deep green cypress holding the right edge, September 1889 — painted from inside the asylum at Saint-Rémy, and the motif he prized above every other subject he found there.",
+
+ "deep": "The frenzy is deliberate — a studio canvas worked up from an outdoor study, every curl placed. One restless hooked mark runs across sky, scrub and grain, so the whole surface beats to a single rhythm, then breaks against the one hard vertical. The cypress is spiralled: short curved strokes wound around the trunk make a rooted tree look slowly rotating. Above it, nearly half the canvas is cloud rolled into commas that turn like water going down a drain — he was working through the mistral, and the sky wears that wind. At the near edge, small red and white dabs among the stalks: poppies, easy to miss, the one tender thing under all that motion.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus · Fable"
+
+},
 
 "pierre-auguste-renoir-danseuse": {
 
@@ -4313,10 +4400,15 @@ deepBy: "Sonnet 4.6",
 by: "Opus · Fable" },
 
 "anders-zorn-the-painter-bruno-liljefors": {
+
  "about": "Anders Zorn, at the height of his international fame as a society portraitist, turned his brush on a fellow Swedish star in 1906: the wildlife painter Bruno Liljefors. Both had risen from modest beginnings to national prominence in the same generation.",
+
  "by": "Opus · Fable",
- "deep": "Liljefors spent his working life on animals that are hard to see: he studied camouflage patterns, kept live foxes and hares in an enclosure to paint from, and set a fox into snow in 1904 and a hare into winter in 1908. None of that explains Zorn's handling. It explains what the shortfall here comes to. Leave almost any portrait unfinished and you have a picture short of its sitter. Leave this one — coat and snow at one value, the outline never drawn — and the loss falls on the single subject the sitter gave his life to: a body that will not come away from its weather.",
+
+ "deep": "Liljefors spent his working life on animals that are hard to see: he studied camouflage patterns, kept live foxes and hares in an enclosure to paint from, and set a fox into snow in 1904 and a hare into winter in 1908. None of that explains Zorn's handling. It explains what the shortfall here comes to. Leave almost any portrait unfinished and you have a picture short of its sitter. Leave this one — coat and shaded snow at one value, the outline never drawn — and the loss falls on the single subject the sitter gave his life to: a body that will not come away from its weather.",
+
  "deepBy": "Opus 4.8"
+
 },
 
 "georges-lemmen-beach-at-heist": {
@@ -4806,8 +4898,8 @@ about: "Signac painted this unnamed woman in 1893, at the height of his campaign
 deep: "The parasol is the argument. Everything under it is answering an orange it cannot escape: the blues banked into her shadows, the coral scattered through her green sleeve, the pink and violet standing in for the colour of her cheek. Her profile has no line around it at all: the edge is simply where one population of marks stops and another starts. And nothing is mixed. The neutral grey under her jaw is orange and blue alternating, resolved in the eye rather than on the palette. It is a theory of vision put on a canvas, and it is also just a woman standing in coloured shade.",
 by: "Opus 4.8" },
 "joachim-patinir-the-flight-into-egypt": {
- "about": "An anonymous follower made this between 1550 and 1575, carrying on Joachim Patinir's world-landscape formula a generation past his death — a tall panel shrinking the fleeing Holy Family to a speck against crags dissolving into blue distance.",
- "deep": "Faith registers here as proportion. A handful of warm pigment carries the holy family, set exactly where an invented grey-cream spire and an open river valley cancel each other out — figures too small to hold a drama, sized instead to say that even a sacred crossing takes place inside a world with no interest in watching. Depth arrives through color alone: browns warm at the near edge, greens cooling as the ground recedes, then a milky blue where the furthest ridges give out into haze. Find Mary and the donkey and you find Joseph too, striding at her side with the anxiety of the journey in his gait. Wilderness at the left, farmed land and a walled town at the right — the terrain argues the theology, threat weighed against a promised arrival, rescue running through it as one thin quiet line.",
+ "about": "An anonymous follower made this between 1550 and 1575, carrying on Joachim Patinir's world-landscape formula a generation past his death — a tall panel setting the fleeing Holy Family small beneath crags, with the land dissolving into blue distance.",
+ "deep": "Faith registers here as proportion. A handful of warm pigment carries the holy family, set exactly where an invented grey-cream spire and an open river valley cancel each other out — figures kept small beneath the rock, sized to say that even a sacred crossing takes place inside a world with no interest in watching. Depth arrives through color alone: browns warm at the near edge, greens cooling as the ground recedes, then a milky blue where the furthest ridges give out into haze. Find Mary and the donkey and you find Joseph too, striding at her side with the anxiety of the journey in his gait. Wilderness at the left, farmed land and a walled town at the right — the terrain argues the theology, threat weighed against a promised arrival, rescue running through it as one thin quiet line.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
@@ -4849,7 +4941,7 @@ by: "Opus 4.8" },
 },
 "james-tissot-hide-and-seek": {
  "about": "Tissot shared his London house from about 1877 with Kathleen Newton, companion and constant model, seen reading here while her nieces and young daughter hide in the object-dense gloom; a dropped ball marks play abandoned mid-game.",
- "deep": "Childhood runs loose in a shrine to adult acquisition, and the canvas withholds it. Almost everything is pitched into a warm, cluttered darkness — carpet from Persia, animal pelts, blue-and-white china — so that any patch of illumination registers as incident: a small girl's white dress mid-crawl, a reading woman's pale face, the flare of a lamp, a glazed door to green air. Children hidden at different depths resolve only at a second or third pass, and that delay is the point — the viewer inherits the seeker's job, combing shadow for a shape that turns into a child. At the centre a woman sits absorbed in her paper, the fixed point all this scrambling circles and never touches. One red ball, left alone on bare boards, carries the story: a toy let fall the moment the hiding started.",
+ "deep": "Childhood runs loose in a shrine to adult acquisition, and the canvas withholds it. Almost everything is pitched into a warm, cluttered darkness — carpet from Persia, animal pelts, blue-and-white china — so that any patch of illumination registers as incident: a small girl's white dress mid-crawl, a reading woman's pale face, the flare of a lamp, a glazed door to green air. Children hidden at different depths resolve only at a second or third pass, and that delay is the point — the viewer inherits the seeker's job, combing shadow for a shape that turns into a child. At the centre a woman sits absorbed in her paper, the fixed point all this scrambling circles and never touches. One striped ball, left alone on the bare floor, carries the story: a toy let fall the moment the hiding started.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
@@ -5016,7 +5108,7 @@ by: "Opus 4.8" },
  "deepBy": "Sonnet 4.6"
 },
 "titian-ranuccio-farnese": {
- "about": "Barely twelve, and grandson to the sitting pope, the boy was made prior over a rich Maltese-order estate, wearing an adult office his still-round face cannot fill — a white Malta cross pinned above the heart.",
+ "about": "Barely twelve, and grandson to the sitting pope, the boy was made prior over a rich Maltese-order estate, wearing an adult office his still-round face cannot fill — a white Malta cross on his cloak sleeve at chest height.",
  "deep": "What Titian paints is the distance between a rank and the child made to wear it — every adult trapping loaded onto a twelve-year-old whose features keep giving him away. The freshly granted Malta badge sits sharp and flat against a soft brown atmosphere, an emblem standing for vows the sitter is decades from having earned. The rose satin is the canvas's showpiece: each fold pulled in one loaded stroke of wet pigment, a lit diagonal that carries the eye up to a face whose cheek still holds its baby fullness and whose look slides off before fixing on you. The office keeps its dignity; the young person carrying it is never disguised.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
@@ -5107,7 +5199,7 @@ by: "Opus 4.8" },
 },
 "lawrence-lady-mary-templetown-and-her-eldest-son": {
  "about": "Since 1783 the child's grandmother had designed tender mother-and-child groups for Wedgwood jasperware, and nineteen years on Lawrence paints the family's own emblem back into oil, cooling it until only coral-red beads burn at her throat.",
- "deep": "Two directions of looking carry the argument. The son meets you from the vertical middle; his mother's attention leaves the picture altogether, fixed on something it never shows. Their interlocked fingers, sitting where the diagonals cross, hold what the portrait is actually about. Absorption of this kind arrives on borrowed scaffolding: a sacred niche with the theology taken out and replanted among English trees, the heir given the upright position, his mother spread beneath as a wide pale field. Leaves already turning shut the group in overhead, and finish thins outward from polished heads to frank slabs of pigment, rationed by where attention refuses to settle.",
+ "deep": "Two lines of looking carry the argument, and both end at you. The son meets you from the vertical middle; his mother meets you more softly from higher up, head tipped to her shoulder, never once glancing down at him. Their interlocked fingers, sitting where the diagonals cross, hold what the portrait is actually about. Tenderness of this kind arrives on borrowed scaffolding: a sacred niche with the theology taken out and replanted among English trees, the heir given the upright position, his mother spread beneath as a wide pale field. Leaves already turning shut the group in overhead, and finish thins outward from polished heads to frank slabs of pigment, rationed by where attention settles.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
@@ -5377,13 +5469,13 @@ by: "Opus 4.8" },
 },
 "henri-fantin-latour-potted-pansies": {
  "about": "Fantin-Latour returned to this same two-pot pansy arrangement across roughly three decades, yet set the flowers up and painted from life each time rather than copying his earlier canvas — repetition without replication, signed and dated 1883.",
- "deep": "Brightness here is a budget, not a mood — spent on one resolved bloom and nowhere else, so the rest of the field rides on that single proof of finish. The lowest value in the picture crowns the arrangement: a near-black pansy at the apex, refusing prettiness, earning its gravity by darkness. Everything below — leaf-mass, shadow, pot-rim — stays dim so the small faces above can read as lit. Fantin had painted this two-pot motif before and would again, each time from life, never tracing an earlier canvas. Modesty held long enough becomes method.",
+ "deep": "Brightness here is a budget, not a mood — spent on three resolved yellow blooms and little else, so the rest of the field rides on that proof of finish. The lowest value in the picture crowns the arrangement: a near-black pansy at the apex, refusing prettiness, earning its gravity by darkness. Everything below — leaf-mass, shadow, pot-rim — stays dim so the small faces above can read as lit. Fantin had painted this two-pot motif before and would again, each time from life, never tracing an earlier canvas. Modesty held long enough becomes method.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
 "eugene-isabey-marine": {
  "about": "Catalogued under the plainest name a sea picture can carry, this small c. 1830 sheet by Eugène Isabey comes from the hand that taught Boudin and Jongkind to read the coast — the bridge into Impressionist marine painting.",
- "deep": "Isabey's gambit is above all tonal: what reads as smoke pouring off a stack is mixed to the very same slate the storm-mass carries behind it, so the boundary between vessel and weather stops existing. The hull holds — low, dark, pinned to the sea — but all above it surrenders to the sky, made of the same air it moves through. Steam power is not conquering this sea; the sea is digesting it. On the pier, a cluster of dark marks leans into the wind — enough to give the vast indifference of the sky something human to threaten, and that threat is what the picture is for.",
+ "deep": "Isabey's gambit is a split in handling: the storm is all scumbled tone, while the steamer is drawn, its funnel, masts and rigging in fine dark lines and its smoke only a short puff darker than the cloud behind. The hull holds — low, dark, pinned to the sea — and all above it keeps its edges against a sky that fills nearly the whole sheet. Steam power is not conquering this sea; it is holding its own inside it, small and exact. On the pier, a cluster of dark marks leans into the wind — enough to give the vast indifference of the sky something human to threaten, and that threat is what the picture is for.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
