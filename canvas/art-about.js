@@ -935,7 +935,7 @@ by: "Opus 4.8" },
 
 "water-lilies": {
 
- "about": "Monet's Giverny pond, 1917 — tilted up until water fills the frame, no sky and no far shore. A bruised violet runs edge to edge, and long vertical streaks of green and gold rain down it: the reflection of willow branches hanging into the water.",
+ "about": "Monet's Giverny pond, 1916–19 — tilted up until water fills the frame, no sky and no far shore. A bruised violet runs edge to edge, and long vertical streaks of green and gold rain down it: the reflection of willow branches hanging into the water.",
 
  "deep": "The picture is built on friction between two directions. The willow never appears as a tree; only its reflection does, falling straight down in green threads shot through with violet, each streak holding its separateness the whole way rather than blending into a wash. Across that downward fall the lily pads lie flat and horizontal, blunt marks, most of them dark, resting on the same water. What drops and what floats, the mirrored world against the real leaves on top. Monet gives you no footing except one green wedge of bank in the lower-left, so vision finds nothing to hold and drifts on the violet itself — a depth with no floor and no horizon. That drift is the point.",
 
@@ -1057,10 +1057,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "franz-marc-tierschicksale": {
-about: "Franz Marc's Tierschicksale (Fate of the Animals), 1913: a blue deer and creatures caught in splintering red shafts — a vision that eerily prefigured World War I, in which Marc himself died at Verdun three years later.",
-deep: "On the reverse Marc wrote \"Und Alles Sein ist flammend Leid\" — all being is flaming suffering — the caption this was always going to need. The red beams from the upper left are structure, not incident: force as a grain of the world, converging on the blue deer at the centre. That deer is the one clearly whole creature in the shatter, spine bent back, throat bared, Marc's most spiritual colour given its most anguished pose. Other animals dissolve below and left — legs, haunches, a sickly green. The right third is muddier by accident: a 1916 fire damaged that passage after Marc was killed at Verdun, and Klee restored it. The painting carries its own destruction.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Franz Marc's Tierschicksale (Fate of the Animals), 1913: a blue deer and creatures caught in splintering red shafts — a vision that eerily prefigured World War I, in which Marc himself died at Verdun three years later.",
+
+ "deep": "For this composition Marc wrote \"Und Alles Sein ist flammend Leid\" — all being is flaming suffering — the caption this was always going to need. The red beams from the upper left are structure, not incident: force as a grain of the world, converging on the blue deer at the centre. That deer is the one clearly whole creature in the shatter, spine bent back, throat bared, Marc's most spiritual colour given its most anguished pose. Other animals dissolve below and left — legs, haunches, a sickly green. The right third is muddier by accident: a 1916 fire damaged that passage after Marc was killed at Verdun, and Klee restored it. The painting carries its own destruction.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "edward-hopper-house-by-the-railroad": {
 
@@ -1419,10 +1425,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "walter-crane-neptune-s-horses": {
-about: "Crane's Neptune's Horses, 1892: breakers rearing into a herd of white steeds — a literal picturing of the English phrase \"white horses\" for surf, sparked by Atlantic waves he watched at Nantucket.",
-deep: "Follow any horse from its firm sculpted head downward and the anatomy gives out: legs blur into spray, hooves become foam, the churn beneath is indistinguishably water and galloping limbs. That dissolve is the hinge — Crane draws the tops hard and lets the bottoms go, so you are caught mid-metaphor, unable to settle on surf or cavalry. Neptune rises at top centre, both arms flung up, the only true vertical in a design built entirely of forward rush. Lower right, a great green wave curls in pure unmetaphored water, carrying real volume and cold light: a believable sea that the horses are made of rather than set against.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Crane's Neptune's Horses, 1892: breakers rearing into a herd of white steeds — a literal picturing of the English phrase \"white horses\" for surf, sparked by Atlantic waves he watched at Nantucket.",
+
+ "deep": "Follow any horse from its firm sculpted head downward and the anatomy gives out: legs blur into spray, hooves become foam, the churn beneath is indistinguishably water and galloping limbs. That dissolve is the hinge — Crane draws the tops hard and lets the bottoms go, so you are caught mid-metaphor, unable to settle on surf or cavalry. Neptune rides at top centre, one arm thrusting the trident forward over the herd and the other stretched back, the only true vertical in a design built entirely of forward rush. Beneath the herd a great green wave curls in pure unmetaphored water, carrying real volume and cold light: a believable sea that the horses are made of rather than set against.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "elie-nadelman-man-in-the-open-air": {
 about: "Nadelman's Man in the Open Air, c. 1915 — a nude leaning on a stylised tree. The classical body wears only a bowler hat and bow tie, fusing Greek statuary with the modern dandy or flaneur.",
@@ -1456,7 +1468,7 @@ by: "Opus 4.8" },
 
 "paul-signac-opus-217-sur-l-email-d-un-fond-rythmique-de-mesu": {
 
- "about": "Signac's 1890 profile portrait of critic Félix Fénéon, Opus 217 — the dapper subject set against a swirling kaleidoscope adapted from theorist Charles Henry's newly published color wheel.",
+ "about": "Signac's 1890 profile portrait of critic Félix Fénéon, Opus 217 — the dapper subject set against a swirling kaleidoscope adapted from theorist Charles Henry's newly published colour wheel.",
 
  "deep": "Fénéon reportedly did not much like being turned into a chart. He had grounds: the dabs stay the same size across coat, cheek and pinwheel alike, which flattens every distance and knits man and ground into one skin. Look down at the top hat held mouth-upward — its black is built from dark blue and violet dots, its lining a disc of buttery yellow, a small witty void amid the pattern. The arabesques at upper left come from a Japanese kimono print, so half the science is textile. Numbering canvases like a composer insisted paint could be as systematic as music. At the throat, a single vermilion stroke is where the cool head catches fire.",
 
@@ -1566,9 +1578,14 @@ by: "Opus 4.8" },
 },
 
 "edgar-degas-two-dancers": {
-about: "The model tugging her shoulder strap in this 1879 study is Marie van Goethem, the young ballet pupil who posed for Degas's scandalous sculpture The Little Fourteen-Year-Old Dancer, drawn here in chalk on paper that keeps its original green tint.",
-deep: "Before the curtain rises there is this: a girl tugging her shoulder strap, another looking off at nothing. Degas sets the two figures almost back-to-back — the same tired body from both sides — and lets green paper between them stay empty, refusing narrative. The medium does the argument. Green paper becomes the left dancer's tutu; bare ground passes for air; white is scraped on only at shoulder blades and the bright toes of the slippers, where working flesh meets working floor. Diagonal hatching fans behind the right figure like banked energy, left frankly as marks. Contours stay open, doubled where he reconsidered a shoulder. What theatre labors to conceal — the strain, the boredom, the unglamorous fidget — Degas holds in plain view, and the deliberate unfinish is the point: scaffolding of looking kept visible, the image honestly provisional.",
-by: "Opus 4.8" },
+
+ "about": "The model with her hands at her bodice in this 1879 study is Marie van Goethem, the young ballet pupil who posed for Degas's scandalous sculpture The Little Fourteen-Year-Old Dancer, drawn here in chalk on paper that keeps its original green tint.",
+
+ "deep": "Before the curtain rises there is this: a girl with her hands at her bodice, another looking off at nothing. Degas sets the two figures almost back-to-back — the same tired body from both sides — and lets green paper between them stay empty, refusing narrative. The medium does the argument. Green paper becomes the left dancer's tutu; bare ground passes for air; white is scraped on only at shoulder blades and the bright toes of the slippers, where working flesh meets working floor. Diagonal hatching fans behind the right figure like banked energy, left frankly as marks. Contours stay open, doubled where he reconsidered a shoulder. What theatre labors to conceal — the strain, the boredom, the unglamorous fidget — Degas holds in plain view, and the deliberate unfinish is the point: scaffolding of looking kept visible, the image honestly provisional.",
+
+ "by": "Opus 4.8"
+
+},
 
 "lovis-corinth-blumen-und-tochter-wilhelmine": {
 
@@ -1809,9 +1826,14 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "julie-manet-and-her-greyhound-laertes": {
-about: "The greyhound was a consolation gift from poet Stéphane Mallarmé after Julie's father died in 1892; Morisot painted her daughter in mourning black beside the dog named for Hamlet's friend in this 1893 canvas.",
-deep: "Grief sits in this picture as a structural principle. The girl's dark mourning dress anchors the composition; everything else — pale divan, loose green walls, the barely-sketched armchair at the left — is kept provisional around it. The dog does the emotional work the girl's grave, closed face withholds: the long muzzle turned upward, the body pressed to her legs, that posture of plain and loyal staying-close. Morisot gives the animal's head almost the same resolved attention she gives her daughter's, as if these are the two things that matter and everything else is notation. The empty chair in the pale left half is the picture's real unsettling detail — the seat of whoever is not there, the watcher who is also the painter who would die within two years.",
-by: "Opus 4.8" },
+
+ "about": "The greyhound was a consolation gift from poet Stéphane Mallarmé after Julie's father died in 1892; Morisot painted her daughter in mourning black beside the dog named for Hamlet's friend in this 1893 canvas.",
+
+ "deep": "Grief sits in this picture as a structural principle. The girl's dark mourning dress anchors the composition; everything else — pale divan, a loose cream wall gone blue-green behind the chair, the barely-sketched armchair at the left — is kept provisional around it. The dog does the emotional work the girl's grave, closed face withholds: the long muzzle turned upward, the body pressed to her legs, that posture of plain and loyal staying-close. Morisot gives the animal's head almost the same resolved attention she gives her daughter's, as if these are the two things that matter and everything else is notation. The empty chair in the pale left half is the picture's real unsettling detail — the seat of whoever is not there, the watcher who is also the painter who would die within two years.",
+
+ "by": "Opus 4.8"
+
+},
 
 "paule-gobillard-peignant": {
 about: "The young painter is Morisot's niece and devoted pupil Paule Gobillard, daughter of her sister Edma; this unsigned 1887 study of her at the easel stayed inside the family as an intimate aunt-to-niece gift until 1961.",
@@ -1871,9 +1893,14 @@ deep: "They had been married a few weeks; by autumn the Franco-Prussian War had 
 by: "Opus 4.8" },
 
 "autoportrait": {
-about: "Morisot rarely turned the brush on herself, making this 1885 oil one of only a handful of self-portraits she completed, the direct gaze and loose impressionist handling capturing her identity as a working artist rather than a domestic subject.",
-deep: "The paint gives out before it reaches her waist — long dry drags of ochre for the jacket, then open scribbles, then bare canvas at the lower left. Above the dark ribbon at the throat everything changes: the face is worked thin over pale ground so the primer lights the cheeks from beneath, and a few exact shadows around the eye sockets carry the likeness. So the canvas maps how hard she chose to look at each part of herself, and the collar is where the looking stops. The grey hair is not tidied; middle age is stated. No easel, no palette, no room behind her — the analytical stare doing the work an emblem usually does.",
-by: "Opus 4.8" },
+
+ "about": "Morisot rarely turned the brush on herself, making this 1885 oil one of only a handful of self-portraits she completed, the direct gaze and loose impressionist handling capturing her identity as a working artist rather than a domestic subject.",
+
+ "deep": "The paint gives out before it reaches her waist — long dry drags of ochre for the jacket, then open scribbles, then bare canvas at the lower left. Above the dark ribbon at the throat everything changes: the face is worked thin over pale ground so the primer lights the cheeks from beneath, and a few exact shadows around the eye sockets carry the likeness. So the canvas maps how hard she chose to look at each part of herself, and the collar is where the looking stops. The grey hair is not tidied; middle age is stated. No easel, no room behind her, the palette only a scribble at the lower left — the analytical stare doing the work an emblem usually does.",
+
+ "by": "Opus 4.8"
+
+},
 
 "le-cerisier": {
 about: "Julie Manet's own diary records that Morisot began this 1891 painting at Mézy with Julie on the ladder and her cousin below, then finished it in Paris with a professional model after Julie became unavailable.",
@@ -2360,10 +2387,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "la-grenouillere": {
-about: "A weekend bathing resort on the Seine, 1869 — floating café, a crowd on a round gravel islet, the water hacked into dashes of light. Monet painted it with Renoir at his elbow, at the same motif.",
-deep: "The heaviest paint sits on empty boats. The moored hulls across the foreground are the largest, most solidly worked things present, and their diagonal thrust is what builds depth in a scene otherwise flat; the figures get a stroke apiece. Overhead he allows a sliver — heaven kept to a stripe, nothing dramatic, the canvas given to the busy human middle and its reflections. The floating café is cropped hard at the right edge, its painted lettering reduced to marks, so it reads as a glimpse of something continuing past the frame. Find the far-left shallows last: pale flecks standing in the river, the bathers who gave the place its swimming reputation and its risqué one.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "A weekend bathing resort on the Seine, 1869 — floating café, a crowd on a round gravel islet, the water hacked into dashes of light. Monet painted it with Renoir at his elbow, at the same motif.",
+
+ "deep": "The heaviest paint sits on empty boats. The moored hulls across the foreground are the largest, most solidly worked things present, and their diagonal thrust is what builds depth in a scene otherwise flat; the figures get a stroke apiece. Overhead he allows a sliver — heaven kept to a stripe, nothing dramatic, the canvas given to the busy human middle and its reflections. The floating café is cropped hard at the right edge, its painted lettering reduced to marks, so it reads as a glimpse of something continuing past the frame. Find the water just left of the islet last: pale flecks chest-deep in the river, the bathers who gave the place its swimming reputation and its risqué one.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "the-spanish-singer": {
 about: "Manet's 1861 Salon debut: a Spanish guitarist caught mid-song in a Parisian studio, the picture that won him his first critical notice and drew a circle of younger painters to his door.",
@@ -2976,10 +3009,15 @@ about: "Demuth cast a Lancaster grain elevator as an American equivalent of the 
 by: "Opus 4.8" },
 
 "yellow-cow": {
- "about": "Art historian Mark Rosenthal reads this as a private wedding picture: the leaping yellow cow is Maria Franck, Marc's new wife, and the blue mountains are Franz himself, per his colour theory that yellow means feminine joy, Franz Marc, 1911.",
+
+ "about": "Art historian Mark Rosenthal reads this as a private wedding picture: the leaping yellow cow is Maria Franck, Marc's partner and later wife, and the blue mountains are Franz himself, per his colour theory that yellow means feminine joy, Franz Marc, 1911.",
+
  "by": "Opus 4.8",
+
  "deep": "Whoever the painting reached in 1911 had no access to the colour key it is usually read through — a private letter, sent to a friend a year earlier and not published in his lifetime. Kandinsky was meanwhile in print that same season, assigning yellow the opposite temperament: earthly, restless, unwilling to hold inside its own boundary. Two irreconcilable accounts of a single hue, held by the two men who founded the Blaue Reiter, and neither appears to have wanted the matter settled. So the painting was probably never built to be decoded. Its yellow takes its force from the vermilion and violet pressed around it rather than from any legend.",
+
  "deepBy": "Opus 4.8"
+
 },
 
 "composition-viii": {
@@ -3036,10 +3074,16 @@ by: "Opus 4.8" },
 },
 
 "painting-with-white-border": {
-about: "A storm of red, blue and black with no floor and no sky, 1913 — five months and sixteen studies that would not resolve until Kandinsky ran a ragged white margin round it, the last stroke and the title.",
-deep: "Horses are hidden in this storm, almost past finding. The churning dark knot at the upper left is a galloping troika, St George and his dragon behind it, dissolved into rhythm and arc until they only flicker — the old apocalypse he could not quite renounce. Follow the whipping lines right to the heavy blue crescent, hooked like a breaking wave: the one solid body in a field of weather, the pivot the rotation turns on. Beneath it a pale spear plunges into a rose-and-green core, the calmest passage here, where catastrophe discharges into stillness. The white margin does not square the chaos off; it gives it a shore to break against.",
-deepBy: "Sonnet 4.6",
-by: "Fable 5" },
+
+ "about": "A storm of red, blue and black with no floor and no sky, 1913 — nearly five months and at least sixteen studies that would not resolve until Kandinsky ran a ragged white margin round it, the last stroke and the title.",
+
+ "deep": "Horses are hidden in this storm, almost past finding. The churning dark knot at the upper left is a troika, by Kandinsky's own account, its three horses reduced to black lines hooked over at the top until they only flicker. Follow the whipping lines right to the heavy blue crescent, hooked like a breaking wave: the one solid body in a field of weather, the pivot the rotation turns on. From its mouth a pale spear plunges into a rose-and-green core, the calmest passage here, where catastrophe discharges into stillness; the Guggenheim reads that white form as the lance of St George, with the dragon away at the lower left — the old apocalypse he could not quite renounce. The white margin does not square the chaos off; it gives it a shore to break against.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Fable 5"
+
+},
 
 "the-unfortunate-land-of-tyrol": {
 about: "Franz Marc filled this 1913 Tyrolean landscape with black horses, a red hill studded with grave crosses, and a border sign — imagery that reads as a direct premonition of the war in which Marc himself would be killed in 1916.",
@@ -3053,7 +3097,7 @@ by: "Opus 4.8" },
 
  "about": "Painted after Kandinsky settled in Murnau in 1908, this canvas keeps riders and trees just legible while giving colour total independence from description, sitting at the threshold between landscape painting and full abstraction.",
 
- "deep": "Blue meant depth and the beyond for Kandinsky — not a colour choice but a doctrine. The mountain glows an unearthly ultramarine at the centre, unshaded, more mood than slope. Flanking it, two trees erupt: gold on the left, crimson and magenta on the right, complementaries jammed hard against the cool centre so the surface hums. A stippled touch runs through everything — sparks on the yellow tree, dark flecks on the mountain — fusing trees, riders and earth into one woven field. The small troop crossing the bottom is the key: the horseman was Kandinsky's private emblem of spiritual quest.",
+ "deep": "Blue meant depth and the beyond for Kandinsky — not a colour choice but a doctrine. The mountain glows an unearthly ultramarine at the centre, unshaded, more mood than slope. Flanking it, two trees erupt: gold on the left, crimson and magenta on the right, complementaries jammed hard against the cool centre so the surface hums. A stippled touch runs through everything — sparks on the yellow tree, dark flecks on the mountain — fusing trees, riders and earth into one woven field. The small troop crossing the bottom is the only thing in it that travels: a cream horse leaps at the head of the line, a white and an orange-red one crowding behind.",
 
  "deepBy": "Sonnet 4.6",
 
@@ -3376,10 +3420,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "allegory-of-prudence": {
-about: "Three ages of man over a three-headed beast, around 1550 — the faces are thought to be Titian himself in old age, his son Orazio and his heir Marco, a family portrait smuggled into an emblem of Time.",
-deep: "Only the middle face meets your eye. The old man turns in profile off the canvas edge, the youth looks the opposite way, and between them the mature man is frontal, brightest, largest — the present, the age that acts, with prudenter placed just above his head. Below him the light gathers on a lion's mane, flanked by a wolf and a dog whose three necks fuse into a single body: antiquity's beast of Time, devouring, acting, hoping. Faint as thought above them all: from the experience of the past, the present acts prudently, lest it spoil future action. Titian was in his seventies; the old man's temple is dry broken strokes, crepe over bone.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Three ages of man over a three-headed beast, around 1550 — the faces are often read as Titian himself in old age, his son Orazio and his young kinsman Marco, a family portrait smuggled into an emblem of Time.",
+
+ "deep": "Only the middle face meets your eye. The old man turns in profile toward the left edge, the youth looks the opposite way, and between them the mature man is frontal, brightest, largest — the present, the age that acts, with prudenter placed just above his head. Below him the light gathers on a lion's mane, flanked by a wolf and a dog whose three necks fuse into a single body: antiquity's beast of Time, devouring, acting, hoping. Faint as thought above them all: from the experience of the past, the present acts prudently, lest it spoil future action. The old man's temple is dry broken strokes, crepe over bone.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "madonna-of-the-pinks": {
 about: "Mary and the infant Christ passing pink carnations between them, about 1506 — Raphael in his Florentine twenties, deep under Leonardo's spell, on a panel you could cover with a single sheet of paper.",
@@ -3468,10 +3518,16 @@ about: "A six-foot black limestone obelisk carved around 825 BC in Nimrud (ancie
 by: "Opus 4.8" },
 
 "fine-wind-clear-morning": {
-about: "Hokusai, c.1830–32 — one of the Thirty-Six Views of Mount Fuji, catching the few dawn minutes when a south wind and low autumn sun flush the volcano red. Also known as Red Fuji.",
-deep: "No outline is drawn inside the mountain's red flank — colour alone carries form. That red is a hand-wiped gradation across the printing block, darkest at the base and lifting toward the summit, making a flat triangle read as a sunlit mass. At the peak, bare paper left unprinted gives you snow: white as the absence of ink. Below, stippled dark-green dots do the whole job of a forest — pattern up close, scale at distance. The sky is Prussian blue, a newly imported pigment prized for depth traditional dyes could not match. Each impression was hand-printed, so the same design can pull vivid red in one collection, muted brown in another.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Hokusai, c.1830–32 — one of the Thirty-Six Views of Mount Fuji, catching the few dawn minutes when a south wind and low autumn sun flush the volcano red. Also known as Red Fuji.",
+
+ "deep": "No outline is drawn inside the mountain's red flank — colour alone carries form. That red is a hand-wiped gradation across the printing block, darkest at the summit and thinning at the base into blue haze, making a flat triangle read as a sunlit mass. At the peak, bare paper left unprinted gives you snow: white as the absence of ink. Below, thousands of tiny dark-blue tree shapes do the whole job of a forest — pattern up close, scale at distance. The sky is Prussian blue, a newly imported pigment prized for depth traditional dyes could not match. Each impression was hand-printed, so the same design can pull vivid red in one collection, muted brown in another.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "lycurgus-cup": {
 about: "A Roman cage cup dated to the 4th century AD, carved from a single blank of dichroic glass and mounted in gilded metal. It depicts the mythological death of King Lycurgus and is held in the British Museum.",
@@ -4077,10 +4133,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "gustave-courbet-hunting-dogs-with-dead-hare": {
-about: "Courbet, 1857 — two hunting hounds with a dead hare in autumn scrub. The same pair appear in his Salon showpiece The Quarry, but stripped of the hunter and stag: just the dogs, the quarry, and the stillness after.",
-deep: "The hare is where Courbet's touch is most tender and most exact. Belly fur luminous and soft, back matted and dark, worked wet-into-wet until the animal reads as warm mass — dead weight, not outline. No blood, no wound, only the fact of stillness. He built this surface with a palette knife as much as a brush: the ochre-and-umber ground dragged flat, the dogs' white patches scraped into ridges of impasto that catch the light, the foliage a thick tapestry of russet and gold where no leaf is spelled out. This is Franche-Comté woodland painted for mass and atmosphere — a Chardin game-piece dragged outdoors into real weather and real dirt. The ground was already cold when we arrived.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Courbet, 1857 — two hunting hounds with a dead hare in autumn scrub. The same pair appear in his Salon showpiece The Quarry, but stripped of the hunter and the hanging roe deer: just the dogs, the quarry, and the stillness after.",
+
+ "deep": "The hare is where Courbet's touch is most tender and most exact. Belly fur luminous and soft, back matted and dark, worked wet-into-wet until the animal reads as warm mass — dead weight, not outline. No blood, no wound, only the fact of stillness. He built this surface with a palette knife as much as a brush: the ochre-and-umber ground dragged flat, the dogs' white patches scraped into ridges of impasto that catch the light, the foliage a thick tapestry of russet and gold where no leaf is spelled out. This is Franche-Comté woodland painted for mass and atmosphere — a Chardin game-piece dragged outdoors into real weather and real dirt. The ground was already cold when we arrived.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "peter-paul-rubens-self-portrait": {
 about: "Rubens in 1623 — black hat, black cloak, gold chain of court office, no brushes in sight. Made for his friend Peiresc, it presents Europe's most celebrated painter as a gentleman and diplomat, not a craftsman.",
@@ -4132,7 +4194,7 @@ by: "Opus 4.8" },
 
 "claude-monet-ile-aux-orties-near-vernon": {
 
- "about": "Monet's own island near Giverny, 1897 — he painted it four times, each time pressing the willows and their reflection closer together until water and foliage nearly mirror each other, and the place he knew best looks half-imagined.",
+ "about": "Monet's own island near Giverny, 1897 — one of four versions he painted that year, the trees and their reflection pressed so close that water and foliage nearly mirror each other, and the place he knew best looks half-imagined.",
 
  "deep": "The picture turns on a single seam: the waterline just below the middle, where bank meets reflection. It is the darkest band in the picture, blue-green shadow at the island's foot, brushed rather than drawn — strokes curling above, lengthening below. Cover it mentally and the two halves nearly fold onto each other. The reflection repeats the mauve and rose of the bank but runs lighter and warmer, every stroke pulled slightly downward, so you read moving liquid rather than glass. Then look at the pale yellow-green flecks low in the water — light on ripples that correspond to nothing solid above, pure surface incident. Here the motif is closest to the all-over water-surface that would become the Nymphéas.",
 
@@ -5362,8 +5424,8 @@ by: "Opus 4.8" },
  "deepBy": "Sonnet 4.6"
 },
 "gauguin-the-bathers": {
- "about": "In Tahiti in 1897, composing Tahitian women for a Paris audience, Gauguin kept the bathing subject small — that year's mural ran four times its width — and drove one blue-green trunk through its full height.",
- "deep": "Gauguin keeps the genre's title and discards its premise: these women share a rectangle without forming a group, and any paradise is nowhere in the pigment; it must arrive from outside. Nobody looks out, nobody acknowledges anyone else, nothing resolves. What the picture does is levelling: bodies, foliage, water, blossom handled with one flat contour and matte surface, so flesh and leaf carry equal weight, though it is a French painter deciding that Tahitian flesh weighs what a leaf weighs. The equivalence is structural: a trunk bisects the canvas top to bottom, preventing the figures from cohering, while a canopy sealed across the full width removes the sky and closes off depth.",
+ "about": "In Tahiti in 1897, composing Tahitian women for a Paris audience, Gauguin kept the bathing subject small — that year's mural ran four times its width — and dropped one blue-green trunk from its top edge almost to the foot.",
+ "deep": "Gauguin keeps the genre's title and discards its premise: these women share a rectangle without forming a group, and any paradise is nowhere in the pigment; it must arrive from outside. Nobody looks out, nobody acknowledges anyone else, nothing resolves. What the picture does is levelling: bodies, foliage, water, blossom handled with one flat contour and matte surface, so flesh and leaf carry equal weight, though it is a French painter deciding that Tahitian flesh weighs what a leaf weighs. The equivalence is structural: a trunk drops from the top edge almost to the foot of the canvas, preventing the figures from cohering, while a canopy of leaf, broken only by water and a pink trunk at the corners, removes the sky and closes off depth.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
@@ -5417,7 +5479,7 @@ by: "Opus 4.8" },
 },
 "carracci-venus-adorned-by-the-graces": {
  "about": "Annibale helped found a Bologna academy in 1582 to drag painting back toward the living body, then set this mythology on a wooden panel whose paint was later lifted onto canvas, a child straining beneath the mirror.",
- "deep": "Divinity waits while the work gets done. Three attendants divide the labour of making a goddess presentable — one binds and parts her hair, one raises jewels out of a casket at floor level, and a straining child holds a mirror aloft that is plainly heavier than he is. She sits at the junction of two claims. Her body remains under construction, while past the right-hand opening a statue on its pedestal is finished, whiter and more durable than anything sheltered indoors. Cool drapery meeting warm gilding wedges her into place and slides the gaze outward, tying the work in progress to the thing already complete.",
+ "deep": "Divinity waits while the work gets done. The Graces and their winged helpers divide the labour of making a goddess presentable — one Grace binds and parts her hair, a kneeling putto lifts pearls out of a casket at floor level, and a straining child holds a mirror aloft that is plainly heavier than he is. She sits at the junction of two claims. Her body remains under construction, while past the right-hand opening a statue on its pedestal is finished, whiter and more durable than anything sheltered indoors. Cool drapery meeting warm gilding wedges her into place and slides the gaze outward, tying the work in progress to the thing already complete.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
