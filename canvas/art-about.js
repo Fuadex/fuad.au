@@ -3034,10 +3034,16 @@ about: "Gleizes painted this Cubist portrait of his regimental surgeon while act
 by: "Opus 4.8" },
 
 "blue-mountain": {
-about: "Painted after Kandinsky settled in Murnau in 1908, this canvas keeps riders and trees just legible while giving colour total independence from description, sitting at the threshold between landscape painting and full abstraction.",
-deep: "Blue meant depth and the beyond for Kandinsky — not a colour choice but a doctrine. The mountain glows an unearthly ultramarine at the centre, unshaded, more mood than slope. Flanking it, two trees erupt: gold on the left, crimson and magenta on the right, complementaries jammed hard against the cool centre so the surface hums. A stippled touch runs through everything — sparks on the yellow tree, dark flecks on the mountain — fusing trees, riders and earth into one woven field. The small troop crossing the bottom is the key: the horseman was Kandinsky's private emblem of spiritual quest, the same figure that would name Der Blaue Reiter three years on.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Painted after Kandinsky settled in Murnau in 1908, this canvas keeps riders and trees just legible while giving colour total independence from description, sitting at the threshold between landscape painting and full abstraction.",
+
+ "deep": "Blue meant depth and the beyond for Kandinsky — not a colour choice but a doctrine. The mountain glows an unearthly ultramarine at the centre, unshaded, more mood than slope. Flanking it, two trees erupt: gold on the left, crimson and magenta on the right, complementaries jammed hard against the cool centre so the surface hums. A stippled touch runs through everything — sparks on the yellow tree, dark flecks on the mountain — fusing trees, riders and earth into one woven field. The small troop crossing the bottom is the key: the horseman was Kandinsky's private emblem of spiritual quest.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "black-lines": {
 about: "By December 1913 Kandinsky had cut every remaining tie to the visible world: floating colour ovals and agitated black lines in this painting carry no subject at all, making it one of his first fully non-objective works.",
@@ -5226,7 +5232,7 @@ by: "Opus 4.8" },
  "deepBy": "Sonnet 4.6"
 },
 "matisse-la-coiffure": {
- "about": "Broke at thirty-one, a year after taking wage work on Exposition friezes and still paying off the note he signed for a Cezanne bathers canvas, Matisse painted his wife from behind, hands lost in dark hair.",
+ "about": "Broke at thirty-one, a year after taking wage work on Exposition friezes and still paying off the note he signed for a Cézanne bathers canvas, Matisse painted his wife from behind, hands lost in dark hair.",
  "deep": "A nude here can shut out whoever is watching. Her face goes missing between the arms she has raised, and the mirror that by rights would return the face holds only weather, dark and unreadable, so both routes to her are closed. That leaves the back as an engineering question. Matisse assembles it from unblended facets: warm pink riding a shoulder blade, grey-green in the spinal trough, mauve at the turn of the ribs, none of it smoothed toward salon skin. Down the right flank a chalky cool stripe serves as boundary and shade, temperature standing in for drawn contour. Blossoms and hot cloth are shoved outward, leaving the broad pallor as the light.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
