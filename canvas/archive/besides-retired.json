@@ -1278,5 +1278,21 @@
    "companion": "canaletto-venice-the-feast-day-of-saint-roch",
    "beside": "Venice dressed for its feast days much as Paris did on 30 June 1878. In Venice: The Feast Day of Saint Roch, a London National Gallery picture nearly a century and a half older, Canaletto stands inside the crowd and finds the day’s centre: silks over the balconies, pictures hung beneath an awning, and the Doge in gold under his umbrella, ringed by patricians in scarlet. Monet climbs above the street and finds no centre at all. Flags lean in from both walls, and the people below are one stroke each."
   }
+ },
+ {
+  "id": "benjamin-west-colonel-guy-johnson-and-karonghyontye-captain-david-hill",
+  "retiredAt": "2026-10-10",
+  "reason": "beside wave 7: West motif beside rewritten on theme (rule 10), no museum (rule 12)",
+  "beside": "Reynolds had painted a British officer a decade before this, in General John Burgoyne, a dashing colonel fresh from a Portuguese campaign, taken at his best moment. Eleven years on, the same man surrendered an army at Saratoga; the portrait knew nothing of that. West is working the same genre at a harder setting. His sitter is being confirmed in an office that is not a command but a go-between's, so the picture cannot stop at one man: the authority it certifies exists only in the presence of the person standing behind him. One portrait could still be about a future. This one is about a bargain.",
+  "refs": [
+   {
+    "id": "general-john-burgoyne",
+    "text": "General John Burgoyne"
+   }
+  ],
+  "replacedBy": {
+   "companion": "portrait-of-juan-de-pareja",
+   "beside": "Who wears what is also the subject of Velázquez's Portrait of Juan de Pareja, painted in Rome a century and a quarter earlier, but there the clothes travel the other way. Pareja, the enslaved assistant in the painter's own workshop, wears a broad scalloped lace collar and a buttoned doublet, the dress of a gentleman, and looks straight out from a lit face. Here the man holding the commission is the borrower, in soft-soled shoes, bound leggings, fur and a beaded cap, while Karonghyontye, from whose world those goods come, stands behind him in shade, watching him rather than the viewer. The collar makes a claim for Pareja himself, whereas the goods on Johnson make a claim for his office."
+  }
  }
 ]

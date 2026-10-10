@@ -2547,3 +2547,8 @@ reader already knew the brief; the 09-26 audit was the first cold read the mv6 b
     ("there…; here…", "X does A; Y does B") in more than one paragraph in five, and the pet verbs spend / pay / hand /
     ration. Each beside agent reads the batch's finished paragraphs before writing its own and makes its shape differ.
     The 37 rule-10 besides of wave 5 (0cb0f4b) stay as sealed; this binds new waves.
+
+## 2026-10-10 — THE BESIDE LEAVES THE MUSEUM OUT (Fuad: "besides don't need to point at the museum, ideally it shouldn't as this can be seen in the other painting info anyway")
+
+12. **A `beside` DOES NOT NAME THE COMPANION'S MUSEUM (Fuad 2026-10-10:** *"besides don't need to point at the museum, ideally it shouldn't as this can be seen in the other painting info anyway"*). The companion is named by title and painter, with the interval; where it hangs is left to its own Info. This amends part 2 (title and interval, no museum) and rules 10–11 ("companion with museum and interval" becomes "companion with interval"); checklist row 22 / 12d then verifies date and interval only. A place may appear only when the place itself is the rhyme (two pictures made for the same room), never as an identifier ("also in Washington"). The `companion.museum` field in a beside's JSON stays for the record.
+    Scope (Fuad, option b): new besides follow this at once; an existing beside drops its museum clause when a lane next touches it — no standalone sweep. Fuad: "the old rule seemed to be good, just it seems the museum always kicked in" — the four parts stand; the museum had become an automatic clause, and that is what this removes.

@@ -1835,9 +1835,9 @@ by: "Opus 4.8" },
 
 "vetheuil-in-the-fog": {
 
- "about": "Vétheuil on the Seine reduced to a cold blue-lavender breath, 1879 — the village barely holds a shape, and a thin seam of warm flecks at its waist is the only evidence that a town is there.",
+ "about": "Vétheuil on the Seine reduced to a pale blue-grey breath, 1879 — the village barely holds a shape, and a thin seam of warm flecks at its waist is the only evidence that a town is there.",
 
- "deep": "Monet finds the town by its warmth rather than its shape. Air, river and distance are held in one cool register, and Vétheuil survives only as a change of temperature: gold and rust where the church rises, a dull rose along the bank, the same colour sinking into the water below. A whole village is given to us as the one patch of heat in a cold field. Read that way, the fog is not what hides the town. It is what makes so small a warmth count, and the picture’s real proposal is that a place can be known by its temperature alone.",
+ "deep": "Monet finds the town by its warmth rather than its shape. Air, river and distance are held in one cool register, and Vétheuil survives only as a change of temperature: pink and cream where the church rises, a dull rose along the bank, the same colour sinking into the water below. A whole village is given to us as the one patch of warmth in a cool field. Read that way, the fog is not what hides the town. It is what makes so small a warmth count, and the picture’s real proposal is that a place can be known by its temperature alone.",
 
  "deepBy": "Sonnet 4.6",
 
