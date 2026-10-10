@@ -1245,9 +1245,14 @@ deep: "The black is the picture's intelligence. Almost everything is it — hat,
 by: "Opus 4.8" },
 
 "edouard-manet-the-dead-christ-with-angels": {
-about: "Manet's The Dead Christ with Angels, 1864: a cadaverous Christ mourned by two angels. Manet painted the spear wound on the wrong side of the body, and despite Baudelaire's warning to fix it before the Salon, he left the error.",
-deep: "Manet collapses the distance devotional painting normally keeps. Christ is not laid out for veneration but propped upright, chest forward, eye level with you — the usual posture of looking down on the dead body is denied. What the picture proposes is that mortality is a fact to be witnessed, not a mystery to be approached: the grey, slack torso built from plaster-flat planes, the nailed feet pushed almost into your space. Two angels divide the emotional labour, one steadying the corpse with practical care, the other withdrawing into shadow and grief, but neither can redirect attention from the body between them. The narrow palette gives the blue wing its detonating force. At the base, Manet writes his name on the tomb stone: the artist as witness, bound to the body he has refused to soften.",
-by: "Opus 4.8" },
+
+ "about": "Manet's The Dead Christ with Angels, 1864: a cadaverous Christ mourned by two angels. Manet painted the spear wound on the wrong side of the body, and despite Baudelaire's warning to fix it before the Salon, he left the error.",
+
+ "deep": "Manet collapses the distance devotional painting normally keeps. Christ is not laid out for veneration but propped upright, chest forward, eye level with you — the usual posture of looking down on the dead body is denied. What the picture proposes is that mortality is a fact to be witnessed, not a mystery to be approached: the grey, slack torso built from plaster-flat planes, the nailed feet pushed almost into your space. Two angels divide the emotional labour, one steadying the corpse with practical care, the other withdrawing into shadow and grief, but neither can redirect attention from the body between them. The narrow palette gives the blue wing its detonating force. At the base, the tomb stone carries not his name but a gospel reference to the empty tomb; Manet signs low on the bare ground at the opposite corner: the artist as witness, bound to the body he has refused to soften.",
+
+ "by": "Opus 4.8"
+
+},
 
 "edgar-degas-woman-with-a-towel": {
 about: "Degas's Woman with a Towel, 1896 — a bather seen from behind. He worked the pastel with his fingers, brushes and sharp tools, smudging and scraping the pigment, then drew black outlines over it to sharpen the figure's twist.",
@@ -1392,10 +1397,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "at-the-seashore": {
-about: "Bilińska's At the Seashore, 1886 — a fisherwoman and child on a grey Pourville beach, painted by the Paris-trained Polish artist during hard summers shadowed by her father's death and a nervous breakdown.",
-deep: "The two gazes lock inside the frame — woman looks at child, child looks back — and the viewer is left outside a transaction that carries everything: patience, watchfulness, the handing-on of a hard trade. She sits low on the shingle in a white cap and heavy boots, teal skirt the one cool note in greys and warm browns; the child, smaller and set back, wears a pale bonnet. Hoop-nets anchor the right foreground, balancing the figures on the left. Bilińska grants these working people the same grave attention a Salon portraitist gave to sitters in silk. Foreground stones are laid in with loaded directional strokes, almost abstract until the boots emerge, planted and laced.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Bilińska's At the Seashore, 1886 — a fisherwoman and child on a grey Pourville beach, painted by the Paris-trained Polish artist during hard summers shadowed by her father's death and a nervous breakdown.",
+
+ "deep": "Neither gaze reaches us. The woman, in profile, keeps her eyes lowered; the child sits with its back to us, watching the sea; and the viewer is left outside a closeness that carries everything: patience, watchfulness, the handing-on of a hard trade. She sits low on the shingle in a white cap and heavy clogs, a teal apron over her dark skirt the one cool note in greys and warm browns; the child, smaller and set back, wears a pale bonnet. Hoop-nets anchor the right foreground, balancing the figures on the left. Bilińska grants these working people the same grave attention a Salon portraitist gave to sitters in silk. Foreground stones are laid in with loaded directional strokes, almost abstract until the clogs emerge, rounded and planted.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "elgin-marbles": {
 about: "The Elgin Marbles — 5th-century BC Parthenon sculptures in the British Museum, stripped from the Athens Acropolis by Lord Elgin; Greece has demanded their return since 1832, but the 1963 British Museum Act bars the museum from parting with them.",
@@ -1444,9 +1455,14 @@ deep: "The mountain is both solid and a fiction. Step close and Sainte-Victoire 
 by: "Opus 4.8" },
 
 "paul-signac-opus-217-sur-l-email-d-un-fond-rythmique-de-mesu": {
-about: "Signac's 1890 profile portrait of critic Felix Feneon, Opus 217 — the dapper subject set against a swirling kaleidoscope adapted from theorist Charles Henry's newly published color wheel.",
-deep: "Fénéon reportedly had mixed feelings about being turned into a chart. He had grounds: the dabs stay the same size across coat, cheek and pinwheel alike, which flattens every distance and knits man and ground into one skin. Look down at the top hat held mouth-upward — its black is built from dark blue and violet dots, its lining a disc of buttery yellow, a small witty void amid the pattern. The arabesques at upper left come from a Japanese kimono print, so half the science is textile. Numbering canvases like a composer insisted paint could be as systematic as music. At the throat, a single vermilion stroke is where the cool head catches fire.",
-by: "Opus 4.8" },
+
+ "about": "Signac's 1890 profile portrait of critic Félix Fénéon, Opus 217 — the dapper subject set against a swirling kaleidoscope adapted from theorist Charles Henry's newly published color wheel.",
+
+ "deep": "Fénéon reportedly did not much like being turned into a chart. He had grounds: the dabs stay the same size across coat, cheek and pinwheel alike, which flattens every distance and knits man and ground into one skin. Look down at the top hat held mouth-upward — its black is built from dark blue and violet dots, its lining a disc of buttery yellow, a small witty void amid the pattern. The arabesques at upper left come from a Japanese kimono print, so half the science is textile. Numbering canvases like a composer insisted paint could be as systematic as music. At the throat, a single vermilion stroke is where the cool head catches fire.",
+
+ "by": "Opus 4.8"
+
+},
 
 "umberto-boccioni-states-of-mind-i-the-farewells": {
 about: "Boccioni's States of Mind I: The Farewells, 1911 — a railway-station vortex anchored by the stencilled engine number 6943, repainted with Cubist facets after a Paris trip that November exposed him to Cubism directly.",
@@ -3378,10 +3394,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "diana-and-actaeon": {
-about: "Titian, 1556–59 — one of the poesie, the Ovid mythologies painted for Philip II of Spain: the hunter Actaeon blunders into Diana’s bathing grove, and one accidental glance at a goddess seals his death.",
-deep: "On the fountain's rim sits a pale animal skull — Actaeon will become the stag, and here already is its bleached bone. Then find the curtain at the left: Titian colours it blood-red for what is coming and gives it to Actaeon's own hand to tear open. We see exactly what he sees; the crime is ours too. Skin, fabric and stone are built from the same broken, loaded touch — edges dissolving, the surface shimmering as though seen through disturbed water — so the scene trembles before it completes itself. At the far right a nymph binds her hair, unaware — the ordinary afternoon still running while the death sentence is written in the bone on the stone.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Titian, 1556–59 — one of the poesie, the Ovid mythologies painted for Philip II of Spain: the hunter Actaeon blunders into Diana’s bathing grove, and one accidental glance at a goddess seals his death.",
+
+ "deep": "High on the pillar, half hidden in the leaves, sits a pale stag's skull — Actaeon will become the stag, and here already is its bleached bone. Then find the curtain at the left: Titian colours it blood-red for what is coming, and its far corner is held up by the nymph reclining at the fountain, not by Actaeon, whose hands fly open in shock. We see exactly what he sees; the crime is ours too. Skin, fabric and stone are built from the same broken, loaded touch — edges dissolving, the surface shimmering as though seen through disturbed water — so the scene trembles before it completes itself. At the far right Diana, the crescent in her hair, pulls a white cloth up to cover herself — the goddess caught for one more breath while the death sentence is already written in the bone on the stone.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "a-young-woman-seated-at-a-virginal": {
  "about": "One of only two Vermeers in the National Gallery, probable pendants, it entered the collection through the Salting Bequest in 1910. The painting on the wall and the unused viola da gamba suggest a meditation on love and music. Johannes Vermeer, c.1670-72.",
