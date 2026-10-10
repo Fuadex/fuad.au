@@ -1008,7 +1008,7 @@ by: "Opus 4.8" },
 
  "about": "Chełmoński's Storks, 1900 — a ploughman and his son break from the field to watch storks pass overhead. A monographer called it a hallowed symbol of Polishness; the returning stork augured spring, fertility and good fortune.",
 
- "deep": "What the ploughman has with him tells you who they are: a double clay pot in his lap, a wooden spoon stopped in his hand, a black hat on the grass, bare feet stretched out. The composition is built to force you upward — low horizon, two heads thrown back, the vast sky where a loose file of storks drifts. Each bird is almost nothing: a stroke of white, a dark dash; the diagonal spacing gives the flight real depth. Behind the figures, russet oxen stand yoked to the plough on dark turned earth, explaining the pause without competing with it. Painted while Poland had no political map, the land and the returning bird carried the national feeling that a flag could not.",
+ "deep": "What the ploughman has with him tells you who they are: a double clay pot in his lap, a wooden spoon stopped in his hand, a black hat on the grass, legs crossed, feet bare. The composition is built to force you upward — low horizon, two heads thrown back, the vast sky where a loose file of storks drifts. Each bird is almost nothing: a stroke of white, a dark dash; the diagonal spacing gives the flight real depth. Behind the figures, russet oxen stand yoked to the plough on dark turned earth, explaining the pause without competing with it. Painted while Poland had no political map, the land and the returning bird carried the national feeling that a flag could not.",
 
  "deepBy": "Sonnet 4.6",
 
@@ -1867,7 +1867,7 @@ by: "Opus 4.8" },
 
  "about": "Evening on the pond Monet dug at Giverny, 1897 — he had to petition the prefect to divert a river into it, neighbours objected that the plants would poison their cattle. Among the first of some 250 waterlily canvases.",
 
- "deep": "The only thing telling you this is water and not a wall of colour is the lily pads: broad ovals drifting toward the top right, each kept full rather than thinned by distance. Nothing else gives depth — no bank, no horizon, nothing to climb toward — so the eye settles onto the surface and reads reflection as substance. The two open blossoms are the only thick paint, cream and pink stroked out from a hot yellow centre, catching real light while the violet-grey water around them stays flat and cool. A few flicks of pink-orange at the lower right are all that make the hour evening: a sun you never see, inferred from the temperature of the pond.",
+ "deep": "The only thing telling you this is water and not a wall of colour is the lily pads: broad ovals drifting toward the top right, each kept full rather than thinned by distance. Nothing else gives depth — no bank, no horizon, nothing to climb toward — so the eye settles onto the surface and reads reflection as substance. The two open blossoms are the only thick paint, cream and pink stroked out from a hot yellow centre, catching real light while the violet-grey water around them stays flat and cool. A few flicks of pink-orange right of centre are all that make the hour evening: a sun you never see, inferred from the temperature of the pond.",
 
  "deepBy": "Sonnet 4.6",
 
@@ -2869,8 +2869,12 @@ about: "One critic wrote that Hirsch-Pauli must have used the tablecloth to clea
 by: "Opus 4.8" },
 
 "landscape-with-the-fall-of-icarus": {
-about: "W.H. Auden wrote \"Musée des Beaux Arts\" about this very moment: Icarus vanishes into the sea while a ploughman, shepherd, and sailor carry on, indifferent; Joos de Momper the Younger, c.1620s.",
-by: "Opus 4.8" },
+
+ "about": "W.H. Auden wrote \"Musée des Beaux Arts\" about Bruegel's Fall of Icarus in Brussels; this panel by Joos de Momper the Younger, c.1620s, shares its subject: Icarus tumbles from the sky while a ploughman, shepherd, and angler carry on, indifferent.",
+
+ "by": "Opus 4.8"
+
+},
 
 "zoie-ghika-moldavian-princess": {
 about: "After Russian troops overran Moldavia and her father was executed by the Ottomans, Zoie Ghika ended up a political pawn at the court of Catherine the Great, who commissioned this portrait; Alexander Roslin, 1777.",
@@ -3915,10 +3919,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "la-mort-de-barbara-radziwi-by-jozef-simmler": {
-about: "Simmler's 1860 canvas of the dying Queen Barbara — married, crowned within months, dead — bought by public subscription when Warsaw showed it in 1861: ordinary people pooling money to keep it for a national collection under occupation.",
-deep: "The picture runs on two poles: she is white linen under a clean vertical light; he is black doublet and deep shadow, a column that takes in the light she gives. Between them the daybed is empty — the whole grief is in that gap. A cascade of yellow satin pours from the king's lap onto the tiles, every fold given a jeweller's patience; it lies there useless. No court, no priest, no allegory — only a censer at the lower right, half-lost in shadow, the ritual quietly begun while the man is still only a husband. In 1860 the nation Simmler painted for had no state of its own. Every viewer supplied the rest.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Simmler's 1860 canvas of the dying Queen Barbara — married, crowned within months, dead — bought by public subscription when Warsaw showed it in 1861: ordinary people pooling money to keep it for a national collection under occupation.",
+
+ "deep": "The picture runs on two poles: she is white linen under a clean vertical light; he is black doublet and deep shadow, a column that takes in the light she gives. He sits on the bed against her, near enough to touch, and his hands stay clasped — the whole grief is in that held reach. A cascade of ermine-edged yellow satin spills from the bed onto the tiles beneath her arm, every fold given a jeweller's patience; it lies there useless. No court, no priest, no allegory — only a censer at the lower right, half-lost in shadow, the ritual quietly begun while the man is still only a husband. In 1860 the nation Simmler painted for had no state of its own. Every viewer supplied the rest.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "a-cavalier": {
 about: "This 1658 small-panel self-portrait by Frans van Mieris the Elder — Leiden's foremost fijnschilder after Gerrit Dou, celebrated for jewel-like finish and microscopic detail — was stolen from the Art Gallery of New South Wales in 2007 while the gallery was open, unnoticed due to its compact size. It has never been recovered and appears on the FBI's Top Ten Art Crimes list.",
