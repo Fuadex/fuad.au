@@ -1054,6 +1054,8 @@ window.CANVAS_ARTWORKS = [
   // hand-set to Tate's own image of N01814 (found via Commons search, 2026-08-23).
   { id: "john-constable-salisbury-cathedral-from-the-meadows", title: "Salisbury Cathedral from the Meadows", artist: "John Constable", artistId: "constable", qid: "Q28532649", qidTrusted: true, year: 1829,
     img: "https://commons.wikimedia.org/wiki/Special:FilePath/Constable%20-%20Salisbury%20Cathedral%20from%20the%20Meadows%2C%201829%2C%20N01814.jpg?width=1600",
+    imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Constable%20-%20Salisbury%20Cathedral%20from%20the%20Meadows%2C%201829%2C%20N01814.jpg?width=480",
+    imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Constable%20-%20Salisbury%20Cathedral%20from%20the%20Meadows%2C%201829%2C%20N01814.jpg?width=1536",
     seenAt: "tate-britain", seenConfidence: "sure", loved: true },
   { id: "pierre-auguste-renoir-the-skiff-la-yole", title: "The Skiff (La Yole)", artist: "Pierre-Auguste Renoir", artistId: "renoir", qid: "Q3449722", qidTrusted: true, year: 1875,
     seenAt: "national-gallery-london", seenConfidence: "sure", loved: true },
