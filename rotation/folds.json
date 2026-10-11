@@ -9942,6 +9942,12 @@
     "to": "Vermilion",
     "type": "spelling",
     "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Frail Limb Nursey",
+    "to": "Frail Limb Nursery",
+    "type": "spelling",
+    "reason": "spelling: the scrobble drops the r; the first-pressing / 25th-anniversary track is Frail Limb Nursery (fold sweep 2026-10-11)"
    }
   ]
  },
