@@ -382,10 +382,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "claude-monet-palazzo-da-mula-venice": {
-about: "The palace is the Da Mula Morosini, and Monet arrived on 1 October 1908 for what was meant to be a holiday; he left in December with thirty-seven canvases going. Twenty-nine opened in Paris in May 1912.",
-deep: "Venice was already an anthology of views when he arrived, and he refused every one of them. No Grand Canal, no picturesque incident: a single palace face taken flat on, its roofline cut away by the top edge, its base dissolved into water with no far bank and no horizon. What is left floats, and the argument is what the wall and the canal do to each other — they trade colour until the stone runs as fluid as the water beneath it. A handful of hard blue verticals, the poles and their unwaveringly straight reflections, are all that keep the whole soft field from becoming weather.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "The palace is the Da Mula Morosini, and Monet arrived on 1 October 1908 for what was meant to be a holiday; he left in December with thirty-seven canvases going. Twenty-nine opened in Paris in May 1912.",
+
+ "deep": "Venice was already an anthology of views when he arrived, and he refused every one of them. No Grand Canal, no picturesque incident: a single palace face taken flat on, its roofline cut away by the top edge, its base dissolved into water with no far bank and no horizon. What is left floats, and the argument is what the wall and the canal do to each other — they trade colour until the stone runs as fluid as the water beneath it. A handful of hard blue verticals, the poles and their straight reflections, are all that keep the whole soft field from becoming weather.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "antonio-canova-amore-e-psiche": {
 about: "Cupid arriving over Psyche the moment after she opens Proserpina's flask and drops into a death-sleep — marble, finished 1793, her arms already lifting to a kiss that in stone never quite lands.",
@@ -794,9 +800,18 @@ by: "Opus 4.8" },
 
 
 "anders-zorn-mrs-walter-rathbone-bacon-virginia-purdy-barker": {
-about: "Virginia Purdy Barker, wife of a wealthy American businessman, painted by Anders Zorn in 1897 — a full-length in cream that fills a tall canvas, a collie pressed to her side, and a level, guarded face that gives nothing away.",
-deep: "The dress is enormous and the head inside it is small, so the social fact and the private one sit at different scales, and you travel between them. Zorn paints events, not surfaces: the satin is long loaded strokes laid once and never returned to, cream, grey-violet and dirty ochre that lock into fabric lit from within. The palette is starved on purpose, so two salmon pinks on the skirt carry the whole warmth budget. Her face is composed, level, worked more than anything else and still economical. The dog is the only unguarded thing in the frame, and she is holding on to it — a portrait less about status than the upkeep of it.",
-by: "Opus 4.8" },
+
+
+ "about": "Virginia Purdy Barker, wife of a wealthy American businessman, painted by Anders Zorn in 1897 — a full-length in cream that fills a tall canvas, a collie pressed to her side, and a level, guarded face that gives nothing away.",
+
+
+ "deep": "The dress is enormous and the head inside it is small, so the social fact and the private one sit at different scales, and you travel between them. Zorn paints events, not surfaces: the satin is long loaded strokes laid once and never returned to, cream, grey-violet and dirty ochre that lock into fabric lit from within. The palette is starved on purpose, so a few salmon pinks on the skirt and the yellows at the bodice carry the warmth. Her face is composed, level, worked more than anything else and still economical. The dog is the only unguarded thing in the frame, and she is holding on to it — a portrait less about status than the upkeep of it.",
+
+
+ "by": "Opus 4.8"
+
+
+},
 
 "claude-monet-agapanthes": {
 
@@ -824,14 +839,24 @@ deep: "Hodler called his method parallelism: like forms set beside like forms un
 by: "Opus 4.8" },
 
 "georges-seurat-gray-weather-grande-jatte": {
-about: "Georges Seurat, 1886: the same island in the Seine as his famous Sunday crowd, now emptied. Bare track, moored boats tied up, the only event the weather. A pale plane of river runs back between dark screens of foliage under overcast light.",
-deep: "The subject is the word in the title. Overcast light flattens value, so nothing is very dark or bright, and Seurat treats that as opportunity: strip away sun and shadow and what remains is pure hue, dispersed and quiet. The picture argues that gray is not absence of colour but a crowd of colours agreeing to cancel out. Watch the river, the highest value on the canvas: assembled from cream, rose, pale blue and green in small horizontal touches that stay luminous where a mixed gray would go dead. Dark trunks left, a hanging leaf-mass right, the moored boat's mast the one firm vertical hinging the empty centre. A motif revisited without ambition, as a place.",
-by: "Opus 4.8" },
+
+ "about": "Georges Seurat, about 1886–88: the same island in the Seine as his famous Sunday crowd, now emptied. Bare track, moored boats tied up, the only event the weather. A pale plane of river runs back between dark screens of foliage under overcast light.",
+
+ "deep": "The subject is the word in the title. Overcast light flattens value, so nothing is very dark or bright, and Seurat treats that as opportunity: strip away sun and shadow and what remains is pure hue, dispersed and quiet. The picture argues that gray is not absence of colour but a crowd of colours agreeing to cancel out. Watch the river, the highest value on the canvas: assembled from cream, rose, pale blue and green in small horizontal touches that stay luminous where a mixed gray would go dead. Dark trunks left, a hanging leaf-mass right, the moored boat's funnel the one firm vertical hinging the empty centre. A motif revisited without ambition, as a place.",
+
+ "by": "Opus 4.8"
+
+},
 
 "gustav-klimt-serena-pulitzer-lederer-1867-1943": {
-about: "Gustav Klimt's 1899 portrait of Serena Pulitzer Lederer — a near life-size figure in white on a canvas more than twice as tall as it is wide, only her dark head fully resolved, everything below the shoulders softening until the hem has no edge.",
-deep: "The real subject is a proportion. The canvas runs better than two to one, so Klimt builds a top-to-bottom fall and rations everything to serve it. Contrast is spent entirely on the head: the only saturated colour, the only hard edges, a black core with curls that never harden against the ground. Below, the gown is dragged in long dry vertical strokes, blue-grey and violet left unblended, so it reads as grain rather than drapery, no creases to stop the eye. He never brightens the dress; he dims the warmer air around it. The hands go unfinished, the hem dissolves, she casts no shadow — a body turning into atmosphere. Standing before it, you watch it slowly brighten as the eye adjusts.",
-by: "Opus 4.8" },
+
+ "about": "Gustav Klimt's 1899 portrait of Serena Pulitzer Lederer — a near life-size figure in white on a canvas more than twice as tall as it is wide, only her dark head fully resolved, everything below the shoulders softening until the hem has no edge.",
+
+ "deep": "The real subject is a proportion. The canvas runs better than two to one, so Klimt builds a top-to-bottom fall and rations everything to serve it. Contrast is spent entirely on the head: the only saturated colour, nearly all the hard edges, a black core with curls that never harden against the ground. Below, the gown is dragged in long dry strokes curving down toward the hem, blue-grey and violet left unblended, so it reads as grain rather than drapery, no creases to stop the eye. He never brightens the dress; he dims the warmer air around it. The hands go unfinished, the hem dissolves, she casts no shadow — a body turning into atmosphere. Standing before it, you watch it slowly brighten as the eye adjusts.",
+
+ "by": "Opus 4.8"
+
+},
 
 "gustave-courbet-marine-the-waterspout": {
 about: "Gustave Courbet's Marine: The Waterspout, 1870 — a storm at sea with no horizon to divide weather from water. A green-black wave breaks in from the left, rain falls in pale shafts from a bruised cloud, and the cloud tears open into copper overhead.",
@@ -1607,7 +1632,7 @@ by: "Opus 4.8" },
 
 "claude-monet-the-path-through-the-irises": {
 
- "about": "The blaring, near-abstract color here owes partly to the double cataracts clouding Monet's sight; painted around 1914-17, it belongs to a series of some twenty iris views from his Giverny garden made in monumental scale during the First World War.",
+ "about": "The blaring, near-abstract color here owes partly to the double cataracts clouding Monet's sight; painted around 1914-17, it belongs to a series of iris views from his Giverny garden made in monumental scale during the First World War.",
 
  "deep": "The real subject is entry with no exit. Monet plants you inside the iris bed rather than at the end of a receding lane, and the whole surface is built to make you stay there: no sky, no horizon, only blades closing in from both sides and a warm channel of gold that swells in the lower centre but never opens onto anything beyond itself. Even the brushwork refuses recession: the blades climb while the gold between them is laid crosswise, so no stroke runs back into depth, and the blooms stay loose dabs of pink and lilac that never harden into things you could stand back and inspect. Toward the top the path climbs to the very edge, so ground fills the place where sky should be. What was a garden becomes a condition: the eye held, surrounded, unable to find the distance it normally reaches for.",
 
@@ -4312,8 +4337,12 @@ by: "Fable" },
  },
 
 "henry-fuseli-thor-battering-the-midgard-serpent": {
-about: "The picture Fuseli deposited with the Royal Academy on his election in 1790 — every new Academician owed a diploma work, and he chose Norse myth when almost no one in London painted it: Thor hauling the Midgard Serpent from the deep while the giant Hymir cowers in the boat. The painter of The Nightmare moved the nightmare into daylight and gave it muscles.",
-by: "Fable" },
+
+ "about": "The picture Fuseli deposited with the Royal Academy on his election in 1790 — every new Academician owed a diploma work, and he chose Norse myth: Thor hauling the Midgard Serpent from the deep while the giant Hymir cowers in the boat. The painter of The Nightmare moved the nightmare out into the open and gave it muscles.",
+
+ "by": "Fable"
+
+},
 
 // ——— import-canon Info wave 1 (Fuad-approved 2026-08-22) — Opus per-slice research + Fable QC;
 // provenance/ownership lines stripped per the same-day ruling; 6 redrafts and 1 parked row follow.
@@ -4376,10 +4405,16 @@ by: "Opus · Fable" },
 },
 
 "claude-monet-les-coquelicots": {
-about: "A summer walk at Argenteuil, 1873 — a woman with a parasol, a child drowned in poppies, and the same pair tiny by the treeline. Monet showed it in the 1874 exhibition that gave the Impressionists their mocking name.",
-deep: "You register the red before you count a single flower. The poppies in the near corner are painted deliberately too large, brighter and looser than the ones behind — size as a decision, not accuracy — so the field recedes by contrast alone. The red is unmixed, so it beats against its complementary green and flickers; step in and it falls apart into commas of paint. Two-thirds of the canvas is only sky, and that pale expanse is why the red reads as brilliant rather than merely red. The woman and child get no faces, no gesture, no anecdote — Camille and Jean by tradition, painted in the settled years just before that life came apart.",
-deepBy: "Sonnet 4.6",
-by: "Opus · Fable" },
+
+ "about": "A summer walk at Argenteuil, 1873 — a woman with a parasol, a child drowned in poppies, and the same pair tiny by the treeline. Monet showed it in the 1874 exhibition that gave the Impressionists their mocking name.",
+
+ "deep": "You register the red before you count a single flower. The poppies in the near corner are painted deliberately too large, brighter and looser than the ones behind — size as a decision, not accuracy — so the field recedes by contrast alone. The red is unmixed, so it beats against its complementary green and flickers; step in and it falls apart into commas of paint. Nearly half the canvas is only sky, and that pale expanse is why the red reads as brilliant rather than merely red. The woman and child get no faces, no gesture, no anecdote — Camille and Jean by tradition, painted in the settled years before that life came apart.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus · Fable"
+
+},
 
 "claude-monet-gare-saint-lazare-monet-series": {
 about: "Having relocated from Argenteuil to lodgings near the station, Monet trained his easel on Paris's busiest terminus through the first half of 1877, producing twelve canvases of steam, iron and glass. Roughly eight were ready for the third Impressionist exhibition that April, where they hung together as a deliberate ensemble — an early experiment in the serial method he would push to haystacks and cathedrals.",
@@ -4390,16 +4425,28 @@ about: "Around 1875 Monet painted several views of sailing boats moored in the A
 by: "Opus · Fable" },
 
 "camille-pissarro-junimorgen-bei-pontoise": {
-about: "An ordinary June morning outside Pontoise, 1873 — a rutted track through flat fields under a sky that takes half the canvas, and one of the plain rural subjects Pissarro sent into the first Impressionist exhibition of 1874.",
-deep: "It took stubbornness to hang a dirt track in the first Impressionist exhibition and call it enough — no ruin, no monument, and critics used to history and myth found it coarse and unfinished. The track does all the spatial work: warm buff, wheel-scored, a bright central puddle holding the sky, thinning and smoothing where the fields either side stay broken and dabbed, so the surface itself tells you the ground is trodden. Follow it to where it narrows and the figures appear, one marked by a stroke of blue — inhabitants on an errand, not staffage. The poppies are the only saturated colour allowed in, one loaded touch each, sitting on top of the greens.",
-deepBy: "Sonnet 4.6",
-by: "Opus · Fable" },
+
+ "about": "An ordinary June morning outside Pontoise, 1873 — a rutted track through flat fields under a sky that takes half the canvas, and one of the plain rural subjects Pissarro sent into the first Impressionist exhibition of 1874.",
+
+ "deep": "It took stubbornness to hang a dirt track in the first Impressionist exhibition and call it enough — no ruin, no monument, and critics used to history and myth found it coarse and unfinished. The track does all the spatial work: warm buff, wheel-scored and grassed down its crown, a pale band narrowing and bending as it climbs between fields of straw-gold. Follow it to where it narrows and the figures appear, one marked by a stroke of blue — inhabitants on an errand, not staffage. The poppies are the only saturated colour allowed in, one loaded touch each, sitting on the straw-gold.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus · Fable"
+
+},
 
 "claude-monet-camille-sur-son-lit-de-mort": {
-about: "Camille Doncieux, Monet's model and then his wife, dead at thirty-two in September 1879 — and at the bedside he caught himself reading the blue and grey gradations of death across her face, then painted them.",
-deep: "Edges survive in one place only: the shadowed sockets of the face. Everything below is weather — long raking strokes of white, lilac and ash-blue dragged wet through wet, scraped so thin in places the ground shows, sweeping left until the body is lost in the current. All of them aim back up at the head, so the face arrives first from across a room and the eye can never settle beneath it. One passage stays warm: a knot of dull rose and rust at the chest, flowers or folded hands, left unreadable. Cover it with a thumb and the picture goes to ice. In the lower right, the red signature, steady and legible where nothing else is.",
-deepBy: "Sonnet 4.6",
-by: "Opus · Fable" },
+
+ "about": "Camille Doncieux, Monet's model and then his wife, dead at thirty-two in September 1879 — and, as he later told Clemenceau, by her open coffin he caught himself reading the blue and grey gradations of death across her face, and painted them.",
+
+ "deep": "Edges survive in one place only: the shadowed sockets of the face. Everything below is weather — long raking strokes of white, lilac and ash-blue dragged wet through wet, scraped so thin in places the ground shows, slanting down to the right, then lying nearly level, until the body is lost in the current. None of them settles into a shape, so the face arrives first from across a room and the eye can never settle beneath it. One passage stays warm: a knot of dull rose and rust at the chest, flowers or folded hands, left unreadable. Cover it with a thumb and the picture goes to ice. In the lower right, his name in black, stamped by the studio after his death, steady and legible where nothing else is.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus · Fable"
+
+},
 
 "claude-monet-la-femme-a-l-ombrelle": {
 
@@ -4417,7 +4464,7 @@ by: "Opus · Fable" },
 
  "about": "Monet indoors, 1875 — his son Jean posted just off centre in a blue corridor of his Argenteuil house, plants hanging in from both edges like theatre wings. One of the few interiors a painter of the open air ever made.",
 
- "deep": "The boy looks back. He stands just right of centre, near-black against the window with a pale collar, his small face plainly drawn and turned straight at us, his legs running down into their reflection in the polished floor. Everything points past him at a curtained opening of blue-white streaks, and Monet hangs a dark lamp on its chain in front of it, eclipsing the one bright thing in the room. The parquet does the perspective — chevrons laid as dashes that tilt up and compress the depth. Camille sits further back at the table, half-hidden in the leaves. For a painter who lived outdoors, the coldness is the news: blues and slate greens throughout, the warmth exiled to the red flecks of the patterned curtains at the edges.",
+ "deep": "The boy looks back. He stands just right of centre, near-black against the window with a pale collar, his small face plainly drawn and turned straight at us, his legs running down into their reflection in the polished floor. Everything points past him at a curtained opening of blue-white streaks, and Monet hangs a dark lamp on its chain in front of it, eclipsing the one bright thing in the room. The parquet does the perspective — chevrons laid as dashes that tilt up and compress the depth. Camille sits further back at the table, half-hidden in the leaves. For a painter who lived outdoors, the coldness is the news: blues and slate greens throughout, the warmth exiled to the red flecks of the patterned curtains at the edges and the dull gilt of the chandelier.",
 
  "deepBy": "Sonnet 4.6",
 
@@ -4494,10 +4541,16 @@ deep: "Almost nothing in this canvas is finished except one face. The far bank i
 by: "Opus 4.8" },
 
 "eugene-jansson-motif-from-timmermansgatan": {
-about: "A stone stairway climbing to Mariaberget on Stockholm's Södermalm, 1899 — his own quarter, painted at night in almost nothing but blue. One of the nocturnes that earned Eugène Jansson his nickname: blåmålaren, the blue-painter.",
-deep: "The handrail is the only drawn line in the picture. Everything else is smudge and drag — the road broad, the treads barely differentiated — so the rail becomes the one thing you could hold in the dark; follow it up and you feel the climb the picture is about. Look at the gaslamp where the road bends: no source point, no flare, just pale colour pooling and thinning outward, light with weight and temperature but no direction. The lit windows bleed the same way, until the wall seems to dissolve around each one. Above the roofline the brush finally lets go into coiling cloud.",
-deepBy: "Sonnet 4.6",
-by: "Opus · Fable" },
+
+ "about": "A stone stairway climbing to Mariaberget on Stockholm's Södermalm, 1899 — his own quarter, painted at night in browns under a blue sky. One of the nocturnes that earned Eugène Jansson his nickname: blåmålaren, the blue-painter.",
+
+ "deep": "The handrail is the firmest line in the picture. Everything else is smudge and drag — the road broad, the treads only soft bands — so the rail becomes the one thing you could hold in the dark; follow it up and you feel the climb the picture is about. Look at the lamp where the road bends: no source point, no flare, just pale colour pooling and thinning outward, light with weight and temperature but no direction. The long wall above is washed the same way, in upward streaks, until it seems to dissolve into the glow. Above the roofline the brush finally lets go into coiling cloud.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus · Fable"
+
+},
 
 "anders-zorn-the-painter-bruno-liljefors": {
 
@@ -4551,10 +4604,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus · Fable" },
 
 "alphonse-osbert-vision-de-sainte-genevieve": {
-about: "The girl who will one day steady Paris against Attila, painted in 1892 as a shepherdess at the instant of listening — the vision withheld: no angel, no ray, only a halo bleeding into blue dusk.",
-deep: "The halo is the only event: not a drawn gold disc but a bloom of pale light that flares at the hair and bleeds outward until you cannot say where holiness stops and weather begins. Osbert starves the palette to blues and greys with a faint green in the grass, the whole canvas tuned to one temperature. Two pale notes answer the halo: the blouse and the hands, folded low and loosely, not clasped in fervour but simply stilled, a body held quiet to hear. Even the lamb is brushed in her tones rather than the ground's. Puvis de Chavannes, whose flat muralist hush this is built on, praised it; so did Rodin.",
-deepBy: "Sonnet 4.6",
-by: "Opus · Fable" },
+
+ "about": "The girl who will one day steady Paris against Attila, painted in 1892 as a shepherdess at the instant of listening — the vision withheld: no angel, no ray, only a halo bleeding into blue dusk.",
+
+ "deep": "The halo is the only event: not a drawn gold disc but a bloom of pale light that flares at the hair and bleeds outward until you cannot say where holiness stops and weather begins. Osbert starves the palette to blues and greys with a faint green in the grass, the whole canvas tuned to one temperature. Two pale notes answer the halo: the blouse and the hands, clasped low at the end of hanging arms, not raised in fervour but simply stilled, a body held quiet to hear. Even the lamb is brushed in her tones rather than the ground's. Its flat muralist hush is built on Puvis de Chavannes.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus · Fable"
+
+},
 
 "charles-angrand-man-and-woman-in-the-street": {
   "about": "Angrand's canvas sets a man and a woman, turned away from us, on a pale pavement. It dates from 1887, the first year of the few paintings, made alongside Seurat until 1891, on which his reputation rests.",
@@ -4568,10 +4627,16 @@ about: "Maximilien Luce painted his close friend Gustave Perrot, a fellow painte
 by: "Opus · Fable" },
 
 "gustaf-ankarcrona-in-days-of-yore": {
-about: "Fordomtima — archaic Swedish for \"in olden times.\" Ankarcrona's 1897 twilight, and the Vikings in it are already leaving: two longships far off on dark water, their sails the last warm thing under a single star.",
-deep: "Sweden was mining the sagas for a heroic origin in 1897; Ankarcrona answered with an exit. Other painters staged landings and battles — here the ships are already small, already leaving, hulls and crews unlit, legible mostly by their wakes. A band of yellow afterglow lies along the treetops, kept to a sliver: widen it and this is a sunset, hold it thin and it becomes an ending. One white star sits high in the blue-green, and you find it before you find the Vikings. In the lower right a few spruce saplings come into focus — the one sharp near thing, putting you on the bank while the legend passes on far water.",
-deepBy: "Sonnet 4.6",
-by: "Opus · Fable" },
+
+ "about": "Fordomtima — archaic Swedish for \"in olden times.\" Ankarcrona's 1897 twilight, and the Vikings in it are already leaving: two longships far off on dark water, their sails the last warm thing under a single star.",
+
+ "deep": "Sweden was mining the sagas for a heroic origin in 1897; Ankarcrona answered with an exit. A heroic programme wanted landings and battles — here the ships are already small, already leaving, hulls and crews unlit, legible as silhouettes against grey water. A band of yellow afterglow lies along the treetops, held low: let it climb and this is a sunset, keep it down and it becomes an ending. One white star sits high in the grey-blue, and you find it before you find the Vikings. In the lower right a few spruce saplings stand dark at the water's edge — the one near thing, putting you on the bank while the legend passes on far water.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus · Fable"
+
+},
 
 "claude-monet-le-havre-bateaux-de-peche-sortant-du-port": {
 about: "The same year the word \"Impressionism\" was coined, Monet painted his boyhood harbour — 1874, when he and a breakaway group mounted their own show at Nadar's old studio on the boulevard des Capucines rather than submit to the Salon. Le Havre was where he first sketched under Eugène Boudin, who pushed him outdoors to paint the coast directly.",
