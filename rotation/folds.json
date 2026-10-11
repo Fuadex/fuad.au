@@ -1215,13 +1215,20 @@
     "to": "Delusions of Grandeur",
     "type": "spelling",
     "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan mb-refetch 2026-09-17)"
+   },
+   {
+    "from": "Out of the Thrash",
+    "to": "Out Of The Trash",
+    "type": "spelling",
+    "reason": "DV 2026-10-11 (Discogs 2102382 / 2848958): B.A.C.K. track 3 is Out Of The Trash; \"Thrash\" is a misprint on disc 4 of the 2007 Through the Years box"
    }
   ],
   "albums": [
    {
-    "from": "Terror Squad",
-    "to": "Terror Squad-Fear of Tomorrow",
-    "type": "absorb"
+    "from": "Terror Squad-Fear of Tomorrow",
+    "to": "Terror Squad",
+    "type": "spelling",
+    "reason": "DV 2026-10-11: the row stacks the 1987 Terror Squad LP and the 1985 Fear of Tomorrow LP, each numbered from 1 (the 1990 Roadracer two-on-one CD, inferred: it omits exactly the two songs the library holds on its own Fear of Tomorrow row); the row merges into Terror Squad (album spelling fold = the merging type; absorb is only a singles→LP link), the Fear of Tomorrow half is re-homed per track in _albumMoves"
    }
   ]
  },
@@ -17834,6 +17841,54 @@
    "track": "不出来 - Instrumental",
    "toAlbum": "不出来",
    "reason": "DV 09-24 (Discogs 27145821): the instrumental belongs to 不出来 CD2 #11; library had it filed under 上出来"
+  },
+  {
+   "artist": "Artillery",
+   "track": "Time Has Come",
+   "toAlbum": "Fear of Tomorrow",
+   "reason": "DV 2026-10-11 (Discogs 2007911): a Fear of Tomorrow (Neat 1985) song scrobbled on the Terror Squad-Fear of Tomorrow two-on-one row, which folds onto Terror Squad; LP position from discs"
+  },
+  {
+   "artist": "Artillery",
+   "track": "The Almighty",
+   "toAlbum": "Fear of Tomorrow",
+   "reason": "DV 2026-10-11 (Discogs 2007911): a Fear of Tomorrow (Neat 1985) song scrobbled on the Terror Squad-Fear of Tomorrow two-on-one row, which folds onto Terror Squad; LP position from discs"
+  },
+  {
+   "artist": "Artillery",
+   "track": "Show Your Hate",
+   "toAlbum": "Fear of Tomorrow",
+   "reason": "DV 2026-10-11 (Discogs 2007911): a Fear of Tomorrow (Neat 1985) song scrobbled on the Terror Squad-Fear of Tomorrow two-on-one row, which folds onto Terror Squad; LP position from discs"
+  },
+  {
+   "artist": "Artillery",
+   "track": "Out of the Sky",
+   "toAlbum": "Fear of Tomorrow",
+   "reason": "DV 2026-10-11 (Discogs 2007911): a Fear of Tomorrow (Neat 1985) song scrobbled on the Terror Squad-Fear of Tomorrow two-on-one row, which folds onto Terror Squad; LP position from discs"
+  },
+  {
+   "artist": "Artillery",
+   "track": "Into the Universe",
+   "toAlbum": "Fear of Tomorrow",
+   "reason": "DV 2026-10-11 (Discogs 2007911): a Fear of Tomorrow (Neat 1985) song scrobbled on the Terror Squad-Fear of Tomorrow two-on-one row, which folds onto Terror Squad; LP position from discs"
+  },
+  {
+   "artist": "Artillery",
+   "track": "The Eternal War",
+   "toAlbum": "Fear of Tomorrow",
+   "reason": "DV 2026-10-11 (Discogs 2007911): a Fear of Tomorrow (Neat 1985) song scrobbled on the Terror Squad-Fear of Tomorrow two-on-one row, which folds onto Terror Squad; LP position from discs"
+  },
+  {
+   "artist": "Artillery",
+   "track": "Deeds of Darkness",
+   "toAlbum": "Fear of Tomorrow",
+   "reason": "DV 2026-10-11 (Discogs 2007911): a Fear of Tomorrow (Neat 1985) song scrobbled on the Terror Squad-Fear of Tomorrow two-on-one row, which folds onto Terror Squad; LP position from discs"
+  },
+  {
+   "artist": "Artillery",
+   "track": "Global Flatline",
+   "toAlbum": "Legions",
+   "reason": "DV 2026-10-11 (Discogs 5155143): Legions track 5; the library held it album-less (it is not on The Face of Fear)"
   }
  ],
  "Anathema": {
