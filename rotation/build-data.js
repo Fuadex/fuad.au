@@ -1955,11 +1955,17 @@ for (const m of _aBy.values()) m.sort((a, b) => b.plays - a.plays);
 // distinct tracks, the corpus wins (it's the full LP, not the CD single). Black Label was mislabelled
 // "ep" the same way; its 10-track corpus tracklist promotes it to album.
 const _kNameComp = /\b(greatest hits|best of|anthology|collection|singles)\b/i;
-const _kNameLive = /\blive\b|\blive at\b|unplugged/i;
+const _kNameLive = /\blive\b|\blive at\b|unplugged|\bat\s+(the\s+)?budokan\b/i;   // "at Budokan" added 2026-10-11: ZAZEN BOYS' MATSURI SESSION AT BUDOKAN (MB Album/Live) passed as a studio body and pulled two songs off their records once Japanese titles could key
 const _kNameOst = /\b(ost|original soundtrack|soundtrack)\b/i;
 const _EMPTY_SET = new Set();
 // squash key = the UI's matchKey (decEnt not needed here — titles are already decoded): lowercase alnum
 const _kSquash = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
+// _dSquash (2026-10-11, fold sweep): the DISCS/homing key. Same squash, but a title with no ASCII letters or digits (上出来,
+// マスメディア) squashes to "" and could never take a disc position — those collapse into one collision bucket and a disc list on
+// such an album demoted its unmatched rows to bonus. Fallback = lib-slug (the hashed a-xxxx form), applied to BOTH sides
+// (disc-list titles and library titles), so hand-added mb-releases.json keys for non-Latin albums use slug(title).
+// The MB-kinds path keeps _kSquash (its keys come from the fetcher and the UI matchKey).
+const _dSquash = (s) => _kSquash(s) || (s ? slug(String(s)) : "");
 const _kStripThe = (s) => _kSquash(String(s || "").replace(/^the\s+/i, ""));
 const _kRank = { album: 3, ep: 2, single: 1 };
 // build artistSlug → Map(squashKey → "album"/"ep"/"single") from MB release groups, collision-aware.
@@ -4025,7 +4031,7 @@ const _isStandardDisc = (albSquash, discTitle) => {
   const dt = discTitle || "";
   if (!dt) return true;                                   // empty title = the LP proper
   if (/original album/i.test(dt)) return true;            // explicit studio-master marker
-  const ds = _kSquash(dt);
+  const ds = _dSquash(dt);
   if (ds && (ds === albSquash || albSquash.startsWith(ds) || ds.startsWith(albSquash) || albSquash.includes(ds))) return true; // similar to album title
   return !_nonStandardDisc.test(dt);                      // else drop only if flagged non-standard material
 };
@@ -4044,7 +4050,7 @@ const DISCS_BY_ARTIST = (() => {
       discs.forEach(([discTitle, trackList], di) => {
         if (!_isStandardDisc(albSquash, discTitle)) return;
         (trackList || []).forEach((tt, pos) => {
-          const k = _kSquash(tt);
+          const k = _dSquash(tt);
           if (!k) return;
           let arr = trackHome.get(k); if (!arr) trackHome.set(k, arr = []);
           arr.push({ albSquash, disc: di, pos: pos + 1, discTitle: discTitle || "", standardDisc: di === 0 });
@@ -4074,7 +4080,7 @@ const ALB_BY_SQUASH = (() => {
   for (const [k, plays] of albumPlays) {
     const ix = k.indexOf("\x00"); if (ix < 0) continue;
     const artist = k.slice(0, ix), title = k.slice(ix + 1);
-    const aSlug = slug(artist), sq = _kSquash(title);
+    const aSlug = slug(artist), sq = _dSquash(title);
     if (!sq) continue;
     let m = out.get(aSlug); if (!m) out.set(aSlug, m = new Map());
     const cur = m.get(sq);
@@ -4116,7 +4122,7 @@ const mediaTracks = [...trackPlays.entries()].sort((a, b) => b[1] - a[1]).map(([
   const trackHome = DISCS_BY_ARTIST.get(aSlug);
   const albMap = ALB_BY_SQUASH.get(aSlug);
   if (trackHome && albMap) {
-    const homes = trackHome.get(_kSquash(title)) || null;
+    const homes = trackHome.get(_dSquash(title)) || null;
     if (homes && homes.length) {
       // resolve each disc-home to a corpus album key that actually exists in the media index
       const resolved = homes.map(h => {
@@ -4169,7 +4175,7 @@ const mediaTracks = [...trackPlays.entries()].sort((a, b) => b[1] - a[1]).map(([
     // that Spotify happens to number past the standard tracklist. Flag it bonus and suppress the Spotify
     // number so it can't collide with — or overflow past — the real tracklist. Studio bodies stay clean.
     if (!discNo && albumIdx >= 0) {
-      const homeSq = _kSquash(mediaAlbums[albumIdx][0]);
+      const homeSq = _dSquash(mediaAlbums[albumIdx][0]);
       const dm = DISCS_BACKED_ALBUMS.get(aSlug);
       if (dm && dm.has(homeSq)) discBonus = 1;   // homed to a discs-backed album but unlisted → bonus
     }
