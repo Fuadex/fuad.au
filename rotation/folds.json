@@ -2172,6 +2172,12 @@
     "to": "Pyosisified (Still Rotten To The Gore)",
     "type": "spelling",
     "reason": "spelling: subtitle is Gore on the Tools of the Trade EP / Wake Up sleeve, not Core (Carcass reads campaign 2026-09-24)"
+   },
+   {
+    "from": "Under the Scalpel Blade (OFFICIAL TRACK)",
+    "to": "Under the Scalpel Blade",
+    "type": "spelling",
+    "reason": "DV 2026-09-24: \"(OFFICIAL TRACK)\" is a YouTube-style upload title, not a release title; the song is Torn Arteries track 4 / Despicable EP track 3 (spelling = the merging track-fold type)"
    }
   ]
  },
@@ -17889,6 +17895,18 @@
    "track": "Global Flatline",
    "toAlbum": "Legions",
    "reason": "DV 2026-10-11 (Discogs 5155143): Legions track 5; the library held it album-less (it is not on The Face of Fear)"
+  },
+  {
+   "artist": "Carcass",
+   "track": "Under the Scalpel Blade",
+   "toAlbum": "Torn Arteries",
+   "reason": "DV 2026-09-24: the upload-titled row had no album; the song is Torn Arteries track 4 (position from discs)"
+  },
+  {
+   "artist": "THE MAD CAPSULE MARKETS",
+   "track": "Asphalt-Beach",
+   "toAlbum": "Digidogheadlock",
+   "reason": "DV 2026-10-03: scrobbled on the \"2004\" row (the 1997-2004 remix best-of, where it is #3) but carrying DIGIDOGHEADLOCK's #9; the library's only Asphalt-Beach is homed here"
   }
  ],
  "Anathema": {
@@ -18370,6 +18388,14 @@
     "to": "Spathic!!",
     "type": "spelling",
     "reason": "spelling: the Charlie tracklist title carries two exclamation marks (melt-banana campaign, DV 2026-09-25)"
+   }
+  ],
+  "albums": [
+   {
+    "from": "Return of 13 Hedgehogs (MxBx Singles 2000",
+    "to": "Return of 13 Hedgehogs (MxBx Singles 2000-2009)",
+    "type": "spelling",
+    "reason": "DV 2026-09-25 (A-Zap AZCD-0010, 12 May 2015): the scrobble album string is truncated after \"2000\"; the full title carries the 2015 year already in spotify-albummeta"
    }
   ]
  },
