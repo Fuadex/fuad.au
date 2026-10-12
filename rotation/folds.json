@@ -107,6 +107,13 @@
    "toArtist": "System of a Down",
    "toTrack": "Fuck The System",
    "reason": "One play scrobbled under \"Daron Malakian\" from Steal This Album! — a System of a Down track, not a Scars on Broadway one. fromArtist is the POST-FOLD name on purpose: build-data runs canon() at ingest (L1593) BEFORE consulting MOVES (L1598), so by the time the move is looked up this row already reads \"Scars on Broadway\". Scars has no track of its own by this name, so there is no collision."
+  },
+  {
+   "fromArtist": "Placebo",
+   "fromTrack": "Aria - Original Live Recording",
+   "toArtist": "Placebo (Marc Moulin)",
+   "toTrack": "Aria - Original Live Recording",
+   "reason": "DV 2026-10-11: the Jazz Middelheim compilation row is the 1972 Belgian jazz group Placebo (Marc Moulin), a same-name mis-merge; moved off the British band"
   }
  ],
  "Nocny Kochanek": {
@@ -17360,8 +17367,57 @@
     "to": "Without You I'm Nothing",
     "type": "variant",
     "reason": "remix ((feat. David Bowie)  (Unkle remix))"
+   },
+   {
+    "from": "I Know - RE:CREATED VERSION",
+    "to": "I Know",
+    "type": "spelling",
+    "reason": "DV 2026-10-11 (Discogs 37673310): Placebo RE:CREATED (19 June 2026) is a remix of the 1996 debut from the original tapes, the song titles unchanged; the edition suffix split each song from its own title (Nancy Boy folds onto the debut row, the rest keep their RE:CREATED album row and take its disc positions)"
+   },
+   {
+    "from": "H.K. Farewell - RE:CREATED VERSION",
+    "to": "H.K. Farewell",
+    "type": "spelling",
+    "reason": "DV 2026-10-11 (Discogs 37673310): Placebo RE:CREATED (19 June 2026) is a remix of the 1996 debut from the original tapes, the song titles unchanged; the edition suffix split each song from its own title (Nancy Boy folds onto the debut row, the rest keep their RE:CREATED album row and take its disc positions)"
+   },
+   {
+    "from": "36 Degrees - RE:CREATED VERSION",
+    "to": "36 Degrees",
+    "type": "spelling",
+    "reason": "DV 2026-10-11 (Discogs 37673310): Placebo RE:CREATED (19 June 2026) is a remix of the 1996 debut from the original tapes, the song titles unchanged; the edition suffix split each song from its own title (Nancy Boy folds onto the debut row, the rest keep their RE:CREATED album row and take its disc positions)"
+   },
+   {
+    "from": "Drowning By Numbers - RE:CREATED VERSION",
+    "to": "Drowning By Numbers",
+    "type": "spelling",
+    "reason": "DV 2026-10-11 (Discogs 37673310): Placebo RE:CREATED (19 June 2026) is a remix of the 1996 debut from the original tapes, the song titles unchanged; the edition suffix split each song from its own title (Nancy Boy folds onto the debut row, the rest keep their RE:CREATED album row and take its disc positions)"
+   },
+   {
+    "from": "Hang On To Your IQ - RE:CREATED VERSION",
+    "to": "Hang On To Your IQ",
+    "type": "spelling",
+    "reason": "DV 2026-10-11 (Discogs 37673310): Placebo RE:CREATED (19 June 2026) is a remix of the 1996 debut from the original tapes, the song titles unchanged; the edition suffix split each song from its own title (Nancy Boy folds onto the debut row, the rest keep their RE:CREATED album row and take its disc positions)"
+   },
+   {
+    "from": "Bruise Pristine (RE:CREATED VERSION)",
+    "to": "Bruise Pristine",
+    "type": "spelling",
+    "reason": "DV 2026-10-11 (Discogs 37673310): Placebo RE:CREATED (19 June 2026) is a remix of the 1996 debut from the original tapes, the song titles unchanged; the edition suffix split each song from its own title (Nancy Boy folds onto the debut row, the rest keep their RE:CREATED album row and take its disc positions)"
+   },
+   {
+    "from": "Lady of the Flowers (RE:CREATED VERSION)",
+    "to": "Lady of the Flowers",
+    "type": "spelling",
+    "reason": "DV 2026-10-11 (Discogs 37673310): Placebo RE:CREATED (19 June 2026) is a remix of the 1996 debut from the original tapes, the song titles unchanged; the edition suffix split each song from its own title (Nancy Boy folds onto the debut row, the rest keep their RE:CREATED album row and take its disc positions)"
+   },
+   {
+    "from": "Nancy Boy - RE:CREATED VERSION",
+    "to": "Nancy Boy",
+    "type": "spelling",
+    "reason": "DV 2026-10-11 (Discogs 37673310): Placebo RE:CREATED (19 June 2026) is a remix of the 1996 debut from the original tapes, the song titles unchanged; the edition suffix split each song from its own title (Nancy Boy folds onto the debut row, the rest keep their RE:CREATED album row and take its disc positions)"
    }
-  ]
+  ],
+  "albums": []
  },
  "Joel Nielsen": {
   "tracks": [
@@ -17931,6 +17987,18 @@
    "track": "FYB",
    "toAlbum": "Stagger",
    "reason": "DV 2026-09-26: FYB is Stagger #1 (premiered live at Reading, Aug 2022); the library filed it as its own record"
+  },
+  {
+   "artist": "Placebo",
+   "track": "Bruise Pristine",
+   "toAlbum": "Placebo RE:CREATED",
+   "reason": "DV 2026-10-11: the RE:CREATED single row is the album track (Bruise Pristine 8, Lady of the Flowers 9)"
+  },
+  {
+   "artist": "Placebo",
+   "track": "Lady of the Flowers",
+   "toAlbum": "Placebo RE:CREATED",
+   "reason": "DV 2026-10-11: the RE:CREATED single row is the album track (Bruise Pristine 8, Lady of the Flowers 9)"
   }
  ],
  "Anathema": {
