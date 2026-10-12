@@ -17999,6 +17999,24 @@
    "track": "Lady of the Flowers",
    "toAlbum": "Placebo RE:CREATED",
    "reason": "DV 2026-10-11: the RE:CREATED single row is the album track (Bruise Pristine 8, Lady of the Flowers 9)"
+  },
+  {
+   "artist": "Placebo",
+   "track": "Beautiful James",
+   "toAlbum": "Never Let Me Go",
+   "reason": "DV 2026-10-11: the library single row is the Never Let Me Go album track (2 / 6 / 7); re-homed to the LP, position from its disc list"
+  },
+  {
+   "artist": "Placebo",
+   "track": "Surrounded By Spies",
+   "toAlbum": "Never Let Me Go",
+   "reason": "DV 2026-10-11: the library single row is the Never Let Me Go album track (2 / 6 / 7); re-homed to the LP, position from its disc list"
+  },
+  {
+   "artist": "Placebo",
+   "track": "Try Better Next Time",
+   "toAlbum": "Never Let Me Go",
+   "reason": "DV 2026-10-11: the library single row is the Never Let Me Go album track (2 / 6 / 7); re-homed to the LP, position from its disc list"
   }
  ],
  "Anathema": {
