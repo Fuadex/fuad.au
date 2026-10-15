@@ -3,6 +3,56 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "shiokawa-bunrin-visit-to-hermitage-in-autumn": {
+  "about": "Shiokawa Bunrin's autumn mountains were painted in midwinter, at a lodging east of Lake Biwa: the inscription names the twelfth month of 1865 as Japan then counted years, a month that fell in early 1866.",
+  "deep": "On this scroll, withdrawal is a duty, kept up at a distance. Bunrin is reported to have said that serving the court through painting was his loyalty; another telling has him say that a painter who strayed from his calling into the executioner's reach showed no wisdom. He made the picture away from Kyoto in the last years before the Restoration, and it argues no politics. Like both sayings, the scroll keeps its worth in the work at hand: the hermitage is little more than a plain roof, and the densest brushwork goes into the trees beneath it, tree built on tree.",
+  "by": "Opus 5.5"
+ },
+ "claude-monet-morning-haze": {
+  "about": "Monet's 1888 field and its row of trees, under white morning fog. By February 1891 it was in New York, hung as Foggy Morning at the Union League Club: one of thirty-four Monets shown alongside Old Masters.",
+  "deep": "On this canvas, construction has moved out of the trunks and into the brushwork. In summer 1888 the painter John Peter Russell, as Vincent van Gogh relayed it to Theo, admired Monet's Antibes pictures but found that \"it all lacks construction\", a tree of his carrying \"far too much foliage for the size of the trunk\". Russell meant the southern canvases, yet the tall tree here is mostly crown, on a faint stem. It stands all the same, because each kind of thing in the fog is laid with its own kind of stroke, and the trees keep their places by the difference between those marks.",
+  "by": "Opus 5.5"
+ },
+ "claude-monet-the-seine-at-giverny": {
+  "about": "Undated, Monet's canvas of trees over still water takes 1897 from the campaign that produced his Mornings on the Seine; his catalogue raisonné keeps it apart, a metre wide, paired with the Islets at Port-Villez.",
+  "deep": "On this canvas every touch can be read one by one, each a plain stroke laid beside the next, and the method still stays out of view. In August 1897, with the river campaign under way, Monet told the journalist Maurice Guillemot, \"I'd like to keep anyone from knowing how it's done.\" A river picture shows its construction most openly where a bank meets its reflection, because a drawn shoreline is the painter's decision made visible. Here nobody drew one, and below the big tree, where the foliage meets its own image, no single mark among the many shows the painter deciding where the river begins.",
+  "by": "Opus 5.5"
+ },
+ "claude-monet-the-willows": {
+  "about": "Monet's riverbank of 1880 — a cut-back willow, slender trunks and hanging leaves in a meadow, a village across the water showing between them. Shown three times in America in 1957–58, it was labelled Poplars.",
+  "deep": "When Émile Taboureux came to interview him in April 1880 and asked to see his studio, Monet said he had never had one, could not understand \"how one can shut oneself in a room\", and waved at the river and hills. The line hardened into press legend; at Giverny he kept studios after all. Here the boast holds, though not as the gesture meant. He pointed at a panorama, and of the riverbank he called his studio the canvas gives whole only what lies a few steps off: grass to the bottom edge, two slender trunks, a pollard close enough to show its cut head.",
+  "by": "Opus 5.5"
+ },
+ "pierre-auguste-renoir-the-skiff-la-yole": {
+  "about": "Renoir's two women in a skiff, probably 1875 — when a 1985 study analysed the paint, the boat's yellows proved chrome and strontium yellow, though his son Jean wrote that he never saw him use chrome yellow.",
+  "deep": "Here the boat is its colour. Camille Mauclair deplored, of the Impressionists' boating and café subjects in general, \"magnificent symphonies of colour spent on boaters or a corner of a café\". Against this canvas the charge has the expense backwards: the outing is barely told, and what is stated in full is orange against river blue. A scientist writing on the paint in 1985 saw Chevreul's law of colour contrast \"so clearly expressed\" in that pairing that he called it curious, since among the painters around him Renoir was \"probably the least interested\" in formal colour theory. The principle arrives as a pleasure boat, a long orange hull through a river of blues.",
+  "by": "Opus 5.5"
+ },
+ "j-m-w-turner-a-disaster-at-sea": {
+  "about": "Turner, around 1835 — for over a century called Fire at Sea, now thought perhaps to show a storm wreck of 1833, the Amphitrite, though a newer suggestion, the Hibernia, would make it a burning ship again.",
+  "deep": "On the storm-wreck reading of the canvas, the sea did not do this alone: a ship's women and children drowned within reach of the shore, because their captain refused the rescue offered to them. Nothing in the paint shows help being turned away, and no one in it can be picked out as the captain. A refusal leaves nothing to paint but its outcome, and the canvas sets that outcome within reach of where we stand. Those nearest us are in the surf at the bottom edge, below the wreck, and well away from the small boat back in the grey.",
+  "by": "Opus 5.5"
+ },
+ "edvard-munch-cypress-in-moonlight": {
+  "about": "Munch's 1892 night street, seen through a window — a sill with flowerpots, a valance overhead, a cypress among lamplit houses. It echoes the moonlit room he painted at Saint-Cloud in 1890, soon after his father's death.",
+  "deep": "Every lit window across the street could be listed; the dark tree among them will not take a place in the list. In Nice on 8 January 1892 Munch wrote that realism had shrunk painting to the seen and heard, \"nature's outer shell\", and that \"the mystical will always exist… the more that is discovered – the more inexplicable things there will be.\" Painted that year, the canvas keeps the shell scrupulously: tiles, panes, potted plants, a lit shop front. The mystical goes into the dark, a blue-green column set down as plainly as any house and answerable to none, as if the moon's blue had thickened into a body.",
+  "by": "Opus 5.5"
+ },
+ "paul-cezanne-une-moderne-olympia": {
+  "about": "Cézanne's 1873–74 answer to Manet's Olympia, a man in black watching a nude unveiled. Guarding it at the first Impressionist show, Louis Latouche wrote to its lender fearing it would come back slashed.",
+  "deep": "If the man in black is a dreamer, the picture the 1874 crowd laughed at makes sense. Marc de Montifaud, a woman writing under a pen name, reported Sunday visitors sneering at Cézanne as a madman in delirium tremens. She saw instead a figure appearing to an opium smoker, a dream out of Baudelaire, and asked why anyone hunted in it for an indecent joke. Her reading fits the paint: the man sits dark and solid, his head upturned, and above him the heaped sheet and the small woman crouched on it seem to have opened from his looking.",
+  "by": "Opus 5.5"
+ },
+ "henri-edmond-cross-la-chevelure": {
+  "about": "Henri-Edmond Cross painted Irma Clare about 1892. A year earlier he had shown her nearly life-size, under her then husband's initials; on this canvas, under a third as tall, her hair hides her face.",
+  "deep": "Dot by dot this belongs to Seurat's circle; in temper it is nearer Puvis de Chavannes. Seurat and Signac both painted a woman at her toilette in just these years, and the method here is theirs. The occasion is not. Nothing places her in a room or at an hour, and no glass shows her the result. What remains has the peaceful, decorative air of Puvis's Jeunes filles au bord de la mer: dark bands recur down the hair at even steps, as a frieze repeats its motif, and the muted colour lets nothing interrupt them.",
+  "by": "Opus 5.5"
+ },
+ "leon-wyczo-kowski-kopanie-burakow-i": {
+  "about": "Autumn 1892, Biała Cerkiew, the Branickis' sugar estate in Ukraine: \"They allotted me a patch of beets, the size of two rooms,\" Wyczółkowski recalled, \"and there I made my studio\". This harvest was painted there.",
+  "deep": "No one in this field poses. An academy model is lit for the painter and turned to be seen; these workers keep to the harvest, with the light beyond them. Wyczółkowski said his plein-air came \"from the village, from Ukraine, not from Paris\", and that there he \"threw off the influence of the academy\"; two art historians still count a Paris visit of 1889, and Monet's retrospective there, as a lesson. The colour could be argued either way. Where he stood could not: down in the rows, among people at work, the leaves running right up to the bottom of the canvas.",
+  "by": "Opus 5.5"
+ },
  "albert-edelfelt-pasteur-s-portrait-by-edelfelt": {
   "about": "Edelfelt, 1885 — by the last sitting Pasteur had him swap a microbe culture for a jar of spinal cord, “something nobody yet knows about”. Nine days later the boy Joseph Meister was treated with dried cord.",
   "deep": "From 1887 to 1901 its painter kept measuring himself against this canvas. Copying it in 1887, with the head and hands his own work, he could not catch the “patine du temps” that a single year had given the original: “greater harmony, more depth in the tone.” In 1892 he recalled being captivated by “the glow under the rough surface”, words that fit the sitter and the paint alike, and in 1901 a success among artists was the first, he wrote, “since Pasteur”. Hold that glow to the beard and the phrase turns literal: a warm brown comes through wherever its pale strokes part.",
