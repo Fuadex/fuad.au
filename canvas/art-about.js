@@ -517,9 +517,14 @@ by: "Opus 4.8" },
 },
 
 "christian-rohlfs-white-beeches-in-fall": {
-about: "Rohlfs was past fifty and thirty years into a career as a landscape painter when Nolde's friendship turned him Expressionist. This 1910 wood carries the wrong tree in English: his German title says birches.",
-deep: "Three pale trunks hold a fire. Between them everything is at full strength — orange, rust, wine-red, laid on thick enough to stand off the canvas — and the trunks are the only cool verticals in it. He draws no edges: a trunk ends where the cream stops and the orange begins, so from across a room it reads as light. Where the loaded brush ran out he let it run out — in the notch where a limb quits the top edge the bare weave is just there — so the picture is finished where he stopped, not where the canvas ends. Birches are the coldest thing he could have put in a burning wood. He put in three.",
-by: "Opus 4.8" },
+
+ "about": "Rohlfs was past fifty and thirty-odd years into his career when meeting Nolde helped turn him Expressionist. This 1910 wood is titled beeches in English and birches in German.",
+
+ "deep": "Three large pale trunks hold a fire. Between them everything is at full strength — orange, rust, wine-red, laid on thick enough to stand off the canvas — and the trunks are the only cool verticals in it. He draws few edges: on its left the big trunk simply ends where the cream stops and the orange begins, so from across a room it reads as light; one navy contour holds its right. Where the loaded brush ran out he let it run out — in the notch where a limb quits the top edge the bare weave is just there — so the picture is finished where he stopped, not where the canvas ends. White trunks are the coldest thing he could have put in a burning wood. He put in three, and thinner ones behind them.",
+
+ "by": "Opus 4.8"
+
+},
 
 "claude-monet-essai-de-figure-en-plein-air": {
  "about": "Monet had painted the figure only rarely since Camille's death in 1879. In the summer of 1886 he returned to it, posing Suzanne Hoschedé — Alice Hoschedé's eighteen-year-old daughter, soon his favourite model — on the riverbank near Giverny. Of the resulting pair, this is the canvas where she turns to the right, both echoing Camille's 1875 parasol walk. The blank face was deliberate: figures \"done like landscapes\", he told Théodore Duret the next summer, were \"an old dream\" he meant to realise \"once and for all\".",
@@ -641,9 +646,14 @@ about: "Passing through Venice in September 1903, on travels that also took him 
 by: "Opus 4.8" },
 
 "impression-sunrise": {
-about: "Le Havre's harbour at sunrise, 1872 — an orange sun over grey-blue mist, cranes and masts dissolved in haze, two small rowboats. The quick harbour sketch whose title a mocking critic turned into the name of an entire movement: Impressionism.",
-deep: "Drain the colour out and the sun almost vanishes: it is nearly identical in brightness to the sky around it, differing only in hue, which is why it vibrates rather than glows. Monet is not painting light but the lag before the eye sorts it into objects. Three directions of brush do the sorting — horizontal strokes for water, diagonal smears for sky, verticals dragged down for masts and stacks — and contour does none of it; the far shore thickens out of the mist and stops. Saturated pigment covers perhaps a twentieth of the canvas; the rest is bare priming. The shock is the size: barely two feet across.",
-deepBy: "Sonnet 4.6" },
+
+ "about": "Le Havre's harbour at sunrise, 1872 — an orange sun over grey-blue mist, cranes and masts dissolved in haze, three small boats. The quick harbour sketch whose title a mocking critic turned into the name of an entire movement: Impressionism.",
+
+ "deep": "Drain the colour out and the sun almost vanishes: it is nearly identical in brightness to the sky around it, differing only in hue, which is why it vibrates rather than glows. Monet is not painting light but the lag before the eye sorts it into objects. Three directions of brush do the sorting — horizontal strokes for water, diagonal smears for sky, verticals dragged down for masts and stacks — and contour does none of it; the far shore thickens out of the mist and stops. Saturated pigment covers perhaps a twentieth of the canvas; the rest is thinly brushed greys. The shock is the size: about two feet across.",
+
+ "deepBy": "Sonnet 4.6"
+
+},
 
 "monet-woman-with-a-parasol": {
 about: "Camille Monet and their son Jean on a summer bluff, 1875 — seen from below against a windy sky, her veil and dress alive, the grass throwing green light up into the white fabric.",
@@ -674,8 +684,12 @@ about: "Klimt's golden couple, 1908 Vienna: a man and woman on the edge of a flo
 deep: "The two bodies fuse into one gold silhouette — but the ornament splits them: his robe carries hard black-and-white rectangles, hers soft circles and blooms, masculine and feminine coded straight into pattern, joined without merging. Her position is stranger than the poster versions let on: she kneels at a cliff edge, toes curled over into empty flowered space — bliss on the brink. Klimt was a goldsmith's son and the gold is real leaf, Byzantine in intent: the flat, holy gold-ground of icons wrapped around profane love. Whether she is melting or enduring the kiss is left exactly, deliberately, undecidable." },
 
 "the-great-wave-off-kanagawa": {
-about: "Hokusai's woodblock print, c. 1830: a colossal wave with claw-like foam about to crash on three fishing boats, with Mount Fuji — the print's true subject — tiny and calm in the trough.",
-deep: "Read it right to left, as Edo did: the wave attacks against the grain of your reading, which is why it feels aggressive rather than merely big. The foam tears into claws over the rowers, who bow flat into it. And the joke: it is one of the Thirty-six Views of Mount Fuji, and the mountain is the smallest thing on the sheet, echoed by a wave whose silhouette is a false Fuji where the real one should be. The blue was brand new — Prussian blue, a synthetic European pigment, imported chemistry inside the most famous image of 'old Japan'. And it is a print: thousands were pulled; you have stood in front of three." },
+
+ "about": "Hokusai's woodblock print, c. 1830: a colossal wave with claw-like foam about to crash on three fast boats carrying fish to Edo, with Mount Fuji — the print's true subject — tiny and calm in the trough.",
+
+ "deep": "Read it right to left, as Edo did: the wave attacks against the grain of your reading, which is why it feels aggressive rather than merely big. The foam tears into claws over the rowers, who bow flat into it. And the joke: it is one of the Thirty-six Views of Mount Fuji, and the mountain is one of the smallest things on the sheet, echoed by a wave whose silhouette is a false Fuji where the real one should be. Part of the blue was new to Japanese prints — Prussian blue, a synthetic European pigment, imported chemistry inside the most famous image of 'old Japan'. And it is a print: thousands were pulled; you have stood in front of three."
+
+},
 
 "the-birth-of-venus": {
 about: "Bouguereau's 1879 Venus: the goddess standing full-length on the shell, ringed by tritons, nereids and putti — French academic painting at its most perfect, made at the exact moment the Impressionists were rendering it obsolete.",
@@ -707,8 +721,12 @@ refs: {"deep":[{"id":"impression-sunrise","text":"Impression, Sunrise"}]} },
 },
 
 "podkowinski-szal-uniesien": {
-about: "Podkowiński's Frenzy of Exultations, 1894: a naked woman in ecstasy clinging to a monstrous rearing black horse — Polish Symbolism's succès de scandale. One canvas exists, and it carries scars: the painter slashed it himself.",
-deep: "Kraków laughed at it and gossiped about the model's identity; after five weeks on show Podkowiński walked in and took a knife to the canvas — then died within the year at 29, and the painting was restored with his cuts inside it. The image itself is pure fin-de-siècle: eros as a runaway animal, the horse's head a storm-cloud of black paint that stops depicting and becomes pure vortex. You likely saw it in the Sukiennice's quiet salon of 19th-century Polish art, where it still radiates exactly the scandal the varnish can't cover." },
+
+ "about": "Podkowiński's Frenzy of Exultations, 1894: a naked woman in ecstasy clinging to a monstrous rearing black horse — Polish Symbolism's succès de scandale. Smaller sketches survive, but this is the full-size canvas, and it carries scars: the painter slashed it himself.",
+
+ "deep": "Warsaw argued over it and gossiped about the model's identity; after five weeks on show Podkowiński walked in and took a knife to the canvas — then died within the year at 28, and the painting was restored with his cuts inside it. The image itself is pure fin-de-siècle: eros as a runaway animal, the horse's mane a storm-cloud of black paint that stops depicting and becomes pure vortex. You likely saw it in the Sukiennice's quiet salon of 19th-century Polish art, where it still radiates exactly the scandal the varnish can't cover."
+
+},
 
 "leech-the-sunshade": {
 
@@ -723,8 +741,12 @@ deep: "Kraków laughed at it and gossiped about the model's identity; after five
 },
 
 "peasants-houses-eragny": {
-about: "Pissarro, 1887: cottages at Éragny in his pointillist period — the patriarch of Impressionism borrowing the dot from Seurat, twenty years his junior. Found floored in, of all places, Sydney.",
-deep: "Pissarro was the only painter in all eight Impressionist exhibitions, and here he is in his late fifties humbly adopting a younger man's technique — the divisionist dot — because he thought it truer. The dots force patience: the picture shimmers rather than describes, and the humble subject (backs of houses, a bit of garden) makes clear the method is the point. He later abandoned it as too slow, too rigid. Your one Australian floored work being a French field painted in dots is the taste-data equivalent of a signature." },
+
+ "about": "Pissarro, 1887: the cottages at Éragny, the village he had settled in three years before, painted in his pointillist period — the patriarch of Impressionism borrowing the dot from Seurat, nearly thirty years his junior.",
+
+ "deep": "Pissarro was the only painter in all eight Impressionist exhibitions, and here he is, well into his fifties, humbly adopting a younger man's technique — the divisionist dot — because he thought it made colour more luminous. The dots force patience: the picture shimmers rather than describes, and the humble subject (peasant cottages, a bit of garden) makes clear the method is the point. He later abandoned it as too slow, too rigid."
+
+},
 
 "the-tuileries-study": {
 
@@ -735,16 +757,28 @@ deep: "Pissarro was the only painter in all eight Impressionist exhibitions, and
 },
 
 "strindberg-underlandet": {
-about: "August Strindberg the playwright, painting in 1894: a wall of green-black paint troweled on with a palette knife, parting around an opening of pale light. He painted only in the years when writing failed him.",
-deep: "There is no drawing under any of it, and no motif fixed in advance: he worked wet into wet, fast; an essay that year argued that chance should do half the making — smear the paint, then find the picture the way you find shapes in clouds. The dark mass is an accident he decided to read as forest, and the opening works because its edges are torn rather than outlined; zoom in and what glows from a distance is bare ridged knife-work. Look low on the dark slope: a dozen knife-touches of pink and white — flowers, in the shadowed part where you stand. Nothing like it had a name until art informel, fifty years on.",
-by: 'Opus · Fable',
-study: "Stand back from Underlandet and it reads almost as a photograph of weather: a small, upright canvas, dark at the edges, with a curtain of forest opening onto a burst of pale gold light that seems to detonate from somewhere just past the treeline. The palette is deliberately narrow — bituminous browns, blacks and greens against that one hot flare of ochre and cream — and the surface is anything but smooth. Strindberg loaded the paint on thickly and worked it with a palette knife rather than a brush, dragging, scraping and pressing until the foreground mass of rock and vegetation is physically ridged. You are looking, in effect, at a landscape built out of the geology of the paint itself.\n\nThe composition is a simple funnel: heavy dark foreground, flanking trees, and a bright clearing that pulls the eye straight down its corridor of light. The scheme is as old as Claude Lorrain, but Strindberg empties it of storytelling — no figures, no anecdote, only the pressure of light forcing its way through matter. It is hard, too, not to see the dramatist in the design: dark wings, a lit opening, the whole picture arranged like a stage glimpsed from the back of the stalls, the bright wonderland of the title kept unreachable behind its proscenium of trees. The illumination does not fall evenly; it concentrates, as if the clearing were lit from within, and the knife-work around it catches actual gallery light so that the texture flickers as you move.\n\nStrindberg was, of course, primarily one of the giants of modern drama, and he painted in intense, self-directed bursts rather than as a trained academic — indoors, from inner vision, not in front of any actual forest. Underlandet belongs to his most concentrated painting year: 1894 is also when he published the essay 'The New Arts, or the Role of Chance in Artistic Creation', arguing that the artist should let the material suggest the image. These forest and sea pictures are that theory enacted, among the earliest European paintings to make chance their working method. Barely shown and little understood in his lifetime, their reputation as startlingly modern came decades later.\n\nThat is the genuine reversal here: a writer with no conventional standing as a painter, working privately and half-theoretically, produced landscapes that now read as anticipating mid-twentieth-century gestural abstraction — the paint as event. The picture argues that nature is not a view to be transcribed but a force to be re-enacted, and that a knife-scrape of pigment can carry the charge of a thunderous clearing more honestly than careful description.\n\nIn person, work the distance deliberately. From several steps back the funnel resolves and the scene coheres as forest and light. Then move in until the image dissolves into pure substance. This is the canvas to deep-zoom: go into the bright clearing where knife-strokes of cream and ochre sit proud of the darker ground, and read the ridges and troughs where the blade lifted the paint — the direction and speed of each pass, the small accidents of drag and skip, the moment where light in the picture and light on the physical surface become the same thing." },
+
+ "about": "August Strindberg the playwright, painting in 1894: a wall of green-black paint troweled on with a palette knife, parting around an opening of pale light. He painted in bursts, often in the years when writing failed him.",
+
+ "deep": "No drawn contour shows anywhere in it, and the motif he set out with did not survive: he worked wet into wet, fast, and wrote that summer that he left half of each picture to chance — smear the paint, then find the picture in the smears. The dark mass began as a forest and, by his own account, turned into a cave as he painted. The opening works because its edges are torn rather than outlined; zoom in and what glows from a distance is bare ridged knife-work. Look low on the dark slope: a dozen knife-touches of pink and white — flowers, in the shadowed part where you stand. Nothing like it had a name until art informel, more than half a century on.",
+
+ "by": "Opus · Fable",
+
+ "study": "Stand back from Underlandet and it reads almost as a photograph of weather: a small, upright canvas, dark at the edges, with a curtain of forest opening onto a burst of pale gold light that seems to detonate from somewhere just past the treeline. The palette is deliberately narrow — bituminous browns, blacks and greens against that one hot flare of ochre and cream — and the surface is anything but smooth. Strindberg loaded the paint on thickly and worked it with a palette knife rather than a brush, dragging, scraping and pressing until the foreground mass of rock and vegetation is physically ridged. You are looking, in effect, at a landscape built out of the geology of the paint itself.\n\nThe composition is a simple funnel: heavy dark foreground, flanking trees, and a bright clearing that pulls the eye straight down its corridor of light. The scheme is as old as Claude Lorrain, but Strindberg empties it of storytelling — no figures, no anecdote, only the pressure of light forcing its way through matter. It is hard, too, not to see the dramatist in the design: dark wings, a lit opening, the whole picture arranged like a stage glimpsed from the back of the stalls, the bright wonderland of the title kept unreachable behind its proscenium of trees. The illumination does not fall evenly; it concentrates, as if the clearing were lit from within, and the knife-work around it catches actual gallery light so that the texture flickers as you move.\n\nStrindberg was, of course, primarily one of the giants of modern drama, and he painted in intense, self-directed bursts rather than as a trained academic — indoors, from inner vision, not in front of any actual forest. Underlandet belongs to his most concentrated painting year: 1894 is also when he published the essay 'The New Arts, or the Role of Chance in Artistic Creation', arguing that the artist should let the material suggest the image. These forest and sea pictures are that theory enacted, among the earliest European paintings to make chance their working method. Barely shown and little understood in his lifetime, their reputation as startlingly modern came decades later.\n\nThat is the genuine reversal here: a writer with no conventional standing as a painter, working privately and half-theoretically, produced landscapes that now read as anticipating mid-twentieth-century gestural abstraction — the paint as event. The picture argues that nature is not a view to be transcribed but a force to be re-enacted, and that a knife-scrape of pigment can carry the charge of a thunderous clearing more honestly than careful description.\n\nIn person, work the distance deliberately. From several steps back the funnel resolves and the scene coheres as forest and light. Then move in until the image dissolves into pure substance. This is the canvas to deep-zoom: go into the bright clearing where knife-strokes of cream and ochre sit proud of the darker ground, and read the ridges and troughs where the blade lifted the paint — the direction and speed of each pass, the small accidents of drag and skip, the moment where light in the picture and light on the physical surface become the same thing."
+
+},
 
 "sergel-hetsigt-karlekspar": {
-about: "An ink-and-wash drawing by Johan Tobias Sergel, the great Swedish sculptor of the late eighteenth century: two lovers caught mid-embrace in a handful of urgent strokes. It was never meant for exhibition — Sergel's drawings were private, done for himself — which is exactly why it still feels alive. Nationalmuseum, Stockholm.",
-deep: "By day Sergel carved marble gods and royal monuments; on paper he answered to no one. The couple is drawn the way a sculptor thinks — in mass and torsion, not outline — so two bodies read as one twisting volume, the wash doing the work of shadow falling over form. Nothing is finished and nothing is missing: the anatomy is summarised down to pressure, one body against another. Zoom in on the arms and hands, where a few overlapping strokes lock the figures together — that knot is the whole drawing. The irony is that these private sheets, tossed off at speed, now look more modern than the neoclassical marbles that made his name. The official Sergel obeyed antiquity; this one obeyed the moment.",
-by: 'Opus · Fable',
-study: "This is a small, fast, private thing — a drawing, not a monument — and its force comes from how little it uses. Sergel sets down a pair of embracing lovers in a few surging strokes, the bodies wrapped into a single knot of movement. There is no setting, no finish, no polish for a patron's eye: just the charged shorthand of a sculptor thinking on paper, the contour repeated and searched for, some passages barely indicated and others bitten in hard where the pressure of the hand increased. The scale is intimate; you lean in to it as you would to a note.\n\nWhat makes it work is speed and structure. Sergel builds the couple as a compact, almost spherical mass — limbs and torsos folded toward a common centre so that two figures read as one heavy, twisting volume. That is a sculptor's instinct: he is not describing surfaces so much as feeling for weight, balance and the axis around which the group turns. The line is investigative rather than decorative, laid down quickly and corrected in place, and the whitest paper is left to do the work of light on skin. The energy lives in the difference between the sure outer silhouette and the flurry of trial strokes inside it.\n\nSergel was the outstanding Swedish sculptor of the late eighteenth century, a Neoclassicist by public reputation who spent over a decade in Rome absorbing antique statuary — and running with Henry Fuseli's circle, whose fevered, abbreviated drawing manner sheets like this plainly share. His drawings are famously another register from his marble: spontaneous, physical, often erotic or satirical, made for himself and his friends rather than for exhibition. That contrast is the whole point of his afterlife — the man who carved cool, controlled gods drew with a heat and immediacy his finished sculpture rarely allowed itself, and sheets like this survive in the Nationalmuseum as evidence of that quicker private hand.\n\nThe irony is exactly that gap. Neoclassicism officially prized restraint, ideal form and moral gravity, yet here one of its accomplished practitioners turns its hard-won command of anatomy to something urgent, bodily and unguarded. The drawing joins a long argument about the difference between the public finished work and the living trace of the artist's hand — and comes down, quietly, on the side of the trace. It suggests that desire and drawing share a grammar: both are about pressure, contact and the search for a single unifying line.\n\nBecause the documented record for this sheet is thin, let the eye do the confirming. From reading distance, take in the whole knot of the couple and feel how it coheres as one turning mass. Then deep-zoom into a single passage — a shoulder, or the join where the two bodies meet — and follow one continuous contour: watch where Sergel began, where he lifted and reattacked the same edge, where a firmer stroke overrides a searching one. In that small stretch of corrected line you can see the drawing being decided in real time, which is the pleasure this sheet exists to give." },
+
+ "about": "An ink-and-wash drawing by Johan Tobias Sergel, the great Swedish sculptor of the late eighteenth century: two lovers caught mid-embrace in a handful of urgent strokes. It was almost certainly never meant for exhibition — Sergel's drawings were largely private — which is exactly why it still feels alive. Nationalmuseum, Stockholm.",
+
+ "deep": "By day Sergel carved marble gods and royal monuments; on paper he answered to no one. The couple is drawn the way a sculptor thinks — in mass and torsion, not outline — so two bodies read as one twisting volume, the wash doing the work of shadow falling over form. Nothing is finished and nothing is missing: the anatomy is summarised down to pressure, one body against another. Zoom in on the arms and hands, where a few overlapping strokes lock the figures together — that knot is the whole drawing. The irony is that these private sheets, tossed off at speed, now look more modern than the neoclassical marbles that made his name. The official Sergel obeyed antiquity; this one obeyed the moment.",
+
+ "by": "Opus · Fable",
+
+ "study": "This is a small, fast, private thing — a drawing, not a monument — and its force comes from how little it uses. Sergel sets down a pair of embracing lovers in a few surging strokes, the bodies wrapped into a single knot of movement. There is no setting, no finish, no polish for a patron's eye: just the charged shorthand of a sculptor thinking on paper, the contour repeated and searched for, some passages barely indicated and others bitten in hard where the pressure of the hand increased. The scale is intimate; you lean in to it as you would to a note.\n\nWhat makes it work is speed and structure. Sergel builds the couple as a compact, almost spherical mass — limbs and torsos folded toward a common centre so that two figures read as one heavy, twisting volume. That is a sculptor's instinct: he is not describing surfaces so much as feeling for weight, balance and the axis around which the group turns. The line is investigative rather than decorative, laid down quickly and corrected in place, and the whitest paper is left to do the work of light on skin. The energy lives in the difference between the sure outer silhouette and the flurry of trial strokes inside it.\n\nSergel was the outstanding Swedish sculptor of the late eighteenth century, a Neoclassicist by public reputation who spent over a decade in Rome absorbing antique statuary — and running with Henry Fuseli's circle, whose fevered, abbreviated drawing manner sheets like this plainly share. His drawings are famously another register from his marble: spontaneous, physical, often erotic or satirical, made for himself and his friends rather than for exhibition. That contrast is the whole point of his afterlife — the man who carved cool, controlled gods drew with a heat and immediacy his finished sculpture rarely allowed itself, and sheets like this survive in the Nationalmuseum as evidence of that quicker private hand.\n\nThe irony is exactly that gap. Neoclassicism officially prized restraint, ideal form and moral gravity, yet here one of its accomplished practitioners turns its hard-won command of anatomy to something urgent, bodily and unguarded. The drawing joins a long argument about the difference between the public finished work and the living trace of the artist's hand — and comes down, quietly, on the side of the trace. It suggests that desire and drawing share a grammar: both are about pressure, contact and the search for a single unifying line.\n\nBecause the documented record for this sheet is thin, let the eye do the confirming. From reading distance, take in the whole knot of the couple and feel how it coheres as one turning mass. Then deep-zoom into a single passage — a shoulder, or the join where the two bodies meet — and follow one continuous contour: watch where Sergel began, where he lifted and reattacked the same edge, where a firmer stroke overrides a searching one. In that small stretch of corrected line you can see the drawing being decided in real time, which is the pleasure this sheet exists to give."
+
+},
 
 "women-in-the-garden": {
 
@@ -760,9 +794,9 @@ study: "This is a small, fast, private thing — a drawing, not a monument — a
 
 "the-town": {
 
- "about": "A late seascape by August Strindberg from 1903, his final period of painting. the town of the title is a low pale strip on the horizon, one gilded dome catching the light; nearly everything else is storm, worked in heavy palette-knife impasto. Small, turbulent, close to abstract: landscape as a weather report from inside a mind. Nationalmuseum, Stockholm.",
+ "about": "A late seascape by August Strindberg from 1903, his final period of painting. The town of the title is a low pale strip on the horizon, one building rising above the rest, lit gold; nearly everything else is storm, worked in heavy palette-knife impasto. Turbulent, close to abstract: landscape as a weather report from inside a mind.",
 
- "deep": "By 1903 Strindberg no longer painted in front of the motif at all — he built pictures like this indoors, from memory, letting the dragged knife find cloud and spray on its own. The composition is deliberate imbalance: the horizon shoved low, the sky given most of the canvas, so the storm doesn't sit over the town, it looms. Then look where the light lands — a pale glow breaks exactly over the little silhouette of Stockholm, the city he spent his whole writing life fighting granted one centimetre of canvas and a single mercy of brightness. Step back and the crusted ridges resolve into moving air and water; step in and they collapse into raw pigment again. That flicker between picture and matter is what later abstraction would build a whole aesthetic on.",
+ "deep": "Strindberg seldom painted in front of the motif — he built pictures like this from memory and fantasy, letting the dragged knife find cloud and spray on its own. The composition is deliberate imbalance: the horizon shoved low, the sky given most of the canvas, so the storm doesn't sit over the town, it looms. Then look where the light lands — a pale fall of light breaks through just left of the little silhouette of the town while the darkest cloud hangs straight above it, a city that may be his own Stockholm granted a sliver of canvas and a single mercy of brightness. Step back and the crusted ridges resolve into moving air and water; step in and they collapse into raw pigment again. That flicker between picture and matter is what later abstraction would build a whole aesthetic on.",
 
  "by": "Opus · Fable",
 
@@ -771,10 +805,16 @@ study: "This is a small, fast, private thing — a drawing, not a monument — a
 },
 
 "midsummer-dance": {
-about: "Anders Zorn's 1897 scene of villagers dancing through a midsummer night in his native Dalarna. Couples whirl between the timber cottages under a sky that never quite darkens. It is Sweden's most beloved image of itself — folk dress, red houses and the long pale light of the north. Nationalmuseum, Stockholm.",
-deep: "The subject is dancing but the achievement is light. At midsummer this far north the sun barely dips below the horizon, and Zorn paints exactly that hour: no lamps, no moon, yet everything is visible in a warm, sourceless glow — a village lit by a sun that has set but not gone. The sky behind the rooftops is already turning back into morning; the dance has simply outlasted the night. In the foreground couples, feet and skirts blur into broad wet strokes while the faces stay sharp and flushed — Zorn paints the sensation of spinning, not the anatomy of it. By 1897 he was an international portrait star, painting the rich on two continents; this is the world he kept coming home to, and it shows — nothing here is observed coldly.",
-by: 'Opus · Fable',
-study: "Midsummer Dance catches the Swedish summer night at its strangest hour, when the sun barely sets and the light goes long, warm and low. Couples dance outdoors among the red timber buildings of a Dalarna village, the whole scene bathed in the pale nocturnal glow of the far north. The canvas has real depth of field: the foreground couple are large and specific, the dance recedes into a loose crowd, and the palette runs from the deep red of the buildings and the blues of folk costume to the strange bright pallor of a sky that never fully darkens. The mood is festive but faintly dreamlike — held in a light with no true night in it.\n\nZorn builds the picture on movement and a very particular handling of illumination. The foreground couple are swept slightly off balance, mid-turn, bodies angled into the dance, so the scene feels caught rather than posed. His brushwork is famously fluent — broad, confident, wet strokes that give a swirling skirt or a shirtsleeve in a few gestures — and he uses it to keep the eye travelling with the dancers down the receding line of the dance. But the light is the real subject. With the sun at or below the horizon there are no hard shadows: the glow comes from the sky itself, warm and cool at once, and Zorn tunes the entire tonal scheme to that single un-nocturnal radiance, which is what fuses dancers, buildings and ground into one atmosphere.\n\nBy the 1890s Zorn was one of the most internationally celebrated painters alive — a Swede who moved easily between Paris, London and the United States as a virtuoso portraitist of the wealthy and powerful. Midsummer Dance comes from the height of that success, painted the year after he had resettled for good in his native Mora, and it turns away from cosmopolitan portraiture toward the folk life of the province he championed. It became one of his signature Swedish subjects and a touchstone image of national midsummer, and it hangs in the Nationalmuseum as the defining work of his homeland manner.\n\nThe reversal is that a painter fluent in the salons of two continents made his most enduring image not of a duchess but of country people dancing in a farmyard. The picture belongs to the era's broad national-romantic turn — the search across late-nineteenth-century Europe for authentic local identity in folk custom and landscape — and it argues that case with dazzling metropolitan technique. The paradox is the point: only a painter of Zorn's international polish could render peasant midsummer with this much bravura, and the tension between humble subject and brilliant handling is what keeps the picture alive.\n\nIn person, start close to the foreground dancers, where the costumes dissolve into pure, loaded strokes of paint. Then step back and watch those strokes resolve into turning bodies as the crowd falls into depth. Above all, give time to the light: register how the sky stays pale and how the shadows soften under a sun that will not set, because that specific midsummer glow is what Zorn was really painting — the thing that lifts a village dance into something luminous and slightly unreal." },
+
+ "about": "Anders Zorn's 1897 scene of villagers dancing through a midsummer night in his native Dalarna. Couples whirl between the timber cottages under a sky that never quite darkens. It is among his best-known pictures, a Sweden of folk dress, a red-painted house and the long pale light of the north. Nationalmuseum, Stockholm.",
+
+ "deep": "The subject is dancing but the achievement is light. At midsummer this far north the sun barely dips below the horizon, and Zorn paints exactly that hour: no moon and no lamp in the yard, yet everything is visible in a warm, sourceless glow — a village lit by a sun that has set but not gone. The sky behind the rooftops is already turning back into morning; the dance has simply outlasted the night. In the foreground couples, feet and skirts blur into broad wet strokes while the faces stay sharp and flushed — Zorn paints the sensation of spinning, not the anatomy of it. By 1897 he was an international portrait star, painting the rich on two continents; this is the world he kept coming home to, and it shows — nothing here is observed coldly.",
+
+ "by": "Opus · Fable",
+
+ "study": "Midsummer Dance catches the Swedish summer night at its strangest hour, when the sun barely sets and the light goes long, warm and low. Couples dance outdoors among the red timber buildings of a Dalarna village, the whole scene bathed in the pale nocturnal glow of the far north. The canvas has real depth of field: the foreground couple are large and specific, the dance recedes into a loose crowd, and the palette runs from the deep red of the buildings and the blues of folk costume to the strange bright pallor of a sky that never fully darkens. The mood is festive but faintly dreamlike — held in a light with no true night in it.\n\nZorn builds the picture on movement and a very particular handling of illumination. The foreground couple are swept slightly off balance, mid-turn, bodies angled into the dance, so the scene feels caught rather than posed. His brushwork is famously fluent — broad, confident, wet strokes that give a swirling skirt or a shirtsleeve in a few gestures — and he uses it to keep the eye travelling with the dancers down the receding line of the dance. But the light is the real subject. With the sun at or below the horizon there are no hard shadows: the glow comes from the sky itself, warm and cool at once, and Zorn tunes the entire tonal scheme to that single un-nocturnal radiance, which is what fuses dancers, buildings and ground into one atmosphere.\n\nBy the 1890s Zorn was one of the most internationally celebrated painters alive — a Swede who moved easily between Paris, London and the United States as a virtuoso portraitist of the wealthy and powerful. Midsummer Dance comes from the height of that success, painted the year after he had resettled for good in his native Mora, and it turns away from cosmopolitan portraiture toward the folk life of the province he championed. It became one of his signature Swedish subjects and a touchstone image of national midsummer, and it hangs in the Nationalmuseum as the defining work of his homeland manner.\n\nThe reversal is that a painter fluent in the salons of two continents made his most enduring image not of a duchess but of country people dancing in a farmyard. The picture belongs to the era's broad national-romantic turn — the search across late-nineteenth-century Europe for authentic local identity in folk custom and landscape — and it argues that case with dazzling metropolitan technique. The paradox is the point: only a painter of Zorn's international polish could render peasant midsummer with this much bravura, and the tension between humble subject and brilliant handling is what keeps the picture alive.\n\nIn person, start close to the foreground dancers, where the costumes dissolve into pure, loaded strokes of paint. Then step back and watch those strokes resolve into turning bodies as the crowd falls into depth. Above all, give time to the light: register how the sky stays pale and how the shadows soften under a sun that will not set, because that specific midsummer glow is what Zorn was really painting — the thing that lifts a village dance into something luminous and slightly unreal."
+
+},
 
 "the-starry-night": {
 
@@ -874,9 +914,14 @@ deep: "The subject is a temperature, not an event. Renoir keeps every face summa
 by: "Opus 4.8" },
 
 "michael-wutky-versuv-ausbruch": {
-about: "Vesuvius erupting, painted by Michael Wutky in 1796 - an upright canvas nearly all brown-black, its colour rationed to one central seam: a white core at the cone's throat, a rain of orange sparks, a bruised glow across the smoke overhead.",
-deep: "The subject is an eruption; the argument is a vantage point. Eighteenth-century Vesuvius pictures put a bay, a city, a crowd between viewer and mountain - the apparatus of safe viewing. This deletes it: no horizon, no sea, no sky that is not smoke. The rock walls closing left and right are the crater's own, so the vantage sits inside the thing being looked at, and the distance that made terror a pleasure collapses. The craft serves this. One light source, the vent; the smoke painted as a low lid so glare bounces back down rather than escaping upward. Hue withheld everywhere else so the small yellow-white core reads as light, not paint. The composition is a funnel with no exit at the top.",
-by: "Opus 4.8" },
+
+ "about": "Vesuvius erupting, painted by Michael Wutky about 1796 - an upright canvas nearly all brown-black, its colour rationed to one central seam: a white core at the cone's throat, jets of orange sparks, a bruised glow across the smoke overhead.",
+
+ "deep": "The subject is an eruption; the argument is a vantage point. Most eighteenth-century Vesuvius pictures put a bay, a city, a crowd between viewer and mountain - the apparatus of safe viewing. This deletes it: no horizon, no sea, no sky that is not smoke. The rock walls closing left and right are the crater's own, so the vantage sits inside the thing being looked at, and the distance that made terror a pleasure collapses. The craft serves this. One dominant light source, the vent; the smoke painted as a low lid so glare bounces back down rather than escaping upward. Hue withheld everywhere else so the small yellow-white core reads as light, not paint. The composition is a funnel with no exit at the top.",
+
+ "by": "Opus 4.8"
+
+},
 
 "narcisse-virgilio-diaz-flower-piece": {
 about: "A heaped bouquet of cut flowers rising out of near-black shadow, by Barbizon painter Narcisse Virgilio Díaz — better known for jewelled forest interiors. No vase is shown; the blooms glow from a solid base and dissolve upward into dark.",
@@ -904,14 +949,24 @@ by: "Opus 4.8" },
 },
 
 "paul-signac-notre-dame-de-la-garde-la-bonne-mere": {
-about: "Paul Signac's 1905 view up the Old Port of Marseille toward Notre-Dame-de-la-Garde, the hilltop church locals call La Bonne-Mère. Built from square touches of unmixed colour, the whole harbour reads as a mosaic before it resolves into a scene.",
-deep: "Signac's real subject is not the church but the atmosphere that dissolves boats, water and stone alike. This is divisionism as theory made visible: touches of separate colour laid side by side to mix in your eye, brighter than any palette mixture. By 1905 the strokes have grown into tesserae the size of tiles, each a clear hue, the surface enamelled and frankly decorative. Look at the water and find no grey; shadow is a denser weave of violet, blue and rose, warmed by pink dropped from the sky. Warm pinks answer cool blue-violets throughout, each intensifying its opposite. The Bonne-Mère presides small and violet, a summit the harbour climbs toward while colour does the actual work of devotion below.",
-by: "Opus 4.8" },
+
+ "about": "Paul Signac's 1905–6 view across the port of Marseille toward Notre-Dame-de-la-Garde, the hilltop church locals call La Bonne-Mère. Built from oblong touches of unmixed colour, the whole harbour reads as a mosaic before it resolves into a scene.",
+
+ "deep": "Signac's real subject is not the church but the atmosphere that dissolves the far boats and the stone hill alike. This is divisionism as theory made visible: touches of separate colour laid side by side to mix in your eye, brighter than any palette mixture. By 1905 the strokes have grown into tesserae the size of tiles, each a clear hue, the surface enamelled and frankly decorative. Look at the water and find no grey; shadow is a denser weave of violet, blue and rose, warmed by pink and yellow dropped from the sky. Warm pinks answer cool blue-violets throughout, each intensifying its opposite. The Bonne-Mère presides high and violet, a summit the harbour climbs toward while colour does the actual work of devotion below.",
+
+ "by": "Opus 4.8"
+
+},
 
 "pierre-auguste-renoir-by-the-seashore": {
-about: "Renoir, By the Seashore, 1883: a young woman in dark blue-black fills a tall canvas, a wicker chair curving warmly around her, the sea loose behind. A ruffled white collar at her throat is the picture's brightest, thickest note.",
-deep: "The real subject is Renoir mid-crisis, staging his own indecision on one canvas. After a decade dissolving figures into Impressionist light, a trip to Italy and study of Raphael and Ingres pushed him back toward firm outline. Watch the collision: the face is drawn, built in close blended tones with dark contours holding the features in place; the sea behind is only brushed, horizontal drags of blue and green, a chalk cliff in a few swipes, sails as single flecks. The model was posed in the studio, the seaside likely invented. Between them, the warm wicker chair frames her in quick parallel strokes, pushing the figure forward while the blues recede.",
-by: "Opus 4.8" },
+
+ "about": "Renoir, By the Seashore, 1883: a young woman in a dark blue-black jacket fills most of a tall canvas, a wicker chair curving warmly around her, the sea loose behind. A ruffled white collar at her throat is one of the picture's brightest notes.",
+
+ "deep": "The real subject is Renoir mid-crisis, staging his own indecision on one canvas. After a decade dissolving figures into Impressionist light, a trip to Italy and study of Raphael and Ingres pushed him back toward firm outline. Watch the collision: the face is drawn, built in close blended tones with dark lashes and a black ribbon along the jaw holding it in place; the sea behind is only brushed, horizontal drags of blue and green, a chalk cliff in a few swipes, sails as single flecks. The model was probably posed in the studio, the beach worked up from studies of the Normandy coast. Between them, the warm wicker chair frames her in quick parallel strokes, pushing the figure forward while the blues recede.",
+
+ "by": "Opus 4.8"
+
+},
 
 "pierre-auguste-renoir-in-the-meadow": {
 
@@ -934,9 +989,14 @@ by: "Opus 4.8" },
 },
 
 "theo-van-rysselberghe-coastal-scene": {
-about: "A shallow bay at rest, 1892, by Théo van Rysselberghe, the leading Belgian follower of Seurat. Water fills two-thirds of the canvas, and a band of reflected light lies across the middle, silver-green and brighter than either sky or hills.",
-deep: "The quiet event here is an inversion: water outshining air. That horizontal glow across the middle is the brightest passage on the canvas, built from the palest, most closely keyed dots so the eye can fix on none of them and the band seems to vibrate. Everything else exists to set it off. Van Rysselberghe works in divisionism, laying blue beside green beside rose so they fuse into shimmer rather than mixing on the palette. The near water cools toward violet and slate, and that temperature shift alone gives depth without drawn perspective. Only the thin dark stakes are firm; take them away and the surface would lose its scale and float free.",
-by: "Opus 4.8" },
+
+ "about": "A shallow bay at rest, about 1892, by Théo van Rysselberghe, the leading Belgian follower of Seurat. Water fills two-thirds of the canvas, and a band of reflected light lies across the middle, silver-green and brighter than either sky or hills.",
+
+ "deep": "The quiet event here is an inversion: water outshining air. That horizontal glow across the middle is the brightest passage on the canvas, built from the palest, most closely keyed dots so the eye can fix on none of them and the band seems to vibrate. Everything else exists to set it off. Van Rysselberghe works in divisionism, laying white, blue, green and rose side by side so they fuse into shimmer in the eye. The near water cools toward green and slate, and that temperature shift alone gives depth without drawn perspective. The thin dark stakes are the firmest marks; take them away and the surface would lose its scale and float free.",
+
+ "by": "Opus 4.8"
+
+},
 
 "vincent-van-gogh-the-olive-tree": {
 
@@ -1024,10 +1084,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "adam-and-eve": {
-about: "Dürer's 1504 engraving, the instant before the Fall: the serpent hands Eve the apple while Adam reaches for a second — two nudes built from measured proportion, an Apollo and a Medici Venus recast in Genesis costume.",
-deep: "The cat has not touched the mouse. It lies stretched at their feet, the mouse just before its paws, and that restraint dates the picture precisely: before the bite, the predator does not strike. Rabbit, elk and ox wait with it, the four temperaments in an equilibrium the apple is about to loose. Above them the whole theology fits into a few square inches: serpent to Eve, Eve to Adam, a gesture so courteous it is dreadful. And none of it is drawn. Every value here is a line cut into copper — the serpent's scales tight overlapping crescents, the forest packed to near-black so the flesh burns paler against it, the brightest highlights simply paper left alone.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Dürer's 1504 engraving, the instant before the Fall: the serpent hands Eve the apple while Adam's open hand reaches towards her — two nudes built from measured proportion, the Apollo Belvedere and a classical Venus recast in Genesis costume.",
+
+ "deep": "The cat has not touched the mouse. It lies stretched at their feet, the mouse a short way off by Adam's foot, and that restraint dates the picture precisely: before the bite, the predator does not strike. Rabbit, elk and ox wait with it, the four temperaments in an equilibrium the apple is about to loose. Above them the whole theology fits into a few square inches: serpent to Eve, Adam's hand open for what comes next, a gesture so courteous it is dreadful. And none of it is drawn. Every value here is a line cut into copper — the serpent's hide a mottle of dark flecks, the forest packed to near-black so the flesh burns paler against it, the brightest highlights simply paper left alone.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "storks": {
 
@@ -1076,10 +1142,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "arnold-bocklin-the-island-of-life": {
-about: "Böcklin's The Island of Life, 1888 — a sunlit islet of bathers, swans and revelers under palms. Painted as the deliberate antipode to his Isle of the Dead: where that is silence and cypress-dark, this teems.",
-deep: "Every element is chosen as an antonym. The dead-isle's sealing cypresses are quoted on the left and then outnumbered — poplars give way to a rust crown, a flowering tree, date palms leaning right, a botanical spectrum arguing that life is diverse where death is monocultural. In the foreground a nude bather lifts one arm against cold water, the plainest possible sign of being alive. Figures crowd the crown in mild ceremony; pale bodies shelter in a grotto that the rock holds open for bathing, not burial. The swans move slowly along the bottom, reflections loose and breathing. Same low island on still water, opposite verdict: midday light, open horizon, nothing sealed.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Böcklin's The Island of Life, 1888 — a sunlit islet of bathers, swans and revelers under palms. Long read as the antipode to his Isle of the Dead, though perhaps never planned as one: where that is silence and cypress-dark, this teems.",
+
+ "deep": "Set beside the Isle of the Dead, every element works as an antonym. Against the cypresses that seal the other island, tall trees on the left give way to a rust crown, flowering trees, date palms leaning right, a botanical spectrum arguing that life is diverse where death is monocultural. In the foreground a red-bearded water-god throws up one arm, a nymph leaning back against him, the plainest possible sign of being alive. Figures dance on the crown; pale bodies shelter in a grotto that the rock holds open for bathing, not burial. The swans move slowly along the bottom, reflections loose and breathing. Same low island on still water, opposite verdict: full daylight, open horizon, nothing sealed.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "franz-marc-tierschicksale": {
 
@@ -1271,9 +1343,14 @@ by: "Opus 4.8" },
 },
 
 "berthe-morisot-with-a-bouquet-of-violets": {
-about: "Manet's Berthe Morisot with a Bouquet of Violets, 1872 — the painter in mourning black. Paul Valéry ranked it above all Manet's work, comparing it to Vermeer's Girl with a Pearl Earring.",
-deep: "The black is the picture's intelligence. Almost everything is it — hat, coat, scarf, swallowing the lower canvas — and against that mass Manet delivers three counterweights: a face, a gaze, and a small spray of violets barely resolved into paint. The hat is laid in with a brush run dry, the coat modulated through warm and cool underlayers so the darkness stays alive rather than flat, but around the face the handling tightens, two speeds of the same confident hand deciding how much finish each zone can bear. Those eyes, aimed directly out with nothing to soften them, come forward while the black recedes. The violets — a few dabs of blue and lilac, private, almost hidden — carry the entire emotional register the rest of the portrait withholds.",
-by: "Opus 4.8" },
+
+ "about": "Manet's Berthe Morisot with a Bouquet of Violets, 1872 — the painter dressed all in black. In 1932 Paul Valéry ranked nothing in Manet's work above it, comparing it to Vermeer's Girl with a Pearl Earring.",
+
+ "deep": "The black is the picture's intelligence. Almost everything is it — hat, coat, scarf, swallowing the lower canvas — and against that mass Manet delivers three counterweights: a face, a gaze, and a small spray of violets barely resolved into paint. The hat is laid in with a brush run dry, the coat modulated by deeper strokes that follow its folds so the darkness stays alive rather than flat, but around the face the handling tightens, two speeds of the same confident hand deciding how much finish each zone can bear. Those eyes, aimed directly out with nothing to soften them, come forward while the black recedes. The violets — a few dabs of blue and blue-white, private, almost hidden — carry the entire emotional register the rest of the portrait withholds.",
+
+ "by": "Opus 4.8"
+
+},
 
 "edouard-manet-the-dead-christ-with-angels": {
 
@@ -1315,10 +1392,16 @@ about: "Böcklin's Der Ritt des Todes (Autumn and Death), 1871 — a skeletal De
 by: "Opus 4.8" },
 
 "arnold-bocklin-im-spiel-der-wellen": {
-about: "Böcklin's Im Spiel der Wellen, 1883 — tritons and nereids tumbling in heavy surf; the central mermaid was modelled on the painter's daughter Angela, and by 1899 Germans counted it among the century's greatest achievements.",
-deep: "The woman's face is the crux: her mouth open, eyes wide, the expression holding both laugh and alarm without resolving into either. Behind her a broad triton — balding, bearded, a floral wreath incongruous on his head — hooks his arm across her body with frank appetite. These are not marble deities. Böcklin gives them sunburnt skin, coarse hair, and real animal weight, dropped into a cold northern sea rather than any Mediterranean idealization. The paint insists: chalky, matte flesh against foam dragged thick over near-black glazes in the troughs. At the far corner a dark, shaggy triton sits beached on a rock, apart from the game — the picture's one note of loneliness inside all this play.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Böcklin's Im Spiel der Wellen, 1883 — tritons and nereids tumbling in heavy surf; the laughing triton is said to carry the features of his friend, the zoologist Anton Dohrn, and by 1899 Germans counted it among the century's greatest achievements.",
+
+ "deep": "The woman's face is the crux: her mouth open and turned down, brows knotted, eyes sliding towards the triton, the expression all alarm amid the others' laughter. Behind her a broad triton — bearded, a wreath of white flowers incongruous on his sandy hair — lays his arm across her shoulders with frank appetite. These are not marble deities. Böcklin gives them sunburnt skin, coarse hair, and real animal weight, dropped into a cold northern sea rather than any Mediterranean idealization. The paint insists: chalky, matte flesh against foam dragged thick over near-black glazes in the troughs. At the far top corner a dark, shaggy triton rears out of the water on his own tail, arms flung wide and mouth open, set apart from the game but no calmer than it.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "lovis-corinth-der-rote-christus": {
 about: "Corinth's Der rote Christus, 1922 — a blood-drenched crucifixion in swirling reds. Painted after the stroke that partially paralysed him, its loose, gestural violence marks his turn from naturalism to full Expressionism.",
@@ -1333,10 +1416,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "umberto-boccioni-the-city-rises": {
-about: "Boccioni's The City Rises, 1910 — a giant workhorse dissolving into laboring men. Nearly ten feet wide, it is considered his first truly Futurist work, later bought by composer Ferruccio Busoni.",
-deep: "The painting stages modernization not as triumph but as a wrestling match. Boccioni sets a quantity of barely-steerable force at the centre — the horse isn't a beast so much as pure surge made flesh — and the men around it aren't heroes but figures nearly broken by the effort of not being dragged under. That is the real argument: the energy remaking Milan in 1910 is genuinely dangerous, genuinely beautiful, and only nominally under human control. The craft holds the claim up. The city in the background is rendered in legible, descriptive strokes — solid, nameable — while the horse and workers dissolve into Divisionist directionality, strokes that stop depicting surfaces and start tracing momentum. Two levels of reality share one canvas: the made thing and the making of it, the achieved city standing calm at the top while below it the violent, almost-uncontainable process that produced it still rages.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Boccioni's The City Rises, 1910 — giant workhorses dissolving into laboring men. Nearly ten feet wide, it is considered his first major Futurist work, later bought by composer Ferruccio Busoni.",
+
+ "deep": "The painting stages modernization not as triumph but as a wrestling match. Boccioni sets a quantity of barely-steerable force at the centre — the horse isn't a beast so much as pure surge made flesh — and the men around it aren't heroes but figures nearly broken by the effort of not being dragged under. That is the real argument: the energy remaking Milan in 1910 is genuinely dangerous, genuinely beautiful, and only nominally under human control. The craft holds the claim up. The city in the background is rendered in legible, descriptive strokes — solid, nameable — while the horses and workers dissolve into Divisionist directionality, strokes that stop depicting surfaces and start tracing momentum. Two levels of reality share one canvas: the made thing and the making of it, the achieved city standing calm at the top while below it the violent, almost-uncontainable process that produced it still rages.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "franz-marc-vogel": {
 about: "Marc’s Vögel (Birds), 1914: birds splintered into prismatic shards of blue, green and red, among his last works before he died at Verdun in 1916. The Nazis later branded his art degenerate and banned it in 1937.",
@@ -1386,10 +1475,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "arshile-gorky-diary-of-a-seducer": {
-about: "Gorky's Diary of a Seducer, 1945: sinuous biomorphic forms in a grey field, its title lifted from Kierkegaard — a Surrealist-fed bridge to the Abstract Expressionism his contemporaries would soon push further.",
-deep: "A colourist choosing, for once, to starve the field. Gorky dims everything to smoke so that one red-rimmed mouth just right of centre and two or three orange sparks low down detonate rather than glow. The drawn line makes the same refusal: graphite-fine, it wanders across the washed shapes instead of describing them, out of register, so contour never locks to mass. The Kierkegaard title is a mood instruction, not content — the seducer of Either/Or engineers affection from outside feeling, and desire here is observed rather than felt. 1945 was the peak. The studio fire, the cancer, the crash that stilled his painting arm and the suicide were all still ahead.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Gorky's Diary of a Seducer, 1945: sinuous biomorphic forms in a grey field, its title lifted from Kierkegaard — a Surrealist-fed bridge to the Abstract Expressionism his contemporaries would soon push further.",
+
+ "deep": "A colourist choosing, for once, to starve the field. Gorky dims everything to smoke so that one red-rimmed mouth just right of centre and two or three orange sparks low down detonate rather than glow. The drawn line makes the same refusal: graphite-fine, it wanders across the washed shapes instead of describing them, out of register, so contour seldom locks to mass. The Kierkegaard title is a mood instruction, not content — the seducer of Either/Or engineers affection from outside feeling, and desire here is observed rather than felt. 1945 was the peak. The studio fire, the cancer, the crash that stilled his painting arm and the suicide were all still ahead.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "j-m-w-turner-the-parting-of-hero-and-leander": {
 about: "Turner's The Parting of Hero and Leander, 1837 — the doomed lovers hidden in shadow at the water's edge. He broke history-painting convention by pushing his subjects off-centre and wrote his own verse for it.",
@@ -1410,10 +1505,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "black-woman": {
-about: "An unnamed model in a Paris studio, 1884 — gold collar, hoop earring, eyes lifted past you — painted by a Polish woman in her twenties. Looted from Warsaw in the war, then gone for decades.",
-deep: "She is not looking at you — the eyes go up and past your shoulder, so you get a woman mid-thought, not a woman offered for inspection. Look at the two speeds of paint. The face is blended wet into wet, warm umber turning through cool grey-green across the forehead and nose so the form turns without going chalky; the white cloth below is dragged on thick and fast, ridges of loaded bristle. The gold collar is not counted disc by disc — Bilińska paints the flash. Hoop, headcloth, the cold blue fan in the corner: the studio's exotic props, held to colour and denied the chance to upstage the head.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "An unnamed model in a Paris studio, 1884 — gold collar, hoop earrings, eyes lifted past you — painted by a Polish woman in her twenties. Looted from Warsaw in the war, then gone for decades.",
+
+ "deep": "She is not looking at you — the eyes go up and past your shoulder, so you get a woman mid-thought, not a woman offered for inspection. Look at the two speeds of paint. The face is blended wet into wet, warm umber turning through cool grey-green across the forehead and nose so the form turns without going chalky; the white cloth below is dragged on thick and fast, ridges of loaded bristle. The gold collar is laid in a disc at a time, one touch and one crescent of light each, and nothing more. Hoop, headcloth, the painted fan in the corner: the studio's exotic props, held to colour and denied the chance to upstage the head.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "gossamer": {
 about: "Chełmoński's Gossamer (Babie lato), 1875 — the barefoot peasant girl lies stretched across an ochre field, one arm raised to catch a thread of spider silk, her idleness the picture's whole subject.",
@@ -4292,10 +4393,16 @@ about: "One of the Mornings on the Seine, the 1897 series Monet made by rowing o
 by: "Fable" },
 
 "anders-zorn-mrs-veronica-heiss": {
-about: "Veronica Heiss in a heavy dark fur, 1891 — mid-Paris decade, with commissions arriving faster than Zorn could cross the Atlantic for them and sitters queuing precisely for the bravura: a likeness built from a handful of strokes.",
-deep: "A hand is the hardest thing in a portrait; this one gets a few strokes of dark against dark and still reads. The method is a gradient of finish: the face worked up — cool shadow on the far cheek, warmth on the near — and the paint coarsening with every inch away from it, until the upper right is only loaded sweeps of gold dragged over black, uncorrected, ambiguous between blooms and pure brush. The fur deletes shoulders and torso into the ground so nothing competes with a lit head. Heiss kept the picture until she died in 1927; her daughter passed it on — it came from family hands, not the market.",
-deepBy: "Sonnet 4.6",
-by: "Fable" },
+
+ "about": "Veronica Heiss in a dark coat with a heavy fur collar, 1891 — mid-Paris decade, two years before Zorn first crossed the Atlantic, the portrait manner already settled: a likeness built from a handful of strokes.",
+
+ "deep": "A hand is the hardest thing in a portrait; this one gets a few strokes, pink knuckles over a red-brown shadow, and still reads. The method is a gradient of finish: the face worked up — the light on the far cheek, a warmer half-shadow on the near — and the paint coarsening with every inch away from it, until the upper right is loaded sweeps of gold and cream dragged over black, a bird and its leaves only just held out of pure brush. The dark coat and fur collar sink shoulders and torso into the ground so nothing competes with a lit head. Heiss kept the picture until she died in 1927 and left it to the museum herself — it came from her own hands, not the market.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Fable"
+
+},
 
 "j-m-w-turner-queen-mab-s-cave": {
 about: "Exhibited in 1846, five years before Turner's death, when critics had decided the old man's pictures were fog. He answered with a fairy subject — Shakespeare's dream-midwife Queen Mab — dissolved into the same golden vapour as his late seas, myth and atmosphere finally indistinguishable.",
@@ -4375,10 +4482,16 @@ about: "Distinct from the famous 1826 \"Cornfield\" in the National Gallery, thi
 by: "Opus · Fable" },
 
 "john-everett-millais-dew-drenched-furze": {
-about: "Frosted gorse at first light on the Perthshire ground where Millais shot and fished each autumn, 1889 — he took the title from Tennyson's In Memoriam, and reportedly feared that sun through dew-laden gorse might be literally unpaintable.",
-deep: "Two-thirds of the canvas is scrub — gorse and dead bracken nobody would stop for — and it is the subject. Look at how it is made: dry paint dragged and dabbed until flecks of pale pigment stand proud of the surface and glint as dew and cobweb, while everything behind it is smoothed until the trees dissolve into the glow eating them. That reversal is why the ground reads wet rather than merely pale. One bare tree hangs on the sightline, already let go while the crowns around it still burn rust. He was in his sixties, forty years past the Pre-Raphaelite Brotherhood and its jewelled edges, painting ten minutes before the sun burns the dew off.",
-deepBy: "Sonnet 4.6",
-by: "Opus · Fable" },
+
+ "about": "Dew-soaked gorse at first light on the Perthshire ground where Millais shot and fished each autumn, 1889–90 — he took the title from Tennyson's In Memoriam, and held to a scene his son thought might prove unpaintable while the family criticised the canvas as it grew.",
+
+ "deep": "More than half the canvas is scrub — gorse and dead bracken nobody would stop for — and it is the subject. Look at how it is made: dry paint dragged across the weave of the canvas until flecks of pale pigment glint as dew and cobweb, while everything behind it is softened until the trees dissolve into the glow eating them. That reversal is why the ground reads wet rather than merely pale. One almost bare tree stands just left of the sightline, nearly let go while the crowns around it still burn rust. He was in his sixties, forty years past the Pre-Raphaelite Brotherhood and its jewelled edges, painting ten minutes before the sun burns the dew off.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus · Fable"
+
+},
 
 "vincent-van-gogh-korenveld-met-cipressen": {
 
@@ -4486,8 +4599,12 @@ about: "By 1888 Adam Chmielowski had all but stopped painting. He had taken the 
 by: "Opus · Fable" },
 
 "jozef-pankiewicz-dorozka-w-deszczu": {
-about: "Back from two years in Paris carrying the news of Impressionism, Pankiewicz turned in the 1890s to a cycle of urban nocturnes — wet streets, deep darkness, lamplight smeared across achromatic greys. Dated 1896 and among his most admired works, it belongs to the group he variously titled Cab at Night, Mud, and Rain.",
-by: "Opus · Fable" },
+
+ "about": "Back from two years in Paris carrying the news of Impressionism, Pankiewicz turned in the 1890s to a cycle of urban nocturnes — wet streets, deep darkness, lamplight smeared across achromatic greys. This canvas, variously dated 1893 and 1896, is among his most admired works; his own title for it was Rain, and it has also been called Cab at Night and Mud.",
+
+ "by": "Opus · Fable"
+
+},
 
 
 "valentin-serov-madame-lwoff": {
@@ -4502,10 +4619,16 @@ about: "Bureau was a core French Impressionist now nearly erased from the record
 by: "Opus · Fable" },
 
 "unknown-marine-with-rocks": {
-about: "A storm coast on a small dark panel, 1894 — by August Strindberg, the playwright, who spent that Paris year spreading seascapes with a palette knife for an exhibition that never came off.",
-deep: "He spread the paint first and decided what it was afterwards: a method he set down in writing that November, Surrealist automatism three decades early, in the Paris year that took him to the edge of breakdown. Sky, rock and sea are troweled and scraped with the same knife and the same violence, so the eye is never offered a shore to stand on. The range runs black through grey to a dirty white, and against that narrowness the rust dragged into the left-hand rock detonates — something smouldering inside the cold. One bruised grey gap low to the right is the only distance the composition allows, made as small as the panel could bear.",
-deepBy: "Sonnet 4.6",
-by: "Opus · Fable" },
+
+ "about": "A storm coast on a small piece of cardboard, 1894 — by August Strindberg, the playwright, who arrived in Paris that year and spread seascapes with a palette knife for an exhibition that never came off.",
+
+ "deep": "He spread the paint first and decided what it was afterwards: a method he published that November, Surrealist automatism decades early, at the start of the Paris years that took him to the edge of breakdown. Sky, rock and sea are troweled and scraped with the same knife and the same violence, so the eye is never offered a shore to stand on. The range runs black through grey to a dirty white, and against that narrowness the rust dragged into the left-hand rock detonates — something smouldering inside the cold. One pale grey gap low to the right is the only distance the composition allows, made as small as the picture could bear.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus · Fable"
+
+},
 
 "johan-jongkind-clair-de-lune-a-overschie-environs-de-rotterd": {
 about: "Jongkind painted this Dutch moonlit scene in 1855, during the Paris years when Baudelaire praised him and Monet later called him the true source of his own eye for atmosphere and water. His open-air marines and canal nocturnes made him the hinge between Barbizon and the Impressionists proper.",
@@ -4518,10 +4641,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus · Fable" },
 
 "leonardo-da-vinci-maagd-met-het-kind-en-sint-anne": {
-about: "Leonardo's full-scale cartoon of about 1506 — Anne, Mary, the Christ Child and the infant John, drawn in charcoal and chalk on eight sheets glued into one — the only large-scale drawing by him to survive.",
-deep: "A shotgun was fired into it in 1987; the glass shattered and the drawing lived — twenty-five years after a public appeal saved it from sale. It was never a finished work: a full-scale plan for a painting nobody has found. Mary sits on her own mother's lap; hunt for the boundary between the faces and it dissolves — same gaze, same closed smile, lineage as a soft edge. The Child twists away to bless the infant John, the cousin who will baptise him, the whole future staged between two babies. One finger points up into blank paper, the only vertical among curves. Below the waist the modelling quits, a foot left in bare contour.",
-deepBy: "Sonnet 4.6",
-by: "Opus · Fable" },
+
+ "about": "Leonardo's full-scale cartoon of about 1506-08 — Anne, Mary, the Christ Child and the infant John, drawn in charcoal and chalk on eight sheets glued into one — the only large-scale drawing by him to survive.",
+
+ "deep": "A shotgun was fired at it in 1987; the glass shattered into the Virgin's breast and the drawing was mended — twenty-five years after a public appeal kept it in Britain. It was a plan, not the picture: a full-size study for a painting lost or never made. Mary sits on her own mother's lap; hunt for the boundary between the faces and it dissolves — one gazing at the Child, one at her, the same closed smile, lineage as a soft edge. The Child twists away to bless the infant John, the cousin who will baptise him, the whole future staged between two babies. One finger, left as bare paper, points up, the only vertical among curves. Below the knees the modelling quits, a foot left in bare contour.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus · Fable"
+
+},
 
 "pierre-auguste-renoir-snow-covered-landscape": {
 
@@ -4536,9 +4665,14 @@ by: "Opus · Fable" },
 },
 
 "pierre-auguste-renoir-alphonsine-fournaise": {
-about: "Alphonsine Fournaise, painted in 1879 on the terrace of her family's boating restaurant on the island at Chatou - the daughter of the house, not a client, with the Seine behind her and her hand hanging over the rail.",
-deep: "Almost nothing in this canvas is finished except one face. The far bank is thinned to a wash; a chair beside her exists as an open ochre outline with the river running straight through the gap where its seat should be; the dress is so dry and thin that the canvas weave carries the softness of the cloth. Then the head - a pupil with a catchlight, a lower lip lifted in one touch of brick red, a gold ring about a centimetre long. Set a finished eye beside an unfinished leaf three centimetres away and you have the argument. A drawn face inside an undrawn world is what looking at somebody actually feels like.",
-by: "Opus 4.8" },
+
+ "about": "Alphonsine Fournaise, painted in 1879 on the terrace of her family's boating restaurant on the island at Chatou - the daughter of the house, not a client, with the Seine behind her and her hand dropped onto the rail.",
+
+ "deep": "Almost nothing in this canvas is finished except one face. The far bank is thinned to a wash; a chair beside her exists as an open ochre outline with the bank running straight through the gap between its rails; the dress is so dry and thin that the canvas weave carries the softness of the cloth. Then the head - a pupil with a catchlight, a lower lip lifted in one touch of brick red, a gold ring about a centimetre and a half long. Set a finished eye beside an unfinished leaf six centimetres away and you have the argument. A drawn face inside an undrawn world is what looking at somebody actually feels like.",
+
+ "by": "Opus 4.8"
+
+},
 
 "eugene-jansson-motif-from-timmermansgatan": {
 
@@ -4598,10 +4732,16 @@ about: "In the summer of 1894 Liljefors shifted his subjects from the Uppland pl
 by: "Opus · Fable" },
 
 "victor-muller-schnewittchen-bei-den-sieben-zwergen": {
-about: "Snow White meets the seven dwarfs, 1860 — a Grimm scene painted so thin and pale it looks barely begun, by Frankfurt's first convert to Courbet's Realism, for a public still expecting Düsseldorf sweetness.",
-deep: "Between the girl and the crowd lies a wedge of bare meadow, and that emptiness is the subject. Cover it with your hand and the two parties collapse into one busy incident. She holds the left as a pale vertical, the ground showing through her hem until she seems made of sky; the seven mass opposite as one dark earth-coloured diagonal, faces surfacing out of the tangle in two or three strokes each. The foremost stoops into the gap with a small dull-red bundle — the only saturated note, and what turns a crowd into supplicants. Her head bows to it gravely, almost devotionally: not alarm but courtesy.",
-deepBy: "Sonnet 4.6",
-by: "Opus · Fable" },
+
+ "about": "Snow White watches the seven dwarfs dance, about 1862 — a scene the Grimm tale never stages, painted so thin and pale it looks barely begun, by a Frankfurt painter who had worked beside Courbet, in a city still expecting Düsseldorf sweetness.",
+
+ "deep": "Between the girl and the crowd lies a wedge of bare meadow, and that emptiness is the subject. Cover it with your hand and the two parties collapse into one busy incident. She holds the left as a pale vertical, the ground showing through her hem until she seems made of sky; the seven mass opposite as one dark earth-coloured band, faces surfacing out of the tangle and sinking back. The foremost high-steps into the gap holding out a small brown round, most likely his cap — the gesture that turns a crowd into supplicants. Her head bows to it gravely, almost devotionally: not alarm but courtesy.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus · Fable"
+
+},
 
 "alphonse-osbert-vision-de-sainte-genevieve": {
 
@@ -4647,20 +4787,32 @@ about: "A late Giverny canvas from 1918, the year an armistice-era Monet — cat
 by: "Opus · Fable" },
 
 "hiromitsu-nakazawa-mist-nude": {
-about: "Nakazawa, 1907: a nude on a wet boulder above a stream, half-surrendered to the violet-grey mist the title names — painted a decade and more after Japanese authorities ordered his teacher Kuroda's nudes screened at the waist.",
-deep: "The mist does the covering the censors used to demand, and does it from inside the picture — weather rather than decree. Follow the gauze across her arms: on the right arm it is plainly cloth, and by the time it trails off it has the same value and softness as the air, so you cannot say where she stops. The torso is sound studio modelling simply allowed to fail at the edges; no contour closes. One passage escapes the drain — the mossy rock at lower right, the only frank green, measuring how thoroughly everything else has been bled. Her eyes are lowered and meet nothing. At her feet, vapour, stone and moving water all touch.",
-deepBy: "Sonnet 4.6",
-by: "Opus · Fable" },
+
+ "about": "Nakazawa, 1907: a nude on a wet boulder above a stream, half-surrendered to the violet-grey mist the title names — painted six years after police ordered a nude by his teacher Kuroda screened at the waist.",
+
+ "deep": "The mist does the covering the censors used to demand, and does it from inside the picture — weather rather than decree. Follow the gauze on her right arm: at the wrist it is plainly cloth, and where it lifts off her shoulder it has the same value and softness as the air, so you cannot say where she stops. The torso is sound studio modelling simply allowed to fail at the edges; few contours close hard. Two passages escape the drain — the dark leaves at top left and the mossy boulder at right, the frankest greens — measuring how thoroughly everything else has been bled. Her eyes are level and give nothing away. At her feet, vapour, stone and moving water all touch.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus · Fable"
+
+},
 
 // ——— import-canon Info wave 2, phase A (Fuad-approved 2026-08-22) — per-painting Opus research,
 // Fable QC. Two agent hypothesis-kills recorded in the session log (Petworth gouache group; Rigi
 // Griffith watercolours) — prompt hints are leads to test, not facts to use.
 
 "kawabata-ryushi-kinkakuji-temple-on-fire": {
-about: "Kyoto's Golden Pavilion burning, 2 July 1950, set alight by a young acolyte — the crime Mishima would novelise. Ryūshi never saw it: he read the newspaper and had this painted and shown within two months.",
-deep: "Rain falls straight through the blaze and nothing goes out: white lines ruled diagonally over flame and forest alike, the weather that should be mercy merely present. Three materials, and no more: ink, vermilion, gold. The left third is pines in ink alone, no warm touch, so the vermilion opposite reads as the only heat in a soaked world. The flame is drawn rather than massed, each tongue a separate curling stroke, timber railings still legible inside the heat. Gold is flung through the smoke at the top — the pavilion's gilding, leaving. Above, the phoenix finial stands clear in dark line, the creature that returns from ash, presiding over a fire that leaves only that.",
-deepBy: "Sonnet 4.6",
-by: "Opus · Fable" },
+
+ "about": "Kyoto's Golden Pavilion burning, 2 July 1950, set alight by a young acolyte — the crime Mishima would novelise. Ryūshi never saw it: he read the newspaper and had this painted and shown two months later.",
+
+ "deep": "Rain falls straight through the blaze and nothing goes out: thin white lines falling near vertical over flame and forest alike, the weather that should be mercy merely present. Three materials carry it: ink, vermilion, gold. The left third is pines in ink alone, no warm touch, so the vermilion opposite reads as the only heat in a soaked world. The flame is drawn rather than massed, each tongue outlined in curling red line over the wash, timber railings still legible inside the heat. Gold is flung through the smoke at the top — the pavilion's gilding, leaving. Above, the phoenix finial stands clear in dark silhouette, the creature that returns from ash, presiding over a fire that leaves only that.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus · Fable"
+
+},
 
 "claude-monet-charing-cross-bridge-in-london": {
 about: "Between 1899 and 1904 Monet worked some thirty-seven canvases of this Thames crossing, chasing the moment steam from the railway that gave the bridge its name dissolved into London's coal haze — the industrial motif that sets the Charing Cross group apart from his Waterloo and Parliament sequences. This version was bought by the Japanese magnate Kōjirō Matsukata; France sequestered his collection as enemy property in the war, and its 1959 return to Japan was made conditional on building a dedicated museum in Tokyo.",
@@ -5044,9 +5196,14 @@ deep: "An art exhibition with no building: canvases hung above head height on a 
 by: "Opus 4.8" },
 
 "canaletto-london-interior-of-the-rotunda-at-ranelagh": {
-about: "Ranelagh Gardens opened at Chelsea in 1742 around a huge wooden rotunda where fashionable London paid to walk in circles to music. Canaletto, eight years into his English stay, painted it in 1754 for Thomas Hollis.",
-deep: "The ornamental pillar in the middle of the floor is a chimney. That is the whole building in one fact: an immense gilded interior, scagliola piers, tiers of arcading, chandeliers on vermilion cords, and its centrepiece is the heating. Round the wall run the boxes, taken by the evening; at one end an organ and a band, the one knot of people standing still. Everywhere else the company walks — a woman in a red, yellow and blue skirt, a child with a horn, four or five strokes apiece, their shadows single dashes on bare boards. Canaletto rules every arch of a drum built out of wood.",
-by: "Opus 4.8" },
+
+ "about": "Ranelagh Gardens opened at Chelsea in 1742 around a huge wooden rotunda where fashionable London paid to walk in circles to music. Canaletto, eight years into his English stay, painted it in 1754 for Thomas Hollis.",
+
+ "deep": "The ornamental pillar in the middle of the floor is a chimney. That is the whole building in one fact: an immense gilded interior, marbled red piers, tiers of boxes, chandeliers on vermilion cords, and its centrepiece is the heating. Round the wall run the supper boxes; at the right an organ and a band, the thickest knot of people in the room. Across the floor the company mostly walks — a woman in a red, yellow and blue skirt, a child with a horn, four or five strokes apiece, their shadows single dashes on the bare floor. Canaletto rules every arch of a drum built out of wood.",
+
+ "by": "Opus 4.8"
+
+},
 
 "nicholas-chevalier-the-buffalo-ranges": {
 about: "Chevalier signed this \"Dec. 1864\" for the Victorian government's landscape prize; the win made it the first painting bought for the colony's public gallery. Down in the valley, a bullock dray carries a whole family and their bedding.",
