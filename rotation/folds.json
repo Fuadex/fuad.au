@@ -4161,6 +4161,18 @@
     "to": "Humility",
     "type": "spelling",
     "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan mb-refetch 2026-09-17)"
+   },
+   {
+    "from": "HillBilly Man",
+    "to": "Hillbilly Man",
+    "type": "spelling",
+    "reason": "DV 2026-10-16 (Discogs 2632874 / Wikipedia The Fall): the sleeve spells it Hillbilly Man"
+   },
+   {
+    "from": "Saturnz Barz (Spirit House)",
+    "to": "Saturnz Barz (feat. Popcaan)",
+    "type": "variant",
+    "reason": "DV 2026-10-16: Spirit House is the music video's subtitle; the row is the album recording inside the video edit — linked as a variant, the read mirrors"
    }
   ],
   "artist": [
@@ -4179,7 +4191,8 @@
    {
     "from": "Gorillaz, Shelley FKA DRAM"
    }
-  ]
+  ],
+  "albums": []
  },
  "Greg Puciato": {
   "albums": [
