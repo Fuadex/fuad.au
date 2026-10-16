@@ -16897,6 +16897,12 @@
     "from": "Green Machine",
     "to": "Blues for the Red Sun",
     "type": "absorb"
+   },
+   {
+    "from": "Welcome to Sky Valley",
+    "to": "Sky Valley",
+    "type": "absorb",
+    "reason": "kyuss campaign 2026-10-17: the same 1994 record under its full title (Wikipedia: Welcome to Sky Valley, also known as Sky Valley); the one remaining row under it is the Lick Doo hidden-track pressing variant, already mirrored to the Whitewater read"
    }
   ],
   "tracks": [
@@ -18079,6 +18085,18 @@
    "track": "Day One (To Dave and Chris)",
    "toAlbum": "...And the Circus Leaves Town",
    "reason": "DV-confirmed re-home (kyuss campaign 2026-10-16): the row has no album string; Day One is the hidden track after Spaceship Landing inside ...And the Circus Leaves Town track 11 (Discogs 1374957; first issued on the 1994 Demon Cleaner CD1)"
+  },
+  {
+   "artist": "Kyuss",
+   "track": "I - Gardenia / Asteroid / Supa Scoopa And Mighty Scoop",
+   "toAlbum": "Sky Valley",
+   "reason": "kyuss campaign 2026-10-17 (DV items 61/71): the row is titled as the original Sky Valley CD's Movement I (Gardenia / Asteroid / Supa Scoopa, 17:46) but tagged with the Muchas Gracias compilation, whose #12 is a live Hamburg Gardenia; moved beside Sky Valley as a medley row"
+  },
+  {
+   "artist": "Kyuss",
+   "track": "Whitewater / Lick Doo - Hidden Track",
+   "toAlbum": "Sky Valley",
+   "reason": "kyuss campaign 2026-10-17: the Lick Doo pressing variant of Whitewater scrobbled under the full album title; the absorb fold does not move a row whose title is not on the target disc, so the row is moved explicitly (read mirrored from Whitewater)"
   }
  ],
  "Anathema": {
