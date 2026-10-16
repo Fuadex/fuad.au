@@ -114,6 +114,13 @@
    "toArtist": "Placebo (Marc Moulin)",
    "toTrack": "Aria - Original Live Recording",
    "reason": "DV 2026-10-11: the Jazz Middelheim compilation row is the 1972 Belgian jazz group Placebo (Marc Moulin), a same-name mis-merge; moved off the British band"
+  },
+  {
+   "fromArtist": "Kyuss",
+   "fromTrack": "Red Earth Bones",
+   "toArtist": "Kyuss Lewis",
+   "toTrack": "Red Earth Bones",
+   "reason": "split (kyuss campaign 2026-10-16, DV item 62): Red Earth Bones is on no Kyuss release in Wikipedia, MusicBrainz or Discogs; it is a 5 Oct 2025 upload under a \"Kyuss\" streaming account whose only named rights holder is \"Kyuss Lewis\" (Audiomack ℗). The row leaves the band; the name is the uploader's own credit, not a verified artist identity."
   }
  ],
  "Nocny Kochanek": {
@@ -18066,6 +18073,12 @@
    "track": "Damascus (feat. Omar Souleyman and Yasiin Bey)",
    "toAlbum": "The Mountain",
    "reason": "DV 2026-10-16: the single row (12 Dec 2025) is album track 11"
+  },
+  {
+   "artist": "Kyuss",
+   "track": "Day One (To Dave and Chris)",
+   "toAlbum": "...And the Circus Leaves Town",
+   "reason": "DV-confirmed re-home (kyuss campaign 2026-10-16): the row has no album string; Day One is the hidden track after Spaceship Landing inside ...And the Circus Leaves Town track 11 (Discogs 1374957; first issued on the 1994 Demon Cleaner CD1)"
   }
  ],
  "Anathema": {
