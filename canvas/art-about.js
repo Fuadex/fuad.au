@@ -3,6 +3,56 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "claude-monet-weeping-willow-2": {
+  "about": "Monet's weeping willows of 1918–19 have been read as his response to the war. This canvas comes from a later return to the tree, painted at Giverny after the war, between 1920 and 1922.",
+  "deep": "This dark canvas turns to rust below the middle across most of its centre and right, and its dates allow one account of Monet's late manner: failing sight. In 1922, its latest possible year, Monet's eye doctor found his right eye registering only light, and he wrote of bad paintings made “when seeing nothing but fog”. One medical reading calls the late manner cataract, not choice; a 2018 exhibition hung this canvas as a bridge to American abstraction. Nothing dates it closer. Either account must meet the left margin, where the red climbs high instead, in a few thin lines: a loop near the top, a Y a little below the middle.",
+  "by": "Opus 5.5"
+ },
+ "claude-monet-le-pave-de-chailly": {
+  "about": "Monet's view of the forest road out of Chailly, about 1865 — by Wildenstein's account a study for a larger version, from the year he came to these woods to prepare a life-size Luncheon on the Grass.",
+  "deep": "Wheel ruts and no wheels, a sunlit verge and no one on it: the picture dates from around the year Monet sought woods to hold people. His postscript to Bazille in early May 1865 wanted an \"opinion on the choice of landscape for my figures\" and confessed, \"sometimes I am afraid of what I'm getting myself into.\" Read with that letter, the canvas is the landscape chosen and the figures left out. Here the near grass, where a party might have sat, holds fallen leaves and the big trunk's long shadow.",
+  "by": "Opus 5.5"
+ },
+ "claude-monet-vetheuil-sunset": {
+  "about": "Monet lived at Vétheuil, across the Seine, in 1878–81, and lost his wife Camille there. He had painted it from this bank in 1879, the year she died, and returned in 1901.",
+  "deep": "In October 1901 Monet wrote to his dealer, Durand-Ruel, that a series of views of Vétheuil he had thought he could do quickly had taken the whole summer, leaving everything else by the wayside. This canvas suggests why: its gables and ridges are drawn in the hour's own red and rose, so no edge could be fixed without matching the light too. If the work ran past one evening, as the series did, that red had to be found again in a sky that shows it for minutes.",
+  "by": "Opus 5.5"
+ },
+ "john-constable-sketch-for-hadleigh-castle": {
+  "about": "Constable's storm over the ruined castle above the Thames estuary, about 1828–9 — a full-size trial for his six-foot Academy picture. At his studio sale in 1838 it made £3 13s 6d; the finished canvas, £105.",
+  "deep": "Its sky was often cited as a showcase of Constable's palette knife. Charles Holmes, a former National Gallery director, praised its \"scrapings and slashings and loadings of pigment\" in 1931, and when the Gallery bought it in 1935 he took it at first for the picture exhibited in 1829, calling it proof of Constable's modernity. The knife-like slabs he admired lie only in the sky of a strip added at the far left, which the conservator who examined the canvas gives to a later hand, probably around the time Holmes wrote; another scholar doubted it, noting that Constable enlarged canvases himself. Right of that strip is the sky Constable painted, and no knife mark has been found in it.",
+  "by": "Opus 5.5"
+ },
+ "adolph-von-menzel-falke-auf-eine-taube-sto-end": {
+  "about": "Menzel's falcon and dove, about 1844, is a Scheibenbild, a painted shooting target: on a journey into Silesia he donated it to the festival shoot of a marksmen's club at Liegnitz, now Legnica.",
+  "deep": "Patient brushwork went into an object made to be hit. On 13 May 1887 Menzel, aged seventy-one, wrote to its owner that he felt no longing to see it again and wished the club had counted many good marksmen, who might have “adorned the opus in question with very many bullet marks”; whether it had, he no longer recalled. The joke adds a third hunter: the falcon aims at the dove, and the marksmen he pictured aimed at both birds.",
+  "by": "Opus 5.5"
+ },
+ "paul-signac-antibes-ranek": {
+  "about": "Signac's harbour at Antibes in 1914, the year after he settled there — the morning half of a pair. He painted Antibes at evening that year too, on a smaller, squarer canvas now in Strasbourg.",
+  "deep": "Before any colour went on, this harbour very probably existed as a black-ink drawing of its own size. From 1894 Signac composed on cartoons the format of the canvas: \"an angle that looks fine in small dimensions may look awful enlarged,\" his journal says. An ink drawing of 1914 almost exactly this size survives, so the angles he feared for could be judged at the scale you stand before. They are in the rigging: the five masts stand upright over the hulls, gaffs slant from them along the heads of the sails, the orange bowsprit juts left from the white bow, and behind them the far shore runs level.",
+  "by": "Opus 5.5"
+ },
+ "anna-bilinska-bohdanowicz-portret-m-odej-kobiety-z-roza-w-re": {
+  "about": "Bilińska's 1892 portrait was her only picture at the 1893 Salon. She died in Warsaw on 8 April; crape was hung on its frame, and the black dress read as mourning for the painter.",
+  "deep": "Count Ignacy Korwin-Milewski had asked Bilińska to paint herself. In May 1892, gathering self-portraits from some twenty Polish painters, with her the one woman among them, he fixed the pose: three-quarter view, palette and brushes in hand, a neutral ground. She began it after her wedding and broke off in July, when the illness came; he is said to have received this portrait in its place. Against his terms, the picture keeps the neutral ground and turns the rest around: a stranger, set full face, and in the hands meant for palette and brushes, a rose's stem and a parasol's handle.",
+  "by": "Opus 5.5"
+ },
+ "the-trojan-women-setting-fire-to-their-fleet": {
+  "about": "Claude's first subject from the Aeneid, about 1643 — Book V, where the women of Troy, worn out by seven summers of wandering, burn their own ships on a Sicilian shore to end the voyage.",
+  "deep": "Women ending a voyage by fire were painted for a man four and a half years on the road. Girolamo Farnese, nuncio to Switzerland from 1639, travelled the Valais to the Great St Bernard in 1642 and in 1643 raised eight hundred soldiers for the pope against the Duke of Parma, head of his own house; he was back in Rome in February 1644. To the Met, the subject was his choice, a reference to those years. Michael Kitson thought Claude chose his Aeneid stories himself, consulting his patrons. For that traveller, the beach shows a voyage ending: the ships ride at rest, and the fire takes away the means of leaving.",
+  "by": "Opus 5.5"
+ },
+ "mars-and-venus-united-by-love": {
+  "about": "Veronese's allegory of love and war, 1570s, travelled for centuries with three more of his. Two of those were already documented in 1567, and a technical study confirms the four were not painted as one set.",
+  "deep": "An army once carried this canvas off, as the Cupid at lower right is carrying Mars's sword. First recorded in 1621 in Rudolf II's collection at Prague Castle, it was taken by the Swedes after the sack of 1648, went with Queen Christina to Rome, passed to the dukes of Orléans in Paris, and by one account was offered for sale in London in 1798. The garden itself holds a soldier's losses: helmet, sword and horse, what a winning side takes from a beaten man. Of the three, only the sword is being carried away, and by a winged child.",
+  "by": "Opus 5.5"
+ },
+ "the-dream-of-the-shepherd-der-traum-des-hirten": {
+  "about": "Hodler's dreaming shepherd, 1895–96 — first shown in 1896 at Geneva's Swiss National Exhibition, inside the Théâtre du Sapajou, a cabaret named after a satirical journal; it and a pendant of floating lovers flanked the door.",
+  "deep": "Whether to take it straight has been open since its first week on show, and no face in the picture settles it. In May 1896 the Journal de Genève asked, \"mysticism or mystification?\", and left readers free to hesitate. The Gazette de Lausanne saw him gently parodying his own symbolising manner, and still found the trifle solid and serious. Scholars reading his sketchbooks take the idea as earnest, though beneath a sketched row of figures he wrote that women together, when not chatting, \"strike attitudes.\" His eight do, arms lifted, bodies turned front, back and profile, no eye given to any. Beneath them the shepherd presses a palm across his eyes.",
+  "by": "Opus 5.5"
+ },
  "shiokawa-bunrin-visit-to-hermitage-in-autumn": {
   "about": "Shiokawa Bunrin's autumn mountains were painted in midwinter, at a lodging east of Lake Biwa: the inscription names the twelfth month of 1865 as Japan then counted years, a month that fell in early 1866.",
   "deep": "On this scroll, withdrawal is a duty, kept up at a distance. Bunrin is reported to have said that serving the court through painting was his loyalty; another telling has him say that a painter who strayed from his calling into the executioner's reach showed no wisdom. He made the picture away from Kyoto in the last years before the Restoration, and it argues no politics. Like both sayings, the scroll keeps its worth in the work at hand: the hermitage is little more than a plain roof, and the densest brushwork goes into the trees beneath it, tree built on tree.",

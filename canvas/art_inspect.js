@@ -101,6 +101,752 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+ "claude-monet-weeping-willow-2": {
+  "mv": 6,
+  "see": "A weeping willow fills the canvas, seen so near that the frame crops its crown at the top and both sides. The crown is a tangle of teal, sea-green and yellow-green strokes; from it the fronds fall in long verticals through the middle, over a darker ground of blue, violet and rust-red. A strip of horizontal strokes runs along the foot, the name Claude Monet in dark script at its left end; a pale cream gap opens at top left. A dark, dense picture, its crown picked out in pale-edged strokes.",
+  "about": "Seen whole, a weeping willow is a shape: a dome of leaves over a trunk, standing against the sky. Little of that reaches this canvas, nor does the tree's old association with mourning. No trunk stands clear of the foliage, there is no sky to speak of, and the crown's outline lies beyond the edges, so the tree is known by its habit alone, and hanging becomes the subject: a weight drawn from the top edge to the foot, most of the surface built as something giving way downward.",
+  "craft": "On a canvas a little over a metre high and nearly as wide, many strokes go down from a loaded brush and are pulled on until the paint gives out, so a single mark passes from thick colour to a dry, broken trail over whatever lies beneath. Light and shade do almost nothing to shape the tree; its colour is laid in broad fields, cool greens and blues against rust, violet and orange.",
+  "context": "In September 1920, nearly eighty, Monet agreed to give the state twelve of his great water-lily panels, to be housed to his design. The gift grew even as its first building fell through, and when the deed was signed, in April 1922, it ran to nineteen panels. That year Clemenceau wrote to tell him he had reached “the limit of what the power of the brush and the brain can accomplish”, and still Monet would not let them go. The decoration's largest composition, Les Deux Saules (The Two Willows), runs some seventeen metres across four panels. Beside those wall-sized willows he went on painting his garden at easel size: the Japanese footbridge, the path under the rose arches, and the willow, in this canvas and in another like it.",
+  "deeper": [
+   {
+    "t": "The crook at the crown",
+    "x": 0.2,
+    "y": 0.04,
+    "w": 0.46,
+    "h": 0.42,
+    "body": "Near the top, a little left of centre, one stroke curls over like a shepherd's crook: it climbs, bends back on itself and drops away in a long tail. Around it the same move recurs at every size, so the crown is assembled from gestures that rise and then fall, the arch and droop of a willow branch performed as a movement of the wrist. Read along this one stroke and it is not a single colour. A pale streak rides its outer rim with teal beneath it, the two lying side by side along the stroke, streaked lengthwise and never stirred together. Inside the curl sits a small patch of orange, one of very few warm touches this high on the canvas. Below the crown some of the tails fray and turn dry, the paint thinning as they fall."
+   },
+   {
+    "t": "Red drawn at the left",
+    "x": 0,
+    "y": 0.12,
+    "w": 0.34,
+    "h": 0.58,
+    "body": "At the upper left, red arrives as line. A loop of it rings near the top of this strip, a second curl hangs below, and two red lines come down from either side to converge in a Y a little below mid-height. The dark between them is the same green-blue as the foliage around, so these shapes are known only by their outline, with nothing inside to name them, and the red was laid over the dark after it. Above the middle of the canvas red is almost absent outside this margin, so a few thin lines hold the eye hard against the cool crown beside them. At the foot of the Y, the red runs into a clump of yellow."
+   },
+   {
+    "t": "The level line",
+    "x": 0.27,
+    "y": 0.36,
+    "w": 0.46,
+    "h": 0.36,
+    "body": "Right of centre at mid-height, strokes of strong blue run straight down through the dark middle of the curtain. Follow them and, a little below the middle of this detail, a row of short level dashes crosses from the left: separate flicks with pale specks between them, faint enough to pass over. They mark the line at which the picture changes key. Above it the curtain is green, teal and blue; a short drop below it, rust-red takes over and the green thins out, and the warm key carries across most of the width from here to the right edge of the canvas. Two places hold out: at the left of this detail the green carries on below the dashes untouched, so the switch begins where the blue is, and in its right third a column of green and teal strands keeps its colour well down into the red. Nor do the verticals stop for it: the blue runs on past the dashes into the red, and the fall continues while its colour turns. It is a division that barely registers, and most of the lower right of the picture lies in the warm key beneath it."
+   },
+   {
+    "t": "Two pale strands",
+    "x": 0.54,
+    "y": 0.42,
+    "w": 0.46,
+    "h": 0.46,
+    "body": "Lower down on the right, two long pale strands, one cream-yellow, the other greyish-white, hang side by side against tall tapering tongues of red and violet. Pale green strands fall into the top of this detail from the crown; these two carry it on into the warm zone as light line, the right-hand one cool. Neither is a single stroke. The left strand's yellow gives way lower down to a cream stroke that begins beside it and runs on alone; the right strand's greyish-white curve fades into the dark and is picked up just below by a whiter stroke with teal laid along it. Where they cross the red, each pass keeps a clean edge and no red runs over it: the strands went down after the warm mass behind them."
+   },
+   {
+    "t": "Where the brush lies flat",
+    "x": 0,
+    "y": 0.74,
+    "w": 1,
+    "h": 0.26,
+    "body": "Along the bottom edge the brush turns flat. After a canvas of curls and drops, this band is laid in dragged horizontal bars of yellow-orange, violet, blue-black and teal, their edges breaking into pale flecks. A long orange-red stroke sweeps in from the left edge to about the middle and sets the band's upper limit, crossed by thin slanting yellow-green lines. Just above, near the centre, two swooping strokes of dark blue bow downward, the crown's hooks turned the other way up. The band reads as a level surface at the willow's foot because its strokes lie horizontal: the same touches as the fronds above, laid on their side."
+   }
+  ],
+  "beside": "Poplars lose their crowns to the top edge in The Four Trees, Claude Monet's canvas of 1891, and what that crop leaves is the part of a tree that stands. Four slim trunks run the full height as upright bars, spaced almost evenly, pale sky open between each pair, and a low band of bank crosses them below the middle without stopping them. The willow's crop leaves the other part: its top edge passes through the crown, the trunk the poplars are made of cannot be picked out with any certainty, and what the picture keeps is the growth that falls.",
+  "refs": [
+   {
+    "id": "claude-monet-the-four-trees",
+    "text": "The Four Trees"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "claude-monet-le-pave-de-chailly": {
+  "mv": 6,
+  "see": "An autumn forest road under a pale sky. Tall trees in rust, brown and dull green line both sides and part on a wedge of sky that narrows to the road's vanishing point, just right of centre, where a dark bush stands. The road is the narrow pale band entering from the left; the broad foreground is a grassy verge strewn with fallen leaves and crossed by a rutted track. At right stands a group of grey trunks, the largest close by. The paint is opaque, laid touch by touch and firmly drawn.",
+  "about": "By 1865 the Forest of Fontainebleau had been a landscape painters' forest for a generation, sought out for its ancient oaks. Here it is a road: the Pavé de Chailly, the paved highway from the village of Chailly through the forest toward Fontainebleau. The canvas long carried a wrong title, Route du Bas-Bréau, which put it in the Bas-Bréau, the celebrated stand of old trees by Barbizon. The beeches along the Pavé were a known Chailly motif; the road under them was a plainer subject, a wheel-marked way from a village to a town. The picture stays with that working road and the light of one day falling across it.",
+  "craft": "The canvas is small and the handling solid. Most areas are first laid in as a firm mass of opaque colour, their edges drawn with the brush and left standing, then worked over in separate touches that sit on top. The order runs from dark to light: pale notes go in late, over paint already there, and keep their own crisp edges. The palette is earthy, browns, rusts, greys and a dull olive green, opened by a light yellow-green in the sunlit grass, with cream and near-white held back for the lights. Most strokes are placed once and left, with little blending between them.",
+  "context": "In the spring of 1865 Monet's two seascapes of the Seine estuary were accepted and well hung at the Salon that opened on 1 May, and Paul Mantz praised their \"bold manner of perceiving things\". At Chailly he was after something enormous: a Luncheon on the Grass with figures in modern dress in a beech wood, too big to paint outdoors, so the summer went on studies made on the spot. A leg injury put him to bed, by one account the work of a clumsy English discus-thrower, and Bazille painted him there. In late August Bazille returned to pose for the men. With autumn coming on, Monet went back to Paris and began a canvas more than six metres wide, which he never finished.",
+  "deeper": [
+   {
+    "t": "The opening in the trees",
+    "x": 0.11,
+    "y": 0.035,
+    "w": 0.51,
+    "h": 0.685,
+    "body": "Left of centre at the top edge, the sky comes down between the trees as a pale wedge, and its point lands where the road disappears. The paint is palest at the bottom of that wedge, just above the road's end, and a shade duller up against the frame, so the eye drains downward through the opening to the vanishing point. On the left the trees step down in one long slope, the distant ones massed into a single smooth-topped slab. On the right the edge falls more steeply and is feathered, made of short sideways strokes of grey with the sky's own pale worked back in between them. The sky has this shape only because the road has cut a channel through the forest, and it narrows to the same point the road does."
+   },
+   {
+    "t": "Where the road goes out of sight",
+    "x": 0.4,
+    "y": 0.5,
+    "w": 0.36,
+    "h": 0.26,
+    "body": "Just right of centre, the road reaches its vanishing point, and a near-black bush stands at its very end, overlapping it. The darkest mass in the picture is set flush against its palest sky, at the one place where the road is half hidden. To the bush's left a small slot of pale distance shows beyond the far trees: the road goes on, out past what the view allows. The far bank on the left is smoky grey, yet it is still drawn, with faint upright strokes for its trunks and a few ochre dabs to keep it in season. The bush is the reverse, dense and dark, its top and right shoulder flecked with pale touches."
+   },
+   {
+    "t": "Sky laid over the leaves",
+    "x": 0.03,
+    "y": 0.06,
+    "w": 0.24,
+    "h": 0.36,
+    "body": "High on the left, the near wall of trees is a dense weave of rust, brown and dull green, with small pale drops of sky scattered through it. Their edges sit on top of the foliage, opaque and crisp over the brown beneath: they went in after the leaves, a dab at a time. Several drops hang in short vertical runs of two or three beside the dark stems, so the touches that let in the sky also mark where the trunks stand inside the mass."
+   },
+   {
+    "t": "The pavé, seen from the verge",
+    "x": 0.03,
+    "y": 0.63,
+    "w": 0.415,
+    "h": 0.22,
+    "body": "At the left edge, about seven-tenths of the way down, the road of the title enters: a narrow pale band, dragged in with long horizontal strokes that leave its top edge ragged. Above it, the foot of the left-hand wall is a dark strip of shadow and undergrowth, which is why so thin a stripe reads at once. The band runs almost level across to the vanishing point, and that flatness gives away where we stand. A road seen down its length would open toward the bottom edge like a funnel; this one is seen from the side, so the viewpoint is off the road, on the grass among the trees. The ground between us and the band carries the traffic's marks instead: a track of pale grey ruts edged with dark streaks of earth, running in from the lower left toward the far end, with small white flecks caught along their edges. The ruts do the perspective work the level road leaves undone, pulling the foreground back into the distance."
+   },
+   {
+    "t": "Leaves in two touches",
+    "x": 0.03,
+    "y": 0.78,
+    "w": 0.4,
+    "h": 0.185,
+    "body": "Across the bottom left, fallen leaves lie on a ground of olive green dragged on in horizontal strokes. Many leaves are two touches: a dab of dark brown or rust for its body, then a separate, smaller flick of cream along one edge, where light catches the curl. The flicks are short and pointed and stand clear of the ground colour, and other leaves are a single pale touch the size of the dark ones; together, flicks and pale leaves make the glitter that runs across the lawn. The leaves gather in loose drifts with bare green between them. Low at the left, the signature is written in the same near-black as the darkest leaf bodies, straight onto the leaf-strewn ground, with no cleared patch beneath it."
+   },
+   {
+    "t": "The trunk's foot and its shadows",
+    "x": 0.64,
+    "y": 0.52,
+    "w": 0.33,
+    "h": 0.445,
+    "body": "At lower right, the big grey trunk meets the grass in a flared foot, and from it a long dark shadow runs down and to the right to the bottom edge. A second trunk, standing further back, throws another alongside it. Shadows that run toward us put the sun in front of us, low and to the left, somewhere beyond the trees, and the rest of this corner follows from that. The trunk catches light only along its left edge, a white streak that turns lower down into a stripe of yellow-green moss; the rest of the bark sits in half-light. The grass reads in bands, light yellow-green where the sun reaches it and dark olive in the shadows, and the band nearest the bush is that bush's own shadow laid across the lawn. Right of that second trunk, a patch of rust undergrowth glows open at the right edge, crossed by a pair of slim dark stems."
+   },
+   {
+    "t": "Up the grey trunk",
+    "x": 0.7,
+    "y": 0.035,
+    "w": 0.22,
+    "h": 0.52,
+    "body": "At the right, above its foot, the big trunk rises as a grey band against the olive and brown of the woods, laid in with long vertical strokes that follow the bark. Dark knot-scars pock it, dabbed on in near-black, several ringed with warm brown, and they do most of the work of making the surface read as bark. Higher up, two slots of sky open at the top edge, one on either side of a slimmer, darker trunk at its left. Against that trunk leans the crooked head of a slender tree: a dark line that climbs in short kinked runs, then bends over and comes to rest on the trunk. Followed down and to the left, its stem reaches the ground behind the bush at the road's end."
+   }
+  ],
+  "beside": "In The Forest in Winter at Sunset, Fontainebleau's low sun stays inside the wood. Théodore Rousseau had been at that canvas for close to twenty years by the date of this road, and still had it in 1867, the year he died. Bare oaks crowd its width, clawing at a band of smoky sky. Below, the sunset gets into the wood as orange flecks among dark trunks and a dull gleam on a pool, and two small figures on a track take some finding. Rousseau's forest closes round the people in it. Monet's trees stand back from a road, and the sun lies across open grass.",
+  "refs": [
+   {
+    "id": "theodore-rousseau-the-forest-in-winter-at-sunset",
+    "text": "The Forest in Winter at Sunset"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "claude-monet-vetheuil-sunset": {
+  "mv": 6,
+  "see": "Vétheuil, a village on a river, seen across the water at sunset. A church with a square tower and a pointed spire stands left of centre among cream-walled houses roofed in rose and violet; behind them a hill is banded in salmon and blue-green under a rose and lilac sky. A pale green bank runs under the village, and below it the water fills the lower half of the canvas and holds the village's reflection. The whole canvas is pale, in rose, lilac, cream and soft greens and blues.",
+  "about": "Sunset is the hour that usually costs a landscape its particulars: one colour floods everything, and a village across a river turns into a warm smear under its hill. Sky, hill and river here all take the light's rose and lilac until they read almost as one material. The village sits inside that colour and is not dissolved by it. It stays a place: a church that can be told from the houses around it, houses that keep their fronts and roofs, a shore running straight beneath them. The picture holds both at once, an evening at its most consuming and a particular village kept drawn within it.",
+  "craft": "The paint of the whole canvas is kept inside a narrow, pale band of value, so the separations a dark would make in another landscape are made here by temperature, warm laid against cool, and by the direction of the stroke. Each kind of surface has its own lie of brush, and a form appears where one lie meets the next: the brush draws even where no line is laid. The paint goes on stiff and in body, dragged in places until it stands up in ridges and crumbs. And the canvas belongs to a set carried from morning to sunset, the motif held still so that each picture keeps a single light of the day.",
+  "context": "In the summer of 1901 Monet, sixty, rented a modest house at Lavacourt, a hamlet across the Seine from Vétheuil. From its balcony he began fifteen canvases of one view: the church, the riverside houses, the water below them. He dated this sunset 1901 beside his signature; it has also been dated to 1900. The next February the Paris dealers Bernheim-Jeune showed this canvas among six views of Vétheuil, billed as a \"nouvelle série de Claude Monet\", a new series.",
+  "deeper": [
+   {
+    "t": "The spire's cool cap",
+    "x": 0.2767,
+    "y": 0.1369,
+    "w": 0.3014,
+    "h": 0.1927,
+    "body": "Left of centre stands the church tower, and its pointed cap is what pins it against the sky. The cone is blue-violet set into rose, a clear step darker than the sky around it and cool where the sky is warm, so it stands as a silhouette without going anywhere near black. A warm ochre wedge sits at its foot. The square tower below is laid in upright strokes of cream, with slots of violet where its openings would be, and along its top edge the cream stands up in small beads of thick paint, so the light on the tower is built in body as well as in colour. To the left, a feathered blue-violet upright rises off the crest in the spire's own family of colour, too soft to name. The spire's tip climbs past the ridge into the sky, the highest point of the painted village."
+   },
+   {
+    "t": "The hill ruled like a roof",
+    "x": 0.0662,
+    "y": 0.17,
+    "w": 0.866,
+    "h": 0.19,
+    "body": "Behind the village, the hill is laid in long streaks of salmon and blue-green with lilac between, and their direction says something the hill's outline does not. Left of the church they climb toward it; right of it they fall away toward the frame at a matching slant, so the slope is ruled like a pitched roof whose ridge is the tower. The left-hand crest itself runs nearly level: the rise is in the brushwork. In the salmon streaks the paint is dragged hard enough to leave raised ridges along each pull. Overhead, the sky's hatching slants down to the right like the right-hand slope, so on that side land and air share one direction and their boundary is hard to place."
+   },
+   {
+    "t": "A village drawn in red",
+    "x": 0.4051,
+    "y": 0.2992,
+    "w": 0.3656,
+    "h": 0.1572,
+    "body": "Right of the church, the houses seem melted into the glow until you look for their edges, and then they turn out to be drawn. A thin red-orange line climbs and drops to make the gable of the house left of a second blue cone, low among the houses; further right, the roof ridges are pulled in rose, and one upright dab of orange-red stands for a chimney on the last cream house to the right. Small red ticks stand among the walls nearer the church. Under that drawing the walls are cream, laid in short upright strokes, and the roofs are rose and violet hatched on the slant. The contours are made in the sunset's own red, the hue the light gives the roofs, so the village keeps its corners and still reads as haze. The picture's strongest colour gathers along this strip, in the yellow of the walls and these red marks."
+   },
+   {
+    "t": "The green shoreline",
+    "x": 0.3458,
+    "y": 0.426,
+    "w": 0.3953,
+    "h": 0.1116,
+    "body": "At half height a band of pale green runs under the village from one side of the canvas to the other. It is laid in long level pulls, a different stroke from the upright walls above it and the short dashes of the water below, so the brushwork changes at the shoreline. Under the centre a darker teal line marks where bank becomes river, and just above it a single cream dash lies along the shore. A fringe of salmon and red dabs sits on the green at the village's foot."
+   },
+   {
+    "t": "The blue column",
+    "x": 0.42,
+    "y": 0.3347,
+    "w": 0.1803,
+    "h": 0.3702,
+    "body": "Below that second cone among the houses, drop the eye past the green bank into the water: a column of blue dashes hangs there, directly beneath it. The reflections keep an inventory of what stands above them. Under the cream walls the water holds columns of cream and pale yellow; under the second cone it holds blue; between the columns it falls back to rose and lilac. Each column is a stack of short horizontal dashes. The blue one begins well down the water, with a stretch of warm river between it and the bank."
+   },
+   {
+    "t": "The near water goes quiet",
+    "x": 0.0662,
+    "y": 0.7302,
+    "w": 0.3785,
+    "h": 0.2018,
+    "body": "Lower left, the water nearest the viewer has gone quiet. Its dashes stay about the same size all the way down; they do not swell as the river approaches, as they would on a surface drawn to perspective. What changes is contrast. Higher up, near the reflections, rose, lilac and cream jump against one another and the paint stands in small ridges; toward the bottom edge they settle into a dimmer, cooler lilac-rose. The foreground, where a landscape usually gives most detail, gives less than the reflections above it, and the eye is sent back up the water to the village. Across this quiet runs the signature, Claude Monet 1901, a hard-edged line of rose-red from the same family as the red ticks among the houses."
+   },
+   {
+    "t": "Folded on the bank",
+    "x": 0.0662,
+    "y": 0.0811,
+    "w": 0.866,
+    "h": 0.851,
+    "body": "At full view, the nearly square canvas folds along the green bank, which sits close to half its height. The colour order folds with it: the warm strip of village above the bank is answered by the warmest band of water at about the same distance below, and as the sky cools toward the top edge, the water dims and cools toward the bottom one. Below the bank the marks lie level, so the lower half carries the upper half's colours and none of its slope."
+   }
+  ],
+  "beside": "Seen through fog, the same village sorts its temperatures the other way. In Monet's Vetheuil in the Fog, from 1879, a blue-grey mist takes sky and river alike, the houses are a low band of cream and dull rose at the picture's waist, and the church rises out of them as a tall spire of pink and cream, warm inside the cool. Under the sunset, sky and water have gone warm, and the church's cap is a blue-violet cone against rose.",
+  "refs": [
+   {
+    "id": "vetheuil-in-the-fog",
+    "text": "Vetheuil in the Fog"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "john-constable-sketch-for-hadleigh-castle": {
+  "mv": 6,
+  "see": "A ruined castle holds the high ground: at the far left its left-hand tower, pierced by an arch, and left of centre a taller round tower broken into two stumps. To the right the hill falls past a figure with a dog, a few cattle and three gulls to a dark marsh and a wide estuary shining along the horizon. A storm sky of white and grey fills the upper half, with birds set dark against it, while the gulls below read pale against the land.",
+  "about": "Across one view the picture sets a broken castle on the high ground at left against a distance of open water still taking the light, with the storm filling half the canvas between them and most of the near land fallen into shadow. Constable later gave this pairing of bright and dark in landscape a name, “the Chiar’oscuro of Nature”, and here it is played out over a whole estuary seen from a hill. The picture is often read as a picture of grief, and the canvas carries that reading only so far: what it shows is ruin and weather caught in the same instant.",
+  "craft": "Constable could not paint a six-foot landscape out of doors, so he worked his large compositions out in the studio at full size, as in this canvas. He painted it on a twill canvas, a weave with a diagonal rib that he rarely used, perhaps simply the length he had to hand. The sky is built up in many thin layers of brushed paint. The colour is kept cold, whites, greys and blue-greys over dark browns, and light goes on in separate touches over darker paint and is left broken.",
+  "context": "In June 1814 Constable visited the ruin at Hadleigh above the Thames estuary and made a palm-sized pencil drawing. He wrote to Maria Bicknell that he had always been delighted with “the melancholy grandeur of a sea shore”. Some fifteen years later he came back to that drawing. Maria, by then his wife, died in November 1828, and in December he told his brother Golding that “the face of the World is totally changed to me”. When this canvas was begun is not known. In February 1829 the Academy elected him a full member by a single vote, and in April, unsure whether to send the finished picture to the exhibition, he wrote that he was “in the height of agony about my crazy old walls of the Castle”.",
+  "deeper": [
+   {
+    "t": "The split tower",
+    "x": 0.262,
+    "y": 0.335,
+    "w": 0.145,
+    "h": 0.3,
+    "body": "Left of centre, the taller ruin is a round tower broken into two stumps. A single ledge runs across both of them at the same height, and that shared band is the evidence that they were once one drum, torn open down the middle: the dark between them is the hollow inside, with a few pale touches let into the seam where light comes through. Constable does not draw the stonework. He lays the brown in mostly upright strokes and leaves lighter flecks sitting on the ridges of the paint, so the wall's roughness is the paint's own roughness. Low down, the tower's base sinks into the boulders at its foot, the same dark as they are. Above the horizon its outline turns hard: the broken tops are ragged in shape yet cut cleanly against pale cloud, and that hard edge is where the eye catches first."
+   },
+   {
+    "t": "The palest sky",
+    "x": 0.365,
+    "y": 0.15,
+    "w": 0.26,
+    "h": 0.31,
+    "body": "Above and right of the tower lies the palest stretch of the sky. The white is brushed in curving sweeps that lie one over another, each stopping short of the one beneath, so grey and blue-grey show in the gaps and serve as the shadowed undersides of the cloud; the drag of the brush is still visible along their edges. The sweeps do not copy cloud shapes one by one. A dense net of fine cracks has opened across the heaviest of the white, and it belongs to Constable's own paint. Into this, small dark birds are set in a loose column beside the tower, each one short stroke kinked for the wings and laid over the white. Being so small, they make the cloud around them read as vast and high."
+   },
+   {
+    "t": "Rain at the right edge",
+    "x": 0.655,
+    "y": 0.145,
+    "w": 0.235,
+    "h": 0.33,
+    "body": "Along the right edge the sky darkens to slate grey, deepest in the top corner, and the strokes change direction. Near the edge they are dragged straight down in long vertical streaks that run toward the horizon: a shower falling out of the cloud over the far water. Lower left in the same stretch the paint is turned in a tight circular whorl, and white tufts of cloud are flicked in beside it, thick and bright against the grey. Within this one patch the weather runs from sunlit cloud to falling rain, two moments of the same storm."
+   },
+   {
+    "t": "Where Constable's canvas stops",
+    "x": 0.11,
+    "y": 0.29,
+    "w": 0.17,
+    "h": 0.35,
+    "body": "At the far left, the left-hand tower's wall is pierced by a round-headed arch. Through it the paint lightens to a glimpse of land beyond, so the heavy wall reads as a thin screen with daylight behind it, and the tree crowding the wall's right side is dabbed in nearly the same dark, so stone and leaf run together. All of that sits on Constable's original canvas. The wall's left pier does not. Strips of canvas about four inches wide were later added along the left and bottom edges, and they and the damaged margins of the original were painted to match. In the sky the join shows as a line running down just right of that pier: to its left the cloud turns yellower and lies in broad, flat patches, and the net of fine cracks in Constable's sky stops. The pier itself, with its jutting ledge, is painted flat where the side of a round tower should curve."
+   },
+   {
+    "t": "A figure with a staff",
+    "x": 0.13,
+    "y": 0.6,
+    "w": 0.125,
+    "h": 0.2,
+    "body": "In the lower left, on a sunlit patch of grass, a small figure in a dark coat stands with a long staff whose pale tip rises above his head, a black-and-white dog low beside him. He is built from separate marks: a dark slab of coat, one pale stroke down the side the light reaches, a dark hat, a dab of red at the collar, a thin line for the staff. The dog straddles the join: its head, pointing forward, appears to be Constable's, while its hindquarters were repainted along with the strip. The man's size is the scale for the boulders piled behind him and, through them, for the height of the castle hill."
+   },
+   {
+    "t": "Cattle on the lit slope",
+    "x": 0.415,
+    "y": 0.585,
+    "w": 0.16,
+    "h": 0.12,
+    "body": "Near the centre, downhill and right of the split tower, three cattle are set on a tongue of lit olive grass that slants down the hill from upper left to lower right. Each is a knot of red-brown worked into white, finished with a flick of pale paint along a back or a head, so the animals catch the same light as the band beneath them while the slope above and below it falls into shadow. Spaced along that strip like stepping stones, they carry the eye from the castle's foot down toward the marsh."
+   },
+   {
+    "t": "Gulls over the marsh",
+    "x": 0.59,
+    "y": 0.56,
+    "w": 0.3,
+    "h": 0.2,
+    "body": "Lower right, two of the gulls skim low over the dark marsh, their wings spread in shallow angles of pale paint drawn across the dark. Around them the flat ground is crossed by long horizontal strokes of grey and white: pools and channels catching the sky, each laid with a loaded brush pulled sideways so the paint breaks over the ridges beneath and lets the dark through. Scattered through the same browns are small dabs of bright red. At this size they read as colour, not as things, set into the dark green-brown to keep it warm."
+   },
+   {
+    "t": "The shining horizon",
+    "x": 0.384,
+    "y": 0.42,
+    "w": 0.506,
+    "h": 0.18,
+    "body": "Back up at the horizon, the light on the estuary runs as a long band of white from the foot of the castle hill nearly to the right edge. Close to, it is no smooth sheet: it is many separate flecks and short dragged strokes of white laid over dark paint, with the dark showing between them, and from a step back those gaps flicker the way sun on moving water does. At the band's left end, on the dark ridge, two small towers stand against it, a second building far off on the high ground, and just right of them a smear of warm orange lies along the horizon. Above the band's right half a thin darker line marks the far shore, Kent across the estuary: when Constable redrew the design in pen, on the way to this canvas, he widened it to the right to take that shore in."
+   }
+  ],
+  "beside": "Building and water trade distances between this sketch and Salisbury Cathedral from the Meadows, which Constable painted soon after it. The frame is shared: a dark upright left of centre against white and grey cloud, a dark mass heaped at the left edge, water opening to the right. At Hadleigh the building is the near thing, broken on its hill, and the water lies far out along the horizon. In the Salisbury picture the cathedral stands whole and far off, a thin spire under grey storm cloud across the meadows, and the river comes up close, shallow enough for a cart and its team to wade a ford.",
+  "refs": [
+   {
+    "id": "john-constable-salisbury-cathedral-from-the-meadows",
+    "text": "Salisbury Cathedral from the Meadows"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "adolph-von-menzel-falke-auf-eine-taube-sto-end": {
+  "mv": 6,
+  "see": "A falcon plunges head-first onto a white dove. The falcon owns the upper half of the picture: wings spread wide, dark plumage flecked with rust, head driven down toward the centre. Beneath it the dove tumbles through the lower half, both wings thrown up, its fanned tail at lower left and its head hanging near the bottom edge. There is no horizon line: a streaked sky of greys and blues at the top, a bank of pale cloud behind the falcon's head, and a murky, mottled dark band along the bottom. The eye falls with the falcon, from the dark mass of its wings down to the white of its prey.",
+  "about": "In these years Menzel drew birds of prey as signs. In one vignette for the collected works of Frederick the Great, raptors' talons clawing at the imperial orb stand for the alliance of Austria and France, the Prussian eagle hovering above them. This falcon has the emblem's display, wings opened to their widest, but none of its stillness: the bird is tipped head-down and aimed at the dove below. Stoßen, the title's verb, is the falconer's word for that dive. The picture allows the strike no ground and no onlooker; its only setting is cloud and the dark, thundery air underneath.",
+  "craft": "The support is paper: several sheets joined edge to edge and laid down on a wooden panel. The joins still show as faint straight lines that ignore the painting, one crossing the full width about a third of the way down, and an upright seam rising from it to the top edge, left of centre. Over them the oil runs to two extremes, loaded where the light is strongest and thin as a stain in the darkest air, in places laid on with only the tips of the bristles. Memories of Rubens lie behind that bravura: a brush that writes in open, visible strokes, the cloud worked as hard as the plumage.",
+  "context": "In 1844 Menzel, twenty-eight, travelled into Silesia, the province of his birth, and at Liegnitz a marksmen's club made him its guest of honour, more than once by his own account. Behind him in Berlin lay a contract signed in the summer of 1843: two hundred drawings, made straight onto the woodblock, for a royal edition of Frederick the Great's writings, work that held him until Christmas 1849. In 1843 he had also ended a pause from painting, and this picture, dated by the Silesian journey, is one of the first oils after it; on the trip he is said to have studied the flight of birds more closely. Long afterwards Menzel could place it only at “the beginning of the forties”.",
+  "deeper": [
+   {
+    "t": "A wing the frame cannot hold",
+    "x": 0,
+    "y": 0,
+    "w": 0.47,
+    "h": 0.5,
+    "body": "In the top left corner the falcon's wing runs straight off the picture: its outermost feathers cross the top edge, so the bird does not fit inside the frame. That cut sets the distance. The falcon is near enough for the edge to clip it, and the attack happens close at hand. Long, tapering strokes run along each flight feather from the body outward, so the brush travels the way the feathers grow, and along the wing's upper edge they end in separate dark points against the sky. Inside the near-black mass, flecks of rust-red keep the dark from going flat: it reads as plumage in shadow, not as a hole cut in the sky."
+   },
+   {
+    "t": "The wing that catches the light",
+    "x": 0.5,
+    "y": 0,
+    "w": 0.42,
+    "h": 0.52,
+    "body": "At top right the falcon's other wing climbs to the top edge in one long diagonal, and it is painted in a lighter key than the dark back beside it. Down its length, pale buff touches sit in broken dashes over the brown, light catching on the edges of feathers, so this wing reads as a solid, lit surface. Below it a loose fringe of feathers stands off the wing's lower edge as separate dark blades, splayed and parted like plumage lifted by the rush of air in a dive. Each blade is one stroke with a crisp tip against the sky, and together they give the falcon's outline its sense of speed."
+   },
+   {
+    "t": "Talons over the bright cloud",
+    "x": 0.51,
+    "y": 0.34,
+    "w": 0.25,
+    "h": 0.27,
+    "body": "Right of the falcon's head a foot hangs open against a bank of pale cloud, toes spread, the claws drawn as dark hooks with a hard curve. The foot trails above the head: the falcon is leading with its beak, its feet not yet thrown forward to grip. The cloud is as bright as the dove's white below: bluish and pale where the toes cross it, warming beneath the foot into short overlapping dabs of cream. That is why the claws carry so far for such small shapes: they are dark hooks set squarely on a ground as light as any in the picture."
+   },
+   {
+    "t": "The open beak",
+    "x": 0.35,
+    "y": 0.46,
+    "w": 0.26,
+    "h": 0.25,
+    "body": "A little below the centre of the picture, the falcon's head points straight down, beak open. The gape is a dark red hollow, and the hooked upper mandible, pale horn along its side, curls round to a dark point; a heavy dark patch sits on the cheek beside the beak. Around the head the paint changes scale. The wings were laid in strokes as long as the feathers themselves; the crown is built from small, close touches of buff and dark brown, and that finer grain makes the head read as a rounded, solid thing among the flying feathers. Behind it a ruff of rust-red feathers flares outward, each tip a separate pointed flick of the brush, so the collar bristles against the pale cloud like raised hackles. Two marks carry the attack: the open, reddened mouth and that bristling collar. Below the beak, the dove's white and the cloud's run together into one pale field, so the gap between hunter and prey is impossible to measure by eye."
+   },
+   {
+    "t": "The dove's raised wing",
+    "x": 0.21,
+    "y": 0.5,
+    "w": 0.25,
+    "h": 0.35,
+    "body": "Left of centre the dove's wing rises in a long white curve, thrown up over its body. At first it reads as one soft flare, yet it is drawn: pale bands run across the wing at a slant, row after row from base to tip, each parted from the next by a soft grey shadow, and together they lay out the overlapping feathers. The edges are kept soft, but the structure is all there. Only at the top does the wing let go, its tip melting into the pale sky. Lower down, its outer edge comes up hard against dark grey cloud and the dark beyond it, so its outline is hardest where the wing is lowest."
+   },
+   {
+    "t": "The dove's face",
+    "x": 0.39,
+    "y": 0.76,
+    "w": 0.24,
+    "h": 0.24,
+    "body": "Near the bottom edge the dove's head hangs straight down, its beak almost touching the frame. A band of grey-black wraps the back of the head and neck; below it the face is pale grey-white, laid in short, curved touches that follow the round of the head and go soft at their ends, a gentler hand than the pointed flicks of the falcon's ruff. The eye is a single dark point set in a lighter ring, and it is open. For all the tumbling body around it, this is a live bird: the picture shows the attack, not the kill."
+   },
+   {
+    "t": "Fanned tail, red feet",
+    "x": 0.15,
+    "y": 0.76,
+    "w": 0.28,
+    "h": 0.24,
+    "body": "At lower left the dove's tail opens into a fan, mostly dark umber and rust, with long pale feathers streaked along its upper edge, splaying out toward the corner. In front of it lie the feet: slim red toes, each ending in a dark hooked claw, thrust out from the body. A spread tail and outstretched feet are the posture of a bird braking hard in the air, and with the wing raised above them the dove is caught twisting, not gliding. The handling changes with it. Where the wing is drawn in rows, the tail is dragged in long, broad strokes that overlap without merging, looser than anything on the wing, and the red toes are set among them as a few sharper, separate marks."
+   },
+   {
+    "t": "One vertical",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Just right of the picture's centre, a plumb line dropped from the falcon's beak lands on the dove's beak almost to the width of a brushstroke. Around that vertical the two birds repeat one shape. The falcon's wings make a wide dark V whose arms reach the top edge; the dove's wings make a smaller V below it, one arm white and one grey, opening the same way, its arms ending just under the middle of the picture. One bird is stacked on the other, dark over light, large over small, and the column they make runs the full height: from the top edge, where the falcon's wing is cut, to the bottom, where the dove's beak nearly meets the frame. That stacking is what turns two birds in open air into a single falling form."
+   }
+  ],
+  "beside": "A blow out of the sky at a body going down head-first is also the subject of The Fall of Phaeton, which Rubens began around 1604. There the boy hangs upside down beneath his toppling chariot among the sun’s bolting horses, and a curve of green earth rises along the lower right. Whoever strikes him never appears: the blow arrives as shafts of light slanting in past the top edge, and the victim is one tumbling body among many. Here the attacker has feathers, talons and an open beak, and it falls with its prey, the striker Rubens kept outside the frame now spread across the top of this one.",
+  "refs": [
+   {
+    "id": "rubens-the-fall-of-phaeton",
+    "text": "The Fall of Phaeton"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "paul-signac-antibes-ranek": {
+  "mv": 6,
+  "see": "A Mediterranean harbour at Antibes in pale morning colour. On the right, sailing boats lie moored with sails loosed and flags at five mastheads; left of centre a lighthouse stands on a white jetty with arches; across the bay a hill town climbs toward a range of lilac mountains under a pale cyan and lilac sky. The whole surface is built from separate rectangular touches of clear colour, set side by side in rows like tesserae. At a distance they settle into an even, hazy lightness; close up the touches take over, and each object exists only as a pattern of marks.",
+  "about": "The picture holds a harbour with its boats moored, and makes the scene into an order. Level lines govern it, in the far shoreline, the jetty and the run of hulls, crossed by upright ones in the tower and five masts, while the town and the mountains stack in tiers behind. Inside that frame a port's working gear becomes something to look at: loosed sails hang as cloth, flags are points of strong colour, the harbour light is a white shape. Signac named the picture by its hour, Morning, in the handwritten book where he catalogued his work, yet the hour is not caught in passing. Even air and water move in order: the swell runs in rows, every flag streams one way.",
+  "craft": "Signac reportedly came back from sailing with sketches and watercolours, which became the starting point for oils worked out in his studio, at Antibes from 1913. In the oil the working unit is a touch of one colour in stiff paste, set down with a short drag of the brush that leaves raised edges and the furrows of the hairs. Each touch is left as laid and not worked into its neighbour: some abut or slightly overlap, others stand apart across narrow pale seams, so the surface is a field of separate low reliefs, not one continuous skin of paint.",
+  "context": "In 1913 Signac separated from his wife Berthe, though they never divorced, and that September settled at Antibes with the painter Jeanne Selmersheim-Desgrange; their daughter Ginette was born there on 2 October. In July 1914 the family went up to the Hautes-Alpes, and the war broke out while they were there; they came back to Antibes on 3 October. That autumn he wrote to Berthe: “It’s not the Germans that are to be cursed, it’s the war,” and feared he would never recover from the distress he was sinking in. Only sixteen of his canvases are dated 1914 to 1917. This one is dated 1914, and whether it was painted before that summer or after the return is not recorded.",
+  "deeper": [
+   {
+    "t": "The hull and its double",
+    "x": 0.53,
+    "y": 0.59,
+    "w": 0.42,
+    "h": 0.29,
+    "body": "Right of centre, under the masts, a belt of red, orange, crimson and violet touches runs along the waterline of the moored boats and drops straight down into the water. The rest of the canvas is pale and close in value; this belt and what hangs beneath it carry the strongest colour in the picture, and they pull the eye before anything has been named. The surprise lies under the waterline. The reflection is laid in no weaker than the hull, and it is not a copy: the reds and oranges come back spaced more loosely, with more orange and yellow among them and green and blue touches of water threaded through, while the hull's violet drops out. A painter after appearances would dull and darken a reflection; here the water hands the boats' colour back at full strength, in its own mix, so the hot mass runs well below the hull. Between the two, a single row of green touches, set apart like beads, marks the waterline and keeps wood and water legible."
+   },
+   {
+    "t": "Sails hung in loops",
+    "x": 0.6,
+    "y": 0.24,
+    "w": 0.28,
+    "h": 0.42,
+    "body": "In the middle of the rigging the sails are not set. They hang slack from their spars in deep loops, one belly sagging below another. The pale sails are drawn at their edges: each scalloped hem is a single file of blue touches, and the heavier edges run two or three touches wide in blue and violet. Follow one scallop down and round: the touches turn as the curve turns, each laid along the line it is drawing, so the mark that lies flat as a brick in sky and water here bends to describe cloth. Drawing, here, is done in a colourist's units, a line built from separate marks, each one a full colour. Inside those pale sails the cloth is made of the same close-packed touches as the sky beside it, at the same lightness; no darker tone models it, and what parts sailcloth from air is a shift from cyan toward pink and the chain along the edge. At the centre one belly is made the other way, filled several touches deep with curved strokes of blue, violet and turquoise, so its sag arrives as a weight of colour."
+   },
+   {
+    "t": "Flags in one wind",
+    "x": 0.595,
+    "y": 0.08,
+    "w": 0.335,
+    "h": 0.33,
+    "body": "At the mastheads, every flag blows to the right: a pale yellow flag on the first mast, a curling pink, orange and violet streamer on the second, a crimson pennant on the third, and on the fourth and fifth two green, white and red tricolours, green at the staff. A steady wind from the left holds them out above sails that hang slack. The flags use the same rectangular touch as the sky behind them, only saturated. The masts are built the same way: chains of yellow and orange touches broken now and then by a crimson or violet one, so each spar flickers as it climbs into the pale sky."
+   },
+   {
+    "t": "White against pink",
+    "x": 0.31,
+    "y": 0.26,
+    "w": 0.19,
+    "h": 0.46,
+    "body": "Left of centre, the lighthouse and its jetty are built of white, yet they are barely lighter than the hill behind them. What holds the edge is temperature, cool against warm. Tower and wall are laid in white touches tinged with pale green and cream; the slope behind is pink and violet. Where the architecture needs drawing, green does it: pale green touches mark the corners of the tower, its cornice, and a row of arches along the wall. At the top sits the warmest colour on the jetty, in a lantern split in two. Under a yellow finial, dome and lantern are blue-violet on our left and pink, orange and yellow on our right, with two orange window touches on the warm side: the same cool-warm boundary, turned inside one small form. Behind the tower, a run of blue touches traces the shoulder of the hill down toward the boats."
+   },
+   {
+    "t": "The town on the far shore",
+    "x": 0.03,
+    "y": 0.3,
+    "w": 0.31,
+    "h": 0.34,
+    "body": "Across the bay at left, a hill town climbs to a cluster of white blocks capped with coral touches. The houses below them are never drawn as houses; they are a scatter of yellow, orange, pink and blue touches set on white. On the mountain behind, the touch has turned. In sky and water the marks lie on their sides; on these slopes they stand upright, narrow and tall, in lilac and pink, and that change of grain tells the eye the surface has become rock. Along the foot of the town, a dense row of deeper blue touches lays down the far shoreline in a single level band."
+   },
+   {
+    "t": "Swell lines on the bay",
+    "x": 0.05,
+    "y": 0.66,
+    "w": 0.47,
+    "h": 0.32,
+    "body": "In the open water at lower left, two long ribbons of deeper blue touches cross the bay one above the other, running in from the left toward the boats. The ribbons are how this surface moves: they read as the long, low lines of a swell, drawn as rows. Below the lighthouse, a broken column of green touches drops straight down through both ribbons, the tower's pale green edge carried far out into the water as reflection. Lower still the touches grow: near the bottom edge they are longer and broader than those in the sky, and the nearest water comes forward with no change of method."
+   },
+   {
+    "t": "A mast in the water",
+    "x": 0.75,
+    "y": 0.63,
+    "w": 0.225,
+    "h": 0.35,
+    "body": "At lower right, a line of orange touches zigzags down the water, each set a little to the side of the last. It starts beneath the fifth mast, where the mast meets the hull: the mast's reflection, shaken by small waves. The wobble is drawn by displacement alone: the touches keep the mast's colour and size, and only their position shifts from one to the next. In the corner, the signature P. Signac and a date are written in dark blue-green, the colour of the deepest water touches around them."
+   },
+   {
+    "t": "A border of sky and water",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Along the top edge, above the flags, deep blue touches crowd the upper margin of the sky, densest at the right and nearly absent toward the upper left corner. At the bottom edge the same thing happens in green: a band of darker, larger touches runs along the foot of the water. The picture is closed above and below by its deepest cool colours, a border made from its own sky and sea. Inside that border the weight gathers down the right half, from the deepest sky over the masts down through the boats to their reflection, while the left half, apart from a dark green column at its very edge, holds pale hills, white stone and open water."
+   }
+  ],
+  "beside": "Where this harbour is full, The Channel at Gravelines, Evening holds a working port at rest by emptying it. Georges Seurat made it in 1890. Beyond a dark lamppost on a bare quay the channel opens wide and almost blank, one boat on it under two small sails, another sail showing past the level far bank. At Antibes the moored boats come close, hulls, rigging and flags crowding the right of the canvas. Of the port’s gear, Seurat brings an anchor within reach, canted on the quay at lower right, lying idle.",
+  "refs": [
+   {
+    "id": "georges-seurat-the-channel-at-gravelines-evening",
+    "text": "The Channel at Gravelines, Evening"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "anna-bilinska-bohdanowicz-portret-m-odej-kobiety-z-roza-w-re": {
+  "mv": 6,
+  "see": "A young woman stands facing us squarely, shown to about the knees, against an olive-grey wall. She is dressed almost entirely in black: a wide plumed hat, a fitted jacket with high-puffed shoulders that falls to the hip, a dark skirt beneath. A cream silk stock, tied in a large bow, fills the top of her chest; tan gloves clasp a single rose and a furled parasol at the waist. Very dark and close to monochrome, it works on the eye as a vertical chain of lights down a black column, face, bow, hands, with its warm colour gathered into small notes: lips, earrings, gloves, rose.",
+  "about": "Nobody now knows who she was. The picture belongs among the portraits Bilińska painted in Paris for well-to-do patrons, and it keeps what such a likeness was made to record, the costume, the hat, the gloves, the formal standing pose, while losing the one thing it was for: her name. Two alternative titles call her Miss R., one of them Miss Róża, and the rose she holds may allude to that name. What the face keeps is a mood held in check: she meets us squarely, unsmiling, and seems turned inward. Her portrait has been likened to those of the Polish painter Henryk Rodakowski for exactly that pairing: a conventional frontal pose holding a private mood.",
+  "craft": "Bilińska trained at the Académie Julian, and the canvas is built on the Salon portraitist's method: a finish graded by what each passage is. Flesh is blended until the stroke disappears. Some of the accessories are put in with a loaded brush and left as struck, so their texture is the paint's own. The broad areas of dress are kept simplified, almost unmodelled, with a detail stressed here and there. The palette is held to blacks, a greenish grey and a cream white, and its range lives in the greys between them, the quality her husband singled out in her handling.",
+  "context": "By 1892 Bilińska had worked in Paris for ten years. That spring the critics received her Salon picture, Si j'étais le Gouvernement, coolly, and, as her husband later told it, the reception decided her: she would turn from portraits to compositions, and three peasant subjects were already sketched. In June she married Antoni Bohdanowicz, a Polish physician living in her building, and the couple planned to settle in Warsaw, where she meant to open a painting school for women. This society portrait, made in Paris that year, belongs to the genre she had set herself to leave. In July the summer heat brought back an old rheumatism, and a doctor found a serious heart defect no one in her family had known of. That autumn she was taken to Warsaw, ill.",
+  "deeper": [
+   {
+    "t": "The silk bow",
+    "x": 0.32,
+    "y": 0.265,
+    "w": 0.37,
+    "h": 0.23,
+    "body": "Below the chin, a stock of cream silk is knotted into a bow broader than her face, its ends falling in stepped folds to mid-chest. It is the brightest passage on the canvas. Each loop and fold is built as a separate plane, with strokes that run the way the cloth falls and paint left standing in ridges along the edges that take the light. The shadows inside the folds stay a yellowish grey, never dark enough to cut the white into pieces, so the bow holds together as one material. Where the silk meets the jacket the contour is cut clean against near-black, and that hard edge carries the bow at distance. The stock is wrapped high, right up under the jaw, so the face rests directly on the white."
+   },
+   {
+    "t": "Plumes on black",
+    "x": 0.24,
+    "y": 0,
+    "w": 0.52,
+    "h": 0.215,
+    "body": "At the top of the canvas, black plumes heap over the crown of a wide black hat, set against a dark wall: black on black on near-black. The way through is drawing. The plumes are laid in as a flat dark mass, and the feathers are written over it as single looping lines of a greyer black, flicked on with a fine brush, each curl left open where it meets the olive ground. The brim is handled differently: its outline bristles with short broken touches that give it a soft nap, and a faint lighter line runs along its upper rim where it turns toward the light. The brim dips low to our left and rides higher on our right, and under it a frizzed dark fringe breaks over the brow."
+   },
+   {
+    "t": "The face under the brim",
+    "x": 0.37,
+    "y": 0.15,
+    "w": 0.27,
+    "h": 0.135,
+    "body": "Inside the brim the face is small for so tall a canvas, and it is blended far more smoothly than the silk. Light falls from our left: the cheek on that side is a pale warm cream, and the far side turns into a warm shadow that still models cheekbone, jaw and the hollow under the eye. The life of the face sits in small, exact accents laid on that smooth surface: lights in the irises, a cool highlight along the full lower lip, a darker crease at the corners of the mouth, a pink rim under the lower lids. The head tips slightly toward our left and the chin is lowered, so she meets us from under heavy upper lids, mouth closed. The red of the lips returns in the drop earring at her right ear, hung on a thin wire, and again in a second earring almost lost in the shadow by her left jaw."
+   },
+   {
+    "t": "Gloves, stem and handle",
+    "x": 0.4,
+    "y": 0.545,
+    "w": 0.29,
+    "h": 0.235,
+    "body": "At the waist her hands meet, and at a glance they pass for bare hands: the leather is a warm ochre in the same family as her face. On the back of her right hand, on our left, three seams run down, each drawn as a thin dark line, and the fit is close and smooth over the fingers: these are gloves. The hands lie loosely one over the other, and the rose's stem slips diagonally through her fingers toward our right, so the flower is held low and not offered. Behind them stands the handle of a furled parasol, black against a black jacket. It is drawn almost entirely in its lights: a glint on the knob, a short run of small dots of light down its ridged neck, one pale ring below them, and one long white thread down the shaft. The jacket around it is a near-flat dark, against which those few lights stand for the whole parasol."
+   },
+   {
+    "t": "The hanging rose",
+    "x": 0.54,
+    "y": 0.735,
+    "w": 0.22,
+    "h": 0.165,
+    "body": "Below the hands, level with the jacket's hem and to our right of centre, the rose hangs head-down from its stem. Here the handling changes. The petals are laid in thick, curving strokes of dusky pink edged with crimson; the heart of the flower is a cluster of short yellow-cream dabs; the leaves above it are flat grey-green blades, one turning maroon. This is quick, loaded paint, and its colour is held down against the black, on the shadowed side of the body and far dimmer than the silk or the skin."
+   },
+   {
+    "t": "Wall and silhouette",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "At upper left the wall behind her is at its lightest, on the side the light comes from, and it darkens steadily toward lower right; close beside the hat it lifts slightly on both sides, enough to keep the black plumes legible. Because the figure is nearly all black, that gradient decides where she has an outline. The hat and the puffed shoulders stand sharp against the lighter ground. Toward the hem, and down the side away from the light, jacket and wall come within a shade of each other, and the silhouette softens without disappearing. The figure is frontal and almost symmetrical about a line through face and bow knot; the hands and parasol sit a little to our right of it, and the rose, lower and further right, breaks the symmetry."
+   }
+  ],
+  "beside": "The model in Edvard Munch's Seated Young Woman, signed the same year, has never been identified either, and for a time her canvas went by another name, Sick Girl. Pale, head turned to our left, she has the lower rims of her eyes drawn in crimson, and that name stood on a frame plaque made after Munch's death: the title of Christian Krohg's painting and of Munch's own sick-child motif. That title makes a symptom of the crimson and a type of the woman. Here the rose, if it alludes to the sitter's name, leads to one particular person, not to a type.",
+  "refs": [
+   {
+    "id": "edvard-munch-seated-young-woman",
+    "text": "Edvard Munch's Seated Young Woman"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "the-trojan-women-setting-fire-to-their-fleet": {
+  "mv": 6,
+  "see": "A wide bay under a sky that turns from clear blue at upper left to heavy grey at right. The masts and dark hulls of the nearest ships fill the left edge; right of centre a great three-masted ship rises behind a low, ornate galley, and the flames show on the galley. Beyond lie a line of smaller ships and a camp of tents under the hill. Women crowd a lit strip of beach in front, some with torches, three in a rowing boat. The brightest sky lies low between the ship masses, pulling the eye out to the horizon before it returns along the shore.",
+  "about": "In Virgil the burning is a revolt, and it succeeds. The women fire their own ships because they want no more sea; Jupiter answers with a cloudburst that saves all but four, and the weary are left in Sicily to found a city, the home the women burned for. The canvas stops short of all that: a fire has taken hold of one ship, the rest of the fleet rides at anchor, and the beach is full of women in the middle of a job. The Met takes one of the torchbearers as probably Iris, sent by Juno to urge the burning in the guise of an old Trojan woman, and the clouds over the fleet as the start of that cloudburst.",
+  "craft": "Two kinds of source meet in this paint. The sky comes from looking: Sandrart, his housemate in the late 1620s, described him lying in the fields from before daybreak until night to learn the colours of sunrise and sunset, and here the sky is laid in smooth, blended paint. The carved, galley-like hulls come from other men's pictures, modelled on vessels in engravings after Raphael and Giulio Romano. The figures are large by Claude's usual standard, modelled in clean, saturated drapery colours against the earth and green of the land. The sea is drawn in horizontal dark strokes flicked white on the crests, and a dark ledge of rock along the bottom edge makes the lit beach a stage.",
+  "context": "Claude had lived in the Via Margutta, the painters' street near the Spanish Steps, since 1626, and by 1636 his buyers included Urban VIII and Philip IV of Spain. Around then he began the Liber Veritatis, a book of drawings after his own finished pictures, kept, he said, against forgers. Drawing 71 records this canvas, and on the back of the sheet he jotted \"quadro faict per ill.re sig. Gieronimo fanese\": a picture made for Signor Girolamo Farnese. Richard Earlom later engraved the book for Boydell, and his 1777 print of this sheet was titled The Trojan Women Firing the Grecian Fleet; English exhibitions still called the ships Greek in 1902.",
+  "deeper": [
+   {
+    "t": "The fleet against the light",
+    "x": 0.21,
+    "y": 0.44,
+    "w": 0.27,
+    "h": 0.25,
+    "body": "Left of centre, low over the sea, a line of smaller ships stands against the brightest stretch of sky in the picture, a warm cream band that cools upward toward grey. The ships keep their colours, red and yellow flags still crisp, but their rigging thins to hairlines and the farther masts soften into haze; at the right of the line a brown smudge of smoke has already crept in among the hulls. Beyond them, two specks of sail sit on the horizon. Inside this one view the scale drops through three sizes: the red spar of a near ship crossing the lower corner, then the line of hulls, then the specks. Because the light stands behind this line, the hull sides turned toward you are brown and shadowed."
+   },
+   {
+    "t": "Furled yards, forked pennants",
+    "x": 0.02,
+    "y": 0.02,
+    "w": 0.25,
+    "h": 0.33,
+    "body": "At upper left, two long red pennants with forked, rippling tails stream to the right from the mastheads of the nearest ships, each carrying a gold winged emblem near the mast. Under them, look along the yards: each sail in view is gathered into swags and lashed to its spar, and the open, basket-like lookout tops at the mast heads are empty. Lower down, a pole banded in a red-and-black spiral carries a green flag barred with gold. These are ships at rest, canvas stowed and nobody aloft, and they are drawn with a ship portraitist's patience: shrouds, rope ladders and lashings set down line by line against the blue."
+   },
+   {
+    "t": "Smoke at the carved scroll",
+    "x": 0.5,
+    "y": 0.54,
+    "w": 0.24,
+    "h": 0.19,
+    "body": "Right of centre, the galley's fire is smaller than the title prepares you for. At its right end a carved post with a beast's head and a great scroll banded in red zigzag rise into a column of white smoke; under the scroll, a few licks of orange-red show inside a brown pall at the waterline. On deck, behind lattice rails picked out in red and gold, two figures lift their arms against a warm glow. Below the rails the hull carries a frieze of small grey relief figures, the ornament of a parade ship. Off the stern, heads and shoulders show in the water, and a little boat rides the swell beyond them. The catastrophe is told in a few hot touches; smoke carries the rest, climbing through the rigging of the great ship behind and greying the shrouds it crosses, so the fire shows first as a dimming."
+   },
+   {
+    "t": "The line to the near ship",
+    "x": 0.19,
+    "y": 0.7,
+    "w": 0.37,
+    "h": 0.2,
+    "body": "Below left of centre, three women stand in a gilded rowing boat at the water's edge. The two on the left hold a line that runs flat across the dark water to the carved stern of the nearest ship: the first is pitched forward along it, both arms stretched out, the second stands upright behind her with the line at her waist. The third bends over the right-hand gunwale, gripping it. Lower, two slacker ropes run from that same ship to a small coil on the sand: its mooring. On the beach the woman in yellow and rose, seen from behind, points straight at the boat with her left arm. The boat is being worked out along a line toward a ship whose stern shows no flame yet."
+   },
+   {
+    "t": "Arms flung two ways",
+    "x": 0.505,
+    "y": 0.62,
+    "w": 0.21,
+    "h": 0.28,
+    "body": "On the beach just right of the pointing woman, a knot of five women splits its gestures two ways. The woman in strong blue, in profile to the left, carries a lit torch low in her right hand, its flame one upright flick of white. Behind her, between the blue dress and a woman in lilac, a face in shadow is turned to the front, still while the others move. Beyond the lilac dress, a woman in a white blouse and blue skirt stretches her arm left to the lilac woman's shoulder, with another white flicker at her hip. At the right of the group a woman in an orange skirt, back to you, hair bound in a braided band, flings her arm up and to the right, past the galley's burning stern and out over the water toward the heads among the waves. So the group faces both ways at once: most of it turned left, toward the ships still to be reached, one arm flung out past the ship already alight. The torches are carried at hip height, low and loose, the way you carry a tool."
+   },
+   {
+    "t": "A child among the torches",
+    "x": 0.685,
+    "y": 0.7,
+    "w": 0.14,
+    "h": 0.23,
+    "body": "At right, two women walk toward the front edge of the beach, turned to each other in talk. The one in white and pale blue holds a torch across her thigh in her right hand, its flame a small white tuft at the end nearer her companion; sandal straps cross her ankles. Her companion, in rust red with a blue sleeve, carries a bare-chested infant on her arm in a fold of grey cloth. Their backs are to the sea. Inside a scene of arson this pair is domestic: a child on the arm, a conversation kept up in mid-stride. The woman in white is smiling as she speaks."
+   },
+   {
+    "t": "Tents under the hill",
+    "x": 0.8,
+    "y": 0.42,
+    "w": 0.18,
+    "h": 0.24,
+    "body": "Far right, under the shaded flank of the hill, stands a row of pointed tents: one red, the others green, blue and dull gold. Figures move among them, one with an arm raised, and a small group stands out on the open slope below; on the strand two small boats lie drawn up. Above, on a sunlit shelf of the hill, a small pale building stands among slender dark trees. These people are painted far smaller than the women on the beach and in the same subdued light as the hillside, so the camp registers late, after the fire and the torches."
+   }
+  ],
+  "beside": "Both pictures show people destroying something of their own on purpose, for opposite ends. The women on this beach burn their fleet to finish an ordeal. In Matthias Stom's Mucius Scaevola in the presence of Lars Porsenna, painted in the early 1640s, a young Roman volunteers for an ordeal of his own, offering his hand to the fire to show the king besieging Rome that Romans are not afraid to die. Stom stages it in the dark: Mucius stretches his arm straight out over the flames, the bloodied dagger still in his fist, while the turbaned king lifts an open palm toward him.",
+  "refs": [
+   {
+    "id": "mucius-scaevola-in-the-presence-of-lars-porsenna",
+    "text": "Mucius Scaevola in the presence of Lars Porsenna"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "mars-and-venus-united-by-love": {
+  "mv": 6,
+  "see": "A tall canvas crowded with figures. Venus, nude, hung with pearls and gold, a blue drape across her lap, rises at left; Mars, in gilded armour and a rose silk cloak, bends into her from the right; two winged Cupids hold the lower corners; a grey horse waits at right. Behind them stand a carved stone figure carrying a broken cornice, a vine with golden-brown leaves, a white linen garment with a frilled cuff hung over a dark ledge at upper left, and dark trees against a blue sky. Light comes from our left. Venus's pale body is the lightest large shape, and below it gold and pink sink into shadow.",
+  "about": "The subject is war undone without a blow struck. Mars still wears his gilded armour, yet the god bows, eyes lowered, nearly sheepish. Venus leads with her hands, one pressing her breast and one laid on his shoulder. The mood is tender and a little comic: a big armoured man made mild, and two children busy with the allegory's chores. The Met reads it as a celebration of love's civilising and nurturing power. One reading goes further and sees Chastity turned by Love into Charity, the goddess as a giver.",
+  "craft": "Veronese painted it in the 1570s, in the family workshop he ran with his brother Benedetto Caliari. An X-ray examination published in 1938 reported that Venus was first painted differently, probably draped, and that one of the two Cupids was not in the first version; if so, her bare body and one child were decisions taken on the canvas.",
+  "context": "On 18 July 1573 Veronese, called before the Venetian Holy Office to account for the dwarfs, soldiers and animals in a Last Supper, answered, in one translation of the trial record: \"We painters take the same licence the poets and the jesters take.\" Who commissioned this canvas, painted in the same decade, is uncertain. In the Met's view, its patron was possibly Emperor Maximilian II, in years when the antiquarian Jacopo Strada was the chief channel for Venetian painting into the Empire. If it was his, it was ordered before October 1576, when he died.",
+  "deeper": [
+   {
+    "t": "The pressed breast",
+    "x": 0,
+    "y": 0.33,
+    "w": 0.3,
+    "h": 0.3,
+    "body": "Left of centre, Venus holds her right breast between thumb and fingers, and from the nipple runs one thin white stroke ending in a bead: milk, pressed out. It is a single flick of paint on a figure the eye takes in whole, and it makes the gesture an action: the hand is squeezing, not covering. The stroke sits crisply on top of the soft modelling of the breast, and the hand around it gets a jeweller's attention, a twisted gold bracelet set with dark blue stones, a lit nail on each finger. Now look to the far left edge, level with her navel and deep in shadow. A carved stone mask framed by scrolls sits there, brown on brown, and below it falls a second thin pale line: water, a few dragged strokes of grey-white arcing down beside her hip. The garden has a fountain, and its stream is painted the way the milk is, a narrow light thread dropping over a darker ground."
+   },
+   {
+    "t": "Fingertips on gold",
+    "x": 0.27,
+    "y": 0.34,
+    "w": 0.3,
+    "h": 0.2,
+    "body": "Right of her torso, Mars bends so low that his curly head comes level with her ribs, eyes lowered under heavy lids, face close against her side. Above him her left hand rests on his gilded shoulder-piece with the fingertips only, two gold bangles at the wrist; it neither grips nor pushes. The armour under that light touch is where the labour went. The piece is a brown-ochre body with bright yellow touches set along every ridge and on each embossed mask, and long slashes open onto a dark, reddish lining. Against that hard, glinting surface the face is soft and warm, reddened at the nostril and the lid. Lower down, his far arm reaches across toward her hip, its skin far darker than hers beside it."
+   },
+   {
+    "t": "The knot",
+    "x": 0,
+    "y": 0.66,
+    "w": 0.33,
+    "h": 0.22,
+    "body": "At lower left, a winged Cupid grips Venus's lower leg in both fists and draws a pink ribbon around it. One fist holds the loop against her shin while the other gathers the loose ends, which trail toward Mars's thigh, sheathed in gold-striped cloth directly behind her leg. Cupid looks up as he works, lips parted. Three textures share this small space and each is painted its own way: the ribbon in a few looping pink strokes with a pale highlight on each fold, the curls as a mass of small ochre spirals caught on their lit edges, the wing in long grey and white strokes that thin toward the tip. Venus's shin, between them, is the smoothest passage here, its light blended without a visible stroke."
+   },
+   {
+    "t": "The helmet on the ground",
+    "x": 0.24,
+    "y": 0.79,
+    "w": 0.25,
+    "h": 0.2,
+    "body": "At the bottom, just right of Venus's hanging toes, Mars's helmet lies tipped on its side in deep shadow. It is a fantastical thing: a crest of coiling, scaled serpents runs over the crown, a ring of rivet heads marks the rim, and at the front a beast's head with a blunt snout and a curled horn pushes out of the dark. All of it is built from one economy of marks, a dark ochre body flicked with bright yellow on every scale, coil and rivet, so it glints out of an almost black passage between her leg and his cloak, whose pink hem lies pooled beside it."
+   },
+   {
+    "t": "Silk onto stone",
+    "x": 0.4,
+    "y": 0.58,
+    "w": 0.32,
+    "h": 0.4,
+    "body": "Lower centre, at the end of Mars's lowered left arm, his hand closes on a fistful of rose-pink silk, and the cloak answers with a long fall of folds to the ground. The shine comes from placement more than colour: each ridge carries a long pale stroke, almost white, laid along the fold; the hollows sink to a deep wine; the turning planes between are a mauve-pink. One colour, handled that way, reads as satin. At the bottom the silk spills over the step of a stone plinth carved with a paw foot, and on the plinth's face dark roman capitals spell the painter's Latin name, PAVLVS VERONENSIS F, the F for fecit, 'made it'. The letters are painted to read as cut into the same stone the cloak lies on, so the name belongs to the scene's furniture."
+   },
+   {
+    "t": "The sword taken",
+    "x": 0.7,
+    "y": 0.68,
+    "w": 0.3,
+    "h": 0.32,
+    "body": "At lower right a second Cupid, seen from behind, walks toward the right edge carrying Mars's sword. He grips the scabbard in both hands, one just below the hilt and one raised above his curls, and the weapon is nearly as long as he is tall. Its gilded hilt curls into swept loops, and its belt hangs in slack straps against the horse's dark foreleg, buckled to nobody. The child's bare back and pale wings are set against a green hillside and a far blue peak, so the small figure reads clearly this low and this far from the centre."
+   },
+   {
+    "t": "The reined horse",
+    "x": 0.7,
+    "y": 0.42,
+    "w": 0.3,
+    "h": 0.22,
+    "body": "At right, Mars's grey horse turns its dark head to our left and out toward us, one eye holding a single point of white. It wears a bridle and no saddle: gold-brown straps with a round boss at the brow, and a silver curb bit whose S-shaped shank catches the light below the muzzle. From the bit a double rein runs taut and straight to the tree trunk at the right edge. Veronese paints the head much darker than the neck, near-black at the forelock and cheek with a pale blaze down the nose, so it stands out hard against the pale sky, while the grey of the neck and chest goes soft and smoky below."
+   },
+   {
+    "t": "The stone bearer",
+    "x": 0.4,
+    "y": 0.03,
+    "w": 0.26,
+    "h": 0.37,
+    "body": "Right of Venus's head and above Mars's shoulder, a carved stone figure, bearded and curly-headed, carries the corner of a heavy cornice on his skull like a column. His head bows forward and down toward the pair beneath, the face sinking into the beard. Veronese gives the stone a body as particular as Mars's, a nipple, the ribs, the slack of a belly, and paints all of it in one greyish stone tone modelled by light and shade alone; set against the living colour below, it reads at once as carving, down to the shoulder nearer Venus, which ends in a smooth stump where an arm would be. Above him the masonry is a ruin: a broken block of brickwork rises behind the cornice and ends raggedly against the blue sky."
+   }
+  ],
+  "beside": "Mars is awake for his disarming, eyes open, while Samson sleeps through his in Samson and Delilah, attributed to Rubens, about 1609. There too a fighter's head lies against a woman's body under her hand, and other hands take what makes him dangerous: Delilah's palm rests flat on his back as a barber's scissors close on a lock, beneath a stone Venus in a niche with a Cupid at her legs. Veronese's love keeps the god it disarms, whereas in that room a door at the right opens on helmeted men with pikes and a torch, come for Samson once the hair is cut.",
+  "refs": [
+   {
+    "id": "samson-and-delilah",
+    "text": "Samson and Delilah"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "the-dream-of-the-shepherd-der-traum-des-hirten": {
+  "mv": 6,
+  "see": "A tall canvas in stacked bands. At the top, eight nude women stand in a row on a strip of green, arms lifted, against a pale field barred with blue. Below come a band of pale streaks, green hills, then a slope of boulders in pale lilac, pink, cream and blue, patched with emerald turf and red flowers. On the central axis a barefoot shepherd in a pale shirt and dark cap sits on a low stone with one knee to the ground, a long staff slanting past his shoulder, one hand over his face.",
+  "about": "Hodler's title names the vision: the women in the pale upper band are the dream of the man on the stony ground below. He is alone among stones; they are many, nude, arms lifted. Hodler's cataloguers read them as figures of light taking the sky's light into their gestures, and the picture as one of many from those years about a human striving toward light; the Met suggests they may stand for enlightenment, harmony with nature and erotic desire. The canvas itself holds dream and dreamer apart, in two zones that do not meet: the dream above, the dreamer on the earth beneath.",
+  "craft": "Hodler planned the upper band in a sketchbook, writing above a row of drawn figures: \"white women on a white sky crossed horizontally by blue clouds.\" In three earlier sketches the shepherd appears under a sun drawn as a woman's head, crowned with rays; another sheet has the row of girls above, and below them the shepherd among other figures half-raised toward the sky. The canvas keeps the row of women and none of those other figures. He was then arriving at what he called Parallelism, a term he took from Charles Blanc and Gottfried Semper: like forms repeated side by side, symmetry as a composition's skeleton.",
+  "context": "In summer 1896 Geneva hosted the Swiss National Exhibition, where the herdsman turned up in pictures and on stage as the emblem of a primal, independent Switzerland. That season his friends Daniel Baud-Bovy and Émile Jaques-Dalcroze premiered their Poème alpestre, its prologue peopled with shepherds and nymphs; Hodler probably knew it beforehand, and it may have prompted him. His women have a nearer family in the studio: the sketches for this picture lie among his studies for a Eurhythmy with women's figures of around 1895, and he was already turning over Day, finished in 1899–1900, where waking women greet the daylight.",
+  "deeper": [
+   {
+    "t": "Eight on one ground line",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 0.27,
+    "body": "At the top, eight nude women stand on one strip of green, their feet set down on nearly one level. That shared ground line is the convention of the relief frieze: figures strung parallel to the surface with barely a step of depth between them, so the band reads as a carved border more than a place. They fall into two groups of four, with one clean break just right of centre. Four turn their backs, or the backs of their heads, to us, facing the blue bars beyond, and a fifth head is hidden behind a neighbour's. Not one of the eight is given an eye: the faces that turn our way are blank ovals or a bare profile line. It is the lightest band on the canvas, held up almost entirely by red contour over a thin flesh layer."
+   },
+   {
+    "t": "Hands drawn twice",
+    "x": 0.06,
+    "y": 0,
+    "w": 0.42,
+    "h": 0.13,
+    "body": "At top left, the raised hands look like bare twigs. From each wrist several red strokes fan upward: fingers set down, then set down again a little to one side, and every attempt left standing. Further right, above the hand that the bun-haired woman lifts toward the centre, a short grey stroke climbs higher and ends in a small grey loop. It reads as an earlier hand, sketched in grey and abandoned when the red one went in lower. The doubled fingers make those arms flicker like a gesture caught mid-movement."
+   },
+   {
+    "t": "Three grounds, stacked",
+    "x": 0,
+    "y": 0.235,
+    "w": 1,
+    "h": 0.2,
+    "body": "Just below the women's feet, their green strip ends in a drawn edge. Beneath it runs a band of horizontal streaks in pale blue, lilac and a little green, the most colourless strip on the canvas, and red lines cross it in long straight runs and right-angled steps that outline nothing painted afterwards. Under that the hills rise, green over pale rock, their crest traced in red-brown. Read downward, three grounds are stacked here, each with its own front edge: the women's strip, the pale band, the hills. None of them slopes into the next. The eye cannot walk from the shepherd's hills up onto the women's ground; it has to jump the pale band."
+   },
+   {
+    "t": "Emerald laid flat",
+    "x": 0.04,
+    "y": 0.5,
+    "w": 0.32,
+    "h": 0.21,
+    "body": "Left of the shepherd at mid-height, a patch of emerald turf is laid as one flat, opaque shape with no lit side and no shadowed side; the red flowers are single dabs set on top once the green was down. Around it the boulders are pale lilac, pink and cream, each with a drawn edge in violet or blue, so the stony ground reads as fitted pieces, close to a cut-paper pattern. Along the green's right edge a fine grey line runs dead straight down through the rock and vanishes under the green. It is ruled, and another ruled pair crosses the stones at far right, lower down. Lines like these belong to squaring, the grid used to carry a smaller design up to the size of a big canvas, and the paint went on over them."
+   },
+   {
+    "t": "A hand over the eyes",
+    "x": 0.35,
+    "y": 0.42,
+    "w": 0.32,
+    "h": 0.19,
+    "body": "At the centre, the shepherd's left hand is clamped over his face. The fingers spread up into the hair under a dark cap, pressing hard enough that brown hair rises between them; the heel of the hand covers eyes and nose, and all that shows is a flushed red-orange cheek, an ear and the line of the jaw. Head-in-hand is one of the oldest poses European art has for melancholy. Here the hand covers the eyes. This is no sleeper's dream: he is upright, his head bowed into the palm, its weight taken by the forearm standing beneath it. Whatever the women overhead are, he is not looking at them: his own hand has shut out the sight. The paint here is fully worked, the cap a solid dark shape, the hand and cheek built of close orange-red strokes."
+   },
+   {
+    "t": "Slack grip, bare feet",
+    "x": 0.36,
+    "y": 0.63,
+    "w": 0.4,
+    "h": 0.24,
+    "body": "Lower down, his right hand hangs over the staff just above his bare right foot. The fingers hook round the pole without closing on it, the grip of someone who has stopped using it. His right knee is up and carries the elbow of the arm raised to his face; his weight rests on a low, flat-topped stone at our left, while the left knee is down on the ground and behind it the sole of the left foot turns up, flushed. The forearm is built of long red-orange strokes running with the arm, the trousers of short ochre and blue hatches laid across the leg, and the edges are redrawn in a dark blue-violet line. Against the red-outlined women above, the shepherd gets a darker contour and heavier, hatched flesh, so the two halves are drawn in two different contour colours."
+   },
+   {
+    "t": "Pebbles at two stages",
+    "x": 0.15,
+    "y": 0.855,
+    "w": 0.48,
+    "h": 0.14,
+    "body": "At the bottom edge, just below the dark tip of the staff, a rough loop of emerald turf holds a scatter of pebbles. Most are filled with flat pale blue and ringed in a dark line. A small cluster right of centre has only red outlines, and in one of them a patch of blue has gone in, stopping short of the ring. The pale stone at left that carries Hodler's dark brushed signature is only outlined, in broken violet arcs. The lowest stones show, at an earlier moment, the method of the highest figures: the red contour comes first, the colour goes in after."
+   },
+   {
+    "t": "What crosses the gap",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Along the top, the women's heads are drawn well under half the size of the shepherd's, yet nowhere near small enough for where they stand, beyond a range of hills and a pale band, where figures in a single perspective would shrink to specks. The upper band keeps the scale of a frieze, the lower the scale of a body in front of you, and no one viewpoint holds both. One object reaches toward the gap between them. The staff, planted beside his foot, slants up past his shoulder, and its top end pushes into the green of the hills: the line that carries the eye from his bowed body up toward the women."
+   }
+  ],
+  "beside": "Saint Geneviève, painted as a shepherd girl in Alphonse Osbert's Vision de Sainte Geneviève of 1892, receives a vision that never reaches the canvas. She stands barefoot in blue dusk with a lamb pressed to her side, face lifted, eyes in shadow, and a ring of pale light round her head is the one sign of what she sees. Hodler turns that arrangement over. His shepherd keeps no flock and wears no halo, his vision is painted whole along the top of the canvas, and the man beneath it does not look up.",
+  "refs": [
+   {
+    "id": "alphonse-osbert-vision-de-sainte-genevieve",
+    "text": "Vision de Sainte Geneviève"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
  "shiokawa-bunrin-visit-to-hermitage-in-autumn": {
   "mv": 6,
   "see": "A hanging scroll in ink and colour on silk, set in brocade borders: a tall mountain landscape in autumn. At the foot runs a pale path with two small figures; above them rises a thicket of trees in grey-green and near-black ink, flecked with maple reds; higher still are a hut among the leaves, a tall cliff curving up to the right, and grey peaks standing in mist, with a two-column inscription and seals in the open sky at upper right. The ink deepens from thin wash at the top to dense black at the bottom.",
