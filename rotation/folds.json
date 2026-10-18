@@ -10996,8 +10996,33 @@
     "to": "Urotsukidōji",
     "type": "spelling",
     "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan mb-refetch 2026-09-17)"
+   },
+   {
+    "from": "01 For The Glory Of...",
+    "to": "For the Glory of...",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (testament campaign 2026-10-19); same recording"
+   },
+   {
+    "from": "02 More Than Meets The Eye",
+    "to": "More Than Meets the Eye",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (testament campaign 2026-10-19); same recording"
+   },
+   {
+    "from": "Absense of Light",
+    "to": "Absence of Light",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (testament campaign 2026-10-19); same recording"
+   },
+   {
+    "from": "Legions In Hiding",
+    "to": "Legions (In Hiding)",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (testament campaign 2026-10-19); same recording"
    }
-  ]
+  ],
+  "albums": []
  },
  "The Amsterdam Red Light District": {
   "artist": {
@@ -18431,6 +18456,18 @@
    "track": "You Spin Me Round (Like a Record)",
    "toAlbum": "Felons and Revolutionaries",
    "reason": "dope campaign 2026-10-19: the \"Dope\" album-string bucket is mistagged scrobbles from Life / Group Therapy / No Regrets / Felons (no release titled Dope exists; DV item 75) — homed to the record so the disc position applies"
+  },
+  {
+   "artist": "Testament",
+   "track": "Native Blood",
+   "toAlbum": "Dark Roots of Earth",
+   "reason": "testament campaign 2026-10-19: album-less scrobble row homed to its record (DV item 107) so the disc position applies"
+  },
+  {
+   "artist": "Testament",
+   "track": "The Pale King",
+   "toAlbum": "Brotherhood of the Snake",
+   "reason": "testament campaign 2026-10-19: album-less scrobble row homed to its record (DV item 107) so the disc position applies"
   }
  ],
  "Anathema": {
