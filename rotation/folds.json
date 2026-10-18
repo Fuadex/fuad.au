@@ -3130,10 +3130,60 @@
     "reason": "spelling: typo/variant suffix folds to canonical"
    },
    {
-    "from": "I Wish I Was the President",
-    "to": "I Wish I Was President",
+    "from": "You Spin Me Around",
+    "to": "You Spin Me Round (Like a Record)",
     "type": "spelling",
-    "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan 2026-09-17)"
+    "reason": "spelling: tagging variant of the official tracklist title (dope campaign 2026-10-19); same recording"
+   },
+   {
+    "from": "Nothing for me",
+    "to": "Nothing For Me Here",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (dope campaign 2026-10-19); same recording"
+   },
+   {
+    "from": "Die Mother Fucker Die Lyrics",
+    "to": "Die Motherfucker Die",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (dope campaign 2026-10-19); same recording"
+   },
+   {
+    "from": "I Wish I Was President",
+    "to": "I Wish I Was the President",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (dope campaign 2026-10-19); same recording"
+   },
+   {
+    "from": "Flatline",
+    "to": "Flat Line",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (dope campaign 2026-10-19); same recording"
+   }
+  ],
+  "albums": [
+   {
+    "from": "Fuck It Up",
+    "to": "Blood Money Part Zer0",
+    "type": "spelling",
+    "reason": "spelling: single/EP string on rows that are Blood Money Part Zer0 (2023) album tracks (dope campaign 2026-10-19, DV items 73–74)"
+   },
+   {
+    "from": "Dead World",
+    "to": "Blood Money Part Zer0",
+    "type": "spelling",
+    "reason": "spelling: single/EP string on rows that are Blood Money Part Zer0 (2023) album tracks (dope campaign 2026-10-19, DV items 73–74)"
+   },
+   {
+    "from": "Lovesong",
+    "to": "Blood Money Part Zer0",
+    "type": "spelling",
+    "reason": "spelling: single/EP string on rows that are Blood Money Part Zer0 (2023) album tracks (dope campaign 2026-10-19, DV items 73–74)"
+   },
+   {
+    "from": "Dive",
+    "to": "Blood Money Part Zer0",
+    "type": "spelling",
+    "reason": "spelling: single/EP string on rows that are Blood Money Part Zer0 (2023) album tracks (dope campaign 2026-10-19, DV items 73–74)"
    }
   ]
  },
@@ -18315,6 +18365,72 @@
    "track": "Ride the Lightning",
    "toAlbum": "Ride the Lightning",
    "reason": "metallica campaign 2026-10-18: album-less tag rows (St. Anger [HD]/[Amended]/Re-Recorded, Some Kind of Monster, The Unnamed Feeling, I Dissapear, Studio Version, (Lyrics), with lyrics) homed to the record after their title folds"
+  },
+  {
+   "artist": "Dope",
+   "track": "Now or Never",
+   "toAlbum": "Life",
+   "reason": "dope campaign 2026-10-19: the \"Dope\" album-string bucket is mistagged scrobbles from Life / Group Therapy / No Regrets / Felons (no release titled Dope exists; DV item 75) — homed to the record so the disc position applies"
+  },
+  {
+   "artist": "Dope",
+   "track": "Thanks For Nothing",
+   "toAlbum": "Life",
+   "reason": "dope campaign 2026-10-19: the \"Dope\" album-string bucket is mistagged scrobbles from Life / Group Therapy / No Regrets / Felons (no release titled Dope exists; DV item 75) — homed to the record so the disc position applies"
+  },
+  {
+   "artist": "Dope",
+   "track": "Die Motherfucker Die",
+   "toAlbum": "Life",
+   "reason": "dope campaign 2026-10-19: the \"Dope\" album-string bucket is mistagged scrobbles from Life / Group Therapy / No Regrets / Felons (no release titled Dope exists; DV item 75) — homed to the record so the disc position applies"
+  },
+  {
+   "artist": "Dope",
+   "track": "Motivation",
+   "toAlbum": "Group Therapy",
+   "reason": "dope campaign 2026-10-19: the \"Dope\" album-string bucket is mistagged scrobbles from Life / Group Therapy / No Regrets / Felons (no release titled Dope exists; DV item 75) — homed to the record so the disc position applies"
+  },
+  {
+   "artist": "Dope",
+   "track": "No Regrets",
+   "toAlbum": "No Regrets",
+   "reason": "dope campaign 2026-10-19: the \"Dope\" album-string bucket is mistagged scrobbles from Life / Group Therapy / No Regrets / Felons (no release titled Dope exists; DV item 75) — homed to the record so the disc position applies"
+  },
+  {
+   "artist": "Dope",
+   "track": "Dirty World",
+   "toAlbum": "No Regrets",
+   "reason": "dope campaign 2026-10-19: the \"Dope\" album-string bucket is mistagged scrobbles from Life / Group Therapy / No Regrets / Felons (no release titled Dope exists; DV item 75) — homed to the record so the disc position applies"
+  },
+  {
+   "artist": "Dope",
+   "track": "Violence",
+   "toAlbum": "No Regrets",
+   "reason": "dope campaign 2026-10-19: the \"Dope\" album-string bucket is mistagged scrobbles from Life / Group Therapy / No Regrets / Felons (no release titled Dope exists; DV item 75) — homed to the record so the disc position applies"
+  },
+  {
+   "artist": "Dope",
+   "track": "Scorn",
+   "toAlbum": "No Regrets",
+   "reason": "dope campaign 2026-10-19: the \"Dope\" album-string bucket is mistagged scrobbles from Life / Group Therapy / No Regrets / Felons (no release titled Dope exists; DV item 75) — homed to the record so the disc position applies"
+  },
+  {
+   "artist": "Dope",
+   "track": "I Don't Give A",
+   "toAlbum": "No Regrets",
+   "reason": "dope campaign 2026-10-19: the \"Dope\" album-string bucket is mistagged scrobbles from Life / Group Therapy / No Regrets / Felons (no release titled Dope exists; DV item 75) — homed to the record so the disc position applies"
+  },
+  {
+   "artist": "Dope",
+   "track": "Nothing For Me Here",
+   "toAlbum": "No Regrets",
+   "reason": "dope campaign 2026-10-19: the \"Dope\" album-string bucket is mistagged scrobbles from Life / Group Therapy / No Regrets / Felons (no release titled Dope exists; DV item 75) — homed to the record so the disc position applies"
+  },
+  {
+   "artist": "Dope",
+   "track": "You Spin Me Round (Like a Record)",
+   "toAlbum": "Felons and Revolutionaries",
+   "reason": "dope campaign 2026-10-19: the \"Dope\" album-string bucket is mistagged scrobbles from Life / Group Therapy / No Regrets / Felons (no release titled Dope exists; DV item 75) — homed to the record so the disc position applies"
   }
  ],
  "Anathema": {
