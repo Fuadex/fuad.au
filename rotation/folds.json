@@ -6801,6 +6801,170 @@
     "to": "My Friend of Misery",
     "type": "spelling",
     "reason": "spelling: truncated/suffixed tag variant of the official tracklist title (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "01 Hit The Lights",
+    "to": "Hit the Lights",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (metallica campaign 2026-10-18); same recording"
+   },
+   {
+    "from": "02 The Four Horsemen",
+    "to": "The Four Horsemen",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (metallica campaign 2026-10-18); same recording"
+   },
+   {
+    "from": "03 Motorbreath",
+    "to": "Motorbreath",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (metallica campaign 2026-10-18); same recording"
+   },
+   {
+    "from": "04 Jump In The Fire",
+    "to": "Jump in the Fire",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (metallica campaign 2026-10-18); same recording"
+   },
+   {
+    "from": "05 (Anesthesia) Pulling Teeth",
+    "to": "(Anesthesia) Pulling Teeth",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (metallica campaign 2026-10-18); same recording"
+   },
+   {
+    "from": "06 Whiplash",
+    "to": "Whiplash",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (metallica campaign 2026-10-18); same recording"
+   },
+   {
+    "from": "07 Phantom Lord",
+    "to": "Phantom Lord",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (metallica campaign 2026-10-18); same recording"
+   },
+   {
+    "from": "08 No Remorse",
+    "to": "No Remorse",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (metallica campaign 2026-10-18); same recording"
+   },
+   {
+    "from": "09 Seek & Destroy",
+    "to": "Seek & Destroy",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (metallica campaign 2026-10-18); same recording"
+   },
+   {
+    "from": "10 Metal Militia",
+    "to": "Metal Militia",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (metallica campaign 2026-10-18); same recording"
+   },
+   {
+    "from": "03 Eye of the Beholder",
+    "to": "Eye of the Beholder",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (metallica campaign 2026-10-18); same recording"
+   },
+   {
+    "from": "04 One",
+    "to": "One",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (metallica campaign 2026-10-18); same recording"
+   },
+   {
+    "from": "05 The Shortest Straw",
+    "to": "The Shortest Straw",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (metallica campaign 2026-10-18); same recording"
+   },
+   {
+    "from": "09 Dyers Eve",
+    "to": "Dyers Eve",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (metallica campaign 2026-10-18); same recording"
+   },
+   {
+    "from": "For Whom The Bells Tolls",
+    "to": "For Whom the Bell Tolls",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (metallica campaign 2026-10-18); same recording"
+   },
+   {
+    "from": "I Dissapear",
+    "to": "I Disappear",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (metallica campaign 2026-10-18); same recording"
+   },
+   {
+    "from": "Master Of Puppets (Lyrics)",
+    "to": "Master of Puppets",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (metallica campaign 2026-10-18); same recording"
+   },
+   {
+    "from": "Ride The Lightning with lyrics",
+    "to": "Ride the Lightning",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (metallica campaign 2026-10-18); same recording"
+   },
+   {
+    "from": "St. Anger [HD]",
+    "to": "St. Anger",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (metallica campaign 2026-10-18); same recording"
+   },
+   {
+    "from": "St. Anger [Amended]",
+    "to": "St. Anger",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (metallica campaign 2026-10-18); same recording"
+   },
+   {
+    "from": "That Was Just Your Life Studio Version",
+    "to": "That Was Just Your Life",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (metallica campaign 2026-10-18); same recording"
+   },
+   {
+    "from": "Sad But True - Take 36 - February 5th, 1991",
+    "to": "Sad but True",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "The God That Failed - May 13th, 1991 Rough Mix",
+    "to": "The God That Failed",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Don't Tread on Me - Pre-Production Rehearsal",
+    "to": "Don't Tread on Me",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Blackened 2020",
+    "to": "Blackened",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "St. Anger Re-Recorded",
+    "to": "St. Anger",
+    "type": "variant",
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   }
+  ],
+  "albums": [
+   {
+    "from": "The Black Album",
+    "to": "Metallica",
+    "type": "spelling",
+    "reason": "spelling: the 1991 record scrobbled under its nickname and its title (metallica campaign 2026-10-18)"
    }
   ]
  },
@@ -18097,6 +18261,48 @@
    "track": "Whitewater / Lick Doo - Hidden Track",
    "toAlbum": "Sky Valley",
    "reason": "kyuss campaign 2026-10-17: the Lick Doo pressing variant of Whitewater scrobbled under the full album title; the absorb fold does not move a row whose title is not on the target disc, so the row is moved explicitly (read mirrored from Whitewater)"
+  },
+  {
+   "artist": "Metallica",
+   "track": "Some Kind of Monster",
+   "toAlbum": "St. Anger",
+   "reason": "metallica campaign 2026-10-18: album-less tag rows (St. Anger [HD]/[Amended]/Re-Recorded, Some Kind of Monster, The Unnamed Feeling, I Dissapear, Studio Version, (Lyrics), with lyrics) homed to the record after their title folds"
+  },
+  {
+   "artist": "Metallica",
+   "track": "The Unnamed Feeling",
+   "toAlbum": "St. Anger",
+   "reason": "metallica campaign 2026-10-18: album-less tag rows (St. Anger [HD]/[Amended]/Re-Recorded, Some Kind of Monster, The Unnamed Feeling, I Dissapear, Studio Version, (Lyrics), with lyrics) homed to the record after their title folds"
+  },
+  {
+   "artist": "Metallica",
+   "track": "St. Anger",
+   "toAlbum": "St. Anger",
+   "reason": "metallica campaign 2026-10-18: album-less tag rows (St. Anger [HD]/[Amended]/Re-Recorded, Some Kind of Monster, The Unnamed Feeling, I Dissapear, Studio Version, (Lyrics), with lyrics) homed to the record after their title folds"
+  },
+  {
+   "artist": "Metallica",
+   "track": "I Disappear",
+   "toAlbum": "I Disappear",
+   "reason": "metallica campaign 2026-10-18: album-less tag rows (St. Anger [HD]/[Amended]/Re-Recorded, Some Kind of Monster, The Unnamed Feeling, I Dissapear, Studio Version, (Lyrics), with lyrics) homed to the record after their title folds"
+  },
+  {
+   "artist": "Metallica",
+   "track": "That Was Just Your Life",
+   "toAlbum": "Death Magnetic",
+   "reason": "metallica campaign 2026-10-18: album-less tag rows (St. Anger [HD]/[Amended]/Re-Recorded, Some Kind of Monster, The Unnamed Feeling, I Dissapear, Studio Version, (Lyrics), with lyrics) homed to the record after their title folds"
+  },
+  {
+   "artist": "Metallica",
+   "track": "Master of Puppets",
+   "toAlbum": "Master of Puppets",
+   "reason": "metallica campaign 2026-10-18: album-less tag rows (St. Anger [HD]/[Amended]/Re-Recorded, Some Kind of Monster, The Unnamed Feeling, I Dissapear, Studio Version, (Lyrics), with lyrics) homed to the record after their title folds"
+  },
+  {
+   "artist": "Metallica",
+   "track": "Ride the Lightning",
+   "toAlbum": "Ride the Lightning",
+   "reason": "metallica campaign 2026-10-18: album-less tag rows (St. Anger [HD]/[Amended]/Re-Recorded, Some Kind of Monster, The Unnamed Feeling, I Dissapear, Studio Version, (Lyrics), with lyrics) homed to the record after their title folds"
   }
  ],
  "Anathema": {
