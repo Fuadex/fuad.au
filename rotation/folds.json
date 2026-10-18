@@ -14702,6 +14702,14 @@
     "to": "How To Survive A Funeral",
     "type": "absorb"
    }
+  ],
+  "tracks": [
+   {
+    "from": "Foreward",
+    "to": "Foreword",
+    "type": "spelling",
+    "reason": "spelling: the sleeve title (Discogs 2015 CD + 2016 reissue, Wikipedia); make-them-suffer campaign 2026-10-19"
+   }
   ]
  },
  "Bloodywood": {
@@ -18468,6 +18476,24 @@
    "track": "The Pale King",
    "toAlbum": "Brotherhood of the Snake",
    "reason": "testament campaign 2026-10-19: album-less scrobble row homed to its record (DV item 107) so the disc position applies"
+  },
+  {
+   "artist": "Make Them Suffer",
+   "track": "Doomswitch",
+   "toAlbum": "Make Them Suffer",
+   "reason": "make-them-suffer campaign 2026-10-19: single-string row homed to the 2024 self-titled album it belongs to (DV 3.10–3.12) so the album position applies"
+  },
+  {
+   "artist": "Make Them Suffer",
+   "track": "Ghost of Me",
+   "toAlbum": "Make Them Suffer",
+   "reason": "make-them-suffer campaign 2026-10-19: single-string row homed to the 2024 self-titled album it belongs to (DV 3.10–3.12) so the album position applies"
+  },
+  {
+   "artist": "Make Them Suffer",
+   "track": "Oscillator",
+   "toAlbum": "Make Them Suffer",
+   "reason": "make-them-suffer campaign 2026-10-19: single-string row homed to the 2024 self-titled album it belongs to (DV 3.10–3.12) so the album position applies"
   }
  ],
  "Anathema": {
