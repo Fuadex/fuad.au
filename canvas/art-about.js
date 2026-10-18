@@ -537,9 +537,14 @@ about: "Count Ugolino walled up to starve with his four sons, from Dante's Infer
 by: "Opus 4.8" },
 
 "john-constable-salisbury-cathedral-from-the-meadows": {
-about: "Salisbury spire seen small and far across the water meadows under a breaking storm, 1829 — Constable's wife had died the winter before, and his friend Archdeacon Fisher prescribed the subject: 'the church under a cloud.'",
-deep: "The spire is the most fragile thing on the surface — a dark stroke two millimetres wide, with rain hatched in grey diagonals across it, so you see the stone through falling water. Beside it the tree is enormous, near-black, immovable. At the ford, cattle stand axle-deep in the Avon and a driver in a cream smock gets on with the crossing; the fisherman on the right bank has his back to the cathedral. Nobody in the picture is looking at it, and no light reaches it either. The only unmixed blue is a centimetre-deep band along the top edge, cut off by the frame — clearing weather, arriving, out of reach.",
-by: "Opus 4.8" },
+
+ "about": "Salisbury spire seen small and far across the water meadows under a breaking storm, probably 1829 — Constable's wife had died the November before, and his friend Archdeacon Fisher prescribed the subject, the 'Church under a cloud.'",
+
+ "deep": "The spire is the most fragile thing on the surface — a dark stroke two or three millimetres wide, its lower edges softening into the grey around it, so you see the stone through wet air. Beside it the tree is enormous, near-black, immovable. At the ford, a cart drawn by three horses stands axle-deep in the Nadder and a driver in a cream smock gets on with the crossing; the man at the rail on the right bank has his back to the cathedral. Nobody in the picture is looking at it, and no shaft of light picks it out either. The only stretch of clear blue is a band about a centimetre deep along the top edge, cut off by the frame — clearing weather, arriving, out of reach.",
+
+ "by": "Opus 4.8"
+
+},
 
 "john-everett-millais-hearts-are-trumps": {
 about: "Walter Armstrong's three daughters — Elizabeth, Diana and Mary — dealt a hand of whist, 1872. A critic had said Millais could never match Reynolds's Ladies Waldegrave; this was the answer, and the hit of that year's Academy.",
@@ -1483,9 +1488,14 @@ deep: "The model is his son Paul, in his teens, and what the painting records is
 by: "Opus 4.8" },
 
 "georges-seurat-the-channel-at-gravelines-evening": {
-about: "Seurat's The Channel at Gravelines, Evening, 1890 — a hushed harbour in dotted light, one of his last four landscapes before his death at 31, ringed by a hand-painted dotted border.",
-deep: "Seurat's subject is the hush after work — a port emptied, the light drained to a low, level glow — and the composition holds that mood structurally. A slender lamppost anchors the left; a heavy iron anchor pins the lower right; between them the channel opens as a near-featureless void, the eye crossing open water to the far bank. Two fixed verticals, a ruled horizontal, emptiness given room. Beneath the placid surface the method is anything but still: what reads across the room as a pale expanse is a weave of rose, mint, lilac and cream dots — warm against cool — mixed only in the eye. Even the border is hand-stippled in deeper blues and reds, the whole edge under the same law, so the painting has no neutral ground, only organised sensation held just short of stillness.",
-by: "Opus 4.8" },
+
+ "about": "Seurat's The Channel at Gravelines, Evening, 1890 — a hushed harbour in dotted light, one of his last four landscapes before his death at 31, ringed by a hand-painted dotted border.",
+
+ "deep": "Seurat's subject is the hush after work — a port all but emptied, the light drained to a low, level glow — and the composition holds that mood structurally. A slender lamppost anchors the left; a heavy iron anchor pins the lower right; between them the channel opens as a near-featureless void, the eye crossing open water to the far bank. A fixed vertical, a canted diagonal, a ruled horizontal, emptiness given room. Beneath the placid surface the method is anything but still: what reads across the room as a pale expanse is a weave of rose, mint, lilac and cream dots — warm against cool — mixed only in the eye. Even the border is hand-stippled in deeper blues and reds, the whole edge under the same law, so the painting has no neutral ground, only organised sensation held just short of stillness.",
+
+ "by": "Opus 4.8"
+
+},
 
 "arnold-bocklin-der-ritt-des-todes-herbst-und-tod": {
 about: "Böcklin's Der Ritt des Todes (Autumn and Death), 1871 — a skeletal Death rides through a ruined graveyard, painted as the Symbolist processed the just-ended Franco-Prussian War through myth. Now in Munich's Schack collection.",
@@ -4255,10 +4265,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "mucius-scaevola-in-the-presence-of-lars-porsenna": {
-about: "Mucius Scaevola holds his right hand flat over a heap of coals to prove to the Etruscan king besieging Rome that Romans do not fear death — Matthias Stom, 1640, in the single-flame tenebrism of the Utrecht Caravaggists.",
-deep: "The drama is distributed entirely by who flinches and who does not. Mucius's hand lies open and relaxed just above the coals, fingers loose — calm to the point of blankness. The king across the flame does all the reacting: turbaned, red-draped, torso pulling back, one hand raised in something between astonishment and surrender. That recoil is the legend's conclusion before a word is spoken. Drop to the foreground: a near-naked man lies stretched across blue cloth, barely touched by the fire — the man Mucius killed by mistake. Once seen, he reframes the heroism above. The blue cloth is also the only cool note in a canvas built entirely from fire colours.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Mucius Scaevola stretches his dagger hand out over an altar fire to prove to the Etruscan king besieging Rome that Romans do not fear death — Matthias Stom, early 1640s, in the single-flame tenebrism of the Utrecht Caravaggists.",
+
+ "deep": "The drama is distributed entirely by who flinches and who does not. Mucius's arm is held out level over the flame, a dagger still in his fist, the hand steady — calm to the point of blankness. The king across the flame carries the reaction: turbaned, red-draped, leaning forward from his seat, one open palm raised in something between astonishment and surrender. That gesture is the legend's conclusion before a word is spoken. Drop to the foreground: a near-naked man lies stretched across blue cloth, a wound in his chest — most likely the man Mucius killed by mistake. Once seen, he reframes the heroism above. The blue cloth is also the strongest cool note in a canvas built mostly from fire colours.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "shearing-the-rams": {
 about: "Roberts spent two summers at Brocklesby Station sketching shearers — then hired two girls to kick up dust in the empty shed so he could paint the haze. The deliberate staging produced Australia's founding labour icon, 1890.",
@@ -5536,8 +5552,8 @@ by: "Opus 4.8" },
  "deepBy": "Sonnet 4.6"
 },
 "rubens-the-fall-of-phaeton": {
- "about": "Starting the canvas in Italy about 1604 and returning to it a decade later in Antwerp, Rubens added a rearing white horse over an older grey one, clipping its foreleg to fit beside the blaze.",
- "deep": "This is not a story about a reckless boy but about what happens to cosmic order when its mechanism breaks. The horses at the center have ceased to be a team — overlapped and foreshortened until their number is impossible to read, each animal driving on its own axis, visual confusion as narrative argument. The zodiac, the sun's measured path, tilts off its rail and half-dissolves into cloud; the Horae scatter, time's keepers flung from their stations alongside the boy. Below, Rubens withholds the ground entirely, letting the lower margin bleed into storm-dark so the fall has no floor — the frame interrupts without ending it.",
+ "about": "Starting the canvas in Italy about 1604 and revising it twice afterwards, Rubens last added a rearing white horse behind the older grey, cutting off one of its forelegs and dappling its coat with the same white.",
+ "deep": "This is not a story about a reckless boy but about what happens to cosmic order when its mechanism breaks. The horses at the center have ceased to be a team — overlapped and foreshortened until their number is impossible to read, each animal driving on its own axis, visual confusion as narrative argument. The zodiac, the sun's measured path, sinks half-dissolved under grey cloud; the Horae scatter, time's keepers flung from their stations alongside the boy. Below, Rubens grants the ground only a dark curve of earth in the lower right corner, half lost in storm-dark, so the fall has almost no floor — the frame interrupts without ending it.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
