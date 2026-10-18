@@ -6957,6 +6957,18 @@
     "to": "St. Anger",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Lover Man",
+    "to": "Loverman",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (metallica campaign 2026-10-18); same recording"
+   },
+   {
+    "from": "Human",
+    "to": "−Human",
+    "type": "spelling",
+    "reason": "spelling: tagging variant of the official tracklist title (metallica campaign 2026-10-18); same recording"
    }
   ],
   "albums": [
