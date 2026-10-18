@@ -60,7 +60,7 @@ window.CANVAS_MUSEUMS = [
   { id: "scrovegni", name: "Scrovegni Chapel", city: "Padua", country: "it", qid: "Q963954", kind: "art", visits: ["2025-09-30"] },
   { id: "mori", name: "Mori Art Museum", city: "Tokyo", country: "jp", qid: "Q4410434", kind: "art", visits: ["TBC"] },
   { id: "yamatane", name: "Yamatane Museum of Art", city: "Tokyo", country: "jp", qid: "Q3329572", kind: "art", visits: ["TBC"] },
-  { id: "hokusai-museum", name: "Sumida Hokusai Museum", city: "Tokyo", country: "jp", qid: "Q17220332", kind: "art", visits: ["2026-03-02"] },
+  { id: "hokusai-museum", name: "Sumida Hokusai Museum", city: "Tokyo", country: "jp", qid: "Q17220332", kind: "art", visits: ["2026-03-02", "2026-10-18"] },
   { id: "ota-memorial", name: "Ōta Memorial Museum of Art", city: "Tokyo", country: "jp", qid: "Q3815442", kind: "art", visits: ["2025-05-09"], note: "Ukiyo-e, Harajuku." },
   { id: "agsa", name: "Art Gallery of South Australia", city: "Adelaide", country: "au", qid: "Q705557", kind: "art", visits: ["2020-11-13"] },
   { id: "kunstmuseum-stuttgart", name: "Kunstmuseum Stuttgart", city: "Stuttgart", country: "de", qid: "Q317398", kind: "art", visits: ["2026-05-05"] },

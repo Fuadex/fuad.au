@@ -16990,5 +16990,245 @@
 "#1e1d1f",
 "#89715f",
 "#0d0f16"
+],
+"katsushika-hokusai-scenery-on-both-banks-of-the-sumida-river": [
+"#cacfcc",
+"#1e1716",
+"#85746a",
+"#110d0c"
+],
+"katsushika-hokusai-honmoku-off-the-coast-of-kanagawa": [
+"#3c1a11",
+"#ccb39c",
+"#e0c8b2",
+"#876753"
+],
+"katsushika-hokusai-okiku-s-ghost-at-sara-mansion-from-the-se": [
+"#3f4170",
+"#070810",
+"#242240",
+"#e8d4b3"
+],
+"katsushika-hokusai-the-implacable-dead-from-the-series-one-h": [
+"#858874",
+"#bbac8e",
+"#9d9b85",
+"#342b22"
+],
+"katsushika-hokusai-the-ghost-of-kohada-koheiji-from-the-seri": [
+"#000000",
+"#00060a",
+"#c9a175",
+"#2c201a"
+],
+"katsushika-hokusai-sumida-river-in-snow-from-the-series-snow": [
+"#485861",
+"#c2bba3",
+"#8d9286",
+"#e7d1b1"
+],
+"katsushika-hokusai-yodo-river-in-moonlight-from-the-series-s": [
+"#b8ae9a",
+"#52514c",
+"#978771",
+"#cac1a9"
+],
+"katsushika-hokusai-the-rippling-sound-of-pines-in-the-wind-n": [
+"#d2cfb7",
+"#515e65",
+"#aba997",
+"#f3e1c2"
+],
+"katsushika-hokusai-the-bamboo-hedge-at-kumemura-from-the-ser": [
+"#b7b89e",
+"#dfd2af",
+"#62685f",
+"#fdf8ea"
+],
+"katsushika-hokusai-voice-of-the-lake-at-rinkai-from-the-seri": [
+"#dbceb0",
+"#5d6866",
+"#b4b299",
+"#f0dcba"
+],
+"katsushika-hokusai-rainstorm-beneath-the-summit-from-the-ser": [
+"#130c0c",
+"#e0d8b1",
+"#544e50",
+"#25100f"
+],
+"katsushika-hokusai-mishima-pass-in-kai-province-from-the-ser": [
+"#1f2c2d",
+"#f5e1b1",
+"#7b937c",
+"#cfd4b0"
+],
+"katsushika-hokusai-in-the-mountain-of-totoumi-province-from": [
+"#2f3c40",
+"#8e9e89",
+"#bfc9a9",
+"#ece1b5"
+],
+"katsushika-hokusai-the-sazaido-hall-of-the-gohyaku-rakanji-t": [
+"#a2b8a3",
+"#343a39",
+"#9a9570",
+"#d7c681"
+],
+"katsushika-hokusai-waterfall-at-aoigaoka-in-the-eastern-metr": [
+"#acb1a4",
+"#7c8281",
+"#3a4147",
+"#e6dfd6"
+],
+"katsushika-hokusai-yoro-falls-in-mino-province-from-the-seri": [
+"#d6cea3",
+"#5b726a",
+"#a5ab8d",
+"#fdf1d5"
+],
+"katsushika-hokusai-amidagataki-falls-in-the-far-reaches-of-t": [
+"#333f4a",
+"#cdc9af",
+"#dad7c4",
+"#858a7d"
+],
+"katsushika-hokusai-kannon-at-kiyotaki-falls-at-sakanoshita-o": [
+"#8f968e",
+"#434b47",
+"#b7baa4",
+"#d8d4ba"
+],
+"katsushika-hokusai-old-view-of-the-yatsuhashi-bridge-in-mika": [
+"#827e74",
+"#bbb09d",
+"#a59f90",
+"#323d41"
+],
+"katsushika-hokusai-minamoto-no-muneyuki-ason-from-the-series": [
+"#6e675b",
+"#292420",
+"#b1aa94",
+"#99917e"
+],
+"katsushika-hokusai-sarumaru-dayu-from-the-series-one-hundred": [
+"#978879",
+"#654e42",
+"#c6b6a3",
+"#edd4bd"
+],
+"katsushika-hokusai-sparrow-shell-from-the-series-a-matching": [
+"#e8e3d0",
+"#554d41",
+"#ebe6d3",
+"#d8d2bc"
+],
+"katsushika-hokusai-fisherman": [
+"#fffeeb",
+"#3e3833",
+"#989a85",
+"#f2f2dc"
+],
+"katsushika-hokusai-a-kyoka-picture-book-mountain-upon-mounta": [
+"#465248",
+"#b5b8b9",
+"#bfc1c3",
+"#c9cbce"
+],
+"katsushika-hokusai-picture-book-of-the-sumida-river-both-ban": [
+"#3c4a48",
+"#e1e4e6",
+"#e9ecee",
+"#eef0f2"
+],
+"katsushika-hokusai-sketches-by-hokusai": [
+"#dcddde",
+"#d3d5d6",
+"#707e75",
+"#869287"
+],
+"katsushika-hokusai-sketches-by-hokusai-vol-1-vol-11-except-v": [
+"#d5c9ac",
+"#ece0c2",
+"#867c62",
+"#f6f2d2"
+],
+"katsushika-hokusai-one-hundred-views-of-mount-fuji": [
+"#323d4e",
+"#3a4556",
+"#28313f",
+"#b9ac93"
+],
+"katsushika-hokusai-fish-and-shellfish": [
+"#9a8152",
+"#9f8756",
+"#a18959",
+"#6f593b"
+],
+"katsushika-hokusai-the-red-demon-queller": [
+"#c9a775",
+"#93432b",
+"#caa978",
+"#ccac7b"
+],
+"katsushika-hokusai-beauty-s-first-dream-of-the-year": [
+"#3a312d",
+"#c4996d",
+"#ceaa7d",
+"#d3b38a"
+],
+"katsushika-hokusai-segawa-kikunojo-iii-as-a-shirabyoshi": [
+"#d9c59e",
+"#dfd0ae",
+"#ddcca5",
+"#a39172"
+],
+"katsushika-hokusai-perspective-picture-a-grand-kabuki-perfor": [
+"#e4cfa0",
+"#705033",
+"#ddc48a",
+"#b29b6c"
+],
+"katsushika-hokusai-fifty-poems-by-fifty-poets-a-wagonload-of": [
+"#ecddbd",
+"#ddceb1",
+"#faecc7",
+"#8d7d6c"
+],
+"katsushika-hokusai-wrapper-of-a-kyoka-picture-book-mountain": [
+"#dcc499",
+"#605b4a",
+"#bea67f",
+"#e7cfa5"
+],
+"katsushika-hokusai-a-picture-book-of-japanese-warriors-illus": [
+"#f5e5c0",
+"#ffffff",
+"#676048",
+"#ddcda9"
+],
+"teisai-hokuba-a-squall": [
+"#c2aa78",
+"#cbb480",
+"#d1b581",
+"#d4bc88"
+],
+"katsushika-hokusai-nihonbashi-bridge-in-the-mist": [
+"#d2c8a8",
+"#c4ba99",
+"#dfd6b9",
+"#777259"
+],
+"katsushika-hokusai-rest-house-at-takanawa": [
+"#d5cdb1",
+"#c8bfa1",
+"#868165",
+"#dcd3b9"
+],
+"katsushika-hokusai-shirai-gonpachi-and-banzui-chobee-lovers": [
+"#babbb8",
+"#adaeaa",
+"#666766",
+"#c0c1bf"
 ]
 }
