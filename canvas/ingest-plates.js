@@ -42,7 +42,9 @@ async function measure(url) {
   catch (err) { if (err.cause && /CERT|SIGNATURE|ISSUER/.test(err.cause.code || "")) return measureCurl(url); throw err; }
   if (!r.ok) throw new Error("HTTP " + r.status);
   const ct = r.headers.get("content-type") || "";
-  if (!/image\//.test(ct)) throw new Error("not an image: " + ct);
+  // Some holders (Mia's 0.api.artsmia.org) send no Content-Type at all; browsers sniff the bytes, and so does
+  // sizeOf() below (JPEG/PNG magic), so only a DECLARED non-image type is refused here.
+  if (ct && !/image\//.test(ct)) throw new Error("not an image: " + ct);
   const reader = r.body.getReader(); let buf = Buffer.alloc(0);
   while (buf.length < 4 << 20) {             // headers sit early; stop reading as soon as the size is known
     const { done, value } = await reader.read(); if (done) break;

@@ -2665,6 +2665,8 @@ const HIRES_SOURCE_LABEL = {
   kode: "KODE",
   bm: "British Museum",
   tate: "Tate",
+  // 2026-10-18 — Minneapolis Institute of Art full images (0.api.artsmia.org), another impression for Sumida prints
+  mia: "Minneapolis Institute of Art",
 };
 
 // Fly an OSD viewer to a normalized-image region {x,y,w,h} (all 0..1 fractions of the image).
