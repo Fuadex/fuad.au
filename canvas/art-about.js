@@ -3,6 +3,106 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "katsushika-hokusai-yoro-falls-in-mino-province-from-the-seri": {
+  "about": "Nourishing the aged: the meaning of Yōrō, the era name an empress gave Japan in 717 after visiting a spring there. Hokusai's colour woodblock of its falls, designed about 1832–33, when he was past seventy.",
+  "deep": "The falling lines of this design have given a forgery away. British Museum scientists found that one of their impressions was printed after Hokusai's death: its greens contain a synthetic blue unknown in Japan in his lifetime, and high in the falls, at upper right, a dark streak of water seems to vanish and then resume. Cliffs, clouds and hats can be copied shape by shape, but a stroke that must run unbroken down the whole drop leaves a copyist room to falter, and that copy faltered there. Beside the small bush on the column's upper-right edge, take a dark strand at its tip and follow it past the leaves to the spray.",
+  "by": "Opus 5.5"
+ },
+ "katsushika-hokusai-amidagataki-falls-in-the-far-reaches-of-t": {
+  "about": "An ukiyo-e curator who visited these falls in 2013 found no round lip and no ledge to sit on overlooking them, and judged Hokusai probably designed this colour woodblock, about 1832–33, without going there.",
+  "deep": "The falls are named for a vision in the cave at their head; the sheet keeps the cave and leaves out the vision. By the local tradition, a sixteenth-century monk, Dōga, burned a ritual fire there and Amida appeared with two attendants in golden light. Edmond de Goncourt reported in 1896 that the Japanese saw a likeness to a Buddha's head in the falls, and later Western writers find it in the round pool at the top. On the sheet the cave mouth is dark blue, not gold, the disc inside it is water, and a fire burns under a kettle on the bluff at left, fanned by a kneeling traveller.",
+  "by": "Opus 5.5"
+ },
+ "leon-bonnat-armand-fallieres": {
+  "about": "Like Venice's doges before Bellini and Titian, a critic wrote in 1907, the Republic's presidents came one after another to sit before Bonnat. This one, the newest of them, sat early in his seven-year term.",
+  "deep": "Fallières sits in an emperor's pose, as Robert de La Sizeranne saw it at the 1907 Salon. He found Titian's seated Charles V in it: the same broad armchair, the right hand hooked over the chair's arm, the left on the knee. The difference he named was temper, the emperor's uneasy halt turned into the President's assured seat. A pose is what a republic can borrow from an emperor without dressing its President in regalia. The hands are as he described, and nothing else in the body is wary: the knuckles close over the carved scroll at lower left, the other hand lies open along his leg, the shoulders square to us.",
+  "by": "Opus 5.5"
+ },
+ "jean-francois-millet-le-printemps": {
+  "about": "An orchard near Barbizon, in blossom under a spring storm — the Spring of a four-seasons cycle commissioned from Millet in 1868, and a single passing shower that he did not finish painting until 1873.",
+  "deep": "Dead wood stays in view of the blossom in this orchard, the sight an improver near Barbizon once meant to plant over. In December 1862 Millet urged Sensier to stop the man ruining a superb enclosure there with pines and other evergreens: the improver found only dead wood in winter too sad. Sensier's biography, published after Millet's death, says that corner later inspired this canvas. Whatever spot it shows, the painting takes Millet's side: pines would have kept that wood green all year. Here winter still lies about, a pale dead branch by the bed at left, dry stalks and brushwood by the leaning tree at right, with blossom opening over both.",
+  "by": "Opus 5.5"
+ },
+ "meindert-hobbema-the-avenue-at-middelharnis": {
+  "about": "Hobbema dated his view of Middelharnis 1689. In 1893 a leading Dutch scholar read the date as 1669, sure the painter had quit; the village burgomaster proved the beacon on its skyline was built in 1682.",
+  "deep": "The avenue first had two more trees, still taller, flanking the road in the foreground, and X-rays show Hobbema painted both out. Their loss opened the sky, which has suffered since: most likely the two trees began to show through, and an early nineteenth-century restorer scraped the sky to uncover them. Its blue pigment, smalt, has darkened too. In 1835 Gustav Waagen had never seen \"such an universal brightness, such daylight\" in any picture; what arches over the road now is a painter's second thought, a restorer's damage and a pigment's ageing at once. The wear is worst low on both sides of the avenue, and the cumulus at right sits in the best-kept stretch.",
+  "by": "Opus 5.5"
+ },
+ "thomas-gainsborough-the-market-cart": {
+  "about": "In Gainsborough's own Pall Mall rooms, this wood with a laden market cart, finished late in 1786, went on changing: a woodman was added after its first notices, and a January 1787 newspaper singled him out.",
+  "deep": "Everything in this wood runs on a clock: the season, the cargo, the painter's time. Henry Bate, reviewing it in 1786, read its foliage as 'expressive of autumn', green here and browner there, and the rest keeps that calendar: a load that must be sold before it wilts, a woodman gathering fuel, and deep in the wood a tan mass holding the light, which on Bate's reading would be leaves already turning. Gainsborough had about eighteen months to live. It is hard not to take the picture as about what does not last, and it leaves the cart short of its market, the horse's head low, one forefoot where the bank breaks away.",
+  "by": "Opus 5.5"
+ },
+ "claude-monet-snow-scene-at-argenteuil": {
+  "about": "The boulevard Saint-Denis at Argenteuil, the street Monet lived on, deep in snow on an overcast afternoon — at about 71 by 91 centimetres, the largest of the snow pictures he painted there that winter, 1874–75.",
+  "deep": "Manet, in Théodore Duret's telling, was shown a Monet snow scene that Duret owned, called it perfect, said no one could do better, and gave up painting snow. The picture is generally taken to be this one. In December 1879, nearly four months after his wife Camille died, Monet brought a few snow pictures to Paris, and Duret very probably bought it for 150 francs. A painter of figures was looking at a street laid almost entirely in pale paint, where the pair in the road are a few upright strokes each with a dab of orange-brown for a face, and the strongest red on the canvas lies down in a wheel rut.",
+  "by": "Opus 5.5"
+ },
+ "georges-seurat-le-bec-du-hoc-grandcamp": {
+  "about": "Seurat's headland of 1885, from his first summer painting the Channel coast — known now as the Pointe du Hoc, shelled and stormed in the Normandy landings of June 1944, much of its outcrop destroyed.",
+  "deep": "The canvas was finished twice: once for three showings in 1886–87, in a plain white frame, and again about 1888. The second time, Seurat restretched it to take the dark painted border, and went back over the water in fine touches of green, pale blue and pale orange, bringing a summer's looking into line with his method. Those strokes, one scholar observed, do not fully merge with the older surface, and the border is said to shift its colour with each passage it meets; the dots on the moulded frame outside it are a later framer's. To the right of the rock, rounder spots in those colours sit among the sea's level dashes.",
+  "by": "Opus 5.5"
+ },
+ "john-constable-the-opening-of-waterloo-bridge-whitehall-stai": {
+  "about": "Thirteen years went into one morning, the Prince Regent about to embark at Whitehall Stairs to open Waterloo Bridge: sketched in 1819, set aside, begun again, and shown in 1832 as Constable's largest exhibition canvas.",
+  "deep": "Some of the canvas's reds went on at the Academy itself, as C. R. Leslie tells it, with a rival coming and going. In 1832 the canvas hung next to Turner's grey sea-piece, and Turner came in several times while Constable was heightening the flags of the city barges with vermilion and lake, then put one round daub of red lead on his own sea and left. Constable told Leslie, \"He has been here, and fired a gun.\" Leslie thought the daub made the vermilion look weak. Such flags line the Lord Mayor's barge at the right, and the picture keeps a gun of its own: the white salute smoke at the bridge.",
+  "by": "Opus 5.5"
+ },
+ "paul-cezanne-la-route-en-provence": {
+  "about": "Infrared finds Cézanne's drawing under this hillside: the two trees at left and the rocks' edges, but no horizon. He raised the road's edge above the drawn line, making the lower right corner more triangular.",
+  "deep": "Each name this canvas has carried fastens on a different band of it. The dealer's stock book entered \"a heap of rocks among which are a few trees — grey sky\"; exhibitions and books have since made it a rocky landscape near Aix, mountains in Provence, a hillside in Provence and a road in Provence. Each title is true of one strip, the road, the rock, the patched slope or the ridge, and says nothing of the rest; the spot itself has never been conclusively identified. Nor does the paint identify it: the house across the valley, the nearest thing to an address, shows not a window or a door on its pale walls.",
+  "by": "Opus 5.5"
+ },
+ "unknown-pflanzenwachstum": {
+  "about": "“A structure of states of growth” was Klee's phrase, published in 1920, for a flowering apple tree, from roots and rising sap to fruit. The next year he painted these plant forms, stacked from geometric shapes.",
+  "deep": "Paired with a smith who fights growing things, this picture may be half an argument. The two were Klee's first gifts to Kandinsky at the Bauhaus, in 1922; in KN der Schmied (KN the Smith) a figure turning from above swings mechanically at organic forms pushing up. One curator, taking KN as a possible nod to Kandinsky, reads the pair as coded positions: art as an analogue of nature against theory joined to a feat of force. On her reading the shoots climb as if from dark earth, taking on art forms without losing touch with nature. The column of hearts left of centre is at once an ornament's repeat and an ear of grain.",
+  "by": "Opus 5.5"
+ },
+ "unknown-taneczny-krag": {
+  "about": "Six women dance a ring on a spring hilltop in Stuck's panel of 1910. It came east in 1945 from Breslau's Silesian Museum of Fine Arts, whose holdings were scattered across Silesia as the war ended.",
+  "deep": "The ring is shut, six bodies making one figure on a spring hill, in the last years before Munich's newest painting turned toward abstraction. Within a year or two Kandinsky, once among Stuck's pupils, would be leading that turn, with the Blue Rider group. Against it the panel, also called Spring Dance, offers the older terms of beauty: a season shown through people, a recognisable harmony. None of it comes easily. The loop stays round only because the woman in blue at its right end throws her weight outward, and it closes only where the eye joins a clasp it is never shown, behind the pinned-up dark hair left of centre.",
+  "by": "Opus 5.5"
+ },
+ "w-adys-aw-czachorski-dama-w-liliowej-sukni-z-kwiatami": {
+  "about": "No name is recorded for this woman in lilac satin reaching into flowers, by the Munich-based Pole Czachórski; the same pose, vase and reach recur on a panel he dated 1898, with another model in pink.",
+  "deep": "One critic's paragraph holds the whole case against pictures like this. Writing in 1899 of Czachórski's women generally, Adolf Neuwert-Nowaczyński could hardly tear his eyes from the sheen of silk, the downiness of velvet, the glitter of gold, and in the same breath mocked the woman's \"boundlessly thoughtless\" expression. His rapture can be checked off here: satin, a gilt chair, frame and table, a dark green hanging. The sneer lands less squarely. Her head turns from us and her eyes strain further still to our left, a look with a direction, whatever it settles on. Her one act sides with his rapture: at upper left, her raised hand slips in among the blossoms.",
+  "by": "Opus 5.5"
+ },
+ "anders-zorn-dance-in-the-gopsmorkate": {
+  "about": "Zorn would ask the district's young people to dance at Gopsmor, his cottage — here, in 1914, a fast polska. An old village fiddler, his son and grandsons played for such dances; none is in the picture.",
+  "deep": "The music in this room has to be read off the dancers; nobody in view holds an instrument. A critic in 2021 likened the movement in this canvas and an earlier dance of Zorn's to a spinning top's, which must keep turning or fall: \"the defiant continuation of a way of life under pressure from all directions.\" The turning here is caught at speed, black skirts swung wide either side of a near-white streak, a sash flung sideways, toes caught mid-step. And it is kept up for the dancers more than for us: those nearest us mostly show bowed heads or backs, and the man at upper right keeps his back turned.",
+  "by": "Opus 5.5"
+ },
+ "jean-pierre-norblin-de-la-gourdaine-bathing-in-a-park": {
+  "about": "This panel, one of several Norblin painted in 1785 for Izabela Czartoryska's village at Powązki, was saved when the village burned in the 1794 siege of Warsaw; an early biographer counted three companion panels in Kraków.",
+  "deep": "Powązki lasted nine years beyond this panel's making, and afterwards it lived chiefly in what its people wrote. Izabela Czartoryska, who had made the place, recalled a shady grove, clear water and a multitude of flowers, with gaiety and happiness filling the days and hours; in 1803 the poet Niemcewicz, writing of the lost park, set \"choirs of maidens, crowned with fragrant flowers\" dancing over its water. Those are memories of a mood. The canvas keeps the practical side of the same pleasures: linen held ready by an attendant in rose, a patterned carpet put down on the turf, and a bather lowering herself from the stone step into the pool.",
+  "by": "Opus 5.5"
+ },
+ "victor-prouve-sejour-de-paix-et-de-joie-meditation": {
+  "about": "These resting women were painted in 1899, on an 1898 commission, for a town hall's festival room. In 1900 Paris showed Prouvé's Séjour de paix et de joie as a fragment of that decoration.",
+  "deep": "Rest is the opening stage of this paradise. Writing in 1901 of Prouvé's design for the town hall, the critic Jules Rais said it showed not yet the life to come but the first stage of happiness: \"the regeneration of beings, far from the accursed city, in an Eden of flowering earth and maternal shade.\" The canvas stays at that first stage: one woman sleeps on, and the one awake has not yet got up. Something harder lies in the grass with them. At lower left, against the red skirt, a forearm carved in stone, perhaps broken from a statue, ends in the one clenched hand in the picture.",
+  "by": "Opus 5.5"
+ },
+ "henri-jean-guillaume-martin-serenite": {
+  "about": "Reviewing the 1899 Paris Salon, Gabriel Mourey wrote off its academic painters wholesale, Henri Martin's own teacher among them, then paused before this grove of white-robed figures: it 'compensates one for all the mediocrity'.",
+  "deep": "The grove is usually read as Virgil's Elysium, and its flyers are sometimes called musician angels, a word his pagan underworld lacks. The painting is truer to his geography. In the Aeneid the blessed have no fixed home; they live in shady groves, on couches of riverbank, in meadows fresh with streams, and nothing is built for them here: a wood, a narrow stream, cloth laid on the turf. Virgil's music comes from a long-robed priest, Orpheus; here the lyres are carried aloft. But his Elysium has no heaven above it, only a fuller air over its own fields, and the flight stays inside it: the trailing two pass behind the grove's thin trunks.",
+  "by": "Opus 5.5"
+ },
+ "gerda-roosval-kallstenius-astrid-setterwall-angstrom-artist": {
+  "about": "Astrid Setterwall was eighteen or nineteen, unmarried and at most a beginner at painting when Gerda Roosval-Kallstenius painted her full length in 1914; her married name, Ångström, and her career as an artist came later.",
+  "deep": "What self-assurance she shows sits at the two ends of the figure, in the eyes and in one foot, and the body between claims nothing. A modern reading finds self-assurance in how her gaze meets the viewer, and denies she is \"a passive beauty posed to be admired\". At the face that holds: the eyes come level from a head bowed toward our left, confidence that never lifts the chin to show itself. Below the shoulders the picture is quieter than its praise. She makes no gesture, and her one visible hand lets a closed book hang from its fingers. At the hem, one pale slipper pushes out toward us, toe first.",
+  "by": "Opus 5.5"
+ },
+ "gottfrid-kallstenius-after-sunset-motif-from-the-archipelago": {
+  "about": "The hour, by the title, is after sunset, not at it: Gottfrid Kallstenius's canvas of 1907 shows a cliff, still holding the light, and its reflection in calm archipelago water once the sun is down.",
+  "deep": "In 1911 the critic Gauffin sorted Swedish landscape painters into poets and prose writers, and put Kallstenius among the prose writers: no “deep organ tones” sounded from his canvases, he had nothing profound to tell, but he showed an old familiar view “from a side we had not noticed”. Yet Gauffin picked out this one, “a steep, reddish cliff wall mirrored in evening-calm water”, for the strong personal impression it gave. Both judgements hold, for the canvas makes its impression by understatement. Even the fire on the lit rock is played at middle volume, and the waterline, scarcely drawn, is left for one small dark stone and its double to settle.",
+  "by": "Opus 5.5"
+ },
+ "max-liebermann-die-gartenbank": {
+  "about": "In his Wannsee garden Liebermann painted the white bench by a chestnut repeatedly in 1915–16, mostly with a young woman in a light dress — probably his daughter Käthe, as in this 1916 canvas.",
+  "deep": "The garden on this canvas is kept for pleasure, though in the same year, 1916, Liebermann painted the big lawn behind his villa planted with cabbage and potatoes. The war was turning his grounds toward food: the next May he wrote to a collector that he had grown potatoes in place of Gravenstein apples, and vegetables besides, \"for who knows how long the war will last\". None of that work enters this picture. The seat is for sitting, and the woman in white sits; no bed has been cut into the lawn, which runs whole to the bottom edge, where the sun spreads across the grass in a broad yellow pool.",
+  "by": "Opus 5.5"
+ },
  "claude-monet-weeping-willow-2": {
   "about": "Monet's weeping willows of 1918–19 have been read as his response to the war. This canvas comes from a later return to the tree, painted at Giverny after the war, between 1920 and 1922.",
   "deep": "This dark canvas turns to rust below the middle across most of its centre and right, and its dates allow one account of Monet's late manner: failing sight. In 1922, its latest possible year, Monet's eye doctor found his right eye registering only light, and he wrote of bad paintings made “when seeing nothing but fog”. One medical reading calls the late manner cataract, not choice; a 2018 exhibition hung this canvas as a bridge to American abstraction. Nothing dates it closer. Either account must meet the left margin, where the red climbs high instead, in a few thin lines: a loop near the top, a Y a little below the middle.",
@@ -498,9 +598,14 @@ about: "Cupid arriving over Psyche the moment after she opens Proserpina's flask
 by: "Opus 4.8" },
 
 "edgar-degas-ballet-rehearsal-on-stage": {
-about: "Dancers waiting, stretching and fixing their hair on a cardboard palace set, 1874 — Degas's only known grisaille, painted grey to guide an engraver, and taken for a drawing at the first Impressionist exhibition.",
-deep: "The paying house gets a performance; you get the hour before it. Degas plants you on the boards, off to one side. The figure where a principal belongs — front, largest, palest — has her back turned, fixing her hair; the most classical silhouette belongs to a girl mid-yawn. Faces are two strokes and a shadow, while shoulder blades and spines get the modelling. A man in street clothes sits in the wing with no barrier between him and the nearest dancer — the subscriber's privilege, stated by geometry alone. The largest passage of paint is empty floor, swept and lit for a ballet that has not started.",
-by: "Opus 4.8" },
+
+ "about": "Dancers waiting, stretching and yawning before painted flats, 1874 — a rare grisaille for Degas, made to guide an engraver, and taken for a drawing at the first Impressionist exhibition.",
+
+ "deep": "The paying house gets a performance; you get the hour before it. Degas plants you on the boards, off to one side. The figure where a principal belongs — front, largest, palest — has her back turned, hands at the nape of her neck; a full classical silhouette belongs to a girl mid-yawn. Faces are a few strokes and a shadow, while shoulder blades and spines get the modelling. A man in street clothes sits in the wing with no barrier between him and the nearest dancer — the subscriber's privilege, stated by geometry alone. A broad passage of paint is empty floor, swept and lit for a ballet that has not started.",
+
+ "by": "Opus 4.8"
+
+},
 
 "georges-seurat-circus-sideshow-parade-de-cirque": {
 about: "Nine gas jets, a trombonist standing dead still, a crowd seen from behind: the Cirque Corvi’s free curbside come-on at the place de la Nation, 1887–88 — Seurat’s first night picture, and his first from popular entertainment.",
@@ -639,14 +744,24 @@ by: "Opus 4.8" },
 },
 
 "claude-monet-la-rue-montorgueil": {
-about: "\"I loved flags,\" Monet said of the 30 June 1878 holiday for the Exposition Universelle; he got a balcony over the street and finished this and a rue Saint-Denis view the same day. Below, one stroke is one person.",
-deep: "From a balcony above the street you cannot draw a street: the horizon is gone and almost no architecture is left to build depth with. Monet does it with weight instead. At the top the reds are dry brown scumbles with the canvas weave showing through; at the near right corner the same flags are vermilion, loaded thickly enough to keep the furrows of the brush, with blue dragged wet through it. Nearness is how much paint is on the brush. And the tricolour wins without occupying much of the picture: most of the surface is the olive and ochre of ordinary housefronts, the flags a scatter of saturated marks all leaning one way.",
-by: "Opus 4.8" },
+
+ "about": "\"I loved flags,\" Monet said of the 30 June 1878 holiday for the Exposition Universelle; he got a balcony over the street and painted this and a rue Saint-Denis view the same day. Below, one stroke is one person.",
+
+ "deep": "From a balcony above the street you cannot draw a street: the horizon is gone and almost no architecture is left to build depth with. Monet does it with weight instead. At the top the reds are dry brown scumbles with the canvas weave showing through; at the near right corner the same flags are vermilion, loaded thickly enough to keep the furrows of the brush, with blue dragged wet through it. Nearness is how much paint is on the brush. And the tricolour wins without occupying much of the picture: much of the surface is the olive and ochre of ordinary housefronts, the flags a scatter of saturated marks all leaning inward from the two walls.",
+
+ "by": "Opus 4.8"
+
+},
 
 "claude-monet-le-givre": {
-about: "One of some twenty frost and ice canvases Monet pushed out in the winter of 1879-80, one of the coldest on record — painted outdoors with hand-warmers, newly widowed, a decade before the series pictures began.",
-deep: "Four bands and one interruption: sky, a row of frosted trees, a pale flat, a foreground of dead scrub — and low to the right, the single dark form you eventually find. Frost is not snow. It leaves every shape where it was and changes only its colour, so the picture has to be made out of small shifts of hue at one brightness, which is what the eye reads worst. Look for the cobalt dashes lying on the flat: a few marks at full strength, doing the job black would have done in an academic winter piece. Everything around them is a tint. Put a thumb over them and a third of the canvas goes papery.",
-by: "Opus 4.8" },
+
+ "about": "One of some twenty frost and ice canvases Monet pushed out in the winter of 1879-80, one of the coldest on record — painted months after he was widowed, a decade before the series pictures began.",
+
+ "deep": "Four bands and one interruption: sky, a row of frosted trees, a pale flat, a foreground of dead scrub — and low to the right, the single dark form you eventually find. Frost is not snow. It leaves every shape where it was and changes only its colour, so the picture has to be made out of small shifts of hue at one brightness, which is what the eye reads worst. Look for the hard blue dashes lying on the flat: a few marks at full strength, doing the job black would have done in an academic winter piece. Everything around them is a tint. Put a thumb over them and a third of the canvas goes papery.",
+
+ "by": "Opus 4.8"
+
+},
 
 "claude-monet-the-water-lilies-clear-morning-with-willows": {
 about: "On 12 November 1918, the day after the Armistice, Monet offered France two decorative panels as a monument to peace; Georges Clemenceau coaxed the gift into the full grandes décorations cycle, unveiled at the Orangerie in May 1927, months after the painter's death. This composition holds the south wall of the second oval room: three joined canvases worked up from around 1920 and spanning nearly thirteen metres, where two slender trunks of weeping willow — the mourning motif Monet embraced through the war years — rise through the pond's pale morning reflections, facing their near-twin, Le Matin aux saules.",
@@ -761,8 +876,12 @@ by: "Opus 4.8" },
 },
 
 "monet-woman-with-a-parasol": {
-about: "Camille Monet and their son Jean on a summer bluff, 1875 — seen from below against a windy sky, her veil and dress alive, the grass throwing green light up into the white fabric.",
-deep: "The real subject is wind. It runs through everything: the veil, the tilted parasol, the grass leaning one way, the clouds streaking the same diagonal. Monet paints from below, so Camille towers against sky rather than landscape — a figure becoming weather. Look at the 'white' dress: it is green underneath (light bounced up off the grass) and violet in the shadows; there is almost no actual white. Jean stands further back, smaller and softer-edged — depth of field done in paint before photography taught everyone the word. A portrait in which the sitter's face is the least important thing, veiled, in shadow, turned to the light." },
+
+ "about": "Camille Monet and their son Jean on a summer bluff, 1875 — seen from below against a windy sky, her veil and dress alive, the white fabric painted in blues and violets.",
+
+ "deep": "The real subject is wind. It runs through everything: the veil, the tilted parasol, the grass streaked in long flicks, the clouds dragged sideways. Monet paints from below, so Camille towers against sky rather than landscape — a figure becoming weather. Look at the 'white' dress: the skirt is blue and violet, with a yellow-green passage on the jacket front; actual white is kept to a few bright slashes along its back. Jean stands further back and smaller, his face plainer to read than hers — the depth carried mostly by scale. A portrait in which the sitter's face is the least important thing, veiled, in shadow, turned toward us."
+
+},
 
 "monet-nympheas-orangerie": {
 about: "The two oval rooms of the Orangerie: eight room-length panels of Monet's pond at Giverny — water, lilies, willow reflections, no horizon, no shore. His gift to France, signed the day after the WWI armistice.",
@@ -770,9 +889,9 @@ deep: "There is no horizon anywhere — you never see the sky, only the sky refl
 
 "the-clouds": {
 
- "about": "One of the Orangerie's Water Lilies panels: clouds crossing the pond's surface — the sky existing only as its own reflection among the lilies.",
+ "about": "One of the eight Water Lilies compositions at the Orangerie: clouds crossing the pond's surface — the sky existing only as its own reflection among the lilies.",
 
- "deep": "Reading up this panel walks you down the sky. In a mirrored image the zenith lands nearest your feet and the far distance sits high, so the broad lavender-grey cloud lying low past the middle of the wall belongs to weather almost overhead: a whole hemisphere laid out in the wrong order. Find the small pink blossoms. With the pads, they are the only things at a fixed location, and the instant your eye finds them the shimmer snaps into being water rather than fog. At the left end, and again in the lowest right corner, the pads are drawn as full ovals; up and toward the middle, as slivers. That is the entire perspective system, hidden in the corner after the horizon was taken away."
+ "deep": "Reading up this panel walks you down the sky. In a mirrored image the zenith lands nearest your feet and the far distance sits high, so the broad lavender-grey cloud past the middle of the wall, running nearly to the bottom edge, reaches into weather almost overhead: a whole hemisphere laid out in the wrong order. Find the small pink blossoms. With the pads, they are the only things at a fixed location, and the instant your eye finds them the shimmer snaps into being water rather than fog. At the left end, and again in the lowest right corner, the pads are drawn as full ovals; up and toward the middle, as slivers. That is the entire perspective system, hidden in the corner after the horizon was taken away."
 
 },
 
@@ -803,9 +922,9 @@ refs: {"deep":[{"id":"impression-sunrise","text":"Impression, Sunrise"}]} },
 
 "pont-de-l-europe-gare-saint-lazare": {
 
- "about": "Monet inside Gare Saint-Lazare, 1877: the iron bridge and signals of the Pont de l'Europe, locomotives filling the station with steam — modernity painted as weather.",
+ "about": "Monet below the Pont de l'Europe at Gare Saint-Lazare, 1877: the iron bridge, a red signal, locomotives filling the open cutting with steam — modernity painted as weather.",
 
- "deep": "Monet asked the stationmaster to delay trains and stoke the engines so the steam would perform. That's the tell of what the series is: not a picture of a train station but of a new kind of sky, man-made, indoors. The iron geometry — bridge, piers, tracks — supplies the hard drawing, and the steam immediately dissolves it, the two halves of the industrial age (structure and vapour) fighting in one frame. It is the same painter who would spend his last decades on water lilies: already, here, the subject is what light does to something that won't hold still."
+ "deep": "The story goes that Monet talked the railway's director into delaying trains and stoking the engines so the steam would perform. That's the tell of what the series is: not a picture of a train station but of a new kind of sky, man-made, on demand. The iron geometry — bridge, piers, engine — supplies the hard drawing, and the steam immediately dissolves it, the two halves of the industrial age (structure and vapour) fighting in one frame. It is the same painter who would spend his last decades on water lilies: already, here, the subject is what light does to something that won't hold still."
 
 },
 
@@ -855,9 +974,9 @@ refs: {"deep":[{"id":"impression-sunrise","text":"Impression, Sunrise"}]} },
 
 "the-tuileries-study": {
 
- "about": "Monet, 1876: the Tuileries gardens from a window above — a study, kept loose, Paris small and pale under a thin sky, the formal garden set down in a few fast strokes.",
+ "about": "Monet, 1876: the Tuileries gardens from a window above — the most accomplished of four views, still kept loose, Paris small and pale under a thin sky, the formal garden set down in a few fast strokes.",
 
- "deep": "Victor Chocquet's apartment gave Monet the Tuileries from above, and the study keeps faith with exactly what that window delivered. The big pavilion at the corner gets its dormer and cornices, the people in the garden barely a mark apiece, and Paris beyond is a band of bright specks under violet hills. Nothing is sharpened that distance had softened, and nothing softened that it had left clear. Working fast, Monet turns speed into a kind of accuracy."
+ "deep": "Victor Chocquet's apartment gave Monet the Tuileries from above, and the picture keeps faith with exactly what that window delivered. The big pavilion at the corner gets its dormer and cornices, the people in the garden barely a mark apiece, and Paris beyond is a band of bright specks under violet hills. Nothing is sharpened that distance had softened, and nothing softened that it had left clear. Working fast, Monet turns speed into a kind of accuracy."
 
 },
 
@@ -887,7 +1006,7 @@ refs: {"deep":[{"id":"impression-sunrise","text":"Impression, Sunrise"}]} },
 
 "women-in-the-garden": {
 
- "about": "Monet at twenty-five, thinking enormous: nearly two and a half metres of canvas, four women in summer dresses among trees and flowerbeds, painted in 1866 — before Impressionism had a name. The real subject is already sunlight: how it sifts through leaves and lands on white fabric. Musée d'Orsay, Paris.",
+ "about": "Monet at twenty-five, thinking enormous: over two and a half metres of canvas, four women in summer dresses among trees and flowerbeds, painted in 1866 — before Impressionism had a name. The real subject is already sunlight: how it sifts through leaves and lands on white fabric. Musée d'Orsay, Paris.",
 
  "deep": "Monet insisted on painting it outdoors at full scale, digging a trench in the garden so the huge canvas could be lowered on a pulley and he could keep working at eye level. Camille, his companion, modelled for several of the figures, but the women are nearly a pretext. Watch the seated woman in the foreground: under the parasol her face goes a flat cool grey while the flowers in her lap stay in full sun, and what light the face has bounces up off her own white dress — light, not story, organises everything. The Salon rejected it in 1867 as raw and unfinished. The joke came later: in 1921 the French state, heir to the jury that turned it down, bought it from the elderly Monet for 200,000 francs — a rejection repaid with half a century's interest.",
 
@@ -1035,7 +1154,7 @@ by: "Opus 4.8" },
 
 "nympheas-monet-2": {
 
- "about": "A single stretch of Monet's Giverny pond, painted around 1918, tilted up until water fills the whole vertical frame with no horizon. A wedge of green bank holds the lower-left corner; near the centre, one tight cluster of white blooms.",
+ "about": "A single stretch of Monet's Giverny pond, painted around 1918, tilted up until water fills nearly the whole vertical frame with no horizon. A wedge of green bank holds the lower-left corner; above the centre, one tight cluster of white blooms.",
 
  "deep": "The argument is that one corner keeps this pond real. Where many of Monet's late lily canvases let the water run to all four edges, here a triangle of grassy bank shoulders into the lower left, and that edge gives you a place to stand: above the water, looking down and slightly out. Everything else is surface and reflection, pale water above and darker reflection hanging below, a pond that could slip at any moment into pure atmosphere. What holds it is a pairing of solids: the ground in the corner, which fixes where you are, and the thick white of the central lilies, which fixes where you look. With a place to stand and a thing to look at, the picture stays a pond someone visited rather than a mood.",
 
@@ -1085,9 +1204,9 @@ by: "Opus 4.8" },
 
 "saule-pleureur-et-bassin-aux-nympheas": {
 
- "about": "A single weeping-willow trunk at Giverny, Claude Monet, 1917 — one of a group of late canvases in which the willow, not the lily surface, holds the foreground. He stands you on the bank beside the trunk, with the lily basin opening to its right, so tree and water share the picture.",
+ "about": "A single weeping-willow trunk at Giverny, Claude Monet, painted between 1916 and 1919 — one of a group of late canvases in which the willow, not the lily surface, holds the foreground. He stands you on the bank beside the trunk, with the lily basin opening to its right, so tree and water share the picture.",
 
- "deep": "Monet gives the foreground to the trunk and leaves the pond that made these late canvases famous at its side. He builds the bark from long vertical strokes crossed by short diagonals, kept in complementary pairs — orange against violet, red beside green — set side by side so the eye mixes them and the trunk shimmers rather than sits still. It is the optical method he used on water, turned onto a solid vertical thing. The fronds are dragged wet, downward, pulling toward the earth against the trunk's upward climb; the base darkens to violet-black among clumps of blue-green leaves. Painted through the war years, the drooping willow was his emblem of mourning — a record of feeling worked into paint, not a view of a garden.",
+ "deep": "Monet gives the foreground to the trunk and leaves the pond that made these late canvases famous at its side. He builds the bark from wavy, mostly vertical strokes, some shorter and slanting across their neighbours, kept in complementary pairs — orange against violet, rose beside blue — set side by side so the eye mixes them and the trunk shimmers rather than sits still. It is the optical method he used on water, turned onto a solid vertical thing. The fronds hang in thin vertical strokes, pulling toward the earth against the trunk's upward climb; the base darkens to violet-black among clumps of blue-green leaves. Painted through the war years, the drooping willow was his emblem of mourning — a record of feeling worked into paint, not a view of a garden.",
 
  "by": "Opus 4.8"
 
@@ -1168,9 +1287,9 @@ by: "Opus 4.8" },
 
 "the-magpie": {
 
- "about": "Monet's The Magpie, 1868 — a lone bird on a gate in blue-shadowed snow. Rejected by the 1869 Salon as too pale, it holds some of his earliest coloured shadows: light painted where academics demanded black.",
+ "about": "Monet's The Magpie, 1868–69 — a lone bird on a gate in blue-shadowed snow. Rejected by the 1869 Salon, it holds some of his earliest coloured shadows: light painted where academics demanded black.",
 
- "deep": "A canvas of almost nothing, tuned so that one small thing can count. The snow carries every colour but plain white, cooled to blue where shadow slants across it and faintly warm where the low sun lands, and the sun itself never appears, only a brightening where snow meets sky. The darks are given jobs: the woven fence and the gate posts hold the middle of the field together. Black is spent once, on a magpie perched on the gate, off to the left and small enough to miss. With nowhere else to rest, the eye reaches it last and stays. The 1869 Salon saw only emptiness; the emptiness is the instrument, and the bird is the note it was tuned to sound.",
+ "deep": "A canvas of almost nothing, tuned so that one small thing can count. The snow is rarely plain white, cooled to blue where shadow slants across it and faintly warm where the low sun lands, and the sun itself never appears, only a brightening where snow meets sky. The darks are given jobs: the woven fence and the gate posts hold the middle of the field together. Black is spent once, on a magpie perched on the gate, off to the left and small enough to miss. With nowhere else to rest, the eye reaches it last and stays. The 1869 Salon turned it away, yet the emptiness is the instrument, and the bird is the note it was tuned to sound.",
 
  "by": "Opus 4.8"
 
@@ -1355,9 +1474,14 @@ deep: "Painted at the hour when shadows are shortest and colour bleaches toward 
 by: "Opus 4.8" },
 
 "claude-monet-the-japanese-footbridge": {
-about: "Monet's The Japanese Footbridge, c. 1920: the Giverny bridge he painted for decades, now dissolved into fiery reds and swirling strokes as cataracts left the near-blind painter seeing the world in a shifting reddish haze.",
-deep: "The subject here is not a garden but a condition of seeing. Monet returns to the bridge at Giverny he had painted in cool blues for thirty years, but cataracts have turned his world into a hot browning film, and the canvas records exactly that — sensation without stable object. One pale ochre band floats across the middle: the bridge, kept thinner and cooler so it hovers in front of the blaze, the last legible thing in the motif. Everything else is thick paint dragged wet into wet, red and orange smearing into brown, no drawn edge permitted. A wedge of lemon at upper left is the only other relief from the heat. What makes this extraordinary is how Monet accepts the dissolution rather than resisting it — turning a failure of sight into the real subject of the work.",
-by: "Opus 4.8" },
+
+ "about": "Monet's The Japanese Footbridge, c. 1920–22: the Giverny bridge he painted for decades, now dissolved into fiery reds and swirling strokes as cataracts left the near-blind painter seeing the world in a shifting reddish haze.",
+
+ "deep": "The subject here is not a garden but a condition of seeing. Monet returns to the bridge at Giverny he had painted in cool greens and blues for a quarter-century, but cataracts have turned his world into a hot browning film, and the canvas records exactly that — sensation without stable object. One pale cream line floats across the middle: the bridge, dragged on dry and lighter than the reds so it hovers in front of the blaze, the last legible thing in the motif. Elsewhere paint is dragged wet into wet, red and orange smearing into brown, hardly an edge drawn. A wedge of lemon at upper left and a pocket of blue at lower left are the other reliefs from the heat. What makes this extraordinary is how Monet accepts the dissolution rather than resisting it — turning a failure of sight into the real subject of the work.",
+
+ "by": "Opus 4.8"
+
+},
 
 "the-water-lily-pond": {
 
@@ -1468,9 +1592,14 @@ by: "Opus 4.8" },
 },
 
 "edgar-degas-woman-with-a-towel": {
-about: "Degas's Woman with a Towel, 1896 — a bather seen from behind. He worked the pastel with his fingers, brushes and sharp tools, smudging and scraping the pigment, then drew black outlines over it to sharpen the figure's twist.",
-deep: "The body is a problem to be solved, not a beauty to be displayed. A woman dries herself with her back to us, spine torquing one way, head another, arm swinging across for the towel — the awkward mechanics of an ordinary action, left in rather than corrected out. Degas builds the figure in layers of pastel, fusing color until the back's warmth and coolness feel like light from within the flesh, then hauls it back to legibility with a pressured black contour drawn over the top. That line does not find the true edge so much as insist on one, rescuing the figure from the blending that nearly dissolved it. The towel, pale and massive, occupies the entire lower half — as large as the body, as carefully handled, the two halves of a single private act weighted equally.",
-by: "Opus 4.8" },
+
+ "about": "Degas's Woman with a Towel, from 1894 or 1898 — a bather seen from behind. He worked the pastel with his fingers, brushes and sharp tools, smudging and scraping the pigment, then drew black outlines over it to sharpen the figure's twist.",
+
+ "deep": "The body is a problem to be solved, not a beauty to be displayed. A woman dries herself with her back to us, spine torquing one way, head another, arm swinging across for the towel — the awkward mechanics of an ordinary action, left in rather than corrected out. Degas builds the figure in layers of pastel, fusing color until the back's warmth and coolness feel like light from within the flesh, then hauls it back to legibility with a pressured black contour drawn over the top. That line does not find the true edge so much as insist on one, rescuing the figure from the blending that nearly dissolved it. The towel, pale and massive, occupies most of the lower half — as large as the body, as carefully handled, the two halves of a single private act weighted equally.",
+
+ "by": "Opus 4.8"
+
+},
 
 "edgar-degas-dancer-with-a-fan": {
 
@@ -1562,10 +1691,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "edward-hopper-new-york-movie": {
-about: "Hopper's New York Movie, 1939 — a usherette sealed in her own lit alcove beside the cinema screen, assembled from over fifty sketches of Manhattan theatres, with his wife Jo posing for the figure.",
-deep: "The picture is nearly two paintings: dim auditorium on the left, bright alcove on the right, a dark column between them holding the temperatures apart. The auditorium runs cold blue-grey; the alcove pools warm gold from the wall lamp. Her uniform is blue — cooler than the lamplight, warmer than the screen-glow — a figure the room has no colour for. Hand raised to her chin, weight shifted to one hip: the posture of a mind that left the shift some time ago. The movie palace was a Depression-era refuge, a cheap ticket into a brighter world, and the one person stationed beside it, paid to stand there, is the only one not watching.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Hopper's New York Movie, 1939 — a usherette sealed in her own lit alcove across the room from the screen, assembled from over fifty sketches of New York theatres, with his wife Jo posing for the figure.",
+
+ "deep": "The picture is nearly two paintings: dim auditorium on the left, bright alcove on the right, a dark column between them holding the dim and the bright apart. The auditorium is a warm brown dark lit by the pale screen; the alcove pools warm gold from the wall lamp. Her uniform is a saturated blue — cooler than the lamplight, deeper than the screen-glow — a figure the room has no colour for. Hand raised to her chin, weight shifted to one hip: the posture of a mind that left the shift some time ago. The movie palace was a Depression-era refuge, a cheap ticket into a brighter world, and the one person stationed beside it, paid to stand there, is the only one not watching.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "paul-gauguin-ferme-en-bretagne-i": {
 about: "Gauguin's A Farm in Brittany, 1894 — made on his fifth and final Breton stay, between two Tahiti voyages; its Synthetist flat colour carries the hot palette he brought back from the tropics.",
@@ -1807,7 +1942,7 @@ by: "Opus 4.8" },
 
  "about": "A figure in a straw hat, waist-deep in the poppy plain at Gennevilliers, 1875 — one of four canvases Monet made of this field in a season, reworking the motif of his celebrated 1873 Poppies.",
 
- "deep": "The painting takes the measure of a great open space with almost nothing. There is no path, furrow or fence to carry the eye back to the horizon, none of the ruled lines a landscape painter would normally lay across a plain. The size of the place is felt instead through the touch, which loosens as the field recedes until the flowers lose their edges and the far trees thin to a pale band, and through the people set into it at two distances, each a gauge of scale. The thickest paint is spent overhead, which turns the usual order around: the sky becomes the solid thing, and the land a thin, flowered skin beneath it. What results is less a view of one particular field than a record of standing in it and feeling its size.",
+ "deep": "The painting takes the measure of a great open space with almost nothing. There is no path, furrow or fence to carry the eye back to the horizon, none of the ruled lines a landscape painter would normally lay across a plain. The size of the place is felt instead through the touch, which shrinks and flattens into horizontal bands as the field recedes until the flowers lose their edges and the far trees thin to a pale band, and through the people set into it at two distances, each a gauge of scale. The thickest paint is spent overhead, which turns the usual order around: the sky becomes the solid thing, and the land a thin, flowered skin beneath it. What results is less a view of one particular field than a record of standing in it and feeling its size.",
 
  "by": "Opus 4.8"
 
@@ -1853,7 +1988,7 @@ by: "Opus 4.8" },
 
 "claude-monet-camille-monet-1847-1879-in-the-garden-at-argent": {
 
- "about": "One of roughly ten canvases Monet painted of his rented house and garden in 1876, a year and a half before he left Argenteuil; his wife Camille stands as a pale blue shape beside the flowering bed, the flowers crowding her.",
+ "about": "One of at least ten canvases Monet painted of his rented house and garden in 1876, a year and a half before he left Argenteuil; his wife Camille stands as a pale blue shape beside the flowering bed, the flowers crowding her.",
 
  "deep": "A portrait that swallows its sitter. The eye goes first to the mounded flowering bed — red and pink heat jabbed into cool green — then to the cream house half-hidden in foliage. The figure at the left margin comes later, pale on pale against the path. Monet has pushed Camille to the edge and built her from the same soft strokes, hat trim and mouth a dab of red each, so she reads as one more pale note among leaves. This is the picture's method and statement: broken-colour touches build flowers, house, tree, and woman from the same dabs, so the garden absorbs her. A near-vertical trunk divides the canvas, keeping Camille from the flowering centre. The intimacy is real but withheld — she is present at the edge, on the way out of a summer that has no interest in keeping her.",
 
@@ -1877,10 +2012,26 @@ deep: "Distance is what Seurat is painting, not place. The logic of the picture 
 by: "Opus 4.8" },
 
 "edouard-manet-young-lady-in-1866": {
-about: "Manet's model is Victorine Meurent, the same woman who scandalized Paris as the nude in Olympia; here in 1866, buttoned into a pink peignoir with a parrot, she reads as a demure rejoinder to Courbet's sensual Woman with a Parrot.",
-deep: "Presence without access is Manet's real subject. Victorine stands at portrait scale, fully clothed and frontally composed, yet the picture systematically empties every channel through which a portrait normally delivers meaning: no setting, no occasion, no expression that inclines toward the viewer. The peignoir — private morning dress, here buttoned to the throat — is the performance: a broad column of rose, pearl and grey-green worked in wide loaded strokes that stay visibly paint, flattened against a ground of the same tonal family so the body reads as silhouette rather than volume. Three small accents — the lilac ribbon, the black neck-cord, the orange rind below — pin the whole quiet field. Everything else is held in suspension: violets almost smelled, a lens not raised, a parrot that notices more than she does. The picture is built to reach you at full human scale and then give nothing back.",
-refs: [{"id":"woman-with-a-parrot","text":"Woman with a Parrot"}],
-by: "Opus 4.8" },
+
+ "about": "Manet's model is Victorine Meurent, the same woman who scandalized Paris as the nude in Olympia; here in 1866, buttoned into a pink peignoir with a parrot, she reads as a demure rejoinder to Courbet's sensual Woman with a Parrot.",
+
+ "deep": "Presence without access is Manet's real subject. Victorine stands at portrait scale, fully clothed and frontally composed, yet the picture systematically empties every channel through which a portrait normally delivers meaning: no setting, no occasion, no expression that inclines toward the viewer. The peignoir — private morning dress, here buttoned down the front — is the performance: a broad column of rose, pearl and grey worked in wide loaded strokes that stay visibly paint, flattened against a plain dark ground so the body reads as silhouette rather than volume. Three small accents — the blue ribbon, the black band at the throat, the orange rind below — pin the whole quiet field. Everything else is held in suspension: violets almost smelled, a lens not raised, a parrot that notices more than she does. The picture is built to reach you at full human scale and then give nothing back.",
+
+ "refs": [
+
+  {
+
+   "id": "woman-with-a-parrot",
+
+   "text": "Woman with a Parrot"
+
+  }
+
+ ],
+
+ "by": "Opus 4.8"
+
+},
 
 "vincent-van-gogh-roses": {
 
@@ -4328,9 +4479,9 @@ by: "Opus 4.8" },
 
 "claude-monet-the-four-trees": {
 
- "about": "Four slim poplars cropped hard at the top, their trunks running into still-water reflections along the Epte near Giverny, 1891 — one canvas from a twenty-three-work series Monet finished before the lumber merchant could fell the trees.",
+ "about": "Four slim poplars cropped hard at the top, their trunks running into still-water reflections along the Epte near Giverny, 1891 — one canvas from a series of more than twenty Monet finished before the lumber merchant could fell the trees.",
 
- "deep": "The crowns are gone — sliced off so the trunks become abstract verticals, bars in a grid rather than trees. Strip the tops, compress the far bank into one horizontal ribbon, and a row of poplars becomes a woven screen. The foliage band crossing below the middle dissolves up close into hundreds of separate dabs — rust, violet, and olive sitting unmixed, the eye doing the blending. At the far left a second row of sunlit trees, pale gold and apricot, recedes behind the first trunk; cover it and the left half goes cold. The sky runs from pale blue to a warmer cream toward the treeline — not generic daylight but one specific autumn hour on the Epte.",
+ "deep": "The crowns are gone — sliced off so the trunks become abstract verticals, bars in a grid rather than trees. Strip the tops, compress the far bank into one horizontal ribbon, and a row of poplars becomes a woven screen. The foliage band crossing below the middle dissolves up close into hundreds of separate dabs — rust, violet, and olive sitting unmixed, the eye doing the blending. On the left a second row of sunlit trees, pale gold and apricot, recedes behind the first two trunks; cover it and the left half goes cold. The sky runs from pale blue to a warmer cream toward the treeline — not generic daylight but one specific autumn hour on the Epte.",
 
  "deepBy": "Sonnet 4.6",
 
@@ -4679,9 +4830,9 @@ by: "Opus · Fable" },
 
 "claude-monet-la-femme-a-l-ombrelle": {
 
- "about": "Monet's stepdaughter Suzanne Hoschedé on a Giverny slope in 1886, seen from below against bare sky, her face left blank under the parasol's shadow — one of a mirrored pair he painted as trials, not portraits, and never sold.",
+ "about": "Monet's future stepdaughter Suzanne Hoschedé on a Giverny slope in 1886, seen from below against bare sky, her face left blank under the parasol's shadow — one of a mirrored pair he painted as trials, not portraits, and never sold.",
 
- "deep": "He had painted this pose ten years earlier, with Camille in it. She died in 1879; here his stepdaughter takes the attitude and the face goes — a few strokes of blue veil drawn across it in the parasol's shade, nothing to read at any distance, the gesture kept and the sitter given up. The rest is weather. Veil, hem and grass heads rake one way while the parasol leans back into them, so a gust is painted without a single moving object drawn, and the veil is laid in the same blue as the sky streaks, so it seems to become weather as it leaves her. The dress is never white: thick cream on the sunlit flank, pink, mauve and sky-blue in the shade.",
+ "deep": "He had painted this pose eleven years earlier, with Camille in it. She died in 1879; here his stepdaughter takes the attitude and the face goes — a few strokes of blue veil drawn across it in the parasol's shade, nothing to read at any distance, the gesture kept and the sitter given up. The rest is weather. Veil, hem and grass heads rake one way while the parasol leans back into them, so a gust is painted without a single moving object drawn, and the veil is laid in the same blue as the sky streaks, so it seems to become weather as it leaves her. The dress is never white: thick cream on the sunlit flank, pink, mauve and sky-blue in the shade.",
 
  "deepBy": "Sonnet 4.6",
 

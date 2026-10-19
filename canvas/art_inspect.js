@@ -101,6 +101,1554 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+ "katsushika-hokusai-yoro-falls-in-mino-province-from-the-seri": {
+  "mv": 6,
+  "see": "A colour woodblock print: a waterfall drops in one column from a brink set against deep blue sky, between cliffs of yellow-green rock tufted with darker green. White clouds lie across the cliffs, a grey band of spray spans the sheet below, and the stream curls away from a dark rock at the falls' foot. Two travellers in broad hats are on the bank; others rest under a thatched shelter at lower right. A title cartouche stands at upper left, the signature and two red seals at right. Dark blue, not black, prints the outlines.",
+  "about": "The title panel at upper left gives the sheet an address: the series, A Tour of Waterfalls in Various Provinces, then the province, Mino, then the falls, Yōrō. Below it is a famous place with its visitors in it. They keep to the bank along the bottom of the sheet, small under the drop, so that its height is read against them. Two have come to the foot of the falls and face it; others have stopped to rest under a roof beside the path. The print is as much about arriving at a celebrated sight as about the water itself.",
+  "craft": "The signature at right ends in the character for brush: it claims the drawing. Of the two red seals below it, the round one reads kiwame, \"approved\", the censor's mark; the square one reads Eijudō, the trade name of the publisher, Nishimuraya Yohachi. The cutter who carved the blocks and the printer who laid the colours are named nowhere on the sheet, though every line on it, the signature included, passed through that unnamed cutter's knife. Hokusai knew how much rode on it: in a letter of 1833 he complained to a cutter about how the eyes and noses in his designs for a book had been carved, and asked for changes.",
+  "context": "In the early 1830s his publisher brought out a set of eight waterfalls, this among them. One Hokusai curator gives two reasons for the set: the blue that had sold his views of Mount Fuji suited falling water even better, and Edo townspeople, with better roads and money to spare, were travelling to famous places. A year or two later, in an afterword to One Hundred Views of Mount Fuji, Hokusai wrote that nothing he drew before seventy was worth notice, and that at seventy-three he \"was somewhat able to fathom the growth of plants and trees\".",
+  "deeper": [
+   {
+    "t": "The brink against the sky",
+    "x": 0.2,
+    "y": 0.06,
+    "w": 0.48,
+    "h": 0.3,
+    "body": "At the top of the falls, between needled boughs hanging in from our left and leaning trunks at upper right, the water begins as a shape with no colour inside it. Its upper edge, a lumpy line like a rounded crest, a shade darker than the flat blue of the sky behind it, is all the drawing it gets; the cream within seems to be the sheet itself, left unprinted while the sky's blue was printed hard up against it. No bank or far hill comes between the brink and that deep blue, so the water seems to pour straight out of the sky. For a long drop below the edge the column stays almost empty, crossed only by hairline strokes that begin a little under the crest and run down like pulled threads. The colour that gives the falls its weight arrives lower; up here it is little more than a silhouette."
+   },
+   {
+    "t": "Clouds without a line",
+    "x": 0.02,
+    "y": 0.24,
+    "w": 0.28,
+    "h": 0.3,
+    "body": "Under the cliff at our left, the drawing changes hands. The cliff face is a flat yellow-green flecked with small dark blue wedges, its ridges crusted with clumps of darker green, and the ridges and clumps are edged with the dark blue line that draws the rest of the design. The clouds below get none of it. Their scalloped tops are simply where the cliff's yellow-green ends, in rounded bites, and the few loose arcs floating inside the white, marking where one billow overlaps the next, are printed in that same yellow-green. The colour that fills the rock also draws the cloud. Bounded only by where a colour stops, the cloud reads soft against a cliff whose edges are lines."
+   },
+   {
+    "t": "Two blues gathering",
+    "x": 0.25,
+    "y": 0.26,
+    "w": 0.4,
+    "h": 0.3,
+    "body": "Down the middle of the column the water takes on colour in layers. About a quarter of the way down a pale greenish blue begins in broad bands, and on this impression their upper ends are soft, thinning into the white toward the top. Beside and over them run darker blue spears, each sharpened to a point at its upper end, so they seem to thrust upward as the water falls. Lower down, the dark gains on the pale: where the colour begins, the pale bands are the wider; toward the foot the dark ones are. The pale blue is a separate printing from the lines, laid down in its own pass, and its bands keep to the hairlines all the way down the drop, so the strands stay straight and parallel."
+   },
+   {
+    "t": "Gaps in the grey",
+    "x": 0.02,
+    "y": 0.5,
+    "w": 0.3,
+    "h": 0.3,
+    "body": "Left of the falls, beneath the clouds, a buff-grey band crosses the sheet; its top fades in out of the white, and below that it holds an even tone down to the bank. The spray inside it is made of gaps: each white drop is a spot where the grey did not print. Nearest the falls' foot the grey breaks up into a dense crumble of small angular chips, so much white showing that the tone glitters. Further out the drops grow rounder, larger and sparser. The change in their shape and spacing, crowded and splintered at the water, loose and round at a distance, is what makes the mist seem to blow outward from the falls."
+   },
+   {
+    "t": "Where the column breaks",
+    "x": 0.25,
+    "y": 0.52,
+    "w": 0.42,
+    "h": 0.26,
+    "body": "At the foot of the falls a dark rock juts up into the water, a tiered tree rising beside it, and around it the strands come apart. Inside the dark bands just above the rock, small white spots open up; below, the bands end in loose rows of triangles, dark blue and pale blue, thinning as they drop. The change from sheet to droplets is made with the same two blues that built the column, so no new colour is needed to show the water breaking. The rock is shaded from deep blue at its crown down through teal into the yellow-green of the bank, one gradation that carries the water's colour into the ground's."
+   },
+   {
+    "t": "The stream heaves sideways",
+    "x": 0.015,
+    "y": 0.72,
+    "w": 0.225,
+    "h": 0.24,
+    "body": "At the lower left edge the stream leaves the falls in a stack of swollen, curling swells, each topped by a broad white crest. Inside them run the column's own stripes of dark and pale blue, now bent into curves that follow each swell's turn. Where the falls dropped straight, this water heaves sideways, and the sheet's edge cuts it off as though the stream ran on beyond the picture. Trees on the ochre bank overlap the swells, their trunks standing upright through the curling stripes."
+   },
+   {
+    "t": "Two white discs",
+    "x": 0.33,
+    "y": 0.73,
+    "w": 0.28,
+    "h": 0.23,
+    "body": "On the bank below the falls, two travellers have their backs to us, and what picks them out is their hats: two flat white discs, each with a small dot at the centre where the crown peaks. A broad hat on a level head would show, from this raised angle, as an ellipse. The standing man's, above a green cloth slung over a pale blue jacket, shows its whole top, as if his head were tipped back toward the height. His companion crouches low at the stream's edge in a green robe dotted with small crosses, bent toward the water. Neither face is shown, so the look upward rests on one circle of cream and the tilt it suggests."
+   },
+   {
+    "t": "Under the thatch",
+    "x": 0.56,
+    "y": 0.66,
+    "w": 0.41,
+    "h": 0.33,
+    "body": "At lower right a great thatched roof slopes down toward the travellers' path. Its surface is the cream of the falls, streaked with short blue strokes that fan out from the ridge, where crossed ties hold the thatch down: the falls' own means, cream and blue stroke, laid on a slope at the scale of a building. Under its open end, on a footing of cobbled stones, other travellers have stopped. One, crown shaved and topknot tied, turns a round, smiling face down to our left, toward the path; beside him a figure in pale blue bends over with head down, and at the stone edge below someone wrapped in straw stretches out a dark-shod foot. The smiling man is turned toward the side the falls are on, and it is the roof that hides the water from his view."
+   }
+  ],
+  "beside": "Two kinds of visitor, some facing the sight and some resting near it, gather at Yōrō and in Johan Christian Dahl's An Eruption of Vesuvius, from 1824. Two men stand on the dark lava with their backs to us at the edge of the glowing flow, one stretching an arm toward it, the other in a top hat. A little apart, men wait with saddled mules, one astride, another sitting on a rock. What drew them differs in kind. Yōrō's water falls the same for every party that reaches the path, and the fire in front of Dahl's two men is an event, there only as long as the eruption lasts.",
+  "refs": [
+   {
+    "id": "johan-christian-dahl-an-eruption-of-vesuvius",
+    "text": "An Eruption of Vesuvius"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "katsushika-hokusai-amidagataki-falls-in-the-far-reaches-of-t": {
+  "mv": 6,
+  "see": "A tall sheet in blues, yellows and greens. At the top, a notch of pale sky parts two crowns of moss over a cave mouth, where a round pool spills a waterfall the full height of the picture. To the left, a bluff of yellow and green ground carries three travellers at a picnic, with conifers in a band of yellow mist behind. To the right, a cliff of moss and orange rock falls sheer beside the water. The title panel and signature stand at top left. The falls' broad, plain shapes stand out against land dense with small marks.",
+  "about": "The place is put together for the eye, not seen from any one spot. Each part of the falls is shown from the standpoint that explains it best: its source from one height, its drop from another, the land beside it from a third, tilted so that a level shelf opens at the brink. No horizon fixes where we stand, and the views are joined by line and flat colour alone. Another curator has likened that moving viewpoint to a Cubist painter's.",
+  "craft": "A cutter pasted Hokusai's drawing, on thin paper, face down on a cherry block and carved through it, leaving the lines in relief and destroying the drawing to make the key block, printed on this sheet in dark blue. Proofs from that block went back to Hokusai, who marked on each the areas of one colour, and the cutter carved a block for each. The printer brushed colour on a block, laid damp paper over it against a corner notch and a straight guide cut into every block, and rubbed the back with a flat pad, the baren. For a fade he first wiped the colour across part of the block.",
+  "context": "The signature reads “formerly Hokusai, Iitsu”. Iitsu, “one again”, was the name he took in 1820 on completing his first sixty-year cycle, a name of starting over. Between 1827 and 1829 he had a stroke, lost his wife Koto and paid a grandson's debts. At the start of 1830 he rented a room in a temple in Asakusa and wrote to a publisher that he was, in one scholar's rendering, “penniless and naked with barely enough food to eat”; he had designed no single-sheet prints in the late 1820s. By the New Year of 1831 another publisher was announcing his Thirty-six Views of Mount Fuji, and this set of waterfalls followed from the same firm.",
+  "deeper": [
+   {
+    "t": "A pool tipped up to face us",
+    "x": 0.4,
+    "y": 0.055,
+    "w": 0.42,
+    "h": 0.275,
+    "body": "At the top centre, the falls begins in a near-round pool set in the mouth of a cave. The falling water below hangs face-on to the eye, but the pool is drawn as if from overhead, its surface tipped up toward us like a dish, so the place the water comes from is shown whole. A stream slides in at the upper right as a run of nearly parallel bands, swings across in broad loops, and tightens into hooks along the lower lip, just where the white column starts. Those first bands lie on the same pale ground as the sky above; a light blue rises behind the lines from the lip and thins upward until it is gone, a gradation printed from the block. On the right flank of the left-hand crown of moss, the blue outline runs just outside the green, with a sliver of pale ground between them: line and colour were printed from separate blocks, and on this sheet they did not quite meet."
+   },
+   {
+    "t": "A heavy body coming apart",
+    "x": 0.42,
+    "y": 0.27,
+    "w": 0.34,
+    "h": 0.36,
+    "body": "Below the pool's lip, the upper falls is a tall white shape with no line inside its top half. The white narrows to a neck where it leaves the pool, then widens, one shoulder reaching across to the right-hand cliff, so the water reads as one heavy body sliding off the rim. Lower down, pointed tongues of grey and blue climb into the white from below. Further down, they multiply and the white between them narrows to strands, then to hairlines, and the water seems to come apart as it falls. Halfway down, a pale blue rises behind the tongues and fades upward into the white."
+   },
+   {
+    "t": "White lines are cuts",
+    "x": 0.42,
+    "y": 0.6,
+    "w": 0.4,
+    "h": 0.39,
+    "body": "In the lower half, the falls becomes a palisade of vertical bars: dark blue, a lighter blue, and between many of them a hairline of white, all running plumb to the bottom edge. In a woodblock, what prints is the wood left standing, so a white line in a dark field is a groove the cutter carved away. These grooves waver in width, fork and stop short; the regularity of the water is the knife's, made line by line. The falls does not land. No pool or spray catches it at the foot; the bars leave the sheet at full width, and the drop runs on past the bottom edge. Pine boughs from the right-hand cliff lay their wheel-shaped needle clusters across the bars, green breaking into the stripes."
+   },
+   {
+    "t": "An orange cliff",
+    "x": 0.68,
+    "y": 0.38,
+    "w": 0.305,
+    "h": 0.44,
+    "body": "On the right, the rock face beside the falls is printed in a pinkish orange, strongest just under the moss and paling to buff toward the foot of the sheet. Over it hang crowns of moss in pale green, worked in rows of long blue ticks that droop at each ledge's lip. The rock gets a different mark: a wandering outline with clots of blue dots along the ledges, and an olive green filling the deep recess between two of the orange strips. Where the orange meets the olive the two colours butt edge to edge, and for most of the way the dark crack-line runs along the join."
+   },
+   {
+    "t": "Ticks that show which way the ground falls",
+    "x": 0.02,
+    "y": 0.665,
+    "w": 0.47,
+    "h": 0.325,
+    "body": "The lower left is the bluff that carries the picnic, built from three flat colours and three kinds of mark. A pale yellow-green covers the ridges and a deeper yellow fills the lower lobes, with no gradation between them, only the edge where one stops and the other begins. Over these, the dark blue line does the modelling. Wandering contours trace each ridge; short ticks are laid in fans down the slopes, their direction telling you which way the ground drops; and bushes are clumps of round dots over a softer green patch that spills a little past them. At the far left the ticks lengthen into ragged vertical streaks, and the bluff ends in a sheer face."
+   },
+   {
+    "t": "A picnic at the lip",
+    "x": 0.04,
+    "y": 0.53,
+    "w": 0.49,
+    "h": 0.165,
+    "body": "Left of centre, on the bluff's flat top, three travellers have stopped to eat a few steps from the drop. Their white mat is drawn as a long parallelogram seen from above, its right-hand corner run almost to the edge. On it stand a box of four green tiers held in a yellow frame and a small white cup, and a large dark bundle sits behind. At the left, a kettle hangs from a tripod over brushwood, and one of the three kneels with his back to us, one hand down on a second, yellow mat, the other working a white fan with a zigzag edge at the fire. The two seated men are turned to each other: the one in pale blue reaches an arm across to the knee of his companion in green, who smiles down at him with lowered eyes. The falls drops at their elbow, and what happens at the lip is fire, food and company. Their robes are printed with the economy of the rocks: an outline, a flat blue or green, a scatter of crosses or dots for the cloth's pattern, and faces and hands left the white of the mat."
+   },
+   {
+    "t": "Mist printed as a colour",
+    "x": 0.02,
+    "y": 0.25,
+    "w": 0.45,
+    "h": 0.3,
+    "body": "Up the left side, behind the picnic, a band of warm yellow crosses the hills, faintly scalloped with cloud shapes traced in a thin greenish line: mist, given a body of flat colour. The conifers standing in it are built of short horizontal dashes of blue-green stacked into silhouettes, with no outline round them, and that missing outline sets them back behind the bluff, whose ridges are outlined. A tree climbs from the edge of the picnic ledge into this space, branches in the dark blue line, leaves as green patches spotted with blue. Where its twigs cross the meeting of the yellow and the grey, small pale crescents show between them, where neither colour reaches."
+   }
+  ],
+  "beside": "Two pictures of a high place with people on it run their proportions opposite ways. Here the falls fill the sheet's length, and the travellers at the lip are three small figures round a kettle and a tiered box, in each other's company. In Walenty Wańkowicz's Portrait of Adam Mickiewicz on the Ayu-Dag Cliff, from 1827–28, the poet nearly fills the canvas, alone, leaning on a rock in a fur cloak, chin on hand, face lifted to the clouds, the Black Sea a pale glimpse at the right edge. That crag, too, was staged for the man on it, from his own Crimean Sonnets.",
+  "refs": [
+   {
+    "id": "portrait-of-adam-mickiewicz-on-the-ayu-dag-cliff",
+    "text": "Portrait of Adam Mickiewicz on the Ayu-Dag Cliff"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "leon-bonnat-armand-fallieres": {
+  "mv": 6,
+  "see": "A three-quarter-length portrait of an old man seated full face in an armchair. He has grey hair, a white moustache and a full, square-cut white beard, and wears a black coat and waistcoat with a dark bow tie. The armchair is upholstered in olive green, with carved wooden arms ending in scrolls; behind it is a deep red-brown ground worked in visible strokes. Most of the surface is black or dark red, and the light collects in a few places (the head and beard, the shirt at the throat, the two hands low at either side).",
+  "about": "Of the office of a republic's head, the canvas shows almost nothing. He wears the black coat and waistcoat of any deputy or notary of the day; behind him there is no desk and no view of a palace, only an armchair and a dark ground. What is left to carry the rank is the man, full face, meeting the eyes of whoever stands before him. The head of state appears as one particular citizen of sixty-five.",
+  "craft": "The figure follows a rule Bonnat is reported to have held to: the shadows simplified and only rubbed in, the lights alone laid in thick paste. The surface agrees as far as the eye can follow it without touching. In the figure's darks the paint lies flat and even, with hardly a brush mark to catch on, while wherever the light falls it is worked into a broken, textured skin. The colour range is held narrow: black, a few dark reds and one olive green carry nearly the whole surface, around the flesh and whites of the lit places.",
+  "context": "In January 1906 the two chambers elected Fallières President on the first ballot, after nearly seven years presiding over the Senate. Bonnat, in his seventies, director of the École des Beaux-Arts and painter of Thiers in 1876 and Grévy in 1880, sent this portrait to the Salon of 1907. Fallières kept the canvas through his term and in 1913, the year he left office, gave it to the State for the Musée du Luxembourg. In 1920 it moved next door into the Senate, and hung there for nearly fifty years.",
+  "deeper": [
+   {
+    "t": "The head against two grounds",
+    "x": 0.33,
+    "y": 0.1,
+    "w": 0.34,
+    "h": 0.305,
+    "body": "At the top of the figure the head rises clear of the chair back, so the hair and forehead sit against dark red while the jaw and beard drop down against olive green. The face itself tells you where the light is. The cheek on our right is bright, the one on our left lies in warm half-shadow, the nose casts its shade to our left, and both eyes carry their catchlight at the same upper-right point: one light, falling from our right, held consistently. The flesh is not polished smooth. It is laid in dense, opaque paint with a grained, crusted surface, and every mark of age is kept: the pouches under the eyes, the heavy upper lids, the creased brow, the broad nose. Along the grey hair on our right the dark ground is worked up warm and red to the very contour, a thin seam that keeps the head from sinking into the dark behind it."
+   },
+   {
+    "t": "Linen, beard and a red dot",
+    "x": 0.31,
+    "y": 0.27,
+    "w": 0.4,
+    "h": 0.21,
+    "body": "Below the moustache the beard changes handling: thick, woolly strokes dragged downward and left ragged at the lower edge, where they break over the tie. The tie is a dark blue bow scattered with white dots, each dot a single touch of paint. Under its knot a small wedge of shirt-front shows, and that wedge is brighter than anything in the face, so the strongest light in the portrait lands on linen, not on skin. A hand's width to our right, on the lapel of the black coat, sits a dot of red: the rosette of an order. Nowhere else does the colour run this hot. On a President of the Republic, that dot is the whole display of rank. No sash crosses the coat and no medal hangs from it; around the red there is black cloth and a dark waistcoat buttoned high."
+   },
+   {
+    "t": "The black coat, drawn",
+    "x": 0.2,
+    "y": 0.43,
+    "w": 0.6,
+    "h": 0.21,
+    "body": "Through the middle of the canvas the black coat spreads from shoulder to shoulder and down over the lap. Look into it and it is drawn, not poured: each lapel rolls back along an edge only a shade off the black, both fronts carry dull, round buttons, and the waistcoat between them has its own button row. The half of the coat on our right, turned toward the light, sits a degree lighter than the half on our left. Little of this carries at a distance, where the coat reads as one broad dark shape from shoulders to knees, a dark mount in which the head and hands are set."
+   },
+   {
+    "t": "One hand holds, one rests",
+    "x": 0.14,
+    "y": 0.6,
+    "w": 0.72,
+    "h": 0.2,
+    "body": "At lower left his right hand closes over the carved scroll that ends the chair arm, knuckles raised, fingers hooked down over the wood. At lower right his left hand lies on his thigh, open and slack, fingers loose along the cloth. Both are painted in the same grained flesh as the face, reddened at the knuckles and greyed in the hollows, and both come out of a stiff white cuff, so each hand arrives ringed in white linen. The body is set square and symmetrical in the chair; the hands are where that symmetry gives way. Against it the grip at our left reads as action, and the wood under it is painted lit and warm, its carving caught in pale strokes."
+   },
+   {
+    "t": "Nail heads between the knees",
+    "x": 0.36,
+    "y": 0.76,
+    "w": 0.42,
+    "h": 0.22,
+    "body": "Between his knees the top of the green seat shows, and along its front edge three domed nail heads are picked out in dabs of light paint. Below them the light gives out: the carved wooden apron of the chair sinks into the dark, and to either side the trouser legs run on past the bottom edge, cut below the knee. Seeing down onto the seat's top places our eye above his lap, the way a standing visitor looks at a seated man."
+   },
+   {
+    "t": "The hatched ground, signed",
+    "x": 0.62,
+    "y": 0,
+    "w": 0.38,
+    "h": 0.32,
+    "body": "At the top right the ground behind him is not a flat dark curtain. It is hatched: short parallel strokes of brick red dragged over near-black, laid in patches whose direction changes from one to the next, so this surface keeps a faint flicker that the face, modelled without hatching, does not share. The hatching grows lighter and warmer toward the right edge, here at the top and again lower down above the chair arm on our right. That is the side from which the light reaches his face, so ground and head answer to one source. High in that corner the painter's name and the year are written in a lighter red than the strokes around them, small and unboxed, sitting in the texture more than on top of it."
+   }
+  ],
+  "beside": "Two eminent men of the Third Republic wear the same everyday dark coat, white shirt-front and bow tie, and each portrait has to find its sitter's standing somewhere other than his clothes. Pasteur's portrait by Edelfelt, from 1885, finds it in work: Pasteur stands among flasks, bottles and a brass microscope, eyes lowered to the stoppered glass in his raised hand, away from ours. A President's office offers no instrument to hold up to the light, so Fallières sits before a dark ground with nothing to examine, and looks straight out.",
+  "refs": [
+   {
+    "id": "albert-edelfelt-pasteur-s-portrait-by-edelfelt",
+    "text": "Pasteur's portrait by Edelfelt"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "jean-francois-millet-le-printemps": {
+  "mv": 6,
+  "see": "An orchard in blossom as a spring shower passes, seen from a farm track. A rainbow arcs over the upper left against a slate storm sky that breaks into grey-blue at the far right. Through the middle runs a stretch of sunlit country: a wood on a rise, a fenced field, flowering fruit trees, and farm roofs half-lost in haze at left. A tall leaning tree in blossom frames the right side, a small figure stands by the fence, and light lies across the scene in bands.",
+  "about": "A shower passes over an orchard, and the season arrives with it. An early biography of Millet describes the set of four seasons this canvas belongs to as scenes from the calendar of farm life; here spring is something that happens to a farm, not a task done on it, a few minutes of weather with the blossom out under them. The person in it is a small figure standing at a fence, sized as a landscape painter sizes one. The painter of The Gleaners had made his name with peasants painted large and at work, and from 1865 he turned more and more to landscape.",
+  "craft": "In April 1868 Millet ordered four canvases of one size for the commission, a metre ten by eighty-five centimetres, and asked for three to be prepared with a ground of deep pinkish lilac and the fourth with yellow ochre. His order does not say which ground went under Spring. The paint was then laid on at intervals, the canvas taken up and set aside among other pictures on the go.",
+  "context": "The commission followed close on a death. Théodore Rousseau, Millet's closest friend, died at Barbizon in December 1867, and Millet wrote that it left him almost unable to work. In March 1868 Frédéric Hartmann, an Alsatian manufacturer and one of Rousseau's patrons, ordered from him a cycle of the four seasons. By May he was “eager to begin” the Spring; that summer a cure at Vichy, and migraine, stopped him. In August 1870 the war sent his household to Cherbourg until November 1871; from there, in May 1871, he wrote that he had no heart to speak of the spring arriving all the same in such times of horror, the season, not the canvas. Back at Barbizon in May 1873 he called his Spring nearly finished, and wondered whether the times were too troubled to show it.",
+  "deeper": [
+   {
+    "t": "Two bows",
+    "x": 0,
+    "y": 0,
+    "w": 0.4,
+    "h": 0.42,
+    "body": "At upper left a rainbow rises out of the haze above the farm roofs and leaves the canvas at its top edge, a soft band of warm yellow laid over slate-grey cloud. Look further into the corner and a second, much fainter arc runs parallel outside it: the secondary bow that a bright rainbow throws. Even the cloud follows the optics. Where the two arcs run side by side, the sky between them is darker than the sky just under the inner one, which is the order of light a real double rainbow shows. The bow also settles where the sun is. A rainbow always stands opposite the sun, in falling rain, so the light striking the orchard comes from behind us, over our shoulders, while the shower is still coming down on the left. There the foot of the arc thins away into a grey-green veil that swallows the trees behind the roofs, and never reaches the ground."
+   },
+   {
+    "t": "Land brighter than sky",
+    "x": 0.3,
+    "y": 0.04,
+    "w": 0.38,
+    "h": 0.34,
+    "body": "Below the dark sky, a wood on rising ground stands in full sun: crowns of pale yellow-green above a row of light upright strokes for trunks. Its top runs nearly level and its left end drops almost vertically, both edges cut hard against the cloud. Set it beside the sky directly above and the wood is far the lighter of the two. In most landscapes the sky is the source of light and the land sits darker beneath it; here sunlight has reached the ground under a slate cloud, the short-lived light of a spring shower going over. The same light finds three white birds up in the dark, each a tiny mark with its wings spread, and they are the lightest touches in this whole stretch of cloud. Around them, torn scraps of paler grey are laid over the dark in broken strokes."
+   },
+   {
+    "t": "Blossom at the break",
+    "x": 0.6,
+    "y": 0.03,
+    "w": 0.4,
+    "h": 0.4,
+    "body": "At upper right the near tree throws its sprays up against the sky, and its blossom is counted out flower by flower: each a separate pink dab on dark olive leaf, some with a darker centre, among yellow-green flicks of young leaf. The smaller, deeper-pink dots at the tips of the sprays read as buds not yet open. Behind the sprays the sky divides. At left the slate cloud is still dark, dragged downward in slanting streaks; to the right it opens into grey-blue with rounded white cloud. The tree's highest blossom is set against that seam, where the storm gives way to clear air."
+   },
+   {
+    "t": "The pale tree under the arc",
+    "x": 0.1,
+    "y": 0.16,
+    "w": 0.34,
+    "h": 0.38,
+    "body": "Left of centre, another tree in blossom is handled the other way from the near tree at right. Its flowers are massed, not counted: pale pinkish-white clusters laid in shelving tiers, each tier undercut by a band of darker green, so the crown builds up in layers of bloom. At the top the twigs break into short upright sprays tipped with pink. The top of the crown rises into the slate cloud inside the rainbow's arc, and there the dark ground carries its pale paint; lower down, set against the lighter haze and the sunlit green behind it, the same crown reads as a darker mass. To its right a second, smaller crown spreads flat like a parasol over a thin trunk."
+   },
+   {
+    "t": "Worked ground",
+    "x": 0,
+    "y": 0.5,
+    "w": 0.5,
+    "h": 0.3,
+    "body": "Below the left-hand trees the ground is a garden in use. Along the bottom of this stretch, dark clumps of young plants stand at intervals in red-brown soil, spaced like a planted row. Behind them a bed of deep, cool green fills the ground between the trunks, and beyond it the field is laid in alternating strips of reddish earth and green, the look of ground recently turned. A dead branch lies along the edge of the bed, pale where it catches the light. The trunks are young and slender: one forked and mottled pale, another no thicker than a stake. No one works in this stretch, yet the soil carries the marks of planting and digging, and the orchard reads as a place kept by hand."
+   },
+   {
+    "t": "The old trunk and the brushwood",
+    "x": 0.68,
+    "y": 0.44,
+    "w": 0.32,
+    "h": 0.48,
+    "body": "At right the near tree's trunk leans hard toward the track, thick and crooked, with a swollen knot where it forks. Its bark is pale grey on one side and outlined down the other with a dark red-brown line, the same drawn edge that runs along the branches above. At its foot, pale dry stalks stand up out of the grass and a pair of pale stones lies in the shade. Further right, in the shadowed corner, a tangle of twigs is picked out in thin light strokes over brown: brushwood, heaped or growing, set down as much by drawing as by painting."
+   },
+   {
+    "t": "Ruts and shadow",
+    "x": 0.44,
+    "y": 0.55,
+    "w": 0.32,
+    "h": 0.45,
+    "body": "Up the middle of the foreground a bare earth track climbs toward the sunlit field. Two ruts flank it, a doubled red-brown line on the left and a pale channel between dark red edges on the right, and the grass verges beside the track are dotted with small white flowers, each a single dab. Where the right-hand rut runs down into the shade, a few larger flower heads are made another way, each a small star of several pointed strokes. The layout reads as a cart track: wheels cut the ruts, and the trodden centre is where the horse walks. The lower half of the track lies in shadow, its upper edge broken into patches, and the track climbs out of it into sun. That shadowed foreground is darker than the storm sky itself, so we look at the bright middle distance from shade."
+   },
+   {
+    "t": "A figure at the fence",
+    "x": 0.5,
+    "y": 0.39,
+    "w": 0.25,
+    "h": 0.2,
+    "body": "Where the track gives out at the fence, under a dark-crowned tree, stands a small figure: dark jacket, a pale patch at the front, grey-blue legs, the head dark against the leaves. The whole figure is less than a twentieth of the picture's height, yet the eye finds it quickly, because the jacket is one of the few deep accents in the sunlit middle band and it stands against the pale stakes of the fence. The figure also gives the scale of everything around it: the fence comes to about its waist, and the tree above it rises several times its height."
+   }
+  ],
+  "beside": "Dead and living wood share one view in Jacob van Ruisdael's Forest Scene too, painted about 1655, and there the dead tree is the event. A birch slants across the right half of the foreground, pale bark and raw orange breaks, its roots gripping the rock at right while one limb reaches down into the stream below a small fall of water; a snapped stump stands on the bank behind. Two walkers and grazing sheep are tiny on the slope at left. Millet's dead wood is the reverse in size and place: low and at the margins of a planted orchard, small enough to walk past.",
+  "refs": [
+   {
+    "id": "ruisdael-forest-scene",
+    "text": "Forest Scene"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "meindert-hobbema-the-avenue-at-middelharnis": {
+  "mv": 6,
+  "see": "A country road runs straight away from us between two rows of very tall, thin trees, toward a village whose church tower stands on the horizon to our left. Sky takes most of the canvas, with one large, bright cumulus over the right. Around the road lie ditches, flat fields with planted blocks, a dark wood at the left edge, and a farm and a tree nursery at the right. The figures are small and few: a man with a dog on the road, walkers farther off, a couple by the farm, a man among young trees. The eye climbs the trunks first and travels the road second.",
+  "about": "Middelharnis, a village on Goeree-Overflakkee, is seen from the south-east along a real road laid between ditches, still there and now almost entirely lined with houses. Its order is the place's own. Running straight at us down the centre, the road was the thing later admirers had to forgive: in 1890 Émile Michel found it hard not to be a little shocked by a road that cut the canvas down the middle. That straightness is also what makes the distance readable: the road's edges and the two rows of trunks run to one point on the horizon just left of centre, and the eye can follow the road from the bottom edge to the roofs at its end.",
+  "craft": "Under the whole picture lies an unusually strong orange-brown ground, an earth colour bound in oil, so every passage was painted over a warm base. There is no green pigment on the canvas. Each green was mixed from a blue, azurite, and a yellow lake, a translucent yellow made from a plant dye; that yellow has probably faded, which would leave the greens lighter and bluer now than when they were laid. The leaf is built in two layers of touch: a dark, brownish mass, then smaller, lighter dabs laid over its edges, with thin dark strokes for the twigs that show through the gaps.",
+  "context": "In 1689 Hobbema was about fifty, and painting had not been his living since 1668. That year he married, with his old master Jacob van Ruisdael as a witness, and became one of Amsterdam's wine-gaugers, measuring imported wine; afterwards he painted only now and then, and Ruisdael died in 1682. No document records his visit to this road. In the village the picture was prized for what it showed: on 8 May 1822 the Middelharnis council agreed to give it to a Dordrecht painter, Adrianus van der Koogh, for a landscape of his and a copy of the Hobbema still to be painted, since \"one of them equally depicts the village\".",
+  "deeper": [
+   {
+    "t": "Cleared stems",
+    "x": 0.585,
+    "y": 0.17,
+    "w": 0.135,
+    "h": 0.785,
+    "body": "Right of the road, the tree with the highest crown on that side rises from the ditch bank, and its trunk climbs bare through more than half the picture's height before any crown begins. Bare is not quite the word. At intervals small tufts of leaf sprout straight out of the bark with no branch behind them, the way a trunk resprouts where its side limbs have been cut off. These stems have been cleared, and the clearing is what makes them read as so tall and so thin. Nor is the trunk straight: it kinks and leans a little differently at each joint, a grown thing and not a post. A pale stroke runs down one flank and a dark one down the other, just enough to round each stem against the sky, while the crown stays a small cap of leaf at the top of a very long stalk."
+   },
+   {
+    "t": "The man with the dog",
+    "x": 0.42,
+    "y": 0.62,
+    "w": 0.15,
+    "h": 0.24,
+    "body": "Just left of centre, where the two rows close in, a man in an ochre coat and broad hat walks down the road toward us, what looks like a long gun over his right shoulder and a brown-and-white dog at his left knee. He is the nearest figure on the road, yet his head sits level with the heads of the small walkers behind him, and on the line where the far land meets the sky. That alignment places the viewer: we are standing on this road at a walker's eye height, and anyone of his height standing on it keeps his head on that line, near or far. The avenue pulls the eye away into distance, and he walks against it, toward us."
+   },
+   {
+    "t": "Tower and planted blocks",
+    "x": 0.14,
+    "y": 0.56,
+    "w": 0.32,
+    "h": 0.26,
+    "body": "Left of the avenue the town lies along the horizon: a solid square church tower with a bulbous cap and a spike, a long nave roof behind it, and a band of red roofs running right, with a slimmer domed turret among them. The tower stands well off the road's line, so the avenue does not end on it. It rises clear in open sky just left of the avenue's left-hand row of trunks, while the roofs and the turret farther right are seen between the stems. Nearer, two blocks of planted trees stand in the open meadow, set in close rows, their thin stems showing as a dark comb under a level line of crowns, with a small red-roofed shed beside them. Part of the flat land between the road and the town has been planted in rows, as the road has."
+   },
+   {
+    "t": "Ruts and small shadows",
+    "x": 0.34,
+    "y": 0.825,
+    "w": 0.36,
+    "h": 0.175,
+    "body": "In the foreground the road is a pale, worn strip scored with wheel ruts that split, wander and rejoin. Scattered down it are small red-brown lumps, each with a dark shadow tucked against its right side. Those tiny shadows set the light for the whole picture: the sun is on our left, and the trunks beside the road agree, pale down their left flanks and dark down their right. On both sides the grassy verge drops to a ditch, the right-hand one full of still water, so the road runs raised between two cuts."
+   },
+   {
+    "t": "Farm, couple, skyline",
+    "x": 0.585,
+    "y": 0.62,
+    "w": 0.255,
+    "h": 0.22,
+    "body": "Right of the road, a side track leaves the avenue for a farm: a big barn whose roofs mix grey-brown thatch with red tile, and a lower wing in front. By its wall a woman in a white cap, yellow bodice and red skirt and a man in a red coat and dark hat stand face to face. Their heads sit below the line the road's walkers share, because the farmyard lies lower than the road. Then look past the barn's left end to the skyline. A tall frame on three legs with a small red housing at its top is a beacon, and the thin spars with crossbars beside it are the masts of ships; far to the right, a slim red tower stands alone on a rise. Each gets a few strokes, enough to read as something built, a long way off, beyond the farmland."
+   },
+   {
+    "t": "The man among the saplings",
+    "x": 0.73,
+    "y": 0.62,
+    "w": 0.27,
+    "h": 0.37,
+    "body": "At lower right a man in a long dark coat and a hat with a red band stands among rows of young trees, both hands raised to the top of one stem, just under its head. The trees around him are single stems kept bare up to a round, bushy head, set in a line like a fence. In the plot in front, smaller saplings stand in rows on pale ground, and a low trestle stands at his knee. His head sits well below the line the road's walkers share, so we look down on him: the nursery lies below the raised road. What he seems to be shaping is a straight stem with its growth gathered at the top."
+   },
+   {
+    "t": "The cumulus",
+    "x": 0.67,
+    "y": 0.22,
+    "w": 0.31,
+    "h": 0.42,
+    "body": "High at right, the big cumulus heaps up in rounded lobes above the farm. Close to, its white is not laid on smooth. It is a dry, granular light paint dragged and broken over the grey-blue, which shows through it everywhere; that is how the cloud looks soft and still keeps a firm outline. The brightest whites gather along the lobes' left-hand edges and are strongest on the lower-left flank, the side the light comes from. The core and underside sink into a grey close to the open sky's own tone, and that grey gives the cloud its bulk. The fine net of dark lines over it is cracking in the old paint, not brushwork."
+   },
+   {
+    "t": "The wood and the planted trees",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Set the trees against one another. At the left edge a wood has been left to branch: thick trunks forking low, crowns spreading until they merge into one mass, far darker than the road beside it. Three stands in the view are planted and kept by hand instead, each to its own pattern: the avenue's cleared stems, the close-set blocks in the open meadow at left, and the nursery's standards at lower right, bare to a round head like the avenue's trees in small. Low forks and spreading crowns are what the clearing of the avenue's stems holds back, and the wood left at the edge shows that habit in full."
+   }
+  ],
+  "beside": "At Middelharnis the trees are painted in mid-use, while by the river Epte a painter had a row's use put on hold. The avenue's trunks were shredded, their side branches lopped again and again for fuel and fodder so each grew straight toward a life as a pole. The poplars in Claude Monet's Wind Effect, Series of The Poplars, from 1891, were a crop the commune of Limetz had marked for felling, and Monet went in with the timber merchant at auction so the row stood until his series was done. His tall, thin trunks run off the top edge, leaf tossed along them, the row behind streaming to the right in a gust.",
+  "refs": [
+   {
+    "id": "claude-monet-wind-effect-series-of-the-poplars",
+    "text": "Wind Effect, Series of The Poplars"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "thomas-gainsborough-the-market-cart": {
+  "mv": 6,
+  "see": "A tall canvas given mostly to trees. Woodland fills the right side and most of the top; pale sky opens in a wedge at upper left, with a narrow view to distant hills near the left edge. Low down, a two-wheeled cart drawn by a pale horse travels to our right, two young women seated on its load of produce. Two boys stand behind it, a figure gathers sticks beyond the horse, and two more sit with a dog in the shadowed lower left. A dark strip edged with reeds runs below the bank. The figures are small and pale in the brown and olive shadow.",
+  "about": "A wood with a road through it, and on the road the ordinary traffic of the country: a cart taking roots and other produce to be sold, two boys standing at its wheel, a woodman stooped over his bundle off the track, a pair sitting out a rest with their dog. The cart carries the crop away toward a market somewhere outside the frame; the woodman's firewood comes from the trees around him; the resting pair have brushwood heaped beside them. Selling and gathering are two ways of living off one stretch of country.",
+  "craft": "The picture was put together in the studio from earlier studies. A freely painted oil sketch, left unfinished, fixed where the trees stand and the angle of the uneven, sloping track; in it a herdsman followed his cows where the cart now goes. A study in black chalk and grey wash gave the horse and cart. Gainsborough then worked the design up in oil on a canvas six feet high, as large as some of his grand full-length portraits. He went on changing it on the canvas itself: the horse's head first stood nearer the cart, and the paint laid over it has turned translucent with age, so the earlier head now shows through.",
+  "context": "By 1786 Gainsborough, then 59, had not shown at the Royal Academy for two years: a quarrel in 1784 over how his portrait of the three eldest princesses was to be hung had ended his connection with it. He showed instead in his own rooms at Schomberg House, Pall Mall, among his portraits. Late that year Henry Bate, in the Morning Herald, led his readers 'in departing from the portraits' to this landscape 'finished within these few days'. By May 1787 it had sold for 350 guineas, and Bate grumbled that 'no respite, it seems, can be allowed the artist from portrait-guineas.'",
+  "deeper": [
+   {
+    "t": "A light inside the wood",
+    "x": 0.46,
+    "y": 0.27,
+    "w": 0.34,
+    "h": 0.33,
+    "body": "Right of centre, above and behind the cart, a mounded mass of foliage glows pale tan in the middle of the wood. Dark canopy closes over it above and on both sides, and no gap to the sky opens in this stretch of trees, so the light has no visible source: it is set down as a pocket, deep in the shade. At close range the mass holds no drawn leaves. It is built from small flicked touches of tan, pink and dull green over a brown underlayer, the palest of them gathered toward the top, where the mass stands clear against the olive dark above. That dark canopy is laid in softer, blotted strokes, so the two foliages differ in handling as well as in tone. Across the top, a bough reaching in from the right ends in a fork of bare twigs, each one a dark stroke with a thin pale line along its upper side, enough to tell you the light comes from above."
+   },
+   {
+    "t": "Two women on the load",
+    "x": 0.24,
+    "y": 0.565,
+    "w": 0.3,
+    "h": 0.14,
+    "body": "At centre left, two young women ride high on the cart, perched on top of its load. The nearer, in a white cap and pale bodice with a red skirt over her lap, turns her face up toward the other; her companion, behind and higher, raises one hand to her brow and bends her head down to meet her, so that their faces nearly touch. What binds the pair is posture, two heads inclined together, one lifted and one lowered, a relation that reads from far back. The load explains the title. At the back of the cart, on our left, a basket with a looped handle bristles with long orange-red roots, carrots by the look of them, and along the front edge, beside the red skirt, lies a row of pale round produce, turnips perhaps: market goods, with the women riding on them."
+   },
+   {
+    "t": "Two boys at the wheel",
+    "x": 0.1,
+    "y": 0.635,
+    "w": 0.26,
+    "h": 0.25,
+    "body": "At left, two boys stand behind the cart. The taller, in a white shirt, has a long stick slanting back over his shoulder, hands together at his chest, head turned toward our right. The smaller, close to the wheel, raises one hand to his mouth and holds the other lower down; behind him, against the spokes, a rounded brown shape sinks into the shadow. The wheel is drawn more firmly than anything near it: the rim is one long pale arc and the spokes a few dark strokes inside it. Its size does the scaling. With the top of the rim level with the older boy's head, he reads at once as a child, and the cart as a heavy working thing."
+   },
+   {
+    "t": "The pale horse at the bank",
+    "x": 0.36,
+    "y": 0.675,
+    "w": 0.3,
+    "h": 0.185,
+    "body": "Right of the cart, the pale horse in the shafts carries its head low, one foreleg bent at the knee. Its forefoot comes down at the lip of the bank, where the ground breaks off above a dark strip with reeds standing in it. Of all the figures and animals in the picture, the horse's flank catches the strongest light: broad cream strokes along the barrel, with the shadow under the belly and down the neck laid in grey-green. Over that pale body the harness is drawn in quick dark lines, collar, hames and the strap along the side, with the shaft running back to the cart. No rein runs from the head to anyone on the load. Beneath the shafts a pale shaggy dog, nose down, faces the same way, so the horse's light is repeated, smaller, at ground level."
+   },
+   {
+    "t": "The stick-gatherer",
+    "x": 0.66,
+    "y": 0.63,
+    "w": 0.3,
+    "h": 0.18,
+    "body": "Right of the horse, between a leaning trunk and the foot of the great tree, a figure bends low over a bundle of brushwood, a red cloth across the back, one white sleeve pushed down among the sticks, the face turned to our left. He is the woodman Gainsborough added to the picture after it was first described in the press. The sticks are a tangle of dark, crooked strokes, many with a lighter edge along one side, crossing in every direction. At our left their ends run on into the roots of the leaning trunk, and the eye cannot fix where the gathered wood stops and the growing tree begins."
+   },
+   {
+    "t": "Resting in the dark corner",
+    "x": 0.05,
+    "y": 0.82,
+    "w": 0.31,
+    "h": 0.17,
+    "body": "Lower left, in the dark of the corner, two figures sit low beside a heap of brushwood, one in a pale cap, the other in a brimmed hat, both faces lowered. Their clothes are painted in the browns of the ground at the same low pitch, so the pair are found first by the pale cap and then by the dog walking off to our right: black, with a white head and chest, tail up and head lifted. Above them the bank is laid in long slanting strokes of olive and tan that follow its fall down to the group."
+   },
+   {
+    "t": "The slot to the hills",
+    "x": 0.03,
+    "y": 0.36,
+    "w": 0.28,
+    "h": 0.32,
+    "body": "Near the left edge, two masses of trees part to leave a narrow slot of sky, and at its foot lies a low, pale ridge of hills, the one place in the picture where land beyond the wood shows. Within the slot the sky warms from pale grey at the top to cream and buff down toward the ridge. The two trees that frame it are handled in different ways. The nearer crown at left is a yellow-green mass with thin dark lines drawn through it for trunk and branches; the dark mass on the right is laid in long strokes pulled down and outward, leaving ragged, feathered edges against the sky."
+   },
+   {
+    "t": "The wood over the people",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Every person in the picture keeps to the lower two-fifths of its height, under trees that fill most of the top and the right side. Along that low band runs a chain of small lights: the older boy's white shirt, the women on the cart, the horse's flank, the pale dog beneath it, the gatherer's sleeve. Read from left to right, the chain moves the way the cart is going. The red of the skirt on the cart is echoed, smaller and duller, by the cloth on the gatherer's back, so the two warm notes tie the cart to the figure working in the wood beyond it."
+   }
+  ],
+  "beside": "The year before the market cart, Gainsborough brought two people out of a wood straight toward the viewer, in Mr and Mrs William Hallett ('The Morning Walk'). They come forward side by side at life size, probably in the clothes they married in, with the trees behind them and a white long-haired dog throwing its head up toward her hand. Their walk has no errand beyond being seen. The market cart crosses the wood in profile, loaded with produce to sell, and nobody on the load looks out. Even the pale dog under the shafts keeps its nose down, facing the way the horse is headed.",
+  "refs": [
+   {
+    "id": "thomas-gainsborough-mr-and-mrs-william-hallett",
+    "text": "Mr and Mrs William Hallett ('The Morning Walk')"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "claude-monet-snow-scene-at-argenteuil": {
+  "mv": 6,
+  "see": "A road deep in snow runs from the bottom edge up into a small town, with frosted trees massed on both sides: a broad plume at the left behind a paling fence, a stand of thinner trees at the right above a clipped hedge. People are out on it, a pair in the middle of the road, a knot of others further off, one beside a pair of banded gateposts, and a spire rises over the roofs beyond. Nearly everything is pale: blue-white snow, lilac and grey foliage, a hazy sky. Through that pallor run a few dark and coloured marks.",
+  "about": "A street in a small town on a day of deep snow, with nothing happening in it but the weather. People are out all the same, in ones and twos and small groups, and wheels have already cut through. The snow lies along the tops of fence, hedge, gateposts and roofs, and deep on the road, yet it has buried none of the street's divisions: the fence still runs its length beside the road, the hedge still lines the other side, and the gateposts still mark a way in.",
+  "craft": "Monet keeps to a narrow band of pale paint, whites, light blues, lilacs and greys, some of them mixed with pink or ochre, and holds saturated colour back for small touches. The white goes on in strokes laid every way, thick enough in places to stand up in ridges and lumps, and across the near road soft-edged blots of grey-blue are set into it. Drawing is done with the loaded brush in colour, a stroke at a time, and seldom as a contour closing a form.",
+  "context": "In the winter of 1874–75 Monet painted without going far from his door. In June 1874 he had leased a new house in Argenteuil, on the boulevard Saint-Denis facing the railway station, and taken it from October: “the pink house with green shutters”, he later called it. This canvas looks along his own boulevard with the station at his back. It was a season of want. In December the artists' cooperative behind the first group exhibition dissolved itself in debt; in a letter to Manet, probably of January 1875, he was again “sans un sou”, without a penny; in March he and his friends sold pictures at the Hôtel Drouot for low prices to a crowd hostile enough that police were called, and Albert Wolff in Le Figaro likened their painting to a cat walking on a piano keyboard.",
+  "deeper": [
+   {
+    "t": "Two heads turned in",
+    "x": 0.455,
+    "y": 0.53,
+    "w": 0.12,
+    "h": 0.17,
+    "body": "In the middle of the road, at the centre of the picture, two figures stand together, and at this distance they are drawn, not smudged. Each leg is a separate upright stroke with snow between, and the right-hand figure's legs end in bands of darker blue at the ankle. The left one wears a blue coat; the right one a grey-beige coat with a dark collar, one arm crossing towards its companion. Each face is a single dab of orange-brown set towards the inner side of the head, so the bodies face us while the heads turn to each other. That orange, with a larger block at the right figure's throat, is the warmest touch on either body."
+   },
+   {
+    "t": "Gateposts, stack and spire",
+    "x": 0.55,
+    "y": 0.26,
+    "w": 0.16,
+    "h": 0.42,
+    "body": "Behind the pair and to the right, the street's built-up corner keeps its architecture under the snow. Two gateposts rise in banded courses of tan and violet-brown, each capped by a lump of thick white. Behind them a building shows a steep mauve gable at our left, a squat rose-pink stack, and three rounded upright dabs low on its front, one deep blue and two blue-green. Above everything an ochre spire climbs into the haze, a narrow wedge laid without a contour line against a pale, faintly warm patch of sky. Small as it is, this corner gathers much of the warm colour in the upper part of the picture. At the foot of the left-hand gatepost a third figure, dark and half merged with the post, stands apart from the pair."
+   },
+   {
+    "t": "The far knot of people",
+    "x": 0.24,
+    "y": 0.45,
+    "w": 0.22,
+    "h": 0.22,
+    "body": "Left of the pair, under a band of snow-covered roofs, a knot of people stands where the road narrows into the town, just beyond the end of the paling fence. Each is a short upright of paint, mostly blue, some a single pull of the brush and the broadest built of several, with brown and grey-brown marks among them that could be more figures or bare shrubs. The drawing has thinned, but the colour has not faded: the blue of these distant figures is as deep as the near coat, in places darker. The roofs above them are white planes edged in blue-grey, legible as roofs because a dark chimney stack and a few small dark ticks stand along their ridge."
+   },
+   {
+    "t": "A tree made of sprays",
+    "x": 0,
+    "y": 0.16,
+    "w": 0.3,
+    "h": 0.46,
+    "body": "At the left edge, the big tree shows no trunk above the fence; it is built from sprays of short strokes. Along its right-hand side, where it meets the sky, many of the sprays are hooked lines of crimson or rose with paler grey-white dragged along them, coloured wood inside a sleeve of rime. Further in, the strokes crowd into crescents and commas curving up and outward over a bed of lilac-grey, with a few touches of blue among them. The twigs are coated along their whole length, not loaded on top."
+   },
+   {
+    "t": "Ruts turning red",
+    "x": 0.42,
+    "y": 0.68,
+    "w": 0.44,
+    "h": 0.32,
+    "body": "In the foreground, two wheel tracks cut through the snow towards the bottom edge. Near the walkers they are thin, dry scratches of violet-brown; as they come closer they widen and break apart, and the left-hand track turns to vermilion, the reddest paint on the canvas. Neither track is a continuous line. The dark brown was dragged over white already in place, so it catches and skips and the snow shows through it; the vermilion sits inside it as short, solid bars that let no white through. Along the right-hand track a line of olive green runs beside the red, and a round ochre dab sits on it like a stone or a frozen clod. Between the tracks, curling blue strokes mark the shadowed sides of trodden snow. Every figure in the picture stands at or behind the walkers' line, so the near part of the road is given over to these traces of passage."
+   },
+   {
+    "t": "Shadow line, whitest snow",
+    "x": 0.62,
+    "y": 0.56,
+    "w": 0.38,
+    "h": 0.34,
+    "body": "On the right, a clipped hedge runs along the road, capped in thick white and threaded with crimson and olive touches, with tufts of yellow-ochre grass at its right-hand end. Its foot is drawn as a row of slate-grey strokes laid on the snow, the hedge's shadow, and they give the road's right-hand edge a firm line. Directly below them, in a band of snow, gather the brightest touches on the canvas. Some of the darkest strokes on the road sit hard against its lightest. Lower, towards the corner, the snow turns blue and takes small flecks of salmon pink."
+   },
+   {
+    "t": "Trunks drawn in colour",
+    "x": 0.7,
+    "y": 0.1,
+    "w": 0.3,
+    "h": 0.5,
+    "body": "High on the right, the trees are drawn as line. Their trunks rise in long wavering strokes that twist round one another, and they are coloured: crimson runs up one trunk, green-grey up its neighbour, violet through the thinner stems. Short broken touches of pale grey edge and interrupt each line, so the wood looks furred with frost, yet the main trunks can be followed from the hedge top into the upper branches. The big tree at the left edge is made the opposite way, from massed sprays with no trunk showing above the fence."
+   },
+   {
+    "t": "Where the warmth sits",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Over the whole street, the sky holds its one patch of clear blue at the top left, dragged on thin in slanting strokes. The sky warms by degrees as it comes down: blue at the top, a neutral grey through the middle, a faint pinkish grey where it meets the roofs and the frosted crowns. The snow runs the other way. In front of the hedge, where it is brightest, the snow is a bluish white, its very brightest touches close to pure white, and its shadows go bluer still. So the picture's warmth and its light sit in different places: the warm greys low in the sky, with the gateposts and the vermilion of the street, and the strongest light in white and bluish snow."
+   }
+  ],
+  "beside": "Snow, Renoir told Vollard, was a blight on the face of nature, and his Snow-covered Landscape, from within a few years of this one, keeps it at a distance. Half melted, with olive ground breaking through its blue-grey, his field lies between us and a row of houses whose chimney pots, tipped orange-red, show through bare trees. No path crosses it and nobody is out on it, so the town stays on the far side of the snow. At Argenteuil the snow is the street itself, and Monet has set us down in it with the people of the town.",
+  "refs": [
+   {
+    "id": "pierre-auguste-renoir-snow-covered-landscape",
+    "text": "Snow-covered Landscape"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "georges-seurat-le-bec-du-hoc-grandcamp": {
+  "mv": 6,
+  "see": "A headland juts in from our left over a calm sea, a grassy back ending in a shadowed rock face: a dark mass set in a picture otherwise almost all light. Above a high horizon a pale, nearly white sky holds five birds; along the horizon ride a scatter of tiny sails, and one nearer boat with two sails stands in the open water. A cream band follows the rock's left flank, a grassy slope fills the lower right, and a narrow painted border of red and blue touches rings the whole.",
+  "about": "The title names a rock, and the picture is organised round it the way a portrait is organised round a sitter. Everything else is spread thin and light: a sea lying level out to the horizon, a nearly empty sky, a few small sails, a grassy slope. Across the centre of the view, standing between us and much of the open water, rises one dark upright mass, and the calm around it is what gives it its force. The first viewers heard menace in that pairing and named both halves of it. Félix Fénéon wrote that the little promontory ‘rears up snarlingly over the calm, sad sea’.",
+  "craft": "A dozen small oil panels survive from Seurat’s Grandcamp summer, and one of them, probably painted on the spot, records this view; the canvas was worked up from it afterwards, perhaps partly in Paris. The panel shows the tide out, with dark patches of shore between the clifftop and the water, and the canvas leaves that shore out. On the canvas every passage is laid in separate touches, and their shape and direction change from one kind of surface to the next, so the mark carries the material as much as the colour does, and no form is outlined.",
+  "context": "In March 1885 La Grande Jatte stood ready for an exhibition of the Indépendants that never took place. Seurat, twenty-five, went instead to Grandcamp on the Normandy coast, where his family had holidayed in 1881, and painted his first series of seascapes there; the poet Émile Verhaeren later recalled him saying that such summers let him wash his eye of the studio days. On 25 August he left for four weeks of military service at Laon. That autumn he went back to the big picture, ‘taken up again and finished after a trip to Grandcamp’, as he put it, and when it was shown at last, in May 1886, this canvas hung in the same exhibition.",
+  "deeper": [
+   {
+    "t": "The beak at the horizon",
+    "x": 0.47,
+    "y": 0.2,
+    "w": 0.26,
+    "h": 0.27,
+    "body": "Right of centre, the shadowed face of the headland climbs until its square top lands on the line where sea meets sky, while the grassy crown behind it lifts just clear of that line. A horizon marks the painter's eye level, so the crown's small rise above it places us: on ground of our own, a little below the top of the headland, with open water between. The dark face is built entirely of separate touches of rust, violet, orange and deep blue, yet its right-hand outline against the sea holds firm from the horizon downward, as continuous as a drawn line. At the top, a cream patch on the crown is set hard against the dark. Together, the square top and the mass below give the headland its profile: a narrow upright block that broadens into a heavy, rounded base, the beak of the title seen side-on."
+   },
+   {
+    "t": "Five birds under the top edge",
+    "x": 0.45,
+    "y": 0.132,
+    "w": 0.18,
+    "h": 0.13,
+    "body": "High above the crown and close under the top edge of the picture, five birds hang in the pale sky: three across the top, one below them, one lower still. Close to, each is a small knot of strokes, a rust-orange body with one or two longer blue-violet strokes for wings, and the wings sit at a different angle in every bird, so the five show five moments of a wingbeat. They are drawn with directional strokes where the sky around them is laid in small round flecks, and that change of mark is what sets them moving against a ground that stays still."
+   },
+   {
+    "t": "A sky laid over ridges",
+    "x": 0.115,
+    "y": 0.145,
+    "w": 0.33,
+    "h": 0.17,
+    "body": "At upper left, the sky reads as an almost blank, pale field until you come close. Then it shows what appear to be two layers. Underneath, the paint is raised in short horizontal ridges that catch the light, what looks like a body of colour brushed on first; on top, small yellow and lilac flecks are scattered well apart. Those flecks sit closer in tone to one another and to their ground than the touches of the sea or the grass do, which is why the sky stays quiet even at arm's length. Its lower edge is the horizon, level as a ruled line, and three tiny mauve sails stand on or just below it, each no more than an upright tick of a few touches."
+   },
+   {
+    "t": "The two-sailed boat",
+    "x": 0.7,
+    "y": 0.255,
+    "w": 0.19,
+    "h": 0.185,
+    "body": "Out in the water to the right, one boat sits near enough to have a shape: two triangular sails side by side, built from a few rust-orange and deeper blue strokes. That pair of colours recurs in the picture's few dark-bodied things, the birds, this boat and the shadowed rock, while sea and sky are worked in greens, pale blues, lilacs, pale yellows and whites. Around the boat the water is laid in short dashes stacked in rows, each touch wider than it is tall, and that flat, sideways mark keeps the sea lying level all the way in to the rock. Along the horizon at the top of this patch, fainter mauve sails mark the far distance; the boat, larger and darker, sits between them and us."
+   },
+   {
+    "t": "Light against the rock's edges",
+    "x": 0.37,
+    "y": 0.24,
+    "w": 0.4,
+    "h": 0.56,
+    "body": "Along the rock's right side, the sea does not hold one value. In a broad band hugging the contour it turns markedly paler, its green dashes thinning until the water is nearly as pale as the sky, and it darkens again toward the right edge of the picture. On the rock's left flank the adjustment runs the other way: where the dark mass meets the cream band, its rim turns bluer and deeper than the rust-brown body of the rock a little further in. Both changes push light and dark apart exactly at the boundary, so the silhouette reads cleanly from any distance though no line is drawn round it."
+   },
+   {
+    "t": "The cream band",
+    "x": 0.25,
+    "y": 0.395,
+    "w": 0.245,
+    "h": 0.483,
+    "body": "Down the left of the rock, from its shoulder to the near ground at the bottom of the picture, runs a band of cream that follows the rock's contour like a path along a cliff edge. Close to, it is painted unlike the grass on either side: its cream touches are laid thickly and close in tone, so the band reads almost as one continuous surface, while the slope around it is a scatter of sharply different greens, ochres and pinks. Partway down, a small cluster of green and blue strokes lies at its edge against the rock, a tuft on the pale ground. Near the bottom the band widens and loosens into the foreground, so the pale way runs out of the picture toward us."
+   },
+   {
+    "t": "The near slope",
+    "x": 0.52,
+    "y": 0.58,
+    "w": 0.34,
+    "h": 0.29,
+    "body": "In the lower right, the slope in front of us is painted in flat, slanting strokes of yellow, pink, pale blue and green, laid at angles that cross one another, quite unlike the level rows of the sea just above. Its upper edge rises in front of the rock's foot, so the place where the headland meets the water is hidden, and the gap between our ground and the rock is measured only by the strip of sea beyond. At that seam, two lumps of thick white paint sit against the dark. Toward the bottom edge, single green strokes stand upright like grass blades among the flatter dabs."
+   },
+   {
+    "t": "The border and the name",
+    "x": 0.66,
+    "y": 0.66,
+    "w": 0.24,
+    "h": 0.218,
+    "body": "At the lower right corner, the field stops at a narrow band of red and dark blue touches, with some orange among them, that runs round all four sides between the picture and the frame. It is painted on the canvas, and it is far darker than the light passages it encloses, so the picture ends in its own touches and not at the frame. The signature, Seurat in thin red-orange letters, sits just inside the band on the grass, each letter one unbroken line among the separate touches."
+   }
+  ],
+  "beside": "In August Strindberg's Marine with rocks, a small storm coast spread with a palette knife in 1894, the threat has gone out of the rock and into everything. A rock still rises at the lower left, rust-red smouldering in its black, but the sea under it is black as well and torn with white foam, and a grey sky churns over both; light survives in one pale gap low at the right, where surf breaks.",
+  "refs": [
+   {
+    "id": "unknown-marine-with-rocks",
+    "text": "Marine with rocks"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "john-constable-the-opening-of-waterloo-bridge-whitehall-stai": {
+  "mv": 6,
+  "see": "A very wide canvas. At left, a dark wall of trees and a tall bow-fronted house crowded with onlookers. Along the bottom, a stone parapet with urns above dark water. Left of centre, a landing, the Whitehall Stairs of the title, lined with red-coated soldiers; from it a fleet of ceremonial barges with red-roofed cabins, white-clad oarsmen and red and white flags spreads across the right half of the river. On the horizon, Waterloo Bridge, the dome of St Paul's, steeples and chimneys, and over them a high, broken cloudscape.",
+  "about": "The day belonged to the Prince Regent, yet no figure at the stairs is set apart as him. His embarkation is one event in the middle distance of a river crowded with barges and sailing craft. The revisions brought it there. Across his sketches and versions Constable added ground at the left and along the bottom, and the royal party sank gradually deeper into the picture. The far bank holds another kind of revision: of its two shot towers, the tall pale one was not built until 1826, so the morning of 1817 is painted partly from a later London.",
+  "craft": "Under everything lies a thin brown wash over the white ground, left uncovered in places. The drawing that set out the scene, done freehand in pencil and thinned paint with no squared grid to copy from, still shows in part to the naked eye. Over it the paint is opaque and heavy, worked with brush and palette knife into a thick crust. Lines were drawn into that paint while it was still wet, to firm up outlines. Many passages appear to have been rubbed or scraped back once the paint was partly dry, then painted again. His friend C. R. Leslie, who called on him while the picture was being completed in 1832, wrote that Constable finished it with the knife more than the brush.",
+  "context": "On 18 June 1817, the second anniversary of Waterloo, the Prince Regent went by royal barge from Whitehall Stairs to the southern end of John Rennie's new bridge, and crossed it between lines of Waterloo veterans. Constable, in London that day, presumably saw something of it. On 21 February 1832 he asked his engraver David Lucas to send back every sketch and drawing of it, and a week later he wrote that he was \"dashing away at the great London – and why not? I may as well produce this abortion as another.\"",
+  "deeper": [
+   {
+    "t": "A cloud tower over the river",
+    "x": 0.28,
+    "y": 0.125,
+    "w": 0.55,
+    "h": 0.37,
+    "body": "High, left of centre, a tower of cumulus builds up in thick, broken white over a sky of rose-browns and mauve-greys, with blue chiefly in a band along the top. Its white is lighter than anything else in the painting, and across the right two-thirds of the canvas the sky fills more than half the height, so the ceremony below sits in a strip under the weather. The cloud's edges are dragged and crumbled, the darker sky paint breaking into them, which keeps the mass from hardening into a cut-out shape. Under its base, left of centre and again further right, fine pale streaks drop toward the water: thin parallel lines laid over the grey, the look of sun breaking through or a shower passing over the river."
+   },
+   {
+    "t": "The Lord Mayor's barge",
+    "x": 0.745,
+    "y": 0.56,
+    "w": 0.17,
+    "h": 0.235,
+    "body": "At the right edge the Lord Mayor's barge, the Maria Wood, high and gilded, turns its bow toward our left. The hull is laid in long curving strokes of white that follow its planking down to the waterline, so the strokes that lay the colour also draw the hull's curve, and this white is the palest patch in the near water. The gilding above is ochre dabs broken by dark flecks, which read as carving only from a distance. A white shield marked with a red cross sits at the stem, a big red-and-white banner hangs from a staff at the bow, and along the far side a row of small white flags marked in red stands against the pale water beyond, which turns dark just behind the barge. The deck is packed with figures in touches of red, white and black."
+   },
+   {
+    "t": "Red coats at the stairs",
+    "x": 0.27,
+    "y": 0.585,
+    "w": 0.4,
+    "h": 0.18,
+    "body": "Left of centre, at the foot of a stone wall, red-coated soldiers line the landing, each built from a few touches: a black cap, a red coat, white legs, sometimes with a thin stroke of musket above the shoulder. Figures in dark coats stand among them, and beside a yellow flag the file continues past a squared stone pier. Alongside the landing lie long barges with red cabin roofs, their oarsmen set down as a row of white dabs, one dab to a man, with oars trailing red lines across the water. The same red and white run through the coats, the cabins, the rowers and the flags, so the procession holds together as one body even where no single figure can be made out."
+   },
+   {
+    "t": "Behind the parapet",
+    "x": 0.33,
+    "y": 0.72,
+    "w": 0.42,
+    "h": 0.155,
+    "body": "Along the bottom edge a stone parapet runs between two urns. We see the top of its coping, so we stand above and behind it. The river here is dark brown, and its glitter is added on top: short, flat strokes of thick white pulled sideways over the dark. Red streaks cross it, the oars of small boats rowed by dark-capped figures and the reflections of the red barges. At the right-hand urn a knot of figures gathers at the coping. The parapet and those figures place us among the onlookers."
+   },
+   {
+    "t": "Spectators in tiers",
+    "x": 0.1,
+    "y": 0.2,
+    "w": 0.26,
+    "h": 0.47,
+    "body": "At left, a bow-fronted tower climbs three storeys, and spectators crowd it at three heights, along the roof parapet and on two curved iron balconies, with more packed onto the terrace below its ball-topped piers. The figures are dabs of red, white or dark paint, and the crowd is read from its density, the balcony rails running across it like a fence. Thin-trunked trees climb the front of the house in dabbed browns and olive, half hiding it, and below the roofline this side of the canvas stays dark all the way down to the bottom edge."
+   },
+   {
+    "t": "The bridge, small and far",
+    "x": 0.57,
+    "y": 0.43,
+    "w": 0.345,
+    "h": 0.2,
+    "body": "On the horizon at right runs the bridge the title names: a pale band of level arches, nine of them between the left-hand bank and a tall column. The arches widen from left to right, so the bridge is seen on a slant, its right end nearer. At the fifth arch a cloud of white smoke billows up from the water: a gun salute. Behind the span rise the dome of St Paul's flanked by its two towers, several steeples, and to the right two shot towers, a squat dark one with a flag and the tall pale column, a red flag at its tip. At the right edge, tall stacks pour brown-black smoke into the sky. Two kinds of smoke share the skyline: the white burst at the bridge, low and billowing, and the dark plumes of the stacks, which climb into the clouds and darken them."
+   }
+  ],
+  "beside": "Another royal day painted long after it happened: Carl Gustaf Pilo’s Coronation of Gustav III shows a ceremony of 1772 that Pilo had not attended; he began it only in 1782. The king sits in white satin and ermine while a councillor in rose-red and a mitred archbishop hold the crown over his head, the church packed behind them. At the lower right the floor gives out into bare canvas and a few drawn lines; the king was assassinated in 1792, and it was never finished. Constable carried his through to exhibition, and by then the day itself had gone: some critics in 1832 could not recall what had happened at Whitehall Stairs in 1817.",
+  "refs": [
+   {
+    "id": "coronation-of-gustav-iii",
+    "text": "Coronation of Gustav III"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "paul-cezanne-la-route-en-provence": {
+  "mv": 6,
+  "see": "A pale road runs along the bottom of the canvas beneath a long rock face of cream and blue-grey blocks. Scrub and trees grow along the rock's crest; at the left a tall pine and a smaller orange-leaved tree stand against the sky. Beyond lies a valley with a red-roofed house beside a dark tree, and behind it a slope of field patches climbs to a dark ridge under a pale, even sky. Much of the surface is made of short, flat, square-ended touches, each laid in one direction, with dark blue lines drawn along many edges.",
+  "about": "The ground is shown for what it is made of. A face of broken stone fills the near ground — it may be the wall of a quarry, cut back to show its beds — and across the valley the house's walls are of a piece with the rock's pale faces. Roger Fry, writing in 1927, set “the agitated movements of the rocks and trees in the foreground” against “the suave convexities of the distant hill”, and the canvas bears him out: the near rock breaks into faces at every turn, while the hill closes the top of the land in two long, smooth curves.",
+  "craft": "Under the paint lies a drawing in conté crayon or soft pencil, and in places its dry lines are left to work in the finished surface. A dilute yellow wash went over the lead-white ground before the colour. In places, blue painted lines lie both under the paint and on top of it, so drawing with the brush went on once the colour was down. The touches follow no single system: broad and wavy, curving, tapering and flat-edged marks sit side by side.",
+  "context": "It has been dated anywhere from 1883 to about 1892. If it belongs to the end of that span, it may come from a hard season. In the autumn of 1890, travelling in Switzerland with his wife and son, Cézanne fled street violence at Fribourg by train and left them without news. By November he was back in Aix alone, at the family house, the Jas de Bouffan, where he stayed until September and began the Card Players; that winter a friend reported a workman sitting for him. The next spring, in Paris, Émile Bernard published an essay on him, and Félix Fénéon wrote that the “Cézanne tradition” was now in full growth.",
+  "deeper": [
+   {
+    "t": "Blocks along the crest",
+    "x": 0,
+    "y": 0.39,
+    "w": 0.45,
+    "h": 0.23,
+    "body": "At our left, a row of pale blocks sits along the crest of the rock face, and each is shown as two planes at once: a near-white face and a blue-violet one. The change from one to the other happens at an edge, with almost no middle tone between them, so the blocks read as solid without any gradual shading. A dark blue line is run round much of each block, down its corners and into the joints where it meets the next, and that line does the drawing the shading does not. Much of the palest paint below the sky is in these few blocks, and their brightest touches come close to the sky's own pallor; set against the green scrub behind them, they hold the eye."
+   },
+   {
+    "t": "Two trees, two touches",
+    "x": 0,
+    "y": 0,
+    "w": 0.37,
+    "h": 0.52,
+    "body": "Above the blocks the pine rises on a thin, S-curved trunk, pinkish ochre down its left side and closed on its right by a dark blue line. The crown is built of strokes swept in arcs along each tier, yellow-green on the upper sides, blue-green and near-black beneath, and at the top they taper to points that flick upward. In among them sit strokes of the sky's own pale blue-grey, so the sky's colour appears inside the tree as well as round it. A thin dark line runs down part of the crown's left edge, drawing it against the sky. At the far left, behind a smaller green tree, an orange-leaved tree is handled another way: thin, warm paint in soft, rounded dabs, with loose threads of line curling out at its edge. Side by side, the two trees are two kinds of touch: the pine's opaque strokes stacked tier on tier, and its neighbour's thin dabs, soft where they meet the sky."
+   },
+   {
+    "t": "A slope in patches",
+    "x": 0.33,
+    "y": 0.1,
+    "w": 0.67,
+    "h": 0.24,
+    "body": "Across the top, the ridge is a band of dark green and blue-grey, its upper edge gone over with darker strokes where it meets the pale sky. It is plainly darker than the fields below it, and a thin red-orange streak runs just under it. Under the ridge the slope is laid in flat, straight-edged patches of ochre, pinkish orange, pale green and a smear of grey-white, most of them dragged level, with long thin green lines slanting down to the right between them. Stacked level up the hill, the patches stand the slope upright behind the valley."
+   },
+   {
+    "t": "A house without windows",
+    "x": 0.52,
+    "y": 0.27,
+    "w": 0.33,
+    "h": 0.29,
+    "body": "Right of centre, across the valley, the house is a cream block under two triangles of red-orange roof, a taller part and a lower wing stepped down to its right. No window or door is marked on any of its walls; it is built from planes of colour alone. Strokes of the green slope behind are brushed right up to the roof edges, and a thin blue-grey line drops between the two volumes where one stands in front of the other. Beyond it, two more roofs are a dark grey slope and a blue-violet triangle. Against the house's left side stands a tree in blue-black and deep green, one of the darkest masses in the picture, pressed up to the cream wall; the edge where that dark meets the wall gives the house its corner."
+   },
+   {
+    "t": "The cleft",
+    "x": 0.1,
+    "y": 0.52,
+    "w": 0.32,
+    "h": 0.44,
+    "body": "Below the blocks, at our left, the rock face is split by a deep upright cleft. Its lit sides are cream touched with pink and pale orange; the cleft itself is built of blue-grey, grey-green and violet laid in upright strokes, so the shade is coloured, not merely dark. Above it an orange-ochre ledge slopes down to the right, and its strokes run along the slope; on the faces below they mostly run upright. Each plane is told by the direction of its touches as well as by its colour, so where a face turns, the way the brush moved turns with it. Dark blue lines mark the breaks between planes, and the ledges slope down to the right in parallel, so the mass reads as layered stone."
+   },
+   {
+    "t": "The road",
+    "x": 0,
+    "y": 0.68,
+    "w": 1,
+    "h": 0.32,
+    "body": "Along the bottom edge lies the road, a pale band of cream and ochre. At our lower left it is pinched to a sliver between the foot of the rock and a bank of yellow-green grass; toward the right it widens until, at the right edge, it is about as tall as the rock face above it. No figure or cart is on it, and no rut is drawn. Its paint is laid in broad, smooth strokes along its length. Its far side is a long dark band of green-black and blue at the rock's foot, ending in a strip of grass lit yellow-green where it meets the right edge. The road never turns into the valley: it opens at the right edge and is closed at the left, so nothing on it carries the eye toward the house or the hill."
+   },
+   {
+    "t": "Two wedges and a climb",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Seen whole, the canvas is divided by one long seam, the dark foot of the rock, rising gently from our lower left to the right edge. Above it the rock face is tall at our left and narrows to a band at the right; below it the road does the reverse, so two wedges lock along a single line. Over that line the ridge drifts slightly downward to the right, and ridge and seam draw together toward the right side. Above the rock the picture is built as a climb, in bands stacked up the canvas: scrub, the valley with its house, the patched slope, the dark ridge, the sky. The pine, the highest form, runs from the rock's crest up past the ridge's height into the sky."
+   }
+  ],
+  "beside": "Rock fills Cézanne's Rochers à Fontainebleau too, from around 1893, but there it is painted shut in. Rounded boulders in grey-violet and ochre heave up from the bottom edge, thin trunks rise between them, and branches close over the top half, so the sky comes through only in scraps; a level strip of far country shows in one gap left of centre. Beyond the heap nothing is laid out to be read. The Provençal rock lies open under a wide, pale sky, with a valley, a house and a far ridge kept in view above it.",
+  "refs": [
+   {
+    "id": "paul-cezanne-rochers-a-fontainebleau",
+    "text": "Rochers à Fontainebleau"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "unknown-pflanzenwachstum": {
+  "mv": 6,
+  "see": "A tall picture painted almost entirely in near-black, on which ten forms stand like plants. The upper part of each is built by stacking one kind of geometric unit — discs, squares, triangles, heart-shaped leaves, flat lenses — and each is capped in yellow, orange or white, so the caps glow against the dark like small lamps. Around them the ground is a loose grid of dim rectangles in brown, aubergine, bottle green and brick red. Rows of pointed blades line the left and right edges, and red half-discs recur through the middle.",
+  "about": "Pflanzenwachstum means plant growth, a process, and none of the ten forms can be called a species. What each one shows is how a growing thing is put together, one unit set on the last from the base to the tip, so that the eye climbs it in the order in which it would have grown. Klee opened the essay he published in 1920 with the sentence “Art does not reproduce the visible but makes visible.” The picture takes him at his word. What it makes visible is a procedure that a living stem keeps hidden, rewritten in discs, squares and hearts, shapes that come from geometry and from painting, not from botany.",
+  "craft": "Pflanzenwachstum is oil paint on cardboard that was first given a priming. Nothing in it is modelled: its shapes are patches of colour inside firm edges, set beside one another or laid one over the next, and a form changes colour from one unit to the next, in steps. At lower right, under his signature, Klee wrote the year and 193, the number this picture holds in the list he kept of his own work.",
+  "context": "In October 1920 Walter Gropius appointed Klee to the Bauhaus, the school of art and craft he had founded in Weimar the year before. The call came as Klee’s name was rising fast: Hans Goltz’s gallery in Munich had given him a retrospective of more than three hundred works that year, and the first books about him were appearing. In 1921 Klee moved from Munich to Weimar and began to teach, as form master of the bookbinding workshop; he gave his first course of lectures on the theory of pictorial form in 1921–22. Klee dated Pflanzenwachstum 1921, his first Bauhaus year, when the ideas of his Creative Confession of 1920 had to become lessons for students.",
+  "deeper": [
+   {
+    "t": "A tower of discs",
+    "x": 0.12,
+    "y": 0.15,
+    "w": 0.245,
+    "h": 0.35,
+    "body": "Upper left, a tower built from one shape: discs and disc segments, stacked from a broad red segment near the foot up through maroon, brown, orange and yellow to a small grey-white cap. The brush obeys the same unit. The white of the cap is laid in a tight spiral, and the yellows beneath it are pushed round in curved strokes that follow each disc’s rim, so the ridges stand up like the turns of a coil, with dark lying in their grooves. Lower down the handling changes: the brown and maroon discs are brushed thin and flat, and they sink back toward the black around them. The tower thickens as it lightens. Its rise is stated three times at once — in the order of the colours, in the weight of the paint and in the turning of the stroke — and all three meet in the small coiled cap."
+   },
+   {
+    "t": "The combed square",
+    "x": 0.42,
+    "y": 0.11,
+    "w": 0.24,
+    "h": 0.19,
+    "body": "At top centre, the second white cap is a square, and its paint has been combed: upright ridges in the upper part, a band of horizontal ones below, and dark lying in the furrows. The yellow and ochre squares under it are raked the same way, the upper right-hand block in long vertical drags, the others in short scrubbing strokes that leave dark threads behind. Where two blocks fail to meet, a thin seam of black runs between them. That black is the surface the colours were laid on, showing in the furrows and the gaps. The green square on the left flank and the brown block under it are brushed flat and even by comparison."
+   },
+   {
+    "t": "Blades from the edge",
+    "x": 0.012,
+    "y": 0.008,
+    "w": 0.198,
+    "h": 0.192,
+    "body": "In the top left corner, four blades run in from the edge, each lying almost level and tapering to a point: grey-green, then red, then brown, then an aubergine so close to the black that its outline is hard to find. Below them further blades barely surface from the dark. Their broad ends are cut by the edge itself, as if they grew from beyond it. The same column stands at the top right pointing the other way, and lower down on both sides more sets return, with ochre, green and teal among them, aimed inward."
+   },
+   {
+    "t": "The plaited column",
+    "x": 0.235,
+    "y": 0.31,
+    "w": 0.23,
+    "h": 0.33,
+    "body": "Left of centre stands a column made of leaf shapes. At its top is a pale almond bud held in an olive-yellow sheath; under it come three heart shapes, each pointing down and overlapping the next so that its point lies in the notch of the one below. The result reads as a plait, or an ear of grain, made from one repeated unit. The yellows deepen as the column descends, from pale yellow through ochre and a saturated yellow to orange, and then the column enters a large dark oval, brown on one side and near-black on the other, crossed by a broad red band that slopes down to the right. Two green squares, turned on their corners, lean against its left flank like leaves. Where the disc tower piles its units, this one braids them."
+   },
+   {
+    "t": "Red bowls on the axis",
+    "x": 0.41,
+    "y": 0.37,
+    "w": 0.18,
+    "h": 0.23,
+    "body": "At the centre, between the plait on our left and the smaller disc stack on our right, two red half-discs sit one above the other, flat side up, like bowls. Beneath them a near-black half-disc of the same shape sinks into the top of a dark green column. Where its neighbours end in yellow light, this stack ends in red. Follow the vertical through the middle of the picture and the bowls come in pairs, alternating with yellow-capped blocks: a pair hanging from the top edge either side of centre, the blocks of the top-centre plant, this pair, the blocks below it, and two more red bowls near the foot. Repeated down that line, the bowls give the picture its spine."
+   },
+   {
+    "t": "The coloured dark",
+    "x": 0.012,
+    "y": 0.66,
+    "w": 0.208,
+    "h": 0.2,
+    "body": "Along the lower left edge the ground opens into rectangles: brick red, a teal blue, an aubergine square, dark green, and between them black. The aubergine is dragged on dry, its streaks leaving darker paint visible between them, and in the red and the teal a fine, even grain shows through the colour. At a distance this band sits back as dark; close to, it is a patchwork of dimmed hues. The ground the plants stand in is built mostly from their own colours — red, green, brown, violet — turned down nearly to darkness."
+   },
+   {
+    "t": "The lowest crowns",
+    "x": 0.6,
+    "y": 0.78,
+    "w": 0.36,
+    "h": 0.21,
+    "body": "At lower right, a stack sits close to the bottom edge and has hardly risen: lens shapes laid almost flat — brown, a darker maroon, a red band that sweeps up at the right — and on top a small orange-yellow segment, straight edge up and tilted, like a bowl. Its orange stays deep to the tip, and the paint is thin and smooth. Its partner at lower left wears a dome instead, curve upward. Just right of the stack, on a dark green wedge, is the signature: Klee, written in dark strokes on the dark ground, with the year and a number under it in figures that can barely be made out. The name is placed low and dark, among the forms that have barely left the ground."
+   },
+   {
+    "t": "Caps that climb",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Each plant lightens toward its tip; step back and the tips themselves form a scale that climbs with height. The two lowest, near the bottom edge, are deep orange and thinly painted. The three in the lower middle — the triangle stack at left, the blocks at centre and the blocks at right — end in yellow, dulled toward mustard at the tips of the left and right stacks. The plait and the smaller disc stack right of centre, a band higher, end in pale yellow. The three highest, along the top, end in white streaked with grey, and their paint is heavily ridged. The scale appears only when the caps are compared."
+   }
+  ],
+  "beside": "Nothing in this picture has begun to fall: its change runs upward inside every plant. Egon Schiele's Four trees, from 1917, also makes plants keep time, but sets the change side by side along a row of chestnuts on rolling dark ground, and lets it run toward bareness. Three still hold dense red-brown crowns. The second from the left is down to its branches, a few leaves left hanging, and close to its right a flat red sun hangs just above the ridge, under a sky laid in bands of pink, blue and ochre.",
+  "refs": [
+   {
+    "id": "four-trees",
+    "text": "Four trees"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "unknown-taneczny-krag": {
+  "mv": 6,
+  "see": "A hilltop meadow in spring. Six women in loose dresses, pale blue, pale green, lilac, violet, white and deep blue, dance in a ring on grass dotted with yellow flowers. Beyond them the land drops to a valley of pale hills under a blue-grey mountain; above them all rises a cloudy sky crossed by a few dark birds. A white birch and a red-flowering bush stand at the left edge, a sapling and a dark evergreen at the right, and red and white cloth lies heaped at lower right. The colour runs mostly pale and cool, and the reds of the bush and the cloth stand out against it.",
+  "about": "The dance is a release, taken out of doors. Six women have a hilltop to themselves, the land dropping away behind them to the valley, and no one in the picture watches them. Nothing announces an occasion: no maypole or altar marks a rite, and a spring day seems occasion enough. Lightly dressed and barefoot on the grass, they belong to the hill as the flowering bushes do.",
+  "craft": "Stuck painted it in tempera on a wooden panel. Tempera dries far faster than oil, which leaves little time to blend one colour wet into the next, so the picture is built by setting colours beside and over one another. The sky shows the method at its broadest: in the grey clouds and along the cloud edges, cream and blue-grey are dragged across each other in short, blunt strokes, and the lower layer shows through wherever the brush skipped, a dry, chalky grain; the large cream cloud bodies are laid smoother and broader. The dancers are bounded by a dark contour laid with the brush, though not along every edge.",
+  "context": "In 1910 Stuck was a much-honoured painter in Munich and, to a growing body of critics, a painter of the past. He had taught at the Academy since 1895 and lived in the villa he had built from 1897 as a single Jugendstil work of art, house and contents together. In 1906 a Bavarian order of merit made him Franz von Stuck, the name lettered on this panel, and in 1909 the international exhibition at Venice gave him a room of his own. Yet from 1904 the complaint had been mounting that his art was backward and too given over to decoration. He painted this spring dance with both judgements on him at once.",
+  "deeper": [
+   {
+    "t": "Hanging back",
+    "x": 0.575,
+    "y": 0.575,
+    "w": 0.2,
+    "h": 0.3,
+    "body": "At the right end of the ring, the dancer in deep blue leans back until her head hangs out beyond her shoulders, face tipped up toward the sky, hair falling away behind. Her feet, shaded a dark olive, are planted out ahead of her body, and both her hands are taken: one high beside her shoulder by the red-haired dancer in violet, one low by the dancer in white. A ring of linked hands keeps its shape only while someone pulls against the turn, and here that pull has a body. It is set at the end of the oval, where a lean is seen side-on at its full length. Her dress is also the most intense colour among the six, a saturated blue laid in short, broken strokes, so the eye that runs along the chain of arms arrives at the weight that holds it taut."
+   },
+   {
+    "t": "The sixth clasp",
+    "x": 0.19,
+    "y": 0.555,
+    "w": 0.25,
+    "h": 0.17,
+    "body": "Left of centre, the dancer in pale blue lifts her arm up to the dark-haired dancer's head, and behind it the arm goes out of sight. Six women make the ring and five of the clasps between them are in plain view; the sixth, the one that closes the circle, falls behind that knot of dark hair, and the eye supplies it unasked. The same corner shows how the ring lies on the hill. The dark-haired dancer turns her bare back to us while the dancer in lilac beyond turns her front to us across the middle, so the six stand on an oval laid flat on the hilltop and we stand outside it, on its near side. The pale-blue dancer herself pitches forward, head down against her shoulder, her face lost in hair blown out to our left, her skin shaded a cool grey-green."
+   },
+   {
+    "t": "A line round the arm",
+    "x": 0.36,
+    "y": 0.58,
+    "w": 0.27,
+    "h": 0.22,
+    "body": "On the near side of the ring, right of centre, the dancer in white stretches both arms out to her neighbours, and each arm is held by a drawn line: a dark green contour, broken and restated, runs along the forearm, round the elbow and across the shoulder blades. Inside it the flesh is a smooth cream, only a little lighter than the pale valley behind, so it is the line more than any jump in tone that lifts her off the landscape. Look left to the dancer in lilac and the line gives out. Her shawl keeps its edges at the shoulder, but lower down the skirt is laid in strokes of lilac, grey and the hillside's own blue-green, and no feet show beneath it; the hem simply becomes turf. The red-haired dancer in violet, also at the back of the ring, keeps a firm line along both arms and her kicked-back foot, so the lapse in the lilac skirt is not a matter of distance."
+   },
+   {
+    "t": "Feet on the turf",
+    "x": 0.26,
+    "y": 0.755,
+    "w": 0.325,
+    "h": 0.15,
+    "body": "Below the ring, the bare feet of the dancers in pale blue, green and white all point toward our left, heels lifting off the turf, so the near side of the ring is travelling left at a running step. Around them the grass is dragged on in long blue-green strokes crossed by bands of blue shadow, and the yellow flowers are single round dabs of unmixed colour set on top, crisp against the strokes beneath, with a few white points scattered among them in the same way."
+   },
+   {
+    "t": "The red heap",
+    "x": 0.665,
+    "y": 0.855,
+    "w": 0.3,
+    "h": 0.118,
+    "body": "At lower right, a heavy red cloth lies crumpled on the grass over a smaller white one, well apart from the ring. None of the six dancers wears red, so the heap reads as clothing put down before the dance. Its folds are drawn the way the figures are, with ridges picked out in pale pink and grooves in a darker red, and the white cloth beneath carries its own grey outline. Right of it the signature is lettered in dark blue-green capitals, FRANZ VON STVCK stacked in three lines over the date 1910, the U written as a V in the manner of a carved inscription."
+   },
+   {
+    "t": "The birch at the edge",
+    "x": 0.04,
+    "y": 0.42,
+    "w": 0.158,
+    "h": 0.553,
+    "body": "At the left edge, a birch rises from the bottom of the picture past the horizon, its crown cut off by the frame. The bark is thick white laid on in long vertical strokes and crossed by short black-brown dashes, and near the ground the white gives way to a blackened, ragged foot, which is how an old birch's bark really does darken at the base. Behind the trunk a bush flowers in dabs of strong red over blue-green leaves, with a darker shrub beside it. Rooted at the bottom edge and cut at the side, the trunk stands nearer to us than the dancers, a white upright the eye passes on its way in."
+   },
+   {
+    "t": "The dark evergreen",
+    "x": 0.7,
+    "y": 0.5,
+    "w": 0.262,
+    "h": 0.36,
+    "body": "At the right edge, a dark evergreen is cut off by the frame, a rounded column of blue-black paint and the darkest mass in the picture. Its outline is frayed with violet and purple dabs against the pale valley, and at its foot a shrub flowers in pink and lilac. In front, a slender sapling rises almost straight, its leaves single dabs in two greens strung along fine brown twigs. Down the slope two small trees are in pink blossom, and beyond them a pale ribbon winds across the valley floor. Against so much pale distance the evergreen stands as a dark wall at the edge, and the blue-grey mountain behind the sapling falls back from it."
+   },
+   {
+    "t": "Rain over the valley",
+    "x": 0.2,
+    "y": 0.36,
+    "w": 0.42,
+    "h": 0.265,
+    "body": "Above the ring, left of centre, fine slanting lines fall from the grey underside of the cloud to the far hills: a shower, drawn stroke by stroke in thin blue-grey over the pale sky. The lines slope down toward our left, the same way the loose hair of the dancers below them streams. To the right the sky clears into a band of turquoise warmed with a little yellow. The weather is moving through the picture while the dance goes on, with the rain out over the valley and the dancers' heads set just beneath the line of the far hills."
+   }
+  ],
+  "beside": "Custom holds the dance together in Paul Gauguin's Breton Girls Dancing, Pont-Aven, from 1888. Three girls go hand in hand across a mown field, and everything they wear ties them to the village behind: starched white coiffes and broad collars, dark bodices, aprons, wooden clogs, a red flower pinned on the two turned toward us. Gauguin called the dance a gavotte. Haystacks stand about, a small dog has its nose in the grass, and roofs and a church spire close the field off at the back. Nothing on Stuck's hill says where its dance comes from. The dresses belong to no region, and the valley below holds no roof.",
+  "refs": [
+   {
+    "id": "gauguin-breton-girls-dancing-pont-aven",
+    "text": "Breton Girls Dancing, Pont-Aven"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "w-adys-aw-czachorski-dama-w-liliowej-sukni-z-kwiatami": {
+  "mv": 6,
+  "see": "A young woman in a lilac satin gown sits in a carved gilt armchair at right, turned to our left, her right arm raised into a bowl of pink azaleas set on a tall bronze vase. The vase stands on a marble-topped table with a wicker basket of cut flowers; behind it, a second table is draped with a red patterned rug. The back wall carries a wooded landscape in a gilt frame and, at the right edge, a dark green curtain. Light falls from our left. Two colour masses face each other across the canvas: the pink at upper left, the pale satin at lower right.",
+  "about": "Leisure is staged here among expensive things. A young woman in a fashionable gown sits with bronze, gilt, marble and pearls about her, a framed landscape behind, and more flowers than one table needs, and the only event is a reach toward a blossom. Nothing in the room needs explaining: no letter in her lap, no one at the door. In place of a story the scene offers time. With no action to grasp at a glance, it passes the eye from one costly surface to the next and repays whoever stands close and stays there, the way such pictures, painted for private rooms, were looked at.",
+  "craft": "The canvas is unsigned, and its finish is made to be read from close by. That finish is graded: what frames the figure, like the brocade on the chair, is brushed more broadly than what sits against it, which keeps the edges of the satin and the flesh crisp.",
+  "context": "Czachórski was born in Lublin in 1850, trained at the Munich Academy and kept a studio in Munich from 1879 until his death, among the most sought-after Polish painters in the city. He painted mostly to order, and his pictures passed straight from the studio into their buyers' hands, so little of his work reached Poland. This canvas entered a Polish collection after his death on 13 January 1911: that year his brother's wife gave it to the Zachęta, the Society for the Encouragement of Fine Arts. On 24 June the weekly Świat printed it across a full page, and Władysław Wankie's article on the Society's museum room closed on its recent gift, “a beautiful picture by the lamented Czachórski”.",
+  "deeper": [
+   {
+    "t": "Fingertips in the azaleas",
+    "x": 0.04,
+    "y": 0,
+    "w": 0.24,
+    "h": 0.3,
+    "body": "At upper left, her right hand rises into the bowl of azaleas, palm turned toward us, and two fingertips close on a single narrow leaf while the little finger stands apart. The touch takes no weight: the fingers are loosely curled, the wrist is straight, and the leaf is one slim green stroke held between them. Look at how two kinds of paint meet at those fingertips. The flesh is laid thinly and blended, its strokes following the pads of the fingers and the soft crease at the base of the thumb, with a cool shadow between the fingers. The blossoms pressing round it are built in thick, curled ribbons of pink and white that stand up from the surface, each petal edge a ridge of loaded paint, with deeper red worked into the throats. The flesh is paler and warmer than the rose of the blossoms, and only their whitest petals come near it in colour; against those, the change of handling carries the edge, smooth paint set directly against thick."
+   },
+   {
+    "t": "The sidelong look",
+    "x": 0.37,
+    "y": 0.05,
+    "w": 0.2,
+    "h": 0.31,
+    "body": "Right of centre, her head turns three-quarters to our left and her eyes go further than the head, pushed into their corners so that white shows on our right of each iris. That double turn makes the look sidelong. The lower lids are rimmed in pink; the closed mouth is full and red. The chin lifts, stretching the lit throat down to a choker of small pearls, each bead set with its own point of light. The light comes from our left: it takes the forehead, the nose and the upper lip, and leaves the jaw and the side of the neck on our right in a warm brown half-shadow."
+   },
+   {
+    "t": "The bodice, material by material",
+    "x": 0.26,
+    "y": 0.26,
+    "w": 0.44,
+    "h": 0.36,
+    "body": "Across her chest and the sleeve of the raised arm, one material meets the next, and each is made by a different kind of mark. The lilac satin of the bodice is laid in long strokes that bend with its front, each light a pale streak with a firm edge. The bow at her breast is a sheer white fabric: thin, broken whites with grey in the folds, an olive-green insert showing beside the knot. Lace edges the neckline in small loops of off-white. Beside the lace runs a glinting band of trim made of separate dabs of grey, silver and ochre, granular where the satin next to it is smooth. At the cuff of the raised arm the trim is feathery, flicked outward in short broken curls that fray the sleeve's outline against the dark behind it."
+   },
+   {
+    "t": "Bronze blossoms, cut blossoms",
+    "x": 0,
+    "y": 0.36,
+    "w": 0.3,
+    "h": 0.5,
+    "body": "At left, the tall bronze vase that carries the azaleas is covered in cast ornament: a bird whose scaled plumage wraps the shoulder, its small beaked head at the left edge of the body, and shaggy blossoms with sprays of leaves across the belly. The relief is drawn with its lights. Each raised edge is a separate touch of cream or ochre laid over a brown so dark it is nearly black, and between those touches the metal is smooth, crossed by a few thin white flicks. Then look just left of the foot, on the marble: two cut chrysanthemums, one magenta and one pink, their ragged heads made of many curled strokes. The bronze blossoms above have a ragged outline like theirs, so the same shaggy shape stands on this tabletop in dark metal and in petals."
+   },
+   {
+    "t": "Over the edge",
+    "x": 0,
+    "y": 0.74,
+    "w": 0.44,
+    "h": 0.26,
+    "body": "At lower left, along the front of the marble top, a yellow chrysanthemum lies with its head over the rim, and two pale carnations hang from their stems in front of the frieze below, green buds still closed. A stem crossing the ledge is an old still-life device: it carries the flower out past the edge of the furniture toward us, so the table reads as a shelf at the front of the picture. The table is painted with a cabinetmaker's attention, beaded mouldings, small wreaths and leafy capitals in gilt metal on a red-brown frieze, each ornament picked out in yellow dabs over brown."
+   },
+   {
+    "t": "The other hand",
+    "x": 0.63,
+    "y": 0.53,
+    "w": 0.25,
+    "h": 0.21,
+    "body": "At right, her left hand rests on the satin of her lap just inside the chair's carved gilt scroll, loosely holding a few green stems. Their flower, a red head painted in quick dragged strokes, sits pressed against the scroll and half hidden by it. The fingers curl under, the nails catch small lights, and the forearm crosses in front of the chair arm without effort. Against the raised hand at upper left, careful and lifted, this one is at rest: one hand reaches into flowers still massed in their bowl, the other holds a picked bloom by its stems, low and loose."
+   },
+   {
+    "t": "The colour in the shadows",
+    "x": 0.52,
+    "y": 0.6,
+    "w": 0.48,
+    "h": 0.4,
+    "body": "Below the lap, the satin skirt falls to the lower edge in a broad slope of folds, and its colour sits where you might not expect it. On the lit ridges over the knee the paint is nearly white, with only a trace of lilac; the full violet is in the shadows, deepening to a saturated plum in the folds at lower right beside the dark curtain. The lights are long strokes laid along each ridge, their edges turning quickly into the half-tone, and that quick turn is what makes the cloth read as satin, heavy and glossy, and not as velvet or wool. Down the front runs a paler, greyer panel, painted with the same long strokes."
+   },
+   {
+    "t": "A picture on the wall",
+    "x": 0.6,
+    "y": 0,
+    "w": 0.4,
+    "h": 0.6,
+    "body": "Behind her, to our right, hangs a wooded landscape in a carved gilt frame; beyond its right edge stand a grey, veined upright and a near-black green curtain with a tasselled fringe. The landscape is painted in a lower key than the figure and the flowers in front of it, olive and blue-green laid in short hatched strokes, with big leaves pressed flat as dark silhouettes against a pale ground at the top. A tower in the middle distance is suggested with short upright touches. The passage is broad and muted, so it reads as a hanging picture, an object in the room, not as a view through a window. Against its dull olive, the white trim of her sleeve and the lilac of her shoulder come forward."
+   },
+   {
+    "t": "Two pictures in one",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "The horizontal canvas divides a little left of its middle, at the gilt chair. On our left stands a complete flower piece: azaleas in their bowl, the bronze vase, the basket, the marble table and, behind, the rug-draped table with its books. On our right sits the figure before the framed landscape. Her raised arm crosses from one into the other. The two halves are carried to one finish: the bronze relief, the basket's lattice and the table's gilt mounts are drawn as closely as her lace and pearls."
+   }
+  ],
+  "beside": "The trademark in Jean-Jacques Henner's Standing Woman, from about 1903, is red hair, his signature since 1872, worn by a woman nobody has named. It falls loose past her shoulders, and around it he keeps almost nothing: a plain blue drape slipping from both shoulders, a dark ground opening onto sky at the upper right, edges softened into the dark. She meets our eyes. Czachórski's model carries no such mark on her own person. What makes the picture recognisably his surrounds her, in bronze, gilt, marble and a table of flowers, and the one part of her that might meet ours, her look, goes off to our left.",
+  "refs": [
+   {
+    "id": "jean-jacques-henner-standing-woman",
+    "text": "Jean-Jacques Henner's Standing Woman"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "anders-zorn-dance-in-the-gopsmorkate": {
+  "mv": 6,
+  "see": "A crowded dance in a low cottage room, seen from inside the crowd. Couples in folk costume turn under a ceiling of ochre boards and dark timber: women in white blouses, black skirts and red hair ribbons, men in dark caps and dun-grey jackets. The frame cuts into figures close to us: a woman's bowed profile at the left edge, and at the right edge the partner of a man seen from behind, her face turned to us. The darks gather in the near half; the light opens past them, on a pale block at the back and on the floor between the dancers' feet.",
+  "about": "Zorn paints a dance as the people on the floor know it, which means without its shape. One couple at right reads plainly as a pair, the man with his arm round his partner; elsewhere a partner is mostly lost behind a shoulder or a swinging skirt, and who dances with whom, or which way the couples are travelling, cannot be made out. Looked down on, a dance would show its pattern. Seen from among the couples it is a press of bodies at arm's length, the floor glimpsed in pieces between them.",
+  "craft": "It was painted at speed, and the surface keeps the evidence. Many strokes were set down once and never worked again: some went into paint still wet, so that their edges soften into whatever lies beside them, others were left crisp. A stroke runs the way its subject runs, so the brush carries direction as much as the drawing does.",
+  "context": "In September 1906 Zorn launched a fiddlers' contest, counted as Sweden's first, at Gesunda near Mora. Hjalmar Dallmer, who went, described the crossing of Lake Siljan in print fifty years later: the painter at the steering oar of his church boat \"like a Viking chieftain\", and beside him an old fiddler in a white homespun jersey, Ljuder Anders Ersson of Gopshus. That village lay near Gopsmor, the retreat Zorn had pieced together from older timber houses in 1904–06. At Gesunda the old players held back. The young would no longer dance to their polskas, Dallmer wrote, and \"now, in the accordion's time\" nobody cared about them. Eight years later, the dance on this canvas crowds into the cottage at Gopsmor.",
+  "deeper": [
+   {
+    "t": "A beam on the caps",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 0.24,
+    "body": "Along the top of the canvas runs the cottage ceiling, painted at the same speed as the dancers under it: ochre boards in long diagonal drags with dark rafter bands between them, an olive plane tilting in at upper right, an upright post at upper left, and one heavy beam laid straight across the full width in horizontal strokes. Follow the beam's lower edge to the right and it touches a dark cap, the man with his back to us; at upper left, a second man's cap rises to the same edge. No head breaks above that line. The timber takes about a sixth of the picture's height, and the whole crowd stands beneath it, so the beam presses down like a lid and the dance reads as packed into a low room."
+   },
+   {
+    "t": "Heads against the lit block",
+    "x": 0.18,
+    "y": 0.13,
+    "w": 0.46,
+    "h": 0.24,
+    "body": "Below the beam, left of centre, a pale block stands in full light at the back of the room: a slab on a short post above, a squared front below with one short dark line across it. The far dancers are cut out against it. One woman's red hair ribbon has flown out from her head in a loop toward our left; further to our right, a dancer with her back to us has red ribbons tied at the crown, and beyond her, higher on the canvas, a bigger red bow sits on a third head. These heads have almost no features. Each is a rounded patch of grey-brown, a few white strokes for kerchief and sleeve, and red laid over them in quick loops; at this depth you know the dancers by their colours and by the shape each head cuts against the light."
+   },
+   {
+    "t": "The bowed profile",
+    "x": 0,
+    "y": 0.24,
+    "w": 0.24,
+    "h": 0.24,
+    "body": "At the left edge, half cut off by the frame, a woman bows her head toward the middle of the dance: a dark cap bound with a braided red band, eyes lowered, a cream collar turned up at her neck. Her profile is built from very little. Hard pale touches run along brow, nose, upper lip and chin over warm brown, and the cheek is left to sink back into shadow, so the line of the face is held by its lit edge. Beyond her face, to our right, a streak of orange stands upright beside a patch of dark green, colour glimpsed between bodies. She is close enough to touch, and her lowered eyes stay on the dance."
+   },
+   {
+    "t": "Light in the gap",
+    "x": 0.06,
+    "y": 0.38,
+    "w": 0.4,
+    "h": 0.32,
+    "body": "Beneath her shoulder a black skirt swings out in one long diagonal toward the centre, its strokes all running the same way, so the brush follows the swing of the cloth. Where its upper edge meets the next black skirt, the one under the green sash, the two leave a narrow wedge open between them, and inside that wedge lies the lightest paint in the picture: a near-white drawn as streaks alone. The faces, the blouses and the lit block at the back all sit lower in tone. Zorn's strongest light is not on a face or on any garment we can name; it sits in a space the turning skirts open between them."
+   },
+   {
+    "t": "A sash in flight",
+    "x": 0.3,
+    "y": 0.36,
+    "w": 0.3,
+    "h": 0.3,
+    "body": "In the middle of the canvas a dancer turns her back to us, white blouse over a black skirt, and the ends of her green sash have flown out sideways to our left, red tassels whipping off their tips. The green is made of separate strips, each one loaded stroke set down and left alone, with a stroke of white laid beside them the same way; none is blended into its neighbour, so the colour stays clean against the black. The ends stand away from her waist at an angle no hanging ribbon could hold. They are painted mid-flight, held out by the speed of the turn."
+   },
+   {
+    "t": "Toes pointing down",
+    "x": 0.28,
+    "y": 0.58,
+    "w": 0.42,
+    "h": 0.32,
+    "body": "Lower centre, a pool of pale ochre floor opens between the skirts, and two dark shapes reach down into it, each with a red tie where the dark meets a band of white. Both end in rounded toes pointing at the floor, the way a foot hangs partway through a step. The floor is scrubbed in short ochre strokes, then crossed by one brown stroke dragged dry so it breaks into streaks, running diagonally from under the black skirt toward us."
+   },
+   {
+    "t": "Legs cut out by light",
+    "x": 0.56,
+    "y": 0.52,
+    "w": 0.44,
+    "h": 0.48,
+    "body": "At lower right, the hem of the back-turned man's jacket ends in a looping stroke of pale paint that curls back on itself like a ribbon. Below it the legs are flat dark shapes standing against two patches of lit floor: one leg angled, one straight, and at the right edge a leg in a dark stocking with a touch of red. Look at the edges. Around the angled leg, long curving strokes of pale floor paint stop against the dark and make its contour, the way a paper cutout gets its shape from the scissors; on the straight leg's left side the dark does the cutting: squared dark strokes laid over the floor bite a notch into it. Under the legs the floor sinks into brown-black, dark enough that the signature written into it in black paint, Zorn with faint figures after it, almost disappears."
+   },
+   {
+    "t": "Ears lit from behind",
+    "x": 0.62,
+    "y": 0.07,
+    "w": 0.38,
+    "h": 0.27,
+    "body": "At the top right, under the beam, the man in the dun-grey jacket has his back to us, a dark cap pulled low. Just below the cap, where his ears are, sit two patches of warm red, and the one on our right is a thin crescent with a pale rim: the curl of an ear with light coming through it. An ear glows like that when the light passes through it from behind, so the source of this room's light lies ahead of him, past the crowd, and the side of the dance we stand on is its shadowed side. The pale rim around his partner's kerchief comes from the same place. Over his right shoulder she faces us, her face half in shade and turned out of the dance, her eyes on whoever stands where we stand."
+   }
+  ],
+  "beside": "Hemlandstoner, or Home Tunes, keeps the other half of a dance: the player, without the dancers. Zorn signed it in 1920, the last year of his life. A woman in a red folk dress and a patterned white kerchief stands alone there with a big round-bellied lute, mouth open in song, the strings dragged into a blur under her hand. No room surrounds her, only bare cream ground, and the instrument’s neck runs off the edge of the canvas. Her music has a face and a voice and no one to move.",
+  "refs": [
+   {
+    "id": "anders-zorn-hemlandstoner",
+    "text": "Hemlandstoner"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "jean-pierre-norblin-de-la-gourdaine-bathing-in-a-park": {
+  "mv": 6,
+  "see": "Trees take most of this tall canvas: a single trunk climbing the left edge, dark olive masses closing overhead, and on the right a long opening of pale, warm sky. Low down, under a cloth canopy pitched against the wood, a party of bathers and their attendants gathers at a stone-rimmed pool: clothed women and a standing nude at the left, a bather on the steps, others in the water further right.",
+  "about": "Bathers by still water in a deep grove is old pastoral stock, a scene painters had long peopled with nymphs, and the canvas keeps that outline. What it sets inside the outline is a household. The women are ranked as they would be at home, some undressed and waited on, others dressed and doing the waiting, and the grove stands to them as a house would: private ground, where that indoor order holds in the open air.",
+  "craft": "An early biographer of Norblin describes a small sepia sketch for the canvas, which was then worked up at full size, departing from the sketch in a couple of places. Over a brown underpainting the lights go on fast, in dragged and loaded strokes, and among the figures the brown is often simply left standing as shadow, while the wood's deepest shadows are laid in dark green. The bathers are small figures at the foot of a canvas taller than a standing man, and the same writer said the panels of this decoration were painted sketchily on purpose, so that they would carry at a distance: the brushwork is pitched for a viewer well back from the wall.",
+  "context": "Norblin had come to Poland in May 1774, a Frenchman in his late twenties, travelling with Prince Adam Kazimierz Czartoryski and Princess Izabela as court painter and drawing master to their children. Eleven years on he was decorating Powązki, the village she had made outside Warsaw: a park of thatched cottages that looked rustic and were luxurious inside, her own with a bathroom lined in Saxon porcelain tiles. By an early biographer's account, a note in Norblin's French on the back of this canvas dates it: \"I made and painted this composition at Powązki for the Princess General, in the year 1785.\"",
+  "deeper": [
+   {
+    "t": "A bed-canopy in the wood",
+    "x": 0.18,
+    "y": 0.47,
+    "w": 0.52,
+    "h": 0.36,
+    "body": "Centre left, a pale tent stands against a deep green shadow in the wood: a domed crown wrapped in swags, and two long curtains falling from it like the hangings of a bed. The crown is brushed in brown and ochre, its swags drawn in a few looping strokes; the curtains are long dragged pulls of buff and off-white over a brown layer that shows in the gaps between them. The left curtain drops straight behind the women at the tent's mouth. The right one does not hang at all. It is swept out on a long diagonal and its end is gathered and thrown over a cloth-covered block, so the tent opens toward the water the way a hand draws back bed-curtains. Beneath that swag a stone wall shows, with a small arched niche. Pitched in the open air, the canopy turns a clearing into a room, and its pale cloth is what carries the bathers' corner of the picture from far off."
+   },
+   {
+    "t": "Leaves written as fans",
+    "x": 0,
+    "y": 0.43,
+    "w": 0.3,
+    "h": 0.29,
+    "body": "Up the left edge, a single trunk rises from the bottom corner nearly to the top of the canvas, and halfway up a spray of lit leaves hangs from its right side. Each leaf is the same small mark: a fan of three or four curved strokes laid on thick, and in the lit spray tipped with yellow-cream. Repeated, the fans build clusters that read as foliage near or far, and they hang against deep shadow green, so the contrast does the lighting. The wood overhead is handled another way, as broad scumbled masses with scalloped edges. Below the lit spray the same fans carry on beside the trunk into the shadow, grey-green and untipped."
+   },
+   {
+    "t": "Balustrade and basin",
+    "x": 0.05,
+    "y": 0.7,
+    "w": 0.31,
+    "h": 0.24,
+    "body": "At lower left, behind a kneeling woman in ochre, a stone balustrade bends round in a half-circle and ends in a scroll, its balusters set down as dark slots in pale grey and its rail standing higher than her head. Over it lie a red cloth and a brown, streaky wrap, and a parasol leans above them, its ribs drawn in thin dark lines and its rim showing a pink lining. Lower down, the pool is held in by a pale stone kerb that swings out toward us in a rounded lobe. Balustrade and kerb are cut stone, so the water is a built basin in a laid-out garden, and the clothes heaped on the balustrade are the bathers' own, left where they were taken off."
+   },
+   {
+    "t": "The toilette under the tent",
+    "x": 0.22,
+    "y": 0.71,
+    "w": 0.31,
+    "h": 0.18,
+    "body": "Under the mouth of the tent, left of centre, a young woman stands naked, head bowed and eyes lowered, attended by women in gowns. The kneeler at our left, in an ochre gown with a white sleeve, presses a white cloth to her thigh; on our right a dark-haired woman in a rose skirt holds more linen; behind, a third in a white headband is painted in dull browns, darker than the women in front. The standing body is drawn with a fine brown contour down flank and legs and filled with smooth, pale flesh, while the gowns around her are broad, broken strokes: the firm drawing goes to the body, the loose handling to the clothes about it. Under them a patterned carpet with a pink and blue border lies on the grass, and at her side a carved seat carries a red cushion edged in gold beads. Carpet, seat and cushion are indoor furniture. What is staged here is a lady's toilette, servants and all, carried out under the trees."
+   },
+   {
+    "t": "Halfway into the water",
+    "x": 0.37,
+    "y": 0.78,
+    "w": 0.23,
+    "h": 0.14,
+    "body": "Right of the standing woman, a second nude is caught halfway into the pool: her right knee is raised on a stone step, her left leg already down in the water. Her right arm swings back toward the carved seat at our left while her head turns the other way, to our right, eyes lowered, and the twist keeps the figure moving between the dressing and the bath. Behind her, beside a heap of gold and blue-green cloth, sits a woman with her hair up who looks straight out at us. Her face is a few brown strokes, and her flesh is a duller, darker tone than the bather's in front, so she reads as sitting a step back, in shade."
+   },
+   {
+    "t": "A chemise in the water",
+    "x": 0.51,
+    "y": 0.81,
+    "w": 0.23,
+    "h": 0.14,
+    "body": "In the water right of the step, a woman wades in a white chemise that has slipped from her left shoulder. The garment is quick strokes of white laid over the flesh colour, thin where it clings so that breast and arm show through, thicker where it bunches at the waterline. The bathers around her are bare, and her head turns back over her right shoulder toward the step, a yellow ribbon in her hair. Just below her to the right, a head in profile is painted in a cool grey-green, unlike the warm flesh on either side, turned toward a bather whose head is tipped back. The grey runs on over the shoulders and the reaching arm and gives way to warm flesh lower down, by the waterline."
+   },
+   {
+    "t": "One bather apart",
+    "x": 0.66,
+    "y": 0.86,
+    "w": 0.28,
+    "h": 0.13,
+    "body": "At lower right, set apart from the rest and nearest to us, a bather lies in the shallows propped on one arm, legs stretched toward our left, head turned away and up to our right. The figure is drawn with a brown contour down the flank and arm, then filled with a warm, ruddy tone. The water around is a dark green-grey, and the body is set into it by a few white flicks: a broken ring where the thigh enters, a ragged line along the hip, a touch at the wrist. Those small marks do the work of the waterline, and they are enough to sink the figure to the hip."
+   },
+   {
+    "t": "Where the light falls",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Back up the right side, the wood opens on a long gap of pale sky. It warms from cream to salmon-pink in horizontal streaks, with a small patch of cool blue-grey low down behind the right-hand trees, and the leaves around it take its colour, rust, ochre and pink, with white hooked flicks where they catch the glow, while the wood at upper left stays olive and dark. Follow the gap down and it stands directly above the bathers in the water, yet they are not lit alike. The wader in white and the bather with her head tipped back are as pale as the standing nude under the tent; beside them, the bather turned away with her hair in a knot and the one propped in the shallows are a far darker, ruddy brown. The figures are lit on their own terms, body by body, and the sky's glow is laid in separately, higher up the canvas."
+   }
+  ],
+  "beside": "Privacy is the frailer thing in Jean-Honoré Fragonard's The Progress of Love: The Meeting, another garden painted for a patron's pleasure house. From 1771–72, it belongs to a series Madame du Barry commissioned for her music pavilion and had refused by 1773. Its garden is laid out in stone like this one: roses banked against a carved wall, an urn on a pedestal, a nude statue on a tall plinth. A young man in a red coat climbs over the wall, and the girl in pale silk below the statue throws out an arm toward him. In Norblin's garden the women are busy with linen and the bath, and nobody comes over the balustrade.",
+  "refs": [
+   {
+    "id": "the-progress-of-love-the-meeting",
+    "text": "The Progress of Love: The Meeting"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "victor-prouve-sejour-de-paix-et-de-joie-meditation": {
+  "mv": 6,
+  "see": "Two women in a flowering meadow. At left a woman in a sleeveless wine-red dress sits with her head on her arm; across the centre a second woman sleeps on her back in lavender drapery. Moss-grown stones fill the lower left, a grey stone mass sits right of centre, and a wild-rose bush arches between. Yellow broom and a pine branch close the lower right, red poppies the lower left, and a white dove flies at top right. The sunlit meadow, crossed by blue-green shade, rises to the top edge, leaving no sky. The red dress and the lavender drapery link one woman's face to the other's.",
+  "about": "Peace in this picture is a condition of the body. Neither woman is at work, and neither is on her way anywhere: one sleeps on her back, the other sits awake with her head propped on her arm, in the head-on-hand posture of thought. Sleep and waking thought are both kinds of rest here, and the picture gives one to each woman. The closed meadow gives the eye no way out, so whenever it leaves the two women it comes back to them. Joy is left to the ground itself, which flowers around them in rose, broom and poppy.",
+  "craft": "The canvas is wider than a person is tall and the women are painted about life-size, a scale meant to carry to the far end of a public hall. Prouvé worked toward it through studies on paper and canvas; a watercolour for the hall's decoration, inscribed 1897, survives. The two garments go down as broad fields of colour, then are drawn over with strokes of a darker shade of the same colour, so that from a distance a fold reads as a line. The wine-red dress takes its folds this way, in long curving strokes of deeper wine that swing round the knee and gather in a looped fold at the lap.",
+  "context": "In 1898 the City of Paris commissioned Prouvé, a Nancy painter and designer, to decorate the festival hall of the 11th-arrondissement town hall. For those walls, a critic wrote in 1901, he \"returned to an old conception\": Séjour de paix et de joie had begun as a ceiling design, drawn for an earlier competition, that went unused. The commission came at the height of the Dreyfus Affair, and Prouvé is counted with his friend Émile Gallé among Dreyfus's defenders in Nancy, and is described as close to the free-thought movement.",
+  "deeper": [
+   {
+    "t": "The look out of the picture",
+    "x": 0.19,
+    "y": 0.04,
+    "w": 0.21,
+    "h": 0.3,
+    "body": "At upper left, the seated woman rests her head on her raised forearm, her hand pushed up into the hair at the side of her head, and from there she turns her eyes sideways, out of the picture and toward us. Her lids are half lowered and her mouth is closed. Look closely at the cheek on our left: the flush is a set of short parallel red strokes laid side by side, and the upper arm below is modelled the same way, its strokes running around the curve of the muscle. That is hatching, a draughtsman's way of building form with lines, carried into oil paint. A small dark mole sits on the same cheek near the nose, a mark no idealised type carries, and it gives the figure a particular face."
+   },
+   {
+    "t": "Roses laid over the ground",
+    "x": 0.45,
+    "y": 0.03,
+    "w": 0.3,
+    "h": 0.235,
+    "body": "Right of the seated woman's head, a wild-rose bush throws long arched branches out over the meadow. Each flower is a single open bloom made of a few flat strokes of pale pink, here and there one with a touch of orange at the centre; each leaf is one stroke of the brush, set in sprays along stems drawn as thin reddish lines. Look into the gaps between the leaves: the meadow's streaked strokes run on unbroken behind them, so the bush sits on top of a ground that was already there, the way a pattern is laid on cloth. Painted like this, the branches curve and cross with the clarity of an ornament drawing."
+   },
+   {
+    "t": "A dove against grass",
+    "x": 0.77,
+    "y": 0.012,
+    "w": 0.215,
+    "h": 0.22,
+    "body": "At the top right, a white dove flies toward our left with its head lowered, wings raised and spread, its tail fanned behind and two pink touches marking the tucked feet. Its ground is the sunlit grass of the meadow, so the bird is seen against the slope it crosses, as if from above. It is built from cream paint laid on thick and dragged dry, the feather tips flicked out so that they fray into the green around them. The meadow under it is a field of long slanting strokes, yellow-green flecked with pink and lilac, and to the bird's lower left a band of blue-green shade crosses it."
+   },
+   {
+    "t": "The sleeper's face, seen from the chin",
+    "x": 0.32,
+    "y": 0.45,
+    "w": 0.24,
+    "h": 0.25,
+    "body": "In the centre, the second woman sleeps on her back with her head thrown back, so her face arrives tilted: the brow at lower left, chin toward our right, the underside of the nose showing. We see it from below the chin, and the throat and jaw run in one long line down to the shoulder. The closed lid of the near eye is one short dark curve, with the longer arc of the brow beside it, and the lips are a small touch of rose. Above her, the lavender drapery rises over her head in a high arch. Its folds are written in long strokes of darker blue-violet over a paler lilac, a few marks to each fold, and the arch's outer edge is drawn as a firm line against the green. Below it her shoulder and side are bare, in a pale cream that deepens toward peach down the falling arm."
+   },
+   {
+    "t": "Pine and broom over the robe",
+    "x": 0.64,
+    "y": 0.62,
+    "w": 0.345,
+    "h": 0.37,
+    "body": "At lower right, a pine branch reaches in from the edge, its needles drawn as fans of long single strokes springing from red-brown twigs, and broom pushes orange-yellow flowers up through it, each flower a short curled dab. Behind the needles, at the left of this passage, lies the lavender of the sleeper's drapery, its fold lines still visible between the stems. The pine is painted over it, and the robe's far end disappears under the branch: the sleeper's body runs out into the plants. Each fan stays distinct, and the twigs keep a clean drawn line."
+   },
+   {
+    "t": "A fist of stone in the grass",
+    "x": 0.0115,
+    "y": 0.42,
+    "w": 0.235,
+    "h": 0.3,
+    "body": "At lower left, in front of the red skirt, what reads from a distance as one more mossy boulder is a forearm of grey stone ending in a clenched fist. Close to, the carving is plain: the fingers folded into the palm, the knuckles set in a row, the wrist narrowing where it meets the hand. Moss lies over the grey in patches of green, and the arm's other end, at our left, is a rounded stump, the shape of a piece broken from a larger figure. More rounded stone swells below it in the grass. Sprigs of broom rise past the knuckles and a red poppy opens beside the lower stone, a hotter, lighter red than the dress behind. Painted in the same greys and moss-greens as the rocks around it, the fist hides in plain sight until the eye comes close. Once found, it shows force laid down: a fist, the hand's shape for striking, lying idle against the seated woman's skirt, with the meadow's flowers growing up around it."
+   },
+   {
+    "t": "The hands",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Follow the hands. The seated woman's head rests on one of hers; the other hangs slack over her knee, fingers dropped against the red cloth. The sleeper's arm falls across the grey stone below her, wrist bent and fingers open, the hand lying against her lavender drapery. Set against those, the stone fist at lower left is clenched. The two ends of that contrast lie on one slant, from the fist near the left edge down to the sleeper's open fingers low in the centre, so the eye travels from a clenched hand to a released one."
+   }
+  ],
+  "beside": "At dusk on a Sunday, in Henri Le Sidaner's Le Dimanche of 1898, women in long white dresses stand about a garden on high ground with nothing to do, in loose groups among thin trees and white-flowering shrubs. Below them the land falls away to the roofs of a town and a tall tower. Rest there has a date and a place it is taken from, and the women take it on their feet. Prouvé's two women have sat and lain down in daylight, in a meadow with no view out of it.",
+  "refs": [
+   {
+    "id": "henri-le-sidaner-untitled-3",
+    "text": "Le Dimanche"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "henri-jean-guillaume-martin-serenite": {
+  "mv": 6,
+  "see": "A grove of slender orange-pink trunks stands on a green meadow under a pale sky. Among the trees, white-robed figures, bearded old men, young men and women, sit, stand and lie in groups at left and in the middle distance. At right a woman in a violet dress sits on a slope above a narrow stream. At the upper right three women fly upward, the first holding up a gold lyre. The whole surface is laid in short, separate touches. Against the greens and the dark wood, the whites of the robes and the gold of the lyre hold the light.",
+  "about": "The picture has two titles, Sérénité and Le Bois sacré, a state of mind and a holy place, and it makes them one: the calm belongs to the wood. In the ancient world a sacred grove was ground set aside for a god, its trees protected from the axe; here straight trunks stand from one side of the canvas to the other, and the people are settled between them, spread in loose groups over the whole width with no one presiding, so the calm is held by a company, not all of one mood, and no single figure carries it.",
+  "craft": "From edge to edge Sérénité is built of small, separate touches of oil set one beside another, on a canvas about three and two-thirds metres high and five and a half wide, a wall painting's size for a picture made to hang at the Salon. One account of Martin's manner calls his touch small, hatched and parallel. The separated touch came down to him from Impressionism by way of the Naturalist painters, and one reading of this canvas holds that in his hands it no longer served to exalt light; its work was only to set the painted surface vibrating.",
+  "context": "Degas is reported to have said of Henri Martin and his followers that they 'flew with our own wings', the wings being what the Impressionists had brought into painting. Martin, a pupil of the academic Jean-Paul Laurens, had taken up the separate touch after a scholarship sent him to Italy in 1885, and with Sérénité he carried those wings into the official Salon of 1899, where the State bought the picture. He was thirty-eight. Before the year was out he had joined a new exhibiting society, the Société nouvelle, beside Aman-Jean, his companion in Italy; by one museum biography's account, 1900 was the turning point, when he seems to have discovered colour and light and left Symbolism behind.",
+  "deeper": [
+   {
+    "t": "The lyre at the corner",
+    "x": 0.64,
+    "y": 0,
+    "w": 0.36,
+    "h": 0.36,
+    "body": "At the top right, a gold lyre is held up close to the corner of the canvas by a woman flying to our right, both arms stretched out ahead of her and her face in profile. Two more women follow below her on the same rising line, and the last of them holds a smaller lyre to her face. The large lyre is painted as a dense gold shape with a firm outline, while the pale blue sky around it is laid in small flecks that keep no direction, so the instrument reads as a hard object hanging in a sky made of loose touches. Its two curved arms are the shape of the classical lyre, the attribute of Apollo and the Muses and the old emblem of poetry itself. The leader's hands and the lyre come within a short distance of the top and right edges, so the flight is aimed past the corner, out of the picture."
+   },
+   {
+    "t": "Where the veil comes down",
+    "x": 0.46,
+    "y": 0.18,
+    "w": 0.4,
+    "h": 0.36,
+    "body": "Right of centre, just left of the flyers, a pale billow of cloth hangs among the trunks. Trace it to our right and it is the tail of the flyers' drapery: one long length of white that streams down out of the sky, runs behind the nearer trunks and flares open above a group standing in the middle distance. The flight is threaded into the grove. Thin trunks pass in front of the trailing flyers, cutting their robes with the same orange-pink verticals that cut the figures on the ground, and the cloth is laid in the same short touches and the same white as the robes beneath it. Under the billow, figures lean together in pairs and one stretches an arm out to another. The flight's trailing edge comes down to the height of the heads standing under it."
+   },
+   {
+    "t": "Faces tipped back",
+    "x": 0,
+    "y": 0.33,
+    "w": 0.32,
+    "h": 0.54,
+    "body": "At lower left, three men sit shoulder to shoulder against the trunks with their heads tipped back: an old man with a long beard leaning on a tree, his hands loose in his lap; a young, clean-shaven man with one hand raised to his chest; and behind him a long-haired, bearded man. Above them, two standing figures lift their faces the same way, hands raised to chin and beard. Most of these faces turn up and toward our right. The beards, the bare shoulders and the plain white robes are the dress nineteenth-century painters gave to the sages and poets of antiquity, a costume that belongs to no datable year. Their robes lie in the shade of the dark wood, so their white is built from greyed touches, yet against the wood behind them they still hold as light."
+   },
+   {
+    "t": "Head on a shoulder",
+    "x": 0.27,
+    "y": 0.46,
+    "w": 0.34,
+    "h": 0.3,
+    "body": "Just left of the middle, a young woman lies back against an old, bald, white-bearded man, her head tipped onto his shoulder and a hand pressed to her breast. Head back and hand on the heart is the old painted formula for a soul carried away. Past the next trunk, a figure lies along a white cloth propped on folded bare forearms, head bowed over them, and just behind, another rests a cheek against a hand. What holds each of them is contact: a head on a shoulder, a cheek on a palm, a brow lowered onto folded arms."
+   },
+   {
+    "t": "The woman in violet",
+    "x": 0.64,
+    "y": 0.44,
+    "w": 0.36,
+    "h": 0.38,
+    "body": "On the slope at right, a woman in a violet dress sits apart, turned away to our right, a hand pushed into her dark hair and her face hidden. It is the gesture painters have long used for grief, and her colour sets her off: among the white robes, hers is violet. Unlike the leaning pairs at centre, she leans on no one. Behind her the slope is striped with long diagonal bands of yellow-green light and darker shade, laid in strokes that run with the bands, so the turf looks raked by the light. She sits at the left edge of those stripes with her head down, while the lit grass runs on beyond her toward two small white figures standing in the distance and another lying in the grass."
+   },
+   {
+    "t": "Stream and trunk bases",
+    "x": 0.32,
+    "y": 0.66,
+    "w": 0.4,
+    "h": 0.34,
+    "body": "Low in the middle, a narrow stream crosses the meadow from the right and slips from sight beside the white robes at centre. Each thing here is stroked in its own direction: the water in flat horizontal dashes, the turf in short dashes tilted slightly upward to the right and flecked with warm touches, the trunks in strokes running up their length. The touches sit side by side unblended, so the direction of the stroke tells ground, water and tree apart as much as their colours do."
+   },
+   {
+    "t": "From the faces to the lyre",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "From the upturned faces at lower left to the lyre at the top right corner, one long diagonal crosses the whole canvas. At its lower end the men sit under the dense wood that fills the upper left, far darker than the open sky at the other end, where the flight moves. The veil sags in a long curve below the flyers, nearly level at its lowest, and then climbs into their line, which runs on up toward the lyre: one sweep, steepening as it rises, set against a grove of verticals. The men's faces point the way the flight is going, but rows of trunks stand between them and it, and the picture does not say whether they see it."
+   }
+  ],
+  "beside": "The Island of Life, which Arnold Böcklin painted in 1888, imagines another people out of antiquity at ease in a place of their own, and shows it from outside. The eye arrives across still water at a green islet of tall trees and palms. On its grass, small robed figures in red, blue, gold and white go in procession, several hand in hand, and nearer, in the water, a long-haired figure flings up an arm beside a pale woman. All that colour and motion lies past a shore the viewer never reaches. Martin's company, mostly in white and mostly at rest, is seen from among its own trunks.",
+  "refs": [
+   {
+    "id": "arnold-bocklin-the-island-of-life",
+    "text": "The Island of Life"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "gerda-roosval-kallstenius-astrid-setterwall-angstrom-artist": {
+  "mv": 6,
+  "see": "A young woman stands full length, facing us. Her dark hair is parted in the middle; her long cream dress is gathered at the waist by a broad yellow sash. Her left hand, at our right, holds a small book. Behind her the room is pale pinkish above and dark brown below, with a grey curtain down our left side and a dark floor. In a picture held to creams, greys and browns, the dark head and the yellow sash are the accents.",
+  "about": "A young woman stands at close to the size of life and is given nothing to do. She leans on nothing, and no jewel is in view. The room offers as little: pale above and dark below, a grey curtain down our left side with the edge of another high at our right, a dark floor. The one object is a small book, carried shut at her side, neither opened nor turned toward us. So little explains her that the picture's whole account of this sitter lies in how she stands and how she looks.",
+  "craft": "In the pale upper half of the room, light paint is dragged over the surface with a fairly dry brush, breaking into streaks and flecks that let a warmer layer show through. The figure, and the dark wall and floor around her lower half, are brushed in fuller, more fluid paint that covers the layer beneath, so the pale ground behind her head stays porous and the figure in front of it solid.",
+  "context": "Gerda Roosval-Kallstenius turned fifty in February 1914. She had trained at the Academy school in Stockholm in the second half of the 1880s, and her best-known pictures were already a generation old: canvases painted in Paris and Brittany in 1891 and 1892, among them a late-summer day in a cabbage field at Le Pouldu, shown at the Paris Salon of 1892. In her later career she painted above all portraits. For Astrid Setterwall the same year was a start. She enrolled at Althin's painting school, a private Stockholm studio whose students worked toward the Academy entrance, and in 1915 she was admitted to the Academy school, the one the painter had finished in 1891.",
+  "deeper": [
+   {
+    "t": "A lowered head, a level gaze",
+    "x": 0.32,
+    "y": 0.04,
+    "w": 0.38,
+    "h": 0.17,
+    "body": "At the top of the canvas the head is tipped forward and a little toward our left: the line through the eyes climbs to our right, and the chin is drawn in over the throat. The eyes still come straight out at us, blue-grey irises under heavy upper lids, each with a pin of white catchlight. A lowered head paired with a level gaze is the look of someone weighing the person in front of her, and the closed, unsmiling mouth holds that weighing in place. The light comes from our left. Forehead, nose bridge and the cheek on our left are laid in pale, closely fused flesh tones, while the cheek on our right warms into a rose half-shadow and the jaw on that side drops into an olive shade that carries on down the neck. The hair, parted in the middle and bunched over the ears, is one broad dark mass with a few curls flicked loose at its edges, so the face is set inside a dark surround against the pale ground behind."
+   },
+   {
+    "t": "Gauze against the pale ground",
+    "x": 0.2,
+    "y": 0.17,
+    "w": 0.6,
+    "h": 0.16,
+    "body": "Below the throat the dress is two layers: a yellow under-bodice with a scooped neckline, and over it a sheer cream wrap with wide sleeves to the elbow. On our left, the lit side, the sleeve is almost exactly as light as the pink-cream ground behind it, and the boundary between them is carried by hue alone, a yellowish shape against a pinkish one, its edge dragged in with a dry, ragged brush. On our right, the shadow side, the same fabric is drawn with dark olive-grey strokes that pick out its folds over the shoulder and down the upper arm. The sheer stuff is drawn firmest where it is darkest; where the light strikes it, dress and room come close to sharing one tone, which is how gauze behaves against a bright ground."
+   },
+   {
+    "t": "The sash runs crosswise",
+    "x": 0.28,
+    "y": 0.3,
+    "w": 0.46,
+    "h": 0.11,
+    "body": "At the waist a broad satin sash carries the most intense colour in the dress, a yellow laid in short horizontal strokes with pale highlights dragged along them, greenish-ochre shadows between, and a firm lower edge where the skirt begins. Above and below it the dress is brushed vertically or on the diagonal, following the fall of the cloth; at the sash the brush turns and travels around the body, the way the satin is wound. The band also sits a little above the height at which the room behind turns from pale to dark, so the strongest colour on the figure is pinned at her middle, close to the line that divides the room."
+   },
+   {
+    "t": "A curtain thin enough to see through",
+    "x": 0.012,
+    "y": 0.28,
+    "w": 0.328,
+    "h": 0.3,
+    "body": "Along the left edge hangs a grey curtain in long vertical folds. Find the horizontal line a little below the waist where the room behind changes from pale pink to dark mauve-brown, and follow it to the left: it does not stop at the curtain. The inner folds turn from a pale lilac-grey above the line to a darker green-grey below it, the wall's dark band carried on through the fabric at reduced strength. That carried-through band is what tells us the curtain is sheer, and it is set down with nothing more than a change of value inside the same vertical strokes. The outermost fold at the far left keeps one olive-grey tone above and below the line, so it reads as heavier cloth, or cloth doubled over."
+   },
+   {
+    "t": "A book, held loosely",
+    "x": 0.55,
+    "y": 0.34,
+    "w": 0.32,
+    "h": 0.31,
+    "body": "At our right her left arm hangs straight from the sheer sleeve, and its bare forearm is set against the dark lower wall: the lit edge is warm pink, the underside cooled with grey, and the room's dividing line passes behind it just below the sleeve's edge. The hand does not grip. Its fingers curl over the top edge of a small book with a slate-blue cover and pinch it, so the volume hangs at a slant with a sliver of cream page-edge showing. The visible hand holds the book and nothing else, no brush or tool of any kind, and the other is out of sight behind the skirt. The book's dark cover stands out against the paler cloth of the skirt below and beside it; only along the top of its right edge, under the fingers, does it run into the dark wall."
+   },
+   {
+    "t": "Two skirts, two strokes",
+    "x": 0.26,
+    "y": 0.53,
+    "w": 0.4,
+    "h": 0.22,
+    "body": "Halfway down, the pleated overskirt ends in a border of small rounded grey-ochre marks, a scalloped, lace-like edge set down as a row of loops and blobs, never drawn thread by thread. Above that border the brush runs in long vertical strokes, one to a pleat. Below it, on the underskirt, the strokes shorten and cross each other at every angle, building a denser surface that reads as a softer, heavier cloth; a faint vertical row of tiny dark dashes runs down it left of centre. At our right the underskirt is gathered into a loose drape, its folds marked in ochre and olive. The two fabrics are told apart by the length and direction of the stroke far more than by colour, for their two creams are close."
+   },
+   {
+    "t": "One slipper on the dark floor",
+    "x": 0.28,
+    "y": 0.85,
+    "w": 0.44,
+    "h": 0.145,
+    "body": "At the bottom the long skirt narrows and parts into two rounded lobes, and between them a single pale slipper comes forward, toe toward us, a rosette on its front laid in a few heavy dabs of cream and ochre. The other foot shows only as two small light touches under the lobe on our left. The floor is dark brown, streaked with dull red in horizontal swipes, and the hem's curves are cut cleanly against it. Below the long fall of the skirt, this forward-turned foot is where the standing figure meets the floor and takes its weight."
+   },
+   {
+    "t": "Dark on light, light on dark",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Behind her, the room is cut in two by the line just below the waist. The figure answers each half with the opposite value. Above the line her darkest note, the hair, sits on the pale upper half; below it, the cream skirt stands as a bright column against the dark wall and floor. From top to bottom, head and skirt turn from dark-on-light to light-on-dark, so at both ends the figure holds clear of the half of the room behind it. The tall, narrow canvas leaves her little space on any side: the hair sits close under the top edge and the slipper close above the bottom one, and her full length fills the height."
+   }
+  ],
+  "beside": "Occupation divides two portraits of a young woman, each by an older woman painter. In Paule Gobillard peignant, from 1887, Berthe Morisot caught her niece and pupil at work. Paule sits in profile in a blue dress, leaning toward an easel at our left, one arm reaching out to it and a palette held low against her lap, with a white statue on a pedestal at upper left. Her eyes stay on what she is doing. Where Paule is turned away into her task, Astrid Setterwall stands facing us with no work in hand, only a closed book at her side.",
+  "refs": [
+   {
+    "id": "paule-gobillard-peignant",
+    "text": "Paule Gobillard peignant"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "gottfrid-kallstenius-after-sunset-motif-from-the-archipelago": {
+  "mv": 6,
+  "see": "A steep rock shore rises out of still water and, with its reflection, fills nearly the whole canvas. Above it a dark hill climbs to two crests, each with a clump of pines against a narrow wedge of pale blue sky. Below, the water repeats the cliff upside down and runs to the bottom edge. Across the middle, the foot of the cliff glows orange and rust, and the water doubles the glow, so the light lies as one horizontal belt with darkness above and below it. The eye lands on that belt first, drops into its reflection, and only later climbs to the trees and the sky.",
+  "about": "Here a passing light is given the look of something that lasts. The second half of the title promises the archipelago, a coast of islands and channels, and the painting offers one wall of it seen from close by, so that the evening of a whole stretch of coast is gathered onto a single rock and its double in the water. The means is stillness. Light this low cannot stay for long, and water calm enough to repeat it without a break makes that passing state look as settled as the stone itself.",
+  "craft": "Kallstenius draws with the body of the paint as much as with its colour, and the direction of the stroke models form too: across the dark hill, long fibrous strokes run with the slope, so the hill reads as overgrown above the bare cliff. How an oil paint stands up or spreads thin depends largely on its pigment and its binder, the subject of the treatise he published in 1913; for some years he was also controller of a firm's standard artists' colours.",
+  "context": "Kallstenius stood on the Academy's side of the quarrel that divided Swedish art: from 1899 to 1910 he was secretary of the Swedish Artists' Association, the Academy-loyal rival of the breakaway Artists' Union. Yet from the 1890s his landscapes share the national-romantic mood of the opposition's Karl Nordström and Richard Bergh, Swedish forest and coast in low evening light. Writing to the Academy from Venice in 1893, he had doubted that Sweden possessed a national art at all, and allowed one possible exception: landscape painting, “the lyric of painting”. By 1907 he had a summer house in the Tjust archipelago north of Västervik, the town of his birth, and this rock probably belongs to that coast.",
+  "deeper": [
+   {
+    "t": "The buttress and its double",
+    "x": 0.32,
+    "y": 0.27,
+    "w": 0.23,
+    "h": 0.5,
+    "body": "Left of centre, a buttress of rock stands out of the dark in orange and tan, and the water beneath repeats it, so the lit face and its reflection close into one upright oval of light, the reflection running down roughly as far as the lit rock rises. The glow is less bright than it looks. Even the palest touches on this rock are darker than the plain blue of the sky at the top of the canvas; what reads as fire is a middle tone, made to burn by its saturation and by the near-black around it. The handling divides at the waterline. On the rock the paint goes on thick, in short square-ended slabs, each a facet tilted to the light, their raised edges catching it. In the reflection the same colours are blended smooth: the corners of the facets are gone, and every touch sits a step duller."
+   },
+   {
+    "t": "Thin paint on the right-hand face",
+    "x": 0.78,
+    "y": 0.28,
+    "w": 0.21,
+    "h": 0.24,
+    "body": "At the right, the same cliff is painted another way. A red-brown is scrubbed on so thinly that the weave of the canvas shows through it as a fine grid across most of this passage, and the dark clefts are drawn over it in single vertical drags. Set it beside the slabbed buttress left of centre and the method shows: the thick paint sits where the light is strongest, and the face that only glows is kept lean, so the canvas texture does some of the work of rock. Near the foot of the face, a few strokes of pale grey-lilac lie across the red, cool against the warm."
+   },
+   {
+    "t": "A waterline that is hardly drawn",
+    "x": 0.47,
+    "y": 0.45,
+    "w": 0.19,
+    "h": 0.18,
+    "body": "Just right of the buttress, look for the line where the cliff meets the water. It is barely there: a faint darker seam, in places a hairline of thin rust, and nowhere a firm drawn edge. A broad dark cleft in the cliff runs straight down through that level and on into the water without a break, so crack and reflection read as one stroke. The eye has to find the waterline by symmetry, as it would on water too still to raise a ripple. What fixes the level is an object. A little right of the cleft, a small dark stone sits exactly on the seam; its lower half is its own reflection, so it forms a lozenge pointed at both ends. Once you have found it, the whole belt of orange splits into rock above and water below, and the reflection stops looking like more cliff."
+   },
+   {
+    "t": "The low rock on the right",
+    "x": 0.7,
+    "y": 0.47,
+    "w": 0.22,
+    "h": 0.14,
+    "body": "Further right, a low dark rock lies along the water. Its humped top catches a little grey light at the crest; its reflection hangs beneath, darker still, and the two meet at the waterline in a long spindle. In a picture built from verticals, clefts and their reflections dropping in parallel, this is a long horizontal, and it does spatial work: it overlaps the foot of the cliff, so it lies nearer to us, and the lit face behind it steps back. The belt of light gains a little depth from it."
+   },
+   {
+    "t": "The sky, returned in the water",
+    "x": 0.62,
+    "y": 0.74,
+    "w": 0.38,
+    "h": 0.26,
+    "body": "At the lower right corner, the near-black of the water gives way to a patch of dull slate grey. It is the sky, returned in the water: it sits roughly where the sky beyond the low right-hand slope falls when the scene is folded down at the waterline, and its upper edge follows that slope inverted. A fainter band of the same grey runs along the bottom edge further left. The clear blue at the top of the canvas comes back here drained of its blue and far darker, a much steeper drop than the step from rock to reflection in the orange belt. That keeps the lower half of the canvas a dark field for the glow to float in."
+   },
+   {
+    "t": "Pines on the crest",
+    "x": 0.19,
+    "y": 0,
+    "w": 0.29,
+    "h": 0.16,
+    "body": "On the higher crest at upper left, a clump of pines stands against the sky, their crowns running off the top edge of the canvas. They are painted in the hill's own dark red-brown, not in black, with feathered crowns, and blue is worked into the gaps between the trunks so the sky shows through the clump. Apart from the trees, nothing in the picture is of a size we already know, no boat and no building; set against these small, high trees the rock below becomes a cliff and not a bank. A second group on the lower crest to the right repeats the measure."
+   },
+   {
+    "t": "Grain in the sky",
+    "x": 0.46,
+    "y": 0,
+    "w": 0.18,
+    "h": 0.155,
+    "body": "At the top of the canvas, above the low ground between the two crests, the sky is not a flat blue. Small dark patches break through it, each one stippled by the grain of the canvas, as if the blue had been dragged across a darker layer and skipped the hollows of the weave. They run across the whole sky but gather most thickly here, and grow sparser toward the right edge. They are not the hill's brown carried up into the air: they are lighter than the hill, a dusk tone between it and the blue. The ridge below is drawn as one firm line; above it, the broken blue reads as evening air with grain in it."
+   },
+   {
+    "t": "Where the sunset is",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Look for a sunset. The sky that shows is cool blue, with a few faint mauve streaks at the upper right; nothing in it is orange. All the warm light is on the stone and in its reflection, and it falls on the steep faces while the rounded hill above them stays dark. The glow comes from a part of the sky the canvas does not show, low over the water behind or beside the place we look from. The framing holds us there, facing the rock from close to water level: no near shore, the waterline just below the middle, the cliff filling the canvas nearly to its top edge."
+   }
+  ],
+  "beside": "Calm is only one way to keep a dusk from passing, and the river in Gustaf Fjæstad's Winter Evening by a River, signed in the same year, is anything but calm. Between two banks of snow its surface is ruffled, and the heavy tree on the far bank comes back as a column of loops and rings, with no upside-down tree in it. Yet the ripples are laid so evenly, row under row into the dark water, that the movement sets like the grain of a board.",
+  "refs": [
+   {
+    "id": "fjaestad-wood-pattern",
+    "text": "Winter Evening by a River"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "max-liebermann-die-gartenbank": {
+  "mv": 6,
+  "see": "A summer garden, seen from its lawn. Left of centre a woman in a white dress and a wide white hat sits at one end of a pale wooden bench, set against dark shrubbery and trees. A path runs from the bench's right end down and out at the right edge. Foliage closes over the upper half, opening a little at top left, with a dark limb crossing the top right corner. The lower part is lawn, shaded green broken by patches of sun.",
+  "about": "The bench stands where the garden's dense planting gives way to open lawn, and the picture is about that edge. Behind the woman and above her the green closes into a dark recess; in front of her the grass runs out toward us, in shade broken by sun. She sits on the line between them, covered at her back, the bench facing the open ground: the spot a garden seat is made for.",
+  "craft": "Broad brushes laid it in, and most strokes were left as they fell, never smoothed into one another. The darks far outweigh the lights in area, and they are built of colour: deep greens, blue-greens and browns swept in next to each other, with flecks of lighter green and the odd white touch struck into them. The art historian Ludwig Justi, writing about the picture a few years after it was painted, noted the dense bushes round the white figure, a sparkle of dark colour, and a handling that was rapid and broad.",
+  "context": "Until 1914 Liebermann went to Holland every summer to paint. The war ended that in August, and the painter, then sixty-seven, stayed in Germany. His summers were now spent at the house on the Großer Wannsee outside Berlin: the plot bought in 1909, the villa built in 1910, the garden planned with his friend Alfred Lichtwark, director of the Hamburg Kunsthalle. From then on the garden was the family's refuge and his chief subject, painted more than two hundred times. In May 1915 his only daughter, Käthe, married Kurt Riezler, private secretary to the Chancellor, Theobald von Bethmann Hollweg. If she is the woman on the bench, she sat for it in the first year or so of that marriage.",
+  "deeper": [
+   {
+    "t": "The woman in white",
+    "x": 0.25,
+    "y": 0.22,
+    "w": 0.27,
+    "h": 0.45,
+    "body": "Left of centre, a woman in a white dress and a wide white hat sits at the left end of the bench, her right forearm on the armrest. Her skirt and lap are the lightest stretch of paint on the canvas, and that white is assembled from colours: cream and pale yellow on the lit folds, lavender-blue strokes where the cloth turns into shadow across her lap, streaks of yellow running down the skirt. The whole still reads, plainly, as white. The person inside the dress is given far less. Under the brim her face is a warm brown oval, darker where the hat shades it, with no eyes or nose drawn, and the hand hanging at the end of the armrest is one russet stroke with a touch of ochre. Her knees and skirt angle toward our right, along the empty seat, and the toe of a pale shoe points the same way. The dress is worked in several colours and the face in little more than one brown, so the figure reads as a shape of light before it reads as a person."
+   },
+   {
+    "t": "The empty seat",
+    "x": 0.41,
+    "y": 0.32,
+    "w": 0.37,
+    "h": 0.3,
+    "body": "Right of the woman the rest of the bench stands empty, painted in the same pale family as her dress but handled another way. On the slats the pale paint lies thin and broken by the grain of the canvas, light on the raised threads and brown in the hollows between. The right front leg is a single upright stroke, touched again with light at its foot. At the left edge of this passage the dress is laid thicker and closes over the grain. Side by side the two whites read as two materials, the wood weathered and broken, the cloth smooth and whole. Beneath the seat the paint sinks to a deep brown, close to the darkness of the shrubbery behind, and the pale slats stand out against that hollow."
+   },
+   {
+    "t": "The path that comes toward us",
+    "x": 0.55,
+    "y": 0.55,
+    "w": 0.45,
+    "h": 0.35,
+    "body": "From the bench's right foot a path curves down to the right edge and leaves the picture, several times wider at the frame than where it starts. It comes toward our side of the garden and carries the eye out at the lower right. Where it starts, the sun gets through onto it in thick dabs of orange, cream and pale yellow; on the grass beside it the same sun lands yellow-green, each patch of light taking the colour of the ground it falls on. In shade the path is a grey-brown worked in long strokes that run with its curve, warmed with pink near the top, and a tan band runs along its far side, edging it against the dark."
+   },
+   {
+    "t": "The pool of sun",
+    "x": 0.24,
+    "y": 0.74,
+    "w": 0.48,
+    "h": 0.26,
+    "body": "Along the bottom edge the shaded lawn opens into a broad pool of sun, built in two layers you can tell apart. The shade beneath is a thin green, brushed on so lightly that the grain of the canvas shows through. The sun lies on top of it as thick yellow, ochre and creamy green in short curving strokes, their edges standing up as ridges where the brush lifted away. At the pool's rim the paint stops short in places and the white priming is left bare; those flecks are the brightest touches in this stretch of lawn, and they are unpainted canvas. The foreground carries more sunlit paint than any other part of the picture, yet the pool as a whole is less light than the woman's dress."
+   },
+   {
+    "t": "Slabs of leaf at top left",
+    "x": 0,
+    "y": 0,
+    "w": 0.38,
+    "h": 0.28,
+    "body": "At top left the canopy thins and the brushwork changes shape. The leaves here are broad flat slabs, each laid with one press of a wide brush and set at a new angle to its neighbour: pale grey-green over dark, with slabs of plum and pink among them. Across the middle of the lawn the strokes mostly lie level, and on the path they follow its line; up here they point every way. That scatter of directions, more than any drawn leaf, is what makes the foliage seem to stir."
+   },
+   {
+    "t": "The limb overhead",
+    "x": 0.56,
+    "y": 0,
+    "w": 0.44,
+    "h": 0.32,
+    "body": "Across the top right corner, a dark limb runs on a long diagonal, laid as one band of near-black brown among the short strokes of the leaves. It enters at the top edge and leaves at the right, so the tree it belongs to stands outside the picture, above and to our right. Beyond the limb the paint opens into flat yellow-green dabs and red-brown touches, and at the very corner dark uprights stand against scraps of pale blue: a glimpse out past the canopy that roofs this part of the garden."
+   }
+  ],
+  "beside": "Each garden is a place set apart with a woman in white inside it, and in William Leech's A Convent Garden, Brittany, from about 1913, the place set apart is a religious house. Leech's wife Elizabeth posed as a novice: lace coif, white lace cape, face lifted in profile, holding a book, walking among white lilies in the sun. Behind her, half hidden by leaves, a file of sisters in white habits banded with black at the shoulders walks away from us into the trees. That garden belongs to a community, and the novice is joining it. Liebermann's woman sits alone at the end of a bench in a private garden.",
+  "refs": [
+   {
+    "id": "leech-convent-garden",
+    "text": "A Convent Garden, Brittany"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
  "claude-monet-weeping-willow-2": {
   "mv": 6,
   "see": "A weeping willow fills the canvas, seen so near that the frame crops its crown at the top and both sides. The crown is a tangle of teal, sea-green and yellow-green strokes; from it the fronds fall in long verticals through the middle, over a darker ground of blue, violet and rust-red. A strip of horizontal strokes runs along the foot, the name Claude Monet in dark script at its left end; a pale cream gap opens at top left. A dark, dense picture, its crown picked out in pale-edged strokes.",
@@ -6438,7 +7986,7 @@ window.CANVAS_INSPECT = {
 
  "by": "Opus 5",
 
- "beside": "The face withheld under a wide headpiece, in weather that moves the clothes, is a trade taken the opposite way elsewhere in this collection. Monet's la femme a l'ombrelle, in the Musée d'Orsay, comes nineteen years earlier: his stepdaughter Suzanne on a Giverny slope, seen from below against bare sky, veil and skirt pushed sideways, and under the shadow of the parasol her face left blank. He kept it as a trial rather than a portrait and never sold it. There the face is emptied so a figure can be nothing but light and moving air; here the emptying is what the picture reports, and one drawn mouth is kept back to register it.",
+ "beside": "The face withheld under a wide headpiece, in weather that moves the clothes, is a trade taken the opposite way elsewhere in this collection. Monet's la femme a l'ombrelle, in the Musée d'Orsay, comes nineteen years earlier: his future stepdaughter Suzanne on a Giverny slope, seen from below against bare sky, veil and skirt pushed sideways, and under the shadow of the parasol her face left blank. He kept it as a trial rather than a portrait and never sold it. There the face is emptied so a figure can be nothing but light and moving air; here the emptying is what the picture reports, and one drawn mouth is kept back to register it.",
 
  "refs": [
 
@@ -16485,7 +18033,7 @@ window.CANVAS_INSPECT = {
 
  "by": "Opus 4.8",
 
- "beside": "Degas took the same bargain and settled it the other way. His Woman with a Towel of 1896 also turns a bather wholly away, refusing the face, but Degas worked the pastel with fingers and sharp tools and then laid black outlines over the surface to sharpen the twist of the body. The contour is drawn, asserted, argued for. Matisse keeps the withheld face and throws the drawing out: his edge is a cool stripe of chalk and green, a temperature decision rather than a mark. One artist pursues the turning body with line and pressure; the other builds it as a lit plane and lets colour do the whole job.",
+ "beside": "Degas took the same bargain and settled it the other way. His Woman with a Towel, from 1894 or 1898, also turns a bather away from us, refusing the face, but Degas worked the pastel with fingers and sharp tools and then laid black outlines over the surface to sharpen the twist of the body. The contour is drawn, asserted, argued for. Matisse keeps the withheld face and throws the drawing out: his edge is a cool stripe of chalk and green, a temperature decision rather than a mark. One artist pursues the turning body with line and pressure; the other builds it as a lit plane and lets colour do the whole job.",
 
  "refs": [
 
@@ -18697,72 +20245,150 @@ window.CANVAS_INSPECT = {
 
 },
 
-"j-m-w-turner-mortlake-terrace": {"mv":2.1,
+"j-m-w-turner-mortlake-terrace": {
+
+ "mv": 2.1,
+
  "see": "A low sun sits almost dead-centre above the Thames and floods the whole canvas with a warm, hazy light that dissolves the far bank into vapour. A double row of tall trees marches down a terrace toward the water, their trunks reading as dark verticals against the glare. The river swings from left to right in a broad, mirror-flat sheet, carrying a scatter of boats: a sailing barge with a raking mast at right, a long procession of rowed craft nearer the middle. Along the top of a stone parapet a small black dog breaks the light. On the lawn at left, tiny figures and a pale garden building anchor the near ground. Everything bright is drained toward the sun; everything solid — trunks, dog, boats — is pushed to silhouette. The eye is pulled straight down the terrace into the light before it drifts to the edges.",
+
  "about": "This is a picture about a specific hour more than a specific place. The terrace belonged to Turner's patron William Moffatt at Mortlake, west of London, and the view is the Thames at the end of a summer day — but the subject is really the moment the sun lowers enough to turn a whole landscape into backlight. Turner takes an English gentleman's riverside prospect, the sort of ordered, tree-lined amenity that spoke of leisure and property, and half-erases it in light. The boats, the walkers, the dog on the wall are the ordinary furniture of an idle evening; the drama is that they survive only as dark notes inside a golden haze. It is the pastoral of the picturesque estate turned toward something atmospheric and almost abstract, where sunlight, not incident, carries the meaning.",
+
  "craft": "The engine is contre-jour: the sun placed near the centre so light comes at the viewer, forcing every object into silhouette and letting Turner model the scene with tone alone. The trees do the structural work — a rhythmic colonnade whose verticals cage the horizontal river and funnel the eye to the burning centre. Warm ochres and pale golds dominate; the darks are few and deliberately spent where they count, on trunks, hulls and that one black dog. Paint is thin and scumbled in the sky and water so the reflected sun-track shimmers, then dragged more thickly at the near edges. The famous anecdote — that the dog is a paper cut-out, snipped and pasted onto the parapet by the animal painter Edwin Landseer while Turner was at lunch on a varnishing day, then varnished in place by Turner himself — gives the composition exactly the last-minute tonal accent it needs, a single dark punctuation against the flare.",
+
  "context": "Turner painted this in 1827, near the height of his powers and his obsession with the sun as subject. It hangs at the National Gallery of Art in Washington, one of a pair of Mortlake Terrace canvases the artist made for Moffatt; the other, an earlier-morning view, shows the same terrace under cooler light, so the two read as companion hours. The 1820s were the decade Turner pushed exhibited landscape toward pure atmosphere, courting both admiration and complaint that his pictures had become 'tinted steam.' The paper-dog story, told of this varnishing-day picture, belongs to the same Royal Academy world of painters finishing works on the wall: here a fellow Academician, Edwin Landseer, pasted a paper dog on the parapet while Turner was at lunch, and Turner kept it, varnishing the borrowed accent into place.",
+
  "deeper": [
+
   {
+
    "t": "The sun at the centre",
+
    "x": 0.36,
+
    "y": 0.28,
+
    "w": 0.28,
+
    "h": 0.34,
+
    "body": "Everything is built around this pale disc and the glare that swallows the far bank. Turner does not paint a bright spot on a landscape; he paints the landscape as the thing the light is destroying. The far shore behind the sun has no drawn edge at all, only graded vapour, so distance is made purely of tone getting warmer and fainter. Because the source sits low and near the middle, its brightness sets the ceiling for every other value in the picture — nothing is allowed to be lighter — which is why the trees and boats can only go dark. Look at how the disc has almost no hard rim: it bleeds into its own halo, and that softness is what makes it read as heat rather than as a painted circle."
+
   },
+
   {
+
    "t": "The colonnade of trees",
+
    "x": 0.32,
+
    "y": 0,
+
    "w": 0.42,
+
    "h": 0.9,
+
    "body": "The tall trees are the composition's skeleton. Read as a row, they make a receding colonnade that both frames the river and steers the eye down the terrace to the sun. Notice the spacing: they thin and lean as they go, so the near trunk at right is a heavy dark bar while the far ones dissolve into the haze, which alone tells you how far the terrace runs. Their canopies are handled loosely, more suggestion than leaf, letting light pour through the gaps rather than blocking it. Against the horizontal calm of the water, these verticals are what give the picture its measured, almost architectural rhythm — take in the wall, the trees and the river together and you see three simple bands locked into one another."
+
   },
+
   {
+
    "t": "The black dog on the parapet",
+
    "x": 0.5,
+
    "y": 0.69,
+
    "w": 0.13,
+
    "h": 0.14,
+
    "body": "This small silhouette is the picture's sharpest note and, by legend, its cleverest. The stone parapet runs as a long, near-unbroken pale horizontal, and a pale line that length can go slack. The dog interrupts it with the single darkest, crispest shape in the near ground, giving the eye a hard edge to rest on before it slides back into the glare. The dog was cut from paper and pasted on during varnishing day by the animal painter Edwin Landseer, while Turner was at lunch; Turner returned, adjusted it and varnished it in place, keeping the borrowed accent, which survives as pasted paper to this day. A last tonal repair rather than a first idea, its logic is visible: one dark note, precisely where a monotonous edge needed breaking. It also sets the human scale, telling you how low that wall is and how far the river lies below it."
+
   },
+
   {
+
    "t": "The reflected sun-track",
+
    "x": 0.34,
+
    "y": 0.6,
+
    "w": 0.24,
+
    "h": 0.22,
+
    "body": "Below the sun the water carries a shivering vertical path of light straight toward the viewer. This is the device that ties sky to river and stops the painting splitting into an upper and lower half. Turner lays it in thin, dragging brighter paint over a warm ground so the track looks broken and mobile, the way real reflected sun scatters on a slightly ruffled surface. Watch how the boats that cross this band go almost pure black — they have the bright water behind them — while boats off to the sides, seen against darker water, keep some of their own tone. The reflection is not decoration; it is the mechanism that makes the whole river read as lit from a single low source."
+
   },
+
   {
+
    "t": "Boats against the glare",
+
    "x": 0.66,
+
    "y": 0.5,
+
    "w": 0.32,
+
    "h": 0.24,
+
    "body": "At the right a sailing barge lifts a tall raking mast and sail that catch just enough side-light to stay legible, while a cluster of rowed craft strings across the middle distance. These are the only real incident on the water, and Turner keeps them small and dark on purpose: they measure the river's width and give the empty light something to be read against. The sail is the one large pale plane allowed to compete with the sky, and even it is kept subdued so nothing rivals the sun. The rowers read as a rhythmic dotted line, a bit of everyday river traffic that grounds the scene in an ordinary working afternoon rather than an allegory."
+
   },
+
   {
+
    "t": "The near lawn and garden pavilion",
+
    "x": 0,
+
    "y": 0.4,
+
    "w": 0.34,
+
    "h": 0.5,
+
    "body": "The left foreground is where the picture stays terrestrial. A pale garden building and a few small figures sit on the shadowed grass, painted in cooler, denser tone than anything toward the sun. This is deliberate counter-weight: because the right and centre burn away into light, the picture needs mass on the near left to keep from tipping. The figures are barely more than touches, but they are the true measure of scale for the trees towering above them. Their shadow-side handling also stages the whole contre-jour logic in miniature — near things dark and detailed, far things bright and dissolved — so this corner is effectively a key to how the rest of the canvas is lit."
+
   },
+
   {
+
    "t": "Terrace and parapet channel",
+
    "x": 0.2,
+
    "y": 0.78,
+
    "w": 0.55,
+
    "h": 0.22,
+
    "body": "Step back to the foreground and the flat gravel terrace, its edging and a stone channel or basin at lower centre lead the eye inward like a set of orthogonals aimed at the sun. This is the plainest, most designed part of the picture and it is doing perspective work: the converging edges of path and parapet pull you from your standing point straight down the avenue to the light. Turner keeps the paint here more solid and the drawing more explicit than anywhere else, so the near ground feels firm underfoot before everything beyond the trees turns to vapour. It is the anchor that lets the rest of the canvas afford to dissolve — a closing look at the machinery that makes the whole view cohere."
+
   }
+
  ],
+
  "by": "Opus 4.8",
- "beside": "Turner leans a whole estate on its trees: the terrace avenue is a colonnade that cages the river and marches the eye toward the sun, structure carrying an entire prospect of leisure and property. Set that against Monet's The Four Trees, where the same vertical device is pared to almost nothing — four poplars standing clear above still water, no avenue, no incident, no destination for the eye. Turner needs his row of trunks to hold a busy backlit world together; Monet keeps only the rhythm and lets the trunks be the subject. One builds an architecture to steer looking; the other empties the frame until the verticals are all there is.",
- "refs": [{"id":"claude-monet-the-four-trees","text":"The Four Trees"}]
+
+ "beside": "Turner leans a whole estate on its trees: the terrace avenue is a colonnade that cages the river and marches the eye toward the sun, structure carrying an entire prospect of leisure and property. Set that against Monet's The Four Trees, where the same vertical device is pared to almost nothing — four poplars standing clear above still water, no avenue, no incident, no destination for the eye. Turner needs his row of trunks to hold a busy backlit world together; Monet keeps only the rhythm and lets the trunks be the subject. One builds an architecture to steer looking; the other empties the frame until the verticals and the one band crossing them are nearly all there is.",
+
+ "refs": [
+
+  {
+
+   "id": "claude-monet-the-four-trees",
+
+   "text": "The Four Trees"
+
+  }
+
+ ]
+
 },
 
 "vincent-van-gogh-flower-beds-in-holland": {"mv":2.1,
@@ -23350,29 +24976,29 @@ window.CANVAS_INSPECT = {
 
  "mv": 1,
 
- "see": "Everything pale is a dancer; everything dark is theatre. The canvas splits on a diagonal. The left half is jammed to the frame edge with white skirts, bare shoulders and overlapping heads; the right half opens onto a wide, almost vacant floor that a long bright curve shears off at the bottom corner. One dancer stands alone near the front, back turned, both arms bent up to her hair. She is the biggest and brightest shape in the picture and she is doing nothing balletic. Behind her, small figures hold poses in two loose knots. The whole thing is one colour: thinned to a wash for the hanging wings, scrubbed to the canvas weave in the mid-tones, loaded almost chalk-white for tulle. Faces are two strokes and a shadow. Light comes from low and in front, tipping chins and collarbones up.",
+ "see": "Nearly everything pale is a dancer; nearly everything dark is theatre. The canvas splits on a diagonal. The left half is jammed to the frame edge with white skirts, bare shoulders and overlapping heads; the right half opens onto a wide, almost vacant floor that a long bright curve shears off at the bottom corner. One dancer sits alone near the front, back turned, both arms bent up to the nape of her neck. She is the biggest and brightest shape in the picture and she is doing nothing balletic. Behind her, small figures hold poses in two loose knots. The whole thing is one colour: thinned to a wash for the hanging wings, scrubbed to the canvas weave in the mid-tones, loaded almost chalk-white for tulle. Faces are a few strokes and a shadow. Light comes from low and in front, tipping chins and collarbones up.",
 
- "about": "Count the dancers actually dancing: six or seven. Count the ones standing, bending, stretching, adjusting and waiting: nearly twice that. The subject here is not ballet but the labour that surrounds it and outlasts it — a workplace between two efforts, where the body is tired before it is beautiful. Degas puts you where a ticket cannot: on the boards, off to one side, behind the picture the paying house sees. From that angle everything reverses. The scenery is visibly cardboard, the corps is a crowd of girls in unglamorous poses, and the one man present sits in street clothes doing nothing while everyone around him works. The rehearsal is also an economy — poor girls, an institution, a watching subscriber — and the picture states this by arrangement alone, without a single anecdote or expression to tell you how to feel.",
+ "about": "Count the dancers actually dancing: about six, a pair mid-stage and a knot at our right. Count the ones standing, sitting, bending, stretching, adjusting and waiting: half as many again. The subject here is not ballet but the labour that surrounds it and outlasts it — a workplace between two efforts, where the body is tired before it is beautiful. Degas puts you where a ticket cannot: on the boards, off to one side, behind the picture the paying house sees. From that angle everything reverses. The scenery is visibly cardboard, the corps is a crowd of girls in unglamorous poses, and the one man present sits in street clothes doing nothing while everyone around him works. The rehearsal is also an economy — poor girls, an institution, a watching subscriber — and the picture states this by arrangement alone, without a single anecdote or expression to tell you how to feel.",
 
- "craft": "Stripping out colour forces every decision onto value and drawing, and Degas exploits it ruthlessly. The ground does the work of a mid-tone, so a skirt is made by adding a few loaded whites and letting the bare weave stay visible as shadow — you can see the canvas grain through the tulle, which is why the muslin looks thin. Composition is built on subtraction: a third of the surface is empty floor, its boundary bent into a long asymmetric curve borrowed from the cropping habits of Japanese prints and the camera. The figures are pushed left and cut by the frame; nothing sits centred and settled. Degas also keeps several degrees of finish in one field — a fully modelled foreground back, a summary pair mid-stage, a figure that is barely a smear — so depth reads as attention rather than as measured recession.",
+ "craft": "Stripping out colour forces every decision onto value and drawing, and Degas exploits it ruthlessly. The ground does the work of a mid-tone, so a skirt is made by adding a few loaded whites and letting the bare weave stay visible as shadow — you can see the canvas grain through the tulle, which is why the muslin looks thin. Composition is built on subtraction: about a seventh of the surface is open floor, its boundary bent into a long asymmetric curve borrowed from the cropping habits of Japanese prints and the camera. The figures are pushed left and packed against the frame; nothing sits centred and settled. Degas also keeps several degrees of finish in one field, from fully modelled passages to thin stains with the weave showing through.",
 
- "context": "1874 was not a calm year for him. His father died that February, and the family bank's debts landed on Degas, turning painting from a gentleman's pursuit into a trade he had to make pay. The stage he shows had also just vanished: the Opéra on the rue Le Peletier, the house he had been sketching, burned in October 1873, and the Palais Garnier did not open until January 1875. So this is a stage assembled from notebooks, memory and studio models rather than transcribed from life — one reason the architecture is generic palace and the wings are pure atmosphere. Around it stood the abonné system, in which male subscribers bought access to the wings and to the girls who worked there. Rehearsal, not performance, became his subject for the next twenty years and eventually took up roughly half his output.",
+ "context": "1874 was not a calm year for him. His father died that February, and his brother René's business debts landed on Degas, turning painting from a gentleman's pursuit into a trade he had to make pay. The stage he shows had also just vanished: the Opéra on the rue Le Peletier, the house he had been sketching, burned in October 1873, and the Palais Garnier did not open until January 1875. So this is a stage assembled from notebooks, memory and studio models rather than transcribed from life — one reason the architecture is generic and the wings are pure atmosphere. Around it stood the abonné system, in which male subscribers bought access to the wings and to the girls who worked there. Dancers stayed his subject for the rest of his career, and in the end more than half his works show them.",
 
  "deeper": [
 
   {
 
-   "t": "Hands to her hair",
+   "t": "Hands at her nape",
 
-   "x": 0.3829,
+   "x": 0.315,
 
-   "y": 0.4904,
+   "y": 0.49,
 
-   "w": 0.2942,
+   "w": 0.37,
 
-   "h": 0.5091,
+   "h": 0.51,
 
-   "body": "She occupies the slot a painting normally reserves for a principal — front, centre, largest, palest — and she is fixing her hair. Face withheld, back turned, no step being performed. Degas lays the tutu in as one wide pale bell and then draws through it with fine dark radial strokes, so the skirt is transparent and structural in the same gesture. The bodice stays in shadow, which splits her into two separate lights, skirt and arms, bridged by dark. Under the hem, two blunt slippers, planted flat. Then compare her to the pair rehearsing behind: he has shrunk them to a third of her height. The scale tells you which event the picture thinks is large, and it is not the dancing."
+   "body": "She occupies the slot a painting normally reserves for a principal — front, centre, largest, palest — and she has both hands at the nape of her neck. Face withheld, back turned, no step being performed. Degas lays the tutu in as one wide pale bell and then draws through it with fine dark radial strokes, so the skirt is transparent and structural in the same gesture. The bodice and back are lit almost as brightly, with only a thin dark seam at the waist, so she reads as one pale mass from elbows to hem. Under the hem are not feet but two turned wooden legs: she is sitting down. Then compare her to the pair rehearsing behind: standing, they come to well under half her seated height. The scale tells you which event the picture thinks is large, and it is not the dancing."
 
   },
 
@@ -23388,7 +25014,7 @@ window.CANVAS_INSPECT = {
 
    "h": 0.299,
 
-   "body": "The most extended, most classical silhouette in the picture belongs to a girl who is not dancing. Head thrown back, throat exposed, both arms raised behind her skull — that is a yawn or a stretch out of a cramp, not a position. Degas gives it the full swan line and then lets the open mouth undo it. Note the dark ribbon at her throat: the sharpest dark in the whole left group, and it snaps the tilted head off the shoulders like a cut. Around her, arms rise at three different angles for three different reasons, none of them choreographed. This is the joke the picture keeps making — the shapes of ballet occur constantly offstage, produced by exhaustion instead of training."
+   "body": "A full classical silhouette belongs to a girl who is not dancing. Head thrown back, throat exposed, both arms raised behind her skull — that is a yawn or a stretch out of a cramp, not a position. Degas gives it the full swan line and then lets the open mouth undo it. Note the dark ribbon at her throat: the sharpest dark in the whole left group, and it snaps the tilted head off the shoulders like a cut. Around her, arms rise at three different angles for three different reasons, none of them choreographed. This is the joke the picture keeps making — the shapes of ballet keep occurring between steps, produced by exhaustion instead of training."
 
   },
 
@@ -23404,7 +25030,7 @@ window.CANVAS_INSPECT = {
 
    "h": 0.3565,
 
-   "body": "No complete figure exists in this corner. Bodies overlap into a single mass of light, and the frame amputates the leftmost of them, implying more girls off-canvas. Read it slowly and it resolves into shoulders, a bare back, a profile tipped up, an arm folded across a waist — faces reduced to a nose and a hollow, identity deliberately unavailable. What Degas models fully is the back: the shoulder blades and the groove of the spine get more careful modelling than any face in the painting. That is the register where these dancers touch his bathers a decade later — the body as an object of study, unposed, seen from the side that does not perform."
+   "body": "No complete figure exists in this corner. Bodies overlap into a single mass of light, and the leftmost skirt runs up against the frame edge, implying more girls off-canvas. Read it slowly and it resolves into shoulders, a bare back, a profile tipped up, hands clasped behind a waist — faces reduced to a few strokes, eyes shut or turned away, identity deliberately unavailable. What Degas models fully is the back: the shoulder blades and the groove of the spine get as much modelling as any face in the painting. That is the register where these dancers touch his bathers a decade later — the body as an object of study, unposed, seen from the side that does not perform."
 
   },
 
@@ -23414,19 +25040,19 @@ window.CANVAS_INSPECT = {
 
    "x": 0.1405,
 
-   "y": 0.529,
+   "y": 0.48,
 
    "w": 0.299,
 
-   "h": 0.322,
+   "h": 0.371,
 
-   "body": "A dancer folds herself in half over a low dark bench, one foot up on the seat, both hands at her slipper. It is the darkest solid object on the stage floor and, apart from a chair in the far wing, the only furniture — a piece of backstage junk that Degas needs because it forces the step that makes her back fold. Her head disappears entirely into the surrounding skirts: a second face withheld, inches from the picture's centre. The bench itself is three strokes and a shadow, barely described, yet it sits convincingly on the floor because its dark edge is the one hard horizontal in a passage otherwise made of curves."
+   "body": "A dancer folds herself in half over a low dark bench, one foot up on the seat, both hands at her slipper. It is the darkest solid object on the stage floor and, apart from the man's chair in the far wing and the seat hidden under the front dancer's skirt, the only furniture — a piece of backstage junk that Degas needs because it forces the step that makes her back fold. Her head is bowed so low that only the crown of dark hair shows: a second face withheld. The bench itself is summarily brushed, a dark slab on turned legs, yet it sits convincingly on the floor because its dark, straight edge cuts across a passage otherwise made of curves."
 
   },
 
   {
 
-   "t": "The dancer who is barely painted",
+   "t": "The dancers who are barely painted",
 
    "x": 0.3612,
 
@@ -23436,7 +25062,7 @@ window.CANVAS_INSPECT = {
 
    "h": 0.2875,
 
-   "body": "Here is the actual rehearsal: two dancers holding a near-identical pose, arms low, weight forward, the only genuinely synchronised thing in the room. Now look at the left side of this box. A third figure is scarcely there — a thin stain with the ghost of a skirt, no face, no feet, the canvas showing straight through her. She is not an accident of an unfinished picture; the two beside her are worked up, and further right the figures degrade again into shorthand. Degas is grading finish the way an eye grades attention, so the crowd recedes not by getting smaller or bluer but by getting less looked at. It is a remarkably accurate description of what a busy stage does to vision."
+   "body": "Here is the actual rehearsal: two dancers holding a near-identical pose, arms low, weight forward, the only genuinely synchronised thing in the room. Now look at the left side of this box. Two more figures are scarcely there — thin stains with the ghost of skirts, faces unreadable, feet a faint touch of pale, the canvas showing straight through them. Part of that may be time: this thin paint has grown more transparent with age, and in places it now shows figures Degas reworked or painted out. But the two beside them are worked up, and further right the figures degrade again into shorthand, so the finish ends up graded the way an eye grades attention: the crowd recedes not by getting smaller or bluer but by getting less looked at. It is a remarkably accurate description of what a busy stage does to vision."
 
   },
 
@@ -23452,13 +25078,13 @@ window.CANVAS_INSPECT = {
 
    "h": 0.2415,
 
-   "body": "In the wing, on a bentwood café chair, sits the one figure in street clothes: a black suit and a top hat, the only sustained dark in a picture otherwise built from browns. He is small, unemphatic, and completely still while everyone else is working or recovering. Degas puts nothing between him and the dancers — no barrier, no doorway, and the nearest girl's arm reaches out almost into his lap. That absence of separation is the whole point. At the Opéra, subscribers held the right to stand in the wings, and the arrangement between those men and the corps was an open, unpleasant fact of the institution. The picture neither accuses nor excuses; it simply seats him there and lets the geometry speak."
+   "body": "In the wing, behind a spindle-backed chair, sits the one figure in street clothes: a dark suit and a black top hat, the only dark-clad figure among the white skirts. He is small, unemphatic, and completely still while everyone else is working or recovering. Degas puts nothing between him and the dancers but that chair — no barrier, no doorway — and the nearest girl reaches out and rests her hand on its back at his knees. That lack of any real separation is the whole point. At the Opéra, subscribers held the right to stand in the wings, and the arrangement between those men and the corps was an open, unpleasant fact of the institution. The picture neither accuses nor excuses; it simply seats him there and lets the geometry speak."
 
   },
 
   {
 
-   "t": "The only straight lines are fake",
+   "t": "Straight lines belong to the house",
 
    "x": 0.7585,
 
@@ -23468,7 +25094,7 @@ window.CANVAS_INSPECT = {
 
    "h": 0.368,
 
-   "body": "Every ruled edge in the painting is scenery. A cornice, a pilaster, a parapet with a lozenge diaper and a row of blind circles — palace architecture, and it is distemper on canvas, painted by the Opéra's scene shop and then painted a second time, loosely, by Degas. He allows this fiction crisp horizontals and verticals while denying the living bodies a single hard contour, which inverts the usual hierarchy: the fake thing is the precise thing. Below it sits a slab of the palest paint on the canvas, brighter than any tutu, hauling the eye out to the empty side. In the opposite corner the same scene shop supplies an ochre crag — one theatre, one afternoon, a grotto and a palace standing four metres apart."
+   "body": "Ruled edges gather here. A pilaster on a moulded base, a curtained opening, a parapet with a lozenge diaper and a row of blind ovals, and below it a white-painted front with a dark opening: tiers of boxes, standing where the bright lip of the stage curls round to meet them, so they read as the house's own stage boxes rather than scenery. Degas allows this architecture crisp horizontals and verticals while the living bodies get softer contours, which inverts the usual hierarchy: the building is the precise thing. The white front is among the palest paint on the canvas, nearly as pale as the tutus, hauling the eye out to the empty side. In the opposite corner the wing is painted scenery, an ochre crag: the stage's fiction on one side, the paying house on the other."
 
   },
 
@@ -23478,13 +25104,13 @@ window.CANVAS_INSPECT = {
 
    "x": 0.4993,
 
-   "y": 0.3718,
+   "y": 0.44,
 
    "w": 0.5007,
 
-   "h": 0.5563,
+   "h": 0.56,
 
-   "body": "The largest passage in the picture is floor with nothing on it, and the bright band that ends it is the lip of the stage; the brown beneath is the fall into the pit and the dark house. That curve is the single most consequential mark here. It fixes your standpoint on the boards, high and off to the left, where no audience ever stands, and it converts the crowded left side into pressure by giving it nowhere to expand. It also withholds the thing you came for. The space that will hold the ballet is swept, lit and reserved — and still empty. That is the difference between a rehearsal and a performance, and Degas states it not with a figure but with an area."
+   "body": "About a seventh of the picture is floor with nothing on it, and the bright band that ends it is the lip of the stage; the brown beneath is the fall into the pit and the dark house. That curve is the single most consequential mark here. It fixes your standpoint on the boards, high and off to the left, where no audience ever stands, and it converts the crowded left side into pressure by giving it nowhere to expand. It also withholds the thing you came for. The space that will hold the ballet is swept, lit and reserved — and still empty. That is the difference between a rehearsal and a performance, and Degas states it not with a figure but with an area."
 
   }
 
@@ -23492,7 +25118,7 @@ window.CANVAS_INSPECT = {
 
  "by": "Opus 4.8",
 
- "beside": "Nobody bought a ticket to stand where this picture puts you, on the boards beside a show that has not started, with a man in a top hat sitting at ease in the wing. Circus Sideshow, Seurat's canvas of fourteen years later at the Metropolitan Museum of Art, stops you short of the ticket instead. Its parade is the free sample out on the street: musicians in bowlers behind a rail and a trombonist square in the middle, on duty, none of them with eyes to meet, all seen over a dark band of hats and backs. Both painters show performers at work rather than performing. Seurat keeps the paying line in front of you, and Degas has already let you through it.",
+ "beside": "Nobody bought a ticket to stand where this picture puts you, on the boards beside a show that has not started, with a man in a top hat sitting at ease in the wing. Circus Sideshow, Seurat's canvas of fourteen years later, stops you short of the ticket instead. Its parade is the free sample out on the street: musicians in bowlers behind a rail and a trombonist square in the middle, on duty, none of them with eyes to meet, all seen over a dark band of hats and backs. Both painters show performers at work rather than performing. Seurat keeps the paying line in front of you, and Degas has already let you through it.",
 
  "refs": [
 
@@ -25416,7 +27042,7 @@ window.CANVAS_INSPECT = {
 
  ],
 
- "beside": "A room built for looking, and the one person in it who has stopped: that is the whole of New York Movie, at the Museum of Modern Art, painted in 1939. The show there is a sliver of grey screen at the far left, the audience a scatter of dark heads, and the light goes to an usherette leaning in a lit alcove, hand at her chin, eyes down, her mind elsewhere. Kasprzycki weights it the other way. His show fills a wall, his audience stands in daylight, and looking is graded posture by posture, from a man folded double at a low landscape to men by the windows, backs to the art, several turning to look at you.",
+ "beside": "A room built for looking, and the one person in it who has stopped: that is the whole of New York Movie, painted in 1939. The show there is a sliver of pale screen at the far left, the audience a scatter of dark heads, and the light goes to an usherette leaning in a lit alcove, hand at her chin, eyes down, her mind elsewhere. Kasprzycki weights it the other way. His show fills a wall, his audience stands in daylight, and looking is graded posture by posture, from a man folded double at a low landscape to men by the windows, backs to the art, several turning to look at you.",
 
  "by": "Opus 4.8"
 
@@ -25457,7 +27083,7 @@ window.CANVAS_INSPECT = {
   "pierre-auguste-renoir-danseuse": {"mv":1,"see":"A girl stands almost full-length against a haze that is barely a room at all: a muted green cooled with blue, no floor line, no wall, just atmosphere she seems to have condensed out of. She holds the centre of the canvas. From the loose auburn hair down through the pale bodice, the blue sash, and the vast breathing cloud of the tutu, the figure is laid in open, unblended strokes, and where the skirt meets the ground the two trade edges. A few things hold firm and pull the eye: the steady face, the black band at the throat and the bangle at one wrist, the blue sash, and the two pink slippers set on the pale ground below. The tulle is the widest note, and everything above it is read through its lightness.","about":"This is less a portrait of a dancer than of the age just before a person hardens into one. The body is a child's — narrow shoulders, flat chest, thin arms and legs that the tights make almost weightless — yet the costume asks her to perform poise. The picture holds both at once: the trained stance and the wide, slightly wary eyes that meet you without a performer's mask. Renoir works the face and hands up and leaves the tutu and the room loose, so that the girl reads sharper than the role. The surround is an even blue-green, a ground she stands in rather than a place she performs to. What the painting is about is that suspension — costume and self not yet fused, the ballet not yet the whole of her — caught in the one moment when it can still be seen.","craft":"The design is a single pale mass narrowing at both ends, a soft diamond that keeps the tall figure from thinning out. The making is thin and quick: a muted green ground brushed in criss-crossing strokes, thin enough that the canvas weave shows, then the figure laid over it nearly tone-on-tone in blue-white, flesh blended in small wet touches, fabric dragged in longer strokes and left as they fell. Colour is rationed to a few blues and pinks. The darks went in last, over paint already laid, and the signature too, A. Renoir. 74., written small in dark paint at the lower right.","context":"Renoir was thirty-three and showed this among seven canvases at the first Impressionist exhibition of April 1874, the show a hostile press came to mock. Even so, the Danseuse drew rare praise, singled out as graceful from work the critics otherwise refused. The model was almost certainly Henriette Henriot, the young actress who sat for Renoir repeatedly through the mid-1870s. In a year when he had little money and less approval, he was betting that lightness and loose handling would read as truth rather than laziness. The gamble held, and the picture is now one of the images by which that first exhibition is remembered.","deeper":[{"t":"The face that holds you","x":0.3075,"y":0.0372,"w":0.345,"h":0.1955,"body":"Across the room it is the eyes that catch first, because the face is the most worked passage in the picture. The face is round, still a child's, cheeks and jaw soft, and the gaze comes straight out to meet you — wide, level, a little wary, without the fixed brightness a performer would wear. Renoir keeps the modelling gentle: a soft shadow beside the nose, the mouth a clear warm red, no hard edge, the whole read through warmth of tone rather than line. A blue ribbon tied in a bow sits in the loose auburn hair, the only clear blue up here, quietly rhyming with the sash below. It is the anchor of the composition — everything softer radiates out from this one point of held attention."},{"t":"The black band","x":0.385,"y":0.1632,"w":0.23,"h":0.1035,"body":"A narrow black ribbon circles the throat, and it does more work than its size suggests. In a canvas built almost entirely from pale blue on grey-green, it is one of only a handful of true darks, and Renoir uses it to seat the head on the neck and stop the face from floating off into the haze. It also carries a faint charge of the adult world — the choker was a fashionable ornament, a grown woman's touch placed on a body that is plainly a girl's. Set just under the soft chin, it draws a clean horizontal that the eye reads as the pivot between the resolved face above and the looser costume below. Remove it in your mind and the whole upper figure loosens."},{"t":"Bodice and blue sash","x":0.27,"y":0.23,"w":0.4799,"h":0.16,"body":"The bodice sits off the shoulders, pale blue-white edged with a beaded or ribboned trim that Renoir suggests with a few flecked touches rather than describing. The chest beneath is flat and the shoulders narrow, so the fitted costume sits on a slight frame. The blue sash is the largest colour note on the whole figure, a flat band drawn round the waist that pulls the upper garment into a defined line, the place where the loose handling is checked and the form gathered. Above it the trim glints; below it the fabric releases into the vast pale cloud of the skirt. It is the hinge of the whole vertical."},{"t":"The hand at the hip","x":0.2605,"y":0.2795,"w":0.169,"h":0.221,"body":"At the waist her right hand comes forward, fingers half-curled around a trailing cluster of cream-white curls, lace or small flowers, flecked with yellow-green and close in tone to the skirt it hangs against. The gesture is the tell. Her hand rests at her hip, holding the small pale bunch still: a resting pose, not a performing one. Renoir models the hand softly in warm strokes with green in the shadows, no hard knuckles, and rings the wrist with a thin gold-green bracelet touched with blue, a lighter partner to the black bangle on the other arm. Coming just below the bright sash, the pale object doubles the light there and keeps the centre of the picture glowing. It is the human note inside the costume: a girl at ease, with something to hold."},{"t":"The tutu as weather","x":0.15,"y":0.3,"w":0.81,"h":0.36,"body":"Across the middle of the canvas spreads the skirt, the painting's finest passage. Renoir builds it from dry, feathered strokes dragged over a paler underlayer, opaque and near-white where it catches light at the hip, thinning to grey-blue smoke where it meets the surround, so its edge is never drawn — it simply stops being cloth and becomes air. At the right the tulle trades touches with the background until you cannot say where costume ends and studio begins; at the left it holds, pale against a darker green. This is Impressionist method at full stretch: form held by tone and touch alone, no contour anywhere, the mass reading as light rather than fabric. It balloons the figure at its middle, giving the thin child real presence in the room while staying, on inspection, almost nothing at all."},{"t":"The black bangle","x":0.521,"y":0.4332,"w":0.138,"h":0.1035,"body":"Her left arm falls straight at her side, its fingers trailing into the tulle and half lost in it, and at the wrist Renoir sets a thin black bangle — the second of his small black accents, answering the ribbon at the throat far above. It is a tiny mark, easy to miss, but it does precise work: it weights the hanging arm, sets it off against the pale skirt behind, and closes a vertical conversation of darks running from throat to wrist. Renoir states it with a single loaded stroke and no more. Track the darks he permits himself and you find the hidden armature of the whole design, a scatter of small anchors holding a figure that is otherwise almost all light."},{"t":"Thin legs, pink slippers","x":0.2945,"y":0.5952,"w":0.391,"h":0.3795,"body":"Below the cloud of the skirt the legs come down thin and pale in pink-white tights, modelled softly against the green ground, and the picture resolves at last into two pink satin slippers set on the light floor. After the loose sweep of the tulle, the feet are firmly placed — the point where the girl actually meets the world and the composition finds its base. Renoir gives the slippers their small warm pink, the strongest pink in the canvas, echoing her cheeks; her right foot points toward us while the left turns fully out to the side, a trained placement that reads as poise without stiffness. The eye, having risen and fallen through all that soft blue-white, lands here and is quietly held."}],"by":"Opus 4.8"},
   "leonardo-da-vinci-saint-jean-baptiste": {"mv":1,"see":"Darkness fills almost the whole panel, and out of it a single body surfaces: a bare shoulder and chest, a soft face ringed by dense curls, one arm folded up across the torso. Light seems to originate inside the flesh rather than fall on it from outside; the modelling is so gradual you cannot find an edge where lit skin becomes shadow. The figure turns three-quarters toward you, the head tipped, the mouth caught in a slow half-smile. The right hand rises toward the upper corner with one finger raised, while two dim fingertips show at the chest beneath the crossing forearm. Look longer and a thin diagonal resolves behind the raised arm — a slender reed cross — and a fur skin loops across the lower body. Nothing anchors the scene: no floor, no horizon, no daylight. The body hovers, warm, in a space that refuses to be measured.","about":"This is the last prophet made into a riddle. John the Baptist announced the one who would come after him, and here his entire office collapses into a single upraised finger — the gesture that says look higher, not at me. Yet Leonardo strips away almost everything that would explain the pointing. The wilderness, the river, the crowds are gone; even the cross is nearly swallowed by the dark. What remains is a beautiful, androgynous body and a smile that seems to know something it will not tell. The picture is less a portrait of a saint than a meditation on revelation itself: the moment before meaning arrives, held indefinitely. The finger points to a heaven we cannot see, and the face invites us to trust it anyway. Devotion and seduction are made to share one gesture, and the ambiguity is the subject.","craft":"The whole panel is an argument for sfumato pushed to its limit — smoke instead of line. Leonardo builds the form in translucent glazes, laying dark over light until the transitions vanish and the eye supplies the roundness. The composition is a tightly wound spiral: the raised arm crosses the chest, the hand turns back inward, the head inclines the opposite way, so the eye is walked in a loop that always returns to the finger and the smile. Value does the staging that a setting normally would — the deep ground is not empty but active, pressing the flesh forward. Leonardo also lets the light bend toward warmth, a honeyed gold that makes the figure feel lit from within. Every decision suppresses incident so that one gesture and one expression carry the entire weight.","context":"Painted around 1514, this is among the very last things Leonardo made, and he kept it beside him until he died in France in 1519 — carried across the Alps with a small group of paintings he would not part with. By then he had largely stopped finishing commissions; the works of these final years are private, obsessive, endlessly reworked. The type he invents here, the smiling figure with the pointing finger rising from darkness, unsettled later viewers, who found the saint too sensual, too knowing for a desert ascetic; the picture has drawn discomfort and fascination in equal measure ever since. It reads now as a summation — the sfumato, the spiral, the enigmatic mouth of the Mona Lisa all folded into one devotional image. You meet it at the Louvre, in the same rooms that hold the rest of Leonardo's small surviving world.","deeper":[{"t":"The finger","x":0.5737,"y":0.0775,"w":0.4025,"h":0.345,"body":"Start where the whole panel wants you to start. The right index finger lifts against the darkest part of the ground, and Leonardo has done everything to make it the one inevitable event in the picture: it sits at the top, it is the brightest small form, and every curve of the composition eventually delivers you back to it. The gesture is John's entire theology in one motion — he exists to point past himself to the one who comes after. But notice how little else is explained. The finger indicates a heaven that is not painted, so the pointing stays open, a question rather than a statement. The hand is softly modelled, almost boneless, the knuckles dissolved into shadow, which makes the raised digit feel less like an anatomical fact than a sign held up out of the dark."},{"t":"That smile","x":0.2575,"y":0.1835,"w":0.345,"h":0.253,"body":"Now the face, which answers the finger and complicates it. The mouth curls into the same slow half-smile Leonardo gave the Mona Lisa, built the same way — the corners lost in sfumato so the expression will never quite settle, shifting as your eye moves across it. On a desert prophet it is unnerving: John should be gaunt, fierce, a voice crying in the wilderness, and instead he looks knowing, intimate, faintly amused. The eyes meet yours directly, softened by the same smoky handling. This is where the picture's discomfort lives. The expression turns a public act of witness into something private and unreadable, as if the saint is sharing a secret rather than delivering a message. The light concentrates here, on cheek and brow, so the face and the finger become the two poles the whole design swings between."},{"t":"Light from within","x":0.27,"y":0.3975,"w":0.46,"h":0.345,"body":"Drop to the shoulder and chest and watch how the illumination behaves. There is no visible source, no window or torch; the flesh simply seems to glow from inside, brightest at the near shoulder and fading by imperceptible steps into the surrounding black. This is glaze-work carried to its extreme — thin translucent layers laid one over another until every transition is continuous and no contour can be found. Because there is no drawn edge, the shoulder reads as a real curved volume turning in space rather than a shape filled with paint. The warmth is deliberate: a honeyed gold that reads as living skin against the cold, near-lightless ground. The body is the largest lit passage in the panel, and it functions as a plinth, pushing the figure forward out of the dark and making the two smaller events above it — face and finger — feel earned."},{"t":"The reed cross","x":0.6055,"y":0.0704,"w":0.2489,"h":0.5091,"body":"Behind the raised arm, easy to miss, a thin diagonal line resolves into a slender cross — John's reed cross, the traditional attribute that identifies him. Leonardo has all but hidden it. Where a conventional altarpiece would make the cross prominent and legible, here it is nearly the same value as the ground, a faint stave you notice only after the face and finger have released you. That suppression is the whole point of the picture in miniature: the symbols that would explain the saint are pushed to the edge of visibility so that gesture and expression can carry the meaning instead. Trace the line and you also find the animal-skin garment looping across the body, another attribute reduced almost to shadow. Leonardo keeps just enough iconography to name the figure and no more, trusting the finger to do the rest."},{"t":"Curls and the dark","x":0.176,"y":0.0975,"w":0.368,"h":0.345,"body":"End on the hair and the ground it dissolves into, because this is where you see Leonardo's lifelong obsession worked into a devotional panel. The curls fall in dense, spiralling ringlets, each one turned like water in the drawings he made of currents and braids — controlled, repeating, alive. At the outer edge they stop being describable and simply merge with the black behind, so you cannot say where the head ends and the dark begins. That refusal of an outline is the same principle that governs the shoulder and the smile, applied at the boundary of the figure itself. The ground is not empty backdrop but the substance the whole body is emerging from, and the hair is where emergence becomes visible. Step back from here and the panel reads as one continuous act of coaxing a warm, smiling, pointing presence up out of nothing."}],"by":"Opus 4.8"},
   "vincent-van-gogh-korenveld-met-cipressen": {"mv":2,"see":"The canvas divides into three bands that refuse to stay quiet. Along the bottom, a wheat field runs in short hooked strokes of yellow, ochre and green, flecked at the near edge with tiny red and white wildflowers. Behind it a screen of olive bush and low scrub, then blue-grey mountains across the middle. Above, the top near-half is all sky, given over to cloud. Anchoring the right side, two cypresses rise out of the scrub, the taller a deep green spire twisting almost to the top edge. Nothing is smooth. Every surface is built from separate touches laid side by side, so the eye reads the whole field as moving even where the paint sits still.","about":"This is a picture about a landscape that will not hold still, and about the few things in it that stand against the motion. The cypresses are the fixed point: dense, vertical, unmoved while cloud and wheat writhe around it. Van Gogh had come to see these trees as the south's answer to the obelisk, and they carried for him the weight of mourning and endurance, a dark flame rooted in a living field. The wheat below is the other pole, ripe and about to be cut, the year turning. Between the two the picture holds growth and ending in one frame. Painted from the enclosed world of an asylum, it reaches past the sickbed toward a countryside seen as fierce and whole, a nature charged with a force the painter clearly felt pressing on him.","craft":"The engine is rhythm. Van Gogh keeps a single restless mark going across sky, hill and field, so the whole surface pulses to one beat, then breaks that beat with the cypresses' hard vertical. Colour does structural work: the acid yellow of the wheat throws the blue-greens forward, and the deep green tree pins the pale sky in place. He builds thickly, wet strokes dragged over wet, each one a visible decision left on the surface rather than blended away. The composition is daring in its imbalance, the tree crowded to the right and the sky given almost half the canvas, yet it balances because the coiling clouds pull the eye back left and down into the grain. This is a studio version worked up from a plein-air start, and the control shows: the frenzy is deliberate, every curl placed.","context":"Van Gogh painted this in September 1889 as a patient at the Saint-Paul asylum in Saint-Rémy, in the year after the breakdown that severed his time with Gauguin in Arles. The wheatfield-and-cypress motif was one he prized above almost all his asylum subjects; he made a first version outdoors in early summer, then this full-scale studio canvas and a smaller repetition for his mother and sister. He wrote of working through the mistral, the cold hard wind of Provence, which may account for the whole scene's sense of being blown. Within a year he would be dead. This particular canvas now hangs in the National Gallery in London, and you saw it there.","deeper":[{"t":"The flame on the right","x":0.596,"y":0,"w":0.3579,"h":0.7567,"body":"Start where the picture starts pulling you: the cypress. It rises almost to the top edge of the canvas, the taller of two dark spires twisting up out of the field like smoke or a flame that has been frozen. Van Gogh builds it from short curved strokes of deep green, edged in dark blue, that spiral around the trunk, so the tree looks as if it is slowly rotating even as it stands still. It is the darkest thing here by far, and the strongest vertical, which is why it holds the whole restless scene together. He loved these trees and thought no one had painted them as he saw them; here one becomes the picture's spine, rooting the churning sky to the ripening ground and carrying, for him, the note of mourning that runs under the summer light."},{"t":"A sky that will not settle","x":0,"y":0,"w":0.6619,"h":0.4804,"body":"Give the sky its due, because Van Gogh gave it nearly half the canvas. It is not blue backdrop but weather in motion: white and pale-blue cloud rolled into thick coiling strokes, comma-shaped and curling back on themselves, so the whole upper zone seems to turn like water going down a drain. He painted this while working through the mistral, the cold hard wind that scours Provence, and the sky wears that wind. Notice how the touches never smooth out into flat cloud; each remains a separate raised ridge of paint you could almost feel. This churning is what the cypress stands against, and what makes the tree's stillness read as strength rather than emptiness."},{"t":"The olive bush and the mountains","x":0.0318,"y":0.4042,"w":0.5563,"h":0.3115,"body":"In the middle band, a low mass of silvery-green olive and scrub bunches into rounded, cauliflower-like forms, painted in cooler blue-greens that step the eye back from the hot wheat toward the hills. Behind them a rope of blue-grey mountain, the Alpilles that ringed the asylum, runs across the canvas in soft undulating strokes. Van Gogh uses this band as a hinge: it is calmer than the sky above and the field below, a breathing space of middle tones. The greens here also quietly rhyme with the cypress, so the tree does not feel like an intruder but the tallest member of a family of dark growth. The distance is real, but he lets the brushwork keep even the far hills alive."},{"t":"Wildflowers in the grain","x":0.1145,"y":0.793,"w":0.391,"h":0.207,"body":"Come right down to the near edge of the wheat, where the field meets you. Among the hooked yellow and ochre strokes of the standing grain, Van Gogh scatters a few small dabs of red and white: poppies and other wildflowers caught in the crop. They are tiny, easy to miss, and they do a lot. After the deep green tree and the driving sky, these little sparks of pure colour bring the whole picture back to something human-scaled and tender, a reminder that this violent-looking landscape is also just a summer field in flower. The paint here is at its most physical too, laid on in short thick jabs, so the ground almost bristles. End here: the smallest marks carry the picture's warmth."}],"refs":[{"id":"the-harvesters","text":"The Harvesters"}],"beside":"A dark cypress spire climbs almost to the top edge over wheat that is ripe and still uncut. The Harvesters, painted by Bruegel more than three centuries earlier and now in New York's Metropolitan Museum, builds its field on the same hinge: a single tree rising out of ripe wheat. Under Bruegel's pear the cutting is half done, sheaves stand in cones, and reapers eat in the shade, so the year turns through work and a meal. No scythe has reached Van Gogh's field. Its turning is left to the tree, a mourner rooted beside the ripeness.","by":"Opus 4.8"},
-  "claude-monet-la-femme-a-l-ombrelle": {"mv":1,"see":"A woman stands on the crest of a meadow, seen from below so she rises against nothing but sky. She fills the upper two-thirds of a tall, narrow canvas; the ground is a wind-raked bank of grass and weeds filling the lower third. Her white dress takes almost all the light, a soft column of cream, lilac and pale blue brushed loosely enough that the fabric seems to lift on its own. Above it the parasol is a shallow green-and-blue dome, tilted toward us, throwing a cool shadow down over her face and shoulders. She is turned toward our left, her head in near-profile, a veil streaming sideways off the brim. The veil, hem and grass are worked in strokes that pull one way, so the picture reads as a single gust caught mid-blow rather than a person posing.","about":"This is not a portrait but a figure test — an essai de figure en plein air, a trial of how a body holds together in open outdoor light. What it is really about is weather made visible through a person: the pressure of moving air, the temperature of shade against sun, the way a veil across a shaded face turns it to blue strokes. The woman is Suzanne Hoschedé, Monet's stepdaughter, but he refuses her a face, so she stops being anyone in particular and becomes the place where wind, cloth and light collide. Behind that lies a private return. A decade earlier Monet had painted his first wife Camille in almost this pose; here he rebuilds that remembered composition on a new sitter, which is why the figure feels both intimately known and deliberately anonymous — a remembered gesture more than a living woman.","craft":"The low horizon does the heavy lifting: by placing his eye below the slope Monet sets the figure entirely against sky, freeing him to model her in reflected blue rather than in local colour. The veil, the skirt hem and the grass heads are all raked leftward while the parasol leans back into the wind, which is how the wind is painted without a single moving object being drawn. The parasol's underside is kept cool, so everything beneath it, head and shoulders included, can be painted in the blues and violets of shade. The tall format compresses her against the picture plane and exaggerates her uplift, so she seems to breast the slope. The meadow foreground is the loosest passage of all.","context":"1886 was a hard hinge in Monet's life. Camille had died in 1879; he was now living at Giverny with Alice Hoschedé and her children, and the household's shape was still unsettled and gossiped about. He painted this and its mirror-image companion — the same figure turned to the right — in the same campaign, treating the pair as an open-air experiment rather than commissions, and he never sold them; they stayed with the family and passed with Michel Monet's bequest to the French state. The refusal of a face was partly principle and partly grief: reworking Camille's old parasol pose onto her successor's daughter, he kept the gesture and withheld the person. This left-turned version now hangs at the Musée d'Orsay, where you saw it — the fuller, cooler-lit of the two, its veil streaming from the hat across the sky.","deeper":[{"t":"The dome against sky","x":0.2742,"y":0.0868,"w":0.6016,"h":0.3063,"body":"From across the room the eye goes straight to this shallow green-and-blue canopy, the largest block of strong colour in the pale upper half of the picture. Monet tilts it toward us so we read its concave underside, painted cooler than its outer skin, and rims the far edge with a thin bright line where sun catches it. It is set high and right of centre, tilted back toward the right, with only a band of cloud and sky above it. The sun is behind her and to the right, and the parasol is the one object that both blocks it and, on its lit rim, proves how strong it is. The dome anchors the composition the way a single strong note anchors a bright chord."},{"t":"The withheld face","x":0.3835,"y":0.0738,"w":0.253,"h":0.1725,"body":"Under the parasol the head is turned in near-profile and left almost blank — blue-violet strokes of veil drawn across it, warmer tone showing through where cheek and chin would be, a small warm touch at the nape. This is the decision the whole picture turns on. Because the veil is drawn across a face already in the parasol's shade, Monet can leave the features unresolved and the head still looks lit and true rather than unfinished. The blankness converts Suzanne Hoschedé from a named sitter into an anonymous figure of light and wind. Stand close and there is genuinely no expression to read; step back and the shaded profile is completely convincing. The refusal is the meaning, not a shortcut."},{"t":"Veil in the wind","x":0.0775,"y":0.208,"w":0.345,"h":0.184,"body":"A scarf or veil streams off the left side of the head into the open sky, painted in loaded mid-blue strokes that stand clear of the white cloud behind it. This is where the wind becomes literal. Nothing else in the picture moves on its own, but this loose ribbon of fabric, streaming from the brim, sets the direction of the wind — the raked grass and the pressed skirt answer to it, while the parasol leans back against it. Monet paints the veil in the same blue as the sky streaks, so it seems to be turning into weather as it leaves her. It sits out at the edge of the figure, yet it is the passage that makes the picture read as a gust rather than a still afternoon."},{"t":"Dress that reports the sky","x":0.223,"y":0.1719,"w":0.534,"h":0.5563,"body":"The dress looks white only from a distance. Up close the lit right flank is laid in thick warm cream where sun grazes the cloth, and the shaded front runs to pink, mauve and violet, turning sky-blue at its left edge — the fabric is painted almost entirely in the colours of the light around it rather than its own. A small warm accent at the waist, a dab of red, is the hottest note, echoed by the terracotta of the hanging arm. The strokes follow the fall and lift of the cloth, longer and calmer down the front, more agitated at the blown hem to the left. This is Impressionist logic at full stretch: local colour surrendered so completely that a white dress becomes a record of a blue sky and a bright day."},{"t":"Skirt caught by the gust","x":0.1919,"y":0.4876,"w":0.5563,"h":0.2448,"body":"At the hem the wind's evidence is strongest. The lower skirt is dragged and flared toward the left with broad, quick strokes, its edge broken and feathering into the grass rather than closing in a clean line. Monet lets the paint itself do the blowing here: the marks are longer, wetter and more slanted than anywhere else on the figure, so the cloth seems to snap. This flared hem also braces the tall composition, spreading the figure's base wider just above the meadow so she doesn't read as a narrow post. It is the transition zone where the painted person begins to become painted landscape, the dress cut off by leaves laid over it, its left edge softening into the grass."},{"t":"The meadow's loose ground","x":0,"y":0.7102,"w":0.645,"h":0.2795,"body":"The bottom band of the canvas is the freest painting in the picture — a thicket of green, ochre, russet and small pink and violet dabs that never resolve into named plants. Here the strokes of the bank are raked leftward in the same wind that lifts the veil and skirt, tying the ground to the figure. Monet keeps this zone free and tactile, a mesh of separate touches, so that the eye reads texture and movement rather than botany. It also carries the signature, laid into the lower left, dating the work to '86. This foreground is the base note of the whole design: the loosest, warmest, most earthbound passage under the cool bright column of the woman above it."},{"t":"Step back: one gust","x":0,"y":0,"w":1,"h":1,"body":"Take in the full canvas and the argument closes. A tall narrow field, two-thirds sky, a figure seen from below so she stands against pure light, and veil, skirt hem and grass all leaning the same way, with the parasol leaning back against them. There is no anecdote, no face, no fixed hour; there is a body, cloth, air and daylight resolved into a single moving instant. At this distance one diagonal runs from a dark green mass at lower left, up the flared skirt, to the green dome at upper right, so the figure stands braced into the wind rather than carried by it. The picture's real subject is not the woman but the second of wind passing over her, made permanent in paint."}],"by":"Opus 4.8","beside":"A small boy stands beyond the crest behind his mother in the National Gallery of Art's Woman with a Parasol — Madame Monet and Her Son. Camille has turned on the hill to look back down at us, and through the blown veil her brows, eyes and mouth are all there. Eleven years and her death later, the pose came back to Monet on this slope. He kept the gust, the low eye and the tilted green parasol, and let the rest go: nobody stands behind Suzanne Hoschedé, and her face, turned aside, is a few strokes of blue.","refs":[{"id":"monet-woman-with-a-parasol","text":"Woman with a Parasol — Madame Monet and Her Son"}]},
+  "claude-monet-la-femme-a-l-ombrelle": {"mv":1,"see":"A woman stands on the crest of a meadow, seen from below so she rises almost wholly against sky. She fills the upper two-thirds of a tall, narrow canvas; the ground is a wind-raked bank of grass and weeds filling the lower third. Her white dress takes the light as fully as the clouds do, a soft column of cream, lilac and pale blue brushed loosely enough that the fabric seems to lift on its own. Above it the parasol is a shallow green-and-cream dome, tilted toward us, throwing a cool shadow down over her face and shoulders. She is turned toward our left, her head in near-profile, a veil streaming sideways off the brim. The veil, hem and grass are worked in strokes that pull one way, so the picture reads as a single gust caught mid-blow rather than a person posing.","about":"This is not a portrait but a figure test — an essai de figure en plein air, a trial of how a body holds together in open outdoor light. What it is really about is weather made visible through a person: the pressure of moving air, the temperature of shade against sun, the way a veil across a shaded face turns it to blue strokes. The woman is Suzanne Hoschedé, Monet's future stepdaughter, but he refuses her a face, so she stops being anyone in particular and becomes the place where wind, cloth and light collide. Behind that lies a private return. Eleven years earlier Monet had painted his first wife Camille in almost this pose; here he rebuilds that remembered composition on a new sitter, which is why the figure feels both intimately known and deliberately anonymous — a remembered gesture more than a living woman.","craft":"The low horizon does the heavy lifting: by placing his eye below the slope Monet sets the figure almost entirely against sky, freeing him to model her in reflected blue rather than in local colour. The wind's direction is carried by the slant of the strokes themselves, which is how a gust is painted without a single moving object being drawn. The tall format compresses her against the picture plane and exaggerates her uplift, so she seems to breast the slope.","context":"1886 was a hard hinge in Monet's life. Camille had died in 1879; he was now living at Giverny with Alice Hoschedé and her children, and the household's shape was still unsettled and gossiped about. He painted this and its mirror-image companion — the same figure turned to the right — in the same campaign, treating the pair as an open-air experiment rather than commissions, and he never sold them; they stayed with the family until his son Michel gave them to the French state in 1927. The refusal of a face was principle, and perhaps grief too: reworking Camille's old parasol pose onto her successor's daughter, he kept the gesture and withheld the person. This left-turned version now hangs at the Musée d'Orsay, where you saw it — its veil streaming from the hat across the sky.","deeper":[{"t":"The dome against sky","x":0.358,"y":0.064,"w":0.39,"h":0.28,"body":"From across the room the eye goes straight to this shallow green-and-cream canopy, the one block of green in the pale upper half of the picture. Monet tilts it toward us so we read its concave underside, green on its shaded side and pale yellow toward the sun, and rims the far edge with a thin bright line where sun catches it. It is set high and right of centre, tilted back toward the right, with only a band of cloud and sky above it. The sun is behind her, to our right, and the parasol is the one object that both blocks it and, on its lit rim, proves how strong it is. The dome anchors the composition the way a single strong note anchors a bright chord."},{"t":"The withheld face","x":0.43,"y":0.104,"w":0.16,"h":0.12,"body":"Under the parasol the head is turned in near-profile and left almost blank — blue-violet strokes of veil drawn across it, warmer tone showing through where cheek and chin would be, a small warm touch at the nape. This is the decision the whole picture turns on. Because the veil is drawn across a face already in the parasol's shade, Monet can leave the features unresolved and the head still looks lit and true rather than unfinished. The blankness converts Suzanne Hoschedé from a named sitter into an anonymous figure of light and wind. Stand close and there is genuinely no expression to read; step back and the shaded profile is completely convincing. The refusal is the meaning, not a shortcut."},{"t":"Veil in the wind","x":0.17,"y":0.19,"w":0.33,"h":0.16,"body":"A scarf or veil streams from the head toward our left into the open sky, painted in loaded mid-blue strokes that stand clear of the white cloud behind it. This is where the wind becomes literal. Nothing else in the picture moves on its own, but this loose ribbon of fabric, streaming from the brim, sets the direction of the wind — the raked grass and the pressed skirt answer to it, while the parasol leans back against it. Monet paints the veil in the same blue as the sky streaks, so it seems to be turning into weather as it leaves her. It sits out at the edge of the figure, yet it is the passage that makes the picture read as a gust rather than a still afternoon."},{"t":"Dress that reports the sky","x":0.223,"y":0.1719,"w":0.534,"h":0.5563,"body":"The dress looks white only from a distance. Up close the lit flank at our right is laid in thick warm cream where sun grazes the cloth, and the shaded front runs to pink, mauve and violet, turning sky-blue at its edge on our left — the fabric is painted almost entirely in the colours of the light around it rather than its own. A small warm accent at the waist, a dab of red, is the hottest note, echoed by the terracotta of the hanging arm. The strokes follow the fall and lift of the cloth, longer and calmer down the front, more agitated at the blown hem on our left. This is Impressionist logic at full stretch: local colour surrendered so completely that a white dress becomes a record of a blue sky and a bright day."},{"t":"Skirt caught by the gust","x":0.1919,"y":0.4876,"w":0.5563,"h":0.2448,"body":"At the hem the wind shows in the dress itself. The lower skirt is dragged and flared toward our left with broad, quick strokes, its edge broken and feathering into the grass rather than closing in a clean line. Monet lets the paint itself do the blowing here: the marks are longer, wetter and more slanted than anywhere else on the figure, so the cloth seems to snap. This flared hem also braces the tall composition, spreading the figure's base wider just above the meadow so she doesn't read as a narrow post. It is the transition zone where the painted person begins to become painted landscape, the dress cut off by leaves laid over it, its edge on our left softening into the grass."},{"t":"The meadow's loose ground","x":0,"y":0.7102,"w":0.645,"h":0.2795,"body":"The bottom band of the canvas is painted more freely than the figure above it — a thicket of green, ochre, russet and small pink and violet dabs that never resolve into named plants. Here most strokes of the bank are raked leftward in the same wind that lifts the veil and skirt, tying the ground to the figure. Monet keeps this zone free and tactile, a mesh of separate touches, so that the eye reads texture and movement rather than botany. It also carries the signature, laid into the lower left, dating the work to '86. This foreground is the base note of the whole design: a looser, warmer, more earthbound passage under the cool bright column of the woman above it."},{"t":"Step back: one gust","x":0,"y":0,"w":1,"h":1,"body":"Take in the full canvas and the argument closes. A tall narrow field, sky through most of its upper two-thirds, a figure seen from below so she stands against pure light, and veil, skirt hem and grass all leaning the same way, with the parasol leaning back against them. There is no anecdote, no face, no fixed hour; there is a body, cloth, air and daylight resolved into a single moving instant. At this distance one diagonal runs from a dark green mass at lower left, up the flared skirt, to the green dome at upper right, so the figure stands braced into the wind rather than carried by it. The picture's real subject is not the woman but the second of wind passing over her, made permanent in paint."}],"by":"Opus 4.8","beside":"A small boy stands beyond the crest behind his mother in the National Gallery of Art's Woman with a Parasol — Madame Monet and Her Son. Camille has turned on the hill to look back down at us, and through the blown veil her brows, eyes and mouth are all there. Eleven years and her death later, the pose came back to Monet on this slope. He kept the gust, the low eye and the tilted green parasol, and let the rest go: nobody stands behind Suzanne Hoschedé, and her face, turned aside, is a few strokes of blue.","refs":[{"id":"monet-woman-with-a-parasol","text":"Woman with a Parasol — Madame Monet and Her Son"}]},
   "claude-monet-a-corner-of-the-apartment": {"mv":1,"see":"A dim vertical corridor of paint, saturated in blue-grey and dusk-green, opens between two flanking masses of foliage that reach in from the left and right edges like theatre wings. Down the centre a chevroned floor runs back into shadow, and on it a dark-suited boy stands square to us, hands at his pockets, his pale collar the one bright human note and his small face, plainly drawn, looking straight out. Behind and above him a hanging lamp drops on its chain, a round table catches light at its rim, and a curtained window glows with the room's only light. A second figure, a woman in a white bonnet, sits at the left of the table with both hands on it, half-hidden behind the leaves. The edges are loosely brushed — the leaves are flecks and commas, the floor chevrons raked in quick strokes — so the eye reads depth before it reads any single object.","about":"This is domestic space rendered as something closer to a threshold or a stage than a room. The picture is about looking down a tunnel of shadow toward a lit interior you cannot quite enter, with a child posted at the boundary. It turns the ordinary — a hallway, plants, an afternoon indoors — into a study of enclosure and of a family half-swallowed by its own furnishings. The mood is hushed and faintly melancholic, an interior of blue air rather than warm hearth. Where an anecdotal painter would give you an event, Monet gives you an atmosphere and a distance: the boy is present but unreachable, the seated woman half-screened by leaves. It is a portrait of a household as a climate, a pocket of cool light held inside the domestic dark.","craft":"The composition is ruthlessly frontal and symmetrical: a central axis framed from both sides, so the whole thing reads as a curtain parted onto a shallow stage. Monet keeps the palette narrow, blues, slate greens and muted ochres, and lets only small touches of red and dull gilt break it. The handling shifts by zone, and what decides it is light. Whatever stands against the brightest passage is stated with drawn edges; whatever crowds the dim margins is left as quick stabbed touch; in between, the brush is dragged in long directional rakes that describe a surface and animate it at the same time. The tight framing and low interior key make an unusually severe, almost claustrophobic design for him.","context":"Painted in 1875 at the second of the houses Monet rented in Argenteuil, the Paris suburb where he spent his most concentrated years of the early 1870s, this is one of a small run of interiors he made when weather or circumstance kept him indoors — unusual for a painter who lived by the open air. The seated figure is generally taken to be his wife Camille, the standing child their son Jean, born 1867. The mid-1870s were financially strained years for Monet and for the Impressionist circle, whose group exhibitions in this decade met open ridicule from much of the press.","deeper":[{"t":"The lit throat","x":0.36,"y":0.03,"w":0.32,"h":0.454,"body":"From across the room this tall pale window is what catches you first: net curtains tied back on both sides into a peak at the far end of the corridor, glowing where everything around it is dusk. Monet lays the folds in as vertical streaks of blue-white, crosses them with faint glazing bars, and hangs a dark lamp in front, conical shade over a round reservoir, so the brightness is partly eclipsed; above it hangs the gilt body of a candle chandelier. This is the destination the whole picture points toward, the far end of the tunnel. The eye travels down the floor to reach it and is met by the most plainly drawn things in the room, held up against light you can see but not walk into."},{"t":"The boy at the threshold","x":0.4815,"y":0.365,"w":0.207,"h":0.46,"body":"The nearer of the two figures stands a little right of the floor's centre line, dark against the blue sheen of the boards, hands at his pockets. Backlit by the window, he is painted almost wholly in near-black, but the pale collar with its dark bow and the small face above it are plainly drawn: eyes, brows, nose and mouth, turned straight at us. He stands nearly a third of the canvas high, and his legs run on down into their own reflection in the polished floor. He reads less as a marker of scale than as a meeting: a child posted between us and the lit room beyond, the one gaze in the picture that comes back up the corridor at the viewer."},{"t":"The raked floor","x":0.27,"y":0.5986,"w":0.4799,"h":0.3428,"body":"The parquet is the engine of the space. Its herringbone chevrons are laid down as directional strokes that both describe wood and pull the gaze fast toward the lit opening, doing the work of perspective lines without a ruled edge in sight. Each stroke follows its own board, so the chevrons hold; the light is a long blue sheen down the polished centre, with the boy's dark legs mirrored in it. This raking floor is what makes the room feel like a shallow stage seen from the stalls: it tilts up toward you, compresses the depth, and turns walking-space into pattern. It is the clearest place to watch Monet let a surface be paint and illusion at once."},{"t":"Leaves and drape","x":0,"y":0,"w":0.3,"h":0.85,"body":"Down the left edge a tall mass of leaves reaches in from top to bottom, mirrored by another on the right, so the two together frame the scene like drawn-back theatre curtains — the device that gives the picture its stage-set feeling. Behind the leaves, down the outer edge, hangs a real curtain too: a cream drape flecked red, rust, green and blue, showing through every gap in the foliage. The leaves are quick shorthand, flecks, commas and stabs of yellow-green and olive on thin drawn stems, touches that resolve into a shrub at a distance. Leaves and drape together make the wing: the warmth lives in the drape's red flecks, the energy in the leaf-strokes, hemming the shadowed centre and pushing the eye inward."},{"t":"Jardinieres in the corner","x":0.0005,"y":0.7005,"w":0.299,"h":0.299,"body":"At the base of the left foliage sit two blue-and-white jardinieres, a large one jammed into the corner and a smaller one beside it holding a spiky palm. The corner pot is among the most heavily worked passages on the canvas: crusted dabs of blue laid over white across its whole body, a cream rim, a handle sculpted in thick dark-blue paint. It is the sort of ornamental detail — patterned ceramic, potted greenery — that recurs in Monet's Argenteuil pictures, indoors and out in the garden, and here it does structural work: it weights the bottom corner, closes the frame, and grounds the wing of leaves above it. The paint is at its thickest here, at the opposite pole from the thin, dark figures down the corridor: the china gets more body than the people."}],"by":"Opus 4.8","beside":"Who is set at the front of a household, and who is kept back in its dark? Manet answered seven years earlier with The Balcony, a Musée d'Orsay picture: three grown-ups posted at an open doorway behind a green rail, each looking somewhere different, while a boy’s face hangs barely lit in the room behind them. Monet turns the household round. Here the child stands at the front of the corridor and meets our eyes, and the woman is the one half-lost, at the table behind the leaves.","refs":[{"id":"the-balcony","text":"The Balcony"}]},
   "camille-pissarro-junimorgen-bei-pontoise": {"mv":1,"see":"Half the canvas is sky: a pale blue crowded with soft cumulus that thins toward the horizon into a milky haze. Beneath it the land is mostly straw-gold. A pale dirt track climbs dry from the bottom edge, rutted and grassed down its middle, bending as it pulls the eye into the middle distance. To its left a field of pale ripening grass carries short red dashes of poppy; to its right the same crop stands taller and feathery, with a broad green patch of vegetables in flower at the lower right. One tall poplar rises at the far left, sparse enough to see sky through, with two round-crowned trees below it. Low blue-grey hills seal the far edge. Where the road narrows, small figures walk beside a grey animal being led, past a white building with its roof broken open; farm roofs and a stack sit off to the right, and a white village shows across the valley. The light is high, even, and cool.","about":"This is a morning that refuses to be an event. There is no monument, no gesture reaching for the sublime — only a working path through cultivated fields on the edge of a small town. What the picture is really about is attention paid to the ordinary: the specific weight of summer air before the day's heat, the way a used road organises a whole landscape, the fact that people are out and moving before anything picturesque has been staged for them. Pissarro treats the walkers not as staffage but as inhabitants, small because the land is large and the season indifferent to them. The subject is duration rather than drama — the sense that this exact light held for an hour and then changed. To make a countryside this plain worth a large canvas was itself the argument.","craft":"The composition runs on a single deep diagonal braced against the flat horizon, so the eye is pulled in fast then held. The palette is warmer and simpler than it looks: straw-gold below, chalky blue and white above, buff and green worked in only where the ground changes use, and saturated colour rationed to the smallest touches. The paint is laid quick, in short dabs and flicks that describe grass, foliage and cloud by their motion as much as their colour, never by outline. Tones lighten and blur toward the horizon to build atmospheric depth without linear perspective doing the work. The whole surface is kept in a high, narrow key, so very little anywhere is allowed to go dark, and the morning light stays even from edge to edge.","context":"Painted in 1873 at Pontoise, where Pissarro had settled in 1872 and made the working countryside his subject, this canvas was among the works he sent to the first Impressionist exhibition in 1874, mounted in Nadar's former studio. Critics used to history and myth found such plein-air field scenes unfinished and coarse — the charge of crudeness fell hard on exactly this kind of quiet subject. Pissarro, the movement's oldest member and its steadiest, kept at the everyday countryside regardless, teaching Cézanne nearby in these same years.","deeper":[{"t":"The road pulls you in","x":0.262,"y":0.609,"w":0.276,"h":0.391,"body":"Look at what grows on it. A ribbon of green runs down the crown of the track between two worn wheel-lines, and a dark scored rut cuts along its right edge — a farm road, used enough to be bare in two strips and idle enough to let grass hold the middle. There is no puddle and no gloss. The surface is dry, dabbed in cream, grey-lilac and olive, as broken in touch as the fields beside it, so the road is not a smoother passage than they are, only a paler one. That is what does the spatial work: no ruled perspective, just a pale band narrowing and bending right, the one man-made line in the picture, with everything else arranged around it."},{"t":"The led animal","x":0.3805,"y":0.47,"w":0.299,"h":0.202,"body":"Between the walkers stands the thing a whole-view glance loses: an animal, grey with one pale stroke along its back, its kind left unsaid in a few touches, with a dark upright form at its head. That turns a stroll into work. The woman nearest us — a blue skirt and a white cap in perhaps six touches — is on the road with a led beast, and the road under them is a working route rather than a path through a view. No face is given a feature. Beside them a white building stands with its roofline broken open, a single thin pole leaning off it into the grass. Scale is what this detail settles: the track that filled the foreground has narrowed to the width of two people and an animal, and that narrowing is the picture's whole measure of distance."},{"t":"Red dashes on gold","x":0.065,"y":0.6435,"w":0.23,"h":0.253,"body":"The field left of the road is not green. It is pale straw-gold, a ripening crop scrubbed on dry in cream, ochre and olive, and the poppies are laid into it as small red flecks — some flicked, some dabbed round, some single, some doubled. Red on gold is a far narrower interval than the red-against-green the period is remembered for. There is no clash here, only a warm note lifted a little above a warm ground, which is why the field reads as heat rather than as flowers. Where green does arrive, at the lower right of this corner, it comes as grey-green clumps of roadside weed, and they are the coolest thing here."},{"t":"One poplar, seen through","x":0,"y":0.0692,"w":0.1648,"h":0.7416,"body":"There is one poplar, not a stand, and it is thinner than the whole view suggests. Its crown is a ragged dark column with pale sky showing through it in a dozen places, its top tapering to a ragged point, and a hair-fine trunk carries it all the way to the ground, passing behind a pair of round-crowned trees on the way. So the picture's single vertical is not a mass. It is a line: enough to stop the eye sliding off the left edge, nowhere near enough to weigh that corner down. The ground beneath it makes the point — not shadow, but some of the lightest paint in the picture, a pale gold-green that the dark trunk is simply drawn across. The tree sits on the light rather than standing in it, which is why the corner holds without ever going heavy."},{"t":"Smooth air, dry ground","x":0,"y":0,"w":1,"h":1,"body":"Come back out and compare the two halves by their paint. The sky is the smoothest, most blended passage on the canvas: thin blue laid flat, the cumulus fused into it with soft edges, almost nothing standing off the surface. The ground is the opposite — scrubbed on dry and broken, the brush skipping so the canvas weave reads through the straw-gold, every stroke separate. That is the reverse of what the movement is remembered for, where the broken touch usually goes to the sky. Pissarro gives continuity to the air and grain to the earth, which is why the land feels dry underfoot and the morning feels still. In the lower right the signature and date, C. Pissarro 1873, sit on the ground side of that division, down in the green."}],"by":"Opus 4.8"},
   "john-everett-millais-dew-drenched-furze": {"mv":1,"see":"A tall clearing seen head-on. Trunks rise at both edges, a mottled birch on the left, and a dark spruce anchors the right, so the eye is funnelled straight down a corridor of mist to a pale, smokeless fire of light high in the centre. Autumn foliage burns rust and amber up top; below and left of the light a single small tree stands almost bare, its twigs dark against the glow. But the picture's real weight is low: more than half the canvas is a matted field of gorse and dead bracken, silvered all over with dew that reads as thousands of grey-white flecks. The floor tilts up toward you and ends at the bottom edge in a dark hollow thick with tall, straw-coloured grasses, with blue-grey bramble leaves at the lower left. Little is sharp beyond the nearest stems and leaves; the rest is held in a cold, breathing haze.","about":"This is a picture about a particular ten minutes of a particular kind of morning — the moment when low sun first reaches a wet clearing and the whole ground steams and glitters before the warmth burns it off. Millais is not describing a place so much as a threshold: light arriving into cold, the year turning down toward winter, matter caught between solid and vapour. The gorse is ordinary scrub, the sort of thing a landscape painter walks past; by drenching it in dew and setting it against that veil of light, he makes it the subject and pushes the trees, the usual furniture of a woodland view, into supporting shadow. The mood is valedictory rather than picturesque. It reads as an old man's landscape: a scene that is beautiful precisely because it is transient, and painted by someone with reason to feel the transience.","craft":"The composition is a controlled funnel — dark verticals at both margins, the heavier mass on the right, the far edge of the ground at about mid-height and no open sky — all steering you to the one soft blaze at centre. Millais softens the edges in the far and middle ground so the light seems to eat into the trees, and across much of the surface he lets the weave of the canvas show through, so that dry colour dragged over it breaks into flecks along the grain. The palette is narrowed to browns, rusts and cold greys with one warm core, so the picture feels tonal and unified, closer to Whistler and to atmosphere than to the hard Pre-Raphaelite clarity of his youth.","context":"Millais painted this in 1889-90 in his sixties, forty years after co-founding the Pre-Raphaelite Brotherhood, having long since traded its jewelled precision for large, weather-soaked Scottish landscapes worked up near Murthly in Perthshire, where he spent his autumns shooting and fishing. His son thought the scene might prove unpaintable and the family criticised the canvas as it grew, but Millais never doubted the subject, and the picture's reputation rests on his having caught it. The title comes from Tennyson's elegy In Memoriam, which gives the scene its grave, mourning undertone; within a few years Millais was President of the Royal Academy and then dead, in 1896, making this late clearing feel like a settling of accounts with the outdoors he loved.","deeper":[{"t":"The soft fire","x":0.3145,"y":0.02,"w":0.391,"h":0.46,"body":"Start where the room sends you: the pale, sourceless glow burning at the centre-top, framed by rust-coloured autumn crowns. There is no visible sun and no clean sky, only a smokeless brightness that the mist carries down into the clearing. Millais paints it as an absence of edges rather than a thing — the trees on either side simply lose definition and are swallowed, so the light appears to be dissolving the wood from within. This is the engine of the whole picture. Everything darker and nearer exists to make this small warm core feel like the one live thing in a cold morning, the point the eye keeps returning to however far down into the wet it wanders."},{"t":"The bare tree","x":0.2605,"y":0.3035,"w":0.299,"h":0.253,"body":"Set below and left of the light stands a single small tree, almost bare, its fine twigs dark against the glow behind, a few rust leaves still caught in them. It is the one drawn, legible form in the middle distance, and Millais places it just left of the sightline so it acts as a hinge between the vaporous background and the dense foreground. Where the surrounding foliage still holds its autumn colour, this one has almost let go — a small memento within a picture already full of endings. Note how little paint it takes: a scaffold of dark strokes against the haze, its foot lost in the haze where it meets the gorse, so it seems to stand in the drifting mist more than on solid earth."},{"t":"The dark spruce","x":0.6217,"y":0.0318,"w":0.3783,"h":0.5563,"body":"On the right, a dark conifer hangs from under the arching boughs at the top right almost to the middle of the canvas, the heaviest mass in the wood. It is doing structural work: it caps the funnel on this side, stops the light from leaking out to the right, and by its sheer darkness makes the central glow read as warm and the mist as luminous. Millais keeps its needled boughs soft and clotted rather than crisp, a wet green-black that absorbs light instead of catching it. Against the dissolving deciduous trees opposite, its solidity is the wood's firmest mass — the thing that keeps a scene built almost entirely from haze and wet ground from floating apart."},{"t":"The drenched field","x":0.0742,"y":0.4868,"w":0.6016,"h":0.3063,"body":"Here is the subject the title names. The middle-lower ground is a matted expanse of gorse and dead bracken, and across it Millais scatters countless small flecks of pale, cool pigment — dew and cobweb catching the low sun. Up close this is dry, dragged handling, pale paint broken along the weave of the canvas so it seems to glint; step back and it resolves into a wet, breathing meadow. This is the effect his son thought might prove unpaintable: not the gorse itself but the light living on the water sitting on it. The reversal of technique matters — everything behind is smoothed into vapour, everything here is broken into flecks, and that alone tells you which plane is wet."},{"t":"Tangle at your feet","x":0.2503,"y":0.7276,"w":0.4994,"h":0.2724,"body":"At the very base the field drops into a dark hollow: tall, straw-coloured grass stems, most upright, some bent over, catching the light against cold shadow. Millais lets the paint go loose and calligraphic here, dry strokes flicked over darker ground, refusing the tidy foreground a Victorian exhibition picture might expect. It reads as the actual disorder of a neglected clearing in late autumn, unmanaged and going over. Because it sits closest to you and is drawn stem by stem, with a speckled brown bird crouched unseen among the stalks, it pulls you bodily into the wet, as if you were standing ankle-deep at the edge of the gorse rather than looking at a framed view."},{"t":"Bramble at the edge","x":0.025,"y":0.808,"w":0.23,"h":0.184,"body":"In the lower-left corner, almost hidden in the dead grass, lies a spray of bramble: a few blue-grey leaves silvered with dew, a green one, an orange-red berry, a stem running across. It is a tiny, deliberate touch: after a whole canvas of browns, rusts and greys, this cool blue-grey holds the corner and quietly answers the warmth at the top. Millais draws the leaves with their veins and toothed edges but keeps them small, a corner of the undergrowth rather than a specimen. His monogram and the date 1890 sit just below them. End the tour here: the eye that walks all the way down from the fire, through the mist and the dew, to the wet ground finds a last cluster of colour waiting in the cold."}],"by":"Opus 4.8"},
@@ -25608,9 +27234,9 @@ window.CANVAS_INSPECT = {
 "vincent-van-gogh-the-flowering-orchard":{"mv":1,"see":"A large fruit tree stands right of centre in a green meadow, its pale blue-grey trunk splitting into a fan of dark maroon limbs and wiry branches that reach almost to the top edge. The branches carry a scatter of pale blossom and the first green leaves. Behind it, to the left, a row of smaller trees recedes, their crowns pale green and cream. Behind the crowns the sky is a soft near-white. Below, the grass is laid in short vertical strokes. The eye enters low, climbs the trunk, and is thrown out along the flowering branches into the light. At the back, a low cane fence closes the orchard.","about":"This is spring caught at the exact instant it announces itself — the moment bare wood breaks into leaf and flower. Van Gogh arrived in Arles in February 1888 and, when the orchards broke into blossom in late March and April, painted them in a fever, before the petals could fall. The picture is about freshness and renewal after a hard winter, and about looking hard at the clear light of the south. There is no figure and no story, only the tools someone left under the tree; the subject is simply that the world has turned. What holds it together is his conviction that a plain orchard, given full attention, carries as much feeling as any grand scene.","craft":"The order of work can be read off the surface. The sky went in first, cream brushed thin in crossing directions, so thin in places that the canvas weave shows through. Over it came the drawing, in maroon and a blue dark enough to read as black, laid down as lines rather than modelled. Only then the colour, straight from a heavily loaded brush, in separate touches laid side by side. The decision throughout is to build rather than blend, so every stage stays visible on top of the last. The palette stays keyed to fresh green-blue and white, deliberately unmuddied, so the canvas feels aired-out and lit from within.","context":"Van Gogh made roughly fourteen orchard paintings that spring, working fast and in series as different fruit trees came into flower — a burst of production he was proud of and described in letters to his brother Theo. The campaign gained a private weight in late March when he learned that his cousin-in-law and early mentor, the painter Anton Mauve, had died; he dedicated another of the orchards to Mauve's memory. This canvas is one of that Arles group. It comes at the start of the most productive and hopeful stretch of his life — before the sunflowers, before the crisis with Gauguin that December — when the plan for a painters' community in the South still felt entirely possible.","deeper":[{"t":"The branch-drawing","x":0.3042,"y":0.045,"w":0.6016,"h":0.35,"body":"Follow the thinnest twigs into the top-right glare. This is drawing more than painting: each twig is a single continuous stroke of dark red-brown, tapering as the brush lifts, and even the heavy limbs are a few flat maroon strokes, darkened along an edge here and there, with hardly any shading to round them into a cylinder. That linear, calligraphic handling is the clearest sign of the Japanese woodblock prints Van Gogh was studying in these months — a print flattens a branch into a decisive black line against pale ground, and that is exactly what he does here. The blossoms are not painted continuously along the branch but dropped on as separate touches, so the flowering reads as rhythm and interval rather than mass. Across the crown run a few longer lines in dark blue, thin and faintly sagging, crossing the branches rather than growing from them, like wires strung through the trees. Set against the pale sky, the whole crown becomes a piece of writing across the canvas."},{"t":"How the blossom is built","x":0.3545,"y":0.1205,"w":0.391,"h":0.299,"body":"Look closely at the flowers on the big tree. Each is a small, deliberate deposit of thick pale yellow-cream, set among yellow-green leaf dabs and touches of blue, sitting up off the surface with its own edge and cast of paint. Van Gogh lets the brushed cream sky show between them, which is why the tree looks sparsely, believably in early bloom rather than smothered — this is the first flush, not full flower. The yellow keeps the blossom warm against the cooler cream of the sky, so it never reads as snow. Because the touches are discrete, your eye assembles them at a distance and then, up close, dissolves them back into raw marks of paint."},{"t":"The row of trees behind","x":0.036,"y":0.24,"w":0.46,"h":0.42,"body":"At left, set back, a row of smaller trees steps away from us, blue-grey and maroon trunks forking low, back in a line to an orange cane fence. Their crowns are open, pale green leaf and cream-yellow dabs with sky between, no fuller in flower than the big tree. They make this a small orchard, not a lone tree — a worked, planted place — and because each stands lower and smaller than the one before it, the row opens a pocket of depth that runs back to the fence. Notice the palette holds: still cream, green and that fresh blue-grey, nothing muddied, so the recession is achieved by scale and softness rather than by darkening."},{"t":"The meadow as colour field","x":0,"y":0.66,"w":1,"h":0.34,"body":"The lower third looks like plain grass until you stand close, and then it is the most radical part of the picture. It is made of hundreds of short vertical strokes laid side by side — greens, yes, but threaded with orange, red, ochre and yellow that never blend. Van Gogh sets warm against cool, red beside its complement green, so the eye mixes them optically and the grass seems to shimmer and grow rather than sit still. Small white flowers are flicked in at intervals, echoing the blossom above and tying the ground to the tree."},{"t":"The rake left in the grass","x":0.62,"y":0.44,"w":0.34,"h":0.4,"body":"In the grass before the big tree lies a wooden rake, its pale yellow crossbar set with red-brown teeth and its long orange handle propped on the trunk; a second long-handled tool leans across the trunk beside it. They are the nearest signs of a human hand, and they do a lot with very little. They tell you this is a tended orchard, that someone has been raking under the trees and left the tools where the work stopped. Compositionally the rake also anchors the base of the trunk, its handle giving the tall vertical of the tree a firm foot. Its warm yellow answers the warm flecks scattered through the grass, so even this practical object is pulled into the colour scheme rather than left as a stray note."},{"t":"The signature and lower edge","x":0.0035,"y":0.851,"w":0.253,"h":0.138,"body":"Down in the lower left, worked into the grass, is the plain red signature — Vincent — the first name only, as he signed in Arles, holding that his surname was unpronounceable to the French. It sits directly in the colour field rather than on a clear margin, so you almost have to hunt for it among the strokes. That placement is characteristic: the name becomes one more mark in the weave of the paint. Reading the bottom edge as a whole, notice how the grass strokes lengthen and loosen toward the foreground, a subtle cue that this ground is nearest to us and the tree is set a step back into its meadow."}],"by":"Opus 4.8","beside":"A rake lies in the spring grass with its handle propped against the trunk, and a second long tool leans across the tree beside it: the work under these trees has been set down part way, and whoever was doing it has gone. Work stops too in The Angelus, Millet's field at dusk, now in Paris at the Orsay. In that picture, painted about thirty years before the orchard, a pitchfork stands planted in the soil beside a basket and a laden barrow while the couple bow their heads at the call of a distant bell. Millet's workers have stopped where they stand, to pray. In the orchard only the tools remain, and the season's work has barely begun.","refs":[{"id":"the-angelus","text":"The Angelus"}]},
 "woman-holding-a-balance":{"mv":1,"see":"A woman stands at a table in a shadowed room, caught in a single seam of light from a window at the upper left. She wears a blue jacket trimmed with white fur, a linen headcloth softening the fall of light on her brow, and she looks down at what she holds: a small balance, pinched between thumb and finger, its two empty pans hanging level. On the table before her, gold chains and strings of pearls spill across a dark blue cloth. Behind her, filling the back wall, hangs a large dark painting of the Last Judgment, Christ raised in a burst of light above the risen dead. The room is otherwise plain: a bare wall, a mirror at the left edge, a wooden table lip. Nearly everything is muffled brown and grey, so the eye goes straight to the two pale lit zones, her face and hand, and the level bar of the scale between them.","about":"The picture is a meditation on weighing and being weighed. The woman measures nothing yet, the pans hang empty and perfectly even, and that stillness is the point: this is the poised instant before judgment, not the act of it. Behind her, Christ divides the saved from the damned in the Last Judgment, weighing souls, so her private, domestic gesture rhymes with the cosmic one. The gold and pearls on the table are worldly worth, the vanitas note, treasure that cannot be carried past death. The mirror at the left adds self-scrutiny, the old emblem of knowing oneself. Read together they turn a quiet interior into an argument about moderation and conscience: to hold the balance steady, to want neither too much nor too little, to examine one's own soul before it is examined. Her calm suggests she has already understood the scene at her back.","craft":"Vermeer builds the whole thing on one diagonal of light and a hidden geometry. The window lights only a narrow band, so most of the canvas sinks into warm dark and the few lit passages carry all the weight: her forehead, the linen, the fingers on the balance. The blue cloth is laid on thick and shadowed to swallow light; the fur reads as soft dabs rather than drawn hairs. He resists any anecdote, no story, no gesture toward the viewer, only a figure absorbed and held still. The famous restraint is technical as much as temperamental: edges are let go soft, highlights kept to a handful, and the balance-bar drawn dead level so the eye keeps returning to test it.","context":"Vermeer worked in Delft in the 1660s, a Dutch Republic rich from trade and split between Protestant plainness and a lingering Catholic strain; he had converted to Catholicism at marriage, which makes the Last Judgment on the wall feel personal rather than merely decorative. He painted slowly and sold little, producing only a few dozen surviving works, and this is among his most concentrated. It descends from a Dutch tradition of woman-at-a-table pictures, gold-weighers and money-counters, but he strips away the commerce and keeps the emblem. For a long time the balance was described as holding gold or pearls, and the woman read as a jeweller or a vain beauty; closer looking corrected that, the pans are empty, which shifts the whole meaning from greed to equilibrium. The painting now hangs in the National Gallery of Art in Washington DC.","deeper":[{"t":"The empty balance","x":0.425,"y":0.4072,"w":0.23,"h":0.1955,"body":"Look hard at the two pans: they hold nothing. For centuries the scale was said to weigh gold or pearls, and the whole picture was read as a portrait of avarice or vanity, but the pans are empty and hanging level. That single fact reorients everything. She is not measuring treasure; she holds the instrument itself in balance. The gold is on the table, unweighed, deliberately set apart from the act. An empty, level scale is the emblem of judgment poised and even-handed, the exact moment before a verdict rather than the transaction of a merchant. Her fingers barely pinch the ring at the top, a grip so light it insists on stillness over effort."},{"t":"The Last Judgment behind her","x":0.4803,"y":0.013,"w":0.4994,"h":0.454,"body":"The dark picture on the back wall is a Last Judgment: Christ enthroned in a burst of gold light at the top, arms raised, with the risen dead massed below. It is not background decoration. Its subject is weighing, souls sorted into saved and damned, and the tradition often shows the archangel Michael with an actual balance. So the woman's small, private scale echoes the largest possible one. Vermeer positions her head so it just breaks the lower frame of the painting, placing her physically inside its field of judgment. Her calm downward gaze reads as someone who has taken the lesson to heart: measure yourself, weigh your soul, before the greater weighing comes."},{"t":"Gold and pearls on the cloth","x":0.2005,"y":0.4887,"w":0.299,"h":0.1725,"body":"Spilled across the dark blue cloth are gold chains and loose strings of pearls, catching thin points of light out of the gloom. In the old money-weigher pictures these would be goods to be assayed; here they are simply present, worldly value laid out and left. This is the vanitas thread, the treasure that glitters now and means nothing at the final accounting. Vermeer keeps them low in tone, half-drowned in shadow, so they never compete with her lit face or the level bar of the scale. The pearls in particular double as a symbol of purity as much as luxury, letting the same objects carry both the temptation and its answer."},{"t":"Face, headcloth, and the fall of light","x":0.602,"y":0.1435,"w":0.276,"h":0.253,"body":"Her face and the white linen over it take the fullest, softest light in the picture. Vermeer lets the edge of the headcloth blur where it meets the wall, so the transition from cloth to shadow is a gradient rather than a line, the trick that makes his light feel like real air. Her eyes are lowered, her expression composed to the point of inwardness, giving nothing to us and everything to the object in her hand. This is the emotional register of the whole work, absorbed self-possession. The lit forehead and cheek become the brightest human note in a room built from browns, pulling the eye up from the scale to the mind that governs it."},{"t":"The lit wall and the pivot point","x":0.2835,"y":0.119,"w":0.253,"h":0.322,"body":"The bare stretch of wall between the window and the woman is doing quiet structural work. It is the largest simple passage of graded light in the painting, a soft wash from bright near the window to grey in shadow, and it isolates her against near-emptiness. Crucially, the dark vertical of the Last Judgment's frame descends here and meets the level of the balance almost exactly at the pivot of the scale. Vermeer has aligned the crossing of his composition, frame-edge against scale-bar, so the eye keeps landing on that intersection. Nothing is decorative in this zone; the plainness is what lets the geometry read and the light breathe."},{"t":"The mirror at the window","x":0.0102,"y":0,"w":0.1495,"h":0.345,"body":"At the far left, half in shadow beside the window, hangs a dark mirror in a black frame. It is easy to miss, but it belongs to the argument. The mirror is the classical emblem of self-knowledge and, paired with the jewels, of vanity, the two faces of looking at oneself. Placed by the light source, it faces the woman across the table, so the room becomes a space of reflection in both senses. Vermeer gives it almost no detail, just a dark rectangle with a faint gleam, trusting the viewer to feel its presence rather than inspect it. Its restraint is the point: an emblem stated once, softly, and left to resonate with the scale and the Judgment."},{"t":"The waistline and the pregnancy question","x":0.5575,"y":0.5275,"w":0.345,"h":0.345,"body":"The blue jacket rounds out below her hand, and many viewers read the woman as pregnant, which would fold new life into a picture otherwise about death and judgment, a soul about to be born set against souls being weighed. But the fullness may simply be the fashion of the padded, fur-trimmed jacket of the 1660s, worn loose over the body. The costume of the period genuinely produced this silhouette on women who were not expecting. The image alone cannot settle it. What is certain is that the swell of blue is the compositional counterweight to the dark table and cloth on the left, so whatever it means, Vermeer needed the mass there to balance his own picture the way she balances her scale."}],"by":"Opus 4.8"},
 "arnold-bocklin-the-island-of-life":{"mv":2,"see":"A low green island sits alone on still water under a huge Mediterranean sky of piled cumulus. On a grassy terrace below its rounded knoll about a dozen small robed figures gather, four at the right linked hand in hand, one kneeling at the left. Trees rise behind them in a deliberate mix: tall poplar-like trees in deep green on the left, a rust-brown crown at centre, two blossoming trees, a yellow-flowering shrub, and a fan of date palms leaning right. The island's front edge is a dark rock shelf, undercut into a shadowed grotto arch at right. In the foreground water, swans glide, a red-bearded triton facing us throws up an arm while a nymph with blue-green hair leans back against him, face turned up, and three more nymphs stand waist-deep in the shade of the arch. The water below mirrors island and sky in long vertical smears, and the whole scene reads as bright, warm, populated, alive.","about":"It reads as the counter-image to Böcklin's famous Isle of the Dead, whether or not he planned it so: where that island is a walled cypress-black tomb approached in silence, this one teems. Element by element, it answers with an antonym. The dead-isle's sealing cypresses become an open grove of poplars, palms and flowering trees; its lone shrouded passenger becomes a dancing company; its glassy dread becomes water full of swans, nymphs and a triton. The subject is not a story but a condition, life as abundance, warmth, company, generation. The figures on the crown suggest ritual or celebration rather than mourning, and the couples and bathers below carry the frank sensuality Böcklin liked to fold into his mythic scenery. It is Arcadia rebuilt as the exact structural mirror of death, so that vitality is defined by what it is not.","craft":"Böcklin builds the picture on one horizontal band, the island, floating between two large fields, sky above and mirror-water below, which lets stillness and abundance coexist. The island mass is kept low and dark so the pale sky can dominate and the eye reads the light as full daylight, not dusk. Between the crown and the water he lays a broad slope of near-black green, sparsely described, with a red-robed figure and a seated one half lost in its shadow at the left, so the lit figures above and below stand out. The figures are tiny and generalized, painted as touches of white, red and ochre; they animate the ridge without becoming portraits. In the foreground the reflections are laid as loose vertical strokes rather than mirror-sharp, keeping the surface soft and breathing. Warm flesh and swan-white sit against the cool water, one of the few places he lets contrast spike.","context":"Böcklin painted five versions of his Isle of the Dead between 1880 and 1886, and prints of it spread until, as Nabokov wrote in 1936, they could be found in every Berlin home. This bright island of 1888 has long been read as its counterpart, since the two share a composition, though whether Böcklin planned them as a pair is doubtful; it borrows motifs from his Fields of the Blessed, painted for Berlin's National Gallery in 1878 and lost since 1945. A Swiss painter who spent much of his life in Italy, Böcklin filled these years with Mediterranean idylls, sea-creatures and Arcadian visions, this one in oil on a mahogany panel. The mood sits at the hinge of the century, myth used not to tell classical stories but to stage inner states, which is why he is counted among the Symbolists.","deeper":[{"t":"The gathering on the crown","x":0.349,"y":0.4602,"w":0.322,"h":0.1495,"body":"The narrative center is this little band on the island's upper terrace, and it rewards a close look the eye skips at first. The figures stand about a sixteenth of the picture's height, laid in as strokes of white, red, blue, lilac and ochre robe against green grass, yet they clearly assemble rather than wander: four at the right link hands in a dance, one kneels at the left beside a standing figure who holds up something pale. There is no single readable event, no altar or hero, just a dance and a few yellow flowers held up on long stems. That vagueness is the point: against the dead-isle, where a lone shrouded figure is rowed to a walled tomb, here life is plural, clothed, sociable and untroubled. Böcklin gives you a society, not a soul, and lets you supply the occasion."},{"t":"The triton and the nymph","x":0.402,"y":0.705,"w":0.276,"h":0.23,"body":"These are not islanders wading out for a swim. The nearer figure is a triton: a long red beard down his chest, a heavy male shoulder, his right arm thrown up and out; the paler figure leaning back against him is a nymph, facing us with her head tipped up, her blue-green hair and a sea-green veil falling to the waterline. Neither is entering the water — they belong to it, half-submerged and unhurried, closer to us than anything on the island. That changes what the water means. On the Isle of the Dead the sea is empty distance, crossed once, by one shrouded passenger and a silent oarsman. Here it is inhabited territory with its own gods already in residence, she with her face turned up to the sky, he looking out towards us. Böcklin puts them in the near water, so the largest living thing in the picture is not on the island at all — it is in the water around it."},{"t":"The grotto and its nymphs","x":0.6905,"y":0.6865,"w":0.299,"h":0.207,"body":"At the right the rock is undercut into a dark arch, pierced right through so pale daylight shows in its opening, and beneath it three nymphs stand waist-deep, one crowned with a garland, the third with a lilac cloth over her shoulders and a swan at her side. They are pale against the rock's blackness though they stand in its shade, legible at a glance: Böcklin sets a second knot of life at the darkest passage of the picture, so that even the shaded hollow is inhabited. The arch also does compositional work, opening a pocket of deep shadow that anchors the bright right edge and balances the dark trees on the left. Read it against the Isle of the Dead, where the rock walls are sealed burial niches; here the same island rock is hollowed for bathing and shelter, not for tombs."},{"t":"Swans on the mirror","x":0.11,"y":0.73,"w":0.37,"h":0.24,"body":"White swans drift across the lower foreground, among the brightest objects in the picture and the clearest signal of calm. Their whiteness detonates against the dark water and draws a slow horizontal rhythm along the bottom edge, leading the eye left to right beneath the island. Swans are old emblems of both beauty and love, and their easy presence here confirms that the water is benign, a place to live on rather than a barrier to cross. Notice how Böcklin paints their reflections as soft downward pulls rather than crisp mirror-doubles; the surface stays liquid and breathing. On the death-isle the water is a void to be rowed over in dread; here it is a habitat, populated and lit."},{"t":"The tree spectrum","x":0.1216,"y":0.0149,"w":0.7567,"h":0.4602,"body":"The whole upper band is a controlled progression of foliage that carries the picture's meaning as much as any figure. On the left stand tall, dense poplar-like trees in deep olive green, dark at the core and lit along their left edges, a heavy northern mass. Moving right they give way to a rust-brown autumnal crown, two blossoming trees, one pale and one deeper pink, a yellow shrub and finally a cluster of date palms leaning against the sky. That arc from tall northern trees to warm tropical palm reads as a small encyclopedia of thriving, every climate and season present at once. Where death is monocultural, one repeated cypress, life is diverse; Böcklin makes botany argue the theme."},{"t":"Sky, water and the missing dusk","x":0,"y":0,"w":1,"h":1,"body":"Step back and notice how much of the panel is simply sky and its reflection. Böcklin keeps the island low and dark and lets a bright, cloud-piled daytime sky fill the top third around the trees, then answers it below with water that takes the dark island in the middle and the pale sky at both edges, in long soft strokes. The picture is built as a sandwich of luminous air around a thin living crust. That structure is the antithesis of the death-isle's format, where a black wall of rock and cypress blocks the sky and the light is failing. Here the light is full daylight and generous, the horizon open on both sides, nothing sealed. Hold the two islands side by side in your mind and the pairing is unmistakable: same low form on still water, opposite verdict."}],"refs":[{"id":"ophelia","text":"Ophelia"}],"beside":"A red-bearded triton, facing us, throws up an arm while a nymph with blue-green hair leans back against him; more nymphs stand waist-deep at the grotto, swans drift between them, and a company gathers on the crown of the island above. Everything here is on life's side. In Ophelia, painted thirty-seven years earlier, Millais fills a stream with the same abundance, and there it takes no side: a young woman floats face-up, palms open, a red poppy among the flowers at her chest, and the dog-roses on the bank go on blooming. On Böcklin's island the flowers and the water belong to the living. In Millais's picture the same profusion surrounds a woman on the point of drowning and does nothing to save her.","by":"Opus 4.8"},
-"claude-monet-the-four-trees":{"mv":1,"see":"Four slim poplar trunks stand as near-vertical bars across a pale sky, spaced at near-regular intervals, the last gap widest, and cropped hard at the top so the crowns leave the picture entirely. Each trunk carries scattered tufts of blue foliage on both flanks, sparsest on the left-hand tree, then runs down to a dense horizontal band of far-bank vegetation that crosses the whole width below mid-height. Below that band the trunks continue as reflections in still water, just as dark, running straight off the bottom edge. The band itself is a tapestry of dabbed color: rust, olive, violet. Behind the trunks a second row of sunlit trees in yellow and apricot curves back from the left edge. The sky is not empty blue but shifts from pale blue high up to a warmer pale cream near the treeline. At bottom-left the signature reads clearly in dark paint. The whole thing reads first as flat pattern, then resolves into trees on a riverbank.","about":"This is a picture about verticals held against a horizontal, and about the moment a landscape stops being a place and becomes a design. Monet has taken the plainest motif on the Epte, a row of poplars, and pressed it into a decorative screen: four bars, one crossbar, a mirror underneath. The subject is less the trees than the light of one particular hour draped over them, the blue, violet and gold that run through sky, foliage and water and knit them into a single fabric. It is also a picture about time and repetition, one canvas from a series that watched the same trunks under changing weather. The near-abstraction is the argument: strip depth away, crop the crowns, let the reflection rhyme with the tree, and you are left with rhythm and color as the real content, the water and air doing as much work as the wood.","craft":"The decisions are all about flattening. Cropping the crowns removes the tops that would have given the trees mass and pinned them to the ground; instead the trunks become abstract verticals that could extend forever. The far bank is compressed into one thick horizontal stripe, so the composition is essentially a grid, four uprights over one bar, with the reflection repeating the uprights below at full strength. Monet works the surface in short broken touches, the foliage-band built from thousands of separate dabs of rust, violet and green that mix in the eye rather than on the palette, while the trunks stay relatively smooth and continuous to hold the design together. Color does the modeling in reverse: the cool blue-violet poplars stand in front of a sunlit warm row behind, which flattens the trunks toward silhouette, and the same hues echoing in sky and water lock the picture into a shallow, tapestry-like plane where pattern outranks depth.","context":"The painting belongs to Monet's Poplars series of 1891, made along the Epte river near Giverny, several of them worked from a specially fitted boat-studio so he could face the trees across the water. The often-told story is that the trees, planted as a commercial crop, were marked to be cut down mid-project; Monet is said to have paid the buyer to leave them standing until he finished the series. It follows his Haystacks in the same serial method, returning to one motif again and again to record shifting light rather than a fixed scene, a way of working that pushed him toward the near-abstract, decorative flatness on show here. This canvas hangs at the Metropolitan Museum of Art in New York, where you saw it.","deeper":[{"t":"Cropped crowns","x":0,"y":0,"w":1,"h":0.16,"body":"Look at the top edge: every trunk is sliced off before its crown, so the trunks run at full width straight off the top edge. This is a deliberate amputation. A poplar's real drama is its tall plume of a top, and Monet throws it away. The effect is to convert three-dimensional trees into flat vertical bars that seem to continue past the canvas rather than end. Compare it to a photograph clipped at the edge, the eye completes what it cannot see, and the trunks read as taller and more abstract than any actual tree. It is the single move that turns a riverbank into a screen."},{"t":"Where trunk meets mirror","x":0.2219,"y":0.4438,"w":0.5563,"h":0.5563,"body":"Follow one trunk down to the horizontal band and watch what happens at the waterline. Above the band the trunk is a solid, continuous stroke; it sinks into the dark bank, and below the bank it reappears as its reflection, the same width and depth of colour, its edges a little softer. There is no hard seam, Monet lets the far-bank band do the hinge-work, so the real trunk and its mirrored double read almost as one long stroke interrupted by a stripe. This rhyme of tree and reflection is what gives the picture its symmetry and its calm; the vertical is stated once in wood and answered once in water."},{"t":"The dabbed foliage band","x":0,"y":0.6,"w":1,"h":0.24,"body":"The dark ribbon crossing the whole width is the busiest passage on the canvas. Lean in and it dissolves into hundreds of separate touches, rust-red, olive, plum, bottle-green, blue, none blended, each sitting beside the next so your eye does the mixing. This is broken color working exactly as intended: from a distance it reads as one autumnal mass of far bank, up close it is dense, layered handwork. It is the textural counterweight to the smooth trunks and the flat sky. Notice too how the band swells as it runs right, deepening into red-violet, while the left end is thinner and greener, keeping the horizontal from being a dead ruled line."},{"t":"The gold pocket","x":0.0005,"y":0.3812,"w":0.299,"h":0.2875,"body":"At the far left, tucked behind the first trunk, a second row of trees, lit pale gold and apricot, recedes on thin pale trunks of its own. This warm screen is doing quiet compositional work. It weights the left side so the row of cool verticals is not evenly monotonous, and it seeds the warm note that then recurs in its reflection in the water below and in flecks along the foliage band. It also places the light: the sun is on the far trees, and the nearer trunks are left in blue. The same warm row surfaces again, lower down, in apricot clumps along the top of the band to the right, but only here does it rise high enough to open real depth behind the flat screen of trunks."},{"t":"The lit sky","x":0.5909,"y":0,"w":0.2382,"h":0.6279,"body":"The sky looks plainly blue until you actually read it. It is worked in dense, crusty touches that shift from pale blue high up to a warmer, paler cream as it nears the treeline, so the whole ground behind the trunks glows faintly from below. That gradient is the record of a specific hour rather than generic daylight; it is the real subject of a series that painted these same trunks over and over. The subtle warmth also makes the cobalt-blue foliage tufts on each trunk pop forward. Nothing here is a flat fill, even the emptiest region carries the changing light Monet came to the river to catch."},{"t":"The four as pattern","x":0,"y":0,"w":1,"h":1,"body":"Step back and take the whole grid at once. Four uprights, one crossbar, and a matching set of four uprights mirrored below: the picture is closer to a woven hanging than to a window on a scene. The spacing between the trunks is nearly regular, the last gap widest, a decorative interval, and the reflections answer the trunks at full strength below the bank. At this scale one more thing shows: the bottom edge cuts the reflections exactly as the top edge cuts the crowns, so the uprights have neither top nor foot. What pulled you across the room is exactly this doubleness, an ordinary line of riverside trees that, cropped and mirrored and dabbed into color, becomes pure design while still smelling of a real autumn afternoon on the Epte."}],"by":"Opus 4.8","beside":"Four poplars on the Epte, the little river near Monet's home at Giverny, are cropped before their crowns and spaced almost evenly in the cream and apricot light of one autumn hour. Schiele's Four trees, painted twenty-six years later, is also about autumn passing through a row that keeps its order. On his canvas, at the Upper Belvedere in Vienna, the season works inside the row: three chestnuts still hold their rust-red leaves, the second is stripped almost bare, and a small red sun sits low over the hills. On the Epte the four trunks stay alike, and the hour shows only in the light lying over trunk, bank and water.","refs":[{"id":"four-trees","text":"Four trees"}]},
+"claude-monet-the-four-trees":{"mv":1,"see":"Four slim poplar trunks stand as near-vertical bars across a pale sky, spaced at near-regular intervals, the last gap widest, and cropped hard at the top so the crowns leave the picture entirely. Each trunk carries scattered tufts of blue foliage on both flanks, sparsest on the left-hand tree, then runs down to a dense horizontal band of far-bank vegetation that crosses the whole width below mid-height. Below that band the trunks continue as reflections in still water, just as dark, running straight off the bottom edge. The band itself is a tapestry of dabbed color: rust, olive, violet. Behind the trunks a second row of sunlit trees in yellow and apricot curves back from the left edge. The sky is not empty blue but shifts from pale blue high up to a warmer pale cream near the treeline. At bottom-left the signature and the date 91 read clearly in blue paint. The whole thing reads first as flat pattern, then resolves into trees on a riverbank.","about":"This is a picture about verticals held against a horizontal, and about the moment a landscape stops being a place and becomes a design. Monet has taken the plainest motif on the Epte, a row of poplars, and pressed it into a decorative screen: four bars, one crossbar, a mirror underneath. The subject is less the trees than the light of one particular hour draped over them, the blue, violet and gold that run through sky, foliage and water and knit them into a single fabric. It is also a picture about time and repetition, one canvas from a series that watched the same trunks under changing weather. The near-abstraction is the argument: strip depth away, crop the crowns, let the reflection rhyme with the tree, and you are left with rhythm and color as the real content, the water and air doing as much work as the wood.","craft":"The flattening is done in the handling as much as in the design. Forms are built from strokes set side by side rather than outlined, so contours stay soft and the trees, bank and water sit in the paint rather than on it. The poplars are laid in long, roughly vertical drags, a warm rust core under cooler blue and violet, with the foliage added as quick flicks along their flanks; elsewhere the touches turn short and multidirectional, and in the open passages the paint stands up in ridges that catch the light. Monet holds to a narrow range of hues, blue, violet, rust, gold and a pale cream, and carries them from zone to zone, so no area owns its colour outright. Warm and cool are set against each other rather than graded into shadow, which keeps the modelling slight and holds the surface close to one plane, where pattern counts for more than depth.","context":"The painting belongs to Monet's Poplars series of 1891, made along the Epte river near Giverny, several of them worked from a specially fitted boat-studio so he could face the trees across the water. Mid-project the village that owned the trees put them up for sale; Monet paid a local lumber merchant to leave them standing until he finished the series. It follows his Haystacks in the same serial method, returning to one motif again and again to record shifting light rather than a fixed scene, a way of working that pushed him toward the near-abstract, decorative flatness on show here.","deeper":[{"t":"Cropped crowns","x":0,"y":0,"w":1,"h":0.16,"body":"Look at the top edge: every trunk is sliced off before its crown, so the trunks run at full width straight off the top edge. This is a deliberate amputation. A poplar's real drama is its tall plume of a top, and Monet throws it away. The effect is to convert three-dimensional trees into flat vertical bars that seem to continue past the canvas rather than end. Compare it to a photograph clipped at the edge, the eye completes what it cannot see, and the trunks read as taller and more abstract than any actual tree. It goes a long way towards turning a riverbank into a screen."},{"t":"Where trunk meets mirror","x":0.2219,"y":0.4438,"w":0.5563,"h":0.5563,"body":"Follow one trunk down to the horizontal band and watch what happens at the waterline. Above the band the trunk reads as one solid, continuous stroke; it sinks into the dark bank, and below the bank it reappears as its reflection, the same width and depth of colour, its edges a little softer. There is no hard seam, Monet lets the far-bank band do the hinge-work, so the real trunk and its mirrored double read almost as one long stroke interrupted by a stripe. This rhyme of tree and reflection is what gives the picture its symmetry and its calm; the vertical is stated once in wood and answered once in water."},{"t":"The dabbed foliage band","x":0,"y":0.6,"w":1,"h":0.24,"body":"The dark ribbon crossing the whole width is the busiest passage on the canvas. Lean in and it dissolves into hundreds of separate touches, rust-red, olive, plum, bottle-green, blue, few of them blended, each sitting beside the next so your eye does the mixing. This is broken color working exactly as intended: from a distance it reads as one autumnal mass of far bank, up close it is dense, layered handwork. It is the textural counterweight to the smooth trunks and the flat sky. Notice too how the band swells as it runs right, deepening into red-violet, while the left end is thinner and greener, keeping the horizontal from being a dead ruled line."},{"t":"The gold pocket","x":0,"y":0.22,"w":0.53,"h":0.42,"body":"On the left, behind the first two trunks, a second row of trees, lit pale gold and apricot, recedes on thin pale trunks of its own. This warm screen is doing quiet compositional work. It weights the left side so the row of cool verticals is not evenly monotonous, and it seeds the warm note that then recurs in its reflection in the water below and in flecks along the foliage band. It also places the light: the sun is on the far trees, and the nearer trunks are left mostly in blue and violet. The same warm row surfaces again, lower down, in apricot clumps along the top of the band to the right, but only here does it rise high enough to open real depth behind the flat screen of trunks."},{"t":"The lit sky","x":0.5909,"y":0,"w":0.2382,"h":0.6279,"body":"The sky looks plainly blue until you actually read it. It is worked in dense, crusty touches that shift from pale blue high up to a warmer, paler cream as it nears the treeline, so the whole ground behind the trunks glows faintly from below. That gradient is the record of a specific hour rather than generic daylight; it is the real subject of a series that painted these same trunks over and over. The subtle warmth also makes the blue foliage tufts on the trunks pop forward. Nothing here is a flat fill, even the emptiest region carries the changing light Monet came to the river to catch."},{"t":"The four as pattern","x":0,"y":0,"w":1,"h":1,"body":"Step back and take the whole grid at once. Four uprights, one crossbar, and a matching set of four uprights mirrored below: the picture is closer to a woven hanging than to a window on a scene. The spacing between the trunks is nearly regular, the last gap widest, a decorative interval, and the reflections answer the trunks at full strength below the bank. At this scale one more thing shows: the bottom edge cuts the reflections exactly as the top edge cuts the crowns, so the uprights have neither top nor foot. What pulled you across the room is exactly this doubleness, an ordinary line of riverside trees that, cropped and mirrored and dabbed into color, becomes pure design while still smelling of a real autumn afternoon on the Epte."}],"by":"Opus 4.8","beside":"Four poplars on the Epte, the little river near Monet's home at Giverny, are cropped before their crowns and spaced almost evenly in the cream and apricot light of one autumn hour. Schiele's Four trees, painted twenty-six years later, is also about autumn passing through a row that keeps its order. On his canvas the season works inside the row: three chestnuts still hold their rust-red leaves, the second is stripped almost bare, and a small red sun sits low over the hills. On the Epte the four trunks differ only in degree, the first barer of leaf and gold towards the top, and the hour shows mainly in the light lying over trunk, bank and water.","refs":[{"id":"four-trees","text":"Four trees"}]},
 "edward-hopper-house-by-the-railroad":{"mv":1,"see":"A single tall Victorian house spans most of the width, sitting alone against a flat, unbroken blue sky. Its base is severed by one horizontal band of railroad track that runs straight across the bottom of the canvas, so the ground the house stands on is hidden and no path, road, or foreground reaches it. Hard sunlight rakes in from the left, lighting the ornate white-trimmed facade while throwing the near side and the deep porch into cold blue-grey shadow. The sunlit windows are pale panes behind half-drawn shades, the shadowed ones dark, none showing a figure or an interior. The mansard tower rises at top center, its dormers and paired columns catching the same low light. There is no person, no vegetation, no incidental detail. The eye is left with a large, elaborate, sunstruck object and nothing to keep it company.","about":"The picture is about isolation dressed as architecture. Hopper takes a once-proud Second Empire mansion, the kind of house that announced a family's arrival, and strands it, cutting it off from us with the very railroad that would have brought the town, the trade, the modern century past its door. The house is a survivor of an earlier ornate age left facing a new one that has bypassed it. Nothing is happening and nothing can: the blank windows refuse entry, the empty porch holds no one, the track promises movement while the house stays fixed. It becomes a portrait of an interior life sealed off and unreadable, dignity turned to loneliness. Hopper drains the scene of anecdote so the mood has nowhere to hide; the loneliness is not in an event but in the arrangement itself, in a grand thing left with no one to grand at.","craft":"The engine of the image is the track. By running one horizontal line across the base and letting it clip the house's foundation, Hopper removes any foreground the eye could walk in on, and denies the house a place to stand; it floats, monumental and unreachable. He gives the sky a broad flat plane on three sides so the structure stands alone in it, towering slightly above eye level, which makes it imposing rather than picturesque. The light does the emotional work: a single hard raking source from the left splits the house into a bright carved facade and shadowed flanks, so the ornament is both celebrated and half-swallowed by dark. Brushwork is plain and matter-of-fact, the color reduced to warm sunlit whites, cold blue shadow, red brick chimneys, and the dull earth of the rail bed, everything held quiet so the geometry and the emptiness carry the feeling.","context":"Painted in 1925, this is one of the works where Hopper's mature vision snaps into focus, and it became the first painting to enter the collection of the Museum of Modern Art, given in 1930, an unusually early sign that the museum saw something new in an artist rooted in ordinary American scenes. The house belongs to the wave of nineteenth-century mansions being outrun by twentieth-century America, and Hopper, who loved such architecture, treats it with both affection and unsentimental distance. The image has had a long afterlife in film: the gaunt house looming above a lonely rise is often cited as the inspiration for the Bates house in Hitchcock's Psycho, a lineage that says much about how deeply Hopper's stranded American house entered the culture's picture of dread.","deeper":[{"t":"The amputating track","x":0,"y":0.82,"w":1,"h":0.18,"body":"This thin band is the whole picture's cruelty. One straight horizontal of rail bed and track runs unbroken across the base and slices off the bottom of the house, so you never see where it meets the ground. That single cut does two things at once: it hides the foundation, making the house seem to float without support, and it erases any foreground, any path or yard, that would let you approach. The railroad is also the agent of the house's obsolescence, the modern line that ran the town past this door. Hopper keeps it almost featureless, dull ochre and brown, so it reads less as a place than as a barrier laid between you and everything above it."},{"t":"Blank windows, drawn shades","x":0.0975,"y":0.479,"w":0.345,"h":0.322,"body":"Look at the tall windows on the sunlit left face. Each is a tall arched pane, its pale shade drawn half or more of the way down, and not one gives you an interior, a lamp, a curtain stirred, a face. In a house this large you expect life at the glass; Hopper withholds it entirely. The shades are the telling touch: they are a human act, someone pulled them, yet that someone stays invisible, so the windows feel guarded rather than merely empty. The eye keeps returning to them looking for a figure and keeps being refused. This is how the painting makes loneliness structural rather than sentimental: the openings that should connect inside to outside are all shaded or dark."},{"t":"The shadowed porch","x":0.5945,"y":0.496,"w":0.391,"h":0.368,"body":"On the right, the porch runs into deep blue-grey shadow, its slim columns catching just enough light to show their shape before the dark takes them. A porch is architecture's invitation, the place you sit and watch the road, greet who passes. Here it faces onto nothing but the track and holds no chairs, no people, no warmth. Hopper lets it recede into the coldest passage of the canvas, so the one part of the house built for openness becomes the most closed and unwelcoming. Set against the bright ornament of the facade, the swallowed porch tells you the sociable life this house was designed for has gone dark."},{"t":"Light carving the facade","x":0.1145,"y":0.256,"w":0.391,"h":0.368,"body":"The left face takes the full raking sun, and Hopper uses it to model every bracket, cornice, and window surround in crisp light and cast shadow. The ornament that once signaled wealth and taste is here rendered with almost clinical clarity, each carved detail picked out yet weirdly lifeless. The hard low angle exaggerates the relief, giving the trim a bony, over-articulated look. Notice how the same light that flatters the decoration also isolates it against the shadowed flank beside it, so the beauty and the gloom sit inches apart on one wall. The effect is a grand thing lit up with no occasion, dressed and displayed for a street that is no longer there."},{"t":"The mansard tower","x":0.3745,"y":0.026,"w":0.391,"h":0.368,"body":"The tall mansard-roofed tower crowns the house at top center, its steep dark roof, arched dormer windows, and paired columns lifting the whole silhouette against the bare sky. This is the Second Empire flourish, the feature that made such houses read as ambitious and up-to-date in their own moment. Hopper pushes it high in the frame so it stands slightly above your eyeline and looms. Against the empty blue it becomes a gaunt, top-heavy shape, more brooding than proud. This vertical mass rearing over a lonely base is precisely the silhouette later drawn on for the Bates house, and you can feel why: the tower reads as a watching, unlit head."},{"t":"The empty sky","x":0,"y":0,"w":1,"h":0.22,"body":"The sky is a single flat plane of blue, no clouds, no birds, no atmosphere, and there is a great deal of it, the whole top band and both flanks down to the track, so the house stands cut out against it. Hopper gives you nothing to look at here, and that is the point: the emptiness above answers the emptiness below the track, sealing the house between two blanks. A more picturesque painter would have softened this with weather or a distant line of trees to nestle the house into a world. Hopper refuses the comfort of setting. Stripped of neighbors, landscape, and sky-drama, the house has only itself, which is exactly the loneliness he is after."},{"t":"Whole: a stranded monument","x":0,"y":0,"w":1,"h":1,"body":"Step back and the parts lock into one argument. A single elaborate house, cut off at the base by the track, refused a foreground, sealed under a flat sky, lit by a hard sun that has no one to shine on. Every choice removes connection: no path, no people, no landscape, no open window. What remains is a large, dignified, thoroughly isolated object, and the strangeness is that so much ornament and effort should end in such stillness. That gap between the house's grandeur and its abandonment is what holds you at the frame. It is Hopper's essential move, taking an unremarkable American structure and, by cropping and lighting alone, turning it into a study of being left behind."}],"by":"Opus 4.8"},
-"edward-hopper-new-york-movie":{"mv":1,"see":"The canvas splits in two. The left two-thirds is a dim movie palace: a wedge of glowing screen at far left, tiers of ornate coffered ceiling stepping away in gold light, a heavy carved column, and rows of near-black seats holding a scatter of anonymous heads. The right third is a bright vertical alcove — cream walls, red drapery pulled back on a short stair, a two-armed sconce with red shades — where a blonde usherette in a slim blue uniform stands against the wall, elbow cocked, one hand raised to her chin. She looks down and inward, weight on one leg, gold sandals crossing the patterned carpet. The eye enters at the pale screen, is pulled across the dark auditorium, then snaps to her lit figure. Warm lamplight and cool screen-glow are the only two light sources, and they never meet.","about":"The picture is about the person who is present but not watching. The film is happening, the audience is absorbed, and the one worker paid to stand there is the loneliest figure in the room — sealed off in her own lit box, thinking about something the picture will not tell us. Hopper builds the whole image as a gap: the on-screen world and the real one beside it, the crowd and the single unwatched woman, the glamour of the movie palace and the tedium of the shift. Solitude here is not tragic, just ordinary and total. The usherette's private absorption mirrors the audience's absorption in the film, but hers is turned inward instead of outward — everyone in the room is somewhere else, and no two of them are anywhere together.","craft":"The composition is nearly two paintings hinged on the dark column at center. Hopper weights the empty, bright right side against the crowded, dim left so the smaller lit zone holds the eye — a deliberate imbalance that makes the woman feel isolated by design, not just by placement. The palette runs on two temperatures: gold electric light around her, cold blue-grey screen light behind. Her blue uniform is the one note that belongs to neither, keeping her apart from both worlds. Diagonals — the ceiling tiers, the stair, the aisle rail — all drive rightward toward her, while the vertical wall behind pins her flat. The paint is broad and matter-of-fact, detail suppressed everywhere except her face and hand, which carry the picture's only real focus.","context":"Hopper painted this in 1939, and it hangs at the Museum of Modern Art in New York, where you saw it. He prepared it with unusual care, making a long series of drawings and studying several New York theatres — among them the Palace, the Globe, the Republic and the Strand — before fusing them into one invented interior. His wife Jo, herself a painter and his only model for decades, posed for the usherette. The movie palace was a Depression-era refuge, a cheap ticket into a brighter world, which sharpens the irony of a worker stationed at its edge and shut out of the show. The picture belongs to Hopper's lifelong subject: solitary figures in modern interiors, caught in the ordinary between-moments of city life.","deeper":[{"t":"The usherette","x":0.7306,"y":0.3342,"w":0.2188,"h":0.6016,"body":"Everything in the picture is arranged to deliver you to this figure, and then she withholds. Hand to chin, eyes lowered, weight shifted onto one hip against the wall — it is the posture of waiting, of a mind gone elsewhere during a shift that has no end in sight. Jo Hopper posed for her, and Hopper reserves his only sharp description for her face and raised hand; the rest of her is a smooth blue column. Note that she does not read as glamorous or as pitiable — just absorbed, self-contained, unaware of being looked at. That unawareness is the whole point: she is the one person here nobody is watching, including the film she is paid to stand beside."},{"t":"Blue against gold","x":0.7588,"y":0.4204,"w":0.1924,"h":0.5091,"body":"Her uniform is the most calculated color in the painting. The alcove around her is bathed in warm electric gold; the auditorium behind runs cold blue-grey from the screen. Her blue belongs to neither temperature — it reads as a third thing, a figure who fits into no zone of the room she occupies. A thin red seam runs down the leg of the uniform, the single line that ties her to the red drapery and lamp shades, as if the room's warmth grazes her but does not reach her. The tailoring is slim and modern, professional rather than pretty, and Hopper keeps it broadly brushed so the color, not the cut, does the work of setting her apart."},{"t":"The twin lamp","x":0.808,"y":0.222,"w":0.184,"h":0.276,"body":"The two-armed wall sconce with red shades is the loud light source of the right half, and it earns close looking. It rhymes with the round red-shaded ceiling fixtures that march down the auditorium on the far left — the same lamp, seen twice, on either side of the dividing column. That echo quietly stitches the two halves back together even as the composition drives them apart. The warm bulb-glow pooling on the cream wall is what carves the usherette out of the surrounding dark and makes her the brightest human note in the frame. Hopper paints the shades as flat red discs, unfussy, letting them function as color-beacons rather than described objects."},{"t":"The dividing column","x":0.3,"y":0.05,"w":0.22,"h":0.85,"body":"This heavy carved pier is the hinge of the whole design — a dark vertical wall running nearly the full height of the canvas, splitting movie from lobby, crowd from worker, cold light from warm. Its ornament is loose and shadowed, almost dissolving, so it reads less as architecture than as a barrier: the physical thing that keeps the two worlds of the painting from touching. Everything to its left recedes into depth; everything to its right stands flat and near. Cover it in your mind and the picture collapses into a single room. Hopper needs this dark seam to hold his two temperatures apart and to make the usherette's isolation structural rather than merely emotional."},{"t":"The scattered audience","x":0.0775,"y":0.6035,"w":0.345,"h":0.253,"body":"A handful of heads sit low in the dark, rendered as barely-differentiated silhouettes — no faces, no relationships, just the backs of skulls tilted toward the light. The sparseness matters: this is not a packed house but a thinly attended showing, which makes the room feel emptier and the usherette's vigil more pointless. They are a crowd only in the sense that they share a space; each is alone before the screen exactly as she is alone against her wall. Hopper suppresses all detail here, letting the seats and patrons merge into one dark mass so the eye slides off them and travels on toward the lit figure. The audience is present, absorbed, and completely unavailable to her."},{"t":"The sliver of screen","x":0,"y":0.0642,"w":0.1094,"h":0.6016,"body":"At the far left edge, a pale luminous wedge — the movie screen, cropped so hard we see almost none of it. This is the source of everything the audience is looking at and everything the usherette is not, and Hopper gives it barely a tenth of the canvas. The withholding is deliberate: the film's imaginary world is pushed to the margin so the real, off-screen room can occupy the center. Its cool blue-white glow is the only cold light in the painting and the counterweight to all the warm lamplight on the right. We never learn what is playing. The screen is a rumor of another world, glimpsed at the edge of this one, and the picture keeps its back to it."},{"t":"The stair and drapery","x":0.5895,"y":0.2704,"w":0.181,"h":0.5091,"body":"Behind the usherette, red drapery is swagged back from a short flight of steps climbing into shadow — the aisle exit she guards. The stair is a small piece of unresolved geometry: it promises somewhere to go but leads only up into dark, a dead end that deepens the sense of a woman stationed at a threshold she never crosses. The heavy red curtain, theatrical and rich, is the movie palace performing luxury; against it her plain professional stance reads all the more like labor. Note how the drapery's warm red ties to the lamp shades and the seam of her uniform, threading a single hot color through the cream alcove and giving the right half its pulse."},{"t":"Two worlds, one room","x":0,"y":0,"w":1,"h":1,"body":"Step back and the argument resolves: one interior, cleanly halved. Left is the shared fiction — screen, crowd, cold light, depth receding into the auditorium. Right is the private real — one woman, warm lamplight, a flat near wall she cannot pass. The dark column holds them apart; the twin red lamps, glimpsed on both sides, hint they were once the same room. Hopper's subject is exactly this gap: the manufactured world everyone came to watch, and the actual person standing unwatched beside it, thinking her own untold thought. It is the everyday loneliness of the modern city rendered as pure design — nobody suffers visibly, and yet no one in the frame is with anyone else."}],"by":"Opus 4.8"},
+"edward-hopper-new-york-movie":{"mv":1,"see":"The canvas splits in two. The left two-thirds is a dim movie palace: a wedge of glowing screen at far left, tiers of ornate coffered ceiling stepping away in gold light, a heavy carved column, and rows of near-black seats holding a scatter of anonymous heads. The right third is a bright vertical alcove — cream walls, red drapery pulled back on a short stair, a sconce with three red shades in view — where a blonde usherette in a slim blue uniform stands against the wall, elbow cocked, one hand raised to her chin. She looks down and inward, weight on one leg, gold sandals planted on the patterned carpet. The eye enters at the pale screen, is pulled across the dark auditorium, then snaps to her lit figure. Warm lamplight and cool screen-glow are the two kinds of light, the screen's held to the far left edge and the lamps' gold on both sides.","about":"The picture is about the person who is present but not watching. The film is happening, the audience is absorbed, and the one worker paid to stand there is the loneliest figure in the room — sealed off in her own lit box, thinking about something the picture will not tell us. Hopper builds the whole image as a gap: the on-screen world and the real one beside it, the crowd and the single unwatched woman, the glamour of the movie palace and the tedium of the shift. Solitude here is not tragic, just ordinary and total. The usherette's private absorption mirrors the audience's absorption in the film, but hers is turned inward instead of outward — everyone in the room is somewhere else, and no two of them are anywhere together.","craft":"The composition is built as two unequal zones, the smaller bright one at our right weighted against the larger dim one at our left so that the lit side holds the eye — a deliberate imbalance rather than a balance. The palette is warm almost throughout: deep red-browns and orange lamp-glow on the left, yellow-gold and cream on the right, so the few cool notes stand out wherever they fall. Space is handled differently on each side. On the left the ceiling tiers step down and away into depth; on the right the walls sit nearly flat to the picture surface. The paint is plain and matter-of-fact: walls and seats are laid in broad, even passages, while the ceiling's mouldings are given in short separate strokes that catch the light.","context":"Hopper painted this in 1939. He prepared it with unusual care, making over fifty sketches of several New York theatres — among them the Palace, the Globe, the Republic and the Strand — before fusing them into one invented interior. His wife Jo, herself a painter and the principal model for the women in his pictures, posed for the usherette. The movie palace was a Depression-era refuge, a cheap ticket into a brighter world, which sharpens the irony of a worker stationed at its edge and shut out of the show. The picture belongs to Hopper's lifelong subject: solitary figures in modern interiors, caught in the ordinary between-moments of city life.","deeper":[{"t":"The usherette","x":0.745,"y":0.325,"w":0.23,"h":0.665,"body":"Everything in the picture is arranged to deliver you to this figure, and then she withholds. Hand to chin, eyes lowered, weight shifted onto one hip against the wall — it is the posture of waiting, of a mind gone elsewhere during a shift that has no end in sight. Jo Hopper posed for her; the light picks out her hair, her raised hand and its white cuff, while the rest of her is a long blue column. Note that she does not read as glamorous or as pitiable — just absorbed, self-contained, unaware of being looked at. That unawareness is the whole point: she is the one person here nobody is watching, including the film she is paid to stand beside."},{"t":"Blue against gold","x":0.7588,"y":0.4204,"w":0.1924,"h":0.5091,"body":"Her uniform is the most saturated blue in the painting. The alcove around her is bathed in warm electric gold; the auditorium behind is a warm brown dark whose only cool light is the pale screen. Her blue belongs to neither — it reads as a third thing, a figure who fits into no zone of the room she occupies. A thin red seam runs down the leg of the uniform, the single line that ties her to the red drapery and lamp shades, as if the room's warmth grazes her but does not reach her. The tailoring is slim and modern, professional rather than pretty, and Hopper keeps it broadly brushed so the color, not the cut, does the work of setting her apart."},{"t":"The twin lamp","x":0.78,"y":0.07,"w":0.22,"h":0.5,"body":"The wall sconce, three red shades in view, is the loud light source of the right half, and it earns close looking. It rhymes with the red bowl-shaped ceiling fixtures that step down the auditorium at upper left — a kindred red light on either side of the dividing column. That echo quietly stitches the two halves back together even as the composition drives them apart. The warm bulb-glow pooling on the cream wall is what carves the usherette out of the surrounding dark and makes her the brightest human note in the frame. Hopper paints the shades as plain red drums, unfussy, letting them function as color-beacons rather than described objects."},{"t":"The dividing column","x":0.31,"y":0,"w":0.325,"h":0.92,"body":"This heavy carved pier is the hinge of the whole design — a dark vertical wall running nearly the full height of the canvas, splitting auditorium from alcove, crowd from worker, shade from light. Its carved ornament catches gold light on the side toward the screen, but the broad plain face beside it is near-black, so it reads less as architecture than as a barrier: the physical thing that keeps the two worlds of the painting from touching. Everything to its left recedes into depth; everything to its right stands flat and near, save the stair through the doorway. Cover it in your mind and the picture collapses into a single room. Hopper needs this dark seam to hold the dim side and the bright side apart and to make the usherette's isolation structural rather than merely emotional."},{"t":"The scattered audience","x":0.02,"y":0.6,"w":0.41,"h":0.3,"body":"A small cluster of heads sit low in the dark, rendered as barely-differentiated silhouettes — no faces, no relationships, just the backs of skulls tilted toward the light. The sparseness matters: this is not a packed house but a thinly attended showing, which makes the room feel emptier and the usherette's vigil more pointless. They are a crowd only in the sense that they share a space; each is alone before the screen exactly as she is alone against her wall. Hopper suppresses all detail here, letting the seats and patrons merge into one dark mass so the eye slides off them and travels on toward the lit figure. The audience is present, absorbed, and completely unavailable to her."},{"t":"The sliver of screen","x":0,"y":0.0642,"w":0.1094,"h":0.6016,"body":"At the far left edge, a pale luminous wedge — the movie screen, cropped so hard we see almost none of it. This is the source of everything the audience is looking at and everything the usherette is not, and Hopper gives it barely a tenth of the canvas width. The withholding is deliberate: the film's imaginary world is pushed to the margin so the real, off-screen room can occupy the center. Its cool, pale glow is the only cold light in the painting and the counterweight to all the warm lamplight on the right. We never learn what is playing. The screen is a rumor of another world, glimpsed at the edge of this one, and the picture keeps its back to it."},{"t":"The stair and drapery","x":0.585,"y":0.05,"w":0.225,"h":0.88,"body":"To our left of the usherette, red drapery is swagged back from a short flight of steps climbing toward a lit wall — the aisle exit she guards. The stair is a small piece of unresolved geometry: it promises somewhere to go but leads up only to a blank lit wall, a dead end that deepens the sense of a woman stationed at a threshold she never crosses. The heavy red curtain, theatrical and rich, is the movie palace performing luxury; against it her plain professional stance reads all the more like labor. Note how the drapery's warm red ties to the lamp shades and the seam of her uniform, threading a single hot color through the cream alcove and giving the right half its pulse."},{"t":"Two worlds, one room","x":0,"y":0,"w":1,"h":1,"body":"Step back and the argument resolves: one interior, cleanly divided. Left is the shared fiction — screen, crowd, the one cool light, depth receding into the auditorium. Right is the private real — one woman, warm lamplight, a flat near wall she cannot pass. The dark column holds them apart; the red-shaded lamps, glimpsed on both sides, hint they were once the same room. Hopper's subject is exactly this gap: the manufactured world everyone came to watch, and the actual person standing unwatched beside it, thinking her own untold thought. It is the everyday loneliness of the modern city rendered as pure design — nobody suffers visibly, and yet no one in the frame is with anyone else."}],"by":"Opus 4.8"},
 "ernst-ludwig-kirchner-five-women-on-the-street":{"mv":1,"see":"Five tall women stand jammed together on a green pavement, so close they read as one bristling body with several heads. Their black coats fuse into a single spiky column; only the pale fur collars, the plumed hats, and five pale faces break the darkness. The faces are the shock: long and masklike. The colour is unnatural throughout — acid greens for ground and air, black-green for the figures, with the whole scene lit as if under gaslight or fever. Space is crushed flat and steep; the pavement tilts up rather than recedes. Everything is drawn with quick, hatched, angular strokes that keep the surface nervous and moving. At lower left a green disc, most like a wheel, glows against the dark.","about":"These women are cocottes — streetwalkers — displaying themselves on a Berlin sidewalk, and the picture is about the city as a marketplace of bodies. Kirchner turns the fashionable coat and feathered hat into a kind of predatory plumage: the women are goods on show, alluring and armored at once. But the closer you look the more the glamour curdles. Their fused, phalanx grouping reads as mutual protection as much as solicitation; the green faces make them look both dangerous and poisoned, both huntress and prey. The real subject is alienation — the modern metropolis where human contact has become transaction, where beauty is a lure and everyone is estranged. There is no client, no exchange, only the women locked in their spiky cluster, waiting, watched, and watching back.","craft":"The design works by fusion and interruption: Kirchner masses his darks into one shape so the eye cannot separate them, then breaks that mass with a scatter of pale accents. The palette is a deliberate poison, acid yellow-green against black-green, a colour chord chosen to feel artificial and electric and to refuse any daylight naturalism. The tall vertical format stacks the figures like standing blades.","context":"Kirchner painted this in 1913, the first and best-known of his Berlin street scenes (Straßenszenen), a series he made after moving from Dresden to the capital. He had co-founded Die Brücke in 1905, the group that launched German Expressionism; by 1913 the group had just dissolved and he was working alone in the electric, alienating environment of pre-war Berlin. The cocotte on the boulevard was a stock figure of the modern city, and Kirchner returned to her obsessively, using the prostitute as an emblem of a society reduced to display and exchange. Within a year the First World War would begin and Kirchner would suffer the breakdown that shadowed the rest of his life.","deeper":[{"t":"Masks under plumage","x":0,"y":0,"w":1,"h":0.3,"body":"The faces are the emotional core and the strangest choice. Five of them run in a broken row under the hats, long and narrow, more mask than portrait: chalky pink-white, shaded green down one side, eyes slit or ringed dark, mouths pinched small and red. Under the gaslight logic of the palette they look alluring and poisoned at once, cosmetic and corpselike. There is no individual likeness; these are types, the face of the city cocotte generalised into a stare. Above them the millinery turns into plumage: a vast black brim at the left, dark domes and wedges, black-green plumes fanning up into the green, and at the right a white feather slashing across a hat like a blade. Fashion becomes the display feathers of a predatory bird, ornament that arms as much as it adorns. And the faces float slightly apart from the dark coats beneath, so they read like a row of pale lamps strung under the feathers: the person reduced to a look, a surface, a signal sent out to the street."},{"t":"Fur collars and boas","x":0.13,"y":0.219,"w":0.46,"h":0.322,"body":"The pale yellow-green fur at the throats and shoulders, and near the centre a long-fingered pale shape hanging down, a gloved hand or the fringed end of a boa, break the dark mass and give it its jittery rhythm. These fur collars and boas are the softest, most luxurious notes in the painting — and Kirchner uses them coldly, as flashes of expensive surface rather than comfort. The hanging fringe is one of the few soft, loose things inside the frozen cluster, a small motion sealed in among the coats. Track how these light spots zigzag down the canvas: they are what keeps the eye moving through a shape that would otherwise be a solid black wall, and they read like the glint of goods in a shop window."},{"t":"The green wheel","x":0,"y":0.47,"w":0.17,"h":0.34,"body":"At the lower left, cut off by the edge, a round green form glows against the dark: concentric rings around a darker hub, short strokes radiating from it like spokes, and above it a black arched shape like a mudguard. It reads most like the wheel of a motor car or cab drawn up at the kerb, though Kirchner gives no more of the vehicle than that. Small as it is, it does real work. It anchors the bottom-left corner, and it puts the street's traffic, the machinery of the city, right beside the women, so the scene becomes a kerbside where things pass and might stop. Its curve is also one of the only rounded shapes in a painting otherwise built from blades and points, so it registers as a soft, uncanny eye watching from the edge."},{"t":"The tilted pavement","x":0.05,"y":0.72,"w":0.9,"h":0.26,"body":"Look at the ground and notice you are not standing on it. The pavement is a slab of acid green tipped steeply up toward you, giving no believable floor for the women to recede into. Kirchner refuses perspective on purpose: instead of a deep street the figures are pressed to the picture plane, looming with nowhere to go. The hatched green strokes here are fast and open, letting the canvas breathe under the heavy figures. This compression is a psychological device — the flattened, airless space is the feeling of the crowded modern city, close and inescapable, where the boulevard offers width but no room. The women don't inhabit a place so much as get stamped against its surface."},{"t":"The carved line","x":0.5275,"y":0.3218,"w":0.445,"h":0.5563,"body":"Get close to the handling on the right-hand figures and the paint stops being smooth. Kirchner draws with hatched, splintered, angular strokes — long parallel gashes that describe a coat, short spiked jabs at the hems and the hanging hands. This is the woodcut instinct carried into oil: the Brücke artists cut prints obsessively, and the hard, cut contour comes back here as the nervous edge of every shape. Nothing is blended into roundness; form is built from sharp facets, so even soft cloth feels brittle. That splintered touch is what turns fashionable women into something spiky and unstable. The style is not decoration laid over the subject — it is the subject, the raw carved line making the whole scene vibrate with unease."},{"t":"Stand back: the spike","x":0,"y":0,"w":1,"h":1,"body":"Step back and the picture resolves into one tall spiky silhouette pinned to a field of poison green — a black vertical mass topped by pale masks and feathers, planted on a tilted acid floor. That single shape is the whole meaning: individuals fused into an anonymous cluster of display, glamorous and armored, alluring and estranged. Kirchner has taken the most social of subjects, women on a busy street, and drained it of all warmth and exchange, leaving only surfaces signaling to surfaces. Hold the green faces and the crowned hats together and you feel both the seduction and the dread the modern city held for him. This is the template for the entire Straßenszenen series, and the first time Kirchner found the exact pitch of beauty gone brittle and cold."}],"by":"Opus 4.8"},
 "farmhouse-in-provence":{"mv":1,"see":"A wall of ripe wheat fills the whole foreground, worked in restless upward strokes of gold, ochre and green that seem to hiss with dry heat. A low lavender stone wall runs nearly level from the left to a pair of masonry gateposts with a blue-green gate, and a second run snakes from the left post toward you; behind the wall stands a cluster of ochre farm buildings with orange roofs. Around them: rounded haystacks the same tawny gold as the field, dark rounded trees in deep green and blue, their edges bristling with upward strokes, and a strip of far pale fields. Above it all sits a high, luminous sky of pale turquoise, flecked with white and pink strokes curled into commas and hooks. A single figure in blue walks the field at left. The whole picture is built on the collision of golden orange and cool blue, tuned to a high-key noon glare that leaves almost no shadow.","about":"This is the working landscape of Provence at the peak of harvest, not a picturesque view but a place of labour caught at its hottest, most abundant moment. The farmstead is enclosed, walled and gated, a small human order set inside an overwhelming surge of grain. Van Gogh had come south chasing exactly this light and this fertility, and the picture is about the sun as a physical force: it flattens shadow, saturates every colour, and makes the wheat rise like something alive. The lone worker, crossing the field below the wall, fixes the human scale of it. The mood is a charged, ecstatic fullness on the edge of harvest.","craft":"Everything hangs on complementaries, orange set against blue and pushed almost to the limit. Van Gogh keeps nearly every mixture light and saves the deep blues and greens for a few passages. The paint goes on thick, loaded strokes left as they fall rather than smoothed, and in the thinner places the weave of the canvas and specks of bare ground still show between them. He changes the length and direction of the stroke region by region, so that the handling itself tells one surface from another, then rings the forms with a line of blue drawn with the brush. Colour is mostly set beside colour rather than blended on the canvas, so the eye does the fusing and the surface keeps its shimmer.","context":"Painted in Arles in the summer of 1888, during the astonishing burst of work that followed Van Gogh's move south from Paris that February. He had gone to the Midi looking for stronger sun and clearer colour, and the harvest around Arles gave him a run of wheatfield and farmstead pictures that summer. Here the two subjects share one canvas, the farm standing at the far edge of the grain. He worked fast and outdoors, often finishing a canvas in a day, driven by the light before the season turned.","deeper":[{"t":"The gate and posts","x":0.582,"y":0.2635,"w":0.276,"h":0.253,"body":"Two heavy masonry gateposts mark the one opening in the enclosure, and a gate with a blue-green lower panel stands shut across it. This is the compositional hinge: the snaking run of wall leads the eye straight back to it, and the teal of the gate is the densest cool note in the right half of the picture, set hard against the surrounding orange so it snaps forward. Van Gogh lets the gate answer the sky's blue at ground level, stitching top and bottom of the picture together. Notice how the posts are built from long vertical drags of lavender and pink edged in blue, a different handwriting from the loose field around them, so solid stone reads as solid even at speed."},{"t":"The walker in the wheat","x":0.065,"y":0.485,"w":0.2,"h":0.29,"body":"A single figure in blue jacket and pale trousers, a fifth of the canvas tall, moves through the grain at left, walking away from us. He is the only human presence and he sets the scale: the grain reaches only his shins, which gives the whole field its height. His blue picks up the sky and the gate, a third placement of the cool note low in a hot field. He has no face because we see him from behind, but cap, dark-edged jacket, hands and trouser folds are each drawn in a few strokes, a worker as part of the land rather than a portrait. Cover him and the field loses its measure."},{"t":"Wheat as brushwork","x":0.62,"y":0.74,"w":0.38,"h":0.26,"body":"The lower third is almost pure handwriting. Look at how little is described and how much is felt: hundreds of short strokes, mostly driving upward, in gold, green-gold, russet and dull orange, laid side by side without blending. There is no single local colour for wheat here; it is an assembly of hues that only fuse into a field when you step back. The verticality of the strokes makes the crop stand and grow before your eye, while the flecks of green are the living stalks under the ripe heads."},{"t":"Red flowers, the counter-note","x":0.215,"y":0.56,"w":0.485,"h":0.4,"body":"Two low shrubs erupt near the centre of the foreground, large red blooms on a long-leaved one at left and smaller red flowers dotted through the one beside it, with more red at the foot of the wall: the hottest, most saturated passage in the canvas. Reds are rare in this picture, so this cluster acts as a spark that the eye keeps returning to, balancing the visual weight of the gate and road on the right. Set among green leaves, the red also completes another complementary pairing low in the frame, echoing the larger orange-blue argument in miniature. It gives the endless gold something to push against and keeps the foreground from reading as one uniform mass."},{"t":"Farm buildings","x":0.065,"y":0.175,"w":0.285,"h":0.26,"body":"The ochre-walled buildings under orange-red roofs are the destination the whole composition points you toward, and Van Gogh builds them plainly, with blue-edged eaves, blue-green windows and a chimney, all in flat warm colour. A dark green tree and low bushes soften the base. Their warm tones sit against the pale blue distance behind, so even the buildings play the orange-versus-blue game. What matters is that you see them across the wall, with the field and the stone between you and them."},{"t":"Haystacks, the field's echo","x":0.37,"y":0.165,"w":0.48,"h":0.245,"body":"To the right of the buildings, three rounded stacks of cut wheat rise in the same tawny gold as the standing field. This is a quiet piece of storytelling: the harvest is already partly gathered, so the ripe field in the foreground is next in line for the scythe. Their curved, piled strokes contrast with the vertical stalks below, dome against spear. That gold repeats the field's across the lavender wall that divides them, so the eye carries the harvest from the foreground into the middle distance over that cool band of stone."},{"t":"The turning sky","x":0,"y":0,"w":1,"h":0.22,"body":"The upper band is a high, bright Midi sky, pale turquoise throughout, flecked with white, pink and lilac strokes that Van Gogh curls into commas and hooks rather than smoothing flat. This is the deliberate cool counterweight to all the heat below; without this expanse of blue the field's orange would have nothing to burn against. The moving, drawn clouds also carry the sense of wind and open air over the still, standing crop. Notice how narrow the value gap is between sky and field, both kept light, so the picture glows evenly at noon rather than splitting into bright and dark."}],"by":"Opus 4.8","beside":"Three haystacks stand behind the farm wall, the grain stacked in at the height of summer, while wheat still stands around the man walking out in the field. Monet's Haystacks, midday, painted two years later, is about the same plenty brought in under the same high sun. In Canberra's National Gallery of Australia that canvas shows a big stack in a shorn meadow, one broad violet shadow spilling from its foot, and nothing but grass between you and the harvest. Van Gogh's is walled in. You see it as the walker does, from out in the wheat, across a lavender wall and past a gate between two posts.","refs":[{"id":"haystacks-midday","text":"Haystacks, midday"}]},
 "florine-stettheimer-new-york-liberty":{"mv":1,"see":"A near-white harbour, painted so thin it reads like frost, holds a whole civic pageant. On the left the Statue of Liberty rises in gold from a pale pedestal lettered LIBERTY, torch lifted, patina replaced by gleaming gold. Behind her a compressed skyline of skyscrapers stands like a bouquet, one tower flushed coral-red among grey-blue neighbours, a domed building nested among them. Two long warships steam across the middle water; a small aeroplane hovers at upper right, a dark bird glides at upper left. Down the right edge a battleship's superstructure looms in grey, and a huge Stars-and-Stripes billows toward center. At the foot a sailor and a robed woman flank a scroll reading NEW YORK 1918. The frame itself is part of the picture: a carved gilt eagle crowns it, a red-white-blue barber-pole cord runs down the sides.","about":"This is a homecoming. Painted as the First World War closed, it turns New York harbour into an allegory of victory and welcome: the ships bring troops back, Liberty greets them in gold, the eagle and the enormous flag stake the national claim. But the pageant is staged, not reported. Stettheimer treats patriotism as pageant-decor, everything tinselled and lacquered, the harbour a stage set rather than a working port. The skyline is a trophy bouquet, the statue a bright toy of state. Under the flag-waving runs her signature irony: she loved the spectacle of her city and gently mocked its self-importance in the same breath. The scroll with its date fixes the moment; the whole thing behaves like a commemorative valentine to New York, sincere and knowing at once.","craft":"The magic is in the paint's thinness. Stettheimer thinned her whites almost to cellophane, letting a pale ground breathe through so the water and sky glitter rather than sit flat, and she laid lacy trails of white over the surface for a sugared sparkle. Against that frost the gold of Liberty and the jewel notes of the skyline and flag detonate. The drawing is deliberately faux-naive: buildings tip and stack without true perspective, ships float at storybook scale, figures are doll-sized. Nothing recedes properly, and that flatness is the point, it keeps everything decorative and legible at once. She designed the frame to match, the gilt eagle and tricolor cord extending the picture past its edge so object and image are one whimsical whole.","context":"Florine Stettheimer painted for her own circle, not the market; she rarely sold and rarely exhibited, keeping her work in the Manhattan apartment she shared with her mother and sisters Carrie and Ettie. That household ran one of New York's liveliest salons, drawing Marcel Duchamp, Carl Van Vechten, and the avant-garde of the 1910s and 20s, and the arch, hothouse wit of those evenings feeds directly into this painting's tone. Made in 1918 as the war ended, the picture belongs to that private, sophisticated world looking out at the public one. Its faux-naive brightness has often been misread as amateur; it is the opposite, a knowing style. You saw this at the Whitney in New York, the museum that has championed her singular vision.","deeper":[{"t":"Liberty in gold","x":0.112,"y":0.37,"w":0.276,"h":0.46,"body":"Stettheimer swaps the statue's real green patina for gleaming gold, turning the monument into a gleaming ornament rather than a somber civic emblem. The torch arm reaches up out of the box; the drapery is drawn in loose, doll-like folds with none of the granite weight of the real thing. Set on its pale pedestal it reads less as a colossus and more as a bright toy of state, a mascot for the homecoming below. The gilding ties her directly to the frame's gilt eagle and to the golden rays elsewhere, threading a single precious-metal accent through the whole thin, frosty field so the eye leaps between glints."},{"t":"LIBERTY on the plinth","x":0.125,"y":0.7532,"w":0.23,"h":0.1035,"body":"The word is hand-lettered straight onto the pedestal, plain and slightly wobbly, like a label on a monument in a child's picture book. Stettheimer names the figure rather than trusting the silhouette, and the artless lettering is a deliberate choice, part of the faux-naive vocabulary that lets her be patriotic and playful at once. Paired with the NEW YORK 1918 scroll below, it fixes the painting's two coordinates, place and idea, in the least grand way possible. The bareness of the pedestal, thin pale paint over the pale ground, makes the gold above blaze harder by contrast."},{"t":"The skyline bouquet","x":0.27,"y":0.1986,"w":0.4799,"h":0.3428,"body":"The towers are bunched like cut flowers in a vase, stacked without real depth so they read as a single decorative cluster rather than a receding city. One skyscraper flushes coral-red among its grey-blue neighbours, a deliberate warm accent that pulls the eye to the center. A pale dome nests among the spires. Ladders of tiny windows and thin drawn edges give each building a delicate, almost embroidered finish. This is the city as trophy, offered up behind Liberty, the whole point of the homecoming compressed into a glittering bunch. Note how nothing casts a real shadow; the flatness keeps it ornamental."},{"t":"Warships steaming in","x":0.2545,"y":0.5902,"w":0.391,"h":0.1495,"body":"Two long grey vessels cross the middle water, drawn at a storybook scale that sits oddly small against the statue and skyline, exactly the kind of shifting proportion Stettheimer uses to keep the scene toy-like. In 1918 these read as the returning fleet, troops coming home to the harbour that Liberty guards. They float rather than plough, no wake, no weight, more decorative silhouettes than fighting ships. Their sober grey is the painting's ballast against all the gold and jewel colour, a reminder that the pageant has a real war behind it even as she stages it as spectacle."},{"t":"The battleship at the edge","x":0.6192,"y":0.3712,"w":0.3808,"h":0.5376,"body":"The right margin is filled by the grey superstructure of a large warship seen close-up, masts, rigging, and small fittings rising out of the frame. Bringing one ship right to the viewer's shoulder while the others stay tiny in the distance is a bold spatial trick, collapsing near and far into one flat plane. It also frames the composition on the right the way Liberty frames it on the left, two vertical grey-and-gold pillars holding the bright harbour between them. The delicate line-drawing of the rigging keeps even this military hardware looking laced and light rather than heavy."},{"t":"The great flag","x":0.4575,"y":0.645,"w":0.345,"h":0.23,"body":"An outsized Stars-and-Stripes billows from the battleship toward the center, its scale exaggerated so it becomes the painting's loudest single note of colour against the frost. The stripes ripple in simplified, decorative curves and the blue canton with its scatter of stars sits like a jewel. This is the patriotic climax made deliberately gaudy, flag-as-bunting, the emotion turned up and lightly teased at the same time. Its red and blue rhyme with the tricolor cord running down the frame, so the national colours leak from the painted world out onto the object itself."},{"t":"Sailor and the NEW YORK scroll","x":0.362,"y":0.7665,"w":0.276,"h":0.207,"body":"At the foot a small sailor in white stands beside a robed female figure, the two flanking an open scroll lettered NEW YORK 1918 with a tiny eagle above it, like a civic seal or a page from an illuminated document. This is the painting signing and dating itself inside the picture, a heraldic cartouche rather than a hidden signature. The doll scale of the figures, the sailor barely taller than the scroll, is pure Stettheimer, treating people as bright pageant-props among the monuments. It gives the whole harbour scene the flavour of a commemorative valentine to the city."},{"t":"The gilt eagle frame","x":0.27,"y":0,"w":0.46,"h":0.1725,"body":"A carved, gilded eagle with spread wings perches on top of the frame, and a red-white-blue cord like a barber pole runs down its sides. Stettheimer designed her frames as extensions of the paintings, so the eagle is not decoration bolted on afterward but the composition's crowning figure, answering the small eagle on the scroll below and the golden statue within. The tricolor cord carries the flag's colours out of the painted harbour onto the physical object. Read frame and canvas together and the work stops being a window and becomes a single patriotic thing, a shrine-object to New York."},{"t":"Aeroplane and bird","x":0.099,"y":0.2346,"w":0.6619,"h":0.1708,"body":"Two small flyers punctuate the upper sky: a dark bird gliding at the left and a tiny aeroplane hovering at the right, tucked among faint puffs and thin drawn lines. They register the harbour as modern airspace as well as sea, 1918 being the dawn of powered flight over cities, and they keep the eye moving across the top of the frost-white field. Painted almost as afterthoughts, thin and pale, they show how lightly Stettheimer scatters incident, trusting tiny sharp marks to animate a huge quiet ground without ever crowding it."}],"by":"Opus 4.8"},
@@ -25830,10 +27456,10 @@ window.CANVAS_INSPECT = {
  },
  "monet-woman-with-a-parasol": {
   "mv": 1,
-  "see": "You are standing at the bottom of a small rise, looking up. Camille Monet turns toward you mid-stride — veil blown across her face, green parasol tilted against the light — and two-thirds of the canvas is sky, fast clouds dragged in comma-strokes. Her dress catches everything: look closely and the 'white' fabric is painted blue, grey, yellow — the sky and grass reflected off it. Behind her, small over the crest of the hill, her son Jean watches. The grass streaks with wind. Everything in the picture is moving, and all of it belongs to one single second.",
-  "about": "It isn't a portrait — her face is the least finished thing in it. The subject is the gust: one instant of wind, light and turning, seized whole. That's the radical claim of the picture — that a moment of a woman glancing back on a walk deserves the monumentality painting used to reserve for saints; the low viewpoint sets her against the sky like a figurehead. And it is family made luminous: his wife, his son, an ordinary afternoon at Argenteuil — which is exactly why it later reads as elegy.",
-  "craft": "Painted outdoors, almost certainly in a single session of a few hours — the speed is visible everywhere and is the point: no reworking, no studio finish, decisions made at the pace of weather. The famous lesson is the dress: white rendered with nearly no white, because Impressionism's core discovery is that local colour is a lie — things are the colour of the light that hits them. The shadow slanting down the grass pins the whole airy composition to the hill; the parasol's dense green is the one solid accent holding the sky back. Signed low right, 'Claude Monet 75.'",
-  "context": "Argenteuil, 1875 — the high summer of the first Impressionist decade, painted for no commission. Camille was already unwell; she died four years later, at thirty-two. In 1886 Monet painted the composition twice more with his stepdaughter — deliberately faceless. Seen from there, this canvas becomes the memory before the loss: the one where the face, however loosely brushed, is still hers. It hangs in the National Gallery of Art in Washington — the DC Monet.",
+  "see": "You are standing at the bottom of a small rise, looking up. Camille Monet turns toward you mid-stride — veil blown across her face, green parasol tilted against the light — and sky fills the upper two-thirds of the canvas, fast clouds dragged in comma-strokes. Her dress catches everything: look closely and the 'white' fabric is painted blue, grey, yellow — the sky and grass reflected off it. Behind her, small over the crest of the hill, her son Jean watches. The grass streaks with wind. Everything in the picture is moving, and all of it belongs to one single second.",
+  "about": "It isn't a portrait — her face reaches us only through the blown veil. The subject is the gust: one instant of wind, light and turning, seized whole. That's the radical claim of the picture — that a moment of a woman glancing back on a walk deserves the monumentality painting used to reserve for saints; the low viewpoint sets her against the sky like a figurehead. And it is family made luminous: his wife, his son, an ordinary afternoon at Argenteuil — which is exactly why it later reads as elegy.",
+  "craft": "Painted outdoors, probably in a single session of a few hours — the speed is visible everywhere and is the point: little visible reworking, no studio finish, decisions made at the pace of weather. The shadow slanting down the grass pins the whole airy composition to the hill; the parasol's dense green is the largest solid accent holding the sky back.",
+  "context": "Argenteuil, 1875 — the high summer of the first Impressionist decade. Camille died four years later, at thirty-two. In 1886 Monet painted the composition twice more with his future stepdaughter, her face blurred almost blank. Seen from there, this canvas becomes the memory before the loss: the one where the face, however loosely brushed, is still hers.",
   "deeper": [
    {
     "t": "One second, whole",
@@ -25841,11 +27467,11 @@ window.CANVAS_INSPECT = {
     "y": 0.115,
     "w": 0.322,
     "h": 0.23,
-    "body": "Start at her face — or rather at the veil that won't let you reach it. That gauze streaming sideways is the painting's clock: it fixes the duration of the whole picture at roughly one second, the length of a single gust. Everything else obeys the same instant — the parasol tips into the wind, her skirt presses back against her legs, the grass beneath her streaks in one direction, the clouds drag in commas across the sky. Painting had always been able to show a moment; what it had rarely done before the 1870s is commit every square centimetre to the same moment, weather included. That's why the face is the least finished passage on the canvas: a second isn't long enough to read a face. Monet is honest about what a glance up a hill actually delivers — silhouette, light, wind — and refuses to smuggle in the minutes of studio scrutiny a portrait would require. The blur isn't a failure of likeness. It's the truth of the timespan."
+    "body": "Start at her face — or rather at the veil that won't let you reach it. That gauze streaming sideways is the painting's clock: it fixes the duration of the whole picture at roughly one second, the length of a single gust. Everything else obeys the same instant — the parasol tips into the wind, her skirt presses back against her legs, the grass beneath her is laid in long streaks, the clouds drag in commas across the sky. Painting had always been able to show a moment; what it had rarely done before the 1870s is commit every square centimetre to the same moment, weather included. That's why the face comes to us only through the veil's streaks: a second isn't long enough to read a face. Monet is honest about what a glance up a hill actually delivers — silhouette, light, wind — and refuses to smuggle in the minutes of studio scrutiny a portrait would require. The blur isn't a failure of likeness. It's the truth of the timespan."
    },
    {
     "t": "Looking up at her",
-    "body": "Notice where you're standing: below her, at the foot of the rise, so that she breaks the horizon and takes the sky. This is the viewpoint European painting reserved for altarpieces and equestrian monuments — the hero on the ridge, the saint against heaven. Monet spends it on his wife on an afternoon walk. Two-thirds of the canvas is sky because from down here that's what there is; her figure becomes almost an architecture against it, the parasol a dome. The art-historical charge is quiet but real: the picture argues that a bourgeois woman glancing back mid-stroll deserves the monumental treatment — that modern life doesn't need to borrow gravity from mythology because, seen from the right spot at the right second, it already has it. The Impressionists said this in manifestos; this canvas says it with a slope."
+    "body": "Notice where you're standing: below her, at the foot of the rise, so that she breaks the horizon and takes the sky. This is the viewpoint European painting reserved for altarpieces and equestrian monuments — the hero on the ridge, the saint against heaven. Monet spends it on his wife on an afternoon walk. The upper two-thirds of the canvas is sky because from down here that's what there is; her figure becomes almost an architecture against it, the parasol a dome. The art-historical charge is quiet but real: the picture argues that a bourgeois woman glancing back mid-stroll deserves the monumental treatment — that modern life doesn't need to borrow gravity from mythology because, seen from the right spot at the right second, it already has it. Their defenders argued it in print; this canvas says it with a slope."
    },
    {
     "t": "The white lie",
@@ -25853,15 +27479,15 @@ window.CANVAS_INSPECT = {
     "y": 0.2518,
     "w": 0.4673,
     "h": 0.5563,
-    "body": "Zoom into the dress and count the colours: blue shadow pulled from the sky, yellow-green bounced up from the grass, grey where the veil's shadow falls, warm cream only where the sun strikes directly. There is almost no white in this white dress. This is the core Impressionist discovery stated as plainly as it would ever be stated — 'local colour' (the idea that a thing has one true colour) is a studio fiction; in open air, everything is the colour of the light arriving on it, and light arrives from everywhere. The dress is a screen for the whole landscape to project onto. Once you've seen it here you see the same argument running through the century that follows — through Sargent's whites, Sorolla's whites, Leech's convent whites — every one of them descends from the demonstration that white is the most paintable colour precisely because it's the least fixed."
+    "body": "Zoom into the dress and count the colours: blue shadow pulled from the sky, yellow-green bounced up from the grass, grey-blue across the shoulders, warm cream where the sun strikes the jacket. Pure white is kept to a few bright slashes, most of them along the back of the jacket and skirt. This is the core Impressionist discovery stated as plainly as it would ever be stated — 'local colour' (the idea that a thing has one true colour) is a studio fiction; in open air, everything is the colour of the light arriving on it, and light arrives from everywhere. The dress is a screen for the whole landscape to project onto. Once you've seen it here you see the same argument running through the century that follows — through Sargent's whites, Sorolla's whites, Leech's convent whites — every one of them descends from the demonstration that white is the most paintable colour precisely because it's the least fixed."
    },
    {
     "t": "Jean, over the crest",
-    "x": 0.059,
-    "y": 0.4805,
-    "w": 0.322,
-    "h": 0.299,
-    "body": "The boy is seven-year-old Jean Monet, and he's doing the painting's quietest structural work. He stands beyond the crest, cut at the waist by it, noticeably smaller and hazier — and that difference in size and focus is the only depth cue the picture needs: no perspective lines, no path winding back, just two figures and the interval of air between them. But he also changes the picture's temperature. Without him this is a study of a woman and the wind; with him it's a family out walking, seen by its third member — father, painter, and the reason both of them have turned. Camille died in 1879, at thirty-two; when Monet restaged this composition in 1886 with his stepdaughter, he left the face empty and put no child on the hill. The 1875 canvas is the one where everyone is still there."
+    "x": 0.165,
+    "y": 0.49,
+    "w": 0.22,
+    "h": 0.26,
+    "body": "The boy is seven-year-old Jean Monet, and he's doing the painting's quietest structural work. He stands beyond the crest, cut at the waist by it, noticeably smaller, though his face is drawn more plainly than hers — and that difference in size is the main depth cue the picture needs: no perspective lines, no path winding back, just two figures and the interval of air between them. But he also changes the picture's temperature. Without him this is a study of a woman and the wind; with him it's a family out walking, seen by its third member — father, painter, and the reason both of them have turned. Camille died in 1879, at thirty-two; when Monet restaged this composition in 1886 with his future stepdaughter, he blurred her face almost blank and put no child on the hill. The 1875 canvas is the one where everyone is still there."
    },
    {
     "t": "'Claude Monet 75'",
@@ -25869,7 +27495,7 @@ window.CANVAS_INSPECT = {
     "y": 0.8932,
     "w": 0.322,
     "h": 0.1035,
-    "body": "The signature, dated, in the bottom-right corner — and worth the zoom, because '75 places the picture at a hinge. The canvas was painted in one or two outdoor sessions at Argenteuil in the summer of 1875, no commission, no buyer waiting, and shown the next spring at the second Impressionist exhibition under the title La Promenade. Look how the strokes stay separate everywhere — grass laid in flicks, clouds in drags, the parasol's underside in three or four greens — nothing blended, nothing corrected, decisions visible at the speed they were made. That speed was the scandal and the point: critics read it as unfinished, Monet meant it as finished-in-one-breath, the only finish a one-second subject can honestly have. The picture stayed essentially private for decades, passed through the Mellon collection, and entered the National Gallery of Art in Washington in 1983, where it now does the job the Salon machines once did: it's the painting people cross the room for."
+    "body": "The signature, dated, in the bottom-right corner — and worth the zoom, because '75 places the picture at a hinge. The canvas was painted outdoors at Argenteuil in the summer of 1875, probably in a single session, and shown the next spring at the second Impressionist exhibition under the title La Promenade. Look how the strokes stay separate in the grass around the signature, laid in flicks, as the clouds are laid in drags and the parasol's underside in three or four greens — little blended, decisions visible at the speed they were made. That speed was the point: its spontaneity was praised when it was shown, and Monet meant it as finished-in-one-breath, the only finish a one-second subject can honestly have. The picture stayed essentially private for decades and entered a public collection only in 1983, where it now does the job the Salon machines once did: it's the painting people cross the room for."
    }
   ],
   "beside": "A veil streams across Camille's face on this hill; four years later, in Camille sur son lit de mort, a white cloth is wound close around the same face, eyes shut, lips closed. That face is the only passage on the canvas with any drawing in it. Around it the bedding, like the dress here, is a white built from other colours, violet, lilac and rose-grey, laid in long strokes that drag past and never settle. On the hill there was a tomorrow, and he could leave her features to the gust and the sky. On the bed there is none, and the face is the one thing he holds still.",
@@ -25982,10 +27608,10 @@ window.CANVAS_INSPECT = {
  },
  "women-in-the-garden": {
   "mv": 1,
-  "see": "Four young women, three in white summer dresses and one in a fawn suit, are arranged around a garden path under a slim leafy tree, in flat, high summer light. One stands at the far left in a green-striped dress, turned in profile toward her neighbour, a second beside her lifts a bouquet to her face and looks out at us over it, a third sits on the grass in the foreground beneath a raised parasol, and a fourth walks away up the path at the right, reaching out to a limb of the tree, her back half-turned. The palette is a collision of brilliant white against saturated green foliage, with the path a pale band, mostly in grey-violet shade, cutting diagonally through. The dresses carry cool blue-grey shadows rather than muddy dark. Behind, dense trees and shrubs close off the space. The signature 'Claude Monet' sits lower right on the path.",
+  "see": "Four young women, three in white summer dresses and one in a fawn suit, are arranged around a garden path under a slim leafy tree, in flat, high summer light. One stands at the far left in a green-striped dress, turned in profile toward her neighbour, a second beside her lifts a bouquet to her face and looks out at us over it, a third sits on the grass in the foreground beneath a raised parasol, and a fourth walks away up the path at the right, reaching out to a limb of the tree, her back half-turned. The palette is a collision of brilliant white against saturated green foliage, with the path a pale band, mostly in grey shade, cutting diagonally through. The dresses carry cool blue-grey shadows rather than muddy dark. Behind, dense trees and shrubs close off the space. The signature 'Claude Monet' sits lower right on the path.",
   "about": "Behind the pretext of a fashionable garden gathering, the picture is really about light and the surfaces it falls on. The four women are less characters than beautifully lit forms, vehicles for the play of sun and shade rather than figures in a story: only one glance, over the top of a bouquet, meets ours, no incident unfolds, no sentiment is offered. What holds the canvas is the demotion of narrative in favour of optical sensation, the flat blaze of a summer afternoon treated as the true subject. That the same model likely sat for several of the figures only sharpens the point, since it turns a supposed social occasion into a constructed study of one body in different light. This is the opening move in an argument that would define a movement: that painting might be about seeing itself, about how white flares and shadow cools, rather than about who these women are or what they feel.",
-  "craft": "The whites are the achievement. They are never blank, but cooled wherever shade crosses them, and the shadows on them are laid in as decided shapes of blue-grey, colour rather than absence of it. The dresses read almost as flat pattern, great locked shapes arranged around the tree and the turning path, which gives the composition its poster-like clarity. Monet painted much of it outdoors, and to reach the top of so tall a canvas is said to have dug a trench so he could raise and lower it and work the upper passages at eye level rather than invent them in the studio. The diagonal of the pale path organises the whole and pulls the walking figure into depth, while the slim tree anchors the centre and casts the dappled shade that lets the coloured shadows do their radical work.",
-  "context": "This is early Monet, made in 1866 in his mid-twenties, before Impressionism had a name, as his bid for a modern figure painting on the ambitious near-life-size scale the Salon prized. The 1867 Salon jury turned it down, unsettled by exactly its cool coloured shadows and its treatment of figures as light rather than story. His loyal, better-funded friend Bazille bought the canvas in monthly instalments to keep him afloat; after Bazille was killed in the Franco-Prussian War it eventually returned to Monet, who kept it until 1921, when the French state bought it from the now-celebrated old man for 200,000 francs. The establishment that had refused the picture ended by paying its maker a fortune, and he lived to bank the apology. It hangs today in the Musée d'Orsay as a landmark of the movement's beginnings.",
+  "craft": "The handling is decided: much of the picture is stated in single, separate strokes. In the canopy each leaf is one flat dab of pale green laid over a dark ground, with a crisp edge, and the buttons running down the fawn suit are single pale touches. Monet painted much of it outdoors, and to reach the top of so tall a canvas is said to have dug a trench so he could raise and lower it and work the upper passages at eye level rather than invent them in the studio. The result is a surface of clear, separate marks, nearer to pattern than to modelling.",
+  "context": "This is early Monet, made in 1866 in his mid-twenties, before Impressionism had a name, as his bid for a modern figure painting on the ambitious near-life-size scale the Salon prized. The 1867 Salon jury turned it down, faulting its lack of subject and story and its visible brushwork, which it read as careless and unfinished. His loyal, better-funded friend Bazille bought the canvas in monthly instalments to keep him afloat; after Bazille was killed in the Franco-Prussian War it eventually returned to Monet, who kept it until 1921, when the French state bought it from the now-celebrated old man for 200,000 francs. The establishment that had refused the picture ended by paying its maker a fortune, and he lived to bank the apology. It hangs today in the Musée d'Orsay as a landmark of the movement's beginnings.",
   "deeper": [
    {
     "t": "Coloured shadow",
@@ -25993,7 +27619,7 @@ window.CANVAS_INSPECT = {
     "y": 0.3754,
     "w": 0.5432,
     "h": 0.6192,
-    "body": "Look at the seated woman's white skirt and the standing dresses beside it. The shadows falling across them are not grey or brown but distinct shapes of cool blue-grey, laid in with confidence as though shadow were a colour to be chosen rather than a darkness to be avoided. This is precisely what unsettled the Salon jury. Convention held that shadow should be a neutral dimming; Monet insists it is blue, tinted by the sky and the reflected surroundings, and he paints it as such without apology. Look how few the shadows are: a handful of broad, smooth planes laid over the white, most with a clean edge where shade meets sun, and the black braid running crisply across shade and sun alike. Nothing is broken into small touches; the folds are stated as flat shapes, which is why the skirt reads almost as poster pattern. That economy, a summer dress made from sunlit white and a few cut-out shadows, is the whole lesson of the picture held in a few square feet of skirt."
+    "body": "Look at the seated woman's white skirt and the striped dress standing beside it. The shadows falling across them are not grey or brown but distinct shapes of cool blue-grey, laid in with confidence as though shadow were a colour to be chosen rather than a darkness to be avoided. Convention held that shadow should be a neutral dimming; Monet insists it is blue, tinted by the sky and the reflected surroundings, and he paints it as such without apology. Look how the shadows are built: a few broad planes and a run of long, smooth fold strokes laid over the white, several with a clean edge where shade meets sun, and the black braid running crisply across shade and sun alike. The skirt's shade comes in long strokes and broad patches rather than small dabs; the folds are stated as flat shapes, which is why the skirt reads almost as poster pattern. That economy, a summer dress made from sunlit white and cut-out shadows, is the whole lesson of the picture held in a few square feet of skirt."
    },
    {
     "t": "The parasol face",
@@ -26001,7 +27627,7 @@ window.CANVAS_INSPECT = {
     "y": 0.4775,
     "w": 0.345,
     "h": 0.345,
-    "body": "The seated woman tilts a parasol so its shade throws a cool wash over her face, while the flowers gathered in her lap stay in full sun. Her features are barely modelled, kept in a gentle half-light while the world beyond the parasol blazes, and this deliberate softness tells you what Monet cares about. He is not painting a portrait; he is painting the way light behaves when it is filtered, the cool interior of shade against the scorch outside it. The parasol itself glows faintly where sun strikes its fabric, a pale dome pitched against the dark leaves behind. Notice how little the face asks of you emotionally, how it offers no expression to read. That refusal is the point. The figure is a surface for light to play across, and her shaded, downturned features keep her a form rather than a person, which is exactly the demotion of story that got the canvas refused and, later, revered."
+    "body": "The seated woman tilts a parasol so its shade throws a cool wash over her face, while the flowers gathered in her lap stay in full sun. Her features are barely modelled, kept in a gentle half-light while the world beyond the parasol blazes, and this deliberate softness tells you what Monet cares about. He is not painting a portrait; he is painting the way light behaves when it is filtered, the cool interior of shade against the scorch outside it. The parasol itself glows faintly where sun strikes its fabric, a pale dome pitched against the dark leaves behind. Notice how little the face asks of you emotionally, how it offers almost nothing to read beyond lowered eyes and a closed mouth. That refusal is the point. The figure is a surface for light to play across, and her shaded, downturned features keep her a form rather than a person, which is exactly the demotion of story that got the canvas refused and, later, revered."
    },
    {
     "t": "Walking away",
@@ -26009,7 +27635,7 @@ window.CANVAS_INSPECT = {
     "y": 0.2906,
     "w": 0.4285,
     "h": 0.5187,
-    "body": "At the right a woman moves up the path with her back half-turned, one arm stretched out to hold a limb of the slim tree over a bush flowering red and white, her white dotted dress swinging with the step. She is the figure that gives the picture its depth, pulling the eye off the flat foreground and up the pale diagonal into the garden's recession. Her pose is all movement, caught mid-step and mid-reach, which lends the whole arrangement its air of a chance moment rather than a posed group. Yet if the same model sat for several of these women, she is also the same body seen once more in different light and attitude, a candid that is in fact a construction. Set against a dark wall of green, her dress reads as the picture's furthest and most weightless note, the point where the composition opens out and breathes before the shrubbery closes the garden off again behind her."
+    "body": "At the right a woman moves up the path with her back half-turned, one arm stretched out to hold a limb of the slim tree over a bush flowering red and white, her white dotted dress swinging with the step. She is the figure that gives the picture its depth, pulling the eye off the flat foreground and up the pale diagonal into the garden's recession. Her pose is all movement, caught mid-step and mid-reach, which lends the whole arrangement its air of a chance moment rather than a posed group. Yet the candid is a construction: Monet's companion Camille posed for the three women at the left, so this chance-looking gathering is largely one sitter multiplied. Set against a dark wall of green, her dress reads as the picture's furthest and most weightless note, the point where the composition opens out and breathes before the shrubbery closes the garden off again behind her."
    },
    {
     "t": "The signed path",
@@ -26017,7 +27643,7 @@ window.CANVAS_INSPECT = {
     "y": 0.7569,
     "w": 0.5746,
     "h": 0.2431,
-    "body": "The near stretch of the garden path lies almost wholly in cast shadow, a broad plane of cool grey-violet, and Monet has signed it there in dark script, his name written into the shade rather than the sun. Only further up the path does the light break through: a cream sunlit patch beyond a crisp, ragged shadow edge. The path is the composition's spine, a diagonal that separates the seated group from the figure walking away and gives the flat pattern of dresses somewhere to sit. Here the picture's argument about coloured shadow is made with no figure at all. The shade on the ground is the same cool, decided colour that lies across the dresses, laid flat and given a hard boundary, so that shadow reads as a shape in its own right. This lower strip is the quietest passage in the canvas and the plainest statement of its method, an expanse with no incident, only the colour of shade on the ground."
+    "body": "The near stretch of the garden path lies almost wholly in cast shadow, a broad plane of grey, and Monet has signed it there in dark script, his name written into the shade rather than the sun. Only further up the path does the light break through: a cream sunlit patch beyond a crisp, ragged shadow edge. The path is the composition's spine, a diagonal that separates the seated group from the figure walking away and gives the flat pattern of dresses somewhere to sit. Here the picture's argument about shadow as a decided shape is made with no figure at all. The shade on the ground is laid in as decidedly as the shade across the dresses, flat and given a hard boundary, so that shadow reads as a shape in its own right. This lower strip is the quietest passage in the canvas and the plainest statement of its method, an expanse with no incident, only the colour of shade on the ground."
    }
   ],
   "by": "Opus · Fable",
@@ -26569,10 +28195,10 @@ window.CANVAS_INSPECT = {
  },
  "the-clouds": {
   "mv": 1,
-  "see": "Nothing in it is above water. The left end is a dense olive-green dark, thick and dry, with a few lily pads lying flat inside it. From there the paint cools into blue-green, then opens out: a pale cream haze along the top edge, and beneath it a chain of soft white and lavender masses, brightest early on, where a cream cloud stands against blue, then spreading into a broad lavender-grey field further along. Short horizontal dashes ride across them, pads seen almost edge-on, with a few small pink notes near the middle. Along the bottom the clouds' undersides break into curling strokes over reflected blue. At the far right a large dark mass fills the full height and shuts the whole thing down; low in it, pads drawn as pale loops and a few pink blossoms float on the dark. There is no horizon, no bank, no fixed centre, and no point where the composition tells you to stand.",
-  "about": "It is a picture with no place to stand. A framed landscape tells you where you are; this one runs past the edges of your vision on both sides, so at any moment you see a fraction of it sharply and hold the rest as colour at the periphery, assembling the whole from memory as you move. That is as much the subject as the pond is. Clouds are the fastest thing in a garden, the one element that guarantees the view was gone before the paint was dry, and Monet gave them the largest and slowest object he ever made. The panel is a long argument that a view is not something you receive but something your eye builds over time, and that the building never finishes, because the water will not hold still and neither will you.",
-  "craft": "Two mark-systems do all the work. Cloud is made of loose, curling, roughly circular strokes dragged dry across earlier dried paint, so the colour underneath keeps flickering through and edges stay soft. Everything belonging to the actual water surface, pads and ripple, is a short flat horizontal in the distance, opening into ovals and loops only in the lowest corners, and those horizontals are what stop the whole field from becoming mere weather. Tonally it is bracketed: heavy dark at the left end, heavier dark at the right, the light released between them, with the lowest band between them left in blue under the curling cloud-bases. Monet also let the picture keep its own history. Pink, violet and green underlayers surface everywhere as flecks, not because they describe anything, but because he built the panel in campaigns across years and never scraped it back to a single moment.",
-  "context": "Monet offered these panels to France the day after the Armistice, through his friend Georges Clemenceau, as a monument to peace; the gift was formalised by deed in 1922, and the rooms at the Orangerie were built to his own specifications, oval and top-lit, the canvases running in an unbroken band at eye level. By then he had lost his second wife and his elder son, and he was going blind: cataracts thickened through these years and were operated on in 1923, which is part of why the cycle took a decade and why he kept destroying canvases. The rooms opened in May 1927, months after his death, and were promptly written off as the long dusk of a superseded style. They were rediscovered after 1945, when painters working at mural scale found their own ambitions already sitting there.",
+  "see": "Nothing in it is above water. The left end is a dense dark of blue-green shot with violet, with a few lily pads lying flat inside it. From there the paint lightens into blue, then opens out: a pale cream haze along the top edge, and beneath it a chain of soft white and lavender masses, brightest early on, where a cream cloud stands against blue, then spreading into a broad lavender-grey field further along. Short horizontal dashes ride across them, pads seen almost edge-on, with a few small pink notes left of centre. Along the bottom the clouds' undersides break into curling strokes over reflected blue. At the far right a large dark mass fills the full height and shuts the whole thing down; low in it, pads drawn as pale loops and a few pink blossoms float on the dark. There is no horizon, no bank, no fixed centre, and no point where the composition tells you to stand.",
+  "about": "It is a picture with no place to stand. A framed landscape tells you where you are; this one runs past the edges of your vision on both sides, so at any moment you see a fraction of it sharply and hold the rest as colour at the periphery, assembling the whole from memory as you move. That is as much the subject as the pond is. Clouds are the fastest thing in a garden, the one element that guarantees the view was gone before the paint was dry, and Monet gave them one of the largest and slowest objects he ever made. The panel is a long argument that a view is not something you receive but something your eye builds over time, and that the building never finishes, because the water will not hold still and neither will you.",
+  "craft": "Two mark-systems do all the work. Cloud is made of loose, broken strokes, curling into loops along its lower edges, dragged dry across earlier dried paint, so the colour underneath keeps flickering through and edges stay soft. Most of what belongs to the actual water surface, pads and ripple, is a short flat horizontal, and those horizontals are what stop the whole field from becoming mere weather. Tonally it is bracketed: heavy dark at the left end, heavier dark at the right, the light released between them, with the lowest band between them left in blue under the curling cloud-bases. Monet also let the picture keep its own history. Pink, violet and green underlayers surface across the pale field as flecks, not because they describe anything, but because he built the panel in campaigns across years and never scraped it back to a single moment.",
+  "context": "Monet offered these panels to France the day after the Armistice, through his friend Georges Clemenceau, as a monument to peace; the gift was formalised by deed in 1922, and the rooms at the Orangerie were built to his own specifications, oval and top-lit, the canvases running in an almost continuous band at eye level. By then he had lost his second wife and his elder son, and he was going blind: cataracts thickened through these years and were operated on in 1923, which is part of why the cycle took more than a decade and why he kept destroying canvases. The rooms opened in May 1927, months after his death, and were promptly written off as the long dusk of a superseded style. They were rediscovered after 1945, when painters working at mural scale found their own ambitions already sitting there.",
   "deeper": [
    {
     "t": "The broad mass, and which way is up",
@@ -26580,7 +28206,7 @@ window.CANVAS_INSPECT = {
     "y": 0.2668,
     "w": 0.2075,
     "h": 0.7263,
-    "body": "This is the widest stretch of cloud, piled lavender, rose and grey. Note where it sits, which is low. In a reflection, the sky directly overhead lands nearest your feet, at the bottom of the water, while sky far off toward the opposite bank lands high in the picture. So reading up this panel walks you down the sky toward the far distance, and reading down it takes you back to the zenith. The widest cloud here therefore belongs to the sky nearer overhead rather than to the far distance. Once you have that, the field stops being pretty weather and becomes a map of an entire hemisphere of sky, laid out top to bottom in the wrong order."
+    "body": "This is the widest stretch of cloud, piled lavender, cream and grey. Note how far down it runs: nearly to the bottom edge. In a reflection, the sky directly overhead lands nearest your feet, at the bottom of the water, while sky far off toward the opposite bank lands high in the picture. So reading up this panel walks you down the sky toward the far distance, and reading down it takes you back to the zenith. The widest cloud here therefore reaches into the sky nearly overhead rather than staying in the far distance. Once you have that, the field stops being pretty weather and becomes a map of an entire hemisphere of sky, laid out top to bottom in the wrong order."
    },
    {
     "t": "The left end, and the first ruler",
@@ -26588,7 +28214,7 @@ window.CANVAS_INSPECT = {
     "y": 0.2584,
     "w": 0.0979,
     "h": 0.7416,
-    "body": "Now go to the left end: it is what tells you how big anything is. The dark is not shadow but foliage on the bank, reflected: the one solid object besides sky that the water has to report. Painted dry and thick, it is the most opaque paint on the wall. Down inside it the pads are drawn nearly as full ovals, large and separate, which means the view onto them is steep and close. Further up and toward the middle the pads flatten into slivers, because they lie further off; the same ovals return only in the opposite low corner. Those two facts are the entire perspective system of the picture. Monet took away the horizon and then hid the measuring stick down here, in this low corner."
+    "body": "Now go to the left end: it is what tells you how big anything is. The dark is not shadow but foliage on the bank, reflected: the one solid object besides sky that the water has to report. Its strokes run mostly upright and broken, with lighter colour showing between them. Down inside it the pads are drawn nearly as full ovals, large and separate, which means the view onto them is steep and close. Further up and toward the middle the pads flatten into slivers, because they lie further off; the same ovals return only in the opposite low corner. Those two facts are the entire perspective system of the picture. Monet took away the horizon and then hid the measuring stick down here, in this low corner."
    },
    {
     "t": "The top edge, where it refuses to end",
@@ -26596,7 +28222,7 @@ window.CANVAS_INSPECT = {
     "y": 0,
     "w": 0.299,
     "h": 0.299,
-    "body": "Along the top edge, dark blue-green water crowded with pad dashes and a few red dots gives way to pale cream, the strokes shallow and horizontal throughout. In an ordinary landscape this height would be sky, or at least a far bank; here it is simply the most distant water, and it is given no line to stop against. That omission is the most radical thing in the cycle. A horizon tells you how tall you are, how far you can see, and where the picture ends. Without one, the top edge reads as an arbitrary cut rather than a boundary, and the pond appears to carry on above it. Close up the effect is physical: the field continues past the top of your vision and never confirms where you are standing."
+    "body": "Along the top edge, dark blue-green water crowded with pad dashes and a few red dots gives way to pale cream worked in broken, scrubbed strokes. In an ordinary landscape this height would be sky, or at least a far bank; here it is simply the most distant water, and it is given no line to stop against. That omission is the most radical thing in the cycle. A horizon tells you how tall you are, how far you can see, and where the picture ends. Without one, the top edge reads as an arbitrary cut rather than a boundary, and the pond appears to carry on above it. Close up the effect is physical: the field continues past the top of your vision and never confirms where you are standing."
    },
    {
     "t": "The pink notes that hold the plane",
@@ -26620,7 +28246,7 @@ window.CANVAS_INSPECT = {
     "y": 0,
     "w": 0.28,
     "h": 1,
-    "body": "The largest single decision on the wall. A dense brown-black mass fills the full height, and everything to the left of it is defined by it: this is the reference dark that lets metres of pale grey read as luminous. It is reflected foliage again, rhyming with the left end, and its placement is deliberate. Set at the very end, it acts as a stop; crossing the panel from the left you accumulate light steadily until this shuts it. Notice how little detail it carries: a single row of red blossoms floats across its upper third, a few pale pads and blossoms gather low down, and the rest Monet leaves almost undescribed, a weight rather than a thing, because a described tree would reinstate exactly the world of solid objects the rest of the panel has spent its whole length dismantling."
+    "body": "The largest single decision on the wall. A dense near-black mass fills the full height, and everything to the left of it is defined by it: this is the reference dark that lets metres of pale grey read as luminous. It is reflected foliage again, rhyming with the left end, and its placement is deliberate. Set at the very end, it acts as a stop; crossing the panel from the left you come into light early and hold it for most of the length until this shuts it. Notice how little detail it carries: a single row of red blossoms floats across its upper third, a cluster of pale blue pad strokes sits at the right edge, a few pale pads and blossoms gather low down, and the rest Monet leaves almost undescribed, a weight rather than a thing, because a described tree would reinstate exactly the world of solid objects the rest of the panel has spent its whole length dismantling."
    },
    {
     "t": "Pads drawn on the dark",
@@ -26636,11 +28262,11 @@ window.CANVAS_INSPECT = {
     "y": 0,
     "w": 1,
     "h": 1,
-    "body": "Step back to the whole. It is separate canvases butted edge to edge, and the joins show if you look for them, dividing the length into roughly equal thirds, which tells you the thing was designed to be crossed rather than faced. There is no centre, no subject, no position at which you are correctly placed. The Orangerie rooms are ellipses for that reason: no corner lets you retreat far enough to take it in whole, so viewing turns into walking. What you leave with is not an image but a duration. In the room where you saw it, the painting is never finished with you as long as you are still moving, which is also a fair description of standing at the edge of water watching cloud go over."
+    "body": "Step back to the whole. It is separate canvases butted edge to edge, and the joins show if you look for them, dividing the length into roughly equal thirds, which tells you the thing was designed to be crossed rather than faced. There is no centre, no subject, no position at which you are correctly placed. The Orangerie rooms are ellipses, and the shape does the same work: no corner lets you retreat far enough to take it in whole, so viewing turns into walking. What you leave with is not an image but a duration. In the room where you saw it, the painting is never finished with you as long as you are still moving, which is also a fair description of standing at the edge of water watching cloud go over."
    }
   ],
   "by": "Opus 4.8",
-  "beside": "Shore, bank and horizon are cleared away here, and a late Turner clears nearly as much away; each picture keeps back one passage to tell the eye where it is. Sunset From the Top of the Rigi, at Tate in London, dates from 76 years before this panel: the view from the summit, its upper two-thirds a pale field scumbled so thin the weave shows, a band of rose where valley and far water take the last sun. Here the passage kept back is the pads in the two low corners, which measure the water but give you nowhere to stand; there it is a hummock of yellow-green turf rising from the bottom edge, the ground under your feet.",
+  "beside": "Shore, bank and horizon are cleared away here, and a late Turner clears nearly as much away; each picture keeps back one passage to tell the eye where it is. Sunset From the Top of the Rigi, at Tate in London, dates from about 1844, some three-quarters of a century before this panel: the view from the summit, its upper two-thirds a pale field scumbled so thin the weave shows, a band of rose where valley and far water take the last sun. Here the passage kept back is the pads in the two low corners, which measure the water but give you nowhere to stand; there it is a hummock of yellow-green turf rising from the bottom edge, the ground under your feet.",
   "refs": [
    {
     "id": "j-m-w-turner-sunset-from-the-top-of-the-rigi",
@@ -27757,10 +29383,10 @@ window.CANVAS_INSPECT = {
  },
  "pont-de-l-europe-gare-saint-lazare": {
   "mv": 1,
-  "see": "The canvas splits along a diagonal. From the upper right, the iron span of the Pont de l'Europe drops toward the center on a steep angle, a dark lattice of girders drawn against pale sky. Much of the rest is vapour: a soft grey-blue fog that thins to lilac and rises off the tracks in slow columns, half-swallowing the engines below, though at lower left one locomotive stands clear, tall smokestack and dark boiler stated outright. On the left, ranked apartment blocks hold the far edge in cool cream and blue, their chimney pots standing up into the same haze. The ground is a scuffed brown apron, wet-looking, nearly empty. Two accents interrupt the grey — a red signal in the middle distance, a small standing figure beside the locomotive at lower left — and the eye keeps sliding between the bridge's hard drawing and the steam that erases it. Nothing sits still; the picture is built to feel like weather indoors.",
+  "see": "The canvas splits along a diagonal. From the upper right, the iron span of the Pont de l'Europe drops toward the center on a steep angle, a dark lattice of girders drawn against pale sky. Much of the rest is vapour: a soft grey-blue fog that thins to lilac and rises off the tracks in slow columns, half-swallowing the engines below, though at lower left one locomotive stands clear, tall smokestack and dark boiler stated outright. On the left, ranked apartment blocks hold the far edge in cool cream and blue, their chimney pots standing up into the same haze. The ground is a scuffed brown apron, wet-looking, nearly empty. Two accents interrupt the grey — a red signal in the middle distance, a small standing figure beside the locomotive at lower left — and the eye keeps sliding between the bridge's hard drawing and the steam that erases it. The steam moves while the iron and stone hold; the picture is built to feel like weather made by machines.",
   "about": "This is one canvas from the twelve Monet made of Gare Saint-Lazare in 1877, and it takes the station from outside the train shed rather than under its glass. The Pont de l'Europe — the great iron road-bridge that vaulted over the rail cutting where six streets met — enters at the top right and gives the composition its spine. Beyond it lie the platforms and the Haussmann city. Monet is not documenting a timetable. He is watching how a machine remakes the air: coal smoke and released steam become a manufactured atmosphere, dense enough to half-bury the engines that produce it. The subject is the collision of two moderns — the surveyor's iron and the chemist's cloud — held in a single grey key that a landscape painter of open fields could never have found.",
-  "craft": "Two languages of paint share the surface. The bridge and the buildings are drawn: darker strokes laid with direction, the girders set down in broad dark strokes over the pale ground so the trusswork reads as line, the apartment cornices clipped square. The steam is the opposite — dragged, scumbled, worked wet-in-wet so no edge survives, greys warmed with rose and cooled with blue until the cloud has volume without contour. Monet keeps the whole thing on a narrow band of value; the loudest note is a coin of red at the signal, and it carries because almost nothing else raises its voice. Look at the foreground: the brown apron is thin, almost dry-brushed, letting the weave show, so the ground feels trodden and bare against the churning air above it. The handling itself dramatizes the theme — firm structure, then dissolution.",
-  "context": "In 1877 Monet rented a room near the station and secured permission to work inside the railway precinct; the series he produced there was shown, several canvases at once, at the third Impressionist exhibition that spring. Saint-Lazare was the terminus for the western suburbs and for Argenteuil, where he had been painting the river — so this was his own gateway, the machine that carried him between city and country. The other versions push into the shed under its iron-and-glass roof; this one steps back to include the Pont de l'Europe and the open cutting, closer to Caillebotte's near-contemporary studies of the same bridge. Where earlier painters had made the railway a symbol or a threat, Monet treats it as a motif like haystacks or water — a thing that light and vapour happen to, recorded without comment.",
+  "craft": "Two languages of paint share the surface. The bridge and the buildings are drawn: darker strokes laid with direction, the girders set down in broad dark strokes over the pale ground so the trusswork reads as line, the apartment cornices clipped square. The steam is the opposite — dragged, scumbled, worked wet-in-wet so no edge survives, greys warmed with rose and cooled with blue until the cloud has volume without contour. Monet keeps the colour muted throughout but lets the values run wide, from near-black iron to a sky close to white, so the drawing is done by dark against light rather than by hue. Look at the foreground: lilac-grey strokes are dragged across the brown ground, broken enough to let the darker colour beneath show through. The handling itself dramatizes the theme — firm structure, then dissolution.",
+  "context": "In 1877 Monet rented a room near the station and secured permission to work inside the railway precinct; the series he produced there was shown, several canvases at once, at the third Impressionist exhibition that spring. Saint-Lazare was the terminus for the western suburbs and for Argenteuil, where he had been painting the river — so this was his own gateway, the machine that carried him between city and country. Several versions push into the shed under its iron-and-glass roof; this one, like a handful of others, stays out in the open cutting below the Pont de l'Europe, closer to Caillebotte's near-contemporary studies of the same bridge. Where earlier painters had made the railway a symbol or a threat, Monet treats it as a motif like haystacks or water — a thing that light and vapour happen to, recorded without comment.",
   "deeper": [
    {
     "t": "The iron bridge",
@@ -27776,7 +29402,7 @@ window.CANVAS_INSPECT = {
     "y": 0.2166,
     "w": 0.6104,
     "h": 0.5668,
-    "body": "Below and left of the bridge, the largest event in the painting is an absence made of paint. A second iron span climbs from the cream stone piers toward the bridge and the steam boils through its lattice; low in the cloud a long dark mass runs right to a round disc at the canvas edge, probably the front of an engine its own exhaust has all but erased. The steam is built wet-in-wet, greys pushed toward rose where the light catches and toward cold blue in the shadowed rolls, with no line anywhere to say where vapour ends. It has genuine volume; it turns and lifts. This is the series' real argument: the machine manufactures the very atmosphere that hides it. Modern power announces itself not as a shape you can name but as a change in the air, a weather system produced on demand and dense enough to all but swallow its source."
+    "body": "Below and left of the bridge, the largest event in the painting is an absence made of paint. The bridge's lattice runs on down to the cream stone piers and the steam boils through it; low in the cloud a long dark mass runs right to a round disc at the canvas edge, probably the front of an engine its own exhaust has all but erased. The steam is built wet-in-wet, greys pushed toward rose where the light catches and toward cold blue in the shadowed rolls, with no line anywhere to say where vapour ends. It has genuine volume; it turns and lifts. This is the series' real argument: the machine manufactures the very atmosphere that hides it. Modern power announces itself not as a shape you can name but as a change in the air, a weather system produced on demand and dense enough to all but swallow its source."
    },
    {
     "t": "The city holding the left edge",
@@ -27792,7 +29418,7 @@ window.CANVAS_INSPECT = {
     "y": 0.534,
     "w": 0.1598,
     "h": 0.1721,
-    "body": "In the middle distance, on a slim post rising from the track, sits the strongest colour in the whole canvas — a small red-orange disc, the board of a railway signal. It is barely a thumbnail of pigment, but in a field pitched mostly in greys and blues it does the work of a whole chord, pulling the eye to the exact center of the station's activity where the platforms and low sheds gather. Monet knew what a warm accent buys in a cool painting; the chimney pots on the left only murmur the same orange-red, and he saves its full strength for here, the operational heart of the scene. It is also the most human mark in the machine's landscape — a signal, an instruction, the trace of people running this weather-making apparatus, most of them out of sight."
+    "body": "In the middle distance, on a slim post rising from the ground, sits the strongest patch of colour in the canvas — a small red-orange disc, the board of a railway signal. It is barely a thumbnail of pigment, but in a field pitched mostly in greys and blues it does the work of a whole chord, pulling the eye in to the low sheds gathered behind it. Monet knew what a warm accent buys in a grey painting; the chimney pots on the left only murmur the same orange-red, and he saves its full strength for here, the operational heart of the scene. It is also the most human mark in the machine's landscape — a signal, an instruction, the trace of people running this weather-making apparatus, most of them out of sight."
    },
    {
     "t": "The lone figure",
@@ -27800,7 +29426,7 @@ window.CANVAS_INSPECT = {
     "y": 0.702,
     "w": 0.184,
     "h": 0.276,
-    "body": "Close on the smallest presence that decides the scale. A single figure stands in the lower left, a few strokes of dusty blue for the coat, a dark dab for the head, set at the flank of the locomotive on the bare brown apron, the steaming station rising behind. He is almost nothing — you could pass over him — yet he sets the terms: read him as man-height and the bridge becomes vast, the cloud becomes architecture. Around him the ground is painted thin and dry, the canvas weave showing through, so the earth feels trodden and empty against the churning air above. That contrast is the picture in miniature — one small, still man facing us beside the engine, the machine-made sky rising at his back, and the watching left to you."
+    "body": "Close on the smallest presence that decides the scale. A single figure stands in the lower left, a few strokes of dusty blue for the coat, a dark dab for the head, set at the flank of the locomotive on the bare brown apron, the steaming station rising behind. He is almost nothing — you could pass over him — yet he sets the terms: read him as man-height and the bridge becomes vast, the cloud becomes architecture. Around him the brown ground is laid in short, broken strokes, so the earth feels trodden and empty against the churning air above. That contrast is the picture in miniature — one small, still man facing us beside the engine, the machine-made sky rising at his back, and the watching left to you."
    }
   ],
   "by": "Opus 4.8",
@@ -27814,10 +29440,10 @@ window.CANVAS_INSPECT = {
  },
  "nympheas-monet-2": {
   "mv": 1,
-  "see": "The whole canvas is water, tilted up toward you so the pond fills a tall vertical frame that gives the eye no horizon to steady it. Lily pads float as flattened ovals, packed at the left and opening out toward the right, thinning as they climb toward the top edge. Near the upper centre sits the brightest event: a tight group of three white blooms, two of them lit with yellow hearts. Everything else is surface and what the surface holds. Read the picture from the bottom up and you find one anchor the others in this pond lack: a wedge of green bank shoulders into the lower-left corner, a solid thicket of teal and yellow-green against the drifting water. That corner tells you where you stand.",
-  "about": "Monet painted this in his sixties and seventies at Giverny, walking the same pond he had dug and planted himself, returning to it for the last three decades of his life. By the late 1910s the water lilies were less a subject than a discipline: the same few square metres of water studied again and again, in different light, until the pond became a way of testing what paint could hold. This canvas keeps its footing where many of the late ones let go. The bank in the corner, the readable pads, the clustered flowers all insist on a real place seen from a real vantage, slightly above the water. It is contemplative rather than dissolved, a pond you could kneel beside, not yet the boundless field of the museum murals.",
-  "craft": "Look at how differently the two halves are handled. The upper water is built from short, crossing dabs, grey-green laced with lavender and pink, that lie flat and describe the skin of the pond. The lower half is combed downward in long vertical strokes, darker and looser, so foliage and sky sink into the water as reflection rather than sitting on it. The pads bridge the two: firm horizontal ovals, some ringed with a darker edge, pressing the surface flat wherever they fall. The blooms are where Monet loads the brush thickest and brightest, the central group most of all, white over yellow, so the flowers catch light the water only borrows. The green bank is laid in short, crowded, blade-like strokes, a different touch altogether from the long combed verticals of the reflections beside it.",
-  "context": "The Marmottan Monet holds the largest collection of Monet anywhere, most of it his late Giverny work, bequeathed by his son Michel in 1966. Among those canvases are many near-identical water-lily views, painted in the same years and often left undated, which makes any single title a little slippery. This one belongs to that family but keeps its own signature: the bank corner and the tight central bloom cluster. These late ponds were painted alongside the vast decorative panels Monet was preparing for the state, the ones now wrapped around two oval rooms at the Orangerie. Seeing an easel-scale canvas like this beside that project shows the private study behind the public wall, the pond first observed close, then expanded into something a viewer could stand inside.",
+  "see": "Nearly the whole canvas is water, tilted up toward you so the pond fills a tall vertical frame that gives the eye no horizon to steady it. Lily pads float as flattened ovals, packed at the left and opening out toward the right, thinning as they climb toward the top edge. Near the upper centre sits the brightest event: a tight group of three white blooms, two of them lit with yellow hearts. Everything else is surface and what the surface holds. Read the picture from the bottom up and you find one anchor the others in this pond lack: a wedge of green bank shoulders into the lower-left corner, a solid thicket of teal and yellow-green against the drifting water. That corner tells you where you stand.",
+  "about": "Monet painted this in his seventies at Giverny, beside the pond he had laid out and planted from 1893 and returned to for the last three decades of his life. By the late 1910s the water lilies were less a subject than a discipline: the same few square metres of water studied again and again, in different light, until the pond became a way of testing what paint could hold. This canvas keeps its footing where many of the late ones let go. The bank in the corner, the readable pads, the clustered flowers all insist on a real place seen from a real vantage, slightly above the water. It is contemplative rather than dissolved, a pond you could kneel beside, not yet the boundless field of the museum murals.",
+  "craft": "Look at how differently the two halves are handled. Through the band of pads the water is built from short, crossing dabs, grey-green laced with lavender and pink, that lie flat and describe the skin of the pond; above the band, along the top edge, vertical streaks of lavender and green hang down. The lower half is laid in long vertical strokes, darker and looser, so foliage and sky sink into the water as reflection rather than sitting on it. The pads bridge the two: firm horizontal ovals, some ringed with a darker edge, pressing the surface flat wherever they fall. Small strokes of rust red and patches of rose are scattered through the pad band, warm touches set into the grey-green. Along the bottom and right edges the paint stops short and bare canvas shows, so the picture ends where the brush stopped rather than at a finished border.",
+  "context": "The Marmottan Monet holds the largest collection of Monet anywhere, much of it his late Giverny work, bequeathed by his son Michel in 1966. Among those canvases are many near-identical water-lily views, painted in the same years and often left undated, which makes any single title a little slippery. This one belongs to that family but keeps its own signature: the bank corner and the tight central bloom cluster. These late ponds were painted alongside the vast decorative panels Monet was preparing for the state, the ones now wrapped around two oval rooms at the Orangerie. Seeing a single canvas like this beside that project shows the private study behind the public wall, the pond first observed close, then expanded into something a viewer could stand inside.",
   "deeper": [
    {
     "t": "The bloom cluster",
@@ -27825,7 +29451,7 @@ window.CANVAS_INSPECT = {
     "y": 0.2065,
     "w": 0.322,
     "h": 0.207,
-    "body": "Just above the middle of the canvas, three white lilies are where the painting stops drifting and lands. Two of them carry a stroke of chrome yellow at the centre; the third is a cooler greenish white. Monet paints them thick, the white ridged and catching real light, so the flowers seem to sit slightly proud of the water. Everything around them is reflection and suggestion; these are things. In a pond otherwise built from cool greys and lavenders, this small warm cluster is where the eye is meant to rest, and it earns its keep as the passage the artist most firmly refused to let dissolve."
+    "body": "In the upper third of the canvas, just right of centre, three white lilies are where the painting stops drifting and lands. Two of them carry a stroke of yellow at the centre; the third is a cooler greenish white. Monet paints them thick, the white ridged and catching real light, so the flowers seem to sit slightly proud of the water. Most of what surrounds them is reflection and suggestion; these are things. Among the cool greys, lavenders and olive greens of the pond, this small cluster of white and yellow is where the eye is meant to rest, and it earns its keep as a passage the artist firmly refused to let dissolve."
    },
    {
     "t": "The green bank",
@@ -27841,7 +29467,7 @@ window.CANVAS_INSPECT = {
     "y": 0.416,
     "w": 0.6825,
     "h": 0.5112,
-    "body": "Below the pads the water turns into a hanging curtain of vertical strokes, dark olive greens at the left giving way to violet and lavender toward the right, all drawn straight down. These are the reflections of the willows and reeds along the bank, and Monet paints them not as objects but as the water's memory of objects, softened, elongated, sinking. The trick is that the reflections read as depth even though the paint sits on the same flat plane as the pads above. Where a pad crosses this curtain, its firm oval snaps the surface back to the top, and you feel the whole shallow thickness of the pond at once, its skin and its depths held in the same square inch of canvas."
+    "body": "Below the pads the water turns into a hanging curtain of vertical strokes, dark olive greens at the left giving way to violet and lavender toward the right, nearly all of them laid vertically. These are reflections, most likely of willows and reeds along the bank, and Monet paints them not as objects but as the water's memory of objects, softened, elongated, sinking. The trick is that the reflections read as depth even though the paint sits on the same flat plane as the pads above. Where a pad crosses this curtain, its firm oval snaps the surface back to the top, and you feel the whole shallow thickness of the pond at once, its skin and its depths held in the same square inch of canvas."
    },
    {
     "t": "The upper edge",
@@ -27849,7 +29475,7 @@ window.CANVAS_INSPECT = {
     "y": 0.0057,
     "w": 0.4799,
     "h": 0.2285,
-    "body": "Follow the pads up and, at the left of this stretch, they flatten into pale bands laid nearly edge-on, while at the right a few stay full ovals, only somewhat smaller than the near ones. This is Monet handling perspective without a horizon: the pond recedes as the pads flatten and, where they stay full, as the water itself pales, lifting into a whitish lavender mist, the lightest broad passage in the picture. Green willow fronds trail into it from the top edge, the same trees whose reflections curtain the lower half."
+    "body": "Follow the pads up and, at the left of this stretch, they flatten into pale bands laid nearly edge-on, while at the right a few stay full ovals, only somewhat smaller than the near ones. This is Monet handling perspective without a horizon: the pond recedes as the pads flatten and, where they stay full, as the water itself pales, lifting into a whitish lavender mist, the lightest broad passage in the picture. Green strokes like willow fronds trail into it from the top edge, perhaps the same trees whose reflections curtain the lower half."
    }
   ],
   "by": "Opus 4.8",
@@ -27863,10 +29489,10 @@ window.CANVAS_INSPECT = {
  },
  "saule-pleureur-et-bassin-aux-nympheas": {
   "mv": 1,
-  "see": "A single willow trunk fills the left half of the canvas, rising from a shadowed base and running off the top edge. It is not a smooth column but a woven mass of vertical strokes — red-brown, orange, violet, and near-black tangled together like plaited rope. To either side, thin fronds hang down against the pond's lavender surface, where lily pads float at the upper right above a dark streaked mass that reads as the willow's reflection, and the lower right is a bank of green and ochre grass running down to the water.",
+  "see": "A single willow trunk stands in the left half of the canvas, rising from a shadowed base and running off the top edge. It is not a smooth column but a woven mass of vertical strokes — red-brown, rose, orange, and violet tangled together like plaited rope. To either side, thin fronds hang down against the pond's lavender surface, where lily pads float at the upper right beside a dark streaked mass that reads as the willow's reflection, and the lower right is a bank of green and ochre grass running down to the water.",
   "about": "This is one of a group of late canvases from the Giverny water garden in which a willow trunk, not the lily surface, holds the foreground. Where most of the pond pictures lie flat on the water, mirroring sky and lilies, this one stands the viewer on the bank beside a weeping willow, so near that the bark becomes the main event, with the pond opening beside it rather than beneath you. Monet planted willows around his lily basin and returned to them again and again in his last decade; here the tree is not a frame for the water but its partner, the solid trunk on one side and the reflected willow on the other.",
-  "craft": "Look at how the bark is built. Monet lays down long vertical strokes and then crosses and interrupts them with diagonals, so the surface reads as bark and as pure woven paint at once. The colours are not the browns of a real trunk but a full spectrum — orange laid beside violet, green threaded through red — each stroke kept distinct rather than blended, so the eye does the mixing. The fronds are dragged downward in thin wet lines that break against the lavender water behind them. Almost nothing is drawn: the one contour is the dark rim of the lily pads at the upper right, and everything else is stated in the direction and weight of the stroke.",
-  "context": "Monet painted his willows through the years of the First World War, and in the standard reading the tree had become his emblem of mourning — he grieved the war deeply, and the drooping willow carried that grief. This canvas belongs to that group, roughly 1916 to 1919, though the exact year is not secure. Its looseness and its refusal to resolve into finish are of a piece with the vast Nymphéas he was building for the state in the same studio. The result is a picture that stays half-abstract, closer to a record of feeling worked into paint than to a view of a garden.",
+  "craft": "Look at how the whole surface is made. Monet builds it from separate strokes laid beside or over one another rather than blended, so the eye does the mixing. Direction does the drawing: across most of the canvas the strokes run up and down, and only along the bottom and at the lower right do they turn and point in many directions. The paint is uneven, opaque in some passages and dragged thin in others so that a lower layer shows through, and at the top right corner the canvas appears to be left uncovered. Almost nothing is drawn with a line; nearly every edge is stated in the direction and weight of the stroke.",
+  "context": "Monet painted his willows through the years of the First World War, and in the standard reading the tree had become his emblem of mourning — he grieved the war deeply, and the drooping willow carried that grief. This canvas belongs to that group, roughly 1916 to 1919, though the exact year is not secure. Its looseness and its refusal to resolve into finish are of a piece with the vast Nymphéas panels he was painting in the same years, the cycle he offered to the state the day after the Armistice of November 1918. The result is a picture that stays half-abstract, closer to a record of feeling worked into paint than to a view of a garden.",
   "deeper": [
    {
     "t": "The woven bark",
@@ -27874,7 +29500,7 @@ window.CANVAS_INSPECT = {
     "y": 0.2405,
     "w": 0.4751,
     "h": 0.5091,
-    "body": "Come in close on the trunk's midsection. What looks from a distance like textured bark dissolves into a lattice of separate strokes — some vertical and dragged the length of the trunk, others short diagonals cutting across them. Monet works in complementary pairs: orange struck against violet, warm red beside cool green. He does not blend these on the canvas; he sets them side by side and lets them vibrate. This is the same optical method he used on water, turned now onto a solid vertical thing, which is why the trunk seems to shimmer rather than sit still."
+    "body": "Come in close on the trunk's midsection. What looks from a distance like textured bark dissolves into a weave of separate strokes — most of them wavy and running up the trunk, others shorter and slanting across their neighbours. Monet works in complementary pairs: orange struck against violet, warm rose beside cool blue. He does not blend these on the canvas; he sets them side by side and lets them vibrate. This is the same optical method he used on water, turned now onto a solid vertical thing, which is why the trunk seems to shimmer rather than sit still."
    },
    {
     "t": "Orange in the seams",
@@ -27882,7 +29508,7 @@ window.CANVAS_INSPECT = {
     "y": 0.5065,
     "w": 0.4799,
     "h": 0.377,
-    "body": "The hottest notes in the whole picture are the flecks of orange and red buried in the lower trunk. They are not describing anything you could name — not moss, not light — but they carry the heat that keeps the dark bark from going dead. Track how they thin out as the trunk rises and gather again near the base, where the wood meets its own shadow. This scattering of warm accents through a cool mass is one of Monet's steadiest habits in the late work, a way of pushing energy up through a form."
+    "body": "Most of the picture's hottest notes are the flecks of orange and red buried in the lower trunk. They are not describing anything you could name — not moss, not light — but they carry the heat that keeps the dark bark from going dead. Track how they thin out as the trunk rises and gather again near the base, where the wood meets its own shadow. This scattering of warm accents through a muted mass is one of Monet's steadiest habits in the late work, a way of pushing energy up through a form."
    },
    {
     "t": "The hanging fronds",
@@ -27890,7 +29516,7 @@ window.CANVAS_INSPECT = {
     "y": 0.01,
     "w": 0.391,
     "h": 0.46,
-    "body": "Along the top and right, the willow's fronds fall in thin downward lines against the pond's lavender surface. Monet drags them down in separate wet strokes, dark green over light, each holding its edge, with the water showing between them. This is the gesture that gives the weeping willow its name and, for Monet in these war years, its meaning. The fronds all run one direction — down — so the eye is pulled steadily downward, against the trunk's upward climb. Only the lily pads at the right lie level, flat ovals ringed in dark line, and beneath the fronds the same downward strokes darken into the willow's reflection."
+    "body": "Along the top and right, the willow's fronds fall in thin downward lines against the pond's lavender surface. Monet sets them down in separate strokes, dark green over light, many broken enough for the lavender water to show through them as well as between them. This is the gesture that gives the weeping willow its name and, for Monet in these war years, its meaning. The fronds all run one direction — down — so the eye is pulled steadily downward, against the trunk's upward climb. The lily pads at the right lie level against them, soft flat ovals, the lower one rimmed in a dark line, and beneath the fronds the same downward strokes darken into the willow's reflection."
    },
    {
     "t": "The bank and the waterline",
@@ -27898,7 +29524,7 @@ window.CANVAS_INSPECT = {
     "y": 0.5216,
     "w": 0.4994,
     "h": 0.4767,
-    "body": "At the lower right the ground opens. A grassy bank built of green, yellow-green, and ochre slopes down to the right, and at its far edge it meets a strip of lavender water running down the side of the canvas. Where the grass climbs to the dark of the willow's reflection, a slanting line marks the waterline, and it tells you where you are — not floating on the water as in Monet's other late canvases, but standing on the bank at the tree's foot, with the pond lying beyond the grass. The scene is held here, between earth and reflection."
+    "body": "At the lower right the ground opens. A grassy bank built of green, yellow-green, and ochre slopes down to the right, and at its far edge it meets a strip of lavender water running down the side of the canvas. Where the grass climbs to the dark of the willow's reflection, a slanting edge marks the waterline, and it tells you where you are — not floating on the water as in so many of Monet's late canvases, but standing on the bank at the tree's foot, with the pond lying beyond the grass. The scene is held here, between earth and reflection."
    },
    {
     "t": "The shadowed foot",
@@ -27910,7 +29536,7 @@ window.CANVAS_INSPECT = {
    }
   ],
   "by": "Opus 4.8",
-  "beside": "At the foot of a tree, too close for a view, a painter can send the eye up the trunk or down to the roots, and Sargent sent it down. His Wild Olive Tree Roots, Valldemosa, Majorca, nine years older and at the National Gallery of Art in Washington, is all hillside and no sky, roots riding over pale limestone in hot ochre. The trunks are sliced off by the top edge, so the tree has no crown. Here the trunk runs off the top edge as well, and its foot goes dark behind blue-green leaves, with the pond's lavender water to its right. Sargent crops the tree to give you the roots; Monet hides the roots to give you the trunk and the water beside it.",
+  "beside": "At the foot of a tree, too close for a view, a painter can send the eye up the trunk or down to the roots, and Sargent sent it down. His Wild Olive Tree Roots, Valldemosa, Majorca, about a decade older and at the National Gallery of Art in Washington, is all hillside and no sky, roots riding over pale limestone in hot ochre. The trunks are sliced off by the top edge, so the tree has no crown. Here the trunk runs off the top edge as well, and its foot goes dark behind blue-green leaves, with the pond's lavender water to its right. Sargent crops the tree to give you the roots; Monet hides the roots to give you the trunk and the water beside it.",
   "refs": [
    {
     "id": "sargent-wild-olive-tree-roots-valldemosa-majorca",
@@ -27977,10 +29603,10 @@ window.CANVAS_INSPECT = {
  },
  "the-tuileries-study": {
   "mv": 1,
-  "see": "A garden seen from high up and slightly to the side: the Tuileries laid out below as bands of green and gravel, the city hazing off toward a pale horizon, one big building shouldering into the upper left. Read it in three depths. The bottom third is loose, near foliage worked wet and thick. The middle is the formal garden, terraced lawns and gravel walks with a scatter of small figures. The top is Paris, small and pale under a thin sky. Few things are drawn as an edge beyond the palace roof, a basin's stone rim and the paths; elsewhere everything is a patch of colour placed next to another patch, and the eye assembles the park from that.",
-  "about": "This is an oil study, and the label is the point. Where Monet's finished Tuileries canvases of 1876 hold a line between the garden's engineered order and the light falling on it, here the order is still there, but stated in a few straight strokes rather than drawn out. The most rigidly geometric landscape in Europe — a garden of axes, parterres and clipped alignments — arrives as dabs and straight drags of path, its right angles stated once and left alone. What a rapid lay-in keeps is exactly this: the first impression, before the mind has corrected the scene back into the shapes it knows are there.",
-  "craft": "Look at how the paint is handled by zone. The foreground shrubs are built from short loaded strokes, greens and rust-reds jabbed side by side and left unblended, so the leaf-mass reads as texture more than form. In the garden beds the touch flattens and lengthens into horizontal drags of pale earth and green. By the skyline the marks shrink to flecks of lit facade and dark roof, while the sky above them is brushed so thin that the weave shows.",
-  "context": "The elevated angle is the study's second gift. Looking down rather than across, Monet lifts the horizon close under the top edge and flattens the park into stacked horizontal bands — a bird's-eye compression that reads almost as pattern. The vantage is traditionally given as an upper-floor apartment overlooking the gardens; the picture belongs to a small group of Tuileries views Monet made that year, of which this is one of the more openly sketch-like.",
+  "see": "A garden seen from high up and slightly to the side: the Tuileries laid out below as bands of green and gravel, the city hazing off toward a pale horizon, one big building shouldering into the upper left. Read it in three depths. The bottom third is loose, near foliage worked thick. The middle is the formal garden, banded lawns and gravel walks with a scatter of small figures. The top is Paris, small and pale under a thin sky. Few things are drawn as an edge beyond the palace roof, a basin's stone rim and the paths; elsewhere everything is a patch of colour placed next to another patch, and the eye assembles the park from that.",
+  "about": "From one high window over the gardens Monet painted the Tuileries four times, two of them as sketches, and this is the most accomplished of the set. Its balance rests on two fixed things: the mass of the Pavillon de Marsan at the left and a horizon set very high. Between them the formal garden keeps its order, but that order is stated in a few straight strokes rather than drawn out. Axes, parterres and clipped alignments arrive as dabs and straight drags of path, their right angles stated once and left alone, so even the finished picture keeps the first impression, before the mind has corrected the scene back into the shapes it knows are there.",
+  "craft": "Look at how the paint is handled across the surface. Through the broad band of trees in the middle distance the touch is a dab: yellow-green laid over dark blue-green, with violet in the shadows, each mark left where it fell rather than worked into its neighbour, so the canopy reads as a field of separate touches more than as masses. The sky is handled the other way, brushed so thin, blue-grey over warm buff, that the weave of the canvas shows, with a few thicker cream strokes dragged horizontally for the lit edges of cloud.",
+  "context": "The elevated angle does much of the work. Looking down rather than across, Monet lifts the horizon close under the top edge and flattens the park into stacked horizontal bands — a bird's-eye compression that reads almost as pattern. The window belonged to the collector Victor Chocquet, who in 1876 lent Monet his fifth-floor apartment at 198 rue de Rivoli, looking down over the gardens.",
   "deeper": [
    {
     "t": "The building that anchors the corner",
@@ -27996,7 +29622,7 @@ window.CANVAS_INSPECT = {
     "y": 0.3234,
     "w": 0.5187,
     "h": 0.2932,
-    "body": "This is where the study makes its argument. A French formal garden is nothing but geometry — straight allees, rectangular parterres, symmetry enforced to the metre. Monet paints it as loose horizontal stripes of gravel-buff and clipped green, the right angles implied and never ruled. Yet the plan is stated: the lawns step down in terraces, each edged by a single straight light stroke of path, and beside the palace a straight walk runs off at a slant, crowded with tiny figures. One stroke per edge is all the geometry gets, and it is enough to hold the garden square."
+    "body": "This is where the picture makes its argument. A French formal garden is nothing but geometry — straight allees, rectangular parterres, symmetry enforced to the metre. Monet paints it as loose horizontal stripes of gravel-buff and clipped green, the right angles implied and never ruled. Yet the plan is stated: the lawns lie in stacked bands, each edged by a single straight light stroke of path, and beside the palace a straight walk runs off at a slant, crowded with tiny figures. One stroke per edge is all the geometry gets, and it is enough to hold the garden square."
    },
    {
     "t": "Pale verticals: the statuary",
@@ -28004,7 +29630,7 @@ window.CANVAS_INSPECT = {
     "y": 0.5329,
     "w": 0.4799,
     "h": 0.4342,
-    "body": "At the left, two large white statues stand on plinths beside the lawn, each built of several strokes: blue-white on the side away from the sun, a yellow-lit edge on the right, and the further one throws a blue shadow across the grass to its left. Beyond them, by the path, a third stands smaller and greyer. They do quiet structural work: punctuation marks that shrink as they recede, letting the eye measure distance and step backward into the picture, and the clearest statement in the study of where the light comes from."
+    "body": "At the left, two large white statues stand on plinths beside the lawn, each built of several strokes: blue-white on the side away from the sun, a yellow-lit edge on the right, and the further one throws a blue shadow across the grass to our left. Beyond them, by the path, a third stands smaller and greyer. They do quiet structural work: punctuation marks that shrink as they recede, letting the eye measure distance and step backward into the picture, and, with the pavilion's lit and shaded faces, a plain statement of where the light comes from."
    },
    {
     "t": "Figures on the path",
@@ -28012,7 +29638,7 @@ window.CANVAS_INSPECT = {
     "y": 0.5029,
     "w": 0.4,
     "h": 0.3143,
-    "body": "On the path below the bright lawn a small group stands out — two red dresses, and over them two parasols, one a blue-black and white disc; on the diagonal walk beyond, strollers thin to commas of paint, a dark dab for a coat, a lighter one above for the head. None has a face or a stride; each is the minimum mark that still says person. That economy is the study's honesty. From this height and at this speed a figure is a blot of tone in motion, and Monet paints exactly that, refusing to invent a detail the eye at distance could never actually have received."
+    "body": "On the path below the bright lawn a small group stands out — two figures picked out in red, the left one under a parasol that is a blue-black and white disc, and a dark figure beside them; on the diagonal walk beyond, strollers thin to commas of paint, single upright dabs of dark or rust. None has a face or a stride; each is the minimum mark that still says person. That economy is the picture's honesty. From this height and at this speed a figure is a blot of tone in motion, and Monet paints exactly that, refusing to invent a detail the eye at distance could never actually have received."
    },
    {
     "t": "Foreground shrubs and the basin",
@@ -28020,7 +29646,7 @@ window.CANVAS_INSPECT = {
     "y": 0.72,
     "w": 1,
     "h": 0.28,
-    "body": "The near shrubbery, half hiding a round basin of lilac water in its pale stone rim at the bottom, carries the heaviest, freshest paint in the picture. Greens, ochres and reddish notes are stabbed in with a loaded brush and left standing, ridges of pigment catching the real light in the room. This is the sketch at its most physical — no attempt to resolve individual leaves, just the sensation of dense growth close to the eye. Through it the basin's rim runs as one pale curve, among the few edges in the picture actually drawn, and the shrubs break across it on either side."
+    "body": "The near shrubbery, half hiding a round basin of lilac water in its pale stone rim at the bottom, carries some of the heaviest, freshest paint in the picture. Greens, ochres and reddish notes are stabbed in with a loaded brush and left standing, unblended. This is the picture at its most physical — no attempt to resolve individual leaves, just the sensation of dense growth close to the eye. Through it the basin's rim runs as one pale curve, among the few edges in the picture actually drawn, and the shrubs break across it on either side."
    },
    {
     "t": "Paris in flecks at the top",
@@ -28028,11 +29654,11 @@ window.CANVAS_INSPECT = {
     "y": 0.1,
     "w": 0.83,
     "h": 0.2,
-    "body": "Above the garden's tree-line the city is set down as rows of small separate touches, cream for lit facades and dark blue for roofs, with one tall thin column standing up out of them at the left; behind, a violet band of hills makes a clear horizon. This is Monet's clearest wager in the study — that recession can be carried by how small a thing is painted rather than how vaguely. The further off, the smaller the mark, until Paris is a whole city in flecks."
+    "body": "Above the garden's tree-line the city is set down as rows of small separate touches, cream for lit facades and dark blue for roofs, with one tall thin column standing up out of them at the left; behind, a violet band of hills makes a clear horizon. This is Monet's clearest wager in the picture — that recession can be carried by how small a thing is painted rather than how vaguely. The further off, the smaller the mark, until Paris is a whole city in flecks."
    }
   ],
   "by": "Opus 4.8",
-  "beside": "The bet here, thick paint near and small, pale marks far making the distance, had already been placed on a Venetian canal. Regatta in Venice, at the Frick Collection in New York, is Guardi's Grand Canal on race day, from 106 years before this study. Its most opaque paint sits in cloths hung over the near quay, each rower is a single loaded stroke, and where the banks converge, buildings, water and sky reach one pale value and the brush stops. Here the heavy near paint goes to shrubbery and the people are a few commas on a path; there it goes to cloaks and cloth, because the crowd is the subject.",
+  "beside": "The bet here, thick paint near and small, pale marks far making the distance, had already been placed on a Venetian canal. Regatta in Venice is Guardi's Grand Canal on race day, from about a century before this picture. Its most opaque paint sits in cloths hung over the near quay, each rower is a single loaded stroke, and where the banks converge, buildings, water and sky reach one pale value and the brush stops. Here the heavy near paint goes to shrubbery and the people are a few commas on a path; there it goes to cloaks and cloth, because the crowd is the subject.",
   "refs": [
    {
     "id": "regatta-in-venice",
@@ -28091,9 +29717,9 @@ window.CANVAS_INSPECT = {
  },
  "water-lilies-reflection-of-a-weeping-willow": {
   "mv": 1,
-  "see": "A near-square field with no top, no edge, no water's surface you can point to — only a vertical rain of blue and violet strokes, the reflection of a weeping willow's hanging branches read straight down into the pond. There is no sky, no bank, no horizon. The water returns in pads: a slate band at the centre, two turquoise ovals at the right edge, and the largest at lower right, coiled turquoise loops beside a pink flower. Everything else is dissolved into the willow's mirrored curtain.",
+  "see": "A near-square field with no top, no edge, no water's surface you can point to — only a vertical rain of blue and violet strokes, the reflection of a weeping willow's hanging branches read straight down into the pond. There is no sky and no horizon. The water returns in pads: a slate band at the centre, two turquoise ovals at the right edge, and the largest at lower right, coiled turquoise loops beside a pink flower. Everything else is the willow's mirrored curtain, crossed by a few dark limbs.",
   "about": "This late pond canvas takes its willow almost to the point where the motif stops being a motif. He is not painting a willow but the willow's reflection, so the tree arrives already upside down, already broken into water. By choosing that doubled image he removes every fixed landmark: the surface of the pond becomes the whole surface of the painting, and the eye has nothing solid to stand on. What survives of the subject is a scatter of lily pads, from the centre down to the lower-right corner, and a pink bloom. The rest is pure reflection, painted as if it were an end in itself.",
-  "craft": "The willow is built almost entirely from vertical drags — long downward pulls of blue, violet, grey-green and pink, laid wet and loose so the strokes shiver against each other rather than describe anything. Against that vertical grain the few horizontal notes of the pads read as the only stable plane, which is how you know it is water at all. Monet withholds contour from the willow; only the pads get line, short dark strokes along the central ones and loose loops at lower right. Colour does the work of drawing, and it is cooled far down toward blue and lavender, with warmer flecks buried inside rather than sitting on top. The paint is dragged, scumbled, and left open — the canvas breathes through it.",
+  "craft": "The willow is built almost entirely from vertical drags — long pulls of blue, violet, grey-green and pink, laid loose so the strokes shiver against each other rather than describe anything. Against that vertical grain the few horizontal notes of the pads read as the only stable plane, which is how you know it is water at all. Monet gives the willow's curtain no contour; line is kept for a few dark sweeps where limbs bend in the water and for the rims of the pads. Colour does the work of drawing, and it is cooled far down toward blue and lavender, with warmer flecks of pink and crimson worked in among them. The paint is dragged, scumbled and left open.",
   "context": "Painted at Giverny around 1916-19, in the years of the great Grandes Décorations and of Monet's failing cataract-clouded sight. The weeping willow was his war motif, worked through the First World War as a mourning tree. Here it is pushed unusually far: the pond is held only by its pads, and the canvas sits on the hinge where the last Impressionism and the first abstraction become, for a few years, the same object. It hangs at the Musée Marmottan Monet, among the works kept by the family and given late.",
   "deeper": [
    {
@@ -28101,8 +29727,8 @@ window.CANVAS_INSPECT = {
     "x": 0.2506,
     "y": 0,
     "w": 0.5488,
-    "h": 0.4797,
-    "body": "Start at the top and read downward. These are not branches but the reflection of branches, so the willow enters the picture already inverted, already loosening into water. The strokes fall in long vertical drags — blue over violet over grey — and never resolve into a tree. This upper zone is where dissolution is most complete: no pad, no flower, only the mirrored curtain and one darker blue arc curving down its right side, which reads as a limb bent in the water. It is the clearest statement of the canvas's premise, a tree given only as its reflection."
+    "h": 0.42,
+    "body": "Start at the top and read downward. These are not branches but the reflection of branches, so the willow enters the picture already inverted, already loosening into water. The strokes fall in long vertical drags — blue, violet and grey — and never resolve into a tree. This upper zone holds no pad and no flower, only the mirrored curtain and one darker blue arc curving down its right side, which reads as a limb bent in the water. It is the clearest statement of the canvas's premise, a tree given only as its reflection."
    },
    {
     "t": "The pads that hold the water",
@@ -28110,7 +29736,7 @@ window.CANVAS_INSPECT = {
     "y": 0.38,
     "w": 0.4799,
     "h": 0.3199,
-    "body": "Here the reflection breaks and the pond returns. A loose raft of turquoise and slate lily pads lies across the vertical grain, and because these notes run roughly horizontal they read as the water's plane — the first place the picture tells you it is a surface. Monet gives these pads short dark strokes along their edges, the only drawing in this part of the canvas. Without this small legible island the whole field would read as an abstract screen; it is the hinge between depiction and pure paint."
+    "body": "Here the reflection breaks and the pond returns. A loose raft of turquoise and slate lily pads lies across the vertical grain, and because these notes run roughly horizontal they read as the water's plane — the first place the picture tells you it is a surface. Monet gives these pads short dark strokes along their edges, the clearest drawing in this part of the canvas. Without this small legible island the centre of the field would read as an abstract screen; it is the hinge between depiction and pure paint."
    },
    {
     "t": "The nearest pads",
@@ -28122,7 +29748,7 @@ window.CANVAS_INSPECT = {
    }
   ],
   "by": "Opus 4.8",
-  "beside": "A reflected tree pulled straight down the water in upright strokes can be driven to opposite ends. Gustaf Fjæstad's Winter Evening by a River, in the Nationalmuseum in Stockholm, is ten years older: the river going dark under the last light, the bare trees of its far bank dropping into it as close-set upright bars, and one band of gold evening light laid across the middle, doing the lily pads' job of saying this is a surface. Here the strokes are dragged long, loose and open, and the willow shivers apart into paint; there they are packed until they lock together like the rings of a cut plank, and the river sets hard into ornament.",
+  "beside": "A reflected tree pulled straight down the water in upright strokes can be driven to opposite ends. Gustaf Fjæstad's Winter Evening by a River is about ten years older: the river going dark under the last light, the bare trees of its far bank dropping into it as close-set upright bars, and one band of gold evening light laid across the middle, doing the lily pads' job of saying this is a surface. Here the strokes are dragged long, loose and open, and the willow shivers apart into paint; there they are packed until they lock together like the rings of a cut plank, and the river sets hard into ornament.",
   "refs": [
    {
     "id": "fjaestad-wood-pattern",
@@ -28562,9 +30188,9 @@ window.CANVAS_INSPECT = {
  "the-magpie": {
   "mv": 1,
   "see": "Snow fills nearly the whole canvas, a bright field that pushes to the frame's edges before you register anything in it. Across the middle runs a rough rail gate and a low wattle fence loaded with snow; behind them bare trees lift into a pale sky around a long farmhouse at the right, and further off, left of centre, a glowing horizon. Then the eye drops to the foreground and finds the long shadows raking toward you. Only after all of this do you notice the single black bird on the gate rail, small and off to the left. The picture is built to make you look at emptiness first and the subject last, the way a real winter morning quiets everything before a movement catches your eye.",
-  "about": "This is an ordinary rural motif near Étretat on the Normandy coast, not a grand subject: a wattle fence, a farm gate, snow that fell overnight. Monet is after a specific hour rather than a place, the moment when a low winter sun has crested but the air is still cold enough to hold frost on the branches. The magpie is the only living thing and the one touch of black, and it makes the scene legible as a scene rather than a study of white on white. Its perch on the gate is a plausible pause, a bird that will be gone the instant anything stirs. The whole picture is organized around that transience, a landscape held in the interval before it changes.",
-  "craft": "The daring is in the shadows. Where academic training demanded shadow be built from black and earth, Monet lays his in luminous blue and violet, treating cast shadow as coloured light bounced from the sky rather than an absence of light. The lit snow is not white either; it carries pink, straw-yellow, faint green, scumbled in short broken strokes so the surface flickers. He keeps his darkest note for the bird alone, which lets the vast pale field read as bright without a single stroke of true white glare. Paint is thin and dragged where the distance should dissolve, thick and loaded wherever sun strikes snow. The result looks casual and is exactingly tuned; every value is pitched against that one black silhouette.",
-  "context": "Monet submitted it to the 1869 Salon and the jury refused it, finding it too pale, too empty, insufficiently finished for a serious picture. That rejection now looks like the point: the coloured shadows and the bright high key were the future of the movement he had not yet named. What reads today as luminous read then as unresolved. Standing in front of it at the Musée d'Orsay, you can watch your own eyes do the work the jury would not, sliding over the snow before landing on the bird, and you understand the argument the painting was making about how light actually behaves. The canvas that a jury called unfinished is the one that made the case.",
+  "about": "This is an ordinary rural motif near Étretat on the Normandy coast, not a grand subject: a wattle fence, a farm gate, fresh snow. Monet is after a specific hour rather than a place, the moment when a low winter sun has crested but the air is still cold enough to hold frost on the branches. The magpie is the only creature in sight and the one touch of black, and it makes the scene legible as a scene rather than a study of white on white. Its perch on the gate is a plausible pause, a bird that will be gone the instant anything stirs. The whole picture is organized around that transience, a landscape held in the interval before it changes.",
+  "craft": "The daring is in the shadows. Where academic training demanded shadow be built from black and earth, Monet lays his in luminous blue, treating cast shadow as coloured light bounced from the sky rather than an absence of light. The lit snow is not white either; it carries flecks of pink, yellow and blue, scumbled in short broken strokes so the surface flickers. He keeps his darks few and mostly gathered in a band across the middle, which lets the vast pale field above and below read as bright without glare. Paint is pulled in long horizontal drags where the distance should recede, thick and loaded wherever sun strikes snow. The result looks casual and is exactingly tuned; every value is pitched against those few darks.",
+  "context": "Monet submitted it to the 1869 Salon and the jury refused it. That rejection now looks like the point: the coloured shadows and the bright high key were the future of a movement that did not yet have a name. What reads today as luminous read then as unresolved. Standing in front of it at the Musée d'Orsay, you can watch your own eyes do the work the jury would not, sliding over the snow before landing on the bird, and you understand the argument the painting was making about how light actually behaves. The canvas the jury turned away is the one that made the case.",
   "deeper": [
    {
     "t": "Blue shadows raking forward",
@@ -28572,7 +30198,7 @@ window.CANVAS_INSPECT = {
     "y": 0.5957,
     "w": 0.4799,
     "h": 0.3885,
-    "body": "The foreground snow is not a flat sheet. Long shadows fall across it in cool blue and lilac diagonals, thrown by the gate posts and trees out of frame toward the viewer, and between them the lit snow warms to cream and pale straw. This is the coloured-shadow argument at full size: shadow rendered as blue light borrowed from the sky, not as grey or black subtraction. Look at how the strokes follow the slope of the ground, short and directional, so the field reads as tilted toward you and faintly uneven underfoot. Warm and cool alternate stripe by stripe, and that alternation, more than any drawn contour, is what makes the snow feel dazzling and dimensional."
+    "body": "The foreground snow is not a flat sheet. Long shadows fall across it in cool blue diagonals, thrown by the gate posts and trees out of frame toward the viewer, and between them the lit snow warms to cream and pale straw. This is the coloured-shadow argument at full size: shadow rendered as blue light borrowed from the sky, not as grey or black subtraction. Look at how the strokes follow the slope of the ground, short and directional, so the field reads as tilted toward you and faintly uneven underfoot. Warm and cool alternate stripe by stripe, and that alternation, more than any drawn contour, is what makes the snow feel dazzling and dimensional."
    },
    {
     "t": "The gate and its perch",
@@ -28580,7 +30206,7 @@ window.CANVAS_INSPECT = {
     "y": 0.3549,
     "w": 0.23,
     "h": 0.3703,
-    "body": "At the left a rough farm gate stands in the snow, a white cap along its top rail; a russet pole leans in at its left end, a doubled dark post stands at the right, and the rails run between them. The construction is loose, a few thin bars, the kind of gate that keeps nothing in or out. On the top rail sits the bird, and the gate exists largely to give it a plausible place to be and a horizontal to break the drifts. Notice the paint here is drier and more scratched than the snow around it, the wood suggested with a few dragged strokes over which the snow-caps sit as small loaded touches. The gate is the nearest made thing in the picture, and it functions as the pedestal for the whole picture's single event."
+    "body": "At the left a rough farm gate stands in the snow, white caps on the tops of its posts; a russet pole leans in at its left end, a doubled dark post stands at the right, and the rails run between them. The construction is loose, a few thin bars, the kind of gate that keeps nothing in or out. On the top rail sits the bird, and the gate exists largely to give it a plausible place to be and a horizontal to break the drifts. Notice the paint here is drier and more scratched than the snow around it, the wood suggested with a few dragged strokes over which the snow-caps sit as small loaded touches. The gate functions as the pedestal for the whole picture's single event."
    },
    {
     "t": "Sunlit snow on the fence",
@@ -28588,15 +30214,15 @@ window.CANVAS_INSPECT = {
     "y": 0.4887,
     "w": 0.5563,
     "h": 0.2225,
-    "body": "Running right from the gate, a low wattle fence carries a thick unbroken ridge of snow along its top, one of the brightest and most heavily painted passages in the canvas. Beneath the white cap the woven branches stay dark and broken, a tangle of ochre, slate and green where twigs and gaps show through. The contrast is the sun made visible: the crest catches the low light and glows, while the underside stays in cold shade. Small yellow and pink touches sit in the white to keep it from going chalky. This band is where Monet loads his brush most, so that the eye reads real sunlight striking a real edge, and it sets the warm horizontal that the cool foreground shadows answer."
+    "body": "Running right from the gate, a low wattle fence carries a thick unbroken ridge of snow along its top, one of the brightest and most heavily painted passages in the canvas. Beneath the white cap the woven branches stay dark and broken, a tangle of ochre, slate and green where twigs and gaps show through. The contrast is the sun made visible: the crest catches the low light and glows, while the underside stays in cold shade. Cooler and warmer tints run through the white to keep it from going chalky. This band is where Monet loads his brush most, so that the eye reads real sunlight striking a real edge, and it sets the warm horizontal that the cool foreground shadows answer."
    },
    {
     "t": "Frosted trees and the farmhouse",
-    "x": 0.543,
+    "x": 0.44,
     "y": 0,
-    "w": 0.457,
-    "h": 0.4799,
-    "body": "At the upper right, bare trees rise from behind the fence, their branches furred with frost so that dark wood and pale rime alternate up each limb. Among them stands a long farmhouse, its two roofs buried in snow painted a cool blue-grey, over a long tan wall. Above the roofs rise two red-brick chimneys, the most saturated colour in the picture. Those chimneys are doing quiet work: a few square centimetres of warm red that make the surrounding blues and whites read as cold by contrast. The trees are painted with a dry, feathered touch, drier than anything below, so the frost reads as texture rather than mass. This corner supplies the picture's only house and its sharpest warm note."
+    "w": 0.56,
+    "h": 0.5,
+    "body": "At the upper right, bare trees rise from behind the fence, their branches furred with frost so that dark wood and pale rime alternate up each limb. Among them stands a long farmhouse, its two roofs buried in snow painted a cool blue-grey, over a long tan wall. Above the roofs rise two red-brick chimneys, the most saturated colour in the picture. Those chimneys are doing quiet work: a few square centimetres of warm red that make the surrounding blues and whites read as cold by contrast. The frost is laid on in thick, short white strokes over thinner lines of dark wood, so each limb carries a raised crust. This corner supplies the picture's only house and its sharpest warm note."
    },
    {
     "t": "The glowing horizon",
@@ -28604,19 +30230,19 @@ window.CANVAS_INSPECT = {
     "y": 0.1688,
     "w": 0.4485,
     "h": 0.1725,
-    "body": "Behind the trees the land flattens into a pale luminous band where snow and sky nearly meet. This is the light source, a low winter sun read not as a disc but as a diffuse glow spread along the horizon, faint yellow and rose bleeding up into cool grey sky. The paint thins here to a dragged scumble over the weave, so the far distance loses substance and dissolves. Everything sharp in the picture, the gate, the fence crest, the bird, gets its light from this soft high strip. It explains the direction of every foreground shadow and the warmth on every snow-cap, the engine of the scene kept deliberately faint and far off."
+    "body": "Behind the trees the land flattens into a pale luminous band where snow and sky nearly meet. This is the light source, a low winter sun read not as a disc but as a diffuse glow spread along the horizon, barely parted in tone from the pale sky above it. The paint here is pulled in long horizontal drags whose ridged edges catch the light, so the far distance flattens into bands rather than forms. Everything sharp in the picture, the gate, the fence crest, the bird, gets its light from this soft high strip. It explains the direction of every foreground shadow and the warmth on every snow-cap, the engine of the scene kept deliberately faint and far off."
    },
    {
     "t": "The magpie itself",
     "x": 0.1655,
-    "y": 0.3483,
+    "y": 0.345,
     "w": 0.0798,
-    "h": 0.1732,
-    "body": "Here is the whole picture's smallest and most decisive stroke: the single magpie on the gate rail, a compact black-and-white silhouette barely a few centimetres of paint. It is the blackest note in the canvas and the only living thing. Look closely and the black is not solid; there is a paler wing and belly, a hint of the bird's forward tilt, painted with a few economical touches rather than described. Off-centre, small, and easy to overlook until it is the only thing you can see, it turns a study of empty snow into a scene with an event in it. Remove it and the picture loses both its subject and its scale."
+    "h": 0.18,
+    "body": "Here is the whole picture's decisive touch: the single magpie on the gate rail, a compact silhouette barely a few centimetres of paint. It is the canvas's one true black and its only creature. Look closely and the bird is not one flat black: the head and back are black, the wing and belly a cool blue-grey with a fleck of white, and a dark smear below the rail reads as the hanging tail, all laid in with a few economical touches rather than described. Off-centre, small, and easy to overlook until it is the only thing you can see, it turns a study of empty snow into a scene with an event in it. Remove it and the picture loses both its subject and its scale."
    }
   ],
   "by": "Opus 4.8",
-  "beside": "A winter morning holds still for as long as one bird stays on a gate. The magpie perches on the top rail, small and black against the snow, and the quiet of the whole field hangs on it. Fjæstad's Winter Moonlight keeps the same snowbound hush at night: the eye follows a fir bough bowed under its load into a night-blue sky and comes to rest on one bright star over a gap in the trees. Fjæstad painted it twenty-seven years later, and nothing in his forest, which belongs to the Nationalmuseum in Stockholm, could break that stillness. Monet's quiet lasts only until the magpie flies.",
+  "beside": "A winter morning holds still for as long as one bird stays on a gate. The magpie perches on the top rail, small and black against the snow, and the quiet of the whole field hangs on it. Fjæstad's Winter Moonlight keeps the same snowbound hush at night: the eye follows a fir bough bowed under its load into a night-blue sky and comes to rest on one bright star over a gap in the trees. Fjæstad painted it twenty-seven years later, and nothing in his forest could break that stillness. Monet's quiet lasts only until the magpie flies.",
   "refs": [
    {
     "id": "fjaestad-winter-moonlight",
@@ -28836,11 +30462,12 @@ window.CANVAS_INSPECT = {
   ],
   "by": "Opus 4.8"
  },
- "edgar-degas-woman-with-a-towel": {"mv":1,
-  "see": "A woman fills the sheet from behind, her weight carried on the near hip, her far arm swinging down and across to gather a pale towel that hangs the whole lower half of the picture like a second, softer body. Her hair is a hot russet rope down the shoulder; her spine turns away from us so that the far shoulder blade rides up under the skin. Behind her the room splits: a scorching yellow-green field to the right, a cooler grey-blue corner at the left. Nothing frames her, no basin, no mirror, no furniture you can name. You read the pose before you read the room, and the pose is all rotation — head one way, torso another, arm a third. The towel's cool white and the wall's acid warmth press the flesh between them, and she never once looks back.",
-  "about": "Degas spent his last decades on a single motif: a woman washing, drying, combing, wholly absorbed and wholly unaware of being watched. He called it seeing \"as if through a keyhole,\" and the phrase matters less as voyeurism than as a rule about attention. No pose is struck for us; she is not a Venus arranging herself for the eye. The subject is a body doing an ordinary thing and the difficulty of that thing being shown honestly — the awkward reach, the braced hip, the unlovely torque of a back at work. By 1896 he had abandoned narrative, allegory, even setting. What remains is the labor of drying and the labor of the medium, held so close together that the woman and the pastel seem to be the same problem, solved at once.",
-  "craft": "This is pastel pushed past drawing into something built. Degas laid color down in layers, then worked it with his fingers, with brushes, with stumps and harder tools, smudging some passages to a bodily softness and scraping others back so the tooth of the paper shows through. Look at how the flesh is warmed and cooled in the same square inch — pinks over a greenish underlayer, so the back seems lit and shadowed by pigment rather than by any window. Then, over all that fused color, he redrew: black contours dragged along the spine, the shoulder, the reaching arm, sharpening a twist the smudging had begun to dissolve. The line does not describe the edge so much as reassert it, pulling the figure back into legibility after the color nearly melted it away.",
-  "context": "Degas made these bathers by the dozen in his last productive years, as his eyesight failed and pastel — direct, hand-worked, forgiving of a dimming eye — replaced the oil and the etched line. They are late works in the fullest sense: fewer parts, harder pressure, less interest in charm. He was not painting a person he knew but a pose he could return to, again and again, until the medium and the movement fused. Standing before it here at the Met, you are put exactly where the keyhole put its first viewer — close, uninvited, watching a private minute you were never meant to see, held there not by the story, which there is none of, but by the sheer worked density of the surface.",
+ "edgar-degas-woman-with-a-towel": {
+  "mv": 1,
+  "see": "A woman fills the sheet from behind, her far arm swinging down and out to our right to gather a pale towel that covers most of the lower half of the picture like a second, softer body. Her hair is a hot russet rope down the shoulder; her spine turns away from us so that the far shoulder blade rides up under the skin. Behind her the room splits: a scorching yellow field across the upper middle that gives way to blue streaks at the right, a cooler corner of pale blue and white at the left. Little in the room can be named for sure — a pale panel at the upper left, a hatched dark blue block in the lower right corner — and none of it frames her. You read the pose before you read the room, and the pose is all rotation — head one way, torso another, arm a third. The towel's cool white and the wall's acid warmth press the flesh between them, and she never once looks back.",
+  "about": "In his last decades Degas returned again and again to one motif: a woman washing, drying, combing, wholly absorbed and wholly unaware of being watched. He told George Moore it was \"as if you looked through a keyhole,\" and the phrase matters less as voyeurism than as a rule about attention. No pose is struck for us; she is not a Venus arranging herself for the eye. The subject is a body doing an ordinary thing and the difficulty of that thing being shown honestly — the awkward reach, the braced hip, the unlovely torque of a back at work. By the 1890s he had abandoned narrative and allegory, and pared the setting to a few unnamed shapes. What remains is the labor of drying and the labor of the medium, held so close together that the woman and the pastel seem to be the same problem, solved at once.",
+  "craft": "This is pastel pushed past drawing into something built. Degas laid color down in layers, then worked it with his fingers, with brushes and with sharp implements, smudging some passages to a bodily softness and scraping others back so the tooth of the paper shows through. Look at how the flesh is warmed and cooled in the same square inch — pink and white hatching set beside cool grey shadow and stray strokes of yellow-green. Then, over all that fused color, he redrew: black contours dragged along the figure's edges, sharpening a twist the smudging had begun to dissolve. The line does not describe the edge so much as reassert it, pulling the figure back into legibility after the color nearly melted it away.",
+  "context": "Degas made these bathers by the dozen in his last productive years, as his eyesight failed and pastel — direct, hand-worked, forgiving of a dimming eye — largely took over from the oil and the etched line. They are late works in the fullest sense: fewer parts, harder pressure, less interest in charm. He was painting less a person than a pose he could return to, again and again, until the medium and the movement fused. Like the bathers he showed at the eighth Impressionist exhibition, in 1886, it puts you exactly where the keyhole put its first viewer — close, uninvited, watching a private minute you were never meant to see, held there not by the story, which there is none of, but by the sheer worked density of the surface.",
   "deeper": [
    {
     "t": "The twist you read first",
@@ -28848,7 +30475,7 @@ window.CANVAS_INSPECT = {
     "y": 0.2375,
     "w": 0.299,
     "h": 0.345,
-    "body": "From across the room this curve is what pulls you: the long groove of the spine and, beside it, the far shoulder blade lifted into a hard ridge under the skin. The head turns left, the shoulders counter-rotate, and the whole back becomes a single torqued muscle. Degas warms the near side of the spine with pink and cools the trough with grey-green, so the light seems to come from the flesh itself rather than any lamp. This is the argument of the picture in one passage — a body caught mid-action, unposed, its awkwardness left in rather than corrected out. Everything else in the sheet is arranged to make you look here first."
+    "body": "From across the room this is what pulls you: the broad lit plane of the upper back, with a cool shadow marking each shoulder blade. The head bows to our left, the shoulders counter-rotate, and the whole back becomes a single torqued muscle. Degas hatches the lit back in pink and white and cools its hollows with grey, so the light seems to come from the flesh itself rather than any lamp. This is the argument of the picture in one passage — a body caught mid-action, unposed, its awkwardness left in rather than corrected out. Much of the sheet is arranged to lead the eye back here."
    },
    {
     "t": "The redrawn contour",
@@ -28856,7 +30483,7 @@ window.CANVAS_INSPECT = {
     "y": 0.253,
     "w": 0.184,
     "h": 0.414,
-    "body": "Follow the dark line down the right edge of the back. After Degas had smudged and fused the color until the figure threatened to dissolve into the wall behind it, he came back over the top with black chalk and redrew the boundary — not softly, but as a deliberate, pressured stroke. You can see it thicken at the shoulder and thin along the waist, a drawn decision laid over a painted one. This is the move the medium is named for here: color worked to the edge of legibility, then rescued by line. The contour does not sit at the true edge so much as insist on one, holding the twist sharp where the blending had begun to lose it."
+    "body": "Follow the dark line down the right edge of the back. After Degas had smudged and fused the color until the figure threatened to dissolve into the wall behind it, he came back over the top in black and redrew the boundary — not softly, but as a deliberate, pressured stroke. You can see it thicken at the shoulder and thin along the waist, a drawn decision laid over a blended one. This is the move the medium is named for here: color worked to the edge of legibility, then rescued by line. The contour does not sit at the true edge so much as insist on one, holding the twist sharp where the blending had begun to lose it."
    },
    {
     "t": "The russet hair",
@@ -28864,31 +30491,31 @@ window.CANVAS_INSPECT = {
     "y": 0.1075,
     "w": 0.253,
     "h": 0.345,
-    "body": "The hair is the one unbroken hot note against all that cool towel and acid wall — a rope of orange-red laid down the near shoulder and back. Degas builds it in loose parallel strokes that keep their direction, so it reads as weight and fall rather than surface pattern. Where it meets the neck the pigment is dragged and smeared into the flesh; where it hangs free it catches the paper's tooth and breaks into separate marks. It anchors the head, which is otherwise turned away and nearly featureless, and it gives the rotation of the torso a visible pivot. Without this warm mass the figure would drift grey into its surroundings."
+    "body": "The hair is a hot note against all that cool towel and acid wall — a mass of orange-red that covers the bowed head and falls forward past her left shoulder. Degas builds it in loose parallel strokes that keep their direction, so it reads as weight and fall rather than surface pattern. Where it meets the cheek the pigment is dragged and smeared into the flesh; where it hangs free it catches the paper's tooth and breaks into separate marks. It anchors the head, which is otherwise turned away and nearly featureless, and it gives the rotation of the torso a visible pivot. Without this warm mass the figure would drift grey into its surroundings."
    },
    {
-    "t": "The scraped yellow-green wall",
+    "t": "The yellow wall and blue streaks",
     "x": 0.573,
     "y": 0.003,
     "w": 0.414,
     "h": 0.414,
-    "body": "The right background is not a flat color but a worked field of vertical strokes — yellows over greens over a warmer ground, dragged downward and then partly scraped so the layers beneath surface as flecks. This is pure pastel handling with no object to describe: a wall, a hung curtain, weather in the room, it hardly matters. What it does is press acid warmth against the woman's back so her cooler flesh advances. Compare the density here to the smoother blending on the body and you see two speeds of the same hand — one loosened and slashing, one fused and stroked smooth. The paper's grain is doing visible work throughout this passage."
+    "body": "The upper right is not a flat colour but a worked field of vertical strokes — yellow with touches of green over a warmer ground, giving way towards the edge to streaks of turquoise blue over grey. Whether the blue is a hung curtain or light on a wall is never settled, and it hardly matters. What it does is press acid warmth against the woman's back so her cooler flesh advances. Compare the density here to the smoother blending on the body and you see two speeds of the same hand — one loosened and slashing, one fused and stroked smooth. The paper's grain is doing visible work throughout this passage."
    },
    {
     "t": "The cool corner",
     "x": 0,
-    "y": 0.076,
-    "w": 0.2185,
-    "h": 0.368,
-    "body": "At the far left the room turns a cold grey-blue, with a bruise of darker blue smudged low and a pale strip along the very edge where the paper is barely touched. Set against the blaze on the right, this corner does the picture's quiet spatial work: it opens a shallow depth behind the figure and keeps the composition from tipping into a single hot wall. The handling here is thin and rubbed rather than built up, almost a ground left to breathe. It is the calmest square foot in the sheet, and it exists mainly so the yellow-green field opposite can feel as loud as it does."
+    "y": 0.03,
+    "w": 0.23,
+    "h": 0.414,
+    "body": "At the far left the room turns cool: a pale panel of white and light blue strokes, edged by an orange-brown upright, sits above a band of yellow, and below it a light blue field carries a bruise of darker blue. Whether the panel is a window, a mirror or a hung cloth is left open. Set against the blaze on the right, this corner does the picture's quiet spatial work: it opens a shallow depth behind the figure and keeps the composition from tipping into a single hot wall. The handling here is thin and dry rather than built up, the olive ground breathing through the pale strokes. It is a quieter passage than the field behind her, and it exists mainly so that yellow can feel as loud as it does."
    },
    {
     "t": "The towel that becomes the picture",
-    "x": 0.0892,
-    "y": 0.4432,
-    "w": 0.7416,
-    "h": 0.4635,
-    "body": "The pale cloth swallows the entire lower half — draped over the lap, bunched in the arms, falling to the bottom edge in soft vertical folds of blue-white and grey. It is nearly as large as the body and gets nearly as much care: cool whites laid over shadowed blues, edges left ragged, a few darker lines pulling the deepest folds. Degas lets it read as mass more than as object, a second soft body doubling the first. It steadies the whole composition, giving the twisting figure a broad calm base and cooling the eye after the wall. The towel and the woman are the two halves of the drying, weighted almost equally."
+    "x": 0,
+    "y": 0.4,
+    "w": 0.86,
+    "h": 0.6,
+    "body": "The pale cloth fills most of the lower half — held up at our left, wrapped round the hips, gripped at our right, falling to the bottom edge in soft vertical folds of blue-white and grey. It is nearly as large as the body and gets nearly as much care: cool whites laid over shadowed blues, edges left ragged, a few darker lines pulling the deepest folds. Degas lets it read as mass more than as object, a second soft body doubling the first. It steadies the whole composition, giving the twisting figure a broad calm base and cooling the eye after the wall. The towel and the woman are the two halves of the drying, weighted almost equally."
    },
    {
     "t": "The reaching hand",
@@ -28896,7 +30523,7 @@ window.CANVAS_INSPECT = {
     "y": 0.425,
     "w": 0.276,
     "h": 0.23,
-    "body": "The last thing to find is the far arm's end, swung down and across to the right where the hand gathers a fistful of towel. It is barely a hand — a few smudged fingers, a knuckle of shadow, resolved just enough to read the grip. Degas spends almost nothing here on anatomy and everything on function: the arm is a diagonal that carries the eye off the body and out to the picture's edge, closing the loop of rotation the spine began. That he leaves it this unfinished, this summary, is the point. The gesture is what matters, not the fingers, and the whole late manner is in that refusal to polish a thing the movement has already explained."
+    "body": "The last thing to find is the far arm's end, swung down and out to the right where the hand gathers a fistful of towel. It is barely a hand — a dark smudged mass ringed by one curl of contour, resolved just enough to read the grip. Degas spends almost nothing here on anatomy and everything on function: the arm is a diagonal that carries the eye off the body and out towards the picture's right edge, closing the loop of rotation the spine began. That he leaves it this unfinished, this summary, is the point. The gesture is what matters, not the fingers, and the whole late manner is in that refusal to polish a thing the movement has already explained."
    }
   ],
   "by": "Opus 4.8"
@@ -29425,43 +31052,44 @@ window.CANVAS_INSPECT = {
   ],
   "by": "Opus 4.8"
  },
- "edouard-manet-young-lady-in-1866": {"mv":1,
-  "see": "A woman stands nearly life-size, alone against a bare olive-grey ground with no floor line to steady her, no room to place her. She fills a pink dressing gown that falls from shoulder to floor in one long, loose column of pale rose. Her hair is pulled up under a lilac ribbon; a black cord circles her throat and carries a gold locket. One hand lifts a small bunch of violets toward her face; the other, lower, lets a thin cord and a little glass pendant hang from her fingers. To her right a grey parrot grips a wooden perch, head tipped down toward a brass cup. At her feet, a half-peeled orange spills its long rind across the rim of a round metal tray. A single black shoe-toe shows beneath the hem.",
+ "edouard-manet-young-lady-in-1866": {
+  "mv": 1,
+  "see": "A woman stands nearly life-size, alone against a bare olive-grey ground with no floor line to steady her, no room to place her. She fills a pink dressing gown that falls from shoulder to floor in one long, loose column of pale rose. Her hair is pulled up under a blue ribbon; a black neckband, tied in a bow at our right, circles her throat and carries a gold locket. One hand lifts a small bunch of violets toward her face; the other, lower, lets a thin cord and a little glass pendant hang from her fingers. To our right a grey parrot grips a wooden perch, head tipped down toward a pair of cups. At her feet, a half-peeled orange rests against the rim of a round metal tray, its long rind trailing to the floor. A single black shoe-toe shows beneath the hem.",
   "about": "The picture withholds a story rather than telling one. She is dressed for no occasion we can name — a peignoir is morning wear, private, yet she stands posed and frontal as if for a portrait she did not sit for. Every object that might explain her stays mute: the violets she does not quite smell, the locket that names no one, the monocle-like lens she does not raise, the parrot that testifies to nothing. Manet gives us a full-length figure with the scale of grand portraiture and none of its identity or setting. The result is a person held at the exact distance where description stops and meaning refuses to begin — present, particular, and finally unreadable, which is the point he keeps making.",
-  "craft": "The peignoir is the performance: a broad field of near-white worked in rose, pearl and grey-green, its folds laid in with wide, wet strokes that stay visibly paint. Manet flattens the figure against a ground of the same tonal family, so the body reads as a silhouette more than a modelled volume — light seems to fall from the front, killing cast shadow and cropping the range of half-tones. The face is built from a few decisive planes. Edges dissolve where the gown meets the dark. Only three notes ring clear — the lilac ribbon, the black neck-cord, the orange — pinning a picture that is otherwise a study in how much can be carried by a single quiet colour.",
-  "context": "Manet built this as a measured answer to Courbet, whose reclining nude with a parrot had drawn crowds at the 1866 Salon; where Courbet offered flesh and appetite, Manet stands his model upright, buttons her to the chin, and lets the bird perch apart. The model is Victorine Meurent, the same body that had been the naked, staring Olympia — here fully clothed and just as coolly self-possessed, refusing again to flatter the viewer. The title's odd date, 1866, files her as a specimen of a moment rather than a named woman. Standing before it at the Met, you feel the scale reach for you first and the blankness push you back second: she meets your look without offering a way in.",
+  "craft": "The peignoir is the performance: a broad field of near-white worked in rose, pearl and grey, its folds laid in with wide, wet strokes that stay visibly paint. Manet sets the figure flat against a plain dark ground, so the body reads as a silhouette more than a modelled volume — light seems to fall from the front, keeping shadow thin and cropping the range of half-tones. Edges hold firm at the shoulders and soften in places along the skirt where it meets the dark. Saturated colour is kept to small, scattered touches, pinning a picture that is otherwise a study in how much can be carried by a single quiet colour.",
+  "context": "Manet seems to have built this as a measured answer to Courbet, whose reclining nude with a parrot had hung at the 1866 Salon; where Courbet offered flesh and appetite, Manet stands his model upright, buttons her gown down the front, and lets the bird perch apart. The model is Victorine Meurent, the same body that had been the naked, staring Olympia — here fully clothed and just as coolly self-possessed, refusing again to flatter the viewer. The title's odd date, 1866, files her as a specimen of a moment rather than a named woman. Standing before it at the Met, you feel the scale reach for you first and the blankness push you back second: she meets your look without offering a way in.",
   "deeper": [
    {
     "t": "The figure entire",
-    "x": 0.18,
-    "y": 0.02,
-    "w": 0.6,
-    "h": 0.96,
-    "body": "Step back and the whole design is a single pale vertical shape set against emptiness. There is no wall, no window, no furniture beyond the perch — only a ground that shifts from a darker upper field to a slightly warmer lower one, with the join left deliberately vague so no horizon anchors her. The gown carries almost the entire lit area of the canvas, a tall wedge widening to the floor, and the head sits at the top like a small dark finial. Manet has taken the format of state portraiture, which exists to declare rank and place, and emptied it. She stands full-length and full-scale, yet belongs to nowhere. The eye, given nothing to read as setting, is forced back onto the body and the handful of objects it holds."
+    "x": 0.12,
+    "y": 0.01,
+    "w": 0.7,
+    "h": 0.98,
+    "body": "Step back and the whole design is a single pale vertical shape set against emptiness. There is no wall, no window, no furniture beyond the perch — only a ground that shifts from a darker upper field to a slightly warmer lower one, with the join left deliberately vague so no horizon anchors her. The gown carries almost the entire lit area of the canvas, a tall wedge widening to the floor, and the head sits at the top like a small finial. Manet has taken the format of state portraiture, which exists to declare rank and place, and emptied it. She stands full-length and full-scale, yet belongs to nowhere. The eye, given nothing to read as setting, is forced back onto the body and the few objects it holds."
    },
    {
-    "t": "Face and lilac ribbon",
+    "t": "Face and blue ribbon",
     "x": 0.3872,
     "y": 0.0187,
     "w": 0.1955,
     "h": 0.1725,
-    "body": "The head is the picture's still centre and its coolest passage. The face is assembled from a few broad planes — forehead, cheek, the shadowed near side — with the eyes set slightly asymmetrically and aimed just past the viewer, so the gaze registers as attention withheld rather than given. Her expression is level, neither inviting nor hostile. Above, the auburn hair is swept up and crossed by a lilac ribbon tied in a small bow, one of only three saturated colours Manet allows himself; it rhymes forward with the violets and the neck-cord to knit the upper canvas together. Note how little modelling the skin needs: light strikes it almost flatly from the front, so the roundness of the head is implied by drawing and a very short tonal ladder, not by deep shadow."
+    "body": "The head is the picture's still centre and its coolest passage. The face is assembled from a few broad planes — forehead, cheek, the shadowed near side — with the eyes set slightly asymmetrically and aimed just past the viewer, so the gaze registers as attention withheld rather than given. Her expression is level, neither inviting nor hostile. Above, the auburn hair is swept up and crossed by a blue ribbon tied in a small bow, one of the small saturated notes Manet scatters through the canvas; it rhymes forward with the violets and the black neck-ribbon to knit the upper canvas together. Note how little modelling the skin needs: light strikes it almost flatly from the front, so the roundness of the head is implied by drawing and a very short tonal ladder, not by deep shadow."
    },
    {
     "t": "Violets lifted to the face",
-    "x": 0.3787,
-    "y": 0.124,
-    "w": 0.1725,
-    "h": 0.092,
-    "body": "Her raised hand pinches a small bunch of violets and greenery just below her nose — close to smelling them, not quite doing it. The gesture is the picture's one hint of narrative and it is engineered to lead nowhere: a woman pauses over flowers, an image of scent and sentiment, but held in suspension so it never resolves into feeling. The blossoms are set down in a few dabs of blue-violet against loose green leaves, painted wetly and fast, so that from a normal viewing distance they read as flowers and up close as frank paint. The bunch also does quiet colour work, echoing the ribbon above and cueing the eye toward the throat, where the darkest accent waits."
+    "x": 0.33,
+    "y": 0.115,
+    "w": 0.23,
+    "h": 0.16,
+    "body": "Her raised hand pinches a small bunch of violets and greenery level with her mouth — close to smelling them, not quite doing it. The gesture is the picture's one hint of narrative and it is engineered to lead nowhere: a woman pauses over flowers, an image of scent and sentiment, but held in suspension so it never resolves into feeling. The blossoms are set down in a few dabs of blue-violet against loose green leaves, painted wetly and fast, so that from a normal viewing distance they read as flowers and up close as frank paint. The bunch also does quiet colour work, echoing the ribbon above and cueing the eye toward the throat, where a black accent waits."
    },
    {
-    "t": "Black cord and gold locket",
-    "x": 0.4317,
-    "y": 0.114,
-    "w": 0.1265,
-    "h": 0.092,
-    "body": "A thin black cord rings her neck and drops a small gold locket onto the pale gown. It is the sharpest tonal jump in the whole canvas — pure dark laid straight against near-white with no transition — and Manet uses it the way he used the black neck-ribbon in Olympia, as a stroke that snaps the flat pallor into focus and fixes the head to the body. The locket is round and warm but tells us nothing: no portrait shows in it, no chain of meaning opens. It is an ornament that ornaments a mystery. Practically, the cord also marks the exact join of collar and jaw, letting Manet keep the throat area crisp while the gown below dissolves into broad, soft handling."
+    "t": "Black ribbon and gold locket",
+    "x": 0.41,
+    "y": 0.135,
+    "w": 0.231,
+    "h": 0.12,
+    "body": "A black ribbon rings her neck, tied in a bow at our right, and drops a small gold locket onto her bare chest. It is one of the sharpest tonal jumps in the canvas — near-black laid straight against pale skin with no transition — and Manet uses it the way he used the black neck-ribbon in Olympia, as a stroke that snaps the flat pallor into focus and fixes the head to the body. The locket is oval and warm but tells us nothing: no portrait shows in it, no chain of meaning opens. It is an ornament that ornaments a mystery. Practically, the ribbon also marks the line under the jaw, letting Manet keep the throat area crisp while the gown below opens into broad, soft handling."
    },
    {
     "t": "Row of buttons and the peignoir's front",
@@ -29469,47 +31097,47 @@ window.CANVAS_INSPECT = {
     "y": 0.1535,
     "w": 0.184,
     "h": 0.253,
-    "body": "Down the centre of the gown runs a line of soft pom-pom buttons, each a small pale knot catching the frontal light, marking the seam that closes her to the throat. This closure is the quiet argument of the picture: the peignoir is private morning dress, yet it is fastened, ordered, buttoned tight, denying the undress the garment implies. The chest and sleeve here show Manet's touch at its most relaxed — wide loaded strokes of rose and pearl-grey dragged over one another, the fabric's sheen suggested by abrupt shifts of value rather than fussed detail. Look at how the near shoulder loses its edge into the dark ground; the figure is not drawn all the way round but allowed to melt where the light gives out."
+    "body": "Down the centre of the gown runs a line of soft pom-pom buttons, each a small pale knot catching the frontal light, marking the seam that closes the gown down the front, though at the chest it parts on a glimpse of lace chemise and the throat stays bare. This closure is the quiet argument of the picture: the peignoir is private morning dress, yet it is fastened and ordered, keeping the undress the garment implies to that glimpse. The chest and sleeve here show Manet's touch at its most relaxed — wide loaded strokes of rose and pearl-grey dragged over one another, the fabric's sheen suggested by abrupt shifts of value rather than fussed detail. A thin dark cord runs straight down the front from the neck toward the lower hand, a single drawn line across the soft strokes."
    },
    {
     "t": "Lower hand with the hanging lens",
-    "x": 0.4195,
-    "y": 0.2702,
-    "w": 0.161,
-    "h": 0.1495,
-    "body": "The second hand hangs at waist height, fingers loosely dropping a fine cord that ends in a small round glass — a monocle or quizzing-lens — swinging free. It is a viewing instrument she declines to use: the tool for looking closely, left dangling while she looks at nothing in particular. Paired with the parrot's cocked head opposite, it sets up a whole small theme of looking that the picture never lets pay off. The hand itself is painted with real economy, a few warm strokes and a couple of knuckle-highlights doing the work of anatomy. The thin cord and the little bulb of the lens are among the most delicate marks in the canvas, a fleck of drawing suspended in the broad calm of the gown."
+    "x": 0.472,
+    "y": 0.282,
+    "w": 0.2,
+    "h": 0.159,
+    "body": "The second hand is held at waist height, fingers loosely dropping a fine cord that ends in a small round glass — a monocle or quizzing-lens — swinging free. It is a viewing instrument she declines to use: the tool for looking closely, left dangling while she looks at nothing in particular. Paired with the parrot's cocked head opposite, it sets up a whole small theme of looking that the picture never lets pay off. The hand itself is painted with real economy, a few warm strokes and a couple of knuckle-highlights doing the work of anatomy. The thin cord and the little bulb of the lens are among the most delicate marks in the canvas, a fleck of drawing suspended in the broad calm of the gown."
    },
    {
     "t": "The grey parrot",
-    "x": 0.6457,
-    "y": 0.2787,
-    "w": 0.2185,
-    "h": 0.1725,
-    "body": "The African grey grips the top of a slim wooden perch, plumage a scaled patchwork of soft greys with one warm note — the red tail — echoing the orange below. Its head tips down and its eye engages the world with more evident curiosity than the woman shows, a small comic imbalance Manet surely intended. Compositionally the bird is essential: it fills the empty right side, balances the pale mass of the gown, and answers Courbet directly, whose parrot flutters over a nude in erotic play. Here the creature is set apart on its stand, a caged pet at a polite distance, its exoticism domesticated. The plumage is built from short broken touches that keep the grey vibrating; up close it is nearly abstract, at distance unmistakably feathered."
+    "x": 0.72,
+    "y": 0.3,
+    "w": 0.28,
+    "h": 0.2,
+    "body": "The African grey grips the top of a slim wooden perch, plumage a scaled patchwork of soft greys with one warm note — the red tail — echoing the orange below. Its head tips down and its eye engages the world with more evident curiosity than the woman shows, a small comic imbalance Manet surely intended. Compositionally the bird is essential: it fills the empty right side, balances the pale mass of the gown, and answers Courbet directly, whose parrot flutters over a nude in erotic play. Here the creature is set apart on its stand, a kept pet at a polite distance, its exoticism domesticated. The plumage is built from short broken touches that keep the grey vibrating; up close it is nearly abstract, at distance unmistakably feathered."
    },
    {
-    "t": "Brass cup on the perch",
-    "x": 0.6917,
-    "y": 0.414,
-    "w": 0.1265,
-    "h": 0.092,
-    "body": "Below the bird, a small brass seed-or-water cup is clamped to the perch, catching a hot yellow gleam off its rim and lip. It is a tiny passage but it earns its place: a warm metallic accent that steps the eye down the right-hand side from the parrot toward the still-life on the floor, and a reminder that this is a kept animal with its feeding gear, a household fixture rather than a symbol. Manet renders it with two or three confident strokes — a bright edge, a shadowed body, a smear of reflected light — refusing to itemise it. Its warmth also rhymes with the gold locket far above and the orange far below, three small hot notes threaded down through the cool field."
+    "t": "Cups at the top of the stand",
+    "x": 0.697,
+    "y": 0.366,
+    "w": 0.2,
+    "h": 0.159,
+    "body": "Below the bird's head, two small seed-or-water cups sit in a gold-toned holder at the top of the stand, glassy at the rims and catching a hot yellow gleam lower down. It is a tiny passage but it earns its place: a warm metallic accent that steps the eye down the right-hand side from the parrot toward the still-life on the floor, and a reminder that this is a kept animal with its feeding gear, a household fixture rather than a symbol. Manet renders them with a few confident strokes — bright edges, a shadowed body, a smear of reflected light — refusing to itemise them. Their warmth also rhymes with the gold locket far above and the orange far below, three small hot notes threaded down through the cool field."
    },
    {
     "t": "Half-peeled orange and tray",
-    "x": 0.5035,
-    "y": 0.851,
-    "w": 0.253,
-    "h": 0.138,
-    "body": "At the base of the perch sits a round metal tray filled with pale sand, and on its rim a half-peeled orange has been set with its long rind curling down in a single unbroken ribbon, a few loose segments dropped onto the floor beside it. This is the freest, most bravura passage in the picture — a compact still-life painted for the sheer pleasure of it, the fruit's flesh and skin caught in a handful of wet yellow and cream strokes, the rind a long lazy S that carries the eye. It answers the fruit-and-drink that surround Courbet's nude, and lends the sparse scene one note of ripeness and appetite, placed as far as possible from the buttoned figure, on the ground, where she has let it fall."
+    "x": 0.57,
+    "y": 0.845,
+    "w": 0.39,
+    "h": 0.15,
+    "body": "At the base of the perch sits a round metal tray filled with pale sand, and against its rim rests a half-peeled orange, its long rind curling down to the floor in a single ribbon, a loose piece or two lying beside it. This is one of the freest, most bravura passages in the picture — a compact still-life painted for the sheer pleasure of it, the fruit's flesh and skin caught in quick wet strokes of yellow and cream, the rind a long lazy curve that carries the eye. It lends the sparse scene one note of ripeness and appetite, set on the ground just beyond the hem of the buttoned figure."
    },
    {
     "t": "Shoe-toe beneath the hem",
-    "x": 0.4325,
-    "y": 0.8855,
-    "w": 0.115,
-    "h": 0.069,
-    "body": "The last detail is the smallest and easiest to miss: a single black shoe-toe peeping from under the pale hem, the one dark stamp that fixes the whole floating column of the gown to the ground. Without it the figure would seem to hover; with it she is planted, weight settled, the long fall of fabric given a foot to end on. Manet paints it as a near-shapeless black wedge, deliberately vague, just enough to read as a shoe. It also quietly rhymes with the black cord at the throat far above, dark answering dark at the two ends of the vertical, so the eye that has travelled the length of the pale gown finds a small closing note at the bottom that sends it back up."
+    "x": 0.374,
+    "y": 0.865,
+    "w": 0.231,
+    "h": 0.12,
+    "body": "The last detail is the smallest and easiest to miss: a single black shoe-toe peeping from under the pale hem, the one dark stamp that fixes the whole floating column of the gown to the ground. Without it the figure would seem to hover; with it she is planted, weight settled, the long fall of fabric given a foot to end on. Manet paints it as a near-shapeless black wedge, deliberately vague, just enough to read as a shoe. It also quietly rhymes with the black ribbon at the throat far above, dark answering dark at the two ends of the vertical, so the eye that has travelled the length of the pale gown finds a small closing note at the bottom that sends it back up."
    }
   ],
   "by": "Opus 4.8"
@@ -29580,11 +31208,12 @@ window.CANVAS_INSPECT = {
   ],
   "by": "Opus 4.8"
  },
- "claude-monet-the-japanese-footbridge": {"mv":2,
-  "see": "From across the room this is a wall of heat rather than a garden. Red-orange and brown fill almost the whole surface, broken only by a spill of raw yellow in the upper left and a paler, cooler band running horizontally through the middle. That band is the one place the eye can rest: a bleached ochre-and-lavender arc, faintly rising and falling, with a scatter of short vertical marks along it. Read it as a bridge and the picture snaps briefly into place; look away and it dissolves again. Everything above churns into a dark canopy dripping orange; everything below burns down into a pool of scarlet and green. There is no drawn edge anywhere, no clean line, only pressure and temperature. You register the motif and lose it in the same glance.",
+ "claude-monet-the-japanese-footbridge": {
+  "mv": 2,
+  "see": "From across the room this is a wall of heat rather than a garden. Red-orange and brown fill most of the surface, broken by raw yellow, heaviest at upper left and glowing again just above the middle, by blues gathered at lower left, and by a paler line running horizontally through the middle. That line is where the eye can rest: a cream stroke rising from our left and then running nearly level, with a scatter of slanting white and pale green dabs below it. Read it as a bridge and the picture snaps briefly into place; look away and it dissolves again. Everything above churns into a dark canopy dripping orange; everything below burns down into a pool of scarlet, orange and yellow, with blue along its lower edge. Hardly an edge is drawn; pressure and temperature do the work. You register the motif and lose it in the same glance.",
   "about": "The subject is Monet's own footbridge at Giverny, the arched Japanese span over his lily pond that he had painted in cool blues and greens for a quarter-century. Here he paints it again after cataracts had reduced his sight to a hot, browning blur, seeing the world through a yellow-red film. So the true subject is double: the familiar motif, and the failing eye that can no longer hold it steady. The bridge is present but barely legible, half-swallowed by foliage and reflection that have lost their separate identities. What the canvas records is less a scene than a condition of looking, a garden known so completely by touch and memory that Monet could keep painting it as it slid past the threshold of visibility, on the edge of pure abstraction.",
-  "craft": "The paint is thick, dragged, and openly worked. Strokes are long and loaded, laid wet into wet so that red, brown, orange and green smear and bruise into one another rather than sitting as clean colour. In places the brush has scrubbed in tight circular knots; elsewhere it rakes downward in ragged vertical hanks along the right edge. Monet works almost entirely in warm mid-tones, then punches contrast with the yellow at upper left and the paler horizontal of the bridge, which he keeps thinner and cooler so it hovers forward. There is no glazing, no blending toward finish. The surface stays granular and physical, canvas weave showing through in the lighter passages, dry drags catching on ridges of earlier paint. Colour does the drawing that line no longer can.",
-  "context": "By 1920 Monet was nearly eighty, near-blind, working at Giverny on the vast Water Lilies decorations while cataracts fogged and reddened his vision; he would undergo eye surgery in 1923. This canvas belongs to a small group of footbridge paintings from those years that push his lifelong motif to the brink of abstraction, and it was long kept in the family before entering public collections. To later eyes it looks like a bridge from Impressionism to what came after, though Monet meant it as description, not experiment. Standing in front of it at the Museum of Modern Art, you meet a garden painted by a man who could barely see it, and the heat of the paint reaches you before the subject does.",
+  "craft": "The paint is thick, dragged, and openly worked. Strokes are long and loaded, laid wet into wet so that red, brown, orange and green smear and bruise into one another rather than sitting as clean colour. In places the brush has scrubbed in tight circular knots; elsewhere it rakes downward in ragged vertical hanks along the right edge. Monet works mostly in warm mid-tones, then punches contrast with paler yellows and creams, and sets cool blue strokes against the reds so the warm passages read hotter. Nothing is blended toward finish. The surface stays granular and physical, canvas weave showing through in the lighter passages and wherever a dry drag skips. Colour does the drawing that line no longer can.",
+  "context": "By 1920 Monet was nearly eighty, near-blind, working at Giverny on the vast Water Lilies decorations while cataracts fogged and reddened his vision; he would undergo eye surgery in 1923. This canvas belongs to a group of footbridge paintings from those years that push his lifelong motif to the brink of abstraction; it passed to his son Michel and was sold through New York dealers in 1956. To later eyes it looks like a bridge from Impressionism to what came after. In front of it you meet a garden painted by a man who could barely see it, and the heat of the paint reaches you before the subject does.",
   "deeper": [
    {
     "t": "The bridge you almost can't find",
@@ -29592,7 +31221,7 @@ window.CANVAS_INSPECT = {
     "y": 0.4281,
     "w": 0.5091,
     "h": 0.2037,
-    "body": "Start with the one horizontal that organises the whole picture. A pale ochre-and-lavender band runs across the middle, cooler and lighter than everything around it, dipping slightly and then lifting to the right. Along its length sit short greenish and grey vertical dabs, the ghost of a railing. This is the footbridge, and it is the only structural line Monet allows himself. Cover it with a hand and the canvas becomes an undifferentiated blaze; uncover it and the space resolves, pond below, canopy above. He keeps this passage thinner and drier than the surrounding impasto so it stays optically in front, the last legible piece of a motif he had painted for thirty years and could now barely see."
+    "body": "Start with the pale horizontal that organises the picture. A cream stroke runs across the middle, lighter than the reds around it, rising from our left and then running nearly level. Below its left half sits a cluster of slanting white, pale green and blue dabs. Read the line as the footbridge's rail; it is the plainest structural line Monet allows himself. Cover it with a hand and the canvas becomes an undifferentiated blaze; uncover it and the space resolves, pond below, canopy above. He drags this stroke on dry, the weave showing through it, so it stays optically in front, the last legible piece of a motif he had painted for a quarter-century and could now barely see."
    },
    {
     "t": "The break in the canopy",
@@ -29600,7 +31229,7 @@ window.CANVAS_INSPECT = {
     "y": 0,
     "w": 0.345,
     "h": 0.368,
-    "body": "The upper-left corner holds the brightest, coolest note in the picture: a wedge of raw lemon and pale yellow where the dark overhead foliage thins and light breaks through. It is laid on more loosely than the surrounding tangle, with pale blue-grey scumbles bleeding into it, and it anchors the diagonal pull of the whole composition, dragging the eye up and out of the heat. Monet needs this yellow the way the bridge needs its pallor: as relief. Without it the canvas would be an unbroken furnace. Notice how the yellow is not clean but already curdling into orange at its lower edge, the cataract warmth creeping into even the coolest passage he permits himself here."
+    "body": "The upper-left corner holds the brightest passage in the picture: a wedge of raw lemon and pale yellow where the dark overhead foliage thins and light breaks through. It is laid on more loosely than the surrounding tangle, with pale blue-grey scumbles bleeding into it, and it anchors the diagonal pull of the whole composition, dragging the eye up and out of the heat. Monet needs this yellow the way the bridge needs its pallor: as relief. Without it the upper canvas would read far hotter. Notice how the yellow is not clean but already curdling into orange at its lower edge, the cataract warmth creeping into even the palest passage he permits himself here."
    },
    {
     "t": "The burning pool",
@@ -29608,7 +31237,7 @@ window.CANVAS_INSPECT = {
     "y": 0.6003,
     "w": 0.5563,
     "h": 0.3894,
-    "body": "Below the bridge the water is on fire. This is the hottest zone of the canvas: scarlet, vermilion and orange dragged in long horizontal and diagonal sweeps, with darker red-browns knotted through them. What should be the mirror of sky and lilies has become pure reflected heat, the pond reading as molten rather than wet. A few paler flecks ride the surface where lilies might be, but they are barely distinct from the blaze around them. The brushwork here is at its most agitated, wet-in-wet smears crossing one another so no single stroke stays separate. This is the passage where Monet's reddened vision speaks loudest, the garden's cool water rendered as the warmest thing in the room."
+    "body": "Below the bridge the water is on fire. This is one of the hottest zones of the canvas: scarlet, vermilion and orange dragged in long horizontal and diagonal sweeps, with darker red-browns knotted through them and yellow and blue breaking in. What should be the mirror of sky and lilies has become pure reflected heat, the pond reading as molten rather than wet. A few paler flecks ride the surface where lilies might be, but they are barely distinct from the blaze around them. The brushwork here is agitated, wet-in-wet smears crossing one another so no single stroke stays separate. This is the passage where Monet's reddened vision speaks loudest, the garden's cool water rendered in reds and oranges, its blues pushed to the edges."
    },
    {
     "t": "The dark tangle at lower left",
@@ -29616,7 +31245,7 @@ window.CANVAS_INSPECT = {
     "y": 0.54,
     "w": 0.345,
     "h": 0.46,
-    "body": "The lower-left corner is the picture's cold pole, a knot of deep blue-green and near-black where bank, foliage and water snarl together. Here Monet lets the darkest, most saturated strokes cluster, curling in tight circular motions that never resolve into leaf or stem. It is the one place the overwhelming red releases its grip, and the contrast makes the fire above look hotter still. Look closely and the strokes read almost as pure gesture, paint knotting into paint with no describable object underneath, foliage known only as a dark, cool mass. This corner shows how far the motif has slid toward abstraction: not a plant you can name, just a weight and a temperature holding the composition down."
+    "body": "The lower-left corner is the picture's cold pole, a knot of deep blue-green and near-black where bank, foliage and water snarl together. Here Monet lets dark, saturated strokes cluster, curling in tight circular motions that never resolve into leaf or stem. It is where the red loosens its grip most, though a red-brown strip still runs down the left edge, and the contrast makes the fire around it look hotter still. Look closely and the strokes read almost as pure gesture, paint knotting into paint with no describable object underneath, foliage known only as a dark, cool mass. This corner shows how far the motif has slid toward abstraction: not a plant you can name, just a weight and a temperature holding the composition down."
    },
    {
     "t": "Vertical rain at the right edge",
@@ -29624,7 +31253,7 @@ window.CANVAS_INSPECT = {
     "y": 0.0868,
     "w": 0.1868,
     "h": 0.7263,
-    "body": "Along the right margin the brush changes direction entirely, raking straight down in long ragged vertical hanks of red, orange and brown. These are the hanging plants, wisteria or willow, that curtain the pond's far side, but Monet paints them as sheer falling strokes rather than described growth. The verticals frame the picture and pull the whole surface earthward, countering the horizontal of the bridge. The paint here is dry and dragged, catching on the ridges beneath so the colour breaks and skips. It is one of the most nearly abstract passages in the canvas: motif reduced to a single repeated gesture, the falling stroke standing in for everything that hangs at the water's edge."
+    "body": "Along the right margin the brush changes direction entirely, raking straight down in long ragged vertical hanks of red, orange and brown. These are the hanging plants, wisteria or willow, that curtain the pond's far side, but Monet paints them as sheer falling strokes rather than described growth. The verticals frame the picture and pull the whole surface earthward, countering the horizontal of the bridge. In places the paint is dragged dry, catching on the weave so the colour breaks and skips. It is one of the most nearly abstract passages in the canvas: motif reduced to a single repeated gesture, the falling stroke standing in for everything that hangs at the water's edge."
    },
    {
     "t": "Where the paint becomes only paint",
@@ -29632,10 +31261,17 @@ window.CANVAS_INSPECT = {
     "y": 0.288,
     "w": 0.253,
     "h": 0.184,
-    "body": "Move in close on the zone just above the bridge, at the centre, and the motif disappears altogether. There is no bridge, no leaf, no water here, only loaded strokes of orange, brown and green smeared and knotted wet into wet, canvas weave showing through the thinner drags. This is the passage that tells you how the picture was made: colour laid without drawing, one stroke bruising into the next, contrast punched in by temperature alone. Nothing in this small rectangle can be named, and that is the point. It is the threshold Monet worked right up to, a garden he had known for decades dissolving into the physical fact of pigment, seeing and touch collapsed into a single unresolved blaze of paint."
+    "body": "Move in close on the zone just above the bridge, at the centre, and the motif disappears altogether. Nothing here reads as bridge, leaf or water: only loaded strokes of red, orange, yellow and blue smeared and knotted wet into wet, canvas weave showing through the thinner drags. This is the passage that tells you how the picture was made: colour laid without drawing, one stroke bruising into the next, contrast punched in by temperature alone. Nothing in this small rectangle can be named, and that is the point. It is the threshold Monet worked right up to, a garden he had known for decades dissolving into the physical fact of pigment, seeing and touch collapsed into a single unresolved blaze of paint."
    }
   ],
-  "refs":[{"id":"claude-monet-bridge-over-a-pond-of-water-lilies","text":"Bridge over a Pond of Water Lilies"}],"beside":"He painted this same bridge twenty-one years earlier, and that canvas is in this collection too. Bridge over a Pond of Water Lilies hangs at the Metropolitan Museum — upright, from the summer campaign of 1899, the arch squeezed into the top third and the rest surrendered to water. No shoreline is drawn: the lily pads go down as flat horizontal dabs, the reflections beneath the bridge as vertical dashes, and that collision of directions alone tells you where air ends and water begins. There the bridge is what holds the pond apart; here nothing has an edge left to collide with, and the arch survives as one bleached band you can read for a second and then lose.","by": "Opus 4.8"
+  "refs": [
+   {
+    "id": "claude-monet-bridge-over-a-pond-of-water-lilies",
+    "text": "Bridge over a Pond of Water Lilies"
+   }
+  ],
+  "beside": "He painted this same bridge more than twenty years earlier, and that canvas is in this collection too. Bridge over a Pond of Water Lilies is an upright canvas from the summer campaign of 1899, the arch squeezed into the top third and the rest surrendered to water. No shoreline is drawn: the lily pads go down as flat horizontal dabs, the reflections beneath the bridge as vertical dashes, and that collision of directions alone tells you where air ends and water begins. There the bridge is what holds the pond apart; here nothing has an edge left to collide with, and the arch survives as one bleached band you can read for a second and then lose.",
+  "by": "Opus 4.8"
  },
  "paul-cezanne-rochers-a-fontainebleau": {
   "mv": 1,
@@ -29941,7 +31577,8 @@ window.CANVAS_INSPECT = {
   ],
   "by": "Opus 4.8"
  },
- "regates-a-argenteuil": {"mv":2,
+ "regates-a-argenteuil": {
+  "mv": 2,
   "see": "The canvas splits almost exactly in half. Above, a broad band of grey-blue sky brushed with faint rose; a cluster of white sails leans left of centre, and along the right bank sit ochre-and-red houses, dark massed trees, a slope of green. Below the waterline the whole upper scene falls again, upside down and loosened, into the river. Small dark figures work the boats and stand on the grass, barely more than dabs. Colour concentrates on the right: warm terracotta roofs against cool blue water. The left stays pale and airy, sails and their pallor bleeding into sky. Your eye slides down the tallest sail into the water and keeps going, because the reflection is nearly as insistent as the thing it doubles.",
   "about": "This is Argenteuil on a Sunday, the Seine downstream of Paris where weekend sailing became a middle-class pastime and Monet lived through the early 1870s. A regatta is under way, sails up, but Monet withholds the event: no crowd, no drama, no finish line. What he paints instead is a stretch of water on an overcast afternoon, the boats almost incidental to the surface they float on. The picture is really about the river as a mirror and about how a scene behaves when you let it double. The riverside houses belong to the leisure town Argenteuil was becoming. The people are anonymous. Monet strips the sporting subject down to light, water, and the pleasure of watching reflection dissolve the solid world into ribbons.",
   "craft": "Monet paints the reflection with the same loose, blocky strokes as the objects, so the lower half is not a faded copy but an equal partner in paint. Reflections run as vertical smears, dragged downward with a loaded brush, each roof and tree becoming a stacked column of colour rather than a shape. Horizontal ripples cut across these columns in short broken dashes, and where they meet, form breaks into pure mosaic. The sky and water share a muted grey-blue key; the terracotta roofs supply the only heat, echoed as orange flecks below. Sails are built from thick, dry, near-white paint over toned ground, their edges left ragged. Wet strokes sit beside each other without blending, letting the weave of the canvas show through the thinner passages.",
@@ -30020,7 +31657,14 @@ window.CANVAS_INSPECT = {
     "body": "In the bottom right corner Monet signs in reddish-brown script, the letters looping across the darker water at a slight upward tilt. He sets it where the reflected colour is warmest, so the name sits comfortably against the terracotta echoes rather than fighting the paler zones. The signature is casual, quickly drawn, of a piece with the loose handling everywhere else, no careful lettering to break the mood. It also quietly fixes the corner, giving the loosest, most dissolved part of the canvas a small point of intention. Finding it is a reminder that the near-abstract water you have just been reading was, for Monet, a finished and deliberate picture."
    }
   ],
-  "refs":[{"id":"water-lilies-reflection-of-a-weeping-willow","text":"Water-Lilies, Reflection of a Weeping Willow"}],"beside":"The far end of this bargain hangs at the Musée Marmottan Monet. In Water-Lilies, Reflection of a Weeping Willow, painted at Giverny around 1917, the tree is out of frame altogether: no bank, no sky, no horizon, only the willow arriving already upside down as a vertical rain of blue and violet, with a few lily pads left at the margin to say it is water at all. Here the reflection still has something above the line to answer to. Forty-five years on it has nothing, and it is the whole picture.","by": "Opus 4.8"
+  "refs": [
+   {
+    "id": "water-lilies-reflection-of-a-weeping-willow",
+    "text": "Water-Lilies, Reflection of a Weeping Willow"
+   }
+  ],
+  "beside": "The far end of this bargain is Water-Lilies, Reflection of a Weeping Willow, painted at Giverny around 1917, where the tree is out of frame altogether: no sky, no horizon, only the willow arriving already upside down as a vertical rain of blue and violet, with a few lily pads at the centre and lower right to say it is water at all. Here the reflection still has something above the line to answer to. Forty-five years on it has nothing, and it is the whole picture.",
+  "by": "Opus 4.8"
  },
  "a-girl-with-a-watering-can": {
   "mv": 1,
@@ -30240,9 +31884,9 @@ window.CANVAS_INSPECT = {
  "claude-monet-camille-monet-1847-1879-in-the-garden-at-argent": {
   "mv": 1,
   "see": "A tall slender tree-trunk rises up the left of a vertical canvas, dividing it. Behind and around it a garden crowds forward: a dense flowering bush swells across the lower centre, mounded dark green studded with red, pink and orange. Behind rises the pale cream face of a house with green louvered shutters, half-swallowed by leaves. At the left edge, set back on a pale path, stands a woman in a long, pale bluish dress. Dark vertical stems spike up out of the bush toward the house. The whole surface is worked in short broken touches, so foliage, wall and figure share one flickering weave. Colour is cool and high-summer green, warmed by the scattered blooms, the gold of the sunlit leaves and roof, and the wall's pink.",
-  "about": "This is Monet's rented house and garden at Argenteuil, painted in 1876, before money and restlessness moved the family on. The woman is his wife Camille, but she is barely the subject. She has been pushed to the margin and painted no more firmly than the flowers, while the flowering bed takes the centre. The picture is about a garden overwhelming a person: the beds of hollyhocks and their broken colour, the house glimpsed through its own foliage, the particular density of one cultivated summer plot. Where a portrait would enlarge and steady its sitter, this canvas does the opposite, letting the human presence settle into the same touch until it reads as one more pale note among leaves, path and wall.",
+  "about": "This is Monet's rented house and garden at Argenteuil, painted in 1876, before mounting debts moved the family on. The woman is his wife Camille, but she is barely the subject. She has been pushed to the margin and painted no more firmly than the flowers, while the flowering bed takes the centre. The picture is about a garden overwhelming a person: the beds of hollyhocks and their broken colour, the house glimpsed through its own foliage, the particular density of one cultivated summer plot. Where a portrait would enlarge and steady its sitter, this canvas does the opposite, letting the human presence settle into the same touch until it reads as one more pale note among leaves, path and wall.",
   "craft": "Monet builds everything from short separated strokes and lets the eye fuse them. Nothing is drawn and then filled: colour is accumulated touch by touch, the warm notes dropped among the greens so that a flower reads as scattered heat rather than a described petal. The same touch serves every substance, leaf, masonry, cloth and skin, so no element hardens into a flat, firmly bounded shape. Against that field he sets a few drier, more linear verticals, the trunk and the dark spikes in the bed, as the armature that holds the loose surface together. Warm reds are set against cool green as complements, so the surface keeps vibrating.",
-  "context": "Argenteuil, a boating town on the Seine northwest of Paris, gave Monet roughly six of his most settled years and this garden its recurring stage; he made about ten canvases of the house and grounds in 1876 alone. Camille, painted here as a pale blue figure at the margin, would be dead of illness within three years, which lends her a weight the painter could not have intended. The work reached the Metropolitan Museum of Art and hangs among its dense Monet holdings. Standing before it, you feel how much the upright format does: the trunk, the dark stems in the bush and the figure all rise as verticals, so the canvas reads less as a view into a garden than as a screen of it, with Camille standing in the clearing the path makes at its left side.",
+  "context": "Argenteuil, a boating town on the Seine northwest of Paris, gave Monet roughly six of his most settled years and this garden its recurring stage; he made at least ten canvases of the house and grounds in 1876 alone. Camille, painted here as a pale blue figure at the margin, would be dead of illness within three years, which lends her a weight the painter could not have intended. Standing before it, you feel how much the upright format does: the trunk, the dark stems in the bush and the figure all rise as verticals, so the canvas reads less as a view into a garden than as a screen of it, with Camille standing in the clearing the path makes at its left side.",
   "deeper": [
    {
     "t": "The house behind the leaves",
@@ -30250,15 +31894,15 @@ window.CANVAS_INSPECT = {
     "y": 0.0665,
     "w": 0.6619,
     "h": 0.427,
-    "body": "The upper right holds the house, its pale cream and pinkish wall broken by green louvered shutters and a shadowed eave. From across the room it is this sunlit wall, and the dark red-studded bush beneath it, that the eye finds first. Monet gives it few clean lines, only the gold-lit roof edge and the louvres of the shutters; the rest of the facade is built from the same short touches as the foliage, so masonry and leaf keep trading places and the building seems to surface and sink within its own garden. Branches and leaf-clusters pass in front of the wall, veiling windows and cutting the roofline. The effect is domestic yet veiled: a solid family house rendered as something already half-reclaimed by summer growth, present enough to place the scene, unstable enough to belong to the same flickering weave as everything else on the canvas."
+    "body": "The upper right holds the house, its pale cream and pinkish wall broken by green louvered shutters and a warm orange band running across it. From across the room it is this sunlit wall, and the dark red-studded bush beneath it, that the eye finds first. Monet gives it few clean lines, chiefly the gold-lit roof edge and the louvres of the shutters; the rest of the facade is built from the same short touches as the foliage, so masonry and leaf keep trading places and the building seems to surface and sink within its own garden. Branches and leaf-clusters pass in front of the wall, veiling windows and cutting the roofline. The effect is domestic yet veiled: a solid family house rendered as something already half-reclaimed by summer growth, present enough to place the scene, unstable enough to belong to the same flickering weave as everything else on the canvas."
    },
    {
     "t": "The flowering bed at centre",
-    "x": 0.2527,
-    "y": 0.5116,
-    "w": 0.5746,
-    "h": 0.3868,
-    "body": "This mounded bush is the true subject, the darkest, densest mass in the picture, its reds glowing out of shade against the sunlit wall. Read close, it is a field of separated dabs: greens of several temperatures, from near-black to pale yellow-green, for the mass, with reds, pinks and orange dropped across it as the flowering hollyhocks. None is drawn as a bloom; each is a loaded touch of colour set against its green so the two vibrate, and on the right flank some still stand proud of the surface. Warm spots cluster and scatter without pattern, giving the bed a restless glitter that pulls the eye from the pale figure to the left. Monet lets the paint stand for the sensation of massed flowers glowing out of shade rather than for any countable plant, and the bed's sheer density is what overwhelms the human presence beside it."
+    "x": 0.19,
+    "y": 0.41,
+    "w": 0.77,
+    "h": 0.59,
+    "body": "This mounded bush is the true subject, the darkest, densest mass in the picture, its reds glowing out of shade against the sunlit wall. Read close, it is a field of separated dabs: greens of several temperatures, from near-black to pale yellow-green, for the mass, with reds, pinks and orange dropped across it as the flowering hollyhocks. None is drawn as a bloom; each is a loaded touch of colour set against its green so the two vibrate, and on the right flank the pale leaf touches still stand proud of the surface. Warm spots cluster and scatter without pattern, giving the bed a restless glitter that pulls the eye from the pale figure to the left. Monet lets the paint stand for the sensation of massed flowers glowing out of shade rather than for any countable plant, and the bed's sheer density is what overwhelms the human presence beside it."
    },
    {
     "t": "Camille at the margin",
@@ -30266,7 +31910,7 @@ window.CANVAS_INSPECT = {
     "y": 0.425,
     "w": 0.2116,
     "h": 0.3795,
-    "body": "At the far left, set back on the pale path, stands the woman in a long bluish-white dress. Soft as the strokes are, the figure is complete: a bluish hat with an orange-red trim, a shaded ochre face with a dab of red for the mouth, a dark bow at the throat, hands meeting at the waist over a patch of pinkish red. Her pale skirt sits close in value to the path, so she reads late, yet a dark stroke under the hem sets her weight on the ground. The reds at her hat and waist answer the red flowers beside her, so the garden is carried on her body. Just to her right the trunk rises between her and the flowering bed, its bark caught in small touches of ochre and lilac; it splits the canvas into a left corridor for figure and path and a right field of bloom and house, so the sitter is fenced into the margin by the picture's firmest line."
+    "body": "At the far left, set back on the pale path, stands the woman in a long bluish-white dress. Soft as the strokes are, the figure is complete: a bluish hat with an orange-red trim, a shaded ochre face with a dab of red for the mouth, a dark bow at the throat, hands meeting at the waist over a patch of pinkish red. Her pale skirt sits close in value to the path, so she reads late, yet a dark stroke under the hem sets her weight on the ground. The reds at her hat and waist answer the red flowers beside her, so the garden is carried on her body. Just to our right of her the trunk rises between her and the flowering bed, its bark caught in small touches of ochre and lilac; it splits the canvas into a left corridor for figure and path and a right field of bloom and house, so the sitter is fenced into the margin by that long, firm line."
    },
    {
     "t": "The path at lower left",
@@ -30282,11 +31926,11 @@ window.CANVAS_INSPECT = {
     "y": 0.9195,
     "w": 0.23,
     "h": 0.0805,
-    "body": "In the lower right corner, over the darkest foliage, Monet has signed in dark blue-black paint, the name looping quickly across the wet-looking surface below a scatter of red flowers. It sits in the shadowed base of the flowering bush rather than in any clear ground, dark on dark, set low among the leaves. The placement is telling: the artist's mark is folded into the garden mass itself, at the far side of the canvas from his wife. Between the pale figure at left and this dark signature at lower right runs the picture's quiet diagonal, from the woman in her light dress to the maker's hand sunk into the flowers that crowd her."
+    "body": "In the lower right corner, over dark blue-grey foliage, Monet has signed in near-black paint, the name set down in short separate strokes below a scatter of red flowers. It sits in the shadowed base of the flowering bush rather than in any clear ground, dark on dark, set low among the leaves. The placement is telling: the artist's mark is folded into the garden mass itself, at the far side of the canvas from his wife. Between the pale figure at left and this dark signature at lower right runs the picture's quiet diagonal, from the woman in her light dress to the maker's hand sunk into the flowers that crowd her."
    }
   ],
   "by": "Opus 4.8",
-  "beside": "This garden's parts had been assembled once already, a decade earlier, with the proportions reversed. Monet's own Women in the Garden, at the Musée d'Orsay, a canvas taller than anyone standing before it, gives most of its height to the women: four grouped about a path under a slim tree, three in white, each dress one large flat shape crossed by a few clean-edged blue-grey shadows, the foliage a dark wall behind. A bush flowering red and white is kept to the right, where one woman walks off up the path. Here the flowers take the centre and the woman is built from their touch; there the women take the centre, and the flowers wait behind them.",
+  "beside": "This garden's parts had been assembled once already, a decade earlier, with the proportions reversed. Monet's own Women in the Garden, a canvas taller than anyone standing before it, gives most of its height to the women: four grouped about a path under a slim tree, three in white, each dress one large flat shape crossed by long, decided strokes of blue-grey shadow, the foliage a dark wall behind. A bush flowering red and white is kept back behind the seated woman and the tree, and one woman walks off up the path at the right. Here the flowers take the centre and the woman is built from their touch; there the women take the centre, and the flowers wait behind them.",
   "refs": [
    {
     "id": "women-in-the-garden",
@@ -31009,9 +32653,9 @@ window.CANVAS_INSPECT = {
  },
  "claude-monet-poppy-fields-near-argenteuil": {
   "mv": 1,
-  "see": "A flat plain fills the lower half, a meadow worked in short strokes of green, ochre and dusty blue-violet, freckled all over with warm red and orange touches. At the left stand two dark poplars, a dense blue-green mass. Right of centre, a small figure stands waist-deep in the grass, a pale hat catching the light; two tinier figures stand far off at the horizon. The land runs back to a low horizon roughly halfway up, where a thin band of trees and a few faint rooftops sit under the sky. Above, a broad sky of pale cumulus is stacked over patches of soft blue, and the scatter of red below ties the dark trees to the open field.",
-  "about": "The subject is almost nothing and everything at once: a summer afternoon on cultivated land outside Paris, a person standing in a field of wild poppies. Monet is not telling a story so much as recording a sensation, the flicker of red flowers against ripening grass under a moving sky. The near figure gives the scale and a quiet human presence, but stays anonymous, a passerby rather than a portrait. This is landscape as lived experience, the modern countryside near a town where Monet then lived, neither picturesque ruin nor grand vista. What matters is the weather, the season, the particular light of one hour. You are asked to stand where the painter stood and take in the whole open plain, letting the eye wander from the shaded poplars to the bright field to the immense, unsettled clouds overhead.",
-  "craft": "The poppies are pure economy: single dabs and short commas of red and orange, laid wet over the green without drawing a petal. Up close they dissolve into paint; step back and they read as scattered blooms. The grass is a woven mesh of greens, tans and cool violets, brushed in every direction to suggest uneven, wind-stirred growth. The load of paint follows weight: heaviest in the sky and the dark trees, thinnest at the far horizon. Wherever there is something to name, a figure or a flower, it gets the fewest strokes that will still read. In the field the colours are kept close in value, so the meadow vibrates rather than snapping into hard light and shadow.",
+  "see": "A flat plain fills the lower half, a meadow worked in short strokes of green, ochre and dusty blue-violet, freckled with warm red and orange touches. At the left stand two dark poplars, a dense blue-green mass. Right of centre, a small figure stands waist-deep in the grass, a pale hat catching the light; two tinier figures stand far off at the horizon. The land runs back to a low horizon roughly halfway up, where a thin band of trees and a few faint pale marks that may be rooftops sit under the sky. Above, a broad sky of pale cumulus is stacked over patches of soft blue, and the scatter of red below ties the dark trees to the open field.",
+  "about": "The subject is almost nothing and everything at once: a summer afternoon on cultivated land outside Paris, a person standing in a field of wild poppies. Monet is not telling a story so much as recording a sensation, the flicker of red flowers against ripening grass under a moving sky. The near figure, Monet's young son Jean, gives the scale and a quiet human presence, though his face is lost in shade under the hat. This is landscape as lived experience, the modern countryside near a town where Monet then lived, neither picturesque ruin nor grand vista. What matters is the weather, the season, the particular light of one hour. You are asked to stand where the painter stood and take in the whole open plain, letting the eye wander from the shaded poplars to the bright field to the immense, unsettled clouds overhead.",
+  "craft": "The picture is built from separate touches rather than drawn contours: dabs, commas and short dashes laid side by side. Up close they stay marks; from a few steps back they settle into a landscape. The grass is a woven mesh of greens, tans and cool violets, brushed in many directions to suggest uneven, wind-stirred growth. The load of paint varies across the canvas: in places it is thin enough for the weave to show through, in others it stands up in ridges. Wherever there is something to name, it gets the fewest strokes that will still read. In the field the colours are kept close in value, so the meadow vibrates rather than snapping into hard light and shadow.",
   "context": "Monet painted this in 1875, during the years he lived at Argenteuil on the Seine, a short train ride from Paris and a favourite subject for him in that decade. It belongs to a cluster of views he made of the poppy-strewn plain in a single season, developing a motif he had first struck in 1873. These were the early years of Impressionism, when Monet and his circle were exhibiting independently and being scolded for unfinished-looking surfaces like these. Seeing it at the Met in New York, you notice how much of its life is in the raw, close-up handling that reproductions flatten out.",
   "deeper": [
    {
@@ -31020,7 +32664,7 @@ window.CANVAS_INSPECT = {
     "y": 0.5881,
     "w": 0.6947,
     "h": 0.4119,
-    "body": "Lean in on the foreground and the poppies come apart into gesture. Each flower is a quick touch of red or orange, some barely a fleck, others a small smear where the brush pressed and lifted. They sit on a bed of greens laid in short, crossing strokes, with cooler blue and violet notes threaded through the shadowed grass. No poppy has an outline; the flowers exist only as colour against colour, and the only drawn line here is a few dark green stems curling at lower centre. Notice the change of register: crisp scarlet dabs sit apart in the near grass, while further back at right the red loosens into a broad, pinker drift, so the flat meadow opens into distance without a single ruled line."
+    "body": "Lean in on the foreground and the poppies come apart into gesture. Each flower is a quick touch of red or orange, some barely a fleck, others a small smear where the brush pressed and lifted. They sit on a bed of greens laid in short, crossing strokes, with cooler blue and violet notes threaded through the shadowed grass. No poppy has an outline; the flowers exist only as colour against colour, and the nearest thing to drawing here is a few dark green stems curling at lower centre. Notice the change of register: crisp scarlet dabs sit apart in the near grass, while toward the top right of this patch the red thins into longer, pinker strokes, the edge of a salmon drift that fills the right of the field down to the bottom edge, so the change runs as much left to right as near to far."
    },
    {
     "t": "The two poplars",
@@ -31028,7 +32672,7 @@ window.CANVAS_INSPECT = {
     "y": 0,
     "w": 0.4247,
     "h": 0.7787,
-    "body": "At the left margin the poplars give the loose scene its spine. The taller, outer tree is full and broad-shouldered; its slimmer companion is shorter, feathered, flecked with mauve, both built from dense, dabbed foliage over darker cores. They are the deepest darks in the painting, and their vertical thrust plays off the long horizontal of the plain. Placed at the left rather than in the middle, they frame the view and push the field open to the right. Small paler flecks of sky show through the branches, keeping even this solid mass airy."
+    "body": "At the left margin the poplars give the loose scene its spine. The taller, outer tree is full and broad-shouldered; its slimmer companion is shorter, feathered, flecked with mauve, both built from dabbed foliage over darker cores. They are the largest mass of dark in the painting, and their vertical thrust plays off the long horizontal of the plain. Placed at the left rather than in the middle, they frame the view and push the field open to the right. Small paler flecks of sky show through the branches, keeping even this solid mass airy."
    },
    {
     "t": "The figure in the field",
@@ -31036,7 +32680,7 @@ window.CANVAS_INSPECT = {
     "y": 0.5436,
     "w": 0.1182,
     "h": 0.2128,
-    "body": "Here is the nearest of three people, and the most legible thing in the field. A cream hat, a shaded face under the brim, a dark jacket with a white collar, blue-grey below where the figure sinks into the grass, all made from a handful of unblended strokes. One arm is raised to head height, holding up something pale, the only gesture in the meadow. The near one does essential work, setting the scale of the whole plain and giving the wandering eye a place to rest. Cover it with a thumb and the meadow loses its measure. Monet keeps the person a presence rather than a portrait, so that the true subject stays the light and the flowers."
+    "body": "Here is the nearest of three people, and the most legible thing in the field. A cream hat, a shaded face under the brim, a dark jacket with a white collar, blue-grey below where the figure sinks into the grass, all made from short, unblended strokes. One arm is raised to head height, holding up something pale, the one legible gesture in the meadow. The near one does essential work, setting the scale of the whole plain and giving the wandering eye a place to rest. Cover it with a thumb and the meadow loses its measure. Monet keeps the person a presence rather than a portrait, so that the true subject stays the light and the flowers."
    },
    {
     "t": "Weather overhead",
@@ -31044,7 +32688,7 @@ window.CANVAS_INSPECT = {
     "y": 0.0025,
     "w": 0.5927,
     "h": 0.3951,
-    "body": "More than half the canvas is sky, and it is anything but blank. Lilac-bottomed cumulus piles up in thick, ridged whites, the paint standing up off the canvas, with thinner blue between and wind-combed streaks of cloud above. This is the most heavily loaded paint in the picture, heavier than any dab in the field, as if the weather had more body than the ground. Because the clouds carry so much cool lilac and blue, the greens and reds below read as warmer by contrast. Up close the whites are sculpted ridges; step back and they resolve into a convincing depth of moving air, the light shifting even as you watch."
+    "body": "The sky fills the upper half of the canvas, and it is anything but blank. Lilac-bottomed cumulus piles up in thick, ridged whites, the paint standing up off the canvas, with thinner blue between and wind-combed streaks of cloud above. To judge by its ridges, this is the most heavily loaded paint in the picture, thicker than the dabs in the field, as if the weather had more body than the ground. Because the clouds carry so much cool lilac and blue, the greens and reds below read as warmer by contrast. Up close the whites are sculpted ridges; step back and they resolve into a convincing depth of moving air, the light shifting even as you watch."
    },
    {
     "t": "Horizon and village",
@@ -31052,7 +32696,7 @@ window.CANVAS_INSPECT = {
     "y": 0.4651,
     "w": 0.6104,
     "h": 0.1199,
-    "body": "Follow the field to where it meets the sky and the paint quiets almost to nothing. A thin, broken line of trees runs along the low horizon, and among it sit a few pale marks that read as distant rooftops, the edge of the town near where Monet worked. The trees here are small, muted and blue-grey, the colours cooled by atmosphere. This strip does the quiet labour of distance: by keeping it low, soft and near in value to the sky, Monet lets the flowered plain feel vast and the horizon feel genuinely far off. Just left of centre, at the foot of that line, two tiny figures in brown with yellow hats stand side by side, and their size alone tells you how far the field runs."
+    "body": "Follow the field to where it meets the sky and the paint quiets almost to nothing. A thin, broken line of trees runs along the low horizon, and among it sit a few pale marks that may be the roofs of a distant village. The trees here are small, muted and blue-grey, the colours cooled by atmosphere. This strip does the quiet labour of distance: by keeping it low and soft, paler and bluer than the poplars, Monet lets the flowered plain feel vast and the horizon feel genuinely far off. Just left of centre, at the foot of that line, two tiny figures in brown with yellow hats stand side by side, and their size alone tells you how far the field runs."
    },
    {
     "t": "The signature",
@@ -31064,7 +32708,7 @@ window.CANVAS_INSPECT = {
    }
   ],
   "by": "Opus 4.8",
-  "beside": "A figure in a pale hat stands waist-deep in poppies, and two more show as specks near the horizon: they are all Monet gives you to tell how big the plain is. The Flight into Egypt, a small panel painted by a follower of Patinir some three centuries earlier, is about the same smallness of a person in open country. In the Washington panel the Holy Family, tiny at the centre, cross a world of pale rock pinnacles, river valley, walled town and blue mountains, all seen from above. Every part of that world is a landmark to measure by. Monet's field has no path or fence, only flowers, clouds and three people standing in the open.",
+  "beside": "A figure in a pale hat stands waist-deep in poppies, and two more show as specks near the horizon: they are Monet's chief gauge of how big the plain is. The Flight into Egypt, a small panel painted by a follower of Patinir some three centuries earlier, is about the same smallness of a person in open country. There the Holy Family, tiny at the centre, cross a world of pale rock pinnacles, river valley, walled town and blue mountains, all seen from above. Every part of that world is a landmark to measure by. Monet's field has no path or fence, only flowers, trees, clouds and three people standing in the open.",
   "refs": [
    {
     "id": "joachim-patinir-the-flight-into-egypt",
@@ -31803,79 +33447,80 @@ window.CANVAS_INSPECT = {
    },
    "by": "Opus 4.8"
   },
-  "claude-monet-le-givre": {"mv":2,
-    see: "A frost-covered flat runs from the bottom of the canvas up to a line of trees about a third of the way from the top, and above that there is only sky. The trees are frosted too, pale and spiky, and behind them the picture stops. In the near foreground a mass of dead scrub crosses the lower left and centre. Just right of centre, low, lies a single dark form — the one thing in the picture that is not pale. Everything is pitched in cream, apricot, chalk-pink and grey-blue, and the paint is thin nearly everywhere. Signed and dated in blue at the lower right. A metre wide and sixty centimetres high, it is a wide, shallow, nearly empty picture.",
-    about: "The subject is a temperature and a moment: the morning after a hard frost, before anything has begun to melt. Monet had painted snow before and would again, but frost is a different problem. Snow is a covering, and you paint the shape it makes. Frost is a film — it leaves everything its own shape and alters only its colour and its edge — so a picture of frost has to be built almost entirely out of small shifts of hue at one brightness, which is precisely what the eye reads worst and what a painter can least fake. The picture is also a refusal. He was living in a village on the Seine with a church he painted repeatedly, and he turned away from all of it to paint a field of dead scrub with one dark object lying in it.",
-    craft: "The method is thin, dry and fast. Monet scrubs a nearly dry brush over a light ground so the weave keeps breaking the stroke, and he builds the picture from one kind of mark at each depth: long horizontal drags for anything flat, short crisscross dashes for anything twiggy, upright flecks for anything growing. Distance is carried by the size of the mark rather than by any softening of focus. The discipline is with value. Almost the whole canvas sits inside one narrow band of brightness, which forces every distinction to be made in hue instead, and which is why so little colour goes such a long way here. It is a picture built to be difficult, in the way a musician sets a piece inside one octave.",
-    context: "The winter of 1879-80 was among the coldest on record in France. Monet was at Vétheuil on the Seine, newly widowed — Camille had died the previous September — with two sons, almost no money, and a household shared with the Hoschedés. He worked outdoors through it with hand-warmers, and pushed out around twenty frost, ice and thaw canvases in a single season, chasing one motif across changing weather in a way that reads now as the rehearsal for the series pictures he would begin ten years later. Gustave Caillebotte owned this canvas until his death, and it came to France in the 1894 bequest the state accepted only after long argument.",
-    deeper: [
-      {
-        t: "The one dark thing",
-        x: 0.5075,
-        y: 0.6405,
-        w: 0.345,
-        h: 0.299,
-        body: "Here it is, low and just right of centre. A dark ridge rises to a blunt peak at the left and falls away to the right along a straight line, with a plate of snow lying on top of it and a wedge of deep navy in shadow underneath. A thin orange-red line runs the length of the upper edge, and a few small ochre ticks stand up from it. Read it as a boat hauled out of the water and left through the freeze and every mark fits: the straight sheer, the strip of warm wood catching light, the drift settling along the top. The paint will not take you closer than this, so the reading stays a reading. What is not in doubt is that it is the only thing in the landscape that anybody built."
-      },
-      {
-        t: "The tangle in front of it",
-        x: 0.1545,
-        y: 0.5775,
-        w: 0.391,
-        h: 0.345,
-        body: "Between you and that form is a thicket of dead scrub, and it rewards the stop because it is the opposite of what the picture is from the doorway. From across the room this is a soft painting. Here it is all edges — short flat dashes laid crisscross, each one put down once and left, in salmon, rust, mauve, cream and a cold blue-grey, and not one of them blended into its neighbour. The dashes mostly run diagonal, which is what makes them read as bramble rather than as grass, and the palest sit on top, so the frost reads as something arriving onto a dark thing rather than as the thing's own colour. The softness of this picture is entirely a property of distance. Up close it is drawn with a hard, dry brush."
-      },
-      {
-        t: "Trees at the sky's own brightness",
-        x: 0.3145,
-        y: 0.225,
-        w: 0.391,
-        h: 0.23,
-        body: "The row of trees behind the flat is where the frost does its real work. Each tree is still there as a shape — you can pick out individual slim trunks as blue-grey verticals, and the taller ones keep a narrow spire — but Monet has painted them at almost exactly the brightness of the sky behind them, so the whole row hovers at the edge of vanishing without ever going. What separates them is not weight at all: cool blue-grey against warm cream, with a pink flush along the crowns. That is the whole method of the picture compressed into one band. Nothing here is dissolved or half-painted. Everything is simply set at one brightness, and the eye is made to do the work with hue alone."
-      },
-      {
-        t: "The sky, scrubbed dry",
-        x: 0.256,
-        y: 0.0165,
-        w: 0.368,
-        h: 0.303,
-        body: "The paint is thin up here and the cloth is doing half the work. Monet drags a dry brush across the weave in short curving strokes — cream over pale blue-grey over a warmer pink — and wherever the bristles skip the low points of the weave the ground shows through as a fine speckle. The result is a sky with texture and no substance: you can see the cloth, so you never quite believe in air. This is also where the warmth is stored. The top of this passage is a neutral grey-cream; by the time the same paint reaches the tree line it has been tuned into apricot and rose, and that band above the trees measures brighter than the frost below it. In a picture about frozen ground, the ground is not the lightest thing in the frame."
-      },
-      {
-        t: "Cobalt on the flat",
-        x: 0,
-        y: 0.542,
-        w: 0.368,
-        h: 0.276,
-        body: "On the open ground the strokes go long and horizontal, dragged sideways in bands of grey-blue, cream and a chalky pink, with the weave showing through the whole way. Then look for the blue. Scattered across this stretch are short flat dashes of hard cobalt at full strength, sitting on the surface rather than in it, no two of them touching. They do the work black would have done in an academic winter piece: they mark where the flat breaks — a hollow holding shadow, a place where the covering has given way. Everything around them is a tint. These are pigment, and they are what stops a third of the canvas from reading as bare primed cloth. Put a thumb over them and the passage goes papery."
-      },
-      {
-        t: "The warm corner",
-        x: 0.7435,
-        y: 0.4835,
-        w: 0.253,
-        h: 0.253,
-        body: "The far right is where the picture keeps its heat. The scrub here is dabbed in coral, rust, brick and a dull orange over the same pale blue-grey, and the dabs are rounder and fatter than the flat dashes in the foreground — a different brush, or the same brush used blunt. Measured against the foreground tangle this passage comes out markedly warmer, and that matters compositionally: it weights the right against the dark form lying to the left of it, so the bottom of the picture balances without needing an object in the middle. Monet has replaced the incident a landscape usually puts at its centre with a difference in temperature between two corners."
-      },
-      {
-        t: "Standing back",
-        x: 0,
-        y: 0,
-        w: 1,
-        h: 1,
-        body: "Step back and the picture divides into four horizontal bands and almost nothing else: sky across the top third, a row of frosted trees, a broad pale flat, a foreground of dead scrub. There is nothing to lead you in. The bands simply stack, and the one thing that interrupts them is the dark form lying low and to the right. That is a risky picture to make in 1880, because it removes everything a landscape normally uses to hold a viewer and stakes the whole canvas on temperature — on whether cream against grey-blue, and a few cobalt dashes against a tint, can carry a canvas a metre wide. The bet is the picture. Take out the dark form and there would be nothing left but weather; and Monet very nearly does take it out, putting it small, low, half-covered and off to one side, and letting the frost have everything else."
-      }
-    ],
-    beside: "Twelve years before this, Monet made the same bet with one black bird. The Magpie, at the Musée d'Orsay, is a field of snow that fills the canvas before you register anything in it — shadows laid in blue and violet instead of black, the lit snow carrying pink and straw-yellow — and the whole picture turns on a single magpie perched on a low wattle gate, small and off to the left, which you find last of all. There the dark note sits up on a rail, drawn and instantly legible once you have found it. Here it lies down: flat, low, half-buried in frost, and not certainly legible at all.",
-    refs: {
-      beside: [
-        {
-          id: "the-magpie",
-          text: "The Magpie"
-        }
-      ]
+  "claude-monet-le-givre": {
+   "mv": 2,
+   "see": "A frost-covered flat runs from the bottom of the canvas up to a line of trees just below the middle, and above the trees there is only sky. The trees are frosted too, pale and spiky, and behind them the picture stops. In the near foreground a mass of dead scrub crosses the bottom, left of centre. Right of centre, low, lies a single dark form — the one dark mass in the picture. Everything is pitched in cream, apricot, chalk-pink and grey-blue, and the paint is thin over most of the canvas. Signed and dated in dark violet at the lower right. A metre wide and sixty centimetres high, it is a wide, shallow, nearly empty picture.",
+   "about": "The subject is a temperature and a moment: the morning after a hard frost, before anything has begun to melt. Monet had painted snow before and would again, but frost is a different problem. Snow is a covering, and you paint the shape it makes. Frost is a film — it leaves everything its own shape and alters only its colour and its edge — so a picture of frost has to be built almost entirely out of small shifts of hue at one brightness, which is precisely what the eye reads worst and what a painter can least fake. The picture is also a refusal. He was living in a village on the Seine with a church he painted repeatedly, and he turned away from all of it to paint a field of dead scrub with one dark object lying in it.",
+   "craft": "The method is mostly thin, dry and fast. Monet scrubs a nearly dry brush over a light ground so the weave keeps breaking the stroke, and he builds the picture from one kind of mark at each depth: long horizontal drags for anything flat, short crisscross dashes for anything twiggy, upright flecks for anything growing. Distance is carried by the size of the mark rather than by any softening of focus. The discipline is with value. Almost the whole canvas sits inside one narrow band of brightness, which forces every distinction to be made in hue instead, and which is why so little colour goes such a long way here. It is a picture built to be difficult, in the way a musician sets a piece inside one octave.",
+   "context": "The winter of 1879-80 was among the coldest on record in France. Monet was at Vétheuil on the Seine, newly widowed — Camille had died the previous September — with two sons, almost no money, and a household shared with the Hoschedés. He worked through it and pushed out around twenty frost, ice and thaw canvases in a single season, chasing one motif across changing weather in a way that reads now as the rehearsal for the series pictures he would begin ten years later. Gustave Caillebotte owned this canvas until his death, and it came to France in the 1894 bequest the state accepted only after long argument.",
+   "deeper": [
+    {
+     "t": "The one dark thing",
+     "x": 0.5075,
+     "y": 0.6405,
+     "w": 0.345,
+     "h": 0.299,
+     "body": "Here it is, low and right of centre. A dark ridge rises to a blunt peak at the left and falls away to the right along a straight line, with a plate of snow lying on top of it and a wedge of deep navy in shadow underneath. A thin orange-red line runs along much of the upper edge, and a few small ochre ticks hang down from it. Read it as a boat hauled out of the water and left through the freeze and every mark fits: the straight sheer, the strip of warm wood catching light, the drift settling along the top. The paint will not take you closer than this, so the reading stays a reading. Nothing else in the landscape reads as something anybody built."
     },
-    by: "Opus 4.8"
+    {
+     "t": "The tangle beside it",
+     "x": 0.1545,
+     "y": 0.5775,
+     "w": 0.391,
+     "h": 0.345,
+     "body": "To our left of that form, and reaching across in front of its raised end, is a thicket of dead scrub, and it rewards the stop because it is the opposite of what the picture is from the doorway. From across the room this is a soft painting. Here it is all edges — short flat dashes laid crisscross, each one put down once and left, in salmon, rust, mauve, cream and a cold blue-grey, and few of them blended into their neighbours. The dashes mostly run diagonal, which is what makes them read as bramble rather than as grass, and the palest sit on top, so the frost reads as something arriving onto a dark thing rather than as the thing's own colour. Here the softness is a property of distance. Up close the tangle is drawn hard: the rust laid thin over the weave, the cream laid on thick."
+    },
+    {
+     "t": "Trees at the sky's own brightness",
+     "x": 0.3145,
+     "y": 0.225,
+     "w": 0.391,
+     "h": 0.23,
+     "body": "The row of trees behind the flat is where the frost does its real work. Each tree is still there as a shape — you can pick out individual slim trunks as blue-grey verticals, and the taller ones keep a narrow spire — but Monet has painted them at almost exactly the brightness of the sky behind them, so the whole row hovers at the edge of vanishing without ever going. What separates them is not weight at all: cool blue-grey against warm cream, with a pink flush along the crowns. That is the whole method of the picture compressed into one band. Nothing here is dissolved or half-painted. Everything is simply set at one brightness, and the eye is made to do the work with hue alone."
+    },
+    {
+     "t": "The sky, scrubbed dry",
+     "x": 0.256,
+     "y": 0.0165,
+     "w": 0.368,
+     "h": 0.303,
+     "body": "The paint is thin up here and the cloth is doing half the work. Monet drags a dry brush across the weave in short curving strokes — cream over pale blue-grey over a warmer pink — and wherever the bristles skip the low points of the weave the ground shows through as a fine speckle. The result is a sky with texture and no substance: you can see the cloth, so you never quite believe in air. This is also where the warmth is stored. The top of this passage is a neutral grey-cream; by the time the same paint reaches the tree line it has been tuned into apricot and rose, and that band above the trees measures brighter than the frost below it. In a picture about frozen ground, the ground is not the lightest thing in the frame."
+    },
+    {
+     "t": "Blue on the flat",
+     "x": 0,
+     "y": 0.542,
+     "w": 0.368,
+     "h": 0.276,
+     "body": "On the open ground the strokes go long and horizontal, dragged sideways in bands of grey-blue, cream and a chalky pink, with the weave showing through the whole way. Then look for the blue. Scattered across this stretch are short flat dashes of a hard blue at full strength, sitting on the surface rather than in it, no two of them touching. They do the work black would have done in an academic winter piece: they mark where the flat breaks — a hollow holding shadow, a place where the covering has given way. Everything around them is a tint. These are pigment, and they are what stops a third of the canvas from reading as bare primed cloth. Put a thumb over them and the passage goes papery."
+    },
+    {
+     "t": "The warm corner",
+     "x": 0.78,
+     "y": 0.53,
+     "w": 0.2165,
+     "h": 0.34,
+     "body": "The far right is where the picture keeps its heat. The scrub here is dabbed in coral, rust, brick and a dull orange over the same pale blue-grey, and the marks are short and upright, fanning up from the ground, where the foreground tangle is laid in diagonal dashes. Set against the foreground tangle this passage reads warmer, and that matters compositionally: it weights the right against the dark form lying to the left of it, so the bottom of the picture balances without needing an object in the middle. Monet has replaced the incident a landscape usually puts at its centre with a difference in temperature between two stretches of scrub."
+    },
+    {
+     "t": "Standing back",
+     "x": 0,
+     "y": 0,
+     "w": 1,
+     "h": 1,
+     "body": "Step back and the picture divides into four horizontal bands and almost nothing else: sky across the top third, a row of frosted trees, a broad pale flat, a foreground of dead scrub. There is nothing to lead you in. The bands simply stack, and the one thing that interrupts them is the dark form lying low and to the right. That is a risky picture to make in 1880, because it removes everything a landscape normally uses to hold a viewer and stakes the whole canvas on temperature — on whether cream against grey-blue, and a few hard blue dashes against a tint, can carry a canvas a metre wide. The bet is the picture. Take out the dark form and there would be nothing left but weather; and Monet very nearly does take it out, putting it small, low, partly screened by scrub and off to one side, and letting the frost have everything else."
+    }
+   ],
+   "beside": "Twelve years before this, Monet made the same bet with one black bird. The Magpie is a field of snow that fills the canvas before you register anything in it — shadows laid in blue instead of black, the lit snow carrying pink and straw-yellow — and the whole picture turns on a single magpie perched on a rough rail gate, small and off to the left, which you find last of all. There the dark note sits up on a rail, drawn and instantly legible once you have found it. Here it lies down: flat, low, snow lying in it, and not certainly legible at all.",
+   "refs": {
+    "beside": [
+     {
+      "id": "the-magpie",
+      "text": "The Magpie"
+     }
+    ]
+   },
+   "by": "Opus 4.8"
   },
   "pierre-bonnard-sleeping-woman-on-a-bed": {"mv":2,
     see: "A naked woman lies asleep across a bed that fills the whole canvas. Her head is at the upper left, a dark mass of hair on a pale pillow; her body runs diagonally down to the right; one leg is drawn up so that the knee stands high toward the right, the other lost in shadow. The bedding is a broad cream-yellow expanse taking most of the upper right. Down the left of the picture is a slab of deep patterned gold, and along the extreme left edge a dark vertical bar. Below and to the left of her the canvas falls away into near-black, and that dark takes the whole bottom of the picture. There is no room around the bed to speak of: bed, body, wall, dark. At 96 by 105 centimetres it is a large canvas, wider than it is high.",
@@ -32126,10 +33771,10 @@ window.CANVAS_INSPECT = {
   },
   "claude-monet-la-rue-montorgueil": {
    "mv": 2,
-   "see": "A narrow upright canvas looking straight down a Paris street from well above the heads of the crowd. Two housefronts run away from you, left and right, and both are hung from top to bottom with tricolour flags on poles that project out over the roadway; between them a wedge of pale sky narrows down to a far roofline. The lower half is people, packed from edge to edge and thinning where the road takes the light. One flag flies free in the sky above the middle of the picture; one broad flag hangs face-on over the middle distance. The name is written in dark red low on the right, inside the crowd.",
+   "see": "A narrow upright canvas looking straight down a Paris street from well above the heads of the crowd. Two housefronts run away from you, left and right, and both are hung from top to bottom with tricolour flags on poles that project out over the roadway; between them a wedge of pale sky narrows down to a far roofline. The lower half is people, packed from edge to edge and thinning where the road takes the light. One flag flies free in the sky above the middle of the picture; one broad flag hangs face-on over the middle distance. The name is written in red low on the right, inside the crowd.",
    "about": "The day is 30 June 1878, a public holiday declared for the Exposition Universelle then filling Paris. What Monet paints is not the ceremony but the sensation of standing inside one. He takes a position above the street, which means he never has to give you a face or an incident; the whole event arrives as colour and motion. That is a decision about subject as much as about optics. A history painter would have gone looking for a hero in that crowd, and a reporter would have gone looking for an anecdote. Monet finds that a city's mood can be carried entirely by cloth in moving air, and that a street is capable of being a single emotion rather than a place where things happen.",
-   "craft": "Painting from a balcony removes the horizon from the problem and leaves almost no drawn architecture to build depth with, so depth has to be produced by other means. Monet produces it three ways at once. He grades the paint itself across the canvas, thin and dry at one end and loaded at the other, so that weight reads as nearness. He sets the flags on diagonals and keeps the diagonals slanting inward, which builds a funnel out of separate marks that never join into a line. And he changes the size of his touch without changing its shape as the street recedes: the same short stroke serves for a flag, a window and a body, only smaller each time. The picture is one alphabet applied at three scales.",
-   "context": "Monet was thirty-seven and near the bottom of his fortunes. He had given up the house at Argenteuil in January, was about to move his family to Vétheuil, and Camille, his first wife, was already ill; she died the following year. Long afterwards he told the dealer René Gimpel that he had loved flags, that he had come upon the decorated street with his equipment that day and asked permission to paint from a balcony above it, and he finished this canvas and a companion view of the rue Saint-Denis the same day. The picture later belonged to the collector Alfred Lindon, was seized under the Occupation and logged into Hermann Göring's hoard, and was recovered after the war. It is now at the Musée d'Orsay.",
+   "craft": "Painting from a balcony removes the horizon from the problem and leaves almost no drawn architecture to build depth with, so depth has to be produced by other means. Monet produces it two ways at once. He sets the flags on diagonals and keeps the diagonals slanting inward, which builds a funnel out of separate marks that never join into a line. And he changes the size of his touch without changing its shape as the street recedes: the same short stroke serves for a flag, a chimney pot and a body, scaled to its distance. The picture is one alphabet applied at three scales.",
+   "context": "Monet was thirty-seven and near the bottom of his fortunes. He had given up the house at Argenteuil in January, was about to move his family to Vétheuil, and Camille, his first wife, was already ill; she died the following year. Long afterwards he recalled that he had loved flags, that he had come upon the decorated street with his equipment that day and asked permission to paint from a balcony above it, and he painted this canvas and a companion view of the rue Saint-Denis the same day. The picture later belonged to the collector Alfred Lindon, was seized under the Occupation and logged into Hermann Göring's hoard, and was recovered after the war. In 1982 it passed to the French state.",
    "deeper": [
     {
      "t": "Two walls leaning in",
@@ -32137,7 +33782,7 @@ window.CANVAS_INSPECT = {
      "y": 0.0377,
      "w": 0.7714,
      "h": 0.3045,
-     "body": "Begin at the wedge of pale sky, because it is the last quiet thing in the picture and both sides of the street are closing on it. The flags hang from poles that project toward you, so each housefront becomes a row of short diagonals sloping inward and down, and the two rows meet somewhere above the middle of the canvas. Up here the reds are brick and oxide, dragged so dry that the weave of the canvas keeps showing through between strokes. That thinness is doing work. It lets the sky read through the flags and keeps the top of the picture light and airy, so that all the weight can be carried lower down where you are standing."
+     "body": "Begin at the wedge of pale sky, because it is the last quiet thing in the picture and both sides of the street are closing on it. The flags hang from poles that project out over the street, so each housefront becomes a row of short diagonals rising inward, and the two rows meet somewhere above the middle of the canvas. Up here the reds are brick and oxide, dragged so dry that the weave of the canvas keeps showing through between strokes. That thinness is doing work. It lets the sky read through the flags and keeps the top of the picture light and airy, so that all the weight can be carried lower down where you are standing."
     },
     {
      "t": "The flag that got loose",
@@ -32145,7 +33790,7 @@ window.CANVAS_INSPECT = {
      "y": 0.173,
      "w": 0.276,
      "h": 0.184,
-     "body": "One tricolour has come free of the ranks and flies out into the open with sky on every side of it. Monet paints it as three separated marks: a blue blot at the top, a sliver of white, then a long red streamer trailing back down to the left. There is no pole, no building and no neighbouring flag inside its span, so the eye has nothing to measure it against and reads it as motion instead of as cloth. Every other flag in the picture is jammed against another one. This one has been given a whole pocket of air to itself, which is why it registers first from across a room and why the sky above the street reads as windy."
+     "body": "One tricolour has come free of the ranks and flies out into the open with sky on every side of it. Monet paints it as three separated marks: a blue blot at the top, a sliver of white, then a long red streamer trailing back down to the left. There is no pole, no building and no neighbouring flag inside its span, so the eye has nothing to measure it against and reads it as motion instead of as cloth. Every other flag in the picture is jammed against another one. This one has been given a whole pocket of air to itself, which is why the sky above the street reads as windy."
     },
     {
      "t": "Where the street stops",
@@ -32153,7 +33798,7 @@ window.CANVAS_INSPECT = {
      "y": 0.2452,
      "w": 0.276,
      "h": 0.1495,
-     "body": "Follow the two banks of flags down to their meeting and you arrive at the one passage in this picture that is actually drawn. A roofline runs across the top of the gap: a serrated edge of chimney pots in orange-red, a band of slate blue beneath them, then a row of window darks spaced along a cream front. Nothing else at this distance is described so exactly. It matters because it fixes the street as a real street, with a real block closing the view, and because it gives the eye something solid to arrive at after the loose diagonal rain on either side. The drawing here is small and it is carrying the whole structure of the space."
+     "body": "Follow the two banks of flags down to their meeting and you arrive at the far roofline, where the touch comes closest to drawing. A serrated edge of chimney pots in orange-red runs across the top of the gap, with dabs of yellow and a small flag among them and a stroke of slate blue beneath; below that, the front is built of upright strokes of cream, pink and grey. Nothing else at this distance is described so exactly. It matters because it fixes the street as a real street, with a real block closing the view, and because it gives the eye something solid to arrive at after the loose diagonal rain on either side. The drawing here is small and it is carrying the structure of the space."
     },
     {
      "t": "The housefront that never resolves",
@@ -32161,15 +33806,15 @@ window.CANVAS_INSPECT = {
      "y": 0.3035,
      "w": 0.253,
      "h": 0.253,
-     "body": "Now the opposite case. This stretch of the left-hand wall is built from long vertical strokes of olive, cream and ochre dragged straight down, with the grain of the canvas open to the air almost everywhere. No window and no shopfront comes out of it. Monet has decided that the building on this side is not a subject but a surface, a striped ground for the flags to be laid across, and he lays them across it in single loaded strokes of blue and brick-red at a steady diagonal. Step back and it reads convincingly as a tall Paris facade in shadow. Stand here and it is vertical scrubbing with the weave showing, and the flags are the only things on it that were painted as objects."
+     "body": "Now the opposite case. This stretch of the left-hand wall is built from long vertical strokes of olive, cream and ochre dragged straight down, with the grain of the canvas open to the air almost everywhere. No window and no shopfront comes out of it. Monet has decided that the building on this side is not a subject but a surface, a striped ground for the flags to be laid across, and he lays them across it in single loaded strokes of blue and brick-red at a steady diagonal. Step back and it reads convincingly as a tall Paris facade. Stand here and it is vertical scrubbing with the weave showing, and the flags are the only things on it that were painted as objects."
     },
     {
-     "t": "The one flag turned face-on",
+     "t": "A flag turned face-on",
      "x": 0.422,
      "y": 0.428,
      "w": 0.276,
      "h": 0.184,
-     "body": "Halfway down, a single large flag has swung round to show its cloth instead of its edge. Its pale field is the lightest thing below the sky; its red band breaks along the near edge into a row of separate scalloped strokes, like the teeth of a comb; the underside beneath it goes plum-brown where the light does not reach. This is the broadest piece of fabric in the street that shows you its face, and it sits exactly where the flags stop and the crowd begins. Above it the picture is cloth read edge-on. Below it the picture is people. This one object is the hinge between the two, and Monet has spent more description on it than on any single flag above it."
+     "body": "Halfway down, a single large flag has swung round to show its cloth instead of its edge. Its pale field is the lightest patch in this stretch of the street; its red band breaks, at our left, into a row of separate scalloped strokes, like the teeth of a comb; the underside beneath it goes plum-brown where the light does not reach. Out over the middle of the roadway it is the broadest cloth that faces you, and it sits where the flags down the middle of the street give way to the crowd. Above it, down the middle, the picture is cloth read edge-on. Below it the picture is people. This one object is the hinge between the two."
     },
     {
      "t": "One stroke each",
@@ -32177,7 +33822,7 @@ window.CANVAS_INSPECT = {
      "y": 0.725,
      "w": 0.391,
      "h": 0.23,
-     "body": "The crowd is made of single touches laid on a thin ground. A dark blue-black comma is a body; a smaller mark above it is a head; a dot of bright yellow is a hat catching the sun. Between them the roadway shows through as warm cream, thin enough in places that the weave is visible, and that is what keeps the crowd reading as people standing on a lit street instead of as a dark mass. Look closely and they are not smeared into each other: most separate cleanly into head and shoulders, and some carry a second colour, a rust-red, a violet. What is missing is faces. Not one figure here has features, and at this size not one needs them."
+     "body": "The crowd is made of single touches laid on a thin ground. A dark blue-black comma is a body; a smaller mark above it is a head; a dot of bright yellow is a hat catching the sun. Between them the roadway shows through as warm cream, thin enough in places that the weave is visible, and that is what keeps the crowd reading as people standing on a lit street instead of as a dark mass. Look closely and most are not smeared into each other: they stand as separate strokes, a few with a distinct head, and some carry a second colour, a rust-red, a violet. What is missing is faces. Not one figure here has features, and at this size not one needs them."
     },
     {
      "t": "Where the paint gets heavy",
@@ -32193,7 +33838,7 @@ window.CANVAS_INSPECT = {
      "y": 0,
      "w": 1,
      "h": 1,
-     "body": "From across the room this is a single vertical current of blue, white and red pouring down a narrow canvas, and that turns out to be a trick of arrangement, not of quantity. Take in the whole surface and most of it is the olive and ochre of ordinary housefronts and ordinary roadway; the tricolour is a scatter of small marks across that. What makes the flags win is that they carry nearly all the saturated colour in the picture and they all lean the same way. Monet has not painted a crowd celebrating. He has painted the hour in which a street stops being architecture and becomes weather made of cloth, with the people underneath reduced to the smallest unit the eye will still accept as a person."
+     "body": "From across the room this is a single vertical current of blue, white and red pouring down a narrow canvas, and that turns out to be a trick of arrangement, not of quantity. Take in the whole surface and much of it is the olive and ochre of ordinary housefronts and ordinary roadway; the tricolour is a scatter of small marks across that. What makes the flags win is that their reds and blues are set against that olive and ochre ground and they all lean in toward the middle of the street. Monet has not painted a crowd celebrating. He has painted the hour in which a street stops being architecture and becomes weather made of cloth, with the people underneath reduced to the smallest unit the eye will still accept as a person."
     }
    ],
    "beside": "Venice dressed for its feast days much as Paris did on 30 June 1878. In Venice: The Feast Day of Saint Roch, a London National Gallery picture nearly a century and a half older, Canaletto stands inside the crowd and finds the day’s centre: silks over the balconies, pictures hung beneath an awning, and the Doge in gold under his umbrella, ringed by patricians in scarlet. Monet climbs above the street and finds no centre at all. Flags lean in from both walls, and the people below are one stroke each.",
