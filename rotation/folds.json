@@ -14485,6 +14485,18 @@
     "from": "One Last Breath",
     "to": "Obsidian",
     "type": "absorb"
+   },
+   {
+    "from": "Antisleep, Vol. 03",
+    "to": "Antisleep Vol. 03",
+    "type": "spelling",
+    "reason": "spelling: Apple comma form → sleeve form (DV 61), blue-stahli campaign 2026-10-19"
+   },
+   {
+    "from": "Antisleep Vol. 1",
+    "to": "Antisleep Vol. 01",
+    "type": "spelling",
+    "reason": "spelling: sleeve form (DV 58), blue-stahli campaign 2026-10-19"
    }
   ],
   "tracks": [
@@ -14511,6 +14523,42 @@
     "to": "You'll Get What's Coming",
     "type": "spelling",
     "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan mb-refetch 2026-09-17)"
+   },
+   {
+    "from": "Armageddon (Instrumental)",
+    "to": "Armageddon",
+    "type": "variant",
+    "reason": "instrumental version ((Instrumental)) — The Devil (Instrumentals) / Deluxe Edition, blue-stahli campaign 2026-10-19 (DV 23)"
+   },
+   {
+    "from": "Down In Flames (Instrumental)",
+    "to": "Down In Flames",
+    "type": "variant",
+    "reason": "instrumental version ((Instrumental)) — The Devil (Instrumentals) / Deluxe Edition, blue-stahli campaign 2026-10-19 (DV 23)"
+   },
+   {
+    "from": "The Fall (Instrumental)",
+    "to": "The Fall",
+    "type": "variant",
+    "reason": "instrumental version ((Instrumental)) — The Devil (Instrumentals) / Deluxe Edition, blue-stahli campaign 2026-10-19 (DV 23)"
+   },
+   {
+    "from": "Rockstar (Instrumental)",
+    "to": "Rockstar",
+    "type": "variant",
+    "reason": "instrumental version ((Instrumental)) — The Devil (Instrumentals) / Deluxe Edition, blue-stahli campaign 2026-10-19 (DV 23)"
+   },
+   {
+    "from": "Enemy (Instrumental)",
+    "to": "Enemy",
+    "type": "variant",
+    "reason": "instrumental version ((Instrumental)) — The Devil (Instrumentals) / Deluxe Edition, blue-stahli campaign 2026-10-19 (DV 23)"
+   },
+   {
+    "from": "Demon (Instrumental)",
+    "to": "Demon",
+    "type": "variant",
+    "reason": "instrumental version ((Instrumental)) — The Devil (Instrumentals) / Deluxe Edition, blue-stahli campaign 2026-10-19 (DV 23)"
    }
   ]
  },
@@ -18512,6 +18560,42 @@
    "track": "Hypochondria - Live",
    "toAlbum": "We'll Do it Live",
    "reason": "dragged-under campaign 2026-10-19: the \"Instability (Live)\" / \"Chelsea (Live)\" album strings are 2021 pre-release single names; all six live rows are the We'll Do It Live EP (DV 41/47/48/100), EP positions already match"
+  },
+  {
+   "artist": "Blue Stahli",
+   "track": "Gravity",
+   "toAlbum": "Obsidian",
+   "reason": "blue-stahli campaign 2026-10-19: Obsidian #3 filed under a single string (DV 72)"
+  },
+  {
+   "artist": "Blue Stahli",
+   "track": "The Mountain",
+   "toAlbum": "Obsidian",
+   "reason": "blue-stahli campaign 2026-10-19: Obsidian #4 filed under a single string (DV 72)"
+  },
+  {
+   "artist": "Blue Stahli",
+   "track": "Fighter",
+   "toAlbum": "Copper",
+   "reason": "blue-stahli campaign 2026-10-19: Copper #6 filed under the single string; the library #1 is the single position (DV 39, 72)"
+  },
+  {
+   "artist": "Blue Stahli",
+   "track": "Death Will Have to Run",
+   "toAlbum": "Copper",
+   "reason": "blue-stahli campaign 2026-10-19: Copper #8 filed under a single string (DV 41, 72)"
+  },
+  {
+   "artist": "Blue Stahli",
+   "track": "Retribution",
+   "toAlbum": "Antisleep Vol. 03",
+   "reason": "blue-stahli campaign 2026-10-19: row with no album string; Antisleep Vol. 03 #3 (DV 51, 72)"
+  },
+  {
+   "artist": "Blue Stahli",
+   "track": "Trash Glamour Rock Chick",
+   "toAlbum": "Antisleep Vol. 02",
+   "reason": "blue-stahli campaign 2026-10-19: row with no album string; Antisleep Vol. 02 #3 (DV 50, 72)"
   }
  ],
  "Anathema": {

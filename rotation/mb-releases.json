@@ -58652,6 +58652,57 @@
       "Demon"
      ]
     ]
+   ],
+   "quartz": [
+    [
+     "",
+     [
+      "INTRO.S3M",
+      "Crimewave",
+      "Eat the Light",
+      "Anchor",
+      "Command Line Kill",
+      "Dead Channel",
+      "Summoning the End",
+      "Devoured by Design",
+      "Power Outage",
+      "Assassin"
+     ]
+    ]
+   ],
+   "copper": [
+    [
+     "",
+     [
+      "The Road Forward",
+      "Cello",
+      "Resonance",
+      "Dryheat",
+      "With Night",
+      "Fighter",
+      "No Escape",
+      "Death Will Have to Run",
+      "All in Memory",
+      "Copper Sands"
+     ]
+    ]
+   ],
+   "obsidian": [
+    [
+     "",
+     [
+      "Obsidian",
+      "Prognosis",
+      "Gravity",
+      "The Mountain",
+      "Nothing Ever Stays",
+      "Legion",
+      "One Last Breath",
+      "Catastrophe",
+      "Endure",
+      "Daylight"
+     ]
+    ]
    ]
   }
  },
