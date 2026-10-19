@@ -121,6 +121,13 @@
    "toArtist": "Kyuss Lewis",
    "toTrack": "Red Earth Bones",
    "reason": "split (kyuss campaign 2026-10-16, DV item 62): Red Earth Bones is on no Kyuss release in Wikipedia, MusicBrainz or Discogs; it is a 5 Oct 2025 upload under a \"Kyuss\" streaming account whose only named rights holder is \"Kyuss Lewis\" (Audiomack ℗). The row leaves the band; the name is the uploader's own credit, not a verified artist identity."
+  },
+  {
+   "fromArtist": "AVOID",
+   "fromTrack": "Script",
+   "toArtist": "Avoid (4)",
+   "toTrack": "Script",
+   "reason": "avoid campaign 2026-10-19: Script (Sammelwerk I, KONFLKT 2018) is by the Berlin techno producer Avoid (4), not the Seattle band (DV 39, 94)"
   }
  ],
  "Nocny Kochanek": {
@@ -18596,6 +18603,24 @@
    "track": "Trash Glamour Rock Chick",
    "toAlbum": "Antisleep Vol. 02",
    "reason": "blue-stahli campaign 2026-10-19: row with no album string; Antisleep Vol. 02 #3 (DV 50, 72)"
+  },
+  {
+   "artist": "AVOID",
+   "track": "Sour Apple",
+   "toAlbum": "Creature of Habit",
+   "reason": "avoid campaign 2026-10-19: a stand-alone UNFD single (24 Oct 2025) filed under its own string; the same recording is Creature of Habit #1 (DV 29, 48)"
+  },
+  {
+   "artist": "AVOID",
+   "track": "Burn",
+   "toAlbum": "Creature of Habit",
+   "reason": "avoid campaign 2026-10-19: a stand-alone UNFD single (30 Oct 2024) filed under the \"Sour Apple\" string; the same recording is Creature of Habit #4 (DV 30, 48)"
+  },
+  {
+   "artist": "AVOID",
+   "track": "If It Hurts",
+   "toAlbum": "Creature of Habit",
+   "reason": "avoid campaign 2026-10-19: a stand-alone UNFD single (24 Jan 2025) filed under the \"Sour Apple\" string; the same recording is Creature of Habit #5 (DV 31, 48)"
   }
  ],
  "Anathema": {
