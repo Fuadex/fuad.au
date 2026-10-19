@@ -3,6 +3,106 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "claude-monet-soleil-couchant-sur-la-seine-a-lavacourt-effet": {
+  "about": "The Seine froze over in December 1879 and its ice broke up in early January: Monet's sundown on the river comes from that winter, and in 1882 it was shown at the seventh Impressionist exhibition.",
+  "deep": "Monet told the critic Théodore Duret in March 1880 that one of three large canvases then under way was too much to his own taste, and certain to fail with the Salon jury. In its place he painted something \"wiser, more bourgeois\", and, he wrote, his exhibiting friends now called him a deserter. One account identifies this sunset as the canvas he would not send. Against that word wiser, the sunset's risks are plain: a thick orange sun on a sky brushed almost to a stain, a path of light broken partway down the river, and, at the sun's own height, a band dimmer than the upper sky and the near water.",
+  "by": "Opus 5.5"
+ },
+ "john-constable-cloud-study": {
+  "about": "Sky alone, oil on paper. On the back Constable pencilled the day, the hour, his compass bearing and the wind, but no year; a meteorologist found its rain-heavy cumulus fits the weather of 27 August 1822.",
+  "deep": "The Bishop of Salisbury, ordering a picture of his cathedral on 3 August 1822, asked for “a more serene sky”; on the 27th Constable painted this towering one. The previous October he had written to his friend John Fisher that in landscape the sky is “the key note”, “the chief organ of sentiment” and “the source of light in nature”. None of that summer's sky studies, one scholar notes, is known to have gone straight into a finished picture. This one bears out the last of those claims: its palest paint belongs to no cloud but to the open gap high beside the tower, where the sky itself shows.",
+  "by": "Opus 5.5"
+ },
+ "paul-cezanne-paysage-avec-des-peupliers": {
+  "about": "A summer landscape by Cézanne, about 1885–7. His dealer Vollard's stock book names neither poplars nor a house. In its words: two clumps of trees; in the middle, something like a reddish, greening mound.",
+  "deep": "Solidity on this canvas is won by saying a thing more than once, and the house below centre shows the cost. Maurice Denis reported Cézanne's wish to make of Impressionism \"something solid and durable, like the art of the museums\". No single right contour earns that here. On the poplars' left flank several strokes offer the edge, and the tree is fixed by their agreement. The gable takes the insistence further: a thinner blue line shadows a darker one across its grey, and the building stops agreeing with itself, either a second roof nearer us or a fold within one plane. There the drawing is crisp and the house still undecided.",
+  "by": "Opus 5.5"
+ },
+ "camille-pissarro-the-public-garden-at-pontoise": {
+  "about": "Strollers and children on a garden terrace in Pontoise, 1874 — perhaps Pissarro's \"Jardin de la ville de Pontoise\" in the first Impressionist exhibition, a place some scholars give to his 1873 view of the same garden.",
+  "deep": "Everything casual on this terrace has been worked out. In May 1874, with the first group exhibition open, Pissarro told Théodore Duret that the critics accused them \"of not studying\", and that he was \"going back to my studies\". Whatever rank the strollers' dress suggests, size here answers only to distance: a child in blue outgrows a lady in a veil. A tree trunk is planted in front of nearly everyone, a fixed upright against which each stroller's distance can be judged. And at far left a lantern barely clearing the parapet stands for a bell tower hidden beneath it, and for the height the garden is built on.",
+  "by": "Opus 5.5"
+ },
+ "katsushika-hokusai-tomigaoka-hachiman-shrine-from-the-series": {
+  "about": "Edo's Western-style perspective prints often bore the words \"perspective picture\" at the side, like a product name; this colour woodblock of the shrine at Fukagawa does too. Hokusai designed it around 1810; Iseya Rihei published it.",
+  "deep": "By its designer's own rule for perspective, this sheet has its proportions upside down. In an 1815 drawing manual Hokusai wrote that a picture should be two parts sky to one of earth, drawn \"in accord with the dividing lines\". Here sky keeps about the top fifth, down to the far water. Distance comes in tiers, each cut from the next by a pink band of mist, an old screen painters' device. Those bands serve as the sheet's dividing lines: above the torii the tall pine is printed over one, and the roofs beyond stand on its upper edge, their footings hidden.",
+  "by": "Opus 5.5"
+ },
+ "claude-monet-hotel-des-roches-noires-trouville": {
+  "about": "The hotel, built in 1866, was reckoned the finest on the Normandy coast. Claude Monet painted it at Trouville in summer 1870, weeks after his wedding — one of three canvases of the town's hotel-lined seafront.",
+  "deep": "The Empire under which this hotel went up had weeks left to run. Three weeks after Monet's wedding, France declared war on Prussia, and on 4 September, after the defeat at Sedan, Napoleon III's Second Empire fell. Whether the canvas was painted before or after war was declared is not known, and the promenade shows no sign of either. A historian reads the hotel's flags as the badge of its international clientele. Taken that way, the great striped flag at upper left and the two smaller ones by the tent are that company's colours, flying together over the promenade and all pulled the same way by one wind.",
+  "by": "Opus 5.5"
+ },
+ "paul-albert-besnard-esquisse-pour-l-hotel-de-ville-de-paris": {
+  "about": "Besnard painted this oil sketch in 1890 for a ceiling of the Paris Hôtel de Ville. That year a sketch for the ceiling hung overhead at the breakaway salon, with mirrors below that reflected it.",
+  "deep": "The title, Truth, Followed by the Sciences, Spreads her Light over Mankind, is taken literally. Truth draws her followers, one with a hand on her shoulder, her light nearly as pale as the great disc's rim. In 1890, faced with a sketch for the ceiling, Georges Lafenestre objected that sciences find truth, not the reverse, and that it invited laughter more than admiration. For Camille Mauclair, defending the finished ceiling, Besnard painted the official subject as written: Truth spreads light, \"and she will really spread it\", for a ceiling is \"an opening and not a lid\". The disc hangs at upper right, yet beneath it the men reaching or lifting their faces turn toward her.",
+  "by": "Opus 5.5"
+ },
+ "jozef-szermentowski-odpoczynek-oracza": {
+  "about": "Painted in France and signed 1861, early in Szermentowski's years abroad: a girl brings food to a ploughman under a group of oaks, his oxen yoked. Whether the field is French or remembered from Poland is argued.",
+  "deep": "Nothing on the canvas fixes this field's country, and the painter had reason to prefer the one he left. From a French village he wrote home that its nature was \"nothing special\" beside the Kraków and Sandomierz country. One account counts the picture among his first French canvases; another says he mostly painted the homeland from memory. A curator hears a homely note in the girl's paired pots, the oxen and the village church, yet oaks with a dead limb, a yoked team and a windmill fit either country. At the far right, mill and tower are a few pale strokes on the horizon, too small to tell whose horizon it is.",
+  "by": "Opus 5.5"
+ },
+ "henri-leopold-levy-untitled": {
+  "about": "At the Salon of 1874, Henri Lévy showed this canvas under a caption citing the Iliad: Death and Sleep bring Jupiter his son Sarpedon, killed at Troy. Homer has them carry the body to Lycia.",
+  "deep": "The king of the gods bends over his dead son, and in 1874 two critics saw the Christian God in him. Ernest Duvergier de Hauranne welcomed the likeness: despite the eagle, this Jupiter taking his executed son into his arms had something of the eternal Father, God the Father if dogma allowed it. Louis Gonse objected that so affectionate a movement might suit a compassionate Christ but not the king of the gods, \"absolutely contrary to antique tradition\". In Homer, Zeus sends Apollo to tend the body and never holds it. Here mouth and hand meet the dead face, and the eagle stands beside the god, at our right, away from the embrace.",
+  "by": "Opus 5.5"
+ },
+ "charles-francois-daubigny-fruhlingslandschaft": {
+  "about": "Orchards in flower, a couple in the grass, painted in 1862 at a size Daubigny now had room for: at Auvers he bought a plot \"covered in beans\" and built a studio eight metres by six.",
+  "deep": "Broken touch is the season's condition here: early spring comes in scattered pieces, and so does the paint. In 1861 Théophile Gautier regretted that a painter of such true feeling offered \"hardly anything but juxtaposed patches of colour\", and wanted trees that were \"neither plumes nor smoke\" but grew from a trunk to a clear silhouette. The spring field of the next year is patches throughout: blossom a dab at a time, bright turf butted against dark, the tall trees' leaves mere specks. The tall bare trees, though, grow as Gautier wanted, trunk and branch clean on the sky. On the land only one white is laid unbroken: the woman's dress, right of centre.",
+  "by": "Opus 5.5"
+ },
+ "claude-monet-valley-of-sasso-sunlight-effect": {
+  "about": "Above Bordighera in 1884, Monet walked through Sasso and other hill villages: marvellous landscapes, he wrote, but \"far too remote to go and paint\". He went back up and painted Sasso's valley five times; this is one.",
+  "deep": "Where no tree stands free of the growth, the picture raises an upright of light. Monet wrote home in February 1884 that the country around Bordighera was too dense, a place of terrible tangles to render, and that he was precisely \"the man of isolated trees and wide spaces\". The valley offers neither. The palm before the cream wall has its own trunk and crown, yet frond-shaped strokes recur in blue across the wall, binding even this tree into the growth. Wide space shrinks to the wedge of sky pinned between ridge and palms. What stands clear instead is the pale band down the middle, upright as a trunk between darker flanks.",
+  "by": "Opus 5.5"
+ },
+ "john-constable-trees-at-hampstead-the-path-to-church": {
+  "about": "Trees over a lane at Hampstead fill this 1821 canvas, nearly a metre tall and probably the picture Constable showed at the Royal Academy the next year under the plain title \"A study of trees from nature\".",
+  "deep": "Painting the trees was a way of holding them. Constable told his friend John Fisher in September 1821 that a \"natural (but highly elegant)\" group of ashes, elms and oak would serve him \"as if I had bought the field and hedge row\", and the group has been identified with this one. The canvas keeps both words, natural and elegant. Elegance lifts in the tall trunks at left; nature holds the dark trees beneath them, where a pine and a grey trunk behind it rise into one mass of needles and nobody settles which bears the crown. The purchase has a boundary: at the right the lane runs past the rails and off the canvas.",
+  "by": "Opus 5.5"
+ },
+ "pierre-auguste-renoir-la-seine-a-champrosay": {
+  "about": "A month-long stay with the Daudets at Champrosay in 1876 produced Renoir's portrait of Julia Daudet and this view of the Seine from a reed bank; both hung in the third Impressionist exhibition the next April.",
+  "deep": "No one stands on this bank, yet its reeds are painted the way a figure painter paints a crowd. Renoir once told his friend Rivière that landscape, too, is useful to a figure painter: out of doors one is led to set down tones nobody could imagine in a studio's dimmed light. The reeds turn that round: here figure painting serves landscape. Each head is a separate tapering touch, the whole bed bows one way like people pressed by a single gust, and at the crest, a little under mid-canvas, the line between reed and water holds as firm as the edge of a figure against its ground.",
+  "by": "Opus 5.5"
+ },
+ "ferdynand-ruszczyc-stary-dom": {
+  "about": "The family manor at Bohdanów, painted by Ferdynand Ruszczyc in 1903 — a late-17th-century larch house, called the old house to tell it from the later brick house, the Mur. Both houses burned in July 1944.",
+  "deep": "The wind and cloud over this house have been read as a threat to it and as proof that it lasts. One writer found menace in the clashing colour, and notes that some supposed it voiced the painter's anxiety for his family's nest. A curator reads the same disquiet as endurance, a manor grown into the ground. Another writer answers that nothing here foretells anything: smoke leaves a chimney, some shutters stand open, the stars at upper right are no portent. The same curator gives the peacock below the porch two meanings, eternity and a cry taken as a warning of death, while above it the wind tears leaves from the red climber.",
+  "by": "Opus 5.5"
+ },
+ "paul-serusier-tetraedres": {
+  "about": "Tetrahedra are the only figures on this canvas, which Sérusier painted around 1910. In his notes for pupils he wrote that, thought being weak, we can conceive only simple forms, \"a small number of geometric figures\".",
+  "deep": "Each tetrahedron here is a pyramid on a three-sided base, and in his teaching notes Sérusier wrote that a pyramid \"gives the idea of flame\", the vertical that of standing, the horizontal of rest. Plato had called this solid the seed of fire. Whether Sérusier meant these as fire is not known. Read that way, they burn in a flame's order: their lit faces run loosely from rose-red at the top through yellow and green to a dim blue-grey at the foot, as a flame shades from tip to root. Yet they take their light from our upper left, as objects do, and the rose-red one hangs point down.",
+  "by": "Opus 5.5"
+ },
+ "claude-monet-tempete-cotes-de-belle-ile": {
+  "about": "The storm of October 1886 caught Monet on Belle-Île, off Brittany. Five of his canvases, this among them, show its surf on the reefs. Foam, he wrote, flew \"in enormous flakes\" up to four kilometres inland.",
+  "deep": "Calm weather could spoil a storm picture. On 17 October 1886 Monet wrote that Poly, the fisherman carrying his gear, was dismayed to watch him rework the storm sketches of the two days before: to retouch such good things would be \"a crime\". Working on as the sea quieted, he found \"it was no longer that\". Nothing records which sketches, or ties this canvas to that day. Still, it shows the kind of mark at stake, one keeping the shape the brush gave it: off the reef right of centre, white sits in separate gouts, each holding its rim, and at lower right each foam line loops back in one stroke.",
+  "by": "Opus 5.5"
+ },
+ "john-william-inchbold-the-lake-of-lucerne-mont-pilatus-in-th": {
+  "about": "A white ground under the paint gives this lake view a light one curator likens to watercolour. Inchbold dated it 1857, the year his Jungfrau won Ruskin’s praise for moss that “embroiders the ground with gold”.",
+  "deep": "The exactness Ruskin demanded is kept so evenly here that it brushes against the fault he found in Inchbold a year later. In 1858, after a fortnight beside him at Bellinzona, Ruskin told his father, with a touch of humour, he believed he had left the painter “entirely uncomfortable and ashamed of himself”. The letter names no fault. His Academy review that year did: too few gentians, “half hidden in a litter of other flowers”, and no flower made the principal subject. Neither text is about this lake, yet at lower left the largest vine leaves, which might have been such a subject, are drawn no harder than the far summit's sharpest teeth.",
+  "by": "Opus 5.5"
+ },
+ "teofil-kwiatkowski-pejzaz-widok-doliny-cousin": {
+  "about": "Kwiatkowski, the Polish émigré remembered for his pictures of Chopin, went back again and again to paint the Cousin valley near Avallon, where his wife's family lived — this small oak panel about 1885, in his mid-seventies.",
+  "deep": "Old manner and new share this valley and meet at its far end. At his death in 1891 a few Polish papers reportedly called him \"a distinguished and elegant painter of a past period, swept away by impressionism\". A curator now finds the panel \"painted lightly and freely\", with \"the character of a painterly impression\". The left bank answers the obituary: a dark wing of trees against the light, the old way of framing a view. The curator's words fit the right bank's broken colour and, less expectedly, the far end. There the two meet: down the left side of the pale upright shape, broken blue-grey lies between the near-black wing and its cream crust.",
+  "by": "Opus 5.5"
+ },
+ "paul-cezanne-nature-morte-a-la-cruche": {
+  "about": "A jug, bread and fruit that Cézanne left unfinished about 1892–3, drawing still showing, much of the canvas bare. “No one but Cézanne would usually see this stage of his painting,” a conservator said.",
+  "deep": "Colour seems to have gone down across this table before anything was finished. The conservator Elisabeth Reissner, taking the canvas as her example, pictured Cézanne working “much as a spider might construct a web, conscious all the time of the whole”. Pavel Machotka called the jug “a pachyderm in a drawing room” and found it already holding the grey-greens, blues and red-browns of the rest. Its ochre flecks answer the brown wash at its foot, and the blue down its sides also rings the dish. The dish’s two front green apples are coloured only on the upper part that overlaps the fruit behind, which for Machotka fixes how each sits against the next.",
+  "by": "Opus 5.5"
+ },
+ "theo-van-rysselberghe-sailing-boats-and-estuary": {
+  "about": "Once dated anywhere from about 1887 to 1893, it is now named for the harbour entrance at Roscoff, Brittany, and dated 1889, the year of some of Théo van Rysselberghe's earliest seascapes in dots.",
+  "deep": "This view comes in from the side, past one block of masonry cut by the right edge and seen from above. Six of Seurat's Normandy coast pictures hung in Brussels in 1887, and one account says Van Rysselberghe's coast pictures of the late 1880s seem to have been inspired by Seurat's views at Grandcamp and Honfleur, which often lead in from land or a jetty at the side. The waterline is where to test what may be his own. The wall's reflection keeps the stone's weight in deep blue and trades the orange of the face above for the water's green, which runs thin through the near water and gathers close beneath the stone.",
+  "by": "Opus 5.5"
+ },
  "katsushika-hokusai-yoro-falls-in-mino-province-from-the-seri": {
   "about": "Nourishing the aged: the meaning of Yōrō, the era name an empress gave Japan in 717 after visiting a spring there. Hokusai's colour woodblock of its falls, designed about 1832–33, when he was past seventy.",
   "deep": "The falling lines of this design have given a forgery away. British Museum scientists found that one of their impressions was printed after Hokusai's death: its greens contain a synthetic blue unknown in Japan in his lifetime, and high in the falls, at upper right, a dark streak of water seems to vanish and then resume. Cliffs, clouds and hats can be copied shape by shape, but a stroke that must run unbroken down the whole drop leaves a copyist room to falter, and that copy faltered there. Beside the small bush on the column's upper-right edge, take a dark strand at its tip and follow it past the leaves to the spray.",
