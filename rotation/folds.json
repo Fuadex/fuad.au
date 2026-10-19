@@ -9052,6 +9052,49 @@
     "to": "Byłem",
     "type": "spelling",
     "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan mb-refetch 2026-09-17)"
+   },
+   {
+    "from": "Bylem (feat. As)",
+    "to": "Byłem",
+    "type": "spelling",
+    "reason": "spelling: ASCII feat-credit tag of the sleeve title Byłem (feat. Aś); the earlier fold only matched the accented form — same recording (pezet campaign 2026-10-20, DV 27)"
+   },
+   {
+    "from": "Nie Zobaczysz Łez (prod. Auer)",
+    "to": "Nie zobaczysz łez (prod. Auer, cuty: DJ Panda)",
+    "type": "spelling",
+    "reason": "spelling: the 2017 single string of the Muzyka współczesna recording (pezet campaign 2026-10-20, DV 70)"
+   },
+   {
+    "from": "Co Jest Ze Mną Nie Tak",
+    "to": "Co jest ze mną nie tak",
+    "type": "spelling",
+    "reason": "spelling: the Pezet & Czarny HIFI-credited row of the same 2016 single (pezet campaign 2026-10-20, DV 42)"
+   },
+   {
+    "from": "Piroman [Projekt Tymczasem]",
+    "to": "Piroman",
+    "type": "variant",
+    "reason": "variant: the same recording under its campaign title, link to canonical for reads (pezet campaign 2026-10-20, DV 37)"
+   },
+   {
+    "from": "SENIORITA (GORĄCA KREW) - ENKLAWA LIVE",
+    "to": "Seniorita (Gorąca krew)",
+    "type": "variant",
+    "reason": "variant: distinct live recording, link to canonical for reads (pezet campaign 2026-10-20)"
+   },
+   {
+    "from": "#1 (Clouds Fest Rework)",
+    "to": "#1",
+    "type": "variant",
+    "reason": "variant: JIMEK rework, link to canonical for reads (pezet campaign 2026-10-20, DV 143)"
+   }
+  ],
+  "artist": [
+   {
+    "from": "Pezet & Czarny HIFI",
+    "type": "variant",
+    "reason": "variant: producer co-credit on the 2016 single Co jest ze mną nie tak; the same recording sits under Pezet (pezet campaign 2026-10-20, DV 42, 178)"
    }
   ]
  },
