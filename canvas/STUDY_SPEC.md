@@ -2552,3 +2552,22 @@ reader already knew the brief; the 09-26 audit was the first cold read the mv6 b
 
 12. **A `beside` DOES NOT NAME THE COMPANION'S MUSEUM (Fuad 2026-10-10:** *"besides don't need to point at the museum, ideally it shouldn't as this can be seen in the other painting info anyway"*). The companion is named by title and painter, with the interval; where it hangs is left to its own Info. This amends part 2 (title and interval, no museum) and rules 10–11 ("companion with museum and interval" becomes "companion with interval"); checklist row 22 / 12d then verifies date and interval only. A place may appear only when the place itself is the rhyme (two pictures made for the same room), never as an identifier ("also in Washington"). The `companion.museum` field in a beside's JSON stays for the record.
     Scope (Fuad, option b): new besides follow this at once; an existing beside drops its museum clause when a lane next touches it — no standalone sweep. Fuad: "the old rule seemed to be good, just it seems the museum always kicked in" — the four parts stand; the museum had become an automatic clause, and that is what this removes.
+
+## 2026-10-20 — THE WAVE KIT, RE-TOURS, AND PROPOSED READS (waves 28–29)
+
+13. **THE WAVE TOOLKIT IS TRACKED (`wavekit/`).** The runners, gates, merge template, repair splicer and stage briefs
+    of the mv 6 pipeline live in `canvas/wavekit/` (README = how to start a wave). The briefs carry the lesson ledger
+    (lessons 1–72, `wavekit/briefs/BRIEF_common.md`). Each wave copies the kit into its `.dtmp/tourwaveNN/` workshop and
+    fills the per-wave blocks there. Per-wave content that touches a masked-window sighting never enters a tracked file.
+14. **A RE-TOUR REPLACES A TOUR BUILT ON THE WRONG OBJECT.** When a shipped tour's plate turns out to be a different
+    object (Rodin's The Kiss: the tour was boxed on the patinated plaster, and Fuad saw the marble), the work re-runs the
+    full pipeline on a plate of the right object. The merge REPLACES its art_inspect entry and its art_hires row (`RETOUR`).
+    Its shipped Info and Interpretation are checked claim by claim. Where claims fail, the reads stage drafts both tiers as
+    `PROPOSE-REPLACE`, and they ship only on Fuad's separate verdict. Without it the shipped reads are kept, so augment
+    and never overwrite.
+15. **DATA FLAGS ARE CLOSED IN A REPAIR LANE, NOT LEFT IN PRINTS.** Flags a wave raises about OTHER works (an old tour's
+    false claim, a wrong canon year or qid, a wrong image) are listed in the wave's print. On Fuad's word, one
+    `canvas-opus` agent per tour repairs it at the plate and the source, fixing the flagged sentence and any false
+    claim in the same sentences, including holder naming. `wavekit/splice-repairs.js` applies them with proof. Canon-row
+    fixes are proposed with sources, then applied as commented hand edits. A replica, cast or sister version shown in
+    place of the object seen is an image fix on the canon row (`img` / `imgGrid` / `imgZoom`), not only an art_hires row.

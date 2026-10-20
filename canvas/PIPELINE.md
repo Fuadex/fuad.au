@@ -47,7 +47,9 @@ Three hand-QC'd content overlays sit beside the script pipeline, all keyed by ca
   `deeper` detail tour that Study mode (`#/study/<id>`) flies through. Production and QC
   protocol: **[STUDY_SPEC.md](STUDY_SPEC.md)** (Opus subagent drafts from the actual
   image → fact-checked every claim and crop-verified every anchor box before merge).
-  **539 works covered as of 2026-09-04.** Entries also carry `beside` — a companion
+  **539 works covered as of 2026-09-04; 700 as of 2026-10-20 (wave 29).** New tours are made in waves with
+  the tracked toolkit in **[wavekit/](wavekit/README.md)** (runners, gates, merge template, repair splicer,
+  stage briefs). Entries also carry `beside` — a companion
   paragraph setting the work against one other picture in the catalogue — plus `refs`,
   the link that makes the companion's name clickable. 183 tours have one; every
   methodology band from mv 2 onward is complete. Two things about `refs` that are not
