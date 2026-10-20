@@ -18765,10 +18765,10 @@ window.CANVAS_INSPECT = {
  "refs": [{"id":"allegory-of-prudence","text":"Titian's Allegory of Prudence"}]
 },
 
-"picasso-family-of-saltimbanques": {"mv":3,
- "see": "Six circus performers stand on a bare pinkish plain under a washed blue-grey sky with no horizon line to catch them. Left to right: a tall harlequin in blue-and-rose lozenges seen from behind, a heavy man in a red suit and pointed cap, a bare-armed youth in flesh-pink tights carrying a bundle, a small boy in a blue costume, and a little girl in a pink tutu with her back turned. Off to the right, seated and separate, a woman in a straw hat. Nobody meets anyone else's eye. A flower basket and a jug sit on the ground.",
- "about": "This is a picture about a company that is not a company anymore. Six people share a trade and a patch of ground, yet no gaze crosses to another and no hand does real work; the troupe has been assembled and then emptied of the thing that would make it one. The circus figures Picasso painted through 1905 were his surrogates for the artist as outsider, and here the outsiderhood is turned inward on the group itself. The seated woman, held apart, makes the isolation structural rather than incidental. The subject is less a family than the failure of these bodies to cohere into one.",
- "craft": "The composition works by refusing the grouping it seems to offer. Picasso stands the five upright figures in a loose frieze, then breaks it with the seated woman set low and to the right, so the eye is pulled across an unbridged gap of empty ground. The palette is starved to rose-browns and greys, with the red suit and the woman's rust skirt as the only heat. There is no cast shadow and no receding plane; the ground reads as a flat tinted field, which strands the figures in a space that will not hold them together. Contours are drawn firmly, modelling kept thin.",
+"picasso-family-of-saltimbanques": {"mv": 3,
+ "see": "Six circus performers stand on a bare pinkish plain that rises to low hills under a washed blue-grey sky. Left to right: a tall harlequin in blue-and-rose lozenges seen from behind, a heavy man in a red suit and pointed cap with a little girl in a pink tutu before him, back turned, a bare-armed youth in flesh-pink tights shouldering a barrel-shaped load, and a small boy in a blue costume. Off to the right, seated and separate, a woman in a straw hat. Only the harlequin and the man in red turn towards each other; the youth, the boy and the woman face out at us. A flower basket and a jug sit on the ground.",
+ "about": "This is a picture about a company that is not a company anymore. Six people share a trade and a patch of ground, yet most faces turn out to us, not to one another, and no hand does real work; the troupe has been assembled and then emptied of the thing that would make it one. The circus figures Picasso painted through 1905 were his surrogates for the artist as outsider, and here the outsiderhood is turned inward on the group itself. The seated woman, held apart, makes the isolation structural rather than incidental. The subject is less a family than the failure of these bodies to cohere into one.",
+ "craft": "The composition works by refusing the grouping it seems to offer. Picasso stands the five upright figures in a loose frieze, then breaks it with the seated woman set low and to the right, so the eye is pulled across an unbridged gap of empty ground. The palette is starved to rose-browns and greys, with the red suit and the woman's rust skirt as the only heat. Shadows shrink to a grey smear at the feet and the plain stops at a bare ridge; the ground reads as a flat tinted field, which strands the figures in a space that will not hold them together. Contours are drawn firmly, modelling kept thin.",
  "context": "Painted in Paris in 1905, this is the largest and last of Picasso's Rose Period saltimbanque works, the summit of a run of harlequin and acrobat pictures made when he was twenty-three and poor among the circus performers of Montmartre. The canvas is near mural scale, a summary statement of the whole series. A 1980 X-ray found two entirely different pictures underneath — first a circus family, then a pair of acrobats — reworked over months as the palette shifted from blue toward rose, so the final frieze is the residue of a long argument with himself rather than a scene set down at once. It hangs at the National Gallery of Art in Washington, in the Chester Dale collection.",
  "deeper": [
   {
@@ -18785,15 +18785,15 @@ window.CANVAS_INSPECT = {
    "y": 0.13,
    "w": 0.26,
    "h": 0.62,
-   "body": "Against the willowy figures around him, the man in red is a mass. His suit swells into a single unbroken shape, the largest field of colour on the canvas, and its warmth is the first thing that reaches the eye from a distance. The pointed cap and ruff mark him as the comic fool, the buffoon of the troupe, yet the face under the cap is heavy and unamused, jowls sagging, gaze wandering off past the boy beside him. Picasso lets the costume carry all the theatrical signal and gives the head none of it. The result is a comedian who has quit the act mid-shift, the professional gaiety left in the fabric while the man wearing it has gone somewhere else."
+   "body": "Against the willowy figures around him, the man in red is a mass. His suit swells into a single unbroken shape, the largest field of colour on the canvas, and its warmth is the first thing that reaches the eye from a distance. The pointed cap and ruff mark him as the comic fool, the buffoon of the troupe, yet the face under the cap is heavy and unamused, jowls sagging, turned a little towards the harlequin, the eyes smudged to dark slits. Picasso lets the costume carry all the theatrical signal and gives the head none of it. The result is a comedian who has quit the act mid-shift, the professional gaiety left in the fabric while the man wearing it has gone somewhere else."
   },
   {
-   "t": "The bundle on the shoulder",
+   "t": "The load on the shoulder",
    "x": 0.36,
    "y": 0.14,
    "w": 0.22,
    "h": 0.24,
-   "body": "The tall youth in flesh-pink tights raises one arm to steady a soft sack slung at his shoulder. It is the only piece of luggage in the picture, and it does the quiet narrative work: these are travelling people, carrying what they own on their bodies. The raised arm also opens his silhouette against the sky at the picture's highest point, giving the frieze its tallest note — a lump of dun colour and a curled hand enough to turn standing figures into a company caught mid-journey rather than posed."
+   "body": "The tall youth in flesh-pink tights raises one arm to steady a barrel-shaped load slung behind his head, its pale oval end turned towards the man in red, who grips a brown cloth over his own shoulder. The load does the quiet narrative work: these are travelling people, carrying what they own on their bodies. The raised hand also breaks his silhouette against the sky above the ridge, giving the middle of the frieze its sharpest upward note — a grey cylinder and a curled hand enough to turn standing figures into a company caught mid-journey, not posed."
   },
   {
    "t": "The girl's turned back",
@@ -18809,7 +18809,7 @@ window.CANVAS_INSPECT = {
    "y": 0.4,
    "w": 0.22,
    "h": 0.45,
-   "body": "The most important passage here is the one where nothing is painted. Between the standing troupe and the seated woman lies a wedge of empty rose-brown ground, and Picasso has done everything to keep it open. He sets the woman lower and further right than the frieze would reach, faces her body outward, and gives the space between no prop, no shadow, no path across. Measure the wedge and it is wider than any single figure, a deliberate over-allowance of emptiness where a group portrait would have crowded its people together. The gap is the one place the ground speaks for itself, an unbroken field of tinted earth running from the troupe's feet to the woman's hem, so the two parties stand on one continuous plane and still cannot reach each other. The eye tries to bridge it and is defeated each time, because Picasso has withheld the one thing that would help — a glance, an arm, a shared object thrown across. This void turns a group portrait into a study of estrangement: the subject is not the performers but the distance the painter has opened and refused to close, carried entirely by this stretch of blank ground."
+   "body": "The most important passage here is the one where almost nothing is painted. Between the standing troupe and the seated woman lies a stretch of rose-brown ground, and Picasso has done everything to keep it open. He sets the woman lower and further right than the frieze would reach, faces her body outward, and gives the space between only the boy's short grey shadow and her plain jug at its far edge, no path across. The gap is about as wide as the boy himself and narrows almost to nothing at the ground, where her skirt spreads towards his shadow; the two parties stand on one continuous plane of tinted earth and still do not touch. The eye tries to bridge it and is defeated each time, because Picasso has withheld the one thing that would help — a glance, an arm, a shared object thrown across. The boy and the woman, nearest each other, both face out at us. This void turns a group portrait into a study of estrangement: the subject is the distance the painter has opened and refused to close."
   },
   {
    "t": "The woman set apart",
@@ -18817,20 +18817,25 @@ window.CANVAS_INSPECT = {
    "y": 0.4,
    "w": 0.29,
    "h": 0.53,
-   "body": "The seated woman, often identified as Fernande Olivier, Picasso's companion in these years, is the picture's counterweight and its outsider. She wears a straw hat and a pale wrap over a rust-red skirt, the skirt echoing the jester's suit so that she is tied to the troupe by colour even as she is cut off from it by space. She looks off to the right, out of the group entirely, chin lifted. A small jug rests on the ground beside her. Placed low and alone, she completes the composition's argument: the frieze needs her weight on the right to balance, and yet she refuses to belong to it. She is present and unjoined at once."
+   "body": "The seated woman, often identified as Fernande Olivier, Picasso's companion in these years, is the picture's counterweight and its outsider. She wears a straw hat and a pale wrap over a rust-red skirt, the skirt echoing the jester's suit so that she is tied to the troupe by colour even as she is cut off from it by space. Her face is turned full to us, away from the troupe, the eyes sunk in shadow. A small jug rests on the ground beside her. Placed low and alone, she completes the composition's argument: the frieze needs her weight on the right to balance, and yet she refuses to belong to it. She is present and unjoined at once."
   },
   {
-   "t": "Ground into sky, no horizon",
+   "t": "Bare ground, low ridge",
    "x": 0,
    "y": 0,
    "w": 1,
    "h": 1,
-   "body": "Step back and look at what the figures are standing on. The pinkish-brown plain rises and simply dissolves into the pale blue-grey sky with no drawn horizon, no distant town, no road. The setting is nowhere in particular, a stage of bare tinted air. This is the decision that lifts the picture out of genre and into something closer to a vision: strip away the shadows and the ground plane and the six performers stop being circus folk in a field and become figures suspended in a void, held only by each other's proximity and by the frieze Picasso has drawn them into. The emptiness is not a background left unfinished; it is the subject's condition."
+   "body": "Step back and look at what the figures are standing on. The pinkish-brown plain climbs to a low ridge of hills that meets the pale blue-grey sky along one firm edge: nearly level at the left, swelling behind the youth and the boy, sloping away to the right, where the earth turns bluish at the canvas edge. On that ridge there is no town, no road, no tree. The setting is nowhere in particular, a stage of bare tinted earth. This is the decision that lifts the picture out of genre: with nothing on the land to place them, the six become figures set down in an emptiness, held only by each other's proximity and the frieze Picasso has drawn them into. The emptiness is not a background left unfinished; it is the subject's condition."
   }
  ],
  "by": "Opus 4.8",
  "beside": "The same year and the same young painter, twenty-three and poor in Montmartre, stand behind a second canvas in this collection. Lady with a Fan, made in the same 1905 as Picasso eased out of his blue years by way of the antiquities rooms downstairs at the Louvre, where the looking hardened into a single flat, upheld palm. There the pressure runs inward, a body compacted into one still Egyptian gesture, everything squeezed toward the hand. Here it runs the opposite way — outward, into distance — the figures pulled apart across a plain of empty ground the painter refuses to close. One canvas concentrates a person; this one strands a company.",
- "refs": [{"id":"picasso-lady-with-a-fan","text":"Lady with a Fan"}]
+ "refs": [
+  {
+   "id": "picasso-lady-with-a-fan",
+   "text": "Lady with a Fan"
+  }
+ ]
 },
 
 "morisot-the-sisters": {

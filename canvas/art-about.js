@@ -4247,7 +4247,7 @@ about: "Van Gogh drew these beached fishing boats on the Mediterranean shore in 
 by: "Opus 4.8" },
 
 "giant-peacock-moth": {
-about: "Van Gogh found this moth in the asylum garden at Saint-Rémy in May 1889 and wrote to Theo calling it a death's-head moth — but it was a giant peacock moth, and the skull-like marking he described exists only on the former species. He later painted it from a drawing, having decided after all to kill the insect so he could study it.",
+about: "Van Gogh found this moth in the asylum garden at Saint-Rémy in May 1889 and wrote to Theo calling it a death's-head moth — but it was a giant peacock moth, and the skull-like marking he described exists only on the former species. He drew it rather than kill it, and painted it later from that drawing.",
 by: "Opus 4.8" },
 
 "the-raising-of-lazarus-van-gogh": {
