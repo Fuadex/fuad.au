@@ -101,6 +101,241 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+ "j-m-w-turner-norham-castle-sunrise": {
+  "mv": 6,
+  "see": "Norham Castle at sunrise over a still river. Near the centre the castle stands on its rise as a blue-grey mass, and above it the sun is a wide pale-yellow glow. The castle's reflection hangs in the water below. Right of centre a red-brown cow stands in the shallows; farther right are a second, fainter animal and a far bank, and at left a gold bank slopes to the water. The upper sky is a lilac-grey veil that could be mist or thin cloud. The surface keeps to pale and middle tones, and the castle's grey under the sun carries the main contrast.",
+  "about": "Norham is a ruined castle on the river Tweed, painted at sunrise facing straight into the sun. That choice sets the terms of the picture: a place has to be recognised at the hour when it is hardest to look at. There is little to know it by beyond the ruin on its rise and its reflection, a bank on either side and a cow in the water. Ruin and reflection stack roughly on one upright line, just left of the sun near the centre, and around that axis sky and river are given over to the colour of the morning.",
+  "craft": "The canvas stays close, in general composition, to Turner's own print Norham Castle on the Tweed, issued on 1 January 1816 in his Liber Studiorum series under the heading P, for Pastoral. It is one of about eleven late oils roughly alike in size, style and colouring, all but perhaps two built on old Liber designs, and the group's only P subject. The paint goes on thin. Martin Butlin and Evelyn Joll, his paintings' cataloguers, class the group as unfinished, with a hedge on the word, and warn that finishing a lay-in like this one, the thin first stage of a picture, might have 'radically changed' its mood.",
+  "context": "Besides its colourman's stamp, the canvas carries a second stamp that seems to include the date [18]44, so it was painted after that year; it is put at about 1845, when Turner turned seventy. On 20 February 1845 he became Acting President of the Royal Academy. That year he made two last journeys to the Continent, calling on the French king, Louis-Philippe, at Eu, and his health broke down; Ruskin's scheme of his career marks 1845 as the start of a 'Decline'. In May and June he had fifteen new sets of his Liber Studiorum prints run off, the series behind this late group of canvases, and Eric Shanes proposed about 1845 for the group because of that reprint.",
+  "deeper": [
+   {
+    "t": "The sun's broken arc",
+    "x": 0.33,
+    "y": 0.1,
+    "w": 0.34,
+    "h": 0.35,
+    "body": "Above the castle, near the canvas's centre line, the sun is a glow of pale yellow. Its yellow climbs out of the grey over a wide band on every side, with no rim where a disc would end. What gives the light a place is the curve of broken strokes over its top: short, dragged touches in a deeper yellow than the glow, bending like the upper rim of a halo and stopping before they close underneath. They keep their own ragged edges, laid over the soft yellow without being blended into it. The sun is made of two kinds of paint at once, a breath of colour spread wide to set the light and a few firm marks to say where it is, and below, the glow comes down onto the castle's crown."
+   },
+   {
+    "t": "Four edges of the castle",
+    "x": 0.27,
+    "y": 0.38,
+    "w": 0.31,
+    "h": 0.3,
+    "body": "Below the sun the castle rises as one blue-grey mass, its top a ragged line of towers. It stands between us and the sun, so the walls turned toward us are the unlit ones, and its four edges are not handled alike. Along the crown and down the left flank the change from yellow sky to grey stone is abrupt, and thin dark vertical strokes stand up from the roofline where towers would be. On the right, toward the light, the mass gives way over a much wider band: cream patches open inside the silhouette and the glow eats into the walls, so the side nearest the sun is the least defined of the four. Downward the grey pales again, darkest just under the crown and fading into the mist above the river. The building is held by two firm edges and given up along two others, and the sun's position decides which."
+   },
+   {
+    "t": "A straight edge in the river",
+    "x": 0.29,
+    "y": 0.58,
+    "w": 0.305,
+    "h": 0.28,
+    "body": "Beneath the castle its reflection hangs in the water as a violet block, nearly as dark as the walls above it, reaching down from the far shore in two soft prongs. Its right side holds the surprise. There the violet meets a column of yellow along a straight vertical edge, running down from a notch where the far shoreline breaks open and lets a sliver of yellow through. Above, the castle was let go on its sunward side; in the water below, the same meeting of dark and light is kept as a line, close to ruled until it loosens lower down."
+   },
+   {
+    "t": "The red cow",
+    "x": 0.49,
+    "y": 0.62,
+    "w": 0.3,
+    "h": 0.28,
+    "body": "Right of centre a cow stands in the shallows, head lowered toward our right and close to the surface. Its body is a few strokes of red-brown, the strongest red on the canvas, with a pale cream line along the top of the back. Head and legs are thinner, paler strokes of ochre. Under the body the legs run on into long vertical streaks of that warm colour, its reflection, pulled down with the drag of the legs themselves, so the point where hoof meets water is hard to place. Small as it is, the cow gives the picture a warm dark accent among its yellows, greys and violets, and a measure: an animal's height set against the breadth of the water and the distance to the castle."
+   },
+   {
+    "t": "The far bank, thinly said",
+    "x": 0.665,
+    "y": 0.44,
+    "w": 0.3,
+    "h": 0.32,
+    "body": "On the far right the river's bank is a band of short upright strokes in violet-grey and ochre, a screen of trees or buildings, with touches of gold near the top at its left end. At the water's edge below them stands a second animal, far fainter than the cow: a brown body and legs, without the cow's red. Higher up, a distant ridge shows as a faint brown contour against the lilac sky. Thin as this corner is, it is not blank. Each thing in it has an outline and a direction, and the second animal is shaped like the cow, painted brown and soft."
+   },
+   {
+    "t": "The gold bank",
+    "x": 0,
+    "y": 0.36,
+    "w": 0.32,
+    "h": 0.32,
+    "body": "At the left edge a steep bank comes down to the river in gold and ochre, its upper rim the brightest part of it. The paint here behaves differently from the sky's. It is dragged and dabbed in a denser layer whose small ridges still show, and its yellows are browner and heavier than the glow above the castle. Into the gold, near the foot of the slope, a chalky grey has been pulled down in a vertical patch, and a brown smear sits at the waterline, its shape too vague to name. The bank is given more body than anything near it, and its warm weight at the left edge sits against the pale, bright centre."
+   },
+   {
+    "t": "The near water",
+    "x": 0,
+    "y": 0.66,
+    "w": 0.45,
+    "h": 0.34,
+    "body": "The water at lower left, nearest us, is covered edge to edge yet describes very little. Olive and ochre veils lie over each other; what drawing there is comes from pale looping lines near the bottom edge and a band of cool violet running straight down below the chalky patch on the bank. To the right of that band spreads a broad orange-yellow glow. It is darker and more orange than the yellow column under the castle, which is itself darker than the sky around the sun: the warm light deepens in steps as it comes down the canvas toward us. The nearest water ends up holding a deep warmth and very little detail, the reverse of a view that sharpens its foreground."
+   },
+   {
+    "t": "Yellow at the top edge",
+    "x": 0.42,
+    "y": 0,
+    "w": 0.48,
+    "h": 0.13,
+    "body": "Back at the top of the canvas, far above the sun, two drifts of yellow cross the sky: short, tapered strokes, separate from one another and slanting the same way, like the arc over the sun scattered thinner. Here they lie on a cooler ground, a lilac-grey with no warmth in it, so each touch stands out. Their edges stay crisp against it, with no yellow beneath them. The colour that round the sun is spread wide as a glow arrives up here only in single touches, each set down on its own."
+   }
+  ],
+  "beside": "Late in life two painters turned to a landmark each had painted many times, and only one of them drew its edge. Norham's castle has no outline drawn round it; its shape ends wherever the grey gives way to yellow sky or to mist. Paul Cézanne's La Montagne Sainte-Victoire vue des Lauves, of 1902–06, one of about eighty views he made of that peak, this one from the hill by his last studio, keeps the outline. The peak rises left of centre in blues and violets near the sky's own, yet a dark blue line, doubled in places, runs down its right-hand slope and on along the ridge.",
+  "refs": [
+   {
+    "id": "paul-cezanne-la-montagne-sainte-victoire-vue-des-lauves",
+    "text": "La Montagne Sainte-Victoire vue des Lauves"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "claude-monet-le-havre-bateaux-de-peche-sortant-du-port": {
+  "mv": 6,
+  "see": "A harbour beside a stone quay. At left a wall of tall house-fronts runs back toward the water; in the middle a crowd of fishing boats stands with sails up, some brown or near-black, some near-white, behind them more sails, a dark vessel thick with masts and, at right, a pier with a pavilion. The quay, full of dark walkers and thin lamp-posts, curves down from the lower left; open water takes the lower right corner. Above lies a sky of pinkish-grey strata with blue dashes and a darker drift over the masts. Uprights everywhere stand between two horizontal fields of sky and water, in greys, lilac, teal and ochre.",
+  "about": "Here the fishing fleet puts out to work from the port where Monet's family had settled in 1845 and where he grew up. His biographer Gustave Geffroy wrote that the town's streets opening onto the sea had marked him for good, and the canvas shows the town meeting the water as a public place. Crews take the boats out while the quay fills with townspeople in town clothes, walking and standing at the edge of other men's work. The boats the title names keep to the middle distance, out beyond the crowd on the quay.",
+  "craft": "The canvas, a metre wide, is signed and dated in dark paint at lower left, “Claude Monet. 74”, and nearly every colour on it is a pale tint: lilac-grey, blue-grey, a greyed teal, a pale ochre. In the sky the long horizontal pulls of pink-grey and violet are brushed into one another so they merge without seams, the darker drift is dragged thinly across them with soft, broken edges, and the clean blue dashes are laid over the strata with their edges intact.",
+  "context": "Monet was living at Argenteuil by 1874, and Jennifer Thompson, a curator writing on a sister canvas, places him back in Le Havre that January and suggests he “may have returned over the holidays in search of fresh material” for an exhibition a newly organised group of independent artists was preparing; it opened on 15 April. From the north jetty he painted this view twice. That sister canvas shows the identical view; this one, in her words, shows it “on a rainy day.” The sister picture was not among the works the group hung that spring.",
+  "deeper": [
+   {
+    "t": "Sweeps out",
+    "x": 0.4,
+    "y": 0.24,
+    "w": 0.23,
+    "h": 0.5,
+    "body": "In the centre, a boat out on open water has its two dark sails up and its sweeps out as well: the long single strokes reaching from the hull toward our left and our right are oars, long enough to be worked from the deck, so the boat is being taken out of port with both sail and oar. The hull is three flat horizontal strokes, a dark gunwale, a salmon band and a broad cream patch below, with several dark figures standing on board. The sails are built from downward drags of brown-grey and near-black that break and let paler paint through, so the cloth carries the track of the brush. Behind, a second boat shows a salmon-and-yellow hull; its dark sail and the first boat's overlap, and the two vessels make one cluster of masts until their hulls pull them apart on the water."
+   },
+   {
+    "t": "Two red lines",
+    "x": 0.61,
+    "y": 0.22,
+    "w": 0.22,
+    "h": 0.46,
+    "body": "Right of centre, a single-masted boat carries a broad mainsail of blue-grey cloth. Two red-orange lines run diagonally down it, each one dragged stroke lifting the picture's warm colour into the rigging, and a thinner yellow line rides beside the mast. The cloth is close in value to the haze and pale far sails behind it, a shade darker than the sky above, so the sail is held by drawing more than by contrast: the dark mast at its left edge, the coloured lines, and the hull beneath, a white band ruled along black with firm edges and a teal patch of reflection under it. The dark vessel beyond it, crowded with masts and with a flag flying above, meets the cloth along its outer edge, and there the sail shows paler. Above, a smaller sail, near-white with a cyan cast, is lighter than the sky around it."
+   },
+   {
+    "t": "Façades and the stone pier",
+    "x": 0,
+    "y": 0.14,
+    "w": 0.36,
+    "h": 0.52,
+    "body": "At left, the tall house-fronts along the quay are laid in the same vertical drags as the sails in front of them, blue-grey for the walls and short dark dashes for windows, so that stone and canvas interleave in one rank of uprights. The roofline is firm: chimneys and gables cut a jagged edge against the sky. Below the houses a stone pier runs out, a crowd strung along its top. Its long face toward us is slate-dark while its end, turned to the harbour, takes a warm ochre; the light comes from the far side of the harbour, and the pier's face turned to us stands in shade. Off the pier's tip, a cluster of orange-red dabs sits low on the water beside the brown sails."
+   },
+   {
+    "t": "A lantern against the water",
+    "x": 0.17,
+    "y": 0.53,
+    "w": 0.27,
+    "h": 0.37,
+    "body": "Left of centre, a street lantern on a tall, thin post has harbour water behind its head. Water lies wholly below the horizon, so anything seen against it is below eye level: the painter's eye is higher than the lantern, somewhere above the quay. That is why the crowd spreads out instead of piling up, with pavement showing between the figures. Each figure is a column of paint with a dab for a head: a woman in a long black dress, two children whose legs are flicked in red, a figure in white beside them. Above them, a boat with a yellow-green hull and a white sail lies close in against the quay."
+   },
+   {
+    "t": "Reflections underfoot",
+    "x": 0.4,
+    "y": 0.7,
+    "w": 0.24,
+    "h": 0.3,
+    "body": "In the lower centre, two men in hats walk side by side, one carrying a cane, and below each of them a broken column of grey streaks runs straight down the paving toward us. The quay is wet, and these are its reflections. Direction alone cannot prove it, since with the light across the harbour shadows would also run toward us; the proof is that the columns stand plumb and parallel, under the pair, under the man in the dark jacket to their right, and under the lamp-post at right, whose column carries the post on below its foot. Shadows thrown by one light spread like spokes from the point on the horizon beneath it; a level wet surface drops each reflection straight down under its object, wherever that object stands. Short horizontal strokes of lilac-grey and ochre cross those verticals, so the paving holds both the people on it and the sky it gives back, and its palest strip runs down the middle of the quay, under the brightest part of the sky."
+   },
+   {
+    "t": "Six aboard",
+    "x": 0.735,
+    "y": 0.585,
+    "w": 0.26,
+    "h": 0.315,
+    "body": "At lower right, a rowing boat crosses the open water with six heads in it, each a dark touch. The hull is one long brown stroke ending in a blue-black point at our right, and two oars trail toward our left as thin dark lines. Around it, the harbour is built of short horizontal strokes of turquoise, pale grey, near-white and a few darker teal, each a separate touch, so the surface is ribbed and choppy. The strokes keep level across the whole stretch, and that steady horizontal lays the water down flat."
+   },
+   {
+    "t": "The boats farther out",
+    "x": 0.29,
+    "y": 0.29,
+    "w": 0.18,
+    "h": 0.29,
+    "body": "Above and left of the central boat, the sails farther out are near-white triangles, a few warmed toward pink, with one tall shape at right in pale ochre, all standing against a band of blue-grey. Each sail keeps an outline and a point, and the largest is laid with a loaded brush whose white breaks into crumbs along its foot. The haze at the far end of the harbour is carried by colour, the blue-grey band and the softened whites, and the shapes inside it are still drawn one by one."
+   }
+  ],
+  "beside": "In Regatta at Sainte-Adresse, which Claude Monet painted in 1867, townspeople also gather at the water's edge with sails beyond them, and there the sails are what brought the town to the shore. On the shingle at lower left people sit and stand in straw boaters and pale skirts, a woman under a white parasol, a man on his cane with his back to us, looking out at white racing yachts all heeling one way. Brown sails show there only far off, three small triangles under the opposite shore. At Le Havre the water belongs to the work, dark-sailed fishing boats under way at its centre, and leisure has only the quay.",
+  "refs": [
+   {
+    "id": "regatta-at-sainte-adresse",
+    "text": "Regatta at Sainte-Adresse"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "w-adys-aw-podkowinski-sza-szkic": {
+  "mv": 6,
+  "see": "An upright picture divided in value: a grey field on our left, a brushy near-black over most of the right. A black horse with its mouth open drives toward the upper left, forelegs folded high at its chest, hind legs tucked beneath its belly. A naked woman with loose yellow hair clings to its neck, a long pale shape on the dark side. The grey is air at the top and stony ground at the bottom, with no horizon line between them.",
+  "about": "A woman and a horse caught in one fit, which the picture divides between them. Szał, the name this sketch goes by, is Polish for a seizure that carries a person beyond themselves: rage, frenzy, madness. The outward side of it goes to the horse, which drives toward the grey at upper left with its head flung forward and its mouth wide open. The inward side goes to the woman, pale and pressed along the animal's neck, one arm hooked over it, her face turned up into its throat with the eyes shut.",
+  "craft": "Work toward the big picture ran in stages: separate studies, among them a horse's head from 1892, drawn sketches and oil sketches, with the full-size canvas, more than five times this one's height, painted last, over about three months. Paint reaches all four edges, and every light is put on as paint, none a patch of bare ground held in reserve.",
+  "context": "Warsaw, 1893. Podkowiński was twenty-seven, and his pictures ran in two strands: outdoor scenes from summers with friends at Chrzęsne and Mokra Wieś and, from about 1892, dark Symbolist work beside them. Charazińska read this as a split in his art, pointing to a charcoal self-portrait of 1892 whose face is divided, part hidden in dark, part given to light. The tuberculosis caught as a student was probably worsening. Late that year he began the full-size canvas, working in the glazed belvedere of the Kossakowski Palace on Nowy Świat, the street he had painted from that window in 1892. This sketch belongs to the dark strand, months before the big picture brought him fame and scandal in 1894.",
+  "deeper": [
+   {
+    "t": "The body brought to a close",
+    "x": 0.39,
+    "y": 0.25,
+    "w": 0.26,
+    "h": 0.43,
+    "body": "In the middle of the picture the woman's body runs from shoulder to pointed foot against black, handled unlike anything around it. The flesh is laid in short parallel strokes that bend with the form; around the hip they curve like hatching in a drawing, so the brush itself describes the roundness with very little shadow. Along her back and hip, facing the darkness on our right, the cream is dragged slightly outward into the black and the contour softens to a haze; where her thigh meets the horse the edge is tighter and shadowed. Even the toes are picked out with tiny dark touches: amid a brushy horse, this figure is modelled from end to end, with no passage left open."
+   },
+   {
+    "t": "Four legs, all folded",
+    "x": 0.22,
+    "y": 0.54,
+    "w": 0.4,
+    "h": 0.34,
+    "body": "Below the woman's foot, the horse's hind legs come out of its haunch, and both are folded. The right-hand one turns at a hock drawn as one sharp point, the joint that marks a hind leg, with a few hairs flicking off it, and its lower leg then runs forward to a hoof seen almost end-on, rimmed with a pale line. The left-hand one bends at the fetlock, the low joint above the hoof, and hangs the hoof downward. Add the two forelegs folded high at the chest on our left, and all four hooves are accounted for, with every leg bent and none straightened under the body to take the weight. The raised forelegs first suggest a horse rearing, but a rearing horse stands on its hind legs, and this one stands on nothing. Horse and rider are entirely in the air, and the sketch commits to that from the hooves up. The haunch where the legs begin is worked in dark red-brown under the black, so the body keeps a warmth where it comes closest to the grey."
+   },
+   {
+    "t": "Two strokes to a stone",
+    "x": 0.022,
+    "y": 0.7,
+    "w": 0.32,
+    "h": 0.29,
+    "body": "At lower left, the biggest stones strewn over the grey ground are each built from two strokes: a loaded pale dab for the face that takes the light, and a dark slab set against it for the face turned away. The three largest are all pale on their upper left and dark on their lower right, which places the light at our upper left, the side from which the horse's head, chest and knees are whitened higher up. Between them run smaller dark flicks slanting the same way, more debris than drawing, and low among them the name Podkowiński is written in a thin dark line, with no date beside it."
+   },
+   {
+    "t": "The forelegs, drawn hard",
+    "x": 0.025,
+    "y": 0.25,
+    "w": 0.32,
+    "h": 0.37,
+    "body": "Along the left edge the two forelegs fold up against the chest, and the sketch draws them without hesitation. Each limb is a closed dark shape with a firm outline, bending at the knee and again at the fetlock where a horse's leg bends, and each knee is capped with white on the side toward the light. Around the lower hoof a paler line of grey follows the contour, cutting the hoof cleanly out of the field. On the chest above, broad strokes of white laid over black give the horse its sheen."
+   },
+   {
+    "t": "The black, coiled and dragged",
+    "x": 0.6,
+    "y": 0.22,
+    "w": 0.37,
+    "h": 0.76,
+    "body": "On the right, the near-black fills most of that half of the picture, and nowhere inside it does the horse's back or rump receive an outline: the sketch draws the head, chest and legs hard and leaves the body that joins them to the dark. That dark is not one flat ground, and its stroke changes on the way down. Level with the woman's body it is worked in thick strokes coiled into hooks and S-shapes, each crest caught by a dragged line of grey-white: the curling stroke that makes the mane beside her hair, grown larger here and attached to no neck. Toward the top it turns to smoky grey. Below the level of her foot the coils give out, and the black is laid in straighter, thinner diagonal drags flecked with olive and green, thin enough in places for the texture underneath to show."
+   },
+   {
+    "t": "White on a black horse",
+    "x": 0.07,
+    "y": 0.03,
+    "w": 0.4,
+    "h": 0.25,
+    "body": "At upper left the horse's head turns to our left with the mouth wide open, and much of it is light paint. Thick white is laid on in ridged strokes along the top of the head and muzzle; the nostril is a red-brown oval, the open jaws hold red and a sour green-yellow, and the dark eye carries a pink-white glint. The horse is black, yet its head is painted mostly in white and red. No bridle or rein crosses it. Around it, the grey air is dragged thin in arcs that bend round the head, thin enough for the grain beneath to print through. Directly on that film sits a scatter of thick cream flecks, single dabs with raised lips, strung out ahead of the open mouth along the arcs."
+   },
+   {
+    "t": "The face pushed into the horse",
+    "x": 0.31,
+    "y": 0.135,
+    "w": 0.28,
+    "h": 0.23,
+    "body": "Just right of the horse's jaw, the woman's head is thrown back so far that her face points up and to our left, pressed toward the horse's throat. The features are few: two grey strokes for lowered lids, a shadow under the nose, a short dark mark for the mouth, enough to show the eyes shut and too few to fix an expression. Her arm leaves the shoulder as one creamy band of paint toward our left and hooks over the horse's neck. The band is laid in long strokes that run its length and swing round the elbow with it; the hand never appears, lost behind the neck in hair. The yellow laps over her brow and cheek, so the face shows as a small pale island inside the hair."
+   },
+   {
+    "t": "Yellow over black",
+    "x": 0.44,
+    "y": 0.04,
+    "w": 0.32,
+    "h": 0.28,
+    "body": "Above and to our right of her face, her hair and the horse's mane run into each other, and the paint shows which went down first. The mane is black, in curling locks. The yellow came after: pulled with a dry, loaded brush that caught only the raised grain of the black and broke into granular specks, with the black showing through the gaps. Several strokes close into rings and loops, so the hair coils as much as it flies, and touches of orange and green sit inside the yellow. Where a yellow loop crosses a black lock, the lock carries on beneath it."
+   }
+  ],
+  "beside": "Horses have carried Phaeton, the sun’s son, past his own command, as the black horse here carries the woman, and in The Fall of Phaeton, begun by Peter Paul Rubens about 1604, the ride ends by throwing him. The sun’s chariot tips beneath a grey horse rearing high, red straps still running from its gilded pole into the team, and the boy goes out of it head first, one foot still inside the car, an arm hanging toward flames below. A whole car stands between Rubens’s driver and his horses, and it fails him. In the sketch there is no car, and the woman is not being thrown: her whole body lies against the animal.",
+  "refs": [
+   {
+    "id": "rubens-the-fall-of-phaeton",
+    "text": "The Fall of Phaeton"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
  "claude-monet-the-seine-at-port-villez": {
   "mv": 6,
   "see": "The Seine in sunlight, with water across the whole foreground. A strip of land runs through the middle with the river on both sides of it: trees and bushes along its top, highest at the centre and at right, and below them a bare orange-pink strand scattered with low plants. A wooded bank closes the left edge; blue-violet hills fill the distance, and a mauve slope comes down to the water at right. A blue sky with peach-tinted clouds takes up nearly half the canvas. The hot orange of the strand lies against the blue of the river.",
@@ -32450,54 +32685,78 @@ window.CANVAS_INSPECT = {
   ],
   "by": "Opus 4.8"
  },
- "the-kiss": {"mv":1,
-  "see": "Two nude figures fused into a single pyramid of stone. The man sits; the woman is half in his lap, half rising against him, her right arm hooked up and around the back of his neck. Their heads tip toward each other at the summit, and the eye climbs there first — that meeting point is the peak of the whole mass, everything below built to carry it. From this one photograph the surface reads pale and matte, mottled rather than glassy, the tone of worked stone lit flatly against a grey wall. Follow the light down: it pools on her back and thigh, on the ridge of his shoulder, on the taut inner line where his chest presses her side. Beneath them the material coarsens into a rough block, unpolished, still bearing the block it was cut from. The figures are finished; the ground is not.",
-  "about": "The subject is desire caught a half-second before it completes. Look where their mouths are: the lips are angled toward each other but from this view they do not quite seal — the sculpture holds the instant of approach, not the kiss itself, and that withholding is the charge the whole thing runs on. Beneath the tenderness sits a darker premise. These are Paolo and Francesca, the adulterous lovers of Dante's Inferno, damned for a love that began over a book and ended in murder. The embrace is doomed and the figures seem not to know it, which is the ache of it — two bodies wholly given to a moment that condemns them. Rodin lets the eye enjoy the sensuality first and only afterward feel the cost, so the work is about pleasure and consequence held in the same block, inseparable.",
-  "craft": "The composition is a pyramid, wide and stable at the base, narrowing to the joined heads — a form built to be circled, though here we get one face of it. Rodin's decision is contrast. He polishes the flesh to a soft continuous skin so the light slides unbroken over back, hip and thigh, then leaves the base raw, gouged, deliberately unfinished. The eye feels the difference as heat against cold, alive against inert stone, and reads the couple as emerging from the rock rather than placed on it. Watch the pressure points: where her side meets his chest, where his hand grips, the stone is worked to suggest give, as if marble could yield. Nothing is symmetrical — she twists, he leans, limbs cross and lock — yet the mass balances. The tension is real physics made to look like feeling.",
-  "refs":{"context":[{"id":"the-gates-of-hell","text":"The Gates of Hell"}]},"context": "The Kiss began inside a larger project. In the early 1880s Rodin was building The Gates of Hell, a vast bronze door swarming with Dante's damned, and this couple — Paolo and Francesca — was conceived as one element among hundreds. He then lifted them out: too serene, too happy for a doorway of torment; by 1886 he had cut them loose to live as an independent work. From that model Rodin and his studio produced versions at several scales and in several materials. The Musée Rodin in Paris, where this was encountered, holds the famous life-size white marble, and Rodin's later ambivalence is well recorded — he thought the piece conventional, a polished thing that pleased crowds more than it pleased him. The surface here reads paler and more matte than polished marble, so which of those versions this one is remains an open question.",
+ "the-kiss": {
+  "mv": 6,
+  "see": "The large white marble group: a naked man and woman on a rough block of stone, locked in an embrace. He sits at our left; she sits across his thigh with her legs bent over it and one arm round his neck, and his hand rests on her thigh. Their heads meet at the top of the group. The bodies are smoothed to continuous surfaces, while the block beneath them, rising at right to her hip and running along the base, is left covered in tool marks. The group stands on a white plinth before a dark carved door.",
+  "about": "In the fifth canto of Dante's Inferno, Francesca tells how she and Paolo were reading of Lancelot when he, all trembling, kissed her mouth, and that day they read no further; love, she says, led them to one death. The group keeps the kiss and leaves the punishment out. Its public, finding nothing in it to name the lovers, set aside its first title, Francesca de Rimini, and called it The Kiss. In 1911 the writer Paul Gsell put it to Rodin that in this group the bodies tremble anxiously, as though already unable to reach the union their souls desired. Rodin, stroking his beard, answered: \"I don't say no.\"",
+  "craft": "The marble was cut in stages from Rodin's model, first enlarged in plaster to the scale of the stone. In his studio a plaster meant for marble was marked in pencil with dots, circles and crosses; each mark was carried to the block with its depth fixed, and the stone was cut back to the marks. Praticiens, carvers by trade, then took the work to its finish from the plaster, following the sculptor's indications. Who brought this marble to its last surface is not documented. The tools come in order, from the point to the claw chisel and the flat chisel, and polishing comes last.",
+  "context": "The French state ordered the marble in 1888, for the Exposition universelle of 1889. Rodin had made the group early in his work on the Gates of Hell, and it sat on the Gates' lower left leaf until 1886, when he judged its happiness and sensuality out of place there and made it a work of its own. His studios were at the Dépôt des marbres, the state's marble store, kept for the \"new geniuses\" the government honoured with commissions, its courtyard strewn with waiting blocks; Eugène Druet photographed the Kiss in a studio there around 1898. It missed the Exposition: the state took delivery in 1898, nearly ten years after the order.",
   "deeper": [
    {
-    "t": "Where it doesn't land",
-    "x": 0.2704,
-    "y": 0.0355,
-    "w": 0.5091,
-    "h": 0.2489,
-    "body": "Start at the top, where the two heads meet, because this is the hinge of the entire sculpture. His head tilts up and into hers; she inclines down toward him. But trace the actual mouths from this view and they hover a hair apart — the kiss is imminent, not achieved. Rodin froze the beat before contact, and that gap is deliberate. A completed kiss is a resolved thing; an unfinished one keeps the whole mass tensed toward a release it never gets. Everything below — the reaching arm, the gripping hand, the locked legs — is a body straining toward this point. Cover the rest and this summit still hums with waiting."
+    "t": "The knot of heads",
+    "x": 0.535,
+    "y": 0.065,
+    "w": 0.22,
+    "h": 0.23,
+    "body": "At the top of the group, two heads and one arm make a single white knot against the dark door. Her arm comes over his shoulder and wraps the back of his neck; his head bends down and over toward hers, and what shows of him is an ear and a cap of hair, with a little of her head tucked in behind. The carving keeps this knot broad. His hair is blocked out in a few rounded lumps with shallow cuts between them, and her arm crossing his neck is one smooth swelling. Kept that simple, the heads read from a distance as one rounded mass, and telling the two bodies apart is left to the arms, the hands and the legs below."
    },
    {
-    "t": "Her arm, the vault",
-    "x": 0.2345,
-    "y": 0.0705,
-    "w": 0.391,
-    "h": 0.299,
-    "body": "Her right arm rises off her shoulder, crosses behind his neck and pulls his head toward her. Structurally it is the sculpture's arch — a long unbroken curve that carries the eye from her back up to the joined heads and hands them the weight. Notice it is she who reaches and encloses; his posture is more received than reaching. The forearm and the muscle of his neck read as one continuous surface here, flesh answering flesh, so the embrace looks less like two people touching than like a single form folding on itself. This is Rodin's economy: one gesture does the emotional work and the compositional work at once."
+    "t": "His chest, turned to her",
+    "x": 0.465,
+    "y": 0.15,
+    "w": 0.235,
+    "h": 0.35,
+    "body": "Below the heads, his shoulder and chest turn toward her, while his knee, at lower left beneath hers, juts out to our left. The body twists through the waist, and the twist keeps his chest open to us even as his head bends away into hers. The anatomy is spent on this front: the shoulder is one heavy rounded mass, the ribs and stomach a run of shallow ridges, and the upper arm drops straight down his side before the forearm crosses his body toward her. Lower down his side, below a small dark pocket under her arm, his flank meets her body without a gap. One long contour runs between them, his side on one hand and hers on the other, and the two surfaces simply meet along it. In clay two bodies can be pressed together; in marble that line of contact had to be kept standing while the stone on either side of it was cut away."
    },
    {
-    "t": "The hesitating hand",
-    "x": 0.2752,
-    "y": 0.358,
-    "w": 0.3795,
-    "h": 0.184,
-    "body": "His hand lies against her hip and thigh — and it is the most argued detail of the work. It does not grasp or pull; it rests, fingers spread, poised. Read as tenderness it is a man holding something he can hardly believe he holds; read as restraint it is the last hesitation before surrender. Rodin gives you both and settles neither. The carving matters: the fingers press into the thigh just enough that the stone seems to soften under them, the illusion of a real hand on real flesh. Of all the places the two bodies meet, this is where the sculptor asks marble to behave like skin most openly, and where it most nearly convinces."
+    "t": "The hand that rests",
+    "x": 0.555,
+    "y": 0.275,
+    "w": 0.17,
+    "h": 0.19,
+    "body": "At the centre of the group, his forearm crosses his own stomach and the hand comes to rest on her thigh, just below the hip. It is worked far more closely than the heads above it: the knuckles, the tendons running back from them over the hand, the separate pads of the fingertips. That care goes into one decision, the hand's posture. The fingers are spread and only gently curved, each following the round of her thigh, and none is bent at the middle joint into a hold; the thumb lies apart, out along her side. A hand cut this precisely could have been made to grip, to dig in, to pull her closer, and any of those would show in the joints, but this one rests."
    },
    {
-    "t": "Legs that lock",
-    "x": 0.079,
-    "y": 0.4285,
-    "w": 0.6619,
-    "h": 0.363,
-    "body": "Drop to the lower half and the embrace stops being about faces and becomes about weight. He sits; his thigh runs down and out to the left as a firm diagonal. She is half across his lap, her near leg folding down over his so the two limbs cross and pin each other. This interlock is what makes the couple one object — pull the legs apart in your mind and the figures fall into two separate people, but bound this way they read as a single closed mass. It is also honest anatomy under pressure: you can feel who is bearing whom. The lower body carries the sensuality the faces only promise."
+    "t": "Legs stacked over his thigh",
+    "x": 0.455,
+    "y": 0.355,
+    "w": 0.285,
+    "h": 0.31,
+    "body": "Below his hand, her legs are bent and laid across his thigh, both knees pointing out to our left, the upper knee set higher than his own. So many limbs packed into so little width had to be separated by cutting. Between his calf and her shin a narrow slot runs down for much of their length, and lower down its back is the tool-marked stone of the block, cut in behind the legs to free them. They are also told apart by how often the surface turns. His calf is cut as a run of ridges and hollows, one muscle over the next, ending in a heavy ankle; her shin beside it is a single long curve from knee to instep, with almost nothing marked along it. Where the outlines tangle, that change of surface keeps the two bodies distinct."
    },
    {
-    "t": "Where the stone stays rough",
-    "x": 0.4118,
-    "y": 0.5375,
-    "w": 0.5563,
+    "t": "Three feet, one planted",
+    "x": 0.44,
+    "y": 0.555,
+    "w": 0.3,
+    "h": 0.245,
+    "body": "At the foot of the group three feet show, and only one of them stands. His, at the front edge of the block on our left, is planted flat, the toes spread and cut one by one where they meet the lip of the stone. Hers do not stand. One hangs almost straight down, the arch stretched and the heel lifted, so that only the tips of the toes reach the rock; the other, further right, comes down toe-first with the tendons raised along the top of the foot. Both are pulled taut all the way to the toes, so her body is working down to its extremities, held up on his thigh and reaching for the stone at once."
+   },
+   {
+    "t": "The block under her hip",
+    "x": 0.63,
+    "y": 0.405,
+    "w": 0.175,
     "h": 0.445,
-    "body": "Look at what the figures rise from. The base is left coarse and unworked, a blunt block still showing tool marks and the raw shape of the material, while the bodies above are smoothed to a continuous skin. This is a choice Rodin returned to across his career: the finished form seeming to struggle up out of formless matter. The effect is to make the lovers feel newly made, emerging, as if the embrace were pulling them into being out of the rock itself. It also grounds them — literally gives the polished pyramid a heavy, earthbound seat. End here, on the least glamorous inch of the work, because the crude base is exactly what makes the tenderness above it read as alive."
+    "body": "At right, under her hip, the block she sits on is left covered in tool marks, and the marks change as they go down. Just below her body the cuts are short and regular, set in overlapping rows like scales. Lower, they lengthen into scrapes and chipped facets, and along the front of the base the stone is flatter and a shade darker, crossed by long scratches and a few paler streaks. Her thigh ends against the top row along a clean, definite edge. The same daylight, from the front and above, falls on both. On the block it catches the upper lip of each cut and leaves a small shadow beneath it, so the surface breaks into a dense field of tiny lights and darks; on the thigh it slides over smoothed stone in one slow gradient. Those shadows belong to the light and would move with it, but the cuts that throw them are fixed in the marble, so any light with some slant to it will break up the block and glide over the skin."
+   },
+   {
+    "t": "The group in its room",
+    "x": 0.365,
+    "y": 0.03,
+    "w": 0.505,
+    "h": 0.95,
+    "body": "The whole group, on its white plinth in a panelled room, is seen here in a photograph, and the photograph makes its own choices. Its standpoint is one from which neither face can be seen and the kiss itself is out of view; that standpoint and the soft daylight are the photographer's, not the sculpture's. What the view gives instead is the outline. Against the dark wood of the door the group makes one closed shape: broad at the base, its right side stepping out from her back to the shoulder of the block and then falling almost sheer to its foot, its top gathered into the rounded knot of heads. The limbs in view stay inside it: the arms are folded across bodies, her legs are bent over his thigh, and his visible leg drops almost straight to the base."
    }
   ],
-  "by": "Opus 4.8"
+  "beside": "Dante's Inferno locks another pair with an arm reaching behind a head, in William-Adolphe Bouguereau's Dante and Virgil in Hell, of 1850, and there hatred does the locking. Two naked falsifiers from the thirtieth canto lean into one pale knot, and the red-haired one has his teeth in the other's throat. In the marble the same reach is the woman's arm wrapped round the back of her lover's neck, while his hand lies on her thigh. In Bouguereau's pit the bitten man reaches up behind the biter's head and closes his fist in the red hair, a hand clamps his outflung wrist, another digs into his ribs, and every hold between them is a grip on an adversary.",
+  "refs": [
+   {
+    "id": "dante-and-virgil-in-hell",
+    "text": "Dante and Virgil in Hell"
+   }
+  ],
+  "by": "Opus 5.5"
  },
  "la-grenouillere-renoir": {
   "mv": 2,

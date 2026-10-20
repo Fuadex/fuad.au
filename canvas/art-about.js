@@ -4956,8 +4956,10 @@ about: "Turner never sent this 1842 study to exhibition — it belongs to the gr
 by: "Opus · Fable" },
 
 "j-m-w-turner-norham-castle-sunrise": {
-about: "Turner first drew Norham Castle on the Tweed in the 1790s and returned to the motif for decades, but this dissolving version of about 1845 he left unfinished and unexhibited. It surfaced only in the Turner Bequest after 1856, and its near-total dissolution of form into blue and gold has made it one of the most cited anticipations of modern abstraction.",
-by: "Opus · Fable" },
+  "about": "Turner never exhibited this sunrise on the Tweed of about 1845. Had his codicil on 'finished pictures' stood, his bequest would have excluded it; the writer Lewis Hind's account puts its first showing in 1906.",
+  "deep": "Passing Norham Castle by coach in 1831, Turner is reported to have bowed to the ruins, saying a picture of them 'took' and had kept his hands full ever since, a story his biographer Walter Thornbury placed on an earlier journey. Thornbury noted that later printings of Turner's 1816 print of the view made the castle darker and shapeless against the sun. On this late canvas it is a middle tone, its broken crown distinct against the yellow. The sunrise goes back to the motif's beginnings: Turner first saw the castle above the Tweed in 1797, and the watercolour exhibited the next year was a summer morning, under James Thomson's lines on the rising sun.",
+  "by": "Opus 5.5"
+ },
 
 "j-m-w-turner-snow-storm-steam-boat-off-a-harbour-s-mouth": {
 about: "Shown at the Royal Academy in 1842, this was the picture Turner claimed to have witnessed first-hand, saying he had been lashed to a steamer's mast for four hours to study the storm. Critics jeered it as \"soapsuds and whitewash,\" to which he reportedly retorted, \"I wonder what they think the sea's like? I wish they'd been in it.\" Ruskin defended it as one of the grandest statements of sea-motion ever put on canvas.",
@@ -5083,8 +5085,10 @@ by: "Opus · Fable" },
 },
 
 "w-adys-aw-podkowinski-sza-szkic": {
-about: "The idea traced back to Podkowiński's 1889 stay in Paris, but the oil sketches multiplied through the second half of 1893, driven by an unrequited passion that friends said had turned the twenty-seven-year-old feverish. This is the small trial run toward the three-metre canvas he unveiled at Warsaw's Zachęta in March 1894 — the one he returned to slash with a knife thirty-six days later, dying of tuberculosis within the year.",
-by: "Opus · Fable" },
+  "about": "A naked woman clasps a black horse in this 1893 oil sketch, one of several for Władysław Podkowiński's Szał uniesień. In Paris in 1889, a friend recalled, the composition robbed him of peace.",
+  "deep": "Across the oil sketches for Szał uniesień the composition changed only slightly and the colour travelled far. Joanna Jaśkiewicz reports a first version in ultramarine, described by the painter's friend Stefan Laurysiewicz, then a range that widened and came down to browns, blacks and whites. The curator Elżbieta Charazińska held that the final contrast of white and black was reached by eliminating other colours at the sketch stage. Motifs went too, among them, it is said, an avalanche of stones from a rocky slope. No source places it here, though stones lie on the grey ground at lower left. Reviewing the finished canvas in 1894, Laurysiewicz faulted its colour.",
+  "by": "Opus 5.5"
+ },
 
 "unknown-s-once-majowe": {
 about: "Józef Mehoffer — with Wyspiański the reigning force of Kraków's Młoda Polska, and the stained-glass master behind the Fribourg cathedral windows — painted this in 1911, at the peak of a career built on flat, decorative Art Nouveau colour. He had also taught the young Ludwik de Laveaux, another name in this collection.",
@@ -5276,8 +5280,10 @@ by: "Opus · Fable" },
 },
 
 "claude-monet-le-havre-bateaux-de-peche-sortant-du-port": {
-about: "The same year the word \"Impressionism\" was coined, Monet painted his boyhood harbour — 1874, when he and a breakaway group mounted their own show at Nadar's old studio on the boulevard des Capucines rather than submit to the Salon. Le Havre was where he first sketched under Eugène Boudin, who pushed him outdoors to paint the coast directly.",
-by: "Opus · Fable" },
+  "about": "Fishing boats leaving Le Havre, painted by Monet in 1874 and probably in the first Impressionist exhibition, where, in Louis Leroy's satire, a fictional academic bore it \"without major damage\" before other Monets broke him.",
+  "deep": "Le Havre is in this canvas's title, and the canvas gives the town enough of itself to carry the name. It is taken to be no. 96 at the 1874 group exhibition, listed under that name. Two entries later came another view of the port, which Monet said \"couldn't really be taken for a view of Le Havre\", so he had it listed as Impression, Sunrise. He is not known to have paired them, yet together they split the town: that sunrise held, in his words, the sun in mist and a few masts; here the masts come with chimneys and gables, a street lantern, and children among the quay's walkers.",
+  "by": "Opus 5.5"
+ },
 
 "claude-monet-water-lilies": {
 about: "A late Giverny canvas from 1918, the year an armistice-era Monet — cataract-clouded and nearing eighty — was reworking his lily pond in ever-freer colour. It belongs to the easel-scale studies, not the room-sized Grande Décoration panels he offered the French state that November through his friend Clemenceau. He painted these final ponds almost from memory of a motif he had tended for two decades.",
