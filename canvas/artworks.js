@@ -142,7 +142,10 @@ window.CANVAS_ARTWORKS = [
   // ——— deck-folded picks (fold-deck.js) ———
   { id: "the-thinker", title: "The Thinker", artist: "Auguste Rodin", artistId: "rodin", qid: "Q18003128", qidTrusted: true, year: 1882, seenAt: "rodin", seenConfidence: "sure", note: "Deck pick — rodin-2026-07-07. Cast many times; the photo import also turned up the Venice cast, dropped rather than filed as a want-to-see for a sculpture already met here." },
   { id: "portrait-of-pere-tanguy", title: "Portrait of Père Tanguy", artist: "Vincent van Gogh", artistId: "van-gogh", qid: "Q13528770", qidTrusted: true, year: 1887, seenAt: "rodin", seenConfidence: "unsure", liked: true, note: "Deck pick — rodin-2026-07-07." },
-  { id: "the-kiss", title: "The Kiss", artist: "Auguste Rodin", artistId: "rodin", qid: "Q2418237", qidTrusted: true, year: 1880, seenAt: "rodin", seenConfidence: "sure", loved: true, note: "Deck pick — rodin-2026-07-07." },
+  // year: the Musée Rodin marble S.1002: group conceived c. 1882; marble commissioned by the state in 1888, carved 1888–98,
+  // delivered 1898 (holder notice). `year` dates the finished marble, as the Canova MR 1777 row does. The old 1880 was
+  // Wikidata's composition date. qid Q2418237 kept: no item exists for this marble alone (checked 2026-10-20, fix29).
+  { id: "the-kiss", title: "The Kiss", artist: "Auguste Rodin", artistId: "rodin", qid: "Q2418237", qidTrusted: true, year: 1898, seenAt: "rodin", seenConfidence: "sure", loved: true, note: "Deck pick — rodin-2026-07-07." },
   { id: "arles-view-from-the-wheat-fields", title: "Arles: View from the Wheat Fields", artist: "Vincent van Gogh", artistId: "van-gogh", qid: "Q4792194", qidTrusted: true, year: 1888, seenAt: "rodin", seenConfidence: "unsure", wish: true, liked: true, note: "Deck pick — rodin-2026-07-07." },
   { id: "the-eternal-springtime", title: "The Eternal Springtime", artist: "Auguste Rodin", artistId: "rodin", qid: "Q3205458", qidTrusted: true, year: 1884, seenAt: "rodin", seenConfidence: "unsure", wish: true, note: "Deck pick — rodin-2026-07-07." },
   { id: "the-mature-age", title: "The Mature Age", artist: "Camille Claudel", artistId: "claudel", qid: "Q3205060", qidTrusted: true, year: 1898, seenAt: "rodin", seenConfidence: "unsure", note: "Deck pick — rodin-2026-07-07." },
@@ -588,7 +591,11 @@ window.CANVAS_ARTWORKS = [
   { id: "a-wijdschip-and-a-kaag-in-an-inlet-close-to-a-sea-wall", title: "A wijdschip and a kaag in an inlet close to a sea-wall", artist: "Willem van de Velde the Younger and studio", artistId: "willem-van-de-velde", qid: "Q28797254", qidTrusted: true, year: 1661, seenAt: "agsa", seenConfidence: "unsure", liked: true, note: "Deck pick — agsa-2026-07-15." },
   { id: "the-life-of-stars", title: "The Life of Stars", artist: "Lindy Lee", artistId: "lee", qid: "Q133867018", qidTrusted: true, year: 2017, seenAt: "agsa", seenConfidence: "sure", note: "Deck pick — agsa-2026-07-15." },
   // ——— deck-folded picks (fold-deck.js) ———
-  { id: "guernica", title: "Guernica", artist: "Pablo Picasso", artistId: "picasso", qid: "Q175036", qidTrusted: true, year: 1937, seenAt: "reina-sofia", seenConfidence: "sure", loved: true, note: "Deck pick — guernica-2026-07-15." },
+  { id: "guernica", title: "Guernica", artist: "Pablo Picasso", artistId: "picasso", qid: "Q175036", qidTrusted: true, year: 1937, seenAt: "reina-sofia", seenConfidence: "sure", loved: true, note: "Deck pick — guernica-2026-07-15.",
+    // hand-linked image (fix29, 2026-10-20): Wikidata's P18 is the tiled REPLICA wall in Gernika, a different object. This is a
+    // frontal visitor photograph of the canvas (Görkem Yavuz, CC BY-SA 4.0 for the photograph; the painting is in copyright,
+    // so Commons may delete the file — check it is live before building a tour on it).
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Madrid_%2824.07.2024%29_08.jpg?width=900", imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Madrid_%2824.07.2024%29_08.jpg?width=480", imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Madrid_%2824.07.2024%29_08.jpg?width=2000" },
   { id: "piet-mondrian-trafalgar-square", title: "Trafalgar Square", artist: "Piet Mondrian", artistId: "mondrian", qid: "Q19884486", qidTrusted: true, year: 1939,
     seenAt: "moma", seenConfidence: "sure" },
   { id: "henri-matisse-auguste-pellerin-ii", title: "Auguste Pellerin II", artist: "Henri Matisse", artistId: "matisse", qid: "Q61685574", qidTrusted: true, year: 1917,
@@ -876,8 +883,13 @@ window.CANVAS_ARTWORKS = [
     seenAt: "mnw", seenConfidence: "sure", loved: true },
   { id: "claude-monet-le-bassin-aux-nympheas-harmonie-verte", title: "Le Bassin aux nymphéas, harmonie verte", artist: "Claude Monet", artistId: "monet", qid: "Q3220338", qidTrusted: true, year: 1899,
     seenAt: "orsay", seenConfidence: "sure", loved: true },
-  { id: "aristide-maillol-desir", title: "Désir", artist: "Aristide Maillol", artistId: "aristide-maillol", qid: "Q18702496", qidTrusted: true, year: 1905,
-    seenAt: "orsay", seenConfidence: "sure" },
+  // qid: Q130383495 = R 14 S, the Orsay's lead high relief (MNR MAIL0014; cast by Eugène Rudier in 1941), the relief seen and
+  // photographed. Was Q18702496 = AM 659, a different lead cast, unlocated since 1964. year: the model, 1907 (MNR: work
+  // 1907–1908, this cast 1941; plaster at the 1907 Salon d'Automne); the old 1905 came from AM 659's range. Q130383495 has no
+  // P18, so the image is hand-set (fix29, 2026-10-20).
+  { id: "aristide-maillol-desir", title: "Désir", artist: "Aristide Maillol", artistId: "aristide-maillol", qid: "Q130383495", qidTrusted: true, year: 1907,
+    seenAt: "orsay", seenConfidence: "sure",
+    img: "https://commons.wikimedia.org/wiki/Special:FilePath/Aristide_Maillol_-_D%C3%A9sir.jpg?width=900", imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Aristide_Maillol_-_D%C3%A9sir.jpg?width=480", imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Aristide_Maillol_-_D%C3%A9sir.jpg?width=2000" },
   { id: "claude-monet-le-havre-bateaux-de-peche-sortant-du-port", title: "Le Havre, bateaux de pêche sortant du port", artist: "Claude Monet", artistId: "monet", qid: "Q2891152", qidTrusted: true, year: 1874,
     seenAt: "orsay", seenConfidence: "sure", floored: true },
   { id: "claude-monet-vetheuil-sunset", title: "Vétheuil, Sunset", artist: "Claude Monet", artistId: "monet", qid: "Q17496088", qidTrusted: true, year: 1901,
@@ -1148,7 +1160,9 @@ window.CANVAS_ARTWORKS = [
     seenAt: "artizon", seenConfidence: "sure", loved: true },
   { id: "wincenty-kasprzycki-widok-morysinka-w-wilanowie", title: "Widok Morysinka w Wilanowie", artist: "Wincenty Kasprzycki", artistId: "wincenty-kasprzycki", qid: "Q23697701", qidTrusted: true, year: 1834,
     seenAt: "mnw", seenConfidence: "sure", loved: true },
-  { id: "claude-monet-lilas-temps-gris", title: "Lilas, Temps gris", artist: "Claude Monet", artistId: "monet", qid: "Q3936373", qidTrusted: true, year: 1873,
+  // year: the holder dates RF 1680 "entre 1872 et 1873"; Joconde gives 1872. Durand-Ruel bought it from Monet on 28 February
+  // 1873, before that year's lilacs flowered, so the blossom was painted in spring 1872 (fix29, 2026-10-20).
+  { id: "claude-monet-lilas-temps-gris", title: "Lilas, Temps gris", artist: "Claude Monet", artistId: "monet", qid: "Q3936373", qidTrusted: true, year: 1872,
     seenAt: "orsay", seenConfidence: "sure", loved: true },
   { id: "claude-monet-untitled-3", title: "Maisons dans la neige et mont Kolsaas", artist: "Claude Monet", artistId: "monet", qid: "Q66985807", qidTrusted: true, year: 1895,
     seenAt: "artizon", seenConfidence: "sure", loved: true },
