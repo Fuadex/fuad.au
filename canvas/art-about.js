@@ -1639,7 +1639,7 @@ by: "Opus 4.8" },
 
 "the-gates-of-hell": {
 about: "Rodin's bronze portal of Dante's damned, begun in 1880 as doors for a museum that was never built — he reworked it for thirty-seven years and died with it unfinished, and every cast was assembled from those plasters afterward.",
-deep: "Everything on this gate is falling, has fallen, or is about to. The Three Shades at the peak are one man cast three times and rotated, heads hanging almost horizontal, arms dropping — Dante's 'abandon all hope' rewritten as a gesture that points down into the plunge. In the tympanum below, one small seated figure holds the only stillness on the surface — The Thinker, before he was enlarged; The Kiss and Ugolino began here too. The undercutting is deep enough that limbs pull free of the ground and shadow pools behind them. Look at the jambs, where a classical portal carries fluting: Rodin stacked individual bodies, the frame that should contain Hell made of the damned.",
+deep: "Everything on this gate is falling, has fallen, or is about to. The Three Shades at the peak are one man cast three times and rotated, heads hanging almost horizontal, arms dropping — Dante's 'abandon all hope' rewritten as a gesture that points down into the plunge. In the tympanum below, one small seated figure holds the only stillness on the surface — The Thinker, before he was enlarged; The Kiss and Ugolino began on the doors below. The undercutting is deep enough that limbs pull free of the ground and shadow pools behind them. Look at the jambs, where a classical portal carries fluting: Rodin stacked individual bodies, the frame that should contain Hell made of the damned.",
 deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
@@ -2357,7 +2357,7 @@ deep: "Manet builds the design on non-relation: three figures share a shallow le
 by: "Opus 4.8" },
 
 "dante-and-virgil-in-hell": {
-about: "Two naked men welded into a single lit shape, one with his teeth in the other's neck — Inferno XXX, the pit of the falsifiers, where the damned punish each other. Bouguereau, 1850, a Prix de Rome bid.",
+about: "Two naked men welded into a single lit shape, one with his teeth in the other's neck — Inferno XXX, the pit of the falsifiers, where the damned punish each other. Bouguereau, 1850, shown at that year's Salon.",
 deep: "Of all Dante's cantos he picked the one about impersonation, to prove the one thing a painter of twenty-five could not fake in 1850: that he could draw a man from life. One of these two counterfeited metal; the other climbed into a dead man's bed and dictated a false will in his voice. Both faked substance, and substance is all they are left with — bodies with teeth, biting bodies. Then look for the wound: there is none, no blood, no torn skin, the flesh the same cool ivory as everywhere else, all the violence carried by torsion and grip. And no one administers it — the demon overhead keeps his arms folded and grins.",
 deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
@@ -3037,7 +3037,7 @@ by: "Opus 4.8" },
 
 "regatta-at-sainte-adresse": {
 
- "about": "Monet painted this 1867 canvas as one half of a deliberate pair with The Beach at Sainte-Adresse, the two works identical in size and viewpoints yards apart, setting bourgeois leisure at high tide against working fishermen in overcast low tide.",
+ "about": "Scholars often treat this 1867 canvas as a pendant to The Beach at Sainte-Adresse, painted that summer at almost the same size and of the same stretch of shore: bourgeois leisure at sunny high tide against working fishermen at overcast low tide.",
 
  "deep": "The race that gives the picture its name takes up a narrow strip across the middle, and Monet is content to leave it there. Most of the canvas goes to what surrounds an event: a sky that outweighs everything beneath it, a long reach of open water between shore and fleet, and a beach where people have come to look. We are placed on the stones with them, not far from the woman under her parasol, at the same remove from the yachts as everyone else on shore. The painting records less a regatta than the experience of watching one, the sport held far enough off to become part of the weather. Even the blue skiff at the waterline, its own sail up, sits idle.",
 
