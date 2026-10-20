@@ -3,6 +3,11 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "claude-monet-la-cabane-des-douaniers-effet-d-apres-midi": {
+  "about": "Set up under Napoleon I to watch the Channel coast, this clifftop customs post near Varengeville sheltered fishermen by 1882, when Monet painted it, and he often titled his canvases of it Fisherman's House instead.",
+  "deep": "The afternoon in the title is a matter of which wall the sun finds. Monet also painted the cabin in a morning light, with the sun in the east; in this canvas it has moved round to the west and falls from our left. In April 1882 he wrote that he had finished a canvas of the morning sun but not yet the evening one; which canvases he meant is not recorded, but the letter shows him setting one hour of a place against another. Here the pale gable takes the western sun, and the long wall turns from it into blue-grey shade, where the upright bars of vermilion sit.",
+  "by": "Opus 5.5"
+ },
  "claude-monet-soleil-couchant-sur-la-seine-a-lavacourt-effet": {
   "about": "The Seine froze over in December 1879 and its ice broke up in early January: Monet's sundown on the river comes from that winter, and in 1882 it was shown at the seventh Impressionist exhibition.",
   "deep": "Monet told the critic Théodore Duret in March 1880 that one of three large canvases then under way was too much to his own taste, and certain to fail with the Salon jury. In its place he painted something \"wiser, more bourgeois\", and, he wrote, his exhibiting friends now called him a deserter. One account identifies this sunset as the canvas he would not send. Against that word wiser, the sunset's risks are plain: a thick orange sun on a sky brushed almost to a stain, a path of light broken partway down the river, and, at the sun's own height, a band dimmer than the upper sky and the near water.",

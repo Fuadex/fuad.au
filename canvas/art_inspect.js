@@ -101,6 +101,79 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+ "claude-monet-la-cabane-des-douaniers-effet-d-apres-midi": {
+  "mv": 6,
+  "see": "A small customs house sits on a clifftop at lower left, seen from above with the sea beyond it: an orange-pink roof with one chimney, a pale gable end, a long wall turned toward the water, and its shadow on the ground beside it. Shrubs fringe the cliff edge, and a grassy slope drops away to the bottom of the canvas, where it is signed. The rest is sea, filling most of the picture and running down to the lower edge at right, under a thin strip of sky and a high horizon. The water is laid in visible strokes of pale green, blue-grey and cream.",
+  "about": "A customs house is a post for watching the sea, and the view here is a watcher's: down over the roof from the slope above, then out over the water to the horizon. Nobody is there to keep that watch: no figure stands by the house or on the slope, and nothing moves on the water but the water itself. Against the water the house is the one made thing in view, compact, warm and squared off, a fixed point in a field that is everywhere on the move.",
+  "craft": "Monet worked on this coast out of doors, in front of his subject, and some canvases he took up again and again: in March 1882 he wrote home of pictures he had worked on more than ten times without getting there. The strokes are laid as separate units, each with its own shape and direction, set beside one another with little blending, and later strokes go on over earlier ones without being worked into them. The brush's load changes with the passage: thin, dry paint pulled across in some places, thick paint left standing proud in others.",
+  "context": "Monet came to the Channel coast in February 1882, found Dieppe too much of a town, and on 15 February moved a few kilometres west to an inn at Pourville, set on the shingle. “The waves beat against the foot of the house,” he wrote that first day. From there he walked the cliffs to his motifs, the customs house on the way to Varengeville among them. On 7 April, with the weather turned fine, he wrote that the day before he had worked on eight studies, about an hour each, not counting the walk from one motif to the next, and that he was calling for a little grey weather, so that he could stop and come home.",
+  "deeper": [
+   {
+    "t": "A house against water",
+    "x": 0.07,
+    "y": 0.33,
+    "w": 0.34,
+    "h": 0.27,
+    "body": "In the left half of the canvas, the chimney stack rises in stacked yellow dabs either side of a vermilion core split by a dark slit. Its top sits well below the horizon, and so does every edge of the roof: from chimney to eaves the house is set against sea, with the sky kept to a thin strip far above it. With pale water behind it, the roof's shape has to be held by its own edges. The salmon-orange plane is dragged in short, roughly level strokes over a paler layer, and the brush skipped as it went, leaving cream flecks in the orange; a few of the chimney's yellow strokes run on down the roof. The roof's left edge is a long orange line, drawn down from the gable's peak to its lower-left corner. The far edge, falling away from the chimney, is ticked with dark violet strokes that cut the roof cleanly out of the green-grey water."
+   },
+   {
+    "t": "Heat in the shade",
+    "x": 0.08,
+    "y": 0.44,
+    "w": 0.32,
+    "h": 0.27,
+    "body": "Below the roof the house shows two walls. The gable on our left is its palest face, cream laid over pink, outlined in orange at the corners and along the roof edge, and pierced by two dark openings, one above the other. The long wall facing the sea is in shadow, blue-grey, with dark openings under the eave. The light comes from our left: the gable faces it and is bright, the long wall turns away and is dark. The surprise is inside that shade. Upright bars of vermilion are struck down through the blue-grey, and there is more of this strong red-orange in the shadowed wall than on the sunlit gable, or even on the roof. Between that wall and the roof, the eave is a single long grey-violet stroke that wavers along its length."
+   },
+   {
+    "t": "A shadow with a drawn edge",
+    "x": 0.34,
+    "y": 0.47,
+    "w": 0.24,
+    "h": 0.25,
+    "body": "To the right of the house, a grey-violet wedge lies on the ochre ground and narrows to a point. It sits on the side away from the light and is about as dark as the shaded wall: the house's own shadow. Unlike the curling and upright strokes around it, it is brushed flat, in long strokes that run the length of the wedge, and its lower side is closed by a dark line drawn out to the tip. That hard contour lays the ground level, a small shelf at the cliff edge for the house to stand on. Just beyond the tip, grey-white and violet shrubs flare upward from a fringe of green hooks. They are painted in nearly the sea's own grey, so the edge of the land is told by the direction of the strokes, upright tufts against the water's sideways curls, more than by any change of colour."
+   },
+   {
+    "t": "Cream on the crests",
+    "x": 0.52,
+    "y": 0.4,
+    "w": 0.27,
+    "h": 0.19,
+    "body": "Out in the water right of the house, a broken chain of cream-yellow strokes lies across the grey-blue in loops and twisted ribbons, raised in ridges above the paint around them. Around them the water is made of single green and blue-grey strokes that curl at one end into a hook, each hook one small wave. The cream is a different kind of mark, heavier and knotted, laid for the most part over the hooks, so the swell and the light breaking on its crests are painted largely as two layers. Near the left end of the chain sits a short dash of orange, stronger in colour than the cream and yellow strokes around it."
+   },
+   {
+    "t": "The wave stroke in the grass",
+    "x": 0,
+    "y": 0.68,
+    "w": 0.42,
+    "h": 0.31,
+    "body": "Low on the left, the slope falls away in ochre and orange, brushed in upright and slanting strokes and crossed by a few blue-black dashes. Along its foot runs a band of green, with the signature, Claude Monet in dark brown, laid level through it, and right of the name the brush turns into teal crescents that curl at their ends. That curl is the hook the open water is built from, here put to work as grass, so the hillside carries the sea's rhythm down to the bottom of the canvas."
+   },
+   {
+    "t": "Loops under the far water",
+    "x": 0.58,
+    "y": 0.18,
+    "w": 0.4,
+    "h": 0.2,
+    "body": "Higher on the right, the handling of the water changes. The curls give way to long level drags of pale grey-blue and green, laid with a brush dry enough to break into fine streaks. Look into the drags and faint loops appear underneath, broad rounded arcs that the flat strokes have passed over without erasing. The far sea was first worked in curling strokes, then veiled with paler level pulls. Distance here comes from quieting movement already painted, and the buried swell is still faintly there under the calm top layer."
+   },
+   {
+    "t": "A horizon drawn in two colours",
+    "x": 0,
+    "y": 0.06,
+    "w": 1,
+    "h": 0.16,
+    "body": "At the top left, the horizon is a straight line of blue-violet, dragged across so it breaks into beads. Follow it right and it thins away; past the centre a streak of green takes over and carries the line nearly to the right edge. Sky and sea meet at almost the same brightness, so this line, changing colour as it goes, does the separating that tone does not. The sky above is a narrow band of blue-grey pulled thinly over a warm buff, which breaks through in patches toward the top right, and a similar buff shows between the drags of the far water just below the line."
+   }
+  ],
+  "beside": "Jules Breton's The Cliff (La Falaise), of 1874, turns this clifftop round: it has a watcher, and nothing built for her. A young woman lies full length on a bare ledge of rock above the shore, barefoot, in a brown skirt and a white cap, her cheek propped on her hand and her face turned from us toward the surf, with a headland faint on the far horizon. By her hip, beside a red cloth, her distaff lies on the rock with the wool still bound on it, put down while she looks.",
+  "refs": [
+   {
+    "id": "jules-breton-the-cliff-la-falaise",
+    "text": "The Cliff (La Falaise)"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
  "claude-monet-soleil-couchant-sur-la-seine-a-lavacourt-effet": {
   "mv": 6,
   "see": "A winter sunset on the Seine at Lavacourt, signed and dated 1880 at lower left. The river opens toward us between two dark masses: a low tangle of bare brushwood rising from the water at left and a wooded bank with leafless trees at right. Sky and open water are pink and grey-green. On the far shore a village of gabled houses stands in the haze; two small boats with figures lie out on the water; a small orange sun hangs just left of centre with its reflection below it.",
