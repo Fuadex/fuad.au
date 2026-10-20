@@ -3,6 +3,131 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "claude-monet-the-seine-at-port-villez": {
+  "about": "Signed but not dated, Monet's picture of a wooded islet in the river opposite his home at Giverny is placed around 1890, though Gustave Geffroy's 1922 book on Monet listed the same canvas under 1883.",
+  "deep": "The islets that stood in this reach of the Seine have since disappeared, and the low strip seen here between two arms of the current went with them, so the canvas holds a stretch of river that can no longer be visited. It keeps the islet as bulk as well as likeness. The bare strand along its waterline went down in heavy horizontal pulls that still stand as ridges, and on the tallest tree, right of centre, the lights were left as separate raised touches, so the ground's thickness and the tree's height both survive as relief in the paint.",
+  "by": "Opus 5.5"
+ },
+ "claude-monet-argenteuil-2": {
+  "about": "The 72 after the signature, lower left, dates this view of boats on the Seine at Argenteuil to 1872 — Monet's first full year living there, and the year he painted Impression, Sunrise at Le Havre.",
+  "deep": "The Monet the critic Armand Silvestre described in 1873 is here in the drawing of the water and missing from the colour. Writing of the painter's rivers in general, he found many-coloured sunset reflections set beside motley boats on lightly stirred water, the bank's image trembling, its houses cut up like a children's puzzle reassembled piece by piece. Below the house fronts at left the puzzle is on the canvas, the town returned in short dashes, lighter and darker by turns, across pale water. Silvestre's colour is not: the water holds no sunset, and for motley boats there are a grey hull right of centre, a dark dinghy and a cream sail.",
+  "by": "Opus 5.5"
+ },
+ "claude-monet-floating-ice-on-the-seine": {
+  "about": "In a novel fragment of about 1899, Marcel Proust made five Monet canvases speak in turn — the second, as Luzius Keller identifies it, is this thaw on the Seine of 1880, talking of shimmer and mirage.",
+  "deep": "Proust's talking canvas, which Luzius Keller identifies as this one, says you cannot tell ice from sun, autumn's russet from the trees' own, or a riverbed from a woodland clearing. This picture keeps one, splits one, settles one. The russet stays open: vermilion and rose among the shore thickets' olive, in upright touches naming neither leaf nor twig. The ice splits. Under the fog, far floes are warm, about as light as the sky; at lower right a loaded dark blue line rings some of the piled slabs, and nothing so ringed passes for sun. The clearing is settled mid-river, where the far trees' pink reflections break at each floe and resume beneath it.",
+  "by": "Opus 5.5"
+ },
+ "claude-monet-champs-de-tulipes-en-hollande": {
+  "about": "Monet painted these tulip beds, their windmill and a red-roofed farm in 1886, summoned by a diplomat in The Hague: the fields were coming into flower, he wrote, silence would be a crime, and Monet must hurry.",
+  "deep": "Its painter held that these fields were beyond his paints. From Holland in spring 1886 he called them \"impossible to convey with our poor colours\", and his host reminded Monet that he had judged the Holland studies not pushed far enough and had wanted more time. He still signed this one, dated 86, at the foot of the red bed at left. What carries the place is what his poor colours cannot touch: in the red bed the leaf strokes lean with the run of each row, laying out the planting however strong any red may be. The crowded touches gather in the beds, where his complaint lay, under a calm sky.",
+  "by": "Opus 5.5"
+ },
+ "claude-monet-the-luncheon": {
+  "about": "The end of a family lunch in a garden at Argenteuil, about 1873 — at the Impressionists' second exhibition, in 1876, Claude Monet entered it simply as \"Panneau décoratif\", a decorative panel for no particular room.",
+  "deep": "More people were painted into this garden than it now shows. A technical study in 2026 found figures under the paint: two women seated on the bench at right, where a bag and parasol now rest; someone at a window; and a bearded man in a hat, standing in profile at the left, who may, the curators hypothesise, be Monet himself. The left-hand flower bed was widened to cover him almost entirely. Monet's son Jean, at lower left, first had his back almost turned to us. Covering them, the curator Anne Robbins thinks, may have made the scene more neutral.",
+  "by": "Opus 5.5"
+ },
+ "claude-monet-lilas-temps-gris": {
+  "about": "Spring lilac, grey weather: a pencil note on the stretcher reads \"printemps lilas (temps gris)\". Three figures rest in the bush's shade at Argenteuil, and Monet also painted a sunlit version of the same bower.",
+  "deep": "Two households share the shade under this lilac, if its three figures are who they have been identified as: Camille Monet, with Alfred Sisley and his partner Eugénie Lescouezec. Sisley painted at Argenteuil in 1872, probably on frequent visits to Monet, and that year both men painted the same two streets of the town. Here the painter of those streets has become one of the painted, though no likeness picks him out. The three are held together by where they sit: the grey figure at our left turned in profile toward the white-hatted woman at the centre, and the third set low at our right, its body slanting back toward both.",
+  "by": "Opus 5.5"
+ },
+ "claude-monet-en-norvegienne": {
+  "about": "When Monet showed with Rodin in 1889, these three sisters fishing from a rowing boat at Giverny, painted about 1887, led four canvases headed Essais de figures en plein air: open-air figure studies.",
+  "deep": "The three in this boat are painted on the same terms as the leaves behind them. In August 1887 Monet told Théodore Duret he was working at open-air figures as he understood them, made like landscapes, an old dream that still tormented him. By 1890, in the curator Cyrille Sciama's reading, he had turned from the problem unsolved and the figure had left his work. The standing girl's face is one soft patch of rose under her brim, the kind of touch the bank's leaves are built from, and below the hull the water drops the women's whites to a lilac-grey like that of the bank's reflection beside the bow.",
+  "by": "Opus 5.5"
+ },
+ "claude-monet-effet-de-neige-a-vetheuil": {
+  "about": "Vétheuil and its church lie under snow in Monet's first winter there, 1878–79, so hard a winter that on 9 February the local prefect closed the hunting season, “given that snow covers the ground”.",
+  "deep": "Snow has gathered the roofs of Vétheuil beneath its church, yet the centre of the canvas goes to a bare tree. Monet's cataloguer, Daniel Wildenstein, saw here houses huddled “around their shepherd, the church”, and judged that Monet must have worked from his studio-boat, or perhaps from one of the river's islands. The roofs at left bear out the first claim, crowding white beneath the tower. The second may explain why the church stands off-centre: from the river the painter stood outside that order, and the upright he put at the middle is a leafless tree with no role in the village, rising before the houses right of the tower.",
+  "by": "Opus 5.5"
+ },
+ "katsushika-hokusai-kanda-myojin-and-ochanomizu-from-the-seri": {
+  "about": "Edo's guardian shrine, Kanda Myōjin, and the Seidō, the Confucian hall the shogunate made its official academy in 1797 and enlarged in 1799 — both in a colour woodblock Hokusai designed about 1804–17.",
+  "deep": "Down the right edge, the title still calls this sheet a newly published uki-e, and the view earns that name only in part. Uki-e, floating pictures, were Edo prints that borrowed Western perspective so the near view seemed to float forward. The set has been placed last among Hokusai's uki-e, some of its sheets arranging famous places freely from a bird's-eye height. Here depth comes by overlap. The pink mist lies in tiers, each band over the base of what rises behind it, and the yellow mounds at far left stack the same way, each set before the next by darker flecks at its foot.",
+  "by": "Opus 5.5"
+ },
+ "katsushika-hokusai-rainstorm-beneath-the-summit-from-the-ser": {
+  "about": "Lightning crosses the dark lower slope of Mount Fuji in this colour woodblock of Hokusai's design, issued in 1831 in the same group as Fine Wind, Clear Morning, the series' Red Fuji, and often paired with it.",
+  "deep": "The lightning's red was changed in printings made after this sheet. Here the bolt is vermilion alone. Scientists analysing the series' impressions without removing any material placed two other impressions of this design in a later printing, and in both safflower red is mixed into the strike. No line from the key block, which printed the outlines, draws the bolt. The cutter's wood gave it forks and hard edges, and the rest is colour, inked again for each sheet, which is where a printer could alter it without touching the design. This sheet is from the earlier printing: the orange crossing the dark slope at lower right is the bolt before safflower went in.",
+  "by": "Opus 5.5"
+ },
+ "katsushika-hokusai-ejiri-suruga-province-from-the-series-thi": {
+  "about": "Within about a year of writing, in 1830, that he was \"penniless and naked\", Hokusai had designed this woodblock of travellers losing a hat and a stream of papers — among his first Fuji views.",
+  "deep": "The gust on this road looks like a single instant, yet each traveller meets it at a different point. Jeff Wall, the Canadian photographer who remade the design in 1993, called it \"an inherently instantaneous image\", and his staged photograph reportedly took months, pieced together from many negatives. The print had already done that piecing. At the right-hand bend a man bent double still clamps his hat over his face, nothing of his yet gone. At lower left a woman's tissues are going now, the nearest barely clear of her. The porter with the pole keeps only the pad his hat rode on, and high to the right a hat is already tumbling away.",
+  "by": "Opus 5.5"
+ },
+ "katsushika-hokusai-mishima-highroad-kai-province-from-the-se": {
+  "about": "Travellers stop at a giant tree, Fuji beyond, in a woodblock Hokusai designed — though the scholar Hinohara Kenji finds no record of such a tree at the pass this view is thought to show.",
+  "deep": "The trunk was probably borrowed from another pass, and the men stretching their arms across it had forerunners in Hokusai's work. The scholar Hinohara Kenji thinks the tree draws on the Yatate cedar at Sasago, a landmark elsewhere in Kai Province, and about thirty years before, Hokusai had put similar travellers into a print of Ishibe, a post station on the Tōkaidō road. The view's parts meet at the trunk, and the fit is loose. Fuji's steep left edge goes into the bark and does not come straight out on the far side, and the two men's joined arms span only part of its width.",
+  "by": "Opus 5.5"
+ },
+ "katsushika-hokusai-the-suspension-bridge-on-the-border-of-hi": {
+  "about": "Hokusai designed this colour print about 1834: two laden walkers crossing a plank-and-rope footbridge slung high across a mountain gorge. In 1896 the French writer Edmond de Goncourt called it “a true acrobats' bridge”.",
+  "deep": "Between the banks this bridge is drawn as something built; at the banks nothing shows how it is held. Whether such a bridge ever existed has been doubted, and Hokusai may have drawn it from what people told, for a series promising strange views of bridges. In 1836, prefacing a carpenters' pattern book, he wrote, as Edmond de Goncourt translated him, that a draughtsman must know how a framework is joined. The middle keeps that rule, even to the plank's corner under one walker. At the pink rock and at the yellow hill, plank and rope run straight into the land's outline, and the joints that would carry every load go undrawn.",
+  "by": "Opus 5.5"
+ },
+ "katsushika-hokusai-the-famous-places-on-the-tokaido-road-in": {
+  "about": "The Tōkaidō entire, from Edo to Kyoto, in one bird's-eye view — a colour woodblock of about 1818 from Hokusai's design, reportedly sold in its own paper bag; the bag of his matching Kisokaidō view survives.",
+  "deep": "A rival, Kuwagata Keisai, who had made such overviews earlier, called Hokusai a perpetual imitator. Kitamura Nobuyo, recording the charge, named Keisai's Edo overview and a Tōkaidō colour print, presumably this sheet. Much of the sheet's plan is the genre's: Kyoto at the top, Edo at the bottom and an exaggerated Fuji are common in such maps. Where it puts its reader is another matter. The curator Kawanishi Yuri reads the sheet as if from Nihonbashi, where the road starts, the way to Kyoto fitted in by bending space. From Edo, low at the right, the road swings left beneath Fuji and back to Kyoto at the top of the same side.",
+  "by": "Opus 5.5"
+ },
+ "katsushika-hokusai-peonies-and-butterfly": {
+  "about": "At seventy-three, Hokusai wrote in 1834, he was \"somewhat able to fathom the growth of plants and trees\" — and in those years he designed this colour woodblock of peonies in full flower and a butterfly.",
+  "deep": "Knowing a peony and a butterfly shows here as knowing what to cut. In 1834 Hokusai wrote that he had begun to fathom how plants grow and \"the structure of birds, animals, insects, and fish\", and an unshaded print can show that only in its blocks. A pale bloom's pink is hairlines on one block, run from base to rim inside grey edges cut on another, so grain and outline are separate decisions. In both greens the leaves keep their veins: cut out of the dark one, printed onto the pale. At top right the butterfly hangs upside down in mid-turn, and its low-set eyes are enough to say so.",
+  "by": "Opus 5.5"
+ },
+ "paul-cezanne-la-femme-etranglee": {
+  "about": "Cézanne's small struggle of the 1870s has gone under names that disagree on what it shows: L'assassinat, the murder, in Vollard's stockbook; Combat de femmes, a fight between women, at the Bernheim-Jeune gallery around 1911.",
+  "deep": "Each of its two datings finds a different painter in it, and the canvas supports both. Lionello Venturi, cataloguing Cézanne in 1936, put it at 1870–72, among his dark, violent figure pictures; that painter is in the man, his blue back bowed in one heavy curve above the woman, edged with dark line. John Rewald moved it to 1875–76, matching the 1875 Cézanne's son wrote on a photograph of it, into the years of landscape painted beside Pissarro. That painter's case is in the paint, not the subject: the skirt's white wears thinner as it falls, until at the bottom edge bare canvas stands in for the cloth.",
+  "by": "Opus 5.5"
+ },
+ "camille-pissarro-chestnut-trees-at-osny": {
+  "about": "Painted by Camille Pissarro in 1873, this view of fields between chestnut trunks was shown at the artists' group exhibition that opened on 15 April 1874, nine days after his daughter Minette died, aged eight.",
+  "deep": "A review of 1874 saw coarse handling and serious purpose in this canvas, one beneath the other. In L'Artiste, a woman writing as Marc de Montifaud found it \"somewhat crude in tone\", yet saw in its \"lushly painted fields\" a sign of \"serious intentions\" beneath a \"persistently coarse surface\". Between the trunks the coarse and the lush will not come apart: the hillside's warm red band, short touches packed close and turned every way, is both at once. Her \"persistently\" holds at the right-hand trunks too, where the stooping figure under its dark load gets no more finish than the ground at its feet.",
+  "by": "Opus 5.5"
+ },
+ "hippolyte-berteaux-esquisses-pour-l-hotel-de-ville-de-paris": {
+  "about": "Hippolyte Berteaux sketched this holiday crowd at night in oil in 1895, for a wall of the Hôtel de Ville in Paris. In 1907 the full-size painting was peeled off and replaced by allegories.",
+  "deep": "Asked for a view of Paris, Berteaux painted the city as its crowd out on the national holiday, keeping only as much street and building as that crowd needs. The brief for the Paris panels of a gallery in the Hôtel de Ville was a Parisian landscape, and the city hall had burned under the Commune in 1871 and been rebuilt by 1882; for its new walls, Paris is shown as a crowd behind its flag. The landscape survives inside the festival. The street lends the flag its pale band, the pavement's colour carried up into the cloth, and the building high at the left is kept for the lamps along its front.",
+  "by": "Opus 5.5"
+ },
+ "john-constable-clouds": {
+  "about": "On the back of this oil sketch on paper, dated 5 September 1822, Constable described grey clouds running fast in a brisk west wind, and judged the sky \"very appropriate for the Coast. at Osmington.\"",
+  "deep": "Weeks after judging this sky right for the Dorset shore at Osmington, its painter declined the journey there. The village, near Weymouth, was the parish of John Fisher, the friend who married him to Maria Bicknell in 1816 and had them to stay for the honeymoon. \"A visit to your coast would wash my brains entirely,\" Constable wrote to Fisher in October, not knowing how to come \"so far as Weymouth\". The fit was judged from a distance, and the sheet shows no shore. Low down, clouds flatten into level bars, and along the foot at right a narrow band swells gently, either far land or a cloud bank on the horizon.",
+  "by": "Opus 5.5"
+ },
+ "pierre-auguste-renoir-acrobats-at-the-cirque-fernando-franci": {
+  "about": "In 1938 the younger of the acrobat sisters Renoir painted in 1879, Angelina Wartenberg, identified them for her niece: “I am the greedy one, and collar most of the oranges the public pelted us with.”",
+  "deep": "The circus reaches this canvas as a floor, a striped wall and one face above it, and a friend of the painter's blamed the light. Georges Rivière wrote in 1921 that Renoir enjoyed the Fernando like all popular shows but was never tempted to paint how it looked: its uncertain lighting made faces grimace and distorted gestures, a caricature that repelled him, so he painted these girls seen by daylight. A chalk drawing identified as a study for the picture has a clown. Here he is gone, and the ring's wall rides so near the top edge that of the audience only the bearded man at top right keeps his face.",
+  "by": "Opus 5.5"
+ },
+ "frederic-bazille-fontainebleau-forest": {
+  "about": "This clearing at Fontainebleau, painted by Frédéric Bazille in 1865, was listed in 1927 and again in 1947, his cataloguer Michel Schulman notes, as “La Garrigue”: the dry scrub around his native Montpellier.",
+  "deep": "The painter of this wood came to the forest in 1865 to hold still for Monet, and his own canvas holds still too. Monet wrote of his Déjeuner sur l'herbe, “il ne me manque plus que les hommes”: only the men were missing. On 19 August Bazille arrived at Chailly, on the forest's edge, to pose for more than one of its figures. The canvas is placed in that stay, though Bazille's cataloguer Michel Schulman allows for an earlier, unrecorded visit. Of this canvas Schulman wrote “Tout est immobile”, everything is still. The drawing bears it out to the topmost sprigs of the tree right of the sunlit clearing, sharp against the sky.",
+  "by": "Opus 5.5"
+ },
+ "alexandre-calame-hochgebirgsschlucht-handeggtal-im-kanton-be": {
+  "about": "This storm in an Alpine gorge, painted to an order of 1854, is the dark partner to a sunny view of Lake Lucerne Alexandre Calame had made for the same patron, sized to match it.",
+  "deep": "The shudder ordered from this canvas comes less from its storm than from where its sun falls. Its patron's letter asked for a thunderstorm, “the tops of the firs and other trees bent by the wind”, rocks with foaming waterfalls, and a picture to make one shudder. The storm came as ordered: heavy cloud over the gorge, both conifers' tops tipping toward our left, a torrent falling grey-white. Calame's first biographer, Eugène Rambert, called the composition “systematically churned up”, in a German rendering of his words. The list names no sun, yet sun lies on a far mountain face at upper left, out of reach across the black drop of the gorge.",
+  "by": "Opus 5.5"
+ },
+ "attributed-to-ogata-korin-island-with-pine-tree-among-roilin": {
+  "about": "Once, probably, a single-panel standing screen — so a former owner wrote, and a curator came to agree. This eighteenth-century painting from the school of Ogata Kōrin now stands on two folding leaves, hinged down the middle.",
+  "deep": "The novelist Arthur Morrison, who owned this screen, printed it in 1911 as \"By Ogata Korin\", in a chapter that found \"more than a score\" of Kōrins in one Continental sale catalogue false, \"every one\", and judged that \"the possessor of one true Korin may count himself fortunate\". The crests and spray, he wrote, \"in silver, have now by age the tone of black mother-of-pearl\". It now goes to the school of Ogata Kōrin, and one way it differs from screens bearing Kōrin's signature, one scholar notes, is the pigment of those crests. At lower left, the breaking foam hooks into dark claws, perhaps the darkening he put down to age.",
+  "by": "Opus 5.5"
+ },
+ "tani-buncho-dragon-in-clouds": {
+  "about": "Tani Bunchō's dragon, painted in ink on paper in the nineteenth century, 177 centimetres wide, is one of his unusually large hanging scrolls — a size that suggests it was intended to hang in a temple.",
+  "deep": "Sketch and finished painting at once: the dragon breaks off like the first and holds together like the second, and cloud does the holding. Publishing the scroll in 1934, Basil Gray called it \"a large and finished painting without losing the qualities of vigour and immediate inspiration of a sketch\". The dragon's lower length never meets the upper; scales stop short in wash like a quick study's strokes. No break looks abandoned: the cloud taking each is brushed, as Gray saw, with the same decision as scales and claws. The cloud, near-black over the coil's top and pale where the tail's root sinks from above, is Gray's storm-cloud, which \"partly hides the dragon\".",
+  "by": "Opus 5.5"
+ },
+ "aristide-maillol-desir": {
+  "about": "The man and woman kneeling in this lead relief were modelled by Maillol in 1907, while his patron, Count Harry Kessler, followed the work in about twenty diary entries — the cast itself was made in 1941.",
+  "deep": "Expression here was made to obey what Maillol called the laws of relief. In May 1907 he gave Count Harry Kessler, the patron who ordered it, a rule: every point equally distant from the ground behind the figures. In July he tore the whole relief down because the woman's head, tried further forward for its expression, came out too far; once those laws are broken, he said, nothing holds. Gesture was held to balance as strictly. In the lead a hand rises behind the young man's head to the panel's top left corner, across from the woman's head at the top right, and Maillol called that hand a counterweight to her head.",
+  "by": "Opus 5.5"
+ },
  "claude-monet-la-cabane-des-douaniers-effet-d-apres-midi": {
   "about": "Set up under Napoleon I to watch the Channel coast, this clifftop customs post near Varengeville sheltered fishermen by 1882, when Monet painted it, and he often titled his canvases of it Fisherman's House instead.",
   "deep": "The afternoon in the title is a matter of which wall the sun finds. Monet also painted the cabin in a morning light, with the sun in the east; in this canvas it has moved round to the west and falls from our left. In April 1882 he wrote that he had finished a canvas of the morning sun but not yet the evening one; which canvases he meant is not recorded, but the letter shows him setting one hour of a place against another. Here the pale gable takes the western sun, and the long wall turns from it into blue-grey shade, where the upright bars of vermilion sit.",
