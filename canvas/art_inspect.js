@@ -101,6 +101,233 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+ "pierre-auguste-renoir-theatre-box-la-loge": {
+  "mv": 6,
+  "see": "An upright canvas almost filled by two people in a theatre box. A young woman sits at its front, cut off at the lap by the box's plum-red ledge and, at our right, by the bottom edge: a gown striped in black and white, strands of pearls, roses in her hair and at her bodice, white gloves, a small pair of gold opera glasses in the hand on the ledge. Behind her, to our right and across an ermine stole, a man in evening dress raises a second pair to his eyes, his arm and shoulder cut by the right edge. A red-brown curtain and a pale panel close the space at left. The gown's black and white is the loudest pattern on the surface, beneath two quieter heads.",
+  "about": "Nothing of the performance reaches this canvas. Stage, players and the rest of the audience lie beyond its edges; what fills it is a couple at the front of their box, the man scanning the auditorium through his glasses. In a city estimated to sell over 200,000 theatre tickets a week, the box was a familiar scene in fashion magazines and satirical journals; in paint it had mostly been small oils and watercolours by Daumier and Constantin Guys. Renoir raised it to the scale of a figure painting, the heads a little under life-size.",
+  "craft": "The paint is oil on canvas, handled in a graded hierarchy of finish. Line and firm edges are kept for the features a viewer has to read; away from them the brush grows broader, wetter and quicker, much of it laid wet into wet, so that neighbouring colours pull into one another while both are still soft. The lights are loaded thick and the shadows kept thin, which puts the weight of paint where the light falls. The picture also changed on the canvas as it went: an X-ray shows that she may first have worn a hat, and the pose of the man's arm was adjusted slightly.",
+  "context": "Renoir was a founder member of a new company of artists, and when its first exhibition opened in the spring of 1874 he was responsible for hanging it. La Loge went on its walls with his other entries. The reviewers dwelt on the picture at length and stressed its novelty, and one praised Renoir's “qualities of observation and remarkable qualities of colour”. The praise found no buyer. The canvas was then shown in London, in an exhibition organised by the dealer Paul Durand-Ruel, and did not sell there either. In 1875 a minor dealer known as Père Martin bought it for 425 francs, money Renoir badly needed for his rent.",
+  "deeper": [
+   {
+    "t": "Her face",
+    "x": 0.3,
+    "y": 0.15,
+    "w": 0.23,
+    "h": 0.2,
+    "body": "In the upper centre-left, her face is a pale oval set between brown hair and a red-brown curtain. It is lit almost straight on: both cheeks take the same light, and barely any shadow lies on the face. Its modelling is thin grey-blue half-tone on our left of the nose, under the lower lip and along the jaw, with pink brushed into the cheeks and ear. With modelling so thin, the drawn features give the head its form. A brown line marks each upper lid; the irises are deep blue, each with a dark pupil and one white glint; the mouth is a few strokes of vermilion with a firm upper edge, darker where the lips part and flecked pale along the lower lip. Those marks are drawn harder than the hair above them, which is brushed loose, its fringe falling in separate wisps."
+   },
+   {
+    "t": "Strands of pearls",
+    "x": 0.29,
+    "y": 0.29,
+    "w": 0.23,
+    "h": 0.21,
+    "body": "Below her chin, the necklace hangs in several strands looped from the throat toward the bodice, and every pearl is its own touch: a small raised dab of cream-white, often with a dot of blue-grey set beside or beneath it for the bead's shadow. The dabs are irregular, commas and flecks and little tilted wedges, and they stand proud of the surface, so they catch real light as relief. The throat they lie on is painted thin and smooth in cream. The strands also loosen as they fall: the upper ones are close-packed runs of touches, the lowest a sparse dotted line that fades into the white of the neckline."
+   },
+   {
+    "t": "The black bands",
+    "x": 0.03,
+    "y": 0.37,
+    "w": 0.33,
+    "h": 0.3,
+    "body": "Left of the pearls, the dress falls from her shoulder in broad bands of black laid over pale blue and white. Each band went down wet in a few wide strokes and was left alone: where the brush lifted, the edges are dragged and feathered, so the white beside them shows in ragged bites, and no line outlines a band. The black is a deep, neutral near-black, as dark as the man's coat, and it has dried into a fine net of cracks visible at close range. On this dress black is a colour in its own right, and it does the drawing. The bands fan out from the shoulder and slant toward her lap, so their diagonals carry the slope of her arm and the bulk of the sleeve where no contour exists. Between them the paint changes by place. Near the shoulder a strip of cool pale blue is laid smooth and almost unmixed; lower down the whites thicken and break, flecked with cream and blue, and are dragged back into the black's edges in turn, so neither colour simply sits on top of the other."
+   },
+   {
+    "t": "The corsage",
+    "x": 0.3,
+    "y": 0.47,
+    "w": 0.27,
+    "h": 0.22,
+    "body": "At the centre of her bodice, a spray of roses runs from the white neckline down across the black. The upper bloom is pale pink laid in curling strokes, with vermilion pressed into it and a dark violet touch at its heart. Lower, where the spray reaches the black band, a second bloom is pinker and rougher, and a single curved stroke of dark blue draws a petal's edge across it; beside it a bud is built from a few small touches, vermilion below and cream-white on top. The leaves are olive and bottle green, smeared wet so that they sink into the black around them. Above the spray, thick white strokes run diagonally along the folds of the neckline, the paint standing up in ridges."
+   },
+   {
+    "t": "Two kinds of white",
+    "x": 0.58,
+    "y": 0.33,
+    "w": 0.39,
+    "h": 0.27,
+    "body": "Right of her shoulder, beneath the man's shirt-front, the ermine stole is a broad sweep of pale cream marked with two black tufts: one a stroke flicked out to a fine point, the other a rounder dab whose lower end frays into a short, soft tail. The cream is painted unlike the dress just below it. There the whites are short, loaded and broken, flecked with blue and wedged between black bands; here the brush moves in long, blended sweeps with almost no raised paint, the same handling as the shirt-front above. The cream is also lit far more strongly than that shirt-front, which sits in grey-blue shade a hand's breadth higher."
+   },
+   {
+    "t": "The hand on the ledge",
+    "x": 0.025,
+    "y": 0.6,
+    "w": 0.335,
+    "h": 0.375,
+    "body": "At lower left, her gloved hand rests on the front of the box, its fingers curled round her own opera glasses. The glove is a bluish white whose strokes run down the length of the fingers, and a gold bangle rings the wrist. Neither the glasses nor the bangle is more than yellow paint: brownish and bright yellows dragged together, with the glints as raised flecks of cream, laid the way the pearls are. Two small dark touches, one under a fingertip and one under the glasses, seat the hand on the surface. The ledge is the box's front seen on a slant, a plum-red band, softly scumbled, running down to the bottom edge, with a strip of yellow below it in the corner, where the picture is signed A. Renoir in dark paint and dated 74. That diagonal cuts across her lap and puts the edge of the box between her and the viewer, who stands outside it, looking in."
+   },
+   {
+    "t": "The roses in her hair",
+    "x": 0.025,
+    "y": 0.025,
+    "w": 0.355,
+    "h": 0.185,
+    "body": "At upper left, two roses are pinned in her hair. The larger, lower one is a heap of thick white and pink paint round a vermilion heart, its petals pushed on with a loaded brush that left ridges; the smaller one above is pink-white touched with vermilion, a green leaf at its side; a dark blue-green trail runs below them. Around them the theatre is thinly painted. The curtain behind her head is red-brown and scrubbed; a gold cord loops across its top in a few curling yellow strokes; and at the far left a pale vertical panel of green, cream and blue is laid in long drags that run wet into one another. Against that thin setting, the roses' heavy paint pushes them forward of everything behind."
+   },
+   {
+    "t": "The opera glasses",
+    "x": 0.3,
+    "y": 0.02,
+    "w": 0.62,
+    "h": 0.32,
+    "body": "At upper right, the man behind her has raised a pair of opera glasses, and their black barrels hide his eyes entirely. The front lenses face out of the picture and tilt upward, each a dark green disc ringed in black, with short white dashes for glints along the rims. His pale hand curls over the top, with a white cuff below and one dab of ochre for a cufflink. Under the glasses his face is set in a lower key than hers, clearly darker beside her cheeks, and its edges are softer: moustache and beard brushed in loose brown strokes, the lips a blurred pink with no firm contour, where her mouth has one. Her face is turned to the front of the picture; his glasses point higher, at something above and beyond the box that the painting leaves out."
+   }
+  ],
+  "beside": "Acrobats at the Cirque Fernando, which Renoir painted in 1879, reverses the box's order of show and audience. Two acrobat sisters fill that canvas, and the public is pushed to the top edge, black coats cropped at the chest behind the ring's barrier. One spectator's face survives, a bearded man at the rail, top right, where this box seats the man with opera glasses. His gloved hand lies on the rail around a small black object with two glints, his eyes lowered toward the ring. Where the circus cuts its audience to one face turned on the show, the box fills its canvas with audience and lifts its watcher's glasses toward the auditorium.",
+  "refs": [
+   {
+    "id": "pierre-auguste-renoir-acrobats-at-the-cirque-fernando-franci",
+    "text": "Acrobats at the Cirque Fernando"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "unknown-die-sunde": {
+  "mv": 6,
+  "see": "An upright canvas, most of it near-black, holds a half-length nude woman facing us, her head turned a little to our left under a mass of dark hair. A serpent is coiled about her: its head lies at her shoulder on our left, and its body shows mostly where light catches its scales. At the upper right a tall pale field, whose nature the picture leaves unsettled, carries the painter's name. Against so much dark, the torso and that field are the two large lights, and on our left the dark ground is laid in long vertical strokes, from the top down to about the middle of the torso.",
+  "about": "Stuck’s subject is sin as allure, and his own note on the motif states it plainly: the naked woman lures, and “right beside the luring face” the poisonous snake flicks its tongue. The canvas keeps the pair and drops the story, with no garden and no fall, only a woman and an animal set before us in the dark. In the paint the lure is the flesh itself, and the serpent’s head sits at her shoulder, below her face. To a generation that had taken from Nietzsche a new esteem for body and desire, such an image could stand for “Life”, a watchword of the day, as readily as for a warning.",
+  "craft": "Stuck first worked the design out as an etching, which he called Die Sinnlichkeit (Sensuality), before it became a painting. In oil his brush works in two registers. Blended passes model the form wherever it should turn softly, so that shape comes from tone; wherever something should glint, he sets down separate touches of brighter paint.",
+  "context": "In 1926 the canvas was among the paintings Eduard Sturzenegger, an embroidery manufacturer, gave to the Swiss city of St. Gallen. Within a decade taste had turned. Reporting in 1935 on a gift by then suspected of holding fakes, the expert Walter Hugelshofer was hardest on the Munich school: such pictures, he wrote, had either never been bought by collections that thought anything of themselves or had long since vanished into the storerooms. The Sünde was sold that year into the German trade, and by July 1938 the Munich dealer Maria Almas-Dietrich had supplied it to the collection gathered for Hitler’s planned museum at Linz. After the war the Americans’ Munich Collecting Point held it until 1949, then released it as a picture the dealer had bought from a German owner.",
+  "deeper": [
+   {
+    "t": "Where the light gathers",
+    "x": 0.08,
+    "y": 0.09,
+    "w": 0.52,
+    "h": 0.86,
+    "body": "Left of centre, the pale torso carries most of the picture's light, and it is lit far more strongly than the face above it. The face is a dim, yellow-green mask; a band of shadow under the chin parts it from the neck; then the flesh lifts through the chest and reaches its fullest pitch across the belly, where the cream turns a shade warmer. Along both flanks there is no drawn outline. Short strokes laid crosswise over the turn of the form carry the cream down through a cool green into black, so each side of the body is a broad graded band where a contour would normally sit. Neither arm comes into the light, and below the belly the trunk runs out into darkness before any hip or thigh is reached."
+   },
+   {
+    "t": "The eyes in shadow",
+    "x": 0.26,
+    "y": 0.085,
+    "w": 0.24,
+    "h": 0.22,
+    "body": "At the top of the figure, the dark hair comes down low over the forehead like a hood and lays its shadow across both eyes. The face is turned a little to our left. The far eye, beside the nose on our left, is lost in that shadow; the near one is a dark socket with a single pale fleck at its lower lid. The lit ridge of the nose climbs up through that shadow to an arc of brow above the near eye; below the band the light picks out the broad cheek on our right, the chin, and the mouth, a red set into the green skin, the dark seam between the lips running on past them and lifting at the corner on our right. The modelling is soft throughout, the features made by small changes of tone with hardly a line."
+   },
+   {
+    "t": "Two red mouths",
+    "x": 0.1,
+    "y": 0.19,
+    "w": 0.36,
+    "h": 0.27,
+    "body": "Below and to our left of the chin, at the woman's shoulder, the serpent's head comes out of the dark with its jaws open. It is painted another way from her skin. Where the flesh is blended, the head is built of separate dabs of blue, green and yellow; a yellow fleck marks the eye on our left, and pale hooked strokes make the fangs, a long one at each side of the jaw with smaller teeth between. Inside the jaws the throat is a dark red, and that red has a partner just above: the woman's lips, set higher and to our right on a diagonal from it. One mouth is closed and lifts at its corner; the other is open on its teeth. Both are reds, the lips lit and the throat darker and browner, so the eye pairs the face with the animal at her shoulder through colour, with no gesture between them."
+   },
+   {
+    "t": "Scales in the dark",
+    "x": 0.6,
+    "y": 0.24,
+    "w": 0.38,
+    "h": 0.56,
+    "body": "On our right, a dotted line of blue and yellow touches runs down from under the dark curve at upper right to about the level of the belly. It is the serpent's body, picked out where light catches a row of scales along one flank. Each scale is a single short dab, deep blue with a yellow point, set close enough to read as a line from a distance and separate enough to stay a string of points up close. The line bends as a body would, starting near the canvas edge at the top and drifting inward as it descends, then fading into black well above the bottom, where the rest of the coil is left to the dark."
+   },
+   {
+    "t": "The coil below",
+    "x": 0.1,
+    "y": 0.78,
+    "w": 0.7,
+    "h": 0.22,
+    "body": "Low in the picture, the serpent comes back into view as a sagging row of scales, deepest at the centre and rising toward both sides. Each scale here is a little chevron of blue tipped with yellow, a hooked stroke made with a turn of the brush, where the run on our right was set down as single dabs. Just above, the end of the torso is a soft curve of shadow lying parallel to the coil, so the animal passes beneath the body at the point where the light gives out. Its row rises on our left toward the side where the head lies, though the stretch between them stays unlit."
+   },
+   {
+    "t": "A name in the light",
+    "x": 0.72,
+    "y": 0,
+    "w": 0.28,
+    "h": 0.36,
+    "body": "At the upper right, the one large light that is not flesh is a tall pale field laid in vertical strokes of yellow, pink and pale green side by side, as bright at its centre as the belly. Its left side softens into the dark, but its lower edge is cut by a dark curve, the top of the large dark form that fills our right, painted far firmer than the body's sides. Into its top, undated dark capitals spell FRANZ over STVCK, the V standing for U as in Roman inscriptions, so the name is lettered into the light like a carving. Stuck seems to have kept that signature for this subject, while most of his pictures by then were signed with the noble “von”."
+   }
+  ],
+  "beside": "Eve, in Albrecht Dürer’s Adam and Eve of 1504, is the one tempted; in Die Sünde the naked woman, a serpent’s head close by, has become the tempter. Dürer’s serpent lowers its open jaws to the fruit at Eve’s cupped hand, and she bends her head to watch. A second fruit is already in her other hand, and Adam’s open hand reaches toward her, so the chain runs from animal to woman to man. Stuck’s serpent rests its head beside her, below the chin, with nothing in its jaws, no one else is in the canvas, and she and the animal together are the offer.",
+  "refs": [
+   {
+    "id": "adam-and-eve",
+    "text": "Adam and Eve"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "claude-monet-le-boulevard-des-capucines": {
+  "mv": 6,
+  "see": "An upright canvas looks down from high above a Paris boulevard in the season of bare trees. On the left a long stone façade with lettered signs and chimney pots runs back into the distance; a row of trees fills the middle with a blue-grey canopy; below it and to its right, a crowd of small dark walkers spreads over pale ground, with cabs at lower left, a bunch of pink balloons right of centre and a man in a top hat cut off by the right edge. The far end of the street thins into haze under a pale, thinly brushed sky. Almost everything is keyed to blue-grey, so the few warm notes and the blacks stand out.",
+  "about": "Monet had painted Paris crowds from above before: in 1867, the Exposition year, he worked from a balcony of the Louvre and made the most of the crowds it drew. Here he took a high balcony again, over a boulevard on a winter day, and the crowd is that day's traffic, people on foot and cabs.",
+  "craft": "The canvas came commercially prepared, its thin ground a warm blush tone that Monet left showing between strokes. Infrared finds no underdrawing, and no studies are known. Sky and pale foreground seem to have gone in thinly first, around reserves, patches left unpainted for the trees and some figures; then he worked back into the sky, at times pulling the brush over trees and chimneys in a scumble. The figures came at two stages, some into their reserves while the pavement paint was still partly wet, many others on top once it had dried. Highlights came among the last strokes, laid on thicker, wet into wet. Later the canvas was opened out by about two centimetres each way, so the paint stops short of its left, right and top edges.",
+  "context": "In May 1875 Monet's account book entered three ‘esquisses’, sketches, sold to the painter Charles de Meixmoron de Dombasle; none is named, but this canvas was likely one of them. In November and December 1873 he kept coming into Paris from Argenteuil to recruit artists for a planned group exhibition, and on 27 December the group's incorporation was announced. He spent the holidays at Le Havre, where Eugène Boudin's letter of 4 February 1874 finds him still painting the harbour, far from this street. The Montsouris observatory's bulletins show no snow in Paris until 9 February, but thick hoarfrost on several days in November and December, so the white on the cab roofs and pavement may be frost.",
+  "deeper": [
+   {
+    "t": "Balloons over the crowd",
+    "x": 0.7,
+    "y": 0.63,
+    "w": 0.24,
+    "h": 0.25,
+    "body": "Right of centre, low in the crowd, a cluster of pink touches rides above the hats. Each balloon is one loaded dab of salmon pink, pressed down and lifted so that a whiter crest stands at its upper edge. The dabs lie cleanly on the dark strokes of the walkers around them, unmixed with them, so they went on after the crowd was laid in, and one strays a little apart from the bunch on the right. Beneath the cluster a dark upright stroke drops to a streak of teal, the single mark that ties the bunch to the pavement and to the seller who holds it. Lower down and to our left, a small girl in pink and white wears a hat and skirt in a pink close to theirs. The colour turns up twice in the same stretch of street, once in the air and once at walking height, and the second sighting lets the first be read as something carried through the crowd."
+   },
+   {
+    "t": "The watcher at the edge",
+    "x": 0.8,
+    "y": 0.4,
+    "w": 0.2,
+    "h": 0.24,
+    "body": "At the right edge, level with the far end of the crowd, a black silhouette in a top hat is cut off by the side of the canvas. Scale places him. Walkers on the pavement at that height in the picture are small, distant touches, yet his hat is more than twice the width of the bowler on the walker beside the signature at the foot of the picture, so he cannot be down in the street: he shares our height above it. A pale touch under the hat, notched dark on its left, gives a face in profile turned toward the boulevard. He is brushed in flat, dense black, barely modelled, and set against pale blue haze, so he sits on the surface like a shape cut from paper."
+   },
+   {
+    "t": "Two men coming our way",
+    "x": 0.53,
+    "y": 0.66,
+    "w": 0.2,
+    "h": 0.16,
+    "body": "Right of centre, on an open stretch of pavement, two men in dark coats come side by side toward us. Each is assembled from a few touches with separate jobs: a dark hat, a flesh-coloured dab for the face, and on the left-hand man a white stroke for the shirt front and a small warm touch at his side for a hand. Each coat takes several dark strokes, pulled downward. The legs are two thinner, paler strokes that fade into the pavement, so the lower body is the least fixed part of each figure, as moving legs are when glimpsed from above. The touches sit as they landed, unblended with their neighbours."
+   },
+   {
+    "t": "Hats and shoulders at the foot",
+    "x": 0.44,
+    "y": 0.84,
+    "w": 0.56,
+    "h": 0.16,
+    "body": "Along the bottom edge many of the walkers turn squat. Just left of the signature, Claude Monet in dark paint, a bowler-hatted figure is mostly hat and a broad dark mass of shoulders; farther to our left another is a dot of head set on a low, wide blot. The pair of men walking side by side higher up the canvas are slim upright strokes, far taller for their width than that blot. The difference is the angle of view. The nearer a walker comes to us, the more steeply we look down on him, and the more his body shortens behind hat and shoulders; farther off, people are seen nearer side-on and keep their length."
+   },
+   {
+    "t": "Cabs told by their roofs",
+    "x": 0,
+    "y": 0.58,
+    "w": 0.34,
+    "h": 0.24,
+    "body": "At lower left the carriages are told mostly by their roofs. Each cab is a dark box with a white lid. The lid is loaded thick, dragged once and left standing in a ridge with a bluish edge, while the body under it is scrubbed thin, the grain of the canvas breaking through the dark. From this height the roof is in plain view, and it is the part of each cab that catches the light and takes the weight of paint. Under the nearer cab two red-brown strokes drop toward the ground, and higher up, between the cabs beyond it, curved dark lines trail over the pale roadway, set down fast."
+   },
+   {
+    "t": "White dashes under the trees",
+    "x": 0.27,
+    "y": 0.44,
+    "w": 0.46,
+    "h": 0.28,
+    "body": "Low under the central canopy, short white dashes sit among the trunks, some of them over a small dark touch. Those are built like the cabs at lower left, a white lid over a dark body, reduced to a single flick of the brush, and the dashes run back in loose rows into the trees, where the surface of the roadway is lost in blue-grey. Likely carriages too, they continue the traffic down the boulevard after the road itself has gone from view. Above them the canopy is a thicket of upright blue-grey and olive strokes, with the trunks coming down through it as long single lines."
+   },
+   {
+    "t": "Signs through the branches",
+    "x": 0.03,
+    "y": 0.12,
+    "w": 0.42,
+    "h": 0.24,
+    "body": "Upper left, on the long façade across the boulevard, two rows of pale yellow dabs run along bands of lavender-grey. Each dab is a single upright touch, spaced like lettering on a signboard, and no word can be read in them: they give the rhythm of a shop sign and stop there. The bare branches of the nearest tree come down across the lower band in dark strokes dragged so dry that they break into beads on the canvas grain, and a few red-orange dashes catch among the twigs. Above, the roofline is a row of upright blue chimney pots against the sky, and at the far left a steep, curved roof is laid in with long diagonal strokes."
+   },
+   {
+    "t": "The far end in haze",
+    "x": 0.58,
+    "y": 0.22,
+    "w": 0.42,
+    "h": 0.3,
+    "body": "At upper right, where the boulevard runs out, trees and buildings thin into a pale blue haze. Below the sky, nothing in the upper half of the picture is brighter than this stretch, and the trees standing just in front of it on the far right are a stronger blue than the greyer canopy at the centre, so the upper half's light gathers at this far end, with those trees set against it. The softening comes from a near-white veil dragged lightly across the blue, catching on the raised threads of the canvas and letting the blue show between. Yet the distance is still drawn: the far roofline is a row of small, separate blue uprights, each set down as one dab, and the line of trees on the far right keeps a soft but legible top."
+   }
+  ],
+  "beside": "The winter boulevard seen from a balcony is Gustave Caillebotte's subject too, in Boulevard Haussmann, effet de neige, painted around 1880 from his own apartment. His balcony is in the picture. Black iron scrollwork fills its lower left, the rail slanting down across the bottom, and past it the boulevard drops away under snow toward a pale haze, roofs capped white on both sides, a line of trees beside a roadway where the walkers are a thin scatter of dark touches. Nothing of Monet's own balcony, Caillebotte's nearest object, comes between this crowd and the eye: its walkers run down to the canvas's lower edge.",
+  "refs": [
+   {
+    "id": "gustave-caillebotte-untitled",
+    "text": "Boulevard Haussmann, effet de neige"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
  "j-m-w-turner-sunrise-with-a-boat-between-headlands": {
   "mv": 6,
   "see": "A sunrise over open water, seen between two headlands. On the left an ochre headland slopes down from the edge; on the right a bluish crag stands at the end of a paler ridge running back to the right edge above a brownish shore. Between them opens the gap, water under haze whose horizon shows only near the centre. High above it the sun is a wide cloud of yellow. Low on the water, left of centre, sits what is likely the boat of the title. The paint is thin and pale throughout, cream, yellow and a little grey, with scattered thick touches standing up from it.",

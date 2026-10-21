@@ -3,6 +3,21 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "pierre-auguste-renoir-theatre-box-la-loge": {
+  "about": "Staged in Renoir's studio in 1874, not in a theatre: the man raising opera glasses is the painter's brother Edmond, a journalist of twenty-four, and the woman is Nini Lopez, a Montmartre model cruelly nicknamed \"fish-face\".",
+  "deep": "The woman's clothes bear on a question the 1874 critics left open: what kind of woman she was. Jean Prouvaire saw a cocotte, a kept woman, \"attractive, worthless, delicious and stupid\"; Marc de Montifaud saw \"a figure from the world of elegance\". The dress historian Aileen Ribeiro finds the gown fashionable but a demi-toilette, a lesser evening dress than the low-cut, all but sleeveless opera dress; yet its full sleeves come with an open neckline. Ribeiro calls the ropes of pearls \"an unexpected touch\" with such a dress. The canvas stacks the two signals: pearls strand over strand at her throat, and below them the broad black bands shaping the full sleeve.",
+  "by": "Opus 5.5"
+ },
+ "unknown-die-sunde": {
+  "about": "Around 1912 Franz von Stuck painted this late version of a motif he repeated many times — a naked woman wound in a serpent's coils. An early version had caused a great stir at the 1893 Munich Secession exhibition.",
+  "deep": "In this canvas the upper corner is a pale field streaked yellow, pink and green, and the serpent's scales carry blue. The writer Hans Carossa remembered the 1893 picture hovering in “gloom and pallor”, with only “a reddish hell-yellow” burning in its upper corner. Between the two the woman and her serpent had set into a form Stuck repeated closely, and mainly the colour changed. In 1893 he gave the art publisher Hanfstaengl the photographic rights to an early version, for royalties, and the firm later took three more, numbered Die Sünde II, III and IV. The body, as in the early pictures, still hangs pale in the dark.",
+  "by": "Opus 5.5"
+ },
+ "claude-monet-le-boulevard-des-capucines": {
+  "about": "From an upper balcony of the photographer Nadar's former studio, Monet painted the Paris boulevard below on two canvases: a horizontal one, and this upright one of late 1873 or early 1874, under an overcast sky.",
+  "deep": "For years this quieter canvas was reproduced as the Boulevard des Capucines the critics wrote about in 1874, while the picture they most likely had in front of them was its horizontal twin. Ernest Chesneau praised the sketch he saw for \"the prodigious animation of the street\", the fleeting instant of movement caught as never before. The art historian Joel Isaacson thinks this canvas unlikely to have provoked so \"kinetic\" a response, and sets its even tonality against the twin's strong division of light and dark. Under this blue-grey light, would Chesneau have found his fleeting instant in two men walking abreast toward us across pale, open pavement?",
+  "by": "Opus 5.5"
+ },
  "claude-monet-the-seine-at-port-villez": {
   "about": "Signed but not dated, Monet's picture of a wooded islet in the river opposite his home at Giverny is placed around 1890, though Gustave Geffroy's 1922 book on Monet listed the same canvas under 1883.",
   "deep": "The islets that stood in this reach of the Seine have since disappeared, and the low strip seen here between two arms of the current went with them, so the canvas holds a stretch of river that can no longer be visited. It keeps the islet as bulk as well as likeness. The bare strand along its waterline went down in heavy horizontal pulls that still stand as ridges, and on the tallest tree, right of centre, the lights were left as separate raised touches, so the ground's thickness and the tree's height both survive as relief in the paint.",
