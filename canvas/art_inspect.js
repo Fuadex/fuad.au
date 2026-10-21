@@ -101,6 +101,419 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+ "j-m-w-turner-sunrise-with-a-boat-between-headlands": {
+  "mv": 6,
+  "see": "A sunrise over open water, seen between two headlands. On the left an ochre headland slopes down from the edge; on the right a bluish crag stands at the end of a paler ridge running back to the right edge above a brownish shore. Between them opens the gap, water under haze whose horizon shows only near the centre. High above it the sun is a wide cloud of yellow. Low on the water, left of centre, sits what is likely the boat of the title. The paint is thin and pale throughout, cream, yellow and a little grey, with scattered thick touches standing up from it.",
+  "about": "Daybreak is the event, and what the title lists, a boat between two headlands, is there to receive it. The canvas belongs to a group of late canvases Turner left unfinished, which the art historian Jerrold Ziff saw as mostly pastoral in subject; at a Turner symposium in 1975 he suggested that they may stand as ‘a reaffirmation of his faith in Nature in her more tranquil moods’, set against his late pictures of disaster. Nothing here breaks the calm: land closes in from either side, open water lies between, and the sky is given over to the morning, with neither storm nor wreck to share it.",
+  "craft": "Martin Butlin and Evelyn Joll, who compiled the catalogue of Turner’s paintings, count this among the unfinished oils in which he comes closest to his late watercolour style. The oil lies in slight, thin layers, and the direction of the brush does most of the drawing: where no edge divides one thing from the next, the run of the strokes changes instead. Thick paint sits on top, sparingly, in small loaded touches over the thin layers.",
+  "context": "In a book of 1910 the critic C. Lewis Hind came to this canvas and asked, ‘What is to be said about “Sunrise, with a Boat between Headlands”?’ The catalogue of the day noted that a watercolour of similar composition was said to show the Lake of Lucerne. Hind wrote that he could look at the canvas, love it and easily forget that. He counted it among what he called Delight Pictures, painted in his view for Turner’s own pleasure, and he dated it about 1835. It is now dated to the 1840s, the decade in which Turner, in his late sixties, went back to Switzerland each year from 1841 to 1844.",
+  "deeper": [
+   {
+    "t": "Yellow high, white low",
+    "x": 0.11,
+    "y": 0.02,
+    "w": 0.55,
+    "h": 0.48,
+    "body": "Upper centre, the sun is a broad cloud of yellow worked in curving drags of the brush, with small crumbs of thicker paint sitting proud of the smoother layer. Below the yellow, in the haze over the gap, the paint turns almost white. Colour and brightness, which a sun usually delivers together, have been pulled apart: the colour spreads high and diffuse, and the light gathers lower down, in haze that still hangs well above the water. At its fringes the yellow breaks into short feathered touches that point outward, and on the left those touches turn greyish before they give way to the pale sky."
+   },
+   {
+    "t": "Feathers in rows",
+    "x": 0.588,
+    "y": 0.02,
+    "w": 0.395,
+    "h": 0.4,
+    "body": "At upper right, rows of short grey-ochre flicks cross the pale sky, each a separate tapered touch with clean sky between the rows. Their colour is not the sun’s: the yellow itself enters this corner only at its left edge, and the flicks out here are duller and greyer than the yellow. The rows do not lie at random. Near the top they run almost level, lower down they slope toward the right edge, and together they fan out from the yellow’s fringe."
+   },
+   {
+    "t": "The ochre headland",
+    "x": 0.006,
+    "y": 0.26,
+    "w": 0.395,
+    "h": 0.4,
+    "body": "At left, the headland comes down from the edge as a slope of ochre. Only in a narrow strip beside the canvas edge does its crest meet the sky in a firm line; farther in, the ochre fades upward into the sky through a band of grey haze. What marks the ridge there is the paint just beneath that band: thick crumbs of cream laid along the slope, its lit edge. Lower down and toward the open water the same land changes character again: ochre dragged in vertical strokes thins into the haze over a wide stretch, and the slope that began as dense colour at the canvas edge ends in streaks laid into the light over the gap."
+   },
+   {
+    "t": "The blue crag",
+    "x": 0.44,
+    "y": 0.38,
+    "w": 0.4,
+    "h": 0.4,
+    "body": "Right of centre, a crag stands out of the water, a small upright at its left shoulder and its top sloping away to the right. Its upper part is blue, dragged thin and vertically over a warm layer that shows between the strokes, and this is the one patch in the picture where the colour actually turns blue; lower down the rock greys, and the long ridge running back from it toward the right is a warm grey. The crag’s firm edges are the ones facing the glow. Along its top and down its left flank, where it stands against the pale sky and the haze over the gap, the rock stops within the width of a single stroke. On the right, the side turned away from the gap, it has no edge to speak of: the crag thins into the ridge behind it over a much wider band."
+   },
+   {
+    "t": "A white touch on ochre",
+    "x": 0.05,
+    "y": 0.57,
+    "w": 0.392,
+    "h": 0.4,
+    "body": "Left of centre, low on the water, a single upright touch of thick white stands at the top of a row of ochre strokes pulled straight down. This is likely the boat of the title, though nothing outlines a hull or a mast. The white is as light as anything on the water. The ochre beneath it runs on downward in near-parallel strokes that end at different depths, the longest reaching below the rest. That ochre is as saturated as the headland’s above it: the land’s own colour, brought out onto the water in a mark a few strokes wide."
+   },
+   {
+    "t": "A broken path of light",
+    "x": 0.335,
+    "y": 0.46,
+    "w": 0.225,
+    "h": 0.525,
+    "body": "Below the gap, on the water, four short wavering strokes of pale yellow lie in two pairs, one pair under the other. Above them a thin horizontal band of yellow marks the horizon, with a single vertical stroke dropping from it, and together these touches lay a broken line of light down the middle of the water: the sun's reflection, given as six separate marks. The glints are thicker than the thin, horizontally dragged paint of the water around them, and their edges are crisp, each a single sideways movement of the brush that wavers as it goes. Around them the water is barely described, a few drags of grey and cream with some cooler dabs toward the left."
+   },
+   {
+    "t": "Darks held low",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "The picture’s deepest passages lie in four places, all of them in its lower half: the foot of the left headland, the white-topped ochre mark on the water, the crag’s top and a brownish smear on the shore under the right-hand headland. Two lie left of the gap and two right of it, so the column that runs from the sun down through the gap to the water holds nothing as deep anywhere along its length. Even the deepest of the four stops at a light middle tone, and everything else on the surface is lighter still."
+   }
+  ],
+  "beside": "The Voyage of Life: Childhood, which Thomas Cole painted in the same years, sends a boat into daybreak between close banks, the scene Turner’s title promises, and its morning arrives already explained. Cole had written out what his emblems meant before he painted it. Out of a dark cavern under a cliff comes a gilded boat, a white-robed angel at its stern, an infant among flowers amidships, and at the prow a winged golden figure holding up an hourglass, while a bank in flower runs toward a glowing horizon. No word of Turner’s about his morning is known, and its boat is no more than likely, a white touch on the water where Cole’s carries its meaning down to the hourglass.",
+  "refs": [
+   {
+    "id": "the-voyage-of-life",
+    "text": "The Voyage of Life: Childhood"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "guernica": {
+  "mv": 6,
+  "see": "A long frieze painted in black, white and greys alone, its figures cut as flat pale shapes against dark walls. From the left: a bull standing over a woman who holds a dead child; a bird on the wall; at the centre a wounded horse, and a fallen man along the floor; on the right a woman leaning from a window with a lamp, another hurrying in below her, and a figure with raised arms in a burning house. An electric bulb glares above the horse. Shading follows no single source: the pale shapes crowd the middle, and the walls darken toward both ends.",
+  "about": "The title names a Basque town, yet nothing in the canvas or in the studies made for it alludes to a particular event: there is no aircraft and no landmark. It holds the moment after a blow, among the people and animals it fell on, who are mourning, fallen, running, leaning out to look or burning. Indoors and out will not separate: a lamp is pushed out of a window and a house burns as if on a street, while a ceiling bulb hangs over all of it, so shelter and open air have become one place.",
+  "craft": "The canvas, nearly eight metres long, was set askew in a cramped attic studio. While Picasso worked, Dora Maar photographed it state by state for the magazine Cahiers d'Art, and the prints were developed as he went, letting him confront the canvas and its photographic image in the same attic. His own word for the stages was metamorphosis, and across them the scene moved from outdoors to a largely indoor one. In places the paint was thinned until it ran, elsewhere built up thick, and there are signs that some was poured.",
+  "context": "The Spanish Republic wanted a pavilion at the 1937 Paris Exhibition despite the civil war, and before the bombing it commissioned Picasso to fill one of its walls. The fair opened on 24 May with the German and Soviet pavilions facing each other; the Spanish one opened on 12 July, with his canvas on its patio and Josep Renau's photomurals referring to the bombing. Michel Leiris wrote that year that Picasso \"sends us our letter of mourning\". Sent to the United States in 1939 to raise money for refugees, the canvas stayed for safekeeping once war broke out, and Picasso later extended the loan until democracy came back to Spain, which received it in 1981, eight years after his death.",
+  "deeper": [
+   {
+    "t": "The bulb in the eye",
+    "x": 0.24,
+    "y": 0.175,
+    "w": 0.228,
+    "h": 0.12,
+    "body": "At top centre a pale almond hangs over the scene, and inside it, in a few thin dark lines, is an electric bulb: a bar for the fitting, a round glass, a knot of scribble for the filament. A drawn lid line runs along the almond's lower edge, so the one shape works as an eye with the bulb for its pupil and as a ceiling light in glare. The spikes hang from that lower lid and flare out at both corners, while the upper edge is a smooth curve: the glare is aimed down at the figures. The cream is laid flat inside hard, clean edges, and the grey around it is scrubbed on unevenly, mottled light and dark, so the light sits on the dark like a shape cut from paper and laid on."
+   },
+   {
+    "t": "A bird drawn in the dark",
+    "x": 0.19,
+    "y": 0.235,
+    "w": 0.12,
+    "h": 0.17,
+    "body": "Just right of the bull's grey neck, a bird stands against the dark wall, almost invisible. Anthony Blunt, sorting the cast into animals and people, counted a winged bird among the animals. It is drawn in dark line on dark grey: a neck stretched straight up, a beak opened in a V at the top. One wedge of it is painted pale, a wing held flat below the neck, and from a few steps back that wedge is all that shows, a white blade belonging to nothing. The figures found first are built of cream against black; this one, drawn in nearly the wall's own tone, waits for a close look."
+   },
+   {
+    "t": "The bull over the mother",
+    "x": 0.005,
+    "y": 0.19,
+    "w": 0.235,
+    "h": 0.55,
+    "body": "At the far left the bull's pale head turns toward us above its own dark body, and directly under its chin a woman throws her head straight back. The bull's face is a compound: both eyes look out frontally, while the muzzle, with its nostrils and parted lips, is drawn turned to our left, and the ear is an outlined triangle filled with black. Its body is close to the wall's black, so the head, the grey-washed neck and the twisted pale tail at the far left float almost free of it. The woman's mouth is wide open, a pointed grey tongue standing up in the dark of it, her eye is a teardrop with a dot for its pupil, and her hair hangs in a pale sheet, the line that shows which way is down. Across her arm a child hangs limp, its head at our left, its eyes two closed curves with no pupils. Two small marks separate them: the dot that keeps the mother's eye open and the lid line that shuts the child's."
+   },
+   {
+    "t": "The fallen man in pieces",
+    "x": 0.005,
+    "y": 0.62,
+    "w": 0.62,
+    "h": 0.22,
+    "body": "Along the bottom edge lies a fallen man assembled from fragments. At the far left an open hand turns its palm up, fingers spread, the palm scored with crossing lines. Its arm runs into a head lying upside down, the open mouth at the top, the two eyes set on different axes, one level and one upright. The other arm lies apart: its left end stops in a cut section, a pale-rimmed oval pointed at top and bottom around a dark centre, the way a broken limb of a statue ends, and at its right the fist still grips a sword snapped off in a jagged notch. Just above the fist a small flower, drawn in thin outline, lifts on its stem beside the broken blade. A horse's hoof, turned up beside the head, shows a shoe's row of nail holes."
+   },
+   {
+    "t": "The horse's printed hide",
+    "x": 0.33,
+    "y": 0.4,
+    "w": 0.2,
+    "h": 0.26,
+    "body": "Centre left, the horse's body is covered in rows of short upright strokes, each set a little apart from the next, in level lines like type in a newspaper column. At close range each stroke is a separate touch of dark paint, a little thicker or thinner than its neighbour: the texture is laid in by hand, row after row, over cream and grey planes alike, and the rows stop at the contours. Inside the flank a black spindle opens vertically, a few short strokes fringing its left edge, a wound cut into that printed skin. Around it the body is built of overlapping planes, a grey triangle laid across the cream and a black crescent cutting under it, so the horse's bulk is a stack of facets."
+   },
+   {
+    "t": "The horse's head",
+    "x": 0.28,
+    "y": 0.26,
+    "w": 0.16,
+    "h": 0.16,
+    "body": "Above the flank the horse's head is thrown up and back, its open jaws just under the bulb's lowest spikes. The tongue is a pale pointed spike thrust out of the mouth to our left, edged in dark line and shaped like the tip of a blade. Square block teeth line the upper jaw, the nostril is a looped hook at the top of the muzzle, and the eyes are two tiny rings set close together just below the two pointed ears, a small triangle and a taller leaf, both rings on the one side of a head drawn in profile. The gaping mouth and the tongue take up more than half the head's length."
+   },
+   {
+    "t": "The woman pushing in",
+    "x": 0.57,
+    "y": 0.44,
+    "w": 0.41,
+    "h": 0.4,
+    "body": "At lower right a woman drives in from the right edge toward the centre, her head stretched forward and up on a long neck, face tipped up to our left, toward the lamp held out at top centre. Her body runs as one long diagonal: from the trailing foot at the canvas edge, along a straight leg, to a knee bent under her and up through the torso to the face. Her hanging arm ends in a hand spread on her own thigh. The feet are drawn oversized: the one under the knee spreads its toes flat on the floor, and the trailing foot, its sole scored with crossing lines, is far bigger than the hand on her thigh."
+   },
+   {
+    "t": "The figure in the burning house",
+    "x": 0.77,
+    "y": 0.173,
+    "w": 0.21,
+    "h": 0.467,
+    "body": "At the right edge a figure flings both arms up in a V, palms open and fingers splayed, head thrown back so the open mouth faces the top of the canvas. Below the chest the body vanishes into a dark block ruled with diagonal stripes. To its right, pale sawtooth triangles step down the side of the house, and greyer points run along the roofline above: fire, the triangles in the same pale as the arms and face. With no colour to tell flame from flesh, edge does the separating, the fire built of points and the body of rounded ends. Above the head a window hangs as a pale square, one inner side drawn receding so it opens into the wall."
+   },
+   {
+    "t": "The lamp held out",
+    "x": 0.42,
+    "y": 0.2,
+    "w": 0.36,
+    "h": 0.27,
+    "body": "Back at the top, a head pushes out through a window frame from the right, hair streaming back behind it, and an arm runs out beside it to hold an oil lamp into the scene. The face is a profile with both eyes set on the near side and brows lifted; the mouth hangs open. Translucent bands of grey cross the arm, planes laid over it so the limb seems to pass through overlapping panes. The fist grips the lamp's base; the flame is a small teardrop with a wick line inside a glass chimney, and the chimney's top comes almost to the tip of the bulb's outermost spike."
+   }
+  ],
+  "beside": "Christian Dirce, painted by Henryk Siemiradzki in 1897, shows the aftermath of a killing, and like Picasso's canvas it pairs a bull with a woman. Siemiradzki's pair lie on the sand of an arena, she on her back against the felled animal, ankles roped to it, a spear standing in its hide, flowers strewn over both. A wreathed emperor, the man who ordered the killing, has come to look down at her, and more onlookers lean from the galleries above. Picasso's bull is on its feet, and the face that leans in to look at Guernica's wreck belongs to a woman of the place itself, who holds out a lamp.",
+  "refs": [
+   {
+    "id": "christian-dirce",
+    "text": "Christian Dirce"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "antonio-canova-amore-e-psiche": {
+  "mv": 6,
+  "see": "A white marble group of two nude figures on a rock set on a grey-veined slab. Winged Cupid is behind, one leg stretched out to our left; Psyche reclines across the rock toward our right, torso arched, head thrown back beneath his face. Her arms rise round his head; his hands hold her head and her side. A cloth under her hips falls from the rock. Raised wings and long limbs open the outline upward and to both sides. At a distance the group reads as one pale mass edged in shadow where the stone is cut deep; nearer, polished skin meets grooved cloth and a chisel-cut rock.",
+  "about": "Behind the group lies the last trial of a long punishment. Psyche opened a box meant to hold divine beauty, to use a little on herself, and the sleep inside left her, in Apuleius's words, nothing but a sleeping corpse; Cupid, finding her, scolds her for being lost through curiosity. The marble makes that waking one form: he comes down from behind and above, and she rises from the rock to meet him. Canova's clay sketches for it look as much like a struggle as an embrace; the marble lifts her torso, flexes his leg and stands his wings upright, and the tussle becomes a rescue.",
+  "craft": "Canova worked from models the size of the marble: a full-size clay on a wooden armature, cast in plaster, its measurements carried to the block with frames, plumb lines and large compasses. That let him leave a large part of the cutting to assistants; the composition and most of the carving and finishing were his, and so are the differences of texture. Curved tools were made to reach the least accessible hollows, and the skin was brought up through ever finer files.",
+  "context": "Colonel John Campbell, a British patron then in Italy, ordered the group in 1787 but never received it. Finished in 1793, it stayed in the studio until Joachim Murat bought it; by 1801 it stood in his château at Villiers, outside Paris. In 1802 Canova came to Paris to model Bonaparte, and the critic Quatremère de Quincy, who had known the group in Rome, went with him to Villiers. Quatremère was glad to see it again, but judged from more than one lack of finish that it had been carried off from the studio before it was done.",
+  "deeper": [
+   {
+    "t": "Two wings, two problems",
+    "x": 0.285,
+    "y": 0,
+    "w": 0.345,
+    "h": 0.4,
+    "body": "At the top, Cupid's wings rise behind his head and open the group into a wide V of air. They are carved as two different problems. The wing on our right turns its broad face to us: its feathers are laid in overlapping scallops, each lifted from the next by a shallow step, with the quills scored in as single lines, so a whole plumage sits in low relief on a flat sheet of stone. The wing on our left is turned almost edge-on, so it shows its thickness instead: a single curved blade. Halfway up, a narrow strip of its face carries foreshortened feathers, each scored with a central shaft and fine slanting barbs; higher up the blade runs on plain, with a bright rim. Nothing braces it along its visible length; it is held at its base, low behind his head, and the carver took away all the stone around a sliver that has to carry its own weight. Both wings came late: by October 1789 Canova had rethought the design and added them, each carved separately and set into Cupid's back, the join hidden under traces of carved down."
+   },
+   {
+    "t": "Hands in the curls",
+    "x": 0.395,
+    "y": 0.215,
+    "w": 0.18,
+    "h": 0.155,
+    "body": "Above Cupid's face, Psyche's two hands close round his head, one laid over the crown with the fingers bent to the skull, the other pressed at his temple among the curls. The hair under them is cut in two ways. Over the crown it is combed into long, low waves; around the face it breaks into tight spirals whose centres sink into small, deep, dark pits. The pits hold shadow in any light, so the fringe stays legible as hair from well back, and it frames his face. Her fingers are smoothed to an even skin: the hand that holds and the hair it holds are told apart as much by finish as by form."
+   },
+   {
+    "t": "The gap at the kiss",
+    "x": 0.4,
+    "y": 0.31,
+    "w": 0.13,
+    "h": 0.225,
+    "body": "At the centre, Cupid bends his face over Psyche's, which is tipped so far back that her nose points up at his chin. Their mouths do not meet. His lips are closed, with a faint lift at one corner, and they stay above hers with open space between. Two mouths that touched could not appear apart from any side, so the gap is cut into the marble, not an accident of where one stands: the group shows the moment before the kiss and holds it there. His eyelids are lowered toward her face. Her features are seen almost from under the jaw, and one of his hands holds her head from the side, its fingers spread up over her jaw and cheek toward her hair, lifting her face to the height his mouth needs. Faces, hand and throat share one smooth finish, while on top of his shoulder, beside the neck, a strap ends in a small curled knot and runs down the front of his chest as a band of fine scored lines, a patch of texture set just off the meeting point."
+   },
+   {
+    "t": "A hand laid on her side",
+    "x": 0.45,
+    "y": 0.48,
+    "w": 0.17,
+    "h": 0.2,
+    "body": "Below the faces, Cupid's other hand reaches round Psyche and arrives at her side, under her raised arm. It does not grip. The thumb lies along the top and the fingers fan beneath it, the forefinger bent at its middle joint so that its tip presses in. Thin shadows run along the lower edge of each finger and in the creases between them, so every finger lies on the skin as its own low form, and the hand rests on her body without merging into it. Around it her torso stretches in one long arc from the armpit to the hip, the ribs given as soft swells, and the polished skin carries small glints along them."
+   },
+   {
+    "t": "The tress and the hollow",
+    "x": 0.38,
+    "y": 0.53,
+    "w": 0.16,
+    "h": 0.19,
+    "body": "Beneath Psyche's back, where both bodies come down to the rock, the carving goes deep into the block. A long tress of her hair hangs from the tipped-back head against the rounded form of Cupid's thigh, coils once, and continues as a thinner twist down to the cloth. Around the coil the stone is hollowed far back: through a gap under it a lit surface shows from beyond, framed by his leg, her body and the drapery. Left of it, the sole of his other foot turns toward us, the toes curled down onto the rock. The pocket sits low and behind the main forms, yet the tress is separated strand from strand and the edges of the opening are cut clean."
+   },
+   {
+    "t": "The veil at the hip",
+    "x": 0.54,
+    "y": 0.52,
+    "w": 0.22,
+    "h": 0.2,
+    "body": "At Psyche's hip a band of thin cloth crosses the body and wraps the raised thigh. Its surface is combed with fine parallel grooves that run with the folds, while the belly beside it is smooth. The grooves break up the light, and the band lies dull against the sheen of the belly, standing barely proud of the body. Where it turns over the thigh, its edge is cut as a thin rolled lip, and the folds pull tight and bunch toward the knee as cloth does under tension."
+   },
+   {
+    "t": "Cloth over the edge",
+    "x": 0.56,
+    "y": 0.64,
+    "w": 0.25,
+    "h": 0.25,
+    "body": "At lower right, the cloth under Psyche slides off the rock in a heavy fall. Its upper edge, where it turns over toward us, is polished to a hard glint, and the folds below are cut deep enough to hold real shadow, so this is a weightier cloth than the combed veil at her hip, though both are the same stone. To its right the drapery bunches into a gathered knot. Above, her lower leg lies along the rock and the foot reaches past the rock's end: the toes stand out in the air with no stone beneath them. Just beneath the toes, the dark bar with a ball knob is the handle by which the group could once be turned on its base."
+   },
+   {
+    "t": "On his toes, on the rock",
+    "x": 0.2,
+    "y": 0.62,
+    "w": 0.22,
+    "h": 0.28,
+    "body": "At lower left Cupid's stretched leg ends in a foot that meets the rock with its toes and ball; the heel stands clear of the stone. The long diagonal of the leg, running down from his hip, takes its spring from that contact: the weight of a body just landed or about to push off. Under the foot the rock is a different surface again. It is covered in short parallel cuts in close rows, set in patches that change direction from facet to facet, the bite of a toothed chisel stopped at that stage. Against it the toes are polished and their nails cut clean, so the point where figure meets ground is also the boundary between two states of one block: worked down to skin, and left at the tool. Between leg and rock the wall shows through in an open wedge, which keeps the lower left of the group as airy as the wings above it."
+   },
+   {
+    "t": "One station of many",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "These stops look at a photograph of the marble in its room, and some of what it shows is the photographer's. The light is daylight from the tall window behind the group at our right. It strikes the broad wing from behind, and the warm glow in the wing's lower feathers is that light coming through the stone: the translucency belongs to the marble, the glow to the window. The camera stands on the side where Cupid's face turns to us and Psyche's is seen from under the chin. From this station the group locks into a broad X: the wing on our left runs down through the heads into her legs, the wing on our right into his stretched leg, and the two lines cross at the faces. Those lines are made of wings and limbs at different depths, so the X belongs to this standpoint; another place round the base lines them up differently. His back and the far face of the rock are out of sight from here, and the photograph's top edge cuts off the tips of both wings."
+   }
+  ],
+  "beside": "Psyche is held at the edge of a deathly sleep at the instant Cupid comes for her. In Ophelia, which John Everett Millais painted in 1851–52, a young woman is held at the same edge, and nobody comes. Her face lies tipped back on a dark stream, mouth open, and both palms are turned up, the farther hand lifted clear of the water, fingers loosely curled, the nearer resting at the surface among drifting flowers. They are Psyche's raised hands with nothing to close round. Above her, in place of a god bending down, the bank holds a leaning willow and a robin on one branch, and the embroidered dress that keeps her afloat spreads wide on the water.",
+  "refs": [
+   {
+    "id": "ophelia",
+    "text": "Ophelia"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "the-cicada": {
+  "mv": 6,
+  "see": "A young woman stands nude against a pale stone pier, filling a tall canvas. Her dark hair hangs to her hips, one hand is raised to her mouth, and a white cloth patterned in yellow hangs from her other hand. Her bare feet stand on a floor strewn with dry leaves. At the right edge the pier gives onto a narrow opening of tall leafy stems, sky and dark blue distance. The name and the date 1872 are written high on the wall at upper left. Cream, flesh and brown hold nearly the whole surface, with the hair and the blue as its strongest darks.",
+  "about": "La Cigale et la Fourmi opens La Fontaine's Fables: the Cigale sings all summer, finds herself destitute when the north wind comes, begs the ant for grain and is answered, \"You were singing? I'm glad to hear it. Well then, dance now.\" Lefebvre keeps the title and the season and leaves both insects out. The singer becomes a young woman, and her want is made literal: the fable's Cigale is left without grain, Lefebvre's without clothes. The turn of the year, which the fable gives in a single line of wind, is handed to the leaves.",
+  "craft": "Each material in the picture keeps its own share of brushwork, from surfaces where no stroke can be read to surfaces where the drag of the brush stays plain. Even within the stone the handling divides: where it breaks into an edge, at its corners and mouldings, pale paint is dragged dry and left broken, so the edges stay rough while the faces between them carry vertical streaks. Duvergier de Hauranne called Lefebvre's drawing \"perhaps a little dry, but always fine and precise\", and judged him hardly a colourist.",
+  "context": "Duvergier de Hauranne began his review of the 1872 Salon on \"the two disastrous years we have just come through\", and recalled the enemy, \"camped on our hills\", singing victory \"at the sight of our monuments in flames\". Lefebvre's nude at the 1870 Salon had been La Vérité, Truth coming out of her well; two years later he sent La Cigale. The same review called Paris Europe's \"stock exchange of art\", where France might win back the billions the victors had taken by cannon. La Cigale moved fast in that market: in May 1872 the dealer Goupil sold it to a London dealer a day after taking it in.",
+  "deeper": [
+   {
+    "t": "The finger at the lip",
+    "x": 0.31,
+    "y": 0.115,
+    "w": 0.38,
+    "h": 0.205,
+    "body": "At the top of the figure, the head is tipped forward while the eyes stay on us, so the look arrives from under the brows, with a sliver of white showing beneath the iris of the lit eye. The brows are drawn together hard enough to crease the skin between them. Her left hand has come up from across her chest: the index finger presses into the lower lip, and the other fingers close round a lock of her own hair where it falls forward over the shoulder. Pressing at the lip and holding on to her own hair are a child's gestures, and here they sit under a stare with no smile in it; the frown keeps the face from offering itself, and the hand keeps it from looking simply hostile. At her left temple and above the ear, flat ovals of a dull gold sit in the dark hair, the two clearest each edged along one side by a thin, hard line of pale light."
+   },
+   {
+    "t": "Her shadow on the wall",
+    "x": 0.1,
+    "y": 0.14,
+    "w": 0.31,
+    "h": 0.36,
+    "body": "Left of the face, a soft brown shadow lies on the wall close against the hair. It falls to our left, so the light comes from our right. The shadow meets the hair with no strip of lit wall between them, which puts her shoulders against the pier: she is leaning on it. Lower down, the outer strands lift off the mass and are drawn one by one in fine dark lines over the pale stone. The wall behind them is laid in long vertical drags of greyish cream, and the curling strands cross that grain at every angle."
+   },
+   {
+    "t": "The arm folded in",
+    "x": 0.33,
+    "y": 0.245,
+    "w": 0.37,
+    "h": 0.225,
+    "body": "Below the chin, her left forearm crosses the body on a steep diagonal from an elbow tucked against her side, and the breast on our right rests in its crook. The arm covers almost nothing; what it does is pull the body inward, upper arm pressed to the ribs, hand drawn up to the mouth. The flesh is carried in blended paint with no stroke left standing, turning from the lit flank on our right into a warm, brownish half-tone under the hair. On that lit side a clean, unbroken contour sets shoulder and arm against the pale wall."
+   },
+   {
+    "t": "A patterned cloth",
+    "x": 0.06,
+    "y": 0.45,
+    "w": 0.34,
+    "h": 0.39,
+    "body": "At our left, below the hair, a white cloth comes from behind her hip, is gathered in the hand of her hanging right arm, and hangs on to about the height of her shins, well clear of the floor. A gold band circles that arm, half hidden under a fold and caught by one pale stroke of light. The cloth is no plain sheet: small yellow sprigs are scattered over it, and where a fold turns the sprigs turn with it, bunched and foreshortened, so the pattern itself shows the cloth twisting. Its lower end hangs free and trails loose threads. It is painted in long, wet strokes laid along each fold, a visibly brushier surface than the skin beside it."
+   },
+   {
+    "t": "Bare feet, leaf litter",
+    "x": 0.12,
+    "y": 0.825,
+    "w": 0.6,
+    "h": 0.17,
+    "body": "At the bottom, her two bare feet take her weight unequally. The right one, nearer us, is set flat, toes spread on the stone; the left stands behind it, pressed down on the tips of its toes, as if that foot would sooner not touch the floor at all. The floor under them is rougher paint than the wall or the skin: a pale crust dragged so that it breaks into granules. The dry leaves lying on it are given edges and curls, many with a pocket of dark beneath, and fine twigs are drawn across them in thin lines. At our left, among the pinkish-brown litter, a thin stem loops along the ground carrying flat ovals of a yellower, olive gold: the shape she wears in her hair, lying here at her feet."
+   },
+   {
+    "t": "Leaves still falling",
+    "x": 0.6,
+    "y": 0.565,
+    "w": 0.35,
+    "h": 0.31,
+    "body": "Low on the right, where the pier steps out into its base, one dry leaf has come to rest over a moulding, with a firm outline, a midrib, a curled tip and a small shadow tucked under it. The leaves in mid-wall below it are handled another way: soft single smears of pinkish brown with no drawn contour or vein, trailed by grey blurs of shadow below and to the left on the stone. The firm leaf has landed; the soft ones are still falling, movement beside a figure who stands still. To the right a bare stem rises in front of the gap, against a rust-brown ground that fills the opening down to a drift of leaves."
+   },
+   {
+    "t": "The gap in the wall",
+    "x": 0.63,
+    "y": 0,
+    "w": 0.37,
+    "h": 0.52,
+    "body": "At upper right, the pier she leans on ends, and between it and a second pale pier the picture opens onto the outside: a strip of pale blue sky, a pink band low in it, a dark blue mass rising beneath, and in front a stand of tall stems. The stalks are mauve grey all the way up; the green leaves grow near the top, against the sky, with brown ones already among them. Lower down the narrow pointed leaves have turned rust and brown, curled and hanging, and they are the same narrow leaves that lie on the floor and drift down the wall below. One sprig at the top reaches out over the face of the pier and throws a grey shadow on it, which puts the plant right at the opening, close enough to shed into the space where she stands. The sky is laid in broken strokes of light blue, but the dark blue mass beneath it is one flat, opaque field with almost no modelling. These blues and greens are the strongest cool colour in the picture, and the warm, pale interior around her is set against them."
+   }
+  ],
+  "beside": "Like the girl against her pier, the poor in Jules Adler's La soupe des pauvres, of 1906, stand in need before a pale wall. Their queue runs from edge to edge, several deep, most faces in profile and turned toward a soup that never appears. Everyone in it is wrapped in coats, shawls and caps, and they come laden: a pale bundle slung at one man's hip, a sack on another's back, a cup at the waist of a child in a pale cap who holds a hand to its mouth, much as the Cigale does. Against all those layers and loads her need takes the opposite form: one cloth, gathered in her hand and not wrapped round her.",
+  "refs": [
+   {
+    "id": "jules-adler-la-soupe-des-pauvres",
+    "text": "La soupe des pauvres"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "the-white-glove": {
+  "mv": 6,
+  "see": "A woman seated at half length fills the canvas against a dark brown ground, her head tipped back and to our right. She wears a broad black hat ringed with a white plume, a black dress cut low at the neck, a long gold chain and pendant, and a wrap of pale blue silk whose white fur collar falls over her left shoulder. Her left hand, on our right, is gloved in white; her right hand, at our left, is bare and ringed, and the second white glove lies in her lap. Cloth and fur are handled broadly and fast, face and hands more closely.",
+  "about": "Every item she wears belongs to formal dress, and very little of how she wears it does. Hat and plume, low black dress, silk and fur, gold chain and white gloves make up full finery; inside it the body is between movements, one hand busy and the other slack, one glove on and its partner off. A formal portrait normally steadies its sitter so that a settled face can stand for the person. This one lets the steadiness go, and the person arrives as behaviour: what the hands are doing, how loosely the silk and fur are worn.",
+  "craft": "The paint goes on in two weights. The brown ground and the blacks of hat and dress are brushed thin, in long sweeps that keep the brush's track; the lights on what she wears go over them thick, from a loaded brush, most strokes set down once and left unblended. Softness comes from the same brush run dry and dragged over the dark until the stroke breaks, so an edge blurs without smudging. Then the dark is brought back over any light that has spread too far, cutting it to shape. Both moves can be followed stroke by stroke in the long blue folds at lower right: pale ribbons dragged dry over darker blue, dark lines pulled down between them.",
+  "context": "In March 1921 Lambert, forty-seven, landed in Melbourne, back in Australia after about twenty years. He returned an official war artist, his war canvases still unfinished. He told a reporter he had come for light — three whole months in Cornwall, he said, had given him half a day of sunshine — and for Australian soldiers, Diggers, to pose for those canvases. His wife and sons stayed in London; the visit became permanent. This portrait, dated 1921, belongs to that first year back. Paying commissions followed, and so did talk of his manner: a journalist in 1922 said he \"dearly loves a pose\", and Julian Ashton in 1924 let the affectations pass \"as long as they are painted as well as that\".",
+  "deeper": [
+   {
+    "t": "The laugh under the brim",
+    "x": 0.47,
+    "y": 0.13,
+    "w": 0.23,
+    "h": 0.18,
+    "body": "Under the black brim, right of centre, her chin is lifted so far that the underside of the nose shows, while the heavy lids drop toward us: the look comes down at the viewer from under them. The light comes from our left, onto a near cheek laid in warm pink, and the nose throws its shadow across to our right, where the far cheek and eye sink into a warm half-dark that runs on into the shade under the hat. The mouth is open on the upper teeth, painted as one row of cream blocks with the gaps between them barely marked. At our left the upper lip is a thin band pulled up clear of the teeth; at our right it thickens, darkens and comes down over them. It is a lopsided, mid-word expression, caught between a remark and a laugh."
+   },
+   {
+    "t": "Hooks of plume",
+    "x": 0.66,
+    "y": 0.12,
+    "w": 0.24,
+    "h": 0.21,
+    "body": "At upper right, the white plume riding the brim spills over its edge and falls in a column of hooks beside the shaded side of her face. The hooks are single loaded strokes: the brush pressed down, swung through a curve and lifted, so a curl ends in a thin tail where the paint ran out. Lower in the column the same strokes are dragged drier, and the dark beneath shows between them. The outer curls keep a firm, legible silhouette against the brown ground; the feather's softness lives in that dry drag inside the column, not at its edge. Its cream is duller than the fur just below, a greyed and slightly yellowed white."
+   },
+   {
+    "t": "Spots on the sleeve",
+    "x": 0.15,
+    "y": 0.3,
+    "w": 0.25,
+    "h": 0.23,
+    "body": "At our left, between the blue silk and the fur collar, her arm is covered in a buff, flesh-coloured cloth scattered with black spots, and a gold knot with a tasselled cord hangs over it. The spots went on last, over a ground already brushed in curved strokes that follow the roundness of the arm. On the lit upper surface of the forearm they are solid, blotted dabs; where the cloth turns down and away from the light they become dragged, half-empty marks with the bristle lines showing, thinning out toward the arm's lower edge. The knot is a few flat planes of ochre and olive, the cord one vertical run of yellow strokes."
+   },
+   {
+    "t": "A chain in dashes",
+    "x": 0.43,
+    "y": 0.28,
+    "w": 0.24,
+    "h": 0.2,
+    "body": "Below the throat, the bare chest is laid in as one broad, pale field, and its drawing is light: a warm notch at the pit of the throat, the collarbones running out from it as faint, paler ridges, and a soft shade toward our right. The brushing runs in short crossing strokes that leave the surface faintly grained. The long gold chain is painted over that field in separate dashes, broken where the brush skipped, so it glints in short lengths. Two strands come down from the neck: one slips along the neckline at our left into the black dress, the other crosses the chest on a diagonal toward the gloved hand below. The neckline's lower edge is dragged on dry, black over pale, leaving a ragged border."
+   },
+   {
+    "t": "The worn glove",
+    "x": 0.38,
+    "y": 0.42,
+    "w": 0.33,
+    "h": 0.18,
+    "body": "Centre right, her gloved hand comes out from under the fur with its back to us, thumb cocked upward, fingers drooping toward our left. The long chain from the chest passes under the glove and comes out between the fingers, and the gold-mounted dark stone hangs from two strands below them: she is toying with her necklace. The glove is painted in long strokes laid lengthwise along each finger, with the thickest white riding the knuckle ridge; its shaded underside is a pinkish lilac-grey, and the seams between the fingers are single thin mauve lines. Along the wrist runs a row of tiny raised dots, the glove's buttons, each one a single touch of paint. Beyond them the glove widens into a flared cuff turned back on itself, a band of mauve shadow running down inside it. Against the black of the dress the fingertips are cut with firm, clean edges, and the pendant's mount is no more than a few touches of ochre and orange around the dark stone."
+   },
+   {
+    "t": "Fur in fans",
+    "x": 0.62,
+    "y": 0.28,
+    "w": 0.33,
+    "h": 0.37,
+    "body": "Over her left shoulder, on our right, the white fur collar piles down in heavy rolls and ends in rounded tails over the blue silk. Each roll is built from short curved strokes swung in fans and pulled from their loaded ends outward, so the paint lies the way fur lies. Along the outer edge the fans are dragged thin into the brown ground and the boundary is feathered; at the bottom the tails are closed with smooth, long strokes and firm edges. The shadows inside the fur are cool grey-green and blue-grey, close in hue to the silk beneath, with a few yellowish touches where the light falls fullest."
+   },
+   {
+    "t": "The bare hand",
+    "x": 0.03,
+    "y": 0.5,
+    "w": 0.23,
+    "h": 0.265,
+    "body": "At lower left her other hand is bare. It hangs slack over the blue silk, back toward us, four fingers pointing down and the thumb out to our right, and a ring with a large dark square stone in a gold setting sits on the ring finger. The flesh is built in rounded, blended strokes, with orange-red run along the shadow side of each finger and between the knuckles. Around it the silk is painted in broken, angular slabs: short flat strokes of slate, steel-blue and near-white, edged like folded paper. Against that faceted cloth the hand's soft modelling stands out at once, and the spotted sleeve stops at the wrist in a cuff edged with black."
+   },
+   {
+    "t": "The empty glove",
+    "x": 0.03,
+    "y": 0.67,
+    "w": 0.35,
+    "h": 0.27,
+    "body": "Below the bare fingertips, across her lap, lies the second glove, empty. Its cuff is bunched at upper right and its fingers lie flat, sliding down toward our lower left with nothing inside them. Beside the worn glove it is painted at speed, in broad strokes of white with pink and mauve dragged through them. Where its mouth opens, the shadowed inside is one flat olive-khaki block. A loaded dark stroke is dragged across its lower edge, so the black of the skirt cuts over the white and settles the glove into the fold of the lap. The bunched cuff keeps a smooth, firm contour against the black, but where the finger strokes run out over the dark the paint gives out in dry, fringed ends: these fingertips are ragged, where the worn glove's were clean."
+   },
+   {
+    "t": "Where the white goes",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "From the worn glove at the centre to the empty one in the lap, the two gloves hold almost all of the lightest paint in the picture. The bare chest comes close behind them; the fur collar sits a clear step lower, the face lower again, and the hat's plume is held down to a dimmer, yellowed cream. So the strongest light runs on a diagonal through the hands, down and to our left, while the laughing face is quieter in tone than the gloves below it. Around these whites the largest areas are dark — black hat, black dress, dark brown ground — yet the hat does not touch the dress: face, chest and fur lie between them, and the blue silk opens the dark at either side."
+   }
+  ],
+  "beside": "In 1924 a woman thought to be this sitter was painted, and that time held still. Miss Collins, by William Beckwith McInnes, dresses her in close kin to this finery: a wide-brimmed hat, fur heaped over both shoulders, a long pale necklace, a ring set with a dark stone. Under the brim her head is level, her mouth closed, her gaze steady on the viewer. Both hands are bare and meet in front of her, their fingers loosely laced together. The hands McInnes joins are apart in Lambert's canvas, one gloved with a chain run through its fingers, the other bare and hanging over the silk, and the head McInnes keeps level is tipped back under its brim.",
+  "refs": [
+   {
+    "id": "miss-collins",
+    "text": "Miss Collins"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
  "j-m-w-turner-shade-and-darkness-the-evening-of-the-deluge": {
   "mv": 6,
   "see": "A square canvas, painted out to its four corners, holds a round picture: a dome of cream light low in the sky, ringed by a dark arch of cloud above and dark land below. On the horizon under the light sits the ark; a flock of birds curves down out of the dark; a file of large animals is brushed faintly along the right-hand ridge. Left of the ark lies water, a pale, level sheet. The brown foreground holds a reclining body, figures under a canopy and a horse among smaller creatures, picked out in pale paint against the dark.",

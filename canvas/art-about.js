@@ -824,8 +824,10 @@ by: "Opus 4.8" },
 },
 
 "antonio-canova-amore-e-psiche": {
-about: "Cupid arriving over Psyche the moment after she opens Proserpina's flask and drops into a death-sleep — marble, finished 1793, her arms already lifting to a kiss that in stone never quite lands.",
-by: "Opus 4.8" },
+  "about": "Marble, 1787–93 — Cupid bends to kiss Psyche awake. In Apuleius's tale his arrow's harmless prick wakes her; Canova took the poses from a Roman painting found at Herculaneum, a faun kissing a sleeping nymph.",
+  "deep": "The kiss these lovers are known for is held back twice, in time and in the round. Quatremère de Quincy found the group a little affected; he had warned Canova against a certain coquetry of style, and to beware of becoming \"an antique Bernini\", which Canova, he recalled, often reminded him of. In 1806 Carl Ludwig Fernow regretted that the \"naive faunish jest\" of its ancient model had become \"delicate sentimentality\", and that a painter's design had been carried into the round, where no turn of the base showed both faces at once. His complaints meet between those faces, under Cupid's closed lips, where the Roman model's kiss stops a breath short.",
+  "by": "Opus 5.5"
+ },
 
 "edgar-degas-ballet-rehearsal-on-stage": {
 
@@ -1587,8 +1589,10 @@ by: "Opus 4.8" },
 },
 
 "guernica": {
-about: "Picasso's Guernica, 1937 — a grey mural of a bombed Basque town, screaming horse and fallen figures. He decreed it stay out of Spain until democracy returned, so it hung at New York's MoMA until 1981.",
-by: "Opus 4.8" },
+  "about": "Picasso saw the bombing of Gernika (Guernica) in press photographs and painted this canvas between May and early June 1937. Coloured wallpaper was tried on it, then dropped for blacks, whites and greys recalling the newspapers.",
+  "deep": "The canvas's lights and darks nearly settle what the bull and the horse stand for. In a 1945 interview Picasso told Jerome Seckler the bull was not fascism, \"but it is brutality and darkness\"; one version of the interview adds \"this horse is the people\". By 1947 it was \"This bull is a bull. This horse is a horse\", and the public could see what it wanted. Read with the first answer, the paint agrees: the horse, jaws open under the electric bulb, holds the pale centre, and the bull's body sinks almost into the black at the left edge. Yet the bull's head is pale too, like the woman crying out beneath it.",
+  "by": "Opus 5.5"
+ },
 
 "watson-and-the-shark": {
 about: "Copley's Watson and the Shark, 1778: the boy it depicts, Brook Watson, really lost his leg to a shark in Havana harbour, then commissioned this rescue scene after becoming a wealthy merchant and future Lord Mayor of London.",
@@ -2682,8 +2686,10 @@ about: "Roberts spent five months living at Newstead station near Inverell to pa
 by: "Opus 4.8" },
 
 "the-white-glove": {
-about: "When the Art Gallery of New South Wales bought Lambert's 1921 portrait of Gladys Neville Collins for 600 guineas, it was the highest price a public gallery had ever paid for a portrait by an Australian artist.",
-by: "Opus 4.8" },
+  "about": "Writing to his wife in September 1921, Lambert called this canvas of a woman in furs and a plumed hat a \"wild dashing portrait\". It became known by one of her gloves, not by her name.",
+  "deep": "The sitter carries her head high, chin lifted, and her heavy lids drop low beneath all that height. The 2007 retrospective of Lambert's work saw older portraits behind the pose, calling it \"suggestive of\" Reynolds's Sarah Siddons as the Tragic Muse and saying the canvas suggests he was familiar with Sargent's portrait of Ena Wertheimer. If the Muse is in that tilt, she has shed her tragedy here. The same exhibition set his \"lively work\" against the \"prevalent brown tonalist portraiture\" then in vogue in Australia, and in this canvas that brown is pushed back into the ground behind her.",
+  "by": "Opus 5.5"
+ },
 
 "fire-s-on": {
 about: "Streeton witnessed a worker named Edward Brown killed by a premature tunnel blast at Lapstone and wrote to Tom Roberts about it; the tiny procession carrying Brown's body is painted into this 1891 landscape.",
@@ -2786,8 +2792,10 @@ deepBy: "Sonnet 4.6",
 by: "Fable 5" },
 
 "the-cicada": {
-about: "Exhibited at the 1872 Salon — the first after France's defeat in the Franco-Prussian War — Lefebvre's nude allegorises La Fontaine's improvident grasshopper as a pointed rebuke of Napoleon III's unreadiness, the fallen leaves at her feet standing in for winter's reckoning.",
-by: "Opus 4.8" },
+  "about": "La Fontaine's cicada as a young nude, shown by Lefebvre at the 1872 Salon, the first since the war and the Commune, under the fable's line \"Quand la bise fut venue\" — when the winter wind came.",
+  "deep": "In 1872 La Cigale (The Cicada) was faulted for keeping its cold in the props. The critic Duvergier de Hauranne wrote that only the swirling leaves, the wind-shaken drapery and the frost showed the girl was cold, that she herself seemed merely a little shy at being naked, and that Lefebvre's compositions \"do not speak\". A curator has since judged it \"highly likely\" that the picture also carries \"a thinly veiled critique\" of Napoleon III's regime. Duvergier's case is weakest at the body. He has her looking aimlessly about, but her eyes hold on the viewer under hard-knit brows, and on the floor where he saw frost the farther foot keeps to its toes.",
+  "by": "Opus 5.5"
+ },
 
 "the-north-wind": {
 about: "Synchrotron X-ray fluorescence imaging of this 1888 McCubbin revealed a green, lush landscape buried beneath the arid scrub visible today, suggesting the artist repainted it specifically to match the centenary of settlement's emerging myth of the stoic Australian battler.",
@@ -5219,8 +5227,10 @@ about: "A late canvas Turner kept entirely to himself — no title of his own, n
 by: "Opus · Fable" },
 
 "j-m-w-turner-sunrise-with-a-boat-between-headlands": {
-about: "When the Tate first hung a group of Turner's unexhibited late canvases in 1906, half a century after his death, pictures like this 1842 sunrise startled a public that thought Impressionism had invented such light. It had spent its whole existence in storage: Turner never named it, never showed it, never sold it.",
-by: "Opus · Fable" },
+  "about": "Turner’s cataloguers chose this unfinished sunrise of about 1840–5 as their example of a lay-in, a broad first layer of colour: his last four exhibited pictures could all have been painted over one like it.",
+  "deep": "No one knows where this view is set, and the place may be imagined. The cataloguers of Turner’s paintings found the unfinished late canvases grouped with it built largely on compositions from his Liber Studiorum, landscape prints made decades earlier, with only this one and one other seeming “entirely new”. Lawrence Gowing wrote in 1966 that its radiance “almost submerges the relics of picturesque convention”, the stock devices of older views, and the canvas shows where that submerging stops short: the left headland’s crest goes under in haze, while the crag at right, a small upright on its shoulder, keeps a clean top against the light.",
+  "by": "Opus 5.5"
+ },
 
 "j-m-w-turner-seascape-with-distant-coast": {
 about: "It took A. J. Finberg until 1909 to inventory the nineteen thousand sheets the Turner Bequest contained; the unexhibited oils, this c. 1840 seascape among them, waited even longer for individual identities. Painted with no buyer, subject-title or exhibition in mind — a private late marine from a painter done explaining himself.",
