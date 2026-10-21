@@ -2486,11 +2486,25 @@
     "to": "Serpent Moves",
     "type": "variant",
     "reason": "alternate version ([Shortened Version])"
+   },
+   {
+    "from": "Skeletion On Your Shoulder",
+    "to": "Skeleton On Your Shoulder",
+    "type": "spelling",
+    "reason": "spelling: source typo — Punishment for Decadence #4 is Skeleton (library flag, coroner campaign 10-20, approved in principle at the print)"
    }
   ],
   "artist": [
    {
     "from": "Coroner feat. Tom G. Warrior"
+   }
+  ],
+  "albums": [
+   {
+    "from": "The Unknown (Unreleased Tracks 1985",
+    "to": "The Unknown (Unreleased Tracks 1985-95)",
+    "type": "spelling",
+    "reason": "spelling: last.fm-truncated album string restored to the full title (library flag 10-20)"
    }
   ]
  },
@@ -14017,6 +14031,12 @@
     "from": "when we were young",
     "to": "the classic symptoms of a broken spirit",
     "type": "absorb"
+   },
+   {
+    "from": "Lost Forever, Lost Together",
+    "to": "Lost Forever // Lost Together",
+    "type": "spelling",
+    "reason": "spelling: the sleeve uses double slashes, not a comma (library flag 10-21)"
    }
   ],
   "artist": [
@@ -14048,6 +14068,90 @@
     "to": "Outsider Heart",
     "type": "spelling",
     "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan mb-refetch 2026-09-17)"
+   },
+   {
+    "from": "Black Lungs [Explicit]",
+    "to": "Black Lungs",
+    "type": "spelling",
+    "reason": "spelling: store-tag suffix stripped; same recording as the single row (library flag, architects campaign 10-21)"
+   },
+   {
+    "from": "Discourse Is Dead [Explicit]",
+    "to": "Discourse Is Dead",
+    "type": "spelling",
+    "reason": "spelling: store-tag suffix stripped (library flag 10-21)"
+   },
+   {
+    "from": "Little Wonder [Explicit]",
+    "to": "Little Wonder",
+    "type": "spelling",
+    "reason": "spelling: store-tag suffix stripped; unblocks the FTTWTE position and the cascade liner link (library flag 10-21)"
+   },
+   {
+    "from": "Little Wonder (Abbey Road Version) [Explicit]",
+    "to": "Little Wonder - Abbey Road Version",
+    "type": "spelling",
+    "reason": "spelling: to the Abbey Road album's dash style so the row takes its position (library flag 10-21)"
+   },
+   {
+    "from": "Discourse Is Dead (Abbey Road Version) [Explicit]",
+    "to": "Discourse Is Dead - Abbey Road Version",
+    "type": "spelling",
+    "reason": "spelling: to the Abbey Road album's dash style (library flag 10-21)"
+   },
+   {
+    "from": "Delete, Rewind.",
+    "to": "Delete, Rewind",
+    "type": "spelling",
+    "reason": "spelling: the trailing full stop is nobody's — not the sleeve's, not the single's (library flag 10-21)"
+   },
+   {
+    "from": "untitled",
+    "to": "Untitled",
+    "type": "spelling",
+    "reason": "spelling: the SE #12 b-side as the sleeve cases it (library flag 10-21)"
+   },
+   {
+    "from": "Be Very Afraid",
+    "to": "be very afraid",
+    "type": "spelling",
+    "reason": "spelling: the classic symptoms sleeve cases every title lowercase (library flag 10-21); display pin, same slug"
+   },
+   {
+    "from": "Deep Fake",
+    "to": "deep fake",
+    "type": "spelling",
+    "reason": "spelling: the classic symptoms sleeve cases every title lowercase (library flag 10-21); display pin, same slug"
+   },
+   {
+    "from": "Living Is Killing Us",
+    "to": "living is killing us",
+    "type": "spelling",
+    "reason": "spelling: the classic symptoms sleeve cases every title lowercase (library flag 10-21); display pin, same slug"
+   },
+   {
+    "from": "A New Moral Low Ground",
+    "to": "a new moral low ground",
+    "type": "spelling",
+    "reason": "spelling: the classic symptoms sleeve cases every title lowercase (library flag 10-21); display pin, same slug"
+   },
+   {
+    "from": "All The Love In The World",
+    "to": "all the love in the world",
+    "type": "spelling",
+    "reason": "spelling: the classic symptoms sleeve cases every title lowercase (library flag 10-21); display pin, same slug"
+   },
+   {
+    "from": "Born Again Pessimist",
+    "to": "born again pessimist",
+    "type": "spelling",
+    "reason": "spelling: the classic symptoms sleeve cases every title lowercase (library flag 10-21); display pin, same slug"
+   },
+   {
+    "from": "Spit The Bone",
+    "to": "spit the bone",
+    "type": "spelling",
+    "reason": "spelling: the classic symptoms sleeve cases every title lowercase (library flag 10-21); display pin, same slug"
    }
   ]
  },
@@ -18664,6 +18768,42 @@
    "track": "If It Hurts",
    "toAlbum": "Creature of Habit",
    "reason": "avoid campaign 2026-10-19: a stand-alone UNFD single (24 Jan 2025) filed under the \"Sour Apple\" string; the same recording is Creature of Habit #5 (DV 31, 48)"
+  },
+  {
+   "artist": "Architects",
+   "track": "Curse",
+   "toAlbum": "The Sky, the Earth & All Between",
+   "reason": "DV-confirmed re-home (architects campaign 10-21): the Curse single string holds TSTEAAB #10"
+  },
+  {
+   "artist": "Architects",
+   "track": "Seeing Red",
+   "toAlbum": "The Sky, the Earth & All Between",
+   "reason": "DV-confirmed re-home (10-21): TSTEAAB #11, scrobbled on the Curse single string"
+  },
+  {
+   "artist": "Architects",
+   "track": "Meteor",
+   "toAlbum": "For Those That Wish To Exist",
+   "reason": "DV-confirmed re-home (10-21): FTTWTE #14, scrobbled on the Meteor single string"
+  },
+  {
+   "artist": "Architects",
+   "track": "Black Lungs",
+   "toAlbum": "For Those That Wish To Exist",
+   "reason": "DV-confirmed home for the merged row (10-21): FTTWTE #2; the 2020 single string folds in via the [Explicit] spelling fold"
+  },
+  {
+   "artist": "Coroner",
+   "track": "Last Entertainment",
+   "toAlbum": "No More Color",
+   "reason": "DV-confirmed re-home (coroner campaign 10-20): No More Color #8, scrobbled on the 1995 compilation string"
+  },
+  {
+   "artist": "Architects",
+   "track": "Black Lungs [Explicit]",
+   "toAlbum": "For Those That Wish To Exist",
+   "reason": "DV-confirmed re-home (10-21): the single-string scrobble of the same recording; joins the folded FTTWTE row"
   }
  ],
  "Anathema": {
