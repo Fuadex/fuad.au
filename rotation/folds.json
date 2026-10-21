@@ -8793,6 +8793,66 @@
     "to": "One Second",
     "type": "variant",
     "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+   },
+   {
+    "from": "Say Just Words |",
+    "to": "Say Just Words",
+    "type": "spelling",
+    "reason": "spelling: stray trailing \" |\" scrobbler artefact, paradise-lost campaign 2026-10-21"
+   },
+   {
+    "from": "The Last Time |",
+    "to": "The Last Time",
+    "type": "spelling",
+    "reason": "spelling: stray trailing \" |\" scrobbler artefact, paradise-lost campaign 2026-10-21"
+   },
+   {
+    "from": "Widow |",
+    "to": "Widow",
+    "type": "spelling",
+    "reason": "spelling: stray trailing \" |\" scrobbler artefact, paradise-lost campaign 2026-10-21"
+   },
+   {
+    "from": "True Belief |",
+    "to": "True Belief",
+    "type": "spelling",
+    "reason": "spelling: stray trailing \" |\" scrobbler artefact, paradise-lost campaign 2026-10-21"
+   },
+   {
+    "from": "Embers Fire |",
+    "to": "Embers Fire",
+    "type": "spelling",
+    "reason": "spelling: stray trailing \" |\" scrobbler artefact, paradise-lost campaign 2026-10-21"
+   },
+   {
+    "from": "As I Die |",
+    "to": "As I Die",
+    "type": "spelling",
+    "reason": "spelling: stray trailing \" |\" scrobbler artefact, paradise-lost campaign 2026-10-21"
+   },
+   {
+    "from": "Pity The Sadness |",
+    "to": "Pity The Sadness",
+    "type": "spelling",
+    "reason": "spelling: stray trailing \" |\" scrobbler artefact, paradise-lost campaign 2026-10-21"
+   },
+   {
+    "from": "10. Return To The Sun ( The Plague Within-2015)",
+    "to": "Return To The Sun",
+    "type": "spelling",
+    "reason": "spelling: junk title (track number + album tag) of The Plague Within #10, paradise-lost campaign 2026-10-21 (DV 3.12)"
+   },
+   {
+    "from": "Mouth (2001, 480p)",
+    "to": "Mouth",
+    "type": "spelling",
+    "reason": "spelling: video-rip title of Believe in Nothing #2, paradise-lost campaign 2026-10-21 (DV 3.13)"
+   },
+   {
+    "from": "Enchantment - 2011 Remasterred",
+    "to": "Enchantment",
+    "type": "variant",
+    "reason": "variant: 2011 Legacy Edition remaster of Draconian Times #1, paradise-lost campaign 2026-10-21 (DV 6.2)"
    }
   ]
  },
@@ -18804,6 +18864,72 @@
    "track": "Black Lungs [Explicit]",
    "toAlbum": "For Those That Wish To Exist",
    "reason": "DV-confirmed re-home (10-21): the single-string scrobble of the same recording; joins the folded FTTWTE row"
+  },
+  {
+   "artist": "Paradise Lost",
+   "track": "Forever After",
+   "toAlbum": "Paradise Lost",
+   "reason": "paradise-lost campaign 2026-10-21: Paradise Lost (2005) #5 (DV 3.1)"
+  },
+  {
+   "artist": "Paradise Lost",
+   "track": "Widow",
+   "toAlbum": "Icon",
+   "reason": "paradise-lost campaign 2026-10-21: Icon #6 (DV 3.2)"
+  },
+  {
+   "artist": "Paradise Lost",
+   "track": "Shine",
+   "toAlbum": "Paradise Lost",
+   "reason": "paradise-lost campaign 2026-10-21: Paradise Lost (2005) #10 (DV 3.3)"
+  },
+  {
+   "artist": "Paradise Lost",
+   "track": "Close Your Eyes",
+   "toAlbum": "Paradise Lost",
+   "reason": "paradise-lost campaign 2026-10-21: Paradise Lost (2005) #2 (DV 3.4)"
+  },
+  {
+   "artist": "Paradise Lost",
+   "track": "Pity The Sadness",
+   "toAlbum": "Shades of God",
+   "reason": "paradise-lost campaign 2026-10-21: Shades of God #5 (DV 3.5)"
+  },
+  {
+   "artist": "Paradise Lost",
+   "track": "Never Again",
+   "toAlbum": "Believe in Nothing",
+   "reason": "paradise-lost campaign 2026-10-21: Believe in Nothing #9 (DV 3.6)"
+  },
+  {
+   "artist": "Paradise Lost",
+   "track": "Accept the Pain",
+   "toAlbum": "Paradise Lost",
+   "reason": "paradise-lost campaign 2026-10-21: Paradise Lost (2005) #9 (DV 3.7)"
+  },
+  {
+   "artist": "Paradise Lost",
+   "track": "I See Your Face",
+   "toAlbum": "Draconian Times",
+   "reason": "paradise-lost campaign 2026-10-21: Draconian Times #11 (DV 3.8)"
+  },
+  {
+   "artist": "Paradise Lost",
+   "track": "Shades Of God",
+   "toAlbum": "Draconian Times",
+   "reason": "paradise-lost campaign 2026-10-21: the song is Draconian Times #9; the 1992 album has no title track (DV 3.9)"
+  },
+  {
+   "artist": "Paradise Lost",
+   "track": "Redshift",
+   "toAlbum": "Paradise Lost",
+   "reason": "paradise-lost campaign 2026-10-21: Paradise Lost (2005) #4 (DV 3.10)"
+  },
+  {
+   "artist": "Paradise Lost",
+   "track": "Fall From Grace",
+   "toAlbum": "Obsidian",
+   "reason": "paradise-lost campaign 2026-10-21: Obsidian #2, homed on its single row (DV 1.16)"
   }
  ],
  "Anathema": {
