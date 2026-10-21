@@ -2148,9 +2148,10 @@ by: "Opus 4.8" },
 },
 
 "claude-monet-chrysanthemums": {
-about: "One of some twenty floral still lifes Monet made between 1878 and 1883 to bring in reliable income, this vase of chrysanthemums, dated 1882, hung beside his Bouquet of Sunflowers at Durand-Ruel in 1883 and with the avant-garde group Les XX in Brussels in 1886.",
-refs: [{"id":"claude-monet-bouquet-of-sunflowers","text":"Bouquet of Sunflowers"}],
-by: "Opus 4.8" },
+  "about": "Monet dated this crowded bouquet 1882, and scholars have divided over it: his cataloguer Daniel Wildenstein moved it to 1880, one historian defended 1882, and a later study judged that date probably wrong.",
+  "deep": "To begin a bouquet this crowded again is to remake every head in it, each one its own act of the brush. In September 1882 Monet wrote to his dealer, Durand-Ruel, from Pourville that he had destroyed a large flower picture and slashed three or four other canvases. He then spent a week indoors painting it again, and destroyed that one like the first. In November flower pictures still kept him at Poissy. John House, the historian who defended the painted date, argued this canvas is the best candidate among the large still lifes those letters mention. If so, every head, even in the sprays the side edges cut off, was painted that same autumn.",
+  "by": "Opus 5.5"
+ },
 
 "claude-monet-bridge-over-a-pond-of-water-lilies": {
 about: "The pond is his own — dug on land he bought at Giverny, spanned with a Japanese bridge, then painted a dozen times in the summer of 1899. This canvas stands upright, handing two-thirds of it to the water.",
@@ -4861,8 +4862,10 @@ about: "After surgery for stomach cancer confined Matisse to a bed or wheelchair
 by: "Opus 4.8" },
 
 "claude-monet-untitled": {
-about: "Monet rose before dawn each morning in the summers of 1896 and 1897 and rowed out to a converted studio-boat moored where the Epte meets the Seine, painting the same narrow channel of mist as the light shifted minute by minute. He made twenty-one canvases in the series, all anchored to one motif, and showed fifteen at Galerie Georges Petit in 1898. This canvas, \"Bras de Seine près de Giverny, soleil levant,\" is now at the Metropolitan Museum of Art. Monet, 1897, oil on canvas.",
-by: "Opus 4.8" },
+  "about": "Dated 1897, this misty dawn on the Seine belongs to Monet's Mornings. Shown in 1898 as soleil levant amid about fifteen with look-alike titles, it is among the few Daniel Wildenstein could match to its entry.",
+  "deep": "No bank closes the foot of this view, and in the year it was dated Monet was planning a room of water. On the August day in 1897 when the journalist Maurice Guillemot watched him at work on this series of river mornings, Monet also showed him the first large panels for a round room walled with \"a horizon of water\" flecked with plants, by turns green and mauve. Daniel Wildenstein, who catalogued Monet's work, called Guillemot the first witness of the project that ended, thirty years later, in his water-lily rooms in Paris. The trees at the left carry both colours, blue-green where they stand and paler lavender where the river gives them back.",
+  "by": "Opus 5.5"
+ },
 
 "paul-cezanne-groupe-de-sept-baigneurs": {
 about: "Seven nudes locked into a river-bank arch of trees, c. 1900 — one of Cézanne's two hundred bather studies. In 1907, at a retrospective the year after his death, Picasso and Matisse were both in the room.",
@@ -4903,8 +4906,10 @@ by: "Fable" },
 },
 
 "j-m-w-turner-queen-mab-s-cave": {
-about: "Exhibited in 1846, five years before Turner's death, when critics had decided the old man's pictures were fog. He answered with a fairy subject — Shakespeare's dream-midwife Queen Mab — dissolved into the same golden vapour as his late seas, myth and atmosphere finally indistinguishable.",
-by: "Fable" },
+  "about": "Shown at the British Institution in 1846, Turner's fairy kingdom bore two catalogue lines: one credited to A Midsummer Night's Dream, a play with no such line, the other from his own unpublished poem, Fallacies of Hope.",
+  "deep": "In 1846 John Ruskin held three colours against a Turner his editors identify as this one, first its hot main dark. Three years after championing Turner, he called it the prominent failure of that year's British Institution, an example of how \"the greatest men may at times lose themselves\", though happily no \"sign of generally declining power\". His other charges, \"a strange meaningless green\" over the distance and right-hand shadows in \"pure and crude blue\", are harder to place: perhaps the sky's grey-green upper left corner, and the dark blue-grey by the falls. The heat needs no search: the central rock round the lit arch is crimson and vermilion, deepening to near-black at its crown.",
+  "by": "Opus 5.5"
+ },
 
 "claude-monet-the-roses": {
   "about": "Among the last canvases Monet painted — roses from the Giverny garden, finished in 1926, the year he died at eighty-six. The eye operations of 1923 had returned blue to his palette after the cataract browns, and the late pictures spend it freely: sky and blossom in loose ribbons, the garden less described than remembered in colour.",
@@ -4974,8 +4979,10 @@ by: "Opus · Fable" },
  },
 
 "j-m-w-turner-shade-and-darkness-the-evening-of-the-deluge": {
-about: "Exhibited at the Royal Academy in 1843, this octagonal canvas was the darker half of a pair with \"Light and Colour (Goethe's Theory)\", Turner's twin meditations on the biblical flood. The companion engaged directly with Goethe's colour theory, then newly available in English translation, pitting the storm's cool shadow-tones against the warm glow of the morning after.",
-by: "Opus · Fable" },
+  "about": "The dark half of a pair Turner showed at the Academy in 1843 to answer Goethe's colour theory — the Deluge's evening, against Light and Colour's warm morning after. The Times called this half “a ridiculous daub”.",
+  "deep": "Besides painting this evening and its morning partner, Turner answered Goethe in the margins of the Theory of Colours he owned. Against its announcement of “all possible contrasts of the chromatic scale” he wrote a sceptical “Off again, G.”, and where it found painting's only completeness in harmony of tone and colour, “this is the true shot — but not winged the bird”, allowing the aim but not the hit. Readers have split over the deep shade under the cream light: for R. D. Gray, the negation of colour; for John Gage, half of a pair giving light and dark equal standing; for Lawrence Gowing, “gross material colour makes darkness”, as in the land's browns.",
+  "by": "Opus 5.5"
+ },
 
 "john-constable-a-cornfield": {
 about: "Distinct from the famous 1826 \"Cornfield\" in the National Gallery, this smaller Suffolk study of about 1817 dates from the period when Constable worked outdoors in his native Stour valley, building the naturalistic landscapes that made his name.",
@@ -5226,8 +5233,10 @@ by: "Opus · Fable" },
 // painting (per the same-day production rule), Fable QC (Maria Constable date corrected 1828).
 
 "john-constable-a-windmill-near-brighton": {
-about: "John Constable came to Brighton in 1824 not by choice but by prescription: his wife Maria was consumptive, and the town's sea air was thought a possible cure. He loathed the place, complaining to his friend John Fisher that its beach was merely \"Piccadilly by the sea-side,\" its everlasting sea drowned out by stagecoaches and gigs. The mills, though, interested a man whose own father had been a miller — and the sea air did not save Maria, who died of the disease in 1828.",
-by: "Opus · Fable" },
+  "about": "Constable dated this small oil sketch: “Brighton. July 27th 1824”, pencilled on its original stretcher with “very fine morning after rain”. He was there for his wife Maria, taken to the sea for her health.",
+  "deep": "The man who painted this mill had worked in one. His father owned two water-mills and two windmills, and John spent about a year in them; on a timber of one windmill he cut its outline, his name and 1792. His brother Abram said of the mills John painted, “I see that it will go round.” Here the brush builds the dark sails from their parts, as someone who knew the machine would: the frame's bare bars ruled in with sky between, and beside them the cloth, one dark wedge. In 1843 the painter's son Alfred copied the canvas for a family friend, and his sister Isabel wrote that “it is one of Papa's & was in the drawing room”.",
+  "by": "Opus 5.5"
+ },
 
 "bruno-liljefors-eider-ducks": {
 about: "In the summer of 1894 Liljefors shifted his subjects from the Uppland plains he'd painted through the 1880s out to the Stockholm archipelago, where the skerries and surf gave him a new quarry in coastal birdlife — eiders foremost among them. The move came in lean years: only in 1896 did the banker Ernest Thiel begin the patronage that would rescue him financially.",
