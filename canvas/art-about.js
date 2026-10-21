@@ -4640,7 +4640,7 @@ by: "Opus 4.8" },
 
 "christian-dirce": {
 about: "Nero had a Christian woman killed as the mythological Dirce died — tied to a bull and dragged across the arena. Siemiradzki paints the moment after: the bull down, the woman still, the emperor arrived to inspect. 1897.",
-deep: "The accusation is in their posture. Nero's retinue stands in the shade of the architecture with the ease of men reviewing a banquet — one leans in with connoisseur's interest, another has already turned away. No one recoils. Siemiradzki floods the arena in flat midday light so nothing is hidden by shadow and nothing dramatized by it: the cruelty is delivered matter-of-fact. Find the rose petals strewn across the body and the sand — someone has decorated the killing as if it were a festival, and Siemiradzki paints them with the same loving finish as the flesh. The same taste that admires a beautiful dead woman admires beautiful flowers on top of her.",
+deep: "The accusation is in their posture. Nero's retinue stands before the marble arcades with the ease of guests reviewing a banquet — one leans in with connoisseur's interest, another has already turned away. No one recoils. Siemiradzki sets it in open sun, the standing figures throwing shadows on the sand and the woman lying in full light: the cruelty is delivered matter-of-fact. Find the roses, garlands across the body and loose blooms on the sand — someone has decorated the killing as if it were a festival, and Siemiradzki paints them with the same loving finish as the flesh. The same taste that admires a beautiful dead woman admires beautiful flowers on top of her.",
 deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
@@ -5037,7 +5037,7 @@ by: "Opus · Fable" },
 
 "pierre-auguste-renoir-danseuse": {
 
- "about": "A girl in tulle standing against nothing but a soft blue-green, 1874 — shown at the first Impressionist exhibition, where critics who dismissed the rest as unfinished sketches still made an exception and called her graceful.",
+ "about": "A girl in tulle standing against nothing but a soft blue-green, 1874 — shown at the first Impressionist exhibition, where Renoir's pictures were better received than most and this one was singled out for praise.",
 
  "deep": "The picture is built on a twist. Her head turns three-quarter to our left, while far below her left foot turns fully out to our right in a trained placement, and the tutu flares furthest on that same side. The dance has set the body in position; the head has turned the other way, and the eyes look out at us. Nothing around her settles the pull: the even blue-green gives her no place to face, and the two directions are held by the figure alone. The face stays calm across it, as if the training had reached her feet and not yet her head.",
 

@@ -1045,6 +1045,8 @@ window.CANVAS_ARTWORKS = [
     seenAt: "mnw", seenConfidence: "sure", loved: true },
   { id: "unknown-quadriga-from-the-mausoleum-at-halicarnassus", title: "Quadriga from the Mausoleum at Halicarnassus", artist: "(unknown)", artistId: "unknown", qid: "Q112033401", qidTrusted: true,
     seenAt: "british-museum", seenConfidence: "sure" },
+  // year: the holder (Nelson-Atkins F72-35, catalogue 2021) dates it 1873–74, "late 1873/early 1874"; 1873 kept as the integer.
+  // The upright canvas; the horizontal Moscow canvas is a different object (and most likely the one shown in 1874). Wave 32.
   { id: "claude-monet-le-boulevard-des-capucines", title: "Le Boulevard des Capucines", artist: "Claude Monet", artistId: "monet", qid: "Q4949676", qidTrusted: true, year: 1873,
     seenAt: "orsay", seenConfidence: "sure", loved: true },
   { id: "claude-monet-champs-de-tulipes-en-hollande", title: "Champs de tulipes en Hollande", artist: "Claude Monet", artistId: "monet", qid: "Q17490992", qidTrusted: true, year: 1886,
@@ -1180,8 +1182,10 @@ window.CANVAS_ARTWORKS = [
     seenAt: "artizon", seenConfidence: "sure", loved: true },
   { id: "unknown-baigneuse-accroupie-by-antoine-bourdelle", title: "Baigneuse accroupie by Antoine Bourdelle", artist: "Antoine Bourdelle", artistId: "antoine-bourdelle", qid: "Q110883206", qidTrusted: true, year: 1906,
     seenAt: "petit-palais", seenConfidence: "sure" },
+  // seenAt: the canvas is the Alte Nationalgalerie's (Q107437532, inv. F.V. 72), not the Altes Museum's — corrected wave 32.
+  // year: the holder dates it "um 1912" (uncertain); Ritthaler's signature study "after 1908".
   { id: "unknown-die-sunde", title: "Die Sünde", artist: "Franz von Stuck", artistId: "stuck", qid: "Q107437532", qidTrusted: true, year: 1912,
-    seenAt: "altes-museum", seenConfidence: "sure", loved: true },
+    seenAt: "alte-nationalgalerie", seenConfidence: "sure", loved: true },
   { id: "edgar-degas-untitled-3", title: "Arlequin et Colombine", artist: "Edgar Degas", artistId: "degas", qid: "Q17490745", qidTrusted: true, year: 1890,
     seenAt: "orsay", seenConfidence: "sure", liked: true },
   { id: "witold-pruszkowski-w-noc-swietojanska", title: "W noc świętojańską", artist: "Witold Pruszkowski", artistId: "witold-pruszkowski", qid: "Q24090314", qidTrusted: true, year: 1875,
@@ -1201,6 +1205,7 @@ window.CANVAS_ARTWORKS = [
     seenAt: "alte-nationalgalerie", seenConfidence: "sure", floored: true },
   { id: "anna-bilinska-bohdanowicz-portret-m-odej-kobiety-z-roza-w-re", title: "Portret młodej kobiety z różą w ręku", artist: "Anna Bilińska-Bohdanowicz", artistId: "bilinska-bohdanowicz", qid: "Q23255382", qidTrusted: true, year: 1892,
     seenAt: "mnw", seenConfidence: "sure", loved: true },
+  // year: Tate dates N02002 c.1840–5 (Butlin & Joll c.1840–50; Gowing c.1835–40); 1842 is the midpoint kept as the integer. Wave 31.
   { id: "j-m-w-turner-sunrise-with-a-boat-between-headlands", title: "Sunrise, with a Boat between Headlands", artist: "J. M. W. Turner", artistId: "turner", qid: "Q28542105", qidTrusted: true, year: 1842,
     seenAt: "tate-britain", seenConfidence: "sure", floored: true },
   { id: "thomas-gainsborough-the-painter-s-daughters-with-a-cat", title: "The Painter's Daughters with a Cat", artist: "Thomas Gainsborough", artistId: "gainsborough", qid: "Q26708017", qidTrusted: true, year: 1760,
