@@ -55,7 +55,9 @@ try {
     if (d === 'NEW' && bA[id]) restore('NEW Info but entry exists: ' + id);
     if (d !== 'NEW' && !bA[id]) restore(d + ' but no shipped entry: ' + id);
     if (d === 'KEEP' && !RETOUR.has(id)) restore('KEEP is only for a re-tour: ' + id);
-    if (bA[id]) { keep[id] = {}; for (const [k, v] of Object.entries(bA[id])) if (!['about', 'by', 'deep', 'deepBy'].includes(k)) keep[id][k] = v; }
+    // A REPLACE retires the shipped prose, so its refs go with it (wave 30: a legacy Info's ref survived the merge and failed validate-refs).
+    const drop = ['about', 'by', 'deep', 'deepBy'].concat(d === 'REPLACE' ? ['refs'] : []);
+    if (bA[id]) { keep[id] = {}; for (const [k, v] of Object.entries(bA[id])) if (!drop.includes(k)) keep[id][k] = v; }
   }
   // ---- art_inspect: insert after the anchor
   const aI = 'window.CANVAS_INSPECT = {\n';
