@@ -39,12 +39,12 @@ window.CANVAS_ART_ABOUT = {
   "by": "Opus 5.5"
  },
  "claude-monet-the-seine-at-port-villez": {
-  "about": "Signed but not dated, Monet's picture of a wooded islet in the river opposite his home at Giverny is placed around 1890, though Gustave Geffroy's 1922 book on Monet listed the same canvas under 1883.",
-  "deep": "The islets that stood in this reach of the Seine have since disappeared, and the low strip seen here between two arms of the current went with them, so the canvas holds a stretch of river that can no longer be visited. It keeps the islet as bulk as well as likeness. The bare strand along its waterline went down in heavy horizontal pulls that still stand as ridges, and on the tallest tree, right of centre, the lights were left as separate raised touches, so the ground's thickness and the tree's height both survive as relief in the paint.",
+  "about": "Around 1890, opposite Giverny, where he lived, Monet painted a wooded islet in midstream, the current parting round it. The islets of the Seine along that stretch have since gone, this one among them.",
+  "deep": "With the vanished islets went the low strip here between two arms of the current, so the canvas holds a stretch of river that can no longer be visited. It keeps the islet as bulk as well as likeness. The bare strand along its waterline went down in heavy horizontal pulls that still stand as ridges, and on the tallest tree, right of centre, the lights were left as separate raised touches, so the ground's thickness and the tree's height both survive as relief in the paint.",
   "by": "Opus 5.5"
  },
  "claude-monet-argenteuil-2": {
-  "about": "The 72 after the signature, lower left, dates this view of boats on the Seine at Argenteuil to 1872 — Monet's first full year living there, and the year he painted Impression, Sunrise at Le Havre.",
+  "about": "Monet's first full year at Argenteuil, 1872. Soon after, the writer Armand Silvestre pictured his rivers in sunset colours, motley boats on stirred water; this reach of the Seine is kept in close, quiet tones.",
   "deep": "The Monet the critic Armand Silvestre described in 1873 is here in the drawing of the water and missing from the colour. Writing of the painter's rivers in general, he found many-coloured sunset reflections set beside motley boats on lightly stirred water, the bank's image trembling, its houses cut up like a children's puzzle reassembled piece by piece. Below the house fronts at left the puzzle is on the canvas, the town returned in short dashes, lighter and darker by turns, across pale water. Silvestre's colour is not: the water holds no sunset, and for motley boats there are a grey hull right of centre, a dark dinghy and a cream sail.",
   "by": "Opus 5.5"
  },
@@ -64,12 +64,12 @@ window.CANVAS_ART_ABOUT = {
   "by": "Opus 5.5"
  },
  "claude-monet-lilas-temps-gris": {
-  "about": "Spring lilac, grey weather: a pencil note on the stretcher reads \"printemps lilas (temps gris)\". Three figures rest in the bush's shade at Argenteuil, and Monet also painted a sunlit version of the same bower.",
-  "deep": "Two households share the shade under this lilac, if its three figures are who they have been identified as: Camille Monet, with Alfred Sisley and his partner Eugénie Lescouezec. Sisley painted at Argenteuil in 1872, probably on frequent visits to Monet, and that year both men painted the same two streets of the town. Here the painter of those streets has become one of the painted, though no likeness picks him out. The three are held together by where they sit: the grey figure at our left turned in profile toward the white-hatted woman at the centre, and the third set low at our right, its body slanting back toward both.",
+  "about": "Monet's garden at Argenteuil under a grey sky, probably in spring 1872, with the lilac in flower. In its shade rest three figures identified as his wife Camille, the painter Alfred Sisley and Sisley's partner Eugénie.",
+  "deep": "If the figures are who they have been identified as, two households share this shade. Sisley painted at Argenteuil in 1872, probably on frequent visits to Monet, and that year both men painted the same two streets of the town. Here the painter of those streets has become one of the painted, though no likeness picks him out. The three are held together by where they sit: the grey figure at our left turned in profile toward the white-hatted woman at the centre, and the third set low at our right, its body slanting back toward both.",
   "by": "Opus 5.5"
  },
  "claude-monet-en-norvegienne": {
-  "about": "When Monet showed with Rodin in 1889, these three sisters fishing from a rowing boat at Giverny, painted about 1887, led four canvases headed Essais de figures en plein air: open-air figure studies.",
+  "about": "About 1887 Monet put three daughters of Alice Hoschedé, the woman he lived with but could not yet marry, in a boat on the Epte; two years on, he showed it among his essays in open-air figures.",
   "deep": "The three in this boat are painted on the same terms as the leaves behind them. In August 1887 Monet told Théodore Duret he was working at open-air figures as he understood them, made like landscapes, an old dream that still tormented him. By 1890, in the curator Cyrille Sciama's reading, he had turned from the problem unsolved and the figure had left his work. The standing girl's face is one soft patch of rose under her brim, the kind of touch the bank's leaves are built from, and below the hull the water drops the women's whites to a lilac-grey like that of the bank's reflection beside the bow.",
   "by": "Opus 5.5"
  },
@@ -79,13 +79,13 @@ window.CANVAS_ART_ABOUT = {
   "by": "Opus 5.5"
  },
  "katsushika-hokusai-kanda-myojin-and-ochanomizu-from-the-seri": {
-  "about": "Edo's guardian shrine, Kanda Myōjin, and the Seidō, the Confucian hall the shogunate made its official academy in 1797 and enlarged in 1799 — both in a colour woodblock Hokusai designed about 1804–17.",
+  "about": "Edo's guardian shrine, Kanda Myōjin, whose festival the shogunate cut to alternate years as too lavish, shares this hilltop with the Seidō, the Confucian hall housing the shogunate's academy — Hokusai's woodblock of about 1804–17.",
   "deep": "Down the right edge, the title still calls this sheet a newly published uki-e, and the view earns that name only in part. Uki-e, floating pictures, were Edo prints that borrowed Western perspective so the near view seemed to float forward. The set has been placed last among Hokusai's uki-e, some of its sheets arranging famous places freely from a bird's-eye height. Here depth comes by overlap. The pink mist lies in tiers, each band over the base of what rises behind it, and the yellow mounds at far left stack the same way, each set before the next by darker flecks at its foot.",
   "by": "Opus 5.5"
  },
  "katsushika-hokusai-rainstorm-beneath-the-summit-from-the-ser": {
-  "about": "Lightning crosses the dark lower slope of Mount Fuji in this colour woodblock of Hokusai's design, issued in 1831 in the same group as Fine Wind, Clear Morning, the series' Red Fuji, and often paired with it.",
-  "deep": "The lightning's red was changed in printings made after this sheet. Here the bolt is vermilion alone. Scientists analysing the series' impressions without removing any material placed two other impressions of this design in a later printing, and in both safflower red is mixed into the strike. No line from the key block, which printed the outlines, draws the bolt. The cutter's wood gave it forks and hard edges, and the rest is colour, inked again for each sheet, which is where a printer could alter it without touching the design. This sheet is from the earlier printing: the orange crossing the dark slope at lower right is the bolt before safflower went in.",
+  "about": "In 1831 Hokusai sent lightning across the dark foot of Fuji, and the printers later changed its red: on this sheet, from an earlier run, the strike is pure vermilion; two later impressions add safflower.",
+  "deep": "The bolt's red is a matter of printing, not design. Scientists analysing the series' impressions without removing any material placed two other impressions of this design in a later printing, and in both safflower red is mixed into the strike. No line from the key block, which printed the outlines, draws the bolt. The cutter's wood gave it forks and hard edges, and the rest is colour, inked again for each sheet, which is where a printer could alter it without touching the design. This sheet is from the earlier printing: the orange crossing the dark slope at lower right is the bolt before safflower went in.",
   "by": "Opus 5.5"
  },
  "katsushika-hokusai-ejiri-suruga-province-from-the-series-thi": {
@@ -139,28 +139,28 @@ window.CANVAS_ART_ABOUT = {
   "by": "Opus 5.5"
  },
  "frederic-bazille-fontainebleau-forest": {
-  "about": "This clearing at Fontainebleau, painted by Frédéric Bazille in 1865, was listed in 1927 and again in 1947, his cataloguer Michel Schulman notes, as “La Garrigue”: the dry scrub around his native Montpellier.",
+  "about": "Frédéric Bazille's forest interior, painted out of doors in the dark greens and browns of the Barbizon men; in 1932 Gaston Poulain judged that thickets like these would never reveal the painter to himself.",
   "deep": "The painter of this wood came to the forest in 1865 to hold still for Monet, and his own canvas holds still too. Monet wrote of his Déjeuner sur l'herbe, “il ne me manque plus que les hommes”: only the men were missing. On 19 August Bazille arrived at Chailly, on the forest's edge, to pose for more than one of its figures. The canvas is placed in that stay, though Bazille's cataloguer Michel Schulman allows for an earlier, unrecorded visit. Of this canvas Schulman wrote “Tout est immobile”, everything is still. The drawing bears it out to the topmost sprigs of the tree right of the sunlit clearing, sharp against the sky.",
   "by": "Opus 5.5"
  },
  "alexandre-calame-hochgebirgsschlucht-handeggtal-im-kanton-be": {
-  "about": "This storm in an Alpine gorge, painted to an order of 1854, is the dark partner to a sunny view of Lake Lucerne Alexandre Calame had made for the same patron, sized to match it.",
+  "about": "Delighted with a sunny Lake Lucerne Calame had painted for him, a banker ordered its dark twin by letter in 1854, at the same size: a thunderstorm, wind-bent trees, foaming falls, something to make its viewer shudder.",
   "deep": "The shudder ordered from this canvas comes less from its storm than from where its sun falls. Its patron's letter asked for a thunderstorm, “the tops of the firs and other trees bent by the wind”, rocks with foaming waterfalls, and a picture to make one shudder. The storm came as ordered: heavy cloud over the gorge, both conifers' tops tipping toward our left, a torrent falling grey-white. Calame's first biographer, Eugène Rambert, called the composition “systematically churned up”, in a German rendering of his words. The list names no sun, yet sun lies on a far mountain face at upper left, out of reach across the black drop of the gorge.",
   "by": "Opus 5.5"
  },
  "attributed-to-ogata-korin-island-with-pine-tree-among-roilin": {
-  "about": "Once, probably, a single-panel standing screen — so a former owner wrote, and a curator came to agree. This eighteenth-century painting from the school of Ogata Kōrin now stands on two folding leaves, hinged down the middle.",
-  "deep": "The novelist Arthur Morrison, who owned this screen, printed it in 1911 as \"By Ogata Korin\", in a chapter that found \"more than a score\" of Kōrins in one Continental sale catalogue false, \"every one\", and judged that \"the possessor of one true Korin may count himself fortunate\". The crests and spray, he wrote, \"in silver, have now by age the tone of black mother-of-pearl\". It now goes to the school of Ogata Kōrin, and one way it differs from screens bearing Kōrin's signature, one scholar notes, is the pigment of those crests. At lower left, the breaking foam hooks into dark claws, perhaps the darkening he put down to age.",
+  "about": "Arthur Morrison, the novelist, wrote in 1911 that anyone with one true Kōrin was fortunate, and in the same book printed this screen as the master's own. Today it is given to Kōrin's school.",
+  "deep": "Arthur Morrison, who owned the screen, had found \"more than a score\" of Kōrins in one Continental sale catalogue false, \"every one\", and judged that \"the possessor of one true Korin may count himself fortunate\". The crests and spray, he wrote, \"in silver, have now by age the tone of black mother-of-pearl\". One way it differs from screens bearing Kōrin's signature, one scholar notes, is the pigment of those crests. At lower left, the breaking foam hooks into dark claws, perhaps the darkening he put down to age.",
   "by": "Opus 5.5"
  },
  "tani-buncho-dragon-in-clouds": {
-  "about": "Tani Bunchō's dragon, painted in ink on paper in the nineteenth century, 177 centimetres wide, is one of his unusually large hanging scrolls — a size that suggests it was intended to hang in a temple.",
-  "deep": "Sketch and finished painting at once: the dragon breaks off like the first and holds together like the second, and cloud does the holding. Publishing the scroll in 1934, Basil Gray called it \"a large and finished painting without losing the qualities of vigour and immediate inspiration of a sketch\". The dragon's lower length never meets the upper; scales stop short in wash like a quick study's strokes. No break looks abandoned: the cloud taking each is brushed, as Gray saw, with the same decision as scales and claws. The cloud, near-black over the coil's top and pale where the tail's root sinks from above, is Gray's storm-cloud, which \"partly hides the dragon\".",
+  "about": "Tani Bunchō's dragon fills one of his unusually large hanging scrolls; Basil Gray, publishing it in 1934, found it big and finished yet vigorous as a sketch — a feat, he wrote, only ink on paper allows.",
+  "deep": "Sketch and finished painting at once: the dragon breaks off like the first and holds together like the second, and cloud does the holding. Basil Gray's own words were \"a large and finished painting without losing the qualities of vigour and immediate inspiration of a sketch\". The dragon's lower length never meets the upper; scales stop short in wash like a quick study's strokes. No break looks abandoned: the cloud taking each is brushed, as Gray saw, with the same decision as scales and claws. The cloud, near-black over the coil's top and pale where the tail's root sinks from above, is Gray's storm-cloud, which \"partly hides the dragon\".",
   "by": "Opus 5.5"
  },
  "aristide-maillol-desir": {
-  "about": "The man and woman kneeling in this lead relief were modelled by Maillol in 1907, while his patron, Count Harry Kessler, followed the work in about twenty diary entries — the cast itself was made in 1941.",
-  "deep": "Expression here was made to obey what Maillol called the laws of relief. In May 1907 he gave Count Harry Kessler, the patron who ordered it, a rule: every point equally distant from the ground behind the figures. In July he tore the whole relief down because the woman's head, tried further forward for its expression, came out too far; once those laws are broken, he said, nothing holds. Gesture was held to balance as strictly. In the lead a hand rises behind the young man's head to the panel's top left corner, across from the woman's head at the top right, and Maillol called that hand a counterweight to her head.",
+  "about": "In July 1907 Maillol demolished the clay of this kneeling pair, ordered that spring by Harry Kessler: the woman's head, pushed forward for expression, stood out too far. Stray from relief's rules, he said, and nothing stands.",
+  "deep": "Expression here was made to obey what Maillol called the laws of relief. In May 1907 he gave Count Harry Kessler, the patron who ordered it, a rule: every point equally distant from the ground behind the figures. That rule sent the woman's head back after he tried it further forward in July. Gesture was held to balance as strictly. In the lead a hand rises behind the young man's head to the panel's top left corner, across from the woman's head at the top right, and Maillol called that hand a counterweight to her head.",
   "by": "Opus 5.5"
  },
  "claude-monet-la-cabane-des-douaniers-effet-d-apres-midi": {
@@ -169,7 +169,7 @@ window.CANVAS_ART_ABOUT = {
   "by": "Opus 5.5"
  },
  "claude-monet-soleil-couchant-sur-la-seine-a-lavacourt-effet": {
-  "about": "The Seine froze over in December 1879 and its ice broke up in early January: Monet's sundown on the river comes from that winter, and in 1882 it was shown at the seventh Impressionist exhibition.",
+  "about": "Three months after his wife Camille died, the Seine froze, and in early January its ice broke; Monet painted ice and thaw into March — here, a setting winter sun over open water at Lavacourt, 1880.",
   "deep": "Monet told the critic Théodore Duret in March 1880 that one of three large canvases then under way was too much to his own taste, and certain to fail with the Salon jury. In its place he painted something \"wiser, more bourgeois\", and, he wrote, his exhibiting friends now called him a deserter. One account identifies this sunset as the canvas he would not send. Against that word wiser, the sunset's risks are plain: a thick orange sun on a sky brushed almost to a stain, a path of light broken partway down the river, and, at the sun's own height, a band dimmer than the upper sky and the near water.",
   "by": "Opus 5.5"
  },
@@ -184,7 +184,7 @@ window.CANVAS_ART_ABOUT = {
   "by": "Opus 5.5"
  },
  "camille-pissarro-the-public-garden-at-pontoise": {
-  "about": "Strollers and children on a garden terrace in Pontoise, 1874 — perhaps Pissarro's \"Jardin de la ville de Pontoise\" in the first Impressionist exhibition, a place some scholars give to his 1873 view of the same garden.",
+  "about": "High on Pontoise's hill, the town's public garden looked across the plain towards Paris. In 1874 Pissarro, a painter of fields, gave that view one corner and filled the rest with strollers and children on its terrace.",
   "deep": "Everything casual on this terrace has been worked out. In May 1874, with the first group exhibition open, Pissarro told Théodore Duret that the critics accused them \"of not studying\", and that he was \"going back to my studies\". Whatever rank the strollers' dress suggests, size here answers only to distance: a child in blue outgrows a lady in a veil. A tree trunk is planted in front of nearly everyone, a fixed upright against which each stroller's distance can be judged. And at far left a lantern barely clearing the parapet stands for a bell tower hidden beneath it, and for the height the garden is built on.",
   "by": "Opus 5.5"
  },
@@ -204,8 +204,8 @@ window.CANVAS_ART_ABOUT = {
   "by": "Opus 5.5"
  },
  "jozef-szermentowski-odpoczynek-oracza": {
-  "about": "Painted in France and signed 1861, early in Szermentowski's years abroad: a girl brings food to a ploughman under a group of oaks, his oxen yoked. Whether the field is French or remembered from Poland is argued.",
-  "deep": "Nothing on the canvas fixes this field's country, and the painter had reason to prefer the one he left. From a French village he wrote home that its nature was \"nothing special\" beside the Kraków and Sandomierz country. One account counts the picture among his first French canvases; another says he mostly painted the homeland from memory. A curator hears a homely note in the girl's paired pots, the oxen and the village church, yet oaks with a dead limb, a yoked team and a windmill fit either country. At the far right, mill and tower are a few pale strokes on the horizon, too small to tell whose horizon it is.",
+  "about": "Sent to Paris on a stipend, Szermentowski never moved back, and wrote from France that next to the Kraków country its countryside was \"nothing special\". Signed 1861, his ploughman's rest leaves its field's country open.",
+  "deep": "Nothing on the canvas fixes this field's country, and the painter had reason to prefer the one he left. His \"nothing special\" went from a French village to his friend Marcin Olszyński. One account counts the picture among his first French canvases; another says he mostly painted the homeland from memory. A curator hears a homely note in the girl's paired pots, the oxen and the village church, yet oaks with a dead limb, a yoked team and a windmill fit either country. At the far right, mill and tower are a few pale strokes on the horizon, too small to tell whose horizon it is.",
   "by": "Opus 5.5"
  },
  "henri-leopold-levy-untitled": {
@@ -224,8 +224,8 @@ window.CANVAS_ART_ABOUT = {
   "by": "Opus 5.5"
  },
  "john-constable-trees-at-hampstead-the-path-to-church": {
-  "about": "Trees over a lane at Hampstead fill this 1821 canvas, nearly a metre tall and probably the picture Constable showed at the Royal Academy the next year under the plain title \"A study of trees from nature\".",
-  "deep": "Painting the trees was a way of holding them. Constable told his friend John Fisher in September 1821 that a \"natural (but highly elegant)\" group of ashes, elms and oak would serve him \"as if I had bought the field and hedge row\", and the group has been identified with this one. The canvas keeps both words, natural and elegant. Elegance lifts in the tall trunks at left; nature holds the dark trees beneath them, where a pine and a grey trunk behind it rise into one mass of needles and nobody settles which bears the crown. The purchase has a boundary: at the right the lane runs past the rails and off the canvas.",
+  "about": "Renting a summer house on Hampstead's hill in 1821, Constable wrote that a stand of elm, ash and oak he had studied served him as well as owning the field and hedgerow — trees thought to be these.",
+  "deep": "Painting the trees was a way of holding them. His letter to John Fisher called the trees \"natural (but highly elegant)\". The canvas keeps both words, natural and elegant. Elegance lifts in the tall trunks at left; nature holds the dark trees beneath them, where a pine and a grey trunk behind it rise into one mass of needles and nobody settles which bears the crown. The purchase has a boundary: at the right the lane runs past the rails and off the canvas.",
   "by": "Opus 5.5"
  },
  "pierre-auguste-renoir-la-seine-a-champrosay": {
@@ -264,7 +264,7 @@ window.CANVAS_ART_ABOUT = {
   "by": "Opus 5.5"
  },
  "theo-van-rysselberghe-sailing-boats-and-estuary": {
-  "about": "Once dated anywhere from about 1887 to 1893, it is now named for the harbour entrance at Roscoff, Brittany, and dated 1889, the year of some of Théo van Rysselberghe's earliest seascapes in dots.",
+  "about": "In 1889 Van Rysselberghe started painting Maria Monnom among fruit trees at Thuin and wed her in the autumn; that year too he carried his new dotted method to the Breton coast — here, the harbour mouth at Roscoff.",
   "deep": "This view comes in from the side, past one block of masonry cut by the right edge and seen from above. Six of Seurat's Normandy coast pictures hung in Brussels in 1887, and one account says Van Rysselberghe's coast pictures of the late 1880s seem to have been inspired by Seurat's views at Grandcamp and Honfleur, which often lead in from land or a jetty at the side. The waterline is where to test what may be his own. The wall's reflection keeps the stone's weight in deep blue and trades the orange of the face above for the water's green, which runs thin through the near water and gathers close beneath the stone.",
   "by": "Opus 5.5"
  },
@@ -299,8 +299,8 @@ window.CANVAS_ART_ABOUT = {
   "by": "Opus 5.5"
  },
  "claude-monet-snow-scene-at-argenteuil": {
-  "about": "The boulevard Saint-Denis at Argenteuil, the street Monet lived on, deep in snow on an overcast afternoon — at about 71 by 91 centimetres, the largest of the snow pictures he painted there that winter, 1874–75.",
-  "deep": "Manet, in Théodore Duret's telling, was shown a Monet snow scene that Duret owned, called it perfect, said no one could do better, and gave up painting snow. The picture is generally taken to be this one. In December 1879, nearly four months after his wife Camille died, Monet brought a few snow pictures to Paris, and Duret very probably bought it for 150 francs. A painter of figures was looking at a street laid almost entirely in pale paint, where the pair in the road are a few upright strokes each with a dab of orange-brown for a face, and the strongest red on the canvas lies down in a wheel rut.",
+  "about": "Manet came to see the Monet snow scene Théodore Duret owned, pronounced it perfect and gave up on snow, Duret wrote. This canvas, it is generally held, was that picture: Monet's own Argenteuil street, winter 1874–75.",
+  "deep": "Duret's Manet story names no canvas; his only known Monet snow scene is this. In December 1879, nearly four months after Monet's wife Camille died, he brought a few snow pictures to Paris, and Duret very probably bought it for 150 francs. A painter of figures was looking at a street laid almost entirely in pale paint, where the pair in the road are a few upright strokes each with a dab of orange-brown for a face, and the strongest red on the canvas lies down in a wheel rut.",
   "by": "Opus 5.5"
  },
  "georges-seurat-le-bec-du-hoc-grandcamp": {
@@ -324,13 +324,13 @@ window.CANVAS_ART_ABOUT = {
   "by": "Opus 5.5"
  },
  "unknown-taneczny-krag": {
-  "about": "Six women dance a ring on a spring hilltop in Stuck's panel of 1910. It came east in 1945 from Breslau's Silesian Museum of Fine Arts, whose holdings were scattered across Silesia as the war ended.",
+  "about": "Six women dance a ring on a spring hilltop in Franz von Stuck's panel of 1910, made the year after Venice honoured him with a room to himself, while critics increasingly dismissed his decorative art as backward.",
   "deep": "The ring is shut, six bodies making one figure on a spring hill, in the last years before Munich's newest painting turned toward abstraction. Within a year or two Kandinsky, once among Stuck's pupils, would be leading that turn, with the Blue Rider group. Against it the panel, also called Spring Dance, offers the older terms of beauty: a season shown through people, a recognisable harmony. None of it comes easily. The loop stays round only because the woman in blue at its right end throws her weight outward, and it closes only where the eye joins a clasp it is never shown, behind the pinned-up dark hair left of centre.",
   "by": "Opus 5.5"
  },
  "w-adys-aw-czachorski-dama-w-liliowej-sukni-z-kwiatami": {
-  "about": "No name is recorded for this woman in lilac satin reaching into flowers, by the Munich-based Pole Czachórski; the same pose, vase and reach recur on a panel he dated 1898, with another model in pink.",
-  "deep": "One critic's paragraph holds the whole case against pictures like this. Writing in 1899 of Czachórski's women generally, Adolf Neuwert-Nowaczyński could hardly tear his eyes from the sheen of silk, the downiness of velvet, the glitter of gold, and in the same breath mocked the woman's \"boundlessly thoughtless\" expression. His rapture can be checked off here: satin, a gilt chair, frame and table, a dark green hanging. The sneer lands less squarely. Her head turns from us and her eyes strain further still to our left, a look with a direction, whatever it settles on. Her one act sides with his rapture: at upper left, her raised hand slips in among the blossoms.",
+  "about": "A critic wrote in 1899 that the eye could hardly leave the silk, velvet and gold of Czachórski's women, then, in one breath, mocked their \"boundlessly thoughtless\" faces. Here, one in lilac satin reaches into azaleas.",
+  "deep": "One critic's paragraph holds the whole case against pictures like this. The critic was Adolf Neuwert-Nowaczyński, writing of the painter's women generally, not this canvas. His rapture can be checked off here: satin, a gilt chair, frame and table, a dark green hanging. The sneer lands less squarely. Her head turns from us and her eyes strain further still to our left, a look with a direction, whatever it settles on. Her one act sides with his rapture: at upper left, her raised hand slips in among the blossoms.",
   "by": "Opus 5.5"
  },
  "anders-zorn-dance-in-the-gopsmorkate": {
@@ -344,7 +344,7 @@ window.CANVAS_ART_ABOUT = {
   "by": "Opus 5.5"
  },
  "victor-prouve-sejour-de-paix-et-de-joie-meditation": {
-  "about": "These resting women were painted in 1899, on an 1898 commission, for a town hall's festival room. In 1900 Paris showed Prouvé's Séjour de paix et de joie as a fragment of that decoration.",
+  "about": "Prouvé's Eden began as a ceiling project for an earlier contest, left unused. Commissioned in 1898 for a Paris town hall's festival room, he went back to it: here, two women at rest among flowers.",
   "deep": "Rest is the opening stage of this paradise. Writing in 1901 of Prouvé's design for the town hall, the critic Jules Rais said it showed not yet the life to come but the first stage of happiness: \"the regeneration of beings, far from the accursed city, in an Eden of flowering earth and maternal shade.\" The canvas stays at that first stage: one woman sleeps on, and the one awake has not yet got up. Something harder lies in the grass with them. At lower left, against the red skirt, a forearm carved in stone, perhaps broken from a statue, ends in the one clenched hand in the picture.",
   "by": "Opus 5.5"
  },
@@ -364,17 +364,17 @@ window.CANVAS_ART_ABOUT = {
   "by": "Opus 5.5"
  },
  "max-liebermann-die-gartenbank": {
-  "about": "In his Wannsee garden Liebermann painted the white bench by a chestnut repeatedly in 1915–16, mostly with a young woman in a light dress — probably his daughter Käthe, as in this 1916 canvas.",
-  "deep": "The garden on this canvas is kept for pleasure, though in the same year, 1916, Liebermann painted the big lawn behind his villa planted with cabbage and potatoes. The war was turning his grounds toward food: the next May he wrote to a collector that he had grown potatoes in place of Gravenstein apples, and vegetables besides, \"for who knows how long the war will last\". None of that work enters this picture. The seat is for sitting, and the woman in white sits; no bed has been cut into the lawn, which runs whole to the bottom edge, where the sun spreads across the grass in a broad yellow pool.",
+  "about": "In 1916, as the war turned his big Wannsee lawn over to cabbage and potatoes, Liebermann still painted the garden for its pleasures: a young woman in white, probably his daughter Käthe, on a bench.",
+  "deep": "That cabbage lawn has its own 1916 canvas, Wannseegarten mit Kohlfeld. The war was turning his grounds toward food: the next May he wrote to a collector that he had grown potatoes in place of Gravenstein apples, and vegetables besides, \"for who knows how long the war will last\". None of that work enters this picture. The seat is for sitting, and the woman in white sits; no bed has been cut into the lawn, which runs whole to the bottom edge, where the sun spreads across the grass in a broad yellow pool.",
   "by": "Opus 5.5"
  },
  "claude-monet-weeping-willow-2": {
-  "about": "Monet's weeping willows of 1918–19 have been read as his response to the war. This canvas comes from a later return to the tree, painted at Giverny after the war, between 1920 and 1922.",
-  "deep": "This dark canvas turns to rust below the middle across most of its centre and right, and its dates allow one account of Monet's late manner: failing sight. In 1922, its latest possible year, Monet's eye doctor found his right eye registering only light, and he wrote of bad paintings made “when seeing nothing but fog”. One medical reading calls the late manner cataract, not choice; a 2018 exhibition hung this canvas as a bridge to American abstraction. Nothing dates it closer. Either account must meet the left margin, where the red climbs high instead, in a few thin lines: a loop near the top, a Y a little below the middle.",
+  "about": "Monet's dark, close-cropped willow, painted after the war, was claimed in 2018 as an ancestor: a Paris exhibition set it among the late works it presented as the bridge to New York's abstract painting of the 1950s.",
+  "deep": "This dark canvas turns to rust below the middle across most of its centre and right, and its dates allow one account of Monet's late manner: failing sight. In 1922, its latest possible year, Monet's eye doctor found his right eye registering only light, and he wrote of bad paintings made “when seeing nothing but fog”. One medical reading calls the late manner cataract, not choice; the 2018 show read it as ancestry. Nothing dates it closer. Either account must meet the left margin, where the red climbs high instead, in a few thin lines: a loop near the top, a Y a little below the middle.",
   "by": "Opus 5.5"
  },
  "claude-monet-le-pave-de-chailly": {
-  "about": "Monet's view of the forest road out of Chailly, about 1865 — by Wildenstein's account a study for a larger version, from the year he came to these woods to prepare a life-size Luncheon on the Grass.",
+  "about": "Monet's small, empty forest road dates from about 1865, when he came to Chailly for something far bigger: a picnic of life-size figures under the beeches, too large to paint in the open, and never finished.",
   "deep": "Wheel ruts and no wheels, a sunlit verge and no one on it: the picture dates from around the year Monet sought woods to hold people. His postscript to Bazille in early May 1865 wanted an \"opinion on the choice of landscape for my figures\" and confessed, \"sometimes I am afraid of what I'm getting myself into.\" Read with that letter, the canvas is the landscape chosen and the figures left out. Here the near grass, where a party might have sat, holds fallen leaves and the big trunk's long shadow.",
   "by": "Opus 5.5"
  },
@@ -394,8 +394,8 @@ window.CANVAS_ART_ABOUT = {
   "by": "Opus 5.5"
  },
  "paul-signac-antibes-ranek": {
-  "about": "Signac's harbour at Antibes in 1914, the year after he settled there — the morning half of a pair. He painted Antibes at evening that year too, on a smaller, squarer canvas now in Strasbourg.",
-  "deep": "Before any colour went on, this harbour very probably existed as a black-ink drawing of its own size. From 1894 Signac composed on cartoons the format of the canvas: \"an angle that looks fine in small dimensions may look awful enlarged,\" his journal says. An ink drawing of 1914 almost exactly this size survives, so the angles he feared for could be judged at the scale you stand before. They are in the rigging: the five masts stand upright over the hulls, gaffs slant from them along the heads of the sails, the orange bowsprit juts left from the white bow, and behind them the far shore runs level.",
+  "about": "Signac had planned his canvases on full-size cartoons since 1894, before laying any colour, wary that an angle fine in a small sketch could look wrong enlarged. This harbour morning was very probably composed the same way.",
+  "deep": "From 1894 Signac composed on cartoons the format of the canvas: \"an angle that looks fine in small dimensions may look awful enlarged,\" his journal says. An ink drawing of 1914 almost exactly this size survives, so the angles he feared for could be judged at the scale you stand before. They are in the rigging: the five masts stand upright over the hulls, gaffs slant from them along the heads of the sails, the orange bowsprit juts left from the white bow, and behind them the far shore runs level.",
   "by": "Opus 5.5"
  },
  "anna-bilinska-bohdanowicz-portret-m-odej-kobiety-z-roza-w-re": {
@@ -409,8 +409,8 @@ window.CANVAS_ART_ABOUT = {
   "by": "Opus 5.5"
  },
  "mars-and-venus-united-by-love": {
-  "about": "Veronese's allegory of love and war, 1570s, travelled for centuries with three more of his. Two of those were already documented in 1567, and a technical study confirms the four were not painted as one set.",
-  "deep": "An army once carried this canvas off, as the Cupid at lower right is carrying Mars's sword. First recorded in 1621 in Rudolf II's collection at Prague Castle, it was taken by the Swedes after the sack of 1648, went with Queen Christina to Rome, passed to the dukes of Orléans in Paris, and by one account was offered for sale in London in 1798. The garden itself holds a soldier's losses: helmet, sword and horse, what a winning side takes from a beaten man. Of the three, only the sword is being carried away, and by a winged child.",
+  "about": "Veronese's picture of love disarming the god of war became a prize of war itself: when Prague was sacked in 1648, Swedish troops took it from the castle and sent it north to Stockholm as booty.",
+  "deep": "An army once carried this canvas off, as the Cupid at lower right is carrying Mars's sword. First recorded in 1621 in Rudolf II's collection at Prague Castle, it went from Stockholm with Queen Christina to Rome, passed to the dukes of Orléans in Paris, and by one account was offered for sale in London in 1798. The garden itself holds a soldier's losses: helmet, sword and horse, what a winning side takes from a beaten man. Of the three, only the sword is being carried away, and by a winged child.",
   "by": "Opus 5.5"
  },
  "the-dream-of-the-shepherd-der-traum-des-hirten": {
@@ -424,18 +424,18 @@ window.CANVAS_ART_ABOUT = {
   "by": "Opus 5.5"
  },
  "claude-monet-morning-haze": {
-  "about": "Monet's 1888 field and its row of trees, under white morning fog. By February 1891 it was in New York, hung as Foggy Morning at the Union League Club: one of thirty-four Monets shown alongside Old Masters.",
-  "deep": "On this canvas, construction has moved out of the trunks and into the brushwork. In summer 1888 the painter John Peter Russell, as Vincent van Gogh relayed it to Theo, admired Monet's Antibes pictures but found that \"it all lacks construction\", a tree of his carrying \"far too much foliage for the size of the trunk\". Russell meant the southern canvases, yet the tall tree here is mostly crown, on a faint stem. It stands all the same, because each kind of thing in the fog is laid with its own kind of stroke, and the trees keep their places by the difference between those marks.",
+  "about": "Monet's 1888 row of trees, nearly lost in white morning fog. That summer John Peter Russell, a painter who admired Monet's Antibes canvases, still faulted their trees as badly built: too much leaf for too little trunk.",
+  "deep": "On this canvas, construction has moved out of the trunks and into the brushwork. Vincent van Gogh relayed Russell's verdict to Theo: \"it all lacks construction\", a tree of Monet's carrying \"far too much foliage for the size of the trunk\". Russell meant the southern canvases, yet the tall tree here is mostly crown, on a faint stem. It stands all the same, because each kind of thing in the fog is laid with its own kind of stroke, and the trees keep their places by the difference between those marks.",
   "by": "Opus 5.5"
  },
  "claude-monet-the-seine-at-giverny": {
-  "about": "Undated, Monet's canvas of trees over still water takes 1897 from the campaign that produced his Mornings on the Seine; his catalogue raisonné keeps it apart, a metre wide, paired with the Islets at Port-Villez.",
-  "deep": "On this canvas every touch can be read one by one, each a plain stroke laid beside the next, and the method still stays out of view. In August 1897, with the river campaign under way, Monet told the journalist Maurice Guillemot, \"I'd like to keep anyone from knowing how it's done.\" A river picture shows its construction most openly where a bank meets its reflection, because a drawn shoreline is the painter's decision made visible. Here nobody drew one, and below the big tree, where the foliage meets its own image, no single mark among the many shows the painter deciding where the river begins.",
+  "about": "Monet's undated river view belongs to his Seine campaign of 1897. That August a journalist who shadowed his working day, from before dawn, heard him wish nobody could tell how such pictures were made.",
+  "deep": "On this canvas every touch can be read one by one, each a plain stroke laid beside the next, and the method still stays out of view. The journalist was Maurice Guillemot, and Monet's words were these: \"I'd like to keep anyone from knowing how it's done.\" A river picture shows its construction most openly where a bank meets its reflection, because a drawn shoreline is the painter's decision made visible. Here nobody drew one, and below the big tree, where the foliage meets its own image, no single mark among the many shows the painter deciding where the river begins.",
   "by": "Opus 5.5"
  },
  "claude-monet-the-willows": {
-  "about": "Monet's riverbank of 1880 — a cut-back willow, slender trunks and hanging leaves in a meadow, a village across the water showing between them. Shown three times in America in 1957–58, it was labelled Poplars.",
-  "deep": "When Émile Taboureux came to interview him in April 1880 and asked to see his studio, Monet said he had never had one, could not understand \"how one can shut oneself in a room\", and waved at the river and hills. The line hardened into press legend; at Giverny he kept studios after all. Here the boast holds, though not as the gesture meant. He pointed at a panorama, and of the riverbank he called his studio the canvas gives whole only what lies a few steps off: grass to the bottom edge, two slender trunks, a pollard close enough to show its cut head.",
+  "about": "Monet's riverbank of 1880, seen through willows from the near meadow. In April that year a journalist wanted to visit his studio; Monet replied that he kept none and, pointing to the river, declared: \"That is my studio!\"",
+  "deep": "Monet also told the journalist, Émile Taboureux, he could not understand \"how one can shut oneself in a room\", and waved at the river and hills. The line hardened into press legend; at Giverny he kept studios after all. Here the boast holds, though not as the gesture meant. He pointed at a panorama, and of the riverbank he called his studio the canvas gives whole only what lies a few steps off: grass to the bottom edge, two slender trunks, a pollard close enough to show its cut head.",
   "by": "Opus 5.5"
  },
  "pierre-auguste-renoir-the-skiff-la-yole": {
@@ -444,8 +444,8 @@ window.CANVAS_ART_ABOUT = {
   "by": "Opus 5.5"
  },
  "j-m-w-turner-a-disaster-at-sea": {
-  "about": "Turner, around 1835 — for over a century called Fire at Sea, now thought perhaps to show a storm wreck of 1833, the Amphitrite, though a newer suggestion, the Hibernia, would make it a burning ship again.",
-  "deep": "On the storm-wreck reading of the canvas, the sea did not do this alone: a ship's women and children drowned within reach of the shore, because their captain refused the rescue offered to them. Nothing in the paint shows help being turned away, and no one in it can be picked out as the captain. A refusal leaves nothing to paint but its outcome, and the canvas sets that outcome within reach of where we stand. Those nearest us are in the surf at the bottom edge, below the wreck, and well away from the small boat back in the grey.",
+  "about": "Turner's unexhibited storm wreck has been taken for the Amphitrite, a convict ship that broke up off Boulogne in 1833: her captain refused help from the shore, and the women and children aboard drowned.",
+  "deep": "If it is the Amphitrite, the sea did not do this alone. Nothing in the paint shows help being turned away, and no one in it can be picked out as the captain. A refusal leaves nothing to paint but its outcome, and the canvas sets that outcome within reach of where we stand. Those nearest us are in the surf at the bottom edge, below the wreck, and well away from the small boat back in the grey.",
   "by": "Opus 5.5"
  },
  "edvard-munch-cypress-in-moonlight": {
