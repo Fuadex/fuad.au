@@ -504,7 +504,7 @@ window.CANVAS_ART_ABOUT = {
   "by": "Opus 5.5"
  },
  "edvard-munch-seated-young-woman": {
-  "about": "Munch signed and dated this half-length young woman in a high-backed red chair in 1892, yet Gerd Woll, cataloguing his paintings in 2008, could neither identify the sitter nor trace the canvas in any early exhibition.",
+  "about": "Munch dated this young woman 1892, the year Berlin's artists voted his show shut within a week; of this canvas Gerd Woll, cataloguing his paintings, could trace neither an early showing nor the sitter's name.",
   "deep": "The crimson a sickroom name would read in her eyes also builds the chair and runs through her blouse. The canvas was once called \"Syk pike\", Sick girl, the name of Christian Krohg's painting of 1880–81 and of Munch's own Sick Child motif, and a plaque on its frame, made after his death, carried it. Read under that name, the figure is a set of symptoms: red rims, a pale face, a head turned aside in a high-backed chair. The canvas lays each down as paint. The pale face is smooth, almost free of shadow, set among loaded strokes, and the head turned aside faces our left.",
   "by": "Opus 5.5"
  },
@@ -519,13 +519,13 @@ window.CANVAS_ART_ABOUT = {
   "by": "Opus 5.5"
  },
  "jean-jacques-henner-reclining-nude": {
-  "about": "Henner painted this small nude lying on her front beside a pool in a dark wood. A New York auction sold it in 1921 as a \"Reclining Nymph\"; the title has since dropped the nymph.",
-  "deep": "Nothing in the picture could date it. It has no clothes to go out of fashion and no face to fix a sitter's age, and Henner went back to his subjects years apart, sometimes never titling them. The critic Clarence Cook said he had one theme, \"the naked female figure in a rich gloaming ideal landscape\", and he was criticised for repeating himself. A canvas like this belongs to that long run, not to a year. Only the ground is particular: the pond and thickets of these pictures are the Sundgau of southern Alsace, his native region, German territory from 1871.",
+  "about": "Henner painted this small nude, turned from us beside a pool, in the pond-and-thicket country he set his nudes in again and again — his native Sundgau in southern Alsace, German after 1871. The canvas bears no date.",
+  "deep": "Nothing in the picture could date it. It has no clothes to go out of fashion and no face to fix a sitter's age, and Henner went back to his subjects years apart, sometimes never titling them. The critic Clarence Cook said he had one theme, \"the naked female figure in a rich gloaming ideal landscape\", and he was criticised for repeating himself. A canvas like this belongs to that long run, not to a year. Only the ground is particular: in 1871 he painted Alsace itself as a mourning woman.",
   "by": "Opus 5.5",
   "deepBy": "Opus 5.5"
  },
  "tiepolo-wealth-and-benefits-of-the-spanish-monarchy-under-charles-iii": {
-  "about": "Tiepolo's proposal for the throne-room ceiling of Charles III's new palace in Madrid — oil on canvas, nearly 1.82 metres tall, carried out of Italy on 31 March 1762. He signed the finished fresco in 1764.",
+  "about": "In March 1762, finishing this sketch for the Madrid throne-room ceiling, Tiepolo wrote that the work was a hundred feet: a great labour, but such a work needs courage. Eighteen days later he left for Spain with it.",
   "deep": "This canvas is the ceiling as Tiepolo imagined it before he reached Madrid, and Spain kept arriving after it was finished. The theme was not his own devising, and he worked it up in Italy down to the peoples ranged along its flanks, Spain’s own lands and its conquests rather than the whole world. In Madrid he was given fuller information on Spanish costume and produce, and the ceiling moved on; the canvas stayed as it was. The fresco gained a rainbow linking the foreign domains along the cornice, a device the sketch had not yet conceived. X-rays find a rainbow here too, above the figure of Faith, painted out.",
   "by": "Opus 5.5",
   "deepBy": "Opus 5.5"
@@ -537,7 +537,7 @@ window.CANVAS_ART_ABOUT = {
   "deepBy": "Opus 5.5"
  },
  "tiepolo-study-for-a-ceiling-with-the-personification-of-counsel": {
-  "about": "Tiepolo's proposal for a ceiling, oil on a 27-by-49-centimetre canvas, before about 1762. The ceiling — probably one in Saint Petersburg — is gone, and this is thought to be a fragment cut from a larger sketch.",
+  "about": "Around 1761 Tiepolo was painting ceilings for the Russian court. This canvas is probably a piece cut from his sketch for one of them, the Magnificence of Princes — a ceiling now lost, with no photograph surviving.",
   "deep": "Everything this canvas is now called was settled elsewhere, on paper. For fifty-five years it was catalogued as *The Apotheosis of a Poet* — a flying child taken to be crowning a bearded man — and that reading stood partly because nobody doubted the composition was complete. The title held through catalogues of 1975 and 1985 and into a 1993 exhibition of Tiepolo's oil sketches. Only in 1996 did Diane De Grazia match the old man instead to Counsel, as Cesare Ripa's emblem handbook prescribes him. The outer date comes off a collector's bill, the probable destination off a line in Giandomenico Tiepolo's catalogue of prints, and the object bears no writing at all.",
   "by": "Opus 5",
   "deepBy": "Opus 5"
@@ -555,35 +555,35 @@ window.CANVAS_ART_ABOUT = {
   "deepBy": "Opus 5"
  },
  "childe-hassam-nude-seated": {
-  "about": "Hassam signed and dated this himself at the top right, 1912, on a canvas twenty-four inches by twenty-two — all that is known of the occasion, since the record names no sitter and no room.",
+  "about": "Hassam painted this nude in 1912 with a light the picture cannot account for: the gold at her back has no window and no fall-off, yet a cream edge of light runs down her shoulder and arm.",
   "deep": "Seventeen years separate the date he put in the corner from the first showing anyone has recorded, and by 1929 the canvas was somebody else's property: out of the dealer's hands three years earlier, knocked down as lot 88 in a Brooklyn owner's sale, and thereafter Chester Dale's, whose collection accounts for four of the five exhibitions on the list. Scholarship took it up the same way, as an example of a kind: chosen in 1961 for a survey of the American nude, cited in 1974 in the standard history of that subject. The woman was in the picture at every one of those occasions and is named in none of them.",
   "by": "Opus 5",
   "deepBy": "Opus 5"
  },
  "alfred-sisley-the-banks-of-the-oise": {
-  "about": "Signed lower left and carrying no date, so the 1877/1878 is a catalogue judgment — Sisley's summer river with working boats drawn up along both banks, and no documented campaign of his on this water.",
+  "about": "Around 1877 Sisley painted a river crowded with working boats and kept his firmest drawing for them — a slack sail, a barge with a seated poleman — while the two people sitting in the meadow melt into the grass.",
   "deep": "Another of his canvases, the flooded street at Port-Marly, left his hands for 180 francs and reached Comte Isaac de Camondo at 43,000 in March 1900, fourteen months after his death. The count that gets repeated has Durand-Ruel buying 216 Sisleys between 1880 and 1886 and selling 40. This one's history runs to four lines with one date in it: no owner before a dealer's stockroom, then a sale on 9 June 1926 to Chester Dale, and no showing on record before 1965. That first date falls twenty-seven years after he died, by which time nobody was left to say where the picture had been painted.",
   "by": "Opus 5",
   "deepBy": "Opus 5"
  },
  "leon-bonnat-henry-white": {
-   "about": "Bonnat's 1882 canvas shows the American Henry White (1794–1882) at about eighty-eight, painted in the year of his death and signed at the lower left with that date — an upright oil, 147 by 116 centimetres.",
+   "about": "Bonnat painted this American Henry White at about eighty-eight, in 1882, his last year. He is not the diplomat of that name but his grandfather; the grandson had sat to Bonnat two years before.",
    "deep": "The man who owned all three of this family's portraits gave two of them to the Corcoran in 1949 and kept this one. The two that went were his parents — his father by the same painter in 1880, his mother by Sargent in 1883 — and the Sargent's record carries twenty-six entries. His great-grandfather's canvas stayed in the family another sixty-nine years, and its own file is still blank. The most careful work in it was not aimed at anyone who would ever own it: it becomes legible at 412 megapixels, to a reader nobody in that chain could have expected.",
    "by": "Opus 5"
   },
  "william-merritt-chase-gathering-autumn-flowers": {
-   "about": "Signed and undated, shown at the National Academy of Design from 10 December 1894 — Chase's oil, thirty-eight inches wide against twenty-one high, three white figures set back across a field gone rose and gold.",
+   "about": "Chase spent his 1890s summers teaching painting in the Shinnecock Hills: strong light, no preliminary drawing, the colour actually seen. Around 1894 he turned that lesson on three small figures in white — by one account, his daughters.",
    "deep": "Not one of the three has a face. A back turned; a cream oval with no feature in it; under the near bonnet, at the full resolution the museum publishes, no eyes. The method Chase taught is exact about light and has no equipment for a likeness, so the record's disagreement has nothing to appeal to: the museum names nobody and calls that turned back a woman; the literature calls all three his daughters. A year after the Academy show it was lot 1169 in the Chase sale of 7 January 1896, the year he left the Art Students League for a school under his name; then Louis Ettlinger, then seventy years with no owner named, then Paul Mellon's bequest of 1999, arriving 2012.",
    "by": "Opus 5"
   },
  "alexandre-calame-an-ancient-pine-forest-with-a-mountain-stream": {
-   "about": "Calame's 1847 sheet — watercolour and gouache worked over a charcoal underdrawing on wove paper, catalogued as a drawing, 61 by 84 centimetres: brush-signed on a rock in the scene, and carrying no date of its own.",
+   "about": "Calame was famous for Alpine views that named their place; this one names none. He drew its gorge of old timber and still water in 1847, in watercolour and gouache over charcoal, on a large sheet.",
    "deep": "The catalogue record gives this sheet a single subject keyword, Waterfall, and the paper contains no such thing: foam would rank among the brightest notes here, and virtually every note that bright lies up in the valley gap. An index can name an event, so the record named one; the drawing has no event in it — nothing walks, nothing is built, nothing breaks the water's edge. Its subject is elapsed time, and the timber keeps it: what a living branch gathers when nothing disturbs it, and what is left of the wood that died where it stands. At the foot of it the pool holds, mirroring its banks, outlasting the timber it reflects.",
    "by": "Opus 5"
   },
  "adolphe-joseph-thomas-monticelli-madame-cahen": {
-   "about": "Monticelli's 1869 portrait of a woman in black — oil on canvas at 132 centimetres, big for a painter whose habit was small reused wood panels, and listed no. 1 in a 1932 Derain and Vlaminck exhibition.",
-   "deep": "Her name reached this canvas from outside it; his is the only one on it, centre right, Monticelli / 1869 — a firm year from a painter whose dates are mostly guesses. Hers is a surname without a forename, spelled three ways by three catalogues; the provenance reaches her only through a man the file calls \"a descendent of the sitter\". What is left of her is optical: an iris still an iris at the limit of the Gallery's own file, brow hairs drawn under half a millimetre wide, on paint thin enough to print the weave. She is described to a fraction of a millimetre in the one language that carries no names.",
+   "about": "Monticelli painted this woman in black in 1869, and her name has not held still: forty years after his death a book on his work printed her as Madame C…, later ones as Madame Kahn.",
+   "deep": "Her name reached this canvas from outside it; his is the only one on it, centre right, Monticelli / 1869 — a firm year from a painter whose dates are mostly guesses. Hers is a surname without a forename; the provenance reaches her only through a man the file calls \"a descendent of the sitter\". What is left of her is optical: an iris still an iris at the limit of the Gallery's own file, brow hairs drawn under half a millimetre wide, on paint thin enough to print the weave. She is described to a fraction of a millimetre in the one language that carries no names.",
    "by": "Opus 5"
   },
 "ludwik-de-laveaux-plac-opery-w-paryzu": {
@@ -592,14 +592,14 @@ window.CANVAS_ART_ABOUT = {
  "deep": "Every light in this square spends itself first. The nearest lamp pours its whole allowance into the glass that holds it, worked bright and thick, then lets its halo die within a few inches, leaving the pavement at its foot untouched. The evening's richest colour is hoarded the same way, sealed behind shop glass that serves trade, not the street. Between these two hoarders of light stands a woman with no fixture of her own — a face picked out, a body left to guess at, the coldest ground in the scene. Nobody built this lighting for a lone walker; it serves traffic and trade, and was never meant to find her."
 },
 "witold-wojtkiewicz-podmuchy-wiosenne": {
- "about": "Wojtkiewicz signed and dated it 1905 — watercolour on unprimed canvas, catalogued under a drawings number rather than as a painting. He was dead within four years, at twenty-nine, of a heart defect he was born with.",
+ "about": "In 1905, when Wojtkiewicz joined the Group of Five and drew Warsaw's street demonstrations, he also made this gust of spring blowing through a garden of children, in watercolour laid straight onto unprimed canvas.",
  "by": "Opus 5",
  "deep": "Nothing survives about this sheet except the record of it changing hands, and every hand it changed was closing an estate. Alina and Jakub Glass bought it at the artist's own posthumous exhibition in 1909, a purchase possible only because he had just died. It reached the museum on the twenty-eighth of February 1935, eight days after Alina herself died, transferred under the will her husband was left to execute. A watercolour named for a spring wind has, in the end, no biography apart from this: obtained because a man had just died, and handed on eight days after the woman who kept it died in turn."
 },
 "degas-grande-arabesque-third-time": {
- "about": "Degas's own wax — pigmented beeswax, clay and cork on a metal armature and wooden base, modelled around 1885–1890; of the bronze edition his heirs authorised in 1918, this pose alone runs to at least twenty-four objects.",
+ "about": "Degas's own beeswax dancer, modelled around 1885–90 — not a bronze. When his heirs signed for bronze casts of about 150 figures found in his studio, the contract made the waxes themselves the foundry's property.",
  "by": "Opus 5",
- "deep": "Status here runs backward. The 1918 contract that authorized a bronze edition also made every wax left in Degas's studio the foundry's property — raw stock, not the finished thing — while the numbered casts went out into collections as what was actually worth owning. Nobody needed the word original until, in 1955, thirty-eight years after Degas died, a dealer finally needed to sell this wax as itself. The category got invented that year, in the exhibition's own title: \"Original Wax Sculptures,\" as though wax itself were the news. What is now conserved as the primary object spent decades functioning, in its own economy, as tooling."
+ "deep": "Status here runs backward. Under the 1918 contract every studio wax was raw stock, not the finished thing, while the numbered casts went out into collections as what was actually worth owning. Nobody needed the word original until, in 1955, thirty-eight years after Degas died, a dealer finally needed to sell this wax as itself. The category got invented that year, in the exhibition's own title: \"Original Wax Sculptures,\" as though wax itself were the news. What is now conserved as the primary object spent decades functioning, in its own economy, as tooling."
 },
 "knud-baade-the-wreck": {
  "about": "A shipwreck on Norway's Nordland coast, dated only to the 1830s or 1840s — storm work from Knud Baade's early career, before Munich turned him, after 1845, to moonlight, on a canvas nearly a metre high.",
@@ -607,9 +607,9 @@ window.CANVAS_ART_ABOUT = {
  "deep": "No signature survives on this canvas and no date is inscribed on it; the museum only brackets it across nineteen years, the 1830s into the 1840s. Downstream of that, a single year — the bracket's own floor — hardened into fact and grew a biography to fit: a painter \"barely into his twenties,\" \"years before\" a training nothing here confirms. None of it survives the bracket itself, wide enough to place the picture almost anywhere across those two decades. The same reserve holds elsewhere: a banded mark at the masthead resists reading, and pale flecks nearby are taken for gulls, unconfirmed. Certainty, traced back, is inherited, not earned."
 },
 "nils-kreuger-nightfall": {
- "about": "Kreuger summered on Öland from 1899, and the grazing animals of its bare plain, Alvaret, became his standing motif — a canvas two metres wide, dated 1904 from its signature, holding two horses in failing light.",
+ "about": "Kreuger, who had summered on Öland since 1899, gave two of its horses a canvas two metres wide. Islanders, local tradition has it, said he made their horses too thin and shamed them before all Sweden.",
  "by": "Opus 5",
- "deep": "The strangeness here did not arrive with a stranger's eye. This is the place he had watched longest — the same stretch of grazing ground he kept returning to summer after summer until its animals became the one subject he knew better than any other — and it is exactly that ground he rendered past recognizing, not some scene glimpsed once and misjudged. The people who actually kept horses like these are reported, in a single surviving account, to have read the result as an insult rather than an atmosphere: too thin, they are said to have complained, and a disgrace to the whole of Sweden. Distance did not make this strange. Long familiarity did."
+ "deep": "The strangeness here did not arrive with a stranger's eye. This is the place he had watched longest — the same stretch of grazing ground he kept returning to summer after summer until its animals became the one subject he knew better than any other — and it is exactly that ground he rendered past recognizing, not some scene glimpsed once and misjudged. The people who actually kept horses like these are reported, in a single surviving account, to have read the result as an insult rather than an atmosphere. Distance did not make this strange. Long familiarity did."
 },
 "bruno-liljefors-curlew": {
  "about": "Paid in the 1880s to paint habitat backdrops behind taxidermist Gustaf Kolthoff's mounted birds — work that became a biological museum — Liljefors gave his 1907 curlew the same ground, under what period biology called protective resemblance.",
@@ -622,32 +622,32 @@ window.CANVAS_ART_ABOUT = {
  "deep": "Scale and gravity here are not mood but argument. The museum's own note on this canvas says Zorn was widely thought old-fashioned, and guesses the heightened seriousness is how he answered that — not by chasing what was new, but by refusing to look modest, since he never lost faith in his own work. A painter written off meets the charge with more scale, not less. That reading gives the title's homeland claim a second job: no longer just what the words mean, but what the size and solemnity are defending — a country's music, held serious past the year fashion had already filed it as finished."
 },
 "eugene-jansson-the-outskirts-of-the-town": {
- "about": "Eugène Jansson signed and dated this canvas 1899, six years after his blue twilight painting turned from pastel to oil — an upright nearly five feet tall, its subject, the museum's curator writes, newly built workers' housing.",
+ "about": "Jansson, unlike many in his circle, grew up poor, and his sympathies in these years were socialist. In 1899 he painted new workers' housing at the town's edge — and let no one into it.",
  "deep": "Reticence turned out to be a kind of insurance. The museum's curator allows only that this canvas lets Jansson's labour-movement sympathies be felt, not argued — her own word for it is \"sensed.\" It was exactly that refusal to accuse anyone that let the picture live, for most of two decades, somewhere other than a gallery: on loan to Sweden's National Property Board until 2017, then to the Government Offices' administrative department until 2018, serving as furniture in the corridors of the very state it depicts. It returned to the museum's turn-of-the-century rooms only in 2022. A political picture, in other words, without a politics anyone in power needed to answer for.",
  "by": "Opus 5"
 },
 
 "pehr-hillestrom-a-woman-picking-fleas-by-candlelight": {
- "about": "A small unsigned canvas, known only as no. 859 in the register Hilleström compiled in 1810 of the subjects of all 1,065 oils he had painted since 1773 — his own stock item, not a portrait.",
- "deep": "Three withholdings run this canvas at once: the flame, whatever her drawn-up hands are working at, and a face turned to meet us. Each is present as fact and refused as view — the light reconstructed only from what it lands on, her arms folded into a knot of linen at her chest with no object identifiable in the fold, her head bowed and shown only in profile. Search scenes carry an old, knowing pedigree of inviting the viewer to share the look, half comic, half illicit; this one offers no angle to join from. Even the register line that catalogues her gives an act and a number, nothing confided.",
+ "about": "A woman leans over a candle hidden behind a screen to see better, searching her own body for fleas. Hilleström, a tapestry weaver turned painter, took on intimate and unlovely tasks like this one undaunted.",
+ "deep": "Three withholdings run this canvas at once: the flame, whatever her drawn-up hands are working at, and a face turned to meet us. Each is present as fact and refused as view — the light reconstructed only from what it lands on, her arms folded into a knot of linen at her chest with no object identifiable in the fold, her head bowed and shown only in profile. Search scenes carry an old, knowing pedigree of inviting the viewer to share the look, half comic, half illicit; this one offers no angle to join from. Even the line in the painter's own register that catalogues her gives an act and a number, nothing confided.",
  "by": "Opus 5"
 },
 
 "john-constable-water-meadows-near-salisbury": {
- "about": "A canvas under two feet across, dated no closer than 1820 or 1829 — Constable's outline for it survives on a sheet squared into a grid, its back chalked so the design could be pressed through.",
- "deep": "That the picture's date spans nine years is not a hole in the scholarship; it is what happens when nothing pins a work down. Dates get fixed by the transactions around a picture — a commission, a sale, a catalogue entry — and this one generated none: painted in a friend's house, to no order, for no occasion. Only one event brushed against it, later, when its maker sat on the Royal Academy's own selection committee and, by the museum's account, heard the unattributed canvas called \"a nasty green thing\" before he withdrew it. That fixes one end only. The museum still gives \"1820 or 1829\" and will not choose between them.",
+ "about": "Constable, a new Academician, sat on the Academy's 1830 committee when this canvas came up unnamed. In the museum's telling a member's verdict was \"a nasty green thing\", it was voted down, and he took it back.",
+ "deep": "That the picture's date spans nine years is not a hole in the scholarship; it is what happens when nothing pins a work down. Dates get fixed by the transactions around a picture — a commission, a sale, a catalogue entry — and this one generated none: painted in a friend's house, to no order, for no occasion. Only one event brushed against it, later: the committee that voted it down. That fixes one end only. The museum still gives \"1820 or 1829\" and will not choose between them.",
  "by": "Opus 5"
 },
 
 "francis-danby-disappointed-love": {
- "about": "Danby's 1821 Royal Academy debut, his only entry that year, sent from Bristol — a young woman by a pond, face buried in her arms, scattered paper and an opened case beside her, nothing legible in either.",
- "deep": "Nothing here yields a name. The letter is paint, not words; the case holds no face; her face stays turned into her arms, refused at every magnification the panel allows. That triple blankness is not a gap but an address: a letter no one can read asks to be read, and the only reader left is whoever stands in front of the panel — authorship passes to you. A Bristol painter sent one canvas to the Academy that year, and a picture the viewer must complete is a picture more likely to be remembered than passed over. No sitter, no real disappointment, has ever been named behind it.",
+ "about": "Danby's girl among torn paper, his 1821 Academy debut. Lord Palmerston later told the collector John Sheepshanks it was a pity she was so ugly; \"one feels,\" Sheepshanks replied, \"that the sooner she drowns herself the better.\"",
+ "deep": "Nothing here yields a name. The letter is paint, not words; the open case beside her holds no face; her face stays turned into her arms, refused at every magnification the panel allows. That triple blankness is not a gap but an address: a letter no one can read asks to be read, and the only reader left is whoever stands in front of the panel — authorship passes to you. A Bristol painter sent one canvas to the Academy that year, and a picture the viewer must complete is a picture more likely to be remembered than passed over. No sitter, no real disappointment, has ever been named behind it.",
  "by": "Opus 5"
 },
 
 "wincenty-kasprzycki-widok-morysinka-w-wilanowie": {
- "about": "Kasprzycki signed and dated this canvas 1834, painted for Aleksander Potocki, master of Wilanów since his mother's death — one of a run of views of his estates, here the hunting palace of 1811 at Morysin.",
- "deep": "Before the storm has cleared, this canvas is already taking an inventory: a rotunda, a kiosk, a boat, grass shaved down to the shoreline. Aleksander Potocki had inherited these grounds two years before and set his painter listing what was now his — the calm here is ownership settling into itself, a man newly in possession of everything the light happens to touch. The palace museum that still keeps this ground calls it, in its heyday, extraordinarily beautiful, immortalised on canvas by this same painter — and everything once listed there now stands in ruin, the ground reverted to riparian forest. The tally outlasted the estate.",
+ "about": "Kasprzycki painted Morysin for its new owner, Aleksander Potocki. Removed from Poland in the Second World War, the canvas was recovered from the USSR in 1956; the hunting palace it shows is a ruin now.",
+ "deep": "Before the storm has cleared, this canvas is already taking an inventory: a rotunda, a kiosk, a boat, grass shaved down to the shoreline. Aleksander Potocki had inherited these grounds two years before and set his painter listing what was now his — the calm here is ownership settling into itself, a man newly in possession of everything the light happens to touch. The palace museum that still keeps this ground calls it, in its heyday, extraordinarily beautiful, immortalised on canvas by this same painter — and the ground has since reverted to riparian forest. The tally outlasted the estate.",
  "by": "Opus 5"
 },
 
@@ -670,13 +670,13 @@ window.CANVAS_ART_ABOUT = {
 },
 
 "denys-puech-l-aurore-by-denys-puech": {
- "about": "Puech carved this 116-centimetre marble in 1900, signing and dating it at the right of the terrasse — the integral slab the figure rests on, the sculptor's own base. The heavy pedestal beneath is not his.",
+ "about": "Puech signed and dated this 116-centimetre marble in 1900, at the right of the terrasse — the integral slab the figure rests on, the sculptor's own base. The heavy pedestal beneath is not his.",
  "deep": "Follow the hair in both directions it goes: forward over the eyes, then outward past the shoulders in one unbroken sweep, so the same mass that keeps her from seeing is also what gives her a silhouette wide enough to read as wings. That doubling is the carving's real subject. It never lets her arrive as emblem, wings settled, gaze turned outward; it stops earlier, where covering and shape are still one gesture, not yet split into blindness on one side and flight on the other. Read as a winged figure she has not yet looked; read as a woman she has not yet been finished into sight.",
  "by": "Opus 5"
 },
 
 "rembrandt-jonge-vrouw-in-een-schilderijlijst": {
- "about": "Rembrandt painted this young woman on poplar, where Dutch panels ran to oak, and signed and dated it 1641. The Gestapo seized it — the Altaussee mine, an Allied depot, a Swiss vault, Karolina Lanckorońska's 1994 donation.",
+ "about": "Beneath Rembrandt's girl at her painted frame, X-rays found the outline of an abandoned figure: another woman, in a ruff. In 1969 an art historian who had never seen the panel doubted it was his.",
  "deep": "Nothing in her record names her: no sitter, no patron, no commission, no seventeenth-century mention of it. Her presence here is unrecorded; it is manufactured in paint, by the ledge her hands cross, which the museum and Ernst van de Wetering read as painted rather than real, a frame folded inside the frame. The narrower question, whether Rembrandt made it, was doubted in 1969 by a scholar who had never stood before the poplar panel, and was settled by returning to the object, examined and conserved at the Royal Castle, 2004 to 2006, under him — head of the Rembrandt Research Project. Who she is was never asked.",
  "by": "Opus 5"
 },
@@ -688,7 +688,7 @@ window.CANVAS_ART_ABOUT = {
 },
 
 "chaim-soutine-untitled": {
- "about": "Soutine painted this at Cagnes, in the south, between 1923 and 1924 — a canvas sixty by eighty-one centimetres, one of a series on a single motif: houses stepped up a hillside behind a big tree.",
+ "about": "Soutine's great tree at Cagnes lies flat, thrown, its curators think, by repeated wind. Several writers have suggested his cult of trees came from the forested country of his childhood, where trees were feted in traditional rites.",
  "deep": "No two of the people who have written this canvas down agree on what the tree is doing. A 1967 monograph doubles the museum's own couché into arbre recourbé, bent back as well as laid down. The catalogue raisonné restores the article and prints L'Arbre couché; English writers have called it Fallen Tree outright; the very file that supplies this plate names it albero piegato, simply bent. Five versions of one trunk — our own record keeps the museum's, and only its id still reads untitled — and not one of them touches what the paint holds steadiest: the houses stepped up the hillside, present in every telling of the picture except the title itself.",
  "by": "Opus 5"
 },
@@ -4976,15 +4976,15 @@ about: "Four dancers in matching blue, none aware of being watched — Degas by 
 by: "Fable" },
 
 "claude-monet-waterloo-bridge-in-london": {
-  "about": "Monet's 1902 bridge in fog is one of nearly a hundred London canvases he began in 1899–1901 — the bridge lying downstream to his left from the Savoy Hotel, the motif whose vantage he varied most.",
+  "about": "Monet painted granite Waterloo Bridge in the very colour of the fog, its piers and arches scarcely darker than the air and river around them — one of forty-one canvases of the bridge he began from his Savoy window.",
   "deep": "The darkest paint on the canvas spells a name and a year, and the year is a verdict. The bridge is barely darker than the fog; the signature is hard blue-violet, and its 1902 is a year Monet spent away from London. In March 1903 he told Durand-Ruel that no London picture was \"completely finished\", and Geffroy, days later, that retouching had been a mistake he must see through. Either the year was written later, as on canvases he re-signed after reworking, or the letter overstated his doubt. Either way you are reading a judgement made in the studio, among the others; the sister canvas of Charing Cross Bridge carries a name and no year.",
   "by": "Opus 5.5",
   "deepBy": "Opus 5.5"
  },
 
 "pierre-auguste-renoir-the-england-pear": {
-  "about": "Renoir’s orchard at Louveciennes, about 1873, is a picture France guarded for sixty years before it owned it. The state classed it a Monument historique in November 1951, while it was still in private hands, and took possession only in 2012, accepting it in place of the duties owed on two family gifts.",
-  "deep": "In his 2007 book on Renoir’s landscapes, Colin Bailey reads this orchard as a place at work: a man in the same straw hat and waistcoat as the lone walker of Renoir’s Springtime (in Chatou), a peasant woman at left with hay on her head, and a woman in a kerchief gathering fruit at the tree’s foot. The paint grants him the hat and waistcoat. His hay is the white mass over the figure on the path, or a flowering shrub behind it; his fruit-gatherer would be the red at the tree’s foot, or two people sitting there. Renoir set the orchard’s labour down at a size where it can be found but not settled.",
+  "about": "Renoir's pear tree at Louveciennes, about 1873, bends over a working orchard as Colin Bailey reads it: a man in a straw hat, a woman carrying hay on her head, another gathering fruit at its foot.",
+  "deep": "In his 2007 book on Renoir’s landscapes, Bailey puts that man in the same straw hat and waistcoat as the lone walker of Renoir’s Springtime (in Chatou), and the fruit-gatherer in a kerchief. The paint grants Bailey the hat and waistcoat. His hay is the white mass over the figure on the path, or a flowering shrub behind it; his fruit-gatherer would be the red at the tree’s foot, or two people sitting there. Renoir set the orchard’s labour down at a size where it can be found but not settled.",
   "by": "Opus 5.5",
   "deepBy": "Opus 5.5"
  },
@@ -5015,7 +5015,7 @@ about: "Shown at the Royal Academy in 1842, this was the picture Turner claimed 
 by: "Opus · Fable" },
 
 "j-m-w-turner-death-on-a-pale-horse": {
-  "about": "Turner's unfinished canvas of a skeletal figure pitching head-down — once read as Death on Revelation's pale horse, now probably as Shelley's tyrant Anarchy overthrown, and redated from the late 1820s to about 1833–4.",
+  "about": "In the Reform years Turner began, and abandoned, this skeletal figure pitching head-down — long read as Death riding Revelation's pale horse, now probably Anarchy, the tyrant whom Shelley's poem on the Peterloo Massacre brings down.",
   "deep": "Every reading of this figure has had to say what kind of dead body it is, and the newest lays Shelley's tyrant on the dissecting table. Lawrence Gowing suggested in 1966 that the death of Turner's father in 1829 lay behind it: private grief. Sam Smiles made it public. The bones, he argued, almost certainly follow a plate in Flaxman's anatomy book, published posthumously in 1833, which would move the canvas four years clear of that death. The modelled mass around them he read as flesh roughly flayed, pieces displaced, muscle laid open: a cadaver, painted soon after the Anatomy Act of 1832 gave the unclaimed bodies of the poor to the anatomists.",
   "by": "Opus 5.5",
   "deepBy": "Opus 5.5"
@@ -5314,8 +5314,8 @@ by: "Opus · Fable" },
 },
 
 "charles-angrand-man-and-woman-in-the-street": {
-  "about": "Angrand's canvas sets a man and a woman, turned away from us, on a pale pavement. It dates from 1887, the first year of the few paintings, made alongside Seurat until 1891, on which his reputation rests.",
-  "deep": "The couple are made by opposite means, and only one of them is made of the street. He is a mass of dark touches, crowded until his edge is simply where they stop. She is worked in the pavement's pale criss-cross hatching, held as a figure by a gapped fence of darker dots. The picture largely keeps round dots for things and hatching for ground, which files her with the pavement and him with the walls and posts. The dark band at the waist carries his kind of touch into her; below it, the gap between them is the same pale weave that fills her skirt, so what parts them is her own substance.",
+  "about": "A Paris schoolteacher in the first of his five years beside Seurat, Charles Angrand built this 1887 couple two ways: the man packed dark with crowded dots, the woman made from the pavement's own pale hatching.",
+  "deep": "The man is a mass of dark touches, crowded until his edge is simply where they stop. She is worked in the pavement's pale criss-cross hatching, held as a figure by a gapped fence of darker dots. The picture largely keeps round dots for things and hatching for ground, which files her with the pavement and him with the walls and posts. The dark band at the waist carries his kind of touch into her; below it, the gap between them is the same pale weave that fills her skirt, so what parts them is her own substance.",
   "by": "Opus 5.5",
   "deepBy": "Opus 5.5"
  },
@@ -5379,8 +5379,8 @@ about: "Between 1899 and 1904 Monet worked some thirty-seven canvases of this Th
 by: "Opus · Fable" },
 
 "jean-baptiste-camille-corot-erinnerung-an-coubron": {
-  "about": "A woodcutter and a peasant woman in a meadow near a willow grove — Alfred Robaut's title for Corot's small canvas, dated to 1872 and named for Coubron, a village east of Paris near Montfermeil.",
-  "deep": "After the place name, this souvenir's full title names only kinds, never a person or a particular tree. Corot asked nature about kinds too. In 1867, just before going to Coubron, he told Théophile Silvestre that after six months of hunting for branches in the studio he needed natural ones: \"I want to know how willow leaves hold themselves in the air.\" The pollard at the left is painted to that question: high among its shoots the sky is worked into a soft grey veil, and the leaves sit on it as separate tapering strokes, sharper-edged than the grey beneath. The figures below are kinds as well: a bent back, a bowed head.",
+  "about": "A man hauls a long branch past a peasant woman by a pollarded tree — Corot's souvenir of Coubron, where he stayed in 1872, as buyers began claiming his canvases unpainted, writing their names in chalk on blank stretchers.",
+  "deep": "Alfred Robaut's title for it names only kinds: woodcutter, peasant woman, meadow, willow grove. Corot asked nature about kinds too. In 1867, just before going to Coubron, he told Théophile Silvestre that after six months of hunting for branches in the studio he needed natural ones: \"I want to know how willow leaves hold themselves in the air.\" The pollard at the left is painted to that question: high among its shoots the sky is worked into a soft grey veil, and the leaves sit on it as separate tapering strokes, sharper-edged than the grey beneath. The figures below are kinds as well: a bent back, a bowed head.",
   "by": "Opus 5.5"
  },
 
@@ -5399,7 +5399,7 @@ deepBy: "Sonnet 4.6",
 by: "Opus · Fable" },
 
 "edouard-manet-a-game-of-croquet": {
-  "about": "Manet's 1873 canvas, set in the Paris garden of the painter Alfred Stevens — the catalogue names the four as Victorine Meurent, Alice Legouvé, Paul Roudier and, probably, Stevens. He never exhibited it and never sold it.",
+  "about": "In 1935 the Reich Propaganda Ministry asked Frankfurt for photographs of Manet's croquet party, a Renoir and van Gogh's Dr Gachet, for sale abroad. The gallery's director refused. The van Gogh was later seized; the Manet stayed.",
   "deep": "For a long time nobody could name this canvas, though the record names every person on it. Manet kept it to the end: number 19 in the inventory taken after his death, lot 44 at the Drouot sale of February 1884, and then, by the catalogue raisonné's account, lost, until an actor called Dorival paid forty francs for it in a second-hand shop in Bern. The two kinds of naming run in opposite directions. Inside the frame, the names are the paperwork's contribution and never the composition's, and the paperwork itself hedges the man seen from behind. Outside it, the paperwork had mislaid the picture, and the name came back from another painter: Renoir identified it.",
   "by": "Opus 5.5",
   "deepBy": "Opus 5.5"
@@ -5493,7 +5493,7 @@ about: "One of three decorative panels Vuillard made for the Romanian princes An
 by: "Opus · Fable" },
 
 "paul-steck-ophelie": {
-  "about": "Steck's Ophelia went to the Salon of 1895 as no. 1771 with, in place of a title, two lines by Laurent Tailhade in which Ophelia has closed her eyes beneath white water lilies tinged with blood.",
+  "about": "Steck sent this underwater Ophelia to the Salon of 1895 without a title — in its place he gave two lines of Laurent Tailhade, in which, beneath white water lilies tinged with blood, she has closed her eyes.",
   "deep": "To a reader of Tailhade's whole poem, the canvas takes its drowning and leaves its jewellery. The lines Steck borrowed close it; before them, Nixes show Ophelia the way, and she drifts down to gardens of mother-of-pearl, under porches where the sun never gilds the pebbles. The canvas keeps her under, grants no guide and no gardens, and lets daylight in overhead: the verse has her travel, the paint has her hang. Even her eyes wavered between jewel and weed. Tailhade's 1891 printing, the one Steck quoted, made them aigue-marine, the gemstone, where the 1888 text had algue marine, sea-wrack. The canvas shows them shut, and hangs weed through the river.",
   "by": "Opus 5.5"
  },
@@ -5579,8 +5579,8 @@ about: "A forest road was a motif Shishkin returned to again and again, and this
 by: "Opus · Fable" },
 
 "hendrick-van-balen-the-elder-la-chute-des-reprouves": {
-  "about": "This is a looted picture: catalogued as MNR 414, one of the Musées Nationaux Récupération works recovered in Germany after the war and still held on behalf of an owner never traced, it passed through the Deutsches Historisches Museum in 1946–47 before returning to France and being deposited at Pau. Hendrick van Balen the Elder, who died in 1632, painted it as a small oil after Rubens — a cabinet-scale reduction, 81 by 54 centimetres, of Rubens's monumental \"Fall of the Damned\" now in Munich, its swirling avalanche of bodies condensed onto a single panel.",
-  "deep": "Only this object's custody is dated to the day. The German dealer Walter Bornheim bought it at Juan-les-Pins for 275,000 francs through Brimo de Laroussilhe; it entered the Munich Central Collecting Point on 22 May 1946 as number 30946, was repatriated on 25 March 1947 and deposited at Pau on 9 March 1952. France files it as an \"Œuvre dont l'historique est incomplet entre 1933 et 1945\", owner still unidentified. The sheet carries its own evidence: a quarter of the field is a settled company on cloud, none of it falling. The Louvre catalogues it after Rubens under a title naming the fall alone; the one before was Esquisse pour le Ciel et l'Enfer.",
+  "about": "A seventeenth-century fall of the damned, after Rubens. Bought at Juan-les-Pins by a German dealer, it was sheltered at Tegernsee as Germany retreated, returned to France in 1947, and its rightful owner has never been identified.",
+  "deep": "Only this object's custody is dated to the day. The German dealer Walter Bornheim bought it at Juan-les-Pins for 275,000 francs through Brimo de Laroussilhe; it entered the Munich Central Collecting Point on 22 May 1946 as number 30946, was repatriated on 25 March 1947 and deposited at Pau on 9 March 1952. France files it as an \"Œuvre dont l'historique est incomplet entre 1933 et 1945\". The sheet carries its own evidence: a quarter of the field is a settled company on cloud, none of it falling. The Louvre catalogues it after Rubens under a title naming the fall alone; the one before was Esquisse pour le Ciel et l'Enfer.",
   "by": "Opus · Fable",
   "deepBy": "Opus 5"
  },
