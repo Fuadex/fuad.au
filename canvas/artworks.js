@@ -1090,7 +1090,8 @@ window.CANVAS_ARTWORKS = [
     seenAt: "orangerie", seenConfidence: "sure", loved: true },
   { id: "pierre-isidore-bureau-untitled", title: "Clair de lune sur les bords de l'Oise, à l'Isle-Adam", artist: "Pierre-Isidore Bureau", artistId: "pierre-isidore-bureau", qid: "Q131793938", qidTrusted: true, year: 1867,
     seenAt: "orsay", seenConfidence: "sure", floored: true },
-  { id: "louis-ernest-barrias-the-nubians", title: "The Nubians", artist: "Louis-Ernest Barrias", artistId: "louis-ernest-barrias", qid: "Q110589850", qidTrusted: true,
+  // year: signed and dated "EBARRIAS / 1894" on the relief (Orsay RF 3743, plaster high relief, Salon 1894). Added wave 33.
+  { id: "louis-ernest-barrias-the-nubians", title: "The Nubians", artist: "Louis-Ernest Barrias", artistId: "louis-ernest-barrias", qid: "Q110589850", qidTrusted: true, year: 1894,
     seenAt: "orsay", seenConfidence: "sure", loved: true },
   { id: "jean-paul-laurens-l-excommunication-de-robert-le-pieux", title: "L'Excommunication de Robert le Pieux", artist: "Jean-Paul Laurens", artistId: "jean-paul-laurens", qid: "Q15874391", qidTrusted: true, year: 1875,
     seenAt: "orsay", seenConfidence: "sure" },

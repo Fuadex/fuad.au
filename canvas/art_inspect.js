@@ -101,6 +101,355 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+ "john-william-waterhouse-lamia": {
+  "mv": 6,
+  "see": "A young woman sits on a rock at the edge of a woodland pool, knees bent and turned toward our left, both arms raised into long red-brown hair threaded with pearls. A loose pink gown slips from one shoulder, and over her lap, behind her and down across her shins lies patterned serpent's skin in blue, gold and cream. Her bare feet come down to the water; a yellow iris and lily pads grow at lower left. Birches stand at the left edge; at upper right a band of blue distance opens through the trees. Her pale body folds into a tight zigzag of arms, knees and feet at the centre of a tall, dark-green canvas, signed and dated on the rock at lower right.",
+  "about": "Early in Keats's Lamia, published in 1820, the god Hermes turns a serpent into a woman. Just after the change, Keats sets her 'By a clear pool, wherein she passioned / To see herself escap'd from so sore ills', and soon calls her 'Not one hour old'. A reviewer in 1909 described Waterhouse's picture with the line just before, 'fair, on a sloping green of mossy tread', tying it to that first hour, while she is alone. Keats's water is a mirror, and the picture gives its pool a reflection of her. The hands raised into her hair are handling a body she has only just been given.",
+  "craft": "He painted the picture at two densities. The setting is thin: across the wood behind her, the rock face at right and the near water at lower left, colour is dragged on dry over a warm brown, and the brown is left to show between the strokes, which keeps the dark greens warm. The figure is laid in opaque paint that hides what lies beneath, the gown as fully as the flesh. Where the brush was loaded, the relief survives: the canvas is unlined, meaning no second canvas has been glued and ironed onto its back, a treatment that can flatten raised paint.",
+  "context": "The Royal Academy's summer exhibition opened on 3 May 1909. Waterhouse sent two lone women from old stories: Thisbe, listening at a cracked wall, and this Lamia, a subject he had painted in 1905 as a different, two-figure picture. The Building News preferred the Lamia, 'most delicate in its treatment of the flesh and of the drapery alike'. It hung beside the President's canvas, Sir Edward Poynter's Brewing a Storm, and the same critic praised the arrangement for setting off the Poynter's 'grey quietude' while taking nothing from the brilliant Lamia beside it.",
+  "deeper": [
+   {
+    "t": "Hands in the hair",
+    "x": 0.36,
+    "y": 0.03,
+    "w": 0.5,
+    "h": 0.21,
+    "body": "At the top of the figure both arms are raised, and each hand is buried in the hair, lifting a hank of it away from the head: on our left the fingertips show over the crown, on our right a fist grips the hair beside her cheek and jaw. A strand of pearls runs through the lifted hair at each grip, and a few loose ones lie lower down, below the hand on our left. Along the strands the pearls are dabs of grey-white ringed with grey-blue, whiter at the core; a few at the top of the strand on our left, like the loose ones, are dark and flecked with white. Each strand is a row of separate touches. The hair is laid in long ribbons of copper and brown that follow the pull of the hands, then drop straight down her back on our right as far as her hip."
+   },
+   {
+    "t": "The bowed face",
+    "x": 0.54,
+    "y": 0.13,
+    "w": 0.22,
+    "h": 0.19,
+    "body": "Below the lifted hands the head bends toward our right, the lids lowered almost shut. Light falls from our upper left: the cheek on our left and the ridge of the nose catch it, while the cheek on our right, the underside of the jaw and the side of the neck sink into warm brown shade. So the face is not where the figure is lightest. The light gathers just below it, on the breastbone and chest, a broad field of smooth cream far brighter than the face, which is turned down and away from the light. Face and chest alike are blended until the brush marks almost disappear; out of the shaded face the lips come forward as a small, hard note of red."
+   },
+   {
+    "t": "The skin across her lap",
+    "x": 0.12,
+    "y": 0.4,
+    "w": 0.66,
+    "h": 0.24,
+    "body": "Across her lap, from the knee on our left to her hip on our right, lies a broad patterned band that from a few steps away passes for a shawl. At close range it is a serpent's skin, lying flat and folded over on itself with nothing inside it. A strip of pale scales runs along it, laid as a mesh of small separate dabs of cream divided by darker gaps; beside it the pattern breaks into blue, gold and green markings, with ring-shaped eyes, gold rims round dark centres, set at intervals along its length. On the right it ends in a ragged tip flicked with white. The paint here is short, loaded touches set one against another, the opposite of the long pink drags that build the gown it lies on."
+   },
+   {
+    "t": "Two lengths off the edge",
+    "x": 0.74,
+    "y": 0.31,
+    "w": 0.26,
+    "h": 0.26,
+    "body": "On our right, behind the hair falling down her back, more of the patterned skin appears. Two lengths of it emerge from behind the hair and run off the right edge of the canvas, one at the height of her waist and one lower, at her hip, and a loop curls on the mossy ground beside her. The touch changes here: long drags of ochre, blue and grey take the place of the lap's close-set dabs, and on the upper length a single ring-eye, green at its centre, is just legible. The lower length keeps a lit ridge of cream dabs along its top, a firm edge that holds its shape against the moss."
+   },
+   {
+    "t": "The foot at the waterline",
+    "x": 0.36,
+    "y": 0.63,
+    "w": 0.34,
+    "h": 0.21,
+    "body": "At the bottom of the figure, under the patterned hem of skin wrapped round her shins, two bare feet come down to the pool. The rear one, on our left, rests on a grey stone and is in shade; the front one is set down so that its toes meet the waterline. Thin strokes of blue lie along the surface on either side of the toes, and directly beneath them the reflection begins: a pale upright column dragged in short sideways strokes, duller and softer than the foot above it. The foot itself is modelled with the care given to the face, blended smooth, each toe turned separately in light and shade. That care is spent exactly at the point of contact. Above the toes everything is solid flesh; below them, the pool's version of her is painted in the same broken horizontal touch as the rest of the water."
+   },
+   {
+    "t": "An eye in the pool",
+    "x": 0.3,
+    "y": 0.8,
+    "w": 0.32,
+    "h": 0.17,
+    "body": "Below the foot's reflection and a little to our left, among the lily pads, the water holds a ring-eye like those on the skin: a gold arc over a dark-centred oval, edged with blue and green. It sits where the skin hanging over the water would be mirrored, and it is made of the same broken sideways strokes of blue, olive and ochre as the rest of the pool, yet the ring stays legible through them. Just to its left a yellow water-lily is built from a few thick, curled touches on a flat pad. Of the skin's whole pattern, the water beneath her feet repeats this one eye, and the rest is the pool's own broken touch."
+   },
+   {
+    "t": "Iris and lily pads",
+    "x": 0,
+    "y": 0.54,
+    "w": 0.43,
+    "h": 0.46,
+    "body": "At lower left the nearest things in the picture rise out of the water: the sword-shaped blades of a yellow iris, laid in long single strokes of green, its flowers small dabs of yellow on the upper stems, and lily pads lying on the surface, with water-lilies among them as round yellow cups. Two blades cross in front of her knee, so the plants stand between the viewer and the figure, the first of several layers stacked close together: plants, pool, the woman on her rock, the wood behind. The pads are drawn as flattened ellipses, which sets the viewpoint above the pool, looking down on the water at a slant before looking across at her."
+   },
+   {
+    "t": "The blue beyond the trees",
+    "x": 0.68,
+    "y": 0.02,
+    "w": 0.32,
+    "h": 0.16,
+    "body": "Back at the top, level with her head on our right, the wood opens. Behind a dark trunk, and under a branch that arches in from the right edge, a band of deep blue distance lies beneath a strip of pale sky. It is laid in thick, flat strokes, and its blue is more intense than any marking on the skin. Small glints of blue and white also show between the trunks on our left, but this is the widest view out of the enclosed wood, and it sits right against her hair and the pearls of the grip on our right."
+   }
+  ],
+  "beside": "Both arms lifted to the hair, one hand at the crown and the other gripping a lock beside the head, the face tipped down, the lids lowered: Lamia shares the gesture with the newborn goddess of William-Adolphe Bouguereau’s The Birth of Venus, of 1879. Each is new to a full-grown body, but Venus makes the gesture in front of a crowd, and Lamia’s wood holds no one else. Venus stands upright on a scallop shell at sea, the canvas packed around her with sea-nymphs and tritons in the water and winged children in the sky, two of the tritons lifting conch shells to their mouths as if to sound her arrival.",
+  "refs": [
+   {
+    "id": "the-birth-of-venus",
+    "text": "The Birth of Venus"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "georges-lemmen-beach-at-heist": {
+  "mv": 6,
+  "see": "A flat beach at low tide, in level bands under a glowing sky. From the top: yellow sky with one long blue-violet cloud; a second yellow band; a violet band shot with red, which could be low cloud or far water; green sea; pale shallows crossed by lines of surf; a strip of yellow wet sand; then dark sand holding yellow pools. Left of centre a beached sailing boat stands dark against the wet sand, and near the bottom rises a thin dark upright, likely a post. Against the level bands, these are the two verticals. Most of the surface is made of separate, crisp-edged touches.",
+  "about": "Evening at low water: the sea is out, and the day is ending. From the open sea to our side of the beach, the bands trace a tide that has gone out: the surf, the wet sand, then the pools it has left behind.",
+  "craft": "Oil on a small wooden panel. The work went on in two layers of handling. First, much of the surface was laid in with a broad, loaded brush in long dragged strokes. Then the separate touches went on over it, set side by side, each left as its own mark. In some passages the continuous paint is itself the finish, with little laid over it, so dragged strokes and separate touches share one surface.",
+  "context": "When the Brussels society Les XX opened its show in February 1892, it included four paintings by Lemmen and a memorial to Seurat, who had died the previous March, and three of the memorial's drawings came from Lemmen's own collection. Painting in dots was recent for him: he began trying it in the summer of 1890 and first showed paintings made with it at the group's show of February 1891. In 1891 he painted at Heist, on the Belgian North Sea coast, a numbered run of beach pictures.",
+  "deeper": [
+   {
+    "t": "The glow, laid down twice",
+    "x": 0.55,
+    "y": 0.1,
+    "w": 0.44,
+    "h": 0.3,
+    "body": "At upper right the sky's broad yellow band turns pink and then red as it nears the edge, and one band lower, inside the violet strip, a hotter orange streak burns further to the left. The glow is laid down twice, stacked and offset, and it is built differently from the sky around it. Here the touches are short sideways dashes of red, pink and orange, pulled out along the band, while the end of the cloud just above is made of round dots. Below, the violet strip ends on a line that holds level over the full width, where the green begins. The light comes from beyond that line, right of centre, and low: the beach below is seen against it. On the left half of the picture the edge between the yellow band and the violet strip runs ruler-straight; under the glow it frays, and red flecks run across it from one band into the other."
+   },
+   {
+    "t": "The cloud's fingers",
+    "x": 0.13,
+    "y": 0.015,
+    "w": 0.38,
+    "h": 0.19,
+    "body": "Along the top, one long cloud lies across the yellow sky. Its underside is close to a ruled line, falling only slightly from left to right over most of the picture's width, while its top heaves up into a hump left of centre. At the left end it breaks into five fingers that step down toward our left like a staircase, each a short slanting row of blue dots fringed with orange. No contour is drawn round them: the ends of the rows make the edge. Behind them the yellow is a different paint: a continuous brushed layer whose strokes run mostly sideways and still stand as fine ridges, with a scatter of orange flecks on top."
+   },
+   {
+    "t": "Surf drawn in stitches",
+    "x": 0.48,
+    "y": 0.35,
+    "w": 0.42,
+    "h": 0.26,
+    "body": "Right of centre, the sea is a band of green flecks that pales toward cream as it nears the beach, and across the pale water run several dotted lines. The higher ones are each a single file of short blue dashes set end to end like stitching, one touch thick, with brushed cream paint showing in the gaps. These are the lines of the surf, and they are drawn as lines, firm and nearly level. Lower down they grow heavier, with orange dashes slipped in among the blue: one rides on a brushed stroke of paler blue, and the lowest, two or three touches deep, bends gently downward to the right along the edge of the wet sand. So here the pale cream stops short of the sand: the water's last band before the beach is its densest blue."
+   },
+   {
+    "t": "The hooked pool",
+    "x": 0.66,
+    "y": 0.62,
+    "w": 0.33,
+    "h": 0.3,
+    "body": "At lower right, a pool of standing water lies on the dark sand, curling back on itself at its left end into a hook, and above it runs the right end of a second pool. Their yellow is not laid in dots. It is dragged in longer strokes that run along the pools' length, and the ridges of the brush still stand in the paint. Along the hook's upper edge the dotted sand stops at a firm boundary; elsewhere a few blue dabs cross into the yellow. Under and inside the hook the sand is a near-black blue with sparse red touches, among the darkest paint in the picture, so a full-strength yellow and a near-black meet along one curve."
+   },
+   {
+    "t": "The near beach in cloud-sized dabs",
+    "x": 0.012,
+    "y": 0.62,
+    "w": 0.42,
+    "h": 0.37,
+    "body": "At lower left, the beach runs down to the frame as a close weave of orange and blue dabs, with green and a few red ones scattered through. Set beside the dots of the cloud at the top of the picture, these are no larger, so the near beach is not pushed forward by bigger marks. What gives the corner its weight is a rounded mass of dark blue sitting low against the left edge, with a paler curving strip of sand beneath it. Between the dabs a streaky under-layer of ochre and grey-green shows, dragged in long strokes, and in the middle of this stretch it comes to the surface as a lighter diagonal band."
+   },
+   {
+    "t": "A thin upright in the sand",
+    "x": 0.57,
+    "y": 0.76,
+    "w": 0.15,
+    "h": 0.23,
+    "body": "Low and right of centre, a thin dark upright stands in the sand, slightly forked at its top, its foot on a dark band that runs off to our right. It is far taller than it is wide, and though it stands nearer to us it is shorter than the boat's mast, so it is a small thing, likely a post or stake. Look at how little makes it: a column of the beach's own blue dabs, packed edge to edge with almost no orange among them, is enough to stand a solid upright in a field of the same dabs."
+   },
+   {
+    "t": "The boat aground",
+    "x": 0.17,
+    "y": 0.35,
+    "w": 0.27,
+    "h": 0.29,
+    "body": "Back up the beach, left of centre, the sailing boat sits on the wet sand, the dark wedge of its sail, likely furled or seen edge-on, rising from a hull that curves up at our right end. It rests on sand: the yellow strip runs past it on both sides and the surf lines are well beyond it, so the tide is out and the boat is aground. From under the hull the dark sand runs off to our left. The boat stands against the wet strip and the pale shallows beside it, which carry as much light as anything in the sky, and from a distance it is a black cut-out. That black is made of navy-blue dots with orange flecks threaded through them, a little thicker on the right flank. The mast's tip stops inside the green of the sea, just short of the level line where the violet band begins: the tallest thing on the beach stays below the glow."
+   }
+  ],
+  "beside": "Who moves a boat between sand and sea is a question this beach shares with Thomas Gainsborough's Seashore with Fishermen, painted around 1781, and the two pictures answer it in opposite ways. At Heist nobody is near the hull: the water has left it on the wet sand and lies out beyond the surf, and the boat will wait for it. In Gainsborough's cove the work falls to men. His boat lies tilted on the sand below a pale cliff, its low end already in white water, and four of them lean their whole weight into the hull to drive it out through the breaking surf.",
+  "refs": [
+   {
+    "id": "gainsborough-seashore-with-fishermen",
+    "text": "Seashore with Fishermen"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "alfred-sisley-apple-trees-in-flower-at-louveciennes": {
+  "mv": 6,
+  "see": "An orchard in early spring sits on a gentle rise of turned earth, under a high, pale sky. Two pollarded trees stand at left; beside them slender trees flower in peach and rose; right of centre a broad tree is in white blossom and leaf, with bare trees between, and at the right edge a young tree in sparse flower rises over the signature and date, Sisley.73. A woman in a red shawl stands with two children at the far edge of the field; smaller figures stand and stoop in the distance on both sides. Nearly every colour is pale or greyed, so the whole picture sits in one high, soft key.",
+  "about": "The apple trees are in blossom, and the canvas sets their flowering inside the work of a farm. Two trees at the left are kept cut back, and people are at work along the field's far edge. Blossom is one sign of spring here, and the field carries another: earth dug over, with young plants growing in rows in front of the trees.",
+  "craft": "In 1892, in a letter to the writer Adolphe Tavernier, Sisley wrote that he always began a canvas with the sky, and the skyline here keeps that order: twigs, stems and blossom are painted over the grey of the sky, which runs on behind them. Much of the paint goes on from a brush carrying little colour, dragged lightly so that the stroke breaks up as it travels.",
+  "context": "In the autumn of 1870 Prussian soldiers wrecked Sisley's house at Bougival and everything in it, and the war, according to his biographers, also ruined his father's trade and ended the allowance he had lived on. In March 1872 a Paris dealer began buying his canvases, the first for 200 francs, and showing them in London. The Salon was another matter: in 1873, with the family settled at Voisins, near Louveciennes, it refused what he sent once more, and this orchard in flower belongs to that year's spring. By the winter he was among the founders of a cooperative company of painters, sculptors and engravers, the body that would mount the first group exhibition the following spring.",
+  "deeper": [
+   {
+    "t": "The red shawl",
+    "x": 0.31,
+    "y": 0.62,
+    "w": 0.19,
+    "h": 0.24,
+    "body": "Left of centre, where the turned earth meets a strip of grass, a woman in a red shawl stands between two children in yellow hats. Her red is the most saturated colour anywhere on the canvas. Around it most hues are pale and greyed (pink earth, grey trunks, olive leaf), so a small patch of red pulls the eye straight over the open field to her. The figure is made of very few marks: a pale hat, a dark knot of hair with no face painted beneath it, the red block of the shawl, and a skirt of grey-white strokes dragged downward. The children are less again: a few dabs of white, yellow and dark. Her size sets the scale of the field in front of her: if a grown woman stands this small, the bare earth between her and us runs deeper than it first looks. Behind her stands a bare, rose-brown thicket of twigs, and just to our left of her blossom has opened."
+   },
+   {
+    "t": "Pollarded heads",
+    "x": 0,
+    "y": 0.3,
+    "w": 0.24,
+    "h": 0.56,
+    "body": "At far left, two trunks rise to dark, swollen knuckles, and from each knuckle a sheaf of straight rods shoots upward. That knot is the sign of pollarding: the tree is cut back to the same point year after year, and each cutting throws a fresh crown of shoots, cropped in its turn for poles, firewood or fodder. The heads are built from black, lumpy paint, with the rods drawn as single dragged lines of grey and black hung with rust-brown flecks. The trunks below are firmly drawn: pale lichen-green laid thickly down their faces, a black stripe down each right edge. Blue-black patches lie on the soil on both sides of their feet, and a long band of the same dark crosses the left-hand trunk's foot and runs out to the left edge."
+   },
+   {
+    "t": "Blossom set on a drawn frame",
+    "x": 0.15,
+    "y": 0.36,
+    "w": 0.225,
+    "h": 0.42,
+    "body": "Just right of the pollards, a clump of slender trees carries blossom in two pinks: a pale peach through the upper crown, a deeper rose below. Under the flowers the branches are drawn first, as a fan of thin grey and black lines put down with the tip of the brush, and the blossom sits on top of them as separate flat dabs, the peach ones broad and square-ended, the rose ones smaller and closer together. Grey sky shows between the dabs, so the crown is a scatter of distinct marks hung on a visible scaffold of twigs. Along its outer edge on our right the dabs thin out and soften into the grey, leaving the silhouette there without a drawn outline."
+   },
+   {
+    "t": "Plants in the turned earth",
+    "x": 0.36,
+    "y": 0.78,
+    "w": 0.36,
+    "h": 0.22,
+    "body": "Near the bottom edge, just left of centre, a low plant sits in the bare soil: two or three flat strokes of green, one lighter where the leaves face the sky, and beneath them a blot of near-black where the plant meets the ground. Most of the plants dotted over the open soil are made the same way, and the dark blot seats each one in the earth instead of leaving it pasted on top. They stand in loose rows and grow smaller row by row up the slope, and that shrinking gives the bare ground its depth. Around them the soil is laid in broad, level strokes of pinkish ochre; along the bottom edge, flatter ovals of a deeper brick-brown lie in a rough line, each a single touch."
+   },
+   {
+    "t": "Workers under the white tree",
+    "x": 0.73,
+    "y": 0.68,
+    "w": 0.2,
+    "h": 0.24,
+    "body": "Right of centre, beneath the white-blossomed tree, three small figures are busy along the grass edge. One bends low, a white top over a dark skirt, head down toward the ground; beside her a figure in a grey smock stands upright, its head one dark rounded touch; a third, further right, is in grey, its head a pale touch. Each is a few touches, and their cream-whites and darks stay close to the blossom and the dark limbs just above them, so the workers sit inside the orchard's colour and do not stand out from it."
+   },
+   {
+    "t": "The broad white crown",
+    "x": 0.565,
+    "y": 0.45,
+    "w": 0.29,
+    "h": 0.44,
+    "body": "Right of centre, a broad, rounded crown sits on a short dark trunk. Its blossom is small touches of white and cream laid over a mass of olive green: this tree is already in leaf as it flowers, while the trees at its left are still bare rose-brown twigs. Underneath, the structure is drawn in black-brown; the trunk forks low, and one long limb runs out nearly level to the left for half the crown's width. The top of the crown is not left soft against the sky. Its edge is a fringe of small sprays, each a dark twig tipped with a few touches of yellow-green and white, set down one by one, so the outline is a row of separate marks."
+   },
+   {
+    "t": "One touch, one flower",
+    "x": 0.8,
+    "y": 0.38,
+    "w": 0.2,
+    "h": 0.36,
+    "body": "At the right edge, a slim young tree holds a few long stems up against the sky, and here the blossom can be read touch by touch. Each stem is one line of dark paint dragged with a nearly dry brush, so it breaks into a dotted track. Along it every flower is a single touch: a press of white, a press of rose-pink, now and then a darker red. Each young leaf is one pointed stroke of yellow-green, and the leaves sit mostly at the tips of the stems, with the flowers strung below them. In apple blossom the bud is pink and the opened flower white, so on these stems each press of colour can be read as bud or flower. Against the plain sky behind it the upper stems are as legible as a botanical drawing."
+   },
+   {
+    "t": "The sky, high and low",
+    "x": 0.3,
+    "y": 0,
+    "w": 0.7,
+    "h": 0.6,
+    "body": "Upper right, a long white streamer climbs toward the right through the blue, and around it the upper sky is worked in short, dry strokes of white and blue dragged across each other, curling and hooking in changing directions. Followed downward, those strokes grow quieter by degrees: the hooks lengthen and flatten, the blue drains out, and just above the trees the sky is nearly smooth, an even pale grey warmed by a faint band of pink. At the centre the sky comes down about three-fifths of the canvas. Its most agitated brushwork sits highest, as far from the orchard as the canvas allows, and its flattest paint lies directly behind the blossom along the treeline, which stands out against it as against a plain ground. The blue is strongest overhead and the warm grey lowest, so the sky also carries the day's weather: clearer above, a haze gathering toward the horizon."
+   }
+  ],
+  "beside": "In this orchard the people at work stand across an open stretch of turned earth, a few touches each, their tasks too small to name. The Flowering Orchard, painted by Vincent van Gogh in 1888, brings the same spring work to arm's length. Its viewer stands in deep grass under the nearest tree, among low-forked trunks in rows that go back to a line of orange stakes, blossom and new leaf crossing the sky overhead. A wooden rake is propped against that trunk, close enough to count its teeth, and a second long-handled tool leans on the same bark.",
+  "refs": [
+   {
+    "id": "vincent-van-gogh-the-flowering-orchard",
+    "text": "The Flowering Orchard"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "kazimierz-sichulski-spooked-horses": {
+  "mv": 6,
+  "see": "Two dark horses rear and plunge above a wagon loaded with straw, on a canvas more than twice as wide as it is tall. A glowing pale sky, cream to dusky pink, fills the upper two-fifths; below the horizon, field and ground run on in dark browns and greys. The horses are silhouettes, heads, manes and a tail cut against the light. That light comes from the sky beyond them, brightest along the top edge and greying toward the horizon, so the forms turn their shadowed sides to us.",
+  "about": "Spłoszone konie means horses startled into flight, and the title stops there: it gives fright as the cause and names nothing behind it. The canvas shows what fright does to a working thing. A wagon of straw pitches, and the team meant to draw it has broken from any hand. Team and wagon were made to be steered, a pair in harness and a load stacked to travel, and the picture shows that arrangement coming apart in open country.",
+  "craft": "The canvas is oil, laid in broad strokes that stay visible as strokes, so the brush can be followed from a distance. Through much of the land a stroke runs with the surface it stands for: upright through the field at right, in long diagonals across the ground at lower left. In places the brush is dragged nearly dry, so the stroke breaks and the darker paint around it shows in the gaps. The width goes to land: the horses and the wagon are gathered into the middle of the canvas, and both flanks are left to field and sky, with a dark bush on the left.",
+  "context": "In November 1911, the year of the bolting horses, Archbishop Józef Bilczewski consecrated the Lwów church of St Elizabeth without the stained glass designed for it. Sichulski had worked on the designs from 1909, three monumental cartoons admired by the critics and by the archbishop who commissioned them, and they were never carried out. The year before the consecration he had drawn caricatures of thirty-four deputies of the Lwów Sejm for a lithographic portfolio; Artur Schroeder, reviewing his caricature that year, found its exaggeration held strictly to the real forms and the likeness. His name still rested on the Hutsul pictures he had painted in the Carpathians since 1904.",
+  "deeper": [
+   {
+    "t": "Two heads swinging in",
+    "x": 0.24,
+    "y": 0.08,
+    "w": 0.44,
+    "h": 0.56,
+    "body": "Left of centre a rearing horse bends its head down toward our right; just beyond, the second thrusts its head toward our left, the two muzzles pointing at each other across a strip of grey sky. Their manes fly opposite ways, the first streaming to our left, the second lifting in a crest up and to our right. What the two heads share is their swing inward, toward the gap between them. The heads are flat dark shapes, almost unmodelled; they live by a contour kept firm along jaw and throat and by manes laid as separate tapering strokes. At each mouth a straight dark line stands off from the jaw, and the sky left open between line and jaw draws the throat. Behind the pair a pale grey bank sinks below the horizon line, so the bodies, too, stand against light. The first head rides well above that horizon and the second just above it; on level land the horizon marks the viewer's eye height, so we look up at both."
+   },
+   {
+    "t": "The straw wagon",
+    "x": 0.375,
+    "y": 0.4,
+    "w": 0.46,
+    "h": 0.58,
+    "body": "Right of centre, beneath the second horse, a wagon heaped with straw pitches across the dark ground, and no driver sits on it. The straw is the one note of yellow below the horizon, in a land kept to browns, greys and dull rust. The top rail climbs steeply to our right while the horizon behind runs level; against that level the wagon is heaved up on one side. We see onto the load and a pale pole lying across it with a split end, so our eye is above the wagon bed, as high as the horizon behind it. Pale curved wood rears at the left end and pale bands slant at either end, the woodwork picked out in light strokes over a dark bulk."
+   },
+   {
+    "t": "Three curls of tail",
+    "x": 0.565,
+    "y": 0,
+    "w": 0.43,
+    "h": 0.5,
+    "body": "At upper right, the second horse's tail flies out to our right as three swelling curls and a thin hooked tip. The curls are too even for loose hair: each swells and closes like a drawn ornament, and the bolt ends in a flourish. The sky around it is handled differently from the sky at left. There the clouds are worked in curling strokes; here, out to the corner where the signature sits as a small brown scrawl, the paint is dragged in short dry streaks that slant steeply up to our right, with a cool grey band laid along the horizon beneath. Combed in one direction, this stretch of sky is a still ground for the tail's loops."
+   }
+  ],
+  "beside": "The bolt in Tom Roberts's A break away!, of 1891, has somewhere to go. A mob of sheep, maddened by a drought's thirst, pours down a dusty slope in one current and piles into a dam at the lower right, dust hanging over the ground it has crossed. A rider leans out of his saddle across the rush, hat held out at arm's length, and a second comes on through the dust at the left. Sichulski's horses make no current of that kind: their two heads swing in toward each other above a pitching wagon of straw.",
+  "refs": [
+   {
+    "id": "a-break-away",
+    "text": "A break away!"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "louis-ernest-barrias-the-nubians": {
+  "mv": 6,
+  "see": "A high relief in one pale, matte colour throughout: figures standing forward from a flat upright slab and a rough ledge of ground, the whole set on a plain block. At upper left a seated woman holds two infants; at upper right a standing man in a loincloth raises a long pole; at centre a crocodile climbs the rock with its head thrown back; at lower right a second figure lies head down. Palm fronds, prickly-pear pads and reed blades fill the gaps between the bodies.",
+  "about": "A crocodile has come up through the reeds onto a rock where a woman and two infants have taken refuge, and the relief is built on what three people do in the face of it: alarm in the woman, attack in the man, collapse in a second figure already down. Each response has a body of its own, and the group holds all three short of any outcome. The pole is in the jaws, and the crocodile is still climbing toward the woman and the two infants at the top.",
+  "craft": "The relief is plaster, nearly six metres high, its figures larger than life. Barrias grades its depth from back to front: the palm fans behind the heads are spread open flat against the slab, the bodies swell forward from it, and the forms that carry the action are modelled out until they stand free in the round, with air between them and the ground. Each substance is given its own surface, so that within one material flesh, hide, leaf and rock part from one another by texture as well as by outline.",
+  "context": "At the Salon of 1894 the critic Georges Lafenestre found, among some thousand sculptures, perhaps fifty made for a set place, and named this one first. The model was to be cast in bronze, he wrote, and that explained its daring handling: lively and picturesque, yet firm as a whole. Perhaps in none of his earlier works had Barrias shown more ease and suppleness.",
+  "deeper": [
+   {
+    "t": "The fist above the slab",
+    "x": 0.42,
+    "y": 0.02,
+    "w": 0.38,
+    "h": 0.27,
+    "body": "At top right, the hunter's raised forearm and fist leave the slab that backs the whole relief, and the pole runs on above his grip to the highest point of the group. Nothing else crosses that top edge: what rises out of the relief's frame is the thrust itself, made by a hand fully in the round, fingers wrapped around the shaft. Below, the head turns the other way, down and to our left along the line of the pole, brows knitted, mouth shut. The face is kept in smooth, closed planes; the hair above it is a dense, pitted mass of small knots that holds shadow in every hollow, so the set face, all concentration, sits inside a ring of broken surface."
+   },
+   {
+    "t": "Two infants, one face",
+    "x": 0.17,
+    "y": 0.165,
+    "w": 0.36,
+    "h": 0.245,
+    "body": "At upper left, the woman sits on the rock holding two infants. The one on our left is pressed against her breast, its hand on her skin; the second lies across her lap with the back of its round head to us, one small hand reaching up to her chest while her own spread hand clamps its back. Her arms carry on with the work of holding. Her face has left that work: tilted, brows drawn up in the middle, mouth open, it looks at neither child. The rock under her is left rough and tool-scored beside her smooth skin, and carries the incised name E BARRIAS."
+   },
+   {
+    "t": "Feet among the cactus",
+    "x": 0.44,
+    "y": 0.38,
+    "w": 0.36,
+    "h": 0.19,
+    "body": "Below the loincloth at right, the hunter's two feet show where his weight goes. The leg on our left is bent and driven down to our left, its toes splayed on the rock just above the crocodile's raised claws; the leg on our right stays straight, its foot set on the very lip of the rock with the toes curled over the drop. One leg pushes, the other anchors, and the body above is braced between them. Around the straight leg grow prickly-pear pads, flat ovals stacked at angles to one another, a few pricked with tiny pits where spines would grow: a plant of hot, dry ground, modelled pad by pad, each overlapping the one behind."
+   },
+   {
+    "t": "The pole in the jaw",
+    "x": 0.26,
+    "y": 0.4,
+    "w": 0.31,
+    "h": 0.16,
+    "body": "Just left of centre, the lower end of the hunter's pole disappears into the crocodile's mouth. The head is wrenched upward, snout pointing at the top of the relief, the eye a round socket with its pupil incised, and the shaft runs along the upper jaw into the angle where the jaws meet. Within this small square the other actors converge: the hunter's foot on the rock above, a human leg rising from lower right to end hard against the jaw, and the reptile's forelimb, scaled and clawed, laid across that leg's thigh with its toes spread. The leg belongs to the figure lying head down below. Under the jaw the relief opens into a dark hollow. The head, the leg and the limb are undercut there, with real depth behind them, so their edges are drawn by shadow and they stand forward of the rock around them. That depth is what keeps the knot legible: four separate things touch here, and at a few steps' distance each still reads as its own shape, because a seam of dark runs between them."
+   },
+   {
+    "t": "A head below the ground",
+    "x": 0.41,
+    "y": 0.5,
+    "w": 0.51,
+    "h": 0.25,
+    "body": "At lower right, the second figure lies head down on the slope, back arched, arms flung wide, and the head drops past the edge of the sculpted ground to hang out over the plain block, its hair falling in thick clumps. That sculpted ground runs from the ledge here up to the woman's seat at upper left: she sits on it, the hunter stands on it, the crocodile climbs it, and this head goes over its lowest edge. The arms carry the same outward throw. The one on our right lies along the ledge and runs on past its end into open air; the one on our left bends back up, its hand clutching into the dark gap beside the reptile's belly, while the legs stay up among the reptile's limbs. Upside down, the torso is pulled taut from hip to collarbone, its smooth planes set against broad blades of a reed-like plant undercut deep enough to draw hard black lines behind it."
+   },
+   {
+    "t": "The tail over the block",
+    "x": 0.13,
+    "y": 0.66,
+    "w": 0.23,
+    "h": 0.32,
+    "body": "Below the ledge at lower left, the crocodile's tail leaves the relief altogether and hangs down the face of the plain block, curving to a tip near the block's foot. Its surface changes along the way: squared plates in rows over the top, and along the outer edge a crest of raised, leaf-shaped scutes standing off the body like the teeth of a saw. The tail stands out from the block, not into it, and a broad shadow follows its curve on the block to our right."
+   },
+   {
+    "t": "Top to bottom, one line",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "The highest point of the group, the pole's top above the hunter's fist, and its lowest, the tail's tip near the foot of the block, sit at the two ends of one bent line: down the pole, into the jaw, along the crocodile's back and out over the block. The woman and her infants sit to the left of that line, the fallen figure to the right of it, so the line divides the protected from the struck. The image here is a photograph of the relief in its room, taken square to the front. The light falling from our upper left is the room's and the frontal angle is the photographer's; neither belongs to the sculptor. Straight on, depth is compressed, so how far each body stands out from the slab has to be read from its shadows and from what overlaps what."
+   }
+  ],
+  "beside": "Attacked by serpents in El Greco's Laocoön, painted about 1610, a father and his two sons face what this group faces, and the two works part over who stands up for whom. The father lies on his back, gripping a serpent just below its head. One son, standing at the left, grips a serpent that arcs above his head; the other is already down, eyes shut, his head lowest. The figures standing clear at the right do not step in, and nobody in the painting fights for anyone else. In the plaster the man on the rock at the right takes on the crocodile for the woman and her two infants.",
+  "refs": [
+   {
+    "id": "laocoon",
+    "text": "Laocoön"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
  "pierre-auguste-renoir-theatre-box-la-loge": {
   "mv": 6,
   "see": "An upright canvas almost filled by two people in a theatre box. A young woman sits at its front, cut off at the lap by the box's plum-red ledge and, at our right, by the bottom edge: a gown striped in black and white, strands of pearls, roses in her hair and at her bodice, white gloves, a small pair of gold opera glasses in the hand on the ledge. Behind her, to our right and across an ermine stole, a man in evening dress raises a second pair to his eyes, his arm and shoulder cut by the right edge. A red-brown curtain and a pale panel close the space at left. The gown's black and white is the loudest pattern on the surface, beneath two quieter heads.",

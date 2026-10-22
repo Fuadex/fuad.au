@@ -3,6 +3,26 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "john-william-waterhouse-lamia": {
+  "about": "Keats's serpent, newly made a woman, as Waterhouse showed her at the Royal Academy in 1909. The Spectator admired its colour, a beauty \"of jewellery or finely arranged flowers\" but lacking \"that touch of emotion\".",
+  "deep": "Keats burns the serpent off her and leaves nothing; Waterhouse keeps it, folded across her lap. In the poem the change scorches her colours away, she is \"undrest / Of all her sapphires, greens, and amethyst\", and then the creature melts from sight. The Lancet's reviewer in 1909 gave the painted skin Keats's line for the living serpent, \"vermilion spotted, golden, green, and blue\", while Herbert Draper's Lamia, at the same Academy, had her old skin around her \"all transparent and colourless\". Both of this woman's hands are up in her hair, and the patterned skin, gold-rimmed rings and all, lies across the pink of her lap with nothing holding it.",
+  "by": "Opus 5.5"
+ },
+ "alfred-sisley-apple-trees-in-flower-at-louveciennes": {
+  "about": "Sisley, spring 1873: an orchard in blossom, a woman in red beyond its turned earth. The critic Armand Silvestre, setting him beside Monet, wrote that year that Sisley was \"the most harmonious and the most timid\".",
+  "deep": "Near the right edge, a sapling of a few stems may be the tree a satirist recommended in 1874. At the painters' first group exhibition that spring, Sisley showed a canvas entered as Verger, orchard. Scholars have long matched that entry to a sister canvas; one writer proposes this one, and the identification remains disputed. In Le Charivari, Louis Leroy's satire stops its narrator at the Sisley orchard: \"I recommend the little tree on the right; it is cheerful.\" His academic companion calls the picture botched. If this is the orchard, what made the sapling cheerful beside old pollards and a broad crown in leaf: its pink and white flowers, or how young it is?",
+  "by": "Opus 5.5"
+ },
+ "kazimierz-sichulski-spooked-horses": {
+  "about": "Sichulski kept returning to teams of horses — pairs, threes and, in 1906, four. This one, painted in Lwów in 1911 and over two metres wide, has a pair bolting with a driverless straw wagon.",
+  "deep": "One later verdict on this canvas comes in two halves, and the paint bears out both. It has been read as \"a model realisation\" of early twentieth-century expressionism, for its dark tonality and the distortion of its animals, with the caution that Sichulski did not confine himself to that manner. Each head is a flat shape, barely modelled, so any distortion is made by an edge that stays firm, the line of a stained-glass designer put to an expressionist's end. At upper right the second horse's tail shows the other manner: hair flung out in a bolt, closing in three curls of nearly one shape, set in a row like an ornament's repeats.",
+  "by": "Opus 5.5"
+ },
+ "louis-ernest-barrias-the-nubians": {
+  "about": "A plaster model for a bronze the state ordered in 1893 for the Paris natural-history museum's gallery of anatomy and anthropology, where that bronze still hangs; Barrias showed the model at the 1894 Salon.",
+  "deep": "Ordered as Les Races humaines, The Human Races, the group answers that name with one family in danger. In 1894 Georges Lafenestre praised Barrias for the action itself: \"taking science as a base, he still chose to speak as an artist.\" It has since been read against the Nubian troupes shown in Paris in the late 1870s, whom an anthropologist in 1880 called \"penned up rather like wild animals\", and as not escaping the stereotypes of its time. What stands in the plaster is a hunter in a loincloth with his pole in a crocodile's jaw, a second figure thrown head-down, and a woman whose face, mouth open, looks past the two infants she holds.",
+  "by": "Opus 5.5"
+ },
  "pierre-auguste-renoir-theatre-box-la-loge": {
   "about": "Staged in Renoir's studio in 1874, not in a theatre: the man raising opera glasses is the painter's brother Edmond, a journalist of twenty-four, and the woman is Nini Lopez, a Montmartre model cruelly nicknamed \"fish-face\".",
   "deep": "The woman's clothes bear on a question the 1874 critics left open: what kind of woman she was. Jean Prouvaire saw a cocotte, a kept woman, \"attractive, worthless, delicious and stupid\"; Marc de Montifaud saw \"a figure from the world of elegance\". The dress historian Aileen Ribeiro finds the gown fashionable but a demi-toilette, a lesser evening dress than the low-cut, all but sleeveless opera dress; yet its full sleeves come with an open neckline. Ribeiro calls the ropes of pearls \"an unexpected touch\" with such a dress. The canvas stacks the two signals: pearls strand over strand at her throat, and below them the broad black bands shaping the full sleeve.",
@@ -5231,8 +5251,10 @@ by: "Opus · Fable" },
 },
 
 "georges-lemmen-beach-at-heist": {
-about: "Georges Lemmen joined the Brussels avant-garde group Les XX in 1888, converted to pointillism after Seurat exhibited there. Painted around 1891, this small panel builds flat coloured zones from tiny dots edged with complementaries — already bending Seurat's science toward the Art Nouveau stylisation Lemmen would pursue.",
-by: "Opus · Fable" },
+  "about": "Painted by Lemmen in 1891, this low tide is identified as the picture he showed at the Brussels avant-garde exhibition of February 1892 under his own title, Evening on the Beach; the place name is today's.",
+  "deep": "On this beach the dot is put to drawing. The surf across the pale shallows is a line before it is water: blue touches strung in single file, a row of colour marks tracing a contour. The long cloud above has an underside close to ruled, lying on the yellow like a border. Lemmen's pictures are said to have grown stylised from 1891 under the influence of his countryman Henry van de Velde, and a curator has called this beach a remarkable example. The change goes furthest on the near sand, where the dot gives way and the yellow of the pools is pulled on with the brush in long strokes.",
+  "by": "Opus 5.5"
+ },
 
 // ——— wave-1 redrafts (Fuad-approved 2026-08-22) — the six that failed the padding/template QC,
 // rebuilt on per-work verified hooks (1906 Tate showing, Finberg 1909, Gesunda 1906, Bullerö 1908).
