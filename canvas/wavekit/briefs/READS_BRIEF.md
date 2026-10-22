@@ -208,11 +208,17 @@ the shape's name.**
 - **Disposition:** REPLACE for works 1–3 — each ships a legacy Info (59–71 words, over the band, no Interpretation):
   write the Info from scratch in band (core: *Where an Info already ships*), name every shipped claim the research
   retires with its source in `infodisp_<id>.md`, and never reinstate one. The Interpretation is NEW. <<per-work disposition notes — e.g. PROPOSE-REPLACE for a re-tour whose shipped reads fail: draft both tiers, list each failing claim with its source in infodisp; they ship only on Fuad's separate verdict>>
-- **HOOK PRECEDENCE:** the Info takes the fusion's INFO hook; the reserved claim appears in the Interpretation ONLY
-  (never the Info, never the `beside`). The Interpretation must not re-name a stop's closing observation, and must not
-  restate the tour's `about` thesis — it ADDS the reserved material.
-- **INFO HOOK CLASS (READS_SPEC §5b):** making, biography, technique or reception. No ownership, sale, collection,
-  gift or bequest line; no venue. A full sentence or the house em-dash fragment.
+- **HOOK PRECEDENCE (TIGHTENED 2026-10-22):** the Info takes the fusion's INFO hook, and that hook must be an EVENT
+  WITH AN ACTOR AND STAKES — if the fusion's INFO line is dating, attribution/identification, catalogue matching,
+  bare version/series membership or commission/exhibition paperwork, STOP and report it to the orchestrator as a
+  brief defect instead of drafting it. The Info is an ENCAPSULATED HOOK: it may compress the reserved claim (the
+  Interpretation then deepens, never re-names) and is exempt from one-home-per-fact. The reserved claim still never
+  enters the `beside`.
+- **INFO HOOK CLASS (READS_SPEC §5b + the 2026-10-22 Info-drift rulings):** making, biography-at-that-moment,
+  technique, the subject's stakes, or reception. Apparatus (dates, catalogues, identifications, paperwork) at most a
+  subordinate clause — unless the apparatus story itself has actor and stakes. No ownership, sale, collection,
+  gift or bequest line; no venue. A date conflict lives in the context (lesson 44), never here. A full sentence or
+  the house em-dash fragment. `infogate.js` trips on two or more year tokens or catalogue lexicon.
 - **Bands:** Info 32–38 words (HARD); Interpretation 95–115 (flexes only where you can name what the extra words carry).
 - **THE `beside` — rules 10–12 OVERRIDE the core's form section:**
   - **Rule 10 — chosen by THEME.** The companion shares or mirrors what this picture is ABOUT (the theme its `about`

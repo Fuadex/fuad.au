@@ -170,8 +170,10 @@ shipped tours whose lessons are spent; medium blocks such as SCULPTURE, PRINTS, 
 43. **A reserved claim is told, then turned back onto the canvas.** The cold reader called five Interpretations
     "research notes": the reserved story stays, its apparatus (dates, document names) is compressed, and the last
     third points the eye at a named place on the picture.
-44. **A date conflict gets one plain sentence, once** ("He dated it 1901 beside his signature; it has also been dated
-    to 1900") — never the holder named as the source, never "usually", never repeated in a second layer.
+44. **A date conflict gets one plain sentence, once, IN THE CONTEXT** ("He dated it 1901 beside his signature; it has
+    also been dated to 1900") — never the holder named as the source, never "usually", never repeated in a second
+    layer, and NEVER in the Info (RE-HOMED 2026-10-22, the Info-drift rulings: the shipped misreading made the Info
+    "the dispute's one home" and produced dating-dispute doorways).
 
 ## WAVE-23 LESSONS (2026-10-15/16, the cold pass and the three-role seal) — binding
 30. **One home per finding, enforced.** Wave 23's worst cold flag: one picture's backlighting was told SEVEN times
@@ -277,9 +279,18 @@ pixel reports, Infos lost their hook. Do not repeat it.
 3. **NEVER CITE THE APPARATUS.** No "the register calls it", "its catalogue entry ties", "the record
    gives", "the museum catalogues it as", "curatorial prose", "the indexes". State the fact, or tell
    the story in which the institution ACTS (a purchase, a sale, a loss). `gate-label.js` greps this.
-4. **HOOK PRECEDENCE.** A claim may be reserved for the Interpretation only when a second verified
-   hook remains for the Info. A one-story work gives its story to the Info.
-5. **ONE HOME PER FACT** across lens, stop, Info, Interpretation, `beside`.
+4. **HOOK PRECEDENCE — TIGHTENED 2026-10-22 (the Info-drift rulings).** A claim may be reserved for the
+   Interpretation only when the Info's own remaining hook is a REAL one under the hook test: an event with an actor
+   and stakes (making, the artist's life at that moment, technique, the subject's stakes, reception). Dating opinions
+   and disputes, attribution/identification debates, catalogue matching, version/series membership as bare fact, and
+   commission/exhibition paperwork are NEVER that hook on their own (at most a clause; exception: an apparatus story
+   that itself carries actor and stakes — the Hobbema burgomaster is the model). A one-story work gives its story to
+   the Info. A collision or store-owns ban that would strip the only passing hook ESCALATES to the orchestrator.
+5. **ONE HOME PER FACT** across lens, stop, Interpretation, `beside` — **the Info is EXEMPT (2026-10-22): it is an
+   ENCAPSULATED HOOK and may compress the reserved claim, tour material, or verified material that survived in
+   neither; the Interpretation then deepens, never re-names.** A cold "apparatus" flag on an Info is BINDING: the fix
+   is a different hook, never a re-wording; a KEEP needs a written line naming the hook class. `infogate.js` trips on
+   two or more year tokens or the catalogue lexicon — a trip is cleared only by that written line.
 
 ## Standing rules carried from waves 13–16
 - **Source over summary**: my briefs have carried an error in every wave, and every one was caught by

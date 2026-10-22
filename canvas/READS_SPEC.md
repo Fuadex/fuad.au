@@ -971,6 +971,9 @@ The fused Info (all rulings 2026-08-14/15, tested on a 6-work sample then 33-wor
   "says everything but anything about the artwork itself"). A read that could be pasted under a
   different work by the same artist FAILS. At least one load-bearing sentence must be about THIS
   object — its subject, scale, medium, series membership, making or cataloguing circumstances.
+  **(2026-10-22: this anchor list is a FLOOR — series membership and cataloguing circumstances
+  anchor an Info only for a record-thin work where nothing richer verifies; a story-rich work may
+  not anchor on them. See THE INFO-DRIFT RULINGS at the end of this spec.)**
   Artist biography is scaffolding around that anchor, never the building. When nothing
   work-specific verifies beyond subject + date, the short form anchors on exactly those.
 - **The image-look economics** (Fuad 2026-08-22: "OCR is expensive — if you're looking at the
@@ -1498,3 +1501,59 @@ interest. These rules answer the second and third strands at this layer:
    biography as "widely repeated, unsourced", and never opened a monograph. And research reports
    FACTS with sources; it does not issue allocation directives ("should not pad the landscape with
    biography" was research overreach that the drafter obeyed maximally).
+
+---
+
+## 2026-10-22 — THE INFO-DRIFT RULINGS (Fuad: "Methodology changes all approved but…", on the 10-22 re-audit)
+
+The re-audit (memory `state-2026-10-22-canvas-info-drift`; evidence in the session's `infoaudit/INFO_AUDIT.md` +
+`TOUR_QUALITY.md`) found apparatus-led Infos STRUCTURAL to the tour pipeline, not a recent slip: the fused-Info era runs
+at 3% apparatus, tour waves 10–19 at 52%, with a step at wave 23 and a second rise from wave 30. The apparatus enters at
+the fusion's INFO/RESERVED split, is enabled by the research hook-ranking (and by this spec's own §5b anchor list and
+lesson 44 as misread), and was passed five times by cold/seal rulings. Rulings:
+
+1. **THE HOOK IS AN EVENT WITH AN ACTOR AND STAKES** (proposal 1, approved). Hook classes: the making, the artist's
+   life at that moment, technique, the subject's own stakes, reception. NEVER the hook on their own: dating opinions
+   and disputes, attribution/identification debates, catalogue matching, version or series membership as bare fact,
+   commission/exhibition paperwork, provenance, measurements — each at most a subordinate clause. EXCEPTION: an
+   apparatus story that itself carries actor and stakes qualifies (the Hobbema burgomaster-and-beacon is the model
+   case; the Constable cloud study's meteorologist and Bunrin's calendar also pass).
+2. **§5b'S ANCHOR LIST IS A FLOOR** (proposal 2, approved). "Series membership… cataloguing circumstances" anchor an
+   Info only for a record-thin work where nothing richer verifies. A story-rich work may not anchor on them. (§5b's
+   paste-test line now carries this note.)
+3. **LESSON 44 RE-HOMED** (proposal 3, approved). A date conflict's one plain sentence lives in the CONTEXT, never
+   the Info. (Wavekit BRIEF_common lesson 44 amended.)
+4. **THE INFO IS AN ENCAPSULATED HOOK** (proposal 4 as MODIFIED by Fuad: "info as a hook should be encapsulated
+   hook, which can keep parts of interpretation, tour or stuff that survived in neither"). The pipeline keeps its
+   current order — no slot inversion. But the Info is EXEMPT from one-home-per-fact: it may compress the reserved
+   claim, tour material, or verified research material that survived in neither; the Interpretation then DEEPENS
+   (deepen-never-re-name governs the overlap). A reservation is legal only when the Info's own hook passes ruling 1.
+   A collision or store-owns ban that would strip a work's only passing hook ESCALATES to the orchestrator instead of
+   silently applying. [Orchestrator's reading, correctable: "stuff that survived in neither" licenses the Info to
+   draw on the full verified pool, including material collision-barred from the tour's layers; true cross-WORK
+   collisions still escalate rather than auto-win.]
+5. **A COLD "APPARATUS" FLAG ON AN INFO IS BINDING** (proposal 5, approved). The fix is a different hook, never a
+   re-wording. The orchestrator may KEEP only with a written justification naming the hook class under ruling 1.
+   (Shipped counter-specimens: the five wave-29–33 rulings that re-worded and kept — Chrysanthemums, Seine sunrise,
+   Queen Mab, Sunrise with a Boat, Barrias.)
+6. **infogate.js** (proposal 6, approved; wavekit/, tracked). An Info carrying two or more distinct year tokens, or
+   the catalogue lexicon, FLAGS; a flag is cleared only by a seal/QUEUE line naming the hook class. The gate is a
+   tripwire, not an auto-fail — ruling 1 is the test, the gate just forces the question.
+7. **INTERP SHAPE CONVERGENCE: periodic manual checks** (proposal 7 REJECTED as a gate — Fuad: "Feels unnecessary,
+   we'll do checks periodically and manually"). The finding stands recorded: 12 of 15 sampled Interpretations across
+   waves 20–33 run claim → named writer with year and quote → located detail.
+8. **STORE-WIDE ERROR-CLASS SWEEPS: periodic, deferred** (proposal 8 — Fuad: good idea, but the old-batch repairs
+   are processed first). Repair lanes keep entry scope PLUS any residual the lane's own flag names in another entry;
+   the store-wide concept-level sweep becomes a periodic check once the backlog clears.
+9. **LENS BANDS ARE SOFT** (proposal 9 as modified — Fuad: "it's ok if we only enforce a soft constraint").
+   bandgate's >170 stays the hard backstop; the ≤120 brief line is advisory. Known, unfixed, low priority: the
+   bandgate tokeniser over-counts accented words.
+10. **REPAIR LANES APPROVED** (Fuad: "Let's do the repair lanes"; drafting on Opus 5.5, orchestrator reviews).
+    (i) Residuals lane — the Laocoön stop-5 horse claim + seams, the Laurens beside's refuted Dirce light, the
+    Dirce/Pissarro/Danseuse seams — ships after orchestrator review. (ii) Info re-hook pilot: the 11 failing Infos of
+    waves 29–33, printed before/after for Fuad's verdict, NOT shipped on the lane's own authority. (iii) Waves 23–28
+    (31 Infos) and 10–19 (~30) on Fuad's word after the pilot.
+
+Still open from the re-audit's doubts, awaiting Fuad: legacy encounter/holder lines in old-mv entries (battle-of-
+grunwald and christian-dirce's "you saw it at the National Museum in Warsaw"; the Pissarro mv-4.1 entry's label
+citations) — grandfather or repair; and the Queen Mab re-aim (right content, wrong subject) is folded into the pilot.
