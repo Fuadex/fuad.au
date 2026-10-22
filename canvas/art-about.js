@@ -14,13 +14,13 @@ window.CANVAS_ART_ABOUT = {
   "by": "Opus 5.5"
  },
  "kazimierz-sichulski-spooked-horses": {
-  "about": "Sichulski kept returning to teams of horses — pairs, threes and, in 1906, four. This one, painted in Lwów in 1911 and over two metres wide, has a pair bolting with a driverless straw wagon.",
+  "about": "Lwów, 1911: Sichulski, a caricaturist then designing decorative church windows, painted two horses bolting with a driverless straw wagon, near-monochrome and over two metres wide — a canvas later held up as textbook expressionism.",
   "deep": "One later verdict on this canvas comes in two halves, and the paint bears out both. It has been read as \"a model realisation\" of early twentieth-century expressionism, for its dark tonality and the distortion of its animals, with the caution that Sichulski did not confine himself to that manner. Each head is a flat shape, barely modelled, so any distortion is made by an edge that stays firm, the line of a stained-glass designer put to an expressionist's end. At upper right the second horse's tail shows the other manner: hair flung out in a bolt, closing in three curls of nearly one shape, set in a row like an ornament's repeats.",
   "by": "Opus 5.5"
  },
  "louis-ernest-barrias-the-nubians": {
-  "about": "A plaster model for a bronze the state ordered in 1893 for the Paris natural-history museum's gallery of anatomy and anthropology, where that bronze still hangs; Barrias showed the model at the 1894 Salon.",
-  "deep": "Ordered as Les Races humaines, The Human Races, the group answers that name with one family in danger. In 1894 Georges Lafenestre praised Barrias for the action itself: \"taking science as a base, he still chose to speak as an artist.\" It has since been read against the Nubian troupes shown in Paris in the late 1870s, whom an anthropologist in 1880 called \"penned up rather like wild animals\", and as not escaping the stereotypes of its time. What stands in the plaster is a hunter in a loincloth with his pole in a crocodile's jaw, a second figure thrown head-down, and a woman whose face, mouth open, looks past the two infants she holds.",
+  "about": "Commissioned in 1893 to give an anthropology gallery The Human Races, Barrias gave it a fight — a man forcing a pole into a crocodile's jaws as the beast climbs toward a woman clutching two infants.",
+  "deep": "Barrias's answer to a commission titled The Human Races has drawn two readings. In 1894 Georges Lafenestre praised him for the action itself: \"taking science as a base, he still chose to speak as an artist.\" It has since been read against the Nubian troupes shown in Paris in the late 1870s, whom an anthropologist in 1880 called \"penned up rather like wild animals\", and as not escaping the stereotypes of its time. What stands in the plaster is a hunter in a loincloth with his pole in a crocodile's jaw, a second figure thrown head-down, and a woman whose face, mouth open, looks past the two infants she holds.",
   "by": "Opus 5.5"
  },
  "pierre-auguste-renoir-theatre-box-la-loge": {
@@ -29,12 +29,12 @@ window.CANVAS_ART_ABOUT = {
   "by": "Opus 5.5"
  },
  "unknown-die-sunde": {
-  "about": "Around 1912 Franz von Stuck painted this late version of a motif he repeated many times — a naked woman wound in a serpent's coils. An early version had caused a great stir at the 1893 Munich Secession exhibition.",
+  "about": "Stuck painted this canvas around 1912, still repeating the serpent-wrapped nude that had stirred Munich nearly twenty years before; demand ran so high he could hardly keep up, and he sold the photographic rights version by version.",
   "deep": "In this canvas the upper corner is a pale field streaked yellow, pink and green, and the serpent's scales carry blue. The writer Hans Carossa remembered the 1893 picture hovering in “gloom and pallor”, with only “a reddish hell-yellow” burning in its upper corner. Between the two the woman and her serpent had set into a form Stuck repeated closely, and mainly the colour changed. In 1893 he gave the art publisher Hanfstaengl the photographic rights to an early version, for royalties, and the firm later took three more, numbered Die Sünde II, III and IV. The body, as in the early pictures, still hangs pale in the dark.",
   "by": "Opus 5.5"
  },
  "claude-monet-le-boulevard-des-capucines": {
-  "about": "From an upper balcony of the photographer Nadar's former studio, Monet painted the Paris boulevard below on two canvases: a horizontal one, and this upright one of late 1873 or early 1874, under an overcast sky.",
+  "about": "Monet, in and out of Paris recruiting painters for a group show, painted the boulevard twice from a high balcony of the photographer Nadar's former studio — this upright canvas of 1873–74 is the overcast one.",
   "deep": "For years this quieter canvas was reproduced as the Boulevard des Capucines the critics wrote about in 1874, while the picture they most likely had in front of them was its horizontal twin. Ernest Chesneau praised the sketch he saw for \"the prodigious animation of the street\", the fleeting instant of movement caught as never before. The art historian Joel Isaacson thinks this canvas unlikely to have provoked so \"kinetic\" a response, and sets its even tonality against the twin's strong division of light and dark. Under this blue-grey light, would Chesneau have found his fleeting instant in two men walking abreast toward us across pale, open pavement?",
   "by": "Opus 5.5"
  },
@@ -2187,7 +2187,7 @@ by: "Opus 4.8" },
 },
 
 "claude-monet-chrysanthemums": {
-  "about": "Monet dated this crowded bouquet 1882, and scholars have divided over it: his cataloguer Daniel Wildenstein moved it to 1880, one historian defended 1882, and a later study judged that date probably wrong.",
+  "about": "In 1886 Durand-Ruel lent these chrysanthemums to Brussels, though Monet had just told him he was leaving for a rival dealer. A paper hailed them as a master's work; another critic called Monet an inventor of incoherent art.",
   "deep": "To begin a bouquet this crowded again is to remake every head in it, each one its own act of the brush. In September 1882 Monet wrote to his dealer, Durand-Ruel, from Pourville that he had destroyed a large flower picture and slashed three or four other canvases. He then spent a week indoors painting it again, and destroyed that one like the first. In November flower pictures still kept him at Poissy. John House, the historian who defended the painted date, argued this canvas is the best candidate among the large still lifes those letters mention. If so, every head, even in the sprays the side edges cut off, was painted that same autumn.",
   "by": "Opus 5.5"
  },
@@ -4905,7 +4905,7 @@ about: "After surgery for stomach cancer confined Matisse to a bed or wheelchair
 by: "Opus 4.8" },
 
 "claude-monet-untitled": {
-  "about": "Dated 1897, this misty dawn on the Seine belongs to Monet's Mornings. Shown in 1898 as soleil levant amid about fifteen with look-alike titles, it is among the few Daniel Wildenstein could match to its entry.",
+  "about": "Monet's sunrise on the Seine, among the Mornings known for certain to have hung at his June 1898 show. Le Figaro's Arsène Alexandre dared anyone still resisting bright painting to hold out against its charm and freshness.",
   "deep": "No bank closes the foot of this view, and in the year it was dated Monet was planning a room of water. On the August day in 1897 when the journalist Maurice Guillemot watched him at work on this series of river mornings, Monet also showed him the first large panels for a round room walled with \"a horizon of water\" flecked with plants, by turns green and mauve. Daniel Wildenstein, who catalogued Monet's work, called Guillemot the first witness of the project that ended, thirty years later, in his water-lily rooms in Paris. The trees at the left carry both colours, blue-green where they stand and paler lavender where the river gives them back.",
   "by": "Opus 5.5"
  },
@@ -4949,7 +4949,7 @@ by: "Fable" },
 },
 
 "j-m-w-turner-queen-mab-s-cave": {
-  "about": "Shown at the British Institution in 1846, Turner's fairy kingdom bore two catalogue lines: one credited to A Midsummer Night's Dream, a play with no such line, the other from his own unpublished poem, Fallacies of Hope.",
+  "about": "Turner showed his fairy kingdom in 1846 under a verse credited to A Midsummer Night's Dream, which has no such line, beside one from Fallacies of Hope, his own unpublished poem — the source of both, one scholar suspected.",
   "deep": "In 1846 John Ruskin held three colours against a Turner his editors identify as this one, first its hot main dark. Three years after championing Turner, he called it the prominent failure of that year's British Institution, an example of how \"the greatest men may at times lose themselves\", though happily no \"sign of generally declining power\". His other charges, \"a strange meaningless green\" over the distance and right-hand shadows in \"pure and crude blue\", are harder to place: perhaps the sky's grey-green upper left corner, and the dark blue-grey by the falls. The heat needs no search: the central rock round the lit arch is crimson and vermilion, deepening to near-black at its crown.",
   "by": "Opus 5.5"
  },
@@ -5005,8 +5005,8 @@ about: "Turner never sent this 1842 study to exhibition — it belongs to the gr
 by: "Opus · Fable" },
 
 "j-m-w-turner-norham-castle-sunrise": {
-  "about": "Turner never exhibited this sunrise on the Tweed of about 1845. Had his codicil on 'finished pictures' stood, his bequest would have excluded it; the writer Lewis Hind's account puts its first showing in 1906.",
-  "deep": "Passing Norham Castle by coach in 1831, Turner is reported to have bowed to the ruins, saying a picture of them 'took' and had kept his hands full ever since, a story his biographer Walter Thornbury placed on an earlier journey. Thornbury noted that later printings of Turner's 1816 print of the view made the castle darker and shapeless against the sun. On this late canvas it is a middle tone, its broken crown distinct against the yellow. The sunrise goes back to the motif's beginnings: Turner first saw the castle above the Tweed in 1797, and the watercolour exhibited the next year was a summer morning, under James Thomson's lines on the rising sun.",
+  "about": "Late Turner on the ruin he credited with his career — coaching past Norham, his biographer Thornbury reports, he doffed his hat and bowed: an early Norham of his 'took', he said, and work had poured in since.",
+  "deep": "That bow came in 1831, though Walter Thornbury set it on an earlier journey. Thornbury noted that later printings of Turner's 1816 print of the view made the castle darker and shapeless against the sun. On this late canvas it is a middle tone, its broken crown distinct against the yellow. The sunrise goes back to the motif's beginnings: Turner first saw the castle above the Tweed in 1797, and the watercolour exhibited the next year was a summer morning, under James Thomson's lines on the rising sun.",
   "by": "Opus 5.5"
  },
 
@@ -5251,8 +5251,8 @@ by: "Opus · Fable" },
 },
 
 "georges-lemmen-beach-at-heist": {
-  "about": "Painted by Lemmen in 1891, this low tide is identified as the picture he showed at the Brussels avant-garde exhibition of February 1892 under his own title, Evening on the Beach; the place name is today's.",
-  "deep": "On this beach the dot is put to drawing. The surf across the pale shallows is a line before it is water: blue touches strung in single file, a row of colour marks tracing a contour. The long cloud above has an underside close to ruled, lying on the yellow like a border. Lemmen's pictures are said to have grown stylised from 1891 under the influence of his countryman Henry van de Velde, and a curator has called this beach a remarkable example. The change goes furthest on the near sand, where the dot gives way and the yellow of the pools is pulled on with the brush in long strokes.",
+  "about": "Brussels, February 1892: Lemmen lent three of his own Seurat drawings to the dead painter's memorial — yet on this small beach panel of the year before, he had already set the dot to drawing lines of surf.",
+  "deep": "The surf across the pale shallows is a line before it is water: blue touches strung in single file, a row of colour marks tracing a contour. The long cloud above has an underside close to ruled, lying on the yellow like a border. Lemmen's pictures are said to have grown stylised from 1891 under the influence of his countryman Henry van de Velde, and a curator has called this beach a remarkable example. The change goes furthest on the near sand, where the dot gives way and the yellow of the pools is pulled on with the brush in long strokes.",
   "by": "Opus 5.5"
  },
 
@@ -5264,8 +5264,8 @@ about: "A late canvas Turner kept entirely to himself — no title of his own, n
 by: "Opus · Fable" },
 
 "j-m-w-turner-sunrise-with-a-boat-between-headlands": {
-  "about": "Turner’s cataloguers chose this unfinished sunrise of about 1840–5 as their example of a lay-in, a broad first layer of colour: his last four exhibited pictures could all have been painted over one like it.",
-  "deep": "No one knows where this view is set, and the place may be imagined. The cataloguers of Turner’s paintings found the unfinished late canvases grouped with it built largely on compositions from his Liber Studiorum, landscape prints made decades earlier, with only this one and one other seeming “entirely new”. Lawrence Gowing wrote in 1966 that its radiance “almost submerges the relics of picturesque convention”, the stock devices of older views, and the canvas shows where that submerging stops short: the left headland’s crest goes under in haze, while the crag at right, a small upright on its shoulder, keeps a clean top against the light.",
+  "about": "Late in life Turner began a run of canvases, never finished, that mostly rework designs of his old Liber Studiorum prints — this sunrise of c. 1840–5 is one of only two that seem wholly new.",
+  "deep": "No one knows where this view is set, and the place may be imagined. Where its sisters borrow old print designs, this one seems to borrow none. Lawrence Gowing wrote in 1966 that its radiance “almost submerges the relics of picturesque convention”, the stock devices of older views, and the canvas shows where that submerging stops short: the left headland’s crest goes under in haze, while the crag at right, a small upright on its shoulder, keeps a clean top against the light.",
   "by": "Opus 5.5"
  },
 
@@ -5280,7 +5280,7 @@ by: "Opus · Fable" },
 // painting (per the same-day production rule), Fable QC (Maria Constable date corrected 1828).
 
 "john-constable-a-windmill-near-brighton": {
-  "about": "Constable dated this small oil sketch: “Brighton. July 27th 1824”, pencilled on its original stretcher with “very fine morning after rain”. He was there for his wife Maria, taken to the sea for her health.",
+  "about": "A morning near Brighton, where Constable had brought his consumptive wife Maria for the sea air — “very fine morning after rain”, he pencilled on the stretcher on 27 July 1824. Consumption killed her four years later.",
   "deep": "The man who painted this mill had worked in one. His father owned two water-mills and two windmills, and John spent about a year in them; on a timber of one windmill he cut its outline, his name and 1792. His brother Abram said of the mills John painted, “I see that it will go round.” Here the brush builds the dark sails from their parts, as someone who knew the machine would: the frame's bare bars ruled in with sky between, and beside them the cloth, one dark wedge. In 1843 the painter's son Alfred copied the canvas for a family friend, and his sister Isabel wrote that “it is one of Papa's & was in the drawing room”.",
   "by": "Opus 5.5"
  },
