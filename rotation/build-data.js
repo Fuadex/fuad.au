@@ -1775,6 +1775,20 @@ for (const [canonName, block] of Object.entries(FOLDS)) {
     }
   }
 }
+// Flatten TRACK_MERGE to a fixed point (2026-10-23, born of the stranded BABYMETAL middle title):
+// foldTrack applies TRACK_MERGE only once, so a chain X→Y, Y→Z left X's rows stranded on Y as their
+// own bucket. Same cure as HAND_MERGE above (LEDGER_DESIGN.md risk #1), cycle-guarded — a cyclic
+// ledger pair (the Dream Theater Pt. 1 swap) must terminate here, not hang the build.
+for (const k of Object.keys(TRACK_MERGE)) {
+  const artistPart = k.slice(0, k.indexOf("~"));
+  let v = TRACK_MERGE[k]; const seen = new Set([k]);
+  for (;;) {
+    const nk = artistPart + "~" + slug(v);
+    if (seen.has(nk) || !TRACK_MERGE[nk]) break;
+    seen.add(nk); v = TRACK_MERGE[nk];
+  }
+  TRACK_MERGE[k] = v;
+}
 const foldTrack = (artist, track) => {
   if (!track) return track;
   const merged = TRACK_MERGE[slug(artist) + "~" + slug(track)];

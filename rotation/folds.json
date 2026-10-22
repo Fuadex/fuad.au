@@ -1462,15 +1462,15 @@
    },
    {
     "from": "Headbangeeeeerrrrr!!!!! - live",
-    "to": "Headbangeeeeerrrrr!!!!!",
+    "to": "Head Bangya!!",
     "type": "variant",
-    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads"
+    "reason": "variant: distinct live/remix/demo recording, link to canonical for reads [retargeted past the folded-away middle title, dup sweep 2026-10-23]"
    },
    {
     "from": "Head Bangeeeeerrrrr!!!!!",
-    "to": "Headbangeeeeerrrrr!!!!!",
+    "to": "Head Bangya!!",
     "type": "spelling",
-    "reason": "spelling fold within variant group: same recording as canonical"
+    "reason": "spelling fold within variant group: same recording as canonical [retargeted past the folded-away middle title, dup sweep 2026-10-23]"
    },
    {
     "from": "Ijime,Dame,Zettai - Live at Sonisphere 2014,UK",
@@ -3331,11 +3331,6 @@
     "to": "Perfect Strangers",
     "type": "spelling",
     "reason": "spelling fold within variant group: same recording as canonical"
-   },
-   {
-    "from": "In the Presence of Enemies - Part I",
-    "to": "In The Presence Of Enemies Pt. 1",
-    "type": "spelling"
    },
    {
     "from": "Forsaken - Live in London, UK 7/24/11",
@@ -6332,6 +6327,12 @@
     "from": "Beyond the Pale",
     "to": "Catharsis",
     "type": "absorb"
+   },
+   {
+    "from": "ARRØWS IN WØRDS FRØM THE SKY",
+    "to": "Arrows in Words From the Sky",
+    "type": "spelling",
+    "reason": "spelling: Ø-stylized tagging of the same single; plain spelling is the most-played bucket (dup sweep 2026-10-23, I N V I N C I B L E precedent)"
    }
   ]
  },
@@ -11756,6 +11757,18 @@
     "from": "Opiate²",
     "to": "Undertow",
     "type": "absorb"
+   },
+   {
+    "from": "Aenima",
+    "to": "Ænima",
+    "type": "spelling",
+    "reason": "spelling: ASCII tagging of the same album (dup sweep 2026-10-23)"
+   },
+   {
+    "from": "��nima",
+    "to": "Ænima",
+    "type": "spelling",
+    "reason": "spelling: mojibake scrobble (two U+FFFD) of the same album — corruption is baked into the export (dup sweep 2026-10-23)"
    }
   ],
   "tracks": [
@@ -11806,6 +11819,12 @@
     "to": "Forty Six & 2",
     "type": "spelling",
     "reason": "spelling: a reaction-video title scrobbled over the track; the parenthetical is not part of the work and drops to the base title — same recording"
+   },
+   {
+    "from": "Aenema",
+    "to": "Ænema",
+    "type": "spelling",
+    "reason": "spelling: ASCII tagging of the same song (dup sweep 2026-10-23)"
    }
   ]
  },
@@ -12051,6 +12070,12 @@
     "from": "餌にもなれない",
     "to": "上出来",
     "type": "absorb"
+   },
+   {
+    "from": "��出来",
+    "to": "上出来",
+    "type": "spelling",
+    "reason": "spelling: mojibake scrobble of the same album — its row is the single アンドロイド, collected on 上出来 (dup sweep 2026-10-23)"
    }
   ]
  },
@@ -12323,6 +12348,12 @@
     "to": "Black Sabbath (From The Satanic Perspective)",
     "type": "spelling",
     "reason": "spelling: plain-titled scrobble of the same TON recording of the cover"
+   },
+   {
+    "from": "Blood & Fire",
+    "to": "Blood and Fire",
+    "type": "spelling",
+    "reason": "spelling: ampersand tagging of the same October Rust song (dup sweep 2026-10-23)"
    }
   ]
  },
@@ -12333,6 +12364,20 @@
     "to": "Ethergaze (feat. Hana Miketa & Ryuta Ueda)",
     "type": "spelling",
     "reason": "spelling: typo/variant suffix folds to canonical"
+   }
+  ],
+  "albums": [
+   {
+    "from": "T U R Q U O I S E E n G I n E",
+    "to": "turquoise engine +",
+    "type": "spelling",
+    "reason": "spelling: spaced-caps stylization of the same album; the + bucket holds all the tracks (dup sweep 2026-10-23)"
+   },
+   {
+    "from": "ｔｕｒｑｕｏｉｓｅ ｅｎｇｉｎｅ",
+    "to": "turquoise engine +",
+    "type": "spelling",
+    "reason": "spelling: fullwidth tagging of the same album; the + bucket holds all the tracks (dup sweep 2026-10-23)"
    }
   ]
  },
@@ -19455,6 +19500,12 @@
     "to": "Strzeż się plucia pod wiatr",
     "type": "spelling",
     "reason": "spelling: typo/diacritic tag variant of the official tracklist title (fold-scan mb-refetch 2026-09-17)"
+   },
+   {
+    "from": "Lza Dla Cieniow Minionych",
+    "to": "Łza dla cieniów minionych",
+    "type": "spelling",
+    "reason": "spelling: diacritic-stripped tagging of the same song; correct Polish is canonical (dup sweep 2026-10-23)"
    }
   ]
  },
@@ -19798,6 +19849,26 @@
     "to": "Wiedziałem mam",
     "type": "spelling",
     "reason": "spelling: 2 of 2 MB recordings across ReC./Recycling spell it Wiedziałem mam (ruled 2026-09-19)"
+   }
+  ]
+ },
+ "BUCK-TICK": {
+  "albums": [
+   {
+    "from": "RONDO",
+    "to": "獣たちの夜 / RONDO",
+    "type": "spelling",
+    "reason": "spelling: half-title tagging of the same double A-side single (dup sweep 2026-10-23)"
+   }
+  ]
+ },
+ "Galleons": {
+  "tracks": [
+   {
+    "from": "Playing With Fire is Such a Cliché",
+    "to": "Playing With Fire is Such a Cliché",
+    "type": "spelling",
+    "reason": "spelling: NFD-decomposed é tagging of the same song; precomposed is canonical (dup sweep 2026-10-23)"
    }
   ]
  }
