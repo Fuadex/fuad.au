@@ -770,7 +770,7 @@ window.CANVAS_ARTWORKS = [
   { id: "ferdinand-hodler-mount-niesen-seen-from-heustrich", title: "Mount Niesen seen from Heustrich", artist: "Ferdinand Hodler", artistId: "hodler", qid: "Q126718576", qidTrusted: true, year: 1910,
     seenAt: "kunstmuseum-basel", seenConfidence: "sure", floored: true },
   { id: "gustave-caillebotte-untitled", title: "Boulevard Haussmann, effet de neige", artist: "Gustave Caillebotte", artistId: "caillebotte", qid: "Q123822046", qidTrusted: true, year: 1880,
-    seenAt: "met-nyc", seenConfidence: "unsure", liked: true, note: "Venue can't be literally right — the Met doesn't hold this painting (it's at the Musée du Château de Flers, France); seen-at kept but downgraded pending which Caillebotte/venue this actually was." },
+    seenAt: "met-nyc", seenConfidence: "unsure", liked: true, note: "Venue can't be literally right — the Met has neither held nor shown this painting. This qid is a privately owned canvas, location unknown; the Musée du Château de Flers holds a separate Boulevard Haussmann snow picture (Q64918133, 81 × 66 cm). Seen-at kept but downgraded pending which Caillebotte and which venue this actually was." },
   { id: "edward-hopper-new-york-movie", title: "New York Movie", artist: "Edward Hopper", artistId: "hopper", qid: "Q19884479", qidTrusted: true, year: 1939,
     seenAt: "moma", seenConfidence: "sure", loved: true },
   { id: "edward-hopper-house-by-the-railroad", title: "House by the Railroad", artist: "Edward Hopper", artistId: "hopper", qid: "Q15734146", qidTrusted: true, year: 1925,
@@ -1088,6 +1088,8 @@ window.CANVAS_ARTWORKS = [
     seenAt: "artizon", seenConfidence: "sure", floored: true },
   { id: "claude-monet-argenteuil", title: "Argenteuil", artist: "Claude Monet", artistId: "monet", qid: "Q10317575", qidTrusted: true, year: 1875,
     seenAt: "orangerie", seenConfidence: "sure", loved: true },
+  // seenAt: Orsay's RF 2170 has been on long-term deposit at the Musée Louis-Senlecq, L'Isle-Adam, since 1997 (wave-30 hunt;
+  // Wikidata location Q23639858) — a post-1997 Orsay sighting needs Fuad's word (a loan back, or seen at L'Isle-Adam). Kept as is.
   { id: "pierre-isidore-bureau-untitled", title: "Clair de lune sur les bords de l'Oise, à l'Isle-Adam", artist: "Pierre-Isidore Bureau", artistId: "pierre-isidore-bureau", qid: "Q131793938", qidTrusted: true, year: 1867,
     seenAt: "orsay", seenConfidence: "sure", floored: true },
   // year: signed and dated "EBARRIAS / 1894" on the relief (Orsay RF 3743, plaster high relief, Salon 1894). Added wave 33.
@@ -1342,6 +1344,8 @@ window.CANVAS_ARTWORKS = [
     seenAt: "orsay", seenConfidence: "sure" },
   { id: "edouard-vuillard-untitled-2", title: "Femme couchée de dos", artist: "Édouard Vuillard", artistId: "edouard-vuillard", qid: "Q17491441", qidTrusted: true, year: 1891,
     seenAt: "orsay", seenConfidence: "sure", loved: true },
+  // holder: a PRIVATE collection; on a five-year loan to the Petit Palais from 2021 (Dumont, Bilan 2021; the owner's adviser).
+  // seenAt is where Fuad stood (the loan), not the owner. The 1905 two-figure Lamia (Auckland) is a different picture. Wave 33.
   { id: "john-william-waterhouse-lamia", title: "Lamia", artist: "John William Waterhouse", artistId: "waterhouse", qid: "Q21192336", qidTrusted: true, year: 1909,
     seenAt: "petit-palais", seenConfidence: "sure", loved: true },
   { id: "henri-edmond-cross-la-chevelure", title: "La Chevelure", artist: "Henri-Edmond Cross", artistId: "henri-edmond-cross", qid: "Q17491894", qidTrusted: true, year: 1892,
