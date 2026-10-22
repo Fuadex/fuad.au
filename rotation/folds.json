@@ -8761,6 +8761,12 @@
     "to": "One Second",
     "type": "variant",
     "reason": "variant: distinct edition/version, link to canonical for completeness"
+   },
+   {
+    "from": "B-Sides & Rarities",
+    "to": "Symbol of Life",
+    "type": "spelling",
+    "reason": "flag fix 2026-10-23: mis-tag bucket — its only rows are the SoL limited-edition Small Town Boy cover (9 scrobbles); spelling-class merge, not a real release (absorb was wrong: link-not-merge keeps the row)"
    }
   ],
   "tracks": [
@@ -18930,6 +18936,18 @@
    "track": "Fall From Grace",
    "toAlbum": "Obsidian",
    "reason": "paradise-lost campaign 2026-10-21: Obsidian #2, homed on its single row (DV 1.16)"
+  },
+  {
+   "artist": "Paradise Lost",
+   "track": "Small Town Boy",
+   "toAlbum": "Symbol of Life",
+   "reason": "flag fix 2026-10-23: 9 rows tagged \"B-Sides & Rarities\" are the SoL limited-edition Bronski Beat cover (identity DV 4.1); the stray comp bucket empties"
+  },
+  {
+   "artist": "Paradise Lost",
+   "track": "The Plague Within",
+   "toAlbum": "The Plague Within",
+   "reason": "flag fix 2026-10-23: albumless 1-play row, scrobble-context identified as a full-album rip (follows Never Look Away, 63-min gap to the next play); readless by nature (DV 3.11 resolved)"
   }
  ],
  "Anathema": {
