@@ -3671,6 +3671,12 @@
     "to": "Hell’s Breath",
     "type": "spelling",
     "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan mb-refetch 2026-09-17)"
+   },
+   {
+    "from": "Delivered to evil",
+    "to": "Deliver Us to Evil",
+    "type": "spelling",
+    "reason": "flag fix 2026-10-23: corrupted-title dup row (3p, LTBB bucket; matches no tracklist, identity DV 6.3/9.3; byte-identical lyric) — merge"
    }
   ],
   "albums": [
@@ -3688,6 +3694,24 @@
     "from": "Bonded By Blood",
     "to": "Let There Be Blood",
     "type": "variant"
+   },
+   {
+    "from": "Impact Is Imminent (UK)",
+    "to": "Impact Is Imminent",
+    "type": "spelling",
+    "reason": "flag fix 2026-10-23: edition-suffix dup bucket, same 9-track Caroline program (DV 1.4/8.4) — merge"
+   },
+   {
+    "from": "Force Of Habit (Japan Promo Sample, TOCP-7332)",
+    "to": "Force Of Habit",
+    "type": "spelling",
+    "reason": "flag fix 2026-10-23: JP promo of the same 15-track program, album-level plays only (DV 1.5/8.4) — merge"
+   },
+   {
+    "from": "Pleasures Of The Flesh (Japan)",
+    "to": "Pleasures Of The Flesh",
+    "type": "spelling",
+    "reason": "flag fix 2026-10-23: streaming-suffix bucket, standard 10-track program (DV 1.2/8.4) — merge"
    }
   ]
  },
@@ -18948,6 +18972,24 @@
    "track": "The Plague Within",
    "toAlbum": "The Plague Within",
    "reason": "flag fix 2026-10-23: albumless 1-play row, scrobble-context identified as a full-album rip (follows Never Look Away, 63-min gap to the next play); readless by nature (DV 3.11 resolved)"
+  },
+  {
+   "artist": "Exodus",
+   "track": "Seeds of Hate",
+   "toAlbum": "Pleasures Of The Flesh",
+   "reason": "flag fix 2026-10-23: ALIV-bucket row carries the 1987 studio position + studio lyric (identity DV 6.2/9.2) — studio spins filed under the 1997 live album; re-homed on approval"
+  },
+  {
+   "artist": "Exodus",
+   "track": "Brain Dead",
+   "toAlbum": "Pleasures Of The Flesh",
+   "reason": "flag fix 2026-10-23: ALIV-bucket row carries the 1987 studio position + studio lyric (identity DV 6.2/9.2) — studio spins filed under the 1997 live album; re-homed on approval"
+  },
+  {
+   "artist": "Exodus",
+   "track": "Pleasures of the Flesh",
+   "toAlbum": "Pleasures Of The Flesh",
+   "reason": "flag fix 2026-10-23: ALIV-bucket row carries the 1987 studio position + studio lyric (identity DV 6.2/9.2) — studio spins filed under the 1997 live album; re-homed on approval"
   }
  ],
  "Anathema": {
