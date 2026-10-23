@@ -14549,6 +14549,26 @@
     "from": "Designer Sadness",
     "to": "I Hate People On The Internet",
     "type": "absorb"
+   },
+   {
+    "from": "Spoils Of War",
+    "to": "LONG LIVE THE OLD DEAD GODS",
+    "type": "absorb"
+   },
+   {
+    "from": "Sex Never Dies",
+    "to": "LONG LIVE THE OLD DEAD GODS",
+    "type": "absorb"
+   },
+   {
+    "from": "NAKED",
+    "to": "LONG LIVE THE OLD DEAD GODS",
+    "type": "absorb"
+   },
+   {
+    "from": "DRUNKEN GOD",
+    "to": "LONG LIVE THE OLD DEAD GODS",
+    "type": "absorb"
    }
   ],
   "tracks": [
@@ -14557,6 +14577,12 @@
     "to": "HEROINE ICONOCLAST",
     "type": "spelling",
     "reason": "spelling: feat credit embedded in the tag title; the official tracklist titles it plain — same recording (fold-scan mb-refetch 2026-09-17)"
+   },
+   {
+    "from": "Napalm [Explicit]",
+    "to": "Napalm",
+    "type": "spelling",
+    "reason": "spelling: edition-tagged scrobble title of the same IHPOTI track; store key re-keyed in the same sitting (campaign 2026-10-23)"
    }
   ]
  },
