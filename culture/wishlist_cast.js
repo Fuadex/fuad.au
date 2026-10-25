@@ -77096,5 +77096,116 @@ window.CULTURE_WISHLIST_CAST = {
     "director": "Wim Wenders",
     "runtime": 105,
     "tmdbRating": 6.7
+  },
+  "wl-f-788233": {
+    "cinematographer": "Damian Kocur",
+    "writer": "Marek Skrzecz",
+    "region": "pl",
+    "director": "Marek Skrzecz",
+    "runtime": 26,
+    "medium": "Shorts"
+  },
+  "wl-s-summer-time-rendering": {
+    "cast": [
+      "Natsuki Hanae",
+      "Anna Nagase",
+      "Saho Shirasu",
+      "Yoko Hikasa",
+      "Jin Urayama",
+      "Kensho Ono",
+      "Maki Kawase",
+      "Akio Otsuka",
+      "Tessyo Genda",
+      "Yoji Ueda",
+      "Katsuyuki Konishi",
+      "Misaki Kuno",
+      "Rie Kugimiya",
+      "Yuko Sanpei",
+      "Mana Nakatomi",
+      "Sakiko Kawai",
+      "Ai Yamamoto",
+      "Rika Hayashi",
+      "Ellen Taira",
+      "Hideki Kojima",
+      "Yoshihisa Hosokawa",
+      "Syota Kaihori"
+    ],
+    "cinematographer": "Toshiya Kimura",
+    "composer": "Keiichi Okabe",
+    "writer": "Hiroshi Seko",
+    "productionCompanies": [
+      "OLM",
+      "Shueisha",
+      "Shogakukan-Shueisha Productions",
+      "MAGES."
+    ],
+    "tags": [
+      "island",
+      "time travel",
+      "supernatural",
+      "romance",
+      "based on manga",
+      "summer vacation",
+      "high school student",
+      "remote island",
+      "wakayama japan",
+      "hard",
+      "mysterious",
+      "aggressive",
+      "shounen",
+      "anime",
+      "desperate",
+      "suspense"
+    ],
+    "genres": [
+      "Animation",
+      "Drama",
+      "Mystery"
+    ],
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/m9e7chRW8Q8Go1Dv00RCUHbMoNe.jpg",
+    "region": "jp",
+    "runtime": 24,
+    "tmdbRating": 8.1,
+    "providers": [
+      "Disney Plus"
+    ]
+  },
+  "wl-s-jiyi-guanli-ju": {
+    "cast": [
+      "Moling",
+      "Ran Tu",
+      "B. Monkey",
+      "Shi Zekun",
+      "Ruoxun Yi",
+      "Zhixiao Liu",
+      "Chen Ning Xi",
+      "Shuai Guan",
+      "Xu Yuan",
+      "Youxi Deng",
+      "Xing Chao",
+      "Cheng Cheng"
+    ],
+    "writer": "Liu Wenyu, Li Shuyu",
+    "productionCompanies": [
+      "Flint Sugar",
+      "Studio Tumble",
+      "哔哩哔哩"
+    ],
+    "tags": [
+      "death",
+      "memories",
+      "based on short film",
+      "memory manipulation",
+      "depressed",
+      "donghua"
+    ],
+    "genres": [
+      "Animation",
+      "Action & Adventure"
+    ],
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/sSvgBIvcwGoWmbdlbpZI5kHBtVv.jpg",
+    "region": "cn",
+    "director": "Liu Wenyu, Li Shuyu",
+    "runtime": 29
   }
 };
