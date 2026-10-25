@@ -103,5 +103,5 @@ window.CANVAS_MUSEUMS = [
   {id: "nasjonalmuseet-oslo",name: "Nasjonalmuseet",city: "Oslo",country: "no",qid: "Q1132918",kind: "art",visits: [],lat: 59.91166666666667,lng: 10.729166666666666,note: "Not visited — holds wish works (added 2026-08-27)."},
   {id: "getty-center",name: "J. Paul Getty Museum",city: "Los Angeles",country: "us",qid: "Q731126",kind: "art",visits: [],lat: 34.0775,lng: -118.475,note: "Not visited — holds wish works (added 2026-08-27)."},
   {id: "kroller-muller",name: "Kröller-Müller Museum",city: "Otterlo",country: "nl",qid: "Q1051928",kind: "art",visits: [],lat: 52.095833333333,lng: 5.8169444444444,note: "Not visited — holds wish works (added 2026-08-27)."},
-  {id: "rijksmuseum",name: "Rijksmuseum",city: "Amsterdam",country: "nl",qid: "Q190804",kind: "art",visits: [],lat: 52.36,lng: 4.885277777777778,note: "Not visited — holds wish works (added 2026-08-27)."}
+  {id: "rijksmuseum",name: "Rijksmuseum",city: "Amsterdam",country: "nl",qid: "Q190804",kind: "art",visits: ["2016-07-10"],lat: 52.36,lng: 4.885277777777778}
 ];
