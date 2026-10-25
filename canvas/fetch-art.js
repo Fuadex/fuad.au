@@ -139,6 +139,17 @@ const ARTY = /painting|drawing|sculpture|artwork|series|cycle|canvas/i;
     "suzuki-toshimoto": "Q11648781", // "Toshimoto Suzuki"
     "takahashi-shotei": "Q526437",   // "Shōtei Takahashi" (1871–1945)
     "fabritius": "Q352954",          // Carel Fabritius; canon rows include "attributed to Carel Fabritius"
+    // Ids whose canon rows mix the master with "Circle of / Follower of / School of / Workshop of" credits,
+    // or credit a joint pair — the artist page belongs to the named master / first-named artist.
+    "david": "Q83155",               // Jacques-Louis David
+    "velazquez": "Q297",             // Diego Velázquez
+    "ogata-korin": "Q952938",        // Ogata Kōrin (row: School of)
+    "iwasa-matabei": "Q3156405",     // Iwasa Matabei (row: Workshop of)
+    "lepaute": "Q1685342",           // Jean-Baptiste Lepaute (clock, with Clodion)
+    "gan-ku": "Q555061",             // Kishi Ganku (1749–1839)
+    "kubota-beisen-george-v-king-of-the-united-kingdom": "Q6441301", // Kubota Beisen (1852–1906)
+    "hibata-osuke-takagawa-bunsen": "Q109269221",                    // Hibata Ōsuke, Sanada retainer (Perry scroll)
+    "ten-en-dojin": "Q39382862",      // 天淵道人 (Wikidata romanises "Ten'en Dōshin")
   };
   for (const [id, name] of Object.entries(artistNames)) {
     let pick;
