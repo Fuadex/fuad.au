@@ -132,11 +132,27 @@ const ARTY = /painting|drawing|sculpture|artwork|series|cycle|canvas/i;
   // ---- artists: resolve the affinity list + everyone in the canon ----
   const artistNames = {};
   for (const a of ARTWORKS) if (a.artistId && a.artist && !/TBC/.test(a.artist)) artistNames[a.artistId] = a.artist.replace(/\s*\(.*\)$/, "");
+  // Known identities the name search cannot reach (romanisation differs on Wikidata, or the canon name
+  // carries an attribution prefix). Ids verified against the item's label + description.
+  const ARTIST_QID = {
+    "torii-kiyohisa": "Q11674925",   // Wikidata spells him "Torii Kiyoshisa"
+    "suzuki-toshimoto": "Q11648781", // "Toshimoto Suzuki"
+    "takahashi-shotei": "Q526437",   // "Shōtei Takahashi" (1871–1945)
+    "fabritius": "Q352954",          // Carel Fabritius; canon rows include "attributed to Carel Fabritius"
+  };
   for (const [id, name] of Object.entries(artistNames)) {
-    const hits = await search(name);
-    const pick = hits.find(h => /painter|artist|sculptor|printmaker/i.test(h.desc)) || hits[0] || null;
+    let pick;
+    if (ARTIST_QID[id]) pick = { id: ARTIST_QID[id], label: name, desc: "" };
+    else {
+      const hits = await search(name);
+      pick = hits.find(h => /painter|artist|sculptor|printmaker/i.test(h.desc)) || hits[0] || null;
+    }
     if (!pick) { report.push(`artist ${id}: NO MATCH for "${name}"`); continue; }
     const ent = (await entities([pick.id]))[pick.id];
+    if (ARTIST_QID[id] && ent) {
+      pick.label = (ent.labels && ent.labels.en && ent.labels.en.value) || name;
+      pick.desc = (ent.descriptions && ent.descriptions.en && ent.descriptions.en.value) || "";
+    }
     out.artists[id] = {
       qid: pick.id, label: pick.label, desc: pick.desc,
       born: yearOf(claim(ent, "P569")), died: yearOf(claim(ent, "P570")),
