@@ -1311,7 +1311,7 @@ refs: {"deep":[{"id":"impression-sunrise","text":"Impression, Sunrise"}]} },
 
  "about": "Podkowiński's Frenzy of Exultations, 1894: a naked woman in ecstasy clinging to a monstrous rearing black horse — Polish Symbolism's succès de scandale. Smaller sketches survive, but this is the full-size canvas, and it carries scars: the painter slashed it himself.",
 
- "deep": "Warsaw argued over it and gossiped about the model's identity; after five weeks on show Podkowiński walked in and took a knife to the canvas — then died within the year at 28, and the painting was restored with his cuts inside it. The image itself is pure fin-de-siècle: eros as a runaway animal, the horse's mane a storm-cloud of black paint that stops depicting and becomes pure vortex. You likely saw it in the Sukiennice's quiet salon of 19th-century Polish art, where it still radiates exactly the scandal the varnish can't cover."
+ "deep": "Warsaw argued over it and gossiped about the model's identity; after five weeks on show Podkowiński walked in and took a knife to the canvas — then died within the year at 28, and the painting was restored with his cuts inside it. The image itself is pure fin-de-siècle: eros as a runaway animal, the horse's mane a storm-cloud of black paint that stops depicting and becomes pure vortex. It belongs to the Sukiennice's gallery of 19th-century Polish art in Kraków, and it still radiates exactly the scandal the varnish can't cover."
 
 },
 
@@ -1416,9 +1416,14 @@ refs: {"deep":[{"id":"impression-sunrise","text":"Impression, Sunrise"}]} },
 },
 
 "fjaestad-wood-pattern": {
-about: "Gustaf Fjæstad's Winter Evening by a River, 1907 — a dark river at dusk whose tree-reflections are combed into dense vertical ripples until the water stops reading as water and becomes figured wood grain. Nationalmuseum, Stockholm.",
-deep: "The picture turns on a refusal to let water behave. A reflection should shimmer and dissolve; Fjæstad fixes it instead, packing near-identical ripple-strokes into streaks that lock into the grain of a sawn board, knots and figuring included. He was a furniture and textile designer as much as a painter, and that instinct is the engine: the visible world resolved into an even, decorative, all-over weave. The palette stays narrow — gold, green, brown, near-white snow — so nothing pulls against the pattern. You saw it at the Swedish Masters show in Tokyo, and the jolt is the one it engineers: a river milled into timber.",
-by: "Opus 4.8" },
+
+ "about": "Gustaf Fjæstad's Winter Evening by a River, 1907 — a dark river at dusk whose tree-reflections are combed into dense vertical ripples until the water stops reading as water and becomes figured wood grain. Nationalmuseum, Stockholm.",
+
+ "deep": "The picture turns on a refusal to let water behave. A reflection should shimmer and dissolve; Fjæstad fixes it instead, packing near-identical ripple-strokes into streaks that lock into the grain of a sawn board, knots and figuring included. He was a furniture and textile designer as much as a painter, and that instinct is the engine: the visible world resolved into an even, decorative, all-over weave. The palette stays narrow — gold, green, brown, near-white snow — so nothing pulls against the pattern. The jolt is the one it engineers: a river milled into timber.",
+
+ "by": "Opus 4.8"
+
+},
 
 "fjaestad-winter-moonlight": {
 
