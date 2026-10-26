@@ -1138,10 +1138,15 @@ by: "Opus 4.8" },
 },
 
 "georges-seurat-seascape-at-port-en-bessin-normandy": {
-about: "Seurat spent the summer of 1888 working the Normandy coast at Port-en-Bessin, recording the little fishing port almost systematically from inner harbour to outer, then out to the cliffs east and west. This near-square view of green headland dropping to the sea is one of six canvases he brought back, marines he conceived as a set meant to hang together in a deliberate order; all six were shown at Les XX in Brussels in February 1889. As in the others, he tracked the coast's signal apparatus closely, and framed the scene inside his hand-dotted painted border rather than a gilt frame.",
-by: "Opus 4.8" ,
- "deep": "No element here is casual; each is placed to measure the next, and distance is what gets engineered. A headland arcs down from upper left as the sole diagonal in a canvas otherwise built from layered horizontals: banded sky, pale sea, the answering shelf of land at lower right. That shelf, blazing with sunlit ochre where everything else stays cool, catches the eye where the composition needs a turn. Two sails, barely fingernail-sized, fix the scale of the cliff they float beside and open a recession across featureless water. The hillside dissolves close up into unmixed strokes of orange, violet and blue — colour held apart on the surface, averaged only in the eye.",
+
+ "about": "Seurat spent the summer of 1888 working the Normandy coast at Port-en-Bessin, recording the little fishing port almost systematically from inner harbour to outer, then out to the cliffs east and west. This horizontal view of green headland dropping to the sea is one of six canvases he brought back, marines he conceived as a set meant to hang together in a deliberate order; all six were shown at Les XX in Brussels in February 1889. As in the others, he tracked the coast's signal apparatus closely, here the semaphore on the cliff top, and the hand-dotted painted border round the scene was probably added when he returned to the canvas later.",
+
+ "by": "Opus 4.8",
+
+ "deep": "No element here is casual; each is placed to measure the next, and distance is what gets engineered. A headland arcs down from upper left as the sole diagonal in a canvas otherwise built from layered horizontals: banded sky, pale sea, the answering shelf of land at lower right. That shelf, blazing with sunlit ochre, the strongest yellow in the land, catches the eye where the composition needs a turn. One small dark form far out on the water, barely fingernail-sized, fixes the scale of the cliff and opens a recession across otherwise featureless water. The hillside dissolves close up into unmixed strokes of orange, violet and blue — colour held apart on the surface, averaged only in the eye.",
+
  "deepBy": "Sonnet 4.6"
+
 },
 
 "j-m-w-turner-the-new-moon-or-i-ve-lost-my-boat-you-shan-t-ha": {
@@ -1241,8 +1246,12 @@ deep: "There is no horizon anywhere — you never see the sky, only the sky refl
 },
 
 "the-thinker": {
-about: "Rodin's seated giant, mid-thought — conceived in 1880 as 'The Poet' (Dante himself) for the top of the Gates of Hell, gazing down at his own damned, then enlarged into the world's most famous statue of thinking.",
-deep: "He thinks with his whole body, not his head. Every muscle is clenched — toes gripping the rock, back rounded like a coiled spring — because for Rodin thought was labour, not repose. Look closely at the pose: the right elbow rests on the LEFT knee, a torsion that no one sits in comfortably; it winds the body a quarter-turn tighter than rest. The figure was meant to be seen from below, brooding over the Gates — in the museum garden you can still walk around him and watch the silhouette change from effort to exhaustion depending on where you stand." },
+
+ "about": "Rodin's seated giant, mid-thought — conceived in 1880 as 'The Poet' (Dante himself) for the top of the Gates of Hell, gazing down at his own damned, then enlarged into one of the most celebrated sculptures ever made.",
+
+ "deep": "He thinks with his whole body, not his head. Every muscle is clenched — toes gripping the rock, back rounded like a coiled spring — because for Rodin thought was labour, not repose. Look closely at the pose: the right elbow rests on the LEFT knee, a torsion that no one sits in comfortably; it winds the body a quarter-turn tighter than rest. The figure was meant to be seen from below, brooding over the Gates — in the museum garden you can still walk around him and watch the silhouette change from effort to exhaustion depending on where you stand."
+
+},
 
 "the-kiss": {
 about: "In 1898, with this marble of Dante's lovers carved to Rodin's model, he showed the group he called his \"grand bibelot\", a huge knick-knack, beside his rejected Balzac, as if to ease that statue's way.",
@@ -1789,10 +1798,16 @@ by: "Opus 4.8" },
 },
 
 "the-gates-of-hell": {
-about: "Rodin's bronze portal of Dante's damned, begun in 1880 as doors for a museum that was never built — he reworked it for thirty-seven years and died with it unfinished, and every cast was assembled from those plasters afterward.",
-deep: "Everything on this gate is falling, has fallen, or is about to. The Three Shades at the peak are one man cast three times and rotated, heads hanging almost horizontal, arms dropping — Dante's 'abandon all hope' rewritten as a gesture that points down into the plunge. In the tympanum below, one small seated figure holds the only stillness on the surface — The Thinker, before he was enlarged; The Kiss and Ugolino began on the doors below. The undercutting is deep enough that limbs pull free of the ground and shadow pools behind them. Look at the jambs, where a classical portal carries fluting: Rodin stacked individual bodies, the frame that should contain Hell made of the damned.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Rodin's bronze portal of Dante's damned, begun in 1880 as doors for a museum that was never built — he worked on it on and off for thirty-seven years and died with it unfinished, and every cast was assembled from those plasters afterward.",
+
+ "deep": "Everything on this gate is falling, has fallen, or is about to. The Three Shades at the peak are one man cast three times and rotated, heads bowed together, arms reaching down to meet — Dante's 'abandon all hope' rewritten as a gesture that points down into the plunge. In the tympanum below, one small seated figure holds still amid the turmoil — The Thinker, before he was enlarged; The Kiss and Ugolino began on the doors below. The undercutting is deep enough that limbs pull free of the ground and shadow pools behind them. Look at the jambs, where a classical portal carries fluting: Rodin stacked individual bodies, the frame that should contain Hell made of the damned.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "jewess-with-oranges": {
 
@@ -2683,10 +2698,16 @@ about: "This 1877 nude was so lifelike that critics accused Rodin of casting it 
 by: "Opus 4.8" },
 
 "eugene-manet-on-isle-of-wight": {
-about: "Berthe Morisot's husband Eugène Manet — Édouard's brother — sits at a window on the Isle of Wight, the first summer of their marriage, 1875. She painted him there over and over because the boats would not hold still.",
-deep: "He is sitting where nineteenth-century painting puts women: indoors, at a window, watching a public world he is not in. She is the one at work, behind his shoulder — which is why you get the back of that shoulder and the underside of a hat brim, the view of someone lived with rather than posed. Look at what she described and what she didn't. The three terracotta pots on the sill have real ellipses, closed contours, weight; his face is a warm smear with one dark accent for an eye; a harbour in yachting season is a few scratches standing for masts. The nearest thing in the room is the least finished.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Berthe Morisot's husband Eugène Manet — Édouard's brother — stands at a window on the Isle of Wight, the first summer of their marriage, 1875. It is her first painting of him, made while, as she complained in her letters, the boats outside would not hold still.",
+
+ "deep": "He stands where nineteenth-century painting puts women: indoors, at a window, watching a public world he is not in. She is the one at work, behind his shoulder — which is why you get the back of that shoulder and the side of a hat, the view of someone lived with rather than formally posed. Look at what she described and what she didn't. The three terracotta pots on the sill have real ellipses, closed contours, weight; his face is a warm smear with no distinct eye; a harbour in yachting season is a few dark hulls and scratches for masts. Nearness buys him no extra finish.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "monet-that-reads": {
 about: "This is Renoir's portrait of his friend Claude Monet, painted around 1873 in the Argenteuil years when the two worked side by side inventing Impressionism. Monet sits absorbed in a newspaper, pipe lit, rendered by a fellow founder rather than a hired hand.",
@@ -2715,10 +2736,16 @@ deep: "The male Impressionists left the nursery to mothers and nurses; Morisot g
 by: "Opus 4.8" },
 
 "bergere-couchee": {
-about: "A farm girl, Gabrielle Dufour, lying full-length in the grass, cheek in her palm, with her goat Colette — painted at Mézy in 1891, and the version Morisot hung in the only solo show of her lifetime.",
-deep: "Boucher supplies the pose — shepherdess, goat, fruit overhead — and Morisot takes it with the coyness removed. Nothing happens: she is not tending or calling, the goat gets no attention at all, her gaze falls past her own hand out of the frame. One long unbroken contour runs down the far arm to that hand — open on the grass, palm tipped up, nothing held, no crook, no work. Skin, linen, wool and grass are the same hatched strokes in adjacent keys, so the lower half of her dissolves into the field. The coral scarf, the one saturated note, carries the heaviest paint; along the bottom the weave is left bare, and she signed it there.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "A local girl, Gabrielle Dufour, lying full-length in the grass, chin propped on her hand, with her goat Colette — painted at Mézy in 1891, and the version Morisot hung in the only solo show of her lifetime.",
+
+ "deep": "Boucher supplies the pose — shepherdess, goat, fruit overhead — and Morisot takes it with the coyness removed. Nothing happens: she is not tending or calling, she does not turn to the goat, her eyes stay hidden under the scarf. One long unbroken contour runs down the near arm to the hand — resting on the grass, fingers loosely curled, no crook, no work. Skin, linen, wool and grass are the same hatched strokes in adjacent keys, so the lower half of her shares the field's colour. The coral scarf, the strongest warm note, looks the most heavily painted; along the bottom the paint runs thin, and she signed it there.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "julie-manet-and-her-greyhound-laertes": {
 
@@ -3393,10 +3420,16 @@ about: "By the time Renoir painted these sun-drenched Cannes terraces in 1905, r
 by: "Opus 4.8" },
 
 "self-portrait-manet": {
-about: "Manet in 1878, standing like the boulevardier he was — cap pushed back, hands sunk in his pockets, no easel, no palette. One of only two self-portraits he ever painted, and he never showed it.",
-deep: "A painter's self-portrait almost always shows the hands — brushes, palette, the tools that certify the trade. Both of his are in his trouser pockets. What certifies him instead is the handling: ochre dragged on in open strokes that never close into cloth, thinning at the edges until coat and background are the same tan, no drawn contour anywhere holding the body in. A few hard notes keep him legible — dark cap, black shoes, two white cuffs flaring at the wrists. He stands on nothing. The face took a handful of touches, was left unsmoothed, and still appraises you; he made it as the disease that killed him in 1883 advanced and standing itself grew hard.",
-deepBy: "Sonnet 4.6",
-by: "Fable 5" },
+
+ "about": "Manet around 1878–79, standing like the boulevardier he was — cap pushed back, hands at his pockets, no easel, no palette. One of only two self-portraits he ever painted, and he never sold it.",
+
+ "deep": "A painter's self-portrait almost always shows the hands — brushes, palette, the tools that certify the trade. His go to his pockets, one sunk out of sight, the other holding nothing. What certifies him instead is the handling: ochre dragged on in open strokes, thin enough in places for the weave to show, a few quick dark lines drawing lapel and sleeve against the dark ground. A few hard notes keep him legible — black shoes, two white cuffs at the wrists. He stands on bare ground. The face is built from quick touches, left unsmoothed, and still appraises you; he made it as the disease that killed him in 1883 advanced and standing itself grew hard.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Fable 5"
+
+},
 
 "the-beach-near-trouville": {
 about: "Boudin is the painter who first took the young Monet outside to paint in the open air, and it was on this same Trouville beach that he developed the rapid, sketchy plein-air technique he captured in this 1865 scene.",
@@ -3469,10 +3502,16 @@ about: "Painted in Rome during David's Prix de Rome pension and shown to critica
 by: "Opus 4.8" },
 
 "portrait-of-dona-antonia-zarate": {
-about: "Stolen twice from Russborough House — by the IRA in 1974, then Dublin criminals in 1986 — Goya's 1805 portrait of the celebrated Spanish actress Antonia Zárate spent years underground before Irish police recovered it in Antwerp in 1993.",
-deep: "Goya strips the canvas to five colours — black, ivory, gold, flesh, ochre — and the austerity is the argument. Flat ochre ground refuses rank; the dark gown is nearly a silhouette, its contour cut not by drawing but by the glowing sofa behind it. The lace is thin, dragged, semi-transparent paint: a few flicked strokes doing what labour never could, skin showing through the weave. The face alone gets full modelling, in cool half-tones — Goya spending it on a look that reads as thinking: a contained sadness, the mouth closed, the eyes meeting yours without appeal. Deaf, drawing away from grand commissions toward sitters he could read as people, this is what that attention looked like.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Stolen twice from Russborough House — by the IRA in 1974, then Dublin criminals in 1986 — Goya's 1805 portrait of the celebrated Spanish actress Antonia Zárate spent years underground before it was recovered in Antwerp in 1993.",
+
+ "deep": "Goya strips the canvas to five colours — black, ivory, gold, flesh, ochre — and the austerity is the argument. Flat ochre ground refuses rank; the dark gown is nearly a silhouette, its contour cut not by drawing but by the glowing sofa behind it. The lace is thin, dragged, semi-transparent paint: a few flicked strokes doing what labour never could, skin showing through the weave. The face, with the hands, gets full modelling, in cool half-tones — Goya spending it on a look that reads as thinking: a contained sadness, the mouth closed, the eyes meeting yours without appeal. This is what a deaf court painter's attention looked like, turned on a sitter he could read as a person.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "castle-bentheim": {
 about: "Ruisdael deliberately placed Bentheim's modest low-hill castle atop a towering wooded mountain — a conscious act of invention — making this 1653 painting, completed when he was just twenty-four, the grandest of his dozen versions of the site.",
@@ -3527,16 +3566,28 @@ about: "Painted three years before Millet's more famous version, Jules Breton's 
 by: "Opus 4.8" },
 
 "portrait-of-baldassare-castiglione": {
-about: "Baldassare Castiglione — diplomat, author of The Book of the Courtier — rendered c.1537 in the Venetian manner: black costume dissolving into black ground, the grave face and one pale hand the only things the dark surrenders.",
-deep: "The Book of the Courtier preached sprezzatura — grace that conceals effort, rank that looks relaxed — and this portrait argues the ideal back at its author. Nothing is displayed: no coat of arms, no jewels, no reaching gesture. The black costume and dark ground share almost the same value; you assemble the man from the few lit points allowed: the forehead, the ridge of the nose, warm undertone breathing through the shadow so the darkness stays alive. The hand at the hip barely lifts from the coat mass — the gentleman's swagger played as a murmur. Gold capitals in the corner name him count — the one formal note in a portrait that withholds.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Baldassare Castiglione — diplomat, author of The Book of the Courtier — rendered c.1537 in the Venetian manner: black costume set against a dark brown wall, the grave face and a few gold glints at the waist almost all the dark surrenders.",
+
+ "deep": "The Book of the Courtier preached sprezzatura — grace that conceals effort, rank that looks relaxed — and this portrait argues the ideal back at its author. Nothing is displayed: no coat of arms, no jewels, no reaching gesture. The black costume stands against a warm brown wall only a few steps lighter; you assemble the man from the few lit points allowed: the forehead, the ridge of the nose, the warm brushed wall keeping the darkness alive. The hand on the hip is never shown — only gold glints at the waist and an elbow pushing out the coat mark the gentleman's swagger, played as a murmur. Gold capitals in the corner name him count — the one formal note in a portrait that withholds.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "el-sueno": {
-about: "Unusually tender for Goya, this small oil panel of a sleeping woman, c.1800, stands apart from his more turbulent work — a study in near-black and warm ivory that is intimate to the point of being charged.",
-deep: "The head is thrown back, chin up, jaw slack — not the composed pose of someone resting, but the full surrender of a body sleep has taken over. Goya lights the face first: brow, cheek, the line of the nose, the brightest passage in the panel, so you read sleep before anything else. The eye follows down the throat to a bare shoulder: the white gown has slipped on its own weight and she cannot mind it. Goya strikes warm light into the near-black — face, throat, the sheen of drapery — and lets the form dissolve where the light runs out. No room, no bed. The dark refuses to be a setting; it is the night itself.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "A sleeping woman is a rare subject for Goya, whose pictures more often show people in action. This oil on canvas, c.1800, is a study in near-black and silver grey, intimate to the point of being charged.",
+
+ "deep": "The head is thrown back, chin up, eyes shut — not the composed pose of someone resting, but the full surrender of a body sleep has taken over. Goya lights the face first: brow, cheek, the line of the nose, softly, against the black, so you read sleep before anything else. The eye follows down the throat to a bare shoulder: the white gown has slipped on its own weight and she cannot mind it. Goya strikes warm light into the near-black — face, throat, the sheen of drapery — and lets the form dissolve where the light runs out. No room, only the bedding beneath her. The dark refuses to be a setting; it is the night itself.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "in-a-dublin-park-light-and-shade": {
 about: "Shown at the Royal Academy in 1895, Walter Osborne's Phoenix Park scene applied French Impressionist light to the reality of Dublin's poor, a mother and infant at the centre watched by two worn old men.",
@@ -3638,10 +3689,16 @@ about: "Critic Ludwig Hevesi wrote in 1907 that Klimt's single sunflower appears
 by: "Opus 4.8" },
 
 "seashore-with-fisherman": {
-about: "Friedrich's 1807 Baltic shore — a lone fisherman at the hinge of sea and sky. Designed as one half of a deliberate pendant pair: the green foreshore here stands for earthly life, its companion's open sea for eternity.",
-deep: "Without the fisherman dead centre, you could not feel how empty the sky is — he exists to be dwarfed by it. Friedrich sets him low, a single dark upright in a pale field, and gives the upper two-thirds of the canvas to almost nothing: cloud, and a horizon that is barely a line. The sea dissolves into sky at a soft grey edge — no glitter, no wave, no rung for the eye to climb. The bare forked poles of the drying rack behind him keep the shore from feeling abandoned. Far out on the left, a dark sail in the haze: a second human at even smaller register, under the same indifferent air.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Friedrich's fishing shore of about 1807 — a lone fisherman at the hinge of sea and sky. Conceived as one half of a pendant pair; scholars read its green foreshore as the bounded earthly world and the sea as eternity.",
+
+ "deep": "Without the fisherman near the centre, you could not feel how empty the sky is — he exists to be dwarfed by it. Friedrich sets him low, a single dark upright in a pale field, and gives the upper four-fifths of the canvas to almost nothing: cloud, and a horizon that is barely a line. The sea dissolves into sky at a soft grey edge — no glitter, no wave, no rung for the eye to climb. The bare forked poles of the drying rack beside him keep the shore from feeling abandoned. Far out on the left, a pale sail in the haze: a second human at even smaller register, under the same indifferent air.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "poppy-field-mohnfeld": {
 about: "Painted at Litzlberg on the Attersee in 1907, Klimt's Mohnfeld suppresses conventional depth so completely that the fruit trees merge into the blooms around them and only a narrow strip of sky survives at the top, turning meadow into tapestry.",
@@ -3676,10 +3733,16 @@ about: "Seligmann inserted himself into the front row of this meticulous group p
 by: "Opus 4.8" },
 
 "sea-beach-in-the-fog": {
-about: "Fog dissolves sky and sea into a single grey field with two ships barely legible as silhouettes; the radical atmospheric emptiness of Friedrich's 1807 seascape anticipates a stripped-down Romantic sublime that would echo for over a century.",
-deep: "Look for the horizon and you will not find it. Friedrich painted sea and fog in the same narrow register of cool grey, letting one bleed into the other with no edge between them. Without that line, space stops behaving: the ship seems to hang in a substance neither air nor water. The vessel is drawn with almost nothing — hair-thin masts, rigging like faint scratches, a hull dimming into surrounding fog. Just right of center, a low rowing boat holds two tiny dark figures easy to miss entirely. Their smallness is doing enormous work: because they are so nearly invisible, the void around them acquires the scale of the sublime.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Fog dissolves sky and sea into a single grey field with two ships barely legible as silhouettes; the radical atmospheric emptiness of Friedrich's seascape of about 1807 anticipates a stripped-down Romantic sublime that would echo for over a century.",
+
+ "deep": "Look for the horizon and you will not find it. Friedrich painted sea and fog in the same narrow register of cool grey, letting one bleed into the other with no edge between them. Without that line, space stops behaving: the ship seems to hang in a substance neither air nor water. The vessel is drawn with almost nothing — a hair-thin mast, rigging like faint scratches, a hull dimming into surrounding fog. Just right of center, a low rowing boat holds two tiny dark figures easy to miss entirely. Their smallness is doing enormous work: because they are so nearly invisible, the void around them acquires the scale of the sublime.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "the-five-senses-by-hans-makart": {
 about: "Called the Malerfürst — painter-prince — by contemporaries, Makart embodied an era: his Makartstil set the aesthetic of Ringstrasse Vienna, and this five-panel cycle of allegorical nudes, one per sense, painted 1872–79, is its summation.",
@@ -4331,10 +4394,16 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "carnation-lily-lily-and-rose": {
-about: "Sargent, 1885–86: two girls tending paper lanterns in a garden at dusk — worked only during the few usable minutes of twilight each evening, then resumed the following autumn as the real flowers died and were replaced.",
-deep: "The light source is below the faces — warm along the cheek, darker at the brow, the reverse of how daylight finds a face. That inversion alone locks in the hour. Neither child looks out; they watch the flames, and Sargent withholds any story between them. The left girl's dress records the air: not flat white but lilac in shadow, warmer where the lantern reaches — the whole Impressionist logic in one passage. He drops the horizon entirely and lets hems dissolve into the grass, so the girls seem to grow out of the garden. Move close and the roses fall apart into pink dabs; step back and they reassemble. The instability is the method.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Sargent, 1885–86: two girls tending paper lanterns in a garden at dusk — painted at Broadway over two summers, only in the few usable minutes of twilight each evening, with artificial blooms standing in as the real flowers died.",
+
+ "deep": "The lanterns hang below the faces and lend them warmth — the right girl's glowing orange-pink, the left girl's warm along the cheek under her fringe. That warm cast against cool whites locks in the hour. Neither child looks out; they watch the flames, and Sargent withholds any story between them. The left girl's dress records the air: not flat white but lilac in shadow, warmer cream down the skirt — the whole Impressionist logic in one passage. He drops the horizon entirely and lets the left girl's dark legs sink into the grass, so no ground-line holds the girls. Move close and the roses fall apart into pink dabs; step back and they reassemble. The instability is the method.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "allegory-of-prudence": {
 
@@ -4884,10 +4953,16 @@ about: "Chełmoński painted this chaotic 1879 Podolian horse market while livin
 by: "Opus 4.8" },
 
 "whistler-s-mother": {
-about: "Anna Whistler sat for her son in London in 1871 — elderly, so she sat rather than stood, turning a portrait session into something still and monastic. Arrangement in Grey and Black No. 1.",
-deep: "The reductive title is the argument: tones and shapes first, mother second. She is in strict profile, eyes withheld, so we read her entirely by posture — upright, folded, patient. The black dress runs shoulder to floor as one shape; the white cap and folded hands are the only incidents, two deliberate marks in all that grey. Half the canvas is empty wall, painted thin enough that the weave shows through — that void carries as much weight as the figure. In person it turns out quieter and warmer than any reproduction admits. A portrait that refuses the warmth the subject promises and delivers something colder: a person reduced to pure arrangement, dignified by exactly that.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Anna Whistler sat for her son in London in 1871 — she began by standing, found it too tiring and sat instead, turning a portrait session into something still and monastic. Arrangement in Grey and Black No. 1.",
+
+ "deep": "The reductive title is the argument: tones and shapes first, mother second. She is in strict profile, gaze withheld, so we read her entirely by posture — upright, folded, patient. The black dress runs shoulder to floor as one shape; the white cap and folded hands are its only incidents, two deliberate marks in all that grey. Much of the canvas is empty wall, brushed in broad strokes that run every way — that void carries as much weight as the figure. A portrait that refuses the warmth the subject promises and delivers something colder: a person reduced to pure arrangement, dignified by exactly that.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "polish-hamlet-portrait-of-aleksander-wielopolski": {
 
@@ -4964,10 +5039,16 @@ about: "Brett Whiteley's 1968 outdoor sculpture — two giant matchsticks, one p
 by: "Opus 4.8" },
 
 "the-boar-hunt": {
-about: "Frans Snyders, Antwerp's specialist in animals in extremity — around sixty hunt scenes, collaborating routinely with Rubens. This c.1650 boar fight reworks a composition from the 1620s; a signed 1653 variant is in the British Royal Collection.",
-deep: "The huntsmen are gone. No horses, no horn — just the animal arithmetic of the kill at its most precarious tilt. The boar is not down: its head is up, jaws cranked wide on a wet red mouth, one hound already thrown onto its back. Snyders fixes the instant, outcome withheld. Pale cream hounds ride the near-black boar so the pile stays readable. Hound fur is dry and feathered, boar hide slick and heavy. The one flare of saturated colour is spent at dead centre. A grey hound hauling the far ear closes the vice from the right; a black-and-tan dog launching off a rock at upper right tells you the fight is nowhere near over.",
-deepBy: "Sonnet 4.6",
-by: "Opus 4.8" },
+
+ "about": "Frans Snyders, Antwerp's specialist in animals in extremity — hunts were his speciality from the 1610s, and Rubens often had him paint the animals in his own pictures. This boar fight of the 1650s, nine hounds against one boar, was painted with his workshop and reworks a composition of the early 1620s now in Poznań; a larger variant, signed and dated 1653, is in the British Royal Collection.",
+
+ "deep": "The huntsmen are gone. No horses, no horn — just the animal arithmetic of the kill at its most precarious tilt. The boar is not down: its head is up, jaws cranked wide on a wet red mouth, one hound already thrown onto its back. Snyders fixes the instant, outcome withheld. A pale cream hound rides the near-black boar so the pile stays readable. Hound fur is dry and feathered, boar hide slick and heavy. The strongest reds, open mouths and blood, are kept to the centre. A brindled grey hound rearing up to bite the boar's jowl closes the vice from the right; a black-and-tan dog launching off a rock at upper right tells you the fight is nowhere near over.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus 4.8"
+
+},
 
 "mucius-scaevola-in-the-presence-of-lars-porsenna": {
 
@@ -5811,10 +5892,16 @@ by: "Opus · Fable" },
  },
 
 "adolph-von-menzel-mondschein-uber-der-friedrichsgracht-im-al": {
-about: "A working Berlin canal at night, 1855 — barges roped up under a moon the mist has half eaten. Menzel kept small oils like this private; nobody saw them until a memorial show fifty years later.",
-deep: "Nothing happens. No wanderer, no ruin, no moral — a working canal has gone quiet with the day's freight still roped up. Almost everything sits inside one narrow band of cold grey, which is why a few orange window-dabs on the right bank land so hard: they put people inside the dark houses, under a moon Menzel refuses to give a clean edge, a pale bruise the mist is eating. The bare masts are the only straight lines, single dark strokes that stitch the near barges to the dissolving town. The bottom third is the opposite substance — hulls near-black, rusty cargo scraped into crusts, weight you could touch pressed against a channel you can't reach.",
-deepBy: "Sonnet 4.6",
-by: "Opus · Fable" },
+
+ "about": "A working Berlin canal at night, around 1855 — barges roped up under a moon the mist has half eaten. Menzel kept small oils like this largely private; some were seen only after his death, at a memorial show fifty years later.",
+
+ "deep": "Nothing happens. No wanderer, no ruin, no moral — a working canal has gone quiet with the day's freight still roped up. Most of the picture sits inside one narrow band of cold grey, which is why a few orange window-dabs on the right bank land so hard: they put people inside the dark houses, under a moon Menzel refuses to give a clean edge, a pale bruise the mist is eating. The bare masts are nearly the only straight lines, single dark strokes that stitch the near barges to the dissolving town. The bottom third is the opposite substance — hulls near-black, pale freight and rusty red scraped into crusts, weight you could touch pressed against a channel you can't reach.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus · Fable"
+
+},
 
 "james-tissot-the-bad-rich-man-in-hell": {
 about: "Sketching a fashionable choir singer at Saint-Sulpice in 1885, Tissot instead had a religious vision during Mass — and the society painter of chic London women became a Bible illustrator. He travelled three times to the Middle East researching sites and faces for some 350 gouache watercolours of the Gospels, a series that drew crowds in Paris, London and New York before Brooklyn bought it by public subscription in 1900. This sheet takes up the parable of Lazarus and the rich man from Luke 16.",
@@ -5984,10 +6071,16 @@ by: "Opus · Fable" },
  },
 
 "odilon-redon-untitled-8": {
-about: "A pale youth clamped to the breast of a dark eagle, around 1900 — no serene cupbearer borne aloft but prey, limbs splayed, face swallowed into the bird, on a canvas barely larger than a sheet of paper.",
-deep: "Withholding the face is the method. The head dissolves into the eagle's dark mass, so you get a body rather than a person to pity — any soul carried off. The bird is withheld too: two wing-gestures and a downturned beak, because a fully drawn eagle would turn myth into taxidermy. The wings behave like weather, smeared across a sky scumbled so thin the ground shows through. The one warm passage of flesh is pulled two ways — the right wing lifts toward ascent, the dropped legs and sagging left wing insist the direction is down. Redon had lost a son; a child carried into an element it cannot survive was never abstract for him.",
-deepBy: "Sonnet 4.6",
-by: "Opus · Fable" },
+
+ "about": "A pale youth clamped to the breast of a brown eagle, undated but in the manner of Redon's colour years — no serene cupbearer borne aloft but prey, limbs hanging, face turned away beside the bird's head, on a canvas barely larger than a sheet of paper.",
+
+ "deep": "Withholding the face is the method. The head is turned away against the eagle's neck, its face never shown, so you get a body rather than a person to pity — any soul carried off. The bird is withheld too: two wing-gestures and a downturned beak, because a fully drawn eagle would turn myth into taxidermy. The wings behave like weather, smeared across a sky scumbled so thin the ground shows through. The one pale passage of flesh is pulled two ways — the raised wings lift toward ascent, the dropped legs and hanging arm insist the direction is down. Redon had lost a son; a child carried into an element it cannot survive was never abstract for him.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus · Fable"
+
+},
 
 "mikhail-matyushin-malerisch-musikalische-konstruktion-i": {
 about: "Matyushin came to painting from music: a professional violinist in the St. Petersburg Court Orchestra before he took up the brush, he spent his life trying to make one art think like the other. This 1918 canvas opens the series of \"painterly-musical constructions\" he began in revolutionary Petrograd, where he was studying the physiology of the senses and an \"expanded vision\" that would soon crystallize into his Zorved circle. The idea was literal translation — musical overtone into color-rhythm, brushstrokes of shifting size and hue set vibrating so the pigment reads as sounding matter rather than depicted space.",
@@ -6214,9 +6307,14 @@ by: "Opus 4.8" },
 },
 
 "unknown-hoa-hakananai-a": {
-about: "An ancestor figure carved on Rapa Nui, standing part-buried in a stone house at Orongo until a British naval crew dug it out in 1868 and shipped it away. The island has been asking for it back.",
-deep: "Almost nothing on the body is carved. The arms are low bands laid on the flanks, the chest gets a collarbone ridge and two nipples, and between them the stone is left as plain plane. All the work went into the head, and inside the head into four cuts: the shelf of the brow, the sockets, the nostrils, the seam of the mouth. Those cuts are deep, and deep cuts hold shadow, which is how a face in hard lava reads from a long way off. The sockets were made to take an inlaid coral eye. Empty, they turn the strongest carving on the figure into a hole.",
-by: "Opus 4.8" },
+
+ "about": "An ancestor figure carved on Rapa Nui, standing part-buried in a stone house at Orongo until a British naval crew dug it out in 1868 and shipped it away. The island has been asking for it back.",
+
+ "deep": "Almost nothing on the body is carved. The arms are low bands laid on the flanks, the chest gets a collarbone ridge and two nipples, and between them the stone is left as plain plane. All the work went into the head, and inside the head into four cuts: the shelf of the brow, the sockets, the nostrils, the closed lips. Those cuts are deep, and deep cuts hold shadow, which is how a face in hard lava reads from a long way off. The sockets were made to take an inlaid coral eye. Empty, they turn the strongest carving on the figure into a hole.",
+
+ "by": "Opus 4.8"
+
+},
 
 "paul-signac-femme-a-l-ombrelle": {
 
@@ -6234,20 +6332,20 @@ by: "Opus 4.8" },
  "deepBy": "Sonnet 4.6"
 },
 "hendrick-ter-brugghen-bagpipe-player": {
- "about": "Seized in a 1938 forced sale from the von Klemperer collection and restituted to its heirs in 2008, this 1624 canvas is Utrecht Caravaggist ter Brugghen at full power, breath and bag swelling into one circuit of air.",
- "deep": "Breath is the whole subject. Lips purse at the blowpipe, the bag inflates against his chest, the right hand grips the chanter below, and the man becomes one visible circuit of air. Cropping this tight removes the setting entirely, leaving only the bodily work of getting a note out — an encounter, not an anecdote. Two drone pipes run as rigid lines toward the upper corner at left, played against the domed cap and swollen tan bag, and that crossing holds a squeezed design taut. Light arrives from one flank onto a bare shoulder, the nose in profile, linen slipping loose and white. The instrument's coarse, peasant associations are neither disguised nor sent up, only occupied at full sensuous scale and left unjudged.",
+ "about": "Lost in a 1938 forced sale from the von Klemperer collection and restituted to its heirs in 2008, this 1624 canvas is Utrecht Caravaggist ter Brugghen at full power, breath and bag swelling into one circuit of air.",
+ "deep": "Breath is the whole subject. Lips purse at the blowpipe, the bag inflates against his chest, the right hand grips the chanter below, and the man becomes one visible circuit of air. Cropping this tight removes the setting entirely, leaving only the bodily work of getting a note out — an encounter, not an anecdote. Two drone pipes run as rigid lines toward the upper corner at left, played against the domed cap and swollen brown bag, and that crossing holds a squeezed design taut. Light arrives from one flank onto a bare shoulder, the nose in profile, linen slipping loose and white. The instrument's coarse, peasant associations are neither disguised nor sent up, only occupied at full sensuous scale and left unjudged.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
 "bartolome-esteban-murillo-the-return-of-the-prodigal-son": {
- "about": "One of eight canvases Murillo painted around 1667 for Seville's Caridad brotherhood, a cycle on mercy's corporal works; this one is clothing the naked. Napoleon's troops looted it in 1810. Pardon arrives as an embrace, in receiving hands.",
- "deep": "Pardon is complete before anyone speaks, and it lives in two hands that take a body in instead of holding it fast, gathering the kneeling son against the father. He has come back owning nothing: skin bared, cloth in tatters, filthy feet on cold stone, a beggar's attitude. Ruin is not where the picture settles. A slanting shaft walks the eye rightward over that naked back, past the rose cloak bent above it, into a short procession of clean colour — lemon-gold tunic, folded robe, a ring held up. The answer outshines what it repairs. Read across, the parable becomes one lateral drift from stripped shoulders to new cloth, mercy legible as light crossing a room.",
+ "about": "One of six canvases Murillo painted between 1667 and 1670 for Seville's Caridad brotherhood, a cycle on mercy's corporal works; this one is clothing the naked. Marshal Soult carried it off to Paris in 1812. Pardon arrives as an embrace, in receiving hands.",
+ "deep": "Pardon is complete before anyone speaks, and it lives in two hands that take a body in instead of holding it fast, gathering the kneeling son against the father. He has come back owning nothing: skin bared, cloth in tatters, filthy feet on cold stone, a beggar's attitude. Ruin is not where the picture settles. A slanting shaft walks the eye rightward over that naked back, past the rose cloak bent above it, into a short procession of clean colour — golden-yellow tunic, heaped robe, a ring held up. The answer outshines what it repairs. Read across, the parable becomes one lateral drift from stripped shoulders to new cloth, mercy legible as light crossing a room.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
 "henry-fuseli-oedipus-cursing-his-son-polynices": {
  "about": "Zurich-born Henry Fuseli's terror-piece, taken from Oedipus at Colonus by Sophocles and hung at the 1786 Royal Academy: a blind, exiled king dooms both his sons to slaughter, one rigid arm splitting the family before warm-black emptiness.",
- "deep": "One outstretched index finger cuts the picture in half, passing sentence before the son can answer; the family is left absorbing a verdict already delivered. Out of the dark the sightless old king drives forward, arm held stiff as a lance and aimed at the kneeling youth, who has doubled over, both hands clamped on his head as if flesh could bar what cannot be unsaid. One daughter flings up an open palm to block him, and the paternal axis passes clean through her guard — she is the conscience here, the sole figure still contesting an outcome the design has fixed. A second daughter sinks, head dropped. No room is given: no ground, no sky, nothing but warm-black emptiness that throws every look back at the finger, so the dark itself seals the family inside the curse.",
+ "deep": "One outstretched index finger cuts the picture in half, passing sentence before the son can answer; the family is left absorbing a verdict already delivered. Out of the dark the sightless old king drives forward, arm held stiff as a lance and aimed at the kneeling youth, who has doubled over, one hand clamped on his head, the other thrown back flat-palmed towards his father as if flesh could bar what cannot be unsaid; the paternal axis passes clean beneath his guard. Above him a veiled daughter spreads her arms between them, one hand towards her brother, the other over the old king's shoulder — she is the conscience here, still contesting an outcome the design has fixed. A second daughter sinks, head dropped. Little room is given: a strip of ground, a glimpse of blue-green through dark leaves, then warm-black emptiness that throws every look back at the finger, so the dark itself seals the family inside the curse.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
@@ -6276,14 +6374,14 @@ by: "Opus 4.8" },
  "deepBy": "Sonnet 4.6"
 },
 "jean-beraud-paris-rue-du-havre": {
- "about": "After fire gutted Au Printemps in March 1881, Béraud painted its scaffolded reconstruction around 1882 from a curtained cab at the kerb, catching Parisians unposed. One woman walks against the crowd's sideways drift, unescorted and self-possessed.",
- "deep": "One figure comes at you; the rest slides sideways or fades into depth, and that reversal alone carries the argument. No escort, carrying her own packages, crossing a shopping thoroughfare with complete assurance — a quietly radical presence, the kind of independent Parisienne her decade watched with equal parts admiration and disquiet. To her right a hoarding of posters burns with the one strong colour allowed into an otherwise pearl-grey canvas, naming a great store being raised again after fire. Timber scaffolding and tarps cap the wall. Top hats behind her thin to dabs; the basket-laden porter slips away at the margin. Nobody arranged this street for viewing, and she has her own errand to finish.",
+ "about": "After fire gutted Au Printemps in March 1881, Béraud painted its scaffolded reconstruction around 1882, catching Parisians unposed in the street outside. One woman walks against the crowd's sideways drift, unescorted and self-possessed.",
+ "deep": "One figure comes straight at you; most of the street slides sideways or fades into depth, and that reversal carries the argument. No escort, carrying her own packages, crossing a shopping thoroughfare with complete assurance — a quietly radical presence, the kind of independent Parisienne her decade watched with equal parts admiration and disquiet. To our right a hoarding of posters burns with the strongest colour in a canvas of buff stone and pearl-grey sky, naming a great store being raised again after fire. Timber scaffolding and tarps cap the wall. The farthest top hats thin to dabs; the basket-laden porter stands at the margin. Nobody arranged this street for viewing, and she has her own errand to finish.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
 "august-macke-people-by-the-blue-lake": {
- "about": "Painted on Macke’s 1913 lakeside stay at Hilterfingen, one of two near-twin versions he set down — bourgeois leisure turned into warring planes of color. The war took him at 27 a year on.",
- "deep": "Ordinary afternoon, extraordinary surface. Three people in a garden are pretexts for color at odds with itself: hot orange underfoot against cool blue water, flame leaves against the green above, near-black jacket against pale dress, every border left buzzing rather than eased. Not portraits but types, faces wiped smooth, each shut into a private quiet, all of them looking off past the left edge at something you are never shown. The child dissolves into the hot ground below it. The man stays upright and apart. Between them a couple of blue planes name the lake without opening distance behind it. Everything travels across, never in. The pull is sensation, not occasion: leisure kept at full intensity, a warmth that has started to turn.",
+ "about": "Probably painted on Macke’s 1913 lakeside stay at Hilterfingen, and close kin to a near-twin version in Karlsruhe — bourgeois leisure turned into warring planes of color. The war took him at 27 a year on.",
+ "deep": "Ordinary afternoon, extraordinary surface. Three people in a garden are pretexts for color at odds with itself: hot orange underfoot against cool blue water, flame leaves against the green above, near-black jacket against pale dress, every border left buzzing rather than eased. Not portraits but types, faces wiped smooth, each shut into a private quiet, their glances never meeting: the woman bowed towards the child, the man facing straight out. The child's pale dress melts into the woman's skirt beneath a hot orange hat. The man stays upright and apart. At the right edge, pale blue and turquoise name the lake without opening distance behind it. Everything travels across, never in. The pull is sensation, not occasion: leisure kept at full intensity, a warmth that has started to turn.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
@@ -6312,8 +6410,8 @@ by: "Opus 4.8" },
  "deepBy": "Sonnet 4.6"
 },
 "arnold-bocklin-the-sanctuary-of-hercules": {
- "about": "Böcklin's 1884 oil-on-wood panel out of an imagined antiquity — a sun-warmed shrine wall holding the light while dense ilex seals the rite from ordinary time, a blackened bronze Hercules presiding over the small offering below.",
- "deep": "Worship happens between lit masonry and the shade closing on it: a curving ochre bank of stone takes nearly all the warmth, an ilex canopy blocks the rest, and where the two meet a pair of men, tiny, carry out their offering. Overhead the deity is metal darkened by weather, less likeness than cut-out, addressed rather than beheld. That lifelessness matters — godhood registers as mass and outline, while reverence travels up from the man crouched low, across the red scattered over the paving, to the black form fixed on the parapet above. Nothing of the everyday world gets in; the wild presses closer each season, and only these small acts keep the sanctuary alight.",
+ "about": "Böcklin's 1884 oil-on-wood panel out of an imagined antiquity — a sun-warmed shrine wall holding the light while dense ilex seals the rite from ordinary time, a blackened bronze Hercules presiding over the armed men bowed at its gate.",
+ "deep": "Worship happens between lit masonry and the shade closing on it: a curving ochre bank of stone takes nearly all the warmth, an ilex canopy blocks the rest, and where the two meet four soldiers halt, three kneeling with heads bowed, one watching the sea. Overhead the deity is metal darkened by weather, less likeness than cut-out, addressed rather than beheld. That lifelessness matters — godhood registers as mass and outline, while reverence travels up from the men bowed low at the post, past the fallen leaves on the step, to the black form fixed above the parapet. Only the storm over the sea reaches in; the wild presses closer each season, and only these small acts keep the sanctuary alight.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
@@ -6330,8 +6428,8 @@ by: "Opus 4.8" },
  "deepBy": "Sonnet 4.6"
 },
 "jan-both-an-italianate-evening-landscape": {
- "about": "In Rome from 1638, working alongside Claude on the Buen Retiro commission, then home to Utrecht as its leading Italianate landscapist — dead by 1652, this c. 1650 canvas distils the Campagna into borrowed golden light.",
- "deep": "Golden light arrives from outside the frame — its source hidden, its argument everywhere: every lit tree-rim, every honeyed cloud-edge pointing back toward a sun you must imagine rather than see. That displacement turns the whole canvas into longing, a scene organised around an absence. The road threads it together, curving from the resting pair in warm foreground shadow up toward a group with a laden animal, and on into a valley so veiled in blue haze it reads as pure idea of elsewhere. Atmosphere does the measuring: the closer the detail, the crisper the brown; the farther it goes, the more colour drains to silence. The pleasure here is distance itself.",
+ "about": "In Rome by 1638, working alongside Claude on the Buen Retiro commission, then home to Utrecht as a leading Italianate landscapist — dead by 1652, this c. 1650 canvas distils the Campagna into borrowed golden light.",
+ "deep": "Golden light arrives from a sun sinking behind the horizon — its source hidden, its argument everywhere: every lit tree-rim, every honeyed cloud-edge pointing back toward a sun you must imagine rather than see. That displacement turns the whole canvas into longing, a scene organised around an absence. The road threads it together, curving from the resting pair in warm foreground shadow up toward a rider on a mule, and on into a valley so veiled in golden haze it reads as pure idea of elsewhere. Atmosphere does the measuring: the closer the detail, the crisper the brown; the farther it goes, the more colour drains to silence. The pleasure here is distance itself.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
@@ -6342,8 +6440,8 @@ by: "Opus 4.8" },
  "deepBy": "Sonnet 4.6"
 },
 "robert-delaunay-political-drama": {
- "about": "March 1914, and Henriette Caillaux walks into Le Figaro to shoot its editor dead — Delaunay forces the press illustration into Orphic discs, oil with collage over cardboard, the pasted heads refusing the light that spins around them.",
- "deep": "Hue takes the middle before you register anyone in it: band after concentric band closes on a small sighted bullseye — red, orange, a fleck of white, a heart of blue — hotter than everything else, and the look keeps returning there whatever the two dark shapes at the edges do. A black figure fires at the left, arm thrown wide; a rust-coloured one buckles and drops at the right. Their faces are pasted-in printed roundels that cannot join the depth the wheel offers. That is structural: cut-outs stuck on the surface cannot enter the light behind them, and nothing settles. A press shooting gets driven into an art of pure radiance, and neither side gives way.",
+ "about": "March 1914, and Henriette Caillaux walks into Le Figaro to shoot its editor dead — Delaunay forces the press illustration into Orphic discs, oil with collage over cardboard, the pasted paper refusing the light that spins around them.",
+ "deep": "Hue takes the middle before you register anyone in it: band after concentric band closes on a small sighted bullseye, black, blue, red and white around a pale heart of grey and ochre, sharper than everything else, and the look keeps returning there whatever the two dark shapes at the edges do. A black figure recoils at the left, arm thrown wide; a rust-coloured one in a feathered hat leans in at the right. Pasted paper, the rust jacket among it, cannot join the depth the wheel offers. That is structural: cut-outs stuck on the surface cannot enter the light behind them, and nothing settles. A press shooting gets driven into an art of pure radiance, and neither side gives way.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
@@ -6354,26 +6452,26 @@ by: "Opus 4.8" },
  "deepBy": "Sonnet 4.6"
 },
 "anne-vallayer-coster-still-life-with-flowers-in-an-alabaster": {
- "about": "The finest French still-life since Chardin, and Marie-Antoinette's own painter — one of four women in the Académie — Vallayer-Coster held this 1783 Salon piece to her 1818 death, after which it vanished until a 2022 rediscovery.",
+ "about": "Painter to Marie-Antoinette and one of the four women the Académie allowed at any one time, Vallayer-Coster showed this canvas at the 1783 Salon and kept it until her death in 1818; sold to a relative after her husband died, it then dropped from public view until 2022.",
  "deep": "Flowers from different seasons share one vase, a pineapple sits beside grapes and peaches, and nothing here was gathered in a single morning — the picture is a fiction of plenty, and it knows it. The vanitas whisper barely registers: one rose is overblown, its petals loosening, but the eye moves on to the scarlet poppy and answering blue iris ricocheting at the top of the mass. Below, the pineapple's spiky crown breaks the picture plane and leans toward you — the most aggressive move, staking a claim on real space the way the arrangement stakes a claim on every season at once. Abundance this controlled is a performance of what wealth can command.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
 "johan-christian-dahl-view-from-vaekero-near-christiania": {
- "about": "Painted from memory in his Dresden studio in January 1827 — months after a summer home in Norway — Dahl working up this moonlit inlet in the nocturnal key he shared with housemate Caspar David Friedrich.",
- "deep": "Parallelism is the picture's argument: two figures stand at the near shore watching the moon come up, and the composition arranges your gaze so it runs exactly beside theirs. Nothing in the scene asks you to act — the ship sleeps at anchor, the nets hang idle, the shed leans in silence — and yet the accumulated stillness presses forward. Cold governs everything except one red skirt, the single warm signal in a blue-grey field, which marks where to land before the eye travels the silver reflection out to the horizon. Dahl paints the Norwegian coast as a place you reach and then stop at, held by water that goes further than you can follow.",
+ "about": "Painted from memory in his Dresden studio in January 1827 — months after a summer visit to Norway — Dahl working up this moonlit inlet in the nocturnal key he shared with housemate Caspar David Friedrich.",
+ "deep": "Parallelism is the picture's argument: two figures stand at the near shore looking out over the moonlit water, and the composition arranges your gaze so it runs exactly beside theirs. Nothing in the scene asks you to act — the ship sleeps at anchor, the nets hang idle, the shed stands in silence — and yet the accumulated stillness presses forward. Cool greys govern sky and water; against them one rust-red dress, the strongest warm note on a brown shore, marks where to land before the eye travels the silver reflection out to the horizon. Dahl paints the Norwegian coast as a place you reach and then stop at, held by water that goes further than you can follow.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
 "gustav-klimt-baby-cradle": {
- "about": "Klimt's final working year, 1917 and 1918, left unfinished at his death that February — an infant asleep at the apex of a heaped pyramid of clashing patterned cloth, dwarfed by more life than one child could hold.",
- "deep": "The pile outweighs the child by every measure — that is the whole argument. A sleeping face, no bigger than any fabric patch beneath it, sits at the pyramid's tip while an accumulated mass of cloth descends in every direction, clashing in colour and pattern, too heavy and various to belong to any single life. The mound does not describe a bed; it describes an inheritance, stacked and waiting before the child has done anything to earn it. Disproportion is the subject: a life begins small and unremarkable at the summit of everything it must eventually move through. The fabrics stay restless, the outer shape holds firm, and the baby sleeps on, unaware.",
+ "about": "Klimt's final working year, 1917 and 1918, shown in Stockholm a few months before his death — an infant, eyes open, at the apex of a heaped pyramid of clashing patterned cloth, dwarfed by more life than one child could hold.",
+ "deep": "The pile outweighs the child by every measure — that is the whole argument. A small open-eyed face, no bigger than any fabric patch beneath it, sits at the pyramid's tip while an accumulated mass of cloth descends in every direction, clashing in colour and pattern, too heavy and various to belong to any single life. The mound does not describe a bed; it describes an inheritance, stacked and waiting before the child has done anything to earn it. Disproportion is the subject: a life begins small and unremarkable at the summit of everything it must eventually move through. The fabrics stay restless, the outer shape holds firm, and the baby looks out, unaware.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
 "giovanni-boldini-whistler-asleep": {
- "about": "Boldini needling a copperplate in his Paris studio around 1897 — his friend Whistler caught in the habitual after-breakfast doze, the famous etcher etched off-guard — plates the artist never published, so lifetime proofs stay rare.",
- "deep": "Control abandoned is the only subject here — a man who composed his own public image as carefully as his paintings, caught with his head thrown back and his mouth slack, asleep in someone else's studio. The vain become helpless; the self-curated face empties out. Boldini could only have made this drawing from inside the friendship: you are shown it because he was in the room. The needle-and-plate medium doubles the intimacy — the great etcher, etched, without permission or preparation. Nothing is posed. Affection is the whole instrument, and what it records is the strange relief of watching a performer finally, briefly, stop.",
+ "about": "Boldini working drypoint in his Paris studio around 1897 — his friend Whistler caught in the habitual after-breakfast doze, the famous etcher etched off-guard — a plate Boldini sold to a dealer in 1900 and then took back, having heard Whistler would not want it on sale.",
+ "deep": "Control abandoned is the only subject here — a man who composed his own public image as carefully as his paintings, caught with his head sunk forward and his chin in his collar, asleep in someone else's studio. The vain become helpless; the self-curated face empties out. Boldini could only have made this drawing from inside the friendship: you are shown it because he was in the room. The needle-and-plate medium doubles the intimacy — the great etcher, etched, without permission or preparation. Nothing is posed. Affection is the whole instrument, and what it records is the strange relief of watching a performer finally, briefly, stop.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
