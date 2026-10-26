@@ -395,7 +395,7 @@ window.CANVAS_ART_ABOUT = {
  },
  "paul-signac-antibes-ranek": {
   "about": "Signac had planned his canvases on full-size cartoons since 1894, before laying any colour, wary that an angle fine in a small sketch could look wrong enlarged. This harbour morning was very probably composed the same way.",
-  "deep": "From 1894 Signac composed on cartoons the format of the canvas: \"an angle that looks fine in small dimensions may look awful enlarged,\" his journal says. An ink drawing of 1914 almost exactly this size survives, so the angles he feared for could be judged at the scale you stand before. They are in the rigging: the five masts stand upright over the hulls, gaffs slant from them along the heads of the sails, the orange bowsprit juts left from the white bow, and behind them the far shore runs level.",
+  "deep": "From 1894 Signac composed on cartoons the format of the canvas: \"an angle that looks fine in small dimensions may look awful enlarged,\" his journal says. An ink drawing of 1914 almost exactly this size survives, so the angles he feared for could be judged at the scale of the canvas itself. They are in the rigging: the five masts stand upright over the hulls, gaffs slant from them along the heads of the sails, the orange bowsprit juts left from the white bow, and behind them the far shore runs level.",
   "by": "Opus 5.5"
  },
  "anna-bilinska-bohdanowicz-portret-m-odej-kobiety-z-roza-w-re": {
@@ -640,9 +640,13 @@ window.CANVAS_ART_ABOUT = {
 },
 
 "francis-danby-disappointed-love": {
+
  "about": "Danby's girl among torn paper, his 1821 Academy debut. Lord Palmerston later told the collector John Sheepshanks it was a pity she was so ugly; \"one feels,\" Sheepshanks replied, \"that the sooner she drowns herself the better.\"",
- "deep": "Nothing here yields a name. The letter is paint, not words; the open case beside her holds no face; her face stays turned into her arms, refused at every magnification the panel allows. That triple blankness is not a gap but an address: a letter no one can read asks to be read, and the only reader left is whoever stands in front of the panel — authorship passes to you. A Bristol painter sent one canvas to the Academy that year, and a picture the viewer must complete is a picture more likely to be remembered than passed over. No sitter, no real disappointment, has ever been named behind it.",
+
+ "deep": "Nothing here yields a name. The letter is paint, not words; the open case beside her holds no face; her face stays turned into her arms, refused at every magnification the panel allows. That triple blankness is not a gap but an address: a letter no one can read asks to be read, and the only reader left is whoever looks at the panel — authorship passes to you. A Bristol painter sent one canvas to the Academy that year, and a picture the viewer must complete is a picture more likely to be remembered than passed over. No sitter, no real disappointment, has ever been named behind it.",
+
  "by": "Opus 5"
+
 },
 
 "wincenty-kasprzycki-widok-morysinka-w-wilanowie": {
@@ -829,7 +833,7 @@ window.CANVAS_ART_ABOUT = {
 
  "about": "Denise Maréchal, the painter's niece, at about eleven, painted around 1894; he had already done her at six, on a canvas nearly three times as tall. Few Neo-Impressionists took the dot into portraiture; his sitters were often family and friends.",
 
- "deep": "Nothing in this panel is drawn, and the profile is still the hardest edge in the room: two populations of dot butted against each other until they stop. The same move runs everywhere, because the touch changes with the material rather than with the shape: small hatched strokes for flesh, long commas laid along the fall of the hair, blunt dashes laid in slanting courses for the linen at her throat. Under all of it a warm orange ground survives in the gaps, so a background and coat almost entirely blue, violet and green turn warmer as you walk away. Neo-Impressionism was built for beaches, where nobody has to be anybody in particular; pointed at one child, it keeps her particular.",
+ "deep": "Nothing in this panel is drawn, and the profile is still the hardest edge in the room: two populations of dot butted against each other until they stop. The same move runs everywhere, because the touch changes with the material rather than with the shape: small hatched strokes for flesh, long commas laid along the fall of the hair, blunt dashes laid in slanting courses for the linen at her throat. Under all of it a warm orange ground survives in the gaps, so a background and coat almost entirely blue, violet and green turn warmer seen whole. Neo-Impressionism was built for beaches, where nobody has to be anybody in particular; pointed at one child, it keeps her particular.",
 
  "by": "Opus 4.8"
 
@@ -849,7 +853,7 @@ window.CANVAS_ART_ABOUT = {
 
  "about": "Le peintre des humbles, he came to be called — and in 1906 Jules Adler gave a queue for free soup a canvas two and a half metres across, a scale long reserved for battles and coronations. No soup appears in it — no counter, no server, nothing but the line and the waiting.",
 
- "deep": "Need makes a mass, and the painter refuses the simplification. The queue runs wall to wall with no beginning or end shown, and from the right distance it reads as one brown ridge — exactly the distance the empty foreground holds you at. Come closer and the ridge comes apart: a bearded man painted almost as a portrait against lit plaster, a woman's pale, lightly modelled profile holding just enough line to resemble a fresco saint, a child with one hand pressed to its mouth and, below it, a small vessel. That vessel is the clearest thing here that says what the line is for, and it is put small, low and easy to walk past.",
+ "deep": "Need makes a mass, and the painter refuses the simplification. The queue runs wall to wall with no beginning or end shown, and from the right distance it reads as one brown ridge — exactly the distance the empty foreground holds you at. Look closer and the ridge comes apart: a bearded man painted almost as a portrait against lit plaster, a woman's pale, lightly modelled profile holding just enough line to resemble a fresco saint, a child with one hand pressed to its mouth and, below it, a small vessel. That vessel is the clearest thing here that says what the line is for, and it is put small, low and easy to miss.",
 
  "deepBy": "Sonnet 4.6",
 
@@ -1143,7 +1147,7 @@ by: "Opus 4.8" },
 
  "by": "Opus 4.8",
 
- "deep": "No element here is casual; each is placed to measure the next, and distance is what gets engineered. A headland arcs down from upper left as the sole diagonal in a canvas otherwise built from layered horizontals: banded sky, pale sea, the answering shelf of land at lower right. That shelf, blazing with sunlit ochre, the strongest yellow in the land, catches the eye where the composition needs a turn. One small dark form far out on the water, barely fingernail-sized, fixes the scale of the cliff and opens a recession across otherwise featureless water. The hillside dissolves close up into unmixed strokes of orange, violet and blue — colour held apart on the surface, averaged only in the eye.",
+ "deep": "No element here is casual; each is placed to measure the next, and distance is what gets engineered. A headland arcs down from upper left as the sole diagonal in a canvas otherwise built from layered horizontals: banded sky, pale sea, the answering shelf of land at lower right. That shelf, blazing with sunlit ochre, the strongest yellow in the land, catches the eye where the composition needs a turn. One small dark form far out on the water, barely fingernail-sized, fixes the scale of the cliff and opens a recession across otherwise featureless water. The hillside dissolves in detail into unmixed strokes of orange, violet and blue — colour held apart on the surface, averaged only in the eye.",
 
  "deepBy": "Sonnet 4.6"
 
@@ -1249,7 +1253,7 @@ deep: "There is no horizon anywhere — you never see the sky, only the sky refl
 
  "about": "Rodin's seated giant, mid-thought — conceived in 1880 as 'The Poet' (Dante himself) for the top of the Gates of Hell, gazing down at his own damned, then enlarged into one of the most celebrated sculptures ever made.",
 
- "deep": "He thinks with his whole body, not his head. Every muscle is clenched — toes gripping the rock, back rounded like a coiled spring — because for Rodin thought was labour, not repose. Look closely at the pose: the right elbow rests on the LEFT knee, a torsion that no one sits in comfortably; it winds the body a quarter-turn tighter than rest. The figure was meant to be seen from below, brooding over the Gates — in the museum garden you can still walk around him and watch the silhouette change from effort to exhaustion depending on where you stand."
+ "deep": "He thinks with his whole body, not his head. Every muscle is clenched — toes gripping the rock, back rounded like a coiled spring — because for Rodin thought was labour, not repose. Look closely at the pose: the right elbow rests on the LEFT knee, a torsion that no one sits in comfortably; it winds the body a quarter-turn tighter than rest. The figure was meant to be seen from below, brooding over the Gates — in the museum garden the silhouette still changes from effort to exhaustion depending on the angle it is seen from."
 
 },
 
@@ -1270,7 +1274,7 @@ by: "Opus 5.5" },
 
  "about": "Hokusai's woodblock print, c. 1830: a colossal wave with claw-like foam about to crash on three fast boats carrying fish to Edo, with Mount Fuji — the print's true subject — tiny and calm in the trough.",
 
- "deep": "Read it right to left, as Edo did: the wave attacks against the grain of your reading, which is why it feels aggressive rather than merely big. The foam tears into claws over the rowers, who bow flat into it. And the joke: it is one of the Thirty-six Views of Mount Fuji, and the mountain is one of the smallest things on the sheet, echoed by a wave whose silhouette is a false Fuji where the real one should be. Part of the blue was new to Japanese prints — Prussian blue, a synthetic European pigment, imported chemistry inside the most famous image of 'old Japan'. And it is a print: thousands were pulled; you have stood in front of three."
+ "deep": "Read it right to left, as Edo did: the wave attacks against the grain of your reading, which is why it feels aggressive rather than merely big. The foam tears into claws over the rowers, who bow flat into it. And the joke: it is one of the Thirty-six Views of Mount Fuji, and the mountain is one of the smallest things on the sheet, echoed by a wave whose silhouette is a false Fuji where the real one should be. Part of the blue was new to Japanese prints — Prussian blue, a synthetic European pigment, imported chemistry inside the most famous image of 'old Japan'. And it is a print: thousands were pulled."
 
 },
 
@@ -1291,7 +1295,7 @@ refs: {"deep":[{"id":"impression-sunrise","text":"Impression, Sunrise"}]} },
 
  "about": "Late Monet at the Marmottan: the pond at Giverny with a weeping willow doubled in the water — painted in the cataract years, when his eyes were failing and the colour loosened toward abstraction.",
 
- "deep": "The willow was Monet's grief motif — he painted them through WWI, mourning trees for a mourning country, while his own sight clouded. Up close the canvas barely depicts: raw, dragged strokes, colours from memory as much as sight. Where the cataracts pushed much of his late work toward hot reds and muddy yellows, this canvas holds to blue and lilac, its reds kept to a few blooms and flecks. It becomes a willow only when you step away. What you loved at the Marmottan is the hinge in art history: the last Impressionist canvases and the first abstract ones are, for a few years, the same objects."
+ "deep": "The willow was Monet's grief motif — he painted them through WWI, mourning trees for a mourning country, while his own sight clouded. In detail the canvas barely depicts: raw, dragged strokes, colours from memory as much as sight. Where the cataracts pushed much of his late work toward hot reds and muddy yellows, this canvas holds to blue and lilac, its reds kept to a few blooms and flecks. It becomes a willow only when seen whole. What you loved at the Marmottan is the hinge in art history: the last Impressionist canvases and the first abstract ones are, for a few years, the same objects."
 
 },
 
@@ -1315,7 +1319,7 @@ refs: {"deep":[{"id":"impression-sunrise","text":"Impression, Sunrise"}]} },
 
  "about": "Elizabeth, the new wife Leech posed under a green parasol about 1913, painted too — small open-air studies of trees — and she decorated some of the frames he made himself for his own canvases.",
 
- "deep": "The sitter's money kept Leech while he painted her, and the household of May Botterell, who took her place as his model, kept the picture for three decades. Until 1919 Elizabeth had been wife, model and \"banker\"; afterwards he shielded the Botterells by showing nothing in public from 1927 to 1945, and the canvas was still in that household when Elizabeth died in 1951. None of that reached the surface. Up close the brow is still green where the silk lit it, and the years show instead in the heavy dark greens of the coat at the lower right, crazed into a fine net of cracks.",
+ "deep": "The sitter's money kept Leech while he painted her, and the household of May Botterell, who took her place as his model, kept the picture for three decades. Until 1919 Elizabeth had been wife, model and \"banker\"; afterwards he shielded the Botterells by showing nothing in public from 1927 to 1945, and the canvas was still in that household when Elizabeth died in 1951. None of that reached the surface. In detail the brow is still green where the silk lit it, and the years show instead in the heavy dark greens of the coat at the lower right, crazed into a fine net of cracks.",
 
  "by": "Opus 5.5",
 
@@ -1343,7 +1347,7 @@ refs: {"deep":[{"id":"impression-sunrise","text":"Impression, Sunrise"}]} },
 
  "about": "August Strindberg the playwright, painting in 1894: a wall of green-black paint troweled on with a palette knife, parting around an opening of pale light. He painted in bursts, often in the years when writing failed him.",
 
- "deep": "No drawn contour shows anywhere in it, and the motif he set out with did not survive: he worked wet into wet, fast, and wrote that summer that he left half of each picture to chance — smear the paint, then find the picture in the smears. The dark mass began as a forest and, by his own account, turned into a cave as he painted. The opening works because its edges are torn rather than outlined; zoom in and what glows from a distance is bare ridged knife-work. Look low on the dark slope: a dozen knife-touches of pink and white — flowers, in the shadowed part where you stand. Nothing like it had a name until art informel, more than half a century on.",
+ "deep": "No drawn contour shows anywhere in it, and the motif he set out with did not survive: he worked wet into wet, fast, and wrote that summer that he left half of each picture to chance — smear the paint, then find the picture in the smears. The dark mass began as a forest and, by his own account, turned into a cave as he painted. The opening works because its edges are torn rather than outlined; zoom in and what glows at a glance is bare ridged knife-work. Look low on the dark slope: a dozen knife-touches of pink and white — flowers, in the shadowed part where you stand. Nothing like it had a name until art informel, more than half a century on.",
 
  "by": "Opus · Fable",
 
@@ -1379,7 +1383,7 @@ refs: {"deep":[{"id":"impression-sunrise","text":"Impression, Sunrise"}]} },
 
  "about": "A late seascape by August Strindberg from 1903, his final period of painting. The town of the title is a low pale strip on the horizon, one building rising above the rest, lit gold; nearly everything else is storm, worked in heavy palette-knife impasto. Turbulent, close to abstract: landscape as a weather report from inside a mind.",
 
- "deep": "Strindberg seldom painted in front of the motif — he built pictures like this from memory and fantasy, letting the dragged knife find cloud and spray on its own. The composition is deliberate imbalance: the horizon shoved low, the sky given most of the canvas, so the storm doesn't sit over the town, it looms. Then look where the light lands — a pale fall of light breaks through just left of the little silhouette of the town while the darkest cloud hangs straight above it, a city that may be his own Stockholm granted a sliver of canvas and a single mercy of brightness. Step back and the crusted ridges resolve into moving air and water; step in and they collapse into raw pigment again. That flicker between picture and matter is what later abstraction would build a whole aesthetic on.",
+ "deep": "Strindberg seldom painted in front of the motif — he built pictures like this from memory and fantasy, letting the dragged knife find cloud and spray on its own. The composition is deliberate imbalance: the horizon shoved low, the sky given most of the canvas, so the storm doesn't sit over the town, it looms. Then look where the light lands — a pale fall of light breaks through just left of the little silhouette of the town while the darkest cloud hangs straight above it, a city that may be his own Stockholm granted a sliver of canvas and a single mercy of brightness. Seen whole, the crusted ridges resolve into moving air and water; in detail they collapse into raw pigment again. That flicker between picture and matter is what later abstraction would build a whole aesthetic on.",
 
  "by": "Opus · Fable",
 
@@ -1480,7 +1484,7 @@ by: "Opus 4.8" },
 
  "about": "Gustav Klimt's 1899 portrait of Serena Pulitzer Lederer — a near life-size figure in white on a canvas more than twice as tall as it is wide, only her dark head fully resolved, everything below the shoulders softening until the hem has no edge.",
 
- "deep": "The real subject is a proportion. The canvas runs better than two to one, so Klimt builds a top-to-bottom fall and rations everything to serve it. Contrast is spent entirely on the head: the only saturated colour, nearly all the hard edges, a black core with curls that never harden against the ground. Below, the gown is dragged in long dry strokes curving down toward the hem, blue-grey and violet left unblended, so it reads as grain rather than drapery, no creases to stop the eye. He never brightens the dress; he dims the warmer air around it. The hands go unfinished, the hem dissolves, she casts no shadow — a body turning into atmosphere. Standing before it, you watch it slowly brighten as the eye adjusts.",
+ "deep": "The real subject is a proportion. The canvas runs better than two to one, so Klimt builds a top-to-bottom fall and rations everything to serve it. Contrast is spent entirely on the head: the only saturated colour, nearly all the hard edges, a black core with curls that never harden against the ground. Below, the gown is dragged in long dry strokes curving down toward the hem, blue-grey and violet left unblended, so it reads as grain rather than drapery, no creases to stop the eye. He never brightens the dress; he dims the warmer air around it. The hands go unfinished, the hem dissolves, she casts no shadow — a body turning into atmosphere. Looking at it, you watch it slowly brighten as the eye adjusts.",
 
  "by": "Opus 4.8"
 
@@ -1502,9 +1506,14 @@ by: "Opus 4.8" },
 },
 
 "la-grenouillere-renoir": {
-about: "La Grenouillère, a floating café and bathing raft on the Seine, painted by Renoir in 1869 — a Sunday crowd on a gravel pontoon, dark suits and pale dresses under arching trees, the whole lower half worked into broken water.",
-deep: "The subject is a temperature, not an event. Renoir keeps every face summary — a top hat is one dark dab, a dress a few loaded sweeps — and builds figures exactly as he builds water: short separate touches of unblended color set side by side, shade cooling to blue-green, sunlit river warming to flecks. Two women in white at center are pure tone, not portrait: the brightest note the crowd orbits, sorting the scene by brightness rather than story. Step back and the marks fuse into figures and ripples; move close and they scatter into raw paint. Painted beside Monet that summer, it is where Impressionism found reflected light could be built from separate strokes.",
-by: "Opus 4.8" },
+
+ "about": "La Grenouillère, a floating café and bathing raft on the Seine, painted by Renoir in 1869 — a Sunday crowd on a gravel pontoon, dark suits and pale dresses under arching trees, the whole lower half worked into broken water.",
+
+ "deep": "The subject is a temperature, not an event. Renoir keeps every face summary — a top hat is one dark dab, a dress a few loaded sweeps — and builds figures exactly as he builds water: short separate touches of unblended color set side by side, shade cooling to blue-green, sunlit river warming to flecks. Two women in white at center are pure tone, not portrait: the brightest note the crowd orbits, sorting the scene by brightness rather than story. Seen whole, the marks fuse into figures and ripples; in detail they scatter into raw paint. Painted beside Monet that summer, it is where Impressionism found reflected light could be built from separate strokes.",
+
+ "by": "Opus 4.8"
+
+},
 
 "michael-wutky-versuv-ausbruch": {
 
@@ -2032,7 +2041,7 @@ by: "Opus 4.8" },
 
  "about": "Seurat's The Channel at Gravelines, Evening, 1890 — a hushed harbour in dotted light, one of his last four landscapes before his death at 31, ringed by a hand-painted dotted border.",
 
- "deep": "Seurat's subject is the hush after work — a port all but emptied, the light drained to a low, level glow — and the composition holds that mood structurally. A slender lamppost anchors the left; a heavy iron anchor pins the lower right; between them the channel opens as a near-featureless void, the eye crossing open water to the far bank. A fixed vertical, a canted diagonal, a ruled horizontal, emptiness given room. Beneath the placid surface the method is anything but still: what reads across the room as a pale expanse is a weave of rose, mint, lilac and cream dots — warm against cool — mixed only in the eye. Even the border is hand-stippled in deeper blues and reds, the whole edge under the same law, so the painting has no neutral ground, only organised sensation held just short of stillness.",
+ "deep": "Seurat's subject is the hush after work — a port all but emptied, the light drained to a low, level glow — and the composition holds that mood structurally. A slender lamppost anchors the left; a heavy iron anchor pins the lower right; between them the channel opens as a near-featureless void, the eye crossing open water to the far bank. A fixed vertical, a canted diagonal, a ruled horizontal, emptiness given room. Beneath the placid surface the method is anything but still: what reads at first glance as a pale expanse is a weave of rose, mint, lilac and cream dots — warm against cool — mixed only in the eye. Even the border is hand-stippled in deeper blues and reds, the whole edge under the same law, so the painting has no neutral ground, only organised sensation held just short of stillness.",
 
  "by": "Opus 4.8"
 
@@ -2058,7 +2067,7 @@ by: "Opus 4.8" },
 
  "about": "Corinth's Der rote Christus, 1922 — a blood-drenched crucifixion in swirling reds. Painted after the stroke that partially paralysed him, its loose, gestural violence marks his turn from naturalism toward Expressionism.",
 
- "deep": "Stand close and the torso barely holds as a body. Corinth troweled pale flesh on in heavy ridged slabs, then trailed scarlet over the wet white so blood physically stands proud of the skin — paint for meat. The cross has dissolved; you infer it from the arms flung up toward the top corners. Above the head, red streaks fan out: a halo stripped of gold and geometry, become weather. Features sunk in beard and shadow; agony reads chiefly through posture. Germany in 1922 was a wreck of lost war and inflation, and a tortured body offered without doctrine carried its own weight. No serene altar Christ, no tidy sorrow — raw physical fact, closer to a scream than a prayer.",
+ "deep": "In detail the torso barely holds as a body. Corinth troweled pale flesh on in heavy ridged slabs, then trailed scarlet over the wet white so blood physically stands proud of the skin — paint for meat. The cross has dissolved; you infer it from the arms flung up toward the top corners. Above the head, red streaks fan out: a halo stripped of gold and geometry, become weather. Features sunk in beard and shadow; agony reads chiefly through posture. Germany in 1922 was a wreck of lost war and inflation, and a tortured body offered without doctrine carried its own weight. No serene altar Christ, no tidy sorrow — raw physical fact, closer to a scream than a prayer.",
 
  "deepBy": "Sonnet 4.6",
 
@@ -2157,9 +2166,14 @@ by: "Opus 4.8" },
 },
 
 "camille-pissarro-prairie-a-eragny": {
-about: "Pissarro's Prairie à Éragny, 1886 — a hazy rural meadow built from dotted, contrasting hues; this Neo-Impressionist landscape became the Art Gallery of South Australia's most significant acquisition, bought for $4.5 million in 2014.",
-deep: "A plain meadow, patiently looked at, holds as much as any grander motif — that is the proposition. Pissarro paints what he can see from his own window: an apple tree left of centre, a band of violet-blue furrows angling from the lower left, roofs half-buried in foliage, hills gone pale along a hazy horizon. No figures, no story. The lone tree is the picture's only strong vertical, tying ground to sky, and everything else — grass, cloud, turned earth — is built from the same short, separated dabs so the surface reads as one woven skin. Depth comes from tone and scale, not outlines. The furrowed foreground carries the sharpest contrasts, violet and cobalt against russet, the colours nearest you the most vivid; step back and the whole field settles quietly into its hazy autumn light.",
-by: "Opus 4.8" },
+
+ "about": "Pissarro's Prairie à Éragny, 1886 — a hazy rural meadow built from dotted, contrasting hues; this Neo-Impressionist landscape became the Art Gallery of South Australia's most significant acquisition, bought for $4.5 million in 2014.",
+
+ "deep": "A plain meadow, patiently looked at, holds as much as any grander motif — that is the proposition. Pissarro paints what he can see from his own window: an apple tree left of centre, a band of violet-blue furrows angling from the lower left, roofs half-buried in foliage, hills gone pale along a hazy horizon. No figures, no story. The lone tree is the picture's only strong vertical, tying ground to sky, and everything else — grass, cloud, turned earth — is built from the same short, separated dabs so the surface reads as one woven skin. Depth comes from tone and scale, not outlines. The furrowed foreground carries the sharpest contrasts, violet and cobalt against russet, the colours nearest you the most vivid; seen at once, the whole field settles quietly into its hazy autumn light.",
+
+ "by": "Opus 4.8"
+
+},
 
 "peter-paul-rubens-der-hollensturz-der-verdammten": {
 about: "Rubens's Fall of the Damned, c.1621 — a cascade of nude bodies hurled into hell. In 1959 a would-be philosopher threw acid over it, saying the acid 'relieves one from the work of destruction'; years of restoration followed.",
@@ -2293,7 +2307,7 @@ by: "Opus 4.8" },
 
  "about": "Monet's Rouen Cathedral, Portal and Tower Saint-Romain in the Sun, 1893 — one facade under shifting light. Monet painted more than thirty views of the same cathedral to track light across the hours; twenty were shown together in 1895.",
 
- "deep": "Monet cuts in so close the cathedral has no surroundings, only a sliver of ground, little sky — just stone pressed to the frame's edge so it cannot be seen as a building, only experienced as a surface. That surface works at two distances: from across the room it resolves into Gothic arches and towers; step closer and the carving dissolves into heaped pigment, held only by a few long drawn lines. The great arch over the portal is the tonal engine, a recess of layered blue and brownish violet that registers as depth through colour more than contour. Around it shadow is never black — it is coloured, violet and warm gold, so what looks like shade is another kind of light. The stone is not what Monet is recording; it is one hour of full sun, held still before it could move on.",
+ "deep": "Monet cuts in so close the cathedral has no surroundings, only a sliver of ground, little sky — just stone pressed to the frame's edge so it cannot be seen as a building, only experienced as a surface. That surface works at two distances: at first glance it resolves into Gothic arches and towers; in detail the carving dissolves into heaped pigment, held only by a few long drawn lines. The great arch over the portal is the tonal engine, a recess of layered blue and brownish violet that registers as depth through colour more than contour. Around it shadow is never black — it is coloured, violet and warm gold, so what looks like shade is another kind of light. The stone is not what Monet is recording; it is one hour of full sun, held still before it could move on.",
 
  "by": "Opus 4.8"
 
@@ -2308,7 +2322,7 @@ by: "Opus 4.8" },
 
  "about": "Cézanne's Mont Sainte-Victoire vue des Lauves, 1902-06, at the Met — painted from the hilltop by his last Les Lauves studio, one of about eighty views of the peak he obsessively returned to.",
 
- "deep": "The mountain is both solid and a fiction. Step close and Sainte-Victoire breaks into separate, unblended tiles — cobalt, slate, violet, pale grey-green; step back and they lock into a peak. Cézanne builds the whole canvas on this flicker: small parallel strokes of unmixed colour set edge to edge, form stated by juxtaposition rather than modelled by shadow. Sky and mountain share many of the same blues, so in places the boundary between air and stone goes soft, though a dark blue line still holds the right-hand slope, and the far distance is pressed flat against the picture surface. Warm ochres in the plain advance; the cool peak sits back; the green band between tilts toward you rather than sinking into depth. Bare canvas shows through in places. The landscape is solid and the construction is visible at once, and the picture refuses to let either reading cancel the other.",
+ "deep": "The mountain is both solid and a fiction. In detail Sainte-Victoire breaks into separate, unblended tiles — cobalt, slate, violet, pale grey-green; seen whole, they lock into a peak. Cézanne builds the whole canvas on this flicker: small parallel strokes of unmixed colour set edge to edge, form stated by juxtaposition rather than modelled by shadow. Sky and mountain share many of the same blues, so in places the boundary between air and stone goes soft, though a dark blue line still holds the right-hand slope, and the far distance is pressed flat against the picture surface. Warm ochres in the plain advance; the cool peak sits back; the green band between tilts toward you rather than sinking into depth. Bare canvas shows through in places. The landscape is solid and the construction is visible at once, and the picture refuses to let either reading cancel the other.",
 
  "by": "Opus 4.8"
 
@@ -2371,7 +2385,7 @@ by: "Opus 4.8" },
  "about": "Fellow painter Gustave Caillebotte owned this canvas and willed it to France, which is how Monet's view of Sunday sailboats and their broken reflections on the Seine at Argenteuil, painted around 1872, reached the Musée d'Orsay.",
 
 
- "deep": "The regatta is a pretext. Monet gives you boats and a stretch of the Seine on a grey Sunday afternoon, then proposes that the river below the waterline deserves as much attention — as much paint — as the world above it. He makes the argument structurally: the waterline falls a little below the middle and the reflection is given well over a third of the canvas, painted with the same loaded, loose brush. The terracotta roofs descend as stacked horizontal dashes of warm colour with blue water between them; close up, this lower half stops being water and becomes pure mosaic. Step back and it resolves again. The dissolving trick the Impressionists would build their name on is already here around 1872, premised on one quiet claim: a reflection is not the inferior copy of the thing but its equal.",
+ "deep": "The regatta is a pretext. Monet gives you boats and a stretch of the Seine on a grey Sunday afternoon, then proposes that the river below the waterline deserves as much attention — as much paint — as the world above it. He makes the argument structurally: the waterline falls a little below the middle and the reflection is given well over a third of the canvas, painted with the same loaded, loose brush. The terracotta roofs descend as stacked horizontal dashes of warm colour with blue water between them; in detail, this lower half stops being water and becomes pure mosaic. Seen whole, it resolves again. The dissolving trick the Impressionists would build their name on is already here around 1872, premised on one quiet claim: a reflection is not the inferior copy of the thing but its equal.",
 
 
  "by": "Opus 4.8"
@@ -2472,7 +2486,7 @@ by: "Opus 4.8" },
 
  "about": "Corinth's eleven-year-old daughter Wilhelmine stands beside a heaped blaze of amaryllis, arums and lilacs in this 1920 canvas — shy, still, head bowed and eyes lowered, while the paint around her seethes.",
 
- "deep": "The bouquet is not admired; it is attacked. Violets, whites and greens are dragged wet into wet, individual blooms dissolving at close range into a storm of loaded strokes. Then look at the girl beside it: she takes almost nothing — a dark eye, the line of the nose, a few decisive passes — yet she is completely alive. Corinth makes the perishable flowers and the living face from the same slashing brush, the same restless matter. A child at the start of her life, eyes lowered beside the thing she is being quietly measured against. No skull on a table, no written moral — just a father’s own daughter placed where the flowers must eventually fail.",
+ "deep": "The bouquet is not admired; it is attacked. Violets, whites and greens are dragged wet into wet, individual blooms dissolving in detail into a storm of loaded strokes. Then look at the girl beside it: she takes almost nothing — a dark eye, the line of the nose, a few decisive passes — yet she is completely alive. Corinth makes the perishable flowers and the living face from the same slashing brush, the same restless matter. A child at the start of her life, eyes lowered beside the thing she is being quietly measured against. No skull on a table, no written moral — just a father’s own daughter placed where the flowers must eventually fail.",
 
  "deepBy": "Sonnet 4.6",
 
@@ -2496,7 +2510,7 @@ by: "Opus 4.8" },
 
  "about": "The blaring, near-abstract color here owes partly to the double cataracts clouding Monet's sight; painted around 1914-17, it belongs to a series of iris views from his Giverny garden made in monumental scale during the First World War.",
 
- "deep": "The real subject is entry with no exit. Monet plants you inside the iris bed rather than at the end of a receding lane, and the whole surface is built to make you stay there: no sky, no horizon, only blades closing in from both sides and a warm channel of gold that swells in the lower centre but never opens onto anything beyond itself. Even the brushwork refuses recession: the blades climb while the gold between them is laid crosswise, so no stroke runs back into depth, and the blooms stay loose dabs of pink and lilac that never harden into things you could stand back and inspect. Toward the top the path climbs to the very edge, so ground fills the place where sky should be. What was a garden becomes a condition: the eye held, surrounded, unable to find the distance it normally reaches for.",
+ "deep": "The real subject is entry with no exit. Monet plants you inside the iris bed rather than at the end of a receding lane, and the whole surface is built to make you stay there: no sky, no horizon, only blades closing in from both sides and a warm channel of gold that swells in the lower centre but never opens onto anything beyond itself. Even the brushwork refuses recession: the blades climb while the gold between them is laid crosswise, so no stroke runs back into depth, and the blooms stay loose dabs of pink and lilac that never harden into things you could single out and inspect. Toward the top the path climbs to the very edge, so ground fills the place where sky should be. What was a garden becomes a condition: the eye held, surrounded, unable to find the distance it normally reaches for.",
 
  "by": "Opus 4.8"
 
@@ -2526,7 +2540,7 @@ by: "Opus 4.8" },
 
  "about": "Seurat later framed this 1885 Normandy seascape with a painted dotted border of his own, extending the pointillist method onto the frame; the back carries the signature of his friend and follower Paul Signac.",
 
- "deep": "Distance is what Seurat is painting, not place. The logic of the picture runs from close to far: dark, crowded vegetation in the foreground sets the register, and from there everything opens and empties until the pale sky takes up nearly half the canvas. Come close and the calm evening sea breaks into emerald, turquoise, pink, and ochre marks sitting side by side, the mixing happening entirely in the eye. Step back and the coast reassembles into luminous haze. That oscillation is the experience he designed. Then there is the border — dots painted directly onto the canvas, cool against warm passages, dark against the sky — so the picture frames itself in its own optical system, the edge as calculated as the water. A single sail holds the open bay from tipping into abstraction; without it, you would lose the scale of the quiet.",
+ "deep": "Distance is what Seurat is painting, not place. The logic of the picture runs from close to far: dark, crowded vegetation in the foreground sets the register, and from there everything opens and empties until the pale sky takes up nearly half the canvas. Look closer and the calm evening sea breaks into emerald, turquoise, pink, and ochre marks sitting side by side, the mixing happening entirely in the eye. Seen whole, the coast reassembles into luminous haze. That oscillation is the experience he designed. Then there is the border — dots painted directly onto the canvas, cool against warm passages, dark against the sky — so the picture frames itself in its own optical system, the edge as calculated as the water. A single sail holds the open bay from tipping into abstraction; without it, you would lose the scale of the quiet.",
 
  "by": "Opus 4.8"
 
@@ -3366,7 +3380,7 @@ by: "Opus 4.8" },
 
  "about": "Rembrandt's 1653 Aristotle rests one hand on a bust of blind Homer while the other rests by a gold chain and Alexander's medallion — worldly honour on one side, the immortal poet on the other.",
 
- "deep": "The hand that matters is the raised one. Aristotle’s fingers spread across the bust’s crown without gripping — a touch rather than a claim. Warm knuckles against dry carved stone, two textures Rembrandt holds deliberately apart. The gold chain is not drawn link by link but scratched and dashed in impasto that only assembles into metal when you step back. His face stays turned away from the bust, eyes drifting down and aside, the comparison running in his mind rather than in the room. At upper left, barely surfacing from the dark, a stack of books catches one thin edge of light — his world, shelved and dimming, while the stone head under his hand is still talking.",
+ "deep": "The hand that matters is the raised one. Aristotle’s fingers spread across the bust’s crown without gripping — a touch rather than a claim. Warm knuckles against dry carved stone, two textures Rembrandt holds deliberately apart. The gold chain is not drawn link by link but scratched and dashed in impasto that only assembles into metal when seen whole. His face stays turned away from the bust, eyes drifting down and aside, the comparison running in his mind rather than in the room. At upper left, barely surfacing from the dark, a stack of books catches one thin edge of light — his world, shelved and dimming, while the stone head under his hand is still talking.",
 
  "deepBy": "Sonnet 4.6",
 
@@ -3538,10 +3552,16 @@ about: "Montmartre still had working windmills when Van Gogh moved there in 1886
 by: "Opus 4.8" },
 
 "thonier-a-concarneau": {
-about: "Signac at Concarneau, 1925 — a Breton tuna boat at anchor under a coral sky, the whole thing laid down in separate brick-like tiles of colour that only fuse into light when you step back.",
-deep: "These sails are gone from Concarneau; the coloured tuna-boat rig was replaced by motors, and the canvas ended up a record of a fleet that no longer exists. The pink of the sky is handed to the sail, which hands it down to the water, where the boat returns as a looser, broken echo in blue, violet and orange. High on the sail one cold note holds the rest in check: a blue-green panel with an ochre curl inside it, making all that rust and salmon burn hotter by contrast. No shading anywhere — the curve of a taut sail is graded tile against tile, the fine dot Signac and Seurat invented in the 1880s grown brick-sized.",
-deepBy: "Sonnet 4.6",
-by: "Fable 5" },
+
+ "about": "Signac at Concarneau, 1925 — a Breton tuna boat at anchor under a coral sky, the whole thing laid down in separate brick-like tiles of colour that only fuse into light when seen whole.",
+
+ "deep": "These sails are gone from Concarneau; the coloured tuna-boat rig was replaced by motors, and the canvas ended up a record of a fleet that no longer exists. The pink of the sky is handed to the sail, which hands it down to the water, where the boat returns as a looser, broken echo in blue, violet and orange. High on the sail one cold note holds the rest in check: a blue-green panel with an ochre curl inside it, making all that rust and salmon burn hotter by contrast. No shading anywhere — the curve of a taut sail is graded tile against tile, the fine dot Signac and Seurat invented in the 1880s grown brick-sized.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Fable 5"
+
+},
 
 "terrasses-a-cannes": {
 about: "By the time Renoir painted these sun-drenched Cannes terraces in 1905, rheumatoid arthritis had so damaged his hands that he had cloth bandages tied around them to hold the brush in place.",
@@ -4639,7 +4659,7 @@ by: "Opus 4.8" },
 
  "about": "Sargent, 1885–86: two girls tending paper lanterns in a garden at dusk — painted at Broadway over two summers, only in the few usable minutes of twilight each evening, with artificial blooms standing in as the real flowers died.",
 
- "deep": "The lanterns hang below the faces and lend them warmth — the right girl's glowing orange-pink, the left girl's warm along the cheek under her fringe. That warm cast against cool whites locks in the hour. Neither child looks out; they watch the flames, and Sargent withholds any story between them. The left girl's dress records the air: not flat white but lilac in shadow, warmer cream down the skirt — the whole Impressionist logic in one passage. He drops the horizon entirely and lets the left girl's dark legs sink into the grass, so no ground-line holds the girls. Move close and the roses fall apart into pink dabs; step back and they reassemble. The instability is the method.",
+ "deep": "The lanterns hang below the faces and lend them warmth — the right girl's glowing orange-pink, the left girl's warm along the cheek under her fringe. That warm cast against cool whites locks in the hour. Neither child looks out; they watch the flames, and Sargent withholds any story between them. The left girl's dress records the air: not flat white but lilac in shadow, warmer cream down the skirt — the whole Impressionist logic in one passage. He drops the horizon entirely and lets the left girl's dark legs sink into the grass, so no ground-line holds the girls. In detail the roses fall apart into pink dabs; seen whole, they reassemble. The instability is the method.",
 
  "deepBy": "Sonnet 4.6",
 
@@ -4730,7 +4750,7 @@ by: "Opus 4.8" },
 
  "about": "The Holy Family as poor labourers in a real carpenter's shop, 1849–50 — Dickens reviewed the Christ child as \"a hideous, wry-necked, blubbering, red-headed boy, in a bed gown\" and Mary as fit to disgrace a gin shop.",
 
- "deep": "A child has torn his palm on a nail, and blood marks his bare foot — hand and foot marked together, before the story needs either. Nothing is dramatised; the mark is small enough to walk past on a floor of shavings. Mary kneels to bring herself level with him and leans in to kiss him, plain and unprettified, the mother made supplicant before her child. At the bench Joseph has stopped work to take the injured hand in both of his. The barefoot boy carrying a shallow bowl across the shop is John the Baptist on an errand, water rhyming with blood; the sheep crowding the doorway are the flock, kept outside a moment they cannot enter.",
+ "deep": "A child has torn his palm on a nail, and blood marks his bare foot — hand and foot marked together, before the story needs either. Nothing is dramatised; the mark is small enough to miss on a floor of shavings. Mary kneels to bring herself level with him and leans in to kiss him, plain and unprettified, the mother made supplicant before her child. At the bench Joseph has stopped work to take the injured hand in both of his. The barefoot boy carrying a shallow bowl across the shop is John the Baptist on an errand, water rhyming with blood; the sheep crowding the doorway are the flock, kept outside a moment they cannot enter.",
 
  "deepBy": "Sonnet 4.6",
 
@@ -4778,7 +4798,7 @@ by: "Opus 4.8" },
 
  "about": "Hokusai, c.1830–32 — one of the Thirty-Six Views of Mount Fuji, catching the few dawn minutes when a south wind and low autumn sun flush the volcano red. Also known as Red Fuji.",
 
- "deep": "No outline is drawn inside the mountain's red flank — colour alone carries form. That red is a hand-wiped gradation across the printing block, darkest at the summit and thinning at the base into blue haze, making a flat triangle read as a sunlit mass. At the peak, bare paper left unprinted gives you snow: white as the absence of ink. Below, thousands of tiny dark-blue tree shapes do the whole job of a forest — pattern up close, scale at distance. The sky is Prussian blue, a newly imported pigment prized for depth traditional dyes could not match. Each impression was hand-printed, so the same design can pull vivid red in one collection, muted brown in another.",
+ "deep": "No outline is drawn inside the mountain's red flank — colour alone carries form. That red is a hand-wiped gradation across the printing block, darkest at the summit and thinning at the base into blue haze, making a flat triangle read as a sunlit mass. At the peak, bare paper left unprinted gives you snow: white as the absence of ink. Below, thousands of tiny dark-blue tree shapes do the whole job of a forest — pattern in detail, scale seen whole. The sky is Prussian blue, a newly imported pigment prized for depth traditional dyes could not match. Each impression was hand-printed, so the same design can pull vivid red in one collection, muted brown in another.",
 
  "deepBy": "Sonnet 4.6",
 
@@ -5447,7 +5467,7 @@ by: "Opus 4.8" },
 
  "about": "Four slim poplars cropped hard at the top, their trunks running into still-water reflections along the Epte near Giverny, 1891 — one canvas from a series of more than twenty Monet finished before the lumber merchant could fell the trees.",
 
- "deep": "The crowns are gone — sliced off so the trunks become abstract verticals, bars in a grid rather than trees. Strip the tops, compress the far bank into one horizontal ribbon, and a row of poplars becomes a woven screen. The foliage band crossing below the middle dissolves up close into hundreds of separate dabs — rust, violet, and olive sitting unmixed, the eye doing the blending. On the left a second row of sunlit trees, pale gold and apricot, recedes behind the first two trunks; cover it and the left half goes cold. The sky runs from pale blue to a warmer cream toward the treeline — not generic daylight but one specific autumn hour on the Epte.",
+ "deep": "The crowns are gone — sliced off so the trunks become abstract verticals, bars in a grid rather than trees. Strip the tops, compress the far bank into one horizontal ribbon, and a row of poplars becomes a woven screen. The foliage band crossing below the middle dissolves in detail into hundreds of separate dabs — rust, violet, and olive sitting unmixed, the eye doing the blending. On the left a second row of sunlit trees, pale gold and apricot, recedes behind the first two trunks; cover it and the left half goes cold. The sky runs from pale blue to a warmer cream toward the treeline — not generic daylight but one specific autumn hour on the Epte.",
 
  "deepBy": "Sonnet 4.6",
 
@@ -5483,7 +5503,7 @@ by: "Opus 4.8" },
 
  "about": "Rousseau spent over two decades on these Fontainebleau oaks — begun in 1846 and still in his hands in 1867, the year he died. Bare, massive, lit by a winter sunset the wood seems to absorb rather than reflect.",
 
- "deep": "From across the room it reads as a wall of dark. Stand long enough and it opens. Two breaches carry the light: a smoky band of ochre sky at the top, and a hotter ember burning low behind the trunks to the right. Against the sky, the outermost twigs are scratched on with a dry brush, bristling; below, darks are layered brown on brown until the clearing floor feels like packed earth. Pale stones and a dull pool catch what thin light survives. Rousseau gave the oaks the gravity of portrait sitters and kept the humans — two small figures at lower right — barely legible, dissolved into the undergrowth. The people merely pass through.",
+ "deep": "At first glance it reads as a wall of dark. Stand long enough and it opens. Two breaches carry the light: a smoky band of ochre sky at the top, and a hotter ember burning low behind the trunks to the right. Against the sky, the outermost twigs are scratched on with a dry brush, bristling; below, darks are layered brown on brown until the clearing floor feels like packed earth. Pale stones and a dull pool catch what thin light survives. Rousseau gave the oaks the gravity of portrait sitters and kept the humans — two small figures at lower right — barely legible, dissolved into the undergrowth. The people merely pass through.",
 
  "deepBy": "Sonnet 4.6",
 
@@ -5809,7 +5829,7 @@ by: "Opus · Fable" },
 
  "about": "A summer walk at Argenteuil, 1873 — a woman with a parasol, a child drowned in poppies, and the same pair tiny by the treeline. Monet showed it in the 1874 exhibition that gave the Impressionists their mocking name.",
 
- "deep": "You register the red before you count a single flower. The poppies in the near corner are painted deliberately too large, brighter and looser than the ones behind — size as a decision, not accuracy — so the field recedes by contrast alone. The red is unmixed, so it beats against its complementary green and flickers; step in and it falls apart into commas of paint. Nearly half the canvas is only sky, and that pale expanse is why the red reads as brilliant rather than merely red. The woman and child get no faces, no gesture, no anecdote — Camille and Jean by tradition, painted in the settled years before that life came apart.",
+ "deep": "You register the red before you count a single flower. The poppies in the near corner are painted deliberately too large, brighter and looser than the ones behind — size as a decision, not accuracy — so the field recedes by contrast alone. The red is unmixed, so it beats against its complementary green and flickers; in detail it falls apart into commas of paint. Nearly half the canvas is only sky, and that pale expanse is why the red reads as brilliant rather than merely red. The woman and child get no faces, no gesture, no anecdote — Camille and Jean by tradition, painted in the settled years before that life came apart.",
 
  "deepBy": "Sonnet 4.6",
 
@@ -6670,7 +6690,7 @@ by: "Opus 4.8" },
 },
 "claude-monet-rouen-cathedral-west-facade-sunlight": {
  "about": "Working mostly from rented rooms opposite, Monet painted the cathedral over thirty times in 1892 and 1893; this canvas, reworked at Giverny, is dated 1894. Twenty of the series were shown at Durand-Ruel’s in 1895. Shadow reads as violet, never black.",
- "deep": "Centuries of masonry are given the life expectancy of weather. Because the sun strikes the front obliquely from the right, hue carries the structure alone: ivory and apricot warmth on the struck faces, slate-blue and violet in the hollows, and no black at all — shade arrives as a cool complement, never as absence. Almost nothing but stone occupies the field; the crop bites the towers, sky is held to a band across the top, and the front presses flat, reading as pigment before architecture, legible only at a distance. Description is withheld exactly where expected: the wheel window's tracery, the carved jambs at the entrance, all of it thinning to a blur of broken colour. And the pigment sits proud in ridges, its crust behaving like eroded stone, light registered as sheer physical weight.",
+ "deep": "Centuries of masonry are given the life expectancy of weather. Because the sun strikes the front obliquely from the right, hue carries the structure alone: ivory and apricot warmth on the struck faces, slate-blue and violet in the hollows, and no black at all — shade arrives as a cool complement, never as absence. Almost nothing but stone occupies the field; the crop bites the towers, sky is held to a band across the top, and the front presses flat, reading as pigment before architecture, legible only when seen whole. Description is withheld exactly where expected: the wheel window's tracery, the carved jambs at the entrance, all of it thinning to a blur of broken colour. And the pigment sits proud in ridges, its crust behaving like eroded stone, light registered as sheer physical weight.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
@@ -6886,7 +6906,7 @@ by: "Opus 4.8" },
 },
 "goya-don-antonio-noriega": {
  "about": "Seven years after sitting for this likeness, Spain's General Treasurer was arrested as a suspected French collaborator and killed at Badajoz during the Peninsular War — Goya, then First Court Painter, signed the folded sheet gripped in his hand.",
- "deep": "This portrait insists that a post and the person occupying it stay two separate things. Noriega crowds the canvas in the regalia of office — a chest thick with embroidery, a crimson waistcoat, and, sunk into that gold, the knight's badge of Charles III's order — yet the finery looks put on rather than lived in. Goya lays the ornament in fractured strokes that cohere into leaves once you step back, then gives the head a tighter treatment: less paint, sharper looking. A folded sheet held in the corner pins the split — files beneath, pomp above, the plain appraising face weighing both. Ordinary man, splendid position; that gap is what the picture is after.",
+ "deep": "This portrait insists that a post and the person occupying it stay two separate things. Noriega crowds the canvas in the regalia of office — a chest thick with embroidery, a crimson waistcoat, and, sunk into that gold, the knight's badge of Charles III's order — yet the finery looks put on rather than lived in. Goya lays the ornament in fractured strokes that cohere into leaves once seen whole, then gives the head a tighter treatment: less paint, sharper looking. A folded sheet held in the corner pins the split — files beneath, pomp above, the plain appraising face weighing both. Ordinary man, splendid position; that gap is what the picture is after.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
@@ -7204,7 +7224,7 @@ by: "Opus 4.8" },
 },
 "georges-seurat-study-for-a-sunday-on-la-grande-jatte": {
  "about": "Working in 1884, Seurat rehearsed his whole Seine Sunday in crisscrossing hatched strokes a scholar likened to \"chopped straw\" — the museum's final study, with no Pointillist dot yet: that regimented method belongs to the mural that followed.",
- "deep": "Before the dot arrived, there was this. Seurat built the whole Seine Sunday — turf, shadow, crowd, water — from a crisscrossing hatching one observer likened to \"chopped straw\": hot touches laid across cool ones, fusing into grass only at distance. Light falls not as value but as temperature: violet-blue shade against yellow-chartreuse sun-lawn tips the park away, nothing outlined, figures reduced to economical dabs, one dark woman at right anchoring everything. He reasoned out the optics before the regimented point that would make him famous; that came only once he enlarged the design to mural scale. What this canvas holds is the method at the threshold — working, complete, one rehearsal short of the name.",
+ "deep": "Before the dot arrived, there was this. Seurat built the whole Seine Sunday — turf, shadow, crowd, water — from a crisscrossing hatching one observer likened to \"chopped straw\": hot touches laid across cool ones, fusing into grass only when seen whole. Light falls not as value but as temperature: violet-blue shade against yellow-chartreuse sun-lawn tips the park away, nothing outlined, figures reduced to economical dabs, one dark woman at right anchoring everything. He reasoned out the optics before the regimented point that would make him famous; that came only once he enlarged the design to mural scale. What this canvas holds is the method at the threshold — working, complete, one rehearsal short of the name.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
