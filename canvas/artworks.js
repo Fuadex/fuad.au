@@ -436,7 +436,9 @@ window.CANVAS_ARTWORKS = [
   { id: "birsk", title: "Birsk", artist: "Lyubov Popova", artistId: "popova", qid: "Q19882934", qidTrusted: true, year: 1916, seenAt: "guggenheim", seenConfidence: "unsure", liked: true, note: "Deck pick — guggenheim-2026-07-12." },
   { id: "white-bull", title: "White Bull", artist: "Franz Marc", artistId: "marc", qid: "Q19882757", qidTrusted: true, year: 1911, seenAt: "guggenheim", seenConfidence: "unsure", liked: true, note: "Deck pick — guggenheim-2026-07-12." },
   { id: "young-boy-with-a-lamb-the-good-shepherd", title: "Young Boy with a Lamb; The Good Shepherd", artist: "Franz Marc", artistId: "marc", qid: "Q19882760", qidTrusted: true, year: 1911, seenAt: "guggenheim", seenConfidence: "unsure", liked: true, note: "Deck pick — guggenheim-2026-07-12." },
-  { id: "officer-and-laughing-girl", title: "Officer and Laughing Girl", artist: "Johannes Vermeer", artistId: "vermeer", qid: "Q467376", qidTrusted: true, year: 1658, seenAt: "frick", seenConfidence: "unsure", liked: true, note: "Deck pick — frick-2026-07-12." },
+  // The year is the holder's: the Frick (1911.1.127) dates this ca. 1657; the 1658 that shipped was not
+  // supported (plate-check batch 12 seal, 2026-10-27).
+  { id: "officer-and-laughing-girl", title: "Officer and Laughing Girl", artist: "Johannes Vermeer", artistId: "vermeer", qid: "Q467376", qidTrusted: true, year: 1657, seenAt: "frick", seenConfidence: "unsure", liked: true, note: "Deck pick — frick-2026-07-12." },
   { id: "girl-interrupted-at-her-music", title: "Girl Interrupted at her Music", artist: "Johannes Vermeer", artistId: "vermeer", qid: "Q1219698", qidTrusted: true, year: 1659, seenAt: "frick", seenConfidence: "unsure", liked: true, note: "Deck pick — frick-2026-07-12." },
   { id: "mistress-and-maid", title: "Mistress and Maid", artist: "Johannes Vermeer", artistId: "vermeer", qid: "Q3739396", qidTrusted: true, year: 1666, seenAt: "frick", seenConfidence: "unsure", liked: true, note: "Deck pick — frick-2026-07-12." },
   { id: "the-polish-rider", title: "The Polish Rider", artist: "Rembrandt", artistId: "rembrandt", qid: "Q3663892", qidTrusted: true, year: 1655, seenAt: "frick", seenConfidence: "unsure", liked: true, note: "Deck pick — frick-2026-07-12." },
@@ -612,7 +614,9 @@ window.CANVAS_ARTWORKS = [
     seenAt: "met-nyc", seenConfidence: "sure" },
   { id: "henri-matisse-nu-bleu-iv", title: "Nu bleu IV", artist: "Henri Matisse", artistId: "matisse", qid: "Q1853880", qidTrusted: true, year: 1952,
     seenAt: "orsay", seenConfidence: "sure" },
-  { id: "edgar-degas-woman-with-a-towel", title: "Woman with a Towel", artist: "Edgar Degas", artistId: "degas", qid: "Q19913634", qidTrusted: true, year: 1896,
+  // The year is the holder's: the Met dates this pastel 1894 or 1898; the 1896 that shipped split the
+  // difference. Integer convention: the earlier date opens the range (2026-10-27).
+  { id: "edgar-degas-woman-with-a-towel", title: "Woman with a Towel", artist: "Edgar Degas", artistId: "degas", qid: "Q19913634", qidTrusted: true, year: 1894,
     seenAt: "met-nyc", seenConfidence: "sure", loved: true },
   { id: "claude-monet-untitled", title: "Bras de Seine près de Giverny, soleil levant", artist: "Claude Monet", artistId: "monet", qid: "Q63952024", qidTrusted: true, year: 1897,
     seenAt: "marmottan", seenConfidence: "sure", floored: true },
