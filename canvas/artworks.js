@@ -461,7 +461,9 @@ window.CANVAS_ARTWORKS = [
   { id: "christ-driving-the-money-changers-from-the-temple", title: "Christ Driving the Money Changers from the Temple", artist: "El Greco", artistId: "greco", qid: "Q5108849", qidTrusted: true, year: 1600, seenAt: "frick", seenConfidence: "unsure", liked: true, note: "Deck pick — frick-2026-07-12." },
   { id: "the-mall-in-st-james-s-park", title: "The Mall in St. James's Park", artist: "Thomas Gainsborough", artistId: "gainsborough", qid: "Q18689381", qidTrusted: true, year: 1783, seenAt: "frick", seenConfidence: "unsure", liked: true, note: "Deck pick — frick-2026-07-12." },
   { id: "the-white-horse", title: "The White Horse", artist: "John Constable", artistId: "constable", qid: "Q19857203", qidTrusted: true, year: 1819, seenAt: "frick", seenConfidence: "unsure", wish: true, liked: true, note: "Deck pick — frick-2026-07-12." },
-  { id: "don-pedro-duque-de-osuna", title: "Don Pedro, Duque de Osuna", artist: "Francisco Goya", artistId: "goya", qid: "Q19857281", qidTrusted: true, year: 1798, seenAt: "frick", seenConfidence: "unsure", liked: true, note: "Deck pick — frick-2026-07-12." },
+  // The year is the holder's: the Frick (1943.1.151) dates the portrait ca. 1790s; the 1798 that shipped was
+  // not supported. Integer convention: the range opens at 1790 (plate-check batch 11 seal, 2026-10-27).
+  { id: "don-pedro-duque-de-osuna", title: "Don Pedro, Duque de Osuna", artist: "Francisco Goya", artistId: "goya", qid: "Q19857281", qidTrusted: true, year: 1790, seenAt: "frick", seenConfidence: "unsure", liked: true, note: "Deck pick — frick-2026-07-12." },
   { id: "view-of-the-cannaregio-canal-in-venice", title: "View of the Cannaregio Canal in Venice", artist: "Francesco Guardi", artistId: "guardi", qid: "Q19857300", qidTrusted: true, year: 1770, seenAt: "frick", seenConfidence: "unsure", liked: true, note: "Deck pick — frick-2026-07-12." },
   { id: "femmes-arabes-a-la-promenade", title: "Femmes arabes à la promenade", artist: "Nasreddine Dinet", artistId: "dinet", qid: "Q138605820", qidTrusted: true, year: 1895, seenAt: "petit-palais", seenConfidence: "unsure", liked: true, note: "Deck pick — petit-palais-2026-07-12." },
   { id: "the-milkmaid", title: "The Milkmaid", artist: "Johannes Vermeer", artistId: "vermeer", qid: "Q167605", qidTrusted: true, year: 1660, seenAt: "rijksmuseum", seenConfidence: "sure", liked: true, note: "Pilgrimage — and the site's first Rijksmuseum IIIF deep zoom (their open tile platform, keyless). Seen 2016-07-10 in the Gallery of Honour (on-display tag on the museum’s 2016 pages)." },
@@ -821,7 +823,9 @@ window.CANVAS_ARTWORKS = [
     seenAt: "met-nyc", seenConfidence: "unsure", liked: true },
   { id: "jean-baptiste-camille-corot-landscape-and-figures", title: "Landscape and Figures", artist: "Jean-Baptiste Camille Corot", artistId: "jean-baptiste-camille-corot", qid: "Q108695487", qidTrusted: true, year: 1874,
     seenAt: "new-york-historical", seenConfidence: "unsure", liked: true },
-  { id: "edgar-degas-two-dancers-2", title: "Two Dancers", artist: "Edgar Degas", artistId: "degas", qid: "Q124724883", qidTrusted: true, year: 1893,
+  // The year is the holder's: the Tel Aviv Museum of Art (1-04868) dates this pastel 1890–1895; the 1893 that
+  // shipped was not supported. Integer convention: the range opens at 1890 (plate-check batch 11 seal, 2026-10-27).
+  { id: "edgar-degas-two-dancers-2", title: "Two Dancers", artist: "Edgar Degas", artistId: "degas", qid: "Q124724883", qidTrusted: true, year: 1890,
     seenAt: null, seenConfidence: "unsure", liked: true },
   { id: "edgar-degas-untitled", title: "Trois danseuses, jupes jaunes", artist: "Edgar Degas", artistId: "degas", qid: "Q138952523", qidTrusted: true, year: 1891,
     seenAt: null, seenConfidence: "unsure", loved: true },
