@@ -1017,9 +1017,14 @@ by: "Opus 4.8" },
 },
 
 "salvador-dali-the-great-masturbator": {
-about: "A yellow mass that is both a cliff and a head lying cheek to the ground, eyes shut — Cadaqués, 1929, painted while Gala stayed on there and her husband Paul Éluard went back to Paris alone.",
-deep: "Nothing here touches. The woman's mouth lifts to a figure sanded smooth, genitals dissolved to grey shadow, and stops millimetres short; the head that dreams her has no mouth, just a grasshopper clamped over the place, the one creature Dalí could not be in a room with. She is not beside him: she grows out of his flank, one unbroken contour, so there is nowhere to stand and look away. Saturation is allowed in two spots on the whole acre: the quill-fan at the cheek, a coral flick on the insect. That winter his father threw him out. He never sold it — his own head, never let out of the house.",
-by: "Opus 4.8" },
+
+ "about": "A yellow mass that is both a cliff and a head lying cheek to the ground, eyes shut — Cadaqués, late summer 1929, painted after Gala had stayed on there with Dalí while her husband Paul Éluard went back to Paris alone.",
+
+ "deep": "The touch that matters is held at the brink. The woman's mouth lifts to a figure sanded smooth, genitals no more than a grey swelling, and goes no further; the head that dreams her has no mouth, just a grasshopper clamped over the place, the insect Dalí had dreaded since childhood. She is not beside him: she grows out of his flank, one unbroken contour, so there is nowhere to stand and look away. Strong red is rationed to small touches such as the quill-fan at the cheek, the woman's lips and a lion's lolling tongue. That winter his father threw him out. He never sold it — his own head, never let out of the house.",
+
+ "by": "Opus 4.8"
+
+},
 
 "stanhope-forbes-the-munitions-girls": {
 
@@ -5989,10 +5994,16 @@ about: "Matyushin came to painting from music: a professional violinist in the S
 by: "Opus · Fable" },
 
 "thomas-alexander-harrison-marine-clair-de-lune": {
-about: "Open sea under a small orange moon, 1893 — Harrison's Brittany night, nothing in it but water, sand and light. Two years later Proust met him on that coast and took the sea-watching into his painter, Elstir.",
-deep: "The moon is a smeared orange coal, half-dissolved in cloud, and the only hot thing here. Its reflection is the passage to watch: not a solid lane on the water but a scatter of coral and dull-gold flecks riding separate swells, each an interrupted echo of the disc, cooling and thinning toward the horizon — light in motion rather than light rendered. Everything else is held to a compressed band of grey, mauve and cold blue, and the foreground sand goes nearly black; the darkness is what makes one faint moon read as real light. No boat, no figure, nothing happens. He stood at the water's edge evening after evening for effects that change within minutes.",
-deepBy: "Sonnet 4.6",
-by: "Opus · Fable" },
+
+ "about": "Open sea under a small orange moon, early 1890s — Harrison's Brittany night, nothing in it but water, cliff, sand and light. In 1895 Proust met him on that coast and took the sea-watching into his painter, Elstir.",
+
+ "deep": "The moon is a thickly worked orange disc in thin cloud, and the only hot thing here. Its reflection is the passage to watch: not a solid lane on the water but a scatter of coral and dull-gold flecks riding separate swells, each an interrupted echo of the disc, crowding into an orange band at the horizon and spreading into fewer, larger pools nearer us — light in motion rather than light rendered. Everything else is held to a compressed band of grey, mauve and cold blue, and the foreground sand goes nearly black; the darkness is what makes one faint moon read as real light. No boat, no figure, nothing happens. He watched this coast evening after evening for effects that change within minutes.",
+
+ "deepBy": "Sonnet 4.6",
+
+ "by": "Opus · Fable"
+
+},
 
 "j-m-w-turner-saint-maurice-bridge": {
 about: "Turner came back through the Valais around 1820, homeward from the first Italian tour that had kept him abroad from August 1819 into January, and this watercolour fixes on the old single-arch stone bridge at Saint-Maurice. The town sat where the Rhône squeezes through a narrow defile, its crossing long overseen by the castle above and treated for centuries as the guarded gateway into the upper Valais. It is that spanning arch over the gorge that anchors the sheet.",
