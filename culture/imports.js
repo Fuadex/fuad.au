@@ -3073,4 +3073,5 @@ window.CULTURE_IMPORTS = [
   { id: 'masters-of-the-universe-2026', title: 'Masters of the Universe', year: 2026, medium: 'Movies', favorite: false, region: 'us', director: 'Travis Knight', runtime: 141, watchedDate: '2026-09-20' },
   { id: 'the-croods-a-new-age', title: 'The Croods: A New Age', year: 2020, medium: 'Feature Animation', favorite: false, region: 'us', director: 'Joel Crawford', studio: 'DreamWorks Animation', runtime: 95, watchedDate: '2026-09-20' },
   { id: 'digger-2026', title: 'Digger', year: 2026, medium: 'Movies', favorite: false, region: 'us', rating: '7', director: 'Alejandro G. Iñárritu', watchedDate: '2026-10-14', note: 'Tried becoming dr strangelove and birdman but the latter made it reaching and repeatedly ejects you while immersed, pretty good nevertheless!' },
+  { id: 'patlabor-the-movie-1989', title: 'Kidō Keisatsu Patlabor', enTitle: 'Patlabor: The Movie', year: 1989, medium: 'Feature Animation', favorite: false, region: 'jp', rating: '7', director: 'Mamoru Oshii', studio: 'Studio Deen', runtime: 100, watchedDate: '2026-10-29' },
 ];
