@@ -3,6 +3,61 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "guardi-grand-canal-with-the-rialto-bridge-venice": {
+  "about": "Guardi painted this view down the canal to the Rialto probably about 1780. In 1804 Pietro Edwards, once his client or go-between, wrote to Canova that Guardi's works were as incorrect as could be, but most spirited.",
+  "deep": "Conservators found that the gondolas moored at lower right, the landing stages among them and the boatmen at work there were painted over water that was already finished. Guardi painted this view more than once, and a second, nearly identical canvas of it carries almost the same boats on the water, apart from these. They appear to have been added here as a further variation on that view, and the other canvas may have been painted first. The change falls in the foreground water, closest to you, where hulls, planks on their legs and slanting mooring poles stand on paint first laid down as canal.",
+  "by": "Opus 5.5"
+ },
+ "berthe-morisot-untitled": {
+  "about": "Berthe Morisot painted a mother and daughter at hide-and-seek in 1873. Édouard Manet, refusing to exhibit with the painters' new group, lent it to their first show in 1874, where the critic Castagnary found nothing more graceful.",
+  "deep": "Of the three things the critic Philippe Burty found perfect in this picture in April 1874, the last was \"the composition of its background\", odd praise for a picture of a mother and her little girl at a game. In 1987 Charles Stuckey noted that no critic had mentioned the tiny branch at the far right, and read it as a sign the scene is only part of a space running on in every direction, \"most of it hidden from view in the spirit of hide-and-seek.\" On that reading the hiding happens at the frame, not at the sapling. At the top right, a thin bare branch reaches in from beyond the edge.",
+  "by": "Opus 5.5"
+ },
+ "katsushika-hokusai-poppies": {
+  "about": "Hokusai designed this woodblock about 1833–34 for the publisher of his Fuji views — often considered the finest of the set known as Large Flowers, which a curator credits with lifting bird-and-flower prints into a major genre.",
+  "deep": "Horizontal Japanese pictures are normally taken in from right to left, the curator Sarah Thompson observes, so a curve sweeping the other way surprises. She counts two such curves: this bend, and the Great Wave, to which others have likened it. On this sheet it does run left to right: the stems climb out of the lower left, arching over, and the bud at the right points toward the edge, the leaf above it curling the same way. An eye entering at the right, where custom puts it, meets the movement at its end and works back against it to the toothed leaves at lower left, where the whole clump starts its lean.",
+  "by": "Opus 5.5"
+ },
+ "henri-gervex-satyre-and-menade": {
+  "about": "At the Salon of 1874 this satyr at play with a nude bacchante, Henri Gervex's only entry, won a second-class medal; Louis Gonse called it \"a brilliant and colourful piece by a very young beginner\".",
+  "deep": "The administration that excluded Gervex's Rolla from the Salon of 1878 as immoral had, on a curator's reading, no quarrel with Rolla's nude woman, whose nudity differs in no way from the canonical nudes of its day, and what condemned the picture was its still life of discarded clothes. Clothes left lying put an undressing in the present. Four years earlier the State had bought this nude, whose company is all classical: a satyr crowned with leaves, a bacchante in name only, a glade outside any calendar. What lies dropped around her is the revel's music, a hand drum tilted into the shag beyond her hip and reed pipes lying in the grass.",
+  "by": "Opus 5.5"
+ },
+ "utagawa-kuniyoshi-princess-takiyasha-and-the-skeleton-spectr": {
+  "about": "Santō Kyōden's illustrated novel of 1806, likely the source of this mid-1840s woodblock triptych, sets armies of skeletons at war. Kuniyoshi collapsed those armies into one giant skeleton, spread across two of the three sheets.",
+  "deep": "The woman at the left summoned the skeleton, and the print may be more about her than about it. In a 2025 lecture, as reported, Pauline Ota called Takiyasha \"likely the real star\" of the composition, calm and \"set off spatially from the tense drama\", and questioned the assumption that the \"witch\" must be wicked. The sheets bear Ota out. Takiyasha has one sheet and the skeleton two, and both fighting men crouch on the middle sheet, hands locked on hilt and scabbard. Her own hands are on a scroll, while her eyes, cut sideways under lowered lids, go to the fight.",
+  "by": "Opus 5.5"
+ },
+ "toshusai-sharaku-otani-oniji-iii-as-edobei": {
+  "about": "An unknown designer's debut — in the fifth month of 1794 the publisher Tsutaya issued twenty-eight busts of kabuki actors by Tōshūsai Sharaku at once, on dark mica grounds, this villain caught mid-pose among them.",
+  "deep": "Too eager to draw the truth, Sharaku drew actors as they ought not to be, and his prints did not last, says a hand-copied note on Edo's print artists credited to the poet Ōta Nanpo. A later Edo essay grants he caught a face's habits but says he broke its glamour. Arthur Davison Ficke's 1915 collectors' handbook says newcomers take him for “a repulsive charlatan”, all “cross-eyes, impossible mouths”, then come to place him on “the highest level of genius”. Ficke's two verdicts both fit this face, a moment's stage pose kept for good: pupils pushed to the inner corners, the mouth a long line pinned at each end by black wedges.",
+  "by": "Opus 5.5"
+ },
+ "kitagawa-utamaro-a-beauty-at-her-morning-toilette": {
+  "about": "Her kneeling pose recurs in several of Kitagawa Utamaro's colour prints, tightly cropped, Timothy Clark notes. Painting her at her wash on silk in the late 1790s, Utamaro set the figure in a wide horizontal field.",
+  "deep": "Three points steady the picture: the top of her black hair, the copper basin at lower right and the pot of morning glory at lower left. Timothy Clark saw there ‘a stable triangular composition’, and its lines can be drawn on the silk, a vessel at each lower corner. The figure, though, fills that triangle only from the right, and her face turns down and to our left, toward the one corner set apart from her. Two of the points are hers or at her side; the third stands across open ground. Between her lap and the pot, the triangle closes round a stretch of bare, unpainted silk.",
+  "by": "Opus 5.5"
+ },
+ "utagawa-hiroshige-sudden-rain-over-ohashi-and-atake-from-the": {
+  "about": "Van Gogh copied this 1857 woodblock design, walkers in an Edo downpour, in oil in Paris in 1887, heightening its colours and leaving a border round his canvas filled with Japanese characters from other prints.",
+  "deep": "Ōhashi, the Great Bridge in the title, was a borrowed name. Edo already called Ryōgoku Bridge the Ōhashi when this crossing was built, so it became the Shin-Ōhashi, the New Great Bridge, 164 years old by 1857. Atake, the far bank, kept the name of something gone: the Atakemaru, a copper-sheathed shogunal warship, moored there until broken up in 1682. Legend has the ship groaning nightly to go to Izu, where it was built. Of the two places named, the bridge is drawn in firm outline down to its braces. The shore that keeps the warship's name is a strip of grey treetops behind the rain, with no contour drawn round it.",
+  "by": "Opus 5.5"
+ },
+ "suzuki-harunobu-young-man-and-woman-hunting-for-insects-at-n": {
+  "about": "Privately issued calendar prints Suzuki Harunobu designed in 1765 are thought to be among the earliest full-colour \"brocade\" prints. Some two or three years later came this design: an insect hunt among bush clover, after dark.",
+  "deep": "Full-colour printing was still new when this sheet was issued, and what the sheet does with it is make a night. A 1990 catalogue entry, picturing a public \"astonished and delighted\" by the colour harmonies, reasons that the black \"must have been printed several times\" to reach such intensity. If so, the dark was built up pass upon pass, and the light is simply where the black stopped. The bush-clover stems stay pale wherever only black surrounds them, and the lantern on the young woman's rod, the scene's own light, is a pale six-sided shape left standing in the black, four thin strands hanging pale beneath it.",
+  "by": "Opus 5.5"
+ },
+ "maruyama-okyo-mother-tiger-carrying-three-cubs-across-a-rive": {
+  "about": "No living tiger could be seen in Japan when Maruyama Ōkyo and his pupils painted this screen in 1781–82. He worked from pelts; a life-size study of one skin survives, every part's measurements noted.",
+  "deep": "The tigress's riddle, ferrying three cubs one at a time when one of them, a hyō, would eat any cub left with it, takes seven crossings. Three match the screen, one cub on each side and one in her jaws, and each makes a different cub the hyō: on the third, the cub at the far left, already over; on the fourth, the cub she carries back; on the fifth, the cub at the rock. A 2026 news report, citing an unnamed account, picks the fifth. All three cubs are striped, so the cub at the rock is next to be carried, one just ferried over, or the hyō itself, kept for last.",
+  "by": "Opus 5.5"
+ },
+ "shibata-zeshin-eagle-resting-on-a-pine-tree-branch-in-snow": {
+  "about": "On the government's recommendation, the lacquerer Shibata Zeshin sent a lacquer panel of Mount Fuji to Vienna's 1873 World Exhibition and won a medal. This eagle in snow is painted, not lacquered, just over a metre tall.",
+  "deep": "Perhaps, the scroll's curators suggest, this eagle on a snowy pine and the small animal falling below it stand for the upheavals Japan went through as it opened its doors fully to the West. A story about Zeshin points the other way: he is said to have declined work from the Meiji governor of Tokyo because he had come of age in the shogun's day. Nothing fixes the scroll on either side of the Meiji Restoration, and it carries both readings. Low on the silk the small animal plunges tail-up into the snow. Far above, the eagle keeps to its branch, one yellow foot planted, the other lifted, talons clenched on nothing.",
+  "by": "Opus 5.5"
+ },
  "john-william-waterhouse-lamia": {
   "about": "Keats's serpent, newly made a woman, as Waterhouse showed her at the Royal Academy in 1909. The Spectator admired its colour, a beauty \"of jewellery or finely arranged flowers\" but lacking \"that touch of emotion\".",
   "deep": "Keats burns the serpent off her and leaves nothing; Waterhouse keeps it, folded across her lap. In the poem the change scorches her colours away, she is \"undrest / Of all her sapphires, greens, and amethyst\", and then the creature melts from sight. The Lancet's reviewer in 1909 gave the painted skin Keats's line for the living serpent, \"vermilion spotted, golden, green, and blue\", while Herbert Draper's Lamia, at the same Academy, had her old skin around her \"all transparent and colourless\". Both of this woman's hands are up in her hair, and the patterned skin, gold-rimmed rings and all, lies across the pink of her lap with nothing holding it.",
@@ -1116,8 +1171,10 @@ about: "The day after the 1918 Armistice, Monet offered France a cycle of monume
 by: "Opus 4.8" },
 
 "claude-monet-water-lilies-2": {
-about: "In 1916 Monet built a vast new studio at Giverny for water-lily canvases more than two metres high — the Grande Décoration he would promise to France the day after the 1918 Armistice. This four-metre stretch of pond was not among the twenty-two panels that went to the Orangerie; it stayed behind in the studio for decades, until around 1950 the dealer Katia Granoff won the trust of Monet's son Michel and began showing the unwanted late canvases, just as postwar abstraction was teaching audiences to see them.",
-by: "Opus 4.8" },
+  "about": "In 1918 Monet offered the State two decorative panels, and the gift grew to twenty-two water-lily canvases. This one, painted after 1916, was not among them; it stayed at Giverny until after the Second World War.",
+  "deep": "The canvases Monet gave the State tend to keep a tree or foliage as a foothold; this one keeps none. Its pads drift toward the edges and leave the centre open, and though the water still runs from near to far, it offers no footing. In 1909 the critic Roger Marx reported Monet's wish for “a wave with no horizon and no shore”, and in 1963 one commentator wrote that the only proper reaction would be to dive into it and drown. The leaves thin out in that open middle, and lines of orange and olive hang downward through it, into the water.",
+  "by": "Opus 5.5"
+ },
 
 "claude-monet-waterloo-bridge-london-at-dusk": {
 about: "From 1899 Monet worked the Thames from a fifth-floor Savoy Hotel suite, Waterloo Bridge falling away to his left, switching canvas to canvas to chase the shifting London murk; after his 1901 campaign he abandoned plein-air work altogether and finished the whole run from memory and sketches at Giverny. This 1904 canvas belongs to that studio harvest — one dusk effect among roughly forty Waterloo Bridges, its cool low light distinct from the fog and sunset variants Monet mined from the same window. He dated it the year he chose thirty-seven of the London views for his Durand-Ruel exhibition in Paris, eighteen of them Waterloo Bridges; a later reconstruction using solar geometry and period weather records pinned down the exact balcony he had painted from.",
@@ -5594,8 +5651,10 @@ about: "This 1658 small-panel self-portrait by Frans van Mieris the Elder — Le
 by: "Opus 4.8" },
 
 "almost-once": {
-about: "Brett Whiteley's 1968 outdoor sculpture — two giant matchsticks, one pristine red-headed, one charred — stands eight metres tall on the Domain outside the Art Gallery of New South Wales. The burnt match was made by suspending the timber in chains and actually setting it on fire, burning it to roughly half an inch deep.",
-by: "Opus 4.8" },
+  "about": "About eight metres tall, one match unstruck and one burnt, the pair was made by Brett Whiteley with Matthew Dillon. The black one was really burnt: its timber was hung from chains and set alight.",
+  "deep": "By 2002 cockatoos were nesting inside the burnt match, and the half of the pair that shows a thing used up had become the half that needs repairing again and again. Matthew Dillon, Whiteley's assistant on the pair, had come back in 1995 to restore its flaking charcoal. In 2002 the char was consolidated, in 2007 metal patches covered the birds’ holes, and in 2017 the patchy black was inpainted with black stain. Dillon, quoted in 2002, said the match would always be “a reparation”, not original, a state that regular upkeep could have spared it. The black on that match today is partly char from the original fire and partly that stain.",
+  "by": "Opus 5.5"
+ },
 
 "the-boar-hunt": {
 
@@ -5644,8 +5703,10 @@ deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
 "the-life-of-stars": {
-about: "More than 80,000 holes were hand-placed by Lindy Lee across the polished stainless steel surface over three weeks of meditative work at a Shanghai foundry — each perforation turning the six-metre oval into something that both contains and radiates light, like a star. The form references Indra's net, the Buddhist image of a universe held together by infinite reflection, placing this 2015 work squarely in Lee's practice of finding the cosmic in material process.",
-by: "Opus 4.8" },
+  "about": "A mirror-polished stainless-steel egg, pierced with holes, installed on the eve of Chinese New Year 2018 — the day after Lindy Lee's birthday. She was born during that festival in 1954, to migrants from Guangdong.",
+  "deep": "Every daytime photograph shows the work at its most borrowed. Lit from within, it is what the curator Leigh Robb called \"a twenty-four-hour work of art\", mirroring its surroundings by day and \"luminous by night\". In a 2018 newspaper column, Lisa Slade likened it to Bert Flugelman's steel Spheres of 1977, because it too \"takes in everything around it\", as it does in sunlight. After dark the light runs the other way, out of the hollow through the skin, and the title's stars become the work's own. The holes sitting dark against reflected cloud near the top open onto that hollow: they are where the light will come through.",
+  "by": "Opus 5.5"
+ },
 
 "piet-mondrian-trafalgar-square": {
 
@@ -6068,8 +6129,10 @@ about: "Having relocated from Argenteuil to lodgings near the station, Monet tra
 by: "Opus · Fable" },
 
 "claude-monet-argenteuil": {
-about: "Around 1875 Monet painted several views of sailing boats moored in the Argenteuil basin, this one built on the vermilion hulls that give it its usual English name — the reds doing exactly the work in the water that his Impression's orange sun had done in mist two years before.",
-by: "Opus · Fable" },
+  "about": "These red-hulled sailing boats, moored at Argenteuil, were painted by Claude Monet around 1875 — the year he wrote to Édouard Manet that he had not a penny left and no credit at the butcher's or the baker's.",
+  "deep": "Two overlapping red hulls make one heavy block at the centre, moored, reflections dropping plumb beneath them; the pale bundle on the farther boom is likely its sail, lowered. In September 1876 Stéphane Mallarmé wrote in a London monthly that he had never seen \"a boat poised more lightly on the water\" than in Monet's pictures. He wrote of the boats in general: a larger canvas of red boats hung in that spring's group show, and this one has no recorded showing before 1931. Here his phrase finds its boats away from the red, in a white sail beyond the masts, likely under way, and a white rowboat the frame cuts at lower right.",
+  "by": "Opus 5.5"
+ },
 
 "camille-pissarro-junimorgen-bei-pontoise": {
 
