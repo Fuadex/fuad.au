@@ -1,0 +1,53 @@
+<!doctype html><meta charset="utf-8">
+<style>body{margin:0;font:11px/1.5 monospace;background:#fff;color:#000;white-space:pre-wrap}
+iframe{position:fixed;left:-9999px;top:0;border:0}</style>
+<body>
+<iframe id="f" src="index.html#stories"></iframe>
+<div id="out" style="position:fixed;right:0;top:0;width:280px;max-height:260px;overflow:hidden;background:#ffe;z-index:9">waiting…</div>
+<script>
+// query: ?w=360 (iframe width) &open=1 (click all .st-reading expanders) &show=.st-reading
+// (scroll the iframe to that element and bring the iframe on-screen for a screenshot run)
+const Q = new URLSearchParams(location.search);
+const W = +(Q.get("w") || 360);
+const fr = document.getElementById("f");
+fr.style.width = W + "px"; fr.style.height = (+(Q.get("h")) || 3000) + "px";
+const out = document.getElementById("out");
+function scan() {
+  try {
+    const doc = fr.contentDocument, win = fr.contentWindow;
+    const feed = doc.querySelector(".st-feed");
+    if (!feed) { out.textContent = "feed not mounted yet"; return setTimeout(scan, 1000); }
+    if (Q.get("open")) for (const b of doc.querySelectorAll(".st-reading button")) b.click();
+    setTimeout(() => report(doc, win), 400);
+  } catch (e) { out.textContent = "ERR " + e.message; }
+}
+function report(doc, win) {
+  const lines = [];
+  lines.push("iframe w=" + W + " docEl scrollWidth=" + doc.documentElement.scrollWidth);
+  const rd = doc.querySelector(".st-reading");
+  lines.push(".st-reading " + (rd ? "MOUNTED rect=" + JSON.stringify((r => ({ t: Math.round(r.top + win.scrollY), h: Math.round(r.height), w: Math.round(r.width) }))(rd.getBoundingClientRect())) : "MISSING"));
+  if (rd) lines.push("open bodies: " + doc.querySelectorAll('.st-reading button[aria-expanded="true"]').length + "/4");
+  // overflow scan — WIDEST offender per class past the iframe width
+  const off = new Map();
+  for (const el of doc.querySelectorAll("*")) {
+    const r = el.getBoundingClientRect();
+    if (r.right > W + 0.5 && r.width > 0) {
+      const key = (el.className && typeof el.className === "string" ? el.className.split(" ")[0] : el.tagName);
+      const prev = off.get(key);
+      if (!prev || r.right > prev.right) off.set(key, { right: Math.round(r.right), w: Math.round(r.width), tag: el.tagName });
+    }
+  }
+  const rows = [...off.entries()].sort((a, b) => b[1].right - a[1].right).slice(0, 25);
+  lines.push("elements past x=" + W + " (widest per class): " + (rows.length ? "" : "NONE"));
+  for (const [k, v] of rows) lines.push("  right=" + v.right + " w=" + v.w + "  " + v.tag + "." + k);
+  out.textContent = lines.join("\n");
+  document.title = "PROBE " + (rows.length ? "OVERFLOW " + rows.length : "CLEAN") + (rd ? " reading-ok" : " reading-MISSING");
+  const show = Q.get("show");
+  if (show) {
+    const el = doc.querySelector(show);
+    if (el) win.scrollTo(0, el.getBoundingClientRect().top + win.scrollY - 8);
+    fr.style.left = "0"; out.style.display = "none";
+  }
+}
+setTimeout(scan, 12000);
+</script>

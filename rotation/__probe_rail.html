@@ -1,0 +1,132 @@
+<!doctype html><meta charset="utf-8">
+<style>html,body{margin:0;background:#fff}
+#out{position:fixed;right:0;top:0;width:360px;max-height:100%;overflow:hidden;background:#ffe;color:#000;
+  font:10px/1.35 monospace;white-space:pre-wrap;z-index:9}
+iframe{position:fixed;left:-9999px;top:0;border:0}</style>
+<body>
+<iframe id="f" src="index.html#stories"></iframe>
+<div id="out">waiting…</div>
+<script>
+// UNTRACKED PROBE COPY (rail rework, 2026-09-21). Params:
+//   w=      iframe width      h=      iframe height (the story viewport)
+//   to=     CSS selector to scroll to inside the iframe (uses its scroll-margin)
+//   sy=     absolute scrollY instead
+//   click=  index of a .st-toc button to click; reports scrollY before/after + where it landed
+//   shot=1  bring the iframe on-screen and hide the readout (screenshot runs)
+//   seed=   load index.html#stories/<seed> instead, to test a deep link
+const Q = new URLSearchParams(location.search);
+const W = +(Q.get("w") || 360), H = +(Q.get("h") || 800);
+const fr = document.getElementById("f"), out = document.getElementById("out");
+if (Q.get("seed")) fr.src = "index.html#stories/" + Q.get("seed");
+fr.style.width = W + "px"; fr.style.height = H + "px";
+const L = [];
+function scan() {
+  try {
+    const doc = fr.contentDocument, win = fr.contentWindow;
+    if (!doc.querySelector(".st-feed")) { out.textContent = "feed not mounted yet"; return setTimeout(scan, 800); }
+    setTimeout(() => act(doc, win), 1200);
+  } catch (e) { out.textContent = "ERR " + e.message; }
+}
+function act(doc, win) {
+  const nav = doc.querySelector(".st-toc");
+  L.push("w=" + W + " h=" + H + "  docEl.scrollWidth=" + doc.documentElement.scrollWidth);
+  if (!nav) { L.push("RAIL MISSING"); return report(doc, win); }
+  const btns = [...nav.querySelectorAll("button")];
+  L.push("rail rows=" + btns.length + "  nav scrollWidth=" + Math.round(nav.scrollWidth) +
+    " clientWidth=" + Math.round(nav.clientWidth) + " height=" + Math.round(nav.getBoundingClientRect().height));
+  L.push("rows: " + btns.map(b => JSON.stringify(b.textContent.trim())).join(" | "));
+  L.push("row ids: " + btns.map(b => b.getAttribute("data-id")).join(" "));
+  // every section still carries an id (the deep-link contract)
+  const secs = [...doc.querySelectorAll(".st-feed section")];
+  const withId = secs.filter(s => s.id);
+  L.push("sections=" + secs.length + " with id=" + withId.length +
+    (secs.length === withId.length ? " (all deep-linkable)" : " MISSING=" + secs.filter(s => !s.id).length));
+  const ids = withId.map(s => s.id), uniq = new Set(ids);
+  L.push("distinct section ids=" + uniq.size + (uniq.size === ids.length ? " (no slug collisions)" :
+    " COLLISION: " + ids.filter((x, i) => ids.indexOf(x) !== i).join(",")));
+  L.push("every id resolves via getElementById: " + ids.every(i => doc.getElementById(i) === doc.querySelector("[id=\"" + i + "\"]")));
+  L.push("chapter divider ids: " + [...doc.querySelectorAll(".st-chapter")].map(c => c.id || "NONE").join(" "));
+  const go = () => {
+    if (Q.get("click") !== null) {
+      const i = +Q.get("click"), b = btns[i];
+      const before = win.scrollY;
+      b.click();
+      setTimeout(() => {
+        const id = b.getAttribute("data-id"), el = doc.getElementById(id);
+        L.push("CLICK row " + i + " " + JSON.stringify(b.textContent.trim()) + " -> scrollY " + Math.round(before) + " => " + Math.round(win.scrollY));
+        L.push("  target #" + id + " top now " + (el ? Math.round(el.getBoundingClientRect().top) : "?") + "px from viewport top; hash=" + win.location.hash);
+        L.push("  active row now: " + JSON.stringify((nav.querySelector('[data-on="true"]') || {}).textContent || "none"));
+        report(doc, win);
+      }, 2600);
+      return;
+    }
+    report(doc, win);
+  };
+  const to = Q.get("to"), sy = Q.get("sy");
+  if (to) {
+    const el = doc.querySelector(to);
+    if (el) el.scrollIntoView({ block: "start" });
+    setTimeout(go, 700);
+  } else if (sy) { win.scrollTo(0, +sy); setTimeout(go, 700); }
+  else go();
+}
+function report(doc, win) {
+  const nav = doc.querySelector(".st-toc");
+  L.push("scrollY=" + Math.round(win.scrollY) + "  active=" +
+    JSON.stringify(((nav && nav.querySelector('[data-on="true"]')) || {}).textContent || "none") +
+    "  reached=" + (nav ? nav.querySelectorAll('[data-reached="true"]').length : 0) +
+    "  nav.scrollLeft=" + (nav ? Math.round(nav.scrollLeft) : "-"));
+  const head = doc.querySelector(".r-head"), tocEl = doc.querySelector(".st-toc");
+  if (head && tocEl) {
+    const hr = head.getBoundingClientRect(), tr = tocEl.getBoundingClientRect();
+    L.push("chrome: .r-head " + Math.round(hr.height) + "px tall at y=" + Math.round(hr.top) +
+      " | .st-toc " + Math.round(tr.height) + "px at y=" + Math.round(tr.top) +
+      (win.scrollY > 200 ? (tr.top < hr.bottom - 1 ? "  << RAIL STUCK UNDER THE HEADER (overlap " + Math.round(hr.bottom - tr.top) + "px)" : "  (clear of the header)") : ""));
+  }
+  if (Q.get("seed")) {
+    const want = "st-" + Q.get("seed"), el = doc.getElementById(want);
+    L.push("DEEPLINK #stories/" + Q.get("seed") + " -> #" + want + " " +
+      (el ? "FOUND, " + (el.tagName === "SECTION" ? "label " + JSON.stringify((el.querySelector(".st-label") || {}).textContent || "") : "divider " + JSON.stringify(el.textContent.trim())) +
+        ", " + Math.round(el.getBoundingClientRect().top) + "px from viewport top" : "NOT FOUND"));
+  }
+  // overflow scan — widest offender per class past the iframe width
+  const off = new Map();
+  for (const el of doc.querySelectorAll("*")) {
+    const r = el.getBoundingClientRect();
+    if (r.right > W + 0.5 && r.width > 0) {
+      const key = (el.className && typeof el.className === "string" ? el.className.split(" ")[0] : el.tagName);
+      const prev = off.get(key);
+      if (!prev || r.right > prev.right) off.set(key, { right: Math.round(r.right), w: Math.round(r.width), tag: el.tagName, el });
+    }
+  }
+  const rows = [...off.entries()].sort((a, b) => b[1].right - a[1].right).slice(0, 25);
+  // classify: an element that sits inside a container the page DECLARES scrollable (overflow-x
+  // auto/scroll — the TOC strip, the slope-graph wrap) is not a layout fault; anything else past
+  // the viewport edge is.
+  const scroller = (el) => {
+    for (let a = el.parentElement; a && a !== doc.documentElement; a = a.parentElement) {
+      const ox = win.getComputedStyle(a).overflowX;
+      if (ox === "auto" || ox === "scroll") return (a.className && typeof a.className === "string" ? "." + a.className.split(" ")[0] : a.tagName);
+    }
+    return null;
+  };
+  for (const [k, v] of rows) v.scroller = scroller(v.el);
+  L.push("elements past x=" + W + ": " + (rows.length ? "" : "NONE"));
+  for (const [k, v] of rows) L.push("  right=" + v.right + " w=" + v.w + "  " + v.tag + "." + k +
+    (v.scroller ? "   [inside scroller " + v.scroller + " - by design]" : "   << PAGE OVERFLOW"));
+  for (const [k, v] of rows) if (!v.scroller) {
+    const chain = []; let a = v.el;
+    for (let i = 0; a && i < 6; a = a.parentElement, i++) chain.push(a.tagName + (a.id ? "#" + a.id : "") + (a.className && typeof a.className === "string" && a.className.trim() ? "." + a.className.trim().split(/\s+/).join(".") : ""));
+    L.push("  ^ " + JSON.stringify((v.el.textContent || "").slice(0, 60)) + "  in  " + chain.join(" < "));
+  }
+  L.push("page-level overflow: " + (rows.filter(r => !r[1].scroller).length ? rows.filter(r => !r[1].scroller).length + " offender(s)" : "NONE") +
+    "   docEl.scrollWidth=" + doc.documentElement.scrollWidth + " (viewport " + W + ")");
+  out.textContent = L.join("\n");
+  document.title = "PROBE " + (rows.length ? "OVERFLOW " + rows.length : "CLEAN");
+  // DIAGNOSTIC ONLY: the sticky strip parks at top:0, i.e. behind the app header (pre-existing,
+  // measured above). hidehead=1 hides the header so the stuck strip can be SEEN in a screenshot.
+  if (Q.get("hidehead")) { const h = doc.querySelector(".r-head"); if (h) h.style.visibility = "hidden"; }
+  if (Q.get("shot")) { fr.style.left = "0"; out.style.display = "none"; }
+}
+setTimeout(scan, 6000);
+</script>

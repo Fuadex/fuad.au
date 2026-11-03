@@ -10007,6 +10007,26 @@
     "type": "spelling",
     "reason": "spelling: tagging/credit variant folds to canonical"
    }
+  ],
+  "tracks": [
+   {
+    "from": "Reload (The Matrix Reloaded)",
+    "to": "Reload",
+    "type": "spelling",
+    "reason": "spelling: soundtrack-suffixed duplicate of the same recording (Fuad 2026-11-04: Reload is Reload, one song)"
+   },
+   {
+    "from": "Get High",
+    "to": "In the Age of the Consecrated Vampire We All Get High",
+    "type": "spelling",
+    "reason": "spelling: press/scrobble shorthand of the released title (The Electric Warlock Acid Witch Satanic Orgy Celebration Dispenser, 2016; DV 2026-11-04)"
+   },
+   {
+    "from": "Jesus Frankenstein (Halfway to Hell and Loving It Mix)",
+    "to": "Jesus Frankenstein",
+    "type": "variant",
+    "reason": "variant: distinct remix recording (Mars Needs Women EP mix), link to canonical for reads"
+   }
   ]
  },
  "Röyksopp": {

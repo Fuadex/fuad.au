@@ -1,0 +1,157 @@
+<!doctype html><meta charset="utf-8">
+<style>body{margin:0;font:11px/1.45 monospace;white-space:pre-wrap;background:#fff;color:#000}iframe{position:fixed;left:-9999px;top:0;width:900px;height:2200px;border:0}</style>
+<body><iframe id="f" src="index.html#stories"></iframe><div id="out">waiting</div>
+<script>
+// UNTRACKED QC probe for the Lyrical diet rework (2026-09-21). Computed-style evidence that the
+// segments are STROKED (border-color carries the hue, background is a low-alpha wash), that the
+// stack runs in hue order, and that hover/pin behave as ruled. Delete at will.
+const HUES = {"violence & murder":12,"anger & defiance":30,"war & battle":48,"nostalgia & memory":70,
+"money & the street":88,"party & hedonism":104,"nature & the elements":138,"freedom & escape":162,
+"identity & becoming":186,"politics & society":212,"night & the city":240,"alienation & emptiness":262,
+"death & grief":282,"faith & the occult":300,"madness & the mind":318,"addiction & self-destruction":332,
+"heartbreak & loss":346,"love & desire":358};
+const fr=document.getElementById("f"),out=document.getElementById("out"),L=[];
+let doc,w;
+const thOf=(el)=>((el.getAttribute("title")||"").split(" · ")[0]);
+const st=(el)=>{const c=w.getComputedStyle(el);return{b:c.borderTopColor,bg:c.backgroundColor,bw:c.borderTopWidth,bs:c.boxSizing,h:c.height,r:c.borderTopLeftRadius};};
+const over=(el)=>{el.dispatchEvent(new w.MouseEvent("mouseover",{bubbles:true,relatedTarget:doc.body}));
+                  el.dispatchEvent(new w.MouseEvent("mouseenter",{bubbles:false,relatedTarget:doc.body}));};
+const outOf=(el)=>{el.dispatchEvent(new w.MouseEvent("mouseout",{bubbles:true,relatedTarget:doc.body}));};
+function segsOf(col){return[...col.querySelectorAll(".st-diet-seg")];}
+// alpha out of EITHER form: at rest Chrome echoes oklch(...), mid-transition it reports the
+// interpolated oklab(...). Classify on the number, and wait out the 200ms ease before counting.
+function alpha(c){const m=/\/\s*([0-9.]+)\s*\)/.exec(c);return m?parseFloat(m[1]):1;}
+function state(el){const a=alpha(st(el).b);
+  if(a>0.8)return"ON";if(a<0.35)return"quiet";if(a>0.45&&a<0.75)return"rest";return"?"+a;}
+function run(){
+ try{
+  doc=fr.contentDocument;w=fr.contentWindow;
+  const diet=doc.querySelector(".st-diet");
+  if(!diet){out.textContent="diet MISSING (feed not mounted)";return;}
+  const cols=[...diet.querySelectorAll(".st-diet-col")];
+  // ?hover=<theme substring> — park the chart in its hovered state and bring the iframe
+  // on-screen for a screenshot run, instead of walking the assertions.
+  // ?degrade=1 — knock THEMES.matrix out and remount the route, which is the older-payload path
+  // (top-6 arc, share-ordered names). The hue map is keyed by NAME, so the six must come back in
+  // the same wheel order, coloured identically to their place in the full eighteen.
+  if(new URLSearchParams(location.search).get("degrade")){
+    w.ROTATION.INSIGHTS.THEMES.matrix=null;
+    w.location.hash="#overview";
+    setTimeout(()=>{w.location.hash="#stories";setTimeout(()=>{
+      const d2=doc.querySelector(".st-diet");
+      if(!d2){out.textContent="degrade: diet MISSING (section dropped)";return;}
+      const c0=d2.querySelector(".st-diet-col"),ss=[...c0.querySelectorAll(".st-diet-seg")];
+      const R=["degrade: THEMES.matrix removed, route remounted",
+        "  sub line: "+doc.querySelector(".st-diet").parentNode.querySelector(".st-sub").textContent.replace(/\s+/g," ").slice(0,200),
+        "  segments in first column: "+ss.length];
+      for(const s of ss)R.push("    "+(thOf(s)+"                          ").slice(0,28)+" hue="+HUES[thOf(s)]+"  border="+st(s).b+"  bg="+st(s).bg+"  h="+st(s).h);
+      const hs=ss.map(s=>HUES[thOf(s)]).filter(h=>h!=null);
+      let ok=true;for(let i=1;i<hs.length;i++)if(hs[i]>hs[i-1])ok=false;
+      R.push("  wheel order held on the degraded six: "+(ok?"YES":"NO")+"   ("+hs.join(" > ")+")");
+      R.push("  chips: "+[...doc.querySelectorAll(".st-diet-chip")].map(c=>c.textContent).join(" / "));
+      out.textContent=R.join("\n");document.title="DIET DEGRADE DONE";
+    },1500);},600);
+    return;
+  }
+  const HQ=new URLSearchParams(location.search).get("hover");
+  if(HQ){
+   const tgt=[...diet.querySelectorAll(".st-diet-seg")].find(s=>thOf(s).indexOf(HQ)>=0);
+   if(tgt)over(tgt);
+   // hold the scroll: something in the feed re-parks the window after a first scrollTo, so keep
+   // re-aiming at the chart until the screenshot is taken.
+   // FRAME BY LAYOUT, NOT BY SCROLL: the feed re-parks the window after a scrollTo (lazy rows
+   // above the chart settle late), so grow the iframe to the full document height — which stops
+   // it scrolling at all — and slide the whole element up until the chart is under the camera.
+   setTimeout(()=>{
+     fr.style.height=(doc.documentElement.scrollHeight+400)+"px";
+     setTimeout(()=>{
+       if(tgt)over(tgt);
+       fr.style.left="0";out.style.display="none";
+       fr.style.top=(-(diet.getBoundingClientRect().top+w.scrollY-110))+"px";
+       document.title="DIET HOVER "+(tgt?thOf(tgt):"MISS");
+     },500);
+   },450);
+   return;
+  }
+  L.push("COLUMNS "+cols.length+"   diet rect h="+Math.round(diet.getBoundingClientRect().height));
+  const last=cols[cols.length-1],segs=segsOf(last);
+  L.push("");
+  L.push("=== A. REST-STATE COMPUTED STYLES (last column, top to bottom) ===");
+  for(const s of segs){const c=st(s);L.push("  "+(thOf(s)+"                             ").slice(0,30)
+    +" border="+c.bw+" "+c.b+"  bg="+c.bg+"  box="+c.bs+" h="+c.h+" r="+c.r);}
+  L.push("");
+  L.push("=== B. STACK ORDER (hue, top -> bottom; must DESCEND, same in every column) ===");
+  const ordOf=(col)=>segsOf(col).map(thOf).filter(t=>HUES[t]!=null);
+  const ref=ordOf(last);
+  L.push("  "+ref.map(t=>HUES[t]).join(" > "));
+  L.push("  "+ref.join(" | "));
+  let desc=true;for(let i=1;i<ref.length;i++)if(HUES[ref[i]]>HUES[ref[i-1]])desc=false;
+  L.push("  monotonic descending: "+(desc?"YES":"NO"));
+  let same=true;for(const c of cols){const o=ordOf(c);
+    const sub=ref.filter(t=>o.indexOf(t)>=0);if(o.join("|")!==sub.join("|"))same=false;}
+  L.push("  identical order in all "+cols.length+" columns (thin years omit zero-share themes): "+(same?"YES":"NO"));
+  const sums=cols.map(c=>segsOf(c).reduce((a,s)=>a+parseFloat(st(s).h),0));
+  L.push("  segment-height sums per column: min "+Math.min.apply(null,sums).toFixed(0)+"px, max "+Math.max.apply(null,sums).toFixed(0)+"px  (H=168; the overshoot is the 2px min on hair-thin themes)");
+  L.push("  column box: "+w.getComputedStyle(cols[0]).height+"  year label: "+w.getComputedStyle(cols[0].querySelector(".st-diet-yr")).height);
+  // ── hover
+  // prefer a theme that ALSO has a visible chip, so the data-hot legend link gets exercised
+  const chipTh=[...doc.querySelectorAll(".st-diet-chip")].map(c=>c.textContent.split(" · ")[0]);
+  const pick=segs.find(s=>parseFloat(st(s).h)>=8&&HUES[thOf(s)]!=null&&chipTh.indexOf(thOf(s))>=0)
+    ||segs.find(s=>parseFloat(st(s).h)>=8&&HUES[thOf(s)]!=null)||segs[0];
+  const TH=thOf(pick);
+  over(pick);
+  setTimeout(()=>{
+   L.push("");
+   L.push("=== C. HOVER "+TH+" (mouseover on ONE band in the last column) ===");
+   let on=0,quiet=0,cols_on=0;
+   for(const c of cols){let hit=false;for(const s of segsOf(c)){const v=state(s);
+     if(thOf(s)===TH){if(v==="ON"){on++;hit=true;}}else if(v==="quiet")quiet++;}
+     if(hit)cols_on++;}
+   L.push("  segments of "+TH+" now ON: "+on+" across "+cols_on+"/"+cols.length+" columns; other segments quiet: "+quiet);
+   L.push("  hovered band styles: "+JSON.stringify(st(pick)));
+   const other=segsOf(cols[0]).find(s=>thOf(s)!==TH);
+   L.push("  a non-hovered band:  "+JSON.stringify(st(other)));
+   const hotChip=doc.querySelector('.st-diet-chip[data-hot="true"]');
+   L.push("  chip lit by the band hover: "+(hotChip?hotChip.textContent+"  border="+w.getComputedStyle(hotChip).borderTopColor:"none (theme outside the top-8 chips / tail closed)"));
+   L.push("  exemplar panel (.st-diet-pick) during hover: "+(doc.querySelector(".st-diet-pick")?"OPEN  <-- BAD, hover must not drive it":"absent  <-- correct, hover never opens it"));
+   outOf(diet);
+   setTimeout(()=>{
+    L.push("");
+    L.push("=== D. MOUSE LEAVES THE CHART ===");
+    L.push("  states now: "+[...new Set(segsOf(cols[0]).map(state))].join(", "));
+    // ── pin
+    const chips=[...doc.querySelectorAll(".st-diet-chip")].filter(c=>!c.classList.contains("st-diet-more"));
+    const chip=chips[0];const CTH=chip.textContent.split(" · ")[0];
+    chip.click();
+    setTimeout(()=>{
+     L.push("");
+     L.push("=== E. PIN "+CTH+" (chip click) ===");
+     let on=0;for(const c of cols)for(const s of segsOf(c))if(thOf(s)===CTH&&state(s)==="ON")on++;
+     L.push("  segments ON: "+on+"/"+cols.length);
+     L.push("  chip data-on="+chip.getAttribute("data-on")+" bg="+w.getComputedStyle(chip).backgroundColor);
+     const pk=doc.querySelector(".st-diet-pick");
+     L.push("  exemplar panel: "+(pk?"OPEN — "+pk.querySelector(".st-yir-h").textContent:"absent"));
+     // hover a DIFFERENT theme while pinned — pin must win
+     const other=segsOf(cols[cols.length-1]).find(s=>thOf(s)!==CTH&&parseFloat(st(s).h)>=8);
+     const OTH=thOf(other);over(other);
+     setTimeout(()=>{
+      let stillOn=0,otherOn=0;
+      for(const c of cols)for(const s of segsOf(c)){if(thOf(s)===CTH&&state(s)==="ON")stillOn++;if(thOf(s)===OTH&&state(s)==="ON")otherOn++;}
+      L.push("  then hovered "+OTH+": pinned still ON in "+stillOn+" columns, hovered theme ON in "+otherOn+" (must be 0 — pin wins)");
+      const pk2=doc.querySelector(".st-diet-pick");
+      L.push("  exemplar panel after that hover: "+(pk2?pk2.querySelector(".st-yir-h").textContent+"  <-- unchanged":"absent <-- BAD"));
+      chip.click();
+      setTimeout(()=>{
+       L.push("");
+       L.push("=== F. UNPIN ===");
+       L.push("  panel: "+(doc.querySelector(".st-diet-pick")?"still open <-- BAD":"closed"));
+       out.textContent=L.join("\n");document.title="DIET PROBE DONE";
+      },420);
+     },420);
+    },420);
+   },420);
+  },420);
+ }catch(e){out.textContent="ERR "+e.message+"\n"+e.stack;document.title="DIET PROBE ERR";}
+}
+setTimeout(run,14000);
+</script>

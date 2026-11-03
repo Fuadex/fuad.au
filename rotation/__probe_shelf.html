@@ -1,0 +1,120 @@
+<!doctype html><meta charset="utf-8">
+<style>body{margin:0;font:11px/1.4 monospace;background:#fff;color:#000;white-space:pre-wrap}
+iframe{position:fixed;left:-9999px;top:0;border:0}</style>
+<body>
+<iframe id="f" src="index.html#shelves"></iframe>
+<div id="out">waiting...</div>
+<script>
+// audit B5 probe — ?w=360 &h=6000 &wait=20000 &dump=shelves|overflow|order &scroll=<i>:<frac>
+// &show=<sel> &shot=1 &y=<n>
+const Q=new URLSearchParams(location.search);
+const W=+(Q.get("w")||360), H=+(Q.get("h")||6000), WAIT=+(Q.get("wait")||20000);
+const fr=document.getElementById("f"), out=document.getElementById("out");
+fr.style.width=W+"px"; fr.style.height=H+"px";
+function info(doc,win,sh,i){
+  const row=sh.querySelector(".sh-row"), prog=sh.querySelector(".sh-prog");
+  const bar=sh.querySelector(".sh-prog-track i"), pct=sh.querySelector(".sh-prog span, .sh-prog .sh-prog-read");
+  const name=(sh.querySelector(".sh-shelf-name")||{}).textContent||"?";
+  const cs=prog?win.getComputedStyle(prog):null;
+  const r=prog?prog.getBoundingClientRect():null;
+  return "  ["+i+"] "+name.slice(0,22).padEnd(22)
+    +" spines="+String(row?row.querySelectorAll(".sh-spine").length:0).padStart(4)
+    +" sw="+String(row?row.scrollWidth:-1).padStart(6)+" cw="+String(row?row.clientWidth:-1).padStart(5)
+    +" sl="+String(row?Math.round(row.scrollLeft):-1).padStart(6)
+    +" | prog "+(prog?("inline='"+prog.style.display+"' computed="+cs.display+" h="+Math.round(r.height)+" vis="+(r.height>0?"Y":"N")):"MISSING")
+    +" bar.w="+(bar?bar.style.width||"(unset)":"-")+" ml="+(bar?bar.style.marginLeft||"(unset)":"-")
+    +" read='"+(pct?pct.textContent:"-")+"'";
+}
+function go(){
+ let doc,win;
+ try{doc=fr.contentDocument;win=fr.contentWindow;}catch(e){out.textContent="ERR "+e.message;return;}
+ const L=[]; const shelves=[...doc.querySelectorAll(".sh-shelf")];
+ L.push("iframe "+W+"x"+H+"  docScrollWidth="+doc.documentElement.scrollWidth+" docScrollHeight="+doc.documentElement.scrollHeight);
+ L.push("shelves="+shelves.length);
+ const mode=Q.get("dump")||"shelves";
+ const sc=Q.get("scroll");
+ if(sc){ // "3:0.5" or "3:1200" (px when >1)
+   const [si,fv]=sc.split(":"); const sh=shelves[+si];
+   if(sh){ const row=sh.querySelector(".sh-row");
+     // force layout (content-visibility) then scroll
+     row.getBoundingClientRect();
+     const max=row.scrollWidth-row.clientWidth; const f=+fv;
+     row.scrollLeft = f<=1 ? f*max : f;
+     row.dispatchEvent(new win.Event("scroll"));
+     L.push("scrolled shelf "+si+" -> scrollLeft="+Math.round(row.scrollLeft)+" of max "+max);
+   } else L.push("no shelf "+si);
+ }
+ if(mode==="ro"){
+   // does the thumb re-measure when the ROW changes width (rotate / resize)? no scroll involved.
+   const sh=shelves[+(Q.get("i")||0)], row=sh.querySelector(".sh-row"), bar=sh.querySelector(".sh-prog-track i");
+   win.scrollTo(0, sh.getBoundingClientRect().top+win.scrollY-40);   // content-visibility: the shelf must be ON SCREEN
+   L.push("at w="+W+"  rowClientW="+row.clientWidth+"  thumb="+bar.style.width);
+   const W2=+(Q.get("to")||900);
+   let probeRO=0;
+   const myRO=new win.ResizeObserver(()=>{probeRO++;});
+   myRO.observe(row);
+   fr.style.width=W2+"px";
+   setTimeout(()=>{
+     L.push("control: a ResizeObserver installed BY THE PROBE on the same row fired "+probeRO+" time(s)");
+     L.push("at w="+W2+"  rowClientW="+row.clientWidth+"  thumb="+bar.style.width+"   (RO path)");
+     row.scrollLeft=1; row.dispatchEvent(new win.Event("scroll"));
+     L.push("after one scroll event at w="+W2+"  thumb="+bar.style.width+"   (expect clientW/scrollW = "+(100*row.clientWidth/row.scrollWidth).toFixed(2)+"%)");
+     out.textContent=L.join(String.fromCharCode(10)); document.title="PROBE-OK";
+   },1200);
+   out.textContent=L.join(String.fromCharCode(10));
+   return;
+ } else if(mode==="gesture"){
+   // simulate the four ways the scrub track can be touched, on shelf `i`
+   const sh=shelves[+(Q.get("i")||0)], row=sh.querySelector(".sh-row"), trk=sh.querySelector(".sh-prog-track");
+   const r=trk.getBoundingClientRect();
+   const px=(f)=>r.left+f*r.width;
+   const ev=(t,x,y,pt)=>trk.dispatchEvent(new win.PointerEvent(t,{pointerId:7,pointerType:pt,clientX:x,clientY:y,bubbles:true,cancelable:true,isPrimary:true}));
+   const rd=()=>Math.round(row.scrollLeft)+"/"+(row.scrollWidth-row.clientWidth)+" read="+(sh.querySelector(".sh-prog span").textContent)+" aria="+trk.getAttribute("aria-valuenow");
+   const y=r.top+r.height/2;
+   L.push("track rect left="+Math.round(r.left)+" w="+Math.round(r.width)+" h="+Math.round(r.height));
+   row.scrollLeft=0; L.push("  start                       "+rd());
+   // 1 — TOUCH TAP at 75%
+   ev("pointerdown",px(.75),y,"touch"); L.push("  touch down@75% (no seek yet) "+rd());
+   ev("pointerup",px(.75),y,"touch");   L.push("  touch up  @75% (tap jumps)   "+rd());
+   // 2 — TOUCH VERTICAL from 20%: must NOT move the shelf
+   row.scrollLeft=0;
+   ev("pointerdown",px(.20),y,"touch");
+   ev("pointermove",px(.21),y+40,"touch");
+   ev("pointerup",px(.21),y+40,"touch"); L.push("  touch vertical swipe         "+rd()+"   (want 0/...)");
+   // 3 — TOUCH HORIZONTAL DRAG 10% -> 40%
+   row.scrollLeft=0;
+   ev("pointerdown",px(.10),y,"touch");
+   ev("pointermove",px(.25),y,"touch");
+   ev("pointermove",px(.40),y+3,"touch");
+   ev("pointerup",px(.40),y+3,"touch");  L.push("  touch drag 10->40%           "+rd());
+   // 4 — MOUSE press at 90% (immediate seek)
+   row.scrollLeft=0;
+   ev("pointerdown",px(.90),y,"mouse");  L.push("  mouse down@90%               "+rd());
+   ev("pointerup",px(.90),y,"mouse");
+ } else if(mode==="shelves"){
+   shelves.slice(0,+(Q.get("n")||20)).forEach((sh,i)=>L.push(info(doc,win,sh,i)));
+ } else if(mode==="order"){
+   const sh=shelves[+(Q.get("i")||0)], row=sh.querySelector(".sh-row");
+   const sp=[...row.querySelectorAll(".sh-spine")];
+   L.push("shelf 0 spine order (title attr), first 6 / middle 4 / last 4 of "+sp.length);
+   const t=e=>(e.getAttribute("title")||"").slice(0,70);
+   sp.slice(0,6).forEach((e,j)=>L.push("  #"+(j+1)+"  "+t(e)));
+   const m=Math.floor(sp.length/2); sp.slice(m,m+4).forEach((e,j)=>L.push("  #"+(m+j+1)+"  "+t(e)));
+   sp.slice(-4).forEach((e,j)=>L.push("  #"+(sp.length-3+j)+"  "+t(e)));
+ } else if(mode==="overflow"){
+   const off=new Map();
+   for(const el of doc.querySelectorAll("*")){const r=el.getBoundingClientRect();
+     if(r.right>W+0.5&&r.width>0){const k=(typeof el.className==="string"&&el.className?el.className.split(" ")[0]:el.tagName);
+       const p=off.get(k); if(!p||r.right>p.right)off.set(k,{right:Math.round(r.right),w:Math.round(r.width),tag:el.tagName});}}
+   const rows=[...off.entries()].sort((a,b)=>b[1].right-a[1].right).slice(0,30);
+   L.push("past x="+W+": "+(rows.length||"NONE"));
+   for(const[k,v]of rows)L.push("  right="+v.right+" w="+v.w+"  "+v.tag+"."+k);
+ }
+ out.textContent=L.join("\n");
+ document.title="PROBE-OK";
+ const show=Q.get("show");
+ if(show){const el=doc.querySelector(show); if(el)win.scrollTo(0,el.getBoundingClientRect().top+win.scrollY-(+(Q.get("pad")||8))); fr.style.left="0"; out.style.display="none";}
+ else if(Q.get("shot")){win.scrollTo(0,+(Q.get("y")||0)); fr.style.left="0"; out.style.display="none";}
+}
+setTimeout(go,WAIT);
+</script>

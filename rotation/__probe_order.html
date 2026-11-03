@@ -1,0 +1,79 @@
+<!doctype html><meta charset="utf-8">
+<style>body{margin:0;font:11px/1.5 monospace;background:#fff;color:#000;white-space:pre-wrap}
+iframe{position:fixed;left:-9999px;top:0;border:0}</style>
+<body>
+<iframe id="f"></iframe>
+<div id="out" style="position:fixed;left:0;top:0;right:0;background:#ffe;z-index:9;padding:6px">waiting…</div>
+<script>
+// ?w=900  iframe width    ?hash=#stories  route to load    ?show=<sel> scroll+reveal for a screenshot
+const Q = new URLSearchParams(location.search);
+const W = +(Q.get("w") || 900);
+const fr = document.getElementById("f");
+fr.addEventListener("load", () => { try { const w = fr.contentWindow; w.__probeErrs = []; w.addEventListener("error", e => w.__probeErrs.push(String(e.message || e.error))); w.addEventListener("unhandledrejection", e => w.__probeErrs.push("rejection: " + e.reason)); } catch (e) {} });
+fr.src = "index.html" + (Q.get("hash") || "#stories");
+fr.style.width = W + "px"; fr.style.height = (+(Q.get("h")) || 2400) + "px";
+const out = document.getElementById("out");
+function scan() {
+  try {
+    const doc = fr.contentDocument, win = fr.contentWindow;
+    const feed = doc.querySelector(".st-feed");
+    if (!feed) { out.textContent = "feed not mounted yet"; return setTimeout(scan, 1000); }
+    setTimeout(() => report(doc, win), 600);
+  } catch (e) { out.textContent = "ERR " + e.message; }
+}
+function report(doc, win) {
+  const lines = [];
+  const feed = doc.querySelector(".st-feed");
+  // FULL FEED DOM WALK — dividers and section labels in document order
+  let n = 0;
+  for (const el of feed.children) {
+    if (el.classList && el.classList.contains("st-chapter")) {
+      lines.push("======== " + el.textContent.trim().replace(/\s+/g, " "));
+    } else if (el.tagName === "SECTION") {
+      const lbl = el.querySelector(".st-label");
+      if (lbl) lines.push(String(++n).padStart(2, " ") + ". " + lbl.textContent.split("\u00b7")[0].trim() + "   [id=" + el.id + "]");
+      else lines.push("  (section with no label)");
+    } else if (el.tagName !== "SCRIPT" && el.textContent.trim()) {
+      // lazy children (CoversStory) render their own <section>
+      for (const s of el.querySelectorAll("section")) {
+        const lbl = s.querySelector(".st-label");
+        if (lbl) lines.push(String(++n).padStart(2, " ") + ". " + lbl.textContent.split("\u00b7")[0].trim() + "   [id=" + s.id + "] (nested)");
+      }
+    }
+  }
+  lines.push("TOTAL LABELLED SECTIONS: " + n);
+  // TOC rail crumbs, in rail order
+  const crumbs = [...doc.querySelectorAll(".st-toc .st-toc-lbl")].map(b => b.textContent.trim());
+  lines.push("TOC CRUMBS (" + crumbs.length + "): " + crumbs.join(" | "));
+  // overflow scan
+  const off = new Map();
+  for (const el of doc.querySelectorAll("*")) {
+    const r = el.getBoundingClientRect();
+    if (r.right > W + 0.5 && r.width > 0) {
+      const key = (el.className && typeof el.className === "string" ? el.className.split(" ")[0] : el.tagName);
+      const prev = off.get(key);
+      const sec = el.closest ? el.closest("section") : null;
+      const where = sec && sec.querySelector(".st-label") ? sec.querySelector(".st-label").textContent.split("·")[0].trim() : (sec ? "(unlabelled section)" : "(outside feed)");
+      if (!prev || r.right > prev.right) off.set(key, { right: Math.round(r.right), w: Math.round(r.width), tag: el.tagName, where });
+    }
+  }
+  const rows = [...off.entries()].sort((a, b) => b[1].right - a[1].right).slice(0, 25);
+  lines.push("docEl scrollWidth=" + doc.documentElement.scrollWidth + "  body scrollWidth=" + doc.body.scrollWidth);
+  lines.push("OVERFLOW past x=" + W + ": " + (rows.length ? rows.length + " offenders" : "NONE"));
+  for (const [k, v] of rows) lines.push("   right=" + v.right + " w=" + v.w + "  " + v.tag + "." + k + "   in: " + v.where);
+  lines.push("scrollY after seed: " + Math.round(win.scrollY) + "  docHeight=" + doc.documentElement.scrollHeight);
+  lines.push("iframe errors: " + ((win.__probeErrs && win.__probeErrs.length) ? win.__probeErrs.join(" ;; ") : "NONE"));
+  out.textContent = lines.join("\n");
+  document.title = "PROBE " + (rows.length ? "OVERFLOW" : "CLEAN") + " n=" + n;
+  const show = Q.get("show"), chap = Q.get("chap"), offPx = +(Q.get("off") || 10);
+  if (show || chap) {
+    let el = null;
+    if (chap) { el = [...doc.querySelectorAll(".st-feed > .st-chapter")].find(d => d.textContent.trim().split(/\s/)[0] === chap); }
+    else { el = doc.querySelector(show); }
+    if (el) win.scrollTo(0, el.getBoundingClientRect().top + win.scrollY - offPx);
+    fr.style.left = "0"; fr.style.top = "0"; out.style.display = "none";
+    document.body.style.background = "#fff";
+  }
+}
+setTimeout(scan, +(Q.get("wait") || 12000));
+</script>

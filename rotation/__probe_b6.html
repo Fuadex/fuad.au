@@ -1,0 +1,186 @@
+<!doctype html><meta charset="utf-8">
+<title>probe b6</title>
+<style>body{margin:0;font:11px/1.45 monospace;background:#fff;color:#000;white-space:pre-wrap}
+iframe{position:fixed;left:-9999px;top:0;border:0}</style>
+<body>
+<iframe id="f"></iframe>
+<div id="out">waiting...</div>
+<script>
+// audit B6 probe (2026-09-22) — touch affordances on the flagship charts.
+//   ?chart=scatter|map|cal|gigs  &mode=audit|tap  &w=360 &h=1400 &wait=22000
+//   &shot=1 &show=<sel> &pad=<n>
+// The iframe is the honest 360 instrument (a top-level window clamps at ~420 in Chromium).
+const Q=new URLSearchParams(location.search);
+const W=+(Q.get("w")||360), H=+(Q.get("h")||1500), WAIT=+(Q.get("wait")||22000);
+const CHART=Q.get("chart")||"scatter", MODE=Q.get("mode")||"audit";
+const ROUTE={scatter:"#explore",map:"#overview",cal:"#calendar",gigs:"#gigs"}[CHART];
+const fr=document.getElementById("f"), out=document.getElementById("out");
+fr.style.width=W+"px"; fr.style.height=H+"px";
+fr.src="index.html"+ROUTE;
+const L=[];
+const say=(s)=>L.push(s);
+const R=(n)=>Math.round(n);
+const sleep=(ms)=>new Promise(r=>setTimeout(r,ms||140));
+function cs(win,el,p){return el?win.getComputedStyle(el).getPropertyValue(p):"(no el)";}
+function rect(el){const r=el.getBoundingClientRect();return "x="+R(r.left)+" y="+R(r.top)+" w="+R(r.width)+" h="+R(r.height);}
+// clipping: does this box cut its own text off?
+function clipOf(el){
+  if(!el) return "(no el)";
+  const over = el.scrollWidth>el.clientWidth+1 || el.scrollHeight>el.clientHeight+1;
+  return "client="+el.clientWidth+"x"+el.clientHeight+" scroll="+el.scrollWidth+"x"+el.scrollHeight+(over?"  << CLIPPED":"  ok");
+}
+// what a finger does: pointerover(+enter) -> down -> up -> click, all pointerType touch.
+async function tap(win,el,x,y){
+  const o={pointerId:11,pointerType:"touch",isPrimary:true,clientX:x,clientY:y,bubbles:true,cancelable:true,composed:true,button:0,buttons:1};
+  el.dispatchEvent(new win.PointerEvent("pointerover",o));
+  el.dispatchEvent(new win.PointerEvent("pointerenter",o));
+  el.dispatchEvent(new win.PointerEvent("pointerdown",o));
+  el.dispatchEvent(new win.PointerEvent("pointerup",Object.assign({},o,{buttons:0})));
+  el.dispatchEvent(new win.MouseEvent("click",{clientX:x,clientY:y,bubbles:true,cancelable:true,composed:true}));
+  await sleep();
+}
+async function drag(win,el,x0,y0,pts,type){
+  const mk=(t,x,y,b)=>new win.PointerEvent(t,{pointerId:12,pointerType:type||"touch",isPrimary:true,clientX:x,clientY:y,bubbles:true,cancelable:true,composed:true,button:0,buttons:b});
+  el.dispatchEvent(mk("pointerover",x0,y0,1));
+  el.dispatchEvent(mk("pointerdown",x0,y0,1));
+  let lx=x0,ly=y0;
+  for(const p of pts){lx=p[0];ly=p[1];el.dispatchEvent(mk("pointermove",lx,ly,1));await sleep(60);}
+  el.dispatchEvent(mk("pointerup",lx,ly,0));
+  el.dispatchEvent(new win.MouseEvent("click",{clientX:lx,clientY:ly,bubbles:true,cancelable:true,composed:true}));
+  await sleep();
+}
+const txt=(el)=>el?JSON.stringify((el.textContent||"").replace(/\s+/g," ").trim()):"(no el)";
+
+async function go(){
+ let doc,win;
+ try{doc=fr.contentDocument;win=fr.contentWindow;}catch(e){out.textContent="ERR "+e.message;return;}
+ say("chart="+CHART+" mode="+MODE+"  iframe "+W+"x"+H+"  docScrollW="+doc.documentElement.scrollWidth);
+ try{ await run(doc,win); }catch(e){ say("THREW: "+e.message+"\n"+(e.stack||"").split("\n").slice(0,4).join("\n")); }
+ out.textContent=L.join("\n");
+ document.title="PROBE-OK";
+ const show=Q.get("show");
+ if(show){const el=doc.querySelector(show); if(el)win.scrollTo(0,el.getBoundingClientRect().top+win.scrollY-(+(Q.get("pad")||10))); fr.style.left="0"; out.style.display="none";}
+ else if(Q.get("shot")){win.scrollTo(0,+(Q.get("y")||0)); fr.style.left="0"; out.style.display="none";}
+}
+
+async function run(doc,win){
+ if(CHART==="scatter"){
+   const svg=doc.querySelector(".xp-chartwrap svg");
+   const read=doc.querySelector(".xp-scat-read")||doc.querySelector(".xp-chartwrap").parentElement.querySelector(".r-mono");
+   const ctl=doc.querySelector(".xp-zoomctl");
+   say("svg            "+(svg?rect(svg):"MISSING")+"  touch-action="+cs(win,svg,"touch-action"));
+   say("readout        "+(read?rect(read):"MISSING"));
+   say("readout copy   "+txt(read));
+   say("readout box    "+clipOf(read));
+   if(read&&ctl){const a=read.getBoundingClientRect(),b=ctl.getBoundingClientRect();
+     say("zoomctl        "+rect(ctl)+"   overlaps readout row? "+(b.top<a.bottom&&b.bottom>a.top&&b.left<a.right?"YES (text runs under the +/- buttons)":"no"));}
+   // coarse/fine copy spans
+   const fine=read?read.querySelectorAll(".r-fine").length:0, coarse=read?read.querySelectorAll(".r-coarse").length:0;
+   say("copy variants  fine="+fine+" coarse="+coarse+(coarse?("  coarse display="+cs(win,read.querySelector(".r-coarse"),"display")+"  fine display="+cs(win,read.querySelector(".r-fine"),"display")):""));
+   const dots=[...doc.querySelectorAll("circle.xp-fdot[data-cx]")];
+   say("dots           "+dots.length);
+   if(MODE==="tap"&&svg&&dots.length){
+     const vb=svg.getAttribute("viewBox").split(" ").map(Number), r=svg.getBoundingClientRect();
+     const at=(d)=>[r.left+(+d.dataset.cx-vb[0])/vb[2]*r.width, r.top+(+d.dataset.cy-vb[1])/vb[3]*r.height];
+     // pick a dot near the middle of the field so the tap is unambiguous
+     const d=dots.map(d=>({d,c:at(d)})).filter(o=>o.c[0]>r.left+40&&o.c[0]<r.right-40&&o.c[1]>r.top+40&&o.c[1]<r.bottom-40).sort((a,b)=>(+b.d.getAttribute("fill-opacity"))-(+a.d.getAttribute("fill-opacity")))[0];
+     say("before tap     "+txt(read));
+     await tap(win,svg,d.c[0],d.c[1]);
+     say("TAP dot @"+R(d.c[0])+","+R(d.c[1]));
+     say("after tap      "+txt(read));
+     say("picked rows    "+doc.querySelectorAll(".xp-attr-brushrow").length);
+     // a tap on empty space must release it
+     await tap(win,svg,r.left+6,r.top+6);
+     say("after tap void "+txt(read));
+     // a VERTICAL touch drag must not brush (page scroll must win)
+     const x=(r.left+r.right)/2, y=r.top+r.height*0.3;
+     await drag(win,svg,x,y,[[x+2,y+30],[x+3,y+80]]);
+     say("after v-drag   brush rects="+doc.querySelectorAll(".xp-chartwrap svg rect[stroke-dasharray]").length+"  "+txt(read));
+     // a HORIZONTAL-first touch drag SHOULD brush
+     await drag(win,svg,x-60,y,[[x-20,y+10],[x+30,y+50],[x+60,y+70]]);
+     say("after h-drag   brush rects="+doc.querySelectorAll(".xp-chartwrap svg rect[stroke-dasharray]").length+"  picked/region rows="+doc.querySelectorAll(".xp-attr-brushrow").length);
+     // zoom buttons reachable by touch?
+     const zb=doc.querySelectorAll(".xp-zoomctl button");
+     const vb0=svg.getAttribute("viewBox");
+     if(zb[0]){zb[0].click(); await sleep(); say("zoom + button  viewBox "+vb0+" -> "+svg.getAttribute("viewBox"));}
+     if(zb[2]){zb[2].click(); await sleep(); say("home button    viewBox -> "+svg.getAttribute("viewBox"));}
+   }
+ }
+ else if(CHART==="map"){
+   const svg=doc.querySelector(".mp-map svg");
+   const hint=doc.querySelector(".mp-hint")||[...doc.querySelectorAll(".mp-grid")][0].previousElementSibling;
+   say("svg            "+(svg?rect(svg):"MISSING")+"  touch-action="+cs(win,svg,"touch-action"));
+   say("hint           "+(hint?rect(hint):"MISSING")+"  white-space="+cs(win,hint,"white-space"));
+   say("hint copy      "+txt(hint));
+   say("hint box       "+clipOf(hint));
+   const fine=hint?hint.querySelectorAll(".r-fine").length:0, coarse=hint?hint.querySelectorAll(".r-coarse").length:0;
+   say("copy variants  fine="+fine+" coarse="+coarse);
+   const bubs=[...doc.querySelectorAll("circle.mp-bub")].filter(b=>+b.getAttribute("r")>2.5);
+   say("bubbles        "+doc.querySelectorAll("circle.mp-bub").length+" (tappable>2.5r: "+bubs.length+")");
+   if(MODE==="tap"&&bubs.length){
+     const b=bubs.sort((x,y)=>(+y.getAttribute("r"))-(+x.getAttribute("r")))[0];
+     const br=b.getBoundingClientRect(), x=br.left+br.width/2, y=br.top+br.height/2;
+     say("before tap     "+txt(hint));
+     await tap(win,b,x,y);
+     say("TAP bubble r="+b.getAttribute("r")+" @"+R(x)+","+R(y));
+     say("after tap 1    "+txt(hint));
+     say("  focus/zoom?  "+(doc.querySelector(".mp-map svg g").getAttribute("transform")));
+     await tap(win,b,x,y);
+     say("after tap 2    "+txt(hint));
+     say("  focus/zoom?  "+(doc.querySelector(".mp-map svg g").getAttribute("transform")));
+     say("  scope line   "+txt(doc.querySelector(".mp-scope-parts")));
+   }
+ }
+ else if(CHART==="cal"){
+   const det=doc.querySelector(".cal-detail");
+   const svg=doc.querySelector(".cal-heatcard svg");
+   say("detail         "+(det?rect(det):"MISSING"));
+   say("detail copy    "+txt(det));
+   say("detail box     "+clipOf(det));
+   const foot=[...doc.querySelectorAll(".cal-heatleft span")].find(s=>/open a/.test(s.textContent||""));
+   say("foot copy      "+txt(foot));
+   const fine=det?det.querySelectorAll(".r-fine").length:0, coarse=det?det.querySelectorAll(".r-coarse").length:0;
+   say("copy variants  fine="+fine+" coarse="+coarse);
+   say("heat svg       "+(svg?rect(svg):"MISSING")+"  card scrolls: "+clipOf(doc.querySelector(".cal-heatcard")));
+   const cells=[...doc.querySelectorAll(".cal-heatcard svg rect")];
+   say("day cells      "+cells.length);
+   if(MODE==="tap"&&cells.length){
+     // a loud day: pick the cell with the strongest fill
+     const c=cells.filter(c=>{const f=c.getAttribute("fill")||"";return f.indexOf("oklch")===0;}).slice(-500)[120]||cells[400];
+     const cr=c.getBoundingClientRect(), x=cr.left+cr.width/2, y=cr.top+cr.height/2;
+     // CONTROL: does a synthetic click reach React at all in this harness?
+     const gb=[...doc.querySelectorAll(".r-seg button")].find(b=>/^week$/i.test(b.textContent.trim()));
+     if(gb){const before=txt(doc.querySelector(".cal-heatleft")&&[...doc.querySelectorAll(".cal-heatleft span")].find(s=>/open a/.test(s.textContent||"")));
+       gb.dispatchEvent(new win.MouseEvent("click",{bubbles:true,cancelable:true,composed:true}));
+       await sleep(); say("control click  week button: foot "+before+" -> "+txt([...doc.querySelectorAll(".cal-heatleft span")].find(s=>/open a/.test(s.textContent||""))));}
+     say("before tap     "+txt(det));
+     await tap(win,c,x,y);
+     say("TAP day @"+R(x)+","+R(y)+" cell "+R(cr.width)+"x"+R(cr.height));
+     say("after tap      "+txt(det));
+     say("panel opened   "+(doc.querySelector(".cal-float")?"YES":"no"));
+   }
+ }
+ else if(CHART==="gigs"){
+   const svg=doc.querySelector("svg.gv-tmap");
+   const hint=doc.querySelector(".gv-tmap-hint");
+   say("svg            "+(svg?rect(svg):"MISSING")+"  touch-action="+cs(win,svg,"touch-action"));
+   say("hint copy      "+txt(hint));
+   say("hint box       "+clipOf(hint));
+   const fine=hint?hint.querySelectorAll(".r-fine").length:0, coarse=hint?hint.querySelectorAll(".r-coarse").length:0;
+   say("copy variants  fine="+fine+" coarse="+coarse);
+   const dots=[...doc.querySelectorAll("circle.gv-tmap-dot")].filter(d=>+d.getAttribute("r")>0.5);
+   say("stops          "+doc.querySelectorAll("circle.gv-tmap-dot").length+" (live: "+dots.length+")");
+   if(MODE==="tap"&&dots.length){
+     const d=dots.sort((a,b)=>(+b.getAttribute("r"))-(+a.getAttribute("r")))[0];
+     const dr=d.getBoundingClientRect(), x=dr.left+dr.width/2, y=dr.top+dr.height/2;
+     say("before tap     "+txt(hint));
+     await tap(win,d,x,y);
+     say("TAP stop @"+R(x)+","+R(y)+"  title="+JSON.stringify((d.querySelector("title")||{}).textContent||""));
+     say("after tap      "+txt(hint));
+     say("dot data-on    "+d.getAttribute("data-on"));
+     say("chips          "+[...doc.querySelectorAll(".gv-tour-chip")].map(c=>c.textContent.trim()).join(" | "));
+   }
+ }
+}
+fr.addEventListener("load",()=>setTimeout(go,WAIT));
+</script>

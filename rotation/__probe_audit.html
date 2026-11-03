@@ -1,0 +1,52 @@
+<!doctype html><meta charset="utf-8">
+<style>body{margin:0;font:11px/1.4 monospace;background:#fff;color:#000;white-space:pre-wrap}
+iframe{position:fixed;left:-9999px;top:0;border:0}</style>
+<body>
+<iframe id="f"></iframe>
+<div id="out">waiting…</div>
+<script>
+// ?route=stories &w=1340 &h=1200 &wait=14000 &dump=outline|overflow &show=<sel> &shot=1
+const Q=new URLSearchParams(location.search);
+const W=+(Q.get("w")||1340), H=+(Q.get("h")||1200), WAIT=+(Q.get("wait")||14000);
+const fr=document.getElementById("f"), out=document.getElementById("out");
+fr.src="index.html#"+(Q.get("route")||"overview");
+fr.style.width=W+"px"; fr.style.height=H+"px";
+function go(){
+ let doc,win;
+ try{doc=fr.contentDocument;win=fr.contentWindow;}catch(e){out.textContent="ERR "+e.message;return;}
+ const L=[];
+ L.push("route="+(Q.get("route")||"overview")+" iframe "+W+"x"+H);
+ L.push("doc scrollHeight="+doc.documentElement.scrollHeight+" scrollWidth="+doc.documentElement.scrollWidth);
+ const mode=Q.get("dump")||"outline";
+ if(mode==="outline"){
+   const sel=Q.get("sel")||"h1,h2,h3,h4,.st-card,.st-kicker,.st-chapter,section[id],[data-chapter]";
+   let n=0;
+   for(const el of doc.querySelectorAll(sel)){
+     const r=el.getBoundingClientRect(); const top=Math.round(r.top+win.scrollY);
+     if(Q.get("miny")&&top<+Q.get("miny"))continue;
+     const t=(el.textContent||"").replace(/\s+/g," ").trim().slice(0,150);
+     L.push(String(top).padStart(6)+"  "+el.tagName+"."+(typeof el.className==="string"?el.className.split(" ").slice(0,2).join("."):"")+"  h="+Math.round(r.height)+"  "+t);
+     if(++n>400)break;
+   }
+ } else if(mode==="overflow"){
+   const off=new Map();
+   for(const el of doc.querySelectorAll("*")){const r=el.getBoundingClientRect();
+     if(r.right>W+0.5&&r.width>0){const k=(typeof el.className==="string"&&el.className?el.className.split(" ")[0]:el.tagName);
+       const p=off.get(k); if(!p||r.right>p.right)off.set(k,{right:Math.round(r.right),w:Math.round(r.width),tag:el.tagName});}}
+   const rows=[...off.entries()].sort((a,b)=>b[1].right-a[1].right).slice(0,30);
+   L.push("past x="+W+": "+(rows.length||"NONE"));
+   for(const[k,v]of rows)L.push("  right="+v.right+" w="+v.w+"  "+v.tag+"."+k);
+ } else if(mode==="text"){
+   const el=doc.querySelector(Q.get("sel")||"body");
+   L.push(el?(el.innerText||el.textContent).replace(/\n{3,}/g,"\n\n").slice(0,+(Q.get("max")||20000)):"NO MATCH for "+Q.get("sel"));
+ } else if(mode==="count"){
+   for(const s of (Q.get("sel")||"div").split("|")) L.push(s+" -> "+doc.querySelectorAll(s).length);
+ }
+ out.textContent=L.join("\n");
+ document.title="PROBE-OK";
+ const show=Q.get("show");
+ if(show){const el=doc.querySelector(show); if(el)win.scrollTo(0,el.getBoundingClientRect().top+win.scrollY-8); fr.style.left="0"; out.style.display="none";}
+ else if(Q.get("shot")){const y=+(Q.get("y")||0); win.scrollTo(0,y); fr.style.left="0"; out.style.display="none";}
+}
+setTimeout(go,WAIT);
+</script>

@@ -1,0 +1,95 @@
+<!doctype html><meta charset="utf-8">
+<style>body{margin:0;font:11px/1.45 monospace;white-space:pre-wrap;background:#fff;color:#000}
+iframe{position:fixed;left:-9999px;top:0;width:900px;border:0}</style>
+<body><iframe id="f" src="index.html#stories"></iframe><div id="out">waiting</div>
+<script>
+// UNTRACKED QC probe for the Lyrical diet + Lyric themes MERGE (2026-09-21). Copy of the framing
+// trick in __probe_diet.html: grow the iframe to the whole document height so it never scrolls,
+// then slide the element up until the merged section sits under the camera.
+//   ?w=900          iframe width
+//   ?pin=madness    click the chip whose label contains this, before framing
+//   ?frame=1        bring the iframe on-screen for a screenshot run
+//   (no frame)      leave it off-screen and print measurements for --dump-dom
+const Q=new URLSearchParams(location.search);
+const W=+(Q.get("w")||900);
+const fr=document.getElementById("f"),out=document.getElementById("out");
+fr.style.width=W+"px"; fr.style.height="2400px";
+function run(){
+ try{
+  const doc=fr.contentDocument,w=fr.contentWindow;
+  const diet=doc.querySelector(".st-diet");
+  if(!diet){out.textContent="diet MISSING (feed not mounted)";document.title="MERGE MISSING";return;}
+  const sec=diet.closest("section");
+  const PIN=Q.get("pin");
+  let pinned="none";
+  if(PIN){
+    const c=[...doc.querySelectorAll(".st-diet-chip")].find(b=>b.textContent.indexOf(PIN)>=0);
+    if(c){c.click();pinned=c.textContent;}else pinned="MISS "+PIN;
+  }
+  // ?hoverrow=Rammstein — the merge's new wiring: a profile row hovers ITS artist's dominant
+  // theme into the chart above. React synthesises enter/leave off a delegated mouseover, so fire
+  // both, as __probe_diet.html does for the bands.
+  const HR=Q.get("hoverrow");
+  if(HR){
+    const row=[...doc.querySelectorAll(".st-diet-who .st-row")].find(e=>e.textContent.indexOf(HR)>=0);
+    if(row){
+      row.dispatchEvent(new w.MouseEvent("mouseover",{bubbles:true,relatedTarget:doc.body}));
+      row.dispatchEvent(new w.MouseEvent("mouseenter",{bubbles:false,relatedTarget:doc.body}));
+      pinned="hovered row "+row.textContent.replace(/\s+/g," ").slice(0,40);
+    }else pinned="row MISS "+HR;
+  }
+  setTimeout(()=>{
+   const L=[];
+   const r=sec.getBoundingClientRect();
+   L.push("MEASURE section h="+Math.round(r.height)+" w="+Math.round(r.width)+" top="+Math.round(r.top+w.scrollY));
+   L.push("label="+sec.querySelector(".st-label").textContent);
+   L.push("big="+sec.querySelector(".st-big").textContent.replace(/\s+/g," "));
+   L.push("sub="+sec.querySelector(".st-sub").textContent.replace(/\s+/g," "));
+   L.push("pinned="+pinned);
+   const pk=sec.querySelector(".st-diet-pick");
+   L.push("pick panel="+(pk?pk.querySelector(".st-yir-h").textContent+" | rows="+pk.querySelectorAll(".st-row").length+" | fed="+((pk.querySelector(".st-sub")||{}).textContent||"none").replace(/\s+/g," "):"absent"));
+   const who=sec.querySelector(".st-diet-who");
+   L.push("who block="+(who?who.querySelector(".st-yir-h").textContent+" | rows="+who.querySelectorAll(".st-row").length+" | h="+Math.round(who.getBoundingClientRect().height):"absent"));
+   if(who){
+     const cols=new Set([...who.querySelectorAll(".st-thp > .st-row")].map(e=>Math.round(e.getBoundingClientRect().left)));
+     L.push("who columns="+cols.size);
+     const lit=[...who.querySelectorAll('.st-thp-one[data-on="true"]')].map(e=>e.textContent.replace(/\s+/g," "));
+     L.push("who rows lit by the pin="+(lit.length?lit.join(" / "):"none"));
+     L.push("first row="+[...who.querySelectorAll(".st-row")].slice(0,2).map(e=>e.textContent.replace(/\s+/g," ")).join("  ||  "));
+     // clipped theme lines? compare scrollWidth to clientWidth on every mono line
+     const clip=[...who.querySelectorAll(".st-thp-one")].filter(e=>e.scrollWidth>e.clientWidth+1);
+     L.push("theme lines ellipsised="+clip.length+"/"+who.querySelectorAll(".st-thp-one").length+(clip.length?"  ["+clip.slice(0,3).map(e=>e.textContent.replace(/\s+/g," ")).join(" | ")+"]":""));
+   }
+   // which theme the chart is actually showing as ACTIVE: near-solid stroke alpha on the bands
+   const alpha=(c)=>{const m=/\/\s*([0-9.]+)\s*\)/.exec(c);return m?parseFloat(m[1]):1;};
+   const onSegs={},colOn={};
+   for(const s of sec.querySelectorAll(".st-diet-seg")){
+     const th=(s.getAttribute("title")||"").split(" · ")[0];
+     if(alpha(w.getComputedStyle(s).borderTopColor)>0.8){onSegs[th]=(onSegs[th]||0)+1;}
+   }
+   L.push("chart ACTIVE bands: "+(Object.keys(onSegs).length?Object.keys(onSegs).map(k=>k+" x"+onSegs[k]).join(", "):"none (all at rest)"));
+   const hotChip=doc.querySelector('.st-diet-chip[data-hot="true"]');
+   L.push("chip lit by hover: "+(hotChip?hotChip.textContent:"none"));
+   // overflow past the iframe width anywhere inside the merged section
+   const over=[...sec.querySelectorAll("*")].filter(e=>e.getBoundingClientRect().right>W+0.5);
+   L.push("elements past x="+W+": "+over.length);
+   for(const e of over.slice(0,14))L.push("   right="+Math.round(e.getBoundingClientRect().right)+" w="+Math.round(e.getBoundingClientRect().width)+"  "+e.tagName+"."+(typeof e.className==="string"?e.className:"")+"  "+e.textContent.replace(/\s+/g," ").slice(0,40));
+   // old card gone?
+   const labels=[...doc.querySelectorAll(".st-label")].map(e=>e.textContent);
+   L.push("Lyric themes card still in the feed: "+(labels.indexOf("Lyric themes")>=0?"YES <-- BAD":"no"));
+   L.push("TOC crumbs: "+[...doc.querySelectorAll(".st-toc a, .st-rail a, .st-toc-item")].map(e=>e.textContent).join(" / ").slice(0,400));
+   out.textContent=L.join("\n");
+   document.title="MERGE OK h="+Math.round(r.height);
+   if(Q.get("frame")){
+     fr.style.height=(doc.documentElement.scrollHeight+600)+"px";
+     setTimeout(()=>{
+       fr.style.left="0"; out.style.display="none";
+       fr.style.top=(-(sec.getBoundingClientRect().top+w.scrollY-16))+"px";
+       document.title="MERGE FRAMED";
+     },500);
+   }
+  },700);
+ }catch(e){out.textContent="ERR "+e.message+"\n"+e.stack;document.title="MERGE ERR";}
+}
+setTimeout(run,14000);
+</script>

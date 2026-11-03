@@ -1,0 +1,28 @@
+<!doctype html><meta charset="utf-8">
+<style>body{margin:0;font:11px/1.5 monospace;white-space:pre-wrap}iframe{position:fixed;left:-9999px;width:900px;height:2600px;border:0}</style>
+<body><iframe id="f" src="index.html#stories"></iframe><div id="out">waiting</div>
+<script>
+const fr=document.getElementById("f"),out=document.getElementById("out");
+setTimeout(()=>{ try{
+  const doc=fr.contentDocument, w=fr.contentWindow, L=[];
+  const cz=doc.querySelector(".st-cz");
+  L.push(".st-cz "+(cz?"FOUND":"MISSING"));
+  if(cz){
+    const row=cz.querySelector(".st-cz-row"), strip=cz.querySelector(".st-cz-strip");
+    const cs=row&&w.getComputedStyle(row), ss=strip&&w.getComputedStyle(strip);
+    L.push("row display="+(cs&&cs.display)+" cols="+(cs&&cs.gridTemplateColumns));
+    L.push("strip h="+(ss&&ss.height)+" pos="+(ss&&ss.position)+" bg="+(ss&&ss.backgroundColor));
+    const dens=strip&&strip.querySelector(".st-cz-dens");
+    L.push("dens bgImage="+(dens?w.getComputedStyle(dens).backgroundImage.slice(0,120):"NONE"));
+    L.push("rows="+cz.querySelectorAll(".st-cz-row").length);
+    const r=strip&&strip.getBoundingClientRect(); L.push("strip rect w="+(r&&Math.round(r.width))+" h="+(r&&Math.round(r.height)));
+  }
+  const gen=doc.querySelector(".st-gen")||[...doc.querySelectorAll(".st-label")].find(x=>/brought you here/i.test(x.textContent));
+  L.push("genealogy module: "+(gen?"FOUND":"MISSING"));
+  L.push("window.ROTATION_GENEALOGY: "+(fr.contentWindow.ROTATION_GENEALOGY?"LOADED":"absent"));
+  const diet=doc.querySelector(".st-diet");
+  if(diet){const r=diet.getBoundingClientRect(); L.push("diet rect h="+Math.round(r.height));}
+  else L.push("diet MISSING");
+  out.textContent=L.join("\n");
+}catch(e){out.textContent="ERR "+e.message;} },14000);
+</script>

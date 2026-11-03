@@ -1,0 +1,20 @@
+<!doctype html><meta charset="utf-8">
+<style>body{margin:0;font:11px/1.5 monospace;white-space:pre-wrap}iframe{position:fixed;left:-9999px;width:1280px;height:2000px;border:0}</style>
+<body><iframe id="f" src="index.html#overview"></iframe><div id="out">waiting</div>
+<script>
+const fr=document.getElementById("f"),out=document.getElementById("out");
+const logs=[];
+(function hook(){
+  try{
+    const w=fr.contentWindow;
+    if(w && w.console && !w.__hooked){
+      w.__hooked=1;
+      const orig=w.console.error.bind(w.console);
+      w.console.error=(...a)=>{ logs.push(a.map(x=>{ if(x&&x.stack)return String(x.stack); if(typeof x==="object")return JSON.stringify(x).slice(0,300); return String(x);}).join(" | ").slice(0,2500)); orig(...a); };
+      w.addEventListener("error",e=>logs.push("WINERR "+e.message+" "+e.filename+":"+e.lineno+"\n"+String(e.error&&e.error.stack||"").slice(0,2000)));
+    }
+  }catch(e){}
+  setTimeout(hook,50);
+})();
+setTimeout(()=>{ out.textContent = logs.length? logs.join("\n====\n").slice(0,6000) : "NO console.error captured"; },15000);
+</script>
