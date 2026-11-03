@@ -113679,5 +113679,104 @@ window.CULTURE_CAST = {
       "Comedy"
     ],
     "tmdbPoster": "https://image.tmdb.org/t/p/w500/tbVZ3Sq88dZaCANlUcewQuHQOaE.jpg"
+  },
+  "digger-2026": {
+    "cast": [
+      "Tom Cruise",
+      "Riz Ahmed",
+      "John Goodman",
+      "Sandra Hüller",
+      "Michael Stuhlbarg",
+      "Jesse Plemons",
+      "Robert John Burke",
+      "Emma D'Arcy",
+      "Burn Gorman",
+      "Sophie Wilde",
+      "Danny Kirrane",
+      "Ross Hatt",
+      "Mercedes Hernández",
+      "James Dryden",
+      "Richard Foster-King",
+      "Corey Johnson",
+      "Pip Torrens",
+      "Stephen Wight",
+      "Tom Bell",
+      "Cullen Moss",
+      "Kenton Craig",
+      "Simon Thorp"
+    ],
+    "cinematographer": "Emmanuel Lubezki",
+    "composer": "Cosmo Sheldrake",
+    "writer": "Alejandro G. Iñárritu, Sabina Berman",
+    "productionCompanies": [
+      "Warner Bros. Pictures",
+      "Legendary Pictures",
+      "Domain Entertainment"
+    ],
+    "tags": [
+      "capitalism",
+      "greed",
+      "climate change",
+      "dark comedy",
+      "redemption",
+      "satire",
+      "billionaire",
+      "oil industry",
+      "ego",
+      "corporate power",
+      "political satire",
+      "aggressive",
+      "environmental disaster",
+      "political",
+      "power",
+      "assertive"
+    ],
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/1ATXKrIPJyKNwnJ6lcG088Sa6zi.jpg"
+  },
+  "patlabor-the-movie-1989": {
+    "cast": [
+      "Mina Tominaga",
+      "Toshio Furukawa",
+      "Ryusuke Ohbayashi",
+      "Yoshiko Sakakibara",
+      "Yo Inoue",
+      "Issei Futamata",
+      "Michihiro Ikemizu",
+      "Daisuke Gori",
+      "Shigeru Chiba",
+      "Osamu Saka",
+      "Mahito Tsujimura",
+      "Tomomichi Nishimura",
+      "Shinji Ogawa",
+      "Koji Tsujitani",
+      "Toshihiko Kojima"
+    ],
+    "cinematographer": "Mitsunobu Yoshida",
+    "composer": "Kenji Kawai",
+    "writer": "Kazunori Ito, Masami Yuki",
+    "productionCompanies": [
+      "Studio Deen",
+      "TFC",
+      "Bandai"
+    ],
+    "tags": [
+      "police",
+      "mecha",
+      "robot",
+      "adult animation",
+      "anime",
+      "real robot"
+    ],
+    "genres": [
+      "Action",
+      "Animation",
+      "Science Fiction",
+      "Mystery"
+    ],
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/dp3CNNo7Oj704cQKiwM4MJqlW0I.jpg"
   }
 };

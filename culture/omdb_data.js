@@ -73870,5 +73870,70 @@ window.CULTURE_OMDB = {
    }
   ],
   "PlotShort": "Baron \"Bear\" Bailey breaks a novelty charm to force his co-worker Nikki Freeman to love him, but the supernatural compulsion warps her mind into violent obsession, trapping him in a nightmare he cannot wish away."
+ },
+ "digger-2026": {
+  "imdbID": "tt31450459",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BOWNiMjI1MzItMDkwNy00YzNjLWIwYjUtZTM5ZGIyYTVkZDhiXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+  "Ratings": [
+   {
+    "Source": "Rotten Tomatoes",
+    "Value": "52%"
+   }
+  ],
+  "PlotShort": "The most powerful man in the world embarks on a frantic mission to prove he is humanity's savior before the disaster he's unleashed destroys everything."
+ },
+ "patlabor-the-movie-1989": {
+  "imdbID": "tt0100339",
+  "imdbRating": "7.0",
+  "imdbVotes": "5,805",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BNTYyYjYxMjgtZWJkYy00OGExLWJhM2EtNTQ5MjQ1YjhiN2JlXkEyXkFqcGc@._V1_SX300.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "7.0/10"
+   }
+  ],
+  "PlotShort": "The screwball cops of Special Vehicles Section 2 Division 2 must investigate and stop a spree of rampaging construction robots."
+ },
+ "wl-s-jiyi-guanli-ju": {
+  "imdbID": "tt38754770",
+  "imdbRating": "8.6",
+  "imdbVotes": "359",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BMTAxMWNiYTAtNDY4Yy00N2VjLWE0OGItM2Q4MzUxOTUyNDY4XkEyXkFqcGc@._V1_QL75_UY562_CR11,0,380,562_.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "8.6/10"
+   }
+  ],
+  "PlotShort": "While hunting for rare Pyrolite fuel, Guan Chao accidentally enters the Memory Bureau and joins forces with Fangtang and Bai Zhong to fight mysterious BUG creatures corrupting different memory realms, uncovering secrets beyond ima..."
+ },
+ "wl-s-summer-time-rendering": {
+  "imdbID": "tt15686254",
+  "imdbRating": "8.2",
+  "imdbVotes": "11,539",
+  "Awards": "7 wins & 7 nominations total",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BNjhmN2RmYjgtN2ZlNC00YTdkLWFlMTYtMTdkNzkxMDA0ZjJmXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "8.2/10"
+   }
+  ],
+  "PlotShort": "Due to the death of his childhood friend, Shinpei returns to his native home, but beneath the surface this island seems to hold some secrets."
+ },
+ "wl-f-truly-naked": {
+  "imdbID": "tt8760666",
+  "imdbRating": "6.2",
+  "imdbVotes": "1,846",
+  "Awards": "2 nominations total",
+  "Poster": "https://m.media-amazon.com/images/M/MV5BNDI5Y2Y0OGMtMGEyNC00ODBjLWJhZjItOGEyMTI0NGIxNjYxXkEyXkFqcGc@._V1_QL75_UY562_CR9,0,380,562_.jpg",
+  "Ratings": [
+   {
+    "Source": "Internet Movie Database",
+    "Value": "6.2/10"
+   }
+  ],
+  "PlotShort": "An introverted teenager, who has only ever experienced intimacy through the lens while working for his father's pornography business, must step out from behind the camera when a feisty classmate challenges him to embrace real conn..."
  }
 };

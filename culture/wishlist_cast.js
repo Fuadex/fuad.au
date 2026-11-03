@@ -77207,5 +77207,43 @@ window.CULTURE_WISHLIST_CAST = {
     "region": "cn",
     "director": "Liu Wenyu, Li Shuyu",
     "runtime": 29
+  },
+  "wl-f-truly-naked": {
+    "cast": [
+      "Caolán O'Gorman",
+      "Andrew Howard",
+      "Alessa Savage",
+      "Safiya Benaddi",
+      "Lyndsey Marshal",
+      "Kate Kennedy",
+      "Cameron King",
+      "Hana Hrzic",
+      "Helena Braithwaite",
+      "Juliet Aubrey",
+      "Dave Macrae",
+      "Anton Valensi",
+      "Buddy Skelton",
+      "Julian Cruiming",
+      "Daisie Boyes",
+      "Poppie Boyes"
+    ],
+    "cinematographer": "Myrthe Mosterman",
+    "composer": "Herman Pieëte",
+    "writer": "Muriel d'Ansembourg",
+    "productionCompanies": [
+      "Isabella Films",
+      "Cinéma Defacto",
+      "Ici & Là Productions",
+      "Prime Time"
+    ],
+    "genres": [
+      "Drama",
+      "Romance"
+    ],
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/y23B9EnC0LDw8zMKlpXJauyLH7k.jpg",
+    "region": "nl",
+    "director": "Muriel d'Ansembourg",
+    "runtime": 102,
+    "tmdbRating": 6.6
   }
 };
