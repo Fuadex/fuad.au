@@ -33347,7 +33347,7 @@ window.CANVAS_INSPECT = {
 
  "by": "Opus 4.8",
 
- "beside": "Set this beside Almond Blossom, painted seven years on, and the same man arrives at flowers from the opposite end. Here the blossom is a crop, ruled into ledger strips and pinned to labour by one blue-smocked worker; the sky is starved so the beds can pay out their color, and beauty is the byproduct he almost apologizes for. In the later work bloom is the entire subject, unbossed by any field or worker, floated against a flat blue with nothing withheld. Between them lies his whole conversion: flowers that had to earn their brightness through use, and flowers finally permitted to be nothing but themselves, given freely to a newborn.",
+ "beside": "Set this beside Almond Blossom, painted seven years on, and the same man arrives at flowers from the opposite end. Here the blossom is a crop, ruled into ledger strips and pinned to labour by one blue-smocked worker; the sky is starved so the beds can pay out their color, and beauty is the byproduct he almost apologizes for. In the later work bloom is the entire subject, unbossed by any field or worker, floated against a sky of many blues with nothing withheld. Between them lies his whole conversion: flowers that had to earn their brightness through use, and flowers finally permitted to be nothing but themselves, given freely to a newborn.",
 
  "refs": [
 
