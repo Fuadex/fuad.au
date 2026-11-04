@@ -55,7 +55,7 @@ const GIST_FIELDS = ["src", "haiku", "web", "themes", "means", "built", "nub"];
 // fableDeep is RETIRED (Fuad 2026-09-13) and deliberately absent from this list: it is no longer
 // rendered anywhere, so shipping it would spend ~130 KB of deep shard on text nothing reads. The
 // entries stay in llm-about.js, which is the archive — put the field back here to revive them.
-const DEEP_FIELDS = ["sonnet", "opus", "fable", "fable2", "fableAlt", "opusDeep", "fv", "fvr", "fnote", "fnote2"];   // fv: fable-tier methodology version (2 = Opus-authored + Fable-QC'd, dual credit in UI); fvr: fable revision — "2.3" = account-first + FINAL SWEEP era, absent = v2.2 implicit; fable2 = stacked newer take under a kept old-era read; fableAlt = the merged-away twin's Fable read after a coherency fold (flick to it)
+const DEEP_FIELDS = ["sonnet", "opus", "fable", "flicks", "fableAlt", "opusDeep", "fv", "fvr", "fnote", "fnote2"];   // fv: fable-tier methodology version (2 = Opus-authored + Fable-QC'd, dual credit in UI); fvr: fable revision — "2.3" = account-first + FINAL SWEEP era, absent = v2.2 implicit; flicks = [{t, fvr}] older/alternate takes behind the flick chip (2026-11-04, replaces the stacked fable2); fableAlt = the merged-away twin's Fable read after a coherency fold (flick to it)
 
 function loadSource() {
   if (!fs.existsSync(SRC)) {

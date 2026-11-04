@@ -457,6 +457,12 @@ a.r-link:hover { color: var(--ink); }
    Reuses the tv-switch-mode pill idiom; sits inline under the read (no margin-auto push right). */
 .tv-switch-alt { margin: 9px 0 0; }
 .tv-switch-alt button[data-on="true"] { color: oklch(0.78 0.14 60); }
+/* flick chip on song reads (Fuad 2026-11-04) — the Portrait card's pv-flick grammar brought to
+   tracks: pill bottom-right, names the version + drafting model it flicks/reverts to. */
+.tv-flickrow { display: flex; justify-content: flex-end; margin-top: 10px; }
+.tv-flick { background: none; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 10px;
+    cursor: pointer; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
+.tv-flick:hover { color: var(--accent); border-color: var(--accent-dim); }
 /* MEANS + BUILT — the craft register, below the read and its credit, behind a hairline
    (Fuad 2026-08-08). Keys share one column so the two lines align. */
 .tv-craft { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--rule); display: grid; gap: 6px; }

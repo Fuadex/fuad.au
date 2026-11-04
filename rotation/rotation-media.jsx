@@ -1181,7 +1181,8 @@ function BlurbSwitcher({ id, about }) {
   const [pick, setPick] = React.useState(null);
   const [mode, setMode] = React.useState("info");     // "info" | "deep" (Fable interpretation)
   const [altTake, setAltTake] = React.useState(false); // false = primary fable, true = fableAlt (the fold-merged twin's read)
-  React.useEffect(() => { setPick(null); setMode("info"); setAltTake(false); }, [id]);   // new song → default read; clicks never clobbered
+  const [flickI, setFlickI] = React.useState(0);       // 0 = frontal fable; i>0 = flicks[i-1] (older/alternate take)
+  React.useEffect(() => { setPick(null); setMode("info"); setAltTake(false); setFlickI(0); }, [id]);   // new song → default read; clicks never clobbered
   const gist0 = (R && R.aboutGist && R.aboutGist(id)) || null;   // read before deciding on deep load
   // pull the deep shard when a deep read is being shown: a picked deep source, the Interpretation
   // mode, OR when the DEFAULT source (gist.src) is itself a deep read (so it renders without a click).
@@ -1299,10 +1300,12 @@ function BlurbSwitcher({ id, about }) {
         {(() => {
           const hasAlt = onFableRead && llm && llm.fableAlt;
           const body = showDeep ? (deepText || "…") : (curLoading ? "…" : cur.text);
+          // a flicked older take replaces the read in place — flicks never stack (Fuad 2026-11-04)
+          const flick = onFableRead && !altTake && flickI > 0 && llm && llm.flicks ? llm.flicks[flickI - 1] : null;
           // the nub is typeset differently from the long read — see .tv-switch-txt[data-nub] in
           // rotation-core.jsx. It is short enough for the browser to balance; the read is not.
-          const isNub = !showDeep && cur.m === "fable" && !!(llm && llm.nub);
-          return <span className="tv-switch-txt" data-nub={isNub ? "true" : undefined}>{hasAlt && altTake ? llm.fableAlt : body}</span>;
+          const isNub = !showDeep && !flick && cur.m === "fable" && !!(llm && llm.nub);
+          return <span className="tv-switch-txt" data-nub={isNub ? "true" : undefined}>{hasAlt && altTake ? llm.fableAlt : flick ? flick.t : body}</span>;
         })()}
         {onFableRead && llm && llm.fableAlt && (
           <div className="tv-switch-mode tv-switch-alt">
@@ -1310,19 +1313,33 @@ function BlurbSwitcher({ id, about }) {
             <button data-on={altTake} onClick={() => setAltTake(true)}>Alt take</button>
           </div>
         )}
-        {/* Stacked second take (Fuad 2026-08-04): where an old-era Fable read stays primary,
-            the newer read rides as `fable2` under a hairline split — same formatting, both kept. */}
-        {onFableRead && !altTake && llm && llm.fable2 && (
-          <span className="tv-switch-txt" style={{ display: "block", marginTop: 9, paddingTop: 9, borderTop: "1px solid var(--ink-faint, rgba(127,127,127,.3))" }}>{llm.fable2}</span>
-        )}
+        {/* FLICKS (Fuad 2026-11-04, replacing the 2026-08-04 stacked fable2): older takes are a
+            real flick system now — one read on the page, a chip (the Portrait card's pv-flick
+            grammar) that cycles frontal → each older take → back, and names the version and the
+            drafting model it reverts to (fvr 3.0+ = Opus 5.5 · 2.3–2.9 = Opus 5 · 2.2 = Fable).
+            Data: `flicks: [{t, fvr}]` in llm-about.js, migrated from fable2 by migrate-flicks.js
+            (each flick's fvr recovered from git history — it was never stored on fable2). */}
+        {onFableRead && !altTake && llm && llm.flicks && llm.flicks.length > 0 && (() => {
+          const model = (v) => { const n = parseFloat(v || "2.2"); return n >= 3 ? "Opus 5.5" : n >= 2.3 ? "Opus 5" : "Fable"; };
+          const next = (flickI + 1) % (llm.flicks.length + 1);
+          const tFvr = next === 0 ? (llm.fvr || "2.2") : (llm.flicks[next - 1].fvr || "2.2");
+          return (
+            <div className="tv-flickrow">
+              <button className="tv-flick r-mono" onClick={() => setFlickI(next)}
+                title={next === 0 ? "back to the current read" : "flick to this older take"}>
+                {(next === 0 ? "back · " : "flick · ") + tFvr + " · " + model(tFvr)}
+              </button>
+            </div>
+          );
+        })()}
         {/* Fable addition (Fuad 2026-07-28): when QC sees a verified layer the read couldn't
             surface, it rides as `fnote` — an italic line under the Fable read, never an edit. */}
-        {onFableRead && !altTake && llm && llm.fnote && (
+        {onFableRead && !altTake && flickI === 0 && llm && llm.fnote && (
           <span className="tv-switch-txt" style={{ display: "block", marginTop: 7, fontStyle: "italic", opacity: 0.85 }}>{llm.fnote}</span>
         )}
         {/* Second fnote slot (Fuad 2026-08-12): a further verified annotation stacks as
             `fnote2` under the first — same italic styling, only when present. */}
-        {onFableRead && !altTake && llm && llm.fnote2 && (
+        {onFableRead && !altTake && flickI === 0 && llm && llm.fnote2 && (
           <span className="tv-switch-txt" style={{ display: "block", marginTop: 7, fontStyle: "italic", opacity: 0.85 }}>{llm.fnote2}</span>
         )}
         {showDeep
