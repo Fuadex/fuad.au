@@ -58,7 +58,7 @@ and say which you could not settle.
 
 ## WAVE-29 BLOCK (mv 6, 2026-10-20)
 
-- **Read `BRIEF_common.md` first** — scratch paths, the word-count rule, the measurement rule, the
+- **Read `RULE_CARD.md` first** — scratch paths, the word-count rule, the measurement rule, the
   voice table for your work, the counterweight and the 2026-09-26 rules all bind you.
 - **Web use is part of this job.** Keep it purposeful (two or three good sources beat ten skimmed),
   but you are expected to reach the holding museum's own page and at least one serious secondary

@@ -60,7 +60,7 @@ of marks). Doubts live here, never silently in the prose.
 
 ## WAVE-29 BLOCK (mv 6, 2026-10-20)
 
-- **Read `BRIEF_common.md` first** — scratch paths, the measurement rule, the verify-one-step-finer
+- **Read `RULE_CARD.md` first** — scratch paths, the measurement rule, the verify-one-step-finer
   rule, the tic list, the voice table and the counterweight all bind you.
 - **Your plate is described in your `pre_<id>.json` (pixel size, reader ceiling, plate note).** Every plate is a FLAT
   file: its tiles are native crops and the file is the reader's ceiling — a claim that
@@ -70,7 +70,7 @@ of marks). Doubts live here, never silently in the prose.
   MEASURED.
 - **Quantities are measured, not eyeballed.** If you say one passage is brighter, larger, denser or
   more numerous than another, say how you established it. **Your numbers are for verification, not
-  for prose**: the tour will state findings in words (measurement quarantine, BRIEF_common rule 2),
+  for prose**: the tour will state findings in words (measurement quarantine, RULE_CARD rule 2),
   so give each measured claim its plain-language meaning next to the number.
 - **Do not name a stop count.** Survey the plate and list the marks that reward a stop; three is a
   valid answer and so is nine.

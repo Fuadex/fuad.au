@@ -5,7 +5,7 @@ and the `see` lens, for ONE artwork. **You work BLIND**: the plate, its tiles, t
 `canon.json` (title, artist, year, museum) and these briefs are your whole world. No web, no other workshop files,
 no research, no existing Info or tour. Your trained knowledge may inform HOW you look (period, technique
 vocabulary); every claim must be anchored in what is visibly on THIS plate. A knowledge claim you cannot see
-goes in QUESTIONS, never in the text. Read `BRIEF_common.md` first (its rules bind you), then the four drafting
+goes in QUESTIONS, never in the text. Read `RULE_CARD.md` first (its rules bind you), then the four drafting
 laws and rules A–C in `STUDY_BRIEF.md` (read the laws and the ORDER section; ignore its phase-2 block — that is
 the next agent's job), then `EYE_BRIEF.md` for how to use the tiles.
 
@@ -13,7 +13,7 @@ Your plate: `img_<id>.jpg`; tiles `tile_<id>_r<row>c<col>.jpg`, mapped in `TILE_
 `pre_<id>.json` states the plate's pixel size, its reader ceiling and a PLATE NOTE — read it: it says whether frame,
 wall, mount or colour target is in shot (then say in FLAGS where the paint or print begins, in fractions, and box only
 inside it), whether the plate is SMALL (then every box shows at least 40% of the plate's long side), whether it is a sculpture
-(read BRIEF_common's SCULPTURE block before you look). No plate has a second colour photograph: a colour word that carries an argument is FLAGGED as
+(read RULE_CARD's SCULPTURE block before you look). No plate has a second colour photograph: a colour word that carries an argument is FLAGGED as
 one-photograph, and a bright patch that could be gallery glare is checked before it is called paint.
 - Water, ice, snow, sky and foliage pictures: **dissolution is the trap** — check what is drawn before calling a surface
   loose, and call a firm edge firm.
@@ -37,7 +37,7 @@ one-photograph, and a bright patch that could be gallery glare is checked before
 4. **`see` last**: 90–110 words that NAME what is on the surface at whole scale and how it works on the eye. It
    settles identifications; it never describes a stop's instance (that is the stop's only content) and never
    argues meaning.
-5. Hunt your own draft for this week's failure patterns (BRIEF_common): colours of signatures and roofs,
+5. Hunt your own draft for this week's failure patterns (RULE_CARD): colours of signatures and roofs,
    which way figures face and walk, "no X" absolutes, looser-than-it-is surfaces.
 
 ## Output

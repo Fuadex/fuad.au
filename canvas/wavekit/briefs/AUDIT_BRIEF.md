@@ -10,6 +10,12 @@ every visual claim against the plate, every lens against its role, and every fac
 against the research file `hook_<id>.md` (a fact not in the research and not common knowledge is UNSUPPORTED).
 An audit sheet is a list of CANDIDATES; verify each before you write it down.
 
+**Read `RULE_CARD.md` and `LESSON_LEDGER.md` IN FULL before you look at anything** — the ledger is the audit's
+checklist and the auditor is the one stage that reads every lesson. **Vision budget (2026-11-05):** view the whole
+plate, every box the tour cites, and a spot-check of two or three uncited tiles where the tour makes a whole-canvas
+claim — not the full tile grid; the full grid was the drafter's study, and re-viewing all of it has been the audit's
+single biggest token cost without ever changing a verdict.
+
 **Measured claims to re-check:** every measurement the drafters name in the tour's `flags` (phase 1 and phase 2) —
 re-check each at the plate. **Tone gate LOOKs** are listed in `QUEUE.md` — judge them, do not just repeat them.
 **Rule 9 (2026-10-07):** `craft` describes the MAKING and names no object a stop owns; a craft lens that previews the
@@ -83,9 +89,9 @@ Every plate in this wave is a FLAT file; the file is the reader's ceiling. Only 
 jug have a COLOUR AUTHORITY (`colour_<id>.jpg`, which wins). Elsewhere a colour claim that carries an argument rests on
 one image and must be worded so a second reproduction would not refute it. Your work's plate note is in `pre_<id>.json`
 (`identity.plateNote`) — frames, margins and pads in shot are named there; boxes must sit inside the paint.
-- Read your work's PLATE NOTE in pre_<id>.json (framed visitor photos, small plates with the 40% floor, prints, Japanese paintings, the relief). Prints, Japanese paintings and the relief: BRIEF_common's PRINTS / JAPANESE PAINTINGS / SCULPTURE blocks — vocabulary from the wrong medium is a defect. No colour authority anywhere: a colour claim that carries an argument rests on one photograph and is worded so.
+- Read your work's PLATE NOTE in pre_<id>.json (framed visitor photos, small plates with the 40% floor, prints, Japanese paintings, the relief). Prints, Japanese paintings and the relief: RULE_CARD's PRINTS / JAPANESE PAINTINGS / SCULPTURE blocks — vocabulary from the wrong medium is a defect. No colour authority anywhere: a colour claim that carries an argument rests on one photograph and is worded so.
 Every box must show at least 600 real pixels on its long side and contain its subject with air around it (rule 7).
-**Batch and store collisions (BRIEF_common WAVE-NN BLOCK):** <<WAVE-SPECIFIC — written per wave by the brief generator; see the latest .dtmp/tourwaveNN/ for a filled example>>
+**Batch and store collisions (RULE_CARD WAVE-NN BLOCK):** <<WAVE-SPECIFIC — written per wave by the brief generator; see the latest .dtmp/tourwaveNN/ for a filled example>>
 
 ## Output — `audit_<id>.json`, one per work
     { "id": "...", "account": "<your whole-image account, written first>",

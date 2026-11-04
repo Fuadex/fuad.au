@@ -6,7 +6,7 @@ Interpretation cuts the tour's argument to its crux; the Info is written knowing
 Interpretation took; the `beside` points at the relation the two of them have already isolated
 instead of re-deriving it in parallel.
 
-Read `BRIEF_common.md` first.
+Read `RULE_CARD.md` first.
 
 ## Read, in this order
 1. `out_tour_<id>.json` — the finished, gated, repaired tour. This is the verified layer beneath you.
@@ -22,7 +22,9 @@ Read `BRIEF_common.md` first.
 5. For the `beside` only: `beside_candidates.json` (your entry holds `self` plus `sameArtist`,
    `crossArtist` and `periodToured` pools, each row carrying the companion's own shipped Info where
    it has one) and `CORPUS_INDEX.txt` (`id | artist | title | year | museum | TOURED | INFO` for the
-   whole canon).
+   whole canon). **The index is a lookup table, never reading matter (2026-11-05): grep the exact rows
+   you need (an id to verify, a candidate's fields) and NEVER open or read the file whole — it is
+   ~400KB and a full read is the single most expensive mistake a reads agent can make.**
 
 ---
 
@@ -202,7 +204,9 @@ the shape's name.**
 
 # WAVE-29 BLOCK (mv 6, 2026-10-20): FOUR works, ONE agent per work. Replaces the older addenda AND amends the core's
 # `beside` form (STUDY_SPEC rules 10–12, Fuad 2026-10-08 / 10-09 / 10-10)
-- **Read first:** `BRIEF_common.md` (WAVE-29 BLOCK, the BLACKOUT, the COLLISIONS, the SCULPTURE block, and ALL lessons 1–72), your `fusion_<id>.md`,
+- **Read first:** `RULE_CARD.md` (WAVE-NN BLOCK, the BLACKOUT, the COLLISIONS, the medium blocks); then look up in
+  `LESSON_LEDGER.md` only the lessons this brief or your fusion cites by number — never the ledger whole
+  (2026-11-05). Then your `fusion_<id>.md`,
   `GAIT_FORECAST.md` (your Interpretation SHAPE; its label word is BANNED from your prose), `hook_<id>.md` (DOUBTS bind),
   the REPAIRED `out_tour_<id>.json` and `repair_<id>.md`, and `QUEUE.md` (every R-item naming your work; later revise earlier).
 - **Disposition:** REPLACE for works 1–3 — each ships a legacy Info (59–71 words, over the band, no Interpretation):

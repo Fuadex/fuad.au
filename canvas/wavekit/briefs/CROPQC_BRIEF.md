@@ -79,7 +79,7 @@ Do not edit any `out_tour_*.json`. Do not touch another reviewer's files.
 
 ## WAVE-12 ADDENDA (mv 5)
 
-- Read `BRIEF_common.md` first. The measurement rule binds you hardest of anyone: **a "CHECKED, NONE
+- Read `RULE_CARD.md` first. The measurement rule binds you hardest of anyone: **a "CHECKED, NONE
   FOUND" line about a measurable quantity is worth nothing unless you say HOW you measured.** This
   project has an instance where an independent reviewer did not merely miss a false brightness claim
   but actively ENDORSED it by eye — "correct, it is the only other lit passage" — about the darkest
@@ -132,7 +132,7 @@ exactly as much as a reviewer's eye.
 ---
 
 # WAVE-16 ADDENDUM (mv 6): TWO works, opposite plate problems
-Read `BRIEF_common.md` (its WAVE-16 ADDENDUM binds) and `PLATE_FACTS.md`. Write your WHOLE-FIRST ACCOUNT
+Read `RULE_CARD.md` (its WAVE-16 ADDENDUM binds) and `PLATE_FACTS.md`. Write your WHOLE-FIRST ACCOUNT
 from the plate(s) before reading the draft. Cut your own box crops; no `box_*` files exist.
 
 **Renoir (two plates).** Colour, tone and brightness claims may come ONLY from `orsay_<id>.jpg` (850 × 685);
@@ -151,7 +151,7 @@ anywhere in reader text; (5) every exhaustive sentence.
 ---
 
 # WAVE-23 BLOCK (mv 6, 2026-09-30): TWO works, one report each. Replaces the older addenda
-Read `BRIEF_common.md` (its WAVE-23 BLOCK and both LESSONS lists bind), `PLATE_FACTS.md` (your work's section),
+Read `RULE_CARD.md` (its WAVE-NN BLOCK binds; look up only the lessons this brief cites in `LESSON_LEDGER.md`), `PLATE_FACTS.md` (your work's section),
 `QUEUE.md` (the orchestrator's rulings: what they settle stays settled) and the work's `fusion_<id>.md` (its FORBIDDEN
 list and RESERVED claim). Write your WHOLE-FIRST ACCOUNT from the plate before you read the draft. Cut your own box
 crops from `img_<id>.jpg` and its native tiles (fractions in TILE_MAP.json); no `box_*` files exist. One report per

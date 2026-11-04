@@ -61,7 +61,7 @@ from the tour is not thereby unsupported: some material is deliberately reserved
 
 ## WAVE-12 ADDENDA (mv 5)
 
-- Read `BRIEF_common.md` first.
+- Read `RULE_CARD.md` first.
 - **⚠ CHECK THE WAVE ADDENDUM FOR THE COUNT — it was five here, and has been three and ten since.** The batch-gait section (item 8) is therefore the part
   most at risk of under-reporting: with five paragraphs a recurrence of two is already 40% of the
   field. Report a shape that appears twice.
@@ -81,7 +81,7 @@ from the tour is not thereby unsupported: some material is deliberately reserved
 ---
 
 # WAVE-16 ADDENDUM (mv 6): TWO works, n = 2, so no batch verdicts
-Read ONE field across both tours. `BRIEF_common.md`'s WAVE-16 ADDENDUM binds. A 2-of-2 recurrence may be
+Read ONE field across both tours. `RULE_CARD.md`'s WAVE-16 ADDENDUM binds. A 2-of-2 recurrence may be
 NOTED but not ruled. Check each sentence of your field against its own tour's stops and flags, the fusion's
 FORBIDDEN list and RESERVED claim, GAIT_FORECAST's named collisions (note that today's Monet willows tour is
 one of them), and the plate: native crops for the Ciągliński, and the right plate for the right claim on the
@@ -91,7 +91,7 @@ an existing correct sentence in a stop rather than proposing wording.
 ---
 
 # WAVE-23 BLOCK (mv 6, 2026-09-29): TWO works, n = 2 — batch verdicts ARE in scope (a shared move across the pair is a pattern)
-Read ONE field (`see`, `about`, `craft` or `context`) across both `out_tour_<id>.json` files. `BRIEF_common.md`'s
+Read ONE field (`see`, `about`, `craft` or `context`) across both `out_tour_<id>.json` files. `RULE_CARD.md`'s
 WAVE-23 BLOCK binds, and `GAIT_FORECAST.md` is your checklist: its batch-wide section (openers, closers, paid tics,
 the once-per-wave accent argument, the 5.5 failure shapes) and each work's named collisions. Rule on recurrences
 across the five (2-of-2 is a pattern; say which works share it and name the one that keeps it). For each sentence

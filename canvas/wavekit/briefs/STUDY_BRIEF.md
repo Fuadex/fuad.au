@@ -4,7 +4,7 @@ You are drafting ONE close-reading Study tour for a single artwork, from the act
 brief for the whole layer: the read should *"showcase what makes them what they are so I can also
 understand what got me that interested by the artwork."*
 
-Read `BRIEF_common.md` and `GAIT_FORECAST.md` first. Your fusion brief (`fusion_<id>.md`) is the
+Read `RULE_CARD.md` and `GAIT_FORECAST.md` first. Your fusion brief (`fusion_<id>.md`) is the
 orchestrator's instruction for THIS work and outranks any general guidance here.
 
 ## Output: `out_tour_<id>.json`, a single JSON object
@@ -88,7 +88,7 @@ rather than a mark, or "the half with no story" — a stop whose content is that
   drafting which one or two stops carry the picture's weight and give the room to those; a stop that
   has said its one thing STOPS, because 85 honest words beat 130 padded ones. A long stop earns its
   length with MORE FINDINGS, each passing Law 4 — never with decoration.
-- **Do not report your own word counts.** See `BRIEF_common.md`: aim 3–4 words inside a band and let
+- **Do not report your own word counts.** See `RULE_CARD.md`: aim 3–4 words inside a band and let
   the gate do the counting.
 
 ## `craft` is stated plainly (mv 5)
@@ -135,7 +135,7 @@ from seven stop closers, and that is exactly how one was lost before.
 
 ---
 
-# WAVE-29 BLOCK — PHASE 2 (rule 6, Fuad 2026-10-06) — read with BRIEF_common's wave-29 block
+# WAVE-29 BLOCK — PHASE 2 (rule 6, Fuad 2026-10-06) — read with RULE_CARD's wave-29 block
 
 **You are the phase-2 drafter.** The stops, their boxes, the `survey` and `see` were written BLIND from the plate
 in `phase1_<id>.json`. You do NOT rewrite them. You write `about`, `craft` and `context` around them, with the

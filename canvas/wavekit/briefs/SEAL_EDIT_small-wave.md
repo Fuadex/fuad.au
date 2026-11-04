@@ -1,6 +1,6 @@
 # SEAL EDIT — wave 29. ONE agent, all four works: apply every accepted change, then re-read.
 
-Do not use the Agent tool. Read: `BRIEF_common.md` (WAVE-29 BLOCK, BATCH COLLISIONS, PRINTS, JAPANESE PAINTINGS and SCULPTURE blocks, every lesson list),
+Do not use the Agent tool. Read: `RULE_CARD.md` (WAVE-NN BLOCK, BATCH COLLISIONS, the medium blocks) and `LESSON_LEDGER.md` IN FULL (the seal reads every lesson),
 `QUEUE.md` (all R-items — orchestrator rulings, binding; the R-items headed "SEAL RULING" rule on the seal reports), then the
 inputs: `seal_wNN.md` (its WEB, PLATE and TEMPLATE sections each end in a
 replacement table) and `COLD_RULINGS.md` (rulings on the cold readers' flags in `cold/verdict_A.json`). Apply ONLY rows and

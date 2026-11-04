@@ -2,8 +2,8 @@
 # prompt: h1 = ids 1–13, h2 = ids 14–25 in ids.json order), TEMPLATE ×1 (all twenty-five). Edit no reader file.
 
 Works: every id in `ids.json`. Reader layers per work: `out_tour_<id>.json` (see/about/craft/context, deeper[].t/.body),
-`info_<id>.md`, `interp_<id>.md`, `beside_<id>.json` (`beside`, `refs`). Read first: `BRIEF_common.md` (WAVE-28 BLOCK, THE
-BATCH COLLISIONS, the PRINTS, JAPANESE PAINTINGS and SCULPTURE blocks, every lesson list) and `QUEUE.md` (every R-item; later
+`info_<id>.md`, `interp_<id>.md`, `beside_<id>.json` (`beside`, `refs`). Read first: `RULE_CARD.md` (WAVE-NN BLOCK, THE
+BATCH COLLISIONS, the medium blocks), `LESSON_LEDGER.md` IN FULL (the seal reads every lesson) and `QUEUE.md` (every R-item; later
 revise earlier — R-items are orchestrator rulings and bind you), and for the works you touch their `fusion_<id>.md` (an
 allocation; the drafters reported its errors, ruled in QUEUE) and `hook_<id>.md` (each fusion's RESERVED claim is deliberately
 absent from the tour and lives in the Interpretation — do not flag it as unsupported). Do not use the Agent tool. Scratch files

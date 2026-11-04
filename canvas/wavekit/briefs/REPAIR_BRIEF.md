@@ -4,7 +4,10 @@ Under mv 5 there is **exactly one repair round per work**, dispatched only after
 lens sweep have BOTH reported. You receive every finding for your work in one brief. An earlier wave
 ran twenty rounds and the difference was re-reads, not checks.
 
-You own ONE work. You may edit only `out_tour_<id>.json` for that id. Read `BRIEF_common.md` first.
+You own ONE work. You may edit only `out_tour_<id>.json` for that id. Read `RULE_CARD.md` first. **Look up in
+`LESSON_LEDGER.md` only the lessons your audit sheet cites by number — never read the ledger whole (2026-11-05).
+Render and view only the plate and the boxes your edits touch**, plus any crop an audit finding names; the full
+tile grid is not the repairer's to re-study.
 
 ## The protocol, which has caught real reviewer errors every time it has run
 
@@ -73,7 +76,7 @@ evidence that something may be worth reading for, never the finding itself and n
 Re-run them once — a repair can introduce the defect it was fixing. One rebuilt stop in an earlier
 wave pushed six of eight stops into a 139–146 cluster, which is the metronome the proportion rules
 exist to kill, and it had to be re-spread. The orchestrator runs `bandgate.js`, `tonegate.js` and
-`stopvar.js`; you do not report word counts from your own tokeniser (see `BRIEF_common.md`).
+`stopvar.js`; you do not report word counts from your own tokeniser (see `RULE_CARD.md`).
 
 ## Your report
 
@@ -97,8 +100,8 @@ Your findings arrive in ONE file: `audit_<id>.json` (the independent auditor's a
 severity, evidence and a proposed fix). The orchestrator's rulings for your work are the R-items in `QUEUE.md` that name
 it — they are INSTRUCTIONS, not findings: apply them unless the plate refutes one, and then say so with the crop you
 looked at. A reviewer's proposed wording is a NEW claim (rule 7): never paste it in; re-derive every replacement from the
-plate. Prefer wording the tour already uses correctly elsewhere (rule 8). `BRIEF_common.md` (WAVE-29 BLOCK, the
-BLACKOUT, the COLLISIONS, the SCULPTURE block and every lesson list) and your `fusion_<id>.md` (allocation, RESERVED
+plate. Prefer wording the tour already uses correctly elsewhere (rule 8). `RULE_CARD.md` (WAVE-NN BLOCK, the
+BLACKOUT, the COLLISIONS, the medium blocks) and your `fusion_<id>.md` (allocation, RESERVED
 claim, cautions) bind. Edit `out_tour_<id>.json` in place; keep box fractions unless a finding moves one (then re-place it
 from its own crop, padded per rule 7, at least the plate's floor in real pixels). Write `repair_<id>.md`. Run the gates
 named in your dispatch before you finish. Tours ship at mv 6. A short lens is acceptable where the rulings leave it short —

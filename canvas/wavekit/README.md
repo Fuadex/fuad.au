@@ -3,7 +3,23 @@
 The runners, gates and briefs that took waves 20–29 from a work id to a merged tour, Info, Interpretation and
 `beside`. Until now they lived only in untracked `.dtmp/tourwaveNN/` workshops, copied forward wave to wave; this folder
 is their durable home. The methodology itself is `../STUDY_SPEC.md` and `../READS_SPEC.md` (read both end to end before a
-wave); `briefs/BRIEF_common.md` carries the lesson ledger (lessons 1–72) that every agent obeys.
+wave). The common brief is SPLIT (2026-11-05 token audit, Fuad-approved, after wave 35 ran ~35M subagent tokens at
+~1.7M/work): `briefs/RULE_CARD.md` (~10KB — the binding rules plus the per-wave block) is what every agent reads;
+`briefs/LESSON_LEDGER.md` (the numbered lessons, growing each wave) is read WHOLE only by the audit and the seal —
+every other stage looks up cited lesson numbers and nothing more. New wave lessons append to the ledger; new RULES
+(rare, Fuad-ruled) go on the card. Never recombine them: the old all-in-one BRIEF_common cost ~1.4M tokens per wave
+in re-reads alone.
+
+## The token diet (2026-11-05, binding for new waves)
+- **8–10 works per wave, no more.** Twenty works made the collision block huge for every reader and the wave paused
+  mid-flight anyway. Smaller waves shrink collisions, QUEUE.md and RESUME.md quadratically.
+- **Vision by stage:** phase 1/2 study the full tile grid (that IS the study); the audit views the plate, every
+  cited box and a 2–3 tile spot-check, never the full grid; repair views only the boxes its edits touch; reads
+  re-view only crops carrying a visual claim.
+- **CORPUS_INDEX.txt is grep-only** for agents (~400KB; a full read is ~100K tokens). Candidates are pre-picked into
+  `beside_candidates.json` by the orchestrator.
+- Stage briefs POINT at the card; they never restate its blocks (the old AUDIT_BRIEF duplicated the collision block
+  verbatim — every auditor paid for it twice).
 
 ## Starting a wave
 
@@ -11,7 +27,7 @@ wave); `briefs/BRIEF_common.md` carries the lesson ledger (lessons 1–72) that 
    constant at the top of the scripts that have one (`build-canon.js`, `build-pre.js`, `build-corpus-index.js`,
    `build-beside-candidates.js`, `crops.py`). Copy `merge-template.js` to `mergeNN.js` and fill `PLATES`,
    `REPLACE_PLATES`, `RETOUR`; list any re-tour in `build-canon.js`'s `RETOUR` too.
-2. Write `ids.json`, then the briefs: copy `briefs/*` and fill every `<<WAVE-SPECIFIC …>>` placeholder (the slate, the
+2. Write `ids.json`, then the briefs: copy `briefs/*` and fill every `<<WAVE-SPECIFIC …>>` placeholder in RULE_CARD.md and the stage briefs (the slate, the
    voices, collisions, the store's spent lessons, medium blocks). A sighting in the masked window gets a ⛔ BLACKOUT
    section in the workshop copy only. Never copy that section, or any date or venue from it, into a tracked file, a
    commit message or a print.
