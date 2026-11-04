@@ -6146,6 +6146,38 @@ if (TM_RAW && TM_RAW.events && TM_RAW.events.length) {
         ll: (e.lat != null && e.lng != null) ? [Math.round(e.lat * 100) / 100, Math.round(e.lng * 100) / 100] : null });
     }
   }
+  // ─ Japan lane (Fuad 2026-11-04): Ticketmaster carries no Japan inventory, so the Tokyo layer
+  // rides the daily concert agent's file instead (rotation/data/concerts-tokyo.json — e+/Creativeman/
+  // Smash via scripts/concert_agent.py). Rows marked "skip" and past dates stay off the map; rows
+  // without venue coords cluster at the Tokyo fallback. c.artist is already the canonical library name.
+  const JPC = _readJson("data/concerts-tokyo.json");
+  if (JPC && JPC.concerts && JPC.concerts.length) {
+    const _today = new Date().toISOString().slice(0, 10);
+    let _jp = 0;
+    for (const c of JPC.concerts) {
+      if (c.status === "skip" || !c.artist || !c.on || (c.until || c.on) < _today) continue;
+      const nm = c.artist;
+      let r = _tour.get(nm);
+      if (!r) {
+        const a = _byName.get(nm);
+        const lf = lifeOf(nm), wd = wdOf(nm);
+        _tour.set(nm, r = {
+          id: a ? a.id : slug(nm), name: nm,
+          plays: artistPlays.get(nm) || 0,
+          mb: 0,
+          seen: a && a.seenLive ? a.seenLive.count : 0,
+          react: (lf && lf.react) || (lf && lf.ended && lf.type !== "Person") || (wd && wd.dissolved) ? 1 : 0,
+          _genres: new Map(),
+          events: [],
+        });
+      }
+      r.events.push({ d: c.on, ev: c.title, v: c.venue || c.place || "", city: c.area || "Tokyo", cc: "JP",
+        url: c.href, mkt: "tokyo", status: "onsale",
+        ll: (c.lat != null && c.lng != null) ? [Math.round(c.lat * 100) / 100, Math.round(c.lng * 100) / 100] : [35.68, 139.69] });
+      _jp++;
+    }
+    console.log(`tm-tour: +${_jp} Japan events from concerts-tokyo.json (generated ${JPC.generated || "?"})`);
+  }
   // Ticketmaster lists hospitality/VIP/package tiers as SEPARATE events sharing the real show's
   // date+city (e.g. SoaD Berlin 8 Jul appears 3× — "Business Seat Packages", "VIP Packages", and
   // the actual show). Collapse each date+city to one row, preferring the real billing (Fuad, 2026-07-06).
