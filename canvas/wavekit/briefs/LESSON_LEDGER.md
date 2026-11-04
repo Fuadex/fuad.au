@@ -1,9 +1,85 @@
-# LESSON LEDGER — every numbered lesson from waves 17–28 (split from BRIEF_common 2026-11-05)
+# LESSON LEDGER — every numbered lesson from waves 17–34 (1–100) (split from BRIEF_common 2026-11-05)
 
 One lesson per past defect, numbered for citation. **Read whole only if you are the AUDITOR or a
 SEAL role** — the ledger is their checklist. Every other agent looks up the specific numbers its
 stage brief or its audit cites, and nothing more. New waves append their lessons here.
 
+
+## WAVE-34 LESSONS (2026-10-29, fifteen works, audit + cold pass + two-half seal) — binding
+95. **A tighter image is checked against the WHOLE object.** Two wave-34 "upgrades" were details — a Morisot cut at the
+    parasol, an Ōkyo screen missing a cub. A crop, a tile or a larger file is never the plate until its edges and its
+    figures have been counted against the plate's.
+96. **A verification aid may check, never describe.** Gold dust visible only in a larger reference image, not on the plate
+    the reader zooms, was cut from an Ōkyo stop. Reader text describes what the plate shows.
+97. **No gift, sale or purchase line goes to the Info**, whatever a fusion allocates — the fusion did it twice in wave 34 (a
+    1991 gift, a State purchase). A purchase may reach the Interpretation only as reception: what the buying said about
+    the picture.
+98. **A body part is named at the plate by measurement.** Wave 34's "heel" was a knee (about two and a half times the
+    heel's size, with a thigh-to-calf fold). A part a source names is matched at the plate before the text names it.
+99. **A holder's reading of the visible is a plate claim.** A museum text's "the perspective lines seem to diverge" failed
+    at the plate. A curator's description of what the picture shows is checked like any eye claim.
+100. **An undated work stays undated.** A range's midpoint shown as a year is not a date; write the range or "undated",
+    never a year the record does not give.
+
+## WAVE-33 LESSONS (2026-10-22, five works, audit + cold pass + three-role seal) — binding
+91. **The form of a source is a fact.** Wave 33 called Sisley's own LETTER to Tavernier "the writer's report", and a
+    preface to a dealer's album "a review". Who wrote it, to whom, and in what form is checked like a date.
+92. **Gaze and grip verbs are plate claims.** "Turns from" (she looks past), "flung out" (he holds it out): a verb that says
+    where a face points or what a hand does is checked at the plate at 4x, like a count.
+93. **A repetition claim is counted.** "The skin is shown twice" rested on one ring placed by geometry. Before writing that a
+    form repeats, name each instance and box it.
+94. **A hedge in the research survives into the Info word for word in meaning.** "The place name came later" hardened the
+    source's "the title is today's". Re-read the hook's DOUBTS before writing any Info clause about a title, date or name.
+
+## WAVE-32 LESSONS (2026-10-22, three works, audit + cold pass + three-role seal) — binding
+87. **A secondary's paraphrase is not its source.** Wave 32's research carried a fashion-history page's paraphrase of a dress
+    historian ("full sleeves and a modest neckline") into the Interpretation; the source and the plate both said ample
+    décolletage. A garment or visual claim taken from reading is also checked at the plate, and a quoted judgement at the
+    page that holds it.
+88. **The two-version pin binds the store's own texts too.** The store had told Leroy's 1874 joke as the reception of a
+    canvas that most likely never hung. A reception story attaches only to the object exhibited; when a version question is
+    open, the sentence says which object, or stays with the motif.
+89. **A light claim survives the tour's own measurements on both sides.** Wave 32's "the field is not what lights her: the
+    cheek turned to it is in shadow" was refuted by its own stop 2. Before writing what lights or does not light a form,
+    diff it against every other brightness claim in the tour.
+90. **A superlative over the plate is measured over the WHOLE plate.** "Below the sky the brightest stretch" was refuted by
+    a pavement at the other end of the canvas. Scope it (the upper half, this side) or measure everything.
+
+## WAVE-31 LESSONS (2026-10-22, five works, audit + cold pass + three-role seal) — binding
+82. **An Interpretation ends on the object, never on a quoted authority.** Two wave-31 Interpretations closed on a critic's
+    or curator's line with no route back to the marble or the canvas (the cold reader's repeated "dangling authority"
+    MID). Keep the voice, but let the last sentence stand on something the reader can see.
+83. **Name only what is identified.** An unidentified setting is "water", not "sea"; a shape read as a boat is "likely" a
+    boat in every layer it reaches. A reading named as a sighting is the oldest defect class in this store.
+84. **A shared observation may stay; a lesson the store already teaches is re-aimed.** Wave 31's Turner shared five lessons
+    with the shipped Norham tour; each was re-aimed at what only that canvas shows (the crag's firm edges face the glow —
+    measured), or cut. Check every lesson against the store's own tours of the motif before drafting.
+85. **Verbs of return carry history.** A canvas painted in Paris "came to" Spain in 1981; it never "returned". Check every
+    returned / restored / came back / again against where the object had actually been.
+86. **The batch does not share a closing move.** Three wave-31 Interpretations closed on a located detail and two on a
+    quoted authority. Read the finished Interpretations in the workshop and make your close differ in kind.
+
+## WAVE-30 LESSONS (2026-10-21, five works, audit + cold pass + three-role seal) — binding
+77. **A fusion's allocation is the orchestrator's guess.** Wave 30's drafters caught about twenty-five fusion errors — a craft
+    method that was a stop's finding, an unsourced gloss ("large for a still life", "before the Flood"), a wrong venue (the
+    British Institution, not the Academy). Check every allocated fact against the hook and say so out loud.
+78. **A reserved claim never leaks into the `beside`.** The seal proposed stating a beside's reversal with the Interpretation's
+    reserved letters; it was refused. State a reversal from the canvases themselves.
+79. **A replaced read's refs die with its prose.** A legacy Info's link survived a REPLACE and failed the refs gate.
+80. **Glossed or not at all.** A quoted marginal note or idiom ("Off again, G."; "sacks from the same grinding") left bare
+    lost the cold reader; give its sense in a few words or leave it out.
+81. **A store tour of a sister canvas owns its lessons.** Wave 30's Seine sunrise could not re-teach the shipped Seine at
+    Giverny's "no drawn waterline"; re-aim at what only this canvas has.
+
+## WAVE-29 LESSONS (2026-10-20, four works, audit + cold pass + three-role seal) — binding
+73. **A sister canvas is never placed or owned in reader text.** The wave-29 seal cut a twin version's city and holder:
+    a second canvas of the same view is "a second canvas of the same view", nothing more.
+74. **A researcher's gloss is not the source's line.** "Afternoon sun" was the researcher's word; the curator wrote
+    "an identical view … but on a rainy day". Quote or paraphrase the source, never the hook's summary of it.
+75. **Narration belongs to its writer.** A critic's own scene-setting ("streets opening onto the sea") was nearly given to
+    the painter. Attribute a description to the person who wrote it.
+76. **A measured claim can refute its auditor.** A repair agent measured the plate and overturned an audit's proof; the
+    plate decides, not the seniority of the stage.
 
 ## WAVE-28 LESSONS (2026-10-20, twenty-five works, audit + cold pass + five-role seal) — binding
 66. **A fusion line is a claim to check, not a source** (lesson 46 re-proved): the wave-28 drafters caught about forty
