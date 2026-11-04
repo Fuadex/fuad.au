@@ -4038,7 +4038,7 @@ function TourSection({ go, gigDate }) {
           <span key={m.id} className="gv-tour-mkt" data-stale={!!m.stale} role="button"
             style={{ cursor: "pointer" }}
             onClick={() => setMktFocus({ id: m.id, t: Date.now() })}
-            title={`fly the map to ${m.label} · ${m.scanned} events scanned within ${m.radiusKm} km${m.stale ? " — this market returned nothing on the last pull; showing last good data" : ""}${m.id === "tokyo" && !m.scanned ? " — Japan rides the daily e+/Creativeman concert agent, not Ticketmaster (no Japan inventory there)" : ""}`}>
+            title={`fly the map to ${m.label} · ${m.scanned} events scanned within ${m.radiusKm} km${m.stale ? " — this market returned nothing on the last pull; showing last good data" : ""}${m.id === "tokyo" ? " — Japan dates come from the daily e+/Creativeman concert agent, not Ticketmaster (no Japan inventory there)" : ""}`}>
             {m.label} <b>{m.matched}</b>{m.stale ? " ⚠" : ""}
           </span>
         ))}

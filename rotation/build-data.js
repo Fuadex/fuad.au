@@ -6218,11 +6218,16 @@ if (TM_RAW && TM_RAW.events && TM_RAW.events.length) {
     r.tmGenre = r._genres.size ? [...r._genres.entries()].sort((a, b) => b[1] - a[1])[0][0] : "";
     delete r._genres;
   }
+  // the Tokyo market chip counts the Japan-lane events too — Ticketmaster has no Japan inventory,
+  // so its own matched is 0 while the map shows the concert agent's events (Fuad 2026-11-05: the
+  // chip said "Tokyo 0" over a map full of Japan dates). Counted AFTER the package collapse.
+  const _jpFinal = _tourArtists.reduce((s, r) => s + r.events.filter(e => e.mkt === "tokyo").length, 0);
   TOUR = {
     fetched: TM_RAW.fetched,
     checked: TM_RAW.checked || TM_RAW.fetched,     // last pull attempt (may be newer than fetched if stale)
     warn: TM_RAW.warn || null,                     // {reason, at, markets} when the last pull looked broken
-    markets: TM_RAW.markets.map(m => ({ id: m.id, label: m.label, radiusKm: m.radiusKm, scanned: m.scanned, matched: m.matched, stale: !!m.stale })),
+    markets: TM_RAW.markets.map(m => ({ id: m.id, label: m.label, radiusKm: m.radiusKm, scanned: m.scanned,
+      matched: m.id === "tokyo" ? m.matched + _jpFinal : m.matched, stale: !!m.stale })),
     artistCount: _tourArtists.length, eventCount: _tourArtists.reduce((s, r) => s + r.events.length, 0),
     reactivated: _tourArtists.filter(r => r.react).length,
   };
