@@ -21,7 +21,7 @@ from zoneinfo import ZoneInfo
 
 import anthropic  # pip install anthropic
 
-MODEL = os.environ.get("CLAUDE_MODEL", "claude-sonnet-4-5")
+MODEL = os.environ.get("CLAUDE_MODEL", "claude-sonnet-5")  # latest Sonnet (Fuad 2026-11-04)
 TOOLS = [
     {"type": "web_search_20250305", "name": "web_search", "max_uses": 25},
     {"type": "web_fetch_20250910", "name": "web_fetch", "max_uses": 25},
