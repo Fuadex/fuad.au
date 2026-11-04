@@ -87,8 +87,11 @@ def run_claude(prompt):
     done = []  # content blocks of the turn so far
     for _ in range(12):  # long web-tool turns come back as pause_turn; send them back to continue
         messages = [user] + ([{"role": "assistant", "content": done}] if done else [])
-        resp = client.beta.messages.create(model=MODEL, max_tokens=32000, tools=TOOLS,
-                                           betas=BETAS, messages=messages)
+        # the SDK refuses non-streaming calls that could exceed 10 minutes (a long web-tool
+        # turn easily does) — stream and collect the final message instead (first-run fix 2026-11-04)
+        with client.beta.messages.stream(model=MODEL, max_tokens=32000, tools=TOOLS,
+                                         betas=BETAS, messages=messages) as s:
+            resp = s.get_final_message()
         done = done + list(resp.content)
         if resp.stop_reason != "pause_turn":
             return "".join(b.text for b in done if b.type == "text")

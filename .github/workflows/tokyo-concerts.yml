@@ -20,7 +20,9 @@ jobs:
       - name: Search and match
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python3 rotation/scripts/concert_agent.py --rotation rotation --out rotation/data | tee run.log
+        run: |
+          set -o pipefail   # first run 2026-11-04: a python failure vanished behind tee's exit 0
+          python3 rotation/scripts/concert_agent.py --rotation rotation --out rotation/data | tee run.log
       - name: Commit results
         run: |
           git config user.name "concert-agent"
