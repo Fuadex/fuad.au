@@ -1,0 +1,30 @@
+# Daily Tokyo concert search for Rotation, run with the Claude API.
+# Put this folder's scripts/ and data/ at the root of fuad.au/rotation (or adjust paths below),
+# and add the ANTHROPIC_API_KEY repository secret (Settings → Secrets and variables → Actions).
+name: Tokyo concerts
+on:
+  schedule:
+    - cron: "17 21 * * *"   # 06:17 JST every day (cron is UTC)
+  workflow_dispatch: {}       # "Run workflow" button for a manual run
+permissions:
+  contents: write
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install anthropic
+      - name: Search and match
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python3 rotation/scripts/concert_agent.py --rotation rotation --out rotation/data | tee run.log
+      - name: Commit results
+        run: |
+          git config user.name "concert-agent"
+          git config user.email "concert-agent@users.noreply.github.com"
+          git add rotation/data
+          git diff --cached --quiet || git commit -m "Tokyo concerts $(TZ=Asia/Tokyo date +%F)"
+          git push
