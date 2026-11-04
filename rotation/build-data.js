@@ -6171,7 +6171,17 @@ if (TM_RAW && TM_RAW.events && TM_RAW.events.length) {
           events: [],
         });
       }
-      r.events.push({ d: c.on, ev: c.title, v: c.venue || c.place || "", city: c.area || "Tokyo", cc: "JP",
+      // The map clusters dots by cc|city, so ward-level areas (Ebisu, Shibuya, Kabukicho…) each made
+      // their own one-event micro-bubble — unclickable next to Sydney/Berlin's single city pools
+      // (Fuad 2026-11-04). Fold every Tokyo ward into one "Tokyo" bubble; only real neighbor cities
+      // (Yokohama, Saitama) keep their own. The ward survives in the venue string.
+      const _area = c.area || "";
+      const _city = /yokohama|minatomirai|kannai/i.test(_area) ? "Yokohama"
+        : /saitama/i.test(_area) ? "Saitama" : "Tokyo";
+      const _venue = c.venue || c.place || "";
+      const _v = _city === "Tokyo" && _area && !_venue.toLowerCase().includes(_area.split(/[ ,(]/)[0].toLowerCase())
+        ? (_venue ? _venue + ", " + _area : _area) : _venue;
+      r.events.push({ d: c.on, ev: c.title, v: _v, city: _city, cc: "JP",
         url: c.href, mkt: "tokyo", status: "onsale",
         ll: (c.lat != null && c.lng != null) ? [Math.round(c.lat * 100) / 100, Math.round(c.lng * 100) / 100] : [35.68, 139.69] });
       _jp++;
