@@ -6173,17 +6173,25 @@ if (TM_RAW && TM_RAW.events && TM_RAW.events.length) {
       }
       // The map clusters dots by cc|city, so ward-level areas (Ebisu, Shibuya, Kabukicho…) each made
       // their own one-event micro-bubble — unclickable next to Sydney/Berlin's single city pools
-      // (Fuad 2026-11-04). Fold every Tokyo ward into one "Tokyo" bubble; only real neighbor cities
-      // (Yokohama, Saitama) keep their own. The ward survives in the venue string.
+      // (Fuad 2026-11-04). Fold every Tokyo ward into one "Tokyo" bubble; real cities keep their own.
+      // The agent now records nationwide dates (Fuad 2026-11-04): an explicit c.city wins outright,
+      // the ward rule only applies to the Tokyo-area rows that carry a ward in c.area. The ward
+      // survives in the venue string. _JPLL anchors coordinate-less rows at their own city.
+      const _JPLL = { tokyo: [35.68, 139.69], yokohama: [35.45, 139.64], saitama: [35.86, 139.65],
+        chiba: [35.61, 140.11], osaka: [34.69, 135.5], nagoya: [35.17, 136.91], kyoto: [35.01, 135.77],
+        kobe: [34.69, 135.2], fukuoka: [33.59, 130.4], sapporo: [43.06, 141.35], sendai: [38.27, 140.87],
+        hiroshima: [34.39, 132.46], kanazawa: [36.56, 136.66], niigata: [37.92, 139.04], okinawa: [26.21, 127.68], naha: [26.21, 127.68] };
       const _area = c.area || "";
-      const _city = /yokohama|minatomirai|kannai/i.test(_area) ? "Yokohama"
+      const _city = c.city ? c.city
+        : /yokohama|minatomirai|kannai/i.test(_area) ? "Yokohama"
         : /saitama/i.test(_area) ? "Saitama" : "Tokyo";
       const _venue = c.venue || c.place || "";
       const _v = _city === "Tokyo" && _area && !_venue.toLowerCase().includes(_area.split(/[ ,(]/)[0].toLowerCase())
         ? (_venue ? _venue + ", " + _area : _area) : _venue;
       r.events.push({ d: c.on, ev: c.title, v: _v, city: _city, cc: "JP",
         url: c.href, mkt: "tokyo", status: "onsale",
-        ll: (c.lat != null && c.lng != null) ? [Math.round(c.lat * 100) / 100, Math.round(c.lng * 100) / 100] : [35.68, 139.69] });
+        ll: (c.lat != null && c.lng != null) ? [Math.round(c.lat * 100) / 100, Math.round(c.lng * 100) / 100]
+          : _JPLL[_city.toLowerCase()] || _JPLL.tokyo });
       _jp++;
     }
     console.log(`tm-tour: +${_jp} Japan events from concerts-tokyo.json (generated ${JPC.generated || "?"})`);

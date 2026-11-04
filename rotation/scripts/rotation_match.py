@@ -109,7 +109,7 @@ def main():
         if not hits: continue
         hits.sort(key=lambda h: -h["score"])
         best = hits[0]
-        out.append({**{k: L.get(k) for k in ("title", "date", "until", "venue", "url") if L.get(k)},
+        out.append({**{k: L.get(k) for k in ("title", "date", "until", "venue", "city", "url") if L.get(k)},
                     "acts": acts, "matches": hits, "tier": best["tier"], "score": best["score"]})
     order = {"top": 0, "also": 1, "seen": 2}
     out.sort(key=lambda r: (order[r["tier"]], -r["score"]))
