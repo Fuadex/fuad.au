@@ -3761,13 +3761,14 @@ function TourMap({ events, allEvents, city, setCity, hiPath, hiHue, routes, focu
   }, [events]);
   const nav = useTourMapNav(svgRef, gRef, ".gv-tmap-hit", !!world);
   const { tf } = nav;
-  // start zoomed on EUROPE (Fuad 2026-07-14: Berlin as the default vantage), and fly to a
-  // market region whenever a market chip above the map is clicked (`focus` prop).
+  // start zoomed on TOKYO (Fuad 2026-11-04: living in Japan now — supersedes the 2026-07-14
+  // Berlin default), and fly to a market region whenever a market chip above the map is
+  // clicked (`focus` prop).
   const didInit = React.useRef(false);
   React.useEffect(() => {
     if (didInit.current || !world || !cities.length) return;
     didInit.current = true;
-    const b = TMAP_REGIONS.europe;
+    const b = TMAP_REGIONS.tokyo;
     nav.fit([{ x: b.x0, y: b.y0 }, { x: b.x1, y: b.y1 }], cities);
   }, [world, cities]);
   React.useEffect(() => {
