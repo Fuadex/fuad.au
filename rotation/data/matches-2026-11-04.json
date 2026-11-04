@@ -1,6 +1,6 @@
 [
  {
-  "title": "Queens of the Stone Age at Zepp Haneda",
+  "title": "Queens of the Stone Age",
   "date": "2026-11-25",
   "until": "2026-11-25",
   "venue": "Zepp Haneda",
@@ -27,11 +27,11 @@
   "score": 1977
  },
  {
-  "title": "A Perfect Circle and Puscifer in Tokyo",
+  "title": "A Perfect Circle - Pacific Ring of Fire Tour",
   "date": "2026-12-15",
   "until": "2026-12-15",
-  "venue": "Zepp DiverCity",
-  "url": "https://metropolisjapan.com/events/a-perfect-circle-tokyo-2026/",
+  "venue": "Zepp DiverCity (TOKYO)",
+  "url": "https://www.jambase.com/band/a-perfect-circle",
   "acts": [
    "A Perfect Circle",
    "Puscifer"
@@ -68,7 +68,7 @@
   "score": 1715
  },
  {
-  "title": "Fontaines D.C. at SGC Hall Ariake",
+  "title": "Fontaines D.C.",
   "date": "2027-01-28",
   "until": "2027-01-28",
   "venue": "SGC Hall Ariake",
@@ -81,25 +81,25 @@
     "act": "Fontaines D.C.",
     "artist": "Fontaines D.C.",
     "plays": 179,
-    "recentPlays": 148,
+    "recentPlays": 147,
     "lastPlayed": "2026-07-14",
     "country": "IE",
     "japanese": false,
     "seenLive": 0,
     "lastSeen": "",
     "tier": "top",
-    "score": 623
+    "score": 620
    }
   ],
   "tier": "top",
-  "score": 623
+  "score": 620
  },
  {
-  "title": "heaven in her arms/the cabs/downy",
+  "title": "heaven in her arms / the cabs / downy",
   "date": "2026-11-28",
   "until": "2026-11-28",
   "venue": "SHIBUYA CLUB QUATTRO",
-  "url": "https://eplus.jp/sf/detail/4557100001-P0030001P021001?P1=0175",
+  "url": "https://eplus.jp/sf/word/0000002316",
   "acts": [
    "heaven in her arms",
    "the cabs",
@@ -112,12 +112,12 @@
     "plays": 83,
     "recentPlays": 67,
     "lastPlayed": "2026-09-24",
-    "country": "US",
-    "japanese": false,
+    "country": "JP",
+    "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
     "tier": "top",
-    "score": 284
+    "score": 434
    },
    {
     "act": "downy",
@@ -134,40 +134,81 @@
    }
   ],
   "tier": "top",
-  "score": 284
+  "score": 434
+ },
+ {
+  "title": "LADYBABY 3rd Anniversary \"ODYSSEY\"",
+  "date": "2026-12-01",
+  "until": "2026-12-01",
+  "venue": "Spotify O-EAST",
+  "url": "https://eplus.jp/sf/detail/1994490001",
+  "acts": [
+   "LADYBABY"
+  ],
+  "matches": [
+   {
+    "act": "LADYBABY",
+    "artist": "Ladybaby",
+    "plays": 101,
+    "recentPlays": 2,
+    "lastPlayed": "2025-05-13",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 257
+   }
+  ],
+  "tier": "top",
+  "score": 257
+ },
+ {
+  "title": "情けの首 with SYNCHRONICITY",
+  "date": "2026-12-02",
+  "until": "2026-12-02",
+  "venue": "WWW X",
+  "url": "https://mag.digle.tokyo/news/281936",
+  "acts": [
+   "downy",
+   "The Novembers"
+  ],
+  "matches": [
+   {
+    "act": "downy",
+    "artist": "downy",
+    "plays": 29,
+    "recentPlays": 24,
+    "lastPlayed": "2026-10-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 251
+   },
+   {
+    "act": "The Novembers",
+    "artist": "THE NOVEMBERS",
+    "plays": 37,
+    "recentPlays": 18,
+    "lastPlayed": "2026-01-04",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 241
+   }
+  ],
+  "tier": "top",
+  "score": 251
  },
  {
   "title": "BAND-MAID WORLD TOUR 2026 FINAL",
   "date": "2026-11-13",
-  "until": "2026-11-13",
-  "venue": "日本武道館",
-  "url": "https://www.creativeman.co.jp/event/band-maid-world-tour-2026-final/",
-  "acts": [
-   "BAND-MAID"
-  ],
-  "matches": [
-   {
-    "act": "BAND-MAID",
-    "artist": "BAND-MAID",
-    "plays": 89,
-    "recentPlays": 0,
-    "lastPlayed": "2023-09-23",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 239
-   }
-  ],
-  "tier": "top",
-  "score": 239
- },
- {
-  "title": "BAND-MAID WORLD TOUR 2026 FINAL",
-  "date": "2026-11-14",
   "until": "2026-11-14",
-  "venue": "日本武道館",
+  "venue": "Nippon Budokan",
   "url": "https://www.creativeman.co.jp/event/band-maid-world-tour-2026-final/",
   "acts": [
    "BAND-MAID"
@@ -191,34 +232,7 @@
   "score": 239
  },
  {
-  "title": "eastern youth 全国巡業公演 ～ファイトバック現代 2026～",
-  "date": "2026-12-19",
-  "until": "2026-12-19",
-  "venue": "Spotify O-EAST",
-  "url": "https://smash-jpn.com/live/?id=4717",
-  "acts": [
-   "eastern youth"
-  ],
-  "matches": [
-   {
-    "act": "eastern youth",
-    "artist": "eastern youth",
-    "plays": 13,
-    "recentPlays": 12,
-    "lastPlayed": "2026-02-09",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "Fear, and Loathing in Las Vegas The Focus「Feeling of Unity」Vol.1",
+  "title": "Fear, and Loathing in Las Vegas - The Focus「Feeling of Unity」Vol.1",
   "date": "2026-11-27",
   "until": "2026-11-27",
   "venue": "Zepp Haneda (TOKYO)",
@@ -243,35 +257,6 @@
   ],
   "tier": "top",
   "score": 183
- },
- {
-  "title": "YUNG MEN IN THE CAR TOUR 2026",
-  "date": "2026-11-20",
-  "until": "2026-11-20",
-  "venue": "WWW X",
-  "url": "https://smash-jpn.com/live/?id=4772",
-  "acts": [
-   "HOME",
-   "bed",
-   "HANDLE KEEPER"
-  ],
-  "matches": [
-   {
-    "act": "bed",
-    "artist": "Bed",
-    "plays": 44,
-    "recentPlays": 44,
-    "lastPlayed": "2026-07-31",
-    "country": "FR",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 176
-   }
-  ],
-  "tier": "top",
-  "score": 176
  },
  {
   "title": "Festival Mutek 2026",
@@ -308,10 +293,10 @@
   "score": 171
  },
  {
-  "title": "MUCC at Heaven's Rock VJ-3",
+  "title": "MUCC",
   "date": "2026-12-02",
   "until": "2026-12-02",
-  "venue": "Heaven's Rock VJ-3",
+  "venue": "Heaven's Rock VJ-3, Saitama",
   "url": "https://www.songkick.com/concerts/43441453-mucc-at-heavens-rock-vj3",
   "acts": [
    "MUCC"
@@ -335,7 +320,7 @@
   "score": 165
  },
  {
-  "title": "MUCC at Club Quattro / クラブクアトロ",
+  "title": "MUCC",
   "date": "2026-12-14",
   "until": "2026-12-14",
   "venue": "Club Quattro / クラブクアトロ",
@@ -362,115 +347,7 @@
   "score": 165
  },
  {
-  "title": "Passion Tours",
-  "date": "2026-11-06",
-  "until": "2026-11-06",
-  "venue": "Spotify O-EAST",
-  "url": "https://smash-jpn.com/live/?id=4752",
-  "acts": [
-   "MONO NO AWARE"
-  ],
-  "matches": [
-   {
-    "act": "MONO NO AWARE",
-    "artist": "Mono No Aware",
-    "plays": 30,
-    "recentPlays": 30,
-    "lastPlayed": "2025-08-04",
-    "country": "DE",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 120
-   }
-  ],
-  "tier": "top",
-  "score": 120
- },
- {
-  "title": "Passion Tours",
-  "date": "2026-12-20",
-  "until": "2026-12-20",
-  "venue": "千葉LOOK",
-  "url": "https://smash-jpn.com/live/?id=4752",
-  "acts": [
-   "MONO NO AWARE"
-  ],
-  "matches": [
-   {
-    "act": "MONO NO AWARE",
-    "artist": "Mono No Aware",
-    "plays": 30,
-    "recentPlays": 30,
-    "lastPlayed": "2025-08-04",
-    "country": "DE",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 120
-   }
-  ],
-  "tier": "top",
-  "score": 120
- },
- {
-  "title": "Passion Tours",
-  "date": "2027-02-20",
-  "until": "2027-02-20",
-  "venue": "西川口 Hearts",
-  "url": "https://smash-jpn.com/live/?id=4752",
-  "acts": [
-   "MONO NO AWARE"
-  ],
-  "matches": [
-   {
-    "act": "MONO NO AWARE",
-    "artist": "Mono No Aware",
-    "plays": 30,
-    "recentPlays": 30,
-    "lastPlayed": "2025-08-04",
-    "country": "DE",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 120
-   }
-  ],
-  "tier": "top",
-  "score": 120
- },
- {
-  "title": "Passion Tours",
-  "date": "2027-02-21",
-  "until": "2027-02-21",
-  "venue": "Thunder Snake ATSUGI",
-  "url": "https://smash-jpn.com/live/?id=4752",
-  "acts": [
-   "MONO NO AWARE"
-  ],
-  "matches": [
-   {
-    "act": "MONO NO AWARE",
-    "artist": "Mono No Aware",
-    "plays": 30,
-    "recentPlays": 30,
-    "lastPlayed": "2025-08-04",
-    "country": "DE",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 120
-   }
-  ],
-  "tier": "top",
-  "score": 120
- },
- {
-  "title": "Radiohead at Saitama Super Arena / さいたまスーパーアリーナ",
+  "title": "Radiohead",
   "date": "2027-06-08",
   "until": "2027-06-08",
   "venue": "Saitama Super Arena / さいたまスーパーアリーナ",
@@ -497,92 +374,11 @@
   "score": 87
  },
  {
-  "title": "Radiohead at Saitama Super Arena / さいたまスーパーアリーナ",
+  "title": "Radiohead",
   "date": "2027-06-09",
   "until": "2027-06-09",
   "venue": "Saitama Super Arena / さいたまスーパーアリーナ",
   "url": "https://www.songkick.com/concerts/43401966-radiohead-at-saitama-super-arena-saitamasupaarina",
-  "acts": [
-   "Radiohead"
-  ],
-  "matches": [
-   {
-    "act": "Radiohead",
-    "artist": "Radiohead",
-    "plays": 66,
-    "recentPlays": 7,
-    "lastPlayed": "2026-09-26",
-    "country": "GB",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 87
-   }
-  ],
-  "tier": "top",
-  "score": 87
- },
- {
-  "title": "Radiohead at Saitama Super Arena / さいたまスーパーアリーナ",
-  "date": "2027-06-11",
-  "until": "2027-06-11",
-  "venue": "Saitama Super Arena / さいたまスーパーアリーナ",
-  "url": "https://www.songkick.com/concerts/43401967-radiohead-at-saitama-super-arena-saitamasupaarina",
-  "acts": [
-   "Radiohead"
-  ],
-  "matches": [
-   {
-    "act": "Radiohead",
-    "artist": "Radiohead",
-    "plays": 66,
-    "recentPlays": 7,
-    "lastPlayed": "2026-09-26",
-    "country": "GB",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 87
-   }
-  ],
-  "tier": "top",
-  "score": 87
- },
- {
-  "title": "Radiohead at Saitama Super Arena / さいたまスーパーアリーナ",
-  "date": "2027-06-12",
-  "until": "2027-06-12",
-  "venue": "Saitama Super Arena / さいたまスーパーアリーナ",
-  "url": "https://www.songkick.com/concerts/43401975-radiohead-at-saitama-super-arena-saitamasupaarina",
-  "acts": [
-   "Radiohead"
-  ],
-  "matches": [
-   {
-    "act": "Radiohead",
-    "artist": "Radiohead",
-    "plays": 66,
-    "recentPlays": 7,
-    "lastPlayed": "2026-09-26",
-    "country": "GB",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 87
-   }
-  ],
-  "tier": "top",
-  "score": 87
- },
- {
-  "title": "Radiohead at Saitama Super Arena / さいたまスーパーアリーナ",
-  "date": "2027-06-13",
-  "until": "2027-06-13",
-  "venue": "Saitama Super Arena / さいたまスーパーアリーナ",
-  "url": "https://www.songkick.com/concerts/43401977-radiohead-at-saitama-super-arena-saitamasupaarina",
   "acts": [
    "Radiohead"
   ],
@@ -639,37 +435,10 @@
   "score": 82
  },
  {
-  "title": "IRON MAIDEN RUN FOR YOUR LIVES World Tour 2026",
+  "title": "IRON MAIDEN RUN FOR YOUR LIVES WORLD TOUR 2026",
   "date": "2026-11-24",
-  "until": "2026-11-24",
-  "venue": "Kアリーナ横浜",
-  "url": "https://www.creativeman.co.jp/artist/2026/11ironmaiden/",
-  "acts": [
-   "IRON MAIDEN"
-  ],
-  "matches": [
-   {
-    "act": "IRON MAIDEN",
-    "artist": "Iron Maiden",
-    "plays": 73,
-    "recentPlays": 0,
-    "lastPlayed": "2019-07-14",
-    "country": "GB",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 73
-   }
-  ],
-  "tier": "top",
-  "score": 73
- },
- {
-  "title": "IRON MAIDEN RUN FOR YOUR LIVES World Tour 2026",
-  "date": "2026-11-25",
   "until": "2026-11-25",
-  "venue": "Kアリーナ横浜",
+  "venue": "K-Arena Yokohama",
   "url": "https://www.creativeman.co.jp/artist/2026/11ironmaiden/",
   "acts": [
    "IRON MAIDEN"
@@ -693,7 +462,7 @@
   "score": 73
  },
  {
-  "title": "Disturbed at PIA Arena",
+  "title": "Disturbed",
   "date": "2027-05-19",
   "until": "2027-05-19",
   "venue": "PIA Arena",
@@ -720,7 +489,61 @@
   "score": 48
  },
  {
-  "title": "Touché Amoré at Daikanyama UNIT",
+  "title": "Bon Jovi",
+  "date": "2027-02-25",
+  "until": "2027-02-25",
+  "venue": "Tokyo Dome｜東京ドーム",
+  "url": "https://www.songkick.com/concerts/43494643-bon-jovi-at-tokyo-domedong-jing-domu",
+  "acts": [
+   "Bon Jovi"
+  ],
+  "matches": [
+   {
+    "act": "Bon Jovi",
+    "artist": "Bon Jovi",
+    "plays": 31,
+    "recentPlays": 0,
+    "lastPlayed": "2018-03-07",
+    "country": "US",
+    "japanese": false,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 31
+   }
+  ],
+  "tier": "top",
+  "score": 31
+ },
+ {
+  "title": "Bon Jovi",
+  "date": "2027-02-27",
+  "until": "2027-02-27",
+  "venue": "Tokyo Dome｜東京ドーム",
+  "url": "https://www.songkick.com/concerts/43494644-bon-jovi-at-tokyo-domedong-jing-domu",
+  "acts": [
+   "Bon Jovi"
+  ],
+  "matches": [
+   {
+    "act": "Bon Jovi",
+    "artist": "Bon Jovi",
+    "plays": 31,
+    "recentPlays": 0,
+    "lastPlayed": "2018-03-07",
+    "country": "US",
+    "japanese": false,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 31
+   }
+  ],
+  "tier": "top",
+  "score": 31
+ },
+ {
+  "title": "Touché Amoré",
   "date": "2026-11-06",
   "until": "2026-11-06",
   "venue": "Daikanyama UNIT",
@@ -747,7 +570,7 @@
   "score": 28
  },
  {
-  "title": "Wolf Alice at Toyosu Pit / 豊洲ピット",
+  "title": "Wolf Alice",
   "date": "2026-11-23",
   "until": "2026-11-23",
   "venue": "Toyosu Pit / 豊洲ピット",
@@ -774,7 +597,7 @@
   "score": 26
  },
  {
-  "title": "Death Cab for Cutie / Dan the Automator at Toyosu Pit / 豊洲ピット",
+  "title": "Death Cab for Cutie",
   "date": "2026-11-09",
   "until": "2026-11-09",
   "venue": "Toyosu Pit / 豊洲ピット",
@@ -802,7 +625,7 @@
   "score": 19
  },
  {
-  "title": "Bruno Mars / DJ PEE WEE at Belluna Dome / ベルーナドーム",
+  "title": "Bruno Mars",
   "date": "2027-01-15",
   "until": "2027-01-15",
   "venue": "Belluna Dome / ベルーナドーム",
@@ -830,7 +653,7 @@
   "score": 15
  },
  {
-  "title": "Bruno Mars / DJ PEE WEE at Belluna Dome / ベルーナドーム",
+  "title": "Bruno Mars",
   "date": "2027-01-16",
   "until": "2027-01-16",
   "venue": "Belluna Dome / ベルーナドーム",
@@ -861,7 +684,7 @@
   "title": "BLIND CHANNEL PAINSTREAM TOUR JAPAN 2026",
   "date": "2026-11-18",
   "until": "2026-11-18",
-  "venue": "Shibuya CLUB QUATTRO",
+  "venue": "Shibuya Club Quattro",
   "url": "https://www.creativeman.co.jp/event/blind-channel26/",
   "acts": [
    "BLIND CHANNEL"
@@ -885,7 +708,7 @@
   "score": 10
  },
  {
-  "title": "Khalid at Tokyo Garden Theater",
+  "title": "Khalid",
   "date": "2026-12-03",
   "until": "2026-12-03",
   "venue": "Tokyo Garden Theater",
@@ -912,7 +735,7 @@
   "score": 5
  },
  {
-  "title": "Megadeth at Nippon Budokan｜日本武道館",
+  "title": "Megadeth",
   "date": "2027-02-24",
   "until": "2027-02-24",
   "venue": "Nippon Budokan｜日本武道館",
@@ -939,7 +762,7 @@
   "score": -7490
  },
  {
-  "title": "Weezer at Tokyo Garden Theater",
+  "title": "Weezer",
   "date": "2027-02-12",
   "until": "2027-02-12",
   "venue": "Tokyo Garden Theater",
@@ -966,7 +789,7 @@
   "score": -9893
  },
  {
-  "title": "Weezer at Tokyo Garden Theater",
+  "title": "Weezer",
   "date": "2027-02-13",
   "until": "2027-02-13",
   "venue": "Tokyo Garden Theater",
@@ -993,7 +816,7 @@
   "score": -9893
  },
  {
-  "title": "Fcukers at Zepp Shinjuku",
+  "title": "Fcukers",
   "date": "2026-12-02",
   "until": "2026-12-02",
   "venue": "Zepp Shinjuku",

@@ -1,7 +1,7 @@
 {
  "generated": "2026-11-04",
  "source": "Tokyo Morning Brief concerts collection (status = Fuad's marks: new | want | seen | skip)",
- "count": 62,
+ "count": 69,
  "concerts": [
   {
    "added": "2026-10-24",
@@ -1488,6 +1488,155 @@
    "added": "2026-11-04",
    "status": "new",
    "id": "2026-11-04-downy-cabs-hiha-quattro"
+  },
+  {
+   "id": "2026-11-04-downy-2026-12-02",
+   "added": "2026-11-04",
+   "status": "new",
+   "title": "情けの首 with SYNCHRONICITY",
+   "venue": "WWW X",
+   "href": "https://mag.digle.tokyo/news/281936",
+   "on": "2026-12-02",
+   "until": "2026-12-02",
+   "acts": [
+    "downy",
+    "The Novembers"
+   ],
+   "artist": "downy",
+   "plays": 29,
+   "japanese": true,
+   "tier": "top",
+   "seenLive": 0,
+   "lastSeen": "",
+   "rotation": true,
+   "cat": "music"
+  },
+  {
+   "id": "2026-11-04-band-maid-2026-11-13",
+   "added": "2026-11-04",
+   "status": "new",
+   "title": "BAND-MAID WORLD TOUR 2026 FINAL",
+   "venue": "Nippon Budokan",
+   "href": "https://www.creativeman.co.jp/event/band-maid-world-tour-2026-final/",
+   "on": "2026-11-13",
+   "until": "2026-11-14",
+   "acts": [
+    "BAND-MAID"
+   ],
+   "artist": "BAND-MAID",
+   "plays": 89,
+   "japanese": true,
+   "tier": "top",
+   "seenLive": 0,
+   "lastSeen": "",
+   "rotation": true,
+   "cat": "music"
+  },
+  {
+   "id": "2026-11-04-radiohead-2027-06-09",
+   "added": "2026-11-04",
+   "status": "new",
+   "title": "Radiohead",
+   "venue": "Saitama Super Arena / さいたまスーパーアリーナ",
+   "href": "https://www.songkick.com/concerts/43401966-radiohead-at-saitama-super-arena-saitamasupaarina",
+   "on": "2027-06-09",
+   "until": "2027-06-09",
+   "acts": [
+    "Radiohead"
+   ],
+   "artist": "Radiohead",
+   "plays": 66,
+   "japanese": false,
+   "tier": "top",
+   "seenLive": 0,
+   "lastSeen": "",
+   "rotation": true,
+   "cat": "music"
+  },
+  {
+   "id": "2026-11-04-bon-jovi-2027-02-25",
+   "added": "2026-11-04",
+   "status": "new",
+   "title": "Bon Jovi",
+   "venue": "Tokyo Dome｜東京ドーム",
+   "href": "https://www.songkick.com/concerts/43494643-bon-jovi-at-tokyo-domedong-jing-domu",
+   "on": "2027-02-25",
+   "until": "2027-02-25",
+   "acts": [
+    "Bon Jovi"
+   ],
+   "artist": "Bon Jovi",
+   "plays": 31,
+   "japanese": false,
+   "tier": "top",
+   "seenLive": 0,
+   "lastSeen": "",
+   "rotation": true,
+   "cat": "music"
+  },
+  {
+   "id": "2026-11-04-bon-jovi-2027-02-27",
+   "added": "2026-11-04",
+   "status": "new",
+   "title": "Bon Jovi",
+   "venue": "Tokyo Dome｜東京ドーム",
+   "href": "https://www.songkick.com/concerts/43494644-bon-jovi-at-tokyo-domedong-jing-domu",
+   "on": "2027-02-27",
+   "until": "2027-02-27",
+   "acts": [
+    "Bon Jovi"
+   ],
+   "artist": "Bon Jovi",
+   "plays": 31,
+   "japanese": false,
+   "tier": "top",
+   "seenLive": 0,
+   "lastSeen": "",
+   "rotation": true,
+   "cat": "music"
+  },
+  {
+   "id": "2026-11-04-bruno-mars-2027-01-16",
+   "added": "2026-11-04",
+   "status": "new",
+   "title": "Bruno Mars",
+   "venue": "Belluna Dome / ベルーナドーム",
+   "href": "https://www.songkick.com/concerts/43406318-bruno-mars-at-belluna-dome-berunadomu",
+   "on": "2027-01-16",
+   "until": "2027-01-16",
+   "acts": [
+    "Bruno Mars",
+    "DJ PEE WEE"
+   ],
+   "artist": "Bruno Mars",
+   "plays": 15,
+   "japanese": false,
+   "tier": "also",
+   "seenLive": 0,
+   "lastSeen": "",
+   "rotation": true,
+   "cat": "music"
+  },
+  {
+   "id": "2026-11-04-weezer-2027-02-13",
+   "added": "2026-11-04",
+   "status": "new",
+   "title": "Weezer",
+   "venue": "Tokyo Garden Theater",
+   "href": "https://www.songkick.com/concerts/43346894-weezer-at-tokyo-garden-theater",
+   "on": "2027-02-13",
+   "until": "2027-02-13",
+   "acts": [
+    "Weezer"
+   ],
+   "artist": "Weezer",
+   "plays": 41,
+   "japanese": false,
+   "tier": "seen",
+   "seenLive": 1,
+   "lastSeen": "2025-12-06",
+   "rotation": true,
+   "cat": "music"
   }
  ]
 }
