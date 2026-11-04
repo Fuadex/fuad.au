@@ -6182,23 +6182,15 @@ if (TM_RAW && TM_RAW.events && TM_RAW.events.length) {
         kobe: [34.69, 135.2], fukuoka: [33.59, 130.4], sapporo: [43.06, 141.35], sendai: [38.27, 140.87],
         hiroshima: [34.39, 132.46], kanazawa: [36.56, 136.66], niigata: [37.92, 139.04], okinawa: [26.21, 127.68], naha: [26.21, 127.68] };
       const _area = c.area || "";
-      // locality first (agent city field, or derived from the area), THEN the Greater-Tokyo fold:
-      // Yokohama / Saitama / Chiba / Kawasaki pool WITH Tokyo on the map (Fuad 2026-11-05: "they
-      // don't fold but they should" — the satellites were micro-bubbles beside the Tokyo pool, the
-      // same complaint the ward fold answered). The locality survives in the venue line. Distant
-      // cities (Osaka, Nagoya, …) keep their own pools.
-      const _raw = c.city ? c.city
+      const _city = c.city ? c.city
         : /yokohama|minatomirai|kannai/i.test(_area) ? "Yokohama"
         : /saitama/i.test(_area) ? "Saitama" : "Tokyo";
-      const _city = /^(yokohama|saitama|chiba|kawasaki)$/i.test(_raw) ? "Tokyo" : _raw;
       const _venue = c.venue || c.place || "";
-      const _loc = _raw !== "Tokyo" ? _raw : _area;   // what the venue line names for a pooled row
-      const _v = _city === "Tokyo" && _loc && !_venue.toLowerCase().includes(_loc.split(/[ ,(]/)[0].toLowerCase())
-        ? (_venue ? _venue + ", " + _loc : _loc) : _venue;
+      const _v = _city === "Tokyo" && _area && !_venue.toLowerCase().includes(_area.split(/[ ,(]/)[0].toLowerCase())
+        ? (_venue ? _venue + ", " + _area : _area) : _venue;
       r.events.push({ d: c.on, ev: c.title, v: _v, city: _city, cc: "JP",
         url: c.href, mkt: "tokyo", status: "onsale",
-        ll: _city !== _raw ? _JPLL.tokyo   // folded rows sit on the Tokyo pool, never a satellite dot
-          : (c.lat != null && c.lng != null) ? [Math.round(c.lat * 100) / 100, Math.round(c.lng * 100) / 100]
+        ll: (c.lat != null && c.lng != null) ? [Math.round(c.lat * 100) / 100, Math.round(c.lng * 100) / 100]
           : _JPLL[_city.toLowerCase()] || _JPLL.tokyo });
       _jp++;
     }
