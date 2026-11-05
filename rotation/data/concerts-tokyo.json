@@ -1,7 +1,7 @@
 {
- "generated": "2026-11-04",
+ "generated": "2026-11-05",
  "source": "Tokyo Morning Brief concerts collection (status = Fuad's marks: new | want | seen | skip)",
- "count": 69,
+ "count": 77,
  "concerts": [
   {
    "added": "2026-10-24",
@@ -1635,6 +1635,182 @@
    "tier": "seen",
    "seenLive": 1,
    "lastSeen": "2025-12-06",
+   "rotation": true,
+   "cat": "music"
+  },
+  {
+   "id": "2026-11-05-queens-of-the-stone-age-2026-11-26",
+   "added": "2026-11-05",
+   "status": "new",
+   "title": "You'll See Queens of the Stone Age World Tour",
+   "venue": "Zepp Nagoya",
+   "city": "Nagoya",
+   "href": "https://www.creativeman.co.jp/event/queens-of-the-stone-age_2026/",
+   "on": "2026-11-26",
+   "until": "2026-11-26",
+   "acts": [
+    "Queens of the Stone Age"
+   ],
+   "artist": "Queens of the Stone Age",
+   "plays": 1926,
+   "japanese": false,
+   "tier": "top",
+   "seenLive": 0,
+   "lastSeen": "",
+   "rotation": true,
+   "cat": "music"
+  },
+  {
+   "id": "2026-11-05-queens-of-the-stone-age-2026-11-28",
+   "added": "2026-11-05",
+   "status": "new",
+   "title": "You'll See Queens of the Stone Age World Tour",
+   "venue": "Zepp Namba (Osaka)",
+   "city": "Osaka",
+   "href": "https://www.creativeman.co.jp/event/queens-of-the-stone-age_2026/",
+   "on": "2026-11-28",
+   "until": "2026-11-28",
+   "acts": [
+    "Queens of the Stone Age"
+   ],
+   "artist": "Queens of the Stone Age",
+   "plays": 1926,
+   "japanese": false,
+   "tier": "top",
+   "seenLive": 0,
+   "lastSeen": "",
+   "rotation": true,
+   "cat": "music"
+  },
+  {
+   "id": "2026-11-05-passcode-2026-11-14",
+   "added": "2026-11-05",
+   "status": "new",
+   "title": "PassCode",
+   "venue": "高松オリーブホール",
+   "city": "Takamatsu",
+   "href": "https://eplus.jp/sf/word/0000066651",
+   "on": "2026-11-14",
+   "until": "2026-11-14",
+   "acts": [
+    "PassCode"
+   ],
+   "artist": "PassCode",
+   "plays": 73,
+   "japanese": true,
+   "tier": "top",
+   "seenLive": 0,
+   "lastSeen": "",
+   "rotation": true,
+   "cat": "music"
+  },
+  {
+   "id": "2026-11-05-the-novembers-2026-11-25",
+   "added": "2026-11-05",
+   "status": "new",
+   "title": "THE NOVEMBERS",
+   "venue": "名古屋JAMMIN'",
+   "city": "Nagoya",
+   "href": "https://eplus.jp/sf/word/0000019114",
+   "on": "2026-11-25",
+   "until": "2026-11-25",
+   "acts": [
+    "THE NOVEMBERS"
+   ],
+   "artist": "THE NOVEMBERS",
+   "plays": 37,
+   "japanese": true,
+   "tier": "top",
+   "seenLive": 0,
+   "lastSeen": "",
+   "rotation": true,
+   "cat": "music"
+  },
+  {
+   "id": "2026-11-05-the-novembers-2026-11-26",
+   "added": "2026-11-05",
+   "status": "new",
+   "title": "THE NOVEMBERS",
+   "venue": "Music Club JANUS",
+   "city": "Osaka",
+   "href": "https://eplus.jp/sf/word/0000019114",
+   "on": "2026-11-26",
+   "until": "2026-11-26",
+   "acts": [
+    "THE NOVEMBERS"
+   ],
+   "artist": "THE NOVEMBERS",
+   "plays": 37,
+   "japanese": true,
+   "tier": "top",
+   "seenLive": 0,
+   "lastSeen": "",
+   "rotation": true,
+   "cat": "music"
+  },
+  {
+   "id": "2026-11-05-band-maid-2026-11-14",
+   "added": "2026-11-05",
+   "status": "new",
+   "title": "BAND-MAID WORLD TOUR 2026 FINAL",
+   "venue": "Nippon Budokan",
+   "city": "Tokyo",
+   "href": "https://www.creativeman.co.jp/event/band-maid-world-tour-2026-final/",
+   "on": "2026-11-14",
+   "until": "2026-11-14",
+   "acts": [
+    "BAND-MAID"
+   ],
+   "artist": "BAND-MAID",
+   "plays": 89,
+   "japanese": true,
+   "tier": "top",
+   "seenLive": 0,
+   "lastSeen": "",
+   "rotation": true,
+   "cat": "music"
+  },
+  {
+   "id": "2026-11-05-iron-maiden-2026-11-25",
+   "added": "2026-11-05",
+   "status": "new",
+   "title": "Iron Maiden Run For Your Lives World Tour 2026",
+   "venue": "K-Arena Yokohama",
+   "city": "Yokohama",
+   "href": "https://www.creativeman.co.jp/artist/2026/11ironmaiden/",
+   "on": "2026-11-25",
+   "until": "2026-11-25",
+   "acts": [
+    "Iron Maiden"
+   ],
+   "artist": "Iron Maiden",
+   "plays": 73,
+   "japanese": false,
+   "tier": "top",
+   "seenLive": 0,
+   "lastSeen": "",
+   "rotation": true,
+   "cat": "music"
+  },
+  {
+   "id": "2026-11-05-blind-channel-2026-11-19",
+   "added": "2026-11-05",
+   "status": "new",
+   "title": "Blind Channel Painstream Tour Japan 2026",
+   "venue": "Umeda Club Quattro",
+   "city": "Osaka",
+   "href": "https://www.creativeman.co.jp/event/blind-channel26/",
+   "on": "2026-11-19",
+   "until": "2026-11-19",
+   "acts": [
+    "Blind Channel"
+   ],
+   "artist": "Blind Channel",
+   "plays": 10,
+   "japanese": false,
+   "tier": "also",
+   "seenLive": 0,
+   "lastSeen": "",
    "rotation": true,
    "cat": "music"
   }
