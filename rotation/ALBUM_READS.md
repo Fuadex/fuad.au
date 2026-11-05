@@ -19,6 +19,13 @@ model, since that would override the pin. After each batch, run
 `rotation/tools/check-subagent-models.py` before applying anything: the `opus` alias alone has
 drifted between versions without warning.
 
+**Version drift note (2026-11-05):** entries in portraits.js carry stamps up to `mv: "3.4"`
+(v3.1 Ling Tosite Sigure holds-release era, v3.2, v3.3 Rob Zombie, v3.4 Lantlôs), but this
+document's history stops at v3.0 — the 3.1–3.4 deltas lived in session workshops and were
+never folded back here. Owner confirms **3.4 is the current stamp** (Airbourne is the first
+batch written to it from this doc alone); the v3.0 model pin stands unchanged. When the
+3.1–3.4 deltas get reconstructed, they belong in this paragraph.
+
 ## The design (settled over four test rounds)
 
 **One Opus subagent read per album, synthesized from the album's existing track reads,

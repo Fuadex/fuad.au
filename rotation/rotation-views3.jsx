@@ -3690,8 +3690,12 @@ function useTourMapNav(svgRef, gRef, dotSel, ready) {
       if (!d) { runFisheye(e.clientX, e.clientY); return; }   // no drag → fisheye owns the move
       const r = svg.getBoundingClientRect();
       const dx = (e.clientX - d.x) / r.width * TMAP_VB.w, dy = (e.clientY - d.y) / r.height * TMAP_VB.h;
-      if (Math.abs(e.clientX - d.x) + Math.abs(e.clientY - d.y) > 5) { if (!moved.current) resetAll(svg); moved.current = true; }
-      if (!moved.current) return;   // under the 5px threshold: still a potential dot CLICK
+      // tap slop is pointer-aware (Fuad 2026-11-05): a finger wobbles well past the mouse's
+      // 5px Manhattan budget during an honest tap, which marked it "moved" and swallowed the
+      // dot's onClick — the "takes a few taps" bug. 14 Manhattan ≈ a 10px-diagonal finger slip.
+      const slop = e.pointerType === "touch" ? 14 : 5;
+      if (Math.abs(e.clientX - d.x) + Math.abs(e.clientY - d.y) > slop) { if (!moved.current) resetAll(svg); moved.current = true; }
+      if (!moved.current) return;   // under the slop threshold: still a potential dot CLICK
       cancelAnimationFrame(rafRef.current);
       const t = { k: d.tk, x: d.tx + dx, y: d.ty + dy };
       pending.current = t; writeTf(t);
@@ -3835,6 +3839,12 @@ function TourMap({ events, allEvents, city, setCity, hiPath, hiHue, routes, focu
             selected, stroke thickening with it. Stroke widths ride CSS vars so they counter-scale with
             zoom the way the radius does, and hover stays in CSS so panning never re-renders the dots.
             (Fuad 2026-09-13: "match Overview’s map style".) */}
+        {/* invisible touch halo (Fuad 2026-11-05): a one-event city renders ~3px — hopeless as a
+            finger target. The halo pads every dot's hit area to at least ~9 viewBox px without
+            changing what's drawn; it shares the dot's click handler and sits UNDER the visible
+            circle so dense clusters still resolve to the nearest drawn dot first. */}
+        {on && <circle cx={c.x} cy={c.y} r={Math.max(r0, 9) / rk} fill="transparent" stroke="none"
+          onClick={(e) => { if (!nav.moved.current) setCity(city === c.k ? null : c.k); e.stopPropagation(); }} />}
         <circle className="gv-tmap-dot" data-on={city === c.k} data-empty={c.n === 0}
           cx={c.x} cy={c.y} r={r0 / rk}
           fill={col} stroke={col}
