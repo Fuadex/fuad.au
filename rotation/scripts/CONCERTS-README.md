@@ -7,10 +7,10 @@ source). Four lanes keep it fresh:
 
 | Lane | Cadence | What it does |
 |---|---|---|
-| `jp-sweep.yml` + `scripts/sweep_listings.py` | weekly (Thu) | **no-LLM scrape** of Songkick JP metros, Creativeman, SMASH, Udo, LN HIP and 12 Tokyo livehouses (`sweep_src_*.py` parser modules) → match → merge → refresh `data/discoveries.json`. No secrets. A source printing FAILED/0 in the run log = parser rot, fix that module. |
+| `jp-sweep.yml` + `scripts/sweep_listings.py` | weekly (Thu) | **no-LLM scrape** of Songkick JP metros, Creativeman, SMASH, Udo, LN HIP and 12 Tokyo livehouses (`sweep_src_*.py` parser modules) → match → merge (`--no-archive`) → refresh `data/discoveries.json` → dispatch deploy. No secrets; 0.4 s politeness pause per fetch; sweep archives pruned at 90 days. A source printing FAILED/0 in the run log = parser rot, fix that module. |
 | `tokyo-concerts.yml` (`concert_agent.py`) | daily | Claude-API agent, 6 JP + 3 intl artists rotating through the top 60 — catches artist-specific news between sweeps. |
 | "Japan gigs deep re-sweep" scheduled task (claude.ai) | monthly (12th) | Claude cloud session: festival lineups, top-40 JP artists' official pages, and the venues whose sites block scraping (Koenji HIGH, Earthdom, CLUB GOODMAN). |
-| `gig-marks.yml` + `scripts/apply_mark.py` | on demand | the Gigs page's want/skip buttons open a prefilled issue `gig: want <row-id>`; the workflow applies the mark, commits, closes the issue. Owner-authored issues only. |
+| `gig-marks.yml` + `scripts/apply_mark.py` | on demand | the Gigs page's want/skip buttons open a prefilled issue `gig: want <row-id>`; the workflow applies the mark, commits, dispatches the deploy (GITHUB_TOKEN pushes don't fire sync.yml's push trigger) and closes the issue. Owner-authored issues only; untrusted text enters the shell via env vars only. |
 
 **Marks → calendar:** `build-data.js` emits `gigs.ics` (want-marked upcoming shows) into the
 deploy, so subscribing Google Calendar to `https://fuad.au/rotation/gigs.ics` once makes marks
@@ -75,7 +75,8 @@ e+ / LiveFans / music-news pages for those.
 
 Known false positives: "the cabs" matched **The Cabs**, whose MusicBrainz origin says US but
 the plays look like the Japanese band (harmless — same shows either way). The "bed"/**Bed**
-collision is now rejected in `merge_listings.py`.
+collision (and the visual-kei Razor) is rejected in `rotation_match.py`'s REJECT set, which
+protects every merge path including the daily agent's.
 
 ## Run the daily agent
 ```bash

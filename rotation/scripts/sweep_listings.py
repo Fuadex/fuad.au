@@ -13,18 +13,20 @@ summary (the scraper-rot alarm — a source at 0 events needs its parser looked 
 Scheduled by .github/workflows/jp-sweep.yml; fine to run locally too (honours the
 HTTPS_PROXY environment the cloud session sets).
 """
-import datetime, importlib, json, os, subprocess, sys, time, urllib.request, urllib.error
+import argparse, datetime, importlib, json, os, subprocess, sys, time, urllib.request, urllib.error
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
 UA = "fuad.au-rotation-sweep/1.0 (personal concert tracker)"
+PAUSE = 0.4   # politeness delay between requests — ~500 fetches/run across small venue sites
 
 
 def fetch(url, tries=3):
     last = None
     for i in range(tries):
         try:
+            time.sleep(PAUSE)
             req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept-Language": "ja,en;q=0.8"})
             with urllib.request.urlopen(req, timeout=30) as r:
                 return r.read().decode("utf-8", "replace")
@@ -37,9 +39,13 @@ def fetch(url, tries=3):
 
 
 def main():
-    out = sys.argv[sys.argv.index("--out") + 1] if "--out" in sys.argv else os.path.join(os.path.dirname(HERE), "data")
-    data = sys.argv[sys.argv.index("--data") + 1] if "--data" in sys.argv else os.path.dirname(HERE)
-    only = set(sys.argv[sys.argv.index("--only") + 1].split(",")) if "--only" in sys.argv else None
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--data", default=os.path.dirname(HERE))
+    ap.add_argument("--out", default=os.path.join(os.path.dirname(HERE), "data"))
+    ap.add_argument("--only", default=None, help="comma-separated source ids")
+    args = ap.parse_args()
+    out, data = args.out, args.data
+    only = set(args.only.split(",")) if args.only else None
     today = datetime.date.today()
 
     sources = {}
@@ -65,7 +71,7 @@ def main():
     json.dump(listings, open(lp, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     if listings:
         subprocess.run([sys.executable, os.path.join(HERE, "merge_listings.py"), lp,
-                        "--data", data, "--out", out, "--added", str(today)], check=True)
+                        "--data", data, "--out", out, "--added", str(today), "--no-archive"], check=True)
         subprocess.run([sys.executable, os.path.join(HERE, "discover.py"), "--data", data, "--out", out], check=True)
     failed = [k for k, v in stats.items() if not isinstance(v, int)]
     zeroed = [k for k, v in stats.items() if v == 0]

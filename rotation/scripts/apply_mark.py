@@ -7,21 +7,22 @@ Backs the GitHub-issue mark flow (.github/workflows/gig-marks.yml): a "want" but
 the Gigs page opens a prefilled issue titled `gig: want <id>`; the workflow runs this and
 commits. Exit codes: 0 applied, 2 row not found, 3 bad mark — the workflow reports both.
 """
-import json, os, sys, datetime
+import argparse, json, os, sys, datetime
 
-MARKS = {"want", "skip", "seen", "new"}
+MARKS = ("want", "skip", "seen", "new")
 
 
 def main():
-    argv = sys.argv[1:]
-    data = "data"
-    if "--data" in argv:
-        i = argv.index("--data"); data = argv[i + 1]; argv = argv[:i] + argv[i + 2:]
-    args = argv
-    if len(args) != 2 or args[0] not in MARKS:
-        print(f"bad arguments: want|skip|seen|new + row id (got {sys.argv[1:]})"); sys.exit(3)
-    mark, rid = args
-    p = os.path.join(data, "concerts-tokyo.json")
+    ap = argparse.ArgumentParser()
+    ap.add_argument("mark", choices=MARKS)
+    ap.add_argument("rid", help="row id in concerts-tokyo.json")
+    ap.add_argument("--data", default="data")
+    try:
+        a = ap.parse_args()
+    except SystemExit:
+        sys.exit(3)
+    mark, rid = a.mark, a.rid
+    p = os.path.join(a.data, "concerts-tokyo.json")
     d = json.load(open(p, encoding="utf-8"))
     row = next((c for c in d["concerts"] if c.get("id") == rid), None)
     if not row:

@@ -26,6 +26,13 @@ Short or generic names (<= 4 normalised chars) need plays >= 30 to count, to avo
 """
 import csv, json, sys, os, re, unicodedata, datetime, collections
 
+# Known wrong-entity matches (normalized act -> library artist it must NOT match). Lives
+# HERE so every merge path is protected — merge_listings.py AND concert_agent.py's own
+# merge both go through this matcher. The Japanese band "bed" is not the French Bed;
+# the visual-kei Razor (ex-DIAURA, constant taiban presence) is not the Canadian thrash
+# Razor — their rare Japan dates lose out, a fair trade (Fuad 2026-11-05).
+REJECT = {("bed", "Bed"), ("razor", "Razor")}
+
 def norm_latin(s):
     s = unicodedata.normalize("NFKD", s or "").lower()
     return re.sub(r"[^a-z0-9]", "", s)
@@ -100,7 +107,7 @@ def main():
             name = None
             for k in keys_for(act):
                 if k in index: name = index[k]; break
-            if not name: continue
+            if not name or (norm_any(act), name) in REJECT: continue
             p = plays[name]; short = len(norm_any(name)) <= 4
             cc = (origins.get(name) or {}).get("country", "")
             if p < 5 or (short and p < 30 and cc != "JP"): continue
