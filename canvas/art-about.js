@@ -3,6 +3,26 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "eugene-burnand-the-disciples-peter-and-john-running-to-the-t": {
+  "about": "In John's gospel the beloved disciple outruns Peter to the tomb, stoops at the entrance and stays outside; Peter, arriving second, goes in first. Burnand's 1898 canvas shows them running, that reversal still ahead.",
+  "deep": "The run turns devotional in the hands. In 1920 the critic Robert de la Sizeranne saw the whole Resurrection in the runners' eyes. The theologian Jérôme Cottin held in 2017 that the canvas is explicitly religious only by its title, so plainly that one critic thought the painter irreligious. Both follow from Burnand's rule, as his historian Philippe Kaenel describes it: show only what can be tangibly understood. By that rule the eyes prove little, since a narrowed stare and a widened one fit any urgent errand. The title's claim rests on John's laced fingers, Peter's hand flat on his black cloak, and a tomb somewhere beyond the canvas, the way both men are looking.",
+  "by": "Opus 5.5"
+ },
+ "thomas-alexander-harrison-solitude": {
+  "about": "A nude standing in a boat on a dark woodland pond — at the 1893 Salon, Georges Lafenestre noted that Harrison's silent seascapes almost never held \"a boat or a man\". This one, shown there, had both.",
+  "deep": "Twice its readers have given this canvas an hour and a body, and the versions disagree. In 1893 two reviewers each saw a male bather at the day's end; Georges Lafenestre wrote that one glimpses him crossing the pond as a distant twilight breaks through black foliage. Recent accounts make it a moonlit night and the figure a woman, or neither. Nothing painted here settles either reading: the light along the figure's edge on our left comes from no source the canvas shows, and the figure is small and dim enough to be read either way.",
+  "by": "Opus 5.5"
+ },
+ "giovanni-boldini-madame-max": {
+  "about": "Shown at the 1896 Salon only as \"Madame M...\", Boldini's full-length portrait led the critic François Thiébault-Sisson to write that the painter had \"surpassed himself\" — and that her studied pose \"undresses her strangely\".",
+  "deep": "The woman in the portrait had the last word on its pose. Eight years after the 1896 Salon showed her only as an initial, she gave the canvas to a national museum herself, under her married name, Madame Charles Max. The gift leaves open who arranged the pose, but puts her name to it for good. In the picture, too, the pose reveals her by her own act: her right fist, closed on the skirt, draws the cloth hard against her other leg, below a gown slipped from her shoulders. She does it with her eyes on whoever stands before the canvas.",
+  "by": "Opus 5.5"
+ },
+ "utagawa-toyokuni-i-nakamura-za": {
+  "about": "Ichikawa Danzō IV, an Osaka star famed for quick changes, on tour in Edo in 1800, played the exiled priest Shunkan at one of its three licensed theatres; Toyokuni drew the house mid-scene, on three sheets.",
+  "deep": "Two pictures share these sheets, joined as the play on their stage was joined. In 1800 its street playbill announced one Shunkan story stitched onto another. Toyokuni stitches an actor print into a view of the house. The house recedes, its crowd shrinking toward the stage. The stage does not: its players keep the size of portraits, faces large enough to name, and the curator Tim Clark tells some apart by likeness and crest. The two scales meet at the stage's left edge, where two spectators sit beside the set, a few steps from the actors and drawn at about half their size.",
+  "by": "Opus 5.5"
+ },
  "guardi-grand-canal-with-the-rialto-bridge-venice": {
   "about": "Guardi painted this view down the canal to the Rialto probably about 1780. In 1804 Pietro Edwards, once his client or go-between, wrote to Canova that Guardi's works were as incorrect as could be, but most spirited.",
   "deep": "Conservators found that the gondolas moored at lower right, the landing stages among them and the boatmen at work there were painted over water that was already finished. Guardi painted this view more than once, and a second, nearly identical canvas of it carries almost the same boats on the water, apart from these. They appear to have been added here as a further variation on that view, and the other canvas may have been painted first. The change falls in the foreground water, closest to you, where hulls, planks on their legs and slanting mooring poles stand on paint first laid down as canal.",
@@ -2110,8 +2130,10 @@ by: "Opus 4.8" },
 },
 
 "arnold-bocklin-der-ritt-des-todes-herbst-und-tod": {
-about: "Böcklin's Der Ritt des Todes (Autumn and Death), 1871 — a skeletal Death rides through a ruined graveyard, painted as the Symbolist processed the just-ended Franco-Prussian War through myth. Now in Munich's Schack collection.",
-by: "Opus 4.8" },
+  "about": "Arnold Böcklin began this Death on horseback, in a wood shedding its leaves, in Basel in autumn 1870, while the Franco-Prussian War was fought across the border, the guns within earshot, by a later account.",
+  "deep": "The picture's first readers each found a different event in its wood. Adolf Friedrich von Schack, who acquired it in 1871, wrote of the last yellow and red leaves shivering down as Death passes on his black horse, and his account never mentions the Franco-Prussian War it was begun under. Gustav Floerke, a painter-friend, called it in his notes Death on the burnt site, and wrote that nobody had made such a whirlwind. Today's title sides with Schack, adding Autumn and Death in brackets. Floerke's wind is in the paint, gold torn off the tree above the rider. His fire is not: the orange lodged among the house's pale walls runs up into a tree's crown.",
+  "by": "Opus 5.5"
+ },
 
 "arnold-bocklin-im-spiel-der-wellen": {
 

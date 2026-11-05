@@ -42,6 +42,11 @@ in re-reads alone.
 4. Record every ruling as an R-item in the workshop's `QUEUE.md` and the stage state in `DISPATCH_LOG.md`.
 
 ## Gates
+- ⚠ `gate-label.js` and `gate-quarantine.js` take WORK IDS (`node gate-label.js <id> [<id> …]`). Run with `.` they loop
+  over nothing and print CLEAN — wave 36's agents reported vacuous CLEANs that way until a reads agent noticed. Brief every
+  agent with the id form; `bandgate.js`, `tonegate.js`, `coverage.js`, `count-reads.js`, `infogate.js` and `besidegate.js`
+  take the workshop directory. The canvas/ counters (`bandgate`, `tonegate`, `stopvar`, `rule11-check`) are not in this
+  folder: copy them into the workshop at seeding.
 - In this folder: `gate-quarantine.js`, `gate-label.js`, `besidegate.js`, `count-reads.js`, `coverage.js`,
   `crossgram.js`, `check-newrefs.js`, `unitcheck.js`, `sealscan21.js`, `tokdiff.js`, `validate-refs.js` (the corpus-wide
   refs gate; a copy of `fuad.au/.dtmp/tourqc-pass/validate-refs.js`, which is gitignored).

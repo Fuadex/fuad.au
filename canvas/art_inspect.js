@@ -101,6 +101,347 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+ "eugene-burnand-the-disciples-peter-and-john-running-to-the-t": {
+  "mv": 6,
+  "see": "Two men running toward our left, seen close and cut off by the bottom edge, fill most of the canvas. The title names them and the types settle which is which: the young, beardless man with red-brown hair, in a white robe, is John; the older, grey-bearded man in a black mantle over a rust-red robe is Peter. Behind them is a dawn: yellow sky with lilac cloud over low, open country of ochre fields, green strips, rounded trees, a far blue ridge and a hill.",
+  "about": "Before daylight Mary Magdalene has found the tomb's stone moved and run to tell these two men that the body has been taken, no one knows where. The news they carry is a loss, and the gospel adds that they did not yet understand he must rise from the dead. It never names Peter's companion beyond the other disciple, the one Jesus loved; tradition and the title make him John. The picture is about acting on someone else's word: an old man and a young one setting out on a report neither can check, each taking it his own way. Belief, in this chapter, waits for the tomb, where the faster runner \"saw, and believed\".",
+  "craft": "Burnand trained in Gérôme's studio in Paris. He painted in his own studio, from living models he had sought out, and documentary photographs survive that show how he found them and how he worked there. The finish is graded: closed, smooth modelling where expression has to be read, opening out into short, dry strokes of separate colours, set side by side and left visible, where the paint carries light and distance.",
+  "context": "Burnand, in his late forties and living near Montpellier since late 1895, had turned to religious subjects; for the Return of the Prodigal Son of 1896–97 he gave the old father his own features. His entries at the Société nationale's Salon of 1898 were this canvas, a shepherd picture and fourteen drawings for Bunyan's Pilgrim's Progress, and the State's purchase commission bought the canvas there. Antonin Proust's commentary for a Salon album that year found \"very great progress\" and a movement \"ingeniously written\" in the lines. On the drawings he was cooler, preferring a fellow exhibitor's single study, as food for meditation, to the \"avalanches\" of biblical, allegorical and mystical work. In 2017 the theologian René Heyer, following Philippe Kaenel, tied the runners' types to faces in that same Bunyan project: the young Hopeful and the bearded Giant Despair.",
+  "deeper": [
+   {
+    "t": "Two faces, one direction",
+    "x": 0.05,
+    "y": 0.05,
+    "w": 0.48,
+    "h": 0.42,
+    "body": "Both heads stand wholly against the sky, with no hill or field rising behind either profile, only pale morning. Within those profiles the two faces split one feeling in two. John, the young man ahead, pulls his brows down and together and narrows his eye to a slit, lips parted: someone straining to make out a thing far off. Peter's brows go the other way, up, rippling his forehead into ridges, and his eye opens wide, the white showing behind the iris. Both gazes run level toward our left. The hair carries the speed: John's red-brown is a dense mass flung up and back to our right by the wind of their own going, and Peter's grey is pulled the same way into separate wisps and curls. The light falls on the side they face, on foreheads, noses and cheekbones, while John's neck drops into shadow."
+   },
+   {
+    "t": "A sky with a grain",
+    "x": 0.52,
+    "y": 0,
+    "w": 0.48,
+    "h": 0.3,
+    "body": "Above Peter's cloak, in the upper right, the yellow sky breaks into short touches of cream, lemon and a cooler greenish yellow, laid in several directions and packed edge to edge, so the whole surface has a dry, woven grain. The lilac clouds are dragged across that grain in soft-edged wisps, and many carry a flick of orange worked into one side, the warm note that marks the light as low and new. Because the grain runs evenly across this upper sky, it sits close behind the figures as a woven surface, with little sense of depth."
+   },
+   {
+    "t": "The black against the glare",
+    "x": 0.52,
+    "y": 0.18,
+    "w": 0.48,
+    "h": 0.5,
+    "body": "Peter's cloak holds the darkest paint on the canvas, and its upper edge is set directly against the palest stretch of sky, which lies just above his shoulder. Along that shoulder and out to the loose back of the cloak, lifted and thrown behind him by the run, the contour is hard: one continuous line with no feathering into the yellow. Against glare, that sharp edge makes the black read as a single heavy silhouette. Inside it the cloth is not a flat dark; grey-violet lights travel along the top of each fold, enough to give it weight. Below the lifted fold the ground drops to a low hill, and on its crest, at our right and behind the runners, stands a tiny upright form, two short brownish strokes darker than the sky behind them."
+   },
+   {
+    "t": "Four hands held in",
+    "x": 0.05,
+    "y": 0.42,
+    "w": 0.5,
+    "h": 0.48,
+    "body": "Neither man swings an arm. John runs with his fingers laced together at his chest, the nails and knuckles picking up the light: the hands of prayer, held where a runner's arms would pump. Peter's hands are older and do two different things. One lies flat on his chest, fingers spread over the black cloth, its veins and knuckles worked in warm ochre against the dark. The other, lower, is curled into the folds of the cloak, its forefinger straying out toward our left. Where Peter's rust-red sleeve meets John's white robe it lies on top, so Peter is the nearer figure while John is a pace ahead."
+   },
+   {
+    "t": "The stride below the frame",
+    "x": 0,
+    "y": 0.62,
+    "w": 0.42,
+    "h": 0.38,
+    "body": "The canvas cuts both men off at about the hips, so the run has to be told without feet, and John's robe tells it. Its outer edge slants from his wrists down and back to our right, tipping the whole figure forward into the direction of travel, and its folds pull diagonally the same way. The colour of that white is worth a look: lilac in the hollows, cream and a greenish yellow on the ridges, and almost none of it true white. Behind the robe the field is laid in level strokes of ochre running parallel to the men's path, then a band of green and a row of round grey-green trees, the strokes flat and unhurried while the figure in front of them leans."
+   },
+   {
+    "t": "Running out of the picture",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Against the canvas's left side the two runners lean as one block of bodies. The horizon has been set low, level with John's clasped hands, and that leaves both heads clear in the sky. Ahead of the runners the canvas allows only a sliver of field and air; behind them it opens a whole morning. Their eyes go past the frame, and what they are running toward stays out of sight. At whole scale the values do the rest: the yellow sky, the black cloak driven through it, and the white robe as its leading edge."
+   }
+  ],
+  "beside": "In each picture a grey-bearded disciple answers the news from the tomb, with opposite arms. Burnand's Peter runs on a report, a hand laid on his chest. In Caravaggio's Supper at Emmaus, of 1601, the old disciple, a scallop shell pinned to his jerkin, has its meaning seated in front of him and flings his arms wide; across the table his companion, seen from behind in a green jacket torn at the elbow, grips his chair's arm as if to rise. Luke has these two tell a stranger on the road that some of their company found the tomb as the women said, and know him only at table, when he blesses the bread.",
+  "refs": [
+   {
+    "id": "supper-at-emmaus",
+    "text": "Supper at Emmaus"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "arnold-bocklin-der-ritt-des-todes-herbst-und-tod": {
+  "mv": 6,
+  "see": "An autumn wood under a heavy sky, a road running back between the trees. At the centre a black horse rears beneath a hunched, cloaked rider: the figure the title names as Death. Red and rust crowns close in from both sides, two snapped trunks stand at the road's edge on the left, and at upper right a pale house and its walls stand against slate-grey cloud. The warm red and brown of leaves and ground is broken by pale openings — a haze where the road leads away, the house, a band of light on the road.",
+  "about": "A season, and a passing through it. Late autumn fills the wood: crowns turning, leaves coming down, trees already broken, a road going off into haze. Death is the figure the eye goes to, yet he does nothing to anyone: no victim waits on the road, no one is summoned, and the change he stands for has reached the wood before him. The dying here is not an event at one spot but a condition the whole season is already in, and the rider moves through it as its sign more than its cause.",
+  "craft": "Oil on canvas, and small by Böcklin's standards: his biographer Heinrich Alfred Schmid put the format down partly to the agitation of the war months. The handling changes with the matter: edges drawn hard where a form is solid and must stand still, the brush broken into separate dabs where matter is loose and scattered, and the air brushed soft and blended. A painter-friend, Gustav Floerke, noted that in the years Böcklin painted for the collector Adolf Friedrich von Schack, the period of what he called his 'first manner', the poetic came first and painting was the means; Böcklin would then play the flute and ring little bells before his canvases, wishing he could paint the music onto them too.",
+  "context": "By 1870 Böcklin was at odds with the establishment of his native Basel: in December 1869 its museum's art commission had regretted the third of his staircase frescoes for the building, which led to his break with the historian Jacob Burckhardt. In the summer of 1870 he went to the Paris exhibition, found a picture of his hung high and, as a friend later recalled, went straight home in anger. The war broke out in July. That autumn he began this canvas, the only one of four small pictures from those Basel months that Schmid ties directly to the events of the day. In autumn 1871 he moved to Munich, to years he later called the happiest of his life.",
+  "deeper": [
+   {
+    "t": "The black rider against the mist",
+    "x": 0.35,
+    "y": 0.33,
+    "w": 0.42,
+    "h": 0.53,
+    "body": "The group at the centre is the darkest passage on the canvas, and the lit mist at the road's end sits directly behind it, so the horse's head, its ragged mane and the rider's shoulders read as a shape cut out of grey. It is the old contre-jour device: the group registers first as a silhouette, and only afterwards as a horse and its rider. Inside the black the forms are told by their outlines. The horse rears: one foreleg shows, folded up toward our left, and one hoof is planted at the road's edge, the rest of its legs lost in the black; the rider is a hunched mass of cloak bent over its neck. The head that tops it is no bone-white skull: it is a small round knob of warm brown, darker than the mist beside it. What makes the rider read as Death from a distance is the black itself and the posture — the hunch, the animal's whole body lifted off its forefeet. Small within the wide canvas, the pair faces our left, toward the grey opening where the road disappears among a few dim upright shapes, with the pale house at their backs."
+   },
+   {
+    "t": "The band of light on the road",
+    "x": 0,
+    "y": 0.5,
+    "w": 0.5,
+    "h": 0.36,
+    "body": "Light lies on the road in a single band, entering from the left edge and running toward the centre until it ends under the horse's lifted foreleg. Below it the near ground sits in shadow up to a long diagonal edge, so the picture places us in the dark, looking into the lit strip. The band is not one flat tone: closer in, it breaks into separate touches of cream, straw and ochre, with small stones and fallen leaves picked out along it. The horse rears at its far end, head turned back along it. The rider is shown arriving at the light, not leaving it: the bright strip is the way ahead, laid flat on the ground like a threshold."
+   },
+   {
+    "t": "The snapped trunks",
+    "x": 0,
+    "y": 0.12,
+    "w": 0.41,
+    "h": 0.6,
+    "body": "Two trunks at the road's edge stand without crowns, snapped off at different heights. They are painted firmly — hard vertical edges, bark streaked grey and rust, pale wood at the jagged break of the left one — and among crowns that stream and scatter, they are the fixed verticals that hold this side still. Beside them a tree throws bare, grey-green limbs through a canopy still full and red. The season is told at two speeds in one patch: leaves holding on behind, dead wood stripped in front, and small lit flecks in the air where leaves are coming down."
+   },
+   {
+    "t": "The crown in the wind",
+    "x": 0.29,
+    "y": 0,
+    "w": 0.41,
+    "h": 0.53,
+    "body": "Above the rider's head a tree leans its long dark branches up and away toward our left, and along its upper edge small separate dabs of gold are thrown out into the grey sky: leaves torn loose and carried. The crown is the picture's weather vane. Its pull runs right to left, the way the horse's head points at the bottom of this view, so the wind is at the rider's back and the scene seems to travel with him. Between this crown and a thinner, bare-twigged one at the left, the road's far end opens as a lighter haze."
+   },
+   {
+    "t": "The white house",
+    "x": 0.59,
+    "y": 0.08,
+    "w": 0.41,
+    "h": 0.44,
+    "body": "Most of the brightest paint in the picture gathers here, in the far corner: the pale gable of a house and the blocks of a wall stepping away to the right, set against slate-dark cloud. The house is drawn with a firm hand — straight gable edges, one small dark window high in the face, two pale uprights lower down with a dark gap between them. The gable face is lit full, while the wall set back just to its right sits a clear stage darker. The orange caught between the far wall blocks reads at a glance like fire; closer, it runs unbroken up into the red-brown crown of a tree above the wall, autumn foliage taking the same light."
+   }
+  ],
+  "beside": "Death comes for one man in Hieronymus Bosch's Death and the Miser, painted around 1485–90, and that tall panel turns on a choice still to be made. A skeleton in a shroud edges round a door, an arrow levelled at the bed. At the dying miser's shoulder an angel points up to a crucifix in a high window, while a grey demon holds up a bag of gold. Bosch shuts Death in a room with its quarry. Böcklin's rider has no quarry and no door: no figure stands on the road ahead, and the leaves fall whether or not he passes.",
+  "refs": [
+   {
+    "id": "death-and-the-miser",
+    "text": "Death and the Miser"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "thomas-alexander-harrison-solitude": {
+  "mv": 6,
+  "see": "A still, dark pond fills most of the picture, closed at the top by a wooded bank that runs up to the frame. A little above the middle floats a long, narrow boat, pointed at both ends, its hull pale blue-green under a red-brown rail. A nude stands upright near its left end, arms raised to the head. An oar lies across the rail, its pale blade reaching down to the water, and a pale bundle sits at the right-hand tip. Lily pads float below, among reflections. Around the boat, almost everything in the picture, trees and water alike, is a deep, dark green.",
+  "about": "S. Beale, reviewing the 1893 Salon for an American architecture journal, wrote that in this picture the whole atmosphere \"breathes a stillness which may be felt\", and the title's solitude is made of stillness as much as of emptiness. The boat rests on water calm enough to hold reflections. No one rows and no one swims; the one person present is naked, in a pose that guards nothing. Undressed in the open, the figure stands as though sure that no one is looking.",
+  "craft": "Cecilia Beaux, who knew Harrison at Concarneau in 1888, remembered how his pictures began: a study about five by ten inches of \"only a few tones of the choicest\", made for a certain effect, then carried up \"by means of six or seven graded sizes\" to the full canvas, each size \"containing accumulated truth\". She describes his practice, not this picture. His method, she wrote, was searching and had \"the quality of science\", perhaps because he had been trained as an engineer. Georges Lafenestre, writing on the Champ-de-Mars Salon of 1893, found the science in the drawing: if anyone needed showing that a landscape \"can and must be drawn like a human figure\", Harrison would be the living demonstration.",
+  "context": "In May 1893 Harrison showed this canvas at the Salon of the Société nationale on the Champ-de-Mars, and the State bought it from him the same year. Beale found \"almost complete boredom\" at that Salon but held Harrison up among its few exceptions, and saw in Solitude \"a boy about to bathe\" among dark trees the setting sun \"scarcely penetrates\". In the mid-1880s Harrison had shown En Arcadie, which Beaux, recalling the Concarneau summer of 1888, described as a lush dell with \"several nude figures of women about to bathe in the river near by, unseen\".",
+  "deeper": [
+   {
+    "t": "The blade",
+    "x": 0.345,
+    "y": 0.33,
+    "w": 0.465,
+    "h": 0.32,
+    "body": "The oar blade dipping to the water at the boat's side carries the lightest paint anywhere in the picture. Trace the oar back and it changes key at the rail. Inside the boat the shaft is a dull grey-green, near the hull's own tone; the moment it clears the rail it turns pale, and it keeps lightening out to the squared tip. That tip just touches the surface, and from it a dimmer streak runs back under the hull: the oar's reflection, laid with a soft, dragged edge where the oar itself has a hard one. Nobody holds it; the oar lies across the rail with its handle inside the boat, and its long diagonal steers the eye from the brightest point back up the shaft to the figure."
+   },
+   {
+    "t": "The standing figure",
+    "x": 0.13,
+    "y": 0.12,
+    "w": 0.41,
+    "h": 0.4,
+    "body": "A nude stands near the boat's left tip, both arms lifted and the hands meeting behind the head, the elbow on our left thrown out to a sharp point. It is a small figure, about a fifth of the picture's height, and a dim one: the oar blade and the pale bundle at the boat's far right tip both outshine it. Harrison makes the contour do the work instead. A fine light line runs down the figure's edge on our left, from the raised elbow to the lower leg, while the other side sinks into the surrounding dark, so the light arrives from our left, from somewhere outside the frame; nothing behind the figure is lit. The bank's waterline crosses it at about the chin: only the head and the raised arms rise against the trees, the arm closing a small triangle of darkness beside the head, and below them the pale body stands against the dark water and reads at once. The feet stand a little apart at the boat's left end, level with its rail, and the body rises bolt upright from a craft made of long horizontals."
+   },
+   {
+    "t": "The far bank",
+    "x": 0.45,
+    "y": 0.01,
+    "w": 0.54,
+    "h": 0.35,
+    "body": "The trees across the water are not a flat dark curtain. Up close the bank is a dense mesh of short strokes laid in every direction, dark green worked over warmer brown and picked out with flecks of blue-green and yellow-green; one patch right of centre goes almost turquoise. It is a worked surface, not a loose one, and its lower edge meets the water along a firm, level line. Yet bank and pond are almost exactly as dark as each other. They are told apart by handling, knotted crossing strokes above and long vertical pulls below, and by a cooler cast under the line, so the pond is closed in by a change of touch with hardly any change of light."
+   },
+   {
+    "t": "The figure's reflection",
+    "x": 0.13,
+    "y": 0.535,
+    "w": 0.41,
+    "h": 0.365,
+    "body": "Under the standing figure a pale column hangs in the dark water, below the reflected hull. It is the figure again, upside down, and it runs about as long as the figure stands tall, so the mirror is kept true in length. The handling softens it without losing it. The body above has a crisp lit edge on our left; the reflection keeps a pale edge on the same side, blurred into the downward pull of the brush that builds the water around it. Near its lower end, where the raised arms fall in the mirror, a pale angled touch still juts out to our left like the thrown elbow, and short horizontal flecks of lily pad cross the column there."
+   },
+   {
+    "t": "The lily pads",
+    "x": 0.12,
+    "y": 0.56,
+    "w": 0.76,
+    "h": 0.43,
+    "body": "Lily pads lie scattered over the lower water, each a small flat oval of pale green, and they are what turns the dark into a floor. The ones nearest the bottom edge, like the stray pad at lower left, open into fuller ovals; those higher up, toward the boat, close into slivers several times wider than they are tall. That is foreshortening, a flat plane tipping away from the eye and measured out by the shapes resting on it. Harrison keeps them few and loosely spaced, so each one fixes a distance of its own."
+   },
+   {
+    "t": "The patch of light",
+    "x": 0.005,
+    "y": 0.008,
+    "w": 0.99,
+    "h": 0.986,
+    "body": "Nearly all the pale paint in the picture, the figure, the hull, the blade and its reflection, the bundle at the tip, sits inside a patch covering about an eighth of the surface, a little above the centre and left of it. Around that patch the dark is close to even, and most of the height belongs to the water, so the boat rides high, pressed toward the trees instead of floating in open space. The bank climbs right to the top edge, where the sky breaks through only in a few pale chinks. There is no shoreline on our side and no second boat; the nearest thing to us is a stray lily pad."
+   }
+  ],
+  "beside": "Diana's white cloth, drawn up over her head as if to cover herself, answers the hunter who has walked in on her bath in Titian's Diana and Actaeon, of 1556–59. The goddess and her nymphs are bathing at a stone fountain under trees when Actaeon steps into view at the left, both hands flung open beside a red curtain. The nymph lying at the fountain's rim turns an open mouth up to him, another peers round a pillar, and a small dog bares its teeth. Here no one comes: the wood rises to the upper edge with no figure in it, and the one in the boat stands uncovered.",
+  "refs": [
+   {
+    "id": "diana-and-actaeon",
+    "text": "Diana and Actaeon"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "giovanni-boldini-madame-max": {
+  "mv": 6,
+  "see": "A full-length portrait of a woman on a tall, narrow canvas: dark curls, bare shoulders, a pale off-the-shoulder gown with a gold sash and a single gold strap. She stands in a grey panelled interior, a carved pilaster at our left, a ledge and panel on the wall at our right, a dark floor. One hand gathers her skirt; the other arm swings out toward the right edge. Almost everything is grey, warmed by skin and gold.",
+  "about": "The sitter was Madame Charles Max, born Bienvenu, a cantatrice mondaine: a singer of fashionable society. In 1909 the music magazine Musica, captioning a photograph of her, called her one of the best interpreters of Gabriel Fauré. The picture carries no sign of her art: neither score nor piano is in the room. It shows how she carries herself before company, at ease and on show at once, set out at full length for strangers to stand in front of.",
+  "craft": "Boldini sets her at about life size on a canvas just over two metres high and a metre wide. He mixes his greys in two temperatures, bluer in the gown and nearer neutral in the wall, so the figure parts from the room by colour as well as by lightness. Wall and floor go on in long vertical drags. In the gown the brush follows the way each fold hangs, so the stroke's direction does the drawing. Georges Lafenestre found the portraits at that year's Champ-de-Mars Salon chasing a brushstroke \"fluent and easy\", and on this canvas the long, fluent stroke belongs mostly to cloth, wall and floor.",
+  "context": "By 1896 Boldini had lived and worked in Paris for a quarter of a century, since 1871; in 1889 he had presided over the Italian section of the Exposition universelle and been made a chevalier of the Légion d'honneur. In the spring of 1896, a full member of the Société nationale, he sent three portraits to its Champ-de-Mars Salon. In the Goupil house's Salon album, François Thiébault-Sisson wrote that Italy had sent only one painter, \"and even he is Parisian by habit\"; in the Revue des Deux Mondes, Lafenestre put him at the end of a list of foreigners, just before an \"etc.\"",
+  "deeper": [
+   {
+    "t": "The head held hard",
+    "x": 0.16,
+    "y": 0.02,
+    "w": 0.54,
+    "h": 0.4,
+    "body": "The face is drawn more tightly than any other part of the figure. The brows are two dark arcs laid with a sharp edge; heavy lids cut across dark eyes that look straight out; the nostrils are two small dark marks, and the closed mouth lifts a little at its corners. The face is lit nearly head-on. Both cheeks carry pink, and what little shadow the face holds lies on our left: beside the nose, along the jaw and under the chin, where the neck turns grey. Around this the hair changes manner entirely: curls built from dark broken strokes with a few lighter flicks, and a few strokes lifting off the crown into the grey of the wall. Directly below, the bare shoulders and chest are as light as anything on the canvas, lighter than the pale gown that has slipped from them. The skin there is blended smooth, and the long strokes begin with the gown."
+   },
+   {
+    "t": "The carved garland",
+    "x": 0,
+    "y": 0,
+    "w": 0.24,
+    "h": 0.7,
+    "body": "Behind her shoulder, at our left edge, a pilaster carries a garland of carved leaves up its face between long fluted strips. Beside her head and shoulder each leaf is its own curved stroke, a dark contour on one side and a lighter flick on the other, enough to read as relief. Past her elbow the same garland thins to a few loose outlines, and toward the floor the vertical fluting is nearly all that carries on. Even the wall's finish is graded by its nearness to the head, sharpening beside the face and slackening as it descends, so the setting itself leans the eye back toward her."
+   },
+   {
+    "t": "An arm to the edge",
+    "x": 0.52,
+    "y": 0.25,
+    "w": 0.48,
+    "h": 0.42,
+    "body": "Her left arm, on our right, swings out and down from a sleeve slipped off the shoulder, and the open hand nearly touches the right-hand edge: the figure's reach ends where the canvas does. The hand is set down more briefly than the face, yet it is drawn, the back of the hand, the spread fingers and a ring each distinct. Behind the wrist a few horizontal strokes make a ledge, and beneath it a rectangle of paler and darker greys reads as a moulded panel. Those two marks give the wall a height and the floor a level, and the hand opens just below the ledge, its reach measured against a ruled line."
+   },
+   {
+    "t": "The fist that pulls the folds",
+    "x": 0.16,
+    "y": 0.36,
+    "w": 0.58,
+    "h": 0.42,
+    "body": "Her right hand, on our left, has closed on a handful of skirt at the thigh, and the long creases around it answer to that fist. Follow the dark fold lines: they run up and to our right toward the gold sash, and down and to our right across the leg, a fan of strokes opening from the knuckles. The pull draws the skirt tight across the leg on our right, while on our left the cloth hangs free in a long swag from the drapery at her upper arm. The hand itself is modelled firmly, the fingers bent around the bunched cloth, and on one finger a ring is a single touch of turquoise. That turquoise and the gold of the strap and sash are the two most intense colours in a canvas built of greys. One closed hand turns a column of pale fabric into a set of diagonals, and gives the eye a second fixed point between the face and the floor."
+   },
+   {
+    "t": "Two points at the hem",
+    "x": 0.24,
+    "y": 0.597,
+    "w": 0.7,
+    "h": 0.4,
+    "body": "At the floor the gown breaks into long dragged strokes of grey and white with cooler bluish touches, its lower edge ending in ragged tongues over the dark ground. Broad as it is, it still describes: the front of the skirt wraps in one long diagonal from the gathered fist down to the ankle on our right, and beneath it a second fall of fabric drops in straight strokes to the floor. The two shoes come out as hard, pointed shapes, outlined firmly against the dark, each with a glinting highlight; the toe on our left points down and outward, the one on our right turns the other way, a small ornament on its instep. After the broad strokes above, these points stand her on the floor."
+   },
+   {
+    "t": "An upright and an opening",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "The side of the figure on our left stands almost plumb beside the pilaster, head over fist over the shoe on our left. The other side opens out: the arm swings to the right edge and the leg on our right steps out beneath it. The closed hand sits on the upright side, the open hand at the far end of the other. From the top of her hair to the tips of her shoes she fills about nine-tenths of the canvas's height, with a narrow band of wall above her head and of floor beneath her feet."
+   }
+  ],
+  "beside": "The same proposition, a woman of society at full length in a pale gown cut low, her eyes level with the viewer's, is taken up with the opposite reserve in Mrs. Walter Rathbone Bacon, painted by Anders Zorn in 1897. Madame Max stands alone, one arm thrown open toward the canvas edge. Mrs. Bacon sits, her face steady and guarded, her cream skirt with its painted sprays of flowers spread across the lower canvas, and both her hands are busy: one arm circles a collie that stands pressed against her knee, and the other hand rests in her lap on a long string of beads.",
+  "refs": [
+   {
+    "id": "anders-zorn-mrs-walter-rathbone-bacon-virginia-purdy-barker",
+    "text": "Mrs. Walter Rathbone Bacon"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "utagawa-toyokuni-i-nakamura-za": {
+  "mv": 6,
+  "see": "Three sheets laid side by side make one view of a packed theatre, looking down the house to the stage. On the middle sheet the stage sits under a gabled roof of its own and above the front rows of the pit, dressed as a snow scene and peopled by actors in costume; the outer sheets carry tiers of boxes and galleries sloping in toward it, two plank walkways through the pit, and an audience that eats, smokes and shoves. Everything is printed flat from woodblocks: black outline, then areas of green, grey, rose, yellow and orange, with no modelling and no cast shadows.",
+  "about": "On the stage is the island act of a Shunkan play: the priest exiled for plotting against Taira no Kiyomori, the bearded figure at the centre holding up a strip of paper. Around one man cut off from the world, Toyokuni puts a town under one roof, sorted by price. The curator Tim Clark maps the house: the cheapest standing places at the back left of the stage, the costliest boxes along the walls, musicians behind the black screen right of the stage, the hanamichi or 'flower path' on the left for the actors' entrances, and food sent in from the theatre teahouses, each part of the audience in the place it paid for.",
+  "craft": "The print is an ōban triptych: three sheets of the standard large format, printed separately and designed to lie edge to edge as one picture for the publisher Nishimuraya Yohachi. It is also an uki-e, a perspective picture, a kind Toyokuni had designed since the early 1790s. The black key block draws in two kinds of line: long straight strokes for rails, posts and plank seams, and curving freehand contour for the bodies among them. Colour blocks fill the outlines; where a robe is patterned, the pattern is cut as a repeat and laid flat across it.",
+  "context": "Toyokuni was about thirty-one in 1800, his name already made by Actors on Stage, a series of actor prints that ran past forty sheets. The theatre had lately reopened. In 1793, in financial trouble, the Nakamura-za ceded its performances to a stand-in licence; it opened again in the eleventh month of 1797 with a great hit. Toyokuni drew its interior the next year; here he sets the company of 1800 on its stage, with Iwai Kumesaburō I kneeling beside Shunkan as Oyasu and Ichikawa Komazō III, known as 'big nose', as Kameōmaru with a drawn sword.",
+  "deeper": [
+   {
+    "t": "The man at the platform's edge",
+    "x": 0.43,
+    "y": 0.27,
+    "w": 0.21,
+    "h": 0.46,
+    "body": "The flame-coloured robe at the centre of the middle sheet belongs to the one man who has come forward to the front edge of the raised, green-matted floor at the back of the stage. The raised floor does the ranking here. Two women share the platform behind him, one standing in red, one kneeling in green with a sleeve lifted to her face; down on the boards to our right a man in a dark striped robe drops into a crouch, one fist clenched on his robe at the thigh, and turns his face level to our left, toward the young man in red across the stage, who looks back at him; two companions lean in behind. The standing man bends toward our left, long loose hair and a beard framing a scowl, his right hand at his sash. His left hand, raised against the slatted wall, holds a narrow strip of white paper up at head height. On a pale post of the set just beside it the signature is lettered, Toyokuni ga, drawn by Toyokuni, placed as if it were written on the scenery itself."
+   },
+   {
+    "t": "One sword, two hands",
+    "x": 0.352,
+    "y": 0.33,
+    "w": 0.15,
+    "h": 0.46,
+    "body": "At the left of the stage a single long sword is held by two men at once. The tall warrior in the cloud-patterned robe and dark skirts closes a hand sheathed in black on it near the point and bends over toward the stage centre. Below him the young man in the red sleeveless jacket and checked skirts drops into a deep lunge toward our right and turns his face that way too, while his arm stretches back to grip the hilt low, between a gold collar and a gold-capped end. The bare blade runs from his fist up to the warrior's: two bodies pulling apart along one straight line. The warrior's face is marked with red lines over the brows and round the eyes, stage make-up printed in red over the flesh; the youth's face is bare. At their feet a white drift edges the stage, and on it sits a small crest, three commas in a circle under a peaked line. The same crest is printed again on the red box-fronts of both side sheets, beside the signatures there."
+   },
+   {
+    "t": "Winter on the set",
+    "x": 0.35,
+    "y": 0.265,
+    "w": 0.3,
+    "h": 0.18,
+    "body": "Under the stage roof the scenery is winter. Pine boughs hang across the top of the opening, each a bank of white with dark-green needles thrusting out of it and touches of yellow along its rims; beneath them the eave of the stage house wears a white lip that breaks into a row of icicle points over the grey screen. At the left a plum tree puts out red-pink blossom on bare twigs, and the pale panel behind it is sprinkled with small dots. The snow sits close to the tone of the sheet itself and takes its shape from outline alone, so the season is drawn more than coloured. At the far left, under the cloud-scroll bracket, two spectators sit at the very edge of the stage beside the set."
+   },
+   {
+    "t": "A roof inside the roof",
+    "x": 0.35,
+    "y": 0.069,
+    "w": 0.3,
+    "h": 0.217,
+    "body": "The stage carries its own gabled roof inside the theatre: a broad pale gable edged in yellow, a flower crest at its peak with a yellow ribbon ornament curling beneath, cloud-scroll brackets at the eaves. Behind it, along the back wall, hang tall white boards lettered in black, two of them with folded white packets tied on with cord. The gable overlaps them, so they hang further back, against a gallery rail with post finials and high openings of bamboo on a yellow ground. One straight black line crosses the crop dead level and runs over the face of the gable, so whatever it is hangs in front of the stage roof, nearer to us than the play."
+   },
+   {
+    "t": "Full house",
+    "x": 0.088,
+    "y": 0.066,
+    "w": 0.242,
+    "h": 0.264,
+    "body": "The biggest lettering in the whole print is the pair of black characters on the white hanging at the back of the left sheet: 大入, big entry, the word a theatre put up for a full house. The strokes are cut so fat that the shapes nearly close up, and the level black line passes in front of them. Under the board the house makes good the claim: the upper gallery at the left is packed with women in tall combs and pins, dishes and lacquer boxes set out on the ledge before them, and over their heads a red-and-white striped cloth is gathered into heavy swags."
+   },
+   {
+    "t": "The tiers that shove",
+    "x": 0.1,
+    "y": 0.26,
+    "w": 0.23,
+    "h": 0.46,
+    "body": "Beyond the boxes of the left sheet, in two stacked tiers nearest the stage, the audience stops behaving. Men are packed so tight they climb: on the upper tier one lies stretched across the rail and others crawl over shoulders; in the lower tier, against a black opening, men stripped to the waist and tied with headbands shove, grab and lean their whole weight on one another. To the left, behind the red box-fronts, spectators sit in tidy rows, women under broad white head-cloths, a man drawing on a long pipe. The print sorts its house by posture: seated where the boxes are walled, heaving where a single rail is all that holds them in."
+   },
+   {
+    "t": "The empty walkway",
+    "x": 0.088,
+    "y": 0.59,
+    "w": 0.242,
+    "h": 0.345,
+    "body": "A broad band of planks enters the left sheet near its bottom edge and climbs toward the stage, its boards ruled as long parallel lines between yellow rails. It is a walkway cut straight through the audience at the height of the pit's partitions: people lean on its edge, and a small bald figure in red sits right on its rim. Nobody walks it. Beside it the pit is divided into square compartments, each crammed: a woman in green stands among the seated heads with one hand raised to the head of the man in front of her, a tray of small red lidded bowls set down on the partition at her side, and lower in the crush a figure under a white head-cloth reaches into a dark bowl."
+   },
+   {
+    "t": "Supper over the heads",
+    "x": 0.68,
+    "y": 0.615,
+    "w": 0.24,
+    "h": 0.325,
+    "body": "On the right sheet the food crosses over the crowd. A man in a dark robe straddles the rail at the edge of the planked walkway, one bare foot on each side, and passes down a black lacquered stand heaped with something red; at its near edge a fish's head shows its eye. A bald man below reaches up toward it. Two kinds of face share the benches around him. The men's are pushed toward caricature: round spectacles on a bald head, a gaping mouth with a red morsel in it, a broad grin. The women wedged in beside them keep smooth, idealised faces under their combs and pins, unruffled in the crush: the print draws one crowd in two manners at once."
+   },
+   {
+    "t": "Three sheets, one house",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Two narrow strips of white ground split the print into its three sheets, yet the design runs straight through them: the level black line crosses both gaps at the same height, the bamboo openings along the back wall continue on either side of each gap, and the boxes and galleries of both outer sheets slope in toward the middle along converging lines, folding the side sheets toward the stage. Inside that perspective the stage keeps a scale of its own. The actors stand at the far end of the house, yet their faces are drawn about as large as those of the spectators in the front row of the pit, nearest to us, and about twice the size of the faces in the tiers beside the stage."
+   }
+  ],
+  "beside": "Women sit at a theatre ledge in both pictures, and only one ledge is laid like a table. Toyokuni's belongs to the women of the top gallery, dishes set out before them, one row of a crowded house with a play under way at its far end. In Pierre-Auguste Renoir's Theatre Box (La Loge), of 1874, a woman in black and white stripes rests a gloved hand on the plum-red front of the box, small gold opera glasses in its fingers, while the man behind her lifts a second pair. That ledge carries her hand and her glasses, and nothing to eat.",
+  "refs": [
+   {
+    "id": "pierre-auguste-renoir-theatre-box-la-loge",
+    "text": "Theatre Box (La Loge)"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
  "guardi-grand-canal-with-the-rialto-bridge-venice": {
   "mv": 6,
   "see": "A wide view of the Grand Canal in Venice, seen from a point above the water, looking along it to the Rialto Bridge, whose single stone arch crosses right of centre. On the left bank a wall of brown palaces runs toward the bridge, with barges under pale canvas awnings moored at its quay; on the right, a tall cream house with open shutters rises over a colonnade. Gondolas and heavier working boats crowd the olive-green water. A blue-grey sky with one bright cloud fills the upper half. Both banks close toward the arch, and small touches of white, red and ochre are scattered wherever the city is at work.",
