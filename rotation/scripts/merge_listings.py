@@ -78,6 +78,11 @@ def norm(s):
     return re.sub(r"\W+", "", s, flags=re.UNICODE)
 
 
+# Known wrong-entity matches (normalized act -> library artist it must NOT match):
+# the Japanese band "bed" (WWW X et al.) is not Fuad's French Bed (CONCERTS-README).
+REJECT = {("bed", "Bed")}
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("listings", nargs="+")
@@ -135,6 +140,8 @@ def main():
     for m in json.load(open(mp, encoding="utf-8")):
         L = orig.get((norm(m.get("title")), m.get("date"), norm(m.get("venue")))) or {}
         for b in m["matches"]:          # one row PER matched library artist on the bill
+            if (norm(b.get("act")), b["artist"]) in REJECT:
+                continue
             key = (norm(b["artist"]), m.get("date"))
             if dup(*key):
                 continue

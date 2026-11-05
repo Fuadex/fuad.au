@@ -1,860 +1,6932 @@
 [
  {
   "acts": [
-   "9mm Parabellum Bullet"
+   "KID FRESINO"
   ],
-  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
-  "date": "2026-11-07",
-  "venue": "金沢EIGHT HALL",
-  "city": "Kanazawa",
-  "area": "",
-  "url": "https://9mm.jp/live.php",
-  "note": "Official 9mm.jp."
- },
- {
-  "acts": [
-   "9mm Parabellum Bullet"
-  ],
-  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
-  "date": "2026-11-08",
-  "venue": "長野CLUB JUNK BOX",
-  "city": "Nagano",
-  "area": "",
-  "url": "https://9mm.jp/live.php",
-  "note": "Official 9mm.jp."
- },
- {
-  "acts": [
-   "9mm Parabellum Bullet"
-  ],
-  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
-  "date": "2026-11-14",
-  "venue": "名古屋DIAMOND HALL",
+  "title": "KID FRESINO",
+  "date": "2026-11-06",
+  "venue": "岡谷鋼機名古屋公会堂 大ホール",
   "city": "Nagoya",
-  "area": "",
-  "url": "https://9mm.jp/live.php",
-  "note": "Official 9mm.jp."
+  "url": "https://smash-jpn.com/live/?id=4779",
+  "note": "SMASH"
  },
  {
   "acts": [
-   "9mm Parabellum Bullet"
+   "Night Tempo"
   ],
-  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
-  "date": "2026-11-15",
-  "venue": "浜松窓枠",
-  "city": "Hamamatsu",
-  "area": "",
-  "url": "https://9mm.jp/live.php",
-  "note": "Official 9mm.jp."
+  "title": "Night Tempo",
+  "date": "2026-11-06",
+  "venue": "札幌近松",
+  "city": "Sapporo",
+  "url": "https://smash-jpn.com/live/?id=4732",
+  "note": "SMASH"
  },
  {
   "acts": [
-   "9mm Parabellum Bullet"
+   "Melanie C"
   ],
-  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
-  "date": "2026-11-21",
-  "venue": "岡山CRAZYMAMA KINGDOM",
-  "city": "Okayama",
-  "area": "",
-  "url": "https://9mm.jp/live.php",
-  "note": "Official 9mm.jp."
+  "title": "MELANIE C",
+  "date": "2026-11-06",
+  "venue": "EXシアター六本木",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/melaniec26/",
+  "note": "Creativeman",
+  "area": "Minato"
  },
  {
   "acts": [
-   "9mm Parabellum Bullet"
+   "MONO NO AWARE"
   ],
-  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
-  "date": "2026-11-22",
-  "venue": "高松MONSTER",
-  "city": "Takamatsu",
-  "area": "",
-  "url": "https://9mm.jp/live.php",
-  "note": "Official 9mm.jp."
+  "title": "MONO NO AWARE",
+  "date": "2026-11-06",
+  "venue": "Spotify O-EAST",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4752",
+  "note": "SMASH",
+  "area": "Shibuya"
  },
  {
   "acts": [
-   "9mm Parabellum Bullet"
+   "eastern youth"
   ],
-  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
-  "date": "2026-11-28",
-  "venue": "熊本B.9 V1",
-  "city": "Kumamoto",
-  "area": "",
-  "url": "https://9mm.jp/live.php",
-  "note": "Official 9mm.jp."
+  "title": "eastern youth",
+  "date": "2026-11-07",
+  "venue": "磔磔(takutaku)",
+  "city": "Kyoto",
+  "url": "https://smash-jpn.com/live/?id=4717",
+  "note": "SMASH"
  },
  {
   "acts": [
-   "9mm Parabellum Bullet"
+   "STORMY DUDES FESTA 2026 (RAZORS EDGE)"
   ],
-  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
-  "date": "2026-11-29",
-  "venue": "福岡DRUM LOGOS",
-  "city": "Fukuoka",
-  "area": "",
-  "url": "https://9mm.jp/live.php",
-  "note": "Official 9mm.jp."
- },
- {
-  "acts": [
-   "9mm Parabellum Bullet"
-  ],
-  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
-  "date": "2026-12-05",
-  "venue": "山形ミュージック昭和SESSION",
-  "city": "Yamagata",
-  "area": "",
-  "url": "https://9mm.jp/live.php",
-  "note": "Official 9mm.jp."
- },
- {
-  "acts": [
-   "9mm Parabellum Bullet"
-  ],
-  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
-  "date": "2026-12-06",
-  "venue": "仙台Rensa",
-  "city": "Sendai",
-  "area": "",
-  "url": "https://9mm.jp/live.php",
-  "note": "Official 9mm.jp."
- },
- {
-  "acts": [
-   "9mm Parabellum Bullet"
-  ],
-  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
-  "date": "2027-01-16",
-  "venue": "水戸LIGHT HOUSE",
-  "city": "Mito",
-  "area": "",
-  "url": "https://9mm.jp/live.php",
-  "note": "Official 9mm.jp. Sold out per official page."
- },
- {
-  "acts": [
-   "9mm Parabellum Bullet"
-  ],
-  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
-  "date": "2027-01-23",
-  "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
-  "city": "Utsunomiya",
-  "area": "",
-  "url": "https://9mm.jp/live.php",
-  "note": "Official 9mm.jp."
- },
- {
-  "acts": [
-   "9mm Parabellum Bullet"
-  ],
-  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
-  "date": "2027-01-24",
-  "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
-  "city": "Saitama",
-  "area": "",
-  "url": "https://9mm.jp/live.php",
-  "note": "Official 9mm.jp. Sold out per official page."
- },
- {
-  "acts": [
-   "9mm Parabellum Bullet"
-  ],
-  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
-  "date": "2027-01-31",
-  "venue": "大阪BIGCAT",
+  "title": "RAZORS EDGE presents STORMY DUDES FESTA 2026",
+  "date": "2026-11-07",
+  "venue": "BIGCAT",
   "city": "Osaka",
-  "area": "",
-  "url": "https://9mm.jp/live.php",
-  "note": "Official 9mm.jp."
+  "url": "http://razorsedgejapan.com/sdf2026/",
+  "note": "SMASH"
  },
  {
   "acts": [
-   "9mm Parabellum Bullet"
+   "STUTS"
   ],
-  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
-  "date": "2027-02-06",
-  "venue": "F.A.D YOKOHAMA",
-  "city": "Yokohama",
-  "area": "",
-  "url": "https://9mm.jp/live.php",
-  "note": "Official 9mm.jp. Sold out per official page."
- },
- {
-  "acts": [
-   "9mm Parabellum Bullet"
-  ],
-  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
-  "date": "2027-02-23",
-  "venue": "Shibuya LOVEZ",
+  "title": "STUTS",
+  "date": "2026-11-07",
+  "venue": "日本武道館",
   "city": "Tokyo",
-  "area": "Shibuya",
-  "url": "https://9mm.jp/live.php",
-  "note": "Official 9mm.jp. Tour final."
+  "url": "https://stutsbeats.com/alonewith",
+  "note": "SMASH",
+  "area": "Chiyoda"
  },
  {
   "acts": [
-   "9mm Parabellum Bullet",
-   "THE BAWDIES"
+   "Night Tempo"
   ],
-  "title": "THE BAWDIES対バンツアー「THE MELTING POT SESSIONS」",
-  "date": "2026-12-12",
-  "venue": "富山 SOUL POWER",
-  "city": "Toyama",
-  "area": "",
-  "url": "https://9mm.jp/live.php",
-  "note": "9mm.jp official schedule."
+  "title": "Night Tempo",
+  "date": "2026-11-08",
+  "venue": "REDSUN",
+  "city": "Kanazawa",
+  "url": "https://smash-jpn.com/live/?id=4732",
+  "note": "SMASH"
  },
  {
   "acts": [
-   "9mm Parabellum Bullet",
-   "THE BAWDIES"
+   "eastern youth"
   ],
-  "title": "THE BAWDIES対バンツアー「THE MELTING POT SESSIONS」",
-  "date": "2026-12-13",
-  "venue": "長野 CLUB JUNK BOX",
-  "city": "Nagano",
-  "area": "",
-  "url": "https://9mm.jp/live.php",
-  "note": "9mm.jp official schedule."
+  "title": "eastern youth",
+  "date": "2026-11-08",
+  "venue": "YEBISU YA PRO",
+  "city": "Okayama",
+  "url": "https://smash-jpn.com/live/?id=4717",
+  "note": "SMASH"
  },
  {
   "acts": [
-   "9mm Parabellum Bullet",
-   "KANA-BOON"
+   "Death Cab for Cutie",
+   "Dan the Automator"
   ],
-  "title": "SHINJUKU LOFT 50th ANNIVERSARY DREAM MATCH 2026",
-  "date": "2026-12-16",
-  "venue": "新宿LOFT",
+  "title": "DEATH CAB FOR CUTIE",
+  "date": "2026-11-08",
+  "venue": "松下IMPホール",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/event/death-cab-for-cutie_2026/",
+  "note": "Creativeman; Support DJ: Dan the Automator"
+ },
+ {
+  "acts": [
+   "バチカン市国に愛されたい"
+  ],
+  "title": "バチカン市国に愛されたい",
+  "date": "2026-11-08",
+  "venue": "渋谷 WWW X",
   "city": "Tokyo",
-  "area": "Shinjuku",
-  "url": "https://9mm.jp/live.php",
-  "note": "9mm.jp official schedule; OPEN 18:00/START 19:00."
+  "url": "https://www.creativeman.co.jp/event/bachikanshikokni_aisaretai/",
+  "note": "Creativeman",
+  "area": "Shibuya"
  },
  {
   "acts": [
-   "アルカラ",
-   "9mm Parabellum Bullet",
-   "cinema staff"
+   "Death Cab for Cutie",
+   "Dan the Automator"
   ],
-  "title": "LIQUIDROOM 22nd ANNIVERSARY",
-  "date": "2026-12-17",
-  "venue": "恵比寿 LIQUIDROOM",
-  "city": "Tokyo",
-  "area": "Ebisu",
-  "url": "https://eplus.jp/sf/detail/4607720001-P0030001",
-  "note": "Already tracked; confirmed on 9mm.jp."
- },
- {
-  "acts": [
-   "Survive Said The Prophet",
-   "ACIDMAN",
-   "muque",
-   "9mm Parabellum Bullet",
-   "Knosis"
-  ],
-  "title": "Survive Said The Prophet Presents “MAGIC HOUR FESTIVAL”",
-  "date": "2026-12-26",
+  "title": "DEATH CAB FOR CUTIE",
+  "date": "2026-11-09",
   "venue": "豊洲PIT",
   "city": "Tokyo",
-  "area": "Koto",
-  "url": "https://survivesaidtheprophet.com/tour/mh/",
-  "note": "Open 14:00/Start 15:00. Lineup so far: 1st wave ACIDMAN, muque; 2nd wave 9mm Parabellum Bullet, Knosis (gekirock 2026/08). Official site lists no full bill; later waves may exist."
+  "url": "https://www.creativeman.co.jp/event/death-cab-for-cutie_2026/",
+  "note": "Creativeman; Support DJ: Dan the Automator",
+  "area": "Koto"
  },
  {
   "acts": [
-   "9mm Parabellum Bullet"
+   "XAOSX"
   ],
-  "title": "COUNTDOWN JAPAN 26/27",
-  "date": "2026-12-29",
-  "venue": "幕張メッセ国際展示場1～11ホール・イベントホール",
-  "city": "Chiba",
-  "area": "",
-  "url": "https://9mm.jp/live.php",
-  "note": "9mm.jp lists 9mm as appearing 12/29; full festival lineup not checked."
+  "title": "XAOSX",
+  "date": "2026-11-09",
+  "venue": "KT Zepp Yokohama",
+  "city": "Yokohama",
+  "url": "https://www.creativeman.co.jp/event/xaosx888/",
+  "note": "Creativeman"
  },
  {
   "acts": [
-   "9mm Parabellum Bullet"
+   "羊文学"
   ],
-  "title": "LIVE DI:GA JUDGEMENT 2026",
-  "date": "2026-12-31",
-  "venue": "渋谷CLUB QUATTRO／TAKE OFF 7",
+  "title": "羊文学",
+  "date": "2026-11-10",
+  "venue": "国立代々木競技場 第一体育館",
   "city": "Tokyo",
-  "area": "Shibuya",
-  "url": "http://livedigajudgement.net/2026/",
-  "note": "Venue per 9mm.jp: Club Quattro/TAKE OFF 7 (Shibuya); exact venue TBA."
+  "url": "https://smash-jpn.com/live/?id=4667",
+  "note": "SMASH",
+  "area": "Shibuya"
  },
  {
   "acts": [
-   "9mm Parabellum Bullet",
-   "THE KEBABS"
+   "Jason Mraz"
   ],
-  "title": "カオスのオーロラソース",
-  "date": "2027-01-12",
+  "title": "Jason Mraz",
+  "date": "2026-11-10",
+  "venue": "東京ガーデンシアター",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4690",
+  "note": "SMASH; international act",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "MAZZEL"
+  ],
+  "title": "MAZZEL",
+  "date": "2026-11-10",
+  "venue": "パシフィコ横浜 国立大ホール",
+  "city": "Yokohama",
+  "url": "https://www.creativeman.co.jp/event/mazzel-2nd-fan-meeting/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "Jason Mraz"
+  ],
+  "title": "Jason Mraz",
+  "date": "2026-11-11",
+  "venue": "フェスティバルホール",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4690",
+  "note": "SMASH; international act"
+ },
+ {
+  "acts": [
+   "羊文学"
+  ],
+  "title": "羊文学",
+  "date": "2026-11-11",
+  "venue": "国立代々木競技場 第一体育館",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4667",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "bacho"
+  ],
+  "title": "bacho",
+  "date": "2026-11-12",
+  "venue": "SHIBUYA CLUB QUATTRO",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4710",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "KIRARA"
+  ],
+  "title": "KIRARA",
+  "date": "2026-11-12",
+  "venue": "代官山UNIT",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4768",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "YONA YONA WEEKENDERS"
+  ],
+  "title": "YONA YONA WEEKENDERS",
+  "date": "2026-11-13",
+  "venue": "NAGOYA CLUB QUATTRO",
+  "city": "Nagoya",
+  "url": "https://smash-jpn.com/live/?id=4727",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "Night Tempo"
+  ],
+  "title": "Night Tempo",
+  "date": "2026-11-13",
+  "venue": "club JOULE",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4732",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "eill",
+   "Furui Riho"
+  ],
+  "title": "THERAPY AT THE FLOOR (eill / Furui Riho)",
+  "date": "2026-11-13",
+  "venue": "Zepp Shinjuku",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/therapy-at-the-floor/",
+  "note": "Creativeman",
+  "area": "Shinjuku"
+ },
+ {
+  "acts": [
+   "BAND-MAID"
+  ],
+  "title": "BAND-MAID",
+  "date": "2026-11-13",
+  "venue": "日本武道館",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/band-maid-world-tour-2026-final/",
+  "note": "Creativeman",
+  "area": "Chiyoda"
+ },
+ {
+  "acts": [
+   "THE PAINS OF BEING PURE AT HEART"
+  ],
+  "title": "THE PAINS OF BEING PURE AT HEART",
+  "date": "2026-11-13",
+  "venue": "WWW X",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4741",
+  "note": "SMASH; international act",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Maika Loubté",
+   "食品まつり a.k.a foodman",
+   "Roronuph"
+  ],
+  "title": "Maika Loubté",
+  "date": "2026-11-13",
+  "venue": "WOMB LIVE",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4783",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "BACK DROP BOMB"
+  ],
+  "title": "BACK DROP BOMB",
+  "date": "2026-11-13",
   "venue": "LIQUIDROOM",
   "city": "Tokyo",
-  "area": "Ebisu",
-  "url": "https://eplus.jp/sf/detail/4617080001",
-  "note": "9mm.jp official schedule."
+  "url": "https://smash-jpn.com/live/?id=4730",
+  "note": "SMASH",
+  "area": "Shibuya"
  },
  {
   "acts": [
-   "菅原卓郎（9mm Parabellum Bullet）",
-   "フルカワユタカ"
+   "eastern youth"
   ],
-  "title": "THE SUN ALSO RISES vol.422 -F.A.D 30th Anniversary-",
-  "date": "2026-12-01",
-  "venue": "F.A.D YOKOHAMA",
-  "city": "Yokohama",
-  "area": "",
-  "url": "https://9mm.jp/live.php",
-  "note": "Takuro Sugawara solo/duo event listed under 'others' on 9mm.jp."
- },
- {
-  "acts": [
-   "Survive Said The Prophet",
-   "Dizzy Sunfist"
-  ],
-  "title": "RISING HALL 11th Birthday bash !! SHUNAN JAMBOREE",
+  "title": "eastern youth",
   "date": "2026-11-14",
-  "venue": "周南RISING HALL",
-  "city": "Shunan",
-  "area": "",
-  "url": "https://survivesaidtheprophet.com/live",
-  "note": "Open 16:45/Start 17:30 (official)."
+  "venue": "盛岡 CLUB CHANGE WAVE",
+  "city": "Morioka",
+  "url": "https://smash-jpn.com/live/?id=4717",
+  "note": "SMASH"
  },
  {
   "acts": [
-   "Survive Said The Prophet"
+   "Night Tempo"
   ],
-  "title": "Face | Face TOUR",
-  "date": "2026-11-21",
-  "venue": "甲府KAZOO HALL",
-  "city": "Kofu",
-  "area": "",
-  "url": "https://survivesaidtheprophet.com/live",
-  "note": "Official SSTP site. Open 17:00/Start 18:00."
- },
- {
-  "acts": [
-   "Survive Said The Prophet"
-  ],
-  "title": "Face | Face TOUR",
-  "date": "2026-11-28",
-  "venue": "群馬 DYVER",
-  "city": "Takasaki",
-  "area": "",
-  "url": "https://survivesaidtheprophet.com/live",
-  "note": "Official SSTP site. Open 17:00/Start 18:00. City inferred from venue."
- },
- {
-  "acts": [
-   "Survive Said The Prophet"
-  ],
-  "title": "Face | Face TOUR",
-  "date": "2026-12-04",
-  "venue": "新潟GOLDEN PIGS BLACK STAGE",
-  "city": "Niigata",
-  "area": "",
-  "url": "https://survivesaidtheprophet.com/live",
-  "note": "Official SSTP site. Open 18:00/Start 19:00."
- },
- {
-  "acts": [
-   "Survive Said The Prophet"
-  ],
-  "title": "Face | Face TOUR",
-  "date": "2026-12-06",
-  "venue": "渋谷CYCLONE",
-  "city": "Tokyo",
-  "area": "Shibuya",
-  "url": "https://survivesaidtheprophet.com/live",
-  "note": "Official SSTP site. Open 17:00/Start 18:00."
- },
- {
-  "acts": [
-   "SHANK",
-   "Survive Said The Prophet"
-  ],
-  "title": "SHANK “THE TOUR 2026”",
-  "date": "2026-11-25",
-  "venue": "福岡BEAT STATION",
-  "city": "Fukuoka",
-  "area": "",
-  "url": "https://survivesaidtheprophet.com/live",
-  "note": "Listed on SSTP official live page; SSTP presumably guest on SHANK's tour (not verified)."
- },
- {
-  "acts": [
-   "coldrain"
-  ],
-  "title": "OPTIMIZE = OPTDEMISE JAPAN TOUR 2026",
-  "date": "2026-11-29",
-  "venue": "仙台GIGS",
-  "city": "Sendai",
-  "area": "",
-  "url": "https://www.ticketjam.jp/tickets/coldrain/event_groups/337182",
-  "note": "Source: Natalie tour listing + ticketjam (coldrain.net not usable). Start 17:00."
- },
- {
-  "acts": [
-   "coldrain"
-  ],
-  "title": "OPTIMIZE = OPTDEMISE JAPAN TOUR 2026",
-  "date": "2026-12-01",
-  "venue": "なんばHatch",
-  "city": "Osaka",
-  "area": "",
-  "url": "https://www.ticketjam.jp/tickets/coldrain/event_groups/337182",
-  "note": "Source: Natalie tour listing + ticketjam (coldrain.net not usable). Start 19:00."
- },
- {
-  "acts": [
-   "coldrain"
-  ],
-  "title": "OPTIMIZE = OPTDEMISE JAPAN TOUR 2026",
-  "date": "2026-12-02",
-  "venue": "COMTEC PORTBASE",
+  "title": "Night Tempo",
+  "date": "2026-11-14",
+  "venue": "CLUB MAGO",
   "city": "Nagoya",
-  "area": "",
-  "url": "https://www.ticketjam.jp/tickets/coldrain/event_groups/337182",
-  "note": "Source: Natalie tour listing + ticketjam (coldrain.net not usable). Aichi; start 19:00."
+  "url": "https://smash-jpn.com/live/?id=4732",
+  "note": "SMASH"
  },
  {
   "acts": [
-   "coldrain"
+   "こんがりおんがく祭2026"
   ],
-  "title": "OPTIMIZE = OPTDEMISE JAPAN TOUR 2026",
-  "date": "2026-12-08",
-  "venue": "豊洲PIT",
-  "city": "Tokyo",
-  "area": "Koto",
-  "url": "https://www.ticketjam.jp/tickets/coldrain/event_groups/337182",
-  "note": "Source: Natalie tour listing + ticketjam (coldrain.net not usable). Start 19:00. Added Tokyo show."
- },
- {
-  "acts": [
-   "coldrain"
-  ],
-  "title": "OPTIMIZE = OPTDEMISE JAPAN TOUR 2026",
-  "date": "2026-12-09",
-  "venue": "豊洲PIT",
-  "city": "Tokyo",
-  "area": "Koto",
-  "url": "https://www.ticketjam.jp/tickets/coldrain/event_groups/337182",
-  "note": "Source: Natalie tour listing + ticketjam (coldrain.net not usable). Start 19:00. Added Tokyo show."
- },
- {
-  "acts": [
-   "People In The Box"
-  ],
-  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
-  "date": "2026-11-20",
-  "venue": "福岡 LIVE HOUSE CB",
-  "city": "Fukuoka",
-  "area": "",
-  "url": "https://www.peopleinthebox.com/live",
-  "note": "Official site."
- },
- {
-  "acts": [
-   "People In The Box"
-  ],
-  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
-  "date": "2026-11-22",
-  "venue": "高松 DIME",
-  "city": "Takamatsu",
-  "area": "",
-  "url": "https://www.peopleinthebox.com/live",
-  "note": "Official site."
- },
- {
-  "acts": [
-   "People In The Box"
-  ],
-  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
-  "date": "2026-11-25",
-  "venue": "恵比寿 The Garden Hall",
-  "city": "Tokyo",
-  "area": "Ebisu",
-  "url": "https://www.peopleinthebox.com/live",
-  "note": "Official site. Sold out; seated."
- },
- {
-  "acts": [
-   "People In The Box"
-  ],
-  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
-  "date": "2026-11-27",
-  "venue": "新潟 GOLDEN PIGS RED STAGE",
-  "city": "Niigata",
-  "area": "",
-  "url": "https://www.peopleinthebox.com/live",
-  "note": "Official site."
- },
- {
-  "acts": [
-   "People In The Box"
-  ],
-  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
-  "date": "2026-12-02",
-  "venue": "浜松 窓枠",
-  "city": "Hamamatsu",
-  "area": "",
-  "url": "https://www.peopleinthebox.com/live",
-  "note": "Official site."
- },
- {
-  "acts": [
-   "People In The Box"
-  ],
-  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
-  "date": "2026-12-04",
-  "venue": "神戸 VARIT.",
-  "city": "Kobe",
-  "area": "",
-  "url": "https://www.peopleinthebox.com/live",
-  "note": "Official site."
- },
- {
-  "acts": [
-   "People In The Box"
-  ],
-  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
-  "date": "2026-12-05",
-  "venue": "広島 Live space Reed",
-  "city": "Hiroshima",
-  "area": "",
-  "url": "https://www.peopleinthebox.com/live",
-  "note": "Official site."
- },
- {
-  "acts": [
-   "People In The Box"
-  ],
-  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
-  "date": "2026-12-11",
-  "venue": "札幌 近松",
-  "city": "Sapporo",
-  "area": "",
-  "url": "https://www.peopleinthebox.com/live",
-  "note": "Official site."
- },
- {
-  "acts": [
-   "People In The Box"
-  ],
-  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
-  "date": "2026-12-15",
-  "venue": "大阪 BananaHall",
+  "title": "こんがりおんがく祭2026",
+  "date": "2026-11-14",
+  "venue": "大阪城音楽堂",
   "city": "Osaka",
-  "area": "",
-  "url": "https://www.peopleinthebox.com/live",
-  "note": "Official site."
+  "url": "https://smash-jpn.com/live/?id=4750",
+  "note": "SMASH"
  },
  {
   "acts": [
-   "People In The Box"
+   "YONA YONA WEEKENDERS"
   ],
-  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
-  "date": "2026-12-16",
-  "venue": "名古屋 JAMMIN’",
-  "city": "Nagoya",
-  "area": "",
-  "url": "https://www.peopleinthebox.com/live",
-  "note": "Official site."
- },
- {
-  "acts": [
-   "People In The Box"
-  ],
-  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
-  "date": "2026-12-18",
-  "venue": "有楽町 ヒューリックホール東京",
-  "city": "Tokyo",
-  "area": "Yurakucho/Chiyoda",
-  "url": "https://www.peopleinthebox.com/live",
-  "note": "Official site. Sold out; seated."
- },
- {
-  "acts": [
-   "People In The Box"
-  ],
-  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
-  "date": "2026-12-20",
-  "venue": "仙台 LIVE HOUSE enn 2nd",
-  "city": "Sendai",
-  "area": "",
-  "url": "https://www.peopleinthebox.com/live",
-  "note": "Official site. Sold out."
- },
- {
-  "acts": [
-   "The BONEZ"
-  ],
-  "title": "MASTERPIECE 2026",
-  "date": "2026-11-28",
-  "venue": "信長 STAGE at 岐阜市文化センター",
-  "city": "Gifu",
-  "area": "",
-  "url": "https://www.livefans.jp/search?keyword=The+BONEZ",
-  "note": "Via livefans (not official); festival, other acts not captured."
- },
- {
-  "acts": [
-   "The BONEZ"
-  ],
-  "title": "BLAZE UP NAGASAKI 2026",
-  "date": "2026-12-05",
-  "venue": "出島メッセ長崎",
-  "city": "Nagasaki",
-  "area": "",
-  "url": "https://www.livefans.jp/search?keyword=The+BONEZ",
-  "note": "Via livefans; festival, start 17:00."
- },
- {
-  "acts": [
-   "The BONEZ",
-   "Sammy"
-  ],
-  "title": "Sammy presents NEW HORIZON FEST 2026",
-  "date": "2026-12-28",
-  "venue": "TOYOTA ARENA TOKYO",
-  "city": "Tokyo",
-  "area": "Koto",
-  "url": "https://www.livefans.jp/search?keyword=The+BONEZ",
-  "note": "Via livefans; full bill not captured."
- },
- {
-  "acts": [
-   "ANORAK!",
-   "Age Factory",
-   "Texas 3000"
-  ],
-  "title": "ANORAK! Presents FINGERS CROSSED Tour 2026",
-  "date": "2026-11-27",
-  "venue": "恵比寿LIQUIDROOM",
-  "city": "Tokyo",
-  "area": "Ebisu",
-  "url": "https://www.livefans.jp/search?keyword=ANORAK!",
-  "note": "Via livefans/realsound (5-date record release tour); not official site."
- },
- {
-  "acts": [
-   "ANORAK!",
-   "ENTH"
-  ],
-  "title": "ANORAK! Presents FINGERS CROSSED Tour 2026",
-  "date": "2026-12-10",
-  "venue": "名古屋CLUB QUATTRO",
-  "city": "Nagoya",
-  "area": "",
-  "url": "https://www.livefans.jp/search?keyword=ANORAK!",
-  "note": "Via livefans/realsound (5-date record release tour); not official site."
- },
- {
-  "acts": [
-   "ANORAK!",
-   "NOT WONK"
-  ],
-  "title": "ANORAK! Presents FINGERS CROSSED Tour 2026",
-  "date": "2026-12-11",
-  "venue": "F.A.D YOKOHAMA",
-  "city": "Yokohama",
-  "area": "",
-  "url": "https://www.livefans.jp/search?keyword=ANORAK!",
-  "note": "Via livefans/realsound (5-date record release tour); not official site."
- },
- {
-  "acts": [
-   "ANORAK!",
-   "KOTORI"
-  ],
-  "title": "ANORAK! Presents FINGERS CROSSED Tour 2026",
-  "date": "2026-12-20",
-  "venue": "Yogibo META VALLEY",
+  "title": "YONA YONA WEEKENDERS",
+  "date": "2026-11-14",
+  "venue": "UMEDA CLUB QUATTRO",
   "city": "Osaka",
-  "area": "",
-  "url": "https://www.livefans.jp/search?keyword=ANORAK!",
-  "note": "Via livefans/realsound (5-date record release tour); not official site."
+  "url": "https://smash-jpn.com/live/?id=4727",
+  "note": "SMASH"
  },
  {
   "acts": [
-   "ANORAK!",
-   "aryy",
-   "TIVE",
-   "Texas 3000"
+   "BAND-MAID"
   ],
-  "title": "ANORAK! Presents FINGERS CROSSED Tour 2026",
-  "date": "2026-12-21",
-  "venue": "奈良NEVER LAND",
-  "city": "Nara",
-  "area": "",
-  "url": "https://www.livefans.jp/search?keyword=ANORAK!",
-  "note": "Via livefans/realsound (5-date record release tour); not official site."
+  "title": "BAND-MAID",
+  "date": "2026-11-14",
+  "venue": "日本武道館",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/band-maid-world-tour-2026-final/",
+  "note": "Creativeman",
+  "area": "Chiyoda"
  },
  {
   "acts": [
-   "ANORAK!"
+   "eastern youth"
   ],
-  "title": "鹿オープンイベント “鹿由 -kayu- 2MAN”",
-  "date": "2027-01-17",
-  "venue": "LiveHouse鹿",
-  "city": "Kofu",
-  "area": "",
-  "url": "https://www.livefans.jp/search?keyword=ANORAK!",
-  "note": "Via livefans; Yamanashi; 2MAN, partner unknown."
- },
- {
-  "acts": [
-   "EMNW",
-   "Klang Ruler"
-  ],
-  "title": "EMNW To KAMASU “LOVING TO GET US BY” TOUR 2026",
-  "date": "2026-11-13",
-  "venue": "高松DIME",
-  "city": "Takamatsu",
-  "area": "",
-  "url": "https://eplus.jp/emnw",
-  "note": "Via eplus/livefans."
- },
- {
-  "acts": [
-   "EMNW",
-   "CVLTE"
-  ],
-  "title": "EMNW To KAMASU “LOVING TO GET US BY” TOUR 2026",
+  "title": "eastern youth",
   "date": "2026-11-15",
+  "venue": "Rensa",
+  "city": "Sendai",
+  "url": "https://smash-jpn.com/live/?id=4717",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "Maika Loubté"
+  ],
+  "title": "Maika Loubté",
+  "date": "2026-11-15",
+  "venue": "club(O)Utopos",
+  "city": "Sendai",
+  "url": "https://smash-jpn.com/live/?id=4783",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "象眠舎"
+  ],
+  "title": "象眠舎",
+  "date": "2026-11-17",
+  "venue": "BIGCAT",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4724",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "Atsuko Okatsuka"
+  ],
+  "title": "ATSUKO OKATSUKA",
+  "date": "2026-11-17",
+  "venue": "ヒューリックホール東京",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/atsuko-okatsuka26/",
+  "note": "Creativeman",
+  "area": "Taito"
+ },
+ {
+  "acts": [
+   "Blind Channel"
+  ],
+  "title": "BLIND CHANNEL",
+  "date": "2026-11-18",
+  "venue": "渋谷クラブクアトロ",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/blind-channel26/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Atsuko Okatsuka"
+  ],
+  "title": "ATSUKO OKATSUKA",
+  "date": "2026-11-18",
+  "venue": "ヒューリックホール東京",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/atsuko-okatsuka26/",
+  "note": "Creativeman",
+  "area": "Taito"
+ },
+ {
+  "acts": [
+   "YOGEE NEW WAVES",
+   "踊ってばかりの国"
+  ],
+  "title": "YOGEE NEW WAVES",
+  "date": "2026-11-18",
+  "venue": "Zepp DiverCity (TOKYO)",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4746",
+  "note": "SMASH",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "HOME",
+   "DONGURIZU"
+  ],
+  "title": "HOME",
+  "date": "2026-11-19",
+  "venue": "Club METRO",
+  "city": "Kyoto",
+  "url": "https://smash-jpn.com/live/?id=4772",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "Blind Channel"
+  ],
+  "title": "BLIND CHANNEL",
+  "date": "2026-11-19",
+  "venue": "梅田クラブクアトロ",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/event/blind-channel26/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "Rival Consoles",
+   "Daito Manabe"
+  ],
+  "title": "Rival Consoles",
+  "date": "2026-11-19",
+  "venue": "WWW X",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4777",
+  "note": "SMASH; international act",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Homecomings"
+  ],
+  "title": "Homecomings",
+  "date": "2026-11-20",
+  "venue": "サンケイホールブリーゼ",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4762",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "Rival Consoles"
+  ],
+  "title": "Rival Consoles",
+  "date": "2026-11-20",
+  "venue": "CIRCUS OSAKA",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4777",
+  "note": "SMASH; international act"
+ },
+ {
+  "acts": [
+   "スクールバッグ計画"
+  ],
+  "title": "スクールバッグ計画",
+  "date": "2026-11-20",
+  "venue": "シアターGロッソ",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/akb48_schoolbag/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "HOME",
+   "bed"
+  ],
+  "title": "HOME",
+  "date": "2026-11-20",
+  "venue": "WWW X",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4772",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "The Novembers"
+  ],
+  "title": "The Novembers",
+  "date": "2026-11-20",
+  "venue": "Spotify O-EAST",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4718",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "まらしぃ"
+  ],
+  "title": "まらしぃ",
+  "date": "2026-11-21",
+  "venue": "ロームシアター京都 サウスホール",
+  "city": "Kyoto",
+  "url": "https://smash-jpn.com/live/?id=4757",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "KOIAI"
+  ],
+  "title": "KOIAI",
+  "date": "2026-11-21",
+  "venue": "シアターGロッソ",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/koiai_1st-anniversary/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "5 Seconds of Summer"
+  ],
+  "title": "5 SECONDS OF SUMMER",
+  "date": "2026-11-21",
+  "venue": "SGC HALL ARIAKE",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/artist/2026/5sos/",
+  "note": "Creativeman",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "YONA YONA WEEKENDERS"
+  ],
+  "title": "YONA YONA WEEKENDERS",
+  "date": "2026-11-21",
+  "venue": "SHIBUYA CLUB QUATTRO",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4727",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "DYGL"
+  ],
+  "title": "DYGL",
+  "date": "2026-11-22",
+  "venue": "Shangri-La",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4758",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "5 Seconds of Summer"
+  ],
+  "title": "5 SECONDS OF SUMMER",
+  "date": "2026-11-22",
+  "venue": "SGC HALL ARIAKE",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/artist/2026/5sos/",
+  "note": "Creativeman",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "maya ongaku"
+  ],
+  "title": "maya ongaku",
+  "date": "2026-11-23",
+  "venue": "磔磔(takutaku)",
+  "city": "Kyoto",
+  "url": "https://smash-jpn.com/live/?id=4736",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "Maika Loubté"
+  ],
+  "title": "Maika Loubté",
+  "date": "2026-11-23",
+  "venue": "CIRCUS OSAKA",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4783",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "Wolf Alice"
+  ],
+  "title": "WOLF ALICE",
+  "date": "2026-11-23",
+  "venue": "豊洲PIT",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/wolf-alice26/",
+  "note": "Creativeman",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "Original Love",
+   "東京スカパラダイスオーケストラ ホーンセクション",
+   "長岡亮介",
+   "PUNPEE"
+  ],
+  "title": "Original Love",
+  "date": "2026-11-23",
+  "venue": "日本武道館",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4639",
+  "note": "SMASH",
+  "area": "Chiyoda"
+ },
+ {
+  "acts": [
+   "象眠舎"
+  ],
+  "title": "象眠舎",
+  "date": "2026-11-23",
+  "venue": "日本橋三井ホール",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4724",
+  "note": "SMASH",
+  "area": "Chuo"
+ },
+ {
+  "acts": [
+   "Night Tempo",
+   "相田翔子"
+  ],
+  "title": "Night Tempo",
+  "date": "2026-11-23",
+  "venue": "Spotify O-EAST",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4732",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "GARLICBOYS"
+  ],
+  "title": "GARLICBOYS",
+  "date": "2026-11-23",
+  "venue": "新代田Fever",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4742",
+  "note": "SMASH",
+  "area": "Setagaya"
+ },
+ {
+  "acts": [
+   "The Reytons",
+   "Casey Lowery"
+  ],
+  "title": "REYTONS",
+  "date": "2026-11-24",
+  "venue": "梅田Shangri-La",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/event/reytons26/",
+  "note": "Creativeman; Support Act: Casey Lowery"
+ },
+ {
+  "acts": [
+   "君島大空 合奏形態"
+  ],
+  "title": "君島大空 合奏形態",
+  "date": "2026-11-24",
+  "venue": "EX THEATER ROPPONGI",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4716",
+  "note": "SMASH",
+  "area": "Minato"
+ },
+ {
+  "acts": [
+   "Iron Maiden"
+  ],
+  "title": "IRON MAIDEN",
+  "date": "2026-11-24",
+  "venue": "K-Arena Yokohama",
+  "city": "Yokohama",
+  "url": "https://www.creativeman.co.jp/artist/2026/11ironmaiden/",
+  "note": "Creativeman; Run For Your Lives World Tour 2026 final (Japan)"
+ },
+ {
+  "acts": [
+   "The Novembers"
+  ],
+  "title": "The Novembers",
+  "date": "2026-11-25",
+  "venue": "JAMMIN'",
+  "city": "Nagoya",
+  "url": "https://smash-jpn.com/live/?id=4718",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "Michael Monroe"
+  ],
+  "title": "MICHAEL MONROE",
+  "date": "2026-11-25",
+  "venue": "梅田CLUB QUATTRO",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/event/michael-monroe26/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "Wolf Alice"
+  ],
+  "title": "WOLF ALICE",
+  "date": "2026-11-25",
+  "venue": "GORILLA HALL",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/event/wolf-alice26/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "Queens of the Stone Age"
+  ],
+  "title": "QUEENS OF THE STONE AGE",
+  "date": "2026-11-25",
+  "venue": "Zepp Haneda (TOKYO)",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/queens-of-the-stone-age_2026/",
+  "note": "Creativeman",
+  "area": "Ota"
+ },
+ {
+  "acts": [
+   "LOUDNESS"
+  ],
+  "title": "LOUDNESS",
+  "date": "2026-11-25",
+  "venue": "LINE CUBE SHIBUYA",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/loudness-45th-anniversary-chapter6/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "The Reytons",
+   "Casey Lowery"
+  ],
+  "title": "REYTONS",
+  "date": "2026-11-25",
+  "venue": "Shibuya WWW X",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/reytons26/",
+  "note": "Creativeman; Support Act: Casey Lowery",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "パソコン音楽クラブ"
+  ],
+  "title": "パソコン音楽クラブ",
+  "date": "2026-11-25",
+  "venue": "LIQUIDROOM",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4764",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Iron Maiden"
+  ],
+  "title": "IRON MAIDEN",
+  "date": "2026-11-25",
+  "venue": "K-Arena Yokohama",
+  "city": "Yokohama",
+  "url": "https://www.creativeman.co.jp/artist/2026/11ironmaiden/",
+  "note": "Creativeman; Run For Your Lives World Tour 2026 final (Japan)"
+ },
+ {
+  "acts": [
+   "Michael Monroe"
+  ],
+  "title": "MICHAEL MONROE",
+  "date": "2026-11-26",
+  "venue": "広島CLUB QUATTRO",
+  "city": "Hiroshima",
+  "url": "https://www.creativeman.co.jp/event/michael-monroe26/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "Queens of the Stone Age"
+  ],
+  "title": "QUEENS OF THE STONE AGE",
+  "date": "2026-11-26",
+  "venue": "Zepp Nagoya",
+  "city": "Nagoya",
+  "url": "https://www.creativeman.co.jp/event/queens-of-the-stone-age_2026/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "The Novembers"
+  ],
+  "title": "The Novembers",
+  "date": "2026-11-26",
+  "venue": "Music Club JANUS",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4718",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "Good Kid"
+  ],
+  "title": "GOOD KID",
+  "date": "2026-11-26",
+  "venue": "代官山 SPACE ODD",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/good-kid26/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Tahiti 80"
+  ],
+  "title": "TAHITI 80",
+  "date": "2026-11-26",
+  "venue": "Zepp DiverCity (TOKYO)",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/tahiti-80-live-in-tokyo_26/",
+  "note": "Creativeman",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "Michael Monroe"
+  ],
+  "title": "MICHAEL MONROE",
+  "date": "2026-11-27",
+  "venue": "Club METRO",
+  "city": "Kyoto",
+  "url": "https://www.creativeman.co.jp/event/michael-monroe26/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "LOUDNESS"
+  ],
+  "title": "LOUDNESS",
+  "date": "2026-11-27",
+  "venue": "NHK大阪ホール",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/event/loudness-45th-anniversary-chapter6/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "Fear, and Loathing in Las Vegas"
+  ],
+  "title": "Fear, and Loathing in Las Vegas",
+  "date": "2026-11-27",
+  "venue": "Zepp Haneda（TOKYO）",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/falilv-feeling-of-unity/",
+  "note": "Creativeman",
+  "area": "Ota"
+ },
+ {
+  "acts": [
+   "Ovall"
+  ],
+  "title": "Ovall",
+  "date": "2026-11-27",
+  "venue": "Spotify O-EAST",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4708",
+  "note": "SMASH; international act",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Tyrkouaz"
+  ],
+  "title": "Tyrkouaz",
+  "date": "2026-11-28",
+  "venue": "RAD SEVEN",
+  "city": "Nagoya",
+  "url": "https://www.creativeman.co.jp/event/tyrkouaz-2nd-one-man-tour/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "eastern youth"
+  ],
+  "title": "eastern youth",
+  "date": "2026-11-28",
+  "venue": "NAGOYA CLUB QUATTRO",
+  "city": "Nagoya",
+  "url": "https://smash-jpn.com/live/?id=4717",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "Queens of the Stone Age"
+  ],
+  "title": "QUEENS OF THE STONE AGE",
+  "date": "2026-11-28",
+  "venue": "Zepp Namba(OSAKA)",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/event/queens-of-the-stone-age_2026/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "Tyrkouaz"
+  ],
+  "title": "Tyrkouaz",
+  "date": "2026-11-29",
   "venue": "Yogibo HOLY MOUNTAIN",
   "city": "Osaka",
-  "area": "",
-  "url": "https://eplus.jp/emnw",
-  "note": "Via eplus/livefans."
+  "url": "https://www.creativeman.co.jp/event/tyrkouaz-2nd-one-man-tour/",
+  "note": "Creativeman"
  },
  {
   "acts": [
-   "EMNW",
-   "SHO-SENSEI!!"
+   "eastern youth"
   ],
-  "title": "EMNW To KAMASU “LOVING TO GET US BY” TOUR 2026",
+  "title": "eastern youth",
+  "date": "2026-11-29",
+  "venue": "UMEDA CLUB QUATTRO",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4717",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "mei ehara"
+  ],
+  "title": "mei ehara",
+  "date": "2026-11-29",
+  "venue": "Shangri-La",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4767",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "Michael Monroe"
+  ],
+  "title": "MICHAEL MONROE",
+  "date": "2026-11-30",
+  "venue": "名古屋CLUB QUATTRO",
+  "city": "Nagoya",
+  "url": "https://www.creativeman.co.jp/event/michael-monroe26/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "Two Door Cinema Club",
+   "chilldspot"
+  ],
+  "title": "TWO DOOR CINEMA CLUB",
+  "date": "2026-11-30",
+  "venue": "SGC HALL 有明",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/two-door-cinema-club_2026/",
+  "note": "Creativeman; Tokyo support: chilldspot",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "Two Door Cinema Club"
+  ],
+  "title": "TWO DOOR CINEMA CLUB",
+  "date": "2026-12-01",
+  "venue": "DIAMOND HALL",
+  "city": "Nagoya",
+  "url": "https://www.creativeman.co.jp/event/two-door-cinema-club_2026/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "MAZZEL"
+  ],
+  "title": "MAZZEL",
+  "date": "2026-12-01",
+  "venue": "大宮ソニックシティ 大ホール",
+  "city": "Saitama",
+  "url": "https://www.creativeman.co.jp/event/mazzel-2nd-fan-meeting/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "Michael Monroe"
+  ],
+  "title": "MICHAEL MONROE",
+  "date": "2026-12-01",
+  "venue": "EX THEATER ROPPONGI",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/michael-monroe26/",
+  "note": "Creativeman",
+  "area": "Minato"
+ },
+ {
+  "acts": [
+   "Evanescence",
+   "Ave Mujica"
+  ],
+  "title": "EVANESCENCE",
+  "date": "2026-12-01",
+  "venue": "SGC HALL ARIAKE",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/artist/2026/12evanescence/",
+  "note": "Creativeman; Support Act: Ave Mujica",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "Two Door Cinema Club"
+  ],
+  "title": "TWO DOOR CINEMA CLUB",
+  "date": "2026-12-02",
+  "venue": "Zepp Osaka Bayside",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/event/two-door-cinema-club_2026/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "Michael Monroe"
+  ],
+  "title": "MICHAEL MONROE",
+  "date": "2026-12-02",
+  "venue": "EX THEATER ROPPONGI",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/michael-monroe26/",
+  "note": "Creativeman",
+  "area": "Minato"
+ },
+ {
+  "acts": [
+   "Evanescence",
+   "Ave Mujica"
+  ],
+  "title": "EVANESCENCE",
+  "date": "2026-12-02",
+  "venue": "SGC HALL ARIAKE",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/artist/2026/12evanescence/",
+  "note": "Creativeman; Support Act: Ave Mujica",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "Fcukers"
+  ],
+  "title": "Fcukers",
+  "date": "2026-12-02",
+  "venue": "Zepp Shinjuku (TOKYO)",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4776",
+  "note": "SMASH; international act",
+  "area": "Shinjuku"
+ },
+ {
+  "acts": [
+   "Fcukers"
+  ],
+  "title": "Fcukers",
+  "date": "2026-12-03",
+  "venue": "Yogibo META VALLEY",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4776",
+  "note": "SMASH; international act"
+ },
+ {
+  "acts": [
+   "MAZZEL"
+  ],
+  "title": "MAZZEL",
+  "date": "2026-12-03",
+  "venue": "Gメッセ群馬 展示ホールＡ・B",
+  "city": "Takasaki",
+  "url": "https://www.creativeman.co.jp/event/mazzel-2nd-fan-meeting/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "Evanescence",
+   "Ave Mujica"
+  ],
+  "title": "EVANESCENCE",
+  "date": "2026-12-04",
+  "venue": "Zepp Osaka Bayside",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/artist/2026/12evanescence/",
+  "note": "Creativeman; Support Act: Ave Mujica"
+ },
+ {
+  "acts": [
+   "MAZZEL"
+  ],
+  "title": "MAZZEL",
+  "date": "2026-12-04",
+  "venue": "宇都宮市文化会館 大ホール",
+  "city": "Utsunomiya",
+  "url": "https://www.creativeman.co.jp/event/mazzel-2nd-fan-meeting/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "Maika Loubté"
+  ],
+  "title": "Maika Loubté",
+  "date": "2026-12-05",
+  "venue": "hamaya",
+  "city": "Niigata",
+  "url": "https://smash-jpn.com/live/?id=4783",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "OGRE YOU ASSHOLE"
+  ],
+  "title": "OGRE YOU ASSHOLE",
+  "date": "2026-12-05",
+  "venue": "Shangri-La",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4753",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "ANTHEM"
+  ],
+  "title": "ANTHEM",
+  "date": "2026-12-05",
+  "venue": "新横浜NEW SIDE BEACH!!",
+  "city": "Yokohama",
+  "url": "https://www.creativeman.co.jp/event/anthem-destroy-the-boredom-2026/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "ANTHEM"
+  ],
+  "title": "ANTHEM",
+  "date": "2026-12-06",
+  "venue": "新横浜NEW SIDE BEACH!!",
+  "city": "Yokohama",
+  "url": "https://www.creativeman.co.jp/event/anthem-destroy-the-boredom-2026/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "MC Tyson"
+  ],
+  "title": "MC TYSON",
+  "date": "2026-12-07",
+  "venue": "横浜アリーナ",
+  "city": "Yokohama",
+  "url": "https://www.creativeman.co.jp/event/mc-tyson/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "JAMES BLAKE"
+  ],
+  "title": "JAMES BLAKE",
+  "date": "2026-12-08",
+  "venue": "Zepp Haneda (TOKYO)",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4728",
+  "note": "SMASH; international act",
+  "area": "Ota"
+ },
+ {
+  "acts": [
+   "Jane Remover",
+   "dazegxd"
+  ],
+  "title": "Jane Remover",
+  "date": "2026-12-08",
+  "venue": "duo MUSIC EXCHANGE",
+  "city": "【追加公演】",
+  "url": "https://smash-jpn.com/live/?id=4769",
+  "note": "SMASH; international act"
+ },
+ {
+  "acts": [
+   "MAN WITH A MISSION"
+  ],
+  "title": "MAN WITH A MISSION",
+  "date": "2026-12-09",
+  "venue": "SGC HALL ARIAKE",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/mwam-firestarter-tour-2026/",
+  "note": "Creativeman",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "JAMES BLAKE"
+  ],
+  "title": "JAMES BLAKE",
+  "date": "2026-12-09",
+  "venue": "Zepp Haneda (TOKYO)",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4728",
+  "note": "SMASH; international act",
+  "area": "Ota"
+ },
+ {
+  "acts": [
+   "maya ongaku"
+  ],
+  "title": "maya ongaku",
+  "date": "2026-12-09",
+  "venue": "The Garden Hall",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4736",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Jane Remover",
+   "dazegxd"
+  ],
+  "title": "Jane Remover",
+  "date": "2026-12-09",
+  "venue": "WWW X",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4769",
+  "note": "SMASH; international act",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "MAN WITH A MISSION"
+  ],
+  "title": "MAN WITH A MISSION",
+  "date": "2026-12-10",
+  "venue": "SGC HALL ARIAKE",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/mwam-firestarter-tour-2026/",
+  "note": "Creativeman",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "Liza"
+  ],
+  "title": "Liza",
+  "date": "2026-12-10",
+  "venue": "Zepp Shinjuku (TOKYO)",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/liza26/",
+  "note": "Creativeman",
+  "area": "Shinjuku"
+ },
+ {
+  "acts": [
+   "DYGL"
+  ],
+  "title": "DYGL",
+  "date": "2026-12-10",
+  "venue": "LIQUIDROOM",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4758",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "SHERBETS"
+  ],
+  "title": "SHERBETS",
+  "date": "2026-12-10",
+  "venue": "Spotify O-EAST",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4765",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "KID FRESINO"
+  ],
+  "title": "KID FRESINO",
+  "date": "2026-12-10",
+  "venue": "LINE CUBE SHIBUYA（渋谷公会堂）",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4779",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "SiM"
+  ],
+  "title": "SiM",
+  "date": "2026-12-11",
+  "venue": "Spotify O-EAST",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4797",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "mei ehara"
+  ],
+  "title": "mei ehara",
+  "date": "2026-12-11",
+  "venue": "LIQUIDROOM",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4767",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "トリプルファイヤー"
+  ],
+  "title": "トリプルファイヤー",
+  "date": "2026-12-12",
+  "venue": "UMEDA CLUB QUATTRO",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4734",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "eastern youth"
+  ],
+  "title": "eastern youth",
+  "date": "2026-12-12",
+  "venue": "札幌ペニーレーン24",
+  "city": "Sapporo",
+  "url": "https://smash-jpn.com/live/?id=4717",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "DEVILOOF"
+  ],
+  "title": "DEVILOOF",
+  "date": "2026-12-12",
+  "venue": "SHIBUYA STREAM",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/deviloof-gokuraku/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "MARiA"
+  ],
+  "title": "MARiA",
+  "date": "2026-12-12",
+  "venue": "池袋harevutai",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/maria-chrysalis/",
+  "note": "Creativeman",
+  "area": "Toshima"
+ },
+ {
+  "acts": [
+   "花冷え。"
+  ],
+  "title": "花冷え。",
+  "date": "2026-12-12",
+  "venue": "Zepp Shinjuku",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/hanabie26/",
+  "note": "Creativeman",
+  "area": "Shinjuku"
+ },
+ {
+  "acts": [
+   "Maika Loubté"
+  ],
+  "title": "Maika Loubté",
+  "date": "2026-12-13",
+  "venue": "Monet",
+  "city": "Sendai",
+  "url": "https://smash-jpn.com/live/?id=4783",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "Tyrkouaz"
+  ],
+  "title": "Tyrkouaz",
+  "date": "2026-12-13",
+  "venue": "WWW",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/tyrkouaz-2nd-one-man-tour/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "KID FRESINO"
+  ],
+  "title": "KID FRESINO",
+  "date": "2026-12-14",
+  "venue": "フェスティバルホール",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4779",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "Cat Power",
+   "優河"
+  ],
+  "title": "CAT POWER",
+  "date": "2026-12-14",
+  "venue": "EX THEATER ROPPONGI",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/cat-power26/",
+  "note": "Creativeman; Support Act: 優河 (Yoga)",
+  "area": "Minato"
+ },
+ {
+  "acts": [
+   "Six60"
+  ],
+  "title": "SIX60",
+  "date": "2026-12-14",
+  "venue": "代官山 UNIT",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/six60-26/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "DIE SPITZ"
+  ],
+  "title": "DIE SPITZ",
+  "date": "2026-12-14",
+  "venue": "代官山 SPACE ODD",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/die-spitz26/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "DOMi & JD BECK"
+  ],
+  "title": "DOMi & JD BECK",
+  "date": "2026-12-15",
+  "venue": "豊洲PIT",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/domi-jd-beck26/",
+  "note": "Creativeman",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "REIKO"
+  ],
+  "title": "REIKO",
+  "date": "2026-12-15",
+  "venue": "SHIBUYA PLEASURE PLEASURE",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/reiko-winterland-vol3/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "A Perfect Circle",
+   "Puscifer"
+  ],
+  "title": "A Perfect Circle",
+  "date": "2026-12-15",
+  "venue": "Zepp DiverCity Tokyo",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/a-perfect-circle-puscifer/",
+  "note": "Creativeman; Special Guest: Puscifer",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "TENDRE"
+  ],
+  "title": "TENDRE",
+  "date": "2026-12-15",
+  "venue": "Spotify O-EAST",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4780",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Zilqy"
+  ],
+  "title": "Zilqy",
+  "date": "2026-12-16",
+  "venue": "Zepp Shinjuku (TOKYO)",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/zilqy_tour2026/",
+  "note": "Creativeman",
+  "area": "Shinjuku"
+ },
+ {
+  "acts": [
+   "Cat Power",
+   "優河"
+  ],
+  "title": "CAT POWER",
+  "date": "2026-12-17",
+  "venue": "GORILLA HALL OSAKA",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/event/cat-power26/",
+  "note": "Creativeman; Support Act: 優河 (Yoga)"
+ },
+ {
+  "acts": [
+   "DOMi & JD BECK"
+  ],
+  "title": "DOMi & JD BECK",
+  "date": "2026-12-17",
+  "venue": "Yogibo META VALLEY",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/event/domi-jd-beck26/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "A Perfect Circle",
+   "Puscifer"
+  ],
+  "title": "A Perfect Circle",
+  "date": "2026-12-17",
+  "venue": "Zepp Osaka Bayside",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/event/a-perfect-circle-puscifer/",
+  "note": "Creativeman; Special Guest: Puscifer"
+ },
+ {
+  "acts": [
+   "PassCode"
+  ],
+  "title": "PassCode",
+  "date": "2026-12-17",
+  "venue": "Zepp DiverCity(TOKYO)",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/passcode-unlimited-x/",
+  "note": "Creativeman",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "トリプルファイヤー"
+  ],
+  "title": "トリプルファイヤー",
+  "date": "2026-12-17",
+  "venue": "SHIBUYA CLUB QUATTRO",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4734",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "COUNTRY YARD",
+   "bacho",
+   "FOR A REASON"
+  ],
+  "title": "COUNTRY YARD pre. TOP OF THE HAZE \"DEEP TRIP\"",
+  "date": "2026-12-17",
+  "venue": "Spotify O-EAST",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4786",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "DOMi & JD BECK"
+  ],
+  "title": "DOMi & JD BECK",
+  "date": "2026-12-18",
+  "venue": "名古屋CLUB QUATTRO",
+  "city": "Nagoya",
+  "url": "https://www.creativeman.co.jp/event/domi-jd-beck26/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "PassCode"
+  ],
+  "title": "PassCode",
+  "date": "2026-12-18",
+  "venue": "Zepp DiverCity(TOKYO)",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/passcode-unlimited-x/",
+  "note": "Creativeman",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "サニーデイ・サービス"
+  ],
+  "title": "サニーデイ・サービス",
+  "date": "2026-12-18",
+  "venue": "LIQUIDROOM",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4773",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Ken Yokoyama",
+   "HAWAIIAN6"
+  ],
+  "title": "Ken Yokoyama",
+  "date": "2026-12-18",
+  "venue": "YOKOHAMA Bay Hall",
+  "city": "Yokohama",
+  "url": "https://smash-jpn.com/live/?id=4794",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "eastern youth"
+  ],
+  "title": "eastern youth",
+  "date": "2026-12-19",
+  "venue": "Spotify O-EAST",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4717",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "THE SKA FLAMES",
+   "DJ 大貫憲章"
+  ],
+  "title": "THE SKA FLAMES",
+  "date": "2026-12-19",
+  "venue": "SHIBUYA CLUB QUATTRO",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4791",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "OGRE YOU ASSHOLE"
+  ],
+  "title": "OGRE YOU ASSHOLE",
+  "date": "2026-12-19",
+  "venue": "LIQUIDROOM",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4753",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "BMSG TRAINEE"
+  ],
+  "title": "BMSG TRAINEE",
+  "date": "2026-12-19",
+  "venue": "横浜 BUNTAI",
+  "city": "Yokohama",
+  "url": "https://www.creativeman.co.jp/event/bmsg-trainee_2026/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "MONO NO AWARE"
+  ],
+  "title": "MONO NO AWARE",
+  "date": "2026-12-20",
+  "venue": "千葉LOOK",
+  "city": "Chiba",
+  "url": "https://smash-jpn.com/live/?id=4752",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "Spotify On Stage Tokyo 2026"
+  ],
+  "title": "Spotify On Stage Tokyo 2026",
+  "date": "2026-12-20",
+  "venue": "東京ガーデンシアター",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/spotify-on-stage-tokyo-2026/",
+  "note": "Creativeman",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "サニーデイ・サービス",
+   "テレビ大陸音頭"
+  ],
+  "title": "サニーデイ・サービス x テレビ大陸音頭",
+  "date": "2026-12-20",
+  "venue": "WWW X",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4799",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "BMSG TRAINEE"
+  ],
+  "title": "BMSG TRAINEE",
+  "date": "2026-12-20",
+  "venue": "横浜 BUNTAI",
+  "city": "Yokohama",
+  "url": "https://www.creativeman.co.jp/event/bmsg-trainee_2026/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "A Hundred Birds Orchestra",
+   "Barbara Tucker",
+   "Jenny B",
+   "Masaki Morii"
+  ],
+  "title": "A Hundred Birds Orchestra",
+  "date": "2026-12-24",
+  "venue": "なんばHatch",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4763",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "YONA YONA WEEKENDERS"
+  ],
+  "title": "YONA YONA WEEKENDERS",
+  "date": "2026-12-26",
+  "venue": "YOKOHAMA Bay Hall",
+  "city": "Yokohama",
+  "url": "https://smash-jpn.com/live/?id=4789",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "Sienna Spiro"
+  ],
+  "title": "SIENNA SPIRO",
+  "date": "2027-01-04",
+  "venue": "豊洲PIT",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/sienna-spiro_2027/",
+  "note": "Creativeman",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "Kim Gordon"
+  ],
+  "title": "KIM GORDON",
+  "date": "2027-01-06",
+  "venue": "Yogibo Meta Valley",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/event/kim-gordon_rosonicextra/",
+  "note": "Creativeman; rockin'on sonic extra"
+ },
+ {
+  "acts": [
+   "DAVE MATTHEWS"
+  ],
+  "title": "DAVE MATTHEWS",
+  "date": "2027-01-06",
+  "venue": "すみだトリフォニーホール",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4782",
+  "note": "SMASH; international act",
+  "area": "Sumida"
+ },
+ {
+  "acts": [
+   "Violet Grohl"
+  ],
+  "title": "VIOLET GROHL",
+  "date": "2027-01-07",
+  "venue": "梅田Shangri-La",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/event/violet-grohl_rosonicextra/",
+  "note": "Creativeman; rockin'on sonic extra"
+ },
+ {
+  "acts": [
+   "Kim Gordon"
+  ],
+  "title": "KIM GORDON",
+  "date": "2027-01-07",
+  "venue": "神田スクエアホール",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/kim-gordon_rosonicextra/",
+  "note": "Creativeman; rockin'on sonic extra",
+  "area": "Chiyoda"
+ },
+ {
+  "acts": [
+   "DAVE MATTHEWS"
+  ],
+  "title": "DAVE MATTHEWS",
+  "date": "2027-01-08",
+  "venue": "サンケイホールブリーゼ",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4782",
+  "note": "SMASH; international act"
+ },
+ {
+  "acts": [
+   "Dove Ellis"
+  ],
+  "title": "DOVE ELLIS",
+  "date": "2027-01-08",
+  "venue": "代官山UNIT",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/dove-ellis_rosonicextra/",
+  "note": "Creativeman; rockin'on sonic extra",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Violet Grohl"
+  ],
+  "title": "VIOLET GROHL",
+  "date": "2027-01-08",
+  "venue": "代官山Space Odd",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/violet-grohl_rosonicextra/",
+  "note": "Creativeman; rockin'on sonic extra",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "OddRe:"
+  ],
+  "title": "OddRe:",
+  "date": "2027-01-08",
+  "venue": "Spotify O-EAST",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/oddre-japan-tour-2026-2027/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Bloc Party",
+   "Dinosaur Jr.",
+   "Kim Gordon",
+   "Violet Grohl"
+  ],
+  "title": "rockin'on sonic 2027",
+  "date": "2027-01-09",
+  "venue": "SGC HALL ARIAKE",
+  "city": "Tokyo",
+  "area": "Koto",
+  "url": "https://rockinonsonic.com/",
+  "note": "Creativeman festival; western acts only, 8 acts over 2 days"
+ },
+ {
+  "acts": [
+   "DAVE MATTHEWS"
+  ],
+  "title": "DAVE MATTHEWS",
+  "date": "2027-01-10",
+  "venue": "京都コンサートホール アンサンブルホールムラタ",
+  "city": "Kyoto",
+  "url": "https://smash-jpn.com/live/?id=4782",
+  "note": "SMASH; international act"
+ },
+ {
+  "acts": [
+   "Suede",
+   "Pale Waves",
+   "Kula Shaker",
+   "Dove Ellis"
+  ],
+  "title": "rockin'on sonic 2027",
+  "date": "2027-01-10",
+  "venue": "SGC HALL ARIAKE",
+  "city": "Tokyo",
+  "area": "Koto",
+  "url": "https://rockinonsonic.com/",
+  "note": "Creativeman festival; western acts only, 8 acts over 2 days"
+ },
+ {
+  "acts": [
+   "saccharin"
+  ],
+  "title": "saccharin",
+  "date": "2027-01-10",
+  "venue": "WWW",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4770",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "サニーデイ・サービス"
+  ],
+  "title": "サニーデイ・サービス",
+  "date": "2027-01-11",
+  "venue": "千葉LOOK",
+  "city": "Chiba",
+  "url": "https://smash-jpn.com/live/?id=4788",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "DAVE MATTHEWS"
+  ],
+  "title": "DAVE MATTHEWS",
+  "date": "2027-01-11",
+  "venue": "DIAMOND HALL（ダイアモンドホール）",
+  "city": "Nagoya",
+  "url": "https://smash-jpn.com/live/?id=4782",
+  "note": "SMASH; international act"
+ },
+ {
+  "acts": [
+   "Pale Waves"
+  ],
+  "title": "PALE WAVES",
+  "date": "2027-01-11",
+  "venue": "梅田 CLUB QUATTRO",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/event/pale-waves_rosonicextra/",
+  "note": "Creativeman; rockin'on sonic extra"
+ },
+ {
+  "acts": [
+   "BE:FIRST"
+  ],
+  "title": "BE:FIRST",
+  "date": "2027-01-11",
+  "venue": "東京ドーム",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/befirst27/",
+  "note": "Creativeman",
+  "area": "Bunkyo"
+ },
+ {
+  "acts": [
+   "Kula Shaker"
+  ],
+  "title": "KULA SHAKER",
+  "date": "2027-01-12",
+  "venue": "名古屋 DIAMOND HALL",
+  "city": "Nagoya",
+  "url": "https://www.creativeman.co.jp/event/kula-shaker_rosonicextra/",
+  "note": "Creativeman; rockin'on sonic extra"
+ },
+ {
+  "acts": [
+   "Suede",
+   "Bloc Party"
+  ],
+  "title": "SUEDE / BLOC PARTY",
+  "date": "2027-01-12",
+  "venue": "Zepp Osaka Bayside",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/event/suede-bloc-party_rosonicextra/",
+  "note": "Creativeman; rockin'on sonic extra"
+ },
+ {
+  "acts": [
+   "BE:FIRST"
+  ],
+  "title": "BE:FIRST",
+  "date": "2027-01-12",
+  "venue": "東京ドーム",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/befirst27/",
+  "note": "Creativeman",
+  "area": "Bunkyo"
+ },
+ {
+  "acts": [
+   "Kula Shaker"
+  ],
+  "title": "KULA SHAKER",
+  "date": "2027-01-13",
+  "venue": "BIGCAT",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/event/kula-shaker_rosonicextra/",
+  "note": "Creativeman; rockin'on sonic extra"
+ },
+ {
+  "acts": [
+   "まふまふ"
+  ],
+  "title": "まふまふ",
+  "date": "2027-01-16",
+  "venue": "国立代々木競技場 第一体育館",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/mafumafu27/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "yonige"
+  ],
+  "title": "yonige",
+  "date": "2027-01-16",
+  "venue": "Spotify O-EAST",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4745",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "サニーデイ・サービス"
+  ],
+  "title": "サニーデイ・サービス",
+  "date": "2027-01-16",
+  "venue": "CLUB GATE",
+  "city": "Wakayama",
+  "url": "https://smash-jpn.com/live/?id=4788",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "サニーデイ・サービス"
+  ],
+  "title": "サニーデイ・サービス",
+  "date": "2027-01-17",
+  "venue": "尾道BxB",
+  "city": "Hiroshima",
+  "url": "https://smash-jpn.com/live/?id=4788",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "まふまふ"
+  ],
+  "title": "まふまふ",
+  "date": "2027-01-17",
+  "venue": "国立代々木競技場 第一体育館",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/mafumafu27/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "MAN WITH A MISSION"
+  ],
+  "title": "MAN WITH A MISSION",
+  "date": "2027-01-20",
+  "venue": "Zepp Haneda(TOKYO)",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/man-with-a-mission_2027/",
+  "note": "Creativeman",
+  "area": "Ota"
+ },
+ {
+  "acts": [
+   "MAN WITH A MISSION"
+  ],
+  "title": "MAN WITH A MISSION",
+  "date": "2027-01-21",
+  "venue": "Zepp Haneda(TOKYO)",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/man-with-a-mission_2027/",
+  "note": "Creativeman",
+  "area": "Ota"
+ },
+ {
+  "acts": [
+   "SIRUP"
+  ],
+  "title": "SIRUP",
+  "date": "2027-01-21",
+  "venue": "KT Zepp Yokohama",
+  "city": "Yokohama",
+  "url": "https://www.creativeman.co.jp/event/sirup-tour-2027/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "The Lemon Twigs"
+  ],
+  "title": "THE LEMON TWIGS",
+  "date": "2027-01-22",
+  "venue": "恵比寿 ザ・ガーデンホール",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/the-lemon-twigs_2027/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Furui Riho"
+  ],
+  "title": "Furui Riho",
+  "date": "2027-01-22",
+  "venue": "LINE CUBE SHIBUYA",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/furui-riho-hall-tour-2027/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "The Lemon Twigs"
+  ],
+  "title": "THE LEMON TWIGS",
+  "date": "2027-01-23",
+  "venue": "Club METRO",
+  "city": "Kyoto",
+  "url": "https://www.creativeman.co.jp/event/the-lemon-twigs_2027/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "INCOGNITO"
+  ],
+  "title": "INCOGNITO",
+  "date": "2027-01-23",
+  "venue": "Zepp Namba(OSAKA)",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4790",
+  "note": "SMASH; international act"
+ },
+ {
+  "acts": [
+   "a子"
+  ],
+  "title": "a子",
+  "date": "2027-01-23",
+  "venue": "SPACE ODD",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/ako-londog/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "The Lemon Twigs"
+  ],
+  "title": "THE LEMON TWIGS",
+  "date": "2027-01-24",
+  "venue": "Yogibo META VALLEY",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/event/the-lemon-twigs_2027/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "kurayamisaka"
+  ],
+  "title": "kurayamisaka",
+  "date": "2027-01-24",
+  "venue": "KT Zepp Yokohama",
+  "city": "Yokohama",
+  "url": "https://smash-jpn.com/live/?id=4733",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "FONTAINES D.C."
+  ],
+  "title": "FONTAINES D.C.",
+  "date": "2027-01-28",
+  "venue": "SGC HALL ARIAKE",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4784",
+  "note": "SMASH; international act",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "FONTAINES D.C."
+  ],
+  "title": "FONTAINES D.C.",
+  "date": "2027-01-29",
+  "venue": "DIAMOND HALL（ダイアモンドホール）",
+  "city": "Nagoya",
+  "url": "https://smash-jpn.com/live/?id=4784",
+  "note": "SMASH; international act"
+ },
+ {
+  "acts": [
+   "D.A.N."
+  ],
+  "title": "D.A.N.",
+  "date": "2027-01-29",
+  "venue": "BIGCAT",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4793",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "sace6"
+  ],
+  "title": "sace6",
+  "date": "2027-01-29",
+  "venue": "代官山 SPACE ODD",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/sace6_2027/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "T字路s"
+  ],
+  "title": "T字路s",
+  "date": "2027-01-29",
+  "venue": "EX THEATER ROPPONGI",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4792",
+  "note": "SMASH",
+  "area": "Minato"
+ },
+ {
+  "acts": [
+   "saccharin"
+  ],
+  "title": "saccharin",
+  "date": "2027-01-30",
+  "venue": "CONPASS",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4770",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "Element Sicks"
+  ],
+  "title": "Element Sicks",
+  "date": "2027-01-30",
+  "venue": "立川ステージガーデン",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/element-sicks27/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "Geloomy"
+  ],
+  "title": "Geloomy",
+  "date": "2027-01-30",
+  "venue": "東京キネマ倶楽部",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4800",
+  "note": "SMASH",
+  "area": "Taito"
+ },
+ {
+  "acts": [
+   "FONTAINES D.C."
+  ],
+  "title": "FONTAINES D.C.",
+  "date": "2027-01-31",
+  "venue": "なんばHatch",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4784",
+  "note": "SMASH; international act"
+ },
+ {
+  "acts": [
+   "Element Sicks"
+  ],
+  "title": "Element Sicks",
+  "date": "2027-01-31",
+  "venue": "立川ステージガーデン",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/element-sicks27/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "The Snuts"
+  ],
+  "title": "THE SNUTS",
+  "date": "2027-02-01",
+  "venue": "渋谷 CLUB QUATTRO",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/the_snuts_2027/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "The Snuts"
+  ],
+  "title": "THE SNUTS",
+  "date": "2027-02-02",
+  "venue": "梅田 CLUB QUATTRO",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/event/the_snuts_2027/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "Ari Hicks"
+  ],
+  "title": "Ari Hicks",
+  "date": "2027-02-02",
+  "venue": "代官山 SPACE ODD",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/ari-hicks26/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Public Image Ltd."
+  ],
+  "title": "PUBLIC IMAGE LTD.",
+  "date": "2027-02-03",
+  "venue": "DIAMOND HALL",
+  "city": "Nagoya",
+  "url": "https://www.creativeman.co.jp/event/pil27/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "Public Image Ltd."
+  ],
+  "title": "PUBLIC IMAGE LTD.",
+  "date": "2027-02-05",
+  "venue": "なんばHatch",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/event/pil27/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "サニーデイ・サービス"
+  ],
+  "title": "サニーデイ・サービス",
+  "date": "2027-02-06",
+  "venue": "GEILS",
+  "city": "Saga",
+  "url": "https://smash-jpn.com/live/?id=4788",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "サニーデイ・サービス"
+  ],
+  "title": "サニーデイ・サービス",
+  "date": "2027-02-07",
+  "venue": "AT HALL",
+  "city": "Oita",
+  "url": "https://smash-jpn.com/live/?id=4788",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "jizue"
+  ],
+  "title": "jizue",
+  "date": "2027-02-07",
+  "venue": "大手町三井ホール",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4771",
+  "note": "SMASH",
+  "area": "Chiyoda"
+ },
+ {
+  "acts": [
+   "Public Image Ltd."
+  ],
+  "title": "PUBLIC IMAGE LTD.",
+  "date": "2027-02-07",
+  "venue": "横浜 BAYHALL",
+  "city": "Yokohama",
+  "url": "https://www.creativeman.co.jp/event/pil27/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "Finn Wolfhard"
+  ],
+  "title": "FINN WOLFHARD",
+  "date": "2027-02-08",
+  "venue": "Yogibo META VALLEY",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/event/finn-wolfhard_2027/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "Public Image Ltd."
+  ],
+  "title": "PUBLIC IMAGE LTD.",
+  "date": "2027-02-08",
+  "venue": "TOYOSU PIT",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/pil27/",
+  "note": "Creativeman",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "Finn Wolfhard"
+  ],
+  "title": "FINN WOLFHARD",
+  "date": "2027-02-09",
+  "venue": "Spotify O-EAST",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/finn-wolfhard_2027/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Michael Kaneko"
+  ],
+  "title": "Michael Kaneko",
+  "date": "2027-02-11",
+  "venue": "KDハポン",
+  "city": "Nagoya",
+  "url": "https://smash-jpn.com/live/?id=4803",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "Michael Kaneko"
+  ],
+  "title": "Michael Kaneko",
+  "date": "2027-02-12",
+  "venue": "CONPASS",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4803",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "Weezer"
+  ],
+  "title": "WEEZER",
+  "date": "2027-02-12",
+  "venue": "TOKYO GARDEN THEATER",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/artist/2027/02weezer/",
+  "note": "Creativeman",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "Weezer"
+  ],
+  "title": "WEEZER",
+  "date": "2027-02-13",
+  "venue": "TOKYO GARDEN THEATER",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/artist/2027/02weezer/",
+  "note": "Creativeman",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "サニーデイ・サービス"
+  ],
+  "title": "サニーデイ・サービス",
+  "date": "2027-02-14",
+  "venue": "mito LIGHT HOUSE",
+  "city": "Mito",
+  "url": "https://smash-jpn.com/live/?id=4788",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "Weezer"
+  ],
+  "title": "WEEZER",
+  "date": "2027-02-15",
+  "venue": "ROHM Theatre Kyoto Main Hall",
+  "city": "Kyoto",
+  "url": "https://www.creativeman.co.jp/artist/2027/02weezer/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "Weezer"
+  ],
+  "title": "WEEZER",
+  "date": "2027-02-16",
+  "venue": "Zepp Osaka Bayside",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/artist/2027/02weezer/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "THE INSPECTOR CLUZO"
+  ],
+  "title": "THE INSPECTOR CLUZO",
+  "date": "2027-02-16",
+  "venue": "WWW",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4775",
+  "note": "SMASH; international act",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "THE INSPECTOR CLUZO"
+  ],
+  "title": "THE INSPECTOR CLUZO",
+  "date": "2027-02-17",
+  "venue": "Yogibo HOLY MOUNTAIN",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4775",
+  "note": "SMASH; international act"
+ },
+ {
+  "acts": [
+   "Chapterhouse"
+  ],
+  "title": "CHAPTERHOUSE",
+  "date": "2027-02-17",
+  "venue": "Shibuya Spotify O-EAST",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/chapterhouse27/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Weezer"
+  ],
+  "title": "WEEZER",
+  "date": "2027-02-18",
+  "venue": "COMTEC PORTBASE",
+  "city": "Nagoya",
+  "url": "https://www.creativeman.co.jp/artist/2027/02weezer/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "Chapterhouse"
+  ],
+  "title": "CHAPTERHOUSE",
+  "date": "2027-02-18",
+  "venue": "246 LIVEHOUSE GABU",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/event/chapterhouse27/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "MONO NO AWARE"
+  ],
+  "title": "MONO NO AWARE",
+  "date": "2027-02-20",
+  "venue": "西川口 Hearts",
+  "city": "Saitama",
+  "url": "https://smash-jpn.com/live/?id=4752",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "MONO NO AWARE"
+  ],
+  "title": "MONO NO AWARE",
+  "date": "2027-02-21",
+  "venue": "Thunder Snake ATSUGI",
+  "city": "Yokohama",
+  "url": "https://smash-jpn.com/live/?id=4752",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "H ZETT M"
+  ],
+  "title": "H ZETT M",
+  "date": "2027-02-23",
+  "venue": "SPACE14",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4756",
+  "note": "SMASH"
+ },
+ {
+  "acts": [
+   "SIRUP"
+  ],
+  "title": "SIRUP",
+  "date": "2027-02-23",
+  "venue": "Zepp DiverCity Tokyo",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/sirup-tour-2027/",
+  "note": "Creativeman",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "SKRYU"
+  ],
+  "title": "SKRYU",
+  "date": "2027-02-23",
+  "venue": "Kanadevia Hall",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/skryu-live-tour-2027/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "JON CLEARY"
+  ],
+  "title": "JON CLEARY",
+  "date": "2027-02-24",
+  "venue": "UMEDA CLUB QUATTRO",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4781",
+  "note": "SMASH; international act"
+ },
+ {
+  "acts": [
+   "Sleep Theory"
+  ],
+  "title": "SLEEP THEORY",
+  "date": "2027-02-24",
+  "venue": "Spotify O-EAST",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/sleep-theory_2027/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Paledusk"
+  ],
+  "title": "Paledusk",
+  "date": "2027-02-24",
+  "venue": "Zepp Haneda（TOKYO）",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/paledusk-live/",
+  "note": "Creativeman",
+  "area": "Ota"
+ },
+ {
+  "acts": [
+   "板歯目"
+  ],
+  "title": "板歯目",
+  "date": "2027-02-24",
+  "venue": "渋谷 CLUB QUATTRO",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/banshimoku-iai/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "DIIV"
+  ],
+  "title": "DIIV",
+  "date": "2027-02-24",
+  "venue": "KANDA SQUARE HALL",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4801",
+  "note": "SMASH; international act",
+  "area": "Chiyoda"
+ },
+ {
+  "acts": [
+   "SKRYU"
+  ],
+  "title": "SKRYU",
+  "date": "2027-02-25",
+  "venue": "高崎芸術劇場 大劇場",
+  "city": "Takasaki",
+  "url": "https://www.creativeman.co.jp/event/skryu-live-tour-2027/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "Gurriers"
+  ],
+  "title": "GURRIERS",
+  "date": "2027-02-25",
+  "venue": "代官山UNIT",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/gurriers27/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "NOTD"
+  ],
+  "title": "NOTD",
+  "date": "2027-02-25",
+  "venue": "Zepp Shinjuku (TOKYO)",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4778",
+  "note": "SMASH; international act",
+  "area": "Shinjuku"
+ },
+ {
+  "acts": [
+   "JON CLEARY"
+  ],
+  "title": "JON CLEARY",
+  "date": "2027-02-25",
+  "venue": "SHIBUYA PLEASURE PLEASURE",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4781",
+  "note": "SMASH; international act",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "DIIV"
+  ],
+  "title": "DIIV",
+  "date": "2027-02-25",
+  "venue": "KANDA SQUARE HALL",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4801",
+  "note": "SMASH; international act",
+  "area": "Chiyoda"
+ },
+ {
+  "acts": [
+   "NOTD"
+  ],
+  "title": "NOTD",
+  "date": "2027-02-26",
+  "venue": "BIGCAT",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4778",
+  "note": "SMASH; international act"
+ },
+ {
+  "acts": [
+   "JON CLEARY"
+  ],
+  "title": "JON CLEARY",
+  "date": "2027-02-26",
+  "venue": "SHIBUYA PLEASURE PLEASURE",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4781",
+  "note": "SMASH; international act",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Michael Kaneko"
+  ],
+  "title": "Michael Kaneko",
+  "date": "2027-02-26",
+  "venue": "代官山UNIT",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4803",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "otsumami feat.mikan"
+  ],
+  "title": "otsumami feat.mikan",
+  "date": "2027-02-27",
+  "venue": "渋谷 CLUB QUATTRO",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/otsumami-feat-mikan-2027/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "FAKE? LIVE 2027 「Full Circle」"
+  ],
+  "title": "FAKE? LIVE 2027 「Full Circle」",
+  "date": "2027-02-28",
+  "venue": "Spotify O-EAST",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/fake-live-2027/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Atsuko Okatsuka"
+  ],
+  "title": "ATSUKO OKATSUKA",
+  "date": "2027-03-03",
+  "venue": "東京国際フォーラム ホールA",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/atsuko-okatsuka27/",
+  "note": "Creativeman",
+  "area": "Chiyoda"
+ },
+ {
+  "acts": [
+   "WESTSIDE COWBOY"
+  ],
+  "title": "WESTSIDE COWBOY",
+  "date": "2027-03-04",
+  "venue": "WWW X",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4795",
+  "note": "SMASH; international act",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Natsudaidai"
+  ],
+  "title": "Natsudaidai",
+  "date": "2027-03-05",
+  "venue": "WWW",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4787",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "BE:FIRST"
+  ],
+  "title": "BE:FIRST",
+  "date": "2027-03-06",
+  "venue": "ベルーナドーム（西武ドーム）",
+  "city": "Saitama",
+  "url": "https://www.creativeman.co.jp/event/befirst27/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "BE:FIRST"
+  ],
+  "title": "BE:FIRST",
+  "date": "2027-03-07",
+  "venue": "ベルーナドーム（西武ドーム）",
+  "city": "Saitama",
+  "url": "https://www.creativeman.co.jp/event/befirst27/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "REAL TRAUM"
+  ],
+  "title": "REAL TRAUM",
+  "date": "2027-03-07",
+  "venue": "LINE CUBE SHIBUYA",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/real-traum/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Underworld",
+   "Brutalismus3000"
+  ],
+  "title": "Underworld x Brutalismus3000 Live in Japan 2027",
+  "date": "2027-03-11",
+  "venue": "SGC HALL ARIAKE",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/artist/2027/03uw_b3k/",
+  "note": "Creativeman",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "Feeble Little Horse"
+  ],
+  "title": "feeble little horse",
+  "date": "2027-03-11",
+  "venue": "代官山 SPACE ODD",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/feeble-little-horse/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Feeble Little Horse"
+  ],
+  "title": "feeble little horse",
+  "date": "2027-03-12",
+  "venue": "代官山 SPACE ODD",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/feeble-little-horse/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Aile The Shota"
+  ],
+  "title": "Aile The Shota",
+  "date": "2027-03-13",
+  "venue": "日本武道館",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/aile-the-shota27/",
+  "note": "Creativeman",
+  "area": "Chiyoda"
+ },
+ {
+  "acts": [
+   "RED WARRIORS"
+  ],
+  "title": "RED WARRIORS",
+  "date": "2027-03-14",
+  "venue": "日本武道館",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/red-warriors-2027/",
+  "note": "Creativeman",
+  "area": "Chiyoda"
+ },
+ {
+  "acts": [
+   "「うたの☆プリンスさまっ♪ ALL STAR STAGE -BEGINNING-」"
+  ],
+  "title": "「うたの☆プリンスさまっ♪ ALL STAR STAGE -BEGINNING-」",
+  "date": "2027-03-18",
+  "venue": "幕張メッセ",
+  "city": "Chiba",
+  "url": "https://www.creativeman.co.jp/event/utanoprince-all-star-stage-beginning/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "TINARIWEN"
+  ],
+  "title": "TINARIWEN",
+  "date": "2027-03-18",
+  "venue": "duo MUSIC EXCHANGE",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4798",
+  "note": "SMASH; international act",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "「うたの☆プリンスさまっ♪ ALL STAR STAGE -BEGINNING-」"
+  ],
+  "title": "「うたの☆プリンスさまっ♪ ALL STAR STAGE -BEGINNING-」",
+  "date": "2027-03-19",
+  "venue": "幕張メッセ",
+  "city": "Chiba",
+  "url": "https://www.creativeman.co.jp/event/utanoprince-all-star-stage-beginning/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "TINARIWEN"
+  ],
+  "title": "TINARIWEN",
+  "date": "2027-03-19",
+  "venue": "Shangri-La",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4798",
+  "note": "SMASH; international act"
+ },
+ {
+  "acts": [
+   "chilldspot"
+  ],
+  "title": "chilldspot",
+  "date": "2027-03-19",
+  "venue": "恵比寿 LIQUIDROOM",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/chilldspot-6th-one-man/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "「うたの☆プリンスさまっ♪ ALL STAR STAGE -BEGINNING-」"
+  ],
+  "title": "「うたの☆プリンスさまっ♪ ALL STAR STAGE -BEGINNING-」",
+  "date": "2027-03-20",
+  "venue": "幕張メッセ",
+  "city": "Chiba",
+  "url": "https://www.creativeman.co.jp/event/utanoprince-all-star-stage-beginning/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "FAKE? LIVE 2027 「Full Circle」"
+  ],
+  "title": "FAKE? LIVE 2027 「Full Circle」",
+  "date": "2027-03-20",
+  "venue": "EX THEATER ROPPONGI",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/fake-live-2027/",
+  "note": "Creativeman",
+  "area": "Minato"
+ },
+ {
+  "acts": [
+   "「うたの☆プリンスさまっ♪ ALL STAR STAGE -BEGINNING-」"
+  ],
+  "title": "「うたの☆プリンスさまっ♪ ALL STAR STAGE -BEGINNING-」",
+  "date": "2027-03-21",
+  "venue": "幕張メッセ",
+  "city": "Chiba",
+  "url": "https://www.creativeman.co.jp/event/utanoprince-all-star-stage-beginning/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "すたぽら（StarLight PolaRis）"
+  ],
+  "title": "すたぽら（StarLight PolaRis）",
+  "date": "2027-03-21",
+  "venue": "立川ステージガーデン",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/tarlight-polaris27/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "Jeremy Quartus"
+  ],
+  "title": "Jeremy Quartus",
+  "date": "2027-03-21",
+  "venue": "EX THEATER ROPPONGI",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/jeremy-quartus-patchwork-coyote/",
+  "note": "Creativeman",
+  "area": "Minato"
+ },
+ {
+  "acts": [
+   "「うたの☆プリンスさまっ♪ ALL STAR STAGE -BEGINNING-」"
+  ],
+  "title": "「うたの☆プリンスさまっ♪ ALL STAR STAGE -BEGINNING-」",
+  "date": "2027-03-22",
+  "venue": "幕張メッセ",
+  "city": "Chiba",
+  "url": "https://www.creativeman.co.jp/event/utanoprince-all-star-stage-beginning/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "すたぽら（StarLight PolaRis）"
+  ],
+  "title": "すたぽら（StarLight PolaRis）",
+  "date": "2027-03-22",
+  "venue": "立川ステージガーデン",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/tarlight-polaris27/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "BROKEN SOCIAL SCENE"
+  ],
+  "title": "BROKEN SOCIAL SCENE",
+  "date": "2027-03-30",
+  "venue": "EX THEATER ROPPONGI",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4785",
+  "note": "SMASH; international act",
+  "area": "Minato"
+ },
+ {
+  "acts": [
+   "BROKEN SOCIAL SCENE"
+  ],
+  "title": "BROKEN SOCIAL SCENE",
+  "date": "2027-03-31",
+  "venue": "UMEDA CLUB QUATTRO",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4785",
+  "note": "SMASH; international act"
+ },
+ {
+  "acts": [
+   "Les Imprimés"
+  ],
+  "title": "Les Imprimés",
+  "date": "2027-04-01",
+  "venue": "WWW X",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4804",
+  "note": "SMASH; international act",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Les Imprimés"
+  ],
+  "title": "Les Imprimés",
+  "date": "2027-04-02",
+  "venue": "Music Club JANUS",
+  "city": "Osaka",
+  "url": "https://smash-jpn.com/live/?id=4804",
+  "note": "SMASH; international act"
+ },
+ {
+  "acts": [],
+  "title": "GMO SONIC 2027",
+  "date": "2027-04-03",
+  "venue": "GMO Arena Saitama",
+  "city": "Saitama",
+  "url": "https://sonic.gmo/",
+  "note": "Creativeman festival; lineup TBA"
+ },
+ {
+  "acts": [],
+  "title": "GMO SONIC 2027",
+  "date": "2027-04-04",
+  "venue": "GMO Arena Saitama",
+  "city": "Saitama",
+  "url": "https://sonic.gmo/",
+  "note": "Creativeman festival; lineup TBA"
+ },
+ {
+  "acts": [
+   "Squeeze"
+  ],
+  "title": "SQUEEZE",
+  "date": "2027-04-08",
+  "venue": "EX THEATER ROPPONGI",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/squeeze26/",
+  "note": "Creativeman",
+  "area": "Minato"
+ },
+ {
+  "acts": [
+   "MELT4"
+  ],
+  "title": "MELT4",
+  "date": "2027-04-08",
+  "venue": "SHIBUYA CLUB QUATTRO",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4774",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Squeeze"
+  ],
+  "title": "SQUEEZE",
+  "date": "2027-04-09",
+  "venue": "梅田 CLUB QUATTRO",
+  "city": "Osaka",
+  "url": "https://www.creativeman.co.jp/event/squeeze26/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "STARGLOW"
+  ],
+  "title": "STARGLOW",
+  "date": "2027-04-10",
+  "venue": "有明アリーナ",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/starglow-arena-tour-2027/",
+  "note": "Creativeman",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "STARGLOW"
+  ],
+  "title": "STARGLOW",
+  "date": "2027-04-11",
+  "venue": "有明アリーナ",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/starglow-arena-tour-2027/",
+  "note": "Creativeman",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "阿部真央"
+  ],
+  "title": "阿部真央",
+  "date": "2027-05-01",
+  "venue": "LINE CUBE SHIBUYA",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/abemao-tasukigake/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "浅井健一"
+  ],
+  "title": "浅井健一",
+  "date": "2027-05-07",
+  "venue": "SHIBUYA CLUB QUATTRO",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4747",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "MAN WITH A MISSION"
+  ],
+  "title": "MAN WITH A MISSION",
+  "date": "2027-05-17",
+  "venue": "水戸市民会館 グロービスホール",
+  "city": "Mito",
+  "url": "https://www.creativeman.co.jp/event/man-with-a-mission_2027/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "MAN WITH A MISSION"
+  ],
+  "title": "MAN WITH A MISSION",
+  "date": "2027-05-20",
+  "venue": "宇都宮市文化会館 大ホール",
+  "city": "Utsunomiya",
+  "url": "https://www.creativeman.co.jp/event/man-with-a-mission_2027/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "MAN WITH A MISSION"
+  ],
+  "title": "MAN WITH A MISSION",
+  "date": "2027-05-22",
+  "venue": "ＹＣＣ県民文化ホール (山梨県立県民文化ホール) 大ホール",
+  "city": "Kofu",
+  "url": "https://www.creativeman.co.jp/event/man-with-a-mission_2027/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [],
+  "title": "GREENROOM FESTIVAL 2027",
+  "date": "2027-05-22",
+  "until": "2027-05-23",
+  "venue": "Yokohama Red Brick Warehouse",
+  "city": "Yokohama",
+  "url": "https://greenroom.jp/",
+  "note": "Creativeman festival; lineup not yet announced"
+ },
+ {
+  "acts": [],
+  "title": "GREENROOM FESTIVAL 2027",
+  "date": "2027-05-29",
+  "until": "2027-05-30",
+  "venue": "Kobe Meriken Park",
+  "city": "Kobe",
+  "url": "https://greenroom.jp/",
+  "note": "Creativeman festival; lineup not yet announced"
+ },
+ {
+  "acts": [
+   "MAN WITH A MISSION"
+  ],
+  "title": "MAN WITH A MISSION",
+  "date": "2027-06-02",
+  "venue": "高崎芸術劇場 大劇場",
+  "city": "Takasaki",
+  "url": "https://www.creativeman.co.jp/event/man-with-a-mission_2027/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "紫 今"
+  ],
+  "title": "紫 今",
+  "date": "2027-06-05",
+  "venue": "Zepp Shinjuku",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/mulasaki-ima_2027/",
+  "note": "Creativeman",
+  "area": "Shinjuku"
+ },
+ {
+  "acts": [
+   "Radiohead"
+  ],
+  "title": "Radiohead Japan 2027",
+  "date": "2027-06-08",
+  "venue": "Saitama Super Arena (venue not stated on official page; Saitama per Creativeman calendar)",
+  "city": "Saitama",
+  "url": "https://www.radiohead2027.jp/",
+  "note": "Creativeman; all dates SOLD OUT per official site"
+ },
+ {
+  "acts": [
+   "Radiohead"
+  ],
+  "title": "Radiohead Japan 2027",
+  "date": "2027-06-09",
+  "venue": "Saitama Super Arena (venue not stated on official page; Saitama per Creativeman calendar)",
+  "city": "Saitama",
+  "url": "https://www.radiohead2027.jp/",
+  "note": "Creativeman; all dates SOLD OUT per official site"
+ },
+ {
+  "acts": [
+   "Radiohead"
+  ],
+  "title": "Radiohead Japan 2027",
+  "date": "2027-06-11",
+  "venue": "Saitama Super Arena (venue not stated on official page; Saitama per Creativeman calendar)",
+  "city": "Saitama",
+  "url": "https://www.radiohead2027.jp/",
+  "note": "Creativeman; all dates SOLD OUT per official site"
+ },
+ {
+  "acts": [
+   "Radiohead"
+  ],
+  "title": "Radiohead Japan 2027",
+  "date": "2027-06-12",
+  "venue": "Saitama Super Arena (venue not stated on official page; Saitama per Creativeman calendar)",
+  "city": "Saitama",
+  "url": "https://www.radiohead2027.jp/",
+  "note": "Creativeman; all dates SOLD OUT per official site"
+ },
+ {
+  "acts": [
+   "雨のパレード"
+  ],
+  "title": "雨のパレード",
+  "date": "2027-06-12",
+  "venue": "WWW X",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4796",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Radiohead"
+  ],
+  "title": "Radiohead Japan 2027",
+  "date": "2027-06-13",
+  "venue": "Saitama Super Arena (venue not stated on official page; Saitama per Creativeman calendar)",
+  "city": "Saitama",
+  "url": "https://www.radiohead2027.jp/",
+  "note": "Creativeman; all dates SOLD OUT per official site"
+ },
+ {
+  "acts": [
+   "浅井健一"
+  ],
+  "title": "浅井健一",
+  "date": "2027-06-18",
+  "venue": "LINE CUBE SHIBUYA（渋谷公会堂）",
+  "city": "Tokyo",
+  "url": "https://smash-jpn.com/live/?id=4747",
+  "note": "SMASH",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "MAN WITH A MISSION"
+  ],
+  "title": "MAN WITH A MISSION",
+  "date": "2027-06-28",
+  "venue": "大宮ソニックシティ 大ホール",
+  "city": "Saitama",
+  "url": "https://www.creativeman.co.jp/event/man-with-a-mission_2027/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "iri"
+  ],
+  "title": "iri",
+  "date": "2027-07-02",
+  "venue": "SGCホール有明（東京）",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/irii-hall-tour-2027/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "MAN WITH A MISSION"
+  ],
+  "title": "MAN WITH A MISSION",
+  "date": "2027-07-08",
+  "venue": "市川市文化会館 大ホール",
+  "city": "Chiba",
+  "url": "https://www.creativeman.co.jp/event/man-with-a-mission_2027/",
+  "note": "Creativeman"
+ },
+ {
+  "acts": [
+   "Arche"
+  ],
+  "title": "Arche",
+  "date": "2027-07-25",
+  "venue": "Shibuya WWW X",
+  "city": "Tokyo",
+  "url": "https://www.creativeman.co.jp/event/arche_2027/",
+  "note": "Creativeman",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "BON JOVI"
+  ],
+  "title": "BON JOVI FOREVER TOUR",
+  "date": "2027-02-25",
+  "venue": "Tokyo Dome",
+  "city": "Tokyo",
+  "url": "https://www.udo.jp/shows/BonJovi27",
+  "area": "Bunkyo",
+  "note": "Udo; 2 Tokyo Dome days"
+ },
+ {
+  "acts": [
+   "BON JOVI"
+  ],
+  "title": "BON JOVI FOREVER TOUR",
+  "date": "2027-02-27",
+  "venue": "Tokyo Dome",
+  "city": "Tokyo",
+  "url": "https://www.udo.jp/shows/BonJovi27",
+  "area": "Bunkyo",
+  "note": "Udo; 2 Tokyo Dome days"
+ },
+ {
+  "acts": [
+   "TOTO"
+  ],
+  "title": "TOTO 50th Anniversary Tour",
+  "date": "2027-03-22",
+  "venue": "Asue Arena Osaka",
+  "city": "Osaka",
+  "url": "https://www.udo.jp/shows/TOTO27"
+ },
+ {
+  "acts": [
+   "TOTO"
+  ],
+  "title": "TOTO 50th Anniversary Tour",
+  "date": "2027-03-23",
+  "venue": "Ariake Arena",
+  "city": "Tokyo",
+  "url": "https://www.udo.jp/shows/TOTO27",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "TOTO"
+  ],
+  "title": "TOTO 50th Anniversary Tour",
+  "date": "2027-03-24",
+  "venue": "Ariake Arena",
+  "city": "Tokyo",
+  "url": "https://www.udo.jp/shows/TOTO27",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "DIANA KRALL"
+  ],
+  "title": "Diana Krall Japan 2026",
+  "date": "2026-12-03",
+  "venue": "Niterra Nihon Tokushu Togyo Shimin Kaikan Village Hall",
+  "city": "Nagoya",
+  "url": "https://www.udo.jp/shows/DianaKrall26"
+ },
+ {
+  "acts": [
+   "DIANA KRALL"
+  ],
+  "title": "Diana Krall Japan 2026",
+  "date": "2026-12-04",
+  "venue": "Grand Cube Osaka",
+  "city": "Osaka",
+  "url": "https://www.udo.jp/shows/DianaKrall26"
+ },
+ {
+  "acts": [
+   "DIANA KRALL"
+  ],
+  "title": "Diana Krall Japan 2026",
+  "date": "2026-12-07",
+  "venue": "Kanadevia Hall",
+  "city": "Tokyo",
+  "url": "https://www.udo.jp/shows/DianaKrall26"
+ },
+ {
+  "acts": [
+   "DIANA KRALL"
+  ],
+  "title": "Diana Krall Japan 2026",
+  "date": "2026-12-09",
+  "venue": "Kanadevia Hall",
+  "city": "Tokyo",
+  "url": "https://www.udo.jp/shows/DianaKrall26"
+ },
+ {
+  "acts": [
+   "DIANA KRALL"
+  ],
+  "title": "Diana Krall Japan 2026",
+  "date": "2026-12-10",
+  "venue": "Kanadevia Hall",
+  "city": "Tokyo",
+  "url": "https://www.udo.jp/shows/DianaKrall26"
+ },
+ {
+  "acts": [
+   "SEAL"
+  ],
+  "title": "SEAL Celebrating 30+ Years of the Classic Albums I & II",
+  "date": "2027-01-25",
+  "venue": "Grand Cube Osaka",
+  "city": "Osaka",
+  "url": "https://www.udo.jp/shows/Seal27"
+ },
+ {
+  "acts": [
+   "SEAL"
+  ],
+  "title": "SEAL Celebrating 30+ Years of the Classic Albums I & II",
+  "date": "2027-01-27",
+  "venue": "Tokyo Garden Theater",
+  "city": "Tokyo",
+  "url": "https://www.udo.jp/shows/Seal27",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "ERIK GRÖNWALL",
+   "Zilqy (opening act, Tokyo)",
+   "大山まき (opening act, Osaka)"
+  ],
+  "title": "ERIK GRÖNWALL Bad Bones Japan Tour 2026",
+  "date": "2026-11-05",
+  "venue": "Umeda Club Quattro",
+  "city": "Osaka",
+  "url": "https://www.udo.jp/shows/ErikGronwall26",
+  "note": "Osaka show, today; Tokyo was 11/4 (past). Opener Osaka: Oyama Maki"
+ },
+ {
+  "acts": [
+   "MEGADETH"
+  ],
+  "title": "MEGADETH Farewell Japan Tour",
+  "date": "2027-02-22",
+  "venue": "Grand Cube Osaka",
+  "city": "Osaka",
+  "url": "https://www.udo.jp/shows/Megadeth27",
+  "note": "sold out"
+ },
+ {
+  "acts": [
+   "MEGADETH"
+  ],
+  "title": "MEGADETH Farewell Japan Tour",
+  "date": "2027-02-24",
+  "venue": "Nippon Budokan",
+  "city": "Tokyo",
+  "url": "https://www.udo.jp/shows/Megadeth27",
+  "area": "Chiyoda",
+  "note": "Budokan; one day added after sellout"
+ },
+ {
+  "acts": [
+   "MEGADETH"
+  ],
+  "title": "MEGADETH Farewell Japan Tour",
+  "date": "2027-02-25",
+  "venue": "Nippon Budokan",
+  "city": "Tokyo",
+  "url": "https://www.udo.jp/shows/Megadeth27",
+  "area": "Chiyoda",
+  "note": "Budokan; one day added after sellout"
+ },
+ {
+  "acts": [
+   "EUROPE"
+  ],
+  "title": "EUROPE The Final Countdown 40th Anniversary Tour",
+  "date": "2027-01-13",
+  "venue": "NHK Hall",
+  "city": "Tokyo",
+  "url": "https://www.udo.jp/shows/Europe27",
+  "area": "Shibuya",
+  "note": "Tokyo show 1/13 sold out; 1/17 added"
+ },
+ {
+  "acts": [
+   "EUROPE"
+  ],
+  "title": "EUROPE The Final Countdown 40th Anniversary Tour",
+  "date": "2027-01-14",
+  "venue": "Okaya Kohki Nagoya Public Hall",
+  "city": "Nagoya",
+  "url": "https://www.udo.jp/shows/Europe27"
+ },
+ {
+  "acts": [
+   "EUROPE"
+  ],
+  "title": "EUROPE The Final Countdown 40th Anniversary Tour",
+  "date": "2027-01-15",
+  "venue": "Grand Cube Osaka",
+  "city": "Osaka",
+  "url": "https://www.udo.jp/shows/Europe27"
+ },
+ {
+  "acts": [
+   "EUROPE"
+  ],
+  "title": "EUROPE The Final Countdown 40th Anniversary Tour",
+  "date": "2027-01-17",
+  "venue": "SGC Hall Ariake",
+  "city": "Tokyo",
+  "url": "https://www.udo.jp/shows/Europe27",
+  "area": "Koto",
+  "note": "Tokyo show 1/13 sold out; 1/17 added"
+ },
+ {
+  "acts": [
+   "PETER CAT RECORDING CO."
+  ],
+  "title": "Peter Cat Recording Co. Japan debut",
+  "date": "2027-02-22",
+  "venue": "Shibuya WWW X",
+  "city": "Tokyo",
+  "url": "https://www.udo.jp/shows/PCRC27",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "TEDESCHI TRUCKS BAND"
+  ],
+  "title": "Tedeschi Trucks Band Future Soul Tour 2026",
+  "date": "2026-11-15",
+  "venue": "COMTEC PORTBASE",
+  "city": "Nagoya",
+  "url": "https://www.udo.jp/shows/TTB26"
+ },
+ {
+  "acts": [
+   "TEDESCHI TRUCKS BAND"
+  ],
+  "title": "Tedeschi Trucks Band Future Soul Tour 2026",
+  "date": "2026-11-16",
+  "venue": "Festival Hall",
+  "city": "Osaka",
+  "url": "https://www.udo.jp/shows/TTB26"
+ },
+ {
+  "acts": [
+   "TEDESCHI TRUCKS BAND"
+  ],
+  "title": "Tedeschi Trucks Band Future Soul Tour 2026",
+  "date": "2026-11-18",
+  "venue": "SGC Hall Ariake",
+  "city": "Tokyo",
+  "url": "https://www.udo.jp/shows/TTB26",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "TEDESCHI TRUCKS BAND"
+  ],
+  "title": "Tedeschi Trucks Band Future Soul Tour 2026",
+  "date": "2026-11-19",
+  "venue": "SGC Hall Ariake",
+  "city": "Tokyo",
+  "url": "https://www.udo.jp/shows/TTB26",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "TEDESCHI TRUCKS BAND"
+  ],
+  "title": "Tedeschi Trucks Band Future Soul Tour 2026",
+  "date": "2026-11-21",
+  "venue": "EX Theater Roppongi",
+  "city": "Tokyo",
+  "url": "https://www.udo.jp/shows/TTB26",
+  "area": "Minato"
+ },
+ {
+  "acts": [
+   "RODRIGO Y GABRIELA"
+  ],
+  "title": "Rodrigo y Gabriela OurHome Tour",
+  "date": "2027-01-25",
+  "venue": "Zepp DiverCity",
+  "city": "Tokyo",
+  "url": "https://www.udo.jp/shows/RodrigoyGabriela27",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "RODRIGO Y GABRIELA"
+  ],
+  "title": "Rodrigo y Gabriela OurHome Tour",
+  "date": "2027-01-26",
+  "venue": "Nagoya Club Quattro",
+  "city": "Nagoya",
+  "url": "https://www.udo.jp/shows/RodrigoyGabriela27"
+ },
+ {
+  "acts": [
+   "RODRIGO Y GABRIELA"
+  ],
+  "title": "Rodrigo y Gabriela OurHome Tour",
+  "date": "2027-01-27",
+  "venue": "BIGCAT",
+  "city": "Osaka",
+  "url": "https://www.udo.jp/shows/RodrigoyGabriela27"
+ },
+ {
+  "acts": [
+   "ANN WILSON"
+  ],
+  "title": "An Evening with Ann Wilson: The Voice of Heart & Tripsitter",
+  "date": "2026-11-17",
+  "venue": "Hitomi Memorial Hall, Showa Women's University",
+  "city": "Tokyo",
+  "url": "https://www.udo.jp/shows/AnnWilson26",
+  "area": "Setagaya"
+ },
+ {
+  "acts": [
+   "ANN WILSON"
+  ],
+  "title": "An Evening with Ann Wilson: The Voice of Heart & Tripsitter",
+  "date": "2026-11-19",
+  "venue": "Brillia Hall Minoh (Minoh Cultural Theater) Large Hall",
+  "city": "Minoh, Osaka",
+  "url": "https://www.udo.jp/shows/AnnWilson26"
+ },
+ {
+  "acts": [
+   "ANN WILSON"
+  ],
+  "title": "An Evening with Ann Wilson: The Voice of Heart & Tripsitter",
   "date": "2026-11-20",
-  "venue": "ell.FITS ALL",
+  "venue": "KT Zepp Yokohama",
+  "city": "Yokohama",
+  "url": "https://www.udo.jp/shows/AnnWilson26"
+ },
+ {
+  "acts": [
+   "Disturbed"
+  ],
+  "title": "The Sickness & the Greatest Hits",
+  "date": "2027-05-19",
+  "venue": "PIA Arena MM",
+  "city": "Yokohama",
+  "url": "https://www.livenationhip.co.jp/all-events/disturbed-tickets-ae180"
+ },
+ {
+  "acts": [
+   "beabadoobee"
+  ],
+  "title": "The Powerlines Tour",
+  "date": "2027-04-09",
+  "venue": "Toyosu PIT",
+  "city": "Tokyo",
+  "url": "https://www.livenationhip.co.jp/all-events/beabadoobee-tickets-ae1285263",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "Against The Current"
+  ],
+  "title": "Till Death & Back Tour",
+  "date": "2027-01-13",
+  "venue": "Spotify O-EAST",
+  "city": "Tokyo",
+  "url": "https://www.livenationhip.co.jp/all-events/against-the-current-tickets-ae671869",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Blue"
+  ],
+  "title": "Blue 25th Anniversary Tour (rescheduled from Feb 2026)",
+  "date": "2027-01-19",
+  "venue": "Spotify O-EAST",
+  "city": "Tokyo",
+  "url": "https://www.livenationhip.co.jp/all-events/blue-tickets-ae401399",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Blue"
+  ],
+  "title": "Blue 25th Anniversary Tour (rescheduled from Feb 2026)",
+  "date": "2027-01-20",
+  "venue": "Spotify O-EAST",
+  "city": "Tokyo",
+  "url": "https://www.livenationhip.co.jp/all-events/blue-tickets-ae401399",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "FKJ"
+  ],
+  "title": "Tyber Tour",
+  "date": "2026-12-10",
+  "venue": "Tokyo International Forum Hall A",
+  "city": "Tokyo",
+  "url": "https://www.livenationhip.co.jp/all-events/fkj-tickets-ae1212035",
+  "area": "Chiyoda",
+  "note": "sold out"
+ },
+ {
+  "acts": [
+   "Freya Skye"
+  ],
+  "title": "Stars Align Tour",
+  "date": "2027-02-18",
+  "venue": "Ebisu The Garden Hall",
+  "city": "Tokyo",
+  "url": "https://www.livenationhip.co.jp/all-events/freya-skye-tickets-ae1645713",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "KATSEYE"
+  ],
+  "title": "THE WILDWORLD TOUR",
+  "date": "2027-01-27",
+  "venue": "Yokohama Arena",
+  "city": "Yokohama",
+  "url": "https://www.livenationhip.co.jp/all-events/katseye-tickets-ae1609340"
+ },
+ {
+  "acts": [
+   "Khalid"
+  ],
+  "title": "It's Always Summer Somewhere Tour",
+  "date": "2026-12-03",
+  "venue": "Tokyo Garden Theater",
+  "city": "Tokyo",
+  "url": "https://www.livenationhip.co.jp/all-events/khalid-tickets-ae928417",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "Malcolm Todd"
+  ],
+  "title": "Do That Again Tour",
+  "date": "2026-11-25",
+  "venue": "KT Zepp Yokohama",
+  "city": "Yokohama",
+  "url": "https://www.livenationhip.co.jp/all-events/malcolm-todd-tickets-ae1610806"
+ },
+ {
+  "acts": [
+   "Maroon 5"
+  ],
+  "title": "Maroon 5 Asia 2027",
+  "date": "2027-01-30",
+  "venue": "Tokyo Dome",
+  "city": "Tokyo",
+  "url": "https://www.livenationhip.co.jp/all-events/maroon-5-tickets-ae618",
+  "area": "Bunkyo"
+ },
+ {
+  "acts": [
+   "Maroon 5"
+  ],
+  "title": "Maroon 5 Asia 2027",
+  "date": "2027-01-31",
+  "venue": "Tokyo Dome",
+  "city": "Tokyo",
+  "url": "https://www.livenationhip.co.jp/all-events/maroon-5-tickets-ae618",
+  "area": "Bunkyo"
+ },
+ {
+  "acts": [
+   "Maroon 5"
+  ],
+  "title": "Maroon 5 Asia 2027",
+  "date": "2027-02-02",
+  "venue": "Tokyo Dome",
+  "city": "Tokyo",
+  "url": "https://www.livenationhip.co.jp/all-events/maroon-5-tickets-ae618",
+  "area": "Bunkyo"
+ },
+ {
+  "acts": [
+   "wave to earth"
+  ],
+  "title": "the pieces tour",
+  "date": "2026-11-26",
+  "venue": "BIGCAT",
+  "city": "Osaka",
+  "url": "https://www.livenationhip.co.jp/all-events/wave-to-earth-tickets-ae1466845"
+ },
+ {
+  "acts": [
+   "wave to earth"
+  ],
+  "title": "the pieces tour",
+  "date": "2026-11-27",
+  "venue": "Zepp DiverCity",
+  "city": "Tokyo",
+  "url": "https://www.livenationhip.co.jp/all-events/wave-to-earth-tickets-ae1466845",
+  "area": "Koto"
+ },
+ {
+  "acts": [
+   "yung kai"
+  ],
+  "title": "stay with the ocean, i'll find you: asia tour 2026",
+  "date": "2026-11-19",
+  "venue": "Ebisu The Garden Hall",
+  "city": "Tokyo",
+  "url": "https://www.livenationhip.co.jp/all-events/yung-kai-tickets-ae1583661",
+  "area": "Shibuya"
+ },
+ {
+  "acts": [
+   "Bruno Mars",
+   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
+  ],
+  "title": "The Romantic Tour in Japan",
+  "date": "2027-01-04",
+  "venue": "Vantelin Dome Nagoya",
+  "city": "Nagoya",
+  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+ },
+ {
+  "acts": [
+   "Bruno Mars",
+   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
+  ],
+  "title": "The Romantic Tour in Japan",
+  "date": "2027-01-05",
+  "venue": "Vantelin Dome Nagoya",
+  "city": "Nagoya",
+  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+ },
+ {
+  "acts": [
+   "Bruno Mars",
+   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
+  ],
+  "title": "The Romantic Tour in Japan",
+  "date": "2027-01-10",
+  "venue": "Sapporo Dome",
+  "city": "Sapporo",
+  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+ },
+ {
+  "acts": [
+   "Bruno Mars",
+   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
+  ],
+  "title": "The Romantic Tour in Japan",
+  "date": "2027-01-11",
+  "venue": "Sapporo Dome",
+  "city": "Sapporo",
+  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+ },
+ {
+  "acts": [
+   "Bruno Mars",
+   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
+  ],
+  "title": "The Romantic Tour in Japan",
+  "date": "2027-01-15",
+  "venue": "Belluna Dome",
+  "city": "Tokorozawa",
+  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+ },
+ {
+  "acts": [
+   "Bruno Mars",
+   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
+  ],
+  "title": "The Romantic Tour in Japan",
+  "date": "2027-01-16",
+  "venue": "Belluna Dome",
+  "city": "Tokorozawa",
+  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+ },
+ {
+  "acts": [
+   "Bruno Mars",
+   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
+  ],
+  "title": "The Romantic Tour in Japan",
+  "date": "2027-01-19",
+  "venue": "Kyocera Dome Osaka",
+  "city": "Osaka",
+  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+ },
+ {
+  "acts": [
+   "Bruno Mars",
+   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
+  ],
+  "title": "The Romantic Tour in Japan",
+  "date": "2027-01-20",
+  "venue": "Kyocera Dome Osaka",
+  "city": "Osaka",
+  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+ },
+ {
+  "acts": [
+   "Bruno Mars",
+   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
+  ],
+  "title": "The Romantic Tour in Japan",
+  "date": "2027-01-23",
+  "venue": "Mizuho PayPay Dome",
+  "city": "Fukuoka",
+  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+ },
+ {
+  "acts": [
+   "Bruno Mars",
+   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
+  ],
+  "title": "The Romantic Tour in Japan",
+  "date": "2027-01-24",
+  "venue": "Mizuho PayPay Dome",
+  "city": "Fukuoka",
+  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+ },
+ {
+  "acts": [
+   "Bruno Mars",
+   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
+  ],
+  "title": "The Romantic Tour in Japan",
+  "date": "2027-01-27",
+  "venue": "Tokyo Dome",
+  "city": "Tokyo",
+  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
+  "note": "Tokyo sold out"
+ },
+ {
+  "acts": [
+   "Bruno Mars",
+   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
+  ],
+  "title": "The Romantic Tour in Japan",
+  "date": "2027-01-28",
+  "venue": "Tokyo Dome",
+  "city": "Tokyo",
+  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
+  "note": "Tokyo sold out"
+ },
+ {
+  "acts": [
+   "AIR JAM 2026: Hi-STANDARD",
+   "10-FEET",
+   "DANCE HALL CRASHERS",
+   "ENTH",
+   "HEY-SMITH",
+   "HUSKING BEE",
+   "KUZIRA",
+   "LAGWAGON",
+   "MAN WITH A MISSION",
+   "THE CRO-MAGNONS",
+   "MAXIMUM THE HORMONE"
+  ],
+  "title": "AIR JAM 2026",
+  "date": "2026-11-07",
+  "venue": "ZOZO Marine Stadium",
+  "city": "Chiba",
+  "url": "https://www.livenationhip.co.jp/all-events/air-jam-2026-tickets-ae1692177",
+  "note": "Japanese act"
+ },
+ {
+  "acts": [
+   "超特急"
+  ],
+  "title": "BULLET TRAIN 1st DOME LIVE Signal",
+  "date": "2026-11-25",
+  "venue": "Tokyo Dome",
+  "city": "Tokyo",
+  "url": "https://www.livenationhip.co.jp/all-events/超特急-bullet-train-1st-dome-live-signal-tickets-ae1648444",
+  "note": "Japanese act"
+ },
+ {
+  "acts": [
+   "倉木麻衣"
+  ],
+  "title": "Mai Kuraki Live Project 2026",
+  "date": "2026-12-12",
+  "venue": "Tokyo International Forum Hall A",
+  "city": "Tokyo",
+  "url": "https://www.livenationhip.co.jp/all-events/倉木麻衣-tickets-ae1703409",
+  "note": "Japanese act"
+ },
+ {
+  "acts": [
+   "超特急",
+   "DISH//"
+  ],
+  "title": "15th Anniversary Special Event",
+  "date": "2026-12-25",
+  "venue": "Yoyogi National Gymnasium 1st",
+  "city": "Tokyo",
+  "url": "https://www.livenationhip.co.jp/all-events/超特急-dish--tickets-ae1708025",
+  "note": "Japanese act"
+ },
+ {
+  "acts": [
+   "シンガーズハイ"
+  ],
+  "title": "We are SINGER'S HIGH from Tokyo.",
+  "date": "2026-11-24",
+  "venue": "Nippon Budokan",
+  "city": "Tokyo",
+  "url": "https://www.livenationhip.co.jp/all-events/シンガーズハイ-we-are-singer-s-high-from-tokyo--tickets-ae1664500",
+  "note": "Japanese act"
+ },
+ {
+  "acts": [
+   "山中柔太朗"
+  ],
+  "title": "劇場版 じゅうたろう『The セミナー』",
+  "date": "2027-02-16",
+  "venue": "Tokyo Garden Theater",
+  "city": "Tokyo",
+  "url": "https://www.livenationhip.co.jp/all-events/%E5%B1%B1%E4%B8%AD%E6%9F%94%E5%A4%AA%E6%9C%97-tickets-ae1709874",
+  "note": "Japanese act"
+ },
+ {
+  "acts": [
+   "Number_i"
+  ],
+  "title": "Number_i LIVE TOUR No.III",
+  "date": "2026-12-09",
+  "venue": "Tokyo Dome",
+  "city": "Tokyo",
+  "url": "https://www.livenationhip.co.jp/all-events/number_i-tickets-ae1689539",
+  "until": "2026-12-10",
+  "note": "Japanese act; also 12/10 Tokyo Dome, 12/2 Osaka, 1/9-11 Nagoya, 1/16-17 Fukuoka"
+ },
+ {
+  "acts": [
+   "Melanie C"
+  ],
+  "title": "Melanie C @ Ex Theater Roppongi",
+  "date": "2026-11-06",
+  "venue": "Ex Theater Roppongi",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43111311-melanie-c-at-ex-theater-roppongi",
+  "note": "Songkick Tokyo metro; locality Tokyo; 1-2-9 Nishiazabu, Minato-ku /  東京都港区西麻布1丁目2-9"
+ },
+ {
+  "acts": [
+   "Touché Amoré"
+  ],
+  "title": "Touché Amoré @ Daikanyama UNIT",
+  "date": "2026-11-06",
+  "venue": "Daikanyama UNIT",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43286613-touche-amore-at-daikanyama-unit",
+  "note": "Songkick Tokyo metro; locality Shibuya; Za House Bld, B1F 1-34-17, Ebisu-Nishi / 東京都渋谷区恵比寿西１丁目３４−１７"
+ },
+ {
+  "acts": [
+   "Friction"
+  ],
+  "title": "Friction @ Womb",
+  "date": "2026-11-06",
+  "venue": "Womb",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43402473-friction-at-womb",
+  "note": "Songkick Tokyo metro; locality Shibuya; 2-16 Maruyamacho / 東京都 渋谷区円山町2-16"
+ },
+ {
+  "acts": [
+   "Anatole Muster"
+  ],
+  "title": "Anatole Muster @ Cotton Club",
+  "date": "2026-11-06",
+  "venue": "Cotton Club",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43364498-anatole-muster-at-cotton-club",
+  "note": "Songkick Tokyo metro; locality Tokyo; 2-7-3 Marunouchi, Chiyoda-ku"
+ },
+ {
+  "acts": [
+   "synchre"
+  ],
+  "title": "synchre @ Nishieifuku 西永福JAM",
+  "date": "2026-11-06",
+  "venue": "Nishieifuku 西永福JAM",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43454223-synchre-at-nishieifuku-xi-yong-fu-jam",
+  "note": "Songkick Tokyo metro; locality Tokyo; 3-34-14, Eifuku, Suginami-ku"
+ },
+ {
+  "acts": [
+   "Gerhard Richter + Steve Reich"
+  ],
+  "title": "Gerhard Richter + Steve Reich @ Sogetsu Hall",
+  "date": "2026-11-06",
+  "venue": "Sogetsu Hall",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43467618-gerhard-richter-steve-reich-at-sogetsu-hall",
+  "note": "Songkick Tokyo metro; locality Tokyo; 7-2-21 Akasaka, Minato"
+ },
+ {
+  "acts": [
+   "Robinson's Village"
+  ],
+  "title": "Robinson's Village @ Kagurane / 神楽音",
+  "date": "2026-11-06",
+  "venue": "Kagurane / 神楽音",
+  "city": "Tokyo",
+  "area": "Shinjuku",
+  "url": "https://www.songkick.com/concerts/43471530-robinsons-village-at-kagurane-shen-le-yin",
+  "note": "Songkick Tokyo metro; locality Shinjuku; kagurazaka 6-48 shinjuku / 東京都新宿区神楽坂6丁目48 TOMOS 神楽坂ビル B1F"
+ },
+ {
+  "acts": [
+   "Zoobombs",
+   "Folk Enough"
+  ],
+  "title": "Zoobombs @ FS.",
+  "date": "2026-11-06",
+  "venue": "FS.",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43485014-zoobombs-at-fs",
+  "note": "Songkick Tokyo metro; locality Shibuya; 3 Chome-15-5 Shibuya, Shibuya City, Tokyo 150-0002, Japón"
+ },
+ {
+  "acts": [
+   "You Liang"
+  ],
+  "title": "You Liang @ Tokyo",
+  "date": "2026-11-06",
+  "venue": "Tokyo",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43495704-you-liang-at-unknown-venue",
+  "note": "Songkick Tokyo metro; locality Tokyo; "
+ },
+ {
+  "acts": [
+   "Shingo Nakamura"
+  ],
+  "title": "Shingo Nakamura @ Vent",
+  "date": "2026-11-06",
+  "venue": "Vent",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43495921-shingo-nakamura-at-vent",
+  "note": "Songkick Tokyo metro; locality Tokyo; 3-18-19 Minami Aoyama, Minato-ku, Tokyo / 東京都港区南青山3丁目18-19"
+ },
+ {
+  "acts": [
+   "moskitoo"
+  ],
+  "title": "moskitoo @ Black Bird Eatery",
+  "date": "2026-11-07",
+  "venue": "Black Bird Eatery",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43482085-moskitoo-at-black-bird-eatery",
+  "note": "Songkick Tokyo metro; locality Tokyo; None"
+ },
+ {
+  "acts": [
+   "Anatole Muster"
+  ],
+  "title": "Anatole Muster @ Cotton Club",
+  "date": "2026-11-07",
+  "venue": "Cotton Club",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43364501-anatole-muster-at-cotton-club",
+  "note": "Songkick Tokyo metro; locality Tokyo; 2-7-3 Marunouchi, Chiyoda-ku"
+ },
+ {
+  "acts": [
+   "Fracture"
+  ],
+  "title": "Fracture @ Ooba Camp Village / おおばキャンプ村 & ひので肝要の里",
+  "date": "2026-11-07",
+  "venue": "Ooba Camp Village / おおばキャンプ村 & ひので肝要の里",
+  "city": "Hino",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43390903-fracture-at-ooba-camp-village-oobakiyanpucun-and-hinodegan-yao-noli",
+  "note": "Songkick Tokyo metro; locality Hino; None"
+ },
+ {
+  "acts": [
+   "Potomelli"
+  ],
+  "title": "Potomelli @ Ruby Room",
+  "date": "2026-11-07",
+  "venue": "Ruby Room",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43462610-potomelli-at-ruby-room",
+  "note": "Songkick Tokyo metro; locality Shibuya; 道玄坂2-25-17 カスミビル"
+ },
+ {
+  "acts": [
+   "Demsky"
+  ],
+  "title": "Demsky @ Koenji KNOCK",
+  "date": "2026-11-07",
+  "venue": "Koenji KNOCK",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43483819-demsky-at-koenji-knock",
+  "note": "Songkick Tokyo metro; locality Tokyo; Tokyo Suginami-ku Kouenji-Minami 3-48-6"
+ },
+ {
+  "acts": [
+   "Winterflood"
+  ],
+  "title": "Winterflood @ Brand Shibuya",
+  "date": "2026-11-07",
+  "venue": "Brand Shibuya",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43487294-winterflood-at-brand-shibuya",
+  "note": "Songkick Tokyo metro; locality Shibuya; 2 Chome−23−13, Dogenzaka / 渋谷デリタワービル B1F"
+ },
+ {
+  "acts": [
+   "SpecialThanks"
+  ],
+  "title": "SpecialThanks @ Yogibo Holy Mountain",
+  "date": "2026-11-07",
+  "venue": "Yogibo Holy Mountain",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43124234-specialthanks-at-yogibo-holy-mountain",
+  "note": "Songkick Osaka metro; locality Osaka; Chome-11-1 Nanbanaka, Naniwa Ward, Osaka"
+ },
+ {
+  "acts": [
+   "Misato Watanabe"
+  ],
+  "title": "Misato Watanabe @ Belluna Dome / ベルーナドーム",
+  "date": "2026-11-08",
+  "venue": "Belluna Dome / ベルーナドーム",
+  "city": "Tokorozawa",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43329147-misato-watanabe-at-belluna-dome-berunadomu",
+  "note": "Songkick Tokyo metro; locality Tokorozawa; 2135 Kami-Yamaguchi"
+ },
+ {
+  "acts": [
+   "Chris Luno"
+  ],
+  "title": "Chris Luno @ Crossing View & Rooftop Lounge Mag8",
+  "date": "2026-11-08",
+  "venue": "Crossing View & Rooftop Lounge Mag8",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43483545-chris-luno-at-crossing-view-and-rooftop-lounge-mag8",
+  "note": "Songkick Tokyo metro; locality Tokyo; 1-23-10 Jinnan, Shibuya-ku"
+ },
+ {
+  "acts": [
+   "Death Cab for Cutie",
+   "Dan the Automator"
+  ],
+  "title": "Death Cab for Cutie @ Matsushita IMP Hall (松下IMPホール)",
+  "date": "2026-11-08",
+  "venue": "Matsushita IMP Hall (松下IMPホール)",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43186817-death-cab-for-cutie-at-matsushita-imp-hall",
+  "note": "Songkick Osaka metro; locality Osaka; 大阪府大阪市中央区城見１丁目３−７"
+ },
+ {
+  "acts": [
+   "Death Cab for Cutie",
+   "Dan the Automator"
+  ],
+  "title": "Death Cab for Cutie @ Toyosu Pit / 豊洲ピット",
+  "date": "2026-11-09",
+  "venue": "Toyosu Pit / 豊洲ピット",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43186818-death-cab-for-cutie-at-toyosu-pit-li-zhou-pituto",
+  "note": "Songkick Tokyo metro; locality Tokyo; 江東区豊洲6-1-23"
+ },
+ {
+  "acts": [
+   "will hyde"
+  ],
+  "title": "will hyde @ WWW X",
+  "date": "2026-11-09",
+  "venue": "WWW X",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43385312-will-hyde-at-www-x",
+  "note": "Songkick Tokyo metro; locality Shibuya; 東京都渋谷区宇田川町13-17 ライズビル2F"
+ },
+ {
+  "acts": [
+   "Theo Katzman"
+  ],
+  "title": "Theo Katzman @ Blue Note / ブルーノート",
+  "date": "2026-11-10",
+  "venue": "Blue Note / ブルーノート",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43355183-theo-katzman-at-blue-note-burunoto",
+  "note": "Songkick Tokyo metro; locality Tokyo; 6 Chome-3-16 Minamiaoyama, Minato City / 東京都港区南青山6-3-16"
+ },
+ {
+  "acts": [
+   "Theo Katzman"
+  ],
+  "title": "Theo Katzman @ Blue Note / ブルーノート",
+  "date": "2026-11-11",
+  "venue": "Blue Note / ブルーノート",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43355188-theo-katzman-at-blue-note-burunoto",
+  "note": "Songkick Tokyo metro; locality Tokyo; 6 Chome-3-16 Minamiaoyama, Minato City / 東京都港区南青山6-3-16"
+ },
+ {
+  "acts": [
+   "The Rumjacks",
+   "Fungus (Japan)"
+  ],
+  "title": "The Rumjacks @ Yogibo Holy Mountain",
+  "date": "2026-11-12",
+  "venue": "Yogibo Holy Mountain",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43285087-rumjacks-at-yogibo-holy-mountain",
+  "note": "Songkick Osaka metro; locality Osaka; Chome-11-1 Nanbanaka, Naniwa Ward, Osaka"
+ },
+ {
+  "acts": [
+   "Malcura"
+  ],
+  "title": "Malcura @ Hokage 火影",
+  "date": "2026-11-12",
+  "venue": "Hokage 火影",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43413034-malcura-at-hokage-huo-ying",
+  "note": "Songkick Osaka metro; locality Osaka; None"
+ },
+ {
+  "acts": [
+   "satoshi & makoto"
+  ],
+  "title": "satoshi & makoto @ SHIBUYA PARCO",
+  "date": "2026-11-13",
+  "venue": "SHIBUYA PARCO",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43485832-satoshi-and-makoto-at-shibuya-parco",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都渋谷区宇田川町15-1"
+ },
+ {
+  "acts": [
+   "Gentleman Surfer",
+   "Fresh! (JP)",
+   "GROUNDCOVER.",
+   "Loolowningen & The Far East Idiots",
+   "DJ dead K"
+  ],
+  "title": "Gentleman Surfer @ Shimokitazawa Era",
+  "date": "2026-11-13",
+  "venue": "Shimokitazawa Era",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43306116-gentleman-surfer-at-shimokitazawa-era",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都世田谷区北沢2-34-5 プリマヴェール下北沢4F"
+ },
+ {
+  "acts": [
+   "Chris Avantgarde"
+  ],
+  "title": "Chris Avantgarde @ Sky Music Terrace",
+  "date": "2026-11-13",
+  "venue": "Sky Music Terrace",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43479042-chris-avantgarde-at-sky-music-terrace",
+  "note": "Songkick Tokyo metro; locality Tokyo; None"
+ },
+ {
+  "acts": [
+   "The Rumjacks",
+   "Fungus (Japan)"
+  ],
+  "title": "The Rumjacks @ Red Dragon",
+  "date": "2026-11-13",
+  "venue": "Red Dragon",
   "city": "Nagoya",
   "area": "",
-  "url": "https://eplus.jp/emnw",
-  "note": "Via eplus/livefans."
+  "url": "https://www.songkick.com/concerts/43285089-rumjacks-at-red-dragon",
+  "note": "Songkick Nagoya metro; locality Nagoya; 中区栄4丁目20−1"
  },
  {
   "acts": [
-   "EMNW",
-   "KALA"
+   "Tim Holehouse"
   ],
-  "title": "EMNW To KAMASU “LOVING TO GET US BY” TOUR 2026",
+  "title": "Tim Holehouse @ Nozomi Ya",
+  "date": "2026-11-13",
+  "venue": "Nozomi Ya",
+  "city": "Nagoya",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43488557-tim-holehouse-at-nozomi-ya",
+  "note": "Songkick Nagoya metro; locality Nagoya; Hope Music Building 2F, 3-14-34 Osu, Naka-ku"
+ },
+ {
+  "acts": [
+   "Ayaka Brandy"
+  ],
+  "title": "Ayaka Brandy @ MAME Romantic / 晴れたら空に豆まいて",
+  "date": "2026-11-14",
+  "venue": "MAME Romantic / 晴れたら空に豆まいて",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43338587-ayaka-brandy-at-mame-romantic-qing-retarakong-nidou-maite",
+  "note": "Songkick Tokyo metro; locality Shibuya; 20-20 Daikanyama-cho B2 / 渋谷区代官山町20-20モンシェリー代官山B2"
+ },
+ {
+  "acts": [
+   "NHOAH"
+  ],
+  "title": "NHOAH @ TOKIO TOKYO",
+  "date": "2026-11-14",
+  "venue": "TOKIO TOKYO",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43382544-nhoah-at-tokio-tokyo",
+  "note": "Songkick Tokyo metro; locality Tokyo; None"
+ },
+ {
+  "acts": [
+   "Rhucle"
+  ],
+  "title": "Rhucle @ ART SPACE BAR BUENA",
+  "date": "2026-11-14",
+  "venue": "ART SPACE BAR BUENA",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43435125-rhucle-at-art-space-bar-buena",
+  "note": "Songkick Tokyo metro; locality Tokyo; None"
+ },
+ {
+  "acts": [
+   "Nokono"
+  ],
+  "title": "Nokono @ Euskal Etxea",
+  "date": "2026-11-14",
+  "venue": "Euskal Etxea",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43474639-nokono-at-euskal-etxea",
+  "note": "Songkick Tokyo metro; locality Shibuya; 1-11-7, Honcho"
+ },
+ {
+  "acts": [
+   "Mita Gami",
+   "Robbie Akbal"
+  ],
+  "title": "Mita Gami @ Womb",
+  "date": "2026-11-14",
+  "venue": "Womb",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43495865-mita-gami-at-womb",
+  "note": "Songkick Tokyo metro; locality Shibuya; 2-16 Maruyamacho / 東京都 渋谷区円山町2-16"
+ },
+ {
+  "acts": [
+   "Heaven In Her Arms"
+  ],
+  "title": "Heaven In Her Arms @ Yogibo Holy Mountain",
+  "date": "2026-11-14",
+  "venue": "Yogibo Holy Mountain",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43337327-heaven-in-her-arms-at-yogibo-holy-mountain",
+  "note": "Songkick Osaka metro; locality Osaka; Chome-11-1 Nanbanaka, Naniwa Ward, Osaka"
+ },
+ {
+  "acts": [
+   "The Rumjacks",
+   "Fungus (Japan)"
+  ],
+  "title": "The Rumjacks @ Koenji High",
+  "date": "2026-11-15",
+  "venue": "Koenji High",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43285093-rumjacks-at-koenji-high",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都杉並区高円寺南4-30-1"
+ },
+ {
+  "acts": [
+   "Malcura"
+  ],
+  "title": "Malcura @ Livehouse Wall",
+  "date": "2026-11-16",
+  "venue": "Livehouse Wall",
+  "city": "Tokyo",
+  "area": "Shinjuku",
+  "url": "https://www.songkick.com/concerts/43413037-malcura-at-livehouse-wall",
+  "note": "Songkick Tokyo metro; locality Shinjuku; 3 Chome-15-8 Nishishinjuku"
+ },
+ {
+  "acts": [
+   "Fleshwater"
+  ],
+  "title": "Fleshwater @ Yogibo Holy Mountain",
+  "date": "2026-11-16",
+  "venue": "Yogibo Holy Mountain",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43339995-fleshwater-at-yogibo-holy-mountain",
+  "note": "Songkick Osaka metro; locality Osaka; Chome-11-1 Nanbanaka, Naniwa Ward, Osaka"
+ },
+ {
+  "acts": [
+   "Tim Holehouse"
+  ],
+  "title": "Tim Holehouse @ Socore Factory",
+  "date": "2026-11-16",
+  "venue": "Socore Factory",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43488571-tim-holehouse-at-socore-factory",
+  "note": "Songkick Osaka metro; locality Osaka; 大阪市西区南堀江2-13-26"
+ },
+ {
+  "acts": [
+   "Malcura"
+  ],
+  "title": "Malcura @ haremame",
+  "date": "2026-11-17",
+  "venue": "haremame",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43413039-malcura-at-haremame",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都渋谷区代官山町20-20 モンシェリー代官山B2"
+ },
+ {
+  "acts": [
+   "David Grubbs"
+  ],
+  "title": "David Grubbs @ Nanahari",
+  "date": "2026-11-17",
+  "venue": "Nanahari",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43497202-david-grubbs-at-nanahari",
+  "note": "Songkick Tokyo metro; locality Tokyo; 2-7-1 Shinkawa, Chuo-ku"
+ },
+ {
+  "acts": [
+   "Malcura"
+  ],
+  "title": "Malcura @ Nakano Moonstep",
+  "date": "2026-11-18",
+  "venue": "Nakano Moonstep",
+  "city": "Tokyo",
+  "area": "Nakano",
+  "url": "https://www.songkick.com/concerts/43413040-malcura-at-nakano-moonstep",
+  "note": "Songkick Tokyo metro; locality Nakano; 東京都中野区中央5-39-16"
+ },
+ {
+  "acts": [
+   "Blind Channel"
+  ],
+  "title": "Blind Channel @ Tokyo",
+  "date": "2026-11-18",
+  "venue": "Tokyo",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43497575-blind-channel-at-unknown-venue",
+  "note": "Songkick Tokyo metro; locality Tokyo; "
+ },
+ {
+  "acts": [
+   "DEAFKIDS",
+   "Birushanah (JP)"
+  ],
+  "title": "DEAFKIDS @ Hokage 火影",
+  "date": "2026-11-18",
+  "venue": "Hokage 火影",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43365307-deafkids-at-hokage-huo-ying",
+  "note": "Songkick Osaka metro; locality Osaka; None"
+ },
+ {
+  "acts": [
+   "Rival Consoles"
+  ],
+  "title": "Rival Consoles @ WWW X",
+  "date": "2026-11-19",
+  "venue": "WWW X",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43410680-rival-consoles-at-www-x",
+  "note": "Songkick Tokyo metro; locality Shibuya; 東京都渋谷区宇田川町13-17 ライズビル2F"
+ },
+ {
+  "acts": [
+   "Космос На Потолке"
+  ],
+  "title": "Космос На Потолке @ 7th Floor",
+  "date": "2026-11-19",
+  "venue": "7th Floor",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43483337-kosmos-na-potolkie-at-7th-floor",
+  "note": "Songkick Tokyo metro; locality Shibuya; 渋谷区円山町2－3 O-WESTビル７F"
+ },
+ {
+  "acts": [
+   "Prompts"
+  ],
+  "title": "Prompts @ Yogibo Holy Mountain",
+  "date": "2026-11-19",
+  "venue": "Yogibo Holy Mountain",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43369639-prompts-at-yogibo-holy-mountain",
+  "note": "Songkick Osaka metro; locality Osaka; Chome-11-1 Nanbanaka, Naniwa Ward, Osaka"
+ },
+ {
+  "acts": [
+   "Blind Channel"
+  ],
+  "title": "Blind Channel @ Osaka",
+  "date": "2026-11-19",
+  "venue": "Osaka",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43497579-blind-channel-at-unknown-venue",
+  "note": "Songkick Osaka metro; locality Osaka; "
+ },
+ {
+  "acts": [
+   "DEAFKIDS",
+   "Birushanah (JP)"
+  ],
+  "title": "DEAFKIDS @ Brazil Coffee",
+  "date": "2026-11-19",
+  "venue": "Brazil Coffee",
+  "city": "Nagoya",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43365308-deafkids-at-brazil-coffee",
+  "note": "Songkick Nagoya metro; locality Nagoya; None"
+ },
+ {
+  "acts": [
+   "David Grubbs"
+  ],
+  "title": "David Grubbs @ カレーと民藝と酒 TeTe",
+  "date": "2026-11-19",
+  "venue": "カレーと民藝と酒 TeTe",
+  "city": "Nagoya",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43497204-david-grubbs-at-karetomin-yi-tojiu-tete",
+  "note": "Songkick Nagoya metro; locality Nagoya; 愛知県名古屋市千種区高見１丁目８−５ ケンインターナショナルビル 3F"
+ },
+ {
+  "acts": [
+   "Patrick Watson",
+   "Hania Rani",
+   "Max Cooper",
+   "Richie Hawtin",
+   "Mouse on the Keys",
+   "Canblaster",
+   "Grand River",
+   "Robert Lippok",
+   "tamanaramen",
+   "Ryoichi Kurokawa",
+   "Melmann",
+   "Johanna Elina Sulkunen",
+   "Nicolás Melmann",
+   "SEULEMENT",
+   "Lucas Gutierrez",
+   "Ali Demirel"
+  ],
+  "title": "Festival Mutek 2026 @ MoN Takanawa",
+  "date": "2026-11-20",
+  "venue": "MoN Takanawa",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/festivals/224061-mutek/id/43406328-festival-mutek-2026",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都港区三田３丁目１６−１",
+  "until": "2026-11-23"
+ },
+ {
+  "acts": [
+   "Rude",
+   "Intestine Baalism",
+   "Sedimentum",
+   "Reburied",
+   "Rat King",
+   "ANATOMIA",
+   "Diabolic Oath",
+   "Carcinoid",
+   "Warp Chamber",
+   "Morgue Breath",
+   "Stoma",
+   "WRITHING",
+   "BRAINCASKET"
+  ],
+  "title": "Asakusa Deathfest 2026 @ Nakano Moonstep",
+  "date": "2026-11-20",
+  "venue": "Nakano Moonstep",
+  "city": "Tokyo",
+  "area": "Nakano",
+  "url": "https://www.songkick.com/festivals/3793261-asakusa-deathfest/id/43294391-asakusa-deathfest-2026",
+  "note": "Songkick Tokyo metro; locality Nakano; 東京都中野区中央5-39-16",
+  "until": "2026-11-23"
+ },
+ {
+  "acts": [
+   "Rival Consoles"
+  ],
+  "title": "Rival Consoles @ Circus Osaka",
+  "date": "2026-11-20",
+  "venue": "Circus Osaka",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43410682-rival-consoles-at-circus-osaka",
+  "note": "Songkick Osaka metro; locality Osaka; 542-0086 Osaka, Chuo Ward, Nishishinsaibashi, 1 Chome−8−16 中西ビル"
+ },
+ {
+  "acts": [
+   "Big Brave",
+   "BLACK GANION"
+  ],
+  "title": "Big Brave @ Red Dragon",
+  "date": "2026-11-20",
+  "venue": "Red Dragon",
+  "city": "Nagoya",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43489677-big-brave-at-red-dragon",
+  "note": "Songkick Nagoya metro; locality Nagoya; 中区栄4丁目20−1"
+ },
+ {
+  "acts": [
+   "Yufu (TW)"
+  ],
+  "title": "Yufu (TW) @ Basement Bar",
+  "date": "2026-11-21",
+  "venue": "Basement Bar",
+  "city": "Tokyo",
+  "area": "Setagaya",
+  "url": "https://www.songkick.com/concerts/43391504-yufu-tw-at-basement-bar",
+  "note": "Songkick Tokyo metro; locality Setagaya; 5-18-1-B1F, Daizawa"
+ },
+ {
+  "acts": [
+   "Deceits",
+   "dark chisme",
+   "un hombre solo",
+   "Brigitte Handley",
+   "lucy valentine",
+   "†13th MOON†",
+   "Auto-mod",
+   "Phaida",
+   "Jubilee",
+   "Silent Head"
+  ],
+  "title": "Deceits @ Shinjuku Loft (新宿LOFT)",
+  "date": "2026-11-21",
+  "venue": "Shinjuku Loft (新宿LOFT)",
+  "city": "Tokyo",
+  "area": "Shinjuku",
+  "url": "https://www.songkick.com/concerts/43436180-deceits-at-shinjuku-loft",
+  "note": "Songkick Tokyo metro; locality Shinjuku; 1-12-9 Kabuki-cho, 東京都新宿区歌舞伎町1丁目12-9 タテハナビル"
+ },
+ {
+  "acts": [
+   "Tenniscoats"
+  ],
+  "title": "Tenniscoats @ Shichō-shitsu",
+  "date": "2026-11-21",
+  "venue": "Shichō-shitsu",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43483333-tenniscoats-at-shichoshitsu",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都千代田区西神田3-8-5 ビル西神田1階"
+ },
+ {
+  "acts": [
+   "Demsky"
+  ],
+  "title": "Demsky @ Pintology",
+  "date": "2026-11-21",
+  "venue": "Pintology",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43484708-demsky-at-pintology",
+  "note": "Songkick Tokyo metro; locality Tokyo; None"
+ },
+ {
+  "acts": [
+   "BELLFAST"
+  ],
+  "title": "BELLFAST @ The Live House Soma",
+  "date": "2026-11-21",
+  "venue": "The Live House Soma",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43473084-bellfast-at-live-house-soma",
+  "note": "Songkick Osaka metro; locality Osaka; None"
+ },
+ {
+  "acts": [
+   "Tyondai Braxton"
+  ],
+  "title": "Umekita Sound Bazaar 2026 @ VS.",
+  "date": "2026-11-21",
+  "venue": "VS.",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/festivals/3807859-umekita-sound-bazaar/id/43445119-umekita-sound-bazaar-2026",
+  "note": "Songkick Osaka metro; locality Osaka; 6-86 Green Osaka, Ohuka-machi 6-86, Kita-ku",
+  "until": "2026-11-23"
+ },
+ {
+  "acts": [
+   "DEAFKIDS",
+   "Birushanah (JP)"
+  ],
+  "title": "DEAFKIDS @ Earthdom",
   "date": "2026-11-22",
-  "venue": "天神Queblick",
-  "city": "Fukuoka",
+  "venue": "Earthdom",
+  "city": "Tokyo",
   "area": "",
-  "url": "https://eplus.jp/emnw",
-  "note": "Via eplus/livefans."
+  "url": "https://www.songkick.com/concerts/43365314-deafkids-at-earthdom",
+  "note": "Songkick Tokyo metro; locality Tokyo; 2 Chome-32-3 Okubo, Shinjuku / 東京都新宿区大久保２丁目３２−３"
  },
  {
   "acts": [
-   "EMNW",
-   "KALA"
+   "David Grubbs"
   ],
-  "title": "EMNW To KAMASU “LOVING TO GET US BY” TOUR 2026",
+  "title": "David Grubbs @ Nanahari",
+  "date": "2026-11-22",
+  "venue": "Nanahari",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43497207-david-grubbs-at-nanahari",
+  "note": "Songkick Tokyo metro; locality Tokyo; 2-7-1 Shinkawa, Chuo-ku"
+ },
+ {
+  "acts": [
+   "Wolf Alice"
+  ],
+  "title": "Wolf Alice @ Toyosu Pit / 豊洲ピット",
   "date": "2026-11-23",
-  "venue": "SIX ONE Live STAR",
-  "city": "Hiroshima",
+  "venue": "Toyosu Pit / 豊洲ピット",
+  "city": "Tokyo",
   "area": "",
-  "url": "https://eplus.jp/emnw",
-  "note": "Via eplus/livefans."
+  "url": "https://www.songkick.com/concerts/43031735-wolf-alice-at-toyosu-pit-li-zhou-pituto",
+  "note": "Songkick Tokyo metro; locality Tokyo; 江東区豊洲6-1-23"
  },
  {
   "acts": [
-   "EMNW",
-   "Novel Core"
+   "geeker-natsumi",
+   "honninman",
+   "鯵島あじこ",
+   "パタオ(落語ドラム)"
   ],
-  "title": "EMNW To KAMASU “LOVING TO GET US BY” TOUR 2026",
-  "date": "2026-12-03",
+  "title": "geeker-natsumi @ Oriental Force",
+  "date": "2026-11-23",
+  "venue": "Oriental Force",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43404174-geekernatsumi-at-oriental-force",
+  "note": "Songkick Tokyo metro; locality Tokyo; Koenji Minami 3-48-6 Nittou Building 8 B1, Suginami-ku"
+ },
+ {
+  "acts": [
+   "Ken Ishii",
+   "Q'HEY",
+   "Drunken Kong"
+  ],
+  "title": "Ken Ishii @ OR",
+  "date": "2026-11-23",
+  "venue": "OR",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43488452-ken-ishii-at-or",
+  "note": "Songkick Tokyo metro; locality Shibuya; MIYASHITA PARK North 1F 11000"
+ },
+ {
+  "acts": [
+   "Tyondai Braxton"
+  ],
+  "title": "Tyondai Braxton @ Sogetsu Hall",
+  "date": "2026-11-24",
+  "venue": "Sogetsu Hall",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43288307-tyondai-braxton-at-sogetsu-hall",
+  "note": "Songkick Tokyo metro; locality Tokyo; 7-2-21 Akasaka, Minato"
+ },
+ {
+  "acts": [
+   "Slow Mass"
+  ],
+  "title": "Slow Mass @ Shimokitazawa Era",
+  "date": "2026-11-24",
+  "venue": "Shimokitazawa Era",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43362609-slow-mass-at-shimokitazawa-era",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都世田谷区北沢2-34-5 プリマヴェール下北沢4F"
+ },
+ {
+  "acts": [
+   "Big Brave",
+   "DMBQ"
+  ],
+  "title": "Big Brave @ Live House Fever",
+  "date": "2026-11-24",
+  "venue": "Live House Fever",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43489681-big-brave-at-live-house-fever",
+  "note": "Songkick Tokyo metro; locality Tokyo; 1F Shindaita Bldg., 1-1-14 Hanegi, Setagaya-ku / 東京都世田谷区羽根木1-1-14 新代田ビル1F"
+ },
+ {
+  "acts": [
+   "Queens of the Stone Age"
+  ],
+  "title": "Queens of the Stone Age @ Zepp Haneda",
+  "date": "2026-11-25",
+  "venue": "Zepp Haneda",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43322665-queens-of-the-stone-age-at-zepp-haneda",
+  "note": "Songkick Tokyo metro; locality Tokyo; None"
+ },
+ {
+  "acts": [
+   "Slow Mass"
+  ],
+  "title": "Slow Mass @ Shimokitazawa Era",
+  "date": "2026-11-25",
+  "venue": "Shimokitazawa Era",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43362610-slow-mass-at-shimokitazawa-era",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都世田谷区北沢2-34-5 プリマヴェール下北沢4F"
+ },
+ {
+  "acts": [
+   "Jesse Gold"
+  ],
+  "title": "Jesse Gold @ Moon Romantic / 青山 月見ル君想フ",
+  "date": "2026-11-25",
+  "venue": "Moon Romantic / 青山 月見ル君想フ",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43332450-jesse-gold-at-moon-romantic-qing-shan-yue-jian-rujun-xiang-hu",
+  "note": "Songkick Tokyo metro; locality Tokyo; 4-9-1 Minami Aoyama Minato-ku, Tokyo Simple Aoyama Bldg. B1F / 東京都港区南青山 4-9-1 B1F"
+ },
+ {
+  "acts": [
+   "geeker-natsumi",
+   "GOOFY18",
+   "Camilla PNK",
+   "MOTCHAN",
+   "アイ・シー"
+  ],
+  "title": "geeker-natsumi @ 三軒茶屋 Heaven's Door",
+  "date": "2026-11-26",
+  "venue": "三軒茶屋 Heaven's Door",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43448494-geekernatsumi-at-san-xuan-cha-wu-heavens-door",
+  "note": "Songkick Tokyo metro; locality Tokyo; 〒154-0024 東京都世田谷区三軒茶屋1-33-19 B1F"
+ },
+ {
+  "acts": [
+   "Good Kid"
+  ],
+  "title": "Good Kid @ Space Odd",
+  "date": "2026-11-26",
+  "venue": "Space Odd",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43467192-good-kid-at-space-odd",
+  "note": "Songkick Tokyo metro; locality Shibuya; 2-11 sarugakucho / 東京都渋谷区猿楽町2-11"
+ },
+ {
+  "acts": [
+   "Oddly"
+  ],
+  "title": "Oddly @ Socore Factory",
+  "date": "2026-11-26",
+  "venue": "Socore Factory",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43439102-oddly-at-socore-factory",
+  "note": "Songkick Osaka metro; locality Osaka; 大阪市西区南堀江2-13-26"
+ },
+ {
+  "acts": [
+   "Queens of the Stone Age"
+  ],
+  "title": "Queens of the Stone Age @ Zepp Nagoya",
+  "date": "2026-11-26",
+  "venue": "Zepp Nagoya",
+  "city": "Nagoya",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43322667-queens-of-the-stone-age-at-zepp-nagoya",
+  "note": "Songkick Nagoya metro; locality Nagoya; 愛知県名古屋市中村区平池町４丁目６０−７"
+ },
+ {
+  "acts": [
+   "Cihangir Eryıldız"
+  ],
+  "title": "Cihangir Eryıldız @ Bonobo",
+  "date": "2026-11-27",
+  "venue": "Bonobo",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43216376-cihangir-eryildiz-at-bonobo",
+  "note": "Songkick Tokyo metro; locality Tokyo; 2-23-4 Jingumae,shibuya-ku"
+ },
+ {
+  "acts": [
+   "Slow Mass"
+  ],
+  "title": "Slow Mass @ Conpass",
+  "date": "2026-11-27",
+  "venue": "Conpass",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43362616-slow-mass-at-conpass",
+  "note": "Songkick Osaka metro; locality Osaka; 中央区東心斎橋 1-12-20"
+ },
+ {
+  "acts": [
+   "My Vitriol",
+   "DieByForty"
+  ],
+  "title": "My Vitriol @ Mikunigaoka Fuzz",
+  "date": "2026-11-27",
+  "venue": "Mikunigaoka Fuzz",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43474731-my-vitriol-at-mikunigaoka-fuzz",
+  "note": "Songkick Osaka metro; locality Osaka; 大阪府堺市堺区向陵中町 4-4-32 チボリビル １f"
+ },
+ {
+  "acts": [
+   "My Vitriol",
+   "DieByForty"
+  ],
+  "title": "My Vitriol @ GRIT at Shibuya",
+  "date": "2026-11-28",
+  "venue": "GRIT at Shibuya",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43474732-my-vitriol-at-grit-at-shibuya",
+  "note": "Songkick Tokyo metro; locality Shibuya; 東京都渋谷区道玄坂 2-23-12 フォンティスビル B1"
+ },
+ {
+  "acts": [
+   "Shingo Nakamura"
+  ],
+  "title": "Shingo Nakamura @ ADRIFT",
+  "date": "2026-11-28",
+  "venue": "ADRIFT",
+  "city": "Tokyo",
+  "area": "Setagaya",
+  "url": "https://www.songkick.com/concerts/43419173-shingo-nakamura-at-adrift",
+  "note": "Songkick Tokyo metro; locality Setagaya; None"
+ },
+ {
+  "acts": [
+   "NOSE ART GARAGE"
+  ],
+  "title": "BORDERLESS vol 3. mitsukeru | EXHIBITION LIVE produced by NOSE ART GARAGE 2026 @ WALL&WALL",
+  "date": "2026-11-28",
+  "venue": "WALL&WALL",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/festivals/3810256-borderless-vol-3-mitsukeru-exhibition-live-produced-by-nose-art-garage/id/43471174-borderless-vol-3-mitsukeru--exhibition-live-produced-by-nose-art-garage-2026",
+  "note": "Songkick Tokyo metro; locality Shibuya; 3-18-19 Minami Aoyama, Minato-ku / 東京都港区南青山3-18-19 フェスタ表参道ビルB1F"
+ },
+ {
+  "acts": [
+   "Queens of the Stone Age"
+  ],
+  "title": "Queens of the Stone Age @ Zepp Namba",
+  "date": "2026-11-28",
+  "venue": "Zepp Namba",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43322680-queens-of-the-stone-age-at-zepp-namba",
+  "note": "Songkick Osaka metro; locality Osaka; 大阪市浪速区敷津東2-1-39"
+ },
+ {
+  "acts": [
+   "Slow Mass"
+  ],
+  "title": "Slow Mass @ Stiff Slack",
+  "date": "2026-11-28",
+  "venue": "Stiff Slack",
+  "city": "Nagoya",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43362617-slow-mass-at-stiff-slack",
+  "note": "Songkick Nagoya metro; locality Nagoya; Kita-ku Shimizu 2-5-8"
+ },
+ {
+  "acts": [
+   "Kathleen Yearwood",
+   "Bad Mary"
+  ],
+  "title": "Kathleen Yearwood @ Shinjuku Loft (新宿LOFT)",
+  "date": "2026-11-29",
+  "venue": "Shinjuku Loft (新宿LOFT)",
+  "city": "Tokyo",
+  "area": "Shinjuku",
+  "url": "https://www.songkick.com/concerts/43369358-kathleen-yearwood-at-shinjuku-loft",
+  "note": "Songkick Tokyo metro; locality Shinjuku; 1-12-9 Kabuki-cho, 東京都新宿区歌舞伎町1丁目12-9 タテハナビル"
+ },
+ {
+  "acts": [
+   "Dead Happy",
+   "Creep Down",
+   "JACK IT OUT.",
+   "FVRMN"
+  ],
+  "title": "Edo Wave - Tokyo International Music Festival 2026 @ Shinjuku Loft (新宿LOFT)",
+  "date": "2026-11-29",
+  "venue": "Shinjuku Loft (新宿LOFT)",
+  "city": "Tokyo",
+  "area": "Shinjuku",
+  "url": "https://www.songkick.com/festivals/3809497-edo-wave-tokyo-international-music/id/43462605-edo-wave--tokyo-international-music-festival-2026",
+  "note": "Songkick Tokyo metro; locality Shinjuku; 1-12-9 Kabuki-cho, 東京都新宿区歌舞伎町1丁目12-9 タテハナビル"
+ },
+ {
+  "acts": [
+   "Two Door Cinema Club"
+  ],
+  "title": "Two Door Cinema Club @ SGC Hall Ariake",
+  "date": "2026-11-30",
+  "venue": "SGC Hall Ariake",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43232408-two-door-cinema-club-at-sgc-hall-ariake",
+  "note": "Songkick Tokyo metro; locality Tokyo; None"
+ },
+ {
+  "acts": [
+   "Slow Mass"
+  ],
+  "title": "Slow Mass @ FEVER (新代田)",
+  "date": "2026-11-30",
+  "venue": "FEVER (新代田)",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43362618-slow-mass-at-fever",
+  "note": "Songkick Tokyo metro; locality Tokyo; Hanegi 1-1-14 Setagaya-ku /  東京都世田谷区羽根木1丁目1-14"
+ },
+ {
+  "acts": [
+   "Chanpan"
+  ],
+  "title": "Chanpan @ Daikanyama UNIT",
+  "date": "2026-12-01",
+  "venue": "Daikanyama UNIT",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43479166-chanpan-at-daikanyama-unit",
+  "note": "Songkick Tokyo metro; locality Shibuya; Za House Bld, B1F 1-34-17, Ebisu-Nishi / 東京都渋谷区恵比寿西１丁目３４−１７"
+ },
+ {
+  "acts": [
+   "Fcukers"
+  ],
+  "title": "Fcukers @ Zepp Shinjuku",
+  "date": "2026-12-02",
   "venue": "Zepp Shinjuku",
   "city": "Tokyo",
   "area": "Shinjuku",
-  "url": "https://eplus.jp/emnw",
-  "note": "Via eplus/livefans; Tour final."
+  "url": "https://www.songkick.com/concerts/43467510-fcukers-at-zepp-shinjuku",
+  "note": "Songkick Tokyo metro; locality Shinjuku; None"
  },
  {
   "acts": [
-   "銀杏BOYZ",
-   "ano"
+   "MUCC"
   ],
-  "title": "Cross-stage Vol.3: ano × 銀杏BOYZ",
-  "date": "2026-12-07",
-  "venue": "豊洲PIT",
+  "title": "MUCC @ Heaven's Rock VJ-3",
+  "date": "2026-12-02",
+  "venue": "Heaven's Rock VJ-3",
+  "city": "Saitama",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43441453-mucc-at-heavens-rock-vj3",
+  "note": "Songkick Tokyo metro; locality Saitama; None"
+ },
+ {
+  "acts": [
+   "Khalid"
+  ],
+  "title": "Khalid @ Tokyo Garden Theater",
+  "date": "2026-12-03",
+  "venue": "Tokyo Garden Theater",
   "city": "Tokyo",
-  "area": "Koto",
-  "url": "https://www.livefans.jp/search?keyword=銀杏BOYZ",
-  "note": "Via livefans."
- },
- {
-  "acts": [
-   "銀杏BOYZ",
-   "友部正人"
-  ],
-  "title": "ギフト",
-  "date": "2026-12-10",
-  "venue": "club SONIC iwaki",
-  "city": "Iwaki",
   "area": "",
-  "url": "https://ticketjam.jp/tickets/gingnang-boyz",
-  "note": "Open 18:30/Start 19:00; general sale 11/15."
+  "url": "https://www.songkick.com/concerts/43367196-khalid-at-tokyo-garden-theater",
+  "note": "Songkick Tokyo metro; locality Tokyo; 2 Chome-1-6 Ariake"
  },
  {
   "acts": [
-   "赤いくらげ"
+   "Ken Ishii",
+   "Satoshi Tomiie"
   ],
-  "title": "JUNKY58% もえ & Zeela MOTTY presents “TAKE IT EASY” -Zeela 13th ANNIVERSARY-",
-  "date": "2026-12-17",
-  "venue": "梅田Zeela",
-  "city": "Osaka",
-  "area": "",
-  "url": "https://www.livefans.jp/search?keyword=赤いくらげ",
-  "note": "Via livefans; other acts not captured."
- },
- {
-  "acts": [
-   "KYONO BAND"
-  ],
-  "title": "54th NEW YEAR ROCK FESTIVAL 2026-2027",
-  "date": "2026-12-31",
-  "venue": "SHIBUYA PLEASURE PLEASURE",
+  "title": "Ken Ishii @ Womb",
+  "date": "2026-12-03",
+  "venue": "Womb",
   "city": "Tokyo",
   "area": "Shibuya",
-  "url": "https://www.livefans.jp/search?keyword=KYONO",
-  "note": "Via livefans (act listed as KYONO BAND; assumed to be KYONO); other acts not captured."
+  "url": "https://www.songkick.com/concerts/43484739-ken-ishii-at-womb",
+  "note": "Songkick Tokyo metro; locality Shibuya; 2-16 Maruyamacho / 東京都 渋谷区円山町2-16"
  },
  {
   "acts": [
-   "TURTLE ISLAND"
+   "Cavity"
   ],
-  "title": "柳家睦 & THE RATBONES PRESENTS 東京鶯谷 浮世離れ柳家祭 東京浮世離れ歌謡祭",
-  "date": "2027-01-10",
-  "venue": "東京キネマ倶楽部",
-  "city": "Tokyo",
-  "area": "Taito",
-  "url": "https://www.livefans.jp/search?keyword=Turtle+Island",
-  "note": "Via livefans; venue also lists ダンスホール新世紀."
+  "title": "Cavity @ Hokage",
+  "date": "2026-12-03",
+  "venue": "Hokage",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43231583-cavity-at-hokage",
+  "note": "Songkick Osaka metro; locality Osaka; KASADOMART buildings B1F/B2F, 2-9-36, Nishi-Shinsaibashi"
  },
  {
   "acts": [
-   "CQCQ"
+   "Diana Krall"
   ],
-  "title": "ANSWER FOR LIFE",
-  "date": "2026-11-27",
-  "venue": "TIGHT ROPE",
+  "title": "Diana Krall @ Nagoya Civic Assembly Hall / 名古屋市公会堂",
+  "date": "2026-12-03",
+  "venue": "Nagoya Civic Assembly Hall / 名古屋市公会堂",
   "city": "Nagoya",
   "area": "",
-  "url": "https://www.livefans.jp/search?keyword=CQ",
-  "note": "Via livefans; act 'CQCQ' may not be the intended 'CQ'."
+  "url": "https://www.songkick.com/concerts/43373481-diana-krall-at-nagoya-civic-assembly-hall-ming-gu-wu-shi-gong-hui-tang",
+  "note": "Songkick Nagoya metro; locality Nagoya; 名古屋市昭和区鶴舞一丁目1-3 / 1-1-3 Tsurumai Showaku"
+ },
+ {
+  "acts": [
+   "Diana Krall"
+  ],
+  "title": "Diana Krall @ Osaka International Convention Center, Main Hall (\"Grand Cube\") (グランキューブ大阪メインホール)",
+  "date": "2026-12-04",
+  "venue": "Osaka International Convention Center, Main Hall (\"Grand Cube\") (グランキューブ大阪メインホール)",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43373480-diana-krall-at-osaka-international-convention-center-main-hall",
+  "note": "Songkick Osaka metro; locality Osaka; 大阪市北区中之島5-3-51"
+ },
+ {
+  "acts": [
+   "Castle"
+  ],
+  "title": "Tokyo Doom Fest 2026 @ Ryōgoku Sunrize",
+  "date": "2026-12-05",
+  "venue": "Ryōgoku Sunrize",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/festivals/3808916-tokyo-doom-fest/id/43457205-tokyo-doom-fest-2026",
+  "note": "Songkick Tokyo metro; locality Tokyo; 4 Chome-36-6 Ryogoku, Sumida City",
+  "until": "2026-12-06"
+ },
+ {
+  "acts": [
+   "Cavity"
+  ],
+  "title": "Cavity @ Nakano Moonstep",
+  "date": "2026-12-06",
+  "venue": "Nakano Moonstep",
+  "city": "Tokyo",
+  "area": "Nakano",
+  "url": "https://www.songkick.com/concerts/43231592-cavity-at-nakano-moonstep",
+  "note": "Songkick Tokyo metro; locality Nakano; 東京都中野区中央5-39-16"
+ },
+ {
+  "acts": [
+   "Ayato",
+   "Kumagusu",
+   "Loolowningen & The Far East Idiots",
+   "DJ?meytél"
+  ],
+  "title": "Ayato @ ForestLimit",
+  "date": "2026-12-06",
+  "venue": "ForestLimit",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43390591-ayato-at-forestlimit",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都渋谷区幡ヶ谷2-8-15 幡ヶ谷K3ビルB1F"
+ },
+ {
+  "acts": [
+   "Diana Krall"
+  ],
+  "title": "Diana Krall @ Tokyo Dome City Hall (東京ドームシティホール)",
+  "date": "2026-12-07",
+  "venue": "Tokyo Dome City Hall (東京ドームシティホール)",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43373483-diana-krall-at-tokyo-dome-city-hall",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都文京区後楽1-3-61 (MEETS PORT B3-1F)"
+ },
+ {
+  "acts": [
+   "Castle"
+  ],
+  "title": "Castle @ Live&Pub Moonstep",
+  "date": "2026-12-07",
+  "venue": "Live&Pub Moonstep",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43457213-castle-at-live-and-pub-moonstep",
+  "note": "Songkick Tokyo metro; locality Tokyo; None"
+ },
+ {
+  "acts": [
+   "James Blake"
+  ],
+  "title": "James Blake @ Zepp Haneda",
+  "date": "2026-12-08",
+  "venue": "Zepp Haneda",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43309409-james-blake-at-zepp-haneda",
+  "note": "Songkick Tokyo metro; locality Tokyo; None"
+ },
+ {
+  "acts": [
+   "Gia Margaret",
+   "ichiko aoba"
+  ],
+  "title": "Gia Margaret @ 淀橋教会 インマヌエル礼拝堂",
+  "date": "2026-12-08",
+  "venue": "淀橋教会 インマヌエル礼拝堂",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43465603-gia-margaret-at-dian-qiao-jiao-hui-inmanueruli-bai-tang",
+  "note": "Songkick Tokyo metro; locality Tokyo; None"
+ },
+ {
+  "acts": [
+   "Thompson Springs"
+  ],
+  "title": "Thompson Springs @ mogu mogu",
+  "date": "2026-12-08",
+  "venue": "mogu mogu",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43459585-thompson-springs-at-mogu-mogu",
+  "note": "Songkick Tokyo metro; locality Tokyo; None"
+ },
+ {
+  "acts": [
+   "James Blake"
+  ],
+  "title": "James Blake @ Zepp Haneda",
+  "date": "2026-12-09",
+  "venue": "Zepp Haneda",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43309410-james-blake-at-zepp-haneda",
+  "note": "Songkick Tokyo metro; locality Tokyo; None"
+ },
+ {
+  "acts": [
+   "Diana Krall"
+  ],
+  "title": "Diana Krall @ Tokyo Dome City Hall (東京ドームシティホール)",
+  "date": "2026-12-09",
+  "venue": "Tokyo Dome City Hall (東京ドームシティホール)",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43373484-diana-krall-at-tokyo-dome-city-hall",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都文京区後楽1-3-61 (MEETS PORT B3-1F)"
+ },
+ {
+  "acts": [
+   "FKJ"
+  ],
+  "title": "FKJ @ Tokyo International Forum Hall A (東京国際フォーラム ホール A)",
+  "date": "2026-12-10",
+  "venue": "Tokyo International Forum Hall A (東京国際フォーラム ホール A)",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43308514-fkj-at-tokyo-international-forum-hall-a",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都千代田区丸の内3-5-1"
+ },
+ {
+  "acts": [
+   "Thompson Springs"
+  ],
+  "title": "Thompson Springs @ Chicken Shack/チキンシャック",
+  "date": "2026-12-10",
+  "venue": "Chicken Shack/チキンシャック",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43459587-thompson-springs-at-chicken-shacktikinsiyatuku",
+  "note": "Songkick Tokyo metro; locality Tokyo; 福生市福生876"
+ },
+ {
+  "acts": [
+   "Diana Krall"
+  ],
+  "title": "Diana Krall @ Tokyo Dome City Hall (東京ドームシティホール)",
+  "date": "2026-12-10",
+  "venue": "Tokyo Dome City Hall (東京ドームシティホール)",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43496069-diana-krall-at-tokyo-dome-city-hall",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都文京区後楽1-3-61 (MEETS PORT B3-1F)"
+ },
+ {
+  "acts": [
+   "Castle"
+  ],
+  "title": "Castle @ Hokage 火影",
+  "date": "2026-12-10",
+  "venue": "Hokage 火影",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43457222-castle-at-hokage-huo-ying",
+  "note": "Songkick Osaka metro; locality Osaka; None"
+ },
+ {
+  "acts": [
+   "ichiko aoba"
+  ],
+  "title": "ichiko aoba @ Meguro Persimmon Hall - めぐろパーシモンホール",
+  "date": "2026-12-11",
+  "venue": "Meguro Persimmon Hall - めぐろパーシモンホール",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43353545-ichiko-aoba-at-meguro-persimmon-hall-meguropasimonhoru",
+  "note": "Songkick Tokyo metro; locality Tokyo; 目黒区八雲1-1-1"
+ },
+ {
+  "acts": [
+   "Thompson Springs"
+  ],
+  "title": "Thompson Springs @ UFO Club",
+  "date": "2026-12-11",
+  "venue": "UFO Club",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43459589-thompson-springs-at-ufo-club",
+  "note": "Songkick Tokyo metro; locality Tokyo; 〒166-0003 Tokyo, Suginami, 高円寺南１丁目１１−６ ハーモニーヒルズB1F"
+ },
+ {
+  "acts": [
+   "Roommate"
+  ],
+  "title": "Roommate @ Music Bar Hokage",
+  "date": "2026-12-11",
+  "venue": "Music Bar Hokage",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43399504-roommate-at-music-bar-hokage",
+  "note": "Songkick Osaka metro; locality Osaka; Japan, 〒542-0086 Osaka, Chuo Ward, Nishishinsaibashi, 2 Chome−9−36 B1F/B2F カサドマートビル"
+ },
+ {
+  "acts": [
+   "Castle"
+  ],
+  "title": "Castle @ Livehouse Wall",
+  "date": "2026-12-12",
+  "venue": "Livehouse Wall",
+  "city": "Tokyo",
+  "area": "Shinjuku",
+  "url": "https://www.songkick.com/concerts/43457227-castle-at-livehouse-wall",
+  "note": "Songkick Tokyo metro; locality Shinjuku; 3 Chome-15-8 Nishishinjuku"
+ },
+ {
+  "acts": [
+   "Thompson Springs"
+  ],
+  "title": "Thompson Springs @ Chiba",
+  "date": "2026-12-12",
+  "venue": "Chiba",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43459591-thompson-springs-at-chiba",
+  "note": "Songkick Tokyo metro; locality Tokyo; None"
+ },
+ {
+  "acts": [
+   "Shingo Nakamura"
+  ],
+  "title": "Shingo Nakamura @ YODO GROOVE",
+  "date": "2026-12-12",
+  "venue": "YODO GROOVE",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43495924-shingo-nakamura-at-yodo-groove",
+  "note": "Songkick Tokyo metro; locality Tokyo; None"
+ },
+ {
+  "acts": [
+   "Castle"
+  ],
+  "title": "Castle @ Huck Finn (ハックフィン)",
+  "date": "2026-12-13",
+  "venue": "Huck Finn (ハックフィン)",
+  "city": "Nagoya",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43457231-castle-at-huck-finn",
+  "note": "Songkick Nagoya metro; locality Nagoya; 愛知県名古屋市千種区 今池5-19-7"
+ },
+ {
+  "acts": [
+   "Psudoku"
+  ],
+  "title": "Psudoku @ Huck Finn (ハックフィン)",
+  "date": "2026-12-13",
+  "venue": "Huck Finn (ハックフィン)",
+  "city": "Nagoya",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43481183-psudoku-at-huck-finn",
+  "note": "Songkick Nagoya metro; locality Nagoya; 愛知県名古屋市千種区 今池5-19-7"
+ },
+ {
+  "acts": [
+   "MUCC"
+  ],
+  "title": "MUCC @ Club Quattro / クラブクアトロ",
+  "date": "2026-12-14",
+  "venue": "Club Quattro / クラブクアトロ",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43441469-mucc-at-club-quattro-kurabukuatoro",
+  "note": "Songkick Tokyo metro; locality Shibuya; 東京都渋谷区宇田川町32-13"
+ },
+ {
+  "acts": [
+   "synchre"
+  ],
+  "title": "synchre @ Shibuya Home",
+  "date": "2026-12-14",
+  "venue": "Shibuya Home",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43465513-synchre-at-shibuya-home",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都渋谷区渋谷1-10-7 グローリア宮益坂lll B1F"
+ },
+ {
+  "acts": [
+   "Psudoku"
+  ],
+  "title": "Psudoku @ Hokage 火影",
+  "date": "2026-12-16",
+  "venue": "Hokage 火影",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43481189-psudoku-at-hokage-huo-ying",
+  "note": "Songkick Osaka metro; locality Osaka; None"
+ },
+ {
+  "acts": [
+   "Psudoku"
+  ],
+  "title": "Psudoku @ Bush Bash",
+  "date": "2026-12-17",
+  "venue": "Bush Bash",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43481192-psudoku-at-bush-bash",
+  "note": "Songkick Tokyo metro; locality Tokyo; Edogawa-ku Minamikoiwa 7-28-11 first central 101"
+ },
+ {
+  "acts": [
+   "Roommate"
+  ],
+  "title": "Roommate @ Huck Finn (ハックフィン)",
+  "date": "2026-12-17",
+  "venue": "Huck Finn (ハックフィン)",
+  "city": "Nagoya",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43399511-roommate-at-huck-finn",
+  "note": "Songkick Nagoya metro; locality Nagoya; 愛知県名古屋市千種区 今池5-19-7"
+ },
+ {
+  "acts": [
+   "Max Styler"
+  ],
+  "title": "Max Styler @ Zouk Tokyo",
+  "date": "2026-12-18",
+  "venue": "Zouk Tokyo",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43472090-max-styler-at-zouk-tokyo",
+  "note": "Songkick Tokyo metro; locality Tokyo; None"
+ },
+ {
+  "acts": [
+   "Psudoku",
+   "Final Exit"
+  ],
+  "title": "Psudoku @ Hill Valley Studio",
+  "date": "2026-12-19",
+  "venue": "Hill Valley Studio",
+  "city": "Tokyo",
+  "area": "Shinjuku",
+  "url": "https://www.songkick.com/concerts/43487140-psudoku-at-hill-valley-studio",
+  "note": "Songkick Tokyo metro; locality Shinjuku; None"
+ },
+ {
+  "acts": [
+   "Zoobombs"
+  ],
+  "title": "Zoobombs @ Basement Bar",
+  "date": "2026-12-20",
+  "venue": "Basement Bar",
+  "city": "Tokyo",
+  "area": "Setagaya",
+  "url": "https://www.songkick.com/concerts/43492308-zoobombs-at-basement-bar",
+  "note": "Songkick Tokyo metro; locality Setagaya; 5-18-1-B1F, Daizawa"
+ },
+ {
+  "acts": [
+   "MUCC"
+  ],
+  "title": "MUCC @ Club Quattro / クラブクアトロ",
+  "date": "2026-12-22",
+  "venue": "Club Quattro / クラブクアトロ",
+  "city": "Nagoya",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43441481-mucc-at-club-quattro-kurabukuatoro",
+  "note": "Songkick Nagoya metro; locality Nagoya; 愛知県名古屋市中区栄3-29-1 名古屋パルコ東館8F"
+ },
+ {
+  "acts": [
+   "MUCC"
+  ],
+  "title": "MUCC @ Umeda Club Quattro / 梅田クラブクアトロ",
+  "date": "2026-12-23",
+  "venue": "Umeda Club Quattro / 梅田クラブクアトロ",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43441486-mucc-at-umeda-club-quattro-mei-tian-kurabukuatoro",
+  "note": "Songkick Osaka metro; locality Osaka; 8-17 Taiyujicho, Kita Ward / 大阪市北区太融寺町8-17 プラザ梅田10F"
+ },
+ {
+  "acts": [
+   "Gentlemens Club (United Kingdom)"
+  ],
+  "title": "Gentlemens Club (United Kingdom) @ CIRCUS TOKYO",
+  "date": "2026-12-25",
+  "venue": "CIRCUS TOKYO",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43499615-gentlemens-club-united-kingdom-at-circus-tokyo",
+  "note": "Songkick Tokyo metro; locality Tokyo; None"
+ },
+ {
+  "acts": [
+   "si,irene"
+  ],
+  "title": "si,irene @ Shibuya Home",
+  "date": "2026-12-26",
+  "venue": "Shibuya Home",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43467745-siirene-at-shibuya-home",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都渋谷区渋谷1-10-7 グローリア宮益坂lll B1F"
+ },
+ {
+  "acts": [
+   "Takkyu Ishino",
+   "Ken Ishii"
+  ],
+  "title": "Takkyu Ishino @ Club Joule",
+  "date": "2026-12-29",
+  "venue": "Club Joule",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43484740-takkyu-ishino-at-club-joule",
+  "note": "Songkick Osaka metro; locality Osaka; 2F,3F Minami Sumiyamachi Bld, Nishi-Shinsaibashi Chuo-Ku"
+ },
+ {
+  "acts": [
+   "MAKKURAGE",
+   "liquid people(JP)",
+   "妄想リフレイン",
+   "halogen(JP)",
+   "ザ・ダービーズ",
+   "CROWN HEAD",
+   "irienchy",
+   "Navy HERETIC",
+   "Rhakka",
+   "ステレオドロシー",
+   "JIJIM",
+   "シベリアンハスキー",
+   "シェカラーシカ",
+   "AoAu",
+   "Adult family",
+   "mM7th"
+  ],
+  "title": "THE SEDAI EXPO 2027 @ Chelsea Hotel",
+  "date": "2027-01-04",
+  "venue": "Chelsea Hotel",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/festivals/3800559-sedai-expo/id/43365580-the-sedai-expo-2027",
+  "note": "Songkick Tokyo metro; locality Shibuya; 4-7-B1, Udagawa-cho, Shibuya-ku"
+ },
+ {
+  "acts": [
+   "Bruno Mars",
+   "DJ PEE WEE"
+  ],
+  "title": "Bruno Mars @ Vantelin Dome Nagoya / バンテリンドーム ナゴヤ",
+  "date": "2027-01-04",
+  "venue": "Vantelin Dome Nagoya / バンテリンドーム ナゴヤ",
+  "city": "Nagoya",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43406256-bruno-mars-at-vantelin-dome-nagoya-banterindomu-nagoya",
+  "note": "Songkick Nagoya metro; locality Nagoya; 1 Chome-1-1 Daikominami, Higashi Ward / 愛知県名古屋市東区大幸南1-1-1"
+ },
+ {
+  "acts": [
+   "Bruno Mars",
+   "DJ PEE WEE"
+  ],
+  "title": "Bruno Mars @ Vantelin Dome Nagoya / バンテリンドーム ナゴヤ",
+  "date": "2027-01-05",
+  "venue": "Vantelin Dome Nagoya / バンテリンドーム ナゴヤ",
+  "city": "Nagoya",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43406258-bruno-mars-at-vantelin-dome-nagoya-banterindomu-nagoya",
+  "note": "Songkick Nagoya metro; locality Nagoya; 1 Chome-1-1 Daikominami, Higashi Ward / 愛知県名古屋市東区大幸南1-1-1"
+ },
+ {
+  "acts": [
+   "Kim Gordon"
+  ],
+  "title": "Kim Gordon @ Yogibo Meta Valley",
+  "date": "2027-01-06",
+  "venue": "Yogibo Meta Valley",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43471046-kim-gordon-at-yogibo-meta-valley",
+  "note": "Songkick Osaka metro; locality Osaka; 2 Chome-11-1 Nanbanaka, Naniwa Ward, Osaka, 556-0011日本"
+ },
+ {
+  "acts": [
+   "Kim Gordon"
+  ],
+  "title": "Kim Gordon @ Kanda Square Hall",
+  "date": "2027-01-07",
+  "venue": "Kanda Square Hall",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43471047-kim-gordon-at-kanda-square-hall",
+  "note": "Songkick Tokyo metro; locality Tokyo; 2 Chome−２−1, Kanda Nishikicho, Chiyoda City,"
+ },
+ {
+  "acts": [
+   "Violet Grohl"
+  ],
+  "title": "Violet Grohl @ Shangri La",
+  "date": "2027-01-07",
+  "venue": "Shangri La",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43471176-violet-grohl-at-shangri-la",
+  "note": "Songkick Osaka metro; locality Umeda; 大阪市北区大淀南1-1-14"
+ },
+ {
+  "acts": [
+   "Violet Grohl"
+  ],
+  "title": "Violet Grohl @ Space Odd",
+  "date": "2027-01-08",
+  "venue": "Space Odd",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43471177-violet-grohl-at-space-odd",
+  "note": "Songkick Tokyo metro; locality Shibuya; 2-11 sarugakucho / 東京都渋谷区猿楽町2-11"
+ },
+ {
+  "acts": [
+   "Gumby's Junk",
+   "Green Milk From The Planet Orange",
+   "Loolowningen & The Far East Idiots",
+   "suppa micro panchop"
+  ],
+  "title": "Gumby's Junk @ Shimokitazawa Era",
+  "date": "2027-01-08",
+  "venue": "Shimokitazawa Era",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43478288-gumbys-junk-at-shimokitazawa-era",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都世田谷区北沢2-34-5 プリマヴェール下北沢4F"
+ },
+ {
+  "acts": [
+   "Bloc Party",
+   "Dinosaur Jr.",
+   "Suede",
+   "Kula Shaker",
+   "Pale Waves",
+   "Kim Gordon",
+   "Dove Ellis",
+   "Violet Grohl"
+  ],
+  "title": "rockin'on sonic 2027 @ SGC Hall Ariake",
+  "date": "2027-01-09",
+  "venue": "SGC Hall Ariake",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/festivals/3687540-rockinon-sonic/id/43414423-rockinon-sonic-2027",
+  "note": "Songkick Tokyo metro; locality Tokyo; None",
+  "until": "2027-01-10"
+ },
+ {
+  "acts": [
+   "Jeff Parker"
+  ],
+  "title": "Jeff Parker @ Blue Note / ブルーノート",
+  "date": "2027-01-11",
+  "venue": "Blue Note / ブルーノート",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43402536-jeff-parker-at-blue-note-burunoto",
+  "note": "Songkick Tokyo metro; locality Tokyo; 6 Chome-3-16 Minamiaoyama, Minato City / 東京都港区南青山6-3-16"
+ },
+ {
+  "acts": [
+   "The Cloverhearts",
+   "The Cherry Cokes"
+  ],
+  "title": "The Cloverhearts @ The Game",
+  "date": "2027-01-11",
+  "venue": "The Game",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43484135-cloverhearts-at-game",
+  "note": "Songkick Tokyo metro; locality Shibuya; 宇田川町4-7 トウセン宇田川町ビル2F"
+ },
+ {
+  "acts": [
+   "Jeff Parker"
+  ],
+  "title": "Jeff Parker @ Blue Note / ブルーノート",
+  "date": "2027-01-12",
+  "venue": "Blue Note / ブルーノート",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43402543-jeff-parker-at-blue-note-burunoto",
+  "note": "Songkick Tokyo metro; locality Tokyo; 6 Chome-3-16 Minamiaoyama, Minato City / 東京都港区南青山6-3-16"
+ },
+ {
+  "acts": [
+   "Jeff Parker"
+  ],
+  "title": "Jeff Parker @ Blue Note / ブルーノート",
+  "date": "2027-01-13",
+  "venue": "Blue Note / ブルーノート",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43402545-jeff-parker-at-blue-note-burunoto",
+  "note": "Songkick Tokyo metro; locality Tokyo; 6 Chome-3-16 Minamiaoyama, Minato City / 東京都港区南青山6-3-16"
+ },
+ {
+  "acts": [
+   "Nightly"
+  ],
+  "title": "Nightly @ ADRIFT",
+  "date": "2027-01-13",
+  "venue": "ADRIFT",
+  "city": "Tokyo",
+  "area": "Setagaya",
+  "url": "https://www.songkick.com/concerts/43470941-nightly-at-adrift",
+  "note": "Songkick Tokyo metro; locality Setagaya; None"
+ },
+ {
+  "acts": [
+   "Incognito"
+  ],
+  "title": "Incognito @ Tokai City Arts Centre",
+  "date": "2027-01-13",
+  "venue": "Tokai City Arts Centre",
+  "city": "Nagoya",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43473058-incognito-at-tokai-city-arts-centre",
+  "note": "Songkick Nagoya metro; locality Tokai City; 1016 Shimohamada,Ota-cho, Tokai city, Aichi prefecture"
+ },
+ {
+  "acts": [
+   "The Cloverhearts",
+   "The Cherry Cokes"
+  ],
+  "title": "The Cloverhearts @ Holiday Next",
+  "date": "2027-01-13",
+  "venue": "Holiday Next",
+  "city": "Nagoya",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43484184-cloverhearts-at-holiday-next",
+  "note": "Songkick Nagoya metro; locality Nagoya; Japan, 〒460-0008 Aichi Prefecture, Nagoya, Naka Ward, Sakae, ３−２３−３２"
+ },
+ {
+  "acts": [
+   "The Cloverhearts",
+   "The Cherry Cokes"
+  ],
+  "title": "The Cloverhearts @ Live House Pangea",
+  "date": "2027-01-14",
+  "venue": "Live House Pangea",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43484206-cloverhearts-at-live-house-pangea",
+  "note": "Songkick Osaka metro; locality Osaka; Chuo Ward, Nishishinsaibashi, 2 Chome-10-34 / 大阪市中央区西心斎橋2-10-34 心斎橋ウエスト363ビル1F"
+ },
+ {
+  "acts": [
+   "Bruno Mars",
+   "DJ PEE WEE"
+  ],
+  "title": "Bruno Mars @ Belluna Dome / ベルーナドーム",
+  "date": "2027-01-15",
+  "venue": "Belluna Dome / ベルーナドーム",
+  "city": "Tokorozawa",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43406317-bruno-mars-at-belluna-dome-berunadomu",
+  "note": "Songkick Tokyo metro; locality Tokorozawa; 2135 Kami-Yamaguchi"
+ },
+ {
+  "acts": [
+   "Incognito"
+  ],
+  "title": "Incognito @ Blue Note / ブルーノート",
+  "date": "2027-01-15",
+  "venue": "Blue Note / ブルーノート",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43459610-incognito-at-blue-note-burunoto",
+  "note": "Songkick Tokyo metro; locality Tokyo; 6 Chome-3-16 Minamiaoyama, Minato City / 東京都港区南青山6-3-16"
+ },
+ {
+  "acts": [
+   "AMALA (Japan)",
+   "Shuhari"
+  ],
+  "title": "AMALA (Japan) @ Nine Spices Shinjuku / 新宿ナインスパイス",
+  "date": "2027-01-15",
+  "venue": "Nine Spices Shinjuku / 新宿ナインスパイス",
+  "city": "Tokyo",
+  "area": "Shinjuku",
+  "url": "https://www.songkick.com/concerts/43471179-amala-japan-at-nine-spices-shinjuku-xin-su-nainsupaisu",
+  "note": "Songkick Tokyo metro; locality Shinjuku; 2 Chome−1−2 B1, Kabukicho"
+ },
+ {
+  "acts": [
+   "Bruno Mars",
+   "DJ PEE WEE"
+  ],
+  "title": "Bruno Mars @ Belluna Dome / ベルーナドーム",
+  "date": "2027-01-16",
+  "venue": "Belluna Dome / ベルーナドーム",
+  "city": "Tokorozawa",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43406318-bruno-mars-at-belluna-dome-berunadomu",
+  "note": "Songkick Tokyo metro; locality Tokorozawa; 2135 Kami-Yamaguchi"
+ },
+ {
+  "acts": [
+   "OneUs"
+  ],
+  "title": "OneUs @ Toyosu Pit / 豊洲ピット",
+  "date": "2027-01-16",
+  "venue": "Toyosu Pit / 豊洲ピット",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43457839-oneus-at-toyosu-pit-li-zhou-pituto",
+  "note": "Songkick Tokyo metro; locality Tokyo; 江東区豊洲6-1-23"
+ },
+ {
+  "acts": [
+   "Incognito"
+  ],
+  "title": "Incognito @ Blue Note / ブルーノート",
+  "date": "2027-01-16",
+  "venue": "Blue Note / ブルーノート",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43459611-incognito-at-blue-note-burunoto",
+  "note": "Songkick Tokyo metro; locality Tokyo; 6 Chome-3-16 Minamiaoyama, Minato City / 東京都港区南青山6-3-16"
+ },
+ {
+  "acts": [
+   "OneUs"
+  ],
+  "title": "OneUs @ Toyosu Pit / 豊洲ピット",
+  "date": "2027-01-17",
+  "venue": "Toyosu Pit / 豊洲ピット",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43457842-oneus-at-toyosu-pit-li-zhou-pituto",
+  "note": "Songkick Tokyo metro; locality Tokyo; 江東区豊洲6-1-23"
+ },
+ {
+  "acts": [
+   "Incognito"
+  ],
+  "title": "Incognito @ Blue Note / ブルーノート",
+  "date": "2027-01-17",
+  "venue": "Blue Note / ブルーノート",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43459613-incognito-at-blue-note-burunoto",
+  "note": "Songkick Tokyo metro; locality Tokyo; 6 Chome-3-16 Minamiaoyama, Minato City / 東京都港区南青山6-3-16"
+ },
+ {
+  "acts": [
+   "Incognito"
+  ],
+  "title": "Incognito @ Blue Note / ブルーノート",
+  "date": "2027-01-18",
+  "venue": "Blue Note / ブルーノート",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43459614-incognito-at-blue-note-burunoto",
+  "note": "Songkick Tokyo metro; locality Tokyo; 6 Chome-3-16 Minamiaoyama, Minato City / 東京都港区南青山6-3-16"
+ },
+ {
+  "acts": [
+   "Incognito"
+  ],
+  "title": "Incognito @ Blue Note / ブルーノート",
+  "date": "2027-01-19",
+  "venue": "Blue Note / ブルーノート",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43459615-incognito-at-blue-note-burunoto",
+  "note": "Songkick Tokyo metro; locality Tokyo; 6 Chome-3-16 Minamiaoyama, Minato City / 東京都港区南青山6-3-16"
+ },
+ {
+  "acts": [
+   "Bruno Mars",
+   "DJ PEE WEE"
+  ],
+  "title": "Bruno Mars @ Kyocera Dome Osaka (京セラドーム大阪)",
+  "date": "2027-01-19",
+  "venue": "Kyocera Dome Osaka (京セラドーム大阪)",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43406320-bruno-mars-at-kyocera-dome-osaka",
+  "note": "Songkick Osaka metro; locality Osaka; 大阪府大阪市西区千代崎3-中2-1"
+ },
+ {
+  "acts": [
+   "Incognito"
+  ],
+  "title": "Incognito @ Blue Note / ブルーノート",
+  "date": "2027-01-20",
+  "venue": "Blue Note / ブルーノート",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43459616-incognito-at-blue-note-burunoto",
+  "note": "Songkick Tokyo metro; locality Tokyo; 6 Chome-3-16 Minamiaoyama, Minato City / 東京都港区南青山6-3-16"
+ },
+ {
+  "acts": [
+   "Bruno Mars",
+   "DJ PEE WEE"
+  ],
+  "title": "Bruno Mars @ Kyocera Dome Osaka (京セラドーム大阪)",
+  "date": "2027-01-20",
+  "venue": "Kyocera Dome Osaka (京セラドーム大阪)",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43406322-bruno-mars-at-kyocera-dome-osaka",
+  "note": "Songkick Osaka metro; locality Osaka; 大阪府大阪市西区千代崎3-中2-1"
+ },
+ {
+  "acts": [
+   "The Lemon Twigs"
+  ],
+  "title": "The Lemon Twigs @ Ebisu Garden Hall",
+  "date": "2027-01-22",
+  "venue": "Ebisu Garden Hall",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43448743-lemon-twigs-at-ebisu-garden-hall",
+  "note": "Songkick Tokyo metro; locality Tokyo; 1-13-2 Mita, Meguro-ku"
+ },
+ {
+  "acts": [
+   "Satan"
+  ],
+  "title": "Satan @ Koenji High",
+  "date": "2027-01-22",
+  "venue": "Koenji High",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43011326-satan-at-koenji-high",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都杉並区高円寺南4-30-1"
+ },
+ {
+  "acts": [
+   "Satan"
+  ],
+  "title": "Satan @ Koenji High",
+  "date": "2027-01-23",
+  "venue": "Koenji High",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43011329-satan-at-koenji-high",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都杉並区高円寺南4-30-1"
+ },
+ {
+  "acts": [
+   "Incognito"
+  ],
+  "title": "Incognito @ Zepp Namba",
+  "date": "2027-01-23",
+  "venue": "Zepp Namba",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43459619-incognito-at-zepp-namba",
+  "note": "Songkick Osaka metro; locality Osaka; 大阪市浪速区敷津東2-1-39"
+ },
+ {
+  "acts": [
+   "The Lemon Twigs"
+  ],
+  "title": "The Lemon Twigs @ Yogibo Meta Valley",
+  "date": "2027-01-24",
+  "venue": "Yogibo Meta Valley",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43448748-lemon-twigs-at-yogibo-meta-valley",
+  "note": "Songkick Osaka metro; locality Osaka; 2 Chome-11-1 Nanbanaka, Naniwa Ward, Osaka, 556-0011日本"
+ },
+ {
+  "acts": [
+   "Seal"
+  ],
+  "title": "Seal @ Tokyo Garden Theater",
+  "date": "2027-01-27",
+  "venue": "Tokyo Garden Theater",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43467507-seal-at-tokyo-garden-theater",
+  "note": "Songkick Tokyo metro; locality Tokyo; 2 Chome-1-6 Ariake"
+ },
+ {
+  "acts": [
+   "Fontaines D.C."
+  ],
+  "title": "Fontaines D.C. @ SGC Hall Ariake",
+  "date": "2027-01-28",
+  "venue": "SGC Hall Ariake",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43463832-fontaines-dc-at-sgc-hall-ariake",
+  "note": "Songkick Tokyo metro; locality Tokyo; None"
+ },
+ {
+  "acts": [
+   "Public Image Ltd (PiL)"
+  ],
+  "title": "Public Image Ltd (PiL) @ Namba Hatch / なんばHatch",
+  "date": "2027-02-05",
+  "venue": "Namba Hatch / なんばHatch",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43300265-public-image-ltd-pil-at-namba-hatch-nanbahatch",
+  "note": "Songkick Osaka metro; locality Osaka; Minatomachi 1-3-1, Naniwa-ku / 大阪市浪速区湊町1-3-1"
+ },
+ {
+  "acts": [
+   "Public Image Ltd (PiL)",
+   "PIL"
+  ],
+  "title": "Public Image Ltd (PiL) @ Toyosu Pit / 豊洲ピット",
+  "date": "2027-02-08",
+  "venue": "Toyosu Pit / 豊洲ピット",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43300270-public-image-ltd-pil-at-toyosu-pit-li-zhou-pituto",
+  "note": "Songkick Tokyo metro; locality Tokyo; 江東区豊洲6-1-23"
+ },
+ {
+  "acts": [
+   "Finn Wolfhard"
+  ],
+  "title": "Finn Wolfhard @ Yogibo Meta Valley",
+  "date": "2027-02-08",
+  "venue": "Yogibo Meta Valley",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43474298-finn-wolfhard-at-yogibo-meta-valley",
+  "note": "Songkick Osaka metro; locality Osaka; 2 Chome-11-1 Nanbanaka, Naniwa Ward, Osaka, 556-0011日本"
+ },
+ {
+  "acts": [
+   "Finn Wolfhard"
+  ],
+  "title": "Finn Wolfhard @ O-east",
+  "date": "2027-02-09",
+  "venue": "O-east",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43474301-finn-wolfhard-at-oeast",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都渋谷区道玄坂2-14-8"
+ },
+ {
+  "acts": [
+   "Cancer Bats"
+  ],
+  "title": "Cancer Bats @ Yogibo Holy Mountain",
+  "date": "2027-02-09",
+  "venue": "Yogibo Holy Mountain",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43499912-cancer-bats-at-yogibo-holy-mountain",
+  "note": "Songkick Osaka metro; locality Osaka; Chome-11-1 Nanbanaka, Naniwa Ward, Osaka"
+ },
+ {
+  "acts": [
+   "Cancer Bats"
+  ],
+  "title": "Cancer Bats @ Imaike 3Star",
+  "date": "2027-02-10",
+  "venue": "Imaike 3Star",
+  "city": "Nagoya",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43499914-cancer-bats-at-imaike-3star",
+  "note": "Songkick Nagoya metro; locality Nagoya; 愛知県名古屋市千種区今池5丁目3-2"
+ },
+ {
+  "acts": [
+   "Cancer Bats"
+  ],
+  "title": "Cancer Bats @ Shibuya Cyclone",
+  "date": "2027-02-11",
+  "venue": "Shibuya Cyclone",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43499916-cancer-bats-at-shibuya-cyclone",
+  "note": "Songkick Tokyo metro; locality Shibuya; Kokusai-building-A B2F, 13-16, Udagawa-chou, Shibuya-ku, 東京都渋谷区宇田川町13-16 国際ビルA館B2"
+ },
+ {
+  "acts": [
+   "Weezer"
+  ],
+  "title": "Weezer @ Tokyo Garden Theater",
+  "date": "2027-02-12",
+  "venue": "Tokyo Garden Theater",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43346887-weezer-at-tokyo-garden-theater",
+  "note": "Songkick Tokyo metro; locality Tokyo; 2 Chome-1-6 Ariake"
+ },
+ {
+  "acts": [
+   "Weezer"
+  ],
+  "title": "Weezer @ Tokyo Garden Theater",
+  "date": "2027-02-13",
+  "venue": "Tokyo Garden Theater",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43346894-weezer-at-tokyo-garden-theater",
+  "note": "Songkick Tokyo metro; locality Tokyo; 2 Chome-1-6 Ariake"
+ },
+ {
+  "acts": [
+   "fight me irl."
+  ],
+  "title": "fight me irl. @ Yoyogi Labo",
+  "date": "2027-02-16",
+  "venue": "Yoyogi Labo",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43436651-fight-me-irl-at-yoyogi-labo",
+  "note": "Songkick Tokyo metro; locality Shibuya; 1-chome 31-12 Yoyogi Building B1F, Yoyogi / 代々木1-31-12 日綜代々木ビルB1F"
+ },
+ {
+  "acts": [
+   "Weezer"
+  ],
+  "title": "Weezer @ Zepp Osaka Bayside",
+  "date": "2027-02-16",
+  "venue": "Zepp Osaka Bayside",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43346904-weezer-at-zepp-osaka-bayside",
+  "note": "Songkick Osaka metro; locality Osaka; 大阪府大阪市此花区桜島1-1-61"
+ },
+ {
+  "acts": [
+   "Chapterhouse"
+  ],
+  "title": "Chapterhouse @ Spotify O-EAST",
+  "date": "2027-02-17",
+  "venue": "Spotify O-EAST",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43412338-chapterhouse-at-spotify-oeast",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都渋谷区道玄坂２丁目１４−８"
+ },
+ {
+  "acts": [
+   "Catalano"
+  ],
+  "title": "Catalano @ Livehouse Wall",
+  "date": "2027-02-17",
+  "venue": "Livehouse Wall",
+  "city": "Tokyo",
+  "area": "Shinjuku",
+  "url": "https://www.songkick.com/concerts/43350493-catalano-at-livehouse-wall",
+  "note": "Songkick Tokyo metro; locality Shinjuku; 3 Chome-15-8 Nishishinjuku"
+ },
+ {
+  "acts": [
+   "fight me irl."
+  ],
+  "title": "fight me irl. @ Kichijoji Black and Blue",
+  "date": "2027-02-17",
+  "venue": "Kichijoji Black and Blue",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43436652-fight-me-irl-at-kichijoji-black-and-blue",
+  "note": "Songkick Tokyo metro; locality Tokyo; None"
+ },
+ {
+  "acts": [
+   "fight me irl."
+  ],
+  "title": "fight me irl. @ Planet K",
+  "date": "2027-02-18",
+  "venue": "Planet K",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43327998-fight-me-irl-at-planet-k",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都武蔵野市吉祥寺本町1丁目8-10"
+ },
+ {
+  "acts": [
+   "Catalano"
+  ],
+  "title": "Catalano @ ShowBoat",
+  "date": "2027-02-18",
+  "venue": "ShowBoat",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43350497-catalano-at-showboat",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都杉並区高円寺北3-17-2 オークヒル高円寺B1"
+ },
+ {
+  "acts": [
+   "Chapterhouse"
+  ],
+  "title": "Chapterhouse @ 246 Livehouse Gabu",
+  "date": "2027-02-18",
+  "venue": "246 Livehouse Gabu",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43412346-chapterhouse-at-246-livehouse-gabu",
+  "note": "Songkick Osaka metro; locality Osaka; None"
+ },
+ {
+  "acts": [
+   "Weezer"
+  ],
+  "title": "Weezer @ Comtec Portbase",
+  "date": "2027-02-18",
+  "venue": "Comtec Portbase",
+  "city": "Nagoya",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43346907-weezer-at-comtec-portbase",
+  "note": "Songkick Nagoya metro; locality Nagoya; 3 - 5 Kanagawa-chō"
+ },
+ {
+  "acts": [
+   "Catalano"
+  ],
+  "title": "Catalano @ Club Zion",
+  "date": "2027-02-19",
+  "venue": "Club Zion",
+  "city": "Nagoya",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43350498-catalano-at-club-zion",
+  "note": "Songkick Nagoya metro; locality Nagoya; 中区上前津2-1-10"
+ },
+ {
+  "acts": [
+   "fight me irl."
+  ],
+  "title": "fight me irl. @ Huck Finn (ハックフィン)",
+  "date": "2027-02-19",
+  "venue": "Huck Finn (ハックフィン)",
+  "city": "Nagoya",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43436653-fight-me-irl-at-huck-finn",
+  "note": "Songkick Nagoya metro; locality Nagoya; 愛知県名古屋市千種区 今池5-19-7"
+ },
+ {
+  "acts": [
+   "Megadeth"
+  ],
+  "title": "Megadeth @ Osaka International Convention Center, Main Hall (\"Grand Cube\") (グランキューブ大阪メインホール)",
+  "date": "2027-02-22",
+  "venue": "Osaka International Convention Center, Main Hall (\"Grand Cube\") (グランキューブ大阪メインホール)",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43390633-megadeth-at-osaka-international-convention-center-main-hall",
+  "note": "Songkick Osaka metro; locality Osaka; 大阪市北区中之島5-3-51"
+ },
+ {
+  "acts": [
+   "fight me irl."
+  ],
+  "title": "fight me irl. @ Red Cloth",
+  "date": "2027-02-23",
+  "venue": "Red Cloth",
+  "city": "Tokyo",
+  "area": "Shinjuku",
+  "url": "https://www.songkick.com/concerts/43436656-fight-me-irl-at-red-cloth",
+  "note": "Songkick Tokyo metro; locality Shinjuku; 東京都新宿区 新宿6-28-12 DS新宿ビルB1"
+ },
+ {
+  "acts": [
+   "Catalano"
+  ],
+  "title": "Catalano @ Sengoku Daitoryo / 大阪緑橋戦国大統領",
+  "date": "2027-02-23",
+  "venue": "Sengoku Daitoryo / 大阪緑橋戦国大統領",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43350502-catalano-at-sengoku-daitoryo-da-ban-lu-qiao-zhan-guo-da-tong-ling",
+  "note": "Songkick Osaka metro; locality Osaka; Midoribashi"
+ },
+ {
+  "acts": [
+   "Megadeth"
+  ],
+  "title": "Megadeth @ Nippon Budokan｜日本武道館",
+  "date": "2027-02-24",
+  "venue": "Nippon Budokan｜日本武道館",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43390634-megadeth-at-nippon-budokanri-ben-wu-dao-guan",
+  "note": "Songkick Tokyo metro; locality Tokyo; 2-3 Kitanomarukoen, Chiyoda-ku"
+ },
+ {
+  "acts": [
+   "DIIV"
+  ],
+  "title": "DIIV @ Kanda Square Hall",
+  "date": "2027-02-24",
+  "venue": "Kanda Square Hall",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43498365-diiv-at-kanda-square-hall",
+  "note": "Songkick Tokyo metro; locality Tokyo; 2 Chome−２−1, Kanda Nishikicho, Chiyoda City,"
+ },
+ {
+  "acts": [
+   "Bon Jovi"
+  ],
+  "title": "Bon Jovi @ Tokyo Dome｜東京ドーム",
+  "date": "2027-02-25",
+  "venue": "Tokyo Dome｜東京ドーム",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43494643-bon-jovi-at-tokyo-domedong-jing-domu",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都文京区後楽1-3-61"
+ },
+ {
+  "acts": [
+   "Catalano"
+  ],
+  "title": "Catalano @ Hard Rain",
+  "date": "2027-02-25",
+  "venue": "Hard Rain",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43350505-catalano-at-hard-rain",
+  "note": "Songkick Osaka metro; locality Osaka; 大阪府大阪市北区兎我野町3-19 兎我野ビル B1F"
+ },
+ {
+  "acts": [
+   "Bon Jovi"
+  ],
+  "title": "Bon Jovi @ Tokyo Dome｜東京ドーム",
+  "date": "2027-02-27",
+  "venue": "Tokyo Dome｜東京ドーム",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43494644-bon-jovi-at-tokyo-domedong-jing-domu",
+  "note": "Songkick Tokyo metro; locality Tokyo; 東京都文京区後楽1-3-61"
+ },
+ {
+  "acts": [
+   "Westside Cowboy"
+  ],
+  "title": "Westside Cowboy @ WWW X",
+  "date": "2027-03-04",
+  "venue": "WWW X",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43474882-westside-cowboy-at-www-x",
+  "note": "Songkick Tokyo metro; locality Shibuya; 東京都渋谷区宇田川町13-17 ライズビル2F"
+ },
+ {
+  "acts": [
+   "feeble little horse"
+  ],
+  "title": "feeble little horse @ Space Odd",
+  "date": "2027-03-11",
+  "venue": "Space Odd",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43479357-feeble-little-horse-at-space-odd",
+  "note": "Songkick Tokyo metro; locality Shibuya; 2-11 sarugakucho / 東京都渋谷区猿楽町2-11"
+ },
+ {
+  "acts": [
+   "feeble little horse"
+  ],
+  "title": "feeble little horse @ Space Odd",
+  "date": "2027-03-12",
+  "venue": "Space Odd",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43408720-feeble-little-horse-at-space-odd",
+  "note": "Songkick Tokyo metro; locality Shibuya; 2-11 sarugakucho / 東京都渋谷区猿楽町2-11"
+ },
+ {
+  "acts": [
+   "Tinariwen"
+  ],
+  "title": "Tinariwen @ Duo Music Exchange",
+  "date": "2027-03-18",
+  "venue": "Duo Music Exchange",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43486852-tinariwen-at-duo-music-exchange",
+  "note": "Songkick Tokyo metro; locality Shibuya; 2-14-8 Dogenzaka"
+ },
+ {
+  "acts": [
+   "Tinariwen"
+  ],
+  "title": "Tinariwen @ Umeda Akaso",
+  "date": "2027-03-19",
+  "venue": "Umeda Akaso",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43486859-tinariwen-at-umeda-akaso",
+  "note": "Songkick Osaka metro; locality Osaka; 大阪府大阪市北区堂山町１６－３"
+ },
+ {
+  "acts": [
+   "Broken Social Scene"
+  ],
+  "title": "Broken Social Scene @ Ex Theater Roppongi",
+  "date": "2027-03-30",
+  "venue": "Ex Theater Roppongi",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43467508-broken-social-scene-at-ex-theater-roppongi",
+  "note": "Songkick Tokyo metro; locality Tokyo; 1-2-9 Nishiazabu, Minato-ku /  東京都港区西麻布1丁目2-9"
+ },
+ {
+  "acts": [
+   "Squeeze"
+  ],
+  "title": "Squeeze @ Ex Theater Roppongi",
+  "date": "2027-04-08",
+  "venue": "Ex Theater Roppongi",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43390838-squeeze-at-ex-theater-roppongi",
+  "note": "Songkick Tokyo metro; locality Tokyo; 1-2-9 Nishiazabu, Minato-ku /  東京都港区西麻布1丁目2-9"
+ },
+ {
+  "acts": [
+   "FEROCIOUS X",
+   "Exhumation",
+   "Impure",
+   "Gates",
+   "Zulxaxeku"
+  ],
+  "title": "FEROCIOUS X @ Shinsaibashi Sunhall",
+  "date": "2027-04-08",
+  "venue": "Shinsaibashi Sunhall",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43460405-ferocious-x-at-shinsaibashi-sunhall",
+  "note": "Songkick Osaka metro; locality Osaka; 〒542-0086　大阪市中央区西心斎橋2-9-28　サンボウルビルB2"
+ },
+ {
+  "acts": [
+   "Squeeze"
+  ],
+  "title": "Squeeze @ Umeda Club Quattro / 梅田クラブクアトロ",
+  "date": "2027-04-09",
+  "venue": "Umeda Club Quattro / 梅田クラブクアトロ",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43390840-squeeze-at-umeda-club-quattro-mei-tian-kurabukuatoro",
+  "note": "Songkick Osaka metro; locality Osaka; 8-17 Taiyujicho, Kita Ward / 大阪市北区太融寺町8-17 プラザ梅田10F"
+ },
+ {
+  "acts": [
+   "Emanuel Casablanca"
+  ],
+  "title": "Emanuel Casablanca @ Garth",
+  "date": "2027-04-09",
+  "venue": "Garth",
+  "city": "Osaka",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43378458-emanuel-casablanca-at-garth",
+  "note": "Songkick Osaka metro; locality Osaka; None"
+ },
+ {
+  "acts": [
+   "Forward",
+   "Livid",
+   "Burgerkill",
+   "Blood Duster",
+   "Yacøpsæ",
+   "Massgrav",
+   "Chepang",
+   "Groin",
+   "Vomit Remnants",
+   "Shitbrains",
+   "Choof",
+   "Black Pestilence",
+   "Butcher Abc",
+   "Kandarivas (JP)",
+   "SxOxB (JP)",
+   "YxAxD"
+  ],
+  "title": "Gekiko Fest 2027 @ WildSideTokyo",
+  "date": "2027-04-16",
+  "venue": "WildSideTokyo",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/festivals/3757525-gekiko-fest/id/43393712-gekiko-fest-2027",
+  "note": "Songkick Tokyo metro; locality Tokyo; None",
+  "until": "2027-04-19"
+ },
+ {
+  "acts": [
+   "Disturbed"
+  ],
+  "title": "Disturbed @ PIA Arena",
+  "date": "2027-05-19",
+  "venue": "PIA Arena",
+  "city": "Tokyo",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43489480-disturbed-at-pia-arena",
+  "note": "Songkick Tokyo metro; locality Tokyo; None"
+ },
+ {
+  "acts": [
+   "Radiohead"
+  ],
+  "title": "Radiohead @ Saitama Super Arena / さいたまスーパーアリーナ",
+  "date": "2027-06-08",
+  "venue": "Saitama Super Arena / さいたまスーパーアリーナ",
+  "city": "Saitama",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43401946-radiohead-at-saitama-super-arena-saitamasupaarina",
+  "note": "Songkick Tokyo metro; locality Saitama; 埼玉県さいたま市中央区新都心8"
+ },
+ {
+  "acts": [
+   "Radiohead"
+  ],
+  "title": "Radiohead @ Saitama Super Arena / さいたまスーパーアリーナ",
+  "date": "2027-06-09",
+  "venue": "Saitama Super Arena / さいたまスーパーアリーナ",
+  "city": "Saitama",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43401966-radiohead-at-saitama-super-arena-saitamasupaarina",
+  "note": "Songkick Tokyo metro; locality Saitama; 埼玉県さいたま市中央区新都心8"
+ },
+ {
+  "acts": [
+   "Radiohead"
+  ],
+  "title": "Radiohead @ Saitama Super Arena / さいたまスーパーアリーナ",
+  "date": "2027-06-11",
+  "venue": "Saitama Super Arena / さいたまスーパーアリーナ",
+  "city": "Saitama",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43401967-radiohead-at-saitama-super-arena-saitamasupaarina",
+  "note": "Songkick Tokyo metro; locality Saitama; 埼玉県さいたま市中央区新都心8"
+ },
+ {
+  "acts": [
+   "Radiohead"
+  ],
+  "title": "Radiohead @ Saitama Super Arena / さいたまスーパーアリーナ",
+  "date": "2027-06-12",
+  "venue": "Saitama Super Arena / さいたまスーパーアリーナ",
+  "city": "Saitama",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43401975-radiohead-at-saitama-super-arena-saitamasupaarina",
+  "note": "Songkick Tokyo metro; locality Saitama; 埼玉県さいたま市中央区新都心8"
+ },
+ {
+  "acts": [
+   "Radiohead"
+  ],
+  "title": "Radiohead @ Saitama Super Arena / さいたまスーパーアリーナ",
+  "date": "2027-06-13",
+  "venue": "Saitama Super Arena / さいたまスーパーアリーナ",
+  "city": "Saitama",
+  "area": "",
+  "url": "https://www.songkick.com/concerts/43401977-radiohead-at-saitama-super-arena-saitamasupaarina",
+  "note": "Songkick Tokyo metro; locality Saitama; 埼玉県さいたま市中央区新都心8"
+ },
+ {
+  "acts": [
+   "LeyanMix"
+  ],
+  "title": "LeyanMix @ MUFG Stadium",
+  "date": "2027-06-30",
+  "venue": "MUFG Stadium",
+  "city": "Tokyo",
+  "area": "Shinjuku",
+  "url": "https://www.songkick.com/concerts/43390572-leyanmix-at-mufg-stadium",
+  "note": "Songkick Tokyo metro; locality Shinjuku; 0-1 Kasumigaokamachi"
+ },
+ {
+  "acts": [
+   "Areskuuja"
+  ],
+  "title": "Areskuuja @ Spotify O-Nest",
+  "date": "2027-12-08",
+  "venue": "Spotify O-Nest",
+  "city": "Tokyo",
+  "area": "Shibuya",
+  "url": "https://www.songkick.com/concerts/43437287-areskuuja-at-spotify-onest",
+  "note": "Songkick Tokyo metro; locality Shibuya; 6F, 2-3 Maruyama-cho / 渋谷区円山町2-3"
  }
 ]
