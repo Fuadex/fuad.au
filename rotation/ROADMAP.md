@@ -9,6 +9,27 @@
 
 ---
 
+## ⓪ Status snapshot — 2026-11-05 (the gigs program)
+
+**Shipped in one session** (system map: `scripts/CONCERTS-README.md`; audit: `AUDIT-2026-11.md`):
+`data/concerts-tokyo.json` 77→802 rows country-wide (three Claude research waves + promoter
+catalog sweep), 770+ upcoming Japan events on the Gigs map with full tour itineraries and
+city coords. Self-sustaining lanes: weekly no-LLM `jp-sweep.yml` (14 scrapers, CI-validated),
+daily agent (unchanged), monthly "deep re-sweep" claude.ai scheduled task (12th, festivals +
+scrape-blocked venues), issue-based want/skip marks → `gigs.ics` calendar feed + quasi-RSS
+`gigs-feed.xml` (both in deploy). Discovery shelf ("worth a look", co-billing scorer) on the
+Gigs page; market chips now filter; mobile tap slop + dot halos fixed. TM genre cross-check
+(Bill Evans tripwire) live. Matcher hardened (degenerate ascii keys, short aliases, REJECT
+set in `rotation_match.py`). Airbourne reads shipped at mv 3.4.
+
+**Queued for a next session:** reconstruct ALBUM_READS.md's v3.1–3.4 deltas from workshops
+(doc note marks it); December festival re-run is ALREADY SCHEDULED (the monthly task — JAPAN
+JAM lineup lands mid-Dec); Koenji HIGH / Earthdom / CLUB GOODMAN stay search-only (sites refuse
+the proxy); Gigs month-histogram labels collide at phone width (cosmetic); on-sale-date
+tracking and "new since last visit" badge were considered and parked. One manual step for
+Fuad: subscribe Google Calendar to `fuad.au/rotation/gigs.ics` and a reader to
+`fuad.au/rotation/gigs-feed.xml`.
+
 ## ⓪ Status snapshot — 2026-09-21 (the data-integrity + Stories wave)
 
 **Shipped 2026-09-19 → 21** (feature detail in ARCHITECTURE.md §4/§5/§6/§8; method detail in
