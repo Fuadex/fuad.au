@@ -1671,7 +1671,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 35.181,
+   "lng": 136.906
   },
   {
    "id": "2026-11-05-queens-of-the-stone-age-2026-11-28",
@@ -1693,7 +1695,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 34.694,
+   "lng": 135.501
   },
   {
    "id": "2026-11-05-passcode-2026-11-14",
@@ -1715,7 +1719,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 34.333,
+   "lng": 134.05
   },
   {
    "id": "2026-11-05-the-novembers-2026-11-25",
@@ -1737,7 +1743,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 35.181,
+   "lng": 136.906
   },
   {
    "id": "2026-11-05-the-novembers-2026-11-26",
@@ -1759,7 +1767,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 34.694,
+   "lng": 135.501
   },
   {
    "id": "2026-11-05-band-maid-2026-11-14",
@@ -1781,7 +1791,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 35.69,
+   "lng": 139.692
   },
   {
    "id": "2026-11-05-blind-channel-2026-11-19",
@@ -1803,7 +1815,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 34.694,
+   "lng": 135.501
   },
   {
    "id": "2026-11-05-tyrkouaz-2026-11-28",
@@ -1826,7 +1840,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Tour opener; Tokyo final at WWW 12-13 already tracked"
+   "text": "Tour opener; Tokyo final at WWW 12-13 already tracked",
+   "lat": 35.181,
+   "lng": 136.906
   },
   {
    "id": "2026-11-05-tyrkouaz-2026-11-29",
@@ -1848,7 +1864,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 34.694,
+   "lng": 135.501
   },
   {
    "id": "2026-11-05-tsushimamire-2026-11-07",
@@ -1871,7 +1889,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Found via search snippet (tickets 4,500 yen + drink); area not verified, support acts unknown. Venue name as given in the snippet."
+   "text": "Found via search snippet (tickets 4,500 yen + drink); area not verified, support acts unknown. Venue name as given in the snippet.",
+   "lat": 35.69,
+   "lng": 139.692
   },
   {
    "id": "2026-11-05-9mm-parabellum-bullet-2026-11-14",
@@ -1894,7 +1914,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Open 17:30 per resale listing."
+   "text": "Open 17:30 per resale listing.",
+   "lat": 35.181,
+   "lng": 136.906
   },
   {
    "id": "2026-11-05-9mm-parabellum-bullet-2026-11-29",
@@ -1917,7 +1939,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "17:00 start per resale listing."
+   "text": "17:00 start per resale listing.",
+   "lat": 33.6,
+   "lng": 130.417
   },
   {
    "id": "2026-11-05-9mm-parabellum-bullet-2027-01-24",
@@ -1941,7 +1965,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Saitama Shintoshin",
-   "text": "17:00 start."
+   "text": "17:00 start.",
+   "lat": 35.908,
+   "lng": 139.657
   },
   {
    "id": "2026-11-05-9mm-parabellum-bullet-2027-02-23",
@@ -1965,7 +1991,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Shibuya",
-   "text": "Tour final per listed range ending 2027-02-23; 17:30 start. 2026-12-17 Tokyo date already tracked."
+   "text": "Tour final per listed range ending 2027-02-23; 17:30 start. 2026-12-17 Tokyo date already tracked.",
+   "lat": 35.69,
+   "lng": 139.692
   },
   {
    "id": "2026-11-05-9mm-parabellum-bullet-2026-12-29",
@@ -2011,7 +2039,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Makuhari",
-   "text": "Day 3 (Tue). First-wave list truncated with 'and more' plus some second-wave acts; incomplete."
+   "text": "Day 3 (Tue). First-wave list truncated with 'and more' plus some second-wave acts; incomplete.",
+   "lat": 35.6,
+   "lng": 140.117
   },
   {
    "id": "2026-11-05-amazarashi-2026-12-29",
@@ -2057,7 +2087,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Makuhari",
-   "text": "Day 3 (Tue). First-wave list truncated with 'and more' plus some second-wave acts; incomplete."
+   "text": "Day 3 (Tue). First-wave list truncated with 'and more' plus some second-wave acts; incomplete.",
+   "lat": 35.6,
+   "lng": 140.117
   },
   {
    "id": "2026-11-05-man-with-a-mission-2026-12-29",
@@ -2103,7 +2135,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Makuhari",
-   "text": "Day 3 (Tue). First-wave list truncated with 'and more' plus some second-wave acts; incomplete."
+   "text": "Day 3 (Tue). First-wave list truncated with 'and more' plus some second-wave acts; incomplete.",
+   "lat": 35.6,
+   "lng": 140.117
   },
   {
    "id": "2026-11-05-aimer-2026-12-31",
@@ -2140,7 +2174,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Makuhari",
-   "text": "Day 5 (Thu, NYE). Partial and lower confidence: derived from a lossy search summary; verify day."
+   "text": "Day 5 (Thu, NYE). Partial and lower confidence: derived from a lossy search summary; verify day.",
+   "lat": 35.6,
+   "lng": 140.117
   },
   {
    "id": "2026-11-05-lisa-2026-12-31",
@@ -2177,7 +2213,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Makuhari",
-   "text": "Day 5 (Thu, NYE). Partial and lower confidence: derived from a lossy search summary; verify day."
+   "text": "Day 5 (Thu, NYE). Partial and lower confidence: derived from a lossy search summary; verify day.",
+   "lat": 35.6,
+   "lng": 140.117
   },
   {
    "id": "2026-11-05-hollow-suns-2026-11-15",
@@ -2202,7 +2240,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Imaike",
-   "text": "Advance sales closed per e+"
+   "text": "Advance sales closed per e+",
+   "lat": 35.181,
+   "lng": 136.906
   },
   {
    "id": "2026-11-05-hollow-suns-2026-11-16",
@@ -2225,7 +2265,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 34.694,
+   "lng": 135.501
   },
   {
    "id": "2026-11-05-hollow-suns-2026-11-17",
@@ -2250,7 +2292,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Akabane (Kita)",
-   "text": "Advance sales closed per e+"
+   "text": "Advance sales closed per e+",
+   "lat": 35.69,
+   "lng": 139.692
   },
   {
    "id": "2026-11-05-asian-kung-fu-generation-2026-12-26",
@@ -2306,7 +2350,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Makuhari",
-   "text": "Day 1 (Sat). Per CINRA first+second wave lists via search snippets; list may still be incomplete (truncated). 179 acts total over 5 days. Halls 1-11 only on the 26th."
+   "text": "Day 1 (Sat). Per CINRA first+second wave lists via search snippets; list may still be incomplete (truncated). 179 acts total over 5 days. Halls 1-11 only on the 26th.",
+   "lat": 35.6,
+   "lng": 140.117
   },
   {
    "id": "2026-11-05-flow-2026-12-26",
@@ -2362,7 +2408,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Makuhari",
-   "text": "Day 1 (Sat). Per CINRA first+second wave lists via search snippets; list may still be incomplete (truncated). 179 acts total over 5 days. Halls 1-11 only on the 26th."
+   "text": "Day 1 (Sat). Per CINRA first+second wave lists via search snippets; list may still be incomplete (truncated). 179 acts total over 5 days. Halls 1-11 only on the 26th.",
+   "lat": 35.6,
+   "lng": 140.117
   },
   {
    "id": "2026-11-05-reol-2026-12-26",
@@ -2418,7 +2466,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Makuhari",
-   "text": "Day 1 (Sat). Per CINRA first+second wave lists via search snippets; list may still be incomplete (truncated). 179 acts total over 5 days. Halls 1-11 only on the 26th."
+   "text": "Day 1 (Sat). Per CINRA first+second wave lists via search snippets; list may still be incomplete (truncated). 179 acts total over 5 days. Halls 1-11 only on the 26th.",
+   "lat": 35.6,
+   "lng": 140.117
   },
   {
    "id": "2026-11-05-kana-boon-2026-12-26",
@@ -2474,7 +2524,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Makuhari",
-   "text": "Day 1 (Sat). Per CINRA first+second wave lists via search snippets; list may still be incomplete (truncated). 179 acts total over 5 days. Halls 1-11 only on the 26th."
+   "text": "Day 1 (Sat). Per CINRA first+second wave lists via search snippets; list may still be incomplete (truncated). 179 acts total over 5 days. Halls 1-11 only on the 26th.",
+   "lat": 35.6,
+   "lng": 140.117
   },
   {
    "id": "2026-11-05-the-cabs-2026-12-13",
@@ -2498,7 +2550,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Chiba",
-   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet. Chiba LOOK open 16:30/start 17:00."
+   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet. Chiba LOOK open 16:30/start 17:00.",
+   "lat": 35.6,
+   "lng": 140.117
   },
   {
    "id": "2026-11-05-the-cabs-2026-12-22",
@@ -2546,7 +2600,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet."
+   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet.",
+   "lat": 34.333,
+   "lng": 134.05
   },
   {
    "id": "2026-11-05-the-cabs-2027-01-10",
@@ -2569,7 +2625,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet."
+   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet.",
+   "lat": 34.66,
+   "lng": 133.92
   },
   {
    "id": "2026-11-05-the-cabs-2027-01-17",
@@ -2592,7 +2650,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet."
+   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet.",
+   "lat": 35.021,
+   "lng": 135.754
   },
   {
    "id": "2026-11-05-the-cabs-2027-01-23",
@@ -2615,7 +2675,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet."
+   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet.",
+   "lat": 43.067,
+   "lng": 141.35
   },
   {
    "id": "2026-11-05-the-cabs-2027-01-29",
@@ -2638,7 +2700,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet."
+   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet.",
+   "lat": 31.817,
+   "lng": 130.3
   },
   {
    "id": "2026-11-05-the-cabs-2027-01-30",
@@ -2661,7 +2725,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet."
+   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet.",
+   "lat": 36.56,
+   "lng": 139.88
   },
   {
    "id": "2026-11-05-the-cabs-2027-02-05",
@@ -2684,7 +2750,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet."
+   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet.",
+   "lat": 33.6,
+   "lng": 130.417
   },
   {
    "id": "2026-11-05-the-cabs-2027-02-11",
@@ -2707,7 +2775,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet."
+   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet.",
+   "lat": 35.66,
+   "lng": 138.57
   },
   {
    "id": "2026-11-05-the-cabs-2027-02-13",
@@ -2730,7 +2800,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet."
+   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet.",
+   "lat": 36.56,
+   "lng": 136.66
   },
   {
    "id": "2026-11-05-the-cabs-2027-02-14",
@@ -2753,7 +2825,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet."
+   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet.",
+   "lat": 37.923,
+   "lng": 139.041
   },
   {
    "id": "2026-11-05-the-cabs-2027-02-19",
@@ -2776,7 +2850,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet."
+   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet.",
+   "lat": 35.181,
+   "lng": 136.906
   },
   {
    "id": "2026-11-05-the-cabs-2027-02-20",
@@ -2799,7 +2875,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet."
+   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet.",
+   "lat": 35.181,
+   "lng": 136.906
   },
   {
    "id": "2026-11-05-the-cabs-2027-03-02",
@@ -2822,7 +2900,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet."
+   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet.",
+   "lat": 34.694,
+   "lng": 135.501
   },
   {
    "id": "2026-11-05-the-cabs-2027-03-03",
@@ -2845,7 +2925,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet."
+   "text": "Part of 15-city/18-show tour; general sale from 2026-11-14. Venue spellings vary by outlet.",
+   "lat": 34.694,
+   "lng": 135.501
   },
   {
    "id": "2026-11-05-the-cabs-2027-03-08",
@@ -2924,7 +3006,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Lineup from one English-language source; verify. 2-day ticket 12,000 yen, 1-day 6,500. (the cabs 11-28 already tracked.)"
+   "text": "Lineup from one English-language source; verify. 2-day ticket 12,000 yen, 1-day 6,500. (the cabs 11-28 already tracked.)",
+   "lat": 35.181,
+   "lng": 136.906
   },
   {
    "id": "2026-11-05-mudy-on-the-2026-11-29",
@@ -2951,7 +3035,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Lineup from one English-language source; verify. 2-day ticket 12,000 yen, 1-day 6,500. (the cabs 11-28 already tracked.)"
+   "text": "Lineup from one English-language source; verify. 2-day ticket 12,000 yen, 1-day 6,500. (the cabs 11-28 already tracked.)",
+   "lat": 35.181,
+   "lng": 136.906
   },
   {
    "id": "2026-11-05-zazen-boys-2026-11-29",
@@ -2978,7 +3064,9 @@
    "lastSeen": "2026-02-12",
    "rotation": true,
    "cat": "music",
-   "text": "Lineup from one English-language source; verify. 2-day ticket 12,000 yen, 1-day 6,500. (the cabs 11-28 already tracked.)"
+   "text": "Lineup from one English-language source; verify. 2-day ticket 12,000 yen, 1-day 6,500. (the cabs 11-28 already tracked.)",
+   "lat": 35.181,
+   "lng": 136.906
   },
   {
    "id": "2026-11-05-boom-boom-satellites-2027-03-14",
@@ -3028,7 +3116,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "2 nights, open 17:30 / start 18:30 on 12/2. Venue name given as クロコくんホール (naming-rights name) in one source."
+   "text": "2 nights, open 17:30 / start 18:30 on 12/2. Venue name given as クロコくんホール (naming-rights name) in one source.",
+   "lat": 35.181,
+   "lng": 136.906
   },
   {
    "id": "2026-11-05-aiko-2026-12-31",
@@ -3051,7 +3141,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Countdown live, second consecutive year. Details to be announced later."
+   "text": "Countdown live, second consecutive year. Details to be announced later.",
+   "lat": 34.694,
+   "lng": 135.501
   },
   {
    "id": "2026-11-05-aiko-2027-01-09",
@@ -3074,7 +3166,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Only 1/9 (17:30) confirmed by Music Natalie; 1/10 second night from one secondary source - verify."
+   "text": "Only 1/9 (17:30) confirmed by Music Natalie; 1/10 second night from one secondary source - verify.",
+   "lat": 34.694,
+   "lng": 135.501
   },
   {
    "id": "2026-11-05-wienners-2026-12-27",
@@ -3121,7 +3215,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Makuhari",
-   "text": "Day 2 (Sun). First-wave list (CINRA) plus second-wave acts seen in snippets; incomplete."
+   "text": "Day 2 (Sun). First-wave list (CINRA) plus second-wave acts seen in snippets; incomplete.",
+   "lat": 35.6,
+   "lng": 140.117
   },
   {
    "id": "2026-11-05-age-factory-2026-12-27",
@@ -3168,7 +3264,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Makuhari",
-   "text": "Day 2 (Sun). First-wave list (CINRA) plus second-wave acts seen in snippets; incomplete."
+   "text": "Day 2 (Sun). First-wave list (CINRA) plus second-wave acts seen in snippets; incomplete.",
+   "lat": 35.6,
+   "lng": 140.117
   },
   {
    "id": "2026-11-05-super-beaver-2026-12-27",
@@ -3215,7 +3313,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Makuhari",
-   "text": "Day 2 (Sun). First-wave list (CINRA) plus second-wave acts seen in snippets; incomplete."
+   "text": "Day 2 (Sun). First-wave list (CINRA) plus second-wave acts seen in snippets; incomplete.",
+   "lat": 35.6,
+   "lng": 140.117
   },
   {
    "id": "2026-11-05-straightener-2027-01-24",
@@ -3238,7 +3338,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "From seating-chart site, not official; doors 16:00 / start 17:00."
+   "text": "From seating-chart site, not official; doors 16:00 / start 17:00.",
+   "lat": 35.021,
+   "lng": 135.754
   },
   {
    "id": "2026-11-05-straightener-2027-02-13",
@@ -3261,7 +3363,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Not official source."
+   "text": "Not official source.",
+   "lat": 34.69,
+   "lng": 135.8
   },
   {
    "id": "2026-11-05-straightener-2027-02-23",
@@ -3284,7 +3388,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Not official source."
+   "text": "Not official source.",
+   "lat": 34.05,
+   "lng": 131.81
   },
   {
    "id": "2026-11-05-have-a-nice-day-2026-12-09",
@@ -3308,7 +3414,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Shinjuku",
-   "text": "Before on-sale; tour name unknown."
+   "text": "Before on-sale; tour name unknown.",
+   "lat": 35.69,
+   "lng": 139.692
   },
   {
    "id": "2026-11-05-have-a-nice-day-2026-12-23",
@@ -3332,7 +3440,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Shimokitazawa",
-   "text": "Before on-sale."
+   "text": "Before on-sale.",
+   "lat": 35.69,
+   "lng": 139.692
   },
   {
    "id": "2026-11-05-have-a-nice-day-2027-01-20",
@@ -3382,7 +3492,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Kanagawa (Enoshima)",
-   "text": "Before on-sale."
+   "text": "Before on-sale.",
+   "lat": 35.34,
+   "lng": 139.49
   },
   {
    "id": "2026-11-05-mudy-on-the-2026-11-28",
@@ -3408,7 +3520,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Lineup from one English-language source; verify. 2-day ticket 12,000 yen, 1-day 6,500. (the cabs 11-28 already tracked.)"
+   "text": "Lineup from one English-language source; verify. 2-day ticket 12,000 yen, 1-day 6,500. (the cabs 11-28 already tracked.)",
+   "lat": 35.181,
+   "lng": 136.906
   },
   {
    "id": "2026-11-05-enth-2026-11-28",
@@ -3434,7 +3548,9 @@
    "lastSeen": "2025-05-06",
    "rotation": true,
    "cat": "music",
-   "text": "Lineup from one English-language source; verify. 2-day ticket 12,000 yen, 1-day 6,500. (the cabs 11-28 already tracked.)"
+   "text": "Lineup from one English-language source; verify. 2-day ticket 12,000 yen, 1-day 6,500. (the cabs 11-28 already tracked.)",
+   "lat": 35.181,
+   "lng": 136.906
   },
   {
    "id": "2026-11-05-a-flood-of-circle-2026-12-02",
@@ -3456,7 +3572,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 34.97,
+   "lng": 136.62
   },
   {
    "id": "2026-11-05-a-flood-of-circle-2026-12-04",
@@ -3478,7 +3596,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 34.66,
+   "lng": 133.92
   },
   {
    "id": "2026-11-05-a-flood-of-circle-2026-12-05",
@@ -3500,7 +3620,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 35.43,
+   "lng": 133.33
   },
   {
    "id": "2026-11-05-a-flood-of-circle-2026-12-18",
@@ -3522,7 +3644,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 34.39,
+   "lng": 132.46
   },
   {
    "id": "2026-11-05-a-flood-of-circle-2026-12-20",
@@ -3544,7 +3668,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 33.6,
+   "lng": 130.417
   },
   {
    "id": "2026-11-05-a-flood-of-circle-2027-01-15",
@@ -3566,7 +3692,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 34.694,
+   "lng": 135.501
   },
   {
    "id": "2026-11-05-a-flood-of-circle-2027-01-17",
@@ -3588,7 +3716,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 35.181,
+   "lng": 136.906
   },
   {
    "id": "2026-11-05-a-flood-of-circle-2027-01-24",
@@ -3637,7 +3767,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Two nights, 1/30 and 1/31"
+   "text": "Two nights, 1/30 and 1/31",
+   "lat": 26.336,
+   "lng": 127.801
   },
   {
    "id": "2026-11-05-vaundy-2027-08-01",
@@ -3660,7 +3792,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Only month known (August 2027, Hyogo start); 13 cities / 30 shows through Feb 2028 Miyagi. Venue/exact date not seen; city approximated as Kobe."
+   "text": "Only month known (August 2027, Hyogo start); 13 cities / 30 shows through Feb 2028 Miyagi. Venue/exact date not seen; city approximated as Kobe.",
+   "lat": 34.691,
+   "lng": 135.183
   },
   {
    "id": "2026-11-05-asian-kung-fu-generation-2027-01-09",
@@ -3684,7 +3818,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Omiya",
-   "text": "Tour opener; 19 cities/21 shows. Lottery opened 2026-07-23. Source: search summary, verify venue on official site."
+   "text": "Tour opener; 19 cities/21 shows. Lottery opened 2026-07-23. Source: search summary, verify venue on official site.",
+   "lat": 35.908,
+   "lng": 139.657
   },
   {
    "id": "2026-11-05-asian-kung-fu-generation-2027-01-11",
@@ -3707,7 +3843,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Venue not confirmed."
+   "text": "Venue not confirmed.",
+   "lat": 34.983,
+   "lng": 138.383
   },
   {
    "id": "2026-11-05-asian-kung-fu-generation-2027-01-15",
@@ -3731,7 +3869,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Fuchu",
-   "text": "Venue name from search summary; verify. Note AA= also tracked 2027-01-15 (different act)."
+   "text": "Venue name from search summary; verify. Note AA= also tracked 2027-01-15 (different act).",
+   "lat": 35.69,
+   "lng": 139.692
   },
   {
    "id": "2026-11-05-asian-kung-fu-generation-2027-01-17",
@@ -3753,7 +3893,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 36.333,
+   "lng": 139.017
   },
   {
    "id": "2026-11-05-asian-kung-fu-generation-2027-01-23",
@@ -3775,7 +3917,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 39.08,
+   "lng": 141.71
   },
   {
    "id": "2026-11-05-asian-kung-fu-generation-2027-01-24",
@@ -3797,7 +3941,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 31.817,
+   "lng": 130.3
   },
   {
    "id": "2026-11-05-asian-kung-fu-generation-2027-01-30",
@@ -3819,7 +3965,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 33.839,
+   "lng": 132.766
   },
   {
    "id": "2026-11-05-asian-kung-fu-generation-2027-01-31",
@@ -3841,7 +3989,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 34.333,
+   "lng": 134.05
   },
   {
    "id": "2026-11-05-asian-kung-fu-generation-2027-02-06",
@@ -3863,7 +4013,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 34.39,
+   "lng": 132.46
   },
   {
    "id": "2026-11-05-asian-kung-fu-generation-2027-02-19",
@@ -3885,7 +4037,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 43.067,
+   "lng": 141.35
   },
   {
    "id": "2026-11-05-asian-kung-fu-generation-2027-03-07",
@@ -3908,7 +4062,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "area": "Ishikawa"
+   "area": "Ishikawa",
+   "lat": 36.51,
+   "lng": 136.56
   },
   {
    "id": "2026-11-05-asian-kung-fu-generation-2027-03-12",
@@ -3931,7 +4087,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Two nights."
+   "text": "Two nights.",
+   "lat": 35.181,
+   "lng": 136.906
   },
   {
    "id": "2026-11-05-asian-kung-fu-generation-2027-03-20",
@@ -3954,7 +4112,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Okinawa."
+   "text": "Okinawa.",
+   "lat": 26.21,
+   "lng": 127.68
   },
   {
    "id": "2026-11-05-asian-kung-fu-generation-2027-04-04",
@@ -3977,7 +4137,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Single-source; UNCERTAIN, verify."
+   "text": "Single-source; UNCERTAIN, verify.",
+   "lat": 34.691,
+   "lng": 135.183
   },
   {
    "id": "2026-11-05-asian-kung-fu-generation-2027-04-17",
@@ -4026,7 +4188,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Tour runs Nov 20 - Dec 20 2026 (11-12 shows incl. Takamatsu DIME, Tokyo The Garden Hall, Niigata, Hamamatsu); Tokyo date not captured; lottery pre-order on e+"
+   "text": "Tour runs Nov 20 - Dec 20 2026 (11-12 shows incl. Takamatsu DIME, Tokyo The Garden Hall, Niigata, Hamamatsu); Tokyo date not captured; lottery pre-order on e+",
+   "lat": 33.6,
+   "lng": 130.417
   },
   {
    "id": "2026-11-05-enfants-2026-11-17",
@@ -4051,7 +4215,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Shinsaibashi",
-   "text": "w/ Enfants"
+   "text": "w/ Enfants",
+   "lat": 34.694,
+   "lng": 135.501
   },
   {
    "id": "2026-11-05-yeti-let-you-notice-2026-11-17",
@@ -4076,7 +4242,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Shinsaibashi",
-   "text": "w/ Enfants"
+   "text": "w/ Enfants",
+   "lat": 34.694,
+   "lng": 135.501
   },
   {
    "id": "2026-11-05-enfants-2027-01-31",
@@ -4100,7 +4268,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Odaiba",
-   "text": "One-man; presale lottery Aug 12-25 2026; 5,500 yen."
+   "text": "One-man; presale lottery Aug 12-25 2026; 5,500 yen.",
+   "lat": 35.69,
+   "lng": 139.692
   },
   {
    "id": "2026-11-05-moreru-2026-11-28",
@@ -4123,7 +4293,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Multi-act bill, other acts not seen; start 12:30."
+   "text": "Multi-act bill, other acts not seen; start 12:30.",
+   "lat": 35.53,
+   "lng": 139.7
   },
   {
    "id": "2026-11-05-moreru-2027-01-26",
@@ -4148,7 +4320,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Shibuya",
-   "text": "Two-man; doors 18:30 start 19:30"
+   "text": "Two-man; doors 18:30 start 19:30",
+   "lat": 35.69,
+   "lng": 139.692
   },
   {
    "id": "2026-11-05-orange-range-2027-01-09",
@@ -4172,7 +4346,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Shibuya",
-   "text": "18:00 per resale listing. Tour runs 2026-09-12 to ~2027-03, 36 shows nationwide."
+   "text": "18:00 per resale listing. Tour runs 2026-09-12 to ~2027-03, 36 shows nationwide.",
+   "lat": 35.69,
+   "lng": 139.692
   },
   {
    "id": "2026-11-05-orange-range-2027-01-11",
@@ -4196,7 +4372,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Gunma",
-   "text": "From resale listing."
+   "text": "From resale listing.",
+   "lat": 36.25,
+   "lng": 139.54
   },
   {
    "id": "2026-11-05-orange-range-2027-01-23",
@@ -4219,7 +4397,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "area": "Miyazaki"
+   "area": "Miyazaki",
+   "lat": 32.42,
+   "lng": 131.62
   },
   {
    "id": "2026-11-05-orange-range-2027-01-24",
@@ -4242,7 +4422,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "area": "Oita"
+   "area": "Oita",
+   "lat": 33.28,
+   "lng": 131.49
   },
   {
    "id": "2026-11-05-orange-range-2027-02-05",
@@ -4265,7 +4447,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "area": "Nagasaki"
+   "area": "Nagasaki",
+   "lat": 32.84,
+   "lng": 130.05
   },
   {
    "id": "2026-11-05-orange-range-2027-02-06",
@@ -4288,7 +4472,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "area": "Fukuoka"
+   "area": "Fukuoka",
+   "lat": 33.65,
+   "lng": 130.69
   },
   {
    "id": "2026-11-05-orange-range-2027-03-07",
@@ -4312,7 +4498,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Ibaraki",
-   "text": "Resale listing."
+   "text": "Resale listing.",
+   "lat": 36.37,
+   "lng": 140.47
   },
   {
    "id": "2026-11-05-orange-range-2027-03-14",
@@ -4336,7 +4524,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Hyogo",
-   "text": "17:30; resale source only, conflicts with another listing saying tour ends 3/7 — uncertain."
+   "text": "17:30; resale source only, conflicts with another listing saying tour ends 3/7 — uncertain.",
+   "lat": 34.691,
+   "lng": 135.183
   },
   {
    "id": "2026-11-05-age-factory-2026-11-08",
@@ -4387,7 +4577,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Tsurumai",
-   "text": "w/ sidenerds; sold out"
+   "text": "w/ sidenerds; sold out",
+   "lat": 35.181,
+   "lng": 136.906
   },
   {
    "id": "2026-11-05-yeti-let-you-notice-2026-11-28",
@@ -4412,7 +4604,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Shibuya",
-   "text": "Tour final, 10th anniversary, guest 笹川真生"
+   "text": "Tour final, 10th anniversary, guest 笹川真生",
+   "lat": 35.69,
+   "lng": 139.692
   },
   {
    "id": "2026-11-05-yeti-let-you-notice-2026-12-06",
@@ -4435,7 +4629,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Per resale listing; venue/city unconfirmed (Tokyo assumed). UNCERTAIN."
+   "text": "Per resale listing; venue/city unconfirmed (Tokyo assumed). UNCERTAIN.",
+   "lat": 35.69,
+   "lng": 139.692
   },
   {
    "id": "2026-11-05-co-shu-nie-2026-11-07",
@@ -4458,7 +4654,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Tokyo date was 2026-11-03 (already past). Osaka date per e+ listing, exact day/time not fully verified."
+   "text": "Tokyo date was 2026-11-03 (already past). Osaka date per e+ listing, exact day/time not fully verified.",
+   "lat": 34.694,
+   "lng": 135.501
   },
   {
    "id": "2026-11-05-hanabie-2026-12-26",
@@ -4492,7 +4690,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Makuhari",
-   "text": "Confirmed in the 179-act lineup but day assignment not recovered (search budget exhausted). Some may duplicate acts already placed on a day."
+   "text": "Confirmed in the 179-act lineup but day assignment not recovered (search budget exhausted). Some may duplicate acts already placed on a day.",
+   "lat": 35.6,
+   "lng": 140.117
   },
   {
    "id": "2026-11-05-mucc-2026-12-26",
@@ -4526,7 +4726,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Makuhari",
-   "text": "Confirmed in the 179-act lineup but day assignment not recovered (search budget exhausted). Some may duplicate acts already placed on a day."
+   "text": "Confirmed in the 179-act lineup but day assignment not recovered (search budget exhausted). Some may duplicate acts already placed on a day.",
+   "lat": 35.6,
+   "lng": 140.117
   },
   {
    "id": "2026-11-05-tk-from-2026-12-26",
@@ -4560,7 +4762,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Makuhari",
-   "text": "Confirmed in the 179-act lineup but day assignment not recovered (search budget exhausted). Some may duplicate acts already placed on a day."
+   "text": "Confirmed in the 179-act lineup but day assignment not recovered (search budget exhausted). Some may duplicate acts already placed on a day.",
+   "lat": 35.6,
+   "lng": 140.117
   },
   {
    "id": "2026-11-05-paledusk-2026-12-26",
@@ -4594,7 +4798,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Makuhari",
-   "text": "Confirmed in the 179-act lineup but day assignment not recovered (search budget exhausted). Some may duplicate acts already placed on a day."
+   "text": "Confirmed in the 179-act lineup but day assignment not recovered (search budget exhausted). Some may duplicate acts already placed on a day.",
+   "lat": 35.6,
+   "lng": 140.117
   },
   {
    "id": "2026-11-05-fear-and-loathing-in-las-vegas-2026-11-13",
@@ -4617,7 +4823,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Only on ticket.co.jp, not Pia; UNCERTAIN."
+   "text": "Only on ticket.co.jp, not Pia; UNCERTAIN.",
+   "lat": 35.021,
+   "lng": 135.754
   },
   {
    "id": "2026-11-05-fear-and-loathing-in-las-vegas-2026-11-19",
@@ -4640,7 +4848,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Pia lists general sale allotment ended."
+   "text": "Pia lists general sale allotment ended.",
+   "lat": 35.181,
+   "lng": 136.906
   },
   {
    "id": "2026-11-05-fear-and-loathing-in-las-vegas-2026-11-22",
@@ -4662,7 +4872,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 37.923,
+   "lng": 139.041
   },
   {
    "id": "2026-11-05-fear-and-loathing-in-las-vegas-2026-12-03",
@@ -4684,7 +4896,9 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "lat": 33.6,
+   "lng": 130.417
   },
   {
    "id": "2026-11-05-fear-and-loathing-in-las-vegas-2026-12-11",
@@ -4707,7 +4921,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Venue city assumed Okayama; verify."
+   "text": "Venue city assumed Okayama; verify.",
+   "lat": 34.66,
+   "lng": 133.92
   },
   {
    "id": "2026-11-05-fear-and-loathing-in-las-vegas-2027-01-23",
@@ -4730,7 +4946,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "May be 'The Focus - Feeling of Unity Vol.1' event; verify."
+   "text": "May be 'The Focus - Feeling of Unity Vol.1' event; verify.",
+   "lat": 34.694,
+   "lng": 135.501
   },
   {
    "id": "2026-11-05-survive-said-the-prophet-2026-12-26",
@@ -4780,7 +4998,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Chiyoda",
-   "text": "Day and night shows. Tour also includes 大阪城ホール and 横浜アリーナ in Dec (dates not retrieved)."
+   "text": "Day and night shows. Tour also includes 大阪城ホール and 横浜アリーナ in Dec (dates not retrieved).",
+   "lat": 35.69,
+   "lng": 139.692
   },
   {
    "id": "2026-11-05-uverworld-2026-12-30",
@@ -4803,7 +5023,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Pre-sale status on l-tike; details unverified."
+   "text": "Pre-sale status on l-tike; details unverified.",
+   "lat": 33.6,
+   "lng": 130.417
   },
   {
    "id": "2026-11-05-alexandros-2027-04-22",
@@ -4872,7 +5094,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Other Club tour 2026 dates not seen; only listed legs found."
+   "text": "Other Club tour 2026 dates not seen; only listed legs found.",
+   "lat": 35.181,
+   "lng": 136.906
   },
   {
    "id": "2026-11-05-mucc-2026-12-23",
@@ -4895,7 +5119,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Other Club tour 2026 dates not seen; only listed legs found."
+   "text": "Other Club tour 2026 dates not seen; only listed legs found.",
+   "lat": 34.694,
+   "lng": 135.501
   },
   {
    "id": "2026-11-05-mucc-2027-01-05",
@@ -4918,7 +5144,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Fan-club-only show."
+   "text": "Fan-club-only show.",
+   "lat": 36.37,
+   "lng": 140.47
   },
   {
    "id": "2026-11-05-mucc-2027-03-26",
@@ -4941,7 +5169,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Tour runs Mar-May 2027 (Niigata, Nagano, Kanazawa, Kobe, then KYOTO MUSE 04-07); full list/Tokyo date not seen."
+   "text": "Tour runs Mar-May 2027 (Niigata, Nagano, Kanazawa, Kobe, then KYOTO MUSE 04-07); full list/Tokyo date not seen.",
+   "lat": 34.694,
+   "lng": 135.501
   },
   {
    "id": "2026-11-05-mucc-2027-04-07",
@@ -4964,7 +5194,9 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "text": "Tokyo and other stops of the Mar-May 2027 tour not seen."
+   "text": "Tokyo and other stops of the Mar-May 2027 tour not seen.",
+   "lat": 35.021,
+   "lng": 135.754
   },
   {
    "id": "2026-11-05-mucc-2027-06-09",
@@ -5039,7 +5271,9 @@
    "lastSeen": "2026-03-08",
    "rotation": true,
    "cat": "music",
-   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed."
+   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed.",
+   "lat": 31.817,
+   "lng": 130.3
   },
   {
    "id": "2026-11-05-ling-tosite-sigure-2027-03-20",
@@ -5062,7 +5296,9 @@
    "lastSeen": "2026-03-08",
    "rotation": true,
    "cat": "music",
-   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed."
+   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed.",
+   "lat": 40.82,
+   "lng": 140.74
   },
   {
    "id": "2026-11-05-ling-tosite-sigure-2027-03-27",
@@ -5085,7 +5321,9 @@
    "lastSeen": "2026-03-08",
    "rotation": true,
    "cat": "music",
-   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed."
+   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed.",
+   "lat": 43.19,
+   "lng": 141.0
   },
   {
    "id": "2026-11-05-ling-tosite-sigure-2027-03-28",
@@ -5108,7 +5346,9 @@
    "lastSeen": "2026-03-08",
    "rotation": true,
    "cat": "music",
-   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed."
+   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed.",
+   "lat": 43.77,
+   "lng": 142.37
   },
   {
    "id": "2026-11-05-ling-tosite-sigure-2027-04-09",
@@ -5157,7 +5397,9 @@
    "lastSeen": "2026-03-08",
    "rotation": true,
    "cat": "music",
-   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed."
+   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed.",
+   "lat": 35.181,
+   "lng": 136.906
   },
   {
    "id": "2026-11-05-ling-tosite-sigure-2027-04-24",
@@ -5180,7 +5422,9 @@
    "lastSeen": "2026-03-08",
    "rotation": true,
    "cat": "music",
-   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed."
+   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed.",
+   "lat": 34.39,
+   "lng": 132.46
   },
   {
    "id": "2026-11-05-ling-tosite-sigure-2027-05-13",
@@ -5204,7 +5448,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Shinsaibashi",
-   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed."
+   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed.",
+   "lat": 34.694,
+   "lng": 135.501
   },
   {
    "id": "2026-11-05-ling-tosite-sigure-2027-05-15",
@@ -5227,7 +5473,9 @@
    "lastSeen": "2026-03-08",
    "rotation": true,
    "cat": "music",
-   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed."
+   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed.",
+   "lat": 35.021,
+   "lng": 135.754
   },
   {
    "id": "2026-11-05-ling-tosite-sigure-2027-05-16",
@@ -5250,7 +5498,9 @@
    "lastSeen": "2026-03-08",
    "rotation": true,
    "cat": "music",
-   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed."
+   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed.",
+   "lat": 34.69,
+   "lng": 135.8
   },
   {
    "id": "2026-11-05-ling-tosite-sigure-2027-05-22",
@@ -5273,7 +5523,9 @@
    "lastSeen": "2026-03-08",
    "rotation": true,
    "cat": "music",
-   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed."
+   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed.",
+   "lat": 37.923,
+   "lng": 139.041
   },
   {
    "id": "2026-11-05-ling-tosite-sigure-2027-05-27",
@@ -5296,7 +5548,9 @@
    "lastSeen": "2026-03-08",
    "rotation": true,
    "cat": "music",
-   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed."
+   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed.",
+   "lat": 34.691,
+   "lng": 135.183
   },
   {
    "id": "2026-11-05-ling-tosite-sigure-2027-06-03",
@@ -5320,7 +5574,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Shintoshin",
-   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed."
+   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed.",
+   "lat": 35.908,
+   "lng": 139.657
   },
   {
    "id": "2026-11-05-ling-tosite-sigure-2027-06-08",
@@ -5343,7 +5599,9 @@
    "lastSeen": "2026-03-08",
    "rotation": true,
    "cat": "music",
-   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed."
+   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed.",
+   "lat": 36.37,
+   "lng": 140.47
   },
   {
    "id": "2026-11-05-ling-tosite-sigure-2027-06-12",
@@ -5366,7 +5624,9 @@
    "lastSeen": "2026-03-08",
    "rotation": true,
    "cat": "music",
-   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed."
+   "text": "20 cities/21 shows from Mar 2027; dates via ticket listings (eplus/Shazam), full list unconfirmed.",
+   "lat": 34.333,
+   "lng": 134.05
   },
   {
    "id": "2026-11-05-man-with-a-mission-2027-01-24",
@@ -5389,7 +5649,9 @@
    "lastSeen": "2026-10-31",
    "rotation": true,
    "cat": "music",
-   "text": "Guest bands on some dates"
+   "text": "Guest bands on some dates",
+   "lat": 35.021,
+   "lng": 135.754
   },
   {
    "id": "2026-11-05-man-with-a-mission-2027-02-15",
@@ -5412,7 +5674,9 @@
    "lastSeen": "2026-10-31",
    "rotation": true,
    "cat": "music",
-   "text": "Guest bands on some dates"
+   "text": "Guest bands on some dates",
+   "lat": 33.6,
+   "lng": 130.417
   },
   {
    "id": "2026-11-05-man-with-a-mission-2027-02-16",
@@ -5435,7 +5699,9 @@
    "lastSeen": "2026-10-31",
    "rotation": true,
    "cat": "music",
-   "text": "Guest bands on some dates"
+   "text": "Guest bands on some dates",
+   "lat": 33.6,
+   "lng": 130.417
   },
   {
    "id": "2026-11-05-coldrain-2026-12-01",
@@ -5458,7 +5724,9 @@
    "lastSeen": "2025-05-06",
    "rotation": true,
    "cat": "music",
-   "text": "Date from Live Nation snippet; verify"
+   "text": "Date from Live Nation snippet; verify",
+   "lat": 34.694,
+   "lng": 135.501
   },
   {
    "id": "2026-11-05-coldrain-2026-12-08",
@@ -5509,7 +5777,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Setagaya (Shindaita)",
-   "text": "Support TYOSiN. 19:00 per resale listing; FC presale was in Aug. Source is Billboard JAPAN / resale pages."
+   "text": "Support TYOSiN. 19:00 per resale listing; FC presale was in Aug. Source is Billboard JAPAN / resale pages.",
+   "lat": 35.69,
+   "lng": 139.692
   },
   {
    "id": "2026-11-05-the-oral-cigarettes-2026-11-07",
@@ -5533,7 +5803,9 @@
    "lastSeen": "2025-05-06",
    "rotation": true,
    "cat": "music",
-   "text": "Support AFTERVOID. 18:00 start per resale listing."
+   "text": "Support AFTERVOID. 18:00 start per resale listing.",
+   "lat": 35.433,
+   "lng": 139.65
   },
   {
    "id": "2026-11-05-the-oral-cigarettes-2026-11-06",
@@ -5558,7 +5830,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Saitama",
-   "text": "Support AFTERVOID."
+   "text": "Support AFTERVOID.",
+   "lat": 36.15,
+   "lng": 139.39
   },
   {
    "id": "2026-11-05-the-oral-cigarettes-2026-11-09",
@@ -5583,7 +5857,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Ibaraki",
-   "text": "Support AFTERVOID."
+   "text": "Support AFTERVOID.",
+   "lat": 36.37,
+   "lng": 140.47
   },
   {
    "id": "2026-11-05-the-oral-cigarettes-2026-11-12",
@@ -5608,7 +5884,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Tochigi",
-   "text": "Support TYOSiN."
+   "text": "Support TYOSiN.",
+   "lat": 36.56,
+   "lng": 139.88
   },
   {
    "id": "2026-11-05-the-oral-cigarettes-2026-11-15",
@@ -5633,7 +5911,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Gunma",
-   "text": "Support TYOSiN. 18:00."
+   "text": "Support TYOSiN. 18:00.",
+   "lat": 36.333,
+   "lng": 139.017
   },
   {
    "id": "2026-11-05-gecko-tokage-parade-2026-11-25",
@@ -5656,7 +5936,9 @@
    "lastSeen": "2025-05",
    "rotation": true,
    "cat": "music",
-   "text": "Apple Music listing, performer attribution UNCERTAIN."
+   "text": "Apple Music listing, performer attribution UNCERTAIN.",
+   "lat": 33.6,
+   "lng": 130.417
   },
   {
    "id": "2026-11-05-gecko-tokage-parade-2026-11-26",
@@ -5679,7 +5961,9 @@
    "lastSeen": "2025-05",
    "rotation": true,
    "cat": "music",
-   "text": "UNCERTAIN attribution."
+   "text": "UNCERTAIN attribution.",
+   "lat": 34.25,
+   "lng": 132.57
   },
   {
    "id": "2026-11-05-gecko-tokage-parade-2027-01-21",
@@ -5703,7 +5987,9 @@
    "rotation": true,
    "cat": "music",
    "area": "Shibuya",
-   "text": "UNCERTAIN attribution."
+   "text": "UNCERTAIN attribution.",
+   "lat": 35.69,
+   "lng": 139.692
   }
  ]
 }
