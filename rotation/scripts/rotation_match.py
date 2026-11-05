@@ -81,7 +81,11 @@ def main():
         if k not in index or plays[name] > plays[index[k]]: index[k] = name
     for name in plays:
         for k in keys_for(name): put(k, name)
+        jp = (origins.get(name) or {}).get("country", "") == "JP"
         for al in (aliases.get(name) or {}).get("aliases", []) or []:
+            # a short alias ("LUV" -> Lil Uzi Vert) collides with unrelated small acts
+            # ("luv" at CDJ 26/27) — only Japanese artists may be indexed by short aliases
+            if len(norm_any(al)) <= 4 and not jp: continue
             for k in keys_for(al): put(k, name)
 
     out = []

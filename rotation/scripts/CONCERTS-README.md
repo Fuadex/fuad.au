@@ -13,7 +13,8 @@ Everything the Morning Brief's concert search has produced up to **2026-11-04**,
 Known false positives: "bed" (Japanese band at WWW X, Nov 20) matched your French **Bed**; "the cabs" matched **The Cabs**, whose MusicBrainz origin says US but the plays look like the Japanese band. Fixing either in `artist-aliases.json` / `artist-origins.json` fixes future runs.
 
 ## scripts/
-- `rotation_match.py` matches listings against `fuadex.csv` through aliases (kana/kanji ↔ romaji), origins and `gigs.json`, and assigns the tiers top / also / seen.
+- `rotation_match.py` matches listings against `fuadex.csv` through aliases (kana/kanji ↔ romaji), origins and `gigs.json`, and assigns the tiers top / also / seen. Short aliases (≤4 normalised chars) only index Japanese artists, so "LUV" can't hand a Japanese club act to Lil Uzi Vert.
+- `merge_listings.py` folds researched listing files (same schema as the agent's) into `concerts-tokyo.json`: dedupes, matches, one row per matched library artist per show (a festival day with four library acts lands as four rows), never touches existing rows or marks. Used for the 2026-11-05 deep-research pass (five Claude subagents over 168 Japanese library artists + festivals + 60 internationals → ~150 listings, ~160 new rows, country-wide).
 - `concert_agent.py` picks the day's artists (6 Japanese and 3 international, rotating through your top 60). It then asks Claude, with the API's built-in `web_search` and `web_fetch` tools, to collect the listings, caches new e+ ids, runs the matcher, and appends only new shows to `concerts-tokyo.json` (your existing rows and marks are never touched).
 
 ## Run it
