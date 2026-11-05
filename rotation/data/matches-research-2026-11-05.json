@@ -1,1319 +1,1832 @@
 [
  {
-  "title": "THE SPELLBOUND×BOOM BOOM SATELLITES presents",
-  "date": "2027-03-14",
-  "venue": "EX THEATER ROPPONGI",
-  "city": "Tokyo",
-  "url": "https://eplus.jp/sf/word/0000147841",
-  "acts": [
-   "BOOM BOOM SATELLITES",
-   "THE SPELLBOUND"
-  ],
-  "matches": [
-   {
-    "act": "BOOM BOOM SATELLITES",
-    "artist": "BOOM BOOM SATELLITES",
-    "plays": 53,
-    "recentPlays": 53,
-    "lastPlayed": "2026-09-18",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 362
-   }
-  ],
-  "tier": "top",
-  "score": 362
- },
- {
-  "title": "ツタロック DIG LIVE Vol.21",
+  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
   "date": "2026-11-07",
-  "venue": "Spotify O-EAST",
-  "city": "Tokyo",
-  "url": "https://eplus.jp/sf/word/0000033997",
-  "acts": [
-   "Wienners"
-  ],
-  "matches": [
-   {
-    "act": "Wienners",
-    "artist": "Wienners",
-    "plays": 36,
-    "recentPlays": 29,
-    "lastPlayed": "2025-08-25",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 273
-   }
-  ],
-  "tier": "top",
-  "score": 273
- },
- {
-  "title": "Wienners <振替公演>",
-  "date": "2026-11-10",
-  "venue": "仙台 LIVE HOUSE enn 2nd",
-  "city": "Sendai",
-  "url": "https://eplus.jp/sf/word/0000033997",
-  "acts": [
-   "Wienners"
-  ],
-  "matches": [
-   {
-    "act": "Wienners",
-    "artist": "Wienners",
-    "plays": 36,
-    "recentPlays": 29,
-    "lastPlayed": "2025-08-25",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 273
-   }
-  ],
-  "tier": "top",
-  "score": 273
- },
- {
-  "title": "OVER THE TOP TOUR 2026",
-  "date": "2026-11-18",
-  "venue": "名古屋クラブクアトロ",
-  "city": "Nagoya",
-  "url": "https://eplus.jp/sf/word/0000033997",
-  "acts": [
-   "Wienners",
-   "ヤバイTシャツ屋さん"
-  ],
-  "matches": [
-   {
-    "act": "Wienners",
-    "artist": "Wienners",
-    "plays": 36,
-    "recentPlays": 29,
-    "lastPlayed": "2025-08-25",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 273
-   }
-  ],
-  "tier": "top",
-  "score": 273
- },
- {
-  "title": "OVER THE TOP TOUR 2026 FINAL",
-  "date": "2026-11-24",
-  "venue": "LIQUIDROOM",
-  "city": "Tokyo",
-  "url": "https://eplus.jp/sf/word/0000033997",
-  "acts": [
-   "Wienners",
-   "04 Limited Sazabys"
-  ],
-  "matches": [
-   {
-    "act": "Wienners",
-    "artist": "Wienners",
-    "plays": 36,
-    "recentPlays": 29,
-    "lastPlayed": "2025-08-25",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 273
-   }
-  ],
-  "tier": "top",
-  "score": 273
- },
- {
-  "title": "DOTAMA 3マンLIVE「社交辞令 vol.44」",
-  "date": "2026-12-09",
-  "venue": "shibuya eggman",
-  "city": "Tokyo",
-  "url": "https://eplus.jp/sf/word/0000033997",
-  "acts": [
-   "Wienners"
-  ],
-  "matches": [
-   {
-    "act": "Wienners",
-    "artist": "Wienners",
-    "plays": 36,
-    "recentPlays": 29,
-    "lastPlayed": "2025-08-25",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 273
-   }
-  ],
-  "tier": "top",
-  "score": 273
- },
- {
-  "title": "HEAVEN’S ROCK Utsunomiya presents Gimme Five vol.12",
-  "date": "2027-01-21",
-  "venue": "HEAVEN’S ROCK宇都宮 VJ-2",
-  "city": "Utsunomiya",
-  "url": "https://eplus.jp/sf/word/0000033997",
-  "acts": [
-   "Wienners"
-  ],
-  "matches": [
-   {
-    "act": "Wienners",
-    "artist": "Wienners",
-    "plays": 36,
-    "recentPlays": 29,
-    "lastPlayed": "2025-08-25",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 273
-   }
-  ],
-  "tier": "top",
-  "score": 273
- },
- {
-  "title": "THE SUN ALSO RISES vol.426",
-  "date": "2027-01-26",
-  "venue": "F.A.D YOKOHAMA",
-  "city": "Yokohama",
-  "url": "https://eplus.jp/sf/word/0000033997",
-  "acts": [
-   "Wienners",
-   "花冷え。"
-  ],
-  "matches": [
-   {
-    "act": "Wienners",
-    "artist": "Wienners",
-    "plays": 36,
-    "recentPlays": 29,
-    "lastPlayed": "2025-08-25",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 273
-   }
-  ],
-  "tier": "top",
-  "score": 273
- },
- {
-  "title": "ブクロック!フェスティバル 2027幕張",
-  "date": "2027-02-11",
-  "venue": "幕張メッセ 国際展示場 1～3ホール",
-  "city": "Chiba",
-  "url": "https://eplus.jp/sf/word/0000033997",
-  "acts": [
-   "Wienners"
-  ],
-  "matches": [
-   {
-    "act": "Wienners",
-    "artist": "Wienners",
-    "plays": 36,
-    "recentPlays": 29,
-    "lastPlayed": "2025-08-25",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 273
-   }
-  ],
-  "tier": "top",
-  "score": 273
- },
- {
-  "title": "AA= X-FADER CIRCUIT",
-  "date": "2026-12-12",
-  "venue": "F.A.D YOKOHAMA",
-  "city": "Yokohama",
-  "url": "https://eplus.jp/sf/word/0000033480",
-  "acts": [
-   "AA=",
-   "WRENCH"
-  ],
-  "matches": [
-   {
-    "act": "WRENCH",
-    "artist": "Wrench",
-    "plays": 30,
-    "recentPlays": 30,
-    "lastPlayed": "2026-11-03",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 270
-   },
-   {
-    "act": "AA=",
-    "artist": "AA=",
-    "plays": 22,
-    "recentPlays": 21,
-    "lastPlayed": "2026-03-25",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 235
-   }
-  ],
-  "tier": "top",
-  "score": 270
- },
- {
-  "title": "171(イナイチ)×えんぷてい SPECIAL 2MAN LIVE (常磐祭)",
-  "date": "2026-11-08",
-  "venue": "実践女子大学 体育館 (日野キャンパス)",
-  "city": "Hino",
-  "url": "https://eplus.jp/sf/word/0000152434",
-  "acts": [
-   "171",
-   "えんぷてい"
-  ],
-  "matches": [
-   {
-    "act": "171",
-    "artist": "171",
-    "plays": 28,
-    "recentPlays": 28,
-    "lastPlayed": "2026-05-15",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 262
-   }
-  ],
-  "tier": "top",
-  "score": 262
- },
- {
-  "title": "171 × POLYSICS",
-  "date": "2026-11-21",
-  "venue": "B-FLAT",
-  "city": "Otsu",
-  "url": "https://eplus.jp/sf/word/0000152434",
-  "acts": [
-   "171",
-   "POLYSICS"
-  ],
-  "matches": [
-   {
-    "act": "171",
-    "artist": "171",
-    "plays": 28,
-    "recentPlays": 28,
-    "lastPlayed": "2026-05-15",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 262
-   }
-  ],
-  "tier": "top",
-  "score": 262
- },
- {
-  "title": "171 × POLYSICS",
-  "date": "2026-11-22",
-  "venue": "堺 Live Bar FANDANGO",
-  "city": "Sakai",
-  "url": "https://eplus.jp/sf/word/0000152434",
-  "acts": [
-   "171",
-   "POLYSICS"
-  ],
-  "matches": [
-   {
-    "act": "171",
-    "artist": "171",
-    "plays": 28,
-    "recentPlays": 28,
-    "lastPlayed": "2026-05-15",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 262
-   }
-  ],
-  "tier": "top",
-  "score": 262
- },
- {
-  "title": "PK shampoo presents PSYCHIC FES 2026",
-  "date": "2026-11-28",
-  "venue": "BIGCAT / SUNHALL / ANIMA 他",
-  "city": "Osaka",
-  "url": "https://eplus.jp/sf/word/0000152434",
-  "acts": [
-   "171",
-   "PK shampoo"
-  ],
-  "matches": [
-   {
-    "act": "171",
-    "artist": "171",
-    "plays": 28,
-    "recentPlays": 28,
-    "lastPlayed": "2026-05-15",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 262
-   }
-  ],
-  "tier": "top",
-  "score": 262
- },
- {
-  "title": "JAPAN TOUR from 171",
-  "date": "2026-12-06",
-  "venue": "千葉LOOK",
-  "city": "Chiba",
-  "url": "https://eplus.jp/sf/word/0000152434",
-  "acts": [
-   "171"
-  ],
-  "matches": [
-   {
-    "act": "171",
-    "artist": "171",
-    "plays": 28,
-    "recentPlays": 28,
-    "lastPlayed": "2026-05-15",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 262
-   }
-  ],
-  "tier": "top",
-  "score": 262
- },
- {
-  "title": "JAPAN TOUR from 171",
-  "date": "2026-12-13",
-  "venue": "札幌近松",
-  "city": "Sapporo",
-  "url": "https://eplus.jp/sf/word/0000152434",
-  "acts": [
-   "171"
-  ],
-  "matches": [
-   {
-    "act": "171",
-    "artist": "171",
-    "plays": 28,
-    "recentPlays": 28,
-    "lastPlayed": "2026-05-15",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 262
-   }
-  ],
-  "tier": "top",
-  "score": 262
- },
- {
-  "title": "JAPAN TOUR from 171",
-  "date": "2026-12-20",
-  "venue": "金沢AZ",
+  "venue": "金沢EIGHT HALL",
   "city": "Kanazawa",
-  "url": "https://eplus.jp/sf/word/0000152434",
+  "url": "https://9mm.jp/live.php",
   "acts": [
-   "171"
+   "9mm Parabellum Bullet"
   ],
   "matches": [
    {
-    "act": "171",
-    "artist": "171",
-    "plays": 28,
-    "recentPlays": 28,
-    "lastPlayed": "2026-05-15",
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
     "country": "JP",
     "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
     "tier": "top",
-    "score": 262
+    "score": 673
    }
   ],
   "tier": "top",
-  "score": 262
+  "score": 673
  },
  {
-  "title": "JAPAN TOUR from 171",
-  "date": "2027-01-10",
-  "venue": "仙台darwin",
-  "city": "Sendai",
-  "url": "https://eplus.jp/sf/word/0000152434",
-  "acts": [
-   "171"
-  ],
-  "matches": [
-   {
-    "act": "171",
-    "artist": "171",
-    "plays": 28,
-    "recentPlays": 28,
-    "lastPlayed": "2026-05-15",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 262
-   }
-  ],
-  "tier": "top",
-  "score": 262
- },
- {
-  "title": "JAPAN TOUR from 171",
-  "date": "2027-01-11",
-  "venue": "the five morioka",
-  "city": "Morioka",
-  "url": "https://eplus.jp/sf/word/0000152434",
-  "acts": [
-   "171"
-  ],
-  "matches": [
-   {
-    "act": "171",
-    "artist": "171",
-    "plays": 28,
-    "recentPlays": 28,
-    "lastPlayed": "2026-05-15",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 262
-   }
-  ],
-  "tier": "top",
-  "score": 262
- },
- {
-  "title": "JAPAN TOUR from 171",
-  "date": "2027-01-16",
+  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
+  "date": "2026-11-08",
   "venue": "長野CLUB JUNK BOX",
   "city": "Nagano",
-  "url": "https://eplus.jp/sf/word/0000152434",
+  "url": "https://9mm.jp/live.php",
   "acts": [
-   "171"
+   "9mm Parabellum Bullet"
   ],
   "matches": [
    {
-    "act": "171",
-    "artist": "171",
-    "plays": 28,
-    "recentPlays": 28,
-    "lastPlayed": "2026-05-15",
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
     "country": "JP",
     "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
     "tier": "top",
-    "score": 262
+    "score": 673
    }
   ],
   "tier": "top",
-  "score": 262
+  "score": 673
  },
  {
-  "title": "JAPAN TOUR from 171",
-  "date": "2027-01-17",
+  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
+  "date": "2026-11-14",
+  "venue": "名古屋DIAMOND HALL",
+  "city": "Nagoya",
+  "url": "https://9mm.jp/live.php",
+  "acts": [
+   "9mm Parabellum Bullet"
+  ],
+  "matches": [
+   {
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 673
+   }
+  ],
+  "tier": "top",
+  "score": 673
+ },
+ {
+  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
+  "date": "2026-11-15",
+  "venue": "浜松窓枠",
+  "city": "Hamamatsu",
+  "url": "https://9mm.jp/live.php",
+  "acts": [
+   "9mm Parabellum Bullet"
+  ],
+  "matches": [
+   {
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 673
+   }
+  ],
+  "tier": "top",
+  "score": 673
+ },
+ {
+  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
+  "date": "2026-11-21",
+  "venue": "岡山CRAZYMAMA KINGDOM",
+  "city": "Okayama",
+  "url": "https://9mm.jp/live.php",
+  "acts": [
+   "9mm Parabellum Bullet"
+  ],
+  "matches": [
+   {
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 673
+   }
+  ],
+  "tier": "top",
+  "score": 673
+ },
+ {
+  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
+  "date": "2026-11-22",
+  "venue": "高松MONSTER",
+  "city": "Takamatsu",
+  "url": "https://9mm.jp/live.php",
+  "acts": [
+   "9mm Parabellum Bullet"
+  ],
+  "matches": [
+   {
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 673
+   }
+  ],
+  "tier": "top",
+  "score": 673
+ },
+ {
+  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
+  "date": "2026-11-28",
+  "venue": "熊本B.9 V1",
+  "city": "Kumamoto",
+  "url": "https://9mm.jp/live.php",
+  "acts": [
+   "9mm Parabellum Bullet"
+  ],
+  "matches": [
+   {
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 673
+   }
+  ],
+  "tier": "top",
+  "score": 673
+ },
+ {
+  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
+  "date": "2026-11-29",
+  "venue": "福岡DRUM LOGOS",
+  "city": "Fukuoka",
+  "url": "https://9mm.jp/live.php",
+  "acts": [
+   "9mm Parabellum Bullet"
+  ],
+  "matches": [
+   {
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 673
+   }
+  ],
+  "tier": "top",
+  "score": 673
+ },
+ {
+  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
+  "date": "2026-12-05",
+  "venue": "山形ミュージック昭和SESSION",
+  "city": "Yamagata",
+  "url": "https://9mm.jp/live.php",
+  "acts": [
+   "9mm Parabellum Bullet"
+  ],
+  "matches": [
+   {
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 673
+   }
+  ],
+  "tier": "top",
+  "score": 673
+ },
+ {
+  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
+  "date": "2026-12-06",
+  "venue": "仙台Rensa",
+  "city": "Sendai",
+  "url": "https://9mm.jp/live.php",
+  "acts": [
+   "9mm Parabellum Bullet"
+  ],
+  "matches": [
+   {
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 673
+   }
+  ],
+  "tier": "top",
+  "score": 673
+ },
+ {
+  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
+  "date": "2027-01-16",
   "venue": "水戸LIGHT HOUSE",
   "city": "Mito",
-  "url": "https://eplus.jp/sf/word/0000152434",
+  "url": "https://9mm.jp/live.php",
   "acts": [
-   "171"
+   "9mm Parabellum Bullet"
   ],
   "matches": [
    {
-    "act": "171",
-    "artist": "171",
-    "plays": 28,
-    "recentPlays": 28,
-    "lastPlayed": "2026-05-15",
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
     "country": "JP",
     "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
     "tier": "top",
-    "score": 262
+    "score": 673
    }
   ],
   "tier": "top",
-  "score": 262
+  "score": 673
  },
  {
-  "title": "JAPAN TOUR from 171",
+  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
   "date": "2027-01-23",
-  "venue": "静岡UMBER",
-  "city": "Shizuoka",
-  "url": "https://eplus.jp/sf/word/0000152434",
+  "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+  "city": "Utsunomiya",
+  "url": "https://9mm.jp/live.php",
   "acts": [
-   "171"
+   "9mm Parabellum Bullet"
   ],
   "matches": [
    {
-    "act": "171",
-    "artist": "171",
-    "plays": 28,
-    "recentPlays": 28,
-    "lastPlayed": "2026-05-15",
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
     "country": "JP",
     "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
     "tier": "top",
-    "score": 262
+    "score": 673
    }
   ],
   "tier": "top",
-  "score": 262
+  "score": 673
  },
  {
-  "title": "JAPAN TOUR from 171",
-  "date": "2027-01-30",
-  "venue": "奈良ネバーランド",
-  "city": "Nara",
-  "url": "https://eplus.jp/sf/word/0000152434",
-  "acts": [
-   "171"
-  ],
-  "matches": [
-   {
-    "act": "171",
-    "artist": "171",
-    "plays": 28,
-    "recentPlays": 28,
-    "lastPlayed": "2026-05-15",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 262
-   }
-  ],
-  "tier": "top",
-  "score": 262
- },
- {
-  "title": "JAPAN TOUR from 171",
-  "date": "2027-01-31",
-  "venue": "KYOTO MUSE",
-  "city": "Kyoto",
-  "url": "https://eplus.jp/sf/word/0000152434",
-  "acts": [
-   "171"
-  ],
-  "matches": [
-   {
-    "act": "171",
-    "artist": "171",
-    "plays": 28,
-    "recentPlays": 28,
-    "lastPlayed": "2026-05-15",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 262
-   }
-  ],
-  "tier": "top",
-  "score": 262
- },
- {
-  "title": "JAPAN TOUR from 171",
-  "date": "2027-02-06",
-  "venue": "高松DIME",
-  "city": "Takamatsu",
-  "url": "https://eplus.jp/sf/word/0000152434",
-  "acts": [
-   "171"
-  ],
-  "matches": [
-   {
-    "act": "171",
-    "artist": "171",
-    "plays": 28,
-    "recentPlays": 28,
-    "lastPlayed": "2026-05-15",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 262
-   }
-  ],
-  "tier": "top",
-  "score": 262
- },
- {
-  "title": "JAPAN TOUR from 171",
-  "date": "2027-02-07",
-  "venue": "高知X-pt.",
-  "city": "Kochi",
-  "url": "https://eplus.jp/sf/word/0000152434",
-  "acts": [
-   "171"
-  ],
-  "matches": [
-   {
-    "act": "171",
-    "artist": "171",
-    "plays": 28,
-    "recentPlays": 28,
-    "lastPlayed": "2026-05-15",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 262
-   }
-  ],
-  "tier": "top",
-  "score": 262
- },
- {
-  "title": "JAPAN TOUR from 171",
-  "date": "2027-02-11",
-  "venue": "CB",
-  "city": "Fukuoka",
-  "url": "https://eplus.jp/sf/word/0000152434",
-  "acts": [
-   "171"
-  ],
-  "matches": [
-   {
-    "act": "171",
-    "artist": "171",
-    "plays": 28,
-    "recentPlays": 28,
-    "lastPlayed": "2026-05-15",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 262
-   }
-  ],
-  "tier": "top",
-  "score": 262
- },
- {
-  "title": "JAPAN TOUR from 171",
-  "date": "2027-02-13",
-  "venue": "熊本B.9 V2",
-  "city": "Kumamoto",
-  "url": "https://eplus.jp/sf/word/0000152434",
-  "acts": [
-   "171"
-  ],
-  "matches": [
-   {
-    "act": "171",
-    "artist": "171",
-    "plays": 28,
-    "recentPlays": 28,
-    "lastPlayed": "2026-05-15",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 262
-   }
-  ],
-  "tier": "top",
-  "score": 262
- },
- {
-  "title": "JAPAN TOUR from 171",
-  "date": "2027-02-14",
-  "venue": "広島CAVE-BE",
-  "city": "Hiroshima",
-  "url": "https://eplus.jp/sf/word/0000152434",
-  "acts": [
-   "171"
-  ],
-  "matches": [
-   {
-    "act": "171",
-    "artist": "171",
-    "plays": 28,
-    "recentPlays": 28,
-    "lastPlayed": "2026-05-15",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 262
-   }
-  ],
-  "tier": "top",
-  "score": 262
- },
- {
-  "title": "JAPAN TOUR from 171",
-  "date": "2027-02-21",
-  "venue": "名古屋CLUB QUATTRO",
-  "city": "Nagoya",
-  "url": "https://eplus.jp/sf/word/0000152434",
-  "acts": [
-   "171"
-  ],
-  "matches": [
-   {
-    "act": "171",
-    "artist": "171",
-    "plays": 28,
-    "recentPlays": 28,
-    "lastPlayed": "2026-05-15",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 262
-   }
-  ],
-  "tier": "top",
-  "score": 262
- },
- {
-  "title": "JAPAN TOUR from 171",
-  "date": "2027-02-23",
-  "venue": "BIGCAT",
-  "city": "Osaka",
-  "url": "https://eplus.jp/sf/word/0000152434",
-  "acts": [
-   "171"
-  ],
-  "matches": [
-   {
-    "act": "171",
-    "artist": "171",
-    "plays": 28,
-    "recentPlays": 28,
-    "lastPlayed": "2026-05-15",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 262
-   }
-  ],
-  "tier": "top",
-  "score": 262
- },
- {
-  "title": "JAPAN TOUR from 171",
-  "date": "2027-03-27",
-  "venue": "Zepp Shinjuku",
-  "city": "Tokyo",
-  "url": "https://eplus.jp/sf/word/0000152434",
-  "acts": [
-   "171"
-  ],
-  "matches": [
-   {
-    "act": "171",
-    "artist": "171",
-    "plays": 28,
-    "recentPlays": 28,
-    "lastPlayed": "2026-05-15",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 262
-   }
-  ],
-  "tier": "top",
-  "score": 262
- },
- {
-  "title": "LADYBABY LIVE",
-  "date": "2026-12-01",
-  "venue": "Spotify O-EAST",
-  "city": "Tokyo",
-  "url": "https://eplus.jp/sf/word/0000074209",
-  "acts": [
-   "LADYBABY"
-  ],
-  "matches": [
-   {
-    "act": "LADYBABY",
-    "artist": "Ladybaby",
-    "plays": 101,
-    "recentPlays": 2,
-    "lastPlayed": "2025-05-13",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 257
-   }
-  ],
-  "tier": "top",
-  "score": 257
- },
- {
-  "title": "SNAZZY TUNES×over print pre. over fest 2026",
-  "date": "2026-11-21",
-  "venue": "下北沢ライブハウス9店舗同時開催",
-  "city": "Tokyo",
-  "url": "https://eplus.jp/sf/word/0000074209",
-  "acts": [
-   "LADYBABY"
-  ],
-  "matches": [
-   {
-    "act": "LADYBABY",
-    "artist": "Ladybaby",
-    "plays": 101,
-    "recentPlays": 2,
-    "lastPlayed": "2025-05-13",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 257
-   }
-  ],
-  "tier": "top",
-  "score": 257
- },
- {
-  "title": "PassCode UNLIMITED X",
-  "date": "2026-11-07",
+  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
+  "date": "2027-01-24",
   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
   "city": "Saitama",
-  "url": "https://passcode-official.com/schedule/",
+  "url": "https://9mm.jp/live.php",
   "acts": [
-   "PassCode"
+   "9mm Parabellum Bullet"
   ],
   "matches": [
    {
-    "act": "PassCode",
-    "artist": "PassCode",
-    "plays": 73,
-    "recentPlays": 7,
-    "lastPlayed": "2026-04-11",
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
     "country": "JP",
     "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
     "tier": "top",
-    "score": 244
+    "score": 673
    }
   ],
   "tier": "top",
-  "score": 244
+  "score": 673
  },
  {
-  "title": "PassCode UNLIMITED X",
-  "date": "2026-11-08",
-  "venue": "柏PALOOZA",
-  "city": "Kashiwa",
-  "url": "https://passcode-official.com/schedule/",
-  "acts": [
-   "PassCode"
-  ],
-  "matches": [
-   {
-    "act": "PassCode",
-    "artist": "PassCode",
-    "plays": 73,
-    "recentPlays": 7,
-    "lastPlayed": "2026-04-11",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 244
-   }
-  ],
-  "tier": "top",
-  "score": 244
- },
- {
-  "title": "PassCode UNLIMITED X",
-  "date": "2026-11-14",
-  "venue": "高松オリーブホール",
-  "city": "Takamatsu",
-  "url": "https://passcode-official.com/schedule/",
-  "acts": [
-   "PassCode"
-  ],
-  "matches": [
-   {
-    "act": "PassCode",
-    "artist": "PassCode",
-    "plays": 73,
-    "recentPlays": 7,
-    "lastPlayed": "2026-04-11",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 244
-   }
-  ],
-  "tier": "top",
-  "score": 244
- },
- {
-  "title": "PassCode UNLIMITED X",
-  "date": "2026-11-15",
-  "venue": "LIVE VANQUISH",
-  "city": "Hiroshima",
-  "url": "https://passcode-official.com/schedule/",
-  "acts": [
-   "PassCode"
-  ],
-  "matches": [
-   {
-    "act": "PassCode",
-    "artist": "PassCode",
-    "plays": 73,
-    "recentPlays": 7,
-    "lastPlayed": "2026-04-11",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 244
-   }
-  ],
-  "tier": "top",
-  "score": 244
- },
- {
-  "title": "PassCode UNLIMITED X",
-  "date": "2026-11-21",
-  "venue": "BEAT STATION",
-  "city": "Fukuoka",
-  "url": "https://passcode-official.com/schedule/",
-  "acts": [
-   "PassCode"
-  ],
-  "matches": [
-   {
-    "act": "PassCode",
-    "artist": "PassCode",
-    "plays": 73,
-    "recentPlays": 7,
-    "lastPlayed": "2026-04-11",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 244
-   }
-  ],
-  "tier": "top",
-  "score": 244
- },
- {
-  "title": "PassCode UNLIMITED X",
-  "date": "2026-11-22",
-  "venue": "神戸 Harbor Studio",
-  "city": "Kobe",
-  "url": "https://passcode-official.com/schedule/",
-  "acts": [
-   "PassCode"
-  ],
-  "matches": [
-   {
-    "act": "PassCode",
-    "artist": "PassCode",
-    "plays": 73,
-    "recentPlays": 7,
-    "lastPlayed": "2026-04-11",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 244
-   }
-  ],
-  "tier": "top",
-  "score": 244
- },
- {
-  "title": "PassCode UNLIMITED X",
-  "date": "2026-11-27",
-  "venue": "PENNY LANE24",
-  "city": "Sapporo",
-  "url": "https://passcode-official.com/schedule/",
-  "acts": [
-   "PassCode"
-  ],
-  "matches": [
-   {
-    "act": "PassCode",
-    "artist": "PassCode",
-    "plays": 73,
-    "recentPlays": 7,
-    "lastPlayed": "2026-04-11",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 244
-   }
-  ],
-  "tier": "top",
-  "score": 244
- },
- {
-  "title": "PassCode UNLIMITED X",
-  "date": "2026-11-28",
-  "venue": "小樽 GOLDSTONE",
-  "city": "Otaru",
-  "url": "https://passcode-official.com/schedule/",
-  "acts": [
-   "PassCode"
-  ],
-  "matches": [
-   {
-    "act": "PassCode",
-    "artist": "PassCode",
-    "plays": 73,
-    "recentPlays": 7,
-    "lastPlayed": "2026-04-11",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 244
-   }
-  ],
-  "tier": "top",
-  "score": 244
- },
- {
-  "title": "UNLIMITED X -THE FINALE-",
-  "date": "2026-12-17",
-  "venue": "Zepp DiverCity (TOKYO)",
-  "city": "Tokyo",
-  "url": "https://passcode-official.com/schedule/",
-  "acts": [
-   "PassCode"
-  ],
-  "matches": [
-   {
-    "act": "PassCode",
-    "artist": "PassCode",
-    "plays": 73,
-    "recentPlays": 7,
-    "lastPlayed": "2026-04-11",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 244
-   }
-  ],
-  "tier": "top",
-  "score": 244
- },
- {
-  "title": "UNLIMITED X -THE FINALE-",
-  "date": "2026-12-18",
-  "venue": "Zepp DiverCity (TOKYO)",
-  "city": "Tokyo",
-  "url": "https://passcode-official.com/schedule/",
-  "acts": [
-   "PassCode"
-  ],
-  "matches": [
-   {
-    "act": "PassCode",
-    "artist": "PassCode",
-    "plays": 73,
-    "recentPlays": 7,
-    "lastPlayed": "2026-04-11",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 244
-   }
-  ],
-  "tier": "top",
-  "score": 244
- },
- {
-  "title": "Idol Xmas Fes 2026",
-  "date": "2026-12-24",
-  "venue": "横浜アリーナ",
-  "city": "Yokohama",
-  "url": "https://passcode-official.com/schedule/",
-  "acts": [
-   "PassCode"
-  ],
-  "matches": [
-   {
-    "act": "PassCode",
-    "artist": "PassCode",
-    "plays": 73,
-    "recentPlays": 7,
-    "lastPlayed": "2026-04-11",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 244
-   }
-  ],
-  "tier": "top",
-  "score": 244
- },
- {
-  "title": "Sammy presents NEW HORIZON FEST 2026",
-  "date": "2026-12-28",
-  "venue": "TOYOTA ARENA TOKYO",
-  "city": "Tokyo",
-  "url": "https://eplus.jp/sf/word/0000066651",
-  "acts": [
-   "PassCode"
-  ],
-  "matches": [
-   {
-    "act": "PassCode",
-    "artist": "PassCode",
-    "plays": 73,
-    "recentPlays": 7,
-    "lastPlayed": "2026-04-11",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 244
-   }
-  ],
-  "tier": "top",
-  "score": 244
- },
- {
-  "title": "AA= X-FADER CIRCUIT",
-  "date": "2026-11-15",
-  "venue": "Yogibo META VALLEY",
+  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
+  "date": "2027-01-31",
+  "venue": "大阪BIGCAT",
   "city": "Osaka",
-  "url": "https://eplus.jp/sf/word/0000033480",
+  "url": "https://9mm.jp/live.php",
   "acts": [
-   "AA="
+   "9mm Parabellum Bullet"
   ],
   "matches": [
    {
-    "act": "AA=",
-    "artist": "AA=",
-    "plays": 22,
-    "recentPlays": 21,
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 673
+   }
+  ],
+  "tier": "top",
+  "score": 673
+ },
+ {
+  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
+  "date": "2027-02-06",
+  "venue": "F.A.D YOKOHAMA",
+  "city": "Yokohama",
+  "url": "https://9mm.jp/live.php",
+  "acts": [
+   "9mm Parabellum Bullet"
+  ],
+  "matches": [
+   {
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 673
+   }
+  ],
+  "tier": "top",
+  "score": 673
+ },
+ {
+  "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
+  "date": "2027-02-23",
+  "venue": "Shibuya LOVEZ",
+  "city": "Tokyo",
+  "url": "https://9mm.jp/live.php",
+  "acts": [
+   "9mm Parabellum Bullet"
+  ],
+  "matches": [
+   {
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 673
+   }
+  ],
+  "tier": "top",
+  "score": 673
+ },
+ {
+  "title": "THE BAWDIES対バンツアー「THE MELTING POT SESSIONS」",
+  "date": "2026-12-12",
+  "venue": "富山 SOUL POWER",
+  "city": "Toyama",
+  "url": "https://9mm.jp/live.php",
+  "acts": [
+   "9mm Parabellum Bullet",
+   "THE BAWDIES"
+  ],
+  "matches": [
+   {
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 673
+   }
+  ],
+  "tier": "top",
+  "score": 673
+ },
+ {
+  "title": "THE BAWDIES対バンツアー「THE MELTING POT SESSIONS」",
+  "date": "2026-12-13",
+  "venue": "長野 CLUB JUNK BOX",
+  "city": "Nagano",
+  "url": "https://9mm.jp/live.php",
+  "acts": [
+   "9mm Parabellum Bullet",
+   "THE BAWDIES"
+  ],
+  "matches": [
+   {
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 673
+   }
+  ],
+  "tier": "top",
+  "score": 673
+ },
+ {
+  "title": "SHINJUKU LOFT 50th ANNIVERSARY DREAM MATCH 2026",
+  "date": "2026-12-16",
+  "venue": "新宿LOFT",
+  "city": "Tokyo",
+  "url": "https://9mm.jp/live.php",
+  "acts": [
+   "9mm Parabellum Bullet",
+   "KANA-BOON"
+  ],
+  "matches": [
+   {
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 673
+   },
+   {
+    "act": "KANA-BOON",
+    "artist": "KANA-BOON",
+    "plays": 11,
+    "recentPlays": 0,
+    "lastPlayed": "2023-02-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 161
+   }
+  ],
+  "tier": "top",
+  "score": 673
+ },
+ {
+  "title": "LIQUIDROOM 22nd ANNIVERSARY",
+  "date": "2026-12-17",
+  "venue": "恵比寿 LIQUIDROOM",
+  "city": "Tokyo",
+  "url": "https://eplus.jp/sf/detail/4607720001-P0030001",
+  "acts": [
+   "アルカラ",
+   "9mm Parabellum Bullet",
+   "cinema staff"
+  ],
+  "matches": [
+   {
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 673
+   }
+  ],
+  "tier": "top",
+  "score": 673
+ },
+ {
+  "title": "Survive Said The Prophet Presents “MAGIC HOUR FESTIVAL”",
+  "date": "2026-12-26",
+  "venue": "豊洲PIT",
+  "city": "Tokyo",
+  "url": "https://survivesaidtheprophet.com/tour/mh/",
+  "acts": [
+   "Survive Said The Prophet",
+   "ACIDMAN",
+   "muque",
+   "9mm Parabellum Bullet",
+   "Knosis"
+  ],
+  "matches": [
+   {
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 673
+   },
+   {
+    "act": "Survive Said The Prophet",
+    "artist": "Survive Said The Prophet",
+    "plays": 21,
+    "recentPlays": 1,
+    "lastPlayed": "2026-01-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 174
+   },
+   {
+    "act": "Knosis",
+    "artist": "Knosis",
+    "plays": 11,
+    "recentPlays": 3,
+    "lastPlayed": "2026-09-09",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 170
+   },
+   {
+    "act": "ACIDMAN",
+    "artist": "ACIDMAN",
+    "plays": 12,
+    "recentPlays": 2,
+    "lastPlayed": "2026-03-24",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 168
+   }
+  ],
+  "tier": "top",
+  "score": 673
+ },
+ {
+  "title": "COUNTDOWN JAPAN 26/27",
+  "date": "2026-12-29",
+  "venue": "幕張メッセ国際展示場1～11ホール・イベントホール",
+  "city": "Chiba",
+  "url": "https://9mm.jp/live.php",
+  "acts": [
+   "9mm Parabellum Bullet"
+  ],
+  "matches": [
+   {
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 673
+   }
+  ],
+  "tier": "top",
+  "score": 673
+ },
+ {
+  "title": "LIVE DI:GA JUDGEMENT 2026",
+  "date": "2026-12-31",
+  "venue": "渋谷CLUB QUATTRO／TAKE OFF 7",
+  "city": "Tokyo",
+  "url": "http://livedigajudgement.net/2026/",
+  "acts": [
+   "9mm Parabellum Bullet"
+  ],
+  "matches": [
+   {
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 673
+   }
+  ],
+  "tier": "top",
+  "score": 673
+ },
+ {
+  "title": "カオスのオーロラソース",
+  "date": "2027-01-12",
+  "venue": "LIQUIDROOM",
+  "city": "Tokyo",
+  "url": "https://eplus.jp/sf/detail/4617080001",
+  "acts": [
+   "9mm Parabellum Bullet",
+   "THE KEBABS"
+  ],
+  "matches": [
+   {
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 673
+   }
+  ],
+  "tier": "top",
+  "score": 673
+ },
+ {
+  "title": "THE SUN ALSO RISES vol.422 -F.A.D 30th Anniversary-",
+  "date": "2026-12-01",
+  "venue": "F.A.D YOKOHAMA",
+  "city": "Yokohama",
+  "url": "https://9mm.jp/live.php",
+  "acts": [
+   "菅原卓郎（9mm Parabellum Bullet）",
+   "フルカワユタカ"
+  ],
+  "matches": [
+   {
+    "act": "菅原卓郎（9mm Parabellum Bullet）",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 673
+   }
+  ],
+  "tier": "top",
+  "score": 673
+ },
+ {
+  "title": "EMNW To KAMASU “LOVING TO GET US BY” TOUR 2026",
+  "date": "2026-11-15",
+  "venue": "Yogibo HOLY MOUNTAIN",
+  "city": "Osaka",
+  "url": "https://eplus.jp/emnw",
+  "acts": [
+   "EMNW",
+   "CVLTE"
+  ],
+  "matches": [
+   {
+    "act": "CVLTE",
+    "artist": "CVLTE",
+    "plays": 37,
+    "recentPlays": 28,
+    "lastPlayed": "2026-06-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 271
+   },
+   {
+    "act": "EMNW",
+    "artist": "EMNW",
+    "plays": 11,
+    "recentPlays": 11,
+    "lastPlayed": "2026-09-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 194
+   }
+  ],
+  "tier": "top",
+  "score": 271
+ },
+ {
+  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
+  "date": "2026-11-20",
+  "venue": "福岡 LIVE HOUSE CB",
+  "city": "Fukuoka",
+  "url": "https://www.peopleinthebox.com/live",
+  "acts": [
+   "People In The Box"
+  ],
+  "matches": [
+   {
+    "act": "People In The Box",
+    "artist": "People In The Box",
+    "plays": 33,
+    "recentPlays": 9,
+    "lastPlayed": "2026-06-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 210
+   }
+  ],
+  "tier": "top",
+  "score": 210
+ },
+ {
+  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
+  "date": "2026-11-22",
+  "venue": "高松 DIME",
+  "city": "Takamatsu",
+  "url": "https://www.peopleinthebox.com/live",
+  "acts": [
+   "People In The Box"
+  ],
+  "matches": [
+   {
+    "act": "People In The Box",
+    "artist": "People In The Box",
+    "plays": 33,
+    "recentPlays": 9,
+    "lastPlayed": "2026-06-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 210
+   }
+  ],
+  "tier": "top",
+  "score": 210
+ },
+ {
+  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
+  "date": "2026-11-25",
+  "venue": "恵比寿 The Garden Hall",
+  "city": "Tokyo",
+  "url": "https://www.peopleinthebox.com/live",
+  "acts": [
+   "People In The Box"
+  ],
+  "matches": [
+   {
+    "act": "People In The Box",
+    "artist": "People In The Box",
+    "plays": 33,
+    "recentPlays": 9,
+    "lastPlayed": "2026-06-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 210
+   }
+  ],
+  "tier": "top",
+  "score": 210
+ },
+ {
+  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
+  "date": "2026-11-27",
+  "venue": "新潟 GOLDEN PIGS RED STAGE",
+  "city": "Niigata",
+  "url": "https://www.peopleinthebox.com/live",
+  "acts": [
+   "People In The Box"
+  ],
+  "matches": [
+   {
+    "act": "People In The Box",
+    "artist": "People In The Box",
+    "plays": 33,
+    "recentPlays": 9,
+    "lastPlayed": "2026-06-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 210
+   }
+  ],
+  "tier": "top",
+  "score": 210
+ },
+ {
+  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
+  "date": "2026-12-02",
+  "venue": "浜松 窓枠",
+  "city": "Hamamatsu",
+  "url": "https://www.peopleinthebox.com/live",
+  "acts": [
+   "People In The Box"
+  ],
+  "matches": [
+   {
+    "act": "People In The Box",
+    "artist": "People In The Box",
+    "plays": 33,
+    "recentPlays": 9,
+    "lastPlayed": "2026-06-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 210
+   }
+  ],
+  "tier": "top",
+  "score": 210
+ },
+ {
+  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
+  "date": "2026-12-04",
+  "venue": "神戸 VARIT.",
+  "city": "Kobe",
+  "url": "https://www.peopleinthebox.com/live",
+  "acts": [
+   "People In The Box"
+  ],
+  "matches": [
+   {
+    "act": "People In The Box",
+    "artist": "People In The Box",
+    "plays": 33,
+    "recentPlays": 9,
+    "lastPlayed": "2026-06-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 210
+   }
+  ],
+  "tier": "top",
+  "score": 210
+ },
+ {
+  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
+  "date": "2026-12-05",
+  "venue": "広島 Live space Reed",
+  "city": "Hiroshima",
+  "url": "https://www.peopleinthebox.com/live",
+  "acts": [
+   "People In The Box"
+  ],
+  "matches": [
+   {
+    "act": "People In The Box",
+    "artist": "People In The Box",
+    "plays": 33,
+    "recentPlays": 9,
+    "lastPlayed": "2026-06-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 210
+   }
+  ],
+  "tier": "top",
+  "score": 210
+ },
+ {
+  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
+  "date": "2026-12-11",
+  "venue": "札幌 近松",
+  "city": "Sapporo",
+  "url": "https://www.peopleinthebox.com/live",
+  "acts": [
+   "People In The Box"
+  ],
+  "matches": [
+   {
+    "act": "People In The Box",
+    "artist": "People In The Box",
+    "plays": 33,
+    "recentPlays": 9,
+    "lastPlayed": "2026-06-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 210
+   }
+  ],
+  "tier": "top",
+  "score": 210
+ },
+ {
+  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
+  "date": "2026-12-15",
+  "venue": "大阪 BananaHall",
+  "city": "Osaka",
+  "url": "https://www.peopleinthebox.com/live",
+  "acts": [
+   "People In The Box"
+  ],
+  "matches": [
+   {
+    "act": "People In The Box",
+    "artist": "People In The Box",
+    "plays": 33,
+    "recentPlays": 9,
+    "lastPlayed": "2026-06-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 210
+   }
+  ],
+  "tier": "top",
+  "score": 210
+ },
+ {
+  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
+  "date": "2026-12-16",
+  "venue": "名古屋 JAMMIN’",
+  "city": "Nagoya",
+  "url": "https://www.peopleinthebox.com/live",
+  "acts": [
+   "People In The Box"
+  ],
+  "matches": [
+   {
+    "act": "People In The Box",
+    "artist": "People In The Box",
+    "plays": 33,
+    "recentPlays": 9,
+    "lastPlayed": "2026-06-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 210
+   }
+  ],
+  "tier": "top",
+  "score": 210
+ },
+ {
+  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
+  "date": "2026-12-18",
+  "venue": "有楽町 ヒューリックホール東京",
+  "city": "Tokyo",
+  "url": "https://www.peopleinthebox.com/live",
+  "acts": [
+   "People In The Box"
+  ],
+  "matches": [
+   {
+    "act": "People In The Box",
+    "artist": "People In The Box",
+    "plays": 33,
+    "recentPlays": 9,
+    "lastPlayed": "2026-06-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 210
+   }
+  ],
+  "tier": "top",
+  "score": 210
+ },
+ {
+  "title": "People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour -",
+  "date": "2026-12-20",
+  "venue": "仙台 LIVE HOUSE enn 2nd",
+  "city": "Sendai",
+  "url": "https://www.peopleinthebox.com/live",
+  "acts": [
+   "People In The Box"
+  ],
+  "matches": [
+   {
+    "act": "People In The Box",
+    "artist": "People In The Box",
+    "plays": 33,
+    "recentPlays": 9,
+    "lastPlayed": "2026-06-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 210
+   }
+  ],
+  "tier": "top",
+  "score": 210
+ },
+ {
+  "title": "JUNKY58% もえ & Zeela MOTTY presents “TAKE IT EASY” -Zeela 13th ANNIVERSARY-",
+  "date": "2026-12-17",
+  "venue": "梅田Zeela",
+  "city": "Osaka",
+  "url": "https://www.livefans.jp/search?keyword=赤いくらげ",
+  "acts": [
+   "赤いくらげ"
+  ],
+  "matches": [
+   {
+    "act": "赤いくらげ",
+    "artist": "赤いくらげ",
+    "plays": 15,
+    "recentPlays": 15,
+    "lastPlayed": "2026-01-30",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 210
+   }
+  ],
+  "tier": "top",
+  "score": 210
+ },
+ {
+  "title": "ANORAK! Presents FINGERS CROSSED Tour 2026",
+  "date": "2026-11-27",
+  "venue": "恵比寿LIQUIDROOM",
+  "city": "Tokyo",
+  "url": "https://www.livefans.jp/search?keyword=ANORAK!",
+  "acts": [
+   "ANORAK!",
+   "Age Factory",
+   "Texas 3000"
+  ],
+  "matches": [
+   {
+    "act": "ANORAK!",
+    "artist": "ANORAK!",
+    "plays": 14,
+    "recentPlays": 14,
     "lastPlayed": "2026-03-25",
     "country": "JP",
     "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
     "tier": "top",
-    "score": 235
+    "score": 206
+   },
+   {
+    "act": "Age Factory",
+    "artist": "Age Factory",
+    "plays": 31,
+    "recentPlays": 6,
+    "lastPlayed": "2026-03-27",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 199
+   },
+   {
+    "act": "Texas 3000",
+    "artist": "Texas 3000",
+    "plays": 19,
+    "recentPlays": 19,
+    "lastPlayed": "2026-05-12",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 1,
+    "lastSeen": "2026-01-23",
+    "tier": "seen",
+    "score": -9774
    }
   ],
   "tier": "top",
-  "score": 235
+  "score": 206
  },
  {
-  "title": "AA= X-FADER CIRCUIT",
-  "date": "2027-01-15",
-  "venue": "Spotify O-EAST",
-  "city": "Tokyo",
-  "url": "https://eplus.jp/sf/word/0000033480",
+  "title": "ANORAK! Presents FINGERS CROSSED Tour 2026",
+  "date": "2026-12-10",
+  "venue": "名古屋CLUB QUATTRO",
+  "city": "Nagoya",
+  "url": "https://www.livefans.jp/search?keyword=ANORAK!",
   "acts": [
-   "AA=",
+   "ANORAK!",
+   "ENTH"
+  ],
+  "matches": [
+   {
+    "act": "ANORAK!",
+    "artist": "ANORAK!",
+    "plays": 14,
+    "recentPlays": 14,
+    "lastPlayed": "2026-03-25",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 206
+   },
+   {
+    "act": "ENTH",
+    "artist": "Enth",
+    "plays": 68,
+    "recentPlays": 67,
+    "lastPlayed": "2026-04-14",
+    "country": "PL",
+    "japanese": false,
+    "seenLive": 1,
+    "lastSeen": "2025-05-06",
+    "tier": "seen",
+    "score": -9731
+   }
+  ],
+  "tier": "top",
+  "score": 206
+ },
+ {
+  "title": "ANORAK! Presents FINGERS CROSSED Tour 2026",
+  "date": "2026-12-11",
+  "venue": "F.A.D YOKOHAMA",
+  "city": "Yokohama",
+  "url": "https://www.livefans.jp/search?keyword=ANORAK!",
+  "acts": [
+   "ANORAK!",
+   "NOT WONK"
+  ],
+  "matches": [
+   {
+    "act": "ANORAK!",
+    "artist": "ANORAK!",
+    "plays": 14,
+    "recentPlays": 14,
+    "lastPlayed": "2026-03-25",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 206
+   }
+  ],
+  "tier": "top",
+  "score": 206
+ },
+ {
+  "title": "ANORAK! Presents FINGERS CROSSED Tour 2026",
+  "date": "2026-12-20",
+  "venue": "Yogibo META VALLEY",
+  "city": "Osaka",
+  "url": "https://www.livefans.jp/search?keyword=ANORAK!",
+  "acts": [
+   "ANORAK!",
+   "KOTORI"
+  ],
+  "matches": [
+   {
+    "act": "ANORAK!",
+    "artist": "ANORAK!",
+    "plays": 14,
+    "recentPlays": 14,
+    "lastPlayed": "2026-03-25",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 206
+   }
+  ],
+  "tier": "top",
+  "score": 206
+ },
+ {
+  "title": "ANORAK! Presents FINGERS CROSSED Tour 2026",
+  "date": "2026-12-21",
+  "venue": "奈良NEVER LAND",
+  "city": "Nara",
+  "url": "https://www.livefans.jp/search?keyword=ANORAK!",
+  "acts": [
+   "ANORAK!",
+   "aryy",
+   "TIVE",
+   "Texas 3000"
+  ],
+  "matches": [
+   {
+    "act": "ANORAK!",
+    "artist": "ANORAK!",
+    "plays": 14,
+    "recentPlays": 14,
+    "lastPlayed": "2026-03-25",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 206
+   },
+   {
+    "act": "Texas 3000",
+    "artist": "Texas 3000",
+    "plays": 19,
+    "recentPlays": 19,
+    "lastPlayed": "2026-05-12",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 1,
+    "lastSeen": "2026-01-23",
+    "tier": "seen",
+    "score": -9774
+   }
+  ],
+  "tier": "top",
+  "score": 206
+ },
+ {
+  "title": "鹿オープンイベント “鹿由 -kayu- 2MAN”",
+  "date": "2027-01-17",
+  "venue": "LiveHouse鹿",
+  "city": "Kofu",
+  "url": "https://www.livefans.jp/search?keyword=ANORAK!",
+  "acts": [
+   "ANORAK!"
+  ],
+  "matches": [
+   {
+    "act": "ANORAK!",
+    "artist": "ANORAK!",
+    "plays": 14,
+    "recentPlays": 14,
+    "lastPlayed": "2026-03-25",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 206
+   }
+  ],
+  "tier": "top",
+  "score": 206
+ },
+ {
+  "title": "EMNW To KAMASU “LOVING TO GET US BY” TOUR 2026",
+  "date": "2026-11-13",
+  "venue": "高松DIME",
+  "city": "Takamatsu",
+  "url": "https://eplus.jp/emnw",
+  "acts": [
+   "EMNW",
+   "Klang Ruler"
+  ],
+  "matches": [
+   {
+    "act": "EMNW",
+    "artist": "EMNW",
+    "plays": 11,
+    "recentPlays": 11,
+    "lastPlayed": "2026-09-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 194
+   }
+  ],
+  "tier": "top",
+  "score": 194
+ },
+ {
+  "title": "EMNW To KAMASU “LOVING TO GET US BY” TOUR 2026",
+  "date": "2026-11-20",
+  "venue": "ell.FITS ALL",
+  "city": "Nagoya",
+  "url": "https://eplus.jp/emnw",
+  "acts": [
+   "EMNW",
+   "SHO-SENSEI!!"
+  ],
+  "matches": [
+   {
+    "act": "EMNW",
+    "artist": "EMNW",
+    "plays": 11,
+    "recentPlays": 11,
+    "lastPlayed": "2026-09-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 194
+   }
+  ],
+  "tier": "top",
+  "score": 194
+ },
+ {
+  "title": "EMNW To KAMASU “LOVING TO GET US BY” TOUR 2026",
+  "date": "2026-11-22",
+  "venue": "天神Queblick",
+  "city": "Fukuoka",
+  "url": "https://eplus.jp/emnw",
+  "acts": [
+   "EMNW",
+   "KALA"
+  ],
+  "matches": [
+   {
+    "act": "EMNW",
+    "artist": "EMNW",
+    "plays": 11,
+    "recentPlays": 11,
+    "lastPlayed": "2026-09-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 194
+   }
+  ],
+  "tier": "top",
+  "score": 194
+ },
+ {
+  "title": "EMNW To KAMASU “LOVING TO GET US BY” TOUR 2026",
+  "date": "2026-11-23",
+  "venue": "SIX ONE Live STAR",
+  "city": "Hiroshima",
+  "url": "https://eplus.jp/emnw",
+  "acts": [
+   "EMNW",
+   "KALA"
+  ],
+  "matches": [
+   {
+    "act": "EMNW",
+    "artist": "EMNW",
+    "plays": 11,
+    "recentPlays": 11,
+    "lastPlayed": "2026-09-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 194
+   }
+  ],
+  "tier": "top",
+  "score": 194
+ },
+ {
+  "title": "EMNW To KAMASU “LOVING TO GET US BY” TOUR 2026",
+  "date": "2026-12-03",
+  "venue": "Zepp Shinjuku",
+  "city": "Tokyo",
+  "url": "https://eplus.jp/emnw",
+  "acts": [
+   "EMNW",
+   "Novel Core"
+  ],
+  "matches": [
+   {
+    "act": "EMNW",
+    "artist": "EMNW",
+    "plays": 11,
+    "recentPlays": 11,
+    "lastPlayed": "2026-09-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 194
+   }
+  ],
+  "tier": "top",
+  "score": 194
+ },
+ {
+  "title": "柳家睦 & THE RATBONES PRESENTS 東京鶯谷 浮世離れ柳家祭 東京浮世離れ歌謡祭",
+  "date": "2027-01-10",
+  "venue": "東京キネマ倶楽部",
+  "city": "Tokyo",
+  "url": "https://www.livefans.jp/search?keyword=Turtle+Island",
+  "acts": [
+   "TURTLE ISLAND"
+  ],
+  "matches": [
+   {
+    "act": "TURTLE ISLAND",
+    "artist": "Turtle Island",
+    "plays": 9,
+    "recentPlays": 9,
+    "lastPlayed": "2025-07-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 186
+   }
+  ],
+  "tier": "top",
+  "score": 186
+ },
+ {
+  "title": "RISING HALL 11th Birthday bash !! SHUNAN JAMBOREE",
+  "date": "2026-11-14",
+  "venue": "周南RISING HALL",
+  "city": "Shunan",
+  "url": "https://survivesaidtheprophet.com/live",
+  "acts": [
+   "Survive Said The Prophet",
+   "Dizzy Sunfist"
+  ],
+  "matches": [
+   {
+    "act": "Survive Said The Prophet",
+    "artist": "Survive Said The Prophet",
+    "plays": 21,
+    "recentPlays": 1,
+    "lastPlayed": "2026-01-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 174
+   }
+  ],
+  "tier": "top",
+  "score": 174
+ },
+ {
+  "title": "Face | Face TOUR",
+  "date": "2026-11-21",
+  "venue": "甲府KAZOO HALL",
+  "city": "Kofu",
+  "url": "https://survivesaidtheprophet.com/live",
+  "acts": [
+   "Survive Said The Prophet"
+  ],
+  "matches": [
+   {
+    "act": "Survive Said The Prophet",
+    "artist": "Survive Said The Prophet",
+    "plays": 21,
+    "recentPlays": 1,
+    "lastPlayed": "2026-01-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 174
+   }
+  ],
+  "tier": "top",
+  "score": 174
+ },
+ {
+  "title": "Face | Face TOUR",
+  "date": "2026-11-28",
+  "venue": "群馬 DYVER",
+  "city": "Takasaki",
+  "url": "https://survivesaidtheprophet.com/live",
+  "acts": [
+   "Survive Said The Prophet"
+  ],
+  "matches": [
+   {
+    "act": "Survive Said The Prophet",
+    "artist": "Survive Said The Prophet",
+    "plays": 21,
+    "recentPlays": 1,
+    "lastPlayed": "2026-01-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 174
+   }
+  ],
+  "tier": "top",
+  "score": 174
+ },
+ {
+  "title": "Face | Face TOUR",
+  "date": "2026-12-04",
+  "venue": "新潟GOLDEN PIGS BLACK STAGE",
+  "city": "Niigata",
+  "url": "https://survivesaidtheprophet.com/live",
+  "acts": [
+   "Survive Said The Prophet"
+  ],
+  "matches": [
+   {
+    "act": "Survive Said The Prophet",
+    "artist": "Survive Said The Prophet",
+    "plays": 21,
+    "recentPlays": 1,
+    "lastPlayed": "2026-01-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 174
+   }
+  ],
+  "tier": "top",
+  "score": 174
+ },
+ {
+  "title": "Face | Face TOUR",
+  "date": "2026-12-06",
+  "venue": "渋谷CYCLONE",
+  "city": "Tokyo",
+  "url": "https://survivesaidtheprophet.com/live",
+  "acts": [
+   "Survive Said The Prophet"
+  ],
+  "matches": [
+   {
+    "act": "Survive Said The Prophet",
+    "artist": "Survive Said The Prophet",
+    "plays": 21,
+    "recentPlays": 1,
+    "lastPlayed": "2026-01-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 174
+   }
+  ],
+  "tier": "top",
+  "score": 174
+ },
+ {
+  "title": "SHANK “THE TOUR 2026”",
+  "date": "2026-11-25",
+  "venue": "福岡BEAT STATION",
+  "city": "Fukuoka",
+  "url": "https://survivesaidtheprophet.com/live",
+  "acts": [
+   "SHANK",
+   "Survive Said The Prophet"
+  ],
+  "matches": [
+   {
+    "act": "Survive Said The Prophet",
+    "artist": "Survive Said The Prophet",
+    "plays": 21,
+    "recentPlays": 1,
+    "lastPlayed": "2026-01-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 174
+   }
+  ],
+  "tier": "top",
+  "score": 174
+ },
+ {
+  "title": "OPTIMIZE = OPTDEMISE JAPAN TOUR 2026",
+  "date": "2026-11-29",
+  "venue": "仙台GIGS",
+  "city": "Sendai",
+  "url": "https://www.ticketjam.jp/tickets/coldrain/event_groups/337182",
+  "acts": [
+   "coldrain"
+  ],
+  "matches": [
+   {
+    "act": "coldrain",
+    "artist": "coldrain",
+    "plays": 126,
+    "recentPlays": 52,
+    "lastPlayed": "2026-01-04",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 1,
+    "lastSeen": "2025-05-06",
+    "tier": "seen",
+    "score": -9568
+   }
+  ],
+  "tier": "seen",
+  "score": -9568
+ },
+ {
+  "title": "OPTIMIZE = OPTDEMISE JAPAN TOUR 2026",
+  "date": "2026-12-01",
+  "venue": "なんばHatch",
+  "city": "Osaka",
+  "url": "https://www.ticketjam.jp/tickets/coldrain/event_groups/337182",
+  "acts": [
+   "coldrain"
+  ],
+  "matches": [
+   {
+    "act": "coldrain",
+    "artist": "coldrain",
+    "plays": 126,
+    "recentPlays": 52,
+    "lastPlayed": "2026-01-04",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 1,
+    "lastSeen": "2025-05-06",
+    "tier": "seen",
+    "score": -9568
+   }
+  ],
+  "tier": "seen",
+  "score": -9568
+ },
+ {
+  "title": "OPTIMIZE = OPTDEMISE JAPAN TOUR 2026",
+  "date": "2026-12-02",
+  "venue": "COMTEC PORTBASE",
+  "city": "Nagoya",
+  "url": "https://www.ticketjam.jp/tickets/coldrain/event_groups/337182",
+  "acts": [
+   "coldrain"
+  ],
+  "matches": [
+   {
+    "act": "coldrain",
+    "artist": "coldrain",
+    "plays": 126,
+    "recentPlays": 52,
+    "lastPlayed": "2026-01-04",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 1,
+    "lastSeen": "2025-05-06",
+    "tier": "seen",
+    "score": -9568
+   }
+  ],
+  "tier": "seen",
+  "score": -9568
+ },
+ {
+  "title": "OPTIMIZE = OPTDEMISE JAPAN TOUR 2026",
+  "date": "2026-12-08",
+  "venue": "豊洲PIT",
+  "city": "Tokyo",
+  "url": "https://www.ticketjam.jp/tickets/coldrain/event_groups/337182",
+  "acts": [
+   "coldrain"
+  ],
+  "matches": [
+   {
+    "act": "coldrain",
+    "artist": "coldrain",
+    "plays": 126,
+    "recentPlays": 52,
+    "lastPlayed": "2026-01-04",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 1,
+    "lastSeen": "2025-05-06",
+    "tier": "seen",
+    "score": -9568
+   }
+  ],
+  "tier": "seen",
+  "score": -9568
+ },
+ {
+  "title": "OPTIMIZE = OPTDEMISE JAPAN TOUR 2026",
+  "date": "2026-12-09",
+  "venue": "豊洲PIT",
+  "city": "Tokyo",
+  "url": "https://www.ticketjam.jp/tickets/coldrain/event_groups/337182",
+  "acts": [
+   "coldrain"
+  ],
+  "matches": [
+   {
+    "act": "coldrain",
+    "artist": "coldrain",
+    "plays": 126,
+    "recentPlays": 52,
+    "lastPlayed": "2026-01-04",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 1,
+    "lastSeen": "2025-05-06",
+    "tier": "seen",
+    "score": -9568
+   }
+  ],
+  "tier": "seen",
+  "score": -9568
+ },
+ {
+  "title": "MASTERPIECE 2026",
+  "date": "2026-11-28",
+  "venue": "信長 STAGE at 岐阜市文化センター",
+  "city": "Gifu",
+  "url": "https://www.livefans.jp/search?keyword=The+BONEZ",
+  "acts": [
    "The BONEZ"
   ],
   "matches": [
-   {
-    "act": "AA=",
-    "artist": "AA=",
-    "plays": 22,
-    "recentPlays": 21,
-    "lastPlayed": "2026-03-25",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 235
-   },
    {
     "act": "The BONEZ",
     "artist": "The Bonez",
@@ -1328,1360 +1841,62 @@
     "score": -9806
    }
   ],
-  "tier": "top",
-  "score": 235
+  "tier": "seen",
+  "score": -9806
  },
  {
-  "title": "SHINJUKU LOFT 50th ANNIVERSARY PINK OR BLUE",
-  "date": "2026-11-19",
-  "venue": "新宿 LOFT",
-  "city": "Tokyo",
-  "url": "https://eplus.jp/sf/word/0000086780",
+  "title": "BLAZE UP NAGASAKI 2026",
+  "date": "2026-12-05",
+  "venue": "出島メッセ長崎",
+  "city": "Nagasaki",
+  "url": "https://www.livefans.jp/search?keyword=The+BONEZ",
   "acts": [
-   "Have a Nice Day!"
+   "The BONEZ"
   ],
   "matches": [
    {
-    "act": "Have a Nice Day!",
-    "artist": "Have a nice day!",
+    "act": "The BONEZ",
+    "artist": "The Bonez",
     "plays": 17,
-    "recentPlays": 17,
-    "lastPlayed": "2026-11-01",
+    "recentPlays": 9,
+    "lastPlayed": "2025-10-17",
     "country": "JP",
     "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 218
+    "seenLive": 1,
+    "lastSeen": "2025-05-06",
+    "tier": "seen",
+    "score": -9806
    }
   ],
-  "tier": "top",
-  "score": 218
+  "tier": "seen",
+  "score": -9806
  },
  {
-  "title": "Have a Nice Day! LIVE",
-  "date": "2026-12-09",
-  "venue": "新宿 LOFT",
+  "title": "Sammy presents NEW HORIZON FEST 2026",
+  "date": "2026-12-28",
+  "venue": "TOYOTA ARENA TOKYO",
   "city": "Tokyo",
-  "url": "https://eplus.jp/sf/word/0000086780",
+  "url": "https://www.livefans.jp/search?keyword=The+BONEZ",
   "acts": [
-   "Have a Nice Day!"
+   "The BONEZ",
+   "Sammy"
   ],
   "matches": [
    {
-    "act": "Have a Nice Day!",
-    "artist": "Have a nice day!",
+    "act": "The BONEZ",
+    "artist": "The Bonez",
     "plays": 17,
-    "recentPlays": 17,
-    "lastPlayed": "2026-11-01",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 218
-   }
-  ],
-  "tier": "top",
-  "score": 218
- },
- {
-  "title": "Have a Nice Day! LIVE",
-  "date": "2026-12-23",
-  "venue": "SPREAD",
-  "city": "Tokyo",
-  "url": "https://eplus.jp/sf/word/0000086780",
-  "acts": [
-   "Have a Nice Day!"
-  ],
-  "matches": [
-   {
-    "act": "Have a Nice Day!",
-    "artist": "Have a nice day!",
-    "plays": 17,
-    "recentPlays": 17,
-    "lastPlayed": "2026-11-01",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 218
-   }
-  ],
-  "tier": "top",
-  "score": 218
- },
- {
-  "title": "Have a Nice Day! LIVE",
-  "date": "2027-01-20",
-  "venue": "clubasia",
-  "city": "Tokyo",
-  "url": "https://eplus.jp/sf/word/0000086780",
-  "acts": [
-   "Have a Nice Day!"
-  ],
-  "matches": [
-   {
-    "act": "Have a Nice Day!",
-    "artist": "Have a nice day!",
-    "plays": 17,
-    "recentPlays": 17,
-    "lastPlayed": "2026-11-01",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 218
-   }
-  ],
-  "tier": "top",
-  "score": 218
- },
- {
-  "title": "Have a Nice Day! LIVE",
-  "date": "2027-02-27",
-  "venue": "OPPA-LA",
-  "city": "Fujisawa",
-  "url": "https://eplus.jp/sf/word/0000086780",
-  "acts": [
-   "Have a Nice Day!"
-  ],
-  "matches": [
-   {
-    "act": "Have a Nice Day!",
-    "artist": "Have a nice day!",
-    "plays": 17,
-    "recentPlays": 17,
-    "lastPlayed": "2026-11-01",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 218
-   }
-  ],
-  "tier": "top",
-  "score": 218
- },
- {
-  "title": "BACK DROP BOMB LIVE",
-  "date": "2026-11-13",
-  "venue": "LIQUIDROOM",
-  "city": "Tokyo",
-  "url": "https://eplus.jp/sf/word/0000001929",
-  "acts": [
-   "BACK DROP BOMB"
-  ],
-  "matches": [
-   {
-    "act": "BACK DROP BOMB",
-    "artist": "BACK DROP BOMB",
-    "plays": 14,
-    "recentPlays": 14,
-    "lastPlayed": "2026-02-23",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 206
-   }
-  ],
-  "tier": "top",
-  "score": 206
- },
- {
-  "title": "nest30th (→) Anniversary ”えんどあ。 × cephalo × リュベンス × RAY”",
-  "date": "2027-01-28",
-  "venue": "Spotify O-nest",
-  "city": "Tokyo",
-  "url": "https://eplus.jp/sf/word/0000171797",
-  "acts": [
-   "cephalo"
-  ],
-  "matches": [
-   {
-    "act": "cephalo",
-    "artist": "Cephalo",
-    "plays": 13,
-    "recentPlays": 13,
-    "lastPlayed": "2026-06-02",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 202
-   }
-  ],
-  "tier": "top",
-  "score": 202
- },
- {
-  "title": "ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜",
-  "date": "2026-11-07",
-  "venue": "東金文化会館 大ホール",
-  "city": "Togane",
-  "url": "https://orangerange.com/feature/25th",
-  "acts": [
-   "ORANGE RANGE"
-  ],
-  "matches": [
-   {
-    "act": "ORANGE RANGE",
-    "artist": "ORANGE RANGE",
-    "plays": 16,
-    "recentPlays": 11,
-    "lastPlayed": "2025-12-31",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜",
-  "date": "2026-11-08",
-  "venue": "よこすか芸術劇場",
-  "city": "Yokosuka",
-  "url": "https://orangerange.com/feature/25th",
-  "acts": [
-   "ORANGE RANGE"
-  ],
-  "matches": [
-   {
-    "act": "ORANGE RANGE",
-    "artist": "ORANGE RANGE",
-    "plays": 16,
-    "recentPlays": 11,
-    "lastPlayed": "2025-12-31",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜",
-  "date": "2026-11-21",
-  "venue": "名寄市民文化センター EN-RAY HALL",
-  "city": "Nayoro",
-  "url": "https://orangerange.com/feature/25th",
-  "acts": [
-   "ORANGE RANGE"
-  ],
-  "matches": [
-   {
-    "act": "ORANGE RANGE",
-    "artist": "ORANGE RANGE",
-    "plays": 16,
-    "recentPlays": 11,
-    "lastPlayed": "2025-12-31",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜",
-  "date": "2026-11-23",
-  "venue": "北斗市総合文化センター かなで〜る 大ホール",
-  "city": "Hokuto",
-  "url": "https://orangerange.com/feature/25th",
-  "acts": [
-   "ORANGE RANGE"
-  ],
-  "matches": [
-   {
-    "act": "ORANGE RANGE",
-    "artist": "ORANGE RANGE",
-    "plays": 16,
-    "recentPlays": 11,
-    "lastPlayed": "2025-12-31",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜",
-  "date": "2026-11-27",
-  "venue": "高知市文化プラザかるぽーと 四国銀行ホール",
-  "city": "Kochi",
-  "url": "https://orangerange.com/feature/25th",
-  "acts": [
-   "ORANGE RANGE"
-  ],
-  "matches": [
-   {
-    "act": "ORANGE RANGE",
-    "artist": "ORANGE RANGE",
-    "plays": 16,
-    "recentPlays": 11,
-    "lastPlayed": "2025-12-31",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜",
-  "date": "2026-11-28",
-  "venue": "シアターマド(丸亀市民会館)",
-  "city": "Marugame",
-  "url": "https://orangerange.com/feature/25th",
-  "acts": [
-   "ORANGE RANGE"
-  ],
-  "matches": [
-   {
-    "act": "ORANGE RANGE",
-    "artist": "ORANGE RANGE",
-    "plays": 16,
-    "recentPlays": 11,
-    "lastPlayed": "2025-12-31",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜",
-  "date": "2026-12-12",
-  "venue": "岩沼市民会館 大ホール",
-  "city": "Iwanuma",
-  "url": "https://orangerange.com/feature/25th",
-  "acts": [
-   "ORANGE RANGE"
-  ],
-  "matches": [
-   {
-    "act": "ORANGE RANGE",
-    "artist": "ORANGE RANGE",
-    "plays": 16,
-    "recentPlays": 11,
-    "lastPlayed": "2025-12-31",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜",
-  "date": "2026-12-13",
-  "venue": "荘銀タクト鶴岡 大ホール",
-  "city": "Tsuruoka",
-  "url": "https://orangerange.com/feature/25th",
-  "acts": [
-   "ORANGE RANGE"
-  ],
-  "matches": [
-   {
-    "act": "ORANGE RANGE",
-    "artist": "ORANGE RANGE",
-    "plays": 16,
-    "recentPlays": 11,
-    "lastPlayed": "2025-12-31",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜",
-  "date": "2026-12-19",
-  "venue": "大井川文化会館ミュージコ",
-  "city": "Yaizu",
-  "url": "https://orangerange.com/feature/25th",
-  "acts": [
-   "ORANGE RANGE"
-  ],
-  "matches": [
-   {
-    "act": "ORANGE RANGE",
-    "artist": "ORANGE RANGE",
-    "plays": 16,
-    "recentPlays": 11,
-    "lastPlayed": "2025-12-31",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜",
-  "date": "2027-01-09",
-  "venue": "NHKホール",
-  "city": "Tokyo",
-  "url": "https://orangerange.com/feature/25th",
-  "acts": [
-   "ORANGE RANGE"
-  ],
-  "matches": [
-   {
-    "act": "ORANGE RANGE",
-    "artist": "ORANGE RANGE",
-    "plays": 16,
-    "recentPlays": 11,
-    "lastPlayed": "2025-12-31",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜",
-  "date": "2027-01-11",
-  "venue": "館林市文化会館 カルピスホール",
-  "city": "Tatebayashi",
-  "url": "https://orangerange.com/feature/25th",
-  "acts": [
-   "ORANGE RANGE"
-  ],
-  "matches": [
-   {
-    "act": "ORANGE RANGE",
-    "artist": "ORANGE RANGE",
-    "plays": 16,
-    "recentPlays": 11,
-    "lastPlayed": "2025-12-31",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜",
-  "date": "2027-01-23",
-  "venue": "日向市文化交流センター 大ホール",
-  "city": "Hyuga",
-  "url": "https://orangerange.com/feature/25th",
-  "acts": [
-   "ORANGE RANGE"
-  ],
-  "matches": [
-   {
-    "act": "ORANGE RANGE",
-    "artist": "ORANGE RANGE",
-    "plays": 16,
-    "recentPlays": 11,
-    "lastPlayed": "2025-12-31",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜",
-  "date": "2027-01-24",
-  "venue": "ビーコンプラザ フィルハーモニアホール",
-  "city": "Beppu",
-  "url": "https://orangerange.com/feature/25th",
-  "acts": [
-   "ORANGE RANGE"
-  ],
-  "matches": [
-   {
-    "act": "ORANGE RANGE",
-    "artist": "ORANGE RANGE",
-    "plays": 16,
-    "recentPlays": 11,
-    "lastPlayed": "2025-12-31",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜",
-  "date": "2027-02-05",
-  "venue": "諫早文化会館 大ホール",
-  "city": "Isahaya",
-  "url": "https://orangerange.com/feature/25th",
-  "acts": [
-   "ORANGE RANGE"
-  ],
-  "matches": [
-   {
-    "act": "ORANGE RANGE",
-    "artist": "ORANGE RANGE",
-    "plays": 16,
-    "recentPlays": 11,
-    "lastPlayed": "2025-12-31",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜",
-  "date": "2027-02-06",
-  "venue": "飯塚市文化会館 イイヅカコスモスコモン 大ホール",
-  "city": "Iizuka",
-  "url": "https://orangerange.com/feature/25th",
-  "acts": [
-   "ORANGE RANGE"
-  ],
-  "matches": [
-   {
-    "act": "ORANGE RANGE",
-    "artist": "ORANGE RANGE",
-    "plays": 16,
-    "recentPlays": 11,
-    "lastPlayed": "2025-12-31",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜",
-  "date": "2027-02-11",
-  "venue": "マービーふれあいセンター 竹ホール",
-  "city": "Okayama",
-  "url": "https://orangerange.com/feature/25th",
-  "acts": [
-   "ORANGE RANGE"
-  ],
-  "matches": [
-   {
-    "act": "ORANGE RANGE",
-    "artist": "ORANGE RANGE",
-    "plays": 16,
-    "recentPlays": 11,
-    "lastPlayed": "2025-12-31",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜",
-  "date": "2027-02-12",
-  "venue": "米子市公会堂",
-  "city": "Yonago",
-  "url": "https://orangerange.com/feature/25th",
-  "acts": [
-   "ORANGE RANGE"
-  ],
-  "matches": [
-   {
-    "act": "ORANGE RANGE",
-    "artist": "ORANGE RANGE",
-    "plays": 16,
-    "recentPlays": 11,
-    "lastPlayed": "2025-12-31",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜",
-  "date": "2027-02-20",
-  "venue": "伊賀市文化会館 さまざまホール",
-  "city": "Iga",
-  "url": "https://orangerange.com/feature/25th",
-  "acts": [
-   "ORANGE RANGE"
-  ],
-  "matches": [
-   {
-    "act": "ORANGE RANGE",
-    "artist": "ORANGE RANGE",
-    "plays": 16,
-    "recentPlays": 11,
-    "lastPlayed": "2025-12-31",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜",
-  "date": "2027-02-21",
-  "venue": "Niterra日本特殊陶業市民会館 フォレストホール",
-  "city": "Nagoya",
-  "url": "https://orangerange.com/feature/25th",
-  "acts": [
-   "ORANGE RANGE"
-  ],
-  "matches": [
-   {
-    "act": "ORANGE RANGE",
-    "artist": "ORANGE RANGE",
-    "plays": 16,
-    "recentPlays": 11,
-    "lastPlayed": "2025-12-31",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜",
-  "date": "2027-03-06",
-  "venue": "栃木県総合文化センター メインホール",
-  "city": "Utsunomiya",
-  "url": "https://orangerange.com/feature/25th",
-  "acts": [
-   "ORANGE RANGE"
-  ],
-  "matches": [
-   {
-    "act": "ORANGE RANGE",
-    "artist": "ORANGE RANGE",
-    "plays": 16,
-    "recentPlays": 11,
-    "lastPlayed": "2025-12-31",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜",
-  "date": "2027-03-07",
-  "venue": "水戸市民会館 グロービスホール",
-  "city": "Mito",
-  "url": "https://orangerange.com/feature/25th",
-  "acts": [
-   "ORANGE RANGE"
-  ],
-  "matches": [
-   {
-    "act": "ORANGE RANGE",
-    "artist": "ORANGE RANGE",
-    "plays": 16,
-    "recentPlays": 11,
-    "lastPlayed": "2025-12-31",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜",
-  "date": "2027-03-13",
-  "venue": "御坊市民文化会館 大ホール",
-  "city": "Gobo",
-  "url": "https://orangerange.com/feature/25th",
-  "acts": [
-   "ORANGE RANGE"
-  ],
-  "matches": [
-   {
-    "act": "ORANGE RANGE",
-    "artist": "ORANGE RANGE",
-    "plays": 16,
-    "recentPlays": 11,
-    "lastPlayed": "2025-12-31",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜",
-  "date": "2027-03-14",
-  "venue": "神戸国際会館こくさいホール",
-  "city": "Kobe",
-  "url": "https://orangerange.com/feature/25th",
-  "acts": [
-   "ORANGE RANGE"
-  ],
-  "matches": [
-   {
-    "act": "ORANGE RANGE",
-    "artist": "ORANGE RANGE",
-    "plays": 16,
-    "recentPlays": 11,
-    "lastPlayed": "2025-12-31",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "A coshutic Nie Vol.6 in Billboard Live TOKYO and OSAKA",
-  "date": "2026-11-07",
-  "venue": "Billboard Live OSAKA",
-  "city": "Osaka",
-  "url": "https://eplus.jp/sf/word/0000063608",
-  "acts": [
-   "Cö shu Nie"
-  ],
-  "matches": [
-   {
-    "act": "Cö shu Nie",
-    "artist": "Cö shu Nie",
-    "plays": 30,
-    "recentPlays": 2,
-    "lastPlayed": "2025-07-28",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 186
-   }
-  ],
-  "tier": "top",
-  "score": 186
- },
- {
-  "title": "UVERworld LIVE “危ない” TOUR 2026",
-  "date": "2026-11-05",
-  "venue": "和歌山県民文化会館",
-  "city": "Wakayama",
-  "url": "https://www.uverworld.jp/feature/2026_live",
-  "acts": [
-   "UVERworld"
-  ],
-  "matches": [
-   {
-    "act": "UVERworld",
-    "artist": "UVERworld",
-    "plays": 20,
-    "recentPlays": 0,
-    "lastPlayed": "2020-11-26",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 170
-   }
-  ],
-  "tier": "top",
-  "score": 170
- },
- {
-  "title": "UVERworld LIVE 2026 at LaLa arena TOKYO-BAY",
-  "date": "2026-11-25",
-  "venue": "LaLa arena TOKYO-BAY",
-  "city": "Funabashi",
-  "url": "https://www.uverworld.jp/feature/2026_live",
-  "acts": [
-   "UVERworld",
-   "LUNA SEA"
-  ],
-  "matches": [
-   {
-    "act": "UVERworld",
-    "artist": "UVERworld",
-    "plays": 20,
-    "recentPlays": 0,
-    "lastPlayed": "2020-11-26",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 170
-   }
-  ],
-  "tier": "top",
-  "score": 170
- },
- {
-  "title": "UVERworld LIVE 2026 at LaLa arena TOKYO-BAY",
-  "date": "2026-11-26",
-  "venue": "LaLa arena TOKYO-BAY",
-  "city": "Funabashi",
-  "url": "https://www.uverworld.jp/feature/2026_live",
-  "acts": [
-   "UVERworld",
-   "CNBLUE"
-  ],
-  "matches": [
-   {
-    "act": "UVERworld",
-    "artist": "UVERworld",
-    "plays": 20,
-    "recentPlays": 0,
-    "lastPlayed": "2020-11-26",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 170
-   }
-  ],
-  "tier": "top",
-  "score": 170
- },
- {
-  "title": "UVERworld LIVE “危ない” TOUR 2026",
-  "date": "2026-12-01",
-  "venue": "大阪城ホール",
-  "city": "Osaka",
-  "url": "https://www.uverworld.jp/feature/2026_live",
-  "acts": [
-   "UVERworld"
-  ],
-  "matches": [
-   {
-    "act": "UVERworld",
-    "artist": "UVERworld",
-    "plays": 20,
-    "recentPlays": 0,
-    "lastPlayed": "2020-11-26",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 170
-   }
-  ],
-  "tier": "top",
-  "score": 170
- },
- {
-  "title": "UVERworld LIVE “危ない” TOUR 2026",
-  "date": "2026-12-02",
-  "venue": "大阪城ホール",
-  "city": "Osaka",
-  "url": "https://www.uverworld.jp/feature/2026_live",
-  "acts": [
-   "UVERworld"
-  ],
-  "matches": [
-   {
-    "act": "UVERworld",
-    "artist": "UVERworld",
-    "plays": 20,
-    "recentPlays": 0,
-    "lastPlayed": "2020-11-26",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 170
-   }
-  ],
-  "tier": "top",
-  "score": 170
- },
- {
-  "title": "UVERworld LIVE “危ない” TOUR 2026",
-  "date": "2026-12-20",
-  "venue": "横浜アリーナ",
-  "city": "Yokohama",
-  "url": "https://www.uverworld.jp/feature/2026_live",
-  "acts": [
-   "UVERworld"
-  ],
-  "matches": [
-   {
-    "act": "UVERworld",
-    "artist": "UVERworld",
-    "plays": 20,
-    "recentPlays": 0,
-    "lastPlayed": "2020-11-26",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 170
-   }
-  ],
-  "tier": "top",
-  "score": 170
- },
- {
-  "title": "UVERworld LIVE “危ない” TOUR 2026",
-  "date": "2026-12-21",
-  "venue": "横浜アリーナ",
-  "city": "Yokohama",
-  "url": "https://www.uverworld.jp/feature/2026_live",
-  "acts": [
-   "UVERworld"
-  ],
-  "matches": [
-   {
-    "act": "UVERworld",
-    "artist": "UVERworld",
-    "plays": 20,
-    "recentPlays": 0,
-    "lastPlayed": "2020-11-26",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 170
-   }
-  ],
-  "tier": "top",
-  "score": 170
- },
- {
-  "title": "UVERworld LIVE “危ない” TOUR 2026 ～PREMIUM LIVE on Xmas～",
-  "date": "2026-12-25",
-  "venue": "日本武道館",
-  "city": "Tokyo",
-  "url": "https://www.uverworld.jp/feature/2026_live",
-  "acts": [
-   "UVERworld"
-  ],
-  "matches": [
-   {
-    "act": "UVERworld",
-    "artist": "UVERworld",
-    "plays": 20,
-    "recentPlays": 0,
-    "lastPlayed": "2020-11-26",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 170
-   }
-  ],
-  "tier": "top",
-  "score": 170
- },
- {
-  "title": "UVERworld vs BE:FIRST",
-  "date": "2026-12-26",
-  "venue": "日本武道館",
-  "city": "Tokyo",
-  "url": "https://www.uverworld.jp/feature/2026_live",
-  "acts": [
-   "UVERworld",
-   "BE:FIRST"
-  ],
-  "matches": [
-   {
-    "act": "UVERworld",
-    "artist": "UVERworld",
-    "plays": 20,
-    "recentPlays": 0,
-    "lastPlayed": "2020-11-26",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 170
-   }
-  ],
-  "tier": "top",
-  "score": 170
- },
- {
-  "title": "UVERworld LIVE “危ない” TOUR 2026",
-  "date": "2026-12-30",
-  "venue": "マリンメッセ福岡 A館",
-  "city": "Fukuoka",
-  "url": "https://www.uverworld.jp/feature/2026_live",
-  "acts": [
-   "UVERworld"
-  ],
-  "matches": [
-   {
-    "act": "UVERworld",
-    "artist": "UVERworld",
-    "plays": 20,
-    "recentPlays": 0,
-    "lastPlayed": "2020-11-26",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 170
-   }
-  ],
-  "tier": "top",
-  "score": 170
- },
- {
-  "title": "UVERworld LIVE “危ない” TOUR 2026",
-  "date": "2026-12-31",
-  "venue": "マリンメッセ福岡 A館",
-  "city": "Fukuoka",
-  "url": "https://www.uverworld.jp/feature/2026_live",
-  "acts": [
-   "UVERworld"
-  ],
-  "matches": [
-   {
-    "act": "UVERworld",
-    "artist": "UVERworld",
-    "plays": 20,
-    "recentPlays": 0,
-    "lastPlayed": "2020-11-26",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 170
-   }
-  ],
-  "tier": "top",
-  "score": 170
- },
- {
-  "title": "F-LAGSTUF-F presents NOW HERE",
-  "date": "2026-12-14",
-  "venue": "Shibuya LOVEZ",
-  "city": "Tokyo",
-  "url": "https://eplus.jp/sf/word/0000082521",
-  "acts": [
-   "Paledusk"
-  ],
-  "matches": [
-   {
-    "act": "Paledusk",
-    "artist": "Paledusk",
-    "plays": 252,
-    "recentPlays": 27,
-    "lastPlayed": "2026-05-12",
+    "recentPlays": 9,
+    "lastPlayed": "2025-10-17",
     "country": "JP",
     "japanese": true,
     "seenLive": 1,
     "lastSeen": "2025-05-06",
     "tier": "seen",
-    "score": -9517
+    "score": -9806
    }
   ],
   "tier": "seen",
-  "score": -9517
- },
- {
-  "title": "Paledusk ”LIVE!!” TOUR",
-  "date": "2027-01-08",
-  "venue": "BEAT STATION",
-  "city": "Fukuoka",
-  "url": "https://eplus.jp/sf/word/0000082521",
-  "acts": [
-   "Paledusk"
-  ],
-  "matches": [
-   {
-    "act": "Paledusk",
-    "artist": "Paledusk",
-    "plays": 252,
-    "recentPlays": 27,
-    "lastPlayed": "2026-05-12",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 1,
-    "lastSeen": "2025-05-06",
-    "tier": "seen",
-    "score": -9517
-   }
-  ],
-  "tier": "seen",
-  "score": -9517
- },
- {
-  "title": "Paledusk ”LIVE!!” TOUR",
-  "date": "2027-01-10",
-  "venue": "広島LIVE VANQUISH",
-  "city": "Hiroshima",
-  "url": "https://eplus.jp/sf/word/0000082521",
-  "acts": [
-   "Paledusk"
-  ],
-  "matches": [
-   {
-    "act": "Paledusk",
-    "artist": "Paledusk",
-    "plays": 252,
-    "recentPlays": 27,
-    "lastPlayed": "2026-05-12",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 1,
-    "lastSeen": "2025-05-06",
-    "tier": "seen",
-    "score": -9517
-   }
-  ],
-  "tier": "seen",
-  "score": -9517
- },
- {
-  "title": "Paledusk ”LIVE!!” TOUR",
-  "date": "2027-01-16",
-  "venue": "ペニーレーン24",
-  "city": "Sapporo",
-  "url": "https://eplus.jp/sf/word/0000082521",
-  "acts": [
-   "Paledusk"
-  ],
-  "matches": [
-   {
-    "act": "Paledusk",
-    "artist": "Paledusk",
-    "plays": 252,
-    "recentPlays": 27,
-    "lastPlayed": "2026-05-12",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 1,
-    "lastSeen": "2025-05-06",
-    "tier": "seen",
-    "score": -9517
-   }
-  ],
-  "tier": "seen",
-  "score": -9517
- },
- {
-  "title": "Paledusk ”LIVE!!” TOUR",
-  "date": "2027-01-22",
-  "venue": "仙台Rensa",
-  "city": "Sendai",
-  "url": "https://eplus.jp/sf/word/0000082521",
-  "acts": [
-   "Paledusk"
-  ],
-  "matches": [
-   {
-    "act": "Paledusk",
-    "artist": "Paledusk",
-    "plays": 252,
-    "recentPlays": 27,
-    "lastPlayed": "2026-05-12",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 1,
-    "lastSeen": "2025-05-06",
-    "tier": "seen",
-    "score": -9517
-   }
-  ],
-  "tier": "seen",
-  "score": -9517
- },
- {
-  "title": "Paledusk ”LIVE!!” TOUR",
-  "date": "2027-02-16",
-  "venue": "Zepp Nagoya",
-  "city": "Nagoya",
-  "url": "https://eplus.jp/sf/word/0000082521",
-  "acts": [
-   "Paledusk"
-  ],
-  "matches": [
-   {
-    "act": "Paledusk",
-    "artist": "Paledusk",
-    "plays": 252,
-    "recentPlays": 27,
-    "lastPlayed": "2026-05-12",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 1,
-    "lastSeen": "2025-05-06",
-    "tier": "seen",
-    "score": -9517
-   }
-  ],
-  "tier": "seen",
-  "score": -9517
- },
- {
-  "title": "Paledusk ”LIVE!!” TOUR",
-  "date": "2027-02-17",
-  "venue": "Zepp Osaka Bayside",
-  "city": "Osaka",
-  "url": "https://eplus.jp/sf/word/0000082521",
-  "acts": [
-   "Paledusk"
-  ],
-  "matches": [
-   {
-    "act": "Paledusk",
-    "artist": "Paledusk",
-    "plays": 252,
-    "recentPlays": 27,
-    "lastPlayed": "2026-05-12",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 1,
-    "lastSeen": "2025-05-06",
-    "tier": "seen",
-    "score": -9517
-   }
-  ],
-  "tier": "seen",
-  "score": -9517
- },
- {
-  "title": "Paledusk ”LIVE!!” TOUR",
-  "date": "2027-02-24",
-  "venue": "Zepp Haneda (TOKYO)",
-  "city": "Tokyo",
-  "url": "https://eplus.jp/sf/word/0000082521",
-  "acts": [
-   "Paledusk"
-  ],
-  "matches": [
-   {
-    "act": "Paledusk",
-    "artist": "Paledusk",
-    "plays": 252,
-    "recentPlays": 27,
-    "lastPlayed": "2026-05-12",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 1,
-    "lastSeen": "2025-05-06",
-    "tier": "seen",
-    "score": -9517
-   }
-  ],
-  "tier": "seen",
-  "score": -9517
+  "score": -9806
  }
 ]
