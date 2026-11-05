@@ -3968,13 +3968,9 @@ function TourSection({ go, gigDate }) {
     [flat, seenFilt, seenIds, mkt]);
   const byGenre = (x) => sub != null ? x.a.prim === sub : gkey != null ? x.a.gkey === gkey : true;
   const [mktFocus, setMktFocus] = React.useState(null);   // market chip clicked → TourMap flies there
-  // MARKS (Fuad 2026-11-05): Japan-lane events carry their concerts-tokyo.json row id + mark
-  // (e.id / e.st). The site is static, so a mark button opens a prefilled GitHub issue
-  // ("gig: want <id>") that the gig-marks workflow applies and commits — two taps while
-  // logged into GitHub. wantDates flags nights where two want-shows collide.
-  const markUrl = (id, mark) => "https://github.com/Fuadex/fuad.au/issues/new?title="
-    + encodeURIComponent(`gig: ${mark} ${id}`)
-    + "&body=" + encodeURIComponent("Tap Submit — the gig-marks workflow applies this mark and closes the issue.");
+  // MARKS: Japan-lane events carry their concerts-tokyo.json row id + mark (e.id / e.st). The
+  // want / skip / undo buttons were phased out (Fuad 2026-11-05); rows already marked "want" keep
+  // their star, and wantDates still flags nights where two want-shows collide.
   const wantDates = React.useMemo(() => {
     const m = new Map();
     for (const x of flat) if (x.e.st === "want") m.set(x.e.d, (m.get(x.e.d) || 0) + 1);
@@ -4131,12 +4127,6 @@ function TourSection({ go, gigDate }) {
                       <span className="gv-tour-d">{gigDate(e.d, false)}</span>
                       <span className="gv-tour-w">{e.v}{e.city ? `, ${e.city}` : ""}{e.cc ? ` (${e.cc})` : ""}{e.ev && e.ev.toLowerCase().indexOf(a.name.toLowerCase()) < 0 ? ` — ${e.ev}` : ""}</span>
                       {e.st === "want" && <span className="gv-mark-star" title={wantDates.get(e.d) > 1 ? "marked want — but it clashes with another want-show this night" : "marked want"}>{wantDates.get(e.d) > 1 ? "⚡" : "★"}</span>}
-                      {e.id && e.st !== "want" && <span className="gv-mark" role="button" title="mark want — opens a prefilled GitHub issue; submitting it applies the mark and updates the gigs.ics calendar feed"
-                        onClick={(ev) => { ev.preventDefault(); ev.stopPropagation(); window.open(markUrl(e.id, "want"), "_blank", "noopener"); }}>want</span>}
-                      {e.id && e.st !== "want" && <span className="gv-mark" role="button" title="skip — hides this show from the map and list after the next deploy"
-                        onClick={(ev) => { ev.preventDefault(); ev.stopPropagation(); window.open(markUrl(e.id, "skip"), "_blank", "noopener"); }}>skip</span>}
-                      {e.id && e.st === "want" && <span className="gv-mark" role="button" title="un-mark — sets the row back to new"
-                        onClick={(ev) => { ev.preventDefault(); ev.stopPropagation(); window.open(markUrl(e.id, "new"), "_blank", "noopener"); }}>undo</span>}
                       {e.url ? <span className="gv-tour-out">↗</span> : null}
                     </a>
                   ))}
@@ -4732,9 +4722,6 @@ function GigsView({ go }) {
         .gv-tour-mkt b { color: var(--accent); }
         .gv-tour-mkt[data-stale="true"] { border-color: oklch(0.62 0.16 45 / .6); color: oklch(0.78 0.14 55); }
         .gv-tour-mkt[data-on="true"] { border-color: var(--accent); color: var(--accent); }
-        .gv-mark { font-family: var(--mono); font-size: 10px; letter-spacing: .06em; color: var(--ink-faint); border: 1px solid var(--rule); border-radius: 4px; padding: 0 5px; margin-left: 6px; cursor: pointer; flex: none; }
-        .gv-mark:hover { color: var(--accent); border-color: var(--accent); }
-        @media (pointer: coarse) { .gv-mark { padding: 4px 10px; font-size: 11px; } }  /* audit 2026-11: 38x15px tap target on phones */
         .gv-mark-star { margin-left: 6px; flex: none; }
         .gv-disc-row { display: flex; align-items: baseline; gap: 10px; padding: 7px 4px; border-bottom: 1px solid var(--rule); min-width: 0; flex-wrap: wrap; }
         .gv-disc-act { font-weight: 600; flex: none; }
