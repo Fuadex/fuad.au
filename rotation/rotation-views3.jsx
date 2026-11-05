@@ -3949,8 +3949,13 @@ function TourSection({ go, gigDate }) {
     for (const g of ((R.GIGS && R.GIGS.gigs) || [])) if (g.artistId) s.add(g.artistId);
     return s;
   }, [R]);
-  const pool = React.useMemo(() => seenFilt === "unseen" ? flat.filter(x => !seenIds.has(x.a.id)) : flat,
-    [flat, seenFilt, seenIds]);
+  // MARKET FILTER (Fuad 2026-11-05): a market chip is a toggle — click Sydney/Tokyo/Berlin to
+  // narrow everything to that market's events, click again to clear. Applied to `pool` itself,
+  // like the seen filter above, so the map, calendar, cascade and list all narrow together.
+  const [mkt, setMkt] = React.useState(null);             // market id, or null = all markets
+  const pool = React.useMemo(() => flat.filter(x =>
+    (seenFilt !== "unseen" || !seenIds.has(x.a.id)) && (mkt == null || x.e.mkt === mkt)),
+    [flat, seenFilt, seenIds, mkt]);
   const byGenre = (x) => sub != null ? x.a.prim === sub : gkey != null ? x.a.gkey === gkey : true;
   const [mktFocus, setMktFocus] = React.useState(null);   // market chip clicked → TourMap flies there
   const byCity = (x) => city == null || (x.e.cc + "|" + x.e.city) === city;
@@ -3990,12 +3995,12 @@ function TourSection({ go, gigDate }) {
     }
     return [...byA.values()].filter(r => r.pts.length >= 2);
   }, [mapEvents, checked]);
-  React.useEffect(() => { setLimit(20); }, [gkey, sub, city, selKey, gran]);   // fresh slice → back to the first page
+  React.useEffect(() => { setLimit(20); }, [gkey, sub, city, selKey, gran, mkt]);   // fresh slice → back to the first page
   const T = R.TOUR;
   if (!T) return null;
   const hiArt = hi ? artists.find(a => a.id === hi) : null;
   const hiPath = hiArt ? hiArt.events.filter(e => e.ll).map(e => [(e.ll[1] + 180) / 360 * 1000, (90 - e.ll[0]) / 180 * 500]) : null;
-  const anyFilt = gkey != null || sub != null || city != null || selKey != null || seenFilt !== "all";
+  const anyFilt = gkey != null || sub != null || city != null || selKey != null || seenFilt !== "all" || mkt != null;
   const shown = artists.slice(0, limit);
   // 2026-09-22 (audit B6) — the map's per-stop readout. Every dot carries a <title> ("London (GB)
   // · 391 events") and a native tooltip is a HOVER, so a phone could select a city and never read
@@ -4035,17 +4040,17 @@ function TourSection({ go, gigDate }) {
       )}
       <div className="gv-tour-meta">
         {T.markets.map(m => (
-          <span key={m.id} className="gv-tour-mkt" data-stale={!!m.stale} role="button"
-            style={{ cursor: "pointer" }}
-            onClick={() => setMktFocus({ id: m.id, t: Date.now() })}
-            title={`fly the map to ${m.label} · ${m.scanned} events scanned within ${m.radiusKm} km${m.stale ? " — this market returned nothing on the last pull; showing last good data" : ""}${m.id === "tokyo" ? " — Japan dates come from the daily e+/Creativeman concert agent, not Ticketmaster (no Japan inventory there)" : ""}`}>
-            {m.label} <b>{m.matched}</b>{m.stale ? " ⚠" : ""}
+          <span key={m.id} className="gv-tour-mkt" data-stale={!!m.stale} data-on={mkt === m.id} role="button"
+            aria-pressed={mkt === m.id} style={{ cursor: "pointer" }}
+            onClick={() => { if (mkt === m.id) { setMkt(null); } else { setMkt(m.id); setMktFocus({ id: m.id, t: Date.now() }); } }}
+            title={`${mkt === m.id ? `showing only ${m.label} — click to clear` : `filter the list and map to ${m.label} (flies the map there)`} · ${m.scanned} events scanned within ${m.radiusKm} km${m.stale ? " — this market returned nothing on the last pull; showing last good data" : ""}${m.id === "tokyo" ? " — Japan dates come from the daily e+/Creativeman concert agent, not Ticketmaster (no Japan inventory there)" : ""}`}>
+            {m.label} <b>{m.matched}</b>{mkt === m.id ? " ✕" : ""}{m.stale ? " ⚠" : ""}
           </span>
         ))}
         {chips.map(([lbl, clear], i) => (
           <span key={lbl + i} className="gv-tour-chip" onClick={clear}>{lbl} ✕</span>
         ))}
-        {anyFilt && <span className="gv-tour-chip gv-tour-chip-all" onClick={() => { setGkey(null); setSub(null); setCity(null); setSelKey(null); setSeenFilt("all"); }}>clear all</span>}
+        {anyFilt && <span className="gv-tour-chip gv-tour-chip-all" onClick={() => { setGkey(null); setSub(null); setCity(null); setSelKey(null); setSeenFilt("all"); setMkt(null); }}>clear all</span>}
         {/* pinned right on this row; margin-left:auto rather than a wrapper so it still wraps with
             the rest when the market chips run long */}
         <div className="r-seg r-seg-sm gv-tour-seen">
@@ -4678,6 +4683,7 @@ function GigsView({ go }) {
         .gv-tour-mkt { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); border: 1px solid var(--rule); border-radius: 999px; padding: 3px 10px; cursor: help; }
         .gv-tour-mkt b { color: var(--accent); }
         .gv-tour-mkt[data-stale="true"] { border-color: oklch(0.62 0.16 45 / .6); color: oklch(0.78 0.14 55); }
+        .gv-tour-mkt[data-on="true"] { border-color: var(--accent); color: var(--accent); }
         .gv-tour-warn { margin: 2px 0 12px; padding: 10px 14px; border-radius: 8px; font-size: 12.5px; line-height: 1.5;
           color: oklch(0.85 0.06 60); background: oklch(0.6 0.13 55 / .12); border: 1px solid oklch(0.62 0.16 55 / .4); }
         .gv-tour-warn b { color: oklch(0.82 0.15 60); }
