@@ -301,6 +301,22 @@
       "countryCode": "JP"
     },
     {
+      "date": "2026-03-03",
+      "artist": "011",
+      "venue": "Shibuya Cyclone",
+      "city": "Tokyo",
+      "country": "Japan",
+      "countryCode": "JP"
+    },
+    {
+      "date": "2026-03-03",
+      "artist": "Neon Oni",
+      "venue": "Shibuya Cyclone",
+      "city": "Tokyo",
+      "country": "Japan",
+      "countryCode": "JP"
+    },
+    {
       "date": "2026-03-10",
       "artist": "Zinchikurandan",
       "venue": "Shinjuku Marble",
