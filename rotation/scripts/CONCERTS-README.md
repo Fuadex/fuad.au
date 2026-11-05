@@ -1,9 +1,26 @@
 # Japan concerts for Rotation
 
 The upcoming-shows pipeline for the Gigs page's Japan lane. Started as the Morning Brief's
-Tokyo-area search; as of **2026-11-05** it is a country-wide database built by a deep-research
-pass (Claude subagents) on top of the daily agent, feeding `build-data.js`'s TOUR block
-(Ticketmaster covers Sydney/Berlin; it has no Japan inventory, so this is the Japan source).
+Tokyo-area search; as of **2026-11-05** it is a country-wide database feeding `build-data.js`'s
+TOUR block (Ticketmaster covers Sydney/Berlin; it has no Japan inventory, so this is the Japan
+source). Four lanes keep it fresh:
+
+| Lane | Cadence | What it does |
+|---|---|---|
+| `jp-sweep.yml` + `scripts/sweep_listings.py` | weekly (Thu) | **no-LLM scrape** of Songkick JP metros, Creativeman, SMASH, Udo, LN HIP and 12 Tokyo livehouses (`sweep_src_*.py` parser modules) → match → merge → refresh `data/discoveries.json`. No secrets. A source printing FAILED/0 in the run log = parser rot, fix that module. |
+| `tokyo-concerts.yml` (`concert_agent.py`) | daily | Claude-API agent, 6 JP + 3 intl artists rotating through the top 60 — catches artist-specific news between sweeps. |
+| "Japan gigs deep re-sweep" scheduled task (claude.ai) | monthly (12th) | Claude cloud session: festival lineups, top-40 JP artists' official pages, and the venues whose sites block scraping (Koenji HIGH, Earthdom, CLUB GOODMAN). |
+| `gig-marks.yml` + `scripts/apply_mark.py` | on demand | the Gigs page's want/skip buttons open a prefilled issue `gig: want <row-id>`; the workflow applies the mark, commits, closes the issue. Owner-authored issues only. |
+
+**Marks → calendar:** `build-data.js` emits `gigs.ics` (want-marked upcoming shows) into the
+deploy, so subscribing Google Calendar to `https://fuad.au/rotation/gigs.ics` once makes marks
+flow to the calendar automatically. The Gigs page shows ★ on want rows and ⚡ when two
+want-shows share a night.
+
+**Discovery:** `scripts/discover.py` scores non-library acts by co-billing with library
+artists across all `data/listings-*.json` (≥2 shared bills, or one with a ≥100-play anchor)
+→ `data/discoveries.json` → the Gigs page's capped "worth a look" shelf. Suppress a bad
+suggestion by adding its name to `data/discover-skip.json` (plain JSON array).
 
 ## data/
 | File | What it is |

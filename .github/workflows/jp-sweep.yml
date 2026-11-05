@@ -14,7 +14,7 @@ permissions:
 jobs:
   sweep:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 35   # udo opens ~180 show pages and toos ~100 calendar days, sequentially
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
