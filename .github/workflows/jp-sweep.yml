@@ -1,0 +1,35 @@
+# Weekly Japan concert sweep — no LLM, no secrets. Scrapes Songkick's Japan metros, the
+# international promoters (Creativeman, SMASH, Udo, Live Nation HIP) and the Tokyo
+# livehouse calendars, matches everything against the library and appends new shows to
+# rotation/data/concerts-tokyo.json (marks untouched), then refreshes the discovery
+# shelf. The commit triggers sync.yml, which rebuilds the site and the gigs.ics feed.
+# A source whose parser rots shows up as FAILED/0 in the run log and commit message.
+name: Japan gigs sweep
+on:
+  schedule:
+    - cron: "23 6 * * 4"    # Thursdays 15:23 JST (cron is UTC)
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Sweep, match, merge, discover
+        run: |
+          set -o pipefail
+          python3 rotation/scripts/sweep_listings.py --data rotation --out rotation/data | tee run.log
+      - name: Commit
+        run: |
+          git config user.name "gig-sweep" && git config user.email "actions@users.noreply.github.com"
+          git add rotation/data/concerts-tokyo.json rotation/data/listings-sweep-*.json \
+                  rotation/data/listings-research-*.json rotation/data/matches-research-*.json \
+                  rotation/data/discoveries.json
+          SUMMARY=$(grep -m1 '^sweep:' run.log | cut -c1-400 || echo "sweep")
+          MERGED=$(grep -m1 'new rows' run.log || true)
+          git commit -m "Japan gigs sweep: ${MERGED:-no new rows}" -m "$SUMMARY" && git push \
+            || echo "nothing to commit"

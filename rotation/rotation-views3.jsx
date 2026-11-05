@@ -3958,6 +3958,18 @@ function TourSection({ go, gigDate }) {
     [flat, seenFilt, seenIds, mkt]);
   const byGenre = (x) => sub != null ? x.a.prim === sub : gkey != null ? x.a.gkey === gkey : true;
   const [mktFocus, setMktFocus] = React.useState(null);   // market chip clicked → TourMap flies there
+  // MARKS (Fuad 2026-11-05): Japan-lane events carry their concerts-tokyo.json row id + mark
+  // (e.id / e.st). The site is static, so a mark button opens a prefilled GitHub issue
+  // ("gig: want <id>") that the gig-marks workflow applies and commits — two taps while
+  // logged into GitHub. wantDates flags nights where two want-shows collide.
+  const markUrl = (id, mark) => "https://github.com/Fuadex/fuad.au/issues/new?title="
+    + encodeURIComponent(`gig: ${mark} ${id}`)
+    + "&body=" + encodeURIComponent("Tap Submit — the gig-marks workflow applies this mark and closes the issue.");
+  const wantDates = React.useMemo(() => {
+    const m = new Map();
+    for (const x of flat) if (x.e.st === "want") m.set(x.e.d, (m.get(x.e.d) || 0) + 1);
+    return m;
+  }, [flat]);
   const byCity = (x) => city == null || (x.e.cc + "|" + x.e.city) === city;
   const byTime = (x) => selKey == null || keyOf(x.e.d) === selKey;
   // each vis sees the OTHER two filters; the list sees all three
@@ -4108,6 +4120,11 @@ function TourSection({ go, gigDate }) {
                       onClick={(ev) => ev.stopPropagation()} data-dead={!e.url}>
                       <span className="gv-tour-d">{gigDate(e.d, false)}</span>
                       <span className="gv-tour-w">{e.v}{e.city ? `, ${e.city}` : ""}{e.cc ? ` (${e.cc})` : ""}{e.ev && e.ev.toLowerCase().indexOf(a.name.toLowerCase()) < 0 ? ` — ${e.ev}` : ""}</span>
+                      {e.st === "want" && <span className="gv-mark-star" title={wantDates.get(e.d) > 1 ? "marked want — but it clashes with another want-show this night" : "marked want"}>{wantDates.get(e.d) > 1 ? "⚡" : "★"}</span>}
+                      {e.id && e.st !== "want" && <span className="gv-mark" role="button" title="mark want — opens a prefilled GitHub issue; submitting it applies the mark and updates the gigs.ics calendar feed"
+                        onClick={(ev) => { ev.preventDefault(); ev.stopPropagation(); window.open(markUrl(e.id, "want"), "_blank", "noopener"); }}>want</span>}
+                      {e.id && e.st === "want" && <span className="gv-mark" role="button" title="un-mark — sets the row back to new"
+                        onClick={(ev) => { ev.preventDefault(); ev.stopPropagation(); window.open(markUrl(e.id, "new"), "_blank", "noopener"); }}>undo</span>}
                       {e.url ? <span className="gv-tour-out">↗</span> : null}
                     </a>
                   ))}
@@ -4122,6 +4139,25 @@ function TourSection({ go, gigDate }) {
           <button className="gv-tour-all" onClick={() => setLimit(l => l >= artists.length ? 20 : l + 40)}>
             {limit >= artists.length ? "show fewer" : `show ${Math.min(40, artists.length - limit)} more · ${limit} of ${artists.length}`}
           </button>
+        )}
+        {/* worth a look — non-library acts that keep sharing bills with library artists
+            (scripts/discover.py co-billing scorer, riding the lazy tour payload). A separate
+            capped shelf with the REASON shown, so it never dilutes the matched list above. */}
+        {tour.discover && tour.discover.length > 0 && (
+          <div className="gv-discover">
+            <div className="gv-label" style={{ marginTop: 28 }}>Worth a look · acts sharing bills with your rotation</div>
+            {tour.discover.slice(0, 12).map(p => (
+              <div key={p.act} className="gv-disc-row">
+                <span className="gv-disc-act">{p.act}</span>
+                <span className="gv-disc-why">with {(p.with || []).slice(0, 3).join(", ")}</span>
+                {p.events && p.events[0] && (
+                  <a className="gv-disc-ev" href={p.events[0].url || undefined} target="_blank" rel="noopener noreferrer">
+                    {gigDate(p.events[0].d, false)} · {p.events[0].venue || p.events[0].city}{p.events.length > 1 ? ` · +${p.events.length - 1} more` : ""}{p.events[0].url ? " ↗" : ""}
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
         )}
       </>}
     </section>
@@ -4684,6 +4720,14 @@ function GigsView({ go }) {
         .gv-tour-mkt b { color: var(--accent); }
         .gv-tour-mkt[data-stale="true"] { border-color: oklch(0.62 0.16 45 / .6); color: oklch(0.78 0.14 55); }
         .gv-tour-mkt[data-on="true"] { border-color: var(--accent); color: var(--accent); }
+        .gv-mark { font-family: var(--mono); font-size: 10px; letter-spacing: .06em; color: var(--ink-faint); border: 1px solid var(--rule); border-radius: 4px; padding: 0 5px; margin-left: 6px; cursor: pointer; flex: none; }
+        .gv-mark:hover { color: var(--accent); border-color: var(--accent); }
+        .gv-mark-star { margin-left: 6px; flex: none; }
+        .gv-disc-row { display: flex; align-items: baseline; gap: 10px; padding: 7px 4px; border-bottom: 1px solid var(--rule); min-width: 0; flex-wrap: wrap; }
+        .gv-disc-act { font-weight: 600; flex: none; }
+        .gv-disc-why { color: var(--ink-soft); font-size: 12.5px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .gv-disc-ev { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); margin-left: auto; flex: none; text-decoration: none; }
+        .gv-disc-ev:hover { color: var(--accent); }
         .gv-tour-warn { margin: 2px 0 12px; padding: 10px 14px; border-radius: 8px; font-size: 12.5px; line-height: 1.5;
           color: oklch(0.85 0.06 60); background: oklch(0.6 0.13 55 / .12); border: 1px solid oklch(0.62 0.16 55 / .4); }
         .gv-tour-warn b { color: oklch(0.82 0.15 60); }

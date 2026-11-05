@@ -1,0 +1,193 @@
+{
+ "generated": "2026-11-05",
+ "picks": [
+  {
+   "act": "田邊駿一",
+   "events": [
+    {
+     "d": "2026-12-07",
+     "title": "田邊駿一弾き語りワンマンツアー \"alone, not alone. 〜chapter3〜\"",
+     "venue": "CLUB UPSET NAGOYA IKESHITA",
+     "city": "Nagoya",
+     "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc"
+    },
+    {
+     "d": "2027-01-10",
+     "title": "田邊駿一弾き語りワンマンツアー \"alone, not alone. 〜chapter3〜\"",
+     "venue": "cube garden",
+     "city": "Sapporo",
+     "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc"
+    },
+    {
+     "d": "2027-01-11",
+     "title": "田邊駿一弾き語りワンマンツアー \"alone, not alone. 〜chapter3〜\"",
+     "venue": "246 LIVEHOUSE GABU",
+     "city": "Osaka",
+     "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc"
+    },
+    {
+     "d": "2027-01-16",
+     "title": "田邊駿一弾き語りワンマンツアー \"alone, not alone. 〜chapter3〜\"",
+     "venue": "誰も知らない劇場",
+     "city": "Sendai",
+     "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc"
+    },
+    {
+     "d": "2027-01-20",
+     "title": "田邊駿一弾き語りワンマンツアー \"alone, not alone. 〜chapter3〜\"",
+     "venue": "SHIBUYA Pleasure Pleasure",
+     "city": "Tokyo",
+     "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc"
+    }
+   ],
+   "with": [
+    "BLUE ENCOUNT"
+   ],
+   "score": 10.0
+  },
+  {
+   "act": "ROCKY&TheSWEDEN",
+   "events": [
+    {
+     "d": "2026-12-20",
+     "title": "MOUNTAIN HIGH",
+     "venue": "Shindaita FEVER",
+     "city": "Tokyo",
+     "url": "https://www.fever-popo.com/schedule/2026/12/2016.html"
+    }
+   ],
+   "with": [
+    "Melt-Banana"
+   ],
+   "score": 3.7
+  },
+  {
+   "act": "SLIGHT SLAPPERS",
+   "events": [
+    {
+     "d": "2026-12-20",
+     "title": "MOUNTAIN HIGH",
+     "venue": "Shindaita FEVER",
+     "city": "Tokyo",
+     "url": "https://www.fever-popo.com/schedule/2026/12/2016.html"
+    }
+   ],
+   "with": [
+    "Melt-Banana"
+   ],
+   "score": 3.7
+  },
+  {
+   "act": "RAGS",
+   "events": [
+    {
+     "d": "2026-12-20",
+     "title": "MOUNTAIN HIGH",
+     "venue": "Shindaita FEVER",
+     "city": "Tokyo",
+     "url": "https://www.fever-popo.com/schedule/2026/12/2016.html"
+    }
+   ],
+   "with": [
+    "Melt-Banana"
+   ],
+   "score": 3.7
+  },
+  {
+   "act": "KRIEGSHÖG",
+   "events": [
+    {
+     "d": "2026-12-20",
+     "title": "MOUNTAIN HIGH",
+     "venue": "Shindaita FEVER",
+     "city": "Tokyo",
+     "url": "https://www.fever-popo.com/schedule/2026/12/2016.html"
+    }
+   ],
+   "with": [
+    "Melt-Banana"
+   ],
+   "score": 3.7
+  },
+  {
+   "act": "NEPENTHES",
+   "events": [
+    {
+     "d": "2026-12-20",
+     "title": "MOUNTAIN HIGH",
+     "venue": "Shindaita FEVER",
+     "city": "Tokyo",
+     "url": "https://www.fever-popo.com/schedule/2026/12/2016.html"
+    }
+   ],
+   "with": [
+    "Melt-Banana"
+   ],
+   "score": 3.7
+  },
+  {
+   "act": "DADDY-O-NOV (BACK FROM THE GRAVE)",
+   "events": [
+    {
+     "d": "2026-12-20",
+     "title": "MOUNTAIN HIGH",
+     "venue": "Shindaita FEVER",
+     "city": "Tokyo",
+     "url": "https://www.fever-popo.com/schedule/2026/12/2016.html"
+    }
+   ],
+   "with": [
+    "Melt-Banana"
+   ],
+   "score": 3.7
+  },
+  {
+   "act": "カオスのオーロラソース",
+   "events": [
+    {
+     "d": "2027-01-12",
+     "title": "THE KEBABS／9mm parabellum bullet",
+     "venue": "LIQUIDROOM",
+     "city": "Tokyo",
+     "url": "https://www.liquidroom.net/schedule/chaosaurorasauce_20270112"
+    }
+   ],
+   "with": [
+    "9mm Parabellum Bullet"
+   ],
+   "score": 3.6
+  },
+  {
+   "act": "THE KEBABS",
+   "events": [
+    {
+     "d": "2027-01-12",
+     "title": "THE KEBABS／9mm parabellum bullet",
+     "venue": "LIQUIDROOM",
+     "city": "Tokyo",
+     "url": "https://www.liquidroom.net/schedule/chaosaurorasauce_20270112"
+    }
+   ],
+   "with": [
+    "9mm Parabellum Bullet"
+   ],
+   "score": 3.6
+  },
+  {
+   "act": "SODA!",
+   "events": [
+    {
+     "d": "2026-12-22",
+     "title": "nest 30th Anniversary “ZAZEN BOYS × SODA!”",
+     "venue": "Spotify O-nest",
+     "city": "Tokyo",
+     "url": "https://shibuya-o.com/nest/schedule/nest-30th-anniversary-zazen-boys-x-soda/"
+    }
+   ],
+   "with": [
+    "ZAZEN BOYS"
+   ],
+   "score": 3.3
+  }
+ ]
+}
