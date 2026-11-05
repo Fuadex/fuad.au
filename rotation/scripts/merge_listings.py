@@ -82,8 +82,10 @@ def norm(s):
 
 
 # Known wrong-entity matches (normalized act -> library artist it must NOT match):
-# the Japanese band "bed" (WWW X et al.) is not Fuad's French Bed (CONCERTS-README).
-REJECT = {("bed", "Bed")}
+# the Japanese band "bed" (WWW X et al.) is not Fuad's French Bed (CONCERTS-README);
+# the visual-kei Razor (ex-DIAURA, constant taiban presence) is not the Canadian
+# thrash Razor — their rare Japan dates lose out, a fair trade (Fuad 2026-11-05).
+REJECT = {("bed", "Bed"), ("razor", "Razor")}
 
 
 def main():

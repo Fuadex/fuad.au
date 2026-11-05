@@ -82,6 +82,7 @@
         "filter-index.js",
         "album-about-lazy.js",
         "tm-tour-lazy.js",
+        "gigs.ics",
         "instrumentals.js",
         "track-previews.js",
         "preview-fallback.js",
