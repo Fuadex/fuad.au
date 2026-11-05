@@ -94,6 +94,8 @@ dataset sanity" (`smoke.js`). Push to `main` is the test environment.
 | **rotation/tools/README.md** | **Running** the lyric mood/themes pipelines — the tracked local-model tools: stack of record, quick start, per-file reference, emit proofs, run logs. Methodology stays in MOOD_PIPELINE.md; this is operations |
 | **rotation/READS_STRESS_TESTS.md** | Doubting the song-read methodology — the difficult-case ledger: worst gates, both limit directions, suite rulings, what each stress proved |
 | **rotation/LIMITATIONS.md** | Understanding known approximations and deferred fixes |
+| **rotation/scripts/CONCERTS-README.md** | Touching the Japan gigs lane — the four automation lanes (weekly sweep, daily agent, monthly deep re-sweep, issue marks), gigs.ics feed, discovery shelf |
+| **rotation/AUDIT-2026-11.md** | Gigs-program audit (landing-day): findings→fixes table, runtime walk, local-dev staging note |
 | **rotation/SPOTIFY.md** | Working with the personal Spotify export integration |
 | **rotation/CSV-OVERRIDES.md** | Manual data corrections (local-only, gitignored) |
 | **rotation/README.md** | Public-facing description of what Rotation is |

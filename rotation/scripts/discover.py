@@ -16,7 +16,7 @@ Acts in data/discover-skip.json (plain array of names) are suppressed — mark a
 there when a suggestion misses. Output: data/discoveries.json {generated, picks:[...]},
 which build-data.js rides into the Gigs page's "worth a look" shelf.
 """
-import datetime, glob, json, math, os, re, sys, unicodedata
+import argparse, datetime, glob, json, math, os, re, sys, unicodedata
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -27,14 +27,13 @@ JUNK = re.compile(r"(and more|他|ほか|出演者|後日発表|^(dj|live|guest|
 
 def main():
     import csv, collections
-    argv = sys.argv[1:]
-    dirn, out = os.path.dirname(HERE), os.path.join(os.path.dirname(HERE), "data")
-    if "--data" in argv:
-        i = argv.index("--data"); dirn = argv[i + 1]; argv = argv[:i] + argv[i + 2:]
-    if "--out" in argv:
-        i = argv.index("--out"); out = argv[i + 1]; argv = argv[:i] + argv[i + 2:]
-    args = argv
-    files = args or sorted(glob.glob(os.path.join(out, "listings-*.json")))
+    ap = argparse.ArgumentParser()
+    ap.add_argument("listings", nargs="*")
+    ap.add_argument("--data", default=os.path.dirname(HERE))
+    ap.add_argument("--out", default=os.path.join(os.path.dirname(HERE), "data"))
+    a = ap.parse_args()
+    dirn, out = a.data, a.out
+    files = a.listings or sorted(glob.glob(os.path.join(out, "listings-*.json")))
     today = str(datetime.date.today())
 
     plays = collections.Counter()

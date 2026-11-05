@@ -4123,6 +4123,8 @@ function TourSection({ go, gigDate }) {
                       {e.st === "want" && <span className="gv-mark-star" title={wantDates.get(e.d) > 1 ? "marked want — but it clashes with another want-show this night" : "marked want"}>{wantDates.get(e.d) > 1 ? "⚡" : "★"}</span>}
                       {e.id && e.st !== "want" && <span className="gv-mark" role="button" title="mark want — opens a prefilled GitHub issue; submitting it applies the mark and updates the gigs.ics calendar feed"
                         onClick={(ev) => { ev.preventDefault(); ev.stopPropagation(); window.open(markUrl(e.id, "want"), "_blank", "noopener"); }}>want</span>}
+                      {e.id && e.st !== "want" && <span className="gv-mark" role="button" title="skip — hides this show from the map and list after the next deploy"
+                        onClick={(ev) => { ev.preventDefault(); ev.stopPropagation(); window.open(markUrl(e.id, "skip"), "_blank", "noopener"); }}>skip</span>}
                       {e.id && e.st === "want" && <span className="gv-mark" role="button" title="un-mark — sets the row back to new"
                         onClick={(ev) => { ev.preventDefault(); ev.stopPropagation(); window.open(markUrl(e.id, "new"), "_blank", "noopener"); }}>undo</span>}
                       {e.url ? <span className="gv-tour-out">↗</span> : null}
@@ -4722,6 +4724,7 @@ function GigsView({ go }) {
         .gv-tour-mkt[data-on="true"] { border-color: var(--accent); color: var(--accent); }
         .gv-mark { font-family: var(--mono); font-size: 10px; letter-spacing: .06em; color: var(--ink-faint); border: 1px solid var(--rule); border-radius: 4px; padding: 0 5px; margin-left: 6px; cursor: pointer; flex: none; }
         .gv-mark:hover { color: var(--accent); border-color: var(--accent); }
+        @media (pointer: coarse) { .gv-mark { padding: 4px 10px; font-size: 11px; } }  /* audit 2026-11: 38x15px tap target on phones */
         .gv-mark-star { margin-left: 6px; flex: none; }
         .gv-disc-row { display: flex; align-items: baseline; gap: 10px; padding: 7px 4px; border-bottom: 1px solid var(--rule); min-width: 0; flex-wrap: wrap; }
         .gv-disc-act { font-weight: 600; flex: none; }

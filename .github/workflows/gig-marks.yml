@@ -1,7 +1,9 @@
 # Gig marks via GitHub issues: the Gigs page's want/skip buttons open a prefilled issue
 # titled `gig: want <row-id>`; this applies the mark to rotation/data/concerts-tokyo.json,
-# commits (which redeploys the site and the gigs.ics calendar feed), and closes the issue.
-# Only the repository owner's issues are honoured.
+# commits, dispatches the deploy (GITHUB_TOKEN pushes don't fire sync.yml's push trigger),
+# and closes the issue. Only the repository owner's issues are honoured. Untrusted text
+# (issue title, script output) only ever enters the shell through env vars, never ${{ }}
+# interpolation inside run: blocks.
 name: Gig marks
 on:
   issues:
@@ -9,6 +11,9 @@ on:
 permissions:
   contents: write
   issues: write
+  actions: write
+concurrency:
+  group: gig-data-commit    # serialize against other data-committing runs of this workflow
 jobs:
   mark:
     if: github.event.issue.user.login == github.repository_owner && startsWith(github.event.issue.title, 'gig:')
@@ -24,22 +29,35 @@ jobs:
           set -e
           # title: "gig: <mark> <row-id>" — the id itself never contains spaces
           read -r _ MARK RID <<< "$TITLE"
-          echo "mark=$MARK rid=$RID"
           python3 rotation/scripts/apply_mark.py "$MARK" "$RID" --data rotation/data | tee result.txt
           echo "result<<EOF" >> "$GITHUB_OUTPUT"; cat result.txt >> "$GITHUB_OUTPUT"; echo "EOF" >> "$GITHUB_OUTPUT"
-      - name: Commit
+      - name: Commit and deploy
+        env:
+          TITLE: ${{ github.event.issue.title }}
+          GH_TOKEN: ${{ github.token }}
         run: |
+          set -e
           git config user.name "gig-marks" && git config user.email "actions@users.noreply.github.com"
           git add rotation/data/concerts-tokyo.json
-          git commit -m "gigs: ${{ github.event.issue.title }}" && git push || echo "nothing to commit"
+          if git commit -m "gigs: $TITLE"; then
+            # a concurrent workflow may have advanced main — rebase, then push for real
+            # (an unresolvable failure here fails the run and the issue gets the failure comment)
+            git pull --rebase origin main
+            git push origin main
+            gh workflow run sync.yml --ref main   # GITHUB_TOKEN pushes don't trigger it
+          else
+            echo "nothing to commit (mark unchanged)"
+          fi
       - name: Close issue
-        env: { GH_TOKEN: "${{ github.token }}" }
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RESULT: ${{ steps.apply.outputs.result }}
         run: |
           gh issue close ${{ github.event.issue.number }} --repo ${{ github.repository }} \
-            --comment "applied: ${{ steps.apply.outputs.result }} — the site and gigs.ics update on the next deploy (already triggered)."
+            --comment "applied: ${RESULT} — deploy dispatched; the site and gigs.ics update in a few minutes."
       - name: Report failure on the issue
         if: failure()
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
           gh issue comment ${{ github.event.issue.number }} --repo ${{ github.repository }} \
-            --body "mark failed — check the gig-marks workflow run log."
+            --body "mark NOT applied — check the gig-marks workflow run log."

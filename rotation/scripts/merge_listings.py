@@ -81,11 +81,8 @@ def norm(s):
     return re.sub(r"\W+", "", s, flags=re.UNICODE)
 
 
-# Known wrong-entity matches (normalized act -> library artist it must NOT match):
-# the Japanese band "bed" (WWW X et al.) is not Fuad's French Bed (CONCERTS-README);
-# the visual-kei Razor (ex-DIAURA, constant taiban presence) is not the Canadian
-# thrash Razor — their rare Japan dates lose out, a fair trade (Fuad 2026-11-05).
-REJECT = {("bed", "Bed"), ("razor", "Razor")}
+# Wrong-entity match rejects live in rotation_match.REJECT (single source — it protects
+# concert_agent's merge path too); nothing to re-check here since 2026-11-05.
 
 
 def main():
@@ -94,6 +91,9 @@ def main():
     ap.add_argument("--data", default=os.path.dirname(HERE), help="rotation dir (fuadex.csv etc.)")
     ap.add_argument("--out", default=os.path.join(os.path.dirname(HERE), "data"))
     ap.add_argument("--added", default=str(datetime.date.today()))
+    ap.add_argument("--no-archive", action="store_true",
+                    help="don't write dated listings-research/matches-research copies to --out "
+                         "(the weekly sweep already commits its own listings file)")
     args = ap.parse_args()
 
     today = str(datetime.date.today())
@@ -116,8 +116,10 @@ def main():
             seen_l.add(k); rows.append(L)
     print(f"{len(rows)} listings after window/dedupe filter")
 
-    lp = os.path.join(args.out, f"listings-research-{args.added}.json")
-    mp = os.path.join(args.out, f"matches-research-{args.added}.json")
+    import tempfile
+    arch = tempfile.mkdtemp(prefix="merge-") if args.no_archive else args.out
+    lp = os.path.join(arch, f"listings-research-{args.added}.json")
+    mp = os.path.join(arch, f"matches-research-{args.added}.json")
     json.dump(rows, open(lp, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     subprocess.run([sys.executable, "-I", os.path.join(HERE, "rotation_match.py"), lp, mp,
                     "--data", args.data], check=True)
@@ -145,8 +147,6 @@ def main():
     for m in json.load(open(mp, encoding="utf-8")):
         L = orig.get((norm(m.get("title")), m.get("date"), norm(m.get("venue")))) or {}
         for b in m["matches"]:          # one row PER matched library artist on the bill
-            if (norm(b.get("act")), b["artist"]) in REJECT:
-                continue
             key = (norm(b["artist"]), m.get("date"))
             if dup(*key):
                 continue

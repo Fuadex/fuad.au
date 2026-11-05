@@ -6268,7 +6268,18 @@ if (TM_RAW && TM_RAW.events && TM_RAW.events.length) {
         ...(c.href ? [`URL:${_esc(c.href)}`] : []), "END:VEVENT");
     }
     _lines.push("END:VCALENDAR");
-    fs.writeFileSync(path.join(__dirname, "gigs.ics"), _lines.join("\r\n") + "\r\n", "utf8");
+    // RFC 5545 §3.1: content lines fold at 75 OCTETS (multi-byte Japanese summaries hit
+    // this fast); continuation lines lead with one space
+    const _fold = (l) => {
+      let out = [], cur = "", bytes = 0;
+      for (const ch of l) {
+        const b = Buffer.byteLength(ch, "utf8");
+        if (bytes + b > 75) { out.push(cur); cur = " " + ch; bytes = 1 + b; }
+        else { cur += ch; bytes += b; }
+      }
+      out.push(cur); return out.join("\r\n");
+    };
+    fs.writeFileSync(path.join(__dirname, "gigs.ics"), _lines.map(_fold).join("\r\n") + "\r\n", "utf8");
     console.log(`gigs.ics: ${_want.length} want-marked upcoming shows`);
   }
 }
