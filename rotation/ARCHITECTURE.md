@@ -788,6 +788,13 @@ events) has no data behind it in the current design, so retirement beat repointi
 its only consumer). `rotation-views2.jsx`'s post-split transition copy was removed in the
 same commit (its stale-HTML window had passed).
 
+**Japan lane (2026-11):** `tm-events` has no Japan inventory, so the Gigs explorer's Japan
+dates come from `data/concerts-tokyo.json` (daily concert agent + the 2026-11-05
+deep-research pass — full tour itineraries, country-wide; recipe in
+`scripts/CONCERTS-README.md`), merged into the same TOUR block by build-data with city-anchor
+coordinates. The Sydney/Tokyo/Berlin market chips above the map toggle a market filter over
+the whole explorer (map, calendar, cascade, list together).
+
 ### Search (`/`)
 Overlay over search-index (artists: name/plays/span/peak-year) + media-index (songs + albums)
 → artist / album / track pages.

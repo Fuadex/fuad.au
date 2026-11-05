@@ -1,34 +1,80 @@
-# Tokyo concerts for Rotation
+# Japan concerts for Rotation
 
-Everything the Morning Brief's concert search has produced up to **2026-11-04**, plus a script that runs the same search every day on your own Claude API key.
+The upcoming-shows pipeline for the Gigs page's Japan lane. Started as the Morning Brief's
+Tokyo-area search; as of **2026-11-05** it is a country-wide database built by a deep-research
+pass (Claude subagents) on top of the daily agent, feeding `build-data.js`'s TOUR block
+(Ticketmaster covers Sydney/Berlin; it has no Japan inventory, so this is the Japan source).
 
 ## data/
 | File | What it is |
 |---|---|
-| `concerts-tokyo.json` | All 62 matched Tokyo-area shows in the brief's database, with your marks (`status`: new / want / seen / skip), tier, plays, seen-live info, venue lat/lng. |
-| `listings-2026-11-04.json` | Today's raw scrape: 175 listings (Songkick pp. 1–4, Creativeman, Smash, e+ artist pages, tour searches) with every billed act. |
-| `matches-2026-11-04.json` | `rotation_match.py` output for those listings: 36 shows matched against the whole library. |
+| `concerts-tokyo.json` | The database: 600+ matched Japan shows (Tokyo-area and nationwide), with your marks (`status`: new / want / seen / skip), tier, plays, seen-live info, venue/city lat/lng. Name kept for continuity — contents are country-wide. |
+| `listings-YYYY-MM-DD.json` | The daily agent's raw scrape for that day, with every billed act. |
+| `matches-YYYY-MM-DD.json` | `rotation_match.py` output for those listings. |
+| `listings-research-*.json` / `matches-research-*.json` | The deep-research passes' aggregated listings and matches (see below). |
 | `eplus-ids.json` | Cached e+ artist ids (`null` = no e+ page), so lookups only happen once per artist. |
 
-Known false positives: "bed" (Japanese band at WWW X, Nov 20) matched your French **Bed**; "the cabs" matched **The Cabs**, whose MusicBrainz origin says US but the plays look like the Japanese band. Fixing either in `artist-aliases.json` / `artist-origins.json` fixes future runs.
-
 ## scripts/
-- `rotation_match.py` matches listings against `fuadex.csv` through aliases (kana/kanji ↔ romaji), origins and `gigs.json`, and assigns the tiers top / also / seen. Short aliases (≤4 normalised chars) only index Japanese artists, so "LUV" can't hand a Japanese club act to Lil Uzi Vert.
-- `merge_listings.py` folds researched listing files (same schema as the agent's) into `concerts-tokyo.json`: dedupes, matches, one row per matched library artist per show (a festival day with four library acts lands as four rows), never touches existing rows or marks. Used for the 2026-11-05 deep-research pass (five Claude subagents over 168 Japanese library artists + festivals + 60 internationals → ~150 listings, ~160 new rows, country-wide).
-- `concert_agent.py` picks the day's artists (6 Japanese and 3 international, rotating through your top 60). It then asks Claude, with the API's built-in `web_search` and `web_fetch` tools, to collect the listings, caches new e+ ids, runs the matcher, and appends only new shows to `concerts-tokyo.json` (your existing rows and marks are never touched).
+- `rotation_match.py` matches listings against `fuadex.csv` through aliases (kana/kanji ↔
+  romaji), origins and `gigs.json`, and assigns the tiers top / also / seen. Short aliases
+  (≤4 normalised chars) only index Japanese artists, so "LUV" can't hand a Japanese club act
+  to Lil Uzi Vert.
+- `merge_listings.py` folds researched listing files (same schema as the agent's) into
+  `concerts-tokyo.json`: dedupes on (artist, date) — including the older `from`/`until` range
+  rows — matches, and writes one row per matched library artist per show (a festival day with
+  four library acts lands as four rows, so each keeps its tour badge and map dot). It stamps
+  city-level lat/lng from `city-coords.json` + a built-in JP gazetteer, carries a wrong-entity
+  `REJECT` list (the Japanese band "bed" never matches the French **Bed**), and never touches
+  existing rows or marks.
+- `concert_agent.py` is the daily top-up: picks 6 Japanese + 3 international artists rotating
+  through your top 60, collects listings with the API's built-in `web_search`/`web_fetch`,
+  runs the matcher, appends only new shows.
 
-## Run it
+## The 2026-11-05 deep-research pass (coverage baseline)
+Three waves of Claude subagents populated the database properly; re-run the same recipe when
+coverage decays (Japanese acts announce 1–3 months out):
+1. **Per-artist**: all 168 Japanese library artists with ≥15 plays or 2-year activity, plus
+   the 5–14-play tail — full tour itineraries from official /live pages (MWAM, sigure, MUCC,
+   AKG, 9mm, ORANGE RANGE, aiko, the cabs… every announced stop, nationwide).
+2. **Festivals**: COUNTDOWN JAPAN per-day lineups from the official artist API (179 acts),
+   rockin'on sonic, FUKUOKA MUSIC FES, MAGIC HOUR, dates-only placeholders for SYNCHRONICITY /
+   JAPAN JAM / VIVA LA ROCK / GREENROOM / FUJI ROCK / RISING SUN / GMO SONIC. Summer Sonic,
+   RIJ, Knotfest etc. had announced nothing — re-check Dec 2026/Jan 2027 (JAPAN JAM lineup
+   lands mid-December).
+3. **International catalog sweep**: instead of per-artist checks, dump the full calendars of
+   Creativeman, SMASH, Udo, Live Nation H.I.P. and Songkick's Tokyo/Osaka/Nagoya metros, then
+   match everything — catches library artists at any play count (Fleshwater, Puscifer,
+   Cancer Bats, Gurriers…). Sydney/Berlin need none of this: the weekly Ticketmaster pull is
+   already location-first over the whole library.
+
+To merge a new research file: `python3 scripts/merge_listings.py listings.json [...]`
+(listings schema: `{"acts": [...], "title", "date", "until", "venue", "city", "area", "url",
+"note"}` — one object per event, every billed act, full tours one row per date).
+
+**Cloud-session gotcha**: in Claude Code cloud sessions the WebFetch tool bypasses the session
+proxy and fails DNS on every host — subagents must fetch with Bash `curl` (which uses the
+proxy). Some hosts 403 the proxy (mwamjapan.info, alexandros.jp, l-tike.com…); fall back to
+e+ / LiveFans / music-news pages for those.
+
+Known false positives: "the cabs" matched **The Cabs**, whose MusicBrainz origin says US but
+the plays look like the Japanese band (harmless — same shows either way). The "bed"/**Bed**
+collision is now rejected in `merge_listings.py`.
+
+## Run the daily agent
 ```bash
 pip install anthropic
 export ANTHROPIC_API_KEY=sk-ant-...        # from console.anthropic.com
 python3 scripts/concert_agent.py --rotation path/to/rotation --out data
 ```
-`--rotation` is the folder holding `fuadex.csv`, `artist-aliases.json`, `artist-origins.json`, `gigs.json`, `gigs-manual.json`. Set `CLAUDE_MODEL` to change the model.
+`--rotation` is the folder holding `fuadex.csv`, `artist-aliases.json`, `artist-origins.json`,
+`gigs.json`, `gigs-manual.json`. Set `CLAUDE_MODEL` to change the model.
 
 ## Schedule it
-`.github/workflows/tokyo-concerts.yml` runs the script every day at 06:17 JST on GitHub Actions and commits the results back to the repo. You set it up once:
+`.github/workflows/tokyo-concerts.yml` runs the script every day at 06:17 JST on GitHub
+Actions and commits the results back to the repo. You set it up once:
 1. Copy `scripts/` and `data/` into `rotation/` in fuad.au, and the workflow into `.github/workflows/`.
 2. Add the repository secret `ANTHROPIC_API_KEY`.
 3. Trigger it once from the Actions tab ("Run workflow") to check it works.
 
-Cost: one run is one agent turn with up to ~50 web searches and fetches. Web search is billed per search on top of tokens, so check the API pricing page and set a spend limit in the Console.
+Cost: one run is one agent turn with up to ~50 web searches and fetches. Web search is billed
+per search on top of tokens, so check the API pricing page and set a spend limit in the Console.

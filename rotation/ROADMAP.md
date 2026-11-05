@@ -713,7 +713,9 @@ separately — do NOT fold it into portrait gists; gists stay stats-free (ALBUM_
   Actions", generated files gitignored, workflow commits only the CSV delta and ships `_site/`
   as an artifact. `smoke.js` gates every deploy.
 - ~~Enrichment staleness~~ → `enrich.yml` weekly incremental refresh (last.fm + MusicBrainz).
-- **Open:** concert data still needs its own automation once M2 lands.
+- ~~Concert data automation~~ → **two lanes live (2026-11)**: weekly `tour.yml` (Ticketmaster,
+  Sydney/Berlin) + daily `tokyo-concerts.yml` (concert agent → `data/concerts-tokyo.json`,
+  Japan). See `scripts/CONCERTS-README.md` for the deep-research recipe that populated it.
 
 ### A3 · Resilience & correctness — mostly resolved
 - ~~No error boundary~~ → `<Boundary>` wraps every routed view.
@@ -899,7 +901,10 @@ plus a manual **`gigs.json`** for festivals/shows setlist.fm lacks
    touring GROUPS, per-event outlet links) + amber "On tour" badge in ArtistMeta (`a.onTour`)
    + `tm-tour-lazy.js` (in apps.json deploy[]). Weekly `.github/workflows/tour.yml`
    (TICKETMASTER_API secret set). Known limits: TM has zero Japan inventory (Tokyo market kept
-   as a canary); name-only joins can collide (Bill Evans case) — genre cross-check is the
+   as a canary) — **covered since 2026-11 by the Japan lane instead**: `data/concerts-tokyo.json`
+   (daily concert agent + the 2026-11-05 deep-research pass, country-wide with full tour
+   itineraries — see `scripts/CONCERTS-README.md`), merged into TOUR by build-data, market
+   chips on the Gigs page filter by market; name-only joins can collide (Bill Evans case) — genre cross-check is the
    open refinement; artist-first batched `upcomingEvents` sweep (attractions?id=a,b,c — verified
    working) is the future "on tour anywhere, not just near your markets" extension.
 
