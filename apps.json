@@ -83,6 +83,7 @@
         "album-about-lazy.js",
         "tm-tour-lazy.js",
         "gigs.ics",
+        "gigs-feed.xml",
         "instrumentals.js",
         "track-previews.js",
         "preview-fallback.js",
