@@ -40,7 +40,11 @@ def keys_for(name):
     out = set()
     a = norm_any(name); l = norm_latin(name)
     if a: out.add(a)
-    if l: out.add(l)
+    # the latin key only means something when the name is mostly Latin already. For
+    # kana/kanji-heavy strings the ascii pass drops the script and leaves degenerate
+    # keys — くだらない1日 → "1", 根号2 → "2", 石若駿 (drums) → "drums" — which handed
+    # random taiban bills to The Drums / Reol (Fuad 2026-11-05).
+    if l and len(l) >= 3 and len(l) >= len(a) - 2: out.add(l)
     return out
 
 def load(dirn, f, default):

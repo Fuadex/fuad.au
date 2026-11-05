@@ -1,308 +1,10 @@
 [
  {
-  "title": "QUEENS OF THE STONE AGE",
-  "date": "2026-11-25",
-  "venue": "Zepp Haneda (TOKYO)",
-  "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/event/queens-of-the-stone-age_2026/",
-  "acts": [
-   "Queens of the Stone Age"
-  ],
-  "matches": [
-   {
-    "act": "Queens of the Stone Age",
-    "artist": "Queens of the Stone Age",
-    "plays": 1926,
-    "recentPlays": 17,
-    "lastPlayed": "2026-11-02",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 1977
-   }
-  ],
-  "tier": "top",
-  "score": 1977
- },
- {
-  "title": "QUEENS OF THE STONE AGE",
-  "date": "2026-11-26",
-  "venue": "Zepp Nagoya",
-  "city": "Nagoya",
-  "url": "https://www.creativeman.co.jp/event/queens-of-the-stone-age_2026/",
-  "acts": [
-   "Queens of the Stone Age"
-  ],
-  "matches": [
-   {
-    "act": "Queens of the Stone Age",
-    "artist": "Queens of the Stone Age",
-    "plays": 1926,
-    "recentPlays": 17,
-    "lastPlayed": "2026-11-02",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 1977
-   }
-  ],
-  "tier": "top",
-  "score": 1977
- },
- {
-  "title": "QUEENS OF THE STONE AGE",
-  "date": "2026-11-28",
-  "venue": "Zepp Namba(OSAKA)",
-  "city": "Osaka",
-  "url": "https://www.creativeman.co.jp/event/queens-of-the-stone-age_2026/",
-  "acts": [
-   "Queens of the Stone Age"
-  ],
-  "matches": [
-   {
-    "act": "Queens of the Stone Age",
-    "artist": "Queens of the Stone Age",
-    "plays": 1926,
-    "recentPlays": 17,
-    "lastPlayed": "2026-11-02",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 1977
-   }
-  ],
-  "tier": "top",
-  "score": 1977
- },
- {
-  "title": "Queens of the Stone Age @ Zepp Haneda",
-  "date": "2026-11-25",
-  "venue": "Zepp Haneda",
-  "city": "Tokyo",
-  "url": "https://www.songkick.com/concerts/43322665-queens-of-the-stone-age-at-zepp-haneda",
-  "acts": [
-   "Queens of the Stone Age"
-  ],
-  "matches": [
-   {
-    "act": "Queens of the Stone Age",
-    "artist": "Queens of the Stone Age",
-    "plays": 1926,
-    "recentPlays": 17,
-    "lastPlayed": "2026-11-02",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 1977
-   }
-  ],
-  "tier": "top",
-  "score": 1977
- },
- {
-  "title": "Queens of the Stone Age @ Zepp Nagoya",
-  "date": "2026-11-26",
-  "venue": "Zepp Nagoya",
-  "city": "Nagoya",
-  "url": "https://www.songkick.com/concerts/43322667-queens-of-the-stone-age-at-zepp-nagoya",
-  "acts": [
-   "Queens of the Stone Age"
-  ],
-  "matches": [
-   {
-    "act": "Queens of the Stone Age",
-    "artist": "Queens of the Stone Age",
-    "plays": 1926,
-    "recentPlays": 17,
-    "lastPlayed": "2026-11-02",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 1977
-   }
-  ],
-  "tier": "top",
-  "score": 1977
- },
- {
-  "title": "Queens of the Stone Age @ Zepp Namba",
-  "date": "2026-11-28",
-  "venue": "Zepp Namba",
-  "city": "Osaka",
-  "url": "https://www.songkick.com/concerts/43322680-queens-of-the-stone-age-at-zepp-namba",
-  "acts": [
-   "Queens of the Stone Age"
-  ],
-  "matches": [
-   {
-    "act": "Queens of the Stone Age",
-    "artist": "Queens of the Stone Age",
-    "plays": 1926,
-    "recentPlays": 17,
-    "lastPlayed": "2026-11-02",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 1977
-   }
-  ],
-  "tier": "top",
-  "score": 1977
- },
- {
-  "title": "A Perfect Circle",
-  "date": "2026-12-15",
-  "venue": "Zepp DiverCity Tokyo",
-  "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/event/a-perfect-circle-puscifer/",
-  "acts": [
-   "A Perfect Circle",
-   "Puscifer"
-  ],
-  "matches": [
-   {
-    "act": "A Perfect Circle",
-    "artist": "A Perfect Circle",
-    "plays": 1685,
-    "recentPlays": 10,
-    "lastPlayed": "2026-10-14",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 1715
-   },
-   {
-    "act": "Puscifer",
-    "artist": "Puscifer",
-    "plays": 269,
-    "recentPlays": 1,
-    "lastPlayed": "2026-02-09",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 272
-   }
-  ],
-  "tier": "top",
-  "score": 1715
- },
- {
-  "title": "A Perfect Circle",
-  "date": "2026-12-17",
-  "venue": "Zepp Osaka Bayside",
-  "city": "Osaka",
-  "url": "https://www.creativeman.co.jp/event/a-perfect-circle-puscifer/",
-  "acts": [
-   "A Perfect Circle",
-   "Puscifer"
-  ],
-  "matches": [
-   {
-    "act": "A Perfect Circle",
-    "artist": "A Perfect Circle",
-    "plays": 1685,
-    "recentPlays": 10,
-    "lastPlayed": "2026-10-14",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 1715
-   },
-   {
-    "act": "Puscifer",
-    "artist": "Puscifer",
-    "plays": 269,
-    "recentPlays": 1,
-    "lastPlayed": "2026-02-09",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 272
-   }
-  ],
-  "tier": "top",
-  "score": 1715
- },
- {
-  "title": "Tyrkouaz",
-  "date": "2026-11-28",
-  "venue": "RAD SEVEN",
-  "city": "Nagoya",
-  "url": "https://www.creativeman.co.jp/event/tyrkouaz-2nd-one-man-tour/",
-  "acts": [
-   "Tyrkouaz"
-  ],
-  "matches": [
-   {
-    "act": "Tyrkouaz",
-    "artist": "Tyrkouaz",
-    "plays": 304,
-    "recentPlays": 304,
-    "lastPlayed": "2026-08-27",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 1366
-   }
-  ],
-  "tier": "top",
-  "score": 1366
- },
- {
-  "title": "Tyrkouaz",
-  "date": "2026-11-29",
-  "venue": "Yogibo HOLY MOUNTAIN",
-  "city": "Osaka",
-  "url": "https://www.creativeman.co.jp/event/tyrkouaz-2nd-one-man-tour/",
-  "acts": [
-   "Tyrkouaz"
-  ],
-  "matches": [
-   {
-    "act": "Tyrkouaz",
-    "artist": "Tyrkouaz",
-    "plays": 304,
-    "recentPlays": 304,
-    "lastPlayed": "2026-08-27",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 1366
-   }
-  ],
-  "tier": "top",
-  "score": 1366
- },
- {
-  "title": "Tyrkouaz",
+  "title": "Tyrkouaz 2nd One-Man Tour",
   "date": "2026-12-13",
   "venue": "WWW",
   "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/event/tyrkouaz-2nd-one-man-tour/",
+  "url": "https://www-shibuya.jp/schedule/020022.php",
   "acts": [
    "Tyrkouaz"
   ],
@@ -325,232 +27,156 @@
   "score": 1366
  },
  {
-  "title": "FONTAINES D.C.",
-  "date": "2027-01-28",
-  "venue": "SGC HALL ARIAKE",
+  "title": "DREAM MATCH 2026",
+  "date": "2026-12-16",
+  "venue": "Shinjuku LOFT",
   "city": "Tokyo",
-  "url": "https://smash-jpn.com/live/?id=4784",
+  "url": "https://www.loft-prj.co.jp/schedule/loft/schedule/367515",
   "acts": [
-   "FONTAINES D.C."
+   "KANA-BOON",
+   "9mm Parabellum Bullet"
   ],
   "matches": [
    {
-    "act": "FONTAINES D.C.",
-    "artist": "Fontaines D.C.",
-    "plays": 179,
-    "recentPlays": 147,
-    "lastPlayed": "2026-07-14",
-    "country": "IE",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 620
-   }
-  ],
-  "tier": "top",
-  "score": 620
- },
- {
-  "title": "FONTAINES D.C.",
-  "date": "2027-01-29",
-  "venue": "DIAMOND HALL（ダイアモンドホール）",
-  "city": "Nagoya",
-  "url": "https://smash-jpn.com/live/?id=4784",
-  "acts": [
-   "FONTAINES D.C."
-  ],
-  "matches": [
-   {
-    "act": "FONTAINES D.C.",
-    "artist": "Fontaines D.C.",
-    "plays": 179,
-    "recentPlays": 147,
-    "lastPlayed": "2026-07-14",
-    "country": "IE",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 620
-   }
-  ],
-  "tier": "top",
-  "score": 620
- },
- {
-  "title": "FONTAINES D.C.",
-  "date": "2027-01-31",
-  "venue": "なんばHatch",
-  "city": "Osaka",
-  "url": "https://smash-jpn.com/live/?id=4784",
-  "acts": [
-   "FONTAINES D.C."
-  ],
-  "matches": [
-   {
-    "act": "FONTAINES D.C.",
-    "artist": "Fontaines D.C.",
-    "plays": 179,
-    "recentPlays": 147,
-    "lastPlayed": "2026-07-14",
-    "country": "IE",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 620
-   }
-  ],
-  "tier": "top",
-  "score": 620
- },
- {
-  "title": "Fontaines D.C. @ SGC Hall Ariake",
-  "date": "2027-01-28",
-  "venue": "SGC Hall Ariake",
-  "city": "Tokyo",
-  "url": "https://www.songkick.com/concerts/43463832-fontaines-dc-at-sgc-hall-ariake",
-  "acts": [
-   "Fontaines D.C."
-  ],
-  "matches": [
-   {
-    "act": "Fontaines D.C.",
-    "artist": "Fontaines D.C.",
-    "plays": 179,
-    "recentPlays": 147,
-    "lastPlayed": "2026-07-14",
-    "country": "IE",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 620
-   }
-  ],
-  "tier": "top",
-  "score": 620
- },
- {
-  "title": "Fleshwater @ Yogibo Holy Mountain",
-  "date": "2026-11-16",
-  "venue": "Yogibo Holy Mountain",
-  "city": "Osaka",
-  "url": "https://www.songkick.com/concerts/43339995-fleshwater-at-yogibo-holy-mountain",
-  "acts": [
-   "Fleshwater"
-  ],
-  "matches": [
-   {
-    "act": "Fleshwater",
-    "artist": "Fleshwater",
-    "plays": 137,
-    "recentPlays": 111,
-    "lastPlayed": "2026-10-16",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 470
-   }
-  ],
-  "tier": "top",
-  "score": 470
- },
- {
-  "title": "HOME",
-  "date": "2026-11-20",
-  "venue": "WWW X",
-  "city": "Tokyo",
-  "url": "https://smash-jpn.com/live/?id=4772",
-  "acts": [
-   "HOME",
-   "bed"
-  ],
-  "matches": [
-   {
-    "act": "bed",
-    "artist": "Bed",
-    "plays": 44,
-    "recentPlays": 44,
-    "lastPlayed": "2026-07-31",
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
     "country": "JP",
     "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
     "tier": "top",
-    "score": 326
+    "score": 673
+   },
+   {
+    "act": "KANA-BOON",
+    "artist": "KANA-BOON",
+    "plays": 11,
+    "recentPlays": 0,
+    "lastPlayed": "2023-02-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 161
    }
   ],
   "tier": "top",
-  "score": 326
+  "score": 673
  },
  {
-  "title": "PassCode",
+  "title": "LIQUIDROOM 22nd ANNIVERSARY",
   "date": "2026-12-17",
-  "venue": "Zepp DiverCity(TOKYO)",
+  "venue": "LIQUIDROOM",
   "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/event/passcode-unlimited-x/",
+  "url": "https://www.liquidroom.net/schedule/cinemastaff_20261217",
   "acts": [
-   "PassCode"
+   "アルカラ / 9mm Parabellum Bullet / cinema staff",
+   "アルカラ",
+   "9mm Parabellum Bullet",
+   "cinema staff"
   ],
   "matches": [
    {
-    "act": "PassCode",
-    "artist": "PassCode",
-    "plays": 73,
-    "recentPlays": 7,
-    "lastPlayed": "2026-04-11",
+    "act": "9mm Parabellum Bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
     "country": "JP",
     "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
     "tier": "top",
-    "score": 244
+    "score": 673
    }
   ],
   "tier": "top",
-  "score": 244
+  "score": 673
  },
  {
-  "title": "PassCode",
-  "date": "2026-12-18",
-  "venue": "Zepp DiverCity(TOKYO)",
+  "title": "THE KEBABS／9mm parabellum bullet",
+  "date": "2027-01-12",
+  "venue": "LIQUIDROOM",
   "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/event/passcode-unlimited-x/",
+  "url": "https://www.liquidroom.net/schedule/chaosaurorasauce_20270112",
   "acts": [
-   "PassCode"
+   "カオスのオーロラソース",
+   "THE KEBABS",
+   "9mm parabellum bullet"
   ],
   "matches": [
    {
-    "act": "PassCode",
-    "artist": "PassCode",
-    "plays": 73,
-    "recentPlays": 7,
-    "lastPlayed": "2026-04-11",
+    "act": "9mm parabellum bullet",
+    "artist": "9mm Parabellum Bullet",
+    "plays": 424,
+    "recentPlays": 33,
+    "lastPlayed": "2026-03-26",
     "country": "JP",
     "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
     "tier": "top",
-    "score": 244
+    "score": 673
    }
   ],
   "tier": "top",
-  "score": 244
+  "score": 673
  },
  {
-  "title": "The Novembers",
-  "date": "2026-11-20",
+  "title": "LADYBABY 3rd Anniversary \"ODYSSEY\"",
+  "date": "2026-12-01",
   "venue": "Spotify O-EAST",
   "city": "Tokyo",
-  "url": "https://smash-jpn.com/live/?id=4718",
+  "url": "https://shibuya-o.com/east/schedule/",
   "acts": [
+   "LADYBABY"
+  ],
+  "matches": [
+   {
+    "act": "LADYBABY",
+    "artist": "Ladybaby",
+    "plays": 101,
+    "recentPlays": 2,
+    "lastPlayed": "2025-05-13",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 257
+   }
+  ],
+  "tier": "top",
+  "score": 257
+ },
+ {
+  "title": "情けの首 with SYNCHRONICITY",
+  "date": "2026-12-02",
+  "venue": "WWW X",
+  "city": "Tokyo",
+  "url": "https://www-shibuya.jp/schedule/020021.php",
+  "acts": [
+   "downy",
    "The Novembers"
   ],
   "matches": [
+   {
+    "act": "downy",
+    "artist": "downy",
+    "plays": 29,
+    "recentPlays": 24,
+    "lastPlayed": "2026-10-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 251
+   },
    {
     "act": "The Novembers",
     "artist": "THE NOVEMBERS",
@@ -566,186 +192,156 @@
    }
   ],
   "tier": "top",
-  "score": 241
+  "score": 251
  },
  {
-  "title": "The Novembers",
-  "date": "2026-11-25",
-  "venue": "JAMMIN'",
-  "city": "Nagoya",
-  "url": "https://smash-jpn.com/live/?id=4718",
+  "title": "Dead By Inches / Fennel / mele",
+  "date": "2026-12-12",
+  "venue": "Shimokitazawa BASEMENTBAR/THREE",
+  "city": "Tokyo",
+  "url": "https://toos.co.jp/calabash.b1f/event/%f0%9d%90%a7%f0%9d%90%9e%f0%9d%90%af%f0%9d%90%9e%f0%9d%90%ab-%f0%9d%90%ac%f0%9d%90%a6%f0%9d%90%a2%f0%9d%90%a5%f0%9d%90%9e-%f0%9d%90%9a%f0%9d%90%a0%f0%9d%90%9a%f0%9d%90%a2%f0%9d%90%a7-%e7%ac%91/",
   "acts": [
-   "The Novembers"
+   "Dead By Inches",
+   "Fennel",
+   "mele",
+   "THE ティバ",
+   "wanbed",
+   "and more…"
   ],
   "matches": [
    {
-    "act": "The Novembers",
-    "artist": "THE NOVEMBERS",
-    "plays": 37,
-    "recentPlays": 18,
-    "lastPlayed": "2026-01-04",
+    "act": "Fennel",
+    "artist": "Fennel",
+    "plays": 22,
+    "recentPlays": 22,
+    "lastPlayed": "2026-05-08",
     "country": "JP",
     "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
     "tier": "top",
-    "score": 241
+    "score": 238
    }
   ],
   "tier": "top",
-  "score": 241
+  "score": 238
  },
  {
-  "title": "The Novembers",
-  "date": "2026-11-26",
-  "venue": "Music Club JANUS",
-  "city": "Osaka",
-  "url": "https://smash-jpn.com/live/?id=4718",
+  "title": "AA= X-FADER CIRCUIT",
+  "date": "2027-01-15",
+  "venue": "Spotify O-EAST",
+  "city": "Tokyo",
+  "url": "https://shibuya-o.com/east/schedule/",
   "acts": [
-   "The Novembers"
+   "AA=",
+   "The BONEZ"
   ],
   "matches": [
    {
-    "act": "The Novembers",
-    "artist": "THE NOVEMBERS",
-    "plays": 37,
-    "recentPlays": 18,
-    "lastPlayed": "2026-01-04",
+    "act": "AA=",
+    "artist": "AA=",
+    "plays": 22,
+    "recentPlays": 21,
+    "lastPlayed": "2026-03-25",
     "country": "JP",
     "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
     "tier": "top",
-    "score": 241
+    "score": 235
+   },
+   {
+    "act": "The BONEZ",
+    "artist": "The Bonez",
+    "plays": 17,
+    "recentPlays": 9,
+    "lastPlayed": "2025-10-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 1,
+    "lastSeen": "2025-05-06",
+    "tier": "seen",
+    "score": -9806
    }
   ],
   "tier": "top",
-  "score": 241
+  "score": 235
  },
  {
-  "title": "BAND-MAID",
-  "date": "2026-11-13",
-  "venue": "日本武道館",
+  "title": "Have a Nice Day! “CLOUD NINE” RELEASE PARTY 3.0",
+  "date": "2026-12-09",
+  "venue": "Shinjuku LOFT",
   "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/event/band-maid-world-tour-2026-final/",
+  "url": "https://www.loft-prj.co.jp/schedule/loft/schedule/365525",
   "acts": [
-   "BAND-MAID"
+   "Have a Nice Day!",
+   "the bercedes menz"
   ],
   "matches": [
    {
-    "act": "BAND-MAID",
-    "artist": "BAND-MAID",
-    "plays": 89,
-    "recentPlays": 0,
-    "lastPlayed": "2023-09-23",
+    "act": "Have a Nice Day!",
+    "artist": "Have a nice day!",
+    "plays": 17,
+    "recentPlays": 17,
+    "lastPlayed": "2026-11-01",
     "country": "JP",
     "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
     "tier": "top",
-    "score": 239
+    "score": 218
    }
   ],
   "tier": "top",
-  "score": 239
+  "score": 218
  },
  {
-  "title": "BAND-MAID",
-  "date": "2026-11-14",
-  "venue": "日本武道館",
+  "title": "DREAM MATCH 2026",
+  "date": "2026-12-10",
+  "venue": "Shinjuku LOFT",
   "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/event/band-maid-world-tour-2026-final/",
+  "url": "https://www.loft-prj.co.jp/schedule/loft/schedule/363095",
   "acts": [
-   "BAND-MAID"
+   "a flood of circle",
+   "OLD JOE"
   ],
   "matches": [
    {
-    "act": "BAND-MAID",
-    "artist": "BAND-MAID",
-    "plays": 89,
-    "recentPlays": 0,
-    "lastPlayed": "2023-09-23",
+    "act": "a flood of circle",
+    "artist": "a flood of circle",
+    "plays": 44,
+    "recentPlays": 7,
+    "lastPlayed": "2026-02-24",
     "country": "JP",
     "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
     "tier": "top",
-    "score": 239
+    "score": 215
    }
   ],
   "tier": "top",
-  "score": 239
+  "score": 215
  },
  {
-  "title": "GARLICBOYS",
-  "date": "2026-11-23",
-  "venue": "新代田Fever",
+  "title": "“QUE'S COUNTDOWN 2027”",
+  "date": "2026-12-31",
+  "venue": "Shimokitazawa CLUB Que",
   "city": "Tokyo",
-  "url": "https://smash-jpn.com/live/?id=4742",
+  "url": "https://clubque.net/schedule/17507/",
   "acts": [
-   "GARLICBOYS"
+   "極東ファロスキッカー",
+   "赤いくらげ",
+   "ΣØΔØМ",
+   "etc."
   ],
   "matches": [
    {
-    "act": "GARLICBOYS",
-    "artist": "Garlicboys",
-    "plays": 18,
-    "recentPlays": 18,
-    "lastPlayed": "2026-04-27",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 222
-   }
-  ],
-  "tier": "top",
-  "score": 222
- },
- {
-  "title": "GURRIERS",
-  "date": "2027-02-25",
-  "venue": "代官山UNIT",
-  "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/event/gurriers27/",
-  "acts": [
-   "Gurriers"
-  ],
-  "matches": [
-   {
-    "act": "Gurriers",
-    "artist": "Gurriers",
-    "plays": 55,
-    "recentPlays": 55,
-    "lastPlayed": "2026-10-30",
-    "country": "IE",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 220
-   }
-  ],
-  "tier": "top",
-  "score": 220
- },
- {
-  "title": "板歯目",
-  "date": "2027-02-24",
-  "venue": "渋谷 CLUB QUATTRO",
-  "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/event/banshimoku-iai/",
-  "acts": [
-   "板歯目"
-  ],
-  "matches": [
-   {
-    "act": "板歯目",
-    "artist": "板歯目",
+    "act": "赤いくらげ",
+    "artist": "赤いくらげ",
     "plays": 15,
     "recentPlays": 15,
-    "lastPlayed": "2025-06-20",
+    "lastPlayed": "2026-01-30",
     "country": "JP",
     "japanese": true,
     "seenLive": 0,
@@ -758,21 +354,79 @@
   "score": 210
  },
  {
-  "title": "BACK DROP BOMB",
-  "date": "2026-11-13",
-  "venue": "LIQUIDROOM",
+  "title": "hardnuts pre. (what we) pray for vol.1",
+  "date": "2026-12-20",
+  "venue": "Spotify O-nest",
   "city": "Tokyo",
-  "url": "https://smash-jpn.com/live/?id=4730",
+  "url": "https://shibuya-o.com/nest/schedule/hardnuts-pre-what-we-pray-for-vol-1/",
   "acts": [
-   "BACK DROP BOMB"
+   "hardnuts",
+   "Enfants",
+   "BURGER NUDS"
   ],
   "matches": [
    {
-    "act": "BACK DROP BOMB",
-    "artist": "BACK DROP BOMB",
+    "act": "Enfants",
+    "artist": "Enfants",
+    "plays": 15,
+    "recentPlays": 14,
+    "lastPlayed": "2026-05-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 207
+   }
+  ],
+  "tier": "top",
+  "score": 207
+ },
+ {
+  "title": "LUVPOLIS / Enfants",
+  "date": "2026-12-23",
+  "venue": "Shimokitazawa BASEMENTBAR",
+  "city": "Tokyo",
+  "url": "https://toos.co.jp/calabash.b1f/event/transit-02/",
+  "acts": [
+   "LUVPOLIS",
+   "Enfants"
+  ],
+  "matches": [
+   {
+    "act": "Enfants",
+    "artist": "Enfants",
+    "plays": 15,
+    "recentPlays": 14,
+    "lastPlayed": "2026-05-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 207
+   }
+  ],
+  "tier": "top",
+  "score": 207
+ },
+ {
+  "title": "霊障通信 vol.1",
+  "date": "2027-01-26",
+  "venue": "WWW",
+  "city": "Tokyo",
+  "url": "https://www-shibuya.jp/schedule/020153.php",
+  "acts": [
+   "moreru",
+   "明日の叙景"
+  ],
+  "matches": [
+   {
+    "act": "moreru",
+    "artist": "Moreru",
     "plays": 14,
     "recentPlays": 14,
-    "lastPlayed": "2026-02-23",
+    "lastPlayed": "2025-08-06",
     "country": "JP",
     "japanese": true,
     "seenLive": 0,
@@ -785,200 +439,126 @@
   "score": 206
  },
  {
-  "title": "eastern youth",
-  "date": "2026-11-07",
-  "venue": "磔磔(takutaku)",
-  "city": "Kyoto",
-  "url": "https://smash-jpn.com/live/?id=4717",
+  "title": "「少しは社会になじめたか?」 Live Album Release Tour",
+  "date": "2026-12-08",
+  "venue": "Shindaita FEVER",
+  "city": "Tokyo",
+  "url": "https://www.fever-popo.com/schedule/2026/12/0819.html",
   "acts": [
-   "eastern youth"
+   "天国注射",
+   "moreru"
   ],
   "matches": [
    {
-    "act": "eastern youth",
-    "artist": "eastern youth",
+    "act": "moreru",
+    "artist": "Moreru",
+    "plays": 14,
+    "recentPlays": 14,
+    "lastPlayed": "2025-08-06",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 206
+   }
+  ],
+  "tier": "top",
+  "score": 206
+ },
+ {
+  "title": "four dots vol.3",
+  "date": "2026-12-26",
+  "venue": "Spotify O-nest",
+  "city": "Tokyo",
+  "url": "https://shibuya-o.com/nest/schedule/four-dots-vol-3/",
+  "acts": [
+   "cephalo",
+   "テニスコーツ",
+   "SACOYANS"
+  ],
+  "matches": [
+   {
+    "act": "cephalo",
+    "artist": "Cephalo",
     "plays": 13,
-    "recentPlays": 12,
+    "recentPlays": 13,
+    "lastPlayed": "2026-06-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 202
+   }
+  ],
+  "tier": "top",
+  "score": 202
+ },
+ {
+  "title": "nest30th (→) Anniversary \"えんどあ。 × cephalo × リュベンス × RAY\"",
+  "date": "2027-01-28",
+  "venue": "Spotify O-nest",
+  "city": "Tokyo",
+  "url": "https://shibuya-o.com/nest/schedule/nest30th-%e2%86%92-anniversary-%e3%81%88%e3%82%93%e3%81%a9%e3%81%82%e3%80%82-x-cephalo-x-%e3%83%aa%e3%83%a5%e3%83%99%e3%83%b3%e3%82%b9-x-ray/",
+  "acts": [
+   "えんどあ。",
+   "cephalo",
+   "リュベンス",
+   "RAY"
+  ],
+  "matches": [
+   {
+    "act": "cephalo",
+    "artist": "Cephalo",
+    "plays": 13,
+    "recentPlays": 13,
+    "lastPlayed": "2026-06-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 202
+   }
+  ],
+  "tier": "top",
+  "score": 202
+ },
+ {
+  "title": "Tattletale pre. \"LANDSCAPE\" Live at FEVER",
+  "date": "2026-12-21",
+  "venue": "Shindaita FEVER",
+  "city": "Tokyo",
+  "url": "https://www.fever-popo.com/schedule/2026/12/2117.html",
+  "acts": [
+   "Tattletale",
+   "österreich"
+  ],
+  "matches": [
+   {
+    "act": "österreich",
+    "artist": "österreich",
+    "plays": 18,
+    "recentPlays": 11,
     "lastPlayed": "2026-02-09",
     "country": "JP",
     "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
     "tier": "top",
-    "score": 199
+    "score": 201
    }
   ],
   "tier": "top",
-  "score": 199
+  "score": 201
  },
  {
-  "title": "eastern youth",
-  "date": "2026-11-08",
-  "venue": "YEBISU YA PRO",
-  "city": "Okayama",
-  "url": "https://smash-jpn.com/live/?id=4717",
-  "acts": [
-   "eastern youth"
-  ],
-  "matches": [
-   {
-    "act": "eastern youth",
-    "artist": "eastern youth",
-    "plays": 13,
-    "recentPlays": 12,
-    "lastPlayed": "2026-02-09",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "eastern youth",
-  "date": "2026-11-14",
-  "venue": "盛岡 CLUB CHANGE WAVE",
-  "city": "Morioka",
-  "url": "https://smash-jpn.com/live/?id=4717",
-  "acts": [
-   "eastern youth"
-  ],
-  "matches": [
-   {
-    "act": "eastern youth",
-    "artist": "eastern youth",
-    "plays": 13,
-    "recentPlays": 12,
-    "lastPlayed": "2026-02-09",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "eastern youth",
-  "date": "2026-11-15",
-  "venue": "Rensa",
-  "city": "Sendai",
-  "url": "https://smash-jpn.com/live/?id=4717",
-  "acts": [
-   "eastern youth"
-  ],
-  "matches": [
-   {
-    "act": "eastern youth",
-    "artist": "eastern youth",
-    "plays": 13,
-    "recentPlays": 12,
-    "lastPlayed": "2026-02-09",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "eastern youth",
-  "date": "2026-11-28",
-  "venue": "NAGOYA CLUB QUATTRO",
-  "city": "Nagoya",
-  "url": "https://smash-jpn.com/live/?id=4717",
-  "acts": [
-   "eastern youth"
-  ],
-  "matches": [
-   {
-    "act": "eastern youth",
-    "artist": "eastern youth",
-    "plays": 13,
-    "recentPlays": 12,
-    "lastPlayed": "2026-02-09",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "eastern youth",
-  "date": "2026-11-29",
-  "venue": "UMEDA CLUB QUATTRO",
-  "city": "Osaka",
-  "url": "https://smash-jpn.com/live/?id=4717",
-  "acts": [
-   "eastern youth"
-  ],
-  "matches": [
-   {
-    "act": "eastern youth",
-    "artist": "eastern youth",
-    "plays": 13,
-    "recentPlays": 12,
-    "lastPlayed": "2026-02-09",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "eastern youth",
-  "date": "2026-12-12",
-  "venue": "札幌ペニーレーン24",
-  "city": "Sapporo",
-  "url": "https://smash-jpn.com/live/?id=4717",
-  "acts": [
-   "eastern youth"
-  ],
-  "matches": [
-   {
-    "act": "eastern youth",
-    "artist": "eastern youth",
-    "plays": 13,
-    "recentPlays": 12,
-    "lastPlayed": "2026-02-09",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 199
-   }
-  ],
-  "tier": "top",
-  "score": 199
- },
- {
-  "title": "eastern youth",
+  "title": "eastern youth 全国巡業公演 ～ファイトバック現代 2026～",
   "date": "2026-12-19",
   "venue": "Spotify O-EAST",
   "city": "Tokyo",
-  "url": "https://smash-jpn.com/live/?id=4717",
+  "url": "https://shibuya-o.com/east/schedule/",
   "acts": [
    "eastern youth"
   ],
@@ -1001,829 +581,2896 @@
   "score": 199
  },
  {
-  "title": "Fear, and Loathing in Las Vegas",
-  "date": "2026-11-27",
-  "venue": "Zepp Haneda（TOKYO）",
+  "title": "Sable Hills \"Homura Japan Tour 2027\"",
+  "date": "2027-01-17",
+  "venue": "LIQUIDROOM",
   "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/event/falilv-feeling-of-unity/",
+  "url": "https://www.liquidroom.net/schedule/sablehills_20270117",
   "acts": [
-   "Fear, and Loathing in Las Vegas"
+   "Sable Hills",
+   "+ Special Guest"
   ],
   "matches": [
    {
-    "act": "Fear, and Loathing in Las Vegas",
-    "artist": "Fear, and Loathing in Las Vegas",
-    "plays": 33,
-    "recentPlays": 0,
-    "lastPlayed": "2022-11-22",
+    "act": "Sable Hills",
+    "artist": "Sable Hills",
+    "plays": 14,
+    "recentPlays": 8,
+    "lastPlayed": "2026-11-01",
     "country": "JP",
     "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
     "tier": "top",
-    "score": 183
+    "score": 188
    }
   ],
   "tier": "top",
-  "score": 183
+  "score": 188
  },
  {
-  "title": "Festival Mutek 2026 @ MoN Takanawa",
-  "date": "2026-11-20",
-  "until": "2026-11-23",
-  "venue": "MoN Takanawa",
-  "city": "Tokyo",
-  "url": "https://www.songkick.com/festivals/224061-mutek/id/43406328-festival-mutek-2026",
-  "acts": [
-   "Patrick Watson",
-   "Hania Rani",
-   "Max Cooper",
-   "Richie Hawtin",
-   "Mouse on the Keys",
-   "Canblaster",
-   "Grand River",
-   "Robert Lippok",
-   "tamanaramen",
-   "Ryoichi Kurokawa",
-   "Melmann",
-   "Johanna Elina Sulkunen",
-   "Nicolás Melmann",
-   "SEULEMENT",
-   "Lucas Gutierrez",
-   "Ali Demirel"
-  ],
-  "matches": [
-   {
-    "act": "Mouse on the Keys",
-    "artist": "mouse on the keys",
-    "plays": 18,
-    "recentPlays": 1,
-    "lastPlayed": "2025-09-15",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 171
-   }
-  ],
-  "tier": "top",
-  "score": 171
- },
- {
-  "title": "MUCC @ Heaven's Rock VJ-3",
-  "date": "2026-12-02",
-  "venue": "Heaven's Rock VJ-3",
-  "city": "Saitama",
-  "url": "https://www.songkick.com/concerts/43441453-mucc-at-heavens-rock-vj3",
-  "acts": [
-   "MUCC"
-  ],
-  "matches": [
-   {
-    "act": "MUCC",
-    "artist": "MUCC",
-    "plays": 15,
-    "recentPlays": 0,
-    "lastPlayed": "2022-05-17",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 165
-   }
-  ],
-  "tier": "top",
-  "score": 165
- },
- {
-  "title": "MUCC @ Club Quattro / クラブクアトロ",
+  "title": "fulusu New EP “Decay in Vivo” Release Tour 2026",
   "date": "2026-12-14",
-  "venue": "Club Quattro / クラブクアトロ",
+  "venue": "Spotify O-nest",
   "city": "Tokyo",
-  "url": "https://www.songkick.com/concerts/43441469-mucc-at-club-quattro-kurabukuatoro",
+  "url": "https://shibuya-o.com/nest/schedule/fulusu-new-ep-decay-in-vivo-release-tour-2026/",
   "acts": [
-   "MUCC"
+   "fulusu",
+   "PENs+"
   ],
   "matches": [
    {
-    "act": "MUCC",
-    "artist": "MUCC",
-    "plays": 15,
-    "recentPlays": 0,
-    "lastPlayed": "2022-05-17",
+    "act": "fulusu",
+    "artist": "fulusu",
+    "plays": 8,
+    "recentPlays": 8,
+    "lastPlayed": "2026-02-09",
     "country": "JP",
     "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
     "tier": "top",
-    "score": 165
+    "score": 182
    }
   ],
   "tier": "top",
-  "score": 165
+  "score": 182
  },
  {
-  "title": "MUCC @ Club Quattro / クラブクアトロ",
-  "date": "2026-12-22",
-  "venue": "Club Quattro / クラブクアトロ",
-  "city": "Nagoya",
-  "url": "https://www.songkick.com/concerts/43441481-mucc-at-club-quattro-kurabukuatoro",
+  "title": "SawanoHiroyuki[nZk] LIVE 2026",
+  "date": "2026-12-06",
+  "venue": "フェニーチェ堺 大ホール",
+  "city": "Sakai",
+  "url": "https://www.sonymusic.co.jp/artist/sawanohiroyukinzk/info/582544",
   "acts": [
-   "MUCC"
+   "SawanoHiroyuki[nZk]",
+   "澤野弘之",
+   "XAI",
+   "SennaRin",
+   "mizuki",
+   "Laco",
+   "Rei"
   ],
   "matches": [
    {
-    "act": "MUCC",
-    "artist": "MUCC",
-    "plays": 15,
+    "act": "澤野弘之",
+    "artist": "KILL la KILL",
+    "plays": 29,
     "recentPlays": 0,
-    "lastPlayed": "2022-05-17",
+    "lastPlayed": "2021-06-18",
     "country": "JP",
     "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
     "tier": "top",
-    "score": 165
-   }
-  ],
-  "tier": "top",
-  "score": 165
- },
- {
-  "title": "MUCC @ Umeda Club Quattro / 梅田クラブクアトロ",
-  "date": "2026-12-23",
-  "venue": "Umeda Club Quattro / 梅田クラブクアトロ",
-  "city": "Osaka",
-  "url": "https://www.songkick.com/concerts/43441486-mucc-at-umeda-club-quattro-mei-tian-kurabukuatoro",
-  "acts": [
-   "MUCC"
-  ],
-  "matches": [
+    "score": 179
+   },
    {
-    "act": "MUCC",
-    "artist": "MUCC",
-    "plays": 15,
+    "act": "SawanoHiroyuki[nZk]",
+    "artist": "SawanoHiroyuki[nZk]",
+    "plays": 6,
     "recentPlays": 0,
-    "lastPlayed": "2022-05-17",
+    "lastPlayed": "2019-04-27",
     "country": "JP",
     "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
-    "tier": "top",
-    "score": 165
+    "tier": "also",
+    "score": 156
    }
   ],
   "tier": "top",
-  "score": 165
+  "score": 179
  },
  {
-  "title": "MONO NO AWARE",
-  "date": "2026-11-06",
-  "venue": "Spotify O-EAST",
+  "title": "ACIDMAN 2027 hall tour (title not captured)",
+  "date": "2027-02-18",
+  "venue": "Kanadevia Hall",
   "city": "Tokyo",
-  "url": "https://smash-jpn.com/live/?id=4752",
+  "url": "https://eplus.jp/sf/detail/0042180001",
   "acts": [
-   "MONO NO AWARE"
+   "ACIDMAN"
   ],
   "matches": [
    {
-    "act": "MONO NO AWARE",
-    "artist": "Mono No Aware",
-    "plays": 30,
-    "recentPlays": 30,
-    "lastPlayed": "2025-08-04",
-    "country": "DE",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 120
-   }
-  ],
-  "tier": "top",
-  "score": 120
- },
- {
-  "title": "MONO NO AWARE",
-  "date": "2026-12-20",
-  "venue": "千葉LOOK",
-  "city": "Chiba",
-  "url": "https://smash-jpn.com/live/?id=4752",
-  "acts": [
-   "MONO NO AWARE"
-  ],
-  "matches": [
-   {
-    "act": "MONO NO AWARE",
-    "artist": "Mono No Aware",
-    "plays": 30,
-    "recentPlays": 30,
-    "lastPlayed": "2025-08-04",
-    "country": "DE",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 120
-   }
-  ],
-  "tier": "top",
-  "score": 120
- },
- {
-  "title": "MONO NO AWARE",
-  "date": "2027-02-20",
-  "venue": "西川口 Hearts",
-  "city": "Saitama",
-  "url": "https://smash-jpn.com/live/?id=4752",
-  "acts": [
-   "MONO NO AWARE"
-  ],
-  "matches": [
-   {
-    "act": "MONO NO AWARE",
-    "artist": "Mono No Aware",
-    "plays": 30,
-    "recentPlays": 30,
-    "lastPlayed": "2025-08-04",
-    "country": "DE",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 120
-   }
-  ],
-  "tier": "top",
-  "score": 120
- },
- {
-  "title": "MONO NO AWARE",
-  "date": "2027-02-21",
-  "venue": "Thunder Snake ATSUGI",
-  "city": "Yokohama",
-  "url": "https://smash-jpn.com/live/?id=4752",
-  "acts": [
-   "MONO NO AWARE"
-  ],
-  "matches": [
-   {
-    "act": "MONO NO AWARE",
-    "artist": "Mono No Aware",
-    "plays": 30,
-    "recentPlays": 30,
-    "lastPlayed": "2025-08-04",
-    "country": "DE",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 120
-   }
-  ],
-  "tier": "top",
-  "score": 120
- },
- {
-  "title": "Radiohead Japan 2027",
-  "date": "2027-06-08",
-  "venue": "Saitama Super Arena (venue not stated on official page; Saitama per Creativeman calendar)",
-  "city": "Saitama",
-  "url": "https://www.radiohead2027.jp/",
-  "acts": [
-   "Radiohead"
-  ],
-  "matches": [
-   {
-    "act": "Radiohead",
-    "artist": "Radiohead",
-    "plays": 66,
-    "recentPlays": 7,
-    "lastPlayed": "2026-09-26",
-    "country": "GB",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 87
-   }
-  ],
-  "tier": "top",
-  "score": 87
- },
- {
-  "title": "Radiohead Japan 2027",
-  "date": "2027-06-09",
-  "venue": "Saitama Super Arena (venue not stated on official page; Saitama per Creativeman calendar)",
-  "city": "Saitama",
-  "url": "https://www.radiohead2027.jp/",
-  "acts": [
-   "Radiohead"
-  ],
-  "matches": [
-   {
-    "act": "Radiohead",
-    "artist": "Radiohead",
-    "plays": 66,
-    "recentPlays": 7,
-    "lastPlayed": "2026-09-26",
-    "country": "GB",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 87
-   }
-  ],
-  "tier": "top",
-  "score": 87
- },
- {
-  "title": "Radiohead Japan 2027",
-  "date": "2027-06-11",
-  "venue": "Saitama Super Arena (venue not stated on official page; Saitama per Creativeman calendar)",
-  "city": "Saitama",
-  "url": "https://www.radiohead2027.jp/",
-  "acts": [
-   "Radiohead"
-  ],
-  "matches": [
-   {
-    "act": "Radiohead",
-    "artist": "Radiohead",
-    "plays": 66,
-    "recentPlays": 7,
-    "lastPlayed": "2026-09-26",
-    "country": "GB",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 87
-   }
-  ],
-  "tier": "top",
-  "score": 87
- },
- {
-  "title": "Radiohead Japan 2027",
-  "date": "2027-06-12",
-  "venue": "Saitama Super Arena (venue not stated on official page; Saitama per Creativeman calendar)",
-  "city": "Saitama",
-  "url": "https://www.radiohead2027.jp/",
-  "acts": [
-   "Radiohead"
-  ],
-  "matches": [
-   {
-    "act": "Radiohead",
-    "artist": "Radiohead",
-    "plays": 66,
-    "recentPlays": 7,
-    "lastPlayed": "2026-09-26",
-    "country": "GB",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 87
-   }
-  ],
-  "tier": "top",
-  "score": 87
- },
- {
-  "title": "Radiohead Japan 2027",
-  "date": "2027-06-13",
-  "venue": "Saitama Super Arena (venue not stated on official page; Saitama per Creativeman calendar)",
-  "city": "Saitama",
-  "url": "https://www.radiohead2027.jp/",
-  "acts": [
-   "Radiohead"
-  ],
-  "matches": [
-   {
-    "act": "Radiohead",
-    "artist": "Radiohead",
-    "plays": 66,
-    "recentPlays": 7,
-    "lastPlayed": "2026-09-26",
-    "country": "GB",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 87
-   }
-  ],
-  "tier": "top",
-  "score": 87
- },
- {
-  "title": "Radiohead @ Saitama Super Arena / さいたまスーパーアリーナ",
-  "date": "2027-06-08",
-  "venue": "Saitama Super Arena / さいたまスーパーアリーナ",
-  "city": "Saitama",
-  "url": "https://www.songkick.com/concerts/43401946-radiohead-at-saitama-super-arena-saitamasupaarina",
-  "acts": [
-   "Radiohead"
-  ],
-  "matches": [
-   {
-    "act": "Radiohead",
-    "artist": "Radiohead",
-    "plays": 66,
-    "recentPlays": 7,
-    "lastPlayed": "2026-09-26",
-    "country": "GB",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 87
-   }
-  ],
-  "tier": "top",
-  "score": 87
- },
- {
-  "title": "Radiohead @ Saitama Super Arena / さいたまスーパーアリーナ",
-  "date": "2027-06-09",
-  "venue": "Saitama Super Arena / さいたまスーパーアリーナ",
-  "city": "Saitama",
-  "url": "https://www.songkick.com/concerts/43401966-radiohead-at-saitama-super-arena-saitamasupaarina",
-  "acts": [
-   "Radiohead"
-  ],
-  "matches": [
-   {
-    "act": "Radiohead",
-    "artist": "Radiohead",
-    "plays": 66,
-    "recentPlays": 7,
-    "lastPlayed": "2026-09-26",
-    "country": "GB",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 87
-   }
-  ],
-  "tier": "top",
-  "score": 87
- },
- {
-  "title": "Radiohead @ Saitama Super Arena / さいたまスーパーアリーナ",
-  "date": "2027-06-11",
-  "venue": "Saitama Super Arena / さいたまスーパーアリーナ",
-  "city": "Saitama",
-  "url": "https://www.songkick.com/concerts/43401967-radiohead-at-saitama-super-arena-saitamasupaarina",
-  "acts": [
-   "Radiohead"
-  ],
-  "matches": [
-   {
-    "act": "Radiohead",
-    "artist": "Radiohead",
-    "plays": 66,
-    "recentPlays": 7,
-    "lastPlayed": "2026-09-26",
-    "country": "GB",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 87
-   }
-  ],
-  "tier": "top",
-  "score": 87
- },
- {
-  "title": "Radiohead @ Saitama Super Arena / さいたまスーパーアリーナ",
-  "date": "2027-06-12",
-  "venue": "Saitama Super Arena / さいたまスーパーアリーナ",
-  "city": "Saitama",
-  "url": "https://www.songkick.com/concerts/43401975-radiohead-at-saitama-super-arena-saitamasupaarina",
-  "acts": [
-   "Radiohead"
-  ],
-  "matches": [
-   {
-    "act": "Radiohead",
-    "artist": "Radiohead",
-    "plays": 66,
-    "recentPlays": 7,
-    "lastPlayed": "2026-09-26",
-    "country": "GB",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 87
-   }
-  ],
-  "tier": "top",
-  "score": 87
- },
- {
-  "title": "Radiohead @ Saitama Super Arena / さいたまスーパーアリーナ",
-  "date": "2027-06-13",
-  "venue": "Saitama Super Arena / さいたまスーパーアリーナ",
-  "city": "Saitama",
-  "url": "https://www.songkick.com/concerts/43401977-radiohead-at-saitama-super-arena-saitamasupaarina",
-  "acts": [
-   "Radiohead"
-  ],
-  "matches": [
-   {
-    "act": "Radiohead",
-    "artist": "Radiohead",
-    "plays": 66,
-    "recentPlays": 7,
-    "lastPlayed": "2026-09-26",
-    "country": "GB",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 87
-   }
-  ],
-  "tier": "top",
-  "score": 87
- },
- {
-  "title": "rockin'on sonic 2027",
-  "date": "2027-01-09",
-  "venue": "SGC HALL ARIAKE",
-  "city": "Tokyo",
-  "url": "https://rockinonsonic.com/",
-  "acts": [
-   "Bloc Party",
-   "Dinosaur Jr.",
-   "Kim Gordon",
-   "Violet Grohl"
-  ],
-  "matches": [
-   {
-    "act": "Bloc Party",
-    "artist": "Bloc Party",
-    "plays": 28,
-    "recentPlays": 18,
-    "lastPlayed": "2026-05-21",
-    "country": "GB",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 82
-   }
-  ],
-  "tier": "top",
-  "score": 82
- },
- {
-  "title": "SUEDE / BLOC PARTY",
-  "date": "2027-01-12",
-  "venue": "Zepp Osaka Bayside",
-  "city": "Osaka",
-  "url": "https://www.creativeman.co.jp/event/suede-bloc-party_rosonicextra/",
-  "acts": [
-   "Suede",
-   "Bloc Party"
-  ],
-  "matches": [
-   {
-    "act": "Bloc Party",
-    "artist": "Bloc Party",
-    "plays": 28,
-    "recentPlays": 18,
-    "lastPlayed": "2026-05-21",
-    "country": "GB",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 82
-   }
-  ],
-  "tier": "top",
-  "score": 82
- },
- {
-  "title": "rockin'on sonic 2027 @ SGC Hall Ariake",
-  "date": "2027-01-09",
-  "until": "2027-01-10",
-  "venue": "SGC Hall Ariake",
-  "city": "Tokyo",
-  "url": "https://www.songkick.com/festivals/3687540-rockinon-sonic/id/43414423-rockinon-sonic-2027",
-  "acts": [
-   "Bloc Party",
-   "Dinosaur Jr.",
-   "Suede",
-   "Kula Shaker",
-   "Pale Waves",
-   "Kim Gordon",
-   "Dove Ellis",
-   "Violet Grohl"
-  ],
-  "matches": [
-   {
-    "act": "Bloc Party",
-    "artist": "Bloc Party",
-    "plays": 28,
-    "recentPlays": 18,
-    "lastPlayed": "2026-05-21",
-    "country": "GB",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 82
-   }
-  ],
-  "tier": "top",
-  "score": 82
- },
- {
-  "title": "IRON MAIDEN",
-  "date": "2026-11-24",
-  "venue": "K-Arena Yokohama",
-  "city": "Yokohama",
-  "url": "https://www.creativeman.co.jp/artist/2026/11ironmaiden/",
-  "acts": [
-   "Iron Maiden"
-  ],
-  "matches": [
-   {
-    "act": "Iron Maiden",
-    "artist": "Iron Maiden",
-    "plays": 73,
-    "recentPlays": 0,
-    "lastPlayed": "2019-07-14",
-    "country": "GB",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 73
-   }
-  ],
-  "tier": "top",
-  "score": 73
- },
- {
-  "title": "IRON MAIDEN",
-  "date": "2026-11-25",
-  "venue": "K-Arena Yokohama",
-  "city": "Yokohama",
-  "url": "https://www.creativeman.co.jp/artist/2026/11ironmaiden/",
-  "acts": [
-   "Iron Maiden"
-  ],
-  "matches": [
-   {
-    "act": "Iron Maiden",
-    "artist": "Iron Maiden",
-    "plays": 73,
-    "recentPlays": 0,
-    "lastPlayed": "2019-07-14",
-    "country": "GB",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 73
-   }
-  ],
-  "tier": "top",
-  "score": 73
- },
- {
-  "title": "EVANESCENCE",
-  "date": "2026-12-01",
-  "venue": "SGC HALL ARIAKE",
-  "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/artist/2026/12evanescence/",
-  "acts": [
-   "Evanescence",
-   "Ave Mujica"
-  ],
-  "matches": [
-   {
-    "act": "Evanescence",
-    "artist": "Evanescence",
-    "plays": 65,
-    "recentPlays": 2,
-    "lastPlayed": "2025-01-23",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 71
-   }
-  ],
-  "tier": "top",
-  "score": 71
- },
- {
-  "title": "EVANESCENCE",
-  "date": "2026-12-02",
-  "venue": "SGC HALL ARIAKE",
-  "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/artist/2026/12evanescence/",
-  "acts": [
-   "Evanescence",
-   "Ave Mujica"
-  ],
-  "matches": [
-   {
-    "act": "Evanescence",
-    "artist": "Evanescence",
-    "plays": 65,
-    "recentPlays": 2,
-    "lastPlayed": "2025-01-23",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 71
-   }
-  ],
-  "tier": "top",
-  "score": 71
- },
- {
-  "title": "EVANESCENCE",
-  "date": "2026-12-04",
-  "venue": "Zepp Osaka Bayside",
-  "city": "Osaka",
-  "url": "https://www.creativeman.co.jp/artist/2026/12evanescence/",
-  "acts": [
-   "Evanescence",
-   "Ave Mujica"
-  ],
-  "matches": [
-   {
-    "act": "Evanescence",
-    "artist": "Evanescence",
-    "plays": 65,
-    "recentPlays": 2,
-    "lastPlayed": "2025-01-23",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 71
-   }
-  ],
-  "tier": "top",
-  "score": 71
- },
- {
-  "title": "Jane Remover",
-  "date": "2026-12-08",
-  "venue": "duo MUSIC EXCHANGE",
-  "city": "【追加公演】",
-  "url": "https://smash-jpn.com/live/?id=4769",
-  "acts": [
-   "Jane Remover",
-   "dazegxd"
-  ],
-  "matches": [
-   {
-    "act": "Jane Remover",
-    "artist": "Jane Remover",
+    "act": "ACIDMAN",
+    "artist": "ACIDMAN",
     "plays": 12,
-    "recentPlays": 12,
-    "lastPlayed": "2026-07-30",
-    "country": "US",
-    "japanese": false,
+    "recentPlays": 2,
+    "lastPlayed": "2026-03-24",
+    "country": "JP",
+    "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
     "tier": "top",
-    "score": 48
+    "score": 168
    }
   ],
   "tier": "top",
-  "score": 48
+  "score": 168
  },
  {
-  "title": "Jane Remover",
+  "title": "ACIDMAN 2027 hall tour (title not captured)",
+  "date": "2027-05-20",
+  "venue": "ウェスタ川越 ヤオコー大ホール",
+  "city": "Kawagoe",
+  "url": "https://eplus.jp/sf/detail/0042180001",
+  "acts": [
+   "ACIDMAN"
+  ],
+  "matches": [
+   {
+    "act": "ACIDMAN",
+    "artist": "ACIDMAN",
+    "plays": 12,
+    "recentPlays": 2,
+    "lastPlayed": "2026-03-24",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 168
+   }
+  ],
+  "tier": "top",
+  "score": 168
+ },
+ {
+  "title": "ACIDMAN 2027 hall tour (title not captured)",
+  "date": "2027-06-05",
+  "venue": "大阪国際交流センター 大ホール",
+  "city": "Osaka",
+  "url": "https://eplus.jp/sf/detail/0042180001",
+  "acts": [
+   "ACIDMAN"
+  ],
+  "matches": [
+   {
+    "act": "ACIDMAN",
+    "artist": "ACIDMAN",
+    "plays": 12,
+    "recentPlays": 2,
+    "lastPlayed": "2026-03-24",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 168
+   }
+  ],
+  "tier": "top",
+  "score": 168
+ },
+ {
+  "title": "ACIDMAN 2027 hall tour (title not captured)",
+  "date": "2027-06-13",
+  "venue": "りゅーとぴあ 新潟市民芸術文化会館 劇場",
+  "city": "Niigata",
+  "url": "https://eplus.jp/sf/detail/0042180001",
+  "acts": [
+   "ACIDMAN"
+  ],
+  "matches": [
+   {
+    "act": "ACIDMAN",
+    "artist": "ACIDMAN",
+    "plays": 12,
+    "recentPlays": 2,
+    "lastPlayed": "2026-03-24",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 168
+   }
+  ],
+  "tier": "top",
+  "score": 168
+ },
+ {
+  "title": "ACIDMAN 2027 hall tour (title not captured)",
+  "date": "2027-06-20",
+  "venue": "若林区文化センター",
+  "city": "Sendai",
+  "url": "https://eplus.jp/sf/detail/0042180001",
+  "acts": [
+   "ACIDMAN"
+  ],
+  "matches": [
+   {
+    "act": "ACIDMAN",
+    "artist": "ACIDMAN",
+    "plays": 12,
+    "recentPlays": 2,
+    "lastPlayed": "2026-03-24",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 168
+   }
+  ],
+  "tier": "top",
+  "score": 168
+ },
+ {
+  "title": "ACIDMAN 2027 hall tour (title not captured)",
+  "date": "2027-07-03",
+  "venue": "岡谷鋼機名古屋公会堂",
+  "city": "Nagoya",
+  "url": "https://eplus.jp/sf/detail/0042180001",
+  "acts": [
+   "ACIDMAN"
+  ],
+  "matches": [
+   {
+    "act": "ACIDMAN",
+    "artist": "ACIDMAN",
+    "plays": 12,
+    "recentPlays": 2,
+    "lastPlayed": "2026-03-24",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 168
+   }
+  ],
+  "tier": "top",
+  "score": 168
+ },
+ {
+  "title": "ACIDMAN 2027 hall tour (title not captured)",
+  "date": "2027-07-16",
+  "venue": "LINE CUBE SHIBUYA",
+  "city": "Tokyo",
+  "url": "https://eplus.jp/sf/detail/0042180001",
+  "acts": [
+   "ACIDMAN"
+  ],
+  "matches": [
+   {
+    "act": "ACIDMAN",
+    "artist": "ACIDMAN",
+    "plays": 12,
+    "recentPlays": 2,
+    "lastPlayed": "2026-03-24",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 168
+   }
+  ],
+  "tier": "top",
+  "score": 168
+ },
+ {
+  "title": "MONGOL800 ga FESTIVAL What a Wonderful World!! 26",
+  "date": "2026-11-07",
+  "until": "2026-11-08",
+  "venue": "宜野湾港マリーナ・トロピカルビーチ特設会場",
+  "city": "Ginowan",
+  "url": "https://eplus.jp/acidman/",
+  "acts": [
+   "ACIDMAN",
+   "MONGOL800"
+  ],
+  "matches": [
+   {
+    "act": "ACIDMAN",
+    "artist": "ACIDMAN",
+    "plays": 12,
+    "recentPlays": 2,
+    "lastPlayed": "2026-03-24",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 168
+   }
+  ],
+  "tier": "top",
+  "score": 168
+ },
+ {
+  "title": "G-FREAK FACTORY Path to 30th TOUR “TOMOSHIBI” -燈- 福岡公演",
+  "date": "2026-11-22",
+  "venue": "BEAT STATION",
+  "city": "Fukuoka",
+  "url": "https://eplus.jp/acidman/",
+  "acts": [
+   "ACIDMAN",
+   "G-FREAK FACTORY"
+  ],
+  "matches": [
+   {
+    "act": "ACIDMAN",
+    "artist": "ACIDMAN",
+    "plays": 12,
+    "recentPlays": 2,
+    "lastPlayed": "2026-03-24",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 168
+   }
+  ],
+  "tier": "top",
+  "score": 168
+ },
+ {
+  "title": "KATSINA SESSION “SOUTHERN-TOHOKU TOUR 2026” 石巻公演(大木)",
+  "date": "2026-11-29",
+  "city": "Ishinomaki",
+  "url": "https://acidman.jp/liveinfo/katsinasessionsoutherntohokutour2026/",
+  "acts": [
+   "ACIDMAN",
+   "KATSINA SESSION"
+  ],
+  "matches": [
+   {
+    "act": "ACIDMAN",
+    "artist": "ACIDMAN",
+    "plays": 12,
+    "recentPlays": 2,
+    "lastPlayed": "2026-03-24",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 168
+   }
+  ],
+  "tier": "top",
+  "score": 168
+ },
+ {
+  "title": "IWA ROCK",
+  "date": "2026-12-19",
+  "venue": "Zepp DiverCity TOKYO",
+  "city": "Tokyo",
+  "url": "https://acidman.jp/liveinfo/iwarock2026/",
+  "acts": [
+   "ACIDMAN"
+  ],
+  "matches": [
+   {
+    "act": "ACIDMAN",
+    "artist": "ACIDMAN",
+    "plays": 12,
+    "recentPlays": 2,
+    "lastPlayed": "2026-03-24",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 168
+   }
+  ],
+  "tier": "top",
+  "score": 168
+ },
+ {
+  "title": "Reol Secret Live 極秘LEGIT #2 〈西の宴〉",
+  "date": "2026-11-29",
+  "venue": "GORILLA HALL OSAKA",
+  "city": "Osaka",
+  "url": "https://fanplus.co.jp/news/detail/792?lang=en",
+  "acts": [
+   "Reol"
+  ],
+  "matches": [
+   {
+    "act": "Reol",
+    "artist": "Reol",
+    "plays": 8,
+    "recentPlays": 3,
+    "lastPlayed": "2026-10-05",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 167
+   }
+  ],
+  "tier": "top",
+  "score": 167
+ },
+ {
+  "title": "Reol Secret Live 極秘LEGIT #2 〈東の宴〉",
+  "date": "2026-12-15",
+  "venue": "Zepp Shinjuku (TOKYO)",
+  "city": "Tokyo",
+  "url": "https://fanplus.co.jp/news/detail/792?lang=en",
+  "acts": [
+   "Reol"
+  ],
+  "matches": [
+   {
+    "act": "Reol",
+    "artist": "Reol",
+    "plays": 8,
+    "recentPlays": 3,
+    "lastPlayed": "2026-10-05",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 167
+   }
+  ],
+  "tier": "top",
+  "score": 167
+ },
+ {
+  "title": "fox capture plan 2026 tour",
+  "date": "2026-11-08",
+  "venue": "Music Club JANUS",
+  "city": "Osaka",
+  "url": "https://eplus.jp/foxcaptureplan/",
+  "acts": [
+   "fox capture plan"
+  ],
+  "matches": [
+   {
+    "act": "fox capture plan",
+    "artist": "fox capture plan",
+    "plays": 14,
+    "recentPlays": 0,
+    "lastPlayed": "2022-05-05",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 164
+   }
+  ],
+  "tier": "top",
+  "score": 164
+ },
+ {
+  "title": "fox capture plan 2026 tour",
+  "date": "2026-11-28",
+  "venue": "名古屋JAMMIN'",
+  "city": "Nagoya",
+  "url": "https://eplus.jp/foxcaptureplan/",
+  "acts": [
+   "fox capture plan"
+  ],
+  "matches": [
+   {
+    "act": "fox capture plan",
+    "artist": "fox capture plan",
+    "plays": 14,
+    "recentPlays": 0,
+    "lastPlayed": "2022-05-05",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 164
+   }
+  ],
+  "tier": "top",
+  "score": 164
+ },
+ {
+  "title": "fox capture plan 2026 tour",
+  "date": "2026-12-26",
+  "venue": "ヒューリックホール東京",
+  "city": "Tokyo",
+  "url": "https://eplus.jp/foxcaptureplan/",
+  "acts": [
+   "fox capture plan"
+  ],
+  "matches": [
+   {
+    "act": "fox capture plan",
+    "artist": "fox capture plan",
+    "plays": 14,
+    "recentPlays": 0,
+    "lastPlayed": "2022-05-05",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 164
+   }
+  ],
+  "tier": "top",
+  "score": 164
+ },
+ {
+  "title": "小田原三の丸ホール プレミアムコンサートvol.1 溝口肇 with 東儀秀樹「幻想夜」",
+  "date": "2026-12-05",
+  "venue": "小田原三の丸ホール 大ホール",
+  "city": "Odawara",
+  "url": "https://eplus.jp/sf/word/0000000800",
+  "acts": [
+   "溝口肇",
+   "東儀秀樹",
+   "Hajime Mizoguchi"
+  ],
+  "matches": [
+   {
+    "act": "溝口肇",
+    "artist": "Hajime Mizoguchi",
+    "plays": 14,
+    "recentPlays": 0,
+    "lastPlayed": "2021-10-03",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 164
+   },
+   {
+    "act": "Hajime Mizoguchi",
+    "artist": "Hajime Mizoguchi",
+    "plays": 14,
+    "recentPlays": 0,
+    "lastPlayed": "2021-10-03",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 164
+   }
+  ],
+  "tier": "top",
+  "score": 164
+ },
+ {
+  "title": "THE HAPPIES FES",
+  "date": "2026-11-27",
+  "venue": "GORILLA HALL OSAKA",
+  "city": "Osaka",
+  "url": "https://eplus.jp/sf/word/0000036853",
+  "acts": [
+   "THE GAME SHOP"
+  ],
+  "matches": [
+   {
+    "act": "THE GAME SHOP",
+    "artist": "The Game Shop",
+    "plays": 12,
+    "recentPlays": 0,
+    "lastPlayed": "2023-04-23",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 162
+   }
+  ],
+  "tier": "top",
+  "score": 162
+ },
+ {
+  "title": "KANA-BOON Jack in tour 2027",
+  "date": "2027-02-27",
+  "venue": "なんばHatch",
+  "city": "Osaka",
+  "url": "https://www.japanconcerttickets.com/event/kana-boon-in-tokyo-2027-03-26/",
+  "acts": [
+   "KANA-BOON"
+  ],
+  "matches": [
+   {
+    "act": "KANA-BOON",
+    "artist": "KANA-BOON",
+    "plays": 11,
+    "recentPlays": 0,
+    "lastPlayed": "2023-02-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 161
+   }
+  ],
+  "tier": "top",
+  "score": 161
+ },
+ {
+  "title": "KANA-BOON Jack in tour 2027",
+  "date": "2027-02-28",
+  "venue": "なんばHatch",
+  "city": "Osaka",
+  "url": "https://www.japanconcerttickets.com/event/kana-boon-in-tokyo-2027-03-26/",
+  "acts": [
+   "KANA-BOON"
+  ],
+  "matches": [
+   {
+    "act": "KANA-BOON",
+    "artist": "KANA-BOON",
+    "plays": 11,
+    "recentPlays": 0,
+    "lastPlayed": "2023-02-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 161
+   }
+  ],
+  "tier": "top",
+  "score": 161
+ },
+ {
+  "title": "KANA-BOON Jack in tour 2027",
+  "date": "2027-03-04",
+  "venue": "名古屋DIAMOND HALL",
+  "city": "Nagoya",
+  "url": "https://www.japanconcerttickets.com/event/kana-boon-in-tokyo-2027-03-26/",
+  "acts": [
+   "KANA-BOON"
+  ],
+  "matches": [
+   {
+    "act": "KANA-BOON",
+    "artist": "KANA-BOON",
+    "plays": 11,
+    "recentPlays": 0,
+    "lastPlayed": "2023-02-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 161
+   }
+  ],
+  "tier": "top",
+  "score": 161
+ },
+ {
+  "title": "KANA-BOON Jack in tour 2027",
+  "date": "2027-03-05",
+  "venue": "名古屋DIAMOND HALL",
+  "city": "Nagoya",
+  "url": "https://www.japanconcerttickets.com/event/kana-boon-in-tokyo-2027-03-26/",
+  "acts": [
+   "KANA-BOON"
+  ],
+  "matches": [
+   {
+    "act": "KANA-BOON",
+    "artist": "KANA-BOON",
+    "plays": 11,
+    "recentPlays": 0,
+    "lastPlayed": "2023-02-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 161
+   }
+  ],
+  "tier": "top",
+  "score": 161
+ },
+ {
+  "title": "KANA-BOON Jack in tour 2027",
+  "date": "2027-03-25",
+  "venue": "EX THEATER ROPPONGI",
+  "city": "Tokyo",
+  "url": "https://www.japanconcerttickets.com/event/kana-boon-in-tokyo-2027-03-26/",
+  "acts": [
+   "KANA-BOON"
+  ],
+  "matches": [
+   {
+    "act": "KANA-BOON",
+    "artist": "KANA-BOON",
+    "plays": 11,
+    "recentPlays": 0,
+    "lastPlayed": "2023-02-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 161
+   }
+  ],
+  "tier": "top",
+  "score": 161
+ },
+ {
+  "title": "KANA-BOON Jack in tour 2027",
+  "date": "2027-03-26",
+  "venue": "EX THEATER ROPPONGI",
+  "city": "Tokyo",
+  "url": "https://www.japanconcerttickets.com/event/kana-boon-in-tokyo-2027-03-26/",
+  "acts": [
+   "KANA-BOON"
+  ],
+  "matches": [
+   {
+    "act": "KANA-BOON",
+    "artist": "KANA-BOON",
+    "plays": 11,
+    "recentPlays": 0,
+    "lastPlayed": "2023-02-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 161
+   }
+  ],
+  "tier": "top",
+  "score": 161
+ },
+ {
+  "title": "ANI-ROCK FES. 2026 僕のヒーローアカデミア PLUS ULTRA LIVE",
+  "date": "2026-11-23",
+  "venue": "国立代々木競技場 第一体育館",
+  "city": "Tokyo",
+  "url": "https://kanaboon.jp/",
+  "acts": [
+   "KANA-BOON"
+  ],
+  "matches": [
+   {
+    "act": "KANA-BOON",
+    "artist": "KANA-BOON",
+    "plays": 11,
+    "recentPlays": 0,
+    "lastPlayed": "2023-02-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 161
+   }
+  ],
+  "tier": "top",
+  "score": 161
+ },
+ {
+  "title": "BIRTH IN BLUE TOUR 2027",
+  "date": "2027-01-09",
+  "venue": "MACANA",
+  "city": "Sendai",
+  "url": "https://daoko.jp/live/4565/",
+  "acts": [
+   "DAOKO"
+  ],
+  "matches": [
+   {
+    "act": "DAOKO",
+    "artist": "DAOKO",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2023-05-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "BIRTH IN BLUE TOUR 2027",
+  "date": "2027-01-16",
+  "venue": "JAMMIN'",
+  "city": "Nagoya",
+  "url": "https://daoko.jp/live/4565/",
+  "acts": [
+   "DAOKO"
+  ],
+  "matches": [
+   {
+    "act": "DAOKO",
+    "artist": "DAOKO",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2023-05-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "BIRTH IN BLUE TOUR 2027",
+  "date": "2027-01-22",
+  "venue": "LIVEHOUSE evoL",
+  "city": "Fukuoka",
+  "url": "https://daoko.jp/live/4565/",
+  "acts": [
+   "DAOKO"
+  ],
+  "matches": [
+   {
+    "act": "DAOKO",
+    "artist": "DAOKO",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2023-05-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "BIRTH IN BLUE TOUR 2027",
+  "date": "2027-01-24",
+  "venue": "梅田BANGBOO",
+  "city": "Osaka",
+  "url": "https://daoko.jp/live/4565/",
+  "acts": [
+   "DAOKO"
+  ],
+  "matches": [
+   {
+    "act": "DAOKO",
+    "artist": "DAOKO",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2023-05-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "BIRTH IN BLUE TOUR 2027",
+  "date": "2027-01-29",
+  "venue": "恵比寿LIQUIDROOM",
+  "city": "Tokyo",
+  "url": "https://daoko.jp/live/4565/",
+  "acts": [
+   "DAOKO"
+  ],
+  "matches": [
+   {
+    "act": "DAOKO",
+    "artist": "DAOKO",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2023-05-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "BLUE ENCOUNT アルバム完全再現ツアー 2015-2018「still B.E. coming」",
+  "date": "2026-11-06",
+  "venue": "LINE CUBE SHIBUYA",
+  "city": "Tokyo",
+  "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc",
+  "acts": [
+   "BLUE ENCOUNT"
+  ],
+  "matches": [
+   {
+    "act": "BLUE ENCOUNT",
+    "artist": "BLUE ENCOUNT",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2020-11-20",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "BLUE ENCOUNT アルバム完全再現ツアー 2015-2018「still B.E. coming」",
+  "date": "2026-11-21",
+  "venue": "札幌共済ホール",
+  "city": "Sapporo",
+  "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc",
+  "acts": [
+   "BLUE ENCOUNT"
+  ],
+  "matches": [
+   {
+    "act": "BLUE ENCOUNT",
+    "artist": "BLUE ENCOUNT",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2020-11-20",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "BLUE ENCOUNT アルバム完全再現ツアー 2015-2018「still B.E. coming」",
+  "date": "2026-11-23",
+  "venue": "仙台電力ホール",
+  "city": "Sendai",
+  "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc",
+  "acts": [
+   "BLUE ENCOUNT"
+  ],
+  "matches": [
+   {
+    "act": "BLUE ENCOUNT",
+    "artist": "BLUE ENCOUNT",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2020-11-20",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "BLUE ENCOUNT アルバム完全再現ツアー 2015-2018「still B.E. coming」",
+  "date": "2026-11-29",
+  "venue": "NHK大阪ホール",
+  "city": "Osaka",
+  "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc",
+  "acts": [
+   "BLUE ENCOUNT"
+  ],
+  "matches": [
+   {
+    "act": "BLUE ENCOUNT",
+    "artist": "BLUE ENCOUNT",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2020-11-20",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "BLUE ENCOUNT アルバム完全再現ツアー 2015-2018「still B.E. coming」",
+  "date": "2026-11-30",
+  "venue": "NHK大阪ホール",
+  "city": "Osaka",
+  "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc",
+  "acts": [
+   "BLUE ENCOUNT"
+  ],
+  "matches": [
+   {
+    "act": "BLUE ENCOUNT",
+    "artist": "BLUE ENCOUNT",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2020-11-20",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "BLUE ENCOUNT アルバム完全再現ツアー 2015-2018「still B.E. coming」",
+  "date": "2026-12-05",
+  "venue": "岡谷鋼機名古屋公会堂",
+  "city": "Nagoya",
+  "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc",
+  "acts": [
+   "BLUE ENCOUNT"
+  ],
+  "matches": [
+   {
+    "act": "BLUE ENCOUNT",
+    "artist": "BLUE ENCOUNT",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2020-11-20",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "BLUE ENCOUNT アルバム完全再現ツアー 2015-2018「still B.E. coming」",
+  "date": "2026-12-06",
+  "venue": "岡谷鋼機名古屋公会堂",
+  "city": "Nagoya",
+  "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc",
+  "acts": [
+   "BLUE ENCOUNT"
+  ],
+  "matches": [
+   {
+    "act": "BLUE ENCOUNT",
+    "artist": "BLUE ENCOUNT",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2020-11-20",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "BLUE ENCOUNT アルバム完全再現ツアー 2015-2018「still B.E. coming」",
+  "date": "2026-12-11",
+  "venue": "LINE CUBE SHIBUYA",
+  "city": "Tokyo",
+  "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc",
+  "acts": [
+   "BLUE ENCOUNT"
+  ],
+  "matches": [
+   {
+    "act": "BLUE ENCOUNT",
+    "artist": "BLUE ENCOUNT",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2020-11-20",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "青木陽菜 × BLUE ENCOUNT SPECIAL LIVE「BLUE RIOT」",
+  "date": "2026-11-07",
+  "venue": "KT Zepp Yokohama",
+  "city": "Yokohama",
+  "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc",
+  "acts": [
+   "BLUE ENCOUNT",
+   "青木陽菜"
+  ],
+  "matches": [
+   {
+    "act": "BLUE ENCOUNT",
+    "artist": "BLUE ENCOUNT",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2020-11-20",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "田邊駿一弾き語りワンマンツアー \"alone, not alone. 〜chapter3〜\"",
+  "date": "2026-12-07",
+  "venue": "CLUB UPSET NAGOYA IKESHITA",
+  "city": "Nagoya",
+  "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc",
+  "acts": [
+   "BLUE ENCOUNT",
+   "田邊駿一"
+  ],
+  "matches": [
+   {
+    "act": "BLUE ENCOUNT",
+    "artist": "BLUE ENCOUNT",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2020-11-20",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "田邊駿一弾き語りワンマンツアー \"alone, not alone. 〜chapter3〜\"",
+  "date": "2027-01-10",
+  "venue": "cube garden",
+  "city": "Sapporo",
+  "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc",
+  "acts": [
+   "BLUE ENCOUNT",
+   "田邊駿一"
+  ],
+  "matches": [
+   {
+    "act": "BLUE ENCOUNT",
+    "artist": "BLUE ENCOUNT",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2020-11-20",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "田邊駿一弾き語りワンマンツアー \"alone, not alone. 〜chapter3〜\"",
+  "date": "2027-01-11",
+  "venue": "246 LIVEHOUSE GABU",
+  "city": "Osaka",
+  "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc",
+  "acts": [
+   "BLUE ENCOUNT",
+   "田邊駿一"
+  ],
+  "matches": [
+   {
+    "act": "BLUE ENCOUNT",
+    "artist": "BLUE ENCOUNT",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2020-11-20",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "田邊駿一弾き語りワンマンツアー \"alone, not alone. 〜chapter3〜\"",
+  "date": "2027-01-16",
+  "venue": "誰も知らない劇場",
+  "city": "Sendai",
+  "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc",
+  "acts": [
+   "BLUE ENCOUNT",
+   "田邊駿一"
+  ],
+  "matches": [
+   {
+    "act": "BLUE ENCOUNT",
+    "artist": "BLUE ENCOUNT",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2020-11-20",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "田邊駿一弾き語りワンマンツアー \"alone, not alone. 〜chapter3〜\"",
+  "date": "2027-01-20",
+  "venue": "SHIBUYA Pleasure Pleasure",
+  "city": "Tokyo",
+  "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc",
+  "acts": [
+   "BLUE ENCOUNT",
+   "田邊駿一"
+  ],
+  "matches": [
+   {
+    "act": "BLUE ENCOUNT",
+    "artist": "BLUE ENCOUNT",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2020-11-20",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "ANI-ROCK FES. 2026 \"ヒロアカ\" PLUS ULTRA LIVE",
+  "date": "2026-11-22",
+  "venue": "国立代々木競技場 第一体育館",
+  "city": "Tokyo",
+  "url": "https://www.anirockfes.jp/",
+  "acts": [
+   "BLUE ENCOUNT"
+  ],
+  "matches": [
+   {
+    "act": "BLUE ENCOUNT",
+    "artist": "BLUE ENCOUNT",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2020-11-20",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "四星球方向性会議",
+  "date": "2026-12-18",
+  "venue": "名古屋 DIAMOND HALL",
+  "city": "Nagoya",
+  "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc",
+  "acts": [
+   "四星球",
+   "BLUE ENCOUNT"
+  ],
+  "matches": [
+   {
+    "act": "BLUE ENCOUNT",
+    "artist": "BLUE ENCOUNT",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2020-11-20",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "MERRY ROCK PARADE 2026",
+  "date": "2026-12-19",
+  "venue": "ポートメッセなごや 1号館〜3号館",
+  "city": "Nagoya",
+  "url": "http://www.merryrockparade.jp/",
+  "acts": [
+   "BLUE ENCOUNT"
+  ],
+  "matches": [
+   {
+    "act": "BLUE ENCOUNT",
+    "artist": "BLUE ENCOUNT",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2020-11-20",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "COUNTDOWN JAPAN 26/27",
+  "date": "2026-12-31",
+  "venue": "幕張メッセ",
+  "city": "Chiba",
+  "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc",
+  "acts": [
+   "BLUE ENCOUNT"
+  ],
+  "matches": [
+   {
+    "act": "BLUE ENCOUNT",
+    "artist": "BLUE ENCOUNT",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2020-11-20",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "Hype Like it!",
+  "date": "2027-01-24",
+  "venue": "幕張メッセ国際展示場1・2・3ホール",
+  "city": "Chiba",
+  "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc",
+  "acts": [
+   "BLUE ENCOUNT"
+  ],
+  "matches": [
+   {
+    "act": "BLUE ENCOUNT",
+    "artist": "BLUE ENCOUNT",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2020-11-20",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "FUKUOKA MUSIC FES.2027",
+  "date": "2027-01-30",
+  "venue": "みずほPayPayドーム福岡",
+  "city": "Fukuoka",
+  "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc",
+  "acts": [
+   "BLUE ENCOUNT"
+  ],
+  "matches": [
+   {
+    "act": "BLUE ENCOUNT",
+    "artist": "BLUE ENCOUNT",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2020-11-20",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "ROCK or LIVE！-ロックお笑い部- ひめじスペシャル",
+  "date": "2027-01-31",
+  "venue": "大和工業アリーナ姫路",
+  "city": "Himeji",
+  "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc",
+  "acts": [
+   "BLUE ENCOUNT"
+  ],
+  "matches": [
+   {
+    "act": "BLUE ENCOUNT",
+    "artist": "BLUE ENCOUNT",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2020-11-20",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "LISANI！TOKYO 2027",
+  "date": "2027-02-20",
+  "venue": "TOYOTA ARENA TOKYO",
+  "city": "Tokyo",
+  "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc",
+  "acts": [
+   "BLUE ENCOUNT"
+  ],
+  "matches": [
+   {
+    "act": "BLUE ENCOUNT",
+    "artist": "BLUE ENCOUNT",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2020-11-20",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "ANISAMA FUKUOKA 2027",
+  "date": "2027-03-14",
+  "venue": "みずほPayPayドーム福岡",
+  "city": "Fukuoka",
+  "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc",
+  "acts": [
+   "BLUE ENCOUNT"
+  ],
+  "matches": [
+   {
+    "act": "BLUE ENCOUNT",
+    "artist": "BLUE ENCOUNT",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2020-11-20",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "BIRTH IN BLUE TOUR 2027",
+  "date": "2027-01-29",
+  "venue": "LIQUIDROOM",
+  "city": "Tokyo",
+  "url": "https://www.liquidroom.net/schedule/daoko_20270129",
+  "acts": [
+   "Daoko"
+  ],
+  "matches": [
+   {
+    "act": "Daoko",
+    "artist": "DAOKO",
+    "plays": 10,
+    "recentPlays": 0,
+    "lastPlayed": "2023-05-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 160
+   }
+  ],
+  "tier": "top",
+  "score": 160
+ },
+ {
+  "title": "凛として時雨 TOUR 2749025 TURBO SAURUS",
+  "date": "2027-03-19",
+  "venue": "仙台Rensa",
+  "city": "Sendai",
+  "url": "https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221",
+  "acts": [
+   "凛として時雨"
+  ],
+  "matches": [
+   {
+    "act": "凛として時雨",
+    "artist": "凛として時雨",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2021-08-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "凛として時雨 TOUR 2749025 TURBO SAURUS",
+  "date": "2027-03-20",
+  "venue": "青森QUARTER",
+  "city": "Aomori",
+  "url": "https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221",
+  "acts": [
+   "凛として時雨"
+  ],
+  "matches": [
+   {
+    "act": "凛として時雨",
+    "artist": "凛として時雨",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2021-08-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "凛として時雨 TOUR 2749025 TURBO SAURUS",
+  "date": "2027-03-27",
+  "venue": "小樽GOLDSTONE",
+  "city": "Otaru",
+  "url": "https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221",
+  "acts": [
+   "凛として時雨"
+  ],
+  "matches": [
+   {
+    "act": "凛として時雨",
+    "artist": "凛として時雨",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2021-08-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "凛として時雨 TOUR 2749025 TURBO SAURUS",
+  "date": "2027-03-28",
+  "venue": "旭川CASINO DRIVE",
+  "city": "Asahikawa",
+  "url": "https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221",
+  "acts": [
+   "凛として時雨"
+  ],
+  "matches": [
+   {
+    "act": "凛として時雨",
+    "artist": "凛として時雨",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2021-08-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "凛として時雨 TOUR 2749025 TURBO SAURUS",
+  "date": "2027-04-09",
+  "venue": "SGC HALL ARIAKE",
+  "city": "Tokyo",
+  "url": "https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221",
+  "acts": [
+   "凛として時雨"
+  ],
+  "matches": [
+   {
+    "act": "凛として時雨",
+    "artist": "凛として時雨",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2021-08-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "凛として時雨 TOUR 2749025 TURBO SAURUS",
+  "date": "2027-04-16",
+  "venue": "名古屋CLUB QUATTRO",
+  "city": "Nagoya",
+  "url": "https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221",
+  "acts": [
+   "凛として時雨"
+  ],
+  "matches": [
+   {
+    "act": "凛として時雨",
+    "artist": "凛として時雨",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2021-08-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "凛として時雨 TOUR 2749025 TURBO SAURUS",
+  "date": "2027-04-24",
+  "venue": "広島CLUB QUATTRO",
+  "city": "Hiroshima",
+  "url": "https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221",
+  "acts": [
+   "凛として時雨"
+  ],
+  "matches": [
+   {
+    "act": "凛として時雨",
+    "artist": "凛として時雨",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2021-08-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "凛として時雨 TOUR 2749025 TURBO SAURUS",
+  "date": "2027-04-25",
+  "venue": "岡山YEBISU YA PRO",
+  "city": "Okayama",
+  "url": "https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221",
+  "acts": [
+   "凛として時雨"
+  ],
+  "matches": [
+   {
+    "act": "凛として時雨",
+    "artist": "凛として時雨",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2021-08-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "凛として時雨 TOUR 2749025 TURBO SAURUS",
+  "date": "2027-05-13",
+  "venue": "心斎橋BIGCAT",
+  "city": "Osaka",
+  "url": "https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221",
+  "acts": [
+   "凛として時雨"
+  ],
+  "matches": [
+   {
+    "act": "凛として時雨",
+    "artist": "凛として時雨",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2021-08-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "凛として時雨 TOUR 2749025 TURBO SAURUS",
+  "date": "2027-05-15",
+  "venue": "KYOTO MUSE",
+  "city": "Kyoto",
+  "url": "https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221",
+  "acts": [
+   "凛として時雨"
+  ],
+  "matches": [
+   {
+    "act": "凛として時雨",
+    "artist": "凛として時雨",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2021-08-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "凛として時雨 TOUR 2749025 TURBO SAURUS",
+  "date": "2027-05-16",
+  "venue": "EVANS CASTLE HALL",
+  "city": "Nara",
+  "url": "https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221",
+  "acts": [
+   "凛として時雨"
+  ],
+  "matches": [
+   {
+    "act": "凛として時雨",
+    "artist": "凛として時雨",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2021-08-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "凛として時雨 TOUR 2749025 TURBO SAURUS",
+  "date": "2027-05-22",
+  "venue": "新潟LOTS",
+  "city": "Niigata",
+  "url": "https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221",
+  "acts": [
+   "凛として時雨"
+  ],
+  "matches": [
+   {
+    "act": "凛として時雨",
+    "artist": "凛として時雨",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2021-08-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "凛として時雨 TOUR 2749025 TURBO SAURUS",
+  "date": "2027-05-27",
+  "venue": "神戸Harbor Studio",
+  "city": "Kobe",
+  "url": "https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221",
+  "acts": [
+   "凛として時雨"
+  ],
+  "matches": [
+   {
+    "act": "凛として時雨",
+    "artist": "凛として時雨",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2021-08-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "凛として時雨 TOUR 2749025 TURBO SAURUS",
+  "date": "2027-05-29",
+  "venue": "金沢EIGHT HALL",
+  "city": "Kanazawa",
+  "url": "https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221",
+  "acts": [
+   "凛として時雨"
+  ],
+  "matches": [
+   {
+    "act": "凛として時雨",
+    "artist": "凛として時雨",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2021-08-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "凛として時雨 TOUR 2749025 TURBO SAURUS",
+  "date": "2027-05-30",
+  "venue": "長野CLUB JUNK BOX",
+  "city": "Nagano",
+  "url": "https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221",
+  "acts": [
+   "凛として時雨"
+  ],
+  "matches": [
+   {
+    "act": "凛として時雨",
+    "artist": "凛として時雨",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2021-08-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "凛として時雨 TOUR 2749025 TURBO SAURUS",
+  "date": "2027-06-03",
+  "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+  "city": "Saitama",
+  "url": "https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221",
+  "acts": [
+   "凛として時雨"
+  ],
+  "matches": [
+   {
+    "act": "凛として時雨",
+    "artist": "凛として時雨",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2021-08-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "凛として時雨 TOUR 2749025 TURBO SAURUS",
+  "date": "2027-06-08",
+  "venue": "水戸LIGHT HOUSE",
+  "city": "Mito",
+  "url": "https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221",
+  "acts": [
+   "凛として時雨"
+  ],
+  "matches": [
+   {
+    "act": "凛として時雨",
+    "artist": "凛として時雨",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2021-08-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "凛として時雨 TOUR 2749025 TURBO SAURUS",
+  "date": "2027-06-12",
+  "venue": "高松MONSTER",
+  "city": "Takamatsu",
+  "url": "https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221",
+  "acts": [
+   "凛として時雨"
+  ],
+  "matches": [
+   {
+    "act": "凛として時雨",
+    "artist": "凛として時雨",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2021-08-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "凛として時雨 TOUR 2749025 TURBO SAURUS",
+  "date": "2027-06-13",
+  "venue": "松山WstudioRED",
+  "city": "Matsuyama",
+  "url": "https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221",
+  "acts": [
+   "凛として時雨"
+  ],
+  "matches": [
+   {
+    "act": "凛として時雨",
+    "artist": "凛として時雨",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2021-08-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "凛として時雨 TOUR 2749025 TURBO SAURUS",
+  "date": "2027-06-18",
+  "venue": "DRUM LOGOS",
+  "city": "Fukuoka",
+  "url": "https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221",
+  "acts": [
+   "凛として時雨"
+  ],
+  "matches": [
+   {
+    "act": "凛として時雨",
+    "artist": "凛として時雨",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2021-08-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "凛として時雨 TOUR 2749025 TURBO SAURUS",
+  "date": "2027-06-19",
+  "venue": "長崎DRUM Be-7",
+  "city": "Nagasaki",
+  "url": "https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221",
+  "acts": [
+   "凛として時雨"
+  ],
+  "matches": [
+   {
+    "act": "凛として時雨",
+    "artist": "凛として時雨",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2021-08-17",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "BUMP OF CHICKEN TOUR 2026-2027 Ratio Clavis",
+  "date": "2026-11-07",
+  "venue": "GLION ARENA KOBE",
+  "city": "Kobe",
+  "url": "https://www.bumpofchicken.com/",
+  "acts": [
+   "BUMP OF CHICKEN"
+  ],
+  "matches": [
+   {
+    "act": "BUMP OF CHICKEN",
+    "artist": "BUMP OF CHICKEN",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-01-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "BUMP OF CHICKEN TOUR 2026-2027 Ratio Clavis",
+  "date": "2026-11-08",
+  "venue": "GLION ARENA KOBE",
+  "city": "Kobe",
+  "url": "https://www.bumpofchicken.com/",
+  "acts": [
+   "BUMP OF CHICKEN"
+  ],
+  "matches": [
+   {
+    "act": "BUMP OF CHICKEN",
+    "artist": "BUMP OF CHICKEN",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-01-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "BUMP OF CHICKEN TOUR 2026-2027 Ratio Clavis",
+  "date": "2026-11-21",
+  "venue": "あなぶきアリーナ香川",
+  "city": "Takamatsu",
+  "url": "https://www.bumpofchicken.com/",
+  "acts": [
+   "BUMP OF CHICKEN"
+  ],
+  "matches": [
+   {
+    "act": "BUMP OF CHICKEN",
+    "artist": "BUMP OF CHICKEN",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-01-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "BUMP OF CHICKEN TOUR 2026-2027 Ratio Clavis",
+  "date": "2026-11-22",
+  "venue": "あなぶきアリーナ香川",
+  "city": "Takamatsu",
+  "url": "https://www.bumpofchicken.com/",
+  "acts": [
+   "BUMP OF CHICKEN"
+  ],
+  "matches": [
+   {
+    "act": "BUMP OF CHICKEN",
+    "artist": "BUMP OF CHICKEN",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-01-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "BUMP OF CHICKEN TOUR 2026-2027 Ratio Clavis",
+  "date": "2026-11-28",
+  "venue": "広島グリーンアリーナ",
+  "city": "Hiroshima",
+  "url": "https://www.bumpofchicken.com/",
+  "acts": [
+   "BUMP OF CHICKEN"
+  ],
+  "matches": [
+   {
+    "act": "BUMP OF CHICKEN",
+    "artist": "BUMP OF CHICKEN",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-01-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "BUMP OF CHICKEN TOUR 2026-2027 Ratio Clavis",
+  "date": "2026-11-29",
+  "venue": "広島グリーンアリーナ",
+  "city": "Hiroshima",
+  "url": "https://www.bumpofchicken.com/",
+  "acts": [
+   "BUMP OF CHICKEN"
+  ],
+  "matches": [
+   {
+    "act": "BUMP OF CHICKEN",
+    "artist": "BUMP OF CHICKEN",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-01-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "BUMP OF CHICKEN TOUR 2026-2027 Ratio Clavis",
+  "date": "2026-12-12",
+  "venue": "マリンメッセ福岡A館",
+  "city": "Fukuoka",
+  "url": "https://www.bumpofchicken.com/",
+  "acts": [
+   "BUMP OF CHICKEN"
+  ],
+  "matches": [
+   {
+    "act": "BUMP OF CHICKEN",
+    "artist": "BUMP OF CHICKEN",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-01-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "BUMP OF CHICKEN TOUR 2026-2027 Ratio Clavis",
+  "date": "2026-12-13",
+  "venue": "マリンメッセ福岡A館",
+  "city": "Fukuoka",
+  "url": "https://www.bumpofchicken.com/",
+  "acts": [
+   "BUMP OF CHICKEN"
+  ],
+  "matches": [
+   {
+    "act": "BUMP OF CHICKEN",
+    "artist": "BUMP OF CHICKEN",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-01-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "BUMP OF CHICKEN TOUR 2026-2027 Ratio Clavis",
+  "date": "2026-12-19",
+  "venue": "IGアリーナ",
+  "city": "Nagoya",
+  "url": "https://www.bumpofchicken.com/",
+  "acts": [
+   "BUMP OF CHICKEN"
+  ],
+  "matches": [
+   {
+    "act": "BUMP OF CHICKEN",
+    "artist": "BUMP OF CHICKEN",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-01-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "BUMP OF CHICKEN TOUR 2026-2027 Ratio Clavis",
+  "date": "2026-12-20",
+  "venue": "IGアリーナ",
+  "city": "Nagoya",
+  "url": "https://www.bumpofchicken.com/",
+  "acts": [
+   "BUMP OF CHICKEN"
+  ],
+  "matches": [
+   {
+    "act": "BUMP OF CHICKEN",
+    "artist": "BUMP OF CHICKEN",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-01-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "BUMP OF CHICKEN TOUR 2026-2027 Ratio Clavis",
+  "date": "2027-01-23",
+  "venue": "京セラドーム大阪",
+  "city": "Osaka",
+  "url": "https://www.bumpofchicken.com/",
+  "acts": [
+   "BUMP OF CHICKEN"
+  ],
+  "matches": [
+   {
+    "act": "BUMP OF CHICKEN",
+    "artist": "BUMP OF CHICKEN",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-01-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "BUMP OF CHICKEN TOUR 2026-2027 Ratio Clavis",
+  "date": "2027-01-24",
+  "venue": "京セラドーム大阪",
+  "city": "Osaka",
+  "url": "https://www.bumpofchicken.com/",
+  "acts": [
+   "BUMP OF CHICKEN"
+  ],
+  "matches": [
+   {
+    "act": "BUMP OF CHICKEN",
+    "artist": "BUMP OF CHICKEN",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-01-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "BUMP OF CHICKEN TOUR 2026-2027 Ratio Clavis",
+  "date": "2027-02-06",
+  "venue": "東京ドーム",
+  "city": "Tokyo",
+  "url": "https://www.bumpofchicken.com/",
+  "acts": [
+   "BUMP OF CHICKEN"
+  ],
+  "matches": [
+   {
+    "act": "BUMP OF CHICKEN",
+    "artist": "BUMP OF CHICKEN",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-01-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "BUMP OF CHICKEN TOUR 2026-2027 Ratio Clavis",
+  "date": "2027-02-07",
+  "venue": "東京ドーム",
+  "city": "Tokyo",
+  "url": "https://www.bumpofchicken.com/",
+  "acts": [
+   "BUMP OF CHICKEN"
+  ],
+  "matches": [
+   {
+    "act": "BUMP OF CHICKEN",
+    "artist": "BUMP OF CHICKEN",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-01-02",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "SUPER BEAVER 都会のラクダ TOUR 2026-2027 〜ラクダの人生、ゴーゴーゴー〜",
+  "date": "2027-01-16",
+  "venue": "Kアリーナ横浜",
+  "city": "Yokohama",
+  "url": "https://realsound.jp/2026/03/post-2341581.html",
+  "acts": [
+   "SUPER BEAVER"
+  ],
+  "matches": [
+   {
+    "act": "SUPER BEAVER",
+    "artist": "SUPER BEAVER",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-02-13",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "SUPER BEAVER 都会のラクダ TOUR 2026-2027 〜ラクダの人生、ゴーゴーゴー〜",
+  "date": "2027-01-17",
+  "venue": "Kアリーナ横浜",
+  "city": "Yokohama",
+  "url": "https://realsound.jp/2026/03/post-2341581.html",
+  "acts": [
+   "SUPER BEAVER"
+  ],
+  "matches": [
+   {
+    "act": "SUPER BEAVER",
+    "artist": "SUPER BEAVER",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-02-13",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "SUPER BEAVER 都会のラクダ TOUR 2026-2027 〜ラクダの人生、ゴーゴーゴー〜",
+  "date": "2027-01-23",
+  "venue": "グランメッセ熊本",
+  "city": "Kumamoto",
+  "url": "https://realsound.jp/2026/03/post-2341581.html",
+  "acts": [
+   "SUPER BEAVER"
+  ],
+  "matches": [
+   {
+    "act": "SUPER BEAVER",
+    "artist": "SUPER BEAVER",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-02-13",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "SUPER BEAVER 都会のラクダ TOUR 2026-2027 〜ラクダの人生、ゴーゴーゴー〜",
+  "date": "2027-01-24",
+  "venue": "グランメッセ熊本",
+  "city": "Kumamoto",
+  "url": "https://realsound.jp/2026/03/post-2341581.html",
+  "acts": [
+   "SUPER BEAVER"
+  ],
+  "matches": [
+   {
+    "act": "SUPER BEAVER",
+    "artist": "SUPER BEAVER",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-02-13",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "SUPER BEAVER 都会のラクダ TOUR 2026-2027 〜ラクダの人生、ゴーゴーゴー〜",
+  "date": "2027-02-13",
+  "venue": "あなぶきアリーナ香川",
+  "city": "Takamatsu",
+  "url": "https://realsound.jp/2026/03/post-2341581.html",
+  "acts": [
+   "SUPER BEAVER"
+  ],
+  "matches": [
+   {
+    "act": "SUPER BEAVER",
+    "artist": "SUPER BEAVER",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-02-13",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "SUPER BEAVER 都会のラクダ TOUR 2026-2027 〜ラクダの人生、ゴーゴーゴー〜",
+  "date": "2027-02-14",
+  "venue": "あなぶきアリーナ香川",
+  "city": "Takamatsu",
+  "url": "https://realsound.jp/2026/03/post-2341581.html",
+  "acts": [
+   "SUPER BEAVER"
+  ],
+  "matches": [
+   {
+    "act": "SUPER BEAVER",
+    "artist": "SUPER BEAVER",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-02-13",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "SUPER BEAVER 都会のラクダ TOUR 2026-2027 〜ラクダの人生、ゴーゴーゴー〜",
+  "date": "2027-02-20",
+  "venue": "和歌山ビッグホエール",
+  "city": "Wakayama",
+  "url": "https://realsound.jp/2026/03/post-2341581.html",
+  "acts": [
+   "SUPER BEAVER"
+  ],
+  "matches": [
+   {
+    "act": "SUPER BEAVER",
+    "artist": "SUPER BEAVER",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-02-13",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "SUPER BEAVER 都会のラクダ TOUR 2026-2027 〜ラクダの人生、ゴーゴーゴー〜",
+  "date": "2027-02-21",
+  "venue": "和歌山ビッグホエール",
+  "city": "Wakayama",
+  "url": "https://realsound.jp/2026/03/post-2341581.html",
+  "acts": [
+   "SUPER BEAVER"
+  ],
+  "matches": [
+   {
+    "act": "SUPER BEAVER",
+    "artist": "SUPER BEAVER",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-02-13",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "SUPER BEAVER 都会のラクダ TOUR 2026-2027 〜ラクダの人生、ゴーゴーゴー〜",
+  "date": "2027-03-06",
+  "venue": "朱鷺メッセ新潟コンベンションセンター",
+  "city": "Niigata",
+  "url": "https://realsound.jp/2026/03/post-2341581.html",
+  "acts": [
+   "SUPER BEAVER"
+  ],
+  "matches": [
+   {
+    "act": "SUPER BEAVER",
+    "artist": "SUPER BEAVER",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-02-13",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "SUPER BEAVER 都会のラクダ TOUR 2026-2027 〜ラクダの人生、ゴーゴーゴー〜",
+  "date": "2027-03-07",
+  "venue": "朱鷺メッセ新潟コンベンションセンター",
+  "city": "Niigata",
+  "url": "https://realsound.jp/2026/03/post-2341581.html",
+  "acts": [
+   "SUPER BEAVER"
+  ],
+  "matches": [
+   {
+    "act": "SUPER BEAVER",
+    "artist": "SUPER BEAVER",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-02-13",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "SUPER BEAVER 都会のラクダ TOUR 2026-2027 〜ラクダの人生、ゴーゴーゴー〜",
+  "date": "2027-03-20",
+  "venue": "三重県営サンアリーナ",
+  "city": "Ise",
+  "url": "https://realsound.jp/2026/03/post-2341581.html",
+  "acts": [
+   "SUPER BEAVER"
+  ],
+  "matches": [
+   {
+    "act": "SUPER BEAVER",
+    "artist": "SUPER BEAVER",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-02-13",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "SUPER BEAVER 都会のラクダ TOUR 2026-2027 〜ラクダの人生、ゴーゴーゴー〜",
+  "date": "2027-03-21",
+  "venue": "三重県営サンアリーナ",
+  "city": "Ise",
+  "url": "https://realsound.jp/2026/03/post-2341581.html",
+  "acts": [
+   "SUPER BEAVER"
+  ],
+  "matches": [
+   {
+    "act": "SUPER BEAVER",
+    "artist": "SUPER BEAVER",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-02-13",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "SUPER BEAVER 都会のラクダSP at 日本武道館 〜ラクダフロムトウキョウジャパン〜",
+  "date": "2027-03-31",
+  "until": "2027-04-01",
+  "venue": "日本武道館",
+  "city": "Tokyo",
+  "url": "https://live-events.a-jp.org/soko/a/acv/145/2027/",
+  "acts": [
+   "SUPER BEAVER"
+  ],
+  "matches": [
+   {
+    "act": "SUPER BEAVER",
+    "artist": "SUPER BEAVER",
+    "plays": 8,
+    "recentPlays": 0,
+    "lastPlayed": "2019-02-13",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "top",
+    "score": 158
+   }
+  ],
+  "tier": "top",
+  "score": 158
+ },
+ {
+  "title": "Jane Remover Live Exhibit asia 2026",
   "date": "2026-12-09",
   "venue": "WWW X",
   "city": "Tokyo",
-  "url": "https://smash-jpn.com/live/?id=4769",
+  "url": "https://www-shibuya.jp/schedule/020077.php",
   "acts": [
    "Jane Remover",
-   "dazegxd"
+   "Support Act：dazegxd"
   ],
   "matches": [
    {
@@ -1844,200 +3491,880 @@
   "score": 48
  },
  {
-  "title": "The Sickness & the Greatest Hits",
-  "date": "2027-05-19",
-  "venue": "PIA Arena MM",
-  "city": "Yokohama",
-  "url": "https://www.livenationhip.co.jp/all-events/disturbed-tickets-ae180",
-  "acts": [
-   "Disturbed"
-  ],
-  "matches": [
-   {
-    "act": "Disturbed",
-    "artist": "Disturbed",
-    "plays": 48,
-    "recentPlays": 0,
-    "lastPlayed": "2024-02-26",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "top",
-    "score": 48
-   }
-  ],
-  "tier": "top",
-  "score": 48
- },
- {
-  "title": "Disturbed @ PIA Arena",
-  "date": "2027-05-19",
-  "venue": "PIA Arena",
+  "title": "JasonAndrew presents.\"10YEARS DAWN\"NewSingle「Time's Up...」Release Tour Final",
+  "date": "2027-01-19",
+  "venue": "Shindaita FEVER",
   "city": "Tokyo",
-  "url": "https://www.songkick.com/concerts/43489480-disturbed-at-pia-arena",
+  "url": "https://www.fever-popo.com/schedule/2027/01/1918.html",
   "acts": [
-   "Disturbed"
+   "JasonAndrew",
+   "Crystal Lake"
   ],
   "matches": [
    {
-    "act": "Disturbed",
-    "artist": "Disturbed",
-    "plays": 48,
-    "recentPlays": 0,
-    "lastPlayed": "2024-02-26",
-    "country": "US",
+    "act": "Crystal Lake",
+    "artist": "Crystal Lake",
+    "plays": 42,
+    "recentPlays": 1,
+    "lastPlayed": "2026-01-03",
+    "country": "IL",
     "japanese": false,
     "seenLive": 0,
     "lastSeen": "",
     "tier": "top",
-    "score": 48
+    "score": 45
    }
   ],
   "tier": "top",
-  "score": 48
+  "score": 45
  },
  {
-  "title": "DIE SPITZ",
-  "date": "2026-12-14",
-  "venue": "代官山 SPACE ODD",
+  "title": "椎名林檎と彼奴等と試す煩悩菩提",
+  "date": "2026-11-07",
+  "venue": "あきた芸術劇場ミルハス 大ホール",
+  "city": "Akita",
+  "url": "https://lp.p.pia.jp/article/news/489069/index.html",
+  "acts": [
+   "椎名林檎",
+   "Sheena Ringo"
+  ],
+  "matches": [
+   {
+    "act": "椎名林檎",
+    "artist": "Sheena Ringo",
+    "plays": 7,
+    "recentPlays": 7,
+    "lastPlayed": "2025-11-12",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 178
+   },
+   {
+    "act": "Sheena Ringo",
+    "artist": "Sheena Ringo",
+    "plays": 7,
+    "recentPlays": 7,
+    "lastPlayed": "2025-11-12",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 178
+   }
+  ],
+  "tier": "also",
+  "score": 178
+ },
+ {
+  "title": "椎名林檎と彼奴等と試す煩悩菩提",
+  "date": "2026-11-12",
+  "venue": "大分iichikoグランシアタ",
+  "city": "Oita",
+  "url": "https://lp.p.pia.jp/article/news/489069/index.html",
+  "acts": [
+   "椎名林檎",
+   "Sheena Ringo"
+  ],
+  "matches": [
+   {
+    "act": "椎名林檎",
+    "artist": "Sheena Ringo",
+    "plays": 7,
+    "recentPlays": 7,
+    "lastPlayed": "2025-11-12",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 178
+   },
+   {
+    "act": "Sheena Ringo",
+    "artist": "Sheena Ringo",
+    "plays": 7,
+    "recentPlays": 7,
+    "lastPlayed": "2025-11-12",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 178
+   }
+  ],
+  "tier": "also",
+  "score": 178
+ },
+ {
+  "title": "椎名林檎と彼奴等と試す煩悩菩提",
+  "date": "2026-11-13",
+  "venue": "大分iichikoグランシアタ",
+  "city": "Oita",
+  "url": "https://lp.p.pia.jp/article/news/489069/index.html",
+  "acts": [
+   "椎名林檎",
+   "Sheena Ringo"
+  ],
+  "matches": [
+   {
+    "act": "椎名林檎",
+    "artist": "Sheena Ringo",
+    "plays": 7,
+    "recentPlays": 7,
+    "lastPlayed": "2025-11-12",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 178
+   },
+   {
+    "act": "Sheena Ringo",
+    "artist": "Sheena Ringo",
+    "plays": 7,
+    "recentPlays": 7,
+    "lastPlayed": "2025-11-12",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 178
+   }
+  ],
+  "tier": "also",
+  "score": 178
+ },
+ {
+  "title": "椎名林檎と彼奴等と試す煩悩菩提",
+  "date": "2026-11-19",
+  "venue": "神戸国際会館 こくさいホール",
+  "city": "Kobe",
+  "url": "https://lp.p.pia.jp/article/news/489069/index.html",
+  "acts": [
+   "椎名林檎",
+   "Sheena Ringo"
+  ],
+  "matches": [
+   {
+    "act": "椎名林檎",
+    "artist": "Sheena Ringo",
+    "plays": 7,
+    "recentPlays": 7,
+    "lastPlayed": "2025-11-12",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 178
+   },
+   {
+    "act": "Sheena Ringo",
+    "artist": "Sheena Ringo",
+    "plays": 7,
+    "recentPlays": 7,
+    "lastPlayed": "2025-11-12",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 178
+   }
+  ],
+  "tier": "also",
+  "score": 178
+ },
+ {
+  "title": "椎名林檎と彼奴等と試す煩悩菩提",
+  "date": "2026-11-20",
+  "venue": "神戸国際会館 こくさいホール",
+  "city": "Kobe",
+  "url": "https://lp.p.pia.jp/article/news/489069/index.html",
+  "acts": [
+   "椎名林檎",
+   "Sheena Ringo"
+  ],
+  "matches": [
+   {
+    "act": "椎名林檎",
+    "artist": "Sheena Ringo",
+    "plays": 7,
+    "recentPlays": 7,
+    "lastPlayed": "2025-11-12",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 178
+   },
+   {
+    "act": "Sheena Ringo",
+    "artist": "Sheena Ringo",
+    "plays": 7,
+    "recentPlays": 7,
+    "lastPlayed": "2025-11-12",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 178
+   }
+  ],
+  "tier": "also",
+  "score": 178
+ },
+ {
+  "title": "椎名林檎と彼奴等と試す煩悩菩提",
+  "date": "2026-11-22",
+  "venue": "松山市民会館",
+  "city": "Matsuyama",
+  "url": "https://lp.p.pia.jp/article/news/489069/index.html",
+  "acts": [
+   "椎名林檎",
+   "Sheena Ringo"
+  ],
+  "matches": [
+   {
+    "act": "椎名林檎",
+    "artist": "Sheena Ringo",
+    "plays": 7,
+    "recentPlays": 7,
+    "lastPlayed": "2025-11-12",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 178
+   },
+   {
+    "act": "Sheena Ringo",
+    "artist": "Sheena Ringo",
+    "plays": 7,
+    "recentPlays": 7,
+    "lastPlayed": "2025-11-12",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 178
+   }
+  ],
+  "tier": "also",
+  "score": 178
+ },
+ {
+  "title": "椎名林檎と彼奴等と試す煩悩菩提",
+  "date": "2026-11-25",
+  "venue": "東京国際フォーラム ホールA",
   "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/event/die-spitz26/",
+  "url": "https://lp.p.pia.jp/article/news/489069/index.html",
   "acts": [
-   "DIE SPITZ"
+   "椎名林檎",
+   "Sheena Ringo"
   ],
   "matches": [
    {
-    "act": "DIE SPITZ",
-    "artist": "Die Spitz",
-    "plays": 10,
-    "recentPlays": 10,
-    "lastPlayed": "2026-08-22",
-    "country": "US",
-    "japanese": false,
+    "act": "椎名林檎",
+    "artist": "Sheena Ringo",
+    "plays": 7,
+    "recentPlays": 7,
+    "lastPlayed": "2025-11-12",
+    "country": "JP",
+    "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
-    "tier": "top",
-    "score": 40
+    "tier": "also",
+    "score": 178
+   },
+   {
+    "act": "Sheena Ringo",
+    "artist": "Sheena Ringo",
+    "plays": 7,
+    "recentPlays": 7,
+    "lastPlayed": "2025-11-12",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 178
    }
   ],
-  "tier": "top",
-  "score": 40
+  "tier": "also",
+  "score": 178
  },
  {
-  "title": "BON JOVI FOREVER TOUR",
-  "date": "2027-02-25",
-  "venue": "Tokyo Dome",
+  "title": "椎名林檎と彼奴等と試す煩悩菩提",
+  "date": "2026-11-26",
+  "venue": "東京国際フォーラム ホールA",
   "city": "Tokyo",
-  "url": "https://www.udo.jp/shows/BonJovi27",
+  "url": "https://lp.p.pia.jp/article/news/489069/index.html",
   "acts": [
-   "BON JOVI"
+   "椎名林檎",
+   "Sheena Ringo"
   ],
   "matches": [
    {
-    "act": "BON JOVI",
-    "artist": "Bon Jovi",
-    "plays": 31,
-    "recentPlays": 0,
-    "lastPlayed": "2018-03-07",
-    "country": "US",
-    "japanese": false,
+    "act": "椎名林檎",
+    "artist": "Sheena Ringo",
+    "plays": 7,
+    "recentPlays": 7,
+    "lastPlayed": "2025-11-12",
+    "country": "JP",
+    "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
-    "tier": "top",
-    "score": 31
+    "tier": "also",
+    "score": 178
+   },
+   {
+    "act": "Sheena Ringo",
+    "artist": "Sheena Ringo",
+    "plays": 7,
+    "recentPlays": 7,
+    "lastPlayed": "2025-11-12",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 178
    }
   ],
-  "tier": "top",
-  "score": 31
+  "tier": "also",
+  "score": 178
  },
  {
-  "title": "BON JOVI FOREVER TOUR",
-  "date": "2027-02-27",
-  "venue": "Tokyo Dome",
+  "title": "ジェット神社ジェット初詣ライブ2027",
+  "date": "2027-01-04",
+  "venue": "新宿 LOFT",
   "city": "Tokyo",
-  "url": "https://www.udo.jp/shows/BonJovi27",
+  "url": "https://eplus.jp/sf/word/0000171378",
   "acts": [
-   "BON JOVI"
+   "人畜乱弾"
   ],
   "matches": [
    {
-    "act": "BON JOVI",
-    "artist": "Bon Jovi",
-    "plays": 31,
-    "recentPlays": 0,
-    "lastPlayed": "2018-03-07",
-    "country": "US",
-    "japanese": false,
+    "act": "人畜乱弾",
+    "artist": "人畜乱弾",
+    "plays": 7,
+    "recentPlays": 7,
+    "lastPlayed": "2026-02-24",
+    "country": "JP",
+    "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
-    "tier": "top",
-    "score": 31
+    "tier": "also",
+    "score": 178
    }
   ],
-  "tier": "top",
-  "score": 31
+  "tier": "also",
+  "score": 178
  },
  {
-  "title": "Bon Jovi @ Tokyo Dome｜東京ドーム",
-  "date": "2027-02-25",
-  "venue": "Tokyo Dome｜東京ドーム",
+  "title": "ジェット神社ジェット初詣ライブ2027",
+  "date": "2027-01-04",
+  "venue": "Shinjuku LOFT",
   "city": "Tokyo",
-  "url": "https://www.songkick.com/concerts/43494643-bon-jovi-at-tokyo-domedong-jing-domu",
+  "url": "https://www.loft-prj.co.jp/schedule/loft/schedule/367900",
   "acts": [
-   "Bon Jovi"
+   "ギターウルフ",
+   "鈴木実貴子ズ",
+   "めろん畑a go go",
+   "人畜乱弾",
+   "虹の黄昏",
+   "DJ ：DADDY-O-NOV"
   ],
   "matches": [
    {
-    "act": "Bon Jovi",
-    "artist": "Bon Jovi",
-    "plays": 31,
-    "recentPlays": 0,
-    "lastPlayed": "2018-03-07",
-    "country": "US",
-    "japanese": false,
+    "act": "人畜乱弾",
+    "artist": "人畜乱弾",
+    "plays": 7,
+    "recentPlays": 7,
+    "lastPlayed": "2026-02-24",
+    "country": "JP",
+    "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
-    "tier": "top",
-    "score": 31
+    "tier": "also",
+    "score": 178
    }
   ],
-  "tier": "top",
-  "score": 31
+  "tier": "also",
+  "score": 178
  },
  {
-  "title": "Bon Jovi @ Tokyo Dome｜東京ドーム",
-  "date": "2027-02-27",
-  "venue": "Tokyo Dome｜東京ドーム",
-  "city": "Tokyo",
-  "url": "https://www.songkick.com/concerts/43494644-bon-jovi-at-tokyo-domedong-jing-domu",
+  "title": "ART-SCHOOL TOUR 2026「The Fragile Songs」",
+  "date": "2026-11-07",
+  "venue": "SPiCE",
+  "city": "Sapporo",
+  "url": "https://eplus.jp/artschool/",
   "acts": [
-   "Bon Jovi"
+   "ART-SCHOOL"
   ],
   "matches": [
    {
-    "act": "Bon Jovi",
-    "artist": "Bon Jovi",
-    "plays": 31,
-    "recentPlays": 0,
-    "lastPlayed": "2018-03-07",
-    "country": "US",
-    "japanese": false,
+    "act": "ART-SCHOOL",
+    "artist": "ART-SCHOOL",
+    "plays": 7,
+    "recentPlays": 6,
+    "lastPlayed": "2026-09-18",
+    "country": "JP",
+    "japanese": true,
     "seenLive": 0,
     "lastSeen": "",
-    "tier": "top",
-    "score": 31
+    "tier": "also",
+    "score": 175
    }
   ],
-  "tier": "top",
-  "score": 31
+  "tier": "also",
+  "score": 175
  },
  {
-  "title": "OGRE YOU ASSHOLE",
-  "date": "2026-12-05",
-  "venue": "Shangri-La",
+  "title": "ART-SCHOOL TOUR 2026「The Fragile Songs」",
+  "date": "2026-11-14",
+  "venue": "仙台MACANA",
+  "city": "Sendai",
+  "url": "https://eplus.jp/artschool/",
+  "acts": [
+   "ART-SCHOOL"
+  ],
+  "matches": [
+   {
+    "act": "ART-SCHOOL",
+    "artist": "ART-SCHOOL",
+    "plays": 7,
+    "recentPlays": 6,
+    "lastPlayed": "2026-09-18",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 175
+   }
+  ],
+  "tier": "also",
+  "score": 175
+ },
+ {
+  "title": "ART-SCHOOL TOUR 2026「The Fragile Songs」",
+  "date": "2026-12-12",
+  "venue": "名古屋CLUB QUATTRO",
+  "city": "Nagoya",
+  "url": "https://eplus.jp/artschool/",
+  "acts": [
+   "ART-SCHOOL"
+  ],
+  "matches": [
+   {
+    "act": "ART-SCHOOL",
+    "artist": "ART-SCHOOL",
+    "plays": 7,
+    "recentPlays": 6,
+    "lastPlayed": "2026-09-18",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 175
+   }
+  ],
+  "tier": "also",
+  "score": 175
+ },
+ {
+  "title": "ART-SCHOOL TOUR 2026「The Fragile Songs」",
+  "date": "2026-12-13",
+  "venue": "梅田Shangri-La",
   "city": "Osaka",
-  "url": "https://smash-jpn.com/live/?id=4753",
+  "url": "https://eplus.jp/artschool/",
+  "acts": [
+   "ART-SCHOOL"
+  ],
+  "matches": [
+   {
+    "act": "ART-SCHOOL",
+    "artist": "ART-SCHOOL",
+    "plays": 7,
+    "recentPlays": 6,
+    "lastPlayed": "2026-09-18",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 175
+   }
+  ],
+  "tier": "also",
+  "score": 175
+ },
+ {
+  "title": "ART-SCHOOL TOUR 2026「The Fragile Songs」",
+  "date": "2026-12-20",
+  "venue": "Zepp Shinjuku (TOKYO)",
+  "city": "Tokyo",
+  "url": "https://eplus.jp/artschool/",
+  "acts": [
+   "ART-SCHOOL"
+  ],
+  "matches": [
+   {
+    "act": "ART-SCHOOL",
+    "artist": "ART-SCHOOL",
+    "plays": 7,
+    "recentPlays": 6,
+    "lastPlayed": "2026-09-18",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 175
+   }
+  ],
+  "tier": "also",
+  "score": 175
+ },
+ {
+  "title": "ART-SCHOOL FC LIVE 「Melody in the Cocoon」",
+  "date": "2027-02-19",
+  "venue": "Shimokitazawa SHELTER",
+  "city": "Tokyo",
+  "url": "https://www.loft-prj.co.jp/schedule/shelter/367438",
+  "acts": [
+   "ART-SCHOOL",
+   "PREV",
+   "NEXT",
+   "HOME",
+   "SCHEDULE",
+   "ABOUT",
+   "ACCESS",
+   "NEWS",
+   "CONTACT",
+   "GOODS",
+   "COMPANY",
+   "PRIVACY POLICY",
+   "CONTACT",
+   "LOFT PROJECT",
+   "SHINJUKU LOFT",
+   "SHIMOKITAZAWA SHELTER",
+   "LOFT/PLUS ONE",
+   "NAKED LOFT YOKOHAMA",
+   "Asagaya/Loft A",
+   "Loft PlusOne West",
+   "LOFT9 Shibuya",
+   "ROCK CAFE LOFT",
+   "LOFT HEAVEN",
+   "Flowers Loft"
+  ],
+  "matches": [
+   {
+    "act": "ART-SCHOOL",
+    "artist": "ART-SCHOOL",
+    "plays": 7,
+    "recentPlays": 6,
+    "lastPlayed": "2026-09-18",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 175
+   }
+  ],
+  "tier": "also",
+  "score": 175
+ },
+ {
+  "title": "SHINJUKU LOFT 50th ANNIVERSARY PINK OR BLUE",
+  "date": "2026-11-19",
+  "venue": "新宿 LOFT",
+  "city": "Tokyo",
+  "url": "https://eplus.jp/sf/word/0000059792",
+  "acts": [
+   "大森靖子",
+   "Seiko Oomori"
+  ],
+  "matches": [
+   {
+    "act": "大森靖子",
+    "artist": "Seiko Oomori",
+    "plays": 5,
+    "recentPlays": 5,
+    "lastPlayed": "2026-01-21",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 170
+   },
+   {
+    "act": "Seiko Oomori",
+    "artist": "Seiko Oomori",
+    "plays": 5,
+    "recentPlays": 5,
+    "lastPlayed": "2026-01-21",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 170
+   }
+  ],
+  "tier": "also",
+  "score": 170
+ },
+ {
+  "title": "Gibson Crossover Live vol.2 <大森靖子 × 森 大翔>",
+  "date": "2026-11-29",
+  "venue": "草月ホール",
+  "city": "Tokyo",
+  "url": "https://eplus.jp/sf/word/0000059792",
+  "acts": [
+   "大森靖子",
+   "Seiko Oomori",
+   "森 大翔"
+  ],
+  "matches": [
+   {
+    "act": "大森靖子",
+    "artist": "Seiko Oomori",
+    "plays": 5,
+    "recentPlays": 5,
+    "lastPlayed": "2026-01-21",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 170
+   },
+   {
+    "act": "Seiko Oomori",
+    "artist": "Seiko Oomori",
+    "plays": 5,
+    "recentPlays": 5,
+    "lastPlayed": "2026-01-21",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 170
+   }
+  ],
+  "tier": "also",
+  "score": 170
+ },
+ {
+  "title": "大森靖子カウントダウンライブ2026-2027",
+  "date": "2026-12-31",
+  "venue": "新宿 LOFT",
+  "city": "Tokyo",
+  "url": "https://eplus.jp/sf/word/0000059792",
+  "acts": [
+   "大森靖子",
+   "Seiko Oomori"
+  ],
+  "matches": [
+   {
+    "act": "大森靖子",
+    "artist": "Seiko Oomori",
+    "plays": 5,
+    "recentPlays": 5,
+    "lastPlayed": "2026-01-21",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 170
+   },
+   {
+    "act": "Seiko Oomori",
+    "artist": "Seiko Oomori",
+    "plays": 5,
+    "recentPlays": 5,
+    "lastPlayed": "2026-01-21",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 170
+   }
+  ],
+  "tier": "also",
+  "score": 170
+ },
+ {
+  "title": "Rhythmic Toy World Presents 玩具大戦2026",
+  "date": "2026-11-23",
+  "venue": "代官山UNIT/B1FLAT/SALOON",
+  "city": "Tokyo",
+  "url": "https://eplus.jp/sf/word/0000072235",
+  "acts": [
+   "松本明人"
+  ],
+  "matches": [
+   {
+    "act": "松本明人",
+    "artist": "松本明人",
+    "plays": 5,
+    "recentPlays": 5,
+    "lastPlayed": "2025-07-22",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 170
+   }
+  ],
+  "tier": "also",
+  "score": 170
+ },
+ {
+  "title": "Ramko Helvetica",
+  "date": "2026-12-03",
+  "venue": "Zepp DiverCity TOKYO",
+  "city": "Tokyo",
+  "url": "https://eplus.jp/sf/word/0000159112",
+  "acts": [
+   "lilbesh ramko"
+  ],
+  "matches": [
+   {
+    "act": "lilbesh ramko",
+    "artist": "lilbesh ramko",
+    "plays": 5,
+    "recentPlays": 5,
+    "lastPlayed": "2026-03-01",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 170
+   }
+  ],
+  "tier": "also",
+  "score": 170
+ },
+ {
+  "title": "大森靖子カウントダウンライブ2026-2027",
+  "date": "2026-12-31",
+  "venue": "Shinjuku LOFT",
+  "city": "Tokyo",
+  "url": "https://www.loft-prj.co.jp/schedule/loft/schedule/367982",
+  "acts": [
+   "大森靖子",
+   "PREV",
+   "NEXT",
+   "HOME",
+   "SCHEDULE",
+   "ABOUT",
+   "ACCESS",
+   "NEWS",
+   "CONTACT",
+   "GOODS",
+   "COMPANY",
+   "PRIVACY POLICY",
+   "CONTACT",
+   "LOFT PROJECT",
+   "SHINJUKU LOFT",
+   "SHIMOKITAZAWA SHELTER",
+   "LOFT/PLUS ONE",
+   "NAKED LOFT YOKOHAMA",
+   "Asagaya/Loft A",
+   "Loft PlusOne West",
+   "LOFT9 Shibuya",
+   "ROCK CAFE LOFT",
+   "LOFT HEAVEN",
+   "Flowers Loft"
+  ],
+  "matches": [
+   {
+    "act": "大森靖子",
+    "artist": "Seiko Oomori",
+    "plays": 5,
+    "recentPlays": 5,
+    "lastPlayed": "2026-01-21",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 170
+   }
+  ],
+  "tier": "also",
+  "score": 170
+ },
+ {
+  "title": "こんがりおんがく祭 2026",
+  "date": "2026-11-14",
+  "venue": "大阪城音楽堂",
+  "city": "Osaka",
+  "url": "https://eplus.jp/sf/word/0000026450",
+  "acts": [
+   "DODDODO",
+   "Doddodo"
+  ],
+  "matches": [
+   {
+    "act": "DODDODO",
+    "artist": "Doddodo",
+    "plays": 6,
+    "recentPlays": 3,
+    "lastPlayed": "2025-12-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 165
+   },
+   {
+    "act": "Doddodo",
+    "artist": "Doddodo",
+    "plays": 6,
+    "recentPlays": 3,
+    "lastPlayed": "2025-12-26",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 165
+   }
+  ],
+  "tier": "also",
+  "score": 165
+ },
+ {
+  "title": "OGRE YOU ASSHOLE TOUR 2026-2027",
+  "date": "2026-12-05",
+  "venue": "梅田Shangri-La",
+  "city": "Osaka",
+  "url": "https://eplus.jp/ath/word/6877/",
   "acts": [
    "OGRE YOU ASSHOLE"
   ],
@@ -2060,11 +4387,11 @@
   "score": 157
  },
  {
-  "title": "OGRE YOU ASSHOLE",
+  "title": "OGRE YOU ASSHOLE TOUR 2026-2027",
   "date": "2026-12-19",
   "venue": "LIQUIDROOM",
   "city": "Tokyo",
-  "url": "https://smash-jpn.com/live/?id=4753",
+  "url": "https://eplus.jp/ath/word/6877/",
   "acts": [
    "OGRE YOU ASSHOLE"
   ],
@@ -2087,21 +4414,48 @@
   "score": 157
  },
  {
-  "title": "DEVILOOF",
-  "date": "2026-12-12",
-  "venue": "SHIBUYA STREAM",
-  "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/event/deviloof-gokuraku/",
+  "title": "OGRE YOU ASSHOLE TOUR 2026-2027",
+  "date": "2027-01-10",
+  "venue": "BESSIE HALL",
+  "city": "Sapporo",
+  "url": "https://eplus.jp/ath/word/6877/",
   "acts": [
-   "DEVILOOF"
+   "OGRE YOU ASSHOLE"
   ],
   "matches": [
    {
-    "act": "DEVILOOF",
-    "artist": "Deviloof",
+    "act": "OGRE YOU ASSHOLE",
+    "artist": "OGRE YOU ASSHOLE",
+    "plays": 7,
+    "recentPlays": 0,
+    "lastPlayed": "2021-11-24",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 157
+   }
+  ],
+  "tier": "also",
+  "score": 157
+ },
+ {
+  "title": "Mrs. GREEN APPLE Ringo Jam Tour \"SHADOWS\"",
+  "date": "2026-11-05",
+  "venue": "SAGAアリーナ",
+  "city": "Saga",
+  "url": "https://www.oricon.co.jp/news/2461508/full/",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
     "plays": 5,
     "recentPlays": 0,
-    "lastPlayed": "2021-08-26",
+    "lastPlayed": "2021-04-08",
     "country": "JP",
     "japanese": true,
     "seenLive": 0,
@@ -2114,21 +4468,21 @@
   "score": 155
  },
  {
-  "title": "jizue",
-  "date": "2027-02-07",
-  "venue": "大手町三井ホール",
-  "city": "Tokyo",
-  "url": "https://smash-jpn.com/live/?id=4771",
+  "title": "Mrs. GREEN APPLE Ringo Jam Tour \"SHADOWS\"",
+  "date": "2026-11-13",
+  "venue": "サンドーム福井",
+  "city": "Fukui",
+  "url": "https://www.oricon.co.jp/news/2461508/full/",
   "acts": [
-   "jizue"
+   "Mrs. GREEN APPLE"
   ],
   "matches": [
    {
-    "act": "jizue",
-    "artist": "jizue",
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
     "plays": 5,
     "recentPlays": 0,
-    "lastPlayed": "2021-12-06",
+    "lastPlayed": "2021-04-08",
     "country": "JP",
     "japanese": true,
     "seenLive": 0,
@@ -2141,13 +4495,1233 @@
   "score": 155
  },
  {
-  "title": "Prompts @ Yogibo Holy Mountain",
+  "title": "Mrs. GREEN APPLE Ringo Jam Tour \"SHADOWS\"",
+  "date": "2026-11-14",
+  "venue": "サンドーム福井",
+  "city": "Fukui",
+  "url": "https://www.oricon.co.jp/news/2461508/full/",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE Ringo Jam Tour \"SHADOWS\"",
+  "date": "2026-11-18",
+  "venue": "長野市若里多目的スポーツアリーナ(ビッグハット)",
+  "city": "Nagano",
+  "url": "https://www.oricon.co.jp/news/2461508/full/",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE Ringo Jam Tour \"SHADOWS\"",
   "date": "2026-11-19",
-  "venue": "Yogibo Holy Mountain",
-  "city": "Osaka",
-  "url": "https://www.songkick.com/concerts/43369639-prompts-at-yogibo-holy-mountain",
+  "venue": "長野市若里多目的スポーツアリーナ(ビッグハット)",
+  "city": "Nagano",
+  "url": "https://www.oricon.co.jp/news/2461508/full/",
   "acts": [
-   "Prompts"
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE Ringo Jam Tour \"SHADOWS\"",
+  "date": "2026-11-28",
+  "venue": "LaLa arena TOKYO-BAY",
+  "city": "Funabashi",
+  "url": "https://www.oricon.co.jp/news/2461508/full/",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE Ringo Jam Tour \"SHADOWS\"",
+  "date": "2026-11-29",
+  "venue": "LaLa arena TOKYO-BAY",
+  "city": "Funabashi",
+  "url": "https://www.oricon.co.jp/news/2461508/full/",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE Ringo Jam Tour \"SHADOWS\"",
+  "date": "2026-12-02",
+  "venue": "GLION ARENA KOBE",
+  "city": "Kobe",
+  "url": "https://www.oricon.co.jp/news/2461508/full/",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE Ringo Jam Tour \"SHADOWS\"",
+  "date": "2026-12-03",
+  "venue": "GLION ARENA KOBE",
+  "city": "Kobe",
+  "url": "https://www.oricon.co.jp/news/2461508/full/",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE Ringo Jam Tour \"SHADOWS\"",
+  "date": "2026-12-09",
+  "venue": "マリンメッセ福岡A館",
+  "city": "Fukuoka",
+  "url": "https://www.oricon.co.jp/news/2461508/full/",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE Ringo Jam Tour \"SHADOWS\"",
+  "date": "2026-12-10",
+  "venue": "マリンメッセ福岡A館",
+  "city": "Fukuoka",
+  "url": "https://www.oricon.co.jp/news/2461508/full/",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE Ringo Jam Tour \"SHADOWS\"",
+  "date": "2026-12-15",
+  "venue": "宮城セキスイハイムスーパーアリーナ",
+  "city": "Rifu (Miyagi)",
+  "url": "https://www.oricon.co.jp/news/2461508/full/",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE Ringo Jam Tour \"SHADOWS\"",
+  "date": "2026-12-16",
+  "venue": "宮城セキスイハイムスーパーアリーナ",
+  "city": "Rifu (Miyagi)",
+  "url": "https://www.oricon.co.jp/news/2461508/full/",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE Ringo Jam Tour \"SHADOWS\"",
+  "date": "2026-12-19",
+  "venue": "ぴあアリーナMM",
+  "city": "Yokohama",
+  "url": "https://www.oricon.co.jp/news/2461508/full/",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE Ringo Jam Tour \"SHADOWS\"",
+  "date": "2026-12-20",
+  "venue": "ぴあアリーナMM",
+  "city": "Yokohama",
+  "url": "https://www.oricon.co.jp/news/2461508/full/",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE Ringo Jam Tour \"SHADOWS\"",
+  "date": "2026-12-27",
+  "venue": "Aichi Sky Expo",
+  "city": "Tokoname",
+  "url": "https://www.oricon.co.jp/news/2461508/full/",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE Ringo Jam Tour \"SHADOWS\"",
+  "date": "2026-12-28",
+  "venue": "Aichi Sky Expo",
+  "city": "Tokoname",
+  "url": "https://www.oricon.co.jp/news/2461508/full/",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE on \"Harmony2\"",
+  "date": "2027-02-20",
+  "venue": "Kアリーナ横浜",
+  "city": "Yokohama",
+  "url": "https://mrsgreenapple.com/feature/harmony_2",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE on \"Harmony2\"",
+  "date": "2027-02-21",
+  "venue": "Kアリーナ横浜",
+  "city": "Yokohama",
+  "url": "https://mrsgreenapple.com/feature/harmony_2",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE on \"Harmony2\"",
+  "date": "2027-02-27",
+  "venue": "Kアリーナ横浜",
+  "city": "Yokohama",
+  "url": "https://mrsgreenapple.com/feature/harmony_2",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE on \"Harmony2\"",
+  "date": "2027-02-28",
+  "venue": "Kアリーナ横浜",
+  "city": "Yokohama",
+  "url": "https://mrsgreenapple.com/feature/harmony_2",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE on \"Harmony2\"",
+  "date": "2027-03-06",
+  "venue": "Kアリーナ横浜",
+  "city": "Yokohama",
+  "url": "https://mrsgreenapple.com/feature/harmony_2",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE on \"Harmony2\"",
+  "date": "2027-03-07",
+  "venue": "Kアリーナ横浜",
+  "city": "Yokohama",
+  "url": "https://mrsgreenapple.com/feature/harmony_2",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE on \"Harmony2\"",
+  "date": "2027-03-10",
+  "venue": "Kアリーナ横浜",
+  "city": "Yokohama",
+  "url": "https://mrsgreenapple.com/feature/harmony_2",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE on \"Harmony2\"",
+  "date": "2027-03-11",
+  "venue": "Kアリーナ横浜",
+  "city": "Yokohama",
+  "url": "https://mrsgreenapple.com/feature/harmony_2",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE on \"Harmony2\"",
+  "date": "2027-03-16",
+  "venue": "Kアリーナ横浜",
+  "city": "Yokohama",
+  "url": "https://mrsgreenapple.com/feature/harmony_2",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE on \"Harmony2\"",
+  "date": "2027-03-17",
+  "venue": "Kアリーナ横浜",
+  "city": "Yokohama",
+  "url": "https://mrsgreenapple.com/feature/harmony_2",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE on \"Harmony2\"",
+  "date": "2027-04-21",
+  "venue": "Kアリーナ横浜",
+  "city": "Yokohama",
+  "url": "https://mrsgreenapple.com/feature/harmony_2",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE on \"Harmony2\"",
+  "date": "2027-04-22",
+  "venue": "Kアリーナ横浜",
+  "city": "Yokohama",
+  "url": "https://mrsgreenapple.com/feature/harmony_2",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE on \"Harmony2\"",
+  "date": "2027-05-08",
+  "venue": "Kアリーナ横浜",
+  "city": "Yokohama",
+  "url": "https://mrsgreenapple.com/feature/harmony_2",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE on \"Harmony2\"",
+  "date": "2027-05-09",
+  "venue": "Kアリーナ横浜",
+  "city": "Yokohama",
+  "url": "https://mrsgreenapple.com/feature/harmony_2",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE on \"Harmony2\"",
+  "date": "2027-05-12",
+  "venue": "Kアリーナ横浜",
+  "city": "Yokohama",
+  "url": "https://mrsgreenapple.com/feature/harmony_2",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE on \"Harmony2\"",
+  "date": "2027-05-13",
+  "venue": "Kアリーナ横浜",
+  "city": "Yokohama",
+  "url": "https://mrsgreenapple.com/feature/harmony_2",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE on \"Harmony2\"",
+  "date": "2027-05-18",
+  "venue": "Kアリーナ横浜",
+  "city": "Yokohama",
+  "url": "https://mrsgreenapple.com/feature/harmony_2",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE on \"Harmony2\"",
+  "date": "2027-05-19",
+  "venue": "Kアリーナ横浜",
+  "city": "Yokohama",
+  "url": "https://mrsgreenapple.com/feature/harmony_2",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE on \"Harmony2\"",
+  "date": "2027-06-01",
+  "venue": "Kアリーナ横浜",
+  "city": "Yokohama",
+  "url": "https://mrsgreenapple.com/feature/harmony_2",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE on \"Harmony2\"",
+  "date": "2027-06-02",
+  "venue": "Kアリーナ横浜",
+  "city": "Yokohama",
+  "url": "https://mrsgreenapple.com/feature/harmony_2",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Mrs. GREEN APPLE presents \"CEREMONY\"",
+  "date": "2027-06-16",
+  "until": "2027-06-17",
+  "venue": "Kアリーナ横浜",
+  "city": "Yokohama",
+  "url": "https://mrsgreenapple.com/",
+  "acts": [
+   "Mrs. GREEN APPLE"
+  ],
+  "matches": [
+   {
+    "act": "Mrs. GREEN APPLE",
+    "artist": "Mrs. GREEN APPLE",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2021-04-08",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "TOTALFAT × MAYSON's PARTY 共同企画 \"PARTY WARS\"",
+  "date": "2026-12-08",
+  "venue": "NAGOYA Jammin'",
+  "city": "Nagoya",
+  "url": "https://eplus.jp/sf/word/0000020111",
+  "acts": [
+   "TOTALFAT",
+   "MAYSON's PARTY"
+  ],
+  "matches": [
+   {
+    "act": "TOTALFAT",
+    "artist": "TOTALFAT",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2019-09-28",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "TOTALFAT (tour name TBA)",
+  "date": "2027-01-23",
+  "venue": "名古屋クラブクアトロ",
+  "city": "Nagoya",
+  "url": "https://eplus.jp/sf/word/0000020111",
+  "acts": [
+   "TOTALFAT"
+  ],
+  "matches": [
+   {
+    "act": "TOTALFAT",
+    "artist": "TOTALFAT",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2019-09-28",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "TOTALFAT (tour name TBA)",
+  "date": "2027-01-24",
+  "venue": "梅田CLUB QUATTRO",
+  "city": "Osaka",
+  "url": "https://eplus.jp/sf/word/0000020111",
+  "acts": [
+   "TOTALFAT"
+  ],
+  "matches": [
+   {
+    "act": "TOTALFAT",
+    "artist": "TOTALFAT",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2019-09-28",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "TOTALFAT (tour name TBA)",
+  "date": "2027-01-30",
+  "venue": "渋谷CLUB QUATTRO",
+  "city": "Tokyo",
+  "url": "https://eplus.jp/sf/word/0000020111",
+  "acts": [
+   "TOTALFAT"
+  ],
+  "matches": [
+   {
+    "act": "TOTALFAT",
+    "artist": "TOTALFAT",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2019-09-28",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Kalafina (title unconfirmed)",
+  "date": "2027-01-18",
+  "venue": "東京国際フォーラム ホールA",
+  "city": "Tokyo",
+  "url": "https://l-tike.com/hikaru-x/",
+  "acts": [
+   "Kalafina"
+  ],
+  "matches": [
+   {
+    "act": "Kalafina",
+    "artist": "Kalafina",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2019-01-18",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Kalafina (title unconfirmed)",
+  "date": "2027-01-19",
+  "venue": "東京国際フォーラム ホールA",
+  "city": "Tokyo",
+  "url": "https://l-tike.com/hikaru-x/",
+  "acts": [
+   "Kalafina"
+  ],
+  "matches": [
+   {
+    "act": "Kalafina",
+    "artist": "Kalafina",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2019-01-18",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Kalafina (title unconfirmed)",
+  "date": "2027-02-19",
+  "venue": "神戸国際会館 こくさいホール",
+  "city": "Kobe",
+  "url": "https://l-tike.com/hikaru-x/",
+  "acts": [
+   "Kalafina"
+  ],
+  "matches": [
+   {
+    "act": "Kalafina",
+    "artist": "Kalafina",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2019-01-18",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Kalafina (title unconfirmed)",
+  "date": "2027-02-20",
+  "venue": "神戸国際会館 こくさいホール",
+  "city": "Kobe",
+  "url": "https://l-tike.com/hikaru-x/",
+  "acts": [
+   "Kalafina"
+  ],
+  "matches": [
+   {
+    "act": "Kalafina",
+    "artist": "Kalafina",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2019-01-18",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "Bentham 15th Anniversary Release Order One Man Live!! 事実は小節より奇なり 2019 – 2021",
+  "date": "2026-12-08",
+  "venue": "Shimokitazawa SHELTER",
+  "city": "Tokyo",
+  "url": "https://www.loft-prj.co.jp/schedule/shelter/366987",
+  "acts": [
+   "Bentham"
+  ],
+  "matches": [
+   {
+    "act": "Bentham",
+    "artist": "bentham",
+    "plays": 5,
+    "recentPlays": 0,
+    "lastPlayed": "2019-02-11",
+    "country": "JP",
+    "japanese": true,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 155
+   }
+  ],
+  "tier": "also",
+  "score": 155
+ },
+ {
+  "title": "\"PIZZA OF DEATH RECOREDS presesnts Hub Slice9\"",
+  "date": "2026-12-27",
+  "venue": "Shindaita FEVER",
+  "city": "Tokyo",
+  "url": "https://www.fever-popo.com/schedule/2026/12/2717.html",
+  "acts": [
+   "Graupel",
+   "JasonAndrew",
+   "Prompts",
+   "View From The Soyuz"
   ],
   "matches": [
    {
@@ -2162,941 +5736,99 @@
     "lastSeen": "",
     "tier": "also",
     "score": 155
+   },
+   {
+    "act": "Graupel",
+    "artist": "Graupel",
+    "plays": 6,
+    "recentPlays": 0,
+    "lastPlayed": "2023-09-03",
+    "country": "DE",
+    "japanese": false,
+    "seenLive": 0,
+    "lastSeen": "",
+    "tier": "also",
+    "score": 6
    }
   ],
   "tier": "also",
   "score": 155
  },
  {
-  "title": "Touché Amoré @ Daikanyama UNIT",
-  "date": "2026-11-06",
-  "venue": "Daikanyama UNIT",
-  "city": "Tokyo",
-  "url": "https://www.songkick.com/concerts/43286613-touche-amore-at-daikanyama-unit",
-  "acts": [
-   "Touché Amoré"
-  ],
-  "matches": [
-   {
-    "act": "Touché Amoré",
-    "artist": "Touché Amoré",
-    "plays": 10,
-    "recentPlays": 6,
-    "lastPlayed": "2026-03-07",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 28
-   }
-  ],
-  "tier": "also",
-  "score": 28
- },
- {
-  "title": "WOLF ALICE",
-  "date": "2026-11-23",
-  "venue": "豊洲PIT",
-  "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/event/wolf-alice26/",
-  "acts": [
-   "Wolf Alice"
-  ],
-  "matches": [
-   {
-    "act": "Wolf Alice",
-    "artist": "Wolf Alice",
-    "plays": 20,
-    "recentPlays": 2,
-    "lastPlayed": "2026-03-25",
-    "country": "GB",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 26
-   }
-  ],
-  "tier": "also",
-  "score": 26
- },
- {
-  "title": "WOLF ALICE",
-  "date": "2026-11-25",
-  "venue": "GORILLA HALL",
-  "city": "Osaka",
-  "url": "https://www.creativeman.co.jp/event/wolf-alice26/",
-  "acts": [
-   "Wolf Alice"
-  ],
-  "matches": [
-   {
-    "act": "Wolf Alice",
-    "artist": "Wolf Alice",
-    "plays": 20,
-    "recentPlays": 2,
-    "lastPlayed": "2026-03-25",
-    "country": "GB",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 26
-   }
-  ],
-  "tier": "also",
-  "score": 26
- },
- {
-  "title": "EUROPE The Final Countdown 40th Anniversary Tour",
-  "date": "2027-01-13",
-  "venue": "NHK Hall",
-  "city": "Tokyo",
-  "url": "https://www.udo.jp/shows/Europe27",
-  "acts": [
-   "EUROPE"
-  ],
-  "matches": [
-   {
-    "act": "EUROPE",
-    "artist": "Europe",
-    "plays": 26,
-    "recentPlays": 0,
-    "lastPlayed": "2016-04-26",
-    "country": "SE",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 26
-   }
-  ],
-  "tier": "also",
-  "score": 26
- },
- {
-  "title": "EUROPE The Final Countdown 40th Anniversary Tour",
-  "date": "2027-01-14",
-  "venue": "Okaya Kohki Nagoya Public Hall",
-  "city": "Nagoya",
-  "url": "https://www.udo.jp/shows/Europe27",
-  "acts": [
-   "EUROPE"
-  ],
-  "matches": [
-   {
-    "act": "EUROPE",
-    "artist": "Europe",
-    "plays": 26,
-    "recentPlays": 0,
-    "lastPlayed": "2016-04-26",
-    "country": "SE",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 26
-   }
-  ],
-  "tier": "also",
-  "score": 26
- },
- {
-  "title": "EUROPE The Final Countdown 40th Anniversary Tour",
-  "date": "2027-01-15",
-  "venue": "Grand Cube Osaka",
-  "city": "Osaka",
-  "url": "https://www.udo.jp/shows/Europe27",
-  "acts": [
-   "EUROPE"
-  ],
-  "matches": [
-   {
-    "act": "EUROPE",
-    "artist": "Europe",
-    "plays": 26,
-    "recentPlays": 0,
-    "lastPlayed": "2016-04-26",
-    "country": "SE",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 26
-   }
-  ],
-  "tier": "also",
-  "score": 26
- },
- {
-  "title": "EUROPE The Final Countdown 40th Anniversary Tour",
-  "date": "2027-01-17",
-  "venue": "SGC Hall Ariake",
-  "city": "Tokyo",
-  "url": "https://www.udo.jp/shows/Europe27",
-  "acts": [
-   "EUROPE"
-  ],
-  "matches": [
-   {
-    "act": "EUROPE",
-    "artist": "Europe",
-    "plays": 26,
-    "recentPlays": 0,
-    "lastPlayed": "2016-04-26",
-    "country": "SE",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 26
-   }
-  ],
-  "tier": "also",
-  "score": 26
- },
- {
-  "title": "Wolf Alice @ Toyosu Pit / 豊洲ピット",
-  "date": "2026-11-23",
-  "venue": "Toyosu Pit / 豊洲ピット",
-  "city": "Tokyo",
-  "url": "https://www.songkick.com/concerts/43031735-wolf-alice-at-toyosu-pit-li-zhou-pituto",
-  "acts": [
-   "Wolf Alice"
-  ],
-  "matches": [
-   {
-    "act": "Wolf Alice",
-    "artist": "Wolf Alice",
-    "plays": 20,
-    "recentPlays": 2,
-    "lastPlayed": "2026-03-25",
-    "country": "GB",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 26
-   }
-  ],
-  "tier": "also",
-  "score": 26
- },
- {
-  "title": "DEATH CAB FOR CUTIE",
-  "date": "2026-11-08",
-  "venue": "松下IMPホール",
-  "city": "Osaka",
-  "url": "https://www.creativeman.co.jp/event/death-cab-for-cutie_2026/",
-  "acts": [
-   "Death Cab for Cutie",
-   "Dan the Automator"
-  ],
-  "matches": [
-   {
-    "act": "Death Cab for Cutie",
-    "artist": "Death Cab for Cutie",
-    "plays": 19,
-    "recentPlays": 0,
-    "lastPlayed": "2019-02-04",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 19
-   }
-  ],
-  "tier": "also",
-  "score": 19
- },
- {
-  "title": "DEATH CAB FOR CUTIE",
-  "date": "2026-11-09",
-  "venue": "豊洲PIT",
-  "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/event/death-cab-for-cutie_2026/",
-  "acts": [
-   "Death Cab for Cutie",
-   "Dan the Automator"
-  ],
-  "matches": [
-   {
-    "act": "Death Cab for Cutie",
-    "artist": "Death Cab for Cutie",
-    "plays": 19,
-    "recentPlays": 0,
-    "lastPlayed": "2019-02-04",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 19
-   }
-  ],
-  "tier": "also",
-  "score": 19
- },
- {
-  "title": "Death Cab for Cutie @ Matsushita IMP Hall (松下IMPホール)",
-  "date": "2026-11-08",
-  "venue": "Matsushita IMP Hall (松下IMPホール)",
-  "city": "Osaka",
-  "url": "https://www.songkick.com/concerts/43186817-death-cab-for-cutie-at-matsushita-imp-hall",
-  "acts": [
-   "Death Cab for Cutie",
-   "Dan the Automator"
-  ],
-  "matches": [
-   {
-    "act": "Death Cab for Cutie",
-    "artist": "Death Cab for Cutie",
-    "plays": 19,
-    "recentPlays": 0,
-    "lastPlayed": "2019-02-04",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 19
-   }
-  ],
-  "tier": "also",
-  "score": 19
- },
- {
-  "title": "Death Cab for Cutie @ Toyosu Pit / 豊洲ピット",
-  "date": "2026-11-09",
-  "venue": "Toyosu Pit / 豊洲ピット",
-  "city": "Tokyo",
-  "url": "https://www.songkick.com/concerts/43186818-death-cab-for-cutie-at-toyosu-pit-li-zhou-pituto",
-  "acts": [
-   "Death Cab for Cutie",
-   "Dan the Automator"
-  ],
-  "matches": [
-   {
-    "act": "Death Cab for Cutie",
-    "artist": "Death Cab for Cutie",
-    "plays": 19,
-    "recentPlays": 0,
-    "lastPlayed": "2019-02-04",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 19
-   }
-  ],
-  "tier": "also",
-  "score": 19
- },
- {
-  "title": "The Romantic Tour in Japan",
-  "date": "2027-01-04",
-  "venue": "Vantelin Dome Nagoya",
-  "city": "Nagoya",
-  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
-  "acts": [
-   "Bruno Mars",
-   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
-  ],
-  "matches": [
-   {
-    "act": "Bruno Mars",
-    "artist": "Bruno Mars",
-    "plays": 15,
-    "recentPlays": 0,
-    "lastPlayed": "2022-02-18",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 15
-   }
-  ],
-  "tier": "also",
-  "score": 15
- },
- {
-  "title": "The Romantic Tour in Japan",
-  "date": "2027-01-05",
-  "venue": "Vantelin Dome Nagoya",
-  "city": "Nagoya",
-  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
-  "acts": [
-   "Bruno Mars",
-   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
-  ],
-  "matches": [
-   {
-    "act": "Bruno Mars",
-    "artist": "Bruno Mars",
-    "plays": 15,
-    "recentPlays": 0,
-    "lastPlayed": "2022-02-18",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 15
-   }
-  ],
-  "tier": "also",
-  "score": 15
- },
- {
-  "title": "The Romantic Tour in Japan",
-  "date": "2027-01-10",
-  "venue": "Sapporo Dome",
-  "city": "Sapporo",
-  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
-  "acts": [
-   "Bruno Mars",
-   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
-  ],
-  "matches": [
-   {
-    "act": "Bruno Mars",
-    "artist": "Bruno Mars",
-    "plays": 15,
-    "recentPlays": 0,
-    "lastPlayed": "2022-02-18",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 15
-   }
-  ],
-  "tier": "also",
-  "score": 15
- },
- {
-  "title": "The Romantic Tour in Japan",
-  "date": "2027-01-11",
-  "venue": "Sapporo Dome",
-  "city": "Sapporo",
-  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
-  "acts": [
-   "Bruno Mars",
-   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
-  ],
-  "matches": [
-   {
-    "act": "Bruno Mars",
-    "artist": "Bruno Mars",
-    "plays": 15,
-    "recentPlays": 0,
-    "lastPlayed": "2022-02-18",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 15
-   }
-  ],
-  "tier": "also",
-  "score": 15
- },
- {
-  "title": "The Romantic Tour in Japan",
-  "date": "2027-01-15",
-  "venue": "Belluna Dome",
-  "city": "Tokorozawa",
-  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
-  "acts": [
-   "Bruno Mars",
-   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
-  ],
-  "matches": [
-   {
-    "act": "Bruno Mars",
-    "artist": "Bruno Mars",
-    "plays": 15,
-    "recentPlays": 0,
-    "lastPlayed": "2022-02-18",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 15
-   }
-  ],
-  "tier": "also",
-  "score": 15
- },
- {
-  "title": "The Romantic Tour in Japan",
-  "date": "2027-01-16",
-  "venue": "Belluna Dome",
-  "city": "Tokorozawa",
-  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
-  "acts": [
-   "Bruno Mars",
-   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
-  ],
-  "matches": [
-   {
-    "act": "Bruno Mars",
-    "artist": "Bruno Mars",
-    "plays": 15,
-    "recentPlays": 0,
-    "lastPlayed": "2022-02-18",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 15
-   }
-  ],
-  "tier": "also",
-  "score": 15
- },
- {
-  "title": "The Romantic Tour in Japan",
-  "date": "2027-01-19",
-  "venue": "Kyocera Dome Osaka",
-  "city": "Osaka",
-  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
-  "acts": [
-   "Bruno Mars",
-   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
-  ],
-  "matches": [
-   {
-    "act": "Bruno Mars",
-    "artist": "Bruno Mars",
-    "plays": 15,
-    "recentPlays": 0,
-    "lastPlayed": "2022-02-18",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 15
-   }
-  ],
-  "tier": "also",
-  "score": 15
- },
- {
-  "title": "The Romantic Tour in Japan",
-  "date": "2027-01-20",
-  "venue": "Kyocera Dome Osaka",
-  "city": "Osaka",
-  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
-  "acts": [
-   "Bruno Mars",
-   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
-  ],
-  "matches": [
-   {
-    "act": "Bruno Mars",
-    "artist": "Bruno Mars",
-    "plays": 15,
-    "recentPlays": 0,
-    "lastPlayed": "2022-02-18",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 15
-   }
-  ],
-  "tier": "also",
-  "score": 15
- },
- {
-  "title": "The Romantic Tour in Japan",
-  "date": "2027-01-23",
-  "venue": "Mizuho PayPay Dome",
-  "city": "Fukuoka",
-  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
-  "acts": [
-   "Bruno Mars",
-   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
-  ],
-  "matches": [
-   {
-    "act": "Bruno Mars",
-    "artist": "Bruno Mars",
-    "plays": 15,
-    "recentPlays": 0,
-    "lastPlayed": "2022-02-18",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 15
-   }
-  ],
-  "tier": "also",
-  "score": 15
- },
- {
-  "title": "The Romantic Tour in Japan",
+  "title": "それでも尚、未来に媚びる / AKANOBLUE / 首振りDolls / necozeneco / The Cheserasera / +1BAND(12/17解禁)",
   "date": "2027-01-24",
-  "venue": "Mizuho PayPay Dome",
-  "city": "Fukuoka",
-  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
-  "acts": [
-   "Bruno Mars",
-   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
-  ],
-  "matches": [
-   {
-    "act": "Bruno Mars",
-    "artist": "Bruno Mars",
-    "plays": 15,
-    "recentPlays": 0,
-    "lastPlayed": "2022-02-18",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 15
-   }
-  ],
-  "tier": "also",
-  "score": 15
- },
- {
-  "title": "The Romantic Tour in Japan",
-  "date": "2027-01-27",
-  "venue": "Tokyo Dome",
+  "venue": "Spotify O-Crest",
   "city": "Tokyo",
-  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
+  "url": "https://shibuya-o.com/crest/schedule/%e3%81%9d%e3%82%8c%e3%81%a7%e3%82%82%e5%b0%9a%e3%80%81%e6%9c%aa%e6%9d%a5%e3%81%ab%e5%aa%9a%e3%81%b3%e3%82%8b1st-full-album%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e3%83%ad%e3%83%83%e3%82%af%e3%83%b3/",
   "acts": [
-   "Bruno Mars",
-   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
+   "それでも尚、未来に媚びる",
+   "AKANOBLUE",
+   "首振りDolls",
+   "necozeneco",
+   "The Cheserasera"
   ],
   "matches": [
    {
-    "act": "Bruno Mars",
-    "artist": "Bruno Mars",
-    "plays": 15,
-    "recentPlays": 0,
-    "lastPlayed": "2022-02-18",
-    "country": "US",
+    "act": "首振りDolls",
+    "artist": "首振りdolls",
+    "plays": 6,
+    "recentPlays": 6,
+    "lastPlayed": "2025-06-17",
+    "country": "",
     "japanese": false,
     "seenLive": 0,
     "lastSeen": "",
     "tier": "also",
-    "score": 15
+    "score": 24
    }
   ],
   "tier": "also",
-  "score": 15
+  "score": 24
  },
  {
-  "title": "The Romantic Tour in Japan",
-  "date": "2027-01-28",
-  "venue": "Tokyo Dome",
+  "title": "TRiDENT EP ”Yeeet!” RELEASE TOUR Yeeet! TOUR 2027",
+  "date": "2027-02-13",
+  "venue": "LIQUIDROOM",
   "city": "Tokyo",
-  "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
+  "url": "https://www.liquidroom.net/schedule/trident_20270213",
   "acts": [
-   "Bruno Mars",
-   "Anderson .Paak (DJ Pee .Wee / Silk Sonic)"
+   "TRiDENT"
   ],
   "matches": [
    {
-    "act": "Bruno Mars",
-    "artist": "Bruno Mars",
-    "plays": 15,
-    "recentPlays": 0,
-    "lastPlayed": "2022-02-18",
-    "country": "US",
+    "act": "TRiDENT",
+    "artist": "Trident",
+    "plays": 5,
+    "recentPlays": 3,
+    "lastPlayed": "2025-10-08",
+    "country": "GB",
     "japanese": false,
     "seenLive": 0,
     "lastSeen": "",
     "tier": "also",
-    "score": 15
+    "score": 14
    }
   ],
   "tier": "also",
-  "score": 15
+  "score": 14
  },
  {
-  "title": "Bruno Mars @ Vantelin Dome Nagoya / バンテリンドーム ナゴヤ",
-  "date": "2027-01-04",
-  "venue": "Vantelin Dome Nagoya / バンテリンドーム ナゴヤ",
-  "city": "Nagoya",
-  "url": "https://www.songkick.com/concerts/43406256-bruno-mars-at-vantelin-dome-nagoya-banterindomu-nagoya",
+  "title": "Nothing Feels Real presents La Dispute Japan Tour 2027",
+  "date": "2027-02-16",
+  "venue": "Shimokitazawa SHELTER",
+  "city": "Tokyo",
+  "url": "https://www.loft-prj.co.jp/schedule/shelter/368331",
   "acts": [
-   "Bruno Mars",
-   "DJ PEE WEE"
+   "La Dispute"
   ],
   "matches": [
    {
-    "act": "Bruno Mars",
-    "artist": "Bruno Mars",
-    "plays": 15,
-    "recentPlays": 0,
-    "lastPlayed": "2022-02-18",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 15
-   }
-  ],
-  "tier": "also",
-  "score": 15
- },
- {
-  "title": "Bruno Mars @ Vantelin Dome Nagoya / バンテリンドーム ナゴヤ",
-  "date": "2027-01-05",
-  "venue": "Vantelin Dome Nagoya / バンテリンドーム ナゴヤ",
-  "city": "Nagoya",
-  "url": "https://www.songkick.com/concerts/43406258-bruno-mars-at-vantelin-dome-nagoya-banterindomu-nagoya",
-  "acts": [
-   "Bruno Mars",
-   "DJ PEE WEE"
-  ],
-  "matches": [
-   {
-    "act": "Bruno Mars",
-    "artist": "Bruno Mars",
-    "plays": 15,
-    "recentPlays": 0,
-    "lastPlayed": "2022-02-18",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 15
-   }
-  ],
-  "tier": "also",
-  "score": 15
- },
- {
-  "title": "Bruno Mars @ Belluna Dome / ベルーナドーム",
-  "date": "2027-01-15",
-  "venue": "Belluna Dome / ベルーナドーム",
-  "city": "Tokorozawa",
-  "url": "https://www.songkick.com/concerts/43406317-bruno-mars-at-belluna-dome-berunadomu",
-  "acts": [
-   "Bruno Mars",
-   "DJ PEE WEE"
-  ],
-  "matches": [
-   {
-    "act": "Bruno Mars",
-    "artist": "Bruno Mars",
-    "plays": 15,
-    "recentPlays": 0,
-    "lastPlayed": "2022-02-18",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 15
-   }
-  ],
-  "tier": "also",
-  "score": 15
- },
- {
-  "title": "Bruno Mars @ Belluna Dome / ベルーナドーム",
-  "date": "2027-01-16",
-  "venue": "Belluna Dome / ベルーナドーム",
-  "city": "Tokorozawa",
-  "url": "https://www.songkick.com/concerts/43406318-bruno-mars-at-belluna-dome-berunadomu",
-  "acts": [
-   "Bruno Mars",
-   "DJ PEE WEE"
-  ],
-  "matches": [
-   {
-    "act": "Bruno Mars",
-    "artist": "Bruno Mars",
-    "plays": 15,
-    "recentPlays": 0,
-    "lastPlayed": "2022-02-18",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 15
-   }
-  ],
-  "tier": "also",
-  "score": 15
- },
- {
-  "title": "Bruno Mars @ Kyocera Dome Osaka (京セラドーム大阪)",
-  "date": "2027-01-19",
-  "venue": "Kyocera Dome Osaka (京セラドーム大阪)",
-  "city": "Osaka",
-  "url": "https://www.songkick.com/concerts/43406320-bruno-mars-at-kyocera-dome-osaka",
-  "acts": [
-   "Bruno Mars",
-   "DJ PEE WEE"
-  ],
-  "matches": [
-   {
-    "act": "Bruno Mars",
-    "artist": "Bruno Mars",
-    "plays": 15,
-    "recentPlays": 0,
-    "lastPlayed": "2022-02-18",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 15
-   }
-  ],
-  "tier": "also",
-  "score": 15
- },
- {
-  "title": "Bruno Mars @ Kyocera Dome Osaka (京セラドーム大阪)",
-  "date": "2027-01-20",
-  "venue": "Kyocera Dome Osaka (京セラドーム大阪)",
-  "city": "Osaka",
-  "url": "https://www.songkick.com/concerts/43406322-bruno-mars-at-kyocera-dome-osaka",
-  "acts": [
-   "Bruno Mars",
-   "DJ PEE WEE"
-  ],
-  "matches": [
-   {
-    "act": "Bruno Mars",
-    "artist": "Bruno Mars",
-    "plays": 15,
-    "recentPlays": 0,
-    "lastPlayed": "2022-02-18",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 15
-   }
-  ],
-  "tier": "also",
-  "score": 15
- },
- {
-  "title": "Cancer Bats @ Yogibo Holy Mountain",
-  "date": "2027-02-09",
-  "venue": "Yogibo Holy Mountain",
-  "city": "Osaka",
-  "url": "https://www.songkick.com/concerts/43499912-cancer-bats-at-yogibo-holy-mountain",
-  "acts": [
-   "Cancer Bats"
-  ],
-  "matches": [
-   {
-    "act": "Cancer Bats",
-    "artist": "Cancer Bats",
+    "act": "La Dispute",
+    "artist": "La Dispute",
     "plays": 7,
-    "recentPlays": 2,
-    "lastPlayed": "2026-09-02",
-    "country": "CA",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 13
-   }
-  ],
-  "tier": "also",
-  "score": 13
- },
- {
-  "title": "Cancer Bats @ Imaike 3Star",
-  "date": "2027-02-10",
-  "venue": "Imaike 3Star",
-  "city": "Nagoya",
-  "url": "https://www.songkick.com/concerts/43499914-cancer-bats-at-imaike-3star",
-  "acts": [
-   "Cancer Bats"
-  ],
-  "matches": [
-   {
-    "act": "Cancer Bats",
-    "artist": "Cancer Bats",
-    "plays": 7,
-    "recentPlays": 2,
-    "lastPlayed": "2026-09-02",
-    "country": "CA",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 13
-   }
-  ],
-  "tier": "also",
-  "score": 13
- },
- {
-  "title": "Cancer Bats @ Shibuya Cyclone",
-  "date": "2027-02-11",
-  "venue": "Shibuya Cyclone",
-  "city": "Tokyo",
-  "url": "https://www.songkick.com/concerts/43499916-cancer-bats-at-shibuya-cyclone",
-  "acts": [
-   "Cancer Bats"
-  ],
-  "matches": [
-   {
-    "act": "Cancer Bats",
-    "artist": "Cancer Bats",
-    "plays": 7,
-    "recentPlays": 2,
-    "lastPlayed": "2026-09-02",
-    "country": "CA",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 13
-   }
-  ],
-  "tier": "also",
-  "score": 13
- },
- {
-  "title": "BLIND CHANNEL",
-  "date": "2026-11-18",
-  "venue": "渋谷クラブクアトロ",
-  "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/event/blind-channel26/",
-  "acts": [
-   "Blind Channel"
-  ],
-  "matches": [
-   {
-    "act": "Blind Channel",
-    "artist": "Blind Channel",
-    "plays": 10,
-    "recentPlays": 0,
-    "lastPlayed": "2024-10-10",
-    "country": "FI",
+    "recentPlays": 1,
+    "lastPlayed": "2025-09-15",
+    "country": "US",
     "japanese": false,
     "seenLive": 0,
     "lastSeen": "",
@@ -3108,92 +5840,11 @@
   "score": 10
  },
  {
-  "title": "BLIND CHANNEL",
-  "date": "2026-11-19",
-  "venue": "梅田クラブクアトロ",
-  "city": "Osaka",
-  "url": "https://www.creativeman.co.jp/event/blind-channel26/",
-  "acts": [
-   "Blind Channel"
-  ],
-  "matches": [
-   {
-    "act": "Blind Channel",
-    "artist": "Blind Channel",
-    "plays": 10,
-    "recentPlays": 0,
-    "lastPlayed": "2024-10-10",
-    "country": "FI",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 10
-   }
-  ],
-  "tier": "also",
-  "score": 10
- },
- {
-  "title": "Blind Channel @ Tokyo",
-  "date": "2026-11-18",
-  "venue": "Tokyo",
-  "city": "Tokyo",
-  "url": "https://www.songkick.com/concerts/43497575-blind-channel-at-unknown-venue",
-  "acts": [
-   "Blind Channel"
-  ],
-  "matches": [
-   {
-    "act": "Blind Channel",
-    "artist": "Blind Channel",
-    "plays": 10,
-    "recentPlays": 0,
-    "lastPlayed": "2024-10-10",
-    "country": "FI",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 10
-   }
-  ],
-  "tier": "also",
-  "score": 10
- },
- {
-  "title": "Blind Channel @ Osaka",
-  "date": "2026-11-19",
-  "venue": "Osaka",
-  "city": "Osaka",
-  "url": "https://www.songkick.com/concerts/43497579-blind-channel-at-unknown-venue",
-  "acts": [
-   "Blind Channel"
-  ],
-  "matches": [
-   {
-    "act": "Blind Channel",
-    "artist": "Blind Channel",
-    "plays": 10,
-    "recentPlays": 0,
-    "lastPlayed": "2024-10-10",
-    "country": "FI",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 10
-   }
-  ],
-  "tier": "also",
-  "score": 10
- },
- {
-  "title": "Till Death & Back Tour",
+  "title": "Against The Current Till Death & Back Tour",
   "date": "2027-01-13",
   "venue": "Spotify O-EAST",
   "city": "Tokyo",
-  "url": "https://www.livenationhip.co.jp/all-events/against-the-current-tickets-ae671869",
+  "url": "https://shibuya-o.com/east/schedule/",
   "acts": [
    "Against The Current"
   ],
@@ -3216,22 +5867,31 @@
   "score": 7
  },
  {
-  "title": "CAT POWER",
-  "date": "2026-12-14",
-  "venue": "EX THEATER ROPPONGI",
+  "title": "ONE FOUNDATION SPECIAL",
+  "date": "2026-12-05",
+  "venue": "Shinjuku LOFT",
   "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/event/cat-power26/",
+  "url": "https://www.loft-prj.co.jp/schedule/loft/schedule/365621",
   "acts": [
-   "Cat Power",
-   "優河"
+   "AGE OF KID",
+   "BRAVE LION",
+   "DUBJUANA MIDNIGHT SYSTEM",
+   "DUCK MISSILE",
+   "The DROPS",
+   "THE JAPONICANS",
+   "THE REDEMPTION",
+   "ROLLINGS",
+   "RUDE BONES",
+   "STEP BY STEP",
+   "DEF FOUNDATIONS"
   ],
   "matches": [
    {
-    "act": "Cat Power",
-    "artist": "Cat Power",
+    "act": "THE REDEMPTION",
+    "artist": "Redemption",
     "plays": 5,
     "recentPlays": 0,
-    "lastPlayed": "2019-07-08",
+    "lastPlayed": "2020-12-23",
     "country": "US",
     "japanese": false,
     "seenLive": 0,
@@ -3244,932 +5904,91 @@
   "score": 5
  },
  {
-  "title": "CAT POWER",
-  "date": "2026-12-17",
-  "venue": "GORILLA HALL OSAKA",
-  "city": "Osaka",
-  "url": "https://www.creativeman.co.jp/event/cat-power26/",
-  "acts": [
-   "Cat Power",
-   "優河"
-  ],
-  "matches": [
-   {
-    "act": "Cat Power",
-    "artist": "Cat Power",
-    "plays": 5,
-    "recentPlays": 0,
-    "lastPlayed": "2019-07-08",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 5
-   }
-  ],
-  "tier": "also",
-  "score": 5
- },
- {
-  "title": "It's Always Summer Somewhere Tour",
-  "date": "2026-12-03",
-  "venue": "Tokyo Garden Theater",
+  "title": "MOUNTAIN HIGH",
+  "date": "2026-12-20",
+  "venue": "Shindaita FEVER",
   "city": "Tokyo",
-  "url": "https://www.livenationhip.co.jp/all-events/khalid-tickets-ae928417",
+  "url": "https://www.fever-popo.com/schedule/2026/12/2016.html",
   "acts": [
-   "Khalid"
+   "ROCKY&TheSWEDEN",
+   "SLIGHT SLAPPERS",
+   "RAGS",
+   "KRIEGSHÖG",
+   "NEPENTHES",
+   "MELT-BANANA",
+   "DADDY-O-NOV (BACK FROM THE GRAVE)"
   ],
   "matches": [
    {
-    "act": "Khalid",
-    "artist": "Khalid",
-    "plays": 5,
-    "recentPlays": 0,
-    "lastPlayed": "2021-04-22",
-    "country": "BD",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 5
-   }
-  ],
-  "tier": "also",
-  "score": 5
- },
- {
-  "title": "Khalid @ Tokyo Garden Theater",
-  "date": "2026-12-03",
-  "venue": "Tokyo Garden Theater",
-  "city": "Tokyo",
-  "url": "https://www.songkick.com/concerts/43367196-khalid-at-tokyo-garden-theater",
-  "acts": [
-   "Khalid"
-  ],
-  "matches": [
-   {
-    "act": "Khalid",
-    "artist": "Khalid",
-    "plays": 5,
-    "recentPlays": 0,
-    "lastPlayed": "2021-04-22",
-    "country": "BD",
-    "japanese": false,
-    "seenLive": 0,
-    "lastSeen": "",
-    "tier": "also",
-    "score": 5
-   }
-  ],
-  "tier": "also",
-  "score": 5
- },
- {
-  "title": "MEGADETH Farewell Japan Tour",
-  "date": "2027-02-22",
-  "venue": "Grand Cube Osaka",
-  "city": "Osaka",
-  "url": "https://www.udo.jp/shows/Megadeth27",
-  "acts": [
-   "MEGADETH"
-  ],
-  "matches": [
-   {
-    "act": "MEGADETH",
-    "artist": "Megadeth",
-    "plays": 2507,
-    "recentPlays": 1,
-    "lastPlayed": "2025-08-23",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 1,
-    "lastSeen": "2010-06-16",
-    "tier": "seen",
-    "score": -7490
-   }
-  ],
-  "tier": "seen",
-  "score": -7490
- },
- {
-  "title": "MEGADETH Farewell Japan Tour",
-  "date": "2027-02-24",
-  "venue": "Nippon Budokan",
-  "city": "Tokyo",
-  "url": "https://www.udo.jp/shows/Megadeth27",
-  "acts": [
-   "MEGADETH"
-  ],
-  "matches": [
-   {
-    "act": "MEGADETH",
-    "artist": "Megadeth",
-    "plays": 2507,
-    "recentPlays": 1,
-    "lastPlayed": "2025-08-23",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 1,
-    "lastSeen": "2010-06-16",
-    "tier": "seen",
-    "score": -7490
-   }
-  ],
-  "tier": "seen",
-  "score": -7490
- },
- {
-  "title": "MEGADETH Farewell Japan Tour",
-  "date": "2027-02-25",
-  "venue": "Nippon Budokan",
-  "city": "Tokyo",
-  "url": "https://www.udo.jp/shows/Megadeth27",
-  "acts": [
-   "MEGADETH"
-  ],
-  "matches": [
-   {
-    "act": "MEGADETH",
-    "artist": "Megadeth",
-    "plays": 2507,
-    "recentPlays": 1,
-    "lastPlayed": "2025-08-23",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 1,
-    "lastSeen": "2010-06-16",
-    "tier": "seen",
-    "score": -7490
-   }
-  ],
-  "tier": "seen",
-  "score": -7490
- },
- {
-  "title": "Megadeth @ Osaka International Convention Center, Main Hall (\"Grand Cube\") (グランキューブ大阪メインホール)",
-  "date": "2027-02-22",
-  "venue": "Osaka International Convention Center, Main Hall (\"Grand Cube\") (グランキューブ大阪メインホール)",
-  "city": "Osaka",
-  "url": "https://www.songkick.com/concerts/43390633-megadeth-at-osaka-international-convention-center-main-hall",
-  "acts": [
-   "Megadeth"
-  ],
-  "matches": [
-   {
-    "act": "Megadeth",
-    "artist": "Megadeth",
-    "plays": 2507,
-    "recentPlays": 1,
-    "lastPlayed": "2025-08-23",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 1,
-    "lastSeen": "2010-06-16",
-    "tier": "seen",
-    "score": -7490
-   }
-  ],
-  "tier": "seen",
-  "score": -7490
- },
- {
-  "title": "Megadeth @ Nippon Budokan｜日本武道館",
-  "date": "2027-02-24",
-  "venue": "Nippon Budokan｜日本武道館",
-  "city": "Tokyo",
-  "url": "https://www.songkick.com/concerts/43390634-megadeth-at-nippon-budokanri-ben-wu-dao-guan",
-  "acts": [
-   "Megadeth"
-  ],
-  "matches": [
-   {
-    "act": "Megadeth",
-    "artist": "Megadeth",
-    "plays": 2507,
-    "recentPlays": 1,
-    "lastPlayed": "2025-08-23",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 1,
-    "lastSeen": "2010-06-16",
-    "tier": "seen",
-    "score": -7490
-   }
-  ],
-  "tier": "seen",
-  "score": -7490
- },
- {
-  "title": "MAN WITH A MISSION",
-  "date": "2026-12-09",
-  "venue": "SGC HALL ARIAKE",
-  "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/event/mwam-firestarter-tour-2026/",
-  "acts": [
-   "MAN WITH A MISSION"
-  ],
-  "matches": [
-   {
-    "act": "MAN WITH A MISSION",
-    "artist": "MAN WITH A MISSION",
-    "plays": 416,
-    "recentPlays": 0,
-    "lastPlayed": "2023-05-17",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 1,
-    "lastSeen": "2026-10-31",
-    "tier": "seen",
-    "score": -9434
-   }
-  ],
-  "tier": "seen",
-  "score": -9434
- },
- {
-  "title": "MAN WITH A MISSION",
-  "date": "2026-12-10",
-  "venue": "SGC HALL ARIAKE",
-  "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/event/mwam-firestarter-tour-2026/",
-  "acts": [
-   "MAN WITH A MISSION"
-  ],
-  "matches": [
-   {
-    "act": "MAN WITH A MISSION",
-    "artist": "MAN WITH A MISSION",
-    "plays": 416,
-    "recentPlays": 0,
-    "lastPlayed": "2023-05-17",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 1,
-    "lastSeen": "2026-10-31",
-    "tier": "seen",
-    "score": -9434
-   }
-  ],
-  "tier": "seen",
-  "score": -9434
- },
- {
-  "title": "MAN WITH A MISSION",
-  "date": "2027-01-20",
-  "venue": "Zepp Haneda(TOKYO)",
-  "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/event/man-with-a-mission_2027/",
-  "acts": [
-   "MAN WITH A MISSION"
-  ],
-  "matches": [
-   {
-    "act": "MAN WITH A MISSION",
-    "artist": "MAN WITH A MISSION",
-    "plays": 416,
-    "recentPlays": 0,
-    "lastPlayed": "2023-05-17",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 1,
-    "lastSeen": "2026-10-31",
-    "tier": "seen",
-    "score": -9434
-   }
-  ],
-  "tier": "seen",
-  "score": -9434
- },
- {
-  "title": "MAN WITH A MISSION",
-  "date": "2027-01-21",
-  "venue": "Zepp Haneda(TOKYO)",
-  "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/event/man-with-a-mission_2027/",
-  "acts": [
-   "MAN WITH A MISSION"
-  ],
-  "matches": [
-   {
-    "act": "MAN WITH A MISSION",
-    "artist": "MAN WITH A MISSION",
-    "plays": 416,
-    "recentPlays": 0,
-    "lastPlayed": "2023-05-17",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 1,
-    "lastSeen": "2026-10-31",
-    "tier": "seen",
-    "score": -9434
-   }
-  ],
-  "tier": "seen",
-  "score": -9434
- },
- {
-  "title": "MAN WITH A MISSION",
-  "date": "2027-05-17",
-  "venue": "水戸市民会館 グロービスホール",
-  "city": "Mito",
-  "url": "https://www.creativeman.co.jp/event/man-with-a-mission_2027/",
-  "acts": [
-   "MAN WITH A MISSION"
-  ],
-  "matches": [
-   {
-    "act": "MAN WITH A MISSION",
-    "artist": "MAN WITH A MISSION",
-    "plays": 416,
-    "recentPlays": 0,
-    "lastPlayed": "2023-05-17",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 1,
-    "lastSeen": "2026-10-31",
-    "tier": "seen",
-    "score": -9434
-   }
-  ],
-  "tier": "seen",
-  "score": -9434
- },
- {
-  "title": "MAN WITH A MISSION",
-  "date": "2027-05-20",
-  "venue": "宇都宮市文化会館 大ホール",
-  "city": "Utsunomiya",
-  "url": "https://www.creativeman.co.jp/event/man-with-a-mission_2027/",
-  "acts": [
-   "MAN WITH A MISSION"
-  ],
-  "matches": [
-   {
-    "act": "MAN WITH A MISSION",
-    "artist": "MAN WITH A MISSION",
-    "plays": 416,
-    "recentPlays": 0,
-    "lastPlayed": "2023-05-17",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 1,
-    "lastSeen": "2026-10-31",
-    "tier": "seen",
-    "score": -9434
-   }
-  ],
-  "tier": "seen",
-  "score": -9434
- },
- {
-  "title": "MAN WITH A MISSION",
-  "date": "2027-05-22",
-  "venue": "ＹＣＣ県民文化ホール (山梨県立県民文化ホール) 大ホール",
-  "city": "Kofu",
-  "url": "https://www.creativeman.co.jp/event/man-with-a-mission_2027/",
-  "acts": [
-   "MAN WITH A MISSION"
-  ],
-  "matches": [
-   {
-    "act": "MAN WITH A MISSION",
-    "artist": "MAN WITH A MISSION",
-    "plays": 416,
-    "recentPlays": 0,
-    "lastPlayed": "2023-05-17",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 1,
-    "lastSeen": "2026-10-31",
-    "tier": "seen",
-    "score": -9434
-   }
-  ],
-  "tier": "seen",
-  "score": -9434
- },
- {
-  "title": "MAN WITH A MISSION",
-  "date": "2027-06-02",
-  "venue": "高崎芸術劇場 大劇場",
-  "city": "Takasaki",
-  "url": "https://www.creativeman.co.jp/event/man-with-a-mission_2027/",
-  "acts": [
-   "MAN WITH A MISSION"
-  ],
-  "matches": [
-   {
-    "act": "MAN WITH A MISSION",
-    "artist": "MAN WITH A MISSION",
-    "plays": 416,
-    "recentPlays": 0,
-    "lastPlayed": "2023-05-17",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 1,
-    "lastSeen": "2026-10-31",
-    "tier": "seen",
-    "score": -9434
-   }
-  ],
-  "tier": "seen",
-  "score": -9434
- },
- {
-  "title": "MAN WITH A MISSION",
-  "date": "2027-06-28",
-  "venue": "大宮ソニックシティ 大ホール",
-  "city": "Saitama",
-  "url": "https://www.creativeman.co.jp/event/man-with-a-mission_2027/",
-  "acts": [
-   "MAN WITH A MISSION"
-  ],
-  "matches": [
-   {
-    "act": "MAN WITH A MISSION",
-    "artist": "MAN WITH A MISSION",
-    "plays": 416,
-    "recentPlays": 0,
-    "lastPlayed": "2023-05-17",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 1,
-    "lastSeen": "2026-10-31",
-    "tier": "seen",
-    "score": -9434
-   }
-  ],
-  "tier": "seen",
-  "score": -9434
- },
- {
-  "title": "MAN WITH A MISSION",
-  "date": "2027-07-08",
-  "venue": "市川市文化会館 大ホール",
-  "city": "Chiba",
-  "url": "https://www.creativeman.co.jp/event/man-with-a-mission_2027/",
-  "acts": [
-   "MAN WITH A MISSION"
-  ],
-  "matches": [
-   {
-    "act": "MAN WITH A MISSION",
-    "artist": "MAN WITH A MISSION",
-    "plays": 416,
-    "recentPlays": 0,
-    "lastPlayed": "2023-05-17",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 1,
-    "lastSeen": "2026-10-31",
-    "tier": "seen",
-    "score": -9434
-   }
-  ],
-  "tier": "seen",
-  "score": -9434
- },
- {
-  "title": "AIR JAM 2026",
-  "date": "2026-11-07",
-  "venue": "ZOZO Marine Stadium",
-  "city": "Chiba",
-  "url": "https://www.livenationhip.co.jp/all-events/air-jam-2026-tickets-ae1692177",
-  "acts": [
-   "AIR JAM 2026: Hi-STANDARD",
-   "10-FEET",
-   "DANCE HALL CRASHERS",
-   "ENTH",
-   "HEY-SMITH",
-   "HUSKING BEE",
-   "KUZIRA",
-   "LAGWAGON",
-   "MAN WITH A MISSION",
-   "THE CRO-MAGNONS",
-   "MAXIMUM THE HORMONE"
-  ],
-  "matches": [
-   {
-    "act": "MAN WITH A MISSION",
-    "artist": "MAN WITH A MISSION",
-    "plays": 416,
-    "recentPlays": 0,
-    "lastPlayed": "2023-05-17",
-    "country": "JP",
-    "japanese": true,
-    "seenLive": 1,
-    "lastSeen": "2026-10-31",
-    "tier": "seen",
-    "score": -9434
-   },
-   {
-    "act": "MAXIMUM THE HORMONE",
-    "artist": "Maximum the Hormone",
-    "plays": 86,
-    "recentPlays": 80,
-    "lastPlayed": "2026-11-04",
+    "act": "MELT-BANANA",
+    "artist": "Melt-Banana",
+    "plays": 511,
+    "recentPlays": 285,
+    "lastPlayed": "2026-11-02",
     "country": "",
     "japanese": false,
     "seenLive": 2,
-    "lastSeen": "2026-10-31",
+    "lastSeen": "2026-06-12",
     "tier": "seen",
-    "score": -9674
-   },
-   {
-    "act": "ENTH",
-    "artist": "Enth",
-    "plays": 68,
-    "recentPlays": 67,
-    "lastPlayed": "2026-04-14",
-    "country": "PL",
-    "japanese": false,
-    "seenLive": 1,
-    "lastSeen": "2025-05-06",
-    "tier": "seen",
-    "score": -9731
+    "score": -8634
    }
   ],
   "tier": "seen",
-  "score": -9434
+  "score": -8634
  },
  {
-  "title": "Paledusk",
-  "date": "2027-02-24",
-  "venue": "Zepp Haneda（TOKYO）",
+  "title": "nest 30th Anniversary “ZAZEN BOYS × SODA!”",
+  "date": "2026-12-22",
+  "venue": "Spotify O-nest",
   "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/event/paledusk-live/",
+  "url": "https://shibuya-o.com/nest/schedule/nest-30th-anniversary-zazen-boys-x-soda/",
   "acts": [
-   "Paledusk"
+   "ZAZEN BOYS",
+   "SODA!"
   ],
   "matches": [
    {
-    "act": "Paledusk",
-    "artist": "Paledusk",
-    "plays": 252,
-    "recentPlays": 27,
-    "lastPlayed": "2026-05-12",
+    "act": "ZAZEN BOYS",
+    "artist": "ZAZEN BOYS",
+    "plays": 223,
+    "recentPlays": 223,
+    "lastPlayed": "2026-11-01",
     "country": "JP",
     "japanese": true,
     "seenLive": 1,
-    "lastSeen": "2025-05-06",
+    "lastSeen": "2026-02-12",
     "tier": "seen",
-    "score": -9517
+    "score": -8958
    }
   ],
   "tier": "seen",
-  "score": -9517
+  "score": -8958
  },
  {
-  "title": "WEEZER",
-  "date": "2027-02-12",
-  "venue": "TOKYO GARDEN THEATER",
+  "title": "Gecko&Tokage Parade 1st One Man Tour \"Life/Reflection\"",
+  "date": "2027-01-21",
+  "venue": "WWW",
   "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/artist/2027/02weezer/",
+  "url": "https://www-shibuya.jp/schedule/020118.php",
   "acts": [
-   "Weezer"
+   "Gecko&Tokage Parade"
   ],
   "matches": [
    {
-    "act": "Weezer",
-    "artist": "Weezer",
-    "plays": 41,
-    "recentPlays": 22,
-    "lastPlayed": "2026-04-08",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 1,
-    "lastSeen": "2025-12-06",
-    "tier": "seen",
-    "score": -9893
-   }
-  ],
-  "tier": "seen",
-  "score": -9893
- },
- {
-  "title": "WEEZER",
-  "date": "2027-02-13",
-  "venue": "TOKYO GARDEN THEATER",
-  "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/artist/2027/02weezer/",
-  "acts": [
-   "Weezer"
-  ],
-  "matches": [
-   {
-    "act": "Weezer",
-    "artist": "Weezer",
-    "plays": 41,
-    "recentPlays": 22,
-    "lastPlayed": "2026-04-08",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 1,
-    "lastSeen": "2025-12-06",
-    "tier": "seen",
-    "score": -9893
-   }
-  ],
-  "tier": "seen",
-  "score": -9893
- },
- {
-  "title": "WEEZER",
-  "date": "2027-02-15",
-  "venue": "ROHM Theatre Kyoto Main Hall",
-  "city": "Kyoto",
-  "url": "https://www.creativeman.co.jp/artist/2027/02weezer/",
-  "acts": [
-   "Weezer"
-  ],
-  "matches": [
-   {
-    "act": "Weezer",
-    "artist": "Weezer",
-    "plays": 41,
-    "recentPlays": 22,
-    "lastPlayed": "2026-04-08",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 1,
-    "lastSeen": "2025-12-06",
-    "tier": "seen",
-    "score": -9893
-   }
-  ],
-  "tier": "seen",
-  "score": -9893
- },
- {
-  "title": "WEEZER",
-  "date": "2027-02-16",
-  "venue": "Zepp Osaka Bayside",
-  "city": "Osaka",
-  "url": "https://www.creativeman.co.jp/artist/2027/02weezer/",
-  "acts": [
-   "Weezer"
-  ],
-  "matches": [
-   {
-    "act": "Weezer",
-    "artist": "Weezer",
-    "plays": 41,
-    "recentPlays": 22,
-    "lastPlayed": "2026-04-08",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 1,
-    "lastSeen": "2025-12-06",
-    "tier": "seen",
-    "score": -9893
-   }
-  ],
-  "tier": "seen",
-  "score": -9893
- },
- {
-  "title": "WEEZER",
-  "date": "2027-02-18",
-  "venue": "COMTEC PORTBASE",
-  "city": "Nagoya",
-  "url": "https://www.creativeman.co.jp/artist/2027/02weezer/",
-  "acts": [
-   "Weezer"
-  ],
-  "matches": [
-   {
-    "act": "Weezer",
-    "artist": "Weezer",
-    "plays": 41,
-    "recentPlays": 22,
-    "lastPlayed": "2026-04-08",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 1,
-    "lastSeen": "2025-12-06",
-    "tier": "seen",
-    "score": -9893
-   }
-  ],
-  "tier": "seen",
-  "score": -9893
- },
- {
-  "title": "Weezer @ Tokyo Garden Theater",
-  "date": "2027-02-12",
-  "venue": "Tokyo Garden Theater",
-  "city": "Tokyo",
-  "url": "https://www.songkick.com/concerts/43346887-weezer-at-tokyo-garden-theater",
-  "acts": [
-   "Weezer"
-  ],
-  "matches": [
-   {
-    "act": "Weezer",
-    "artist": "Weezer",
-    "plays": 41,
-    "recentPlays": 22,
-    "lastPlayed": "2026-04-08",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 1,
-    "lastSeen": "2025-12-06",
-    "tier": "seen",
-    "score": -9893
-   }
-  ],
-  "tier": "seen",
-  "score": -9893
- },
- {
-  "title": "Weezer @ Tokyo Garden Theater",
-  "date": "2027-02-13",
-  "venue": "Tokyo Garden Theater",
-  "city": "Tokyo",
-  "url": "https://www.songkick.com/concerts/43346894-weezer-at-tokyo-garden-theater",
-  "acts": [
-   "Weezer"
-  ],
-  "matches": [
-   {
-    "act": "Weezer",
-    "artist": "Weezer",
-    "plays": 41,
-    "recentPlays": 22,
-    "lastPlayed": "2026-04-08",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 1,
-    "lastSeen": "2025-12-06",
-    "tier": "seen",
-    "score": -9893
-   }
-  ],
-  "tier": "seen",
-  "score": -9893
- },
- {
-  "title": "Weezer @ Zepp Osaka Bayside",
-  "date": "2027-02-16",
-  "venue": "Zepp Osaka Bayside",
-  "city": "Osaka",
-  "url": "https://www.songkick.com/concerts/43346904-weezer-at-zepp-osaka-bayside",
-  "acts": [
-   "Weezer"
-  ],
-  "matches": [
-   {
-    "act": "Weezer",
-    "artist": "Weezer",
-    "plays": 41,
-    "recentPlays": 22,
-    "lastPlayed": "2026-04-08",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 1,
-    "lastSeen": "2025-12-06",
-    "tier": "seen",
-    "score": -9893
-   }
-  ],
-  "tier": "seen",
-  "score": -9893
- },
- {
-  "title": "Weezer @ Comtec Portbase",
-  "date": "2027-02-18",
-  "venue": "Comtec Portbase",
-  "city": "Nagoya",
-  "url": "https://www.songkick.com/concerts/43346907-weezer-at-comtec-portbase",
-  "acts": [
-   "Weezer"
-  ],
-  "matches": [
-   {
-    "act": "Weezer",
-    "artist": "Weezer",
-    "plays": 41,
-    "recentPlays": 22,
-    "lastPlayed": "2026-04-08",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 1,
-    "lastSeen": "2025-12-06",
-    "tier": "seen",
-    "score": -9893
-   }
-  ],
-  "tier": "seen",
-  "score": -9893
- },
- {
-  "title": "Underworld x Brutalismus3000 Live in Japan 2027",
-  "date": "2027-03-11",
-  "venue": "SGC HALL ARIAKE",
-  "city": "Tokyo",
-  "url": "https://www.creativeman.co.jp/artist/2027/03uw_b3k/",
-  "acts": [
-   "Underworld",
-   "Brutalismus3000"
-  ],
-  "matches": [
-   {
-    "act": "Brutalismus3000",
-    "artist": "Brutalismus 3000",
-    "plays": 12,
-    "recentPlays": 12,
-    "lastPlayed": "2026-07-18",
-    "country": "DE",
-    "japanese": false,
-    "seenLive": 1,
-    "lastSeen": "2025-07-05",
-    "tier": "seen",
-    "score": -9952
-   }
-  ],
-  "tier": "seen",
-  "score": -9952
- },
- {
-  "title": "Fcukers",
-  "date": "2026-12-02",
-  "venue": "Zepp Shinjuku (TOKYO)",
-  "city": "Tokyo",
-  "url": "https://smash-jpn.com/live/?id=4776",
-  "acts": [
-   "Fcukers"
-  ],
-  "matches": [
-   {
-    "act": "Fcukers",
-    "artist": "Fcukers",
+    "act": "Gecko&Tokage Parade",
+    "artist": "Gecko&Tokage Parade",
     "plays": 10,
     "recentPlays": 10,
-    "lastPlayed": "2026-10-16",
-    "country": "US",
-    "japanese": false,
+    "lastPlayed": "2025-09-26",
+    "country": "JP",
+    "japanese": true,
     "seenLive": 1,
-    "lastSeen": "2025-07-02",
+    "lastSeen": "2025-05",
     "tier": "seen",
-    "score": -9960
+    "score": -9810
    }
   ],
   "tier": "seen",
-  "score": -9960
- },
- {
-  "title": "Fcukers",
-  "date": "2026-12-03",
-  "venue": "Yogibo META VALLEY",
-  "city": "Osaka",
-  "url": "https://smash-jpn.com/live/?id=4776",
-  "acts": [
-   "Fcukers"
-  ],
-  "matches": [
-   {
-    "act": "Fcukers",
-    "artist": "Fcukers",
-    "plays": 10,
-    "recentPlays": 10,
-    "lastPlayed": "2026-10-16",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 1,
-    "lastSeen": "2025-07-02",
-    "tier": "seen",
-    "score": -9960
-   }
-  ],
-  "tier": "seen",
-  "score": -9960
- },
- {
-  "title": "Fcukers @ Zepp Shinjuku",
-  "date": "2026-12-02",
-  "venue": "Zepp Shinjuku",
-  "city": "Tokyo",
-  "url": "https://www.songkick.com/concerts/43467510-fcukers-at-zepp-shinjuku",
-  "acts": [
-   "Fcukers"
-  ],
-  "matches": [
-   {
-    "act": "Fcukers",
-    "artist": "Fcukers",
-    "plays": 10,
-    "recentPlays": 10,
-    "lastPlayed": "2026-10-16",
-    "country": "US",
-    "japanese": false,
-    "seenLive": 1,
-    "lastSeen": "2025-07-02",
-    "tier": "seen",
-    "score": -9960
-   }
-  ],
-  "tier": "seen",
-  "score": -9960
+  "score": -9810
  }
 ]
