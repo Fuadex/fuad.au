@@ -27,9 +27,13 @@ JUNK = re.compile(r"(and more|他|ほか|出演者|後日発表|^(dj|live|guest|
 
 def main():
     import csv, collections
-    args = [a for a in sys.argv[1:] if not a.startswith("--")]
-    dirn = sys.argv[sys.argv.index("--data") + 1] if "--data" in sys.argv else os.path.dirname(HERE)
-    out = sys.argv[sys.argv.index("--out") + 1] if "--out" in sys.argv else os.path.join(os.path.dirname(HERE), "data")
+    argv = sys.argv[1:]
+    dirn, out = os.path.dirname(HERE), os.path.join(os.path.dirname(HERE), "data")
+    if "--data" in argv:
+        i = argv.index("--data"); dirn = argv[i + 1]; argv = argv[:i] + argv[i + 2:]
+    if "--out" in argv:
+        i = argv.index("--out"); out = argv[i + 1]; argv = argv[:i] + argv[i + 2:]
+    args = argv
     files = args or sorted(glob.glob(os.path.join(out, "listings-*.json")))
     today = str(datetime.date.today())
 
