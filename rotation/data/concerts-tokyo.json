@@ -1,7 +1,7 @@
 {
- "generated": "2026-11-05",
+ "generated": "2026-11-06",
  "source": "Tokyo Morning Brief concerts collection (status = Fuad's marks: new | want | seen | skip)",
- "count": 802,
+ "count": 803,
  "concerts": [
   {
    "added": "2026-10-24",
@@ -20979,6 +20979,28 @@
    "area": "Ebisu",
    "lat": 35.6497,
    "lng": 139.7105
+  },
+  {
+   "id": "2026-11-06-iron-maiden-2026-11-25",
+   "added": "2026-11-06",
+   "status": "new",
+   "title": "RUN FOR YOUR LIVES WORLD TOUR 2026",
+   "venue": "K-Arena Yokohama",
+   "city": "Yokohama",
+   "href": "https://www.creativeman.co.jp/artist/2026/11ironmaiden/",
+   "on": "2026-11-25",
+   "until": "2026-11-25",
+   "acts": [
+    "Iron Maiden"
+   ],
+   "artist": "Iron Maiden",
+   "plays": 73,
+   "japanese": false,
+   "tier": "top",
+   "seenLive": 0,
+   "lastSeen": "",
+   "rotation": true,
+   "cat": "music"
   }
  ]
 }
