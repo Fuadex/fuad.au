@@ -5,6 +5,7 @@
 window.CULTURE_WISHLIST = [
 {"id": "wl-f-obsession-2025", "title": "Obsession", "year": 2025, "medium": "Movies", "addedDate": "2026-06-06", "source": "own" },
 {"id": "wl-g-rdr2", "title": "Red Dead Redemption 2", "year": 2018, "medium": "Games", "addedDate": "2026-06-07", "source": "own" },
+{"id": "wl-f-battles-without-honor-and-humanity", "title": "Battles Without Honor and Humanity", "year": 1973, "medium": "Movies", "region": "jp", "director": "Kinji Fukasaku", "addedDate": "2026-11-06", "source": "own" },
 {"id": "wl-f-99671", "title": "Ōritsu Uchūgu: Honneamise no Tsubasa", "year": 1987, "medium": "Movies", "link": "https://www.filmweb.pl/film/%C5%8Critsu+Uch%C5%ABgu%3A+Honneamise+no+Tsubasa-1987-99671", "fwAvg": 7.6, "voteCount": 466, "polishTitle": "Ōritsu Uchūgu: Honneamise no Tsubasa" },
 {"id": "wl-f-33184", "title": "Irréversible", "year": 2002, "medium": "Movies", "link": "https://www.filmweb.pl/film/Nieodwracalne-2002-33184", "fwAvg": 7.2, "voteCount": 49922, "polishTitle": "Nieodwracalne", "enTitle": "Irreversible" },
 {"id": "wl-f-8266", "title": "Volunteers", "year": 1985, "medium": "Movies", "link": "https://www.filmweb.pl/film/Ochotnicy-1985-8266", "fwAvg": 5.9, "voteCount": 981, "polishTitle": "Ochotnicy" },

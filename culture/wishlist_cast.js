@@ -77245,5 +77245,64 @@ window.CULTURE_WISHLIST_CAST = {
     "director": "Muriel d'Ansembourg",
     "runtime": 102,
     "tmdbRating": 6.6
+  },
+  "wl-f-battles-without-honor-and-humanity": {
+    "cast": [
+      "Bunta Sugawara",
+      "Hiroki Matsukata",
+      "Kunie Tanaka",
+      "Eiko Nakamura",
+      "Tsunehiko Watase",
+      "Gorō Ibuki",
+      "Nobuo Kaneko",
+      "Toshie Kimura",
+      "Tamio Kawachi",
+      "Mayumi Nagisa",
+      "Asao Uchida",
+      "Shinichirō Mikami",
+      "Hiroshi Nawa",
+      "Shinji Takano",
+      "Harumi Sone",
+      "Kinji Nakamura",
+      "Shōtarō Hayashi",
+      "Seizō Fukumoto",
+      "Keiji Takamiya",
+      "Asao Koike",
+      "Takashi Ebata",
+      "Naotsugu Uzaki"
+    ],
+    "cinematographer": "Sadaji Yoshida",
+    "composer": "Toshiaki Tsushima",
+    "writer": "Kazuo Kasahara, Koichi Iiboshi",
+    "productionCompanies": [
+      "Toei Company"
+    ],
+    "tags": [
+      "yakuza",
+      "hiroshima, japan",
+      "betrayal",
+      "criminal underworld",
+      "ex soldier",
+      "post war japan",
+      "shōwa era (1926-89)",
+      "former soldier",
+      "jitsuroku",
+      "post-war chaos period",
+      "yamiichi"
+    ],
+    "genres": [
+      "Crime",
+      "Action",
+      "Drama"
+    ],
+    "tmdbPoster": "https://image.tmdb.org/t/p/w500/qQmEEj5B3bTQI8Dq8u4zq80Z7JL.jpg",
+    "region": "jp",
+    "director": "Kinji Fukasaku",
+    "runtime": 99,
+    "tmdbRating": 7.3,
+    "providers": [
+      "Philo",
+      "ARROW"
+    ]
   }
 };
