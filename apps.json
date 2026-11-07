@@ -131,7 +131,9 @@
         "about/d-12.js",
         "about/d-13.js",
         "about/d-14.js",
-        "about/d-15.js"
+        "about/d-15.js",
+        "gigs-upcoming.md",
+        "gigs-upcoming.json"
       ]
     },
     {
@@ -215,7 +217,10 @@
         "tmdb_data.js",
         "badges.js",
         "script_mood.js",
-        "interpretations.js"
+        "interpretations.js",
+        "seen.md",
+        "wishlist.md",
+        "culture.json"
       ],
       "precompile": true
     }

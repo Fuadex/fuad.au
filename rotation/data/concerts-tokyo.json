@@ -1,7 +1,7 @@
 {
  "generated": "2026-11-07",
  "source": "Tokyo Morning Brief concerts collection (status = Fuad's marks: new | want | seen | skip)",
- "count": 803,
+ "count": 806,
  "concerts": [
   {
    "added": "2026-10-24",
@@ -65,12 +65,13 @@
    "plays": 10,
    "rotation": true,
    "seenLive": 1,
-   "status": "new",
+   "status": "skip",
    "text": "Seen at Open'er last summer; this is a headline club show.",
    "tier": "seen",
    "title": "Fcukers at Zepp Shinjuku",
    "until": "2026-12-02",
-   "id": "2026-10-24-fcukers-zepp-shinjuku"
+   "id": "2026-10-24-fcukers-zepp-shinjuku",
+   "reviewedAt": "2026-11-05T09:31:39.296Z"
   },
   {
    "added": "2026-10-24",
@@ -887,12 +888,13 @@
    "plays": 328,
    "rotation": true,
    "seenLive": 1,
-   "status": "new",
+   "status": "skip",
    "text": "The Tokyo date of the 祝おう tour, a year out. The official second pre-sale on e+ runs November 6 to 23, first come first served.",
    "tier": "seen",
    "title": "MASS OF THE FERMENTING DREGS at LIQUIDROOM, November 2027",
    "until": "2027-11-07",
-   "id": "2026-10-28-mass-liquidroom-2027"
+   "id": "2026-10-28-mass-liquidroom-2027",
+   "reviewedAt": "2026-11-05T09:31:43.715Z"
   },
   {
    "added": "2026-10-29",
@@ -1007,12 +1009,13 @@
    "plays": 97,
    "rotation": true,
    "seenLive": 1,
-   "status": "new",
+   "status": "skip",
    "text": "Boris and Merzbow playing their 2005 collaboration dronevil in full, a very different night from January's Pink set. The 30th starts with Avyss Tokyo at 07:30.",
    "tier": "seen",
    "title": "Boris with Merzbow, performing dronevil, at clubasia",
    "until": "2026-11-30",
-   "id": "2026-10-30-boris-merzbow-clubasia"
+   "id": "2026-10-30-boris-merzbow-clubasia",
+   "reviewedAt": "2026-11-05T09:31:36.006Z"
   },
   {
    "added": "2026-10-30",
@@ -1153,13 +1156,14 @@
    "plays": 416,
    "rotation": true,
    "seenLive": 0,
-   "status": "new",
+   "status": "skip",
    "text": "Two nights at Haneda, separate from December's Ariake arena shows already on the list. General sale opens Saturday January 9 at 10:00; fan-club and official presales come first via the band's site.",
    "tier": "top",
    "title": "MAN WITH A MISSION at Zepp Haneda, January",
    "until": "2027-01-21",
    "id": "2026-10-30-mwam-zepp-haneda-2027",
-   "on": "2027-01-20"
+   "on": "2027-01-20",
+   "reviewedAt": "2026-11-05T09:31:19.465Z"
   },
   {
    "added": "2026-10-30",
@@ -1226,12 +1230,13 @@
    "plays": 252,
    "rotation": true,
    "seenLive": 1,
-   "status": "new",
+   "status": "skip",
    "text": "The Fukuoka band's only Tokyo-area stop on a seven-date tour; e+ shows sales closed for now. Megadeth plays the Budokan the same night.",
    "tier": "seen",
    "title": "Paledusk: LIVE!! TOUR at Zepp Haneda",
    "until": "2027-02-24",
-   "id": "2026-10-30-paledusk-zepp-haneda"
+   "id": "2026-10-30-paledusk-zepp-haneda",
+   "reviewedAt": "2026-11-05T09:31:42.022Z"
   },
   {
    "added": "2026-10-30",
@@ -1570,11 +1575,11 @@
    "id": "2026-11-04-bon-jovi-2027-02-25",
    "added": "2026-11-04",
    "status": "new",
-   "title": "Bon Jovi",
+   "title": "Bon Jovi at Tokyo Dome",
    "venue": "Tokyo Dome｜東京ドーム",
    "href": "https://www.songkick.com/concerts/43494643-bon-jovi-at-tokyo-domedong-jing-domu",
    "on": "2027-02-25",
-   "until": "2027-02-25",
+   "until": "2027-02-27",
    "acts": [
     "Bon Jovi"
    ],
@@ -1585,7 +1590,15 @@
    "seenLive": 0,
    "lastSeen": "",
    "rotation": true,
-   "cat": "music"
+   "cat": "music",
+   "area": "Suidobashi",
+   "book": true,
+   "from": "2027-02-25",
+   "lat": 35.7056,
+   "lng": 139.7519,
+   "meta": "Tokyo Dome · Thu Feb 25 and Sat Feb 27 · 31 plays, last in 2018 · never seen live",
+   "place": "Tokyo Dome",
+   "text": "Two Tokyo Dome nights in late February. In your library but untouched for years, so this one is for nostalgia rather than rotation."
   },
   {
    "id": "2026-11-04-bon-jovi-2027-02-27",
@@ -9756,10 +9769,10 @@
    "id": "2026-11-05-zazen-boys-2026-12-02",
    "added": "2026-11-05",
    "status": "new",
-   "title": "THE MATSURI SESSION",
+   "title": "THE MATSURI SESSION: ZAZEN BOYS, KIMONOS, Mukai Shutoku and Sakata Akira",
    "venue": "豊洲PIT",
    "city": "Tokyo",
-   "href": "https://www.livefans.jp/events/1980661",
+   "href": "https://eplus.jp/sf/detail/0630480001-P0030008P021001",
    "on": "2026-12-02",
    "until": "2026-12-02",
    "acts": [
@@ -9776,10 +9789,13 @@
    "lastSeen": "2026-02-12",
    "rotation": true,
    "cat": "music",
-   "area": "Koto",
-   "text": "Year 2026 confirmed by LiveFans (2026/12/02 Wed @豊洲PIT, ZAZEN BOYS THE MATSURI SESSION) plus ticketjam resale listing; zazenboys.com unreachable. Full bill (KIMONOS, 向井秀徳 acoustic & electric, 坂田明) is from the brief, not source-verified.",
-   "lat": 35.69,
-   "lng": 139.692
+   "area": "Toyosu",
+   "text": "Mukai Shutoku's night of all his projects, with ZAZEN BOYS, KIMONOS, his acoustic-and-electric solo set and saxophonist Sakata Akira. Toyosu is a short ride across the bay from Takanawa Gateway.",
+   "lat": 35.6488,
+   "lng": 139.7895,
+   "book": true,
+   "meta": "Toyosu PIT · Wed Dec 2 · 223 plays · seen once, Feb 12 2026",
+   "place": "Toyosu PIT"
   },
   {
    "id": "2026-11-05-zazen-boys-2026-12-25",
@@ -14617,7 +14633,7 @@
    "id": "2026-11-05-gurriers-2027-02-25",
    "added": "2026-11-05",
    "status": "new",
-   "title": "GURRIERS",
+   "title": "Gurriers at Daikanyama UNIT",
    "venue": "代官山UNIT",
    "city": "Tokyo",
    "href": "https://www.creativeman.co.jp/event/gurriers27/",
@@ -14634,16 +14650,19 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "area": "Shibuya",
-   "text": "Creativeman",
-   "lat": 35.69,
-   "lng": 139.692
+   "area": "Daikanyama",
+   "text": "The Dublin post-punk band's Tokyo date, the night after Banshimoku. Creativeman member presale ends Sunday 18:00; general sale opens Nov 21 at 10:00.",
+   "lat": 35.6488,
+   "lng": 139.7032,
+   "book": true,
+   "meta": "Daikanyama UNIT · Thu Feb 25, open 18:00 / start 19:00 · ¥7,800 standing · 55 plays, all in the last two years",
+   "place": "Daikanyama UNIT"
   },
   {
    "id": "2026-11-05-板歯目-2027-02-24",
    "added": "2026-11-05",
    "status": "new",
-   "title": "板歯目",
+   "title": "板歯目 (Banshimoku) at Shibuya CLUB QUATTRO",
    "venue": "渋谷 CLUB QUATTRO",
    "city": "Tokyo",
    "href": "https://www.creativeman.co.jp/event/banshimoku-iai/",
@@ -14661,9 +14680,12 @@
    "rotation": true,
    "cat": "music",
    "area": "Shibuya",
-   "text": "Creativeman",
-   "lat": 35.69,
-   "lng": 139.692
+   "text": "The Japanese punk trio headlines a Creativeman-promoted QUATTRO night on a Wednesday. Presale runs through an [e+ page](https://eplus.jp/sf/detail/3789590001); no general on-sale date is listed yet.",
+   "lat": 35.6614,
+   "lng": 139.6981,
+   "book": true,
+   "meta": "Shibuya CLUB QUATTRO · Wed Feb 24, open 18:00 / start 19:00 · ¥4,500 standing, U-22 ¥3,500 · 15 plays, not seen live",
+   "place": "Shibuya CLUB QUATTRO"
   },
   {
    "id": "2026-11-05-mono-no-aware-2026-12-20",
@@ -15352,7 +15374,7 @@
    "id": "2026-11-05-cancer-bats-2027-02-11",
    "added": "2026-11-05",
    "status": "new",
-   "title": "Cancer Bats @ Shibuya Cyclone",
+   "title": "Cancer Bats at Shibuya Cyclone",
    "venue": "Shibuya Cyclone",
    "city": "Tokyo",
    "href": "https://www.songkick.com/concerts/43499916-cancer-bats-at-shibuya-cyclone",
@@ -15370,9 +15392,12 @@
    "rotation": true,
    "cat": "music",
    "area": "Shibuya",
-   "text": "Songkick Tokyo metro; locality Shibuya; Kokusai-building-A B2F, 13-16, Udagawa-chou, Shibuya-ku, 東京都渋谷区宇田川町13-16 国際ビルA館B2",
-   "lat": 35.69,
-   "lng": 139.692
+   "text": "The Toronto hardcore band in a small Shibuya basement on a public holiday (National Foundation Day).",
+   "lat": 35.6597,
+   "lng": 139.6966,
+   "book": true,
+   "meta": "Shibuya Cyclone · Thu Feb 11 2027 · 7 plays",
+   "place": "Shibuya CYCLONE"
   },
   {
    "id": "2026-11-05-against-the-current-2027-01-13",
@@ -15660,7 +15685,7 @@
    "id": "2026-11-05-brutalismus-3000-2027-03-11",
    "added": "2026-11-05",
    "status": "new",
-   "title": "Underworld x Brutalismus3000 Live in Japan 2027",
+   "title": "Underworld × Brutalismus3000 at SGC Hall Ariake",
    "venue": "SGC HALL ARIAKE",
    "city": "Tokyo",
    "href": "https://www.creativeman.co.jp/artist/2027/03uw_b3k/",
@@ -15678,10 +15703,13 @@
    "lastSeen": "2025-07-05",
    "rotation": true,
    "cat": "music",
-   "area": "Koto",
-   "text": "Creativeman",
+   "area": "Ariake",
+   "text": "A double bill across the bay in Ariake. The member presale lottery closes Wed Nov 11 at 18:00; general sale Nov 28, only if the lottery doesn't sell it out.",
    "lat": 35.6355,
-   "lng": 139.793
+   "lng": 139.793,
+   "book": true,
+   "meta": "SGC HALL ARIAKE · Thu Mar 11, open 17:30 / start 18:30 · ¥16,000–18,000 · Brutalismus3000: 12 plays, seen July 2025",
+   "place": "SGC HALL ARIAKE"
   },
   {
    "id": "2026-11-05-fcukers-2026-12-03",
@@ -19998,10 +20026,10 @@
    "id": "2026-11-05-zazen-boys-2026-12-22",
    "added": "2026-11-05",
    "status": "new",
-   "title": "nest 30th Anniversary “ZAZEN BOYS × SODA!”",
+   "title": "ZAZEN BOYS × SODA! for O-nest's 30th",
    "venue": "Spotify O-nest",
    "city": "Tokyo",
-   "href": "https://shibuya-o.com/nest/schedule/nest-30th-anniversary-zazen-boys-x-soda/",
+   "href": "https://eplus.jp/sf/detail/4458420001-P0030018P021001",
    "on": "2026-12-22",
    "until": "2026-12-22",
    "acts": [
@@ -20016,10 +20044,13 @@
    "lastSeen": "2026-02-12",
    "rotation": true,
    "cat": "music",
-   "area": "Shibuya",
-   "text": "OPEN 18:00 / START 19:00",
-   "lat": 35.69,
-   "lng": 139.692
+   "area": "Shibuya (Dogenzaka)",
+   "text": "A tiny-room anniversary night for the Shibuya club. Sold out, listed for completeness alongside the bigger Toyosu date.",
+   "lat": 35.658,
+   "lng": 139.6955,
+   "book": true,
+   "meta": "Spotify O-nest, Shibuya · Tue Dec 22 · sold out · 223 plays · seen once, Feb 12 2026",
+   "place": "Spotify O-nest"
   },
   {
    "id": "2026-11-05-hollow-suns-2026-11-09",
@@ -20474,7 +20505,7 @@
    "id": "2026-11-05-father-of-peace-2027-02-16",
    "added": "2026-11-05",
    "status": "new",
-   "title": "FATHER OF PEACE",
+   "title": "Father Of Peace at Daikanyama SPACE ODD",
    "venue": null,
    "city": "Tokyo",
    "href": "https://www.creativeman.co.jp/event/father-of-peace27/",
@@ -20491,8 +20522,13 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "lat": 35.69,
-   "lng": 139.692
+   "lat": 35.6495,
+   "lng": 139.7029,
+   "area": "Daikanyama",
+   "book": true,
+   "meta": "Daikanyama SPACE ODD · Tue Feb 16, open 18:00 / start 19:00 · ¥7,800 standing · 18 plays",
+   "place": "Daikanyama SPACE ODD",
+   "text": "The first of two Tokyo dates on a six-city tour; the second is Shibuya CLUB QUATTRO on Fri Feb 26. Member presale Nov 9 to 12, general sale Nov 21 at 10:00."
   },
   {
    "id": "2026-11-05-father-of-peace-2027-02-18",
@@ -20594,7 +20630,7 @@
    "id": "2026-11-05-father-of-peace-2027-02-26",
    "added": "2026-11-05",
    "status": "new",
-   "title": "FATHER OF PEACE",
+   "title": "Father Of Peace at Shibuya CLUB QUATTRO",
    "venue": null,
    "city": "Tokyo",
    "href": "https://www.creativeman.co.jp/event/father-of-peace27/",
@@ -20611,8 +20647,13 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music",
-   "lat": 35.69,
-   "lng": 139.692
+   "lat": 35.6614,
+   "lng": 139.6981,
+   "area": "Shibuya",
+   "book": true,
+   "meta": "Shibuya CLUB QUATTRO · Fri Feb 26, open 18:00 / start 19:00 · ¥7,800 standing · 18 plays",
+   "place": "Shibuya CLUB QUATTRO",
+   "text": "The tour's closing Tokyo night, on a Friday; the earlier one is SPACE ODD on Feb 16. Same presale window, Nov 9 to 12."
   },
   {
    "id": "2026-11-05-lilbesh-ramko-2026-11-07",
@@ -20815,10 +20856,10 @@
    "id": "2026-11-05-coaltar-of-the-deepers-2026-11-27",
    "added": "2026-11-05",
    "status": "new",
-   "title": "DDD",
+   "title": "COALTAR OF THE DEEPERS at Shinjuku LOFT's 50th anniversary",
    "venue": "Shinjuku LOFT",
    "city": "Tokyo",
-   "href": "https://www.loft-prj.co.jp/schedule/loft/schedule/362645",
+   "href": "https://eplus.jp/sf/detail/4586120001-P0030001P021001?P1=0175",
    "on": "2026-11-27",
    "until": "2026-11-27",
    "acts": [
@@ -20832,19 +20873,22 @@
    "lastSeen": "2026-02-18",
    "rotation": true,
    "cat": "music",
-   "area": "Shinjuku",
-   "text": "OPEN 18:00 - START 19:00",
-   "lat": 35.69,
-   "lng": 139.692
+   "area": "Shinjuku (Kabukicho)",
+   "text": "This is the show already on your calendar for the 27th: it's part of LOFT's 50th-anniversary DDD series, first-come e+ tickets. 480 of your 511 plays are from the last two years.",
+   "lat": 35.6948,
+   "lng": 139.702,
+   "book": true,
+   "meta": "Shinjuku LOFT · Fri Nov 27, open 18:00 / start 19:00 · 511 plays · seen once, Feb 18 2026",
+   "place": "Shinjuku LOFT"
   },
   {
    "id": "2026-11-05-minor-league-2026-11-29",
    "added": "2026-11-05",
    "status": "new",
-   "title": "MINOR LEAGUE\"XXX\"Anniversary LIVE‼東京編",
+   "title": "MINOR LEAGUE \"XXX\" Anniversary Live at Shindaita FEVER",
    "venue": "Shindaita FEVER",
    "city": "Tokyo",
-   "href": "https://www.fever-popo.com/schedule/2026/11/2918.html",
+   "href": "https://eplus.jp/sf/detail/4621150001-P0030001P021001",
    "on": "2026-11-29",
    "until": "2026-11-29",
    "acts": [
@@ -20868,9 +20912,12 @@
    "rotation": true,
    "cat": "music",
    "area": "Shindaita",
-   "text": "OPEN 15:00 / START 15:30",
+   "text": "The hardcore band's anniversary bill with DESSERT, T.C.L, SOBUT, HELLCHILD and five more. Plenty of bands on one Sunday, two months after you last saw them.",
    "lat": 35.6626,
-   "lng": 139.6606
+   "lng": 139.6606,
+   "book": true,
+   "meta": "Shindaita FEVER · Sun Nov 29 · 210 plays · seen once, Sep 27 2026",
+   "place": "Shindaita FEVER"
   },
   {
    "id": "2026-11-05-texas-3000-2026-11-05",
@@ -21001,6 +21048,76 @@
    "lastSeen": "",
    "rotation": true,
    "cat": "music"
+  },
+  {
+   "added": "2026-11-07",
+   "area": "Shibuya",
+   "artist": "ZAZEN BOYS",
+   "book": true,
+   "cat": "music",
+   "href": "https://eplus.jp/sf/detail/4428850001-P0030004P021001",
+   "japanese": true,
+   "lastSeen": "2026-02-12",
+   "lat": 35.6614,
+   "lng": 139.6981,
+   "meta": "Shibuya CLUB QUATTRO · Mon Nov 23 (holiday) · general sale sold out · 223 plays · seen once, Feb 12 2026",
+   "on": "2026-11-23",
+   "place": "Shibuya CLUB QUATTRO",
+   "plays": 223,
+   "rotation": true,
+   "seenLive": 1,
+   "status": "new",
+   "text": "SuiseiNoboAz's BIGGER THAN BIG BOX two-band night on Labour Thanksgiving Day. General tickets are gone, so only resale or a late release would get you in.",
+   "tier": "seen",
+   "title": "ZAZEN BOYS with SuiseiNoboAz at Shibuya CLUB QUATTRO",
+   "until": "2026-11-23",
+   "id": "2026-11-07-zazen-boys-quattro"
+  },
+  {
+   "added": "2026-11-07",
+   "area": "Yokohama",
+   "artist": "Minor League",
+   "book": true,
+   "cat": "music",
+   "href": "https://eplus.jp/sf/detail/4615240001-P0030001P021001",
+   "japanese": true,
+   "lastSeen": "2026-09-27",
+   "meta": "BAYSIS, Yokohama · Sat Dec 5 · 210 plays · seen once, Sep 27 2026",
+   "on": "2026-12-05",
+   "place": "Yokohama BAYSIS",
+   "plays": 210,
+   "rotation": true,
+   "seenLive": 1,
+   "status": "new",
+   "text": "T.C.L's 20th-anniversary night with Yamaarashi, MINOR LEAGUE and SUBLIMINAL MAFIA. The Saturday before CGWORLD.",
+   "tier": "seen",
+   "title": "MINOR LEAGUE at T.C.L's FREAK OUT SHOW vol.19, Yokohama",
+   "until": "2026-12-05",
+   "id": "2026-11-07-minor-league-baysis"
+  },
+  {
+   "added": "2026-11-07",
+   "area": "Shimokitazawa",
+   "artist": "Paranoid void",
+   "book": true,
+   "cat": "music",
+   "href": "https://eplus.jp/sf/detail/4552790001-P0030001P021001",
+   "japanese": true,
+   "lastSeen": "2025-05-05",
+   "lat": 35.6601,
+   "lng": 139.6684,
+   "meta": "Flowers Loft, Shimokitazawa · Sun Dec 6 · 157 plays · seen once, May 5 2025",
+   "on": "2026-12-06",
+   "place": "Flowers Loft",
+   "plays": 157,
+   "rotation": true,
+   "seenLive": 1,
+   "status": "new",
+   "text": "The Osaka instrumental trio's album tour. It's the same day as CGWORLD 2026, which you've pinned; that's a daytime conference, so an evening set could follow.",
+   "tier": "seen",
+   "title": "paranoid void: Action release tour, Tokyo semi-final",
+   "until": "2026-12-06",
+   "id": "2026-11-07-paranoid-void-flowers-loft"
   }
  ]
 }
