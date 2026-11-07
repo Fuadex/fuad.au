@@ -6334,6 +6334,39 @@ if (TM_RAW && TM_RAW.events && TM_RAW.events.length) {
       `<lastBuildDate>${_today.toUTCString()}</lastBuildDate>\n${_items.join("\n")}\n</channel></rss>\n`;
     fs.writeFileSync(path.join(__dirname, "gigs-feed.xml"), _rss, "utf8");
     console.log(`gigs-feed.xml: ${_rows.length} items (added since ${_floor})`);
+
+    // ─ gigs-upcoming.md / .json: the COMPLETE list of upcoming Japan shows (Fuad 2026-11-07: "a link to
+    // upcoming shows, complete list I can link to so that Claude can scrape it for my morning updates").
+    // Every future-dated, non-skipped row, date order. The .md is one line per show for reading or
+    // scraping; the .json carries the same rows for anything that wants fields.
+    const _up = ((JPC && JPC.concerts) || [])
+      .filter(c => c.on && (c.until || c.on) >= _iso && c.status !== "skip")
+      .sort((a, b) => a.on.localeCompare(b.on) || (b.plays || 0) - (a.plays || 0));
+    const _day = d => new Date(d + "T12:00:00+09:00").toUTCString().slice(0, 3);
+    const _rowOf = c => ({
+      date: c.on, until: c.until && c.until !== c.on ? c.until : undefined, artist: c.artist,
+      title: c.title && c.title !== c.artist ? c.title : undefined,
+      venue: c.venue || c.place || undefined, city: c.city || (c.area ? "Tokyo area" : undefined),
+      plays: c.plays || 0, seenLive: c.seenLive || 0, tier: c.tier, japanese: !!c.japanese,
+      url: c.href || undefined, added: c.added || undefined,
+    });
+    const _upRows = _up.map(_rowOf);
+    fs.writeFileSync(path.join(__dirname, "gigs-upcoming.json"),
+      JSON.stringify({ generated: _iso, count: _upRows.length, shows: _upRows }, null, 1) + "\n", "utf8");
+    const _md = [`# Upcoming shows in Japan — matched against the Rotation library`, ``,
+      `Generated ${_iso} · ${_upRows.length} shows · date order. Tier: **top** = a strong match not yet seen live; ` +
+      `**seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json`, ``];
+    let _month = "";
+    for (const r of _upRows) {
+      const m = r.date.slice(0, 7);
+      if (m !== _month) { _month = m; _md.push(``, `## ${new Date(m + "-15T00:00:00Z").toLocaleString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" })}`); }
+      const when = `${r.date} (${_day(r.date)})${r.until ? ` – ${r.until}` : ""}`;
+      const where = [r.venue, r.city].filter(Boolean).join(", ") || "Japan";
+      const facts = [`${r.plays} plays`, r.seenLive ? `seen live ${r.seenLive}×` : "not seen live", r.tier].join(" · ");
+      _md.push(`- ${when} · **${r.artist}** — ${where} · ${facts}${r.title ? ` · ${r.title}` : ""}${r.url ? ` · ${r.url}` : ""}`);
+    }
+    fs.writeFileSync(path.join(__dirname, "gigs-upcoming.md"), _md.join("\n") + "\n", "utf8");
+    console.log(`gigs-upcoming.md/.json: ${_upRows.length} upcoming shows`);
   }
 }
 
