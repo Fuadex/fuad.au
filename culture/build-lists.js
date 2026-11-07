@@ -14,11 +14,15 @@ const CAST = W.CULTURE_CAST || {}, WCAST = W.CULTURE_WISHLIST_CAST || {};
 const today = new Date().toISOString().slice(0, 10);
 const MEDIA = ['Movies', 'TV', 'Feature Animation', 'Animated Series', 'Shorts', 'Games', 'Books'];
 const mediumOrder = m => { const i = MEDIA.indexOf(m); return i < 0 ? MEDIA.length : i; };
+// igdbGenres is a comma-separated STRING ("Shooter, Arcade") on games, in the item or its cast overlay; films carry
+// a genres array in the overlay. Spreading the string gave single letters (the 2026-11-07 games bug).
+const asList = v => Array.isArray(v) ? v : typeof v === 'string' ? v.split(/\s*,\s*/).filter(Boolean) : [];
 const genresOf = (x, cast) => {
   const c = cast[x.id] || {};
-  const g = [...(c.genres || []), ...(x.igdbGenres || [])];
+  const g = [...asList(c.genres), ...asList(x.igdbGenres), ...asList(c.igdbGenres)];
   return [...new Set(g)].slice(0, 3);
 };
+const studioOf = (x, cast) => x.medium === 'Games' ? (x.studio || (cast[x.id] || {}).studio || undefined) : undefined;
 
 // SEEN: the curated canon (data.js) plus the imported history (imports.js); a title in both counts once, canon wins.
 const seen = [];
@@ -31,7 +35,7 @@ for (const [src, list] of [['canon', W.CULTURE.ITEMS], ['import', W.CULTURE_IMPO
     seen.push({
       title: x.title, enTitle: x.enTitle && x.enTitle !== x.title ? x.enTitle : undefined, year: x.year,
       medium: x.medium, director: x.director || (CAST[x.id] || {}).director || undefined, region: x.region || undefined,
-      genres: genresOf(x, CAST), rating: x.rating ? Number(x.rating) : undefined, favorite: !!x.favorite,
+      studio: studioOf(x, CAST), genres: genresOf(x, CAST), rating: x.rating ? Number(x.rating) : undefined, favorite: !!x.favorite,
       watched: x.watchedDate || undefined, curated: src === 'canon',
     });
   }
@@ -41,14 +45,14 @@ const wish = W.CULTURE_WISHLIST.map(x => {
   return {
     title: x.title, enTitle: x.enTitle && x.enTitle !== x.title ? x.enTitle : undefined, year: x.year, medium: x.medium,
     director: x.director || c.director || undefined, region: x.region || c.region || undefined,
-    genres: genresOf(x, WCAST), filmwebAvg: x.fwAvg || undefined, added: x.addedDate || undefined,
+    studio: studioOf(x, WCAST), genres: genresOf(x, WCAST), filmwebAvg: x.fwAvg || undefined, added: x.addedDate || undefined,
     selfAdded: x.source === 'own', unreleased: x.year > Number(today.slice(0, 4)) || undefined,
   };
 });
 
 const line = r => {
   const name = `**${r.title}**${r.enTitle ? ` (${r.enTitle})` : ''}`;
-  const facts = [r.year, r.director, r.region && r.region.toUpperCase(), r.genres && r.genres.length ? r.genres.join(', ') : '']
+  const facts = [r.year, r.director, r.studio, r.region && r.region.toUpperCase(), r.genres && r.genres.length ? r.genres.join(', ') : '']
     .filter(Boolean).join(' · ');
   const extra = [];
   if (r.rating) extra.push(`rated ${r.rating}/10`);
