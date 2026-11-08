@@ -1,0 +1,3292 @@
+# Seen — the Culture library (films, TV, animation, games, books)
+
+Generated 2026-11-07 · 3275 titles · per medium, favourites first, then by Fuad's own rating (1–10). Wishlist: fuad.au/culture/wishlist.md · both as JSON: fuad.au/culture/culture.json
+
+## Movies (1166)
+- **12 Angry Men** — 1957 · Sidney Lumet · US · Drama · rated 10/10 · favourite
+- **2001: A Space Odyssey** — 1968 · Stanley Kubrick · US · Science Fiction, Mystery, Adventure · rated 10/10 · favourite
+- **A Clockwork Orange** — 1971 · Stanley Kubrick · UK · Science Fiction, Crime · rated 10/10 · favourite
+- **A Short Film About Killing** — 1988 · Krzysztof Kieślowski · PL · Crime, Drama · rated 10/10 · favourite
+- **A Woman Under the Influence** — 1974 · John Cassavetes · US · Drama, Romance · rated 10/10 · favourite
+- **Come and See** — 1985 · Elem Klimov · SU · Drama, War · rated 10/10 · favourite
+- **Fear and Loathing in Las Vegas** — 1998 · Terry Gilliam · UK · Adventure, Drama, Comedy · rated 10/10 · favourite · seen 2012-07-01
+- **Fight Club** — 1999 · David Fincher · US · Drama, Thriller · rated 10/10 · favourite
+- **Ikiru** — 1952 · Akira Kurosawa · JP · Drama · rated 10/10 · favourite
+- **La Haine** — 1995 · Mathieu Kassovitz · FR · Drama · rated 10/10 · favourite
+- **Network** — 1976 · Sidney Lumet · US · Drama · rated 10/10 · favourite
+- **No Country for Old Men** — 2007 · Coen Brothers · US · Crime, Thriller, Western · rated 10/10 · favourite
+- **Red Dragon** — 2002 · Brett Ratner · US · Crime, Thriller, Horror · rated 10/10 · favourite · seen 2014-05-08
+- **The Age of Success** — 1988 · Jang Sun-woo · KR · Drama, Comedy · rated 10/10 · favourite
+- **The Face of Another** — 1966 · Hiroshi Teshigahara · JP · Drama, Science Fiction · rated 10/10 · favourite
+- **The Housemaid** — 1960 · Kim Ki-young · KR · Crime, Drama · rated 10/10 · favourite
+- **The Human Condition I** (The Human Condition I: No Greater Love) — 1959 · Masaki Kobayashi · JP · War, Drama, History · rated 10/10 · favourite
+- **The Shining** — 1980 · Stanley Kubrick · US · Horror, Thriller · rated 10/10 · favourite
+- **Walkabout** — 1971 · Nicolas Roeg · UK · Adventure, Drama · rated 10/10 · favourite
+- **Apocalypse Now** — 1979 · Francis Ford Coppola · US · Drama, War · rated 9/10 · favourite
+- **Blade Runner 2049** — 2017 · Denis Villeneuve · US · Science Fiction, Drama · rated 9/10 · favourite
+- **Burning** — 2018 · Lee Chang-dong · KR · Mystery, Drama, Thriller · rated 9/10 · favourite
+- **Cinema Paradiso** — 1988 · Giuseppe Tornatore · IT · Drama, Romance · rated 9/10 · favourite · seen 2023-02-13
+- **Corpus Christi** — 2019 · Jan Komasa · PL · Drama · rated 9/10 · favourite · seen 2020-11-02
+- **Escape from the Liberty Cinema** — 1990 · Wojciech Marczewski · PL · Drama, Fantasy · rated 9/10 · favourite
+- **Limelight** — 1952 · Charlie Chaplin · US · Romance, Drama, Music · rated 9/10 · favourite
+- **Oldboy** — 2003 · Park Chan-wook · KR · Drama, Thriller, Mystery · rated 9/10 · favourite
+- **Possession** — 1981 · Andrzej Żuławski · FR · Horror · rated 9/10 · favourite
+- **Pygmalion** — 1938 · Anthony Asquith · UK · Comedy, Drama, Romance · rated 9/10 · favourite
+- **Red Desert** — 1964 · Michelangelo Antonioni · IT · Drama · rated 9/10 · favourite
+- **Shame** — 2011 · Steve McQueen · UK · Drama · rated 9/10 · favourite
+- **Suzhou River** — 2000 · Lou Ye · CN · Action, Science Fiction · rated 9/10 · favourite · seen 2025-01-26
+- **Tár** (TÁR) — 2022 · Todd Field · US · Music, Drama · rated 9/10 · favourite
+- **The Deer Hunter** — 1978 · Michael Cimino · US · Drama, War · rated 9/10 · favourite
+- **There Will Be Blood** — 2007 · Paul Thomas Anderson · US · Drama · rated 9/10 · favourite
+- **Weather Forecast** (The Weather Forecast) — 1982 · Antoni Krauze · PL · Drama · rated 9/10 · favourite · seen 2020-09-18
+- **Pożegnania** (Farewells) — 1958 · Wojciech Has · PL · Drama, Romance · rated 8/10 · favourite · seen 2025-10-14
+- **Sanatorium pod klepsydrą** (The Hourglass Sanatorium) — 1973 · Wojciech Has · PL · Drama, Fantasy, Horror · rated 8/10 · favourite · seen 2025-10-14
+- **Platoon** — 1986 · Oliver Stone · US · Drama, War, Action · rated 7/10 · favourite
+- **A.I. Artificial Intelligence** — 2001 · Steven Spielberg · UK · Drama, Science Fiction, Adventure · favourite · seen 2005-03-18
+- **Koyaanisqatsi** — 1982 · Godfrey Reggio · US · Documentary, Music · favourite · seen 2026-04-09
+- **Dekalog V** (Decalogue V) — 1988 · Krzysztof Kieślowski · PL · Drama, TV Movie, Romance · rated 10/10 · seen 2021-05-03
+- **Dekalog VIII** (Decalogue VIII) — 1988 · Krzysztof Kieślowski · PL · Drama, TV Movie · rated 10/10 · seen 2021-05-09
+- **Krótki film o zabijaniu** (A Short Film About Killing) — 1987 · Krzysztof Kieślowski · PL · Crime, Drama · rated 10/10 · seen 2021-05-05
+- **A Beautiful Mind** — 2001 · Ron Howard · US · Drama, Romance · rated 9/10 · seen 2015-01-18
+- **A Bronx Tale** — 1993 · Robert De Niro · US · Drama, Crime · rated 9/10 · seen 2021-05-01
+- **A King in New York** — 1957 · Charlie Chaplin · US · Comedy, Drama · rated 9/10 · seen 2020-11-30
+- **Aftersun** — 2022 · Charlotte Wells · UK · Drama · rated 9/10 · seen 2023-02-27
+- **Amator** (Camera Buff) — 1979 · Krzysztof Kieślowski · PL · Drama · rated 9/10 · seen 2025-04-05
+- **American Psycho** — 2000 · Mary Harron · US · Thriller, Drama, Crime · rated 9/10 · seen 2015-10-05
+- **Andrey Rublyov** (Andrei Rublev) — 1966 · Andrei Tarkovsky · SU · Drama, History · rated 9/10 · seen 2021-03-16
+- **Annie Hall** — 1977 · Woody Allen · US · Comedy, Drama, Romance · rated 9/10 · seen 2017-09-16
+- **Bab el hadid** (Cairo Station) — 1958 · Youssef Chahine · EG · Crime, Drama, Thriller · rated 9/10 · seen 2020-11-30
+- **Baraka** — 1992 · Ron Fricke · US · Documentary · rated 9/10 · seen 2023-04-30
+- **Before the Flood** — 2016 · Fisher Stevens · US · Documentary · rated 9/10 · seen 2016-11-06
+- **Birdman** (Birdman or (The Unexpected Virtue of Ignorance)) — 2014 · Alejandro G. Iñárritu · US · Drama, Comedy · rated 9/10 · seen 2020-08-03
+- **Black Hawk Down** — 2001 · Ridley Scott · US · Action, War, History · rated 9/10 · seen 2012-02-10
+- **Blade Runner** — 1982 · Ridley Scott · US · Science Fiction, Drama, Thriller · rated 9/10 · seen 2019-08-26
+- **Bronson** — 2008 · Nicolas Winding Refn · DK · Drama, Action, Crime · rated 9/10 · seen 2015-02-07
+- **C'era una volta il West** (Once Upon a Time in the West) — 1968 · Sergio Leone · US · Drama, Western · rated 9/10 · seen 2020-11-04
+- **Cafarnaúm** (Capernaum) — 2018 · Nadine Labaki · LB · Drama · rated 9/10 · seen 2020-11-30
+- **Casino** — 1995 · Martin Scorsese · US · Crime, Drama · rated 9/10 · seen 2016-08-24
+- **Cidade de Deus** (City of God) — 2002 · Fernando Meirelles · BR · Drama, Crime · rated 9/10 · seen 2018-02-24
+- **Citizen Kane** — 1941 · Orson Welles · US · Mystery, Drama · rated 9/10 · seen 2020-07-06
+- **Constantine** — 2005 · Francis Lawrence · US · Fantasy, Action, Horror · rated 9/10 · seen 2012-02-10
+- **Das Lehrerzimmer** (The Teachers' Lounge) — 2023 · İlker Çatak · DE · Drama · rated 9/10 · seen 2025-01-14
+- **Dekalog III** (Decalogue III) — 1988 · Krzysztof Kieślowski · PL · Drama, TV Movie, Romance · rated 9/10 · seen 2021-04-28
+- **Dekalog IV** (Decalogue IV) — 1988 · Krzysztof Kieślowski · PL · Drama, TV Movie · rated 9/10 · seen 2021-05-02
+- **Dekalog IX** (Decalogue IX) — 1988 · Krzysztof Kieślowski · PL · Drama, TV Movie, Romance · rated 9/10 · seen 2021-05-10
+- **Dekalog VII** (Decalogue VII) — 1988 · Krzysztof Kieślowski · PL · Drama, TV Movie · rated 9/10 · seen 2021-05-08
+- **Die Nashörner** — 1963 · Jan Lenica · PL · Drama · rated 9/10 · seen 2020-10-02
+- **Dirty Harry** — 1971 · Don Siegel · US · Action, Crime, Thriller · rated 9/10 · seen 2021-01-10
+- **Edward Scissorhands** — 1990 · Tim Burton · US · Fantasy, Drama, Romance · rated 9/10 · seen 2021-10-19
+- **Equilibrium** — 2002 · Kurt Wimmer · US · Action, Science Fiction, Thriller · rated 9/10 · seen 2012-02-10
+- **Eyes Wide Shut** — 1999 · Stanley Kubrick · UK · Drama, Thriller, Mystery · rated 9/10 · seen 2015-01-19
+- **Faces** — 1968 · John Cassavetes · US · Drama · rated 9/10 · seen 2021-12-16
+- **Film balkonowy** (The Balcony Movie) — 2021 · Pawel Lozinski · PL · Documentary · rated 9/10 · seen 2022-04-15
+- **Gok-seong** (The Wailing) — 2016 · Na Hong-jin · KR · Horror, Mystery · rated 9/10 · seen 2022-09-07
+- **Goodfellas** (GoodFellas) — 1990 · Martin Scorsese · US · Drama, Crime · rated 9/10 · seen 2015-01-20
+- **Guardians of the Galaxy Vol. 3** — 2023 · James Gunn · US · Science Fiction, Adventure, Action · rated 9/10 · seen 2023-05-06
+- **Hair** — 1979 · Miloš Forman · US · Music, Drama, Comedy · rated 9/10 · seen 2014-10-31
+- **Harry Potter and the Sorcerer's Stone** (Harry Potter and the Philosopher's Stone) — 2001 · Chris Columbus · US · Adventure, Fantasy · rated 9/10 · seen 2012-02-10
+- **Heat** — 1995 · Michael Mann · US · Crime, Drama, Action · rated 9/10 · seen 2014-10-11
+- **Hiroshima, mon amour** (Hiroshima Mon Amour) — 1959 · Alain Resnais · FR · Drama, History, Romance · rated 9/10 · seen 2021-12-12
+- **Hōhokekyo Tonari no Yamada-kun** (My Neighbors the Yamadas) — 1999 · Isao Takahata · JP · Animation, Comedy, Family · rated 9/10 · seen 2020-06-10
+- **Inception** — 2010 · Christopher Nolan · US · Action, Science Fiction, Adventure · rated 9/10 · seen 2012-02-10
+- **Inglourious Basterds** — 2009 · Quentin Tarantino · US · Drama, Thriller, War · rated 9/10 · seen 2012-02-10
+- **Jiang Hu Er Nu** (Ash Is Purest White) — 2018 · Jia Zhangke · CN · Crime, Romance, Drama · rated 9/10 · seen 2019-05-16
+- **Jin-Rō** (Jin-Roh: The Wolf Brigade) — 1999 · Hiroyuki Okiura · JP · Animation, Thriller, Science Fiction · rated 9/10 · seen 2022-08-09
+- **Klute** — 1971 · Alan J. Pakula · US · Thriller, Mystery, Crime · rated 9/10 · seen 2023-11-16
+- **Krótki film o miłości** (A Short Film About Love) — 1988 · Krzysztof Kieślowski · PL · Drama, Romance · rated 9/10 · seen 2021-05-05
+- **Kumonosu jō** (Throne of Blood) — 1957 · JP · Drama, History · rated 9/10 · seen 2025-11-10
+- **La Dolce Vita** — 1960 · Federico Fellini · IT · Comedy, Drama · rated 9/10 · seen 2021-02-20
+- **La vita è bella** (Life Is Beautiful) — 1997 · Roberto Benigni · IT · Comedy, Drama · rated 9/10 · seen 2021-09-29
+- **Ladri di biciclette** (Bicycle Thieves) — 1948 · Vittorio De Sica · IT · Drama · rated 9/10 · seen 2023-07-08
+- **Lawrence of Arabia** — 1962 · David Lean · UK · Adventure, History, War · rated 9/10 · seen 2023-04-30
+- **Master and Commander: The Far Side of the World** — 2003 · Peter Weir · US · Adventure, Drama, War · rated 9/10 · seen 2025-09-29
+- **Mayak** (The Lighthouse) — 2006 · Mariya Saakyan · RU · Drama, War · rated 9/10 · seen 2022-07-24
+- **Mid90s** (mid90s) — 2018 · Jonah Hill · US · Drama, Comedy · rated 9/10 · seen 2021-01-03
+- **Monsieur Verdoux** — 1947 · Charlie Chaplin · US · Comedy, Crime, Drama · rated 9/10 · seen 2020-11-29
+- **Moonrise Kingdom** — 2012 · Wes Anderson · US · Comedy, Drama, Romance · rated 9/10 · seen 2022-11-14
+- **Offret Sacrificatio** — 1986 · Andrei Tarkovsky · SU · rated 9/10 · seen 2021-04-03
+- **Orfeu Negro** (Black Orpheus) — 1959 · Marcel Camus · FR · Drama, Romance · rated 9/10 · seen 2022-01-01
+- **Paths of Glory** — 1957 · Stanley Kubrick · US · rated 9/10 · seen 2026-07-31
+- **Pearl Harbor** — 2001 · Michael Bay · US · War, Romance, History · rated 9/10 · seen 2012-02-10
+- **Pulp Fiction** — 1994 · Quentin Tarantino · US · Thriller, Crime, Comedy · rated 9/10 · seen 2012-02-10
+- **RoboCop** — 1987 · Paul Verhoeven · US · Action, Thriller, Science Fiction · rated 9/10 · seen 2025-11-27
+- **Roma** — 2018 · Alfonso Cuarón · US · Drama · rated 9/10 · seen 2021-01-21
+- **Scarface** — 1983 · Brian De Palma · US · Action, Crime, Drama · rated 9/10 · seen 2012-07-05
+- **Schindler's List** — 1993 · Steven Spielberg · US · Drama, History, War · rated 9/10 · seen 2016-08-27
+- **Se7en** — 1995 · David Fincher · US · Crime, Mystery, Thriller · rated 9/10 · seen 2012-02-12
+- **Seksmisja** (Sexmission) — 1983 · Juliusz Machulski · PL · Science Fiction, Adventure, Comedy · rated 9/10 · seen 2022-09-11
+- **Seppuku** (Harakiri) — 1962 · Masaki Kobayashi · JP · Action, Drama, History · rated 9/10 · seen 2021-03-22
+- **Struggle: The Life and Lost Art of Szukalski** — 2018 · Iain Cook, Greg Cook · US · Documentary · rated 9/10 · seen 2021-01-28
+- **Super Deluxe** — 2019 · Thiagarajan Kumararaja · IN · Comedy, Thriller, Drama · rated 9/10 · seen 2023-03-26
+- **Terminator 2: Judgment Day** — 1991 · James Cameron · US · Action, Thriller, Science Fiction · rated 9/10 · seen 2012-02-04
+- **The Big Short** — 2015 · Adam McKay · US · Comedy, Drama · rated 9/10 · seen 2026-03-26
+- **The Bridge on the River Kwai** — 1957 · David Lean · UK · Drama, History, War · rated 9/10 · seen 2022-12-22
+- **The Dark Knight** — 2008 · Christopher Nolan · US · Action, Crime, Thriller · rated 9/10 · seen 2012-02-04
+- **The Departed** — 2006 · Martin Scorsese · US · Drama, Thriller, Crime · rated 9/10 · seen 2012-02-10
+- **The Godfather: Part II** (The Godfather Part II) — 1974 · Francis Ford Coppola · US · Drama, Crime · rated 9/10 · seen 2016-01-23
+- **The Gold Rush** — 1925 · Charlie Chaplin · US · Adventure, Comedy, Drama · rated 9/10 · seen 2020-10-07
+- **The Great Dictator** — 1940 · Charlie Chaplin · US · Comedy, War · rated 9/10 · seen 2020-11-22
+- **The Irishman** — 2019 · Martin Scorsese · US · Crime, Drama, History · rated 9/10 · seen 2019-11-07
+- **The King of Comedy** — 1982 · Martin Scorsese · US · Drama, Comedy · rated 9/10 · seen 2021-04-16
+- **The King of Staten Island** — 2020 · Judd Apatow · US · Comedy, Drama · rated 9/10 · seen 2021-05-05
+- **The King's Speech** — 2010 · Tom Hooper · US · Drama, History · rated 9/10 · seen 2012-02-10
+- **The Lady Vanishes** — 1938 · Alfred Hitchcock · UK · Mystery, Thriller · rated 9/10 · seen 2023-10-10
+- **The Lord of the Rings: The Return of the King** — 2003 · Peter Jackson · US · Adventure, Fantasy, Action · rated 9/10 · seen 2013-09-28
+- **The Lord of the Rings: The Two Towers** — 2002 · Peter Jackson · US · Adventure, Fantasy, Action · rated 9/10 · seen 2013-09-28
+- **The Pianist** — 2002 · Roman Polański · FR · Drama, War · rated 9/10 · seen 2015-01-19
+- **The Revenant** — 2015 · Alejandro G. Iñárritu · US · Western, Drama, Adventure · rated 9/10 · seen 2018-01-15
+- **The Shawshank Redemption** — 1994 · Frank Darabont · US · Drama, Crime · rated 9/10 · seen 2012-03-31
+- **The Silence of the Lambs** — 1991 · Jonathan Demme · US · Crime, Thriller, Drama · rated 9/10 · seen 2014-04-25
+- **Thor: Love and Thunder** — 2022 · Taika Waititi · US · Fantasy, Action, Comedy · rated 9/10 · seen 2022-07-06
+- **Ucho** (The Ear) — 1970 · Karel Kachyňa · CZ · Mystery, Drama, Thriller · rated 9/10 · seen 2022-04-02
+- **Uncut Gems** — 2019 · Josh Safdie · US · Drama, Thriller, Crime · rated 9/10 · seen 2021-01-25
+- **Victor Victoria** (Victor/Victoria) — 1982 · Blake Edwards · US · Music, Comedy, Romance · rated 9/10 · seen 2023-03-01
+- **Vinci** — 2004 · Juliusz Machulski · PL · Crime, Comedy · rated 9/10 · seen 2012-07-03
+- **Viskningar och rop** (Cries and Whispers) — 1972 · Ingmar Bergman · SE · Drama · rated 9/10 · seen 2022-08-31
+- **West Beyrouth** (West Beirut) — 1998 · Ziad Doueiri · LB · Drama, Comedy, Romance · rated 9/10 · seen 2021-01-19
+- **Witness for the Prosecution** — 1957 · Billy Wilder · US · Drama, Mystery, Crime · rated 9/10 · seen 2025-01-31
+- **Wołyń** (Hatred) — 2016 · Wojciech Smarzowski · PL · War, Drama, History · rated 9/10 · seen 2016-10-08
+- **Yōjinbō** (Zurari oretacha yōjinbō) — 1961 · JP · rated 9/10 · seen 2023-09-17
+- **Yume** (Dreams) — 1990 · Akira Kurosawa · JP · Fantasy, Drama · rated 9/10 · seen 2021-03-17
+- **Zangiku monogatari** (The Story of the Last Chrysanthemum) — 1939 · JP · Romance, Drama · rated 9/10 · seen 2025-12-14
+- **Zerkalo** (Mirror) — 1975 · Andrei Tarkovsky · SU · Drama, History · rated 9/10 · seen 2021-03-13
+- **Zimna wojna** (Cold War) — 2018 · Paweł Pawlikowski · PL · Romance, Music, Drama · rated 9/10 · seen 2020-09-10
+- **(500) Days of Summer** — 2009 · Marc Webb · US · Comedy, Drama, Romance · rated 8/10 · seen 2021-10-13
+- **28 Days Later...** (28 Days Later) — 2002 · Danny Boyle · UK · Horror, Thriller, Science Fiction · rated 8/10 · seen 2020-05-02
+- **28 Years Later: The Bone Temple** — 2026 · Nia DaCosta · UK · Horror, Thriller, Science Fiction · rated 8/10 · seen 2026-01-18
+- **3 Idiots** — 2009 · Rajkumar Hirani · IN · Drama, Comedy · rated 8/10 · seen 2015-03-15
+- **300** — 2006 · Zack Snyder · US · Action, Adventure, War · rated 8/10 · seen 2020-07-04
+- **300: Rise of an Empire** — 2014 · Noam Murro · US · Action, Drama, War · rated 8/10 · seen 2022-12-14
+- **65** — 2023 · Scott Beck, Bryan Woods · US · Action, Adventure, Science Fiction · rated 8/10 · seen 2023-03-18
+- **A Better Tomorrow** — 1986 · John Woo · HK · Action, Thriller, Crime · rated 8/10 · seen 2024-11-25
+- **A Monster Calls** — 2016 · J.A. Bayona · ES · Fantasy, Adventure, Family · rated 8/10 · seen 2023-06-04
+- **A Quiet Place Part II** — 2020 · John Krasinski · US · Science Fiction, Thriller, Horror · rated 8/10 · seen 2024-12-18
+- **Alien** — 1979 · Ridley Scott · US · Horror, Science Fiction · rated 8/10 · seen 2020-06-26
+- **Alien: Resurrection** (Alien Resurrection) — 1997 · Jean-Pierre Jeunet · FR · Science Fiction, Horror, Action · rated 8/10 · seen 2020-07-21
+- **Anora** — 2024 · Sean Baker · US · Drama, Comedy, Romance · rated 8/10 · seen 2024-12-29
+- **Ant-Man and the Wasp: Quantumania** — 2023 · Peyton Reed · US · Action, Adventure, Science Fiction · rated 8/10 · seen 2023-02-26
+- **Aquaman** — 2018 · James Wan · US · Action, Adventure, Fantasy · rated 8/10 · seen 2019-09-11
+- **Avatar: The Way of Water** — 2022 · James Cameron · US · Action, Adventure, Science Fiction · rated 8/10 · seen 2022-12-14
+- **Avengers: Infinity War** — 2018 · Anthony Russo · US · Adventure, Action, Science Fiction · rated 8/10 · seen 2018-05-03
+- **Babylon** — 2022 · Damien Chazelle · US · Drama, Comedy · rated 8/10 · seen 2023-01-22
+- **Bad Boy Bubby** — 1993 · Rolf de Heer · AU · Crime, Drama, Comedy · rated 8/10 · seen 2022-12-22
+- **Bakemono no Ko** (The Boy and the Beast) — 2015 · JP · Action, Adventure, Animation · rated 8/10 · seen 2026-03-26
+- **Barbie** — 2023 · Greta Gerwig · UK · Comedy, Adventure, Fantasy · rated 8/10 · seen 2023-07-19
+- **Beau travail** (Beau Travail) — 1999 · Claire Denis · FR · Drama · rated 8/10 · seen 2021-11-24
+- **Being John Malkovich** — 1999 · Spike Jonze · US · Comedy, Drama, Fantasy · rated 8/10 · seen 2020-08-06
+- **Blade** — 1998 · Stephen Norrington · UK · Horror, Action · rated 8/10 · seen 2022-11-08
+- **Breakfast at Tiffany's** — 1961 · Blake Edwards · US · Comedy, Romance, Drama · rated 8/10 · seen 2017-12-25
+- **Bright** — 2017 · David Ayer · US · Fantasy, Action, Thriller · rated 8/10 · seen 2018-01-09
+- **Byłem żołnierzem** (I Was a Soldier) — 1970 · Krzysztof Kieślowski · PL · Documentary · rated 8/10 · seen 2021-05-06
+- **Cast Away** — 2000 · Robert Zemeckis · US · Adventure, Drama · rated 8/10 · seen 2012-02-10
+- **Cat People** — 1942 · Jacques Tourneur · US · Mystery, Horror, Romance · rated 8/10 · seen 2024-04-14
+- **Catch Me If You Can** — 2002 · Steven Spielberg · US · Drama, Crime · rated 8/10 · seen 2017-09-15
+- **Challengers** — 2024 · Luca Guadagnino · IT · Drama, Romance · rated 8/10 · seen 2024-09-25
+- **Chappie** — 2015 · Neill Blomkamp · US · Crime, Action, Science Fiction · rated 8/10 · seen 2022-11-09
+- **Charlie and the Chocolate Factory** — 2005 · Tim Burton · US · Adventure, Comedy, Family · rated 8/10 · seen 2012-02-10
+- **Children of Men** — 2006 · Alfonso Cuarón · US · Science Fiction, Thriller, Action · rated 8/10 · seen 2020-05-31
+- **Chronique d'un été** (Chronicle of a Summer) — 1961 · Jean Rouch, Edgar Morin · FR · Documentary · rated 8/10 · seen 2025-08-07
+- **Chung hing sam lam** (Chungking Express) — 1994 · Wong Kar-wai · HK · Drama, Comedy, Romance · rated 8/10 · seen 2021-06-23
+- **Civil War** — 2024 · Alex Garland · FI · War, Action, Drama · rated 8/10 · seen 2024-04-27
+- **Clerks.** (Clerks) — 1994 · Kevin Smith · US · Comedy · rated 8/10 · seen 2013-11-15
+- **Crackerjack** — 2002 · Paul Moloney · AU · Comedy · rated 8/10 · seen 2021-01-24
+- **Człowieczy los II** (The Human Condition II: Road to Eternity) — 1959 · Masaki Kobayashi · JP · rated 8/10 · seen 2020-12-03
+- **Dai-bosatsu tôge** (The Sword of Doom) — 1966 · JP · Action, Drama · rated 8/10 · seen 2024-01-18
+- **Dallas Buyers Club** — 2013 · Jean-Marc Vallée · CA · Drama, History · rated 8/10 · seen 2023-03-11
+- **Dancing with the Birds** — 2019 · Huw Cordey · US · Documentary · rated 8/10 · seen 2021-09-11
+- **Dark Money** — 2018 · Kimberly Reed · US · Documentary · rated 8/10 · seen 2019-02-26
+- **Das Begräbnis des Harald Kramer** — 2013 · Marc Schlegel · DE · rated 8/10 · seen 2020-11-24
+- **Das Boot** — 1981 · Wolfgang Petersen · US · Drama, History, War · rated 8/10 · seen 2021-09-21
+- **David Attenborough: A Life On Our Planet** (David Attenborough: A Life on Our Planet) — 2020 · Alastair Fothergill, Jonnie Hughes · UK · Documentary, Drama · rated 8/10 · seen 2020-10-28
+- **Dawn of the Planet of the Apes** — 2014 · Matt Reeves · UK · Science Fiction, Action, Drama · rated 8/10 · seen 2024-02-19
+- **Deadpool & Wolverine** — 2024 · Shawn Levy · US · Action, Comedy, Science Fiction · rated 8/10 · seen 2024-07-27
+- **Deadpool 2** — 2018 · David Leitch · US · Action, Comedy, Adventure · rated 8/10 · seen 2018-05-20
+- **Death Race** — 2008 · Paul W.S. Anderson · US · Action, Thriller, Science Fiction · rated 8/10 · seen 2012-06-15
+- **Dekalog I** (Decalogue I) — 1988 · Krzysztof Kieślowski · PL · Drama, TV Movie · rated 8/10 · seen 2021-04-26
+- **Dekalog VI** (Decalogue VI) — 1988 · Krzysztof Kieślowski · PL · Drama, TV Movie · rated 8/10 · seen 2021-05-05
+- **Der Untergang** (Downfall) — 2004 · Oliver Hirschbiegel · DE · Drama, History, War · rated 8/10 · seen 2014-09-17
+- **Desperado** — 1995 · Robert Rodriguez · US · Thriller, Action, Crime · rated 8/10 · seen 2012-02-10
+- **Det sjunde inseglet** (The Seventh Seal) — 1957 · Ingmar Bergman · SE · Fantasy, Drama · rated 8/10 · seen 2021-12-31
+- **Die Hard: With a Vengeance** — 1995 · John McTiernan · US · Action, Thriller · rated 8/10 · seen 2020-09-17
+- **Django Unchained** — 2012 · Quentin Tarantino · US · Drama, Western · rated 8/10 · seen 2013-01-28
+- **Dobrý voják Švejk** — 1956 · Jiří Trnka · CZ · rated 8/10 · seen 2012-06-15
+- **Dog Day Afternoon** — 1975 · Sidney Lumet · US · Crime, Drama, Thriller · rated 8/10 · seen 2021-12-30
+- **Dom zły** (The Dark House) — 2009 · Wojtek Smarzowski · PL · Thriller, Crime, History · rated 8/10 · seen 2024-06-04
+- **Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb** — 1964 · Stanley Kubrick · UK · Comedy, War · rated 8/10 · seen 2017-09-13
+- **Drive My Car** — 2021 · Ryūsuke Hamaguchi · JP · Drama · rated 8/10 · seen 2022-02-14
+- **Drogówka** (Traffic Department) — 2013 · Wojciech Smarzowski · PL · Drama, Crime · rated 8/10 · seen 2022-05-01
+- **Duel** — 1971 · Steven Spielberg · US · Action, Thriller, TV Movie · rated 8/10 · seen 2024-12-17
+- **Dune: Part Two** — 2024 · Denis Villeneuve · US · Science Fiction, Adventure · rated 8/10 · seen 2024-02-28
+- **Dzień świra** (Day of the Wacko) — 2002 · Marek Koterski · PL · Comedy, Drama · rated 8/10 · seen 2022-07-31
+- **Edge of Tomorrow** — 2014 · Doug Liman · US · Action, Science Fiction · rated 8/10 · seen 2023-05-20
+- **Elemental** — 2023 · Peter Sohn · US · Animation, Comedy, Family · rated 8/10 · seen 2023-06-12
+- **Elvis** — 2022 · Baz Luhrmann · AU · Music, History, Drama · rated 8/10 · seen 2022-06-26
+- **Erskineville Kings** — 1999 · Alan White · AU · Drama · rated 8/10 · seen 2022-11-20
+- **Escape from Alcatraz** — 1979 · Don Siegel · US · Drama, Thriller · rated 8/10 · seen 2021-01-11
+- **Eternal Sunshine of the Spotless Mind** — 2004 · Michel Gondry · FR · Science Fiction, Drama, Romance · rated 8/10 · seen 2020-08-05
+- **Evangelion Shin Gekijō-ban Q Quickening** (Evangelion: 3.0 You Can (Not) Redo) — 2012 · Hideaki Anno · JP · Animation, Science Fiction, Action · rated 8/10 · seen 2021-11-10
+- **Evangelion Shin Gekijōban: Ha** (Evangelion: 2.0 You Can (Not) Advance) — 2009 · Hideaki Anno · JP · Animation, Science Fiction, Action · rated 8/10 · seen 2021-11-07
+- **Evangelion Shin Gekijōban: Jo** (Evangelion: 1.0 You Are (Not) Alone) — 2007 · Hideaki Anno · JP · Animation, Science Fiction, Action · rated 8/10 · seen 2021-11-04
+- **Ex Machina** — 2015 · Alex Garland · UK · Drama, Science Fiction · rated 8/10 · seen 2016-08-10
+- **Ex Machina** — 2014 · Alex Garland · UK · Drama, Science Fiction · rated 8/10 · seen 2016-08-10
+- **F1: The Movie** (F1) — 2025 · US · Action, Drama · rated 8/10 · seen 2025-07-10
+- **Fallen Angels** — 1995 · Wong Kar-Wai · HK · Action, Romance, Crime · rated 8/10 · seen 2024-08-07
+- **Fantastic Mr. Fox** — 2009 · Wes Anderson · US · Adventure, Animation, Comedy · rated 8/10 · seen 2021-02-08
+- **Fargo** — 1996 · Joel Coen, Ethan Coen · UK · Crime, Drama, Thriller · rated 8/10 · seen 2012-02-10
+- **Forrest Gump** — 1994 · Robert Zemeckis · US · Comedy, Drama, Romance · rated 8/10 · seen 2016-02-01
+- **Furiosa: A Mad Max Saga** — 2024 · George Miller · AU · Action, Science Fiction, Adventure · rated 8/10 · seen 2024-05-15
+- **Ghost Busters** — 1984 · Ivan Reitman · US · rated 8/10 · seen 2021-03-04
+- **Gi-saeng-chung** — 2019 · Bong Joon-ho · KR · rated 8/10 · seen 2019-08-28
+- **Giù la testa** (Duck, You Sucker) — 1971 · Sergio Leone · IT · Western · rated 8/10 · seen 2025-10-20
+- **Gladiator** — 2000 · Ridley Scott · US · Action, Drama, Adventure · rated 8/10 · seen 2012-02-10
+- **Gladiator II** — 2024 · Ridley Scott · US · Action, Adventure, Drama · rated 8/10 · seen 2025-05-03
+- **Green Book** — 2018 · Peter Farrelly · US · Drama, Comedy, History · rated 8/10 · seen 2020-08-07
+- **Hachi: A Dog's Tale** — 2009 · Lasse Hallström · US · Drama, Family · rated 8/10 · seen 2020-11-30
+- **Hardcore** (Hardcore Henry) — 2015 · Ilya Naishuller · RU · Action, Adventure, Science Fiction · rated 8/10 · seen 2019-05-26
+- **Home Alone** — 1990 · Chris Columbus · US · Comedy, Family · rated 8/10 · seen 2012-02-10
+- **Il buono, il brutto, il cattivo.** (The Good, the Bad and the Ugly) — 1966 · Sergio Leone · IT · Western · rated 8/10 · seen 2016-09-02
+- **In Bruges** — 2008 · Martin McDonagh · UK · Comedy, Drama, Crime · rated 8/10 · seen 2023-02-18
+- **Incendies** — 2010 · Denis Villeneuve · CA · Drama, War, Mystery · rated 8/10 · seen 2023-07-29
+- **Indie Game: The Movie** — 2012 · Lisanne Pajot, James Swirsky · CA · Documentary, Drama · rated 8/10 · seen 2013-11-25
+- **Interview with the Vampire: The Vampire Chronicles** (Interview with the Vampire) — 1994 · Neil Jordan · IE · Horror, Drama, Fantasy · rated 8/10 · seen 2021-01-17
+- **Intouchables** (The Intouchables) — 2011 · Olivier Nakache · FR · Drama, Comedy · rated 8/10 · seen 2012-07-14
+- **IO** (The King of Laughter) — 2022 · Jonathan Helpert · US · Drama, History · rated 8/10 · seen 2023-01-04
+- **Jagten** (The Hunt) — 2012 · Thomas Vinterberg · DK · Drama · rated 8/10 · seen 2015-02-03
+- **Jason and the Argonauts** — 1963 · Don Chaffey · UK · Adventure, Family, Fantasy · rated 8/10 · seen 2021-09-20
+- **John Wick: Chapter 2** — 2017 · Chad Stahelski · US · Action, Thriller, Crime · rated 8/10 · seen 2017-08-09
+- **John Wick: Chapter 3 - Parabellum** — 2019 · Chad Stahelski · US · Action, Thriller, Crime · rated 8/10 · seen 2019-06-07
+- **Jôi-uchi: Hairyô tsuma shimatsu** (Samurai Rebellion) — 1967 · Masaki Kobayashi · JP · Drama, History, Action · rated 8/10 · seen 2022-08-30
+- **Joker** — 2019 · Todd Phillips · US · Crime, Thriller, Drama · rated 8/10 · seen 2019-10-06
+- **Joker: Folie à Deux** — 2024 · Todd Phillips · US · Drama, Crime, Thriller · rated 8/10 · seen 2024-10-03
+- **Judgment at Nuremberg** — 1961 · Stanley Kramer · US · Drama, History · rated 8/10 · seen 2025-02-08
+- **Jules et Jim** (Jules and Jim) — 1962 · François Truffaut · FR · Drama, Romance · rated 8/10 · seen 2025-08-14
+- **Jurassic Park** — 1993 · Steven Spielberg · US · Adventure, Science Fiction · rated 8/10 · seen 2012-02-10
+- **Kagemusha** — 1980 · Akira Kurosawa · JP · Action, Drama, History · rated 8/10 · seen 2021-06-25
+- **Kamera o Tomeru na!** (One Cut of the Dead) — 2017 · Shinichiro Ueda · JP · Comedy, Horror, Drama · rated 8/10 · seen 2021-06-27
+- **Kes** — 1969 · Ken Loach · UK · Drama · rated 8/10 · seen 2024-04-24
+- **Kingsman: The Secret Service** — 2014 · Matthew Vaughn · UK · Crime, Comedy, Action · rated 8/10 · seen 2024-12-05
+- **Komornik** (The Collector) — 2005 · Feliks Falk · PL · Drama · rated 8/10 · seen 2023-01-10
+- **Kung fu** (Kung Fu Hustle) — 2004 · Stephen Chow · US · Action, Comedy, Crime · rated 8/10 · seen 2021-07-02
+- **L.A. Confidential** — 1997 · Curtis Hanson · US · Crime, Mystery, Thriller · rated 8/10 · seen 2014-10-03
+- **Lady Bird** — 2017 · Greta Gerwig · US · Drama, Comedy · rated 8/10 · seen 2018-02-15
+- **Léon** (Léon: The Professional) — 1994 · Luc Besson · FR · Crime, Drama, Action · rated 8/10 · seen 2020-09-13
+- **Les Misérables** — 2012 · Tom Hooper · UK · History, Drama · rated 8/10 · seen 2013-01-27
+- **Leviafan** (Leviathan) — 2014 · Andrei Zvyagintsev · RU · Drama, Crime · rated 8/10 · seen 2015-07-15
+- **Life in a Day 2020** — 2021 · Kevin Macdonald · UK · Documentary · rated 8/10 · seen 2021-03-21
+- **Life of Brian** — 1979 · Terry Jones · UK · Comedy · rated 8/10 · seen 2021-12-27
+- **Lost in Translation** — 2003 · Sofia Coppola · US · Drama, Comedy, Romance · rated 8/10 · seen 2020-12-08
+- **M3GAN** — 2022 · Gerard Johnstone · US · Science Fiction, Horror · rated 8/10 · seen 2022-12-28
+- **Mad Max 2** — 1981 · George Miller · AU · Action, Thriller, Science Fiction · rated 8/10 · seen 2014-10-07
+- **Mad Max: Fury Road** — 2015 · George Miller · AU · Action, Adventure, Science Fiction · rated 8/10 · seen 2015-11-05
+- **Mały western** (A Little Western) — 1960 · Witold Giersz · PL · Western, Animation, Comedy · rated 8/10 · seen 2020-09-04
+- **Marcel the Shell with Shoes On** — 2021 · Dean Fleischer Camp · US · Animation, Comedy, Drama · rated 8/10 · seen 2023-01-26
+- **Metropolis** — 1927 · Fritz Lang · DE · Drama, Science Fiction · rated 8/10 · seen 2024-09-13
+- **Mission: Impossible - Fallout** — 2018 · Christopher McQuarrie · US · Action, Adventure · rated 8/10 · seen 2018-08-06
+- **Moulin Rouge!** — 2001 · Baz Luhrmann · AU · Drama, Romance, Music · rated 8/10 · seen 2025-05-03
+- **Muriel's Wedding** — 1994 · P.J. Hogan · FR · Comedy, Drama, Romance · rated 8/10 · seen 2022-12-23
+- **Mystery Train** — 1989 · Jim Jarmusch · JP · Comedy · rated 8/10 · seen 2024-06-01
+- **Narayama Bushikō** (The Ballad of Narayama) — 1958 · JP · Drama · rated 8/10 · seen 2026-02-27
+- **Nostalghia** (Nostalgia) — 1983 · Andrei Tarkovsky · SU · Drama, Romance · rated 8/10 · seen 2021-05-06
+- **Ōkami Kodomo no Ame to Yuki** (Wolf Children) — 2012 · Mamoru Hosoda · JP · Animation, Family, Drama · rated 8/10 · seen 2018-04-25
+- **Okja** — 2017 · Bong Joon-ho · KR · Adventure, Drama, Science Fiction · rated 8/10 · seen 2021-01-22
+- **Once Upon a Time ... in Hollywood** (Once Upon a Time... in Hollywood) — 2019 · Quentin Tarantino · US · Comedy, Drama, Thriller · rated 8/10 · seen 2019-08-27
+- **Once Upon a Time in America** — 1984 · Sergio Leone · IT · Drama, Crime · rated 8/10 · seen 2020-11-04
+- **Once Were Warriors** — 1994 · Lee Tamahori · US · Drama · rated 8/10 · seen 2020-12-09
+- **One Flew Over the Cuckoo's Nest** — 1975 · Miloš Forman · US · Drama · rated 8/10 · seen 2015-01-17
+- **Onna bakari no yoru** (Girls of the Night) — 1961 · JP · Drama · rated 8/10 · seen 2024-12-11
+- **Os Fuzis** (The Guns) — 1964 · Ruy Guerra · BR · Drama, Thriller · rated 8/10 · seen 2025-09-24
+- **Ostatnia rodzina** (The Last Family) — 2016 · Jan P. Matuszyński · PL · Drama, History · rated 8/10 · seen 2016-10-05
+- **Outlaws and Angels** — 2016 · JT Mollner · US · Western, Drama, Thriller · rated 8/10 · seen 2016-08-04
+- **Paddington in Peru** — 2024 · Dougal Wilson · UK · Adventure, Comedy, Family · rated 8/10 · seen 2025-06-06
+- **Paris, Texas** — 1984 · Wim Wenders · DE · Drama · rated 8/10 · seen 2022-07-08
+- **Past Lives** — 2023 · Celine Song · US · Drama, Romance · rated 8/10 · seen 2023-10-09
+- **Per qualche dollaro in più** (For a Few Dollars More) — 1965 · Sergio Leone · IT · Western · rated 8/10 · seen 2018-02-25
+- **Per un pugno di dollari** (A Fistful of Dollars) — 1964 · Sergio Leone · IT · Western · rated 8/10 · seen 2021-01-01
+- **Personel** (Personnel) — 1975 · Krzysztof Kieślowski · PL · Drama, TV Movie · rated 8/10 · seen 2021-07-04
+- **Peter Rabbit 2: The Runaway** — 2021 · Will Gluck · US · Comedy, Family, Adventure · rated 8/10 · seen 2021-06-04
+- **Peul-lan-da-seu-eui Gae** (Barking Dogs Never Bite) — 2000 · Bong Joon-ho · KR · rated 8/10 · seen 2022-06-26
+- **Pi** — 1998 · Darren Aronofsky · US · Mystery, Drama, Thriller · rated 8/10 · seen 2021-02-20
+- **Point Blank** — 1967 · John Boorman · US · Crime, Thriller, Drama · rated 8/10 · seen 2023-11-01
+- **Poor Things** — 2023 · Yorgos Lanthimos · IE · Science Fiction, Romance, Comedy · rated 8/10 · seen 2023-12-16
+- **Porno** (Ninfas Pornô) — 1989 · Marek Koterski · PL · Drama · rated 8/10 · seen 2022-09-04
+- **Portrait de la jeune fille en feu** (Portrait of a Lady on Fire) — 2019 · Céline Sciamma · FR · Drama, Romance · rated 8/10 · seen 2021-09-25
+- **Predator: Badlands** — 2025 · Dan Trachtenberg · US · Action, Science Fiction, Adventure · rated 8/10 · seen 2025-11-11
+- **Primal Fear** — 1996 · Gregory Hoblit · US · Crime, Drama, Mystery · rated 8/10 · seen 2015-01-16
+- **Psiconautas, los niños olvidados** (Birdboy: The Forgotten Children) — 2015 · Alberto Vázquez, Pedro Rivero · ES · Animation, Drama, Fantasy · rated 8/10 · seen 2021-03-16
+- **Public Enemies** — 2009 · Michael Mann · US · Crime, History, Drama · rated 8/10 · seen 2012-02-10
+- **Pusher** — 1996 · Nicolas Winding Refn · DK · Action, Crime, Drama · rated 8/10 · seen 2024-03-12
+- **Rabbit-Proof Fence** — 2002 · Phillip Noyce · AU · Adventure, Drama, History · rated 8/10 · seen 2023-04-01
+- **Rashômon** (Rashomon) — 1950 · Akira Kurosawa · JP · Crime, Drama, Mystery · rated 8/10 · seen 2021-07-04
+- **Razorback** — 1984 · Russell Mulcahy · AU · Horror, Thriller · rated 8/10 · seen 2023-04-16
+- **Rear Window** — 1954 · Alfred Hitchcock · US · Thriller, Mystery, Drama · rated 8/10 · seen 2021-12-14
+- **Rental Family** — 2025 · Hikari · US · Drama, Comedy · rated 8/10 · seen 2026-03-26
+- **Reservoir Dogs** — 1992 · Quentin Tarantino · US · Crime, Thriller · rated 8/10 · seen 2013-11-26
+- **România neîmblânzită** (Untamed Romania) — 2018 · Thomas Barton-Humphreys · NL · Documentary · rated 8/10 · seen 2021-01-14
+- **Sala samobójców. Hejter** (The Hater) — 2020 · Jan Komasa · PL · Drama, Thriller · rated 8/10 · seen 2021-01-26
+- **Samogłoska** — 1981 · Krzysztof Kiwerski · PL · Animation · rated 8/10 · seen 2020-10-10
+- **Scary Movie** — 2000 · Keenen Ivory Wayans · US · Comedy · rated 8/10 · seen 2022-05-29
+- **Scott Pilgrim vs. the World** — 2010 · Edgar Wright · UK · Action, Comedy, Romance · rated 8/10 · seen 2020-07-12
+- **Sedmikrásky** (Daisies) — 1966 · Věra Chytilová · CZ · Comedy, Drama · rated 8/10 · seen 2024-07-14
+- **Serenity** — 2005 · Joss Whedon · US · Science Fiction, Action, Adventure · rated 8/10 · seen 2021-03-03
+- **Serpico** — 1973 · Sidney Lumet · US · Crime, Drama, History · rated 8/10 · seen 2021-06-28
+- **Sherlock Holmes: A Game of Shadows** — 2011 · Guy Ritchie · UK · Adventure, Mystery, Crime · rated 8/10 · seen 2015-02-03
+- **Shichinin no samurai** (Seven Samurai) — 1954 · Akira Kurosawa · JP · Action, Drama · rated 8/10 · seen 2022-02-20
+- **Shin Gekijō-ban Initial D Legend 1 - Kakusei** — 2014 · Masakazu Obara · JP · rated 8/10 · seen 2020-09-06
+- **Shutter Island** — 2010 · Martin Scorsese · US · Drama, Thriller, Mystery · rated 8/10 · seen 2013-11-24
+- **Siedem kobiet w różnym wieku** (Seven Women of Different Ages) — 1978 · Krzysztof Kieślowski · PL · Documentary · rated 8/10 · seen 2021-05-08
+- **Smultronstället** (Wild Strawberries) — 1957 · Ingmar Bergman · SE · Drama · rated 8/10 · seen 2022-01-03
+- **Snatch** — 2000 · Guy Ritchie · UK · Crime, Comedy · rated 8/10 · seen 2024-09-05
+- **Solyaris** (Solaris) — 1972 · Andrei Tarkovsky · SU · Drama, Science Fiction, Mystery · rated 8/10 · seen 2021-04-26
+- **Spacked Out** — 2000 · Lawrence Ah Mon · HK · rated 8/10 · seen 2025-01-19
+- **Stalker** — 1979 · Andrei Tarkovsky · SU · Science Fiction, Drama · rated 8/10 · seen 2021-03-11
+- **Star Wars** — 1977 · George Lucas · US · Adventure, Action, Science Fiction · rated 8/10 · seen 2020-08-19
+- **Star Wars: Episode V - The Empire Strikes Back** (The Empire Strikes Back) — 1980 · Irvin Kershner · US · Adventure, Action, Science Fiction · rated 8/10 · seen 2020-09-14
+- **Stranger Than Paradise** — 1984 · Jim Jarmusch · US · Comedy, Drama · rated 8/10 · seen 2017-07-12
+- **Straume** (Flow) — 2024 · Gints Zilbalodis · EU · Adventure, Animation, Family · rated 8/10 · seen 2025-07-26
+- **T2: Trainspotting** (T2 Trainspotting) — 2017 · Danny Boyle · UK · Drama, Comedy, Crime · rated 8/10 · seen 2020-08-12
+- **Talk to Me** — 2022 · Danny Philippou, Michael Philippou · AU · Horror · rated 8/10 · seen 2023-10-17
+- **Taxi Driver** — 1976 · Martin Scorsese · US · Crime, Drama · rated 8/10 · seen 2015-11-05
+- **Teenage Mutant Ninja Turtles: Mutant Mayhem** — 2023 · Jeff Rowe · CA · Animation, Comedy, Action · rated 8/10 · seen 2023-10-14
+- **Tenacious D in The Pick of Destiny** — 2006 · Liam Lynch · US · Comedy, Music, Fantasy · rated 8/10 · seen 2012-05-18
+- **Tenet** — 2020 · Christopher Nolan · US · Action, Thriller, Science Fiction · rated 8/10 · seen 2020-08-26
+- **Tengoku to jigoku** (High and Low) — 1963 · Akira Kurosawa · JP · Drama, Crime, Thriller · rated 8/10 · seen 2022-10-08
+- **Tenkū no Shiro Laputa** (Castle in the Sky) — 1986 · Hayao Miyazaki · JP · Adventure, Fantasy, Animation · rated 8/10 · seen 2020-06-21
+- **The Artist** — 2011 · Michel Hazanavicius · FR · Drama, Comedy, Romance · rated 8/10 · seen 2020-08-05
+- **The Awful Truth** — 1937 · Leo McCarey · US · Comedy, Romance · rated 8/10 · seen 2024-04-10
+- **The Bad Guys 2** — 2025 · Pierre Perifel · US · Family, Comedy, Crime · rated 8/10 · seen 2025-09-14
+- **The Banshees of Inisherin** — 2022 · Martin McDonagh · UK · Drama, Comedy · rated 8/10 · seen 2023-02-06
+- **The Birds** — 1963 · Alfred Hitchcock · US · Horror, Thriller · rated 8/10 · seen 2024-04-17
+- **The Boy in the Striped Pyjamas** — 2008 · Mark Herman · UK · Drama, War, History · rated 8/10 · seen 2021-12-28
+- **The Butterfly Effect** — 2004 · Eric Bress, J. Mackye Gruber · US · Science Fiction, Thriller · rated 8/10 · seen 2022-01-08
+- **The Chronicles of Narnia: The Lion, the Witch and the Wardrobe** — 2005 · Andrew Adamson · US · Adventure, Family, Fantasy · rated 8/10 · seen 2012-02-10
+- **The Circus** — 1928 · Charlie Chaplin · US · Comedy, Romance, Drama · rated 8/10 · seen 2020-11-25
+- **The Conversation** — 1974 · Francis Ford Coppola · US · Crime, Drama, Mystery · rated 8/10 · seen 2021-05-13
+- **The Creator** — 2023 · Gareth Edwards · CA · Science Fiction, Action, Adventure · rated 8/10 · seen 2023-10-23
+- **The Curious Case of Benjamin Button** — 2008 · David Fincher · US · Drama, Fantasy, Romance · rated 8/10 · seen 2020-08-02
+- **The Expendables 2** — 2012 · Simon West · US · Action, Adventure, Thriller · rated 8/10 · seen 2012-08-29
+- **The Fast and the Furious** — 2001 · Rob Cohen · DE · Action, Crime, Thriller · rated 8/10 · seen 2023-09-27
+- **The Fifth Element** — 1997 · Luc Besson · FR · Science Fiction, Action, Adventure · rated 8/10 · seen 2012-02-10
+- **The Flash** — 2023 · Andy Muschietti · US · Action, Science Fiction, Adventure · rated 8/10 · seen 2025-02-27
+- **The Florida Project** — 2017 · Sean Baker · US · Drama · rated 8/10 · seen 2023-09-06
+- **The French Dispatch** (The French Dispatch of the Liberty, Kansas Evening Sun) — 2021 · Wes Anderson · US · Drama, Comedy · rated 8/10 · seen 2021-12-11
+- **The Gentlemen** — 2019 · Guy Ritchie · UK · Action, Comedy, Crime · rated 8/10 · seen 2024-01-28
+- **The Godfather** — 1972 · Francis Ford Coppola · US · Drama, Crime · rated 8/10 · seen 2016-01-23
+- **The Grand Budapest Hotel** — 2014 · Wes Anderson · US · Comedy, Drama · rated 8/10 · seen 2020-11-30
+- **The Great Hack** — 2019 · Karim Amer, Jehane Noujaim · US · Documentary · rated 8/10 · seen 2019-09-26
+- **The Hangover** — 2009 · Todd Phillips · US · Comedy · rated 8/10 · seen 2012-02-10
+- **The Hobbit: An Unexpected Journey** — 2012 · Peter Jackson · US · Adventure, Fantasy, Action · rated 8/10 · seen 2012-12-27
+- **The Hurt Locker** — 2008 · Kathryn Bigelow · US · Drama, Thriller, War · rated 8/10 · seen 2012-02-10
+- **The Illusionist** — 2006 · Neil Burger · US · Fantasy, Drama, Thriller · rated 8/10 · seen 2015-07-19
+- **The Invisible Man** — 2020 · Leigh Whannell · AU · Thriller, Science Fiction, Horror · rated 8/10 · seen 2023-09-28
+- **The Last Wave** — 1977 · Peter Weir · AU · Drama, Mystery, Horror · rated 8/10 · seen 2022-12-18
+- **The Lord of the Rings: The Fellowship of the Ring** — 2001 · Peter Jackson · US · Adventure, Fantasy, Action · rated 8/10 · seen 2013-09-28
+- **The Master** — 2012 · Paul Thomas Anderson · US · Drama · rated 8/10 · seen 2023-08-20
+- **The Menu** — 2022 · Mark Mylod · UK · Comedy, Horror · rated 8/10 · seen 2022-11-24
+- **The Mist** — 2007 · Frank Darabont · US · Horror, Science Fiction, Thriller · rated 8/10 · seen 2022-11-22
+- **The Northman** — 2022 · Robert Eggers · US · Action, Adventure, Fantasy · rated 8/10 · seen 2022-05-22
+- **The Prestige** — 2006 · Christopher Nolan · US · Drama, Mystery, Science Fiction · rated 8/10 · seen 2016-08-28
+- **The Secret of NIMH** — 1982 · Don Bluth · US · Adventure, Animation, Drama · rated 8/10 · seen 2023-07-29
+- **The Skulls** — 2000 · Rob Cohen · US · Crime, Drama, Thriller · rated 8/10 · seen 2012-06-15
+- **The Terminal** — 2004 · Steven Spielberg · US · Comedy, Drama · rated 8/10 · seen 2014-10-03
+- **The Truman Show** — 1998 · Peter Weir · AU · Comedy, Drama · rated 8/10 · seen 2012-02-10
+- **The Usual Suspects** — 1995 · Bryan Singer · US · Drama, Crime, Thriller · rated 8/10 · seen 2014-07-01
+- **The Whale** — 2022 · Darren Aronofsky · US · Drama · rated 8/10 · seen 2023-01-23
+- **The Wolf of Wall Street** — 2013 · Martin Scorsese · US · Crime, Drama, Comedy · rated 8/10 · seen 2018-01-28
+- **Tian bian yi duo yun** (The Wayward Cloud) — 2005 · Tsai Ming-liang · TW · Comedy, Drama, Romance · rated 8/10 · seen 2022-07-17
+- **Top Gun** — 1986 · Tony Scott · US · Action, Drama, Romance · rated 8/10 · seen 2023-01-10
+- **Top Gun: Maverick** — 2022 · Joseph Kosinski · US · Action, Drama · rated 8/10 · seen 2022-05-28
+- **Tora no o wo fumu otokotachi** (The Men Who Tread on the Tiger's Tail) — 1945 · Akira Kurosawa · JP · Drama, History, Thriller · rated 8/10 · seen 2021-04-26
+- **Trainspotting** — 1996 · Danny Boyle · UK · Drama, Crime · rated 8/10 · seen 2020-08-11
+- **Transformers: Revenge of the Fallen** — 2009 · Michael Bay · US · Science Fiction, Action, Adventure · rated 8/10 · seen 2012-04-29
+- **Tren zbója** — 1967 · Kazimierz Urbański · PL · Animation · rated 8/10 · seen 2020-10-15
+- **Trois couleurs: Rouge** (Three Colors: Red) — 1994 · Krzysztof Kieślowski · PL · Drama, Mystery, Romance · rated 8/10 · seen 2020-09-18
+- **Troy** — 2004 · Wolfgang Petersen · US · War, Action, History · rated 8/10 · seen 2012-02-10
+- **Trzy kolory: Biały** — 1994 · Krzysztof Kieślowski · PL · rated 8/10 · seen 2020-09-18
+- **Trzy kolory: Niebieski** — 1993 · Krzysztof Kieślowski · PL · Drama · rated 8/10 · seen 2020-09-18
+- **TT3D: Closer to the Edge** — 2011 · Richard de Aragues · UK · Documentary · rated 8/10 · seen 2012-04-22
+- **Uncharted** — 2022 · Ruben Fleischer · US · Action, Adventure, Mystery · rated 8/10 · seen 2022-02-21
+- **Vertigo** — 1958 · Alfred Hitchcock · US · Mystery, Romance, Thriller · rated 8/10 · seen 2020-08-13
+- **Voskhozhdeniye** (The Ascent) — 1977 · Larisa Shepitko · SU · Drama, War · rated 8/10 · seen 2023-05-28
+- **Wake in Fright** — 1971 · Ted Kotcheff · US · Drama, Thriller · rated 8/10 · seen 2022-03-27
+- **WALL·E** — 2008 · Andrew Stanton · US · Animation, Family, Science Fiction · rated 8/10 · seen 2017-01-10
+- **War for the Planet of the Apes** — 2017 · Matt Reeves · US · Drama, Science Fiction, War · rated 8/10 · seen 2024-02-18
+- **Westerplatte** (Westerplatte Resists) — 1967 · Stanisław Różewicz · PL · War, Drama · rated 8/10 · seen 2020-09-29
+- **What's Eating Gilbert Grape** — 1993 · Lasse Hallström · US · Romance, Drama · rated 8/10 · seen 2021-04-28
+- **What's Love Got to Do with It?** — 2022 · Shekhar Kapur · US · Romance, Comedy · rated 8/10 · seen 2023-02-04
+- **Whiplash** — 2014 · Damien Chazelle · US · Drama, Music, Thriller · rated 8/10 · seen 2018-01-15
+- **Who Am I - Kein System ist sicher** (Who Am I) — 2014 · Baran bo Odar · DE · Thriller · rated 8/10 · seen 2021-01-04
+- **Wicked** — 2024 · Jon M. Chu · US · Drama, Romance, Fantasy · rated 8/10 · seen 2025-06-09
+- **Wrath of Man** — 2021 · Guy Ritchie · UK · Thriller, Crime, Drama · rated 8/10 · seen 2021-05-25
+- **Yesterday** — 2019 · Danny Boyle · US · Comedy, Fantasy, Music · rated 8/10 · seen 2021-02-12
+- **Yi Yi** — 2000 · Edward Yang · TW · Drama · rated 8/10 · seen 2021-11-18
+- **1917** — 2019 · Sam Mendes · UK · War, History, Drama · rated 7/10 · seen 2020-02-01
+- **2012** — 2009 · Roland Emmerich · US · Action, Adventure, Science Fiction · rated 7/10 · seen 2012-02-10
+- **22 Jump Street** — 2014 · Phil Lord · US · Crime, Comedy, Action · rated 7/10 · seen 2023-05-27
+- **28 Years Later** — 2025 · Danny Boyle · UK · Horror, Thriller, Science Fiction · rated 7/10 · seen 2025-06-24
+- **8 1/2** — 1963 · Federico Fellini · IT · rated 7/10 · seen 2021-02-19
+- **8 Mile** — 2002 · Curtis Hanson · US · Drama, Music · rated 7/10 · seen 2021-01-07
+- **A Bridge Too Far** — 1977 · Richard Attenborough · US · Drama, History, War · rated 7/10 · seen 2020-10-19
+- **A Hometown in Heart** — 1949 · Yoon Yong-gyu · KR · Drama · rated 7/10 · seen 2023-07-18
+- **A Minecraft Movie** — 2025 · Jared Hess · SE · Family, Fantasy, Comedy · rated 7/10 · seen 2025-10-01
+- **A Quiet Place** — 2018 · John Krasinski · US · Horror, Drama, Science Fiction · rated 7/10 · seen 2024-12-18
+- **Adieu Philippine** — 1962 · Jacques Rozier · FR · Drama · rated 7/10 · seen 2025-08-17
+- **Akahige** (Red Beard) — 1965 · Akira Kurosawa · JP · Drama · rated 7/10 · seen 2021-06-14
+- **Alice in Wonderland** — 2010 · Tim Burton · US · Family, Fantasy, Adventure · rated 7/10 · seen 2012-02-10
+- **Alien: Romulus** — 2024 · Fede Álvarez · US · Horror, Science Fiction · rated 7/10 · seen 2024-08-15
+- **Alien³** — 1992 · David Fincher · US · Science Fiction, Action, Horror · rated 7/10 · seen 2020-06-24
+- **Aliens** — 1986 · James Cameron · US · Action, Thriller, Science Fiction · rated 7/10 · seen 2020-06-26
+- **American Beauty** — 1999 · Sam Mendes · UK · Drama · rated 7/10 · seen 2015-02-04
+- **American History X** — 1998 · Tony Kaye · US · Drama · rated 7/10 · seen 2016-08-15
+- **Anatomie d'une chute** (Anatomy of a Fall) — 2023 · Justine Triet · FR · Thriller, Mystery, Crime · rated 7/10 · seen 2024-05-06
+- **Anchiporuno** — 2016 · Sion Sono · JP · rated 7/10 · seen 2022-09-08
+- **Argo** — 2012 · Ben Affleck · US · Drama, Thriller · rated 7/10 · seen 2018-02-01
+- **Arrival** — 2016 · Denis Villeneuve · US · Drama, Science Fiction, Mystery · rated 7/10 · seen 2021-01-03
+- **Assault on Precinct 13** — 1976 · John Carpenter · US · Thriller, Action, Crime · rated 7/10 · seen 2022-11-04
+- **Avengers: Endgame** — 2019 · Anthony Russo · US · Adventure, Science Fiction, Action · rated 7/10 · seen 2019-04-27
+- **Avril et le monde truqué** (April and the Extraordinary World) — 2015 · Christian Desmares, Franck Ekinci · FR · Thriller, Adventure, Animation · rated 7/10 · seen 2020-06-08
+- **Baby Driver** — 2017 · Edgar Wright · UK · Action, Crime · rated 7/10 · seen 2019-09-22
+- **Back to the Future** — 1985 · Robert Zemeckis · US · Adventure, Comedy, Science Fiction · rated 7/10 · seen 2012-02-10
+- **Bakha satang** (Peppermint Candy) — 1999 · Lee Chang-dong · KR · Drama · rated 7/10 · seen 2022-02-15
+- **Ballerina** — 2025 · Len Wiseman · US · Action, Thriller, Crime · rated 7/10 · seen 2025-09-09
+- **Barbarian** — 2022 · Zach Cregger · US · Horror, Mystery · rated 7/10 · seen 2022-11-22
+- **Batman Begins** — 2005 · Christopher Nolan · US · Drama, Crime, Action · rated 7/10 · seen 2012-02-14
+- **Batman Returns** — 1992 · Tim Burton · US · Action, Fantasy · rated 7/10 · seen 2021-01-10
+- **Black Mirror: Bandersnatch** — 2018 · David Slade · US · Thriller, Science Fiction, Mystery · rated 7/10 · seen 2018-12-30
+- **Blue Velvet** — 1986 · David Lynch · US · Mystery, Thriller, Crime · rated 7/10 · seen 2023-06-21
+- **Boo-san-haeng** — 2016 · Yeon Sang-ho · KR · rated 7/10 · seen 2020-04-22
+- **Bottle Rocket** — 1994 · Wes Anderson · US · Comedy, Crime, Drama · rated 7/10 · seen 2021-02-21
+- **Bridge of Spies** — 2015 · Steven Spielberg · US · Thriller, Drama · rated 7/10 · seen 2016-01-04
+- **Brokeback Mountain** — 2005 · Ang Lee · US · Drama, Romance · rated 7/10 · seen 2021-12-29
+- **C'mon C'mon** — 2021 · Mike Mills · US · Drama · rated 7/10 · seen 2022-02-26
+- **Casablanca** — 1942 · Michael Curtiz · US · Drama, Romance · rated 7/10 · seen 2025-10-01
+- **Casino Royale** — 2006 · Martin Campbell · UK · Adventure, Action, Thriller · rated 7/10 · seen 2020-09-09
+- **Chilsu wa Mansu** (Chilsu and Mansu) — 1988 · Park Kwang-su · KR · Drama, Comedy · rated 7/10 · seen 2023-08-20
+- **Chinatown** — 1974 · Roman Polanski · US · Crime, Mystery, Thriller · rated 7/10 · seen 2023-11-23
+- **Christopher Robin** — 2018 · Marc Forster · US · Adventure, Comedy, Family · rated 7/10 · seen 2024-03-27
+- **City Lights** — 1931 · Charlie Chaplin · US · Comedy, Drama, Romance · rated 7/10 · seen 2020-11-26
+- **Clerks II** — 2006 · Kevin Smith · US · Comedy · rated 7/10 · seen 2013-11-19
+- **Clueless** — 1995 · Amy Heckerling · US · Comedy, Romance · rated 7/10 · seen 2022-10-17
+- **Con Air** — 1997 · Simon West · US · Action, Thriller, Crime · rated 7/10 · seen 2014-11-08
+- **Creed III** — 2023 · Michael B. Jordan · US · Drama, Action · rated 7/10 · seen 2023-03-19
+- **Człowieczy los III** (The Human Condition III: A Soldier's Prayer) — 1961 · JP · War, Drama, History · rated 7/10 · seen 2020-12-07
+- **Dancer in the Dark** — 2000 · Lars von Trier · DK · Drama, Crime · rated 7/10 · seen 2020-09-13
+- **Dead Leaves** — 2004 · Hiroyuki Imaishi · JP · Animation, Action, Science Fiction · rated 7/10 · seen 2022-07-09
+- **Deadpool** — 2016 · Tim Miller · US · Action, Adventure, Comedy · rated 7/10 · seen 2016-02-12
+- **Death to 2020** — 2020 · Al Campbell, Alice Mathias · US · Comedy · rated 7/10 · seen 2021-01-12
+- **Deep End** — 1970 · Jerzy Skolimowski · UK · Drama, Comedy · rated 7/10 · seen 2024-06-03
+- **Dekalog II** (Decalogue II) — 1988 · Krzysztof Kieślowski · PL · Drama, TV Movie · rated 7/10 · seen 2021-04-27
+- **Dekalog X** (Decalogue X) — 1988 · Krzysztof Kieślowski · PL · Drama, TV Movie, Comedy · rated 7/10 · seen 2021-05-12
+- **Dial M for Murder** — 1954 · Alfred Hitchcock · US · Thriller, Crime, Drama · rated 7/10 · seen 2021-12-31
+- **Die Hard** — 1988 · John McTiernan · US · Action, Thriller · rated 7/10 · seen 2020-09-15
+- **Digger** — 2026 · Alejandro G. Iñárritu · US · Comedy, Drama · rated 7/10 · seen 2026-10-14
+- **District 9** — 2009 · Neill Blomkamp · US · Science Fiction · rated 7/10 · seen 2022-11-30
+- **Dług** (The Debt) — 1999 · Krzysztof Krauze · PL · Drama, Crime · rated 7/10 · seen 2022-07-18
+- **Doctor Strange** — 2016 · Scott Derrickson · US · Fantasy, Adventure, Action · rated 7/10 · seen 2016-10-29
+- **Donnie Brasco** — 1997 · Mike Newell · US · Crime, Drama, Thriller · rated 7/10 · seen 2018-01-14
+- **Drive** — 2011 · Nicolas Winding Refn · DK · Drama, Thriller, Crime · rated 7/10 · seen 2017-11-04
+- **Dumb & Dumber** (Dumb and Dumber) — 1994 · Peter Farrelly · US · Comedy · rated 7/10 · seen 2012-02-10
+- **Dune** — 2021 · Denis Villeneuve · US · Science Fiction, Adventure · rated 7/10 · seen 2021-12-02
+- **Dungeons & Dragons: Honor Among Thieves** — 2023 · John Francis Daley, Jonathan Goldstein · US · Adventure, Fantasy, Comedy · rated 7/10 · seen 2023-04-05
+- **Dunkirk** — 2017 · Christopher Nolan · US · War, Action, Drama · rated 7/10 · seen 2017-12-18
+- **El Camino: A Breaking Bad Movie** — 2019 · Vince Gilligan · US · Crime, Drama, Thriller · rated 7/10 · seen 2019-10-11
+- **Elf** — 2003 · Jon Favreau · US · Comedy, Family, Fantasy · rated 7/10 · seen 2023-12-07
+- **Elio** — 2025 · Domee Shi, Madeline Sharafian · US · Adventure, Animation, Comedy · rated 7/10 · seen 2026-01-29
+- **End of Watch** — 2012 · David Ayer · US · Crime, Drama, Thriller · rated 7/10 · seen 2020-04-24
+- **Everything Everywhere All at Once** — 2022 · Daniels · US · Action, Adventure, Science Fiction · rated 7/10 · seen 2022-05-22
+- **F9** — 2021 · Justin Lin · US · Action, Adventure, Crime · rated 7/10 · seen 2023-02-05
+- **Fa yeung nin wa** (In the Mood for Love) — 2000 · Wong Kar-wai · HK · Drama, Romance · rated 7/10 · seen 2021-11-28
+- **Fast Five** — 2011 · Justin Lin · US · Action, Thriller, Crime · rated 7/10 · seen 2024-01-02
+- **Flight** — 2012 · Robert Zemeckis · US · Drama · rated 7/10 · seen 2014-03-30
+- **Fracture** — 2007 · Gregory Hoblit · US · Thriller · rated 7/10 · seen 2021-01-15
+- **Frances Ha** — 2012 · Noah Baumbach · US · Comedy, Drama · rated 7/10 · seen 2020-08-05
+- **Frenzy** — 1972 · Alfred Hitchcock · UK · Crime, Thriller, Horror · rated 7/10 · seen 2024-06-21
+- **Frog Dreaming** — 1986 · Brian Trenchard-Smith, Russell Hagg · AU · Drama, Adventure, Family · rated 7/10 · seen 2023-06-22
+- **From Dusk Till Dawn** — 1996 · Robert Rodriguez · US · Horror, Action, Thriller · rated 7/10 · seen 2015-02-05
+- **Full Metal Jacket** — 1987 · Stanley Kubrick · UK · Drama, War · rated 7/10 · seen 2012-02-10
+- **Fuse Teppō Musume no Torimonochō** (Fusé: Memoirs of a Huntress) — 2012 · Masayuki Miyaji · JP · Animation, Action, Drama · rated 7/10 · seen 2020-10-24
+- **Garfield** — 2004 · Pete Hewitt · US · Comedy, Family · rated 7/10 · seen 2012-04-06
+- **Ghost Dog: The Way of the Samurai** — 1999 · Jim Jarmusch · US · Crime, Drama · rated 7/10 · seen 2023-03-29
+- **Good Time** — 2017 · Josh Safdie · US · Crime, Thriller, Drama · rated 7/10 · seen 2020-08-06
+- **Gothika** — 2003 · Mathieu Kassovitz · US · Horror, Thriller, Mystery · rated 7/10 · seen 2024-01-09
+- **Gran Torino** — 2008 · Clint Eastwood · US · Drama · rated 7/10 · seen 2013-06-06
+- **Guardians of the Galaxy** — 2014 · James Gunn · US · Action, Science Fiction, Adventure · rated 7/10 · seen 2015-11-18
+- **Guardians of the Galaxy Vol. 2** — 2017 · James Gunn · US · Science Fiction, Adventure, Action · rated 7/10 · seen 2017-08-11
+- **Hacksaw Ridge** — 2016 · Mel Gibson · US · Drama, History, War · rated 7/10 · seen 2020-08-07
+- **Her** — 2013 · Spike Jonze · US · Romance, Science Fiction, Drama · rated 7/10 · seen 2019-10-07
+- **Hitman** — 2007 · Xavier Gens · US · Action, Thriller, Drama · rated 7/10 · seen 2012-02-10
+- **I Am Legend** — 2007 · Francis Lawrence · US · Drama, Science Fiction, Thriller · rated 7/10 · seen 2012-02-10
+- **I-eo-do** (You Become a Star, Too) — 1977 · KR · Horror · rated 7/10 · seen 2023-08-09
+- **I’m Thinking of Ending Things** (I'm Thinking of Ending Things) — 2020 · Charlie Kaufman · US · Mystery, Thriller, Drama · rated 7/10 · seen 2022-05-18
+- **Ichiban Utsukushiku** (The Most Beautiful) — 1944 · Akira Kurosawa · JP · Drama, War · rated 7/10 · seen 2021-06-27
+- **Indiana Jones and the Dial of Destiny** — 2023 · James Mangold · US · Adventure, Action · rated 7/10 · seen 2023-07-08
+- **Interstellar** — 2014 · Christopher Nolan · US · Adventure, Drama, Science Fiction · rated 7/10 · seen 2015-10-12
+- **Iron Man** — 2008 · Jon Favreau · US · Action, Science Fiction, Adventure · rated 7/10 · seen 2012-02-10
+- **Jackass 4.5** — 2022 · Jeff Tremaine · US · Comedy, Action, Documentary · rated 7/10 · seen 2022-05-28
+- **Jackie Brown** — 1997 · Quentin Tarantino · US · Crime, Drama, Thriller · rated 7/10 · seen 2015-02-05
+- **John Wick** — 2014 · Chad Stahelski · US · Action, Thriller · rated 7/10 · seen 2014-10-30
+- **John Wick: Chapter 4** — 2023 · Chad Stahelski · US · Action, Thriller, Crime · rated 7/10 · seen 2023-03-23
+- **Kaijū no Kodomo** (Turep ~Looking for "Children of the Sea"~) — 2019 · Ayumu Watanabe · JP · Documentary, Science Fiction, Mystery · rated 7/10 · seen 2020-10-15
+- **Kill Bill: Vol. 1** — 2003 · Quentin Tarantino · US · Action, Crime · rated 7/10 · seen 2015-02-04
+- **Kill Bill: Vol. 2** — 2004 · Quentin Tarantino · US · Action, Crime, Thriller · rated 7/10 · seen 2015-02-04
+- **Kimi-tachi wa Dō Ikiru ka** (The Boy and the Heron) — 2023 · JP · Animation, Fantasy, Drama · rated 7/10 · seen 2023-12-26
+- **Koibumi** (Love Letter) — 1953 · JP · Romance, Drama · rated 7/10 · seen 2024-12-15
+- **Krótki dzień pracy** (Short Working Day) — 1981 · Krzysztof Kieślowski · PL · Drama, TV Movie · rated 7/10 · seen 2021-09-26
+- **Kumo no Mukō, Yakusoku no Basho** (The Place Promised in Our Early Days) — 2004 · Makoto Shinkai · JP · Animation, Adventure, Drama · rated 7/10 · seen 2018-04-02
+- **L'important c'est d'aimer** (That Most Important Thing: Love) — 1975 · Andrzej Żuławski · FR · Drama, Romance · rated 7/10 · seen 2026-04-07
+- **La Niña santa** (The Holy Girl) — 2004 · Lucrecia Martel · AR · Drama · rated 7/10 · seen 2022-07-13
+- **La Planète sauvage** (Fantastic Planet) — 1973 · René Laloux · FR · Animation, Science Fiction · rated 7/10 · seen 2020-04-26
+- **Last Night in Soho** — 2021 · Edgar Wright · US · Horror, Mystery · rated 7/10 · seen 2021-11-20
+- **Lawa. Opowieść o Dziadach Adama Mickiewicza** (Lava) — 1989 · Tadeusz Konwicki · PL · Drama, History · rated 7/10 · seen 2012-11-25
+- **Le Samouraï** — 1967 · Jean-Pierre Melville · FR · Crime, Thriller, Drama · rated 7/10 · seen 2022-08-27
+- **Lekcja nieskończoności** — 2008 · Kuba Jablonski, Bartek Kik · PL · rated 7/10 · seen 2020-08-24
+- **Little Nicky** — 2000 · Steven Brill · US · Comedy, Fantasy · rated 7/10 · seen 2012-02-10
+- **Lost Highway** — 1997 · David Lynch · US · Drama, Thriller, Mystery · rated 7/10 · seen 2015-01-10
+- **Mad Max** — 1979 · George Miller · AU · Action, Thriller, Science Fiction · rated 7/10 · seen 2014-10-07
+- **Magnolia** — 1999 · Paul Thomas Anderson · US · Drama · rated 7/10 · seen 2021-01-16
+- **Majo no Takkyūbin** (Kiki's Delivery Service) — 1989 · Hayao Miyazaki · JP · Animation, Family, Fantasy · rated 7/10 · seen 2020-04-25
+- **Man on Fire** — 2004 · Tony Scott · US · Action, Drama, Thriller · rated 7/10 · seen 2012-03-20
+- **Mank** — 2020 · David Fincher · US · Drama, History · rated 7/10 · seen 2020-11-26
+- **Memoir of a Snail** — 2024 · Adam Elliot · AU · Animation, Comedy, Drama · rated 7/10 · seen 2024-09-28
+- **Men in Black** — 1997 · Barry Sonnenfeld · US · Action, Adventure, Comedy · rated 7/10 · seen 2015-01-19
+- **Mickey 17** — 2025 · Bong Joon Ho · US · Science Fiction, Comedy, Adventure · rated 7/10 · seen 2025-03-08
+- **Midnight in Paris** — 2011 · Woody Allen · US · Fantasy, Comedy, Romance · rated 7/10 · seen 2020-04-26
+- **Miś** (Teddy Bear) — 1980 · PL · Comedy · rated 7/10 · seen 2024-08-17
+- **Mission: Impossible** — 1996 · Brian De Palma · US · Adventure, Action, Thriller · rated 7/10 · seen 2005-04-05
+- **Mission: Impossible - The Final Reckoning** — 2025 · Christopher McQuarrie · US · Action, Thriller, Adventure · rated 7/10 · seen 2025-06-12
+- **Mission: Impossible III** — 2006 · J.J. Abrams · US · Adventure, Action, Thriller · rated 7/10 · seen 2025-01-26
+- **Modern Times** — 1936 · Charlie Chaplin · US · Comedy, Drama, Romance · rated 7/10 · seen 2020-11-24
+- **Napoleon** — 2023 · Ridley Scott · US · History, War, Romance · rated 7/10 · seen 2025-01-13
+- **Narayama bushiko** (The Ballad of Narayama) — 1983 · JP · Drama · rated 7/10 · seen 2024-10-09
+- **Need for Speed** — 2014 · Scott Waugh · US · Action, Crime, Drama · rated 7/10 · seen 2014-10-05
+- **Nic śmiesznego** (Nothing Funny) — 1995 · Marek Koterski · PL · Comedy, Drama · rated 7/10 · seen 2022-09-03
+- **Night on Earth: Shot in the Dark** — 2020 · Keith Scholey · US · Documentary · rated 7/10 · seen 2021-01-13
+- **No Time to Die** — 2021 · Cary Joji Fukunaga · US · Action, Thriller, Adventure · rated 7/10 · seen 2021-11-17
+- **Nobody** — 2021 · Ilya Naishuller · US · Action, Thriller · rated 7/10 · seen 2021-04-15
+- **North by Northwest** — 1959 · Alfred Hitchcock · US · Thriller, Adventure · rated 7/10 · seen 2022-01-08
+- **Nóż w wodzie** (Knife in the Water) — 1961 · Roman Polański · PL · Drama, Thriller · rated 7/10 · seen 2021-12-31
+- **O Som ao redor** (Neighboring Sounds) — 2012 · Kleber Mendonça Filho · BR · Thriller, Drama, Crime · rated 7/10 · seen 2025-10-29
+- **Oppenheimer** — 2023 · Christopher Nolan · UK · Drama, History · rated 7/10 · seen 2023-07-20
+- **Otoshiana** (Pitfall) — 1962 · JP · Mystery, Fantasy, Crime · rated 7/10 · seen 2026-03-05
+- **Pacific Rim** — 2013 · Guillermo del Toro · US · Action, Science Fiction, Adventure · rated 7/10 · seen 2013-07-12
+- **Paddington** — 2014 · Paul King · UK · Comedy, Adventure, Family · rated 7/10 · seen 2020-10-10
+- **Paddington 2** — 2017 · Paul King · UK · Adventure, Comedy, Family · rated 7/10 · seen 2020-10-18
+- **Panic Room** — 2002 · David Fincher · US · Crime, Drama, Thriller · rated 7/10 · seen 2020-08-03
+- **Perfect Days** — 2023 · Wim Wenders · DE · Drama · rated 7/10 · seen 2024-07-01
+- **Pętla** (The Noose) — 1957 · Wojciech Has · PL · Drama · rated 7/10 · seen 2025-03-03
+- **Pociąg** (Night Train) — 1959 · Jerzy Kawalerowicz · PL · Drama, Thriller · rated 7/10 · seen 2025-02-08
+- **Podwójne życie Kieratówny** — 1997 · PL · rated 7/10 · seen 2026-04-30
+- **Point Break** — 2015 · Ericson Core · DE · Action, Adventure, Crime · rated 7/10 · seen 2024-11-25
+- **Prisoners** — 2013 · Denis Villeneuve · US · Drama, Thriller, Crime · rated 7/10 · seen 2021-01-03
+- **Project Hail Mary** — 2026 · Phil Lord, Christopher Miller · US · Science Fiction, Adventure · rated 7/10 · seen 2026-03-29
+- **Przesłuchanie** — 1982 · Ryszard Bugajski · PL · rated 7/10 · seen 2022-09-04
+- **Psycho** — 1960 · Alfred Hitchcock · US · Horror, Thriller, Mystery · rated 7/10 · seen 2020-08-13
+- **Quantum of Solace** — 2008 · Marc Forster · US · Adventure, Action, Thriller · rated 7/10 · seen 2008-11-26
+- **Raging Bull** — 1980 · Martin Scorsese · US · Drama, History · rated 7/10 · seen 2023-06-28
+- **Ran** — 1985 · Akira Kurosawa · JP · Action, Drama, History · rated 7/10 · seen 2022-09-10
+- **Requiem for a Dream** — 2000 · Darren Aronofsky · US · Crime, Drama · rated 7/10 · seen 2021-02-21
+- **Rico Ri à Toa** — 1957 · Roberto Farias · BR · Comedy · rated 7/10 · seen 2025-09-21
+- **Robot Dreams** — 2023 · Pablo Berger · FR · Animation, Drama, Comedy · rated 7/10 · seen 2024-06-01
+- **Rogue One: A Star Wars Story** — 2016 · Gareth Edwards · US · Action, Adventure, Science Fiction · rated 7/10 · seen 2016-12-22
+- **Romper Stomper** — 1992 · Geoffrey Wright · AU · Action, Drama, Thriller · rated 7/10 · seen 2022-05-26
+- **Rushmore** — 1998 · Wes Anderson · US · Comedy, Drama · rated 7/10 · seen 2021-10-22
+- **Sal-in-sui Choo-eok** — 2003 · Bong Joon-ho · KR · rated 7/10 · seen 2020-11-22
+- **Sayonara no Asa ni Yakusoku no Hana o Kazarō** (Maquia: When the Promised Flower Blooms) — 2018 · Mari Okada · JP · Animation, Drama, Fantasy · rated 7/10 · seen 2021-12-29
+- **Scarygirl** — 2023 · Ricard Cussó · AU · Animation, Adventure, Family · rated 7/10 · seen 2023-10-05
+- **Ściany** (Walls) — 1987 · Piotr Dumała · PL · Animation · rated 7/10 · seen 2020-08-30
+- **Sennen Joyū** (Millennium Actress) — 2001 · Satoshi Kon · JP · Animation, Drama, Romance · rated 7/10 · seen 2021-05-09
+- **Shaun of the Dead** — 2004 · Edgar Wright · UK · Horror, Comedy · rated 7/10 · seen 2020-04-20
+- **Sherlock Holmes** — 2009 · Guy Ritchie · UK · Adventure, Crime, Mystery · rated 7/10 · seen 2012-02-10
+- **Shi** (Poetry) — 2010 · Lee Chang-dong · KR · Action, Adventure, Comedy · rated 7/10 · seen 2022-08-21
+- **Shin Gekijō-ban Initial D Legend 2 - Tōsō** — 2015 · Masakazu Obara · JP · rated 7/10 · seen 2020-09-07
+- **Sicario** — 2015 · Denis Villeneuve · US · Action, Crime, Thriller · rated 7/10 · seen 2018-01-13
+- **Silverado** — 1985 · Lawrence Kasdan · US · Western, Action, Drama · rated 7/10 · seen 2021-09-15
+- **Sin City** — 2005 · Robert Rodriguez · US · Crime, Thriller · rated 7/10 · seen 2014-10-08
+- **Sin City: A Dame to Kill For** — 2014 · Robert Rodriguez, Frank Miller · US · Action, Crime, Thriller · rated 7/10 · seen 2016-11-03
+- **Skyfall** — 2012 · Sam Mendes · UK · Action, Adventure, Thriller · rated 7/10 · seen 2012-11-10
+- **Slumdog Millionaire** — 2008 · Danny Boyle · UK · Drama, Romance · rated 7/10 · seen 2012-02-10
+- **Sound of Metal** — 2019 · Darius Marder · US · Drama, Music · rated 7/10 · seen 2021-05-09
+- **Southpaw** — 2015 · Antoine Fuqua · US · Action, Drama · rated 7/10 · seen 2023-02-19
+- **Spectre** — 2015 · Sam Mendes · UK · Action, Adventure, Thriller · rated 7/10 · seen 2022-10-13
+- **Spider-Man: Far From Home** — 2019 · Jon Watts · US · Action, Adventure, Science Fiction · rated 7/10 · seen 2022-11-03
+- **Spider-Man: No Way Home** — 2021 · Jon Watts · US · Action, Adventure, Science Fiction · rated 7/10 · seen 2021-12-19
+- **Steamboy** — 2004 · Katsuhiro Otomo · JP · Animation, Fantasy, Science Fiction · rated 7/10 · seen 2021-03-08
+- **Storm Boy** — 1976 · Henri Safran · AU · Drama, Family · rated 7/10 · seen 2021-11-18
+- **Suchîmubôi** (Steamboy) — 2004 · Katsuhiro Otomo · JP · Animation, Fantasy, Science Fiction · rated 7/10 · seen 2021-03-08
+- **Sudden Impact** — 1983 · Clint Eastwood · US · Thriller, Crime, Action · rated 7/10 · seen 2021-01-13
+- **Superman** — 2025 · James Gunn · US · Science Fiction, Adventure, Action · rated 7/10 · seen 2025-07-11
+- **Suspiria** — 1977 · Dario Argento · IT · Horror · rated 7/10 · seen 2023-10-18
+- **Swiss Army Man** — 2016 · Daniel Kwan, Daniel Scheinert · US · Comedy, Drama, Romance · rated 7/10 · seen 2020-08-06
+- **Também Somos Irmãos** — 1949 · José Carlos Burle · BR · Drama · rated 7/10 · seen 2025-09-17
+- **Taxi** — 1998 · Gérard Pirès · FR · Action, Comedy, Crime · rated 7/10 · seen 2005-10-31
+- **The Apartment** — 1960 · Billy Wilder · US · Comedy, Drama, Romance · rated 7/10 · seen 2025-02-04
+- **The Avengers** — 2012 · Joss Whedon · US · Science Fiction, Action, Adventure · rated 7/10 · seen 2012-05-13
+- **The Devil's Advocate** — 1997 · Taylor Hackford · US · Horror, Drama, Mystery · rated 7/10 · seen 2020-08-20
+- **The Exorcist** — 1973 · William Friedkin · US · Horror, Drama · rated 7/10 · seen 2023-10-12
+- **The Expendables** — 2010 · Sylvester Stallone · US · Thriller, Adventure, Action · rated 7/10 · seen 2014-09-17
+- **The Farewell** — 2019 · Lulu Wang · US · Comedy, Drama · rated 7/10 · seen 2021-02-22
+- **The Fast and the Furious: Tokyo Drift** — 2006 · Justin Lin · US · Action, Crime, Drama · rated 7/10 · seen 2020-06-06
+- **The Father** — 2020 · Florian Zeller · FR · Drama · rated 7/10 · seen 2021-05-03
+- **The Game** — 1997 · David Fincher · US · Drama, Thriller, Mystery · rated 7/10 · seen 2014-10-12
+- **The Girl with the Dragon Tattoo** — 2011 · David Fincher · US · Thriller, Crime, Mystery · rated 7/10 · seen 2012-02-04
+- **The Green Mile** — 1999 · Frank Darabont · US · Fantasy, Drama, Crime · rated 7/10 · seen 2021-12-25
+- **The Hangover Part II** — 2011 · Todd Phillips · US · Comedy · rated 7/10 · seen 2013-11-26
+- **The Hateful Eight** — 2015 · Quentin Tarantino · US · Drama, Mystery, Western · rated 7/10 · seen 2016-01-10
+- **The Hobbit: The Battle of the Five Armies** — 2014 · Peter Jackson · US · Action, Adventure, Fantasy · rated 7/10 · seen 2016-08-26
+- **The Hobbit: The Desolation of Smaug** — 2013 · Peter Jackson · US · Fantasy, Adventure, Action · rated 7/10 · seen 2014-01-19
+- **The Hunger Games** — 2012 · Gary Ross · US · Science Fiction, Adventure, Action · rated 7/10 · seen 2013-12-22
+- **The Invention of Lying** — 2009 · Ricky Gervais, Matthew Robinson · US · Comedy, Fantasy, Romance · rated 7/10 · seen 2021-05-02
+- **The Kid** — 1921 · Charlie Chaplin · US · Comedy, Drama · rated 7/10 · seen 2020-10-07
+- **The Lighthouse** — 2019 · Robert Eggers · US · Drama, Fantasy, Thriller · rated 7/10 · seen 2020-09-14
+- **The Lion King** — 2019 · Roger Allers · US · Adventure, Drama, Family · rated 7/10 · seen 2019-07-22
+- **The Lobster** — 2015 · Yorgos Lanthimos · GR · Comedy, Drama, Romance · rated 7/10 · seen 2017-12-25
+- **The Long Goodbye** — 1973 · Robert Altman · US · Mystery, Drama, Crime · rated 7/10 · seen 2023-09-23
+- **The Maze Runner** — 2014 · Wes Ball · US · Action, Mystery, Science Fiction · rated 7/10 · seen 2020-07-22
+- **The Mummy** — 1999 · Stephen Sommers · US · Adventure, Action, Fantasy · rated 7/10 · seen 2012-02-10
+- **The Negotiator** — 1998 · F. Gary Gray · US · Action, Crime, Drama · rated 7/10 · seen 2012-02-10
+- **The Odyssey** — 2026 · Christopher Nolan · US · rated 7/10 · seen 2026-07-23
+- **The Quiet Earth** — 1985 · Geoff Murphy · NZ · Drama, Science Fiction, Thriller · rated 7/10 · seen 2021-03-20
+- **The Score** — 2001 · Frank Oz · US · Action, Crime, Thriller · rated 7/10 · seen 2016-08-18
+- **The Social Network** — 2010 · David Fincher · US · Drama · rated 7/10 · seen 2012-02-21
+- **The Suicide Squad** — 2021 · James Gunn · US · Action, Comedy, Adventure · rated 7/10 · seen 2022-11-06
+- **The Terminator** — 1984 · James Cameron · US · Action, Thriller, Science Fiction · rated 7/10 · seen 2020-06-24
+- **The Transporter** — 2002 · Louis Leterrier · FR · Action, Crime, Thriller · rated 7/10 · seen 2012-02-10
+- **The Two Popes** — 2019 · Fernando Meirelles · US · Drama, History · rated 7/10 · seen 2021-01-21
+- **The Wild Robot** — 2024 · Chris Sanders · US · Family, Animation, Science Fiction · rated 7/10 · seen 2024-09-29
+- **The Witches of Eastwick** — 1987 · George Miller · US · Comedy, Fantasy, Horror · rated 7/10 · seen 2025-03-29
+- **Three Thousand Years of Longing** — 2022 · George Miller · AU · Drama, Fantasy, Romance · rated 7/10 · seen 2022-09-01
+- **Ticket to Paradise** — 2022 · Ol Parker · US · Drama, Comedy, Romance · rated 7/10 · seen 2022-09-22
+- **Tōi Sekai** — 1997 · Makoto Shinkai · JP · rated 7/10 · seen 2021-06-21
+- **Toki o Kakeru Shōjo** (The Girl Who Leapt Through Time) — 2006 · Mamoru Hosoda · JP · Fantasy, Animation, Drama · rated 7/10 · seen 2018-04-01
+- **Training Day** — 2001 · Antoine Fuqua · US · Action, Crime, Drama · rated 7/10 · seen 2021-01-20
+- **Transformers One** — 2024 · Josh Cooley · US · Animation, Science Fiction, Adventure · rated 7/10 · seen 2025-01-13
+- **Transporter 2** — 2005 · Louis Leterrier · FR · Action, Thriller, Crime · rated 7/10 · seen 2012-11-18
+- **Transporter 3** — 2008 · Olivier Megaton · FR · Action, Thriller, Crime · rated 7/10 · seen 2012-11-18
+- **Tsubaki Sanjūrō** (Sanjuro) — 1962 · Akira Kurosawa · JP · Drama, Action, Comedy · rated 7/10 · seen 2023-09-28
+- **Two Hands** — 1999 · Gregor Jordan · AU · Comedy, Crime, Thriller · rated 7/10 · seen 2023-10-01
+- **Układ zamknięty** (The Closed Circuit) — 2013 · Ryszard Bugajski · PL · Drama, Crime · rated 7/10 · seen 2022-05-01
+- **Umimachi Diary** (Our Little Sister) — 2015 · Hirokazu Kore-eda · JP · Drama · rated 7/10 · seen 2021-04-04
+- **Underworld** — 2003 · Len Wiseman · US · Fantasy, Action, Thriller · rated 7/10 · seen 2020-10-01
+- **Upgrade** — 2018 · Leigh Whannell · AU · Action, Thriller, Science Fiction · rated 7/10 · seen 2020-07-04
+- **Waga Seishun ni Kuinashi** (No Regrets for Our Youth) — 1946 · Akira Kurosawa · JP · Drama · rated 7/10 · seen 2021-04-02
+- **Warfare** — 2025 · Ray Mendoza, Alex Garland · UK · War, Action · rated 7/10 · seen 2025-09-29
+- **Yes Man** — 2008 · Peyton Reed · US · Comedy, Romance · rated 7/10 · seen 2012-02-10
+- **Zack Snyder's Justice League** — 2021 · Zack Snyder · US · Action, Adventure, Fantasy · rated 7/10 · seen 2021-03-27
+- **Zaklęte rewiry** (Hotel Pacific) — 1975 · Janusz Majewski · PL · Drama, History · rated 7/10 · seen 2020-10-03
+- **Zodiac** — 2007 · David Fincher · US · Crime, Mystery, Thriller · rated 7/10 · seen 2020-08-03
+- **Zoolander** — 2001 · Ben Stiller · US · Comedy · rated 7/10 · seen 2024-05-06
+- **Zootopia 2** — 2025 · Jared Bush, Byron Howard · US · Adventure, Animation, Comedy · rated 7/10 · seen 2025-12-02
+- **A Quiet Place: Day One** — 2024 · Michael Sarnoski · US · Horror, Science Fiction, Thriller · rated 6/10 · seen 2024-07-08
+- **A Woman of Paris: A Drama of Fate** — 1923 · Charlie Chaplin · US · Drama, Romance · rated 6/10 · seen 2020-11-26
+- **Airplane!** — 1980 · Jim Abrahams, David Zucker, Jerry Zucker · US · Comedy · rated 6/10 · seen 2021-07-09
+- **American Pie** — 1999 · Paul Weitz · US · Comedy, Romance · rated 6/10 · seen 2012-02-10
+- **American Pie 2** — 2001 · J.B. Rogers · US · Comedy, Romance · rated 6/10 · seen 2012-07-14
+- **Asteroid City** — 2023 · Wes Anderson · US · Comedy, Drama · rated 6/10 · seen 2023-07-04
+- **Avatar** — 2009 · James Cameron · US · Science Fiction, Action, Adventure · rated 6/10 · seen 2012-02-04
+- **AVPR: Aliens vs Predator - Requiem** (Aliens vs Predator: Requiem) — 2007 · Colin Strause, Greg Strause · US · Action, Science Fiction, Thriller · rated 6/10 · seen 2014-10-08
+- **Bad Boys: Ride or Die** — 2024 · Adil El Arbi, Bilall Fallah · US · Action, Comedy, Crime · rated 6/10 · seen 2024-09-25
+- **Black Swan** — 2010 · Darren Aronofsky · US · Drama, Thriller, Horror · rated 6/10 · seen 2021-10-20
+- **Bullet Train** — 2022 · David Leitch · US · Action, Comedy, Thriller · rated 6/10 · seen 2022-08-13
+- **Byōsoku 5 Centimeter** (5 Centimeters per Second) — 2007 · Makoto Shinkai · JP · Animation, Romance, Drama · rated 6/10 · seen 2018-03-22
+- **Captain America: Civil War** — 2016 · Anthony Russo · US · Adventure, Action, Science Fiction · rated 6/10 · seen 2016-09-10
+- **Cargo** — 2017 · Ben Howling, Yolanda Ramke · US · Drama, Thriller, Horror · rated 6/10 · seen 2020-08-13
+- **Celia** — 1989 · Ann Turner · AU · Drama, Fantasy, Horror · rated 6/10 · seen 2024-04-28
+- **Cruella** — 2021 · Craig Gillespie · US · Comedy, Crime, Drama · rated 6/10 · seen 2021-06-08
+- **Czarny Czwartek. Janek Wiśniewski padł** (Black Thursday) — 2011 · Antoni Krauze · PL · Drama, History · rated 6/10 · seen 2023-01-21
+- **Day of the Dead** — 1985 · George A. Romero · US · Horror, Drama, Mystery · rated 6/10 · seen 2022-10-16
+- **Death Proof** — 2007 · Quentin Tarantino · US · Action, Thriller · rated 6/10 · seen 2023-05-27
+- **Die Hard 2** — 1990 · Renny Harlin · US · Action, Thriller · rated 6/10 · seen 2020-09-16
+- **Don't Look Up** — 2021 · Adam McKay · US · Comedy, Science Fiction, Drama · rated 6/10 · seen 2021-12-27
+- **Eagle Eye** — 2008 · D.J. Caruso · US · Mystery, Thriller, Action · rated 6/10 · seen 2012-06-11
+- **F/X** — 1986 · Robert Mandel · US · Action, Thriller · rated 6/10 · seen 2025-01-12
+- **Free Guy** — 2021 · Shawn Levy · US · Comedy, Adventure, Science Fiction · rated 6/10 · seen 2021-09-29
+- **Gangs of New York** — 2002 · Martin Scorsese · US · Drama, History, Crime · rated 6/10 · seen 2018-02-27
+- **Gekijōban Violet Evergarden** (Violet Evergarden: The Movie) — 2020 · Taichi Ishidate · JP · Animation, Drama, Fantasy · rated 6/10 · seen 2022-07-18
+- **Get Out** — 2017 · Jordan Peele · US · Mystery, Thriller, Horror · rated 6/10 · seen 2022-10-12
+- **Ghost in the Shell** — 2017 · Rupert Sanders · US · Science Fiction, Drama, Action · rated 6/10 · seen 2017-04-01
+- **Glass Onion: A Knives Out Mystery** — 2022 · Rian Johnson · US · Comedy, Crime, Mystery · rated 6/10 · seen 2025-02-10
+- **Godzilla** — 2014 · Gareth Edwards · US · Action, Drama, Science Fiction · rated 6/10 · seen 2014-05-18
+- **Gojira Mainasu Wan** — 2023 · JP · rated 6/10 · seen 2023-12-18
+- **Gone Girl** — 2014 · David Fincher · US · Mystery, Thriller, Drama · rated 6/10 · seen 2014-10-10
+- **Gravity** — 2013 · Alfonso Cuarón · US · Science Fiction, Thriller, Drama · rated 6/10 · seen 2014-03-10
+- **Hail, Caesar!** — 2016 · Joel Coen, Ethan Coen · US · Comedy, Mystery · rated 6/10 · seen 2018-01-30
+- **Hannibal** — 2001 · Ridley Scott · US · Crime, Drama, Thriller · rated 6/10 · seen 2014-05-01
+- **Hot Fuzz** — 2007 · Edgar Wright · UK · Crime, Action, Comedy · rated 6/10 · seen 2016-08-20
+- **Inside Out 2** — 2024 · Kelsey Mann · US · Animation, Adventure, Comedy · rated 6/10 · seen 2024-06-22
+- **Iron Man 2** — 2010 · Jon Favreau · US · Adventure, Action, Science Fiction · rated 6/10 · seen 2012-02-13
+- **Ivanovo detstvo** (Ivan's Childhood) — 1962 · Andrei Tarkovsky · SU · Drama, War · rated 6/10 · seen 2021-05-08
+- **Jao Nok Krajok** (Mundane History) — 2009 · Anocha Suwichakornpong · TH · Drama · rated 6/10 · seen 2022-08-17
+- **Johnny English Reborn** — 2011 · Oliver Parker · US · Crime, Action, Comedy · rated 6/10 · seen 2012-07-26
+- **Jumper** — 2008 · Doug Liman · US · Action, Adventure, Science Fiction · rated 6/10 · seen 2012-06-15
+- **Kick-Ass** — 2010 · Matthew Vaughn · UK · Action, Crime · rated 6/10 · seen 2017-12-20
+- **Kick-Ass 2** — 2013 · Jeff Wadlow · US · Action, Adventure, Crime · rated 6/10 · seen 2019-08-02
+- **Kicking and Screaming** — 1995 · Noah Baumbach · US · Comedy, Drama, Romance · rated 6/10 · seen 2021-01-10
+- **Killers of the Flower Moon** — 2023 · Martin Scorsese · US · Crime, History, Drama · rated 6/10 · seen 2023-10-19
+- **Kimetsu no Yaiba: Mugen Ressha-Hen** (Demon Slayer -Kimetsu no Yaiba- The Movie: Mugen Train) — 2020 · Haruo Sotozaki · JP · Animation, Action, Fantasy · rated 6/10 · seen 2022-02-05
+- **Kingdom of the Planet of the Apes** — 2024 · Wes Ball · US · Science Fiction, Adventure, Action · rated 6/10 · seen 2024-08-31
+- **Kler** (Clergy) — 2018 · Wojciech Smarzowski · PL · Drama · rated 6/10 · seen 2022-05-02
+- **Knives Out** — 2019 · Rian Johnson · US · Comedy, Crime, Mystery · rated 6/10 · seen 2021-02-07
+- **Kochiyama soshun** (Priest of Darkness) — 1936 · JP · Drama · rated 6/10 · seen 2025-12-07
+- **Kôkaku Kidôtai** (Ghost in the Shell: The New Movie) — 2015 · Kazuchika Kise · JP · Science Fiction, Animation · rated 6/10 · seen 2021-03-10
+- **Kono Subarashī Sekai ni Shukufuku o! 2: Kono Subarashī Geijutsu ni Shukufuku o!** — 2017 · Takaomi Kanasaki · JP · rated 6/10 · seen 2022-01-19
+- **Kuszenie św. Antoniego** — 1987 · Piotr Dumała · PL · Animation · rated 6/10 · seen 2020-10-12
+- **La La Land** — 2016 · Damien Chazelle · US · Comedy, Drama, Romance · rated 6/10 · seen 2017-02-22
+- **Leave the World Behind** — 2023 · Sam Esmail · US · Drama, Mystery, Thriller · rated 6/10 · seen 2024-02-13
+- **Licorice Pizza** — 2021 · Paul Thomas Anderson · US · Drama, Comedy, Romance · rated 6/10 · seen 2022-02-19
+- **Looney Tunes: Back in Action** — 2003 · Joe Dante · US · Animation, Comedy, Family · rated 6/10 · seen 2004-07-24
+- **Lord of the Flies** — 1963 · Peter Brook · UK · Drama, Adventure, Thriller · rated 6/10 · seen 2021-12-31
+- **Lord of War** — 2005 · Andrew Niccol · FR · Crime, Drama, Thriller · rated 6/10 · seen 2025-11-16
+- **Machete** — 2010 · Robert Rodriguez, Ethan Maniquis · US · Action, Comedy, Thriller · rated 6/10 · seen 2014-10-09
+- **Manchester by the Sea** — 2016 · Kenneth Lonergan · US · Drama · rated 6/10 · seen 2021-09-25
+- **Mean Girls** — 2004 · Mark Waters · US · Drama, Comedy · rated 6/10 · seen 2021-07-02
+- **Mécanique** (La Mécanique Du Coucou) — 2018 · Julia Baurens, Sofia Bernardo, Naiti Escot, Nicolas Jacomet, Ariane Lissajoux, Antoine Verney-Carron · FR · Documentary · rated 6/10 · seen 2020-08-20
+- **Memento** — 2000 · Christopher Nolan · US · Mystery, Thriller · rated 6/10 · seen 2014-06-28
+- **Men in Black II** — 2002 · Barry Sonnenfeld · US · Action, Comedy, Science Fiction · rated 6/10 · seen 2015-01-20
+- **Million Dollar Baby** — 2004 · Clint Eastwood · US · Drama · rated 6/10 · seen 2023-02-26
+- **Minimalism: A Documentary About the Important Things** — 2015 · Matt D'Avella · US · Documentary · rated 6/10 · seen 2021-01-16
+- **Mission: Impossible II** — 2000 · John Woo · US · Adventure, Action, Thriller · rated 6/10 · seen 2007-10-30
+- **Monty Python and the Holy Grail** — 1975 · Terry Gilliam · UK · Adventure, Comedy, Fantasy · rated 6/10 · seen 2020-10-21
+- **Mortal Kombat** — 2021 · Simon McQuoid · US · Action, Fantasy, Adventure · rated 6/10 · seen 2022-12-12
+- **Mou gaan dou** (Infernal Affairs) — 2002 · Andrew Lau · HK · Drama, Action, Thriller · rated 6/10 · seen 2021-01-09
+- **Naniwa erejî** (Osaka Elegy) — 1936 · JP · Drama · rated 6/10 · seen 2025-12-03
+- **Natural Born Killers** — 1994 · Oliver Stone · US · Crime, Thriller, Drama · rated 6/10 · seen 2016-01-31
+- **Nightcrawler** — 2014 · Dan Gilroy · US · Crime, Drama, Thriller · rated 6/10 · seen 2015-02-19
+- **Nope** — 2022 · Jordan Peele · US · Horror, Science Fiction · rated 6/10 · seen 2022-10-11
+- **Nora inu** (Stray Dog) — 1949 · Akira Kurosawa · JP · Crime, Drama, Thriller · rated 6/10 · seen 2021-12-30
+- **Octobre à Paris** — 1962 · Jacques Panijel · FR · Documentary · rated 6/10 · seen 2025-08-10
+- **Operation Fortune: Ruse de guerre** (Operation Fortune: Ruse de Guerre) — 2023 · Guy Ritchie · UK · Action, Comedy, Thriller · rated 6/10 · seen 2023-01-21
+- **Our Planet: Behind the Scenes** — 2019 · Huw Cordey, Sophie Lanfear, Ilaira Mallalieu, Kieran ODonovan, Hugh Pearson, Gisle Sverdrup · UK · Documentary · rated 6/10 · seen 2021-01-13
+- **Pan-do-ra** — 2016 · Park Jung-woo · KR · rated 6/10 · seen 2021-01-22
+- **Pan's Labyrinth** — 2006 · Guillermo del Toro · MX · Fantasy, Drama, War · rated 6/10 · seen 2024-12-18
+- **Poltergeist** — 1982 · Tobe Hooper · US · Horror · rated 6/10 · seen 2023-10-26
+- **Prometheus** — 2012 · Ridley Scott · US · Science Fiction, Mystery, Horror · rated 6/10 · seen 2020-10-25
+- **Przejście podziemne** (Pedestrian Subway) — 1973 · Krzysztof Kieślowski · PL · Drama, TV Movie · rated 6/10 · seen 2021-06-27
+- **Psycho-Pass** (PSYCHO-PASS: The Movie) — 2015 · Naoyoshi Shiotani, Katsuyuki Motohiro · JP · Animation, Science Fiction, Action · rated 6/10 · seen 2020-10-20
+- **Qian Xi Man Po** — 2001 · Hou Hsiao-hsien · TW · rated 6/10 · seen 2022-06-29
+- **Ready Player One** — 2018 · Steven Spielberg · US · Adventure, Action, Science Fiction · rated 6/10 · seen 2019-01-24
+- **Red** (RED) — 2010 · Robert Schwentke · US · Action, Adventure, Comedy · rated 6/10 · seen 2015-11-04
+- **Rok spokojnego słońca** (A Year of the Quiet Sun) — 1984 · Krzysztof Zanussi · PL · Romance, Drama · rated 6/10 · seen 2020-09-19
+- **Ronin** — 1998 · John Frankenheimer · US · Action, Thriller, Crime · rated 6/10 · seen 2021-01-04
+- **Shang-Chi and the Legend of the Ten Rings** — 2021 · Destin Daniel Cretton · US · Action, Adventure, Fantasy · rated 6/10 · seen 2021-11-07
+- **Shin Seiki Evangelion Gekijōban: The End of Evangelion: Air/Magokoro o, Kimi ni** (Neon Genesis Evangelion: The End of Evangelion) — 1997 · Hideaki Anno · JP · Animation, Science Fiction, Drama · rated 6/10 · seen 2020-08-19
+- **Sonic the Hedgehog 3** — 2024 · Jeff Fowler · US · Action, Science Fiction, Comedy · rated 6/10 · seen 2025-06-06
+- **Space Jam** — 1996 · Joe Pytka · US · Family, Animation, Science Fiction · rated 6/10 · seen 2020-10-17
+- **Spokój** (The Calm) — 1976 · Krzysztof Kieślowski · PL · Drama, TV Movie · rated 6/10 · seen 2021-09-26
+- **Star Wars: Episode VI - Return of the Jedi** (Return of the Jedi) — 1983 · Richard Marquand · US · Adventure, Action, Science Fiction · rated 6/10 · seen 2020-09-28
+- **Starship Troopers** — 1997 · Paul Verhoeven · NL · Adventure, Action, Thriller · rated 6/10 · seen 2022-07-08
+- **Suzumiya Haruhi no Shōshitsu** (The Disappearance of Haruhi Suzumiya) — 2010 · Tatsuya Ishihara · JP · Animation, Comedy, Science Fiction · rated 6/10 · seen 2021-06-10
+- **Szamanka** — 1996 · Andrzej Żuławski · PL · Drama, Horror · rated 6/10 · seen 2024-06-28
+- **The 40 Year-Old Virgin** (The 40 Year Old Virgin) — 2005 · Judd Apatow · US · Comedy, Romance · rated 6/10 · seen 2014-10-11
+- **The Adventures of Tintin** — 2011 · Steven Spielberg · US · Adventure, Animation, Mystery · rated 6/10 · seen 2021-09-23
+- **The Babadook** — 2014 · Jennifer Kent · AU · Drama, Horror · rated 6/10 · seen 2022-05-29
+- **The Batman** — 2022 · Matt Reeves · US · Crime, Mystery, Thriller · rated 6/10 · seen 2022-03-02
+- **The Breakfast Club** — 1985 · John Hughes · US · Comedy, Drama · rated 6/10 · seen 2023-01-10
+- **The Cowboy and the frenchman** (The Cowboy and the Frenchman) — 1989 · David Lynch · US · Comedy, Western · rated 6/10 · seen 2020-08-31
+- **The Darjeeling Limited** — 2007 · Wes Anderson · US · Adventure, Drama, Comedy · rated 6/10 · seen 2021-10-22
+- **The Dark Knight Rises** — 2012 · Christopher Nolan · US · Action, Crime, Drama · rated 6/10 · seen 2012-07-27
+- **The Dead Pool** — 1988 · Buddy Van Horn · US · Action, Crime, Thriller · rated 6/10 · seen 2021-01-15
+- **The Dictator** — 2012 · Larry Charles · US · Comedy · rated 6/10 · seen 2013-11-15
+- **The Expendables 3** — 2014 · Patrick Hughes · US · Action, Adventure, Thriller · rated 6/10 · seen 2017-09-21
+- **The Fabelmans** — 2022 · Steven Spielberg · US · Drama · rated 6/10 · seen 2023-02-01
+- **The Fall Guy** — 2024 · David Leitch · US · Action, Comedy, Romance · rated 6/10 · seen 2024-05-10
+- **The Godfather: Part III** (The Godfather Part III) — 1990 · Francis Ford Coppola · US · Crime, Drama, Thriller · rated 6/10 · seen 2016-01-23
+- **The Island** — 2005 · Michael Bay · US · Action, Thriller, Science Fiction · rated 6/10 · seen 2013-07-25
+- **The Italian Job** — 2003 · F. Gary Gray · US · Action, Crime · rated 6/10 · seen 2017-12-25
+- **The Killer** — 2023 · David Fincher · US · Crime, Thriller · rated 6/10 · seen 2023-10-25
+- **The Lord of the Rings: The War of the Rohirrim** — 2024 · Kenji Kamiyama · JP · Animation, Fantasy, Adventure · rated 6/10 · seen 2024-12-31
+- **The Many Saints of Newark** — 2021 · Alan Taylor · US · Crime, Drama · rated 6/10 · seen 2022-11-18
+- **The Minimalists: Less Is Now** — 2021 · Matt D'Avella · US · Documentary · rated 6/10 · seen 2021-01-16
+- **The Road** — 2009 · John Hillcoat · AU · Adventure, Drama · rated 6/10 · seen 2020-05-31
+- **The Untouchables** — 1987 · Brian De Palma · US · Crime, History, Thriller · rated 6/10 · seen 2018-02-01
+- **Three Billboards Outside Ebbing, Missouri** — 2017 · Martin McDonagh · UK · Crime, Drama · rated 6/10 · seen 2021-01-02
+- **Toaru Hikūshi e no Tsuioku** (The Princess and the Pilot) — 2011 · Jun Shishido · JP · Adventure, Animation, Drama · rated 6/10 · seen 2020-10-24
+- **Tōkyō Monogatari** (Tokyo Story) — 1953 · Yasujirō Ozu · JP · Drama · rated 6/10 · seen 2020-11-25
+- **Transformers** — 2007 · Michael Bay · US · Adventure, Science Fiction, Action · rated 6/10 · seen 2012-04-29
+- **Transformers: Dark of the Moon** — 2011 · Michael Bay · US · Action, Science Fiction, Adventure · rated 6/10 · seen 2012-05-02
+- **Trzecia część nocy** (The Third Part of the Night) — 1971 · Andrzej Żuławski · PL · War, Drama, Horror · rated 6/10 · seen 2024-06-30
+- **Tsuki wa noborinu** (The Moon Has Risen) — 1955 · JP · Drama, Romance, Comedy · rated 6/10 · seen 2024-12-15
+- **Un Homme qui dort** (The Man Who Sleeps) — 1974 · Bernard Queysanne · FR · Drama · rated 6/10 · seen 2021-02-09
+- **Violent Night** — 2022 · Tommy Wirkola · US · Action, Comedy, Fantasy · rated 6/10 · seen 2022-12-08
+- **Violet Evergarden: Kitto Ai o Shiru Hi ga Kuru no Darō** — 2018 · Taichi Ishidate · JP · rated 6/10 · seen 2021-01-22
+- **Volver** — 2006 · Pedro Almodóvar · ES · Comedy, Drama, Romance · rated 6/10 · seen 2022-07-27
+- **Wanted** — 2008 · Timur Bekmambetov · US · Action, Thriller, Crime · rated 6/10 · seen 2012-02-10
+- **War Dogs** — 2016 · Todd Phillips · US · Comedy, Crime, Drama · rated 6/10 · seen 2024-03-17
+- **Weapons** — 2025 · Zach Cregger · US · Horror, Mystery · rated 6/10 · seen 2025-10-28
+- **Wish** — 2023 · Fawn Veerasunthorn, Chris Buck · US · Animation, Family, Fantasy · rated 6/10 · seen 2024-05-07
+- **World War Z** — 2013 · Marc Forster · US · Action, Horror, Science Fiction · rated 6/10 · seen 2013-07-05
+- **Yōjū Toshi** (Wicked City) — 1987 · Yoshiaki Kawajiri · JP · Animation, Fantasy, Horror · rated 6/10 · seen 2020-08-02
+- **You Don't Mess with the Zohan** — 2008 · Dennis Dugan · US · Comedy, Action · rated 6/10 · seen 2022-11-21
+- **Zabij to i wyjedź z tego miasta** (Kill It and Leave This Town) — 2019 · Mariusz Wilczyński · PL · Animation, Fantasy, Drama · rated 6/10 · seen 2024-07-14
+- **Zombieland** — 2009 · Ruben Fleischer · US · Comedy, Horror · rated 6/10 · seen 2012-03-20
+- **2 Fast 2 Furious** — 2003 · John Singleton · DE · Action, Crime, Thriller · rated 5/10 · seen 2023-12-29
+- **21 Jump Street** — 2012 · Phil Lord · US · Action, Comedy, Crime · rated 5/10 · seen 2022-10-16
+- **Argylle** — 2024 · Matthew Vaughn · UK · Action, Adventure, Comedy · rated 5/10 · seen 2024-02-18
+- **Avengers: Age of Ultron** — 2015 · Joss Whedon · US · Action, Adventure, Science Fiction · rated 5/10 · seen 2016-01-04
+- **Beetlejuice Beetlejuice** — 2024 · Tim Burton · US · Comedy, Fantasy, Horror · rated 5/10 · seen 2024-09-09
+- **Black Panther** — 2018 · Ryan Coogler · US · Action, Adventure, Science Fiction · rated 5/10 · seen 2018-02-16
+- **Captain America: The First Avenger** — 2011 · Joe Johnston · US · Action, Adventure, Science Fiction · rated 5/10 · seen 2012-05-08
+- **Chiisana Eiyū: Kani to Tamago to Tōmei Ningen** (Modest Heroes) — 2018 · Hiromasa Yonebayashi · JP · Animation, Fantasy, Adventure · rated 5/10 · seen 2021-01-03
+- **Cocaine Bear** — 2023 · Elizabeth Banks · US · Thriller, Comedy, Crime · rated 5/10 · seen 2023-02-26
+- **Dilili à Paris** (Dilili in Paris) — 2018 · Michel Ocelot · FR · Animation, Adventure · rated 5/10 · seen 2021-03-02
+- **Doctor Strange in the Multiverse of Madness** — 2022 · Sam Raimi · US · Fantasy, Action, Adventure · rated 5/10 · seen 2022-05-09
+- **Fantastic Fungi** — 2019 · Louie Schwartzberg · US · Documentary · rated 5/10 · seen 2021-09-23
+- **Fast & Furious Presents: Hobbs & Shaw** — 2019 · David Leitch · US · Action, Adventure, Comedy · rated 5/10 · seen 2024-07-25
+- **Freelance** — 2023 · Pierre Morel · US · Action, Comedy · rated 5/10 · seen 2024-05-06
+- **Furious 6** (Fast & Furious 6) — 2013 · Justin Lin · US · Action, Thriller, Crime · rated 5/10 · seen 2024-01-07
+- **Furious Seven** (Furious 7) — 2015 · James Wan · US · Action, Crime, Thriller · rated 5/10 · seen 2024-01-13
+- **Gekijōban Chainsaw Man: Reze-hen** (Chainsaw Man - The Movie: Reze Arc) — 2025 · Tatsuya Yoshihara · JP · Animation, Action, Romance · rated 5/10 · seen 2025-11-05
+- **Hitman: Agent 47** — 2015 · Aleksander Bach · US · Action, Crime, Thriller · rated 5/10 · seen 2016-01-04
+- **I Am What I Am 2** — 2024 · Sun Haipeng · CN · Animation, Action, Comedy · rated 5/10 · seen 2025-09-12
+- **Ida** — 2013 · Paweł Pawlikowski · PL · Drama · rated 5/10 · seen 2020-11-01
+- **Jak działa jamniczek** (How a Sausage Dog Works) — 1971 · Julian Józef Antonisz · PL · Animation · rated 5/10 · seen 2020-09-04
+- **Jiokhwa** (The Flower in Hell) — 1958 · KR · Crime, Drama · rated 5/10 · seen 2023-07-23
+- **Jurassic World** — 2015 · Colin Trevorrow · US · Adventure, Science Fiction · rated 5/10 · seen 2016-01-17
+- **Jurassic World Dominion** — 2022 · Colin Trevorrow · US · Adventure, Science Fiction, Thriller · rated 5/10 · seen 2022-06-28
+- **Knights of the Zodiac** — 2023 · Tomek Bagiński · US · Fantasy, Action, Science Fiction · rated 5/10 · seen 2023-09-27
+- **Kto wypije więcej** — 1986 · Bogdan Nowicki · PL · rated 5/10 · seen 2020-10-17
+- **La Antena** (The Aerial) — 2007 · Esteban Sapir · AR · Science Fiction, Drama · rated 5/10 · seen 2020-11-27
+- **La Boîte** (La Boîte de Pandore - Florence Thomassin) — 2017 · Eliott Belrose, Carole Favier, Loicia Lagillier, Alois Mathe, Juliette Perrey, Joran Rivet · FR · Documentary · rated 5/10 · seen 2020-08-26
+- **Lake Mungo** — 2008 · Joel Anderson · AU · Horror, Thriller · rated 5/10 · seen 2022-08-10
+- **Ma-deo** (Mother) — 2009 · Bong Joon-ho · KR · Thriller, Drama, Romance · rated 5/10 · seen 2020-11-01
+- **Man of Flowers** — 1983 · Paul Cox · AU · Drama, Romance · rated 5/10 · seen 2024-08-01
+- **Marriage Story** — 2019 · Noah Baumbach · US · Drama · rated 5/10 · seen 2021-01-22
+- **Mars Attacks!** — 1996 · Tim Burton · US · Comedy, Fantasy, Science Fiction · rated 5/10 · seen 2022-11-05
+- **Men in Black 3** — 2012 · Barry Sonnenfeld · US · Action, Comedy, Science Fiction · rated 5/10 · seen 2015-10-04
+- **Miami Vice** — 2006 · Michael Mann · US · Action, Crime, Thriller · rated 5/10 · seen 2012-02-12
+- **Mission: Impossible - Dead Reckoning - Part One** (Mission: Impossible - Dead Reckoning Part One) — 2023 · Christopher McQuarrie · US · Action, Adventure, Thriller · rated 5/10 · seen 2023-07-08
+- **Moana 2** — 2024 · David G. Derrick Jr., Jason Hand · CA · Adventure, Animation, Comedy · rated 5/10 · seen 2025-05-03
+- **Moonlight** — 2016 · Barry Jenkins · US · Drama · rated 5/10 · seen 2017-12-26
+- **Mulholland Dr.** (Mulholland Drive) — 2001 · David Lynch · US · Thriller, Drama, Mystery · rated 5/10 · seen 2020-08-12
+- **Ostry film zaangażowany. Non Camera** — 1979 · Julian Józef Antonisz · PL · rated 5/10 · seen 2020-09-04
+- **Peter Rabbit** — 2018 · Will Gluck · US · Animation, Adventure, Family · rated 5/10 · seen 2020-11-12
+- **Red Dog** — 2011 · Kriv Stenders · AU · Drama, Comedy, Family · rated 5/10 · seen 2021-09-27
+- **Rejs** (The Cruise) — 1970 · Marek Piwowski · PL · Comedy, Drama · rated 5/10 · seen 2020-09-29
+- **Riddick** — 2013 · David Twohy · US · Science Fiction, Action, Thriller · rated 5/10 · seen 2020-10-17
+- **Riri Shushu no subete** (All About Lily Chou-Chou) — 2001 · JP · Drama, Crime · rated 5/10 · seen 2025-01-29
+- **Ryś** (The Lynx) — 1981 · Stanislaw Rozewicz · PL · Drama · rated 5/10 · seen 2020-09-18
+- **Shazam! Fury of the Gods** — 2023 · David F. Sandberg · US · Comedy, Action, Fantasy · rated 5/10 · seen 2023-03-18
+- **Shin Evangelion Gekijō-ban :||** (Evangelion: 3.0+1.0 Thrice Upon a Time) — 2021 · Hideaki Anno · JP · Animation, Action, Science Fiction · rated 5/10 · seen 2021-12-05
+- **Star Wars: The Last Jedi** — 2017 · Rian Johnson · US · Adventure, Action, Science Fiction · rated 5/10 · seen 2017-12-17
+- **Suicide Squad** — 2016 · David Ayer · US · Action, Adventure, Fantasy · rated 5/10 · seen 2017-08-09
+- **Terminator 3: Rise of the Machines** — 2003 · Jonathan Mostow · US · Action, Thriller, Science Fiction · rated 5/10 · seen 2020-09-19
+- **Terminator Salvation** — 2009 · McG · US · Action, Science Fiction, Thriller · rated 5/10 · seen 2012-02-10
+- **Teściowie 3** (The In-Laws 3) — 2025 · Kuba Michalczuk · PL · Comedy · rated 5/10 · seen 2025-10-14
+- **The Beekeeper** — 2024 · David Ayer · UK · Action, Crime, Thriller · rated 5/10 · seen 2024-01-20
+- **The Big Lebowski** — 1998 · Joel Coen · US · Comedy, Crime · rated 5/10 · seen 2014-10-08
+- **The Black Cat** — 1934 · Edgar G. Ulmer · US · Horror, Thriller · rated 5/10 · seen 2024-04-14
+- **The Fate of the Furious** — 2017 · F. Gary Gray · US · Action, Crime, Thriller · rated 5/10 · seen 2024-01-17
+- **The Great Gatsby** — 2013 · Baz Luhrmann · AU · Drama, Romance · rated 5/10 · seen 2020-11-02
+- **The Little Death** — 2014 · Josh Lawson · AU · Drama, Comedy, Romance · rated 5/10 · seen 2015-03-01
+- **The Matrix Resurrections** — 2021 · Lana Wachowski · US · Science Fiction, Action, Adventure · rated 5/10 · seen 2021-12-26
+- **The Royal Tenenbaums** — 2001 · Wes Anderson · US · Comedy, Drama · rated 5/10 · seen 2021-10-25
+- **The Tracker** — 2002 · Rolf de Heer · AU · Drama, History · rated 5/10 · seen 2023-04-08
+- **The Witcher: Nightmare of the Wolf** — 2021 · Kwang Il Han · KR · Animation, Action, Fantasy · rated 5/10 · seen 2021-08-30
+- **Thor: Ragnarok** — 2017 · Taika Waititi · US · Action, Science Fiction, Comedy · rated 5/10 · seen 2017-11-04
+- **Twin Peaks: Fire Walk with Me** — 1992 · David Lynch · US · Drama, Mystery, Horror · rated 5/10 · seen 2020-09-06
+- **Underworld: Evolution** — 2006 · Len Wiseman · US · Fantasy, Action, Thriller · rated 5/10 · seen 2020-10-05
+- **Venom: Let There Be Carnage** — 2021 · Andy Serkis · US · Science Fiction, Action, Adventure · rated 5/10 · seen 2021-11-27
+- **Vice** — 2015 · Brian A. Miller · US · Thriller, Science Fiction, Action · rated 5/10 · seen 2015-01-30
+- **Violet Evergarden Gaiden: Eien to Jidō Shuki Ningyō** — 2019 · Taichi Ishidate · JP · rated 5/10 · seen 2021-01-26
+- **W sumie moglibyśmy nakręcić jakiś film** — 2014 · Adrian Pacholec, Adrian Dulnik · PL · rated 5/10 · seen 2021-11-14
+- **Waka Okami wa Shōgakusei!** (Okko's Inn) — 2018 · Kitaro Kosaka · JP · Animation, Drama, Fantasy · rated 5/10 · seen 2020-09-19
+- **Waterworld** — 1995 · Kevin Reynolds · US · Adventure, Action, Science Fiction · rated 5/10 · seen 2020-06-19
+- **Wayne's World** — 1992 · Penelope Spheeris · US · Comedy, Music · rated 5/10 · seen 2023-04-03
+- **Wszystko jest liczbą** (Everything Is a Number) — 1966 · Stefan Schabenbeck · PL · Animation · rated 5/10 · seen 2020-10-12
+- **Wyścig** — 1989 · Marek Serafiński · PL · rated 5/10 · seen 2020-10-16
+- **X** — 2022 · Ti West · US · Horror · rated 5/10 · seen 2022-04-02
+- **Yang Guang Pu Zhao** — 2019 · Chung Mong-hong · CN · rated 5/10 · seen 2021-01-20
+- **Zombieland: Double Tap** — 2019 · Ruben Fleischer · US · Horror, Comedy · rated 5/10 · seen 2020-06-06
+- **28 Weeks Later** — 2007 · Juan Carlos Fresnadillo · US · Horror, Thriller, Science Fiction · rated 4/10 · seen 2015-04-26
+- **300 mil do nieba** (300 Miles to Heaven) — 1989 · Maciej Dejczer · PL · Drama · rated 4/10 · seen 2020-09-19
+- **Adam i Ewa** — 1983 · Aleksander Sroczyński · PL · Animation · rated 4/10 · seen 2020-10-02
+- **Ant-Man and the Wasp** — 2018 · Peyton Reed · US · Action, Adventure, Science Fiction · rated 4/10 · seen 2018-11-20
+- **Āya to Majo** (Earwig and the Witch) — 2020 · Gorō Miyazaki · JP · Animation, Fantasy, Family · rated 4/10 · seen 2022-01-10
+- **Black Adam** — 2022 · Jaume Collet-Serra · US · Action, Adventure, Science Fiction · rated 4/10 · seen 2022-10-23
+- **Blade II** — 2002 · Guillermo del Toro · US · Fantasy, Horror, Action · rated 4/10 · seen 2022-11-08
+- **Death Race 2** — 2010 · Roel Reiné · US · Action, Thriller, Science Fiction · rated 4/10 · seen 2012-06-15
+- **El Pepe, una vida suprema** (El Pepe: A Supreme Life) — 2018 · Emir Kusturica · UY · Documentary · rated 4/10 · seen 2021-01-26
+- **Eraserhead** — 1977 · David Lynch · US · Horror, Science Fiction · rated 4/10 · seen 2020-11-23
+- **Fast X** — 2023 · Louis Leterrier · US · Action, Crime, Thriller · rated 4/10 · seen 2023-05-20
+- **Godzilla vs. Kong** — 2021 · Adam Wingard · US · Action, Science Fiction, Adventure · rated 4/10 · seen 2021-04-14
+- **Heojil kyolshim** (Decision to Leave) — 2022 · Park Chan-wook · KR · Thriller, Mystery, Romance · rated 4/10 · seen 2022-11-01
+- **Kōkaku Kidōtai S.A.C. Solid State Society 3D** — 2011 · Kenji Kamiyama · JP · rated 4/10 · seen 2020-07-19
+- **Kōkaku Kidōtai Stand Alone Complex: Solid State Society** (Ghost in the Shell: Stand Alone Complex - Solid State Society) — 2006 · Kenji Kamiyama · JP · Animation, Action, Thriller · rated 4/10 · seen 2020-07-19
+- **Logan** — 2017 · James Mangold · US · Action, Drama, Science Fiction · rated 4/10 · seen 2017-03-02
+- **Mad Max Beyond Thunderdome** — 1985 · George Miller · AU · Action, Adventure, Science Fiction · rated 4/10 · seen 2014-10-07
+- **Medium** — 1985 · Jacek Koprowicz · PL · Horror, Mystery, Thriller · rated 4/10 · seen 2020-10-03
+- **Mój rower** (My Father's Bike) — 2012 · Piotr Trzaskalski · PL · Drama, Comedy · rated 4/10 · seen 2013-07-25
+- **O-bal-tan** — 1961 · KR · rated 4/10 · seen 2023-07-26
+- **Pod Mocnym Aniołem** (The Mighty Angel) — 2014 · Wojciech Smarzowski · PL · Drama · rated 4/10 · seen 2015-07-05
+- **The Ballad of Buster Scruggs** — 2018 · Joel Coen · US · Western, Comedy, Drama · rated 4/10 · seen 2021-01-18
+- **The Nice Guys** — 2016 · Shane Black · US · Comedy, Crime, Action · rated 4/10 · seen 2020-11-24
+- **The Strangers** — 2008 · Bryan Bertino · US · Horror · rated 4/10 · seen 2012-07-26
+- **Thor** — 2011 · Kenneth Branagh · US · Adventure, Fantasy, Action · rated 4/10 · seen 2012-07-03
+- **Wicked: For Good** — 2025 · Jon M. Chu · US · Fantasy, Adventure, Romance · rated 4/10 · seen 2025-11-23
+- **Dawn of the Dead** — 2004 · Zack Snyder · US · Horror, Science Fiction · rated 3/10 · seen 2020-07-21
+- **Elysium** — 2013 · Neill Blomkamp · US · Science Fiction, Action, Drama · rated 3/10 · seen 2017-08-09
+- **Fast & Furious** — 2009 · Justin Lin · US · Action, Crime, Thriller · rated 3/10 · seen 2023-12-30
+- **Gi-eok-ui bam** (Forgotten) — 2017 · Jang Hoon · KR · Thriller, Mystery, Crime · rated 3/10 · seen 2021-01-22
+- **Goi-mool** — 2006 · Bong Joon-ho · KR · rated 3/10 · seen 2020-11-22
+- **Lucy** — 2014 · Luc Besson · US · Action, Science Fiction · rated 3/10 · seen 2016-09-10
+- **Moonfall** — 2022 · Roland Emmerich · US · Science Fiction, Adventure, Action · rated 3/10 · seen 2023-01-10
+- **Pałac** (The Palace) — 1980 · Tadeusz Junak · PL · Drama · rated 3/10 · seen 2025-01-07
+- **Pitbull. Nowe porządki** (Pitbull: Public Orders) — 2016 · Patryk Vega · PL · Action, Crime, Thriller · rated 3/10 · seen 2016-10-08
+- **Pitbull. Ostatni pies** (Pitbull. Last Dog) — 2018 · Patryk Vega · PL · Action, Crime · rated 3/10 · seen 2022-05-02
+- **Ruben Brandt, a gyűjtő** (Ruben Brandt, Collector) — 2018 · Milorad Krstić · HU · Animation, Action, Thriller · rated 3/10 · seen 2021-01-28
+- **Shinseiki Evangelion Gekijōban: Shi to Shinsei** (Neon Genesis Evangelion: Death and Rebirth) — 1997 · Hideaki Anno · JP · Animation, Drama, Science Fiction · rated 3/10 · seen 2020-08-19
+- **Spirala** (The Spiral) — 1978 · Krzysztof Zanussi · PL · Drama · rated 3/10 · seen 2020-09-28
+- **Venom** — 2018 · Ruben Fleischer · US · Science Fiction, Action · rated 3/10 · seen 2021-09-22
+- **White Chicks** — 2004 · Keenen Ivory Wayans · US · Comedy, Crime · rated 3/10 · seen 2021-09-03
+- **Megalopolis** — 2024 · Francis Ford Coppola · US · Science Fiction, Drama, Fantasy · rated 2/10 · seen 2024-09-28
+- **Hideaway** — 1995 · Brett Leonard · US · Drama, Thriller, Horror · rated 1/10 · seen 2019-07-06
+- **101 Dalmatians** — 1996 · Stephen Herek · US · Family, Comedy · seen 2003-05-16
+- **102 Dalmatians** — 2000 · Kevin Lima · US · Family, Comedy · seen 2002-07-19
+- **1920 Bitwa Warszawska** (Battle of Warsaw 1920) — 2011 · Jerzy Hoffman · PL · Drama, War, History · seen 2017-07-17
+- **48 Hrs.** — 1982 · Walter Hill · US · Crime, Action, Comedy · seen 2003-10-24
+- **Above the Law** — 1988 · Andrew Davis · US · Action, Crime, Drama · seen 2003-10-31
+- **Ace Ventura: Pet Detective** — 1994 · Tom Shadyac · US · Comedy, Crime, Mystery · seen 2012-02-10
+- **Air Force One** — 1997 · Wolfgang Petersen · US · Action, Thriller · seen 2005-08-20
+- **Akademia pana Kleksa** (Mister Blot's Academy) — 1983 · Krzysztof Gradowski · PL · Fantasy, Family, Music · seen 2005-12-18
+- **Alita: Battle Angel** — 2019 · Robert Rodriguez · US · Action, Science Fiction, Adventure · seen 2019-07-19
+- **Analyze That** — 2002 · Harold Ramis · US · Comedy, Crime · seen 2005-03-19
+- **Analyze This** — 1999 · Harold Ramis · US · Comedy, Crime · seen 2005-04-03
+- **Angels & Demons** — 2009 · Ron Howard · US · Thriller, Mystery · seen 2005-06-27
+- **Angry Video Game Nerd: The Movie** — 2014 · James Rolfe, Kevin Finn · US · Science Fiction, Adventure, Comedy · seen 2014-08-26
+- **Another 48 Hrs.** — 1990 · Walter Hill · US · Thriller, Action, Comedy · seen 2004-03-05
+- **Ant-Man** — 2015 · Peyton Reed · US · Science Fiction, Adventure, Action · seen 2016-08-19
+- **Around the World in 80 Days** — 2004 · Frank Coraci · US · Action, Adventure, Comedy · seen 2008-06-16
+- **Around the World in Eighty Days** (Around the World in 80 Days) — 1956 · Michael Anderson · US · Adventure, Comedy, Family · seen 2012-02-10
+- **Artificial Intelligence: AI** (A.I. Artificial Intelligence) — 2001 · Steven Spielberg · US · Drama, Science Fiction, Adventure · seen 2005-03-18
+- **As Good as It Gets** — 1997 · James L. Brooks · US · Drama, Comedy, Romance · seen 2006-05-08
+- **Astérix & Obélix: Mission Cléopâtre** (Asterix & Obelix: Mission Cleopatra) — 2002 · Alain Chabat · FR · Family, Fantasy, Comedy · seen 2012-02-10
+- **Astérix et Cléopâtre** (Asterix and Cleopatra) — 1968 · René Goscinny · FR · Family, Animation, Adventure · seen 2005-07-23
+- **Astérix et Obélix contre César** (Asterix and Obelix Take On Caesar) — 1999 · Claude Zidi · FR · Family, Adventure, Comedy · seen 2005-06-17
+- **Babe** — 1995 · Chris Noonan · AU · Fantasy, Drama, Comedy · seen 2003-06-10
+- **Back to the Future Part II** — 1989 · Robert Zemeckis · US · Adventure, Comedy, Science Fiction · seen 2007-05-16
+- **Back to the Future Part III** — 1990 · Robert Zemeckis · US · Adventure, Comedy, Science Fiction · seen 2008-10-24
+- **Bad Boys** — 1995 · Michael Bay · US · Action, Comedy, Crime · seen 2005-03-11
+- **Bad Boys II** — 2003 · Michael Bay · US · Action, Crime, Comedy · seen 2005-11-26
+- **Batman & Robin** — 1997 · Joel Schumacher · US · Action, Science Fiction, Adventure · seen 2003-05-16
+- **Batman Forever** — 1995 · Joel Schumacher · US · Action, Crime, Fantasy · seen 2003-06-17
+- **Bean** — 1997 · Mel Smith · UK · Family, Adventure, Comedy · seen 2007-04-20
+- **Behind Enemy Lines** — 2001 · John Moore · US · Action, Drama, Thriller · seen 2006-06-18
+- **Beverly Hills Cop** — 1984 · Martin Brest · US · Comedy, Crime, Action · seen 2008-02-17
+- **Beverly Hills Cop II** — 1987 · Tony Scott · US · Action, Comedy, Crime · seen 2004-06-25
+- **Beverly Hills Cop III** — 1994 · John Landis · US · Action, Comedy, Crime · seen 2004-05-16
+- **Bicentennial Man** — 1999 · Chris Columbus · US · Drama, Romance, Science Fiction · seen 2005-11-19
+- **Billy Elliot** — 2000 · Stephen Daldry · UK · Drama, Comedy, Music · seen 2006-07-16
+- **Bruce Almighty** — 2003 · Tom Shadyac · US · Fantasy, Comedy · seen 2005-07-18
+- **Captain America: The Winter Soldier** — 2014 · Anthony Russo · US · Action, Adventure, Science Fiction · seen 2015-08-20
+- **Casper** — 1995 · Brad Silberling · US · Fantasy, Comedy, Family · seen 2001-07-19
+- **Chłopaki nie płaczą** (Boys Don't Cry) — 2000 · Olaf Lubaszenko · PL · Comedy, Crime · seen 2007-02-10
+- **Chłopi** (The Peasants) — 1973 · Jan Rybkowski · PL · Drama · seen 2009-03-20
+- **Clear and Present Danger** — 1994 · Phillip Noyce · US · Action, Drama, Thriller · seen 2005-10-11
+- **Cliffhanger** — 1993 · Renny Harlin · US · Action, Adventure, Thriller · seen 2003-07-18
+- **Collateral** — 2004 · Michael Mann · US · Drama, Crime, Thriller · seen 2006-12-30
+- **Collateral Damage** — 2002 · Andrew Davis · US · Action, Thriller, Drama · seen 2006-05-15
+- **Coming to America** — 1988 · John Landis · US · Comedy, Romance · seen 2005-11-25
+- **Commando** — 1985 · Mark L. Lester · US · Action, Adventure, Thriller · seen 2007-08-18
+- **Copycat** — 1995 · Jon Amiel · US · Thriller, Crime, Mystery · seen 2004-10-24
+- **Dances with Wolves** — 1990 · Kevin Costner · US · Adventure, Drama, Western · seen 2004-09-30
+- **Daylight** — 1996 · Rob Cohen · US · Action, Adventure, Thriller · seen 2004-06-17
+- **Demolition Man** — 1993 · Marco Brambilla · US · Crime, Action, Science Fiction · seen 2002-12-30
+- **Doctor Dolittle** — 1998 · Betty Thomas · US · Comedy, Family, Fantasy · seen 2003-11-26
+- **Double Jeopardy** — 1999 · Bruce Beresford · US · Thriller, Crime, Mystery · seen 2005-10-30
+- **Enemy at the Gates** — 2001 · Jean-Jacques Annaud · US · War, History · seen 2012-02-10
+- **Enemy of the State** — 1998 · Tony Scott · US · Action, Drama, Thriller · seen 2004-10-31
+- **Entrapment** — 1999 · Jon Amiel · US · Romance, Drama, Mystery · seen 2004-03-19
+- **Eraser** — 1996 · Chuck Russell · US · Action, Mystery, Thriller · seen 2007-08-17
+- **Escape from New York** — 1981 · John Carpenter · US · Action, Thriller, Science Fiction · seen 2006-04-12
+- **Executive Decision** — 1996 · Stuart Baird · US · Action, Adventure, Drama · seen 2004-02-10
+- **Falling Down** — 1993 · Joel Schumacher · US · Crime, Drama, Thriller · seen 2004-06-02
+- **Finding Neverland** — 2004 · Marc Forster · US · Drama, Fantasy · seen 2006-08-20
+- **First Blood** — 1982 · Ted Kotcheff · US · Action, Adventure, Thriller · seen 2005-07-25
+- **Flubber** — 1997 · Les Mayfield · US · Comedy, Family, Science Fiction · seen 2003-11-26
+- **Forever Young** — 1992 · Steve Miner · US · Adventure, Fantasy, Drama · seen 2004-05-09
+- **Free Willy** — 1993 · Simon Wincer · US · Family, Adventure, Drama · seen 2005-05-12
+- **Gone in Sixty Seconds** — 2000 · Dominic Sena · US · Action, Crime, Thriller · seen 2005-09-29
+- **Groundhog Day** — 1993 · Harold Ramis · US · Romance, Fantasy, Comedy · seen 2006-11-27
+- **Hancock** — 2008 · Peter Berg · US · Fantasy, Action · seen 2010-04-12
+- **Harry Potter and the Chamber of Secrets** — 2002 · Chris Columbus · US · Adventure, Fantasy · seen 2002-12-25
+- **Harry Potter and the Goblet of Fire** — 2005 · Mike Newell · UK · Adventure, Fantasy · seen 2012-02-10
+- **Harry Potter and the Order of the Phoenix** — 2007 · David Yates · UK · Adventure, Fantasy · seen 2007-07-25
+- **Harry Potter and the Prisoner of Azkaban** — 2004 · Alfonso Cuarón · US · Adventure, Fantasy · seen 2012-02-10
+- **Home Alone 2: Lost in New York** — 1992 · Chris Columbus · US · Comedy, Family, Adventure · seen 2003-11-26
+- **Ice Age** — 2002 · Chris Wedge · US · Animation, Comedy, Family · seen 2002-07-23
+- **Ice Age 2: The Meltdown** (Ice Age: The Meltdown) — 2006 · Carlos Saldanha · US · Animation, Family, Comedy · seen 2006-06-24
+- **Independence Day** — 1996 · Roland Emmerich · US · Action, Adventure, Science Fiction · seen 2003-04-14
+- **Indiana Jones and the Last Crusade** — 1989 · Steven Spielberg · US · Adventure, Action · seen 2004-05-16
+- **Insomnia** — 2002 · Christopher Nolan · US · Thriller, Crime, Drama · seen 2004-11-21
+- **Interceptor** — 2022 · Matthew Reilly · US · Action, Thriller, Adventure · seen 2022-06-03
+- **Jackass: The Movie** — 2002 · Jeff Tremaine · US · Action, Comedy, Documentary · seen 2006-03-05
+- **Jaws** — 1975 · Steven Spielberg · US · Horror, Thriller, Adventure · seen 2006-06-25
+- **Jaws 2** — 1978 · Jeannot Szwarc · US · Horror, Thriller · seen 2007-06-13
+- **Jing cha gu shi IV: Jian dan ren wu** — 1996 · Stanley Tong · HK · seen 2005-08-20
+- **Jingle All the Way** — 1996 · Brian Levant · US · Family, Adventure, Comedy · seen 2006-07-19
+- **John Q** — 2002 · Nick Cassavetes · US · Drama, Thriller, Crime · seen 2004-10-25
+- **Johnny English** — 2003 · Peter Howitt · US · Adventure, Action, Comedy · seen 2010-07-18
+- **Jumanji** — 1995 · Joe Johnston · US · Adventure, Fantasy, Family · seen 2012-02-10
+- **Junior** — 1994 · Ivan Reitman · US · Comedy, Science Fiction · seen 2005-04-19
+- **K-PAX** — 2001 · Iain Softley · US · Science Fiction, Drama, Mystery · seen 2014-07-26
+- **Karol, który został świętym** — 2014 · Orlando Corradi, Grzegorz Sadurski · PL · seen 2014-04-17
+- **Karol, un uomo diventato papa** (Karol: A Man Who Became Pope) — 2005 · Giacomo Battiato · IT · Drama, History · seen 2012-02-10
+- **Kiler** (Killer) — 1997 · Juliusz Machulski · PL · Comedy, Action, Crime · seen 2012-02-10
+- **Kiler-ów 2-óch** (Killer 2) — 1999 · Juliusz Machulski · PL · Comedy, Action, Crime · seen 2003-12-09
+- **Kindergarten Cop** — 1990 · Ivan Reitman · US · Comedy · seen 2005-07-18
+- **La Sortie de l'Usine Lumière à Lyon - 120 ans plus tard** — 2015 · Thierry Frémaux · FR · seen 2021-05-11
+- **Lara Croft: Tomb Raider** — 2001 · Simon West · US · Adventure, Action, Fantasy · seen 2006-02-11
+- **Last Action Hero** — 1993 · John McTiernan · US · Fantasy, Action, Comedy · seen 2004-11-26
+- **Le fabuleux destin d'Amélie Poulain** (Amélie) — 2001 · Jean-Pierre Jeunet · FR · Comedy, Romance · seen 2012-02-10
+- **Les douze travaux d'Astérix** (The Twelve Tasks of Asterix) — 1976 · René Goscinny · FR · Family, Animation, Comedy · seen 2004-11-25
+- **Lethal Weapon** — 1987 · Richard Donner · US · Action, Thriller, Crime · seen 2012-02-21
+- **Lethal Weapon 2** — 1989 · Richard Donner · US · Action, Thriller, Crime · seen 2004-07-30
+- **Lethal Weapon 3** — 1992 · Richard Donner · US · Action, Thriller, Crime · seen 2005-05-19
+- **Lethal Weapon 4** — 1998 · Richard Donner · US · Action, Crime, Thriller · seen 2005-07-19
+- **Life in a Day** — 2011 · Kevin Macdonald · UK · Documentary, Drama · seen 2011-07-18
+- **Looper** — 2012 · Rian Johnson · US · Action, Thriller, Science Fiction · seen 2012-11-19
+- **Mary Poppins** — 1964 · Robert Stevenson · US · Comedy, Family, Fantasy · seen 2005-07-16
+- **Masters of the Universe** — 2026 · Travis Knight · US · Action, Fantasy, Science Fiction · seen 2026-09-20
+- **Meet the Parents** — 2000 · Jay Roach · US · Comedy, Romance · seen 2006-05-02
+- **Metro** — 1997 · Thomas Carter · US · Action, Comedy, Crime · seen 2003-08-27
+- **Minority Report** — 2002 · Steven Spielberg · US · Science Fiction, Action, Thriller · seen 2006-07-19
+- **Miss Congeniality** — 2000 · Donald Petrie · US · Comedy, Crime, Action · seen 2005-07-14
+- **Mission: Impossible - Ghost Protocol** — 2011 · Brad Bird · US · Action, Thriller, Adventure · seen 2011-12-16
+- **Mission: Impossible - Rogue Nation** — 2015 · Christopher McQuarrie · US · Action, Adventure · seen 2015-07-30
+- **Mr. & Mrs. Smith** — 2005 · Doug Liman · US · Action, Comedy, Drama · seen 2007-11-25
+- **Mr. Bean's Holiday** — 2007 · Steve Bendelack · US · Family, Comedy · seen 2009-10-24
+- **Naked Gun 33 1/3: The Final Insult** (Naked Gun 33⅓: The Final Insult) — 1994 · Peter Segal · US · Comedy, Crime · seen 2007-06-08
+- **National Treasure** — 2004 · Jon Turteltaub · US · Adventure, Action, Mystery · seen 2006-11-26
+- **Nutty Professor II: The Klumps** — 2000 · Peter Segal · US · Comedy, Science Fiction · seen 2004-02-03
+- **Ocean's Eleven** — 2001 · Steven Soderbergh · US · Thriller, Crime · seen 2012-02-10
+- **Ocean's Thirteen** — 2007 · Steven Soderbergh · US · Crime, Thriller · seen 2010-06-17
+- **Ocean's Twelve** — 2004 · Steven Soderbergh · US · Thriller, Crime · seen 2009-11-18
+- **Once Upon a Time in Mexico** — 2003 · Robert Rodriguez · US · Action, Crime, Thriller · seen 2005-07-19
+- **Outbreak** — 1995 · Wolfgang Petersen · US · Action, Drama, Science Fiction · seen 2004-11-17
+- **Pan Tadeusz** (The Last Days) — 1999 · Andrzej Wajda · PL · Drama, Romance, History · seen 2010-04-18
+- **Patriot Games** — 1992 · Phillip Noyce · US · Drama, Action, Thriller · seen 2005-08-08
+- **Payback** — 1999 · Brian Helgeland · US · Action, Drama, Crime · seen 2005-09-23
+- **Phone Booth** — 2002 · Joel Schumacher · US · Thriller, Crime · seen 2003-12-02
+- **Pirates of the Caribbean: At World's End** — 2007 · Gore Verbinski · US · Adventure, Fantasy, Action · seen 2007-07-19
+- **Pirates of the Caribbean: Dead Man's Chest** — 2006 · Gore Verbinski · US · Adventure, Fantasy, Action · seen 2006-07-19
+- **Pirates of the Caribbean: The Curse of the Black Pearl** — 2003 · Gore Verbinski · US · Adventure, Fantasy, Action · seen 2004-06-25
+- **Planet of the Apes** — 2001 · Tim Burton · US · Thriller, Science Fiction, Action · seen 2005-07-18
+- **Play Dirty** — 2025 · Shane Black · US · Crime, Action, Thriller · seen 2026-05-17
+- **Police Academy** — 1984 · Hugh Wilson · US · Comedy, Crime · seen 2003-03-12
+- **Police Academy 2: Their First Assignment** — 1985 · Jerry Paris · US · Comedy, Crime · seen 2003-10-17
+- **Police Academy 3: Back in Training** — 1986 · Jerry Paris · US · Comedy, Crime · seen 2004-02-10
+- **Police Academy 4: Citizens on Patrol** — 1987 · Jim Drake · US · Comedy, Crime · seen 2004-06-17
+- **Police Academy 5: Assignment: Miami Beach** (Police Academy 5: Assignment Miami Beach) — 1988 · Alan Myerson · US · Comedy, Crime · seen 2005-01-23
+- **Popeye** — 1980 · Robert Altman · US · Action, Adventure, Comedy · seen 2003-11-26
+- **Poranek kojota** (Coyote's Morning) — 2001 · Olaf Lubaszenko · PL · Action, Comedy, Crime · seen 2006-04-11
+- **Predator** — 1987 · John McTiernan · US · Science Fiction, Action, Adventure · seen 2006-06-25
+- **Pretty Woman** — 1990 · Garry Marshall · US · Romance, Comedy · seen 2003-11-27
+- **Raiders of the Lost Ark** — 1981 · Steven Spielberg · US · Adventure, Action · seen 2004-04-18
+- **Rambo III** — 1988 · Peter MacDonald · US · Action, Adventure, Thriller · seen 2005-07-19
+- **Rambo: First Blood Part II** — 1985 · George P. Cosmatos · US · Action, Adventure, Thriller · seen 2007-03-05
+- **Ransom** — 1996 · Ron Howard · US · Action, Thriller · seen 2006-08-21
+- **Red Heat** — 1988 · Walter Hill · US · Action, Crime · seen 2005-07-19
+- **Red Planet** — 2000 · Antony Hoffman · US · Thriller, Action, Science Fiction · seen 2004-09-02
+- **Rise of the Planet of the Apes** — 2011 · Rupert Wyatt · US · Thriller, Action, Drama · seen 2012-02-09
+- **Rocky** — 1976 · John G. Avildsen · US · Drama · seen 2012-02-10
+- **Romeo Must Die** — 2000 · Andrzej Bartkowiak · US · Action, Crime, Thriller · seen 2005-10-18
+- **Rush Hour** — 1998 · Brett Ratner · US · Action, Comedy, Crime · seen 2006-08-18
+- **Rush Hour 2** — 2001 · Brett Ratner · US · Action, Comedy, Crime · seen 2004-11-24
+- **S.W.A.T.** — 2003 · Clark Johnson · US · Action, Thriller, Crime · seen 2005-07-26
+- **Salt** — 2010 · Phillip Noyce · US · Action, Mystery, Thriller · seen 2011-12-09
+- **Saving Private Ryan** — 1998 · Steven Spielberg · US · War, Drama, History · seen 2012-02-10
+- **Scooby-Doo** — 2002 · Raja Gosnell · US · Mystery, Adventure, Comedy · seen 2005-01-05
+- **Showtime** — 2002 · Tom Dey · US · Action, Comedy · seen 2005-08-20
+- **Speed** — 1994 · Jan de Bont · US · Action, Thriller · seen 2004-06-17
+- **Speed 2: Cruise Control** — 1997 · Jan de Bont · US · Action, Thriller · seen 2005-05-29
+- **Spider-Man** — 2002 · Sam Raimi · US · Action, Science Fiction · seen 2003-06-16
+- **Spider-Man 2** — 2004 · Sam Raimi · US · Action, Adventure, Science Fiction · seen 2004-07-20
+- **Spy Kids 3-D: Game Over** — 2003 · Robert Rodriguez · US · Family, Action, Comedy · seen 2003-07-25
+- **Star Wars: Episode VII - The Force Awakens** (Star Wars: The Force Awakens) — 2015 · J.J. Abrams · US · Adventure, Action, Science Fiction · seen 2017-03-10
+- **Star Wars: The Rise of Skywalker** — 2019 · J.J. Abrams · US · Adventure, Action, Science Fiction · seen 2019-12-23
+- **Step Up 2: The Streets** — 2008 · Jon M. Chu · US · Music, Drama, Romance · seen 2012-07-26
+- **Stop! Or My Mom Will Shoot** — 1992 · Roger Spottiswoode · US · Action, Comedy · seen 2005-06-17
+- **Stuart Little** — 1999 · Rob Minkoff · US · Family, Fantasy, Comedy · seen 2004-04-29
+- **Surrogates** — 2009 · Jonathan Mostow · US · Science Fiction, Action, Thriller · seen 2011-02-17
+- **Taken** — 2008 · Pierre Morel · FR · Action, Thriller · seen 2011-10-24
+- **Tango & Cash** — 1989 · Andrei Konchalovsky · SU · Action, Thriller, Comedy · seen 2005-06-17
+- **Terminator Genisys** — 2015 · Alan Taylor · US · Science Fiction, Action, Thriller · seen 2015-08-19
+- **The 6th Day** — 2000 · Roger Spottiswoode · US · Action, Science Fiction, Thriller · seen 2007-03-18
+- **The Aviator** — 2004 · Martin Scorsese · US · Drama · seen 2006-08-18
+- **The Blues Brothers** — 1980 · John Landis · US · Music, Comedy, Crime · seen 2004-05-30
+- **The Book of Eli** — 2010 · The Hughes Brothers · US · Action, Thriller, Science Fiction · seen 2011-03-11
+- **The Chronicles of Riddick** — 2004 · David Twohy · US · Action, Science Fiction · seen 2008-09-16
+- **The Core** — 2003 · Jon Amiel · US · Science Fiction, Adventure, Thriller · seen 2016-06-14
+- **The Curse of Bridge Hollow** — 2022 · Jeff Wadlow · US · Adventure, Comedy, Horror · seen 2022-10-14
+- **The Day After Tomorrow** — 2004 · Roland Emmerich · US · Science Fiction, Thriller, Adventure · seen 2006-08-20
+- **The Fan** — 1996 · Tony Scott · US · Thriller, Action, Drama · seen 2006-09-23
+- **The Firm** — 1993 · Sydney Pollack · US · Drama, Mystery, Thriller · seen 2006-07-19
+- **The Flintstones** — 1994 · Brian Levant · US · Fantasy, Comedy, Family · seen 2002-07-19
+- **The Fugitive** — 1993 · Andrew Davis · US · Action, Thriller, Drama · seen 2005-07-19
+- **The General's Daughter** — 1999 · Simon West · US · Thriller, Mystery, Crime · seen 2004-10-29
+- **The Hurricane** — 1999 · Norman Jewison · US · Drama · seen 2006-08-21
+- **The Jackal** — 1997 · Michael Caton-Jones · US · Action, Crime, Thriller · seen 2003-05-15
+- **The Karate Kid** — 1984 · John G. Avildsen · US · Action, Drama, Family · seen 2004-01-25
+- **The Karate Kid, Part II** (The Karate Kid Part II) — 1986 · John G. Avildsen · US · Adventure, Drama, Action · seen 2005-06-17
+- **The Karate Kid, Part III** (The Karate Kid Part III) — 1989 · John G. Avildsen · US · Action, Family, Drama · seen 2006-08-26
+- **The Last Boy Scout** — 1991 · Tony Scott · US · Action, Thriller · seen 2006-02-06
+- **The Last Samurai** — 2003 · Edward Zwick · US · Drama, Action, War · seen 2012-02-10
+- **The Life of David Gale** — 2003 · Alan Parker · US · Drama, Thriller, Crime · seen 2005-06-17
+- **The Lion King II: Simba's Pride** — 1998 · Darrell Rooney · US · Adventure, Animation, Drama · seen 2000-06-19
+- **The Lost World: Jurassic Park** — 1997 · Steven Spielberg · US · Adventure, Action, Science Fiction · seen 2007-05-09
+- **The Many Adventures of Winnie the Pooh** — 1977 · Wolfgang Reitherman · US · Animation, Family, Adventure · seen 2000-06-10
+- **The Mask** — 1994 · Chuck Russell · US · Comedy, Fantasy, Crime · seen 2004-06-17
+- **The Mask of Zorro** — 1998 · Martin Campbell · US · Action, Adventure · seen 2005-05-15
+- **The Matrix** — 1999 · Lana Wachowski · US · Action, Science Fiction · seen 2015-01-17
+- **The Matrix Reloaded** — 2003 · Lana Wachowski · US · Adventure, Action, Thriller · seen 2007-05-16
+- **The Matrix Revolutions** — 2003 · Lana Wachowski · US · Adventure, Action, Thriller · seen 2008-08-20
+- **The Mummy Returns** — 2001 · Stephen Sommers · US · Adventure, Action, Fantasy · seen 2005-02-26
+- **The Naked Gun 2½: The Smell of Fear** — 1991 · David Zucker · US · Comedy, Crime · seen 2005-07-19
+- **The Naked Gun: From the Files of Police Squad!** — 1988 · David Zucker · US · Comedy, Crime · seen 2006-06-25
+- **The Nutty Professor** — 1996 · Tom Shadyac · US · Comedy, Science Fiction, Romance · seen 2003-01-19
+- **The Passion of the Christ** — 2004 · Mel Gibson · US · Drama · seen 2006-09-23
+- **The Patriot** — 2000 · Roland Emmerich · US · Drama, History, War · seen 2005-07-18
+- **The Postman** — 1997 · Kevin Costner · US · Science Fiction, Adventure, Action · seen 2006-04-04
+- **The Running Man** — 1987 · Paul Michael Glaser · US · Action, Thriller, Science Fiction · seen 2006-06-17
+- **The Scorpion King** — 2002 · Chuck Russell · US · Action, Adventure, Fantasy · seen 2004-06-17
+- **The Siege** — 1998 · Edward Zwick · US · Drama, Action, Thriller · seen 2006-10-31
+- **The Sixth Sense** — 1999 · M. Night Shyamalan · US · Mystery, Thriller, Drama · seen 2004-06-17
+- **The Straight Story** — 1999 · David Lynch · US · Drama · seen 2013-08-19
+- **The Sum of All Fears** — 2002 · Phil Alden Robinson · US · Thriller, Action, Drama · seen 2005-07-19
+- **The Thin Red Line** — 1998 · Terrence Malick · US · Drama, History, War · seen 2012-02-10
+- **The Tourist** — 2010 · Florian Henckel von Donnersmarck · US · Action, Thriller, Romance · seen 2011-04-20
+- **Tooth Fairy** — 2010 · Michael Lembeck · US · Comedy, Family, Fantasy · seen 2012-08-11
+- **Total Recall** — 1990 · Paul Verhoeven · NL · Action, Adventure, Science Fiction · seen 2007-01-17
+- **Trapped** — 2002 · Luis Mandoki · US · Thriller, Crime · seen 2007-02-03
+- **Tropic Thunder** — 2008 · Ben Stiller · US · Action, Comedy, Adventure · seen 2012-02-10
+- **True Lies** — 1994 · James Cameron · US · Action, Thriller · seen 2006-10-24
+- **Under Siege** — 1992 · Andrew Davis · US · Action, Thriller · seen 2004-02-07
+- **W pustyni i w puszczy** (In Desert and Wilderness) — 2001 · Gavin Hood · PL · Adventure, History, Drama · seen 2005-07-26
+- **War of the Worlds** — 2005 · Steven Spielberg · US · Adventure, Thriller, Science Fiction · seen 2006-07-20
+- **Wesele** (The Wedding) — 1972 · Andrzej Wajda · PL · Drama, Fantasy, History · seen 2010-04-19
+- **Wild Wild West** — 1999 · Barry Sonnenfeld · US · Action, Adventure, Comedy · seen 2004-12-09
+- **xXx** — 2002 · Rob Cohen · US · Action, Adventure, Thriller · seen 2004-10-24
+- **Yamakasi - Les samouraïs des temps modernes** (Yamakasi) — 2001 · Julien Seri, Ariel Zeitoun · FR · Action, Crime, Drama · seen 2003-05-29
+- **Yamakasi - Les Samurai des Temps Modernes** (Yamakasi) — 2001 · Ariel Zeitoun · FR · Action, Crime, Drama · seen 2003-05-29
+- **Yat Goh Hiu Yan** — 1997 · Sammo Hung · HK · seen 2004-04-12
+- **Zemsta** (The Revenge) — 2002 · Andrzej Wajda · PL · Comedy · seen 2011-06-17
+- **Znachor** (The Quack) — 1981 · Jerzy Hoffman · PL · Drama, Romance · seen 2012-02-10
+
+## TV (184)
+- **Black Mirror** — 2011 · Charlie Brooker · UK · Sci-Fi & Fantasy, Drama, Mystery · rated 10/10 · favourite
+- **Dekalog** — 1989 · Krzysztof Kieślowski · PL · Drama · rated 10/10 · favourite
+- **The Green Planet** — 2022 · David Attenborough · UK · Documentary · rated 10/10 · favourite
+- **Westworld** — 2016 · Jonathan Nolan · US · Sci-Fi & Fantasy, Western · rated 10/10 · favourite
+- **Atlanta** — 2016 · Donald Glover · US · Comedy, Drama · rated 9/10 · favourite
+- **Band of Brothers** — 2001 · Steven Spielberg · US · Drama, War & Politics · rated 9/10 · favourite
+- **Breaking Bad** — 2008 · Vince Gilligan · US · Drama, Crime · rated 9/10 · favourite
+- **Cosmos: A Spacetime Odyssey** (Cosmos) — 2014 · Ann Druyan · US · Documentary · rated 9/10 · favourite
+- **Dead Set** — 2008 · Charlie Brooker · UK · Drama, Sci-Fi & Fantasy · rated 9/10 · favourite
+- **Fallout** — 2024 · Jonathan Nolan · US · Action & Adventure, Sci-Fi & Fantasy, Drama · rated 9/10 · favourite
+- **Fargo** — 2014 · Noah Hawley · US · Crime, Drama · rated 9/10 · favourite
+- **Fleabag** — 2016 · Phoebe Waller-Bridge · UK · Comedy, Drama · rated 9/10 · favourite
+- **In Treatment** — 2011 · Hagai Levi · PL · Drama · rated 9/10 · favourite
+- **Mad Men** — 2007 · Matthew Weiner · US · Drama · rated 9/10 · favourite
+- **Mr. Robot** — 2015 · Sam Esmail · US · Crime, Drama · rated 9/10 · favourite
+- **Planet Earth II** — 2016 · David Attenborough · UK · Documentary, Family · rated 9/10 · favourite
+- **The Expanse** — 2015 · Mark Fergus · US · Drama, Mystery, Sci-Fi & Fantasy · rated 9/10 · favourite
+- **The Sopranos** — 1999 · David Chase · US · Crime, Drama · rated 9/10 · favourite
+- **The Vietnam War** — 2017 · Ken Burns · US · Documentary, War & Politics · rated 9/10 · favourite
+- **The Wire** — 2002 · David Simon · US · Crime, Drama · rated 9/10 · favourite
+- **Watchmen** — 2019 · Damon Lindelof · US · Drama, Crime, Sci-Fi & Fantasy · rated 9/10 · favourite
+- **Better Call Saul** — 2015 · Vince Gilligan · US · Crime, Drama · rated 8/10 · favourite
+- **Blinded by the Lights** — 2018 · Krzysztof Skonieczny · PL · Crime, Drama · rated 8/10 · favourite
+- **BoJack Horseman** — 2014 · Raphael Bob-Waksberg · US · Animation, Comedy, Drama · rated 8/10 · favourite
+- **Chernobyl** — 2019 · Craig Mazin · US · Drama · rated 8/10 · favourite
+- **Dark** — 2017 · Baran bo Odar · DE · Crime, Drama, Sci-Fi & Fantasy · rated 8/10 · favourite
+- **Lost** — 2004 · J.J. Abrams · US · Mystery, Action & Adventure, Drama · rated 8/10 · favourite
+- **PitBull** (Pitbull) — 2005 · Patryk Vega · PL · Drama, Action & Adventure · rated 8/10 · favourite
+- **Severance** — 2022 · Dan Erickson · US · Drama, Mystery, Sci-Fi & Fantasy · rated 8/10 · favourite
+- **Six Feet Under** — 2001 · Alan Ball · US · Drama · rated 8/10 · favourite
+- **Skins** — 2007 · Bryan Elsley · UK · Drama, Comedy · rated 8/10 · favourite
+- **Squid Game** — 2021 · Hwang Dong-hyuk · KR · Action & Adventure, Mystery, Drama · rated 8/10 · favourite
+- **The Shield** — 2002 · Shawn Ryan · US · Crime, Drama, Action & Adventure · rated 8/10 · favourite
+- **True Detective** — 2014 · Nic Pizzolatto · US · Drama, Mystery · rated 8/10 · favourite
+- **Twin Peaks** — 1990 · David Lynch · US · Drama, Mystery · rated 8/10 · favourite
+- **Utopia** — 2013 · Dennis Kelly · UK · Mystery, Drama, Comedy · rated 8/10 · favourite
+- **Attenborough's Life in Colour** — 2021 · David Attenborough · UK · Documentary · rated 9/10 · seen 2022-01-24
+- **Game of Thrones** — 2011 · David Benioff · US · Sci-Fi & Fantasy, Drama, Action & Adventure · rated 9/10 · seen 2012-07-31
+- **House of Cards** — 2013 · Beau Willimon · US · Drama · rated 9/10 · seen 2013-03-10
+- **Making a Murderer** — 2015 · Laura Ricciardi · US · Documentary, Crime · rated 9/10 · seen 2016-02-07
+- **Planet Earth** — 2006 · David Attenborough · UK · Documentary · rated 9/10 · seen 2018-04-26
+- **Scener ur ett äktenskap** (Scenes from a Marriage) — 1973 · Ingmar Bergman · SE · Drama · rated 9/10 · seen 2021-12-29
+- **Sherlock** — 2010 · Steven Moffat · UK · Crime, Drama, Mystery · rated 9/10 · seen 2014-04-04
+- **Street Food: Asia** — 2019 · David Gelb · US · Documentary · rated 9/10 · seen 2021-01-05
+- **Succession** — 2018 · Jesse Armstrong · US · Drama, Comedy · rated 9/10 · seen 2025-12-04
+- **The Defiant Ones** — 2017 · Allen Hughes · US · Documentary · rated 9/10 · seen 2018-05-05
+- **Zenra Kantoku** (The Naked Director) — 2019 · Koji Matsuyama · JP · Comedy, Drama · rated 9/10 · seen 2019-08-25
+- **A Knight of the Seven Kingdoms** — 2026 · Ira Parker · US · Drama, Sci-Fi & Fantasy, Action & Adventure · rated 8/10 · seen 2026-03-30
+- **Abstract: The Art of Design** — 2017 · US · Documentary · rated 8/10 · seen 2018-08-21
+- **Adolescence** — 2025 · Jack Thorne · UK · Drama, Crime · rated 8/10 · seen 2025-09-11
+- **Baby Reindeer** — 2024 · Richard Gadd · UK · Drama · rated 8/10 · seen 2024-05-01
+- **Barry** — 2018 · Bill Hader · US · Comedy, Crime, Drama · rated 8/10 · seen 2019-04-29
+- **Bo Burnham: Inside** — 2021 · Bo Burnham · US · rated 8/10 · seen 2021-00-00
+- **Broadchurch** — 2013 · Chris Chibnall · UK · Crime, Drama, Mystery · rated 8/10 · seen 2016-04-15
+- **Californication** — 2007 · Tom Kapinos · US · Comedy, Drama · rated 8/10 · seen 2013-01-27
+- **Chef's Table: BBQ** — 2020 · David Gelb · US · Documentary · rated 8/10 · seen 2021-01-09
+- **Clarkson's Farm** — 2021 · Jeremy Clarkson · UK · Reality, Comedy · rated 8/10 · seen 2021-12-26
+- **Curb Your Enthusiasm** — 2000 · Larry David · US · Comedy · rated 8/10 · seen 2024-05-06
+- **Czarne lusterko** (Little Black Mirror) — 2018 · Charlie Brooker · UK · Drama, Sci-Fi & Fantasy · rated 8/10 · seen 2018-12-29
+- **Dexter** — 2006 · James Manos Jr. · US · Crime, Drama, Mystery · rated 8/10 · seen 2012-08-05
+- **Dexter: Resurrection** — 2025 · Clyde Phillips · US · Crime, Drama, Mystery · rated 8/10 · seen 2025-09-19
+- **Downton Abbey** — 2010 · Julian Fellowes · UK · Drama · rated 8/10 · seen 2016-01-27
+- **Firefly** — 2002 · Joss Whedon · US · Drama, Action & Adventure, Sci-Fi & Fantasy · rated 8/10 · seen 2020-04-18
+- **From** (FROM) — 2022 · Jeff Wadlow · US · Mystery, Drama, Sci-Fi & Fantasy · rated 8/10 · seen 2024-07-19
+- **Frozen Planet** — 2011 · David Attenborough · UK · Documentary · rated 8/10 · seen 2025-10-24
+- **Frozen Planet II** — 2022 · David Attenborough · UK · Documentary, Family · rated 8/10 · seen 2025-10-26
+- **Generation Kill** — 2008 · David Simon · US · War & Politics, Drama, Action & Adventure · rated 8/10 · seen 2025-01-07
+- **Gomorra** (Gomorrah) — 2014 · Roberto Saviano · IT · Crime, Drama · rated 8/10 · seen 2018-02-16
+- **Into the Night** — 2020 · Jason George · EU · Sci-Fi & Fantasy · rated 8/10 · seen 2020-05-02
+- **James May: Our Man In...** (James May: Our Man in…) — 2020 · James May · UK · Documentary, Comedy, Action & Adventure · rated 8/10 · seen 2020-05-31
+- **Joe Pera Talks with You** (Joe Pera Talks With You) — 2018 · Joe Pera · US · Comedy · rated 8/10 · seen 2023-02-18
+- **Magical Land of Oz** — 2019 · AU · Documentary · rated 8/10 · seen 2020-08-10
+- **Mindhunter** (MINDHUNTER) — 2017 · David Fincher · US · Drama, Crime · rated 8/10 · seen 2018-02-04
+- **Mr. Bean** — 1990 · Rowan Atkinson · UK · Comedy · rated 8/10 · seen 2012-08-01
+- **Narcos** — 2015 · Chris Brancato · US · Crime, Drama · rated 8/10 · seen 2017-01-16
+- **Peaky Blinders** — 2013 · Steven Knight · UK · Drama, Crime · rated 8/10 · seen 2016-10-20
+- **Perfect Planet** (A Perfect Planet) — 2021 · David Attenborough · UK · Documentary · rated 8/10 · seen 2025-11-09
+- **Preacher** — 2016 · Sam Catlin · US · Sci-Fi & Fantasy, Mystery, Drama · rated 8/10 · seen 2017-10-24
+- **Prison Break** — 2005 · Paul T. Scheuring · US · Action & Adventure, Crime, Drama · rated 8/10 · seen 2012-02-10
+- **Shōgun** — 2024 · Rachel Kondo · US · Drama, War & Politics · rated 8/10 · seen 2024-03-09
+- **Sons of Anarchy** — 2008 · Kurt Sutter · US · Crime, Drama · rated 8/10 · seen 2012-03-27
+- **Stranger Things** — 2016 · Matt Duffer · US · Action & Adventure, Mystery, Sci-Fi & Fantasy · rated 8/10 · seen 2017-03-04
+- **Świat według Kiepskich** — 1999 · PL · Comedy · rated 8/10 · seen 2012-08-22
+- **The Bear** — 2022 · Christopher Storer · US · Drama, Comedy · rated 8/10 · seen 2023-09-30
+- **The Last of Us** — 2023 · Craig Mazin · US · Drama · rated 8/10 · seen 2023-02-12
+- **The Man in the High Castle** — 2015 · Frank Spotnitz · US · Sci-Fi & Fantasy, Drama · rated 8/10 · seen 2019-11-25
+- **The Nevers** — 2021 · Joss Whedon · US · Sci-Fi & Fantasy, Drama · rated 8/10 · seen 2023-02-14
+- **The Pacific** — 2010 · Steven Spielberg · US · Drama, Action & Adventure, War & Politics · rated 8/10 · seen 2013-08-02
+- **The Pitt** — 2025 · R. Scott Gemmill · US · Drama · rated 8/10 · seen 2025-11-23
+- **The Studio** — 2025 · Seth Rogen · US · Comedy, Drama · rated 8/10 · seen 2025-08-15
+- **Vikings** — 2013 · Michael Hirst · CA · Action & Adventure, Drama, War & Politics · rated 8/10 · seen 2015-09-26
+- **Voir** — 2021 · US · Documentary · rated 8/10 · seen 2021-12-19
+- **We Own This City** — 2022 · David Simon · US · Crime, Drama · rated 8/10 · seen 2024-07-09
+- **Billions** — 2016 · Brian Koppelman · US · Drama · rated 7/10 · seen 2025-12-01
+- **Blown Away: Christmas** — 2021 · CA · Reality · rated 7/10 · seen 2024-04-12
+- **Boardwalk Empire** — 2010 · Terence Winter · US · Crime, Drama · rated 7/10 · seen 2014-07-30
+- **Chef's Table: France** — 2016 · David Gelb · US · Documentary · rated 7/10 · seen 2021-01-13
+- **Daredevil** (Marvel's Daredevil) — 2015 · Drew Goddard · US · Crime, Drama, Action & Adventure · rated 7/10 · seen 2015-04-18
+- **First Life** — 2010 · David Attenborough · UK · Documentary, Reality · rated 7/10 · seen 2022-01-11
+- **Hannibal** — 2013 · Bryan Fuller · US · Drama, Crime · rated 7/10 · seen 2014-05-10
+- **Homeland** — 2011 · Howard Gordon · US · Drama, War & Politics, Crime · rated 7/10 · seen 2012-10-07
+- **Inside Bill's Brain: Decoding Bill Gates** — 2019 · Davis Guggenheim · US · Documentary · rated 7/10 · seen 2019-09-24
+- **Inside Pixar** — 2020 · US · Documentary · rated 7/10 · seen 2021-10-04
+- **Kryminalni** — 2004 · PL · Drama · rated 7/10 · seen 2016-01-17
+- **La casa de papel** (Money Heist) — 2017 · Álex Pina · ES · Crime, Drama · rated 7/10 · seen 2018-09-11
+- **Masters of the Air** — 2024 · Steven Spielberg · US · Drama, War & Politics · rated 7/10 · seen 2025-08-24
+- **Murderbot** — 2025 · Chris Weitz, Paul Weitz · US · Comedy, Drama, Sci-Fi & Fantasy · rated 7/10 · seen 2025-06-06
+- **Night on Earth** — 2020 · David Attenborough · UK · Documentary · rated 7/10 · seen 2021-01-12
+- **Odd Taxi** (ODDTAXI) — 2021 · Baku Kinoshita · JP · Animation, Comedy, Mystery · rated 7/10 · seen 2022-07-23
+- **Our Planet** — 2019 · David Attenborough · UK · Documentary, Family · rated 7/10 · seen 2021-01-05
+- **Pakt** (The Pact) — 2015 · PL · Mystery, Crime, Drama · rated 7/10 · seen 2018-08-27
+- **Selfie** — 2014 · Emily Kapnek · PL · Comedy · rated 7/10 · seen 2025-03-08
+- **Street Food: Latin America** — 2020 · David Gelb · US · Documentary · rated 7/10 · seen 2021-01-11
+- **The Boys** — 2019 · Eric Kripke · US · Sci-Fi & Fantasy, Action & Adventure · rated 7/10 · seen 2021-02-18
+- **The Inbetweeners** — 2008 · Damon Beesley, Iain Morris · UK · Comedy · rated 7/10 · seen 2025-09-17
+- **The Killing** — 2011 · Veena Sud · US · Drama, Crime, Mystery · rated 7/10 · seen 2018-02-07
+- **The Night Manager** — 2016 · David Farr · UK · Drama, Mystery, Crime · rated 7/10 · seen 2020-12-08
+- **The Walking Dead** — 2010 · Frank Darabont · US · Action & Adventure, Drama, Sci-Fi & Fantasy · rated 7/10 · seen 2012-03-26
+- **Jessica Jones** (Marvel's Jessica Jones) — 2015 · Melissa Rosenberg · US · Sci-Fi & Fantasy, Drama · rated 6/10 · seen 2016-03-26
+- **Legion** — 2017 · Noah Hawley · US · Action & Adventure, Sci-Fi & Fantasy, Drama · rated 6/10 · seen 2017-04-06
+- **NHK ni Yōkoso!** (Welcome to the N-H-K) — 2006 · Yusuke Yamamoto · JP · Animation, Comedy, Drama · rated 6/10 · seen 2022-07-19
+- **Pixar Popcorn** — 2021 · US · Animation, Comedy, Family · rated 6/10 · seen 2021-10-04
+- **The End of the F***ing World** — 2017 · Jonathan Entwistle · UK · Comedy, Drama, Crime · rated 6/10 · seen 2018-01-10
+- **The Night Agent** — 2023 · Shawn Ryan · US · Action & Adventure, Drama, Mystery · rated 6/10 · seen 2024-01-24
+- **The Office** — 2001 · Ricky Gervais · UK · Comedy · rated 6/10 · seen 2021-03-16
+- **The Penguin** — 2024 · Lauren LeFranc · US · Drama, Crime · rated 6/10 · seen 2024-09-28
+- **The Punisher** (Marvel's The Punisher) — 2017 · Steve Lightfoot · US · Action & Adventure, Crime, Drama · rated 6/10 · seen 2018-04-17
+- **The Story of God with Morgan Freeman** — 2016 · US · Documentary · rated 6/10 · seen 2021-01-18
+- **The Witcher** — 2019 · Lauren Schmidt Hissrich · US · Drama, Action & Adventure · rated 6/10 · seen 2019-12-27
+- **Wednesday** — 2022 · Alfred Gough · US · Sci-Fi & Fantasy, Mystery, Comedy · rated 6/10 · seen 2022-12-04
+- **Altered Carbon** — 2018 · Laeta Kalogridis · US · Sci-Fi & Fantasy, Drama · rated 5/10 · seen 2018-02-05
+- **The Lost Room** — 2006 · Christopher Leone · US · Mystery, Sci-Fi & Fantasy · rated 5/10 · seen 2020-12-30
+- **Cowboy Bebop** — 2021 · Christopher L. Yost · US · Sci-Fi & Fantasy, Action & Adventure, Crime · rated 4/10 · seen 2021-12-23
+- **Quantum Break** — 2016 · Ben Ketai · US · Crime, Sci-Fi & Fantasy · rated 4/10 · seen 2021-06-20
+- **Trudne sprawy** — 2011 · PL · Drama, Soap · rated 1/10 · seen 2011-11-26
+- **13 Posterunek** (13 posterunek) — 1997 · PL · Comedy · seen 2004-07-19
+- **13 Posterunek 2** — 2000 · PL · seen 2005-07-19
+- **Bananas in Pyjamas** — 1992 · Helena Harris · AU · Kids, Comedy · seen 2000-06-17
+- **Blok Ekipa** (Hoodies Squad) — 2013 · Bartosz Walaszek · PL · Animation, Comedy · seen 2013-10-31
+- **Blue Planet II** — 2017 · David Attenborough · UK · Documentary, Family · seen 2019-05-01
+- **Boso przez świat** (Barefoot Around the World) — 2007 · Wojciech Cejrowski · PL · Documentary · seen 2012-06-18
+- **Chef's Table** — 2015 · David Gelb · US · Documentary · seen 2018-03-18
+- **CSI: Miami** — 2002 · Ann Donahue, Anthony E. Zuiker · US · Drama, Mystery, Crime · seen 2006-08-20
+- **Daleko od noszy** — 2003 · Krzysztof Jaroszyński · PL · Comedy · seen 2004-05-09
+- **Detektyw** (Detektyw Murdoch) — 2001 · PL · seen 2004-03-04
+- **Detektywi** — 2005 · PL · Crime · seen 2006-11-18
+- **ER** — 1994 · Michael Crichton · US · Drama · seen 2004-06-18
+- **Goosebumps** — 1995 · R.L. Stine · CA · Sci-Fi & Fantasy, Mystery, Kids · seen 2004-06-17
+- **How I Met Your Mother** — 2005 · Carter Bays · US · Comedy · seen 2014-07-01
+- **How It's Made** — 2001 · Gabriel Hoss · CA · Documentary · seen 2006-05-18
+- **Jackass** — 2000 · Jeff Tremaine, Johnny Knoxville · US · Comedy · seen 2006-11-26
+- **Jeden z dziesięciu** (Jeden Z Dziesieciu) — 1994 · PL · seen 2004-06-17
+- **Komisarz Alex** — 2011 · PL · Drama, Crime · seen 2012-10-24
+- **Kommissar Rex** (Inspector Rex) — 1994 · Peter Moser, Peter Hajek · DE · Crime, Mystery, Action & Adventure · seen 2006-08-20
+- **Kuba Wojewódzki** — 2002 · PL · Talk · seen 2003-05-16
+- **Life with Louie** — 1995 · Louie Anderson, Matthew O'Callaghan · US · Animation, Comedy, Kids · seen 2003-02-18
+- **Louie** — 2010 · Louis C.K. · US · Comedy, Drama · seen 2013-10-03
+- **MacGyver** — 1985 · Lee David Zlotoff · US · Drama, Action & Adventure, Crime · seen 2005-06-17
+- **Man vs. Wild** — 2006 · Steve Rankin · UK · Action & Adventure, Documentary · seen 2011-06-17
+- **Married... with Children** — 1987 · Michael G. Moye, Ron Leavitt · US · Comedy · seen 2005-07-19
+- **Mighty Morphin Power Rangers** (Power Rangers) — 1993 · Haim Saban · US · Action & Adventure, Sci-Fi & Fantasy, Kids · seen 2001-03-05
+- **Miodowe lata** — 1998 · Maciej Wojtyszko, Maciej Strzembosz · PL · Comedy · seen 2005-07-19
+- **Monk** — 2002 · Andy Breckman · US · Drama, Comedy, Crime · seen 2005-12-25
+- **MythBusters** — 2003 · Peter Rees · US · Documentary · seen 2011-06-17
+- **Na Wspólnej** — 2003 · PL · Soap · seen 2004-07-19
+- **Niania** — 2005 · PL · Comedy, Family · seen 2008-07-19
+- **Northern Exposure** — 1990 · Joshua Brand, John Falsey · US · Comedy, Drama, Sci-Fi & Fantasy · seen 2005-08-20
+- **Olimpiada Bolka i Lolka** — 1983 · PL · seen 2003-04-17
+- **Orange Is the New Black** — 2013 · Jenji Kohan · US · Drama, Comedy, Crime · seen 2013-10-24
+- **Pimp My Ride** — 2004 · Bruce Beresford-Redman, Rick Hurvitz · US · Reality · seen 2005-07-19
+- **Rodzina zastępcza** — 1999 · PL · Comedy · seen 2005-06-17
+- **Sędzia Anna Maria Wesołowska** — 2006 · PL · Mystery, Drama, Reality · seen 2006-10-17
+- **Smallville** — 2001 · Alfred Gough, Miles Millar · US · Sci-Fi & Fantasy, Action & Adventure, Drama · seen 2006-07-19
+- **Szymon Majewski Show** (Szymon Majewski show) — 2005 · PL · seen 2006-06-17
+- **Teletubbies** — 1997 · Anne Wood, Andrew Davenport · UK · Family, Kids, Animation · seen 2001-06-20
+- **The Benny Hill Show** — 1969 · Benny Hill · UK · Comedy · seen 2005-07-19
+- **The Blue Planet** — 2001 · David Attenborough · UK · Documentary · seen 2019-04-17
+- **The Following** — 2013 · Kevin Williamson · US · Crime, Drama · seen 2014-08-13
+- **The X Files** (The X-Files) — 1993 · Chris Carter · US · Mystery, Sci-Fi & Fantasy, Crime · seen 2004-08-27
+- **Twin Peaks** — 2017 · David Lynch · US · Drama, Mystery · seen 2017-05-22
+- **Unsere Mütter, Unsere Väter** (Generation War) — 2013 · Philipp Kadelbach · DE · War & Politics, Drama · seen 2013-10-24
+- **W11 - wydział śledczy** — 2004 · PL · seen 2006-08-20
+- **Walker, Texas Ranger** — 1993 · Albert S. Ruddy, Paul Haggis · US · Drama, Western, Crime · seen 2004-06-17
+- **Wojciech Cejrowski. Boso** (Barefoot Around the World) — 2011 · PL · Documentary · seen 2013-07-19
+
+## Feature Animation (264)
+- **Across the Spider-Verse** (Spider-Man: Across the Spider-Verse) — 2023 · Joaquim Dos Santos · US · Animation, Action, Adventure · rated 10/10 · favourite · seen 2023-06-01
+- **Belladonna of Sadness** — 1973 · Eiichi Yamamoto · JP · Animation, Drama, Fantasy · rated 10/10 · favourite · seen 2020-02-02
+- **Ernest & Celestine** — 2012 · Benjamin Renner · FR · Animation, Family, Crime · rated 10/10 · favourite · seen 2021-03-05
+- **Fantasia** — 1940 · Walt Disney · US · Animation, Family, Fantasy · rated 10/10 · favourite
+- **Neo Tokyo** — 1987 · Katsuhiro Otomo · JP · Science Fiction, Animation, Adventure · rated 10/10 · favourite · seen 2017-01-22
+- **Soul** — 2020 · Pete Docter · US · Animation, Family, Drama · rated 10/10 · favourite
+- **In This Corner of the World** — 2016 · Sunao Katabuchi · JP · Drama, Animation, Romance · rated 9/10 · favourite · seen 2020-06-21
+- **Iron Boy** — 2026 · Louis Clichy · EU · Animation · rated 9/10 · favourite · seen 2026-06-24
+- **KonoSuba: Legend of Crimson** (KONOSUBA – God's blessing on this wonderful world! Legend of Crimson) — 2019 · Takaomi Kanasaki · JP · Animation, Comedy, Fantasy · rated 9/10 · favourite · seen 2022-01-04
+- **Loving Vincent** — 2017 · Dorota Kobiela · PL · Animation, Drama, History · rated 9/10 · favourite
+- **Mary and Max** — 2009 · Adam Elliot · AU · Animation, Comedy, Drama · rated 9/10 · favourite
+- **Memories** — 1995 · Katsuhiro Otomo · JP · Fantasy, Animation, Science Fiction · rated 9/10 · favourite
+- **Metropolis** — 2001 · Rintaro · JP · Animation, Science Fiction · rated 9/10 · favourite
+- **My Neighbors the Yamadas** — 1999 · Isao Takahata · JP · Animation, Comedy, Family · rated 9/10 · favourite
+- **Night on the Galactic Railroad** — 1985 · Gisaburō Sugii · JP · Adventure, Animation, Drama · rated 9/10 · favourite · seen 2020-10-26
+- **Pom Poko** — 1994 · Isao Takahata · JP · Adventure, Animation, Fantasy · rated 9/10 · favourite
+- **Porco Rosso** — 1992 · Hayao Miyazaki · JP · Animation, Adventure, Fantasy · rated 9/10 · favourite · seen 2020-02-10
+- **Promare** — 2019 · Hiroyuki Imaishi · JP · Animation, Action, Science Fiction · rated 9/10 · favourite
+- **Redline** — 2009 · Takeshi Koike · JP · Animation, Action, Science Fiction · rated 9/10 · favourite
+- **The Nightmare Before Christmas** — 1993 · Henry Selick · US · Fantasy, Animation, Family · rated 9/10 · favourite
+- **The Peasants** — 2023 · DK Welchman · PL · Animation, History, Drama · rated 9/10 · favourite
+- **The Swallows of Kabul** — 2019 · Zabou Breitman · FR · Animation, Drama · rated 9/10 · favourite · seen 2020-08-31
+- **The Tale of Princess Kaguya** (The Tale of The Princess Kaguya) — 2013 · Isao Takahata · JP · Animation, Drama, Fantasy · rated 9/10 · favourite · seen 2020-06-09
+- **Tokyo Godfathers** — 2003 · Satoshi Kon · JP · Animation, Drama, Comedy · rated 9/10 · favourite
+- **Your Name** (Your Name.) — 2016 · Makoto Shinkai · JP · Animation, Romance, Drama · rated 9/10 · favourite · seen 2017-03-02
+- **A Silent Voice** (A Silent Voice: The Movie) — 2016 · Naoko Yamada · JP · Animation, Drama, Romance · rated 8/10 · favourite · seen 2018-03-26
+- **Angel's Egg** — 1985 · Mamoru Oshii · JP · rated 8/10 · favourite · seen 2021-03-20
+- **Castle in the Sky** — 1986 · Hayao Miyazaki · JP · Adventure, Fantasy, Animation · rated 8/10 · favourite
+- **Colorful** — 2010 · Eiichi Obara · JP · Animation, Drama, Family · rated 8/10 · favourite
+- **Grave of the Fireflies** — 1988 · Isao Takahata · JP · Animation, Drama, War · rated 8/10 · favourite · seen 2017-02-23
+- **Jin-Roh: The Wolf Brigade** — 1999 · Hiroyuki Okiura · JP · Animation, Thriller, Science Fiction · rated 8/10 · favourite
+- **Kite** — 1998 · Yasuomi Umetsu · JP · Animation, Action, Thriller · rated 8/10 · favourite
+- **My Life as a Zucchini** — 2016 · Claude Barras · CH · Animation, Comedy, Drama · rated 8/10 · favourite · seen 2020-07-22
+- **Nausicaä of the Valley of the Wind** — 1984 · Hayao Miyazaki · JP · Adventure, Animation, Fantasy · rated 8/10 · favourite · seen 2018-03-25
+- **Princess Mononoke** — 1997 · Hayao Miyazaki · JP · Adventure, Fantasy, Animation · rated 8/10 · favourite · seen 2018-03-21
+- **Tekkonkinkreet** — 2006 · Michael Arias · JP · Action, Adventure, Animation · rated 8/10 · favourite · seen 2023-01-30
+- **The Plague Dogs** — 1982 · Martin Rosen · UK · Adventure, Animation, Drama · rated 8/10 · favourite
+- **Waltz with Bashir** — 2008 · Ari Folman · IL · Animation, Documentary, Drama · rated 8/10 · favourite · seen 2019-07-28
+- **Watership Down** — 1978 · Martin Rosen · UK · Adventure, Animation, Drama · rated 8/10 · favourite
+- **Wolfwalkers** — 2020 · Tomm Moore · IE · Animation, Family, Adventure · rated 8/10 · favourite
+- **Ghost in the Shell** — 1995 · Mamoru Oshii · JP · Action, Animation, Science Fiction · rated 6/10 · favourite · seen 2016-12-12
+- **Coco** — 2017 · Lee Unkrich · US · Family, Animation, Music · rated 9/10 · seen 2017-12-14
+- **Finding Dory** — 2016 · Andrew Stanton · US · Adventure, Animation, Family · rated 9/10 · seen 2021-10-03
+- **Moana** — 2016 · Ron Clements · US · Adventure, Comedy, Family · rated 9/10 · seen 2021-06-22
+- **Neko no ongaeshi** (The Cat Returns) — 2002 · Hiroyuki Morita · JP · Adventure, Fantasy, Animation · rated 9/10 · seen 2020-06-08
+- **Quest for Camelot** — 1998 · Frederik Du Chau · US · Fantasy, Animation, Drama · rated 9/10 · seen 2020-10-13
+- **Ratatouille** — 2007 · Brad Bird · US · Animation, Comedy, Family · rated 9/10 · seen 2012-02-10
+- **Shrek** — 2001 · Andrew Adamson · US · Animation, Comedy, Fantasy · rated 9/10 · seen 2012-02-10
+- **Snow White and the Seven Dwarfs** — 1937 · David Hand · US · Fantasy, Animation, Family · rated 9/10 · seen 2020-09-24
+- **Song of the Sea** — 2014 · Tomm Moore · IE · Family, Animation, Fantasy · rated 9/10 · seen 2020-07-23
+- **Spider-Man: Into the Spider-Verse** — 2018 · Peter Ramsey · US · Animation, Action, Adventure · rated 9/10 · seen 2019-08-22
+- **The Bugs Bunny / Road-Runner Movie** (The Bugs Bunny/Road Runner Movie) — 1979 · Chuck Jones, Phil Monroe · US · Animation, Comedy, Family · rated 9/10 · seen 2021-01-17
+- **The Lion King** — 1994 · Roger Allers · US · Animation, Family, Drama · rated 9/10 · seen 2019-01-24
+- **The Princess and the Frog** — 2009 · Ron Clements · US · Animation, Romance, Fantasy · rated 9/10 · seen 2020-12-05
+- **Another Day of Life** — 2018 · Damian Nenow · PL · Animation, Documentary, History · rated 8/10 · seen 2018-11-20
+- **Cars 2** — 2011 · John Lasseter · US · Animation, Family, Adventure · rated 8/10 · seen 2021-06-25
+- **Cars 3** — 2017 · Brian Fee · US · Animation, Drama, Family · rated 8/10 · seen 2021-06-26
+- **Corpse Bride** — 2005 · Tim Burton · US · Romance, Fantasy, Animation · rated 8/10 · seen 2020-10-01
+- **Cowboy Bebop: Tengoku no Tobira** (Cowboy Bebop: The Movie) — 2001 · Shinichirō Watanabe · JP · Action, Animation, Science Fiction · rated 8/10 · seen 2017-02-15
+- **Decorado** — 2026 · Alberto Vázquez · EU · Animation, Comedy, Fantasy · rated 8/10 · seen 2026-06-22
+- **Fate/Stay Night: Heaven's Feel I. Presage Flower** (Fate/stay night: Heaven's Feel I. Presage Flower) — 2017 · Tomonori Sudou · JP · Action, Animation, Drama · rated 8/10 · seen 2020-11-28
+- **Felidae** — 1994 · Michael Schaack · DE · Animation, Mystery, Horror · rated 8/10 · seen 2020-02-02
+- **Frankenweenie** — 2012 · Tim Burton · US · Animation, Comedy, Family · rated 8/10 · seen 2021-10-08
+- **Funan** — 2018 · Denis Do · FR · Animation, Drama, History · rated 8/10 · seen 2020-08-06
+- **Gake no ue no Ponyo** (Ponyo) — 2008 · Hayao Miyazaki · JP · Animation, Fantasy, Family · rated 8/10 · seen 2020-06-12
+- **Happy Feet** — 2006 · George Miller · AU · Animation, Comedy, Family · rated 8/10 · seen 2020-11-02
+- **Hauru no ugoku shiro** (Howl's Moving Castle) — 2004 · Hayao Miyazaki · JP · Fantasy, Animation, Adventure · rated 8/10 · seen 2015-04-05
+- **Heavy Metal** — 1981 · Gerald Potterton · US · Animation, Science Fiction, Adventure · rated 8/10 · seen 2020-06-23
+- **In Waves** — 2026 · Phuong Mai Nguyen · EU · rated 8/10 · seen 2026-06-23
+- **Incredibles 2** — 2018 · Brad Bird · US · Action, Adventure, Animation · rated 8/10 · seen 2018-11-26
+- **It's Such a Beautiful Day** — 2012 · Don Hertzfeldt · US · Animation, Comedy · rated 8/10 · seen 2020-12-04
+- **Karigurashi no Arrietty** (The Secret World of Arrietty) — 2010 · Hiromasa Yonebayashi · JP · Fantasy, Animation, Family · rated 8/10 · seen 2020-04-25
+- **Kaze tachinu** (The Wind Rises) — 2013 · Hayao Miyazaki · JP · Animation, Drama, History · rated 8/10 · seen 2020-06-17
+- **Klaus** — 2019 · Sergio Pablos · ES · Animation, Family, Comedy · rated 8/10 · seen 2021-01-24
+- **Little Amélie or the Character of Rain** — 2025 · Maïlys Vallade, Liane-Cho Han · EU · rated 8/10 · seen 2026-06-24
+- **Lupin III: Cagliostro no Shiro** (The Castle of Cagliostro) — 1979 · Hayao Miyazaki · JP · Animation, Adventure, Comedy · rated 8/10 · seen 2020-06-15
+- **Macross Plus Movie Edition** (Macross Plus: The Movie) — 1995 · Shoji Kawamori · JP · Action, Adventure, Animation · rated 8/10 · seen 2021-04-11
+- **Madagascar** — 2005 · Eric Darnell · US · Adventure, Animation, Comedy · rated 8/10 · seen 2012-02-10
+- **Made in Abyss: Fukaki Tamashii no Reimei** (Made in Abyss: Dawn of the Deep Soul) — 2020 · Masayuki Kojima · JP · Animation, Adventure, Fantasy · rated 8/10 · seen 2020-10-09
+- **Missing Link** — 2019 · Chris Butler · US · Family, Animation, Comedy · rated 8/10 · seen 2020-08-08
+- **Mutafukaz** (MFKZ) — 2017 · Shojiro Nishimi · JP · Science Fiction, Animation, Action · rated 8/10 · seen 2020-04-11
+- **O Menino e o Mundo** (Boy & the World) — 2013 · Alê Abreu · BR · Animation, Fantasy, Adventure · rated 8/10 · seen 2020-08-18
+- **Onward** — 2020 · Dan Scanlon · US · Adventure, Animation, Comedy · rated 8/10 · seen 2020-11-26
+- **Over the Moon** — 2020 · Glen Keane · US · Animation, Adventure, Family · rated 8/10 · seen 2021-01-13
+- **Persepolis** — 2007 · Marjane Satrapi · FR · Animation, Drama · rated 8/10 · seen 2020-04-26
+- **Ralph Breaks the Internet** — 2018 · Rich Moore · US · Action, Adventure, Animation · rated 8/10 · seen 2020-03-19
+- **Rango** — 2011 · Gore Verbinski · US · Animation, Comedy, Family · rated 8/10 · seen 2020-12-09
+- **Robot Carnival** — 1987 · Katsuhiro Otomo · JP · Animation, Science Fiction · rated 8/10 · seen 2020-02-03
+- **Sarusuberi: Miss Hokusai** (Miss Hokusai) — 2015 · Keiichi Hara · JP · Animation, Drama, History · rated 8/10 · seen 2020-07-23
+- **Sleeping Beauty** — 1959 · Clyde Geronimi · US · Fantasy, Animation, Romance · rated 8/10 · seen 2020-09-29
+- **Tangles** — 2026 · Leah Nelson · CA · Animation, Drama · rated 8/10 · seen 2026-06-27
+- **The Animatrix** — 2003 · Shinichiro Watanabe · JP · Animation, Science Fiction · rated 8/10 · seen 2019-09-01
+- **The Bad Guys** — 2022 · Pierre Perifel · US · Action, Animation, Comedy · rated 8/10 · seen 2022-10-31
+- **The Jungle Book** — 1967 · Wolfgang Reitherman · US · Family, Animation, Adventure · rated 8/10 · seen 2020-09-14
+- **The Lego Batman Movie** — 2017 · Chris McKay · US · Animation, Action, Comedy · rated 8/10 · seen 2023-03-12
+- **The Lego Movie** — 2014 · Phil Lord · US · Animation, Family, Adventure · rated 8/10 · seen 2019-08-14
+- **The Little Mermaid** — 1989 · Ron Clements · US · Animation, Family, Fantasy · rated 8/10 · seen 2020-09-24
+- **The Magician's Elephant** — 2023 · Wendy Rogers · US · Animation, Adventure, Family · rated 8/10 · seen 2023-03-18
+- **The Mitchells vs. The Machines** (The Mitchells vs. the Machines) — 2021 · Mike Rianda · US · Animation, Adventure, Comedy · rated 8/10 · seen 2022-01-08
+- **The Prophet** (Kahlil Gibran's The Prophet) — 2014 · Roger Allers · US · Animation · rated 8/10 · seen 2021-03-17
+- **Treasure Planet** — 2002 · Ron Clements · US · Science Fiction, Adventure, Animation · rated 8/10 · seen 2021-10-20
+- **Yoru wa Mijikashi Aruke yo Otome** (Night Is Short, Walk On Girl) — 2017 · Masaaki Yuasa · JP · Comedy, Romance, Animation · rated 8/10 · seen 2020-07-18
+- **Abominable** — 2019 · Jill Culton · US · Family, Animation, Adventure · rated 7/10 · seen 2021-04-04
+- **All Dogs Go to Heaven** — 1989 · Don Bluth · US · Drama, Animation, Family · rated 7/10 · seen 2020-12-08
+- **Animal Farm** — 1954 · Joy Batchelor, John Halas · UK · Animation, Drama · rated 7/10 · seen 2021-06-27
+- **Arjun: The Warrior Prince** — 2012 · Arnab Chaudhuri · IN · Action, Animation · rated 7/10 · seen 2020-10-28
+- **Arrugas** (Wrinkles) — 2011 · Ignacio Ferreras · ES · Animation, Drama, Comedy · rated 7/10 · seen 2020-10-26
+- **Atlantis: The Lost Empire** — 2001 · Gary Trousdale · US · Animation, Family, Adventure · rated 7/10 · seen 2021-10-04
+- **Balto** — 1995 · Simon Wells · US · Adventure, Animation, Drama · rated 7/10 · seen 2020-09-10
+- **Big Hero 6** — 2014 · Don Hall · US · Adventure, Family, Animation · rated 7/10 · seen 2017-01-08
+- **Cars** — 2006 · John Lasseter · US · Animation, Adventure, Comedy · rated 7/10 · seen 2021-06-24
+- **Coraline** — 2009 · Henry Selick · US · Animation, Family, Fantasy · rated 7/10 · seen 2021-04-03
+- **Dumbo** — 1941 · Ben Sharpsteen · US · Animation, Family · rated 7/10 · seen 2020-09-15
+- **Fantasia/2000** (Fantasia 2000) — 1999 · James Algar · US · Animation, Family, Music · rated 7/10 · seen 2021-03-14
+- **Fate/stay night: Heaven's Feel II. lost butterfly** (Fate/stay night: Heaven's Feel II. Lost Butterfly) — 2019 · Tomonori Sudou · JP · Animation, Action, Fantasy · rated 7/10 · seen 2020-11-28
+- **Fate/Stay night: Heaven's Feel III. spring song** (Fate/stay night: Heaven's Feel III. Spring Song) — 2020 · Tomonori Sudou · JP · Animation, Romance, Fantasy · rated 7/10 · seen 2020-11-28
+- **Frozen** — 2013 · Chris Buck · US · Animation, Family, Adventure · rated 7/10 · seen 2015-07-05
+- **Genius Party** — 2007 · Atsuko Fukushima, Masaaki Yuasa, Shoji Kawamori, Mahiro Maeda, Shinya Ohira, Hideaki Anno, Tensai Okamura · JP · Animation, Science Fiction, Fantasy · rated 7/10 · seen 2020-01-01
+- **Hana to Alice Satsujin Jiken** (The Case of Hana & Alice) — 2015 · Shunji Iwai · JP · Animation, Comedy, Mystery · rated 7/10 · seen 2022-07-22
+- **How to Train Your Dragon** — 2010 · Dean DeBlois · US · Fantasy, Adventure, Animation · rated 7/10 · seen 2017-01-08
+- **Inside Out** — 2015 · Pete Docter · US · Animation, Family, Adventure · rated 7/10 · seen 2015-11-05
+- **Isle of Dogs** — 2018 · Wes Anderson · US · Adventure, Comedy, Animation · rated 7/10 · seen 2020-08-02
+- **James and the Giant Peach** — 1996 · Henry Selick · US · Family, Animation, Adventure · rated 7/10 · seen 2021-10-09
+- **Josep** (El último brigadista: La historia de Josep Almudéver) — 2019 · Aurel · FR · Documentary · rated 7/10 · seen 2021-11-01
+- **Kidō Keisatsu Patlabor** (Patlabor: The Movie) — 1989 · Mamoru Oshii · JP · Action, Animation, Science Fiction · rated 7/10 · seen 2026-10-29
+- **Kokuriko-zaka Kara** (From Up on Poppy Hill) — 2011 · Gorō Miyazaki · JP · Animation, Drama · rated 7/10 · seen 2020-06-12
+- **Kubo and the Two Strings** — 2016 · Travis Knight · US · Animation, Adventure, Family · rated 7/10 · seen 2020-11-30
+- **Kung Fu Panda** — 2008 · Mark Osborne · US · Action, Animation, Comedy · rated 7/10 · seen 2017-01-08
+- **Kung Fu Panda 3** — 2016 · Jennifer Yuh Nelson, Alessandro Carloni · US · Animation, Action, Adventure · rated 7/10 · seen 2024-04-08
+- **L.O.L. Surprise: The Movie** (LOL Surprise: The Movie) — 2021 · Lauren Ciaravalli, Alex Kamb, Joan Mok · US · Animation, Family · rated 7/10 · seen 2022-01-09
+- **La tortue rouge** (The Red Turtle) — 2016 · Michael Dudok de Wit · JP · Animation, Drama, Fantasy · rated 7/10 · seen 2020-09-08
+- **Les triplettes de Belleville** (The Triplets of Belleville) — 2003 · Sylvain Chomet · FR · Animation, Comedy, Drama · rated 7/10 · seen 2022-08-25
+- **Luca** — 2021 · Enrico Casarosa · US · Animation, Comedy, Drama · rated 7/10 · seen 2021-06-19
+- **Lucy Lost** — 2026 · Olivier Clert · EU · rated 7/10 · seen 2026-06-23
+- **Mimi wo Sumaseba** (Whisper of the Heart) — 1995 · Yoshifumi Kondō · JP · Animation, Drama, Family · rated 7/10 · seen 2020-06-17
+- **Mirai no Mirai** (Kimi no Matsu Mirai (Basho) e) — 2018 · Mamoru Hosoda · JP · Animation, Fantasy, Romance · rated 7/10 · seen 2020-07-31
+- **Omoide no Marnie** (When Marnie Was There) — 2014 · Hiromasa Yonebayashi · JP · Animation, Drama, Family · rated 7/10 · seen 2020-06-20
+- **Paprika** — 2006 · Satoshi Kon · JP · Animation, Science Fiction, Thriller · rated 7/10 · seen 2017-02-18
+- **Peleliu: Guernica of Paradise** — 2025 · Goro Kuji · JP · Animation, Drama, War · rated 7/10 · seen 2026-06-27
+- **Perfect Blue** — 1997 · Satoshi Kon · JP · Animation, Thriller · rated 7/10 · seen 2017-02-17
+- **Raya and the Last Dragon** — 2021 · Don Hall, Carlos López Estrada · US · Animation, Action, Adventure · rated 7/10 · seen 2021-03-05
+- **Ron's Gone Wrong** — 2021 · Sarah Smith · UK · Animation, Science Fiction, Family · rated 7/10 · seen 2021-11-06
+- **Shark Tale** — 2004 · Rob Letterman · US · Animation, Action, Comedy · rated 7/10 · seen 2004-11-19
+- **Short Peace** — 2013 · Katsuhiro Otomo · JP · Animation · rated 7/10 · seen 2021-03-22
+- **Strange World** — 2022 · Don Hall, Qui Nguyen · US · Animation, Family, Adventure · rated 7/10 · seen 2022-11-24
+- **Suzume no Tojimari** (Suzume) — 2022 · Makoto Shinkai · JP · Animation, Drama, Adventure · rated 7/10 · seen 2023-04-15
+- **The Amazing Maurice** — 2022 · Toby Genkel · DE · Animation, Adventure, Comedy · rated 7/10 · seen 2023-02-04
+- **The Breadwinner** — 2017 · Nora Twomey · IE · Animation, War, Drama · rated 7/10 · seen 2020-07-31
+- **The Emperor's New Groove** — 2000 · Mark Dindal · US · Adventure, Animation, Comedy · rated 7/10 · seen 2020-09-16
+- **The Iron Giant** — 1999 · Brad Bird · US · Animation, Drama, Family · rated 7/10 · seen 2020-08-08
+- **The Land Before Time** — 1988 · Don Bluth · US · Family, Animation, Adventure · rated 7/10 · seen 2020-09-10
+- **The LEGO Movie 2: The Second Part** (The Lego Movie 2: The Second Part) — 2019 · Mike Mitchell · US · Action, Adventure, Animation · rated 7/10 · seen 2020-08-11
+- **The Prince of Egypt** — 1998 · Brenda Chapman · US · Adventure, Animation, Drama · rated 7/10 · seen 2020-09-23
+- **The Rescuers** — 1977 · Wolfgang Reitherman, John Lounsbery, Art Stevens · US · Fantasy, Family, Animation · rated 7/10 · seen 2021-10-28
+- **The Secret of Kells** — 2009 · Tomm Moore · IE · Animation, Family, Fantasy · rated 7/10 · seen 2021-03-31
+- **Tout en Haut du Monde** (Long Way North) — 2015 · Rémi Chayé · FR · Adventure, Animation, Drama · rated 7/10 · seen 2021-03-18
+- **Toy Story 4** — 2019 · Josh Cooley · US · Family, Comedy, Animation · rated 7/10 · seen 2019-08-18
+- **Trigun: Badlands Rumble** — 2010 · Satoshi Nishimura · JP · Action, Animation, Science Fiction · rated 7/10 · seen 2020-08-18
+- **Uchiage Hanabi, Shita kara Miru ka? Yoko kara Miru ka?** (Fireworks) — 2017 · Akiyuki Shinbo · JP · Animation, Romance, Fantasy · rated 7/10 · seen 2020-10-16
+- **Une vie de chat** (A Cat in Paris) — 2010 · Jean-Loup Felicioli · FR · Animation, Comedy · rated 7/10 · seen 2021-03-04
+- **Up** — 2009 · Pete Docter · US · Animation, Comedy, Family · rated 7/10 · seen 2017-08-09
+- **Wonderful Days** — 2003 · Kim Moon-saeng · KR · Animation, Science Fiction · rated 7/10 · seen 2021-03-13
+- **Wreck-It Ralph** — 2012 · Rich Moore · US · Family, Animation, Comedy · rated 7/10 · seen 2020-09-14
+- **Yoake Tsugeru Lu no Uta** (Lu Over the Wall) — 2017 · Masaaki Yuasa · JP · Animation, Adventure, Music · rated 7/10 · seen 2020-10-04
+- **Zootopia** — 2016 · Byron Howard · US · Animation, Adventure, Family · rated 7/10 · seen 2021-06-23
+- **Akira** — 1988 · Katsuhiro Otomo · JP · Animation, Science Fiction, Action · rated 6/10 · seen 2016-12-10
+- **Anastasia** — 1997 · Don Bluth · US · Animation, Family, Fantasy · rated 6/10 · seen 2020-09-29
+- **Appleseed** — 1988 · Kazuyoshi Katayama · JP · Crime, Animation, Science Fiction · rated 6/10 · seen 2020-09-05
+- **Arco** — 2025 · Ugo Bienvenu · EU · rated 6/10 · seen 2026-06-27
+- **Blinky Bill the Movie** — 2015 · Deane Taylor · AU · Family, Animation, Adventure · rated 6/10 · seen 2021-01-19
+- **Brave** — 2012 · Mark Andrews · US · Adventure, Animation, Family · rated 6/10 · seen 2020-09-15
+- **Edge of Time** — 2025 · Various · CN · Animation, Fantasy · rated 6/10 · seen 2026-06-24
+- **Encanto** — 2021 · Byron Howard · US · Animation, Comedy, Family · rated 6/10 · seen 2021-12-02
+- **Frozen II** — 2019 · Chris Buck · US · Family, Animation, Adventure · rated 6/10 · seen 2021-06-26
+- **Gedo senki** (Tales from Earthsea) — 2006 · Gorō Miyazaki · JP · Animation, Fantasy, Adventure · rated 6/10 · seen 2020-06-19
+- **Hilda and the Mountain King** — 2021 · Dominic Hurley · UK · Animation, Adventure, Fantasy · rated 6/10 · seen 2022-01-03
+- **Innocence** — 2004 · Mamoru Oshii · JP · Drama, Mystery · rated 6/10 · seen 2021-03-09
+- **Kizumonogatari II: Nekketsu-hen** (Kizumonogatari Part 2: Nekketsu) — 2016 · Tatsuya Oishi · JP · Animation, Fantasy, Mystery · rated 6/10 · seen 2022-07-21
+- **Kizumonogatari III: Reiketsu-hen** (Kizumonogatari Part 3: Reiketsu) — 2017 · Tatsuya Oishi · JP · Animation, Fantasy, Mystery · rated 6/10 · seen 2022-07-22
+- **Kokoro ga Sakebitagatterun Da** (The Anthem of the Heart) — 2015 · Tatsuyuki Nagai · JP · Animation, Drama, Music · rated 6/10 · seen 2022-07-28
+- **Le Tableau** (The Painting) — 2011 · Jean-François Laguionie · FR · Fantasy, Animation · rated 6/10 · seen 2021-03-21
+- **Mary to Majo no Hana** (Mary and The Witch's Flower) — 2017 · Hiromasa Yonebayashi · JP · Animation, Adventure, Family · rated 6/10 · seen 2020-08-01
+- **Monsters University** — 2013 · Dan Scanlon · US · Animation, Family · rated 6/10 · seen 2021-05-03
+- **Mune, le gardien de la lune** (Mune: Guardian of the Moon) — 2014 · Alexandre Heboyan · US · Animation, Family, Adventure · rated 6/10 · seen 2020-12-07
+- **Nimona** — 2023 · Troy Quane, Nick Bruno · US · Animation, Family, Fantasy · rated 6/10 · seen 2023-06-30
+- **Nobody** — 2026 · Shui Yu · CN · Animation, Adventure, Fantasy · rated 6/10 · seen 2026-06-24
+- **Omohide Poro Poro** — 1991 · Isao Takahata · JP · rated 6/10 · seen 2020-06-14
+- **Puss in Boots** — 2011 · Chris Miller · US · Action, Adventure, Animation · rated 6/10 · seen 2023-02-11
+- **Puss in Boots: The Last Wish** — 2022 · Joel Crawford · US · Animation, Adventure, Fantasy · rated 6/10 · seen 2023-01-14
+- **Spirit: Stallion of the Cimarron** — 2002 · Kelly Asbury · US · Animation, Adventure, Family · rated 6/10 · seen 2020-11-26
+- **Summer Wars** — 2009 · Mamoru Hosoda · JP · Animation, Science Fiction · rated 6/10 · seen 2023-03-14
+- **Tangled** — 2010 · Nathan Greno · US · Animation, Family, Adventure · rated 6/10 · seen 2021-06-20
+- **Tatsumi** — 2011 · Eric Khoo · SG · Animation, History, Drama · rated 6/10 · seen 2020-09-13
+- **Tenki no Ko** (Weathering with You) — 2019 · Makoto Shinkai · JP · Animation, Drama, Fantasy · rated 6/10 · seen 2019-09-04
+- **The Black Cauldron** — 1985 · Ted Berman, Richard Rich · US · Animation, Adventure, Family · rated 6/10 · seen 2021-10-06
+- **The Good Dinosaur** — 2015 · Peter Sohn · US · Adventure, Animation, Family · rated 6/10 · seen 2021-10-02
+- **The Keeper of the Camphor Tree** — 2026 · Tomohiko Ito · JP · rated 6/10 · seen 2026-06-27
+- **The Rescuers Down Under** — 1990 · Hendel Butoy, Mike Gabriel · US · Animation, Family, Adventure · rated 6/10 · seen 2021-10-24
+- **The Road to El Dorado** — 2000 · Bibo Bergeron · US · Family, Adventure, Animation · rated 6/10 · seen 2020-11-23
+- **The Super Mario Bros. Movie** — 2023 · Aaron Horvath, Michael Jelenic · US · Family, Comedy, Adventure · rated 6/10 · seen 2023-04-22
+- **The Swan Princess** — 1994 · Richard Rich · US · Family, Animation, Fantasy · rated 6/10 · seen 2020-10-11
+- **Tonari no Totoro** (My Neighbor Totoro) — 1988 · Hayao Miyazaki · JP · Fantasy, Animation, Family · rated 6/10 · seen 2018-03-21
+- **Umi ga kikoeru** (Ocean Waves) — 1993 · Tomomi Mochizuki · JP · Animation, Drama, Romance · rated 6/10 · seen 2020-04-18
+- **9** — 2009 · Shane Acker · US · Action, Adventure, Animation · rated 5/10 · seen 2020-08-05
+- **Batman: Mask of the Phantasm** — 1993 · Eric Radomski · US · Animation, Crime, Mystery · rated 5/10 · seen 2021-01-29
+- **Bolt** — 2008 · Byron Howard · US · Animation, Family, Adventure · rated 5/10 · seen 2021-09-30
+- **Cloudy with a Chance of Meatballs** — 2009 · Phil Lord · US · Animation, Comedy, Family · rated 5/10 · seen 2020-12-11
+- **DC League of Super-Pets** — 2022 · Jared Stern · US · Family, Comedy, Adventure · rated 5/10 · seen 2022-11-07
+- **Dinosaur** — 2000 · Eric Leighton · US · Adventure, Animation, Drama · rated 5/10 · seen 2021-10-20
+- **Hagane no Renkinjutsushi: Milos no Sei-Naru Hoshi** (Fullmetal Alchemist: The Sacred Star of Milos) — 2011 · Kazuya Murata · JP · Adventure, Fantasy, Animation · rated 5/10 · seen 2020-09-09
+- **How to Train Your Dragon 2** — 2014 · Dean DeBlois · US · Fantasy, Action, Adventure · rated 5/10 · seen 2014-12-09
+- **Kizumonogatari I: Tekketsu-hen** (Kizumonogatari Part 1: Tekketsu) — 2016 · Tatsuya Oishi · JP · Animation, Fantasy, Drama · rated 5/10 · seen 2022-07-21
+- **Le Petit Prince** — 2015 · Mark Osborne · US · rated 5/10 · seen 2020-06-09
+- **Legend of the Guardians: The Owls of Ga'Hoole** — 2010 · Zack Snyder · AU · Animation, Adventure, Family · rated 5/10 · seen 2021-01-11
+- **Lightyear** — 2022 · Angus MacLane · US · Animation, Science Fiction, Family · rated 5/10 · seen 2022-06-18
+- **Nocturna** — 2007 · Victor Maldonado · ES · Animation, Family · rated 5/10 · seen 2021-03-13
+- **Rio** — 2011 · Carlos Saldanha · US · Animation, Adventure, Comedy · rated 5/10 · seen 2021-06-24
+- **Sen to Chihiro no Kamikakushi** (Spirited Away) — 2001 · Hayao Miyazaki · JP · Animation, Family, Fantasy · rated 5/10 · seen 2017-02-13
+- **The Ribbon Hero** — 2026 · Yuuki Igarashi · JP · Animation, Fantasy, Drama · rated 5/10 · seen 2026-06-27
+- **Turning Red** — 2022 · Domee Shi · US · Animation, Family, Comedy · rated 5/10 · seen 2022-03-19
+- **Belle: Ryū to Sobakasu no Hime** (Belle) — 2021 · Mamoru Hosoda · JP · Animation, Science Fiction, Fantasy · rated 4/10 · seen 2021-10-10
+- **We Are Aliens** — 2026 · Kadowaki · JP · Animation, Science Fiction, Drama · rated 4/10 · seen 2026-06-25
+- **Happy Feet Two** — 2011 · George Miller · AU · Animation, Comedy, Family · rated 3/10 · seen 2020-11-18
+- **Welcome to Dolly's House** — 2026 · Tree Muta, Rady Fu · TW · rated 3/10 · seen 2026-06-27
+- **Looney Tunes: Rabbits Run** — 2015 · Jeff Siergey · US · Comedy, Animation · rated 2/10 · seen 2020-11-28
+- **A Bug's Life** — 1998 · John Lasseter · US · Adventure, Animation, Comedy · seen 2001-07-18
+- **Aladdin** — 1992 · Ron Clements · US · Animation, Family, Adventure · seen 2001-06-19
+- **Alice in Wonderland** — 1951 · Clyde Geronimi, Wilfred Jackson, Hamilton Luske · US · Animation, Family, Fantasy · seen 2002-06-26
+- **Antz** — 1998 · Eric Darnell, Tim Johnson · US · Animation, Comedy, Family · seen 2000-06-23
+- **Bambi** — 1942 · David Hand · US · Animation, Drama, Family · seen 2001-08-24
+- **Beauty and the Beast** — 1991 · Gary Trousdale · US · Romance, Family, Animation · seen 2000-08-27
+- **Chicken Little** — 2005 · Mark Dindal · US · Animation, Family, Comedy · seen 2005-11-17
+- **Chicken Run** — 2000 · Nick Park · UK · Animation, Comedy, Family · seen 2001-03-18
+- **Cinderella** — 1950 · Clyde Geronimi · US · Family, Fantasy, Animation · seen 2001-07-23
+- **Finding Nemo** — 2003 · Andrew Stanton · US · Animation, Family, Adventure · seen 2003-06-18
+- **Flushed Away** — 2006 · David Bowers · UK · Adventure, Animation, Comedy · seen 2006-10-30
+- **Hercules** — 1997 · Ron Clements · US · Animation, Family, Fantasy · seen 2003-06-19
+- **Kung Fu Panda 2** — 2011 · Jennifer Yuh Nelson · US · Animation, Family, Comedy · seen 2012-06-20
+- **Lady and the Tramp** — 1955 · Clyde Geronimi, Wilfred Jackson, Hamilton Luske · US · Animation, Family, Romance · seen 2003-02-03
+- **Lilo & Stitch** — 2002 · Dean DeBlois · US · Animation, Family, Comedy · seen 2002-07-26
+- **Madagascar 3: Europe's Most Wanted** — 2012 · Eric Darnell · US · Animation, Family, Comedy · seen 2013-07-17
+- **Madagascar: Escape 2 Africa** — 2008 · Eric Darnell · US · Adventure, Animation, Comedy · seen 2008-11-19
+- **Monsters, Inc.** — 2001 · Pete Docter · US · Animation, Comedy, Family · seen 2001-11-18
+- **Mulan** — 1998 · Tony Bancroft · US · Animation, Family, Adventure · seen 2000-06-18
+- **One Hundred and One Dalmatians** — 1961 · Clyde Geronimi, Hamilton Luske, Wolfgang Reitherman · US · Adventure, Animation, Comedy · seen 2002-03-16
+- **Over the Hedge** — 2006 · Tim Johnson · US · Adventure, Animation, Comedy · seen 2006-05-18
+- **Peter Pan** — 1953 · Clyde Geronimi, Wilfred Jackson, Hamilton Luske · US · Animation, Family, Adventure · seen 2001-06-24
+- **Pinocchio** — 1940 · Ben Sharpsteen · US · Animation, Family, Fantasy · seen 2001-06-25
+- **Pocahontas** — 1995 · Mike Gabriel, Eric Goldberg · US · Adventure, Animation, Family · seen 2001-06-20
+- **Robin Hood** — 1973 · Wolfgang Reitherman · US · Animation, Family, Adventure · seen 2005-10-19
+- **Shrek 2** — 2004 · Andrew Adamson · US · Animation, Comedy, Family · seen 2004-10-10
+- **Shrek the Third** — 2007 · Chris Miller · US · Fantasy, Adventure, Animation · seen 2007-06-25
+- **Spacetime Chronicles** — 2025 · N/A · IT · seen 2026-06-24
+- **Surf's Up** — 2007 · Ash Brannon · US · Animation, Comedy, Family · seen 2007-06-18
+- **Tarzan** — 1999 · Chris Buck · US · Animation, Family, Adventure · seen 2000-06-24
+- **The Croods: A New Age** — 2020 · Joel Crawford · US · Animation, Family, Adventure · seen 2026-09-20
+- **The Incredibles** — 2004 · Brad Bird · US · Action, Adventure, Animation · seen 2012-08-11
+- **The Return of Jafar** — 1994 · Toby Shelton · US · Family, Adventure, Animation · seen 2001-06-19
+- **Thumbelina** — 1994 · Don Bluth · US · Animation, Fantasy, Romance · seen 2001-07-24
+- **TMNT** — 2007 · Kevin Munroe · US · Adventure, Animation, Comedy · seen 2007-04-24
+- **Tom and Jerry: The Movie** — 1992 · Phil Roman · US · Animation, Comedy, Family · seen 2000-07-24
+- **Toy Story** — 1995 · John Lasseter · US · Family, Comedy, Animation · seen 2000-06-26
+- **Toy Story 2** — 1999 · John Lasseter · US · Animation, Comedy, Family · seen 2000-12-17
+- **Toy Story 3** — 2010 · Lee Unkrich · US · Animation, Family, Comedy · seen 2010-07-19
+
+## Animated Series (187)
+- **Kaiba** — 2008 · Masaaki Yuasa · JP · Animation, Sci-Fi & Fantasy, Drama · rated 10/10 · favourite
+- **Love, Death & Robots** — 2019 · Tim Miller · US · Animation, Sci-Fi & Fantasy · rated 10/10 · favourite
+- **Hellsing Ultimate** — 2006 · Tomokazu Tokoro · JP · Animation, Drama, Sci-Fi & Fantasy · rated 9/10 · favourite
+- **Hilda** — 2018 · Luke Pearson · UK · Animation, Sci-Fi & Fantasy, Family · rated 9/10 · favourite
+- **Keep Your Hands Off Eizouken!** — 2020 · Masaaki Yuasa · JP · Animation, Action & Adventure, Comedy · rated 9/10 · favourite
+- **Made in Abyss** — 2017 · Masayuki Kojima · JP · Animation, Drama, Action & Adventure · rated 9/10 · favourite
+- **One-Punch Man** — 2015 · Shingo Natsume · JP · Animation, Comedy, Action & Adventure · rated 9/10 · favourite
+- **Paranoia Agent** — 2004 · Satoshi Kon · JP · Animation, Mystery, Sci-Fi & Fantasy · rated 9/10 · favourite
+- **Rick and Morty** — 2013 · Dan Harmon · US · Animation, Comedy, Sci-Fi & Fantasy · rated 9/10 · favourite
+- **Scavengers Reign** — 2023 · Charles Huettner · US · Sci-Fi & Fantasy, Drama, Animation · rated 9/10 · favourite
+- **Short Circuit** (Walt Disney Animation Studios: Short Circuit Experimental Films) — 2020 · US · Animation, Family · rated 9/10 · favourite
+- **Attack on Titan** — 2013 · Tetsuro Araki · JP · Animation, Sci-Fi & Fantasy, Action & Adventure · rated 8/10 · favourite
+- **Avatar: The Last Airbender** — 2005 · Michael DiMartino · US · Animation, Action & Adventure, Sci-Fi & Fantasy · rated 8/10 · favourite
+- **Battle Angel Alita (OVA)** (Battle Angel) — 1993 · Hiroshi Fukutomi · JP · Animation, Sci-Fi & Fantasy · rated 8/10 · favourite
+- **Berserk (1997)** (Berserk) — 1997 · Naohito Takahashi · JP · Action & Adventure, Sci-Fi & Fantasy, Animation · rated 8/10 · favourite
+- **Black Lagoon** — 2006 · Sunao Katabuchi · JP · Action & Adventure, Animation, Drama · rated 8/10 · favourite
+- **Cowboy Bebop** — 1998 · Shinichiro Watanabe · JP · Animation, Action & Adventure, Sci-Fi & Fantasy · rated 8/10 · favourite
+- **Fullmetal Alchemist: Brotherhood** — 2009 · Yasuhiro Irie · JP · Animation, Action & Adventure, Sci-Fi & Fantasy · rated 8/10 · favourite
+- **Ghost Hound** — 2007 · Ryutaro Nakamura · JP · Animation, Drama, Mystery · rated 8/10 · favourite
+- **Ghost in the Shell: SAC** (Ghost in the Shell: Stand Alone Complex) — 2002 · Kenji Kamiyama · JP · Animation, Action & Adventure, Sci-Fi & Fantasy · rated 8/10 · favourite
+- **Gurren Lagann** — 2007 · Hiroyuki Imaishi · JP · Animation, Action & Adventure, Sci-Fi & Fantasy · rated 8/10 · favourite
+- **Haibane Renmei** — 2002 · Tomokazu Tokoro · JP · Animation, Drama, Sci-Fi & Fantasy · rated 8/10 · favourite
+- **Invincible** (INVINCIBLE) — 2021 · Robert Kirkman · US · Animation, Drama, Sci-Fi & Fantasy · rated 8/10 · favourite
+- **Kino's Journey** — 2017 · Tomohisa Taguchi · JP · rated 8/10 · favourite
+- **Macross Plus** — 1994 · Shoji Kawamori · JP · Animation, Sci-Fi & Fantasy, Action & Adventure · rated 8/10 · favourite
+- **Mononoke** — 2007 · Kenji Nakamura · JP · Animation, Mystery, Sci-Fi & Fantasy · rated 8/10 · favourite
+- **Neon Genesis Evangelion** — 1995 · Hideaki Anno · JP · Sci-Fi & Fantasy, Animation, Drama · rated 8/10 · favourite
+- **Psycho-Pass** — 2012 · Naoyoshi Shiotani · JP · Animation, Crime, Sci-Fi & Fantasy · rated 8/10 · favourite
+- **Samurai Champloo** — 2004 · Shinichiro Watanabe · JP · Animation, Action & Adventure, Comedy · rated 8/10 · favourite
+- **Scott Pilgrim Takes Off** — 2023 · Abel Góngora · JP · Animation, Action & Adventure, Comedy · rated 8/10 · favourite
+- **Serial Experiments Lain** — 1998 · Ryutaro Nakamura · JP · Animation, Drama, Sci-Fi & Fantasy · rated 8/10 · favourite
+- **Sonny Boy** — 2021 · Shingo Natsume · JP · Animation, Drama, Mystery · rated 8/10 · favourite
+- **The Legend of Korra** — 2012 · Michael DiMartino · US · Animation, Action & Adventure, Sci-Fi & Fantasy · rated 8/10 · favourite
+- **The Midnight Gospel** — 2020 · Pendleton Ward · US · Animation, Comedy, Sci-Fi & Fantasy · rated 8/10 · favourite
+- **The Tatami Galaxy** — 2010 · Masaaki Yuasa · JP · Animation, Comedy, Drama · rated 8/10 · favourite
+- **Trigun** (TRIGUN) — 1998 · Satoshi Nishimura · JP · Sci-Fi & Fantasy, Action & Adventure, Animation · rated 8/10 · favourite
+- **Wonder Egg Priority** — 2021 · Shin Wakabayashi · JP · Animation, Drama, Sci-Fi & Fantasy · rated 8/10 · favourite
+- **Cyberpunk: Edgerunners** — 2022 · Hiroyuki Imaishi · JP · Animation, Action & Adventure, Drama · rated 7/10 · favourite
+- **FLCL** — 2000 · Kazuya Tsurumaki · JP · Animation, Comedy, Action & Adventure · rated 7/10 · favourite
+- **Steins;Gate** — 2011 · Hiroshi Hamasaki · JP · Animation, Sci-Fi & Fantasy, Mystery · rated 7/10 · favourite
+- **Terror in Resonance** — 2014 · Shinichiro Watanabe · JP · Animation, Drama, Mystery · rated 7/10 · favourite
+- **Wolf's Rain** — 2003 · Tensai Okamura · JP · rated 7/10 · favourite
+- **Elfen Lied** — 2004 · Mamoru Kanbe · JP · Action & Adventure, Animation, Drama · rated 6/10 · favourite
+- **Samurai Jack** — 2001 · Genndy Tartakovsky · US · Sci-Fi & Fantasy, Action & Adventure, Animation · rated 9/10 · seen 2024-09-05
+- **Ani*Kuri15** — 2007 · JP · Action & Adventure, Animation, Comedy · rated 8/10 · seen 2021-04-21
+- **Arcane** — 2021 · Christian Linke · FR · Animation, Action & Adventure, Sci-Fi & Fantasy · rated 8/10 · seen 2021-12-11
+- **Black Lagoon: The Second Barrage** (Black Lagoon) — 2006 · JP · Action & Adventure, Animation, Drama · rated 8/10 · seen 2013-07-07
+- **Brickleberry** — 2012 · Roger Black, Waco O'Guin · US · Comedy, Animation · rated 8/10 · seen 2014-10-29
+- **Carmen Sandiego** — 2019 · Shabnam Rezaei · US · Animation, Action & Adventure, Crime · rated 8/10 · seen 2019-10-19
+- **Carole & Tuesday** (CAROLE & TUESDAY) — 2019 · Shinichiro Watanabe · JP · Animation, Drama, Sci-Fi & Fantasy · rated 8/10 · seen 2019-09-14
+- **Code Geass: Hangyaku no Lelouch R2** (Code Geass: Lelouch of the Rebellion) — 2008 · Gorō Taniguchi · JP · Animation, Sci-Fi & Fantasy, Action & Adventure · rated 8/10 · seen 2018-12-10
+- **Disenchantment** — 2018 · Matt Groening · US · Animation, Comedy, Action & Adventure · rated 8/10 · seen 2018-08-19
+- **Dug Days** — 2021 · Bob Peterson, Pete Docter · US · Animation, Comedy, Family · rated 8/10 · seen 2021-10-04
+- **Entergalactic** — 2022 · Kid Cudi · US · rated 8/10 · seen 2022-10-15
+- **Forky Asks a Question** — 2019 · US · Animation · rated 8/10 · seen 2021-10-06
+- **Gintama** — 2006 · Yoichi Fujita · JP · Animation, Action & Adventure, Sci-Fi & Fantasy · rated 8/10 · seen 2021-02-22
+- **Hazbin Hotel** — 2024 · Vivienne Medrano · US · Animation, Comedy, Drama · rated 8/10 · seen 2024-03-10
+- **Kapitan Bomba** — 2007 · Bartosz Walaszek · PL · Animation, Comedy, Sci-Fi & Fantasy · rated 8/10 · seen 2012-07-15
+- **Kono Subarashii Sekai ni Shukufuku o! 3** (KONOSUBA - God's blessing on this wonderful world!) — 2024 · Takaomi Kanasaki · JP · Action & Adventure, Animation, Comedy · rated 8/10 · seen 2024-07-01
+- **Kyousougiga** — 2012 · Rie Matsumoto · JP · Animation, Action & Adventure, Sci-Fi & Fantasy · rated 8/10 · seen 2022-01-14
+- **Sōsō no Frieren** (Frieren: Beyond Journey's End) — 2023 · Keiichiro Saito · JP · Animation, Action & Adventure, Drama · rated 8/10 · seen 2025-03-16
+- **Total Drama** (Total Drama Island) — 2007 · Tom McGillis · CA · Animation, Comedy, Family · rated 8/10 · seen 2024-05-13
+- **Undone** — 2019 · Kate Purdy · US · Animation, Sci-Fi & Fantasy, Drama · rated 8/10 · seen 2020-04-13
+- **Yakusoku no Neverland** (The Promised Neverland) — 2019 · Mamoru Kanbe · JP · Animation, Drama, Mystery · rated 8/10 · seen 2020-09-11
+- **Chensō Man** (Chainsaw Man) — 2022 · JP · Animation, Action & Adventure, Sci-Fi & Fantasy · rated 7/10 · seen 2022-12-15
+- **Code Geass: Hangyaku no Lelouch** (Code Geass: Lelouch of the Rebellion) — 2006 · Gorō Taniguchi · JP · Animation, Sci-Fi & Fantasy, Action & Adventure · rated 7/10 · seen 2018-12-08
+- **Death Note** — 2006 · Tetsuro Araki · JP · Animation, Mystery, Sci-Fi & Fantasy · rated 7/10 · seen 2020-08-22
+- **Devilman Crybaby** — 2018 · Masaaki Yuasa · JP · Animation, Action & Adventure, Sci-Fi & Fantasy · rated 7/10 · seen 2022-11-15
+- **Kill la Kill** — 2013 · Hiroyuki Imaishi · JP · Action & Adventure, Animation, Comedy · rated 7/10 · seen 2020-06-21
+- **Kono Subarashii Sekai ni Shukufuku o! 2** (KONOSUBA - God's blessing on this wonderful world!) — 2017 · Takaomi Kanasaki · JP · Action & Adventure, Animation, Comedy · rated 7/10 · seen 2022-01-17
+- **Mater's Tall Tales** — 2008 · US · rated 7/10 · seen 2020-09-01
+- **Questo mondo non mi renderà cattivo** (This World Can't Tear Me Down) — 2023 · Zerocalcare · IT · Animation, Comedy, Drama · rated 7/10 · seen 2024-02-10
+- **Re: Zero Kara Hajimeru Isekai Seikatsu** (Re:ZERO -Starting Life in Another World-) — 2016 · Masaharu Watanabe · JP · Animation, Action & Adventure, Sci-Fi & Fantasy · rated 7/10 · seen 2020-10-11
+- **Shigatsu wa Kimi no Uso** (Your Lie in April) — 2014 · Kyohei Ishiguro · JP · Animation, Comedy, Drama · rated 7/10 · seen 2018-09-06
+- **Sora Yorimo Tōi Basho** (A Place Further than the Universe) — 2017 · Atsuko Ishizuka · JP · Animation, Drama, Comedy · rated 7/10 · seen 2022-08-09
+- **Spy x Family** (SPY x FAMILY) — 2022 · JP · Animation, Action & Adventure, Comedy · rated 7/10 · seen 2024-04-01
+- **Strappare lungo i bordi** (Tear Along the Dotted Line) — 2021 · Zerocalcare · IT · Animation, Comedy, Drama · rated 7/10 · seen 2022-01-09
+- **The Legend of Vox Machina** — 2022 · Chris Prynoski · US · Animation, Sci-Fi & Fantasy · rated 7/10 · seen 2022-02-14
+- **The Liberator** — 2020 · Jeb Stuart · US · War & Politics, Drama, Animation · rated 7/10 · seen 2021-01-18
+- **What If...?** — 2021 · A.C. Bradley · US · Animation, Action & Adventure, Sci-Fi & Fantasy · rated 7/10 · seen 2021-09-03
+- **Black Lagoon: Roberta's Blood Trail** — 2010 · Rei Hiroe · JP · Action & Adventure, Crime, Animation · rated 6/10 · seen 2014-07-19
+- **Boku dake ga Inai Machi** (ERASED) — 2016 · Tomohiko Ito · JP · Animation, Drama, Mystery · rated 6/10 · seen 2018-06-20
+- **Darker Than Black - Kuro no Keiyakusha** (Darker than Black) — 2007 · Tensai Okamura · JP · Animation, Action & Adventure, Sci-Fi & Fantasy · rated 6/10 · seen 2022-04-03
+- **Full Metal Panic!** — 2002 · Yasuhiro Takemoto · JP · Animation, Sci-Fi & Fantasy · rated 6/10 · seen 2020-10-01
+- **GTO: Great Teacher Onizuka** (Great Teacher Onizuka) — 1999 · JP · Animation, Comedy, Drama · rated 6/10 · seen 2021-04-02
+- **Higurashi no Naku Koroni** — 2006 · Chiaki Kon · JP · Animation, Drama, Mystery · rated 6/10 · seen 2021-01-19
+- **Kimetsu no Yaiba** (Demon Slayer: Kimetsu no Yaiba) — 2019 · Haruo Sotozaki · JP · Animation, Action & Adventure, Sci-Fi & Fantasy · rated 6/10 · seen 2020-07-29
+- **Kōkaku Kidōtai Arise** — 2013 · Kazuchika Kise · JP · rated 6/10 · seen 2020-07-20
+- **Kōkaku Kidōtai S.A.C. 2nd GIG** — 2004 · Kenji Kamiyama · JP · rated 6/10 · seen 2020-07-14
+- **Kono Subarashii Sekai ni Shukufuku o!** (KONOSUBA - God's blessing on this wonderful world!) — 2016 · Takaomi Kanasaki · JP · Action & Adventure, Animation, Comedy · rated 6/10 · seen 2022-01-15
+- **Lazaro** — 2025 · JP · rated 6/10 · seen 2025-10-23
+- **Mirai Nikki** (The Future Diary) — 2011 · Naoto Hosoda · JP · Action & Adventure, Animation, Drama · rated 6/10 · seen 2023-06-29
+- **Mob Psycho 100** — 2016 · Yuzuru Tachikawa · JP · Animation, Action & Adventure, Comedy · rated 6/10 · seen 2020-07-26
+- **NieA under 7** (NieA_7) — 2000 · JP · Animation, Comedy, Sci-Fi & Fantasy · rated 6/10 · seen 2022-05-17
+- **Sakamichi no Apollon** (Kids on the Slope) — 2012 · Shinichiro Watanabe · JP · Animation, Drama · rated 6/10 · seen 2018-11-27
+- **Star Wars: Visions** — 2021 · JP · Animation, Sci-Fi & Fantasy, Action & Adventure · rated 6/10 · seen 2021-10-13
+- **Tales from Radiator Springs** — 2013 · John Lasseter · US · rated 6/10 · seen 2020-09-04
+- **Violet Evergarden** — 2018 · Taichi Ishidate · JP · Animation, Drama, Sci-Fi & Fantasy · rated 6/10 · seen 2021-01-22
+- **Afro Samurai** — 2007 · Fuminori Kizaki · JP · Animation, Action & Adventure, Drama · rated 5/10 · seen 2020-09-21
+- **Darker than Black - Kuro no Keiyakusha: Gaiden** (Darker than Black) — 2010 · Tensai Okamura · JP · Animation, Action & Adventure, Sci-Fi & Fantasy · rated 5/10 · seen 2022-07-11
+- **Darker Than Black: Ryūsei no Gemini** — 2009 · Tensai Okamura · JP · rated 5/10 · seen 2022-07-14
+- **Eden** — 2021 · Justin Leach · JP · Animation, Drama, Sci-Fi & Fantasy · rated 5/10 · seen 2021-09-06
+- **FLCL Progressive** (FLCL) — 2018 · Kazuto Aoki · JP · Animation, Comedy, Action & Adventure · rated 5/10 · seen 2022-01-16
+- **Ghost in the Shell: Stand Alone Complex - Tachikoma na Hibi** (Ghost in the Shell: Stand Alone Complex) — 2002 · Kenji Kamiyama · JP · Animation, Action & Adventure, Sci-Fi & Fantasy · rated 5/10 · seen 2021-05-02
+- **Kōkaku Kidōtai Arise: Alternative Architecture** — 2015 · Kazuchika Kise · JP · rated 5/10 · seen 2021-03-10
+- **Kyōsōgiga** (Kyousougiga) — 2013 · Rie Matsumoto · JP · Animation, Action & Adventure, Sci-Fi & Fantasy · rated 5/10 · seen 2023-02-13
+- **Ōsama Ranking** (Ranking of Kings) — 2021 · Yousuke Hatta · JP · Animation, Action & Adventure, Sci-Fi & Fantasy · rated 5/10 · seen 2022-04-07
+- **Another** — 2012 · Tsutomu Mizushima · JP · Animation, Drama, Mystery · rated 4/10 · seen 2020-10-28
+- **FLCL Alternative** (FLCL) — 2018 · Shouko Nakamura · JP · Animation, Comedy, Action & Adventure · rated 3/10 · seen 2022-01-12
+- **...A je to!** (Romance Is a Bonus Book) — 1976 · Václav Bedřich · EU · Comedy, Drama · seen 2004-06-17
+- **Bob the Builder** — 1999 · Keith Chapman · UK · Kids, Animation, Family · seen 2003-05-16
+- **Bolek i Lolek** (Bolek and Lolek) — 1963 · PL · Animation, Kids · seen 2003-03-18
+- **Codename: Kids Next Door** — 2002 · Tom Warburton · US · Animation, Action & Adventure, Comedy · seen 2002-12-19
+- **Courage the Cowardly Dog** — 1999 · John R. Dilworth · US · Animation, Family, Sci-Fi & Fantasy · seen 2001-06-17
+- **Cow and Chicken** — 1995 · David Feiss · US · Animation, Comedy, Kids · seen 2000-07-19
+- **Dexter's Laboratory** — 1996 · Genndy Tartakovsky · US · Animation, Comedy, Sci-Fi & Fantasy · seen 2004-06-18
+- **Dino Babies** — 1994 · Fred Wolf · US · Animation, Action & Adventure, Comedy · seen 2004-01-17
+- **Duck Dodgers** — 2003 · Spike Brandt · US · Animation, Comedy, Sci-Fi & Fantasy · seen 2004-06-18
+- **DuckTales** — 1987 · Jymn Magon · US · Animation, Mystery, Sci-Fi & Fantasy · seen 2001-06-26
+- **Dziwne przygody Koziołka Matołka** (The Adventures of Koziołek Matołek) — 1969 · PL · Animation, Kids · seen 2003-03-18
+- **Ed, Edd, 'n' Eddy** (Ed, Edd n Eddy) — 1999 · Danny Antonucci · CA · Animation, Comedy, Kids · seen 2001-06-18
+- **Evil Con Carne** — 2003 · Maxwell Atoms · US · Animation, Comedy, Sci-Fi & Fantasy · seen 2001-12-11
+- **Family Guy** — 1999 · Seth MacFarlane · US · Animation, Comedy · seen 2012-08-05
+- **Foster's Home for Imaginary Friends** — 2004 · Craig McCracken · US · Kids, Animation, Family · seen 2004-12-18
+- **Franklin** — 1997 · Paulette Bourgeois · CA · Animation, Kids, Family · seen 2003-02-17
+- **Galactik Football** — 2006 · Antoine Charreyron, Frederic Dybowski · FR · Animation, Sci-Fi & Fantasy, Comedy · seen 2006-07-19
+- **Green Green** — 2003 · JP · Animation, Comedy · seen 2006-03-27
+- **Grim and Evil** — 2001 · Maxwell Atoms · US · seen 2001-12-26
+- **Il Était une fois... la vie** (Once Upon a Time... Life) — 1987 · Albert Barillé · FR · Animation, Kids, Documentary · seen 2011-07-19
+- **Inspector Gadget** — 1983 · Andy Heyward · US · Animation, Comedy, Kids · seen 2003-10-24
+- **Johnny Bravo** — 1997 · Van Partible · US · Animation, Comedy, Family · seen 2001-04-18
+- **Justice League** — 2001 · Bruce Timm · US · Action & Adventure, Animation, Sci-Fi & Fantasy · seen 2002-06-06
+- **Kim Possible** — 2002 · Bob Schooley · US · Animation, Action & Adventure, Comedy · seen 2003-07-19
+- **Kono Subarashii Sekai ni Bakuen o!** (KONOSUBA – An Explosion on This Wonderful World!) — 2023 · Takaomi Kanasaki · JP · Animation, Comedy, Action & Adventure · seen 2025-11-17
+- **Krtek** — 1957 · Zdeněk Miler · EU · seen 2003-07-16
+- **Lucky Luke** — 1984 · FR · Animation, Comedy, Family · seen 2001-06-24
+- **Merrie Melodies: Starring Bugs Bunny and Friends** — 1990 · US · seen 2001-04-23
+- **Mickey Mouse and His Friends** — 1994 · US · seen 2001-06-16
+- **Mitsubachi Maaya no Bōken** — 1975 · JP · seen 2002-05-19
+- **Naruto** — 2002 · Hayato Date · JP · Animation, Action & Adventure, Sci-Fi & Fantasy · seen 2005-07-19
+- **Nu, pogodi!** (I'll Get You!) — 1969 · SU · Family, Animation, Comedy · seen 2002-11-23
+- **Pinky and the Brain** — 1995 · Tom Ruegger · US · Animation, Comedy, Family · seen 2001-07-26
+- **Pocket Monsters** (Pokémon) — 1997 · JP · Animation, Action & Adventure, Sci-Fi & Fantasy · seen 2003-05-15
+- **Popeye the Sailor** — 1960 · E. C. Segar · US · Animation, Kids · seen 2001-01-17
+- **Postman Pat** — 1981 · Ivor Wood · UK · Kids, Animation · seen 2003-11-26
+- **Reksio** — 1967 · PL · Animation, Family · seen 2000-06-26
+- **Scooby-Doo, Where Are You!** — 1969 · William Hanna · US · Animation, Mystery, Comedy · seen 2003-05-16
+- **Smurfs** (The Smurfs) — 1981 · Peyo · US · Animation, Family, Sci-Fi & Fantasy · seen 2000-07-16
+- **South Park** — 1997 · Trey Parker · US · Animation, Comedy · seen 2007-05-15
+- **Spider-Man** — 1994 · John Semper Jr. · US · Animation, Action & Adventure · seen 2000-07-16
+- **Tabaluga** — 1997 · Peter Maffay · DE · Animation, Sci-Fi & Fantasy, Action & Adventure · seen 2005-11-19
+- **Tanoshii Moomin Ikka** (Moomin) — 1990 · Kazuo Iwata · JP · Animation, Family, Kids · seen 2000-10-25
+- **Taz-Mania** — 1991 · Tom Ruegger, Jean MacCurdy · US · Family, Animation, Comedy · seen 2001-02-03
+- **Teenage Mutant Ninja Turtles** — 1987 · David Wise · US · Action & Adventure, Animation, Comedy · seen 2003-08-19
+- **The Addams Family** — 1992 · Charles Addams · US · Animation, Kids, Comedy · seen 2001-02-10
+- **The Bugs Bunny and Tweety Show** — 1986 · US · Animation, Comedy · seen 2001-05-16
+- **The Bugs Bunny Show** — 1960 · US · seen 2000-06-20
+- **The Bugs n' Daffy Show** — 1996 · US · seen 2000-11-25
+- **The Cramp Twins** — 2001 · Brian Wood · UK · Animation, Comedy, Kids · seen 2004-06-17
+- **The Donald Duck Show** — 1983 · US · seen 2000-03-18
+- **The Fairly OddParents** — 2001 · Butch Hartman · US · Animation, Comedy, Sci-Fi & Fantasy · seen 2003-05-16
+- **The Flintstones** — 1960 · William Hanna · US · Family, Animation, Comedy · seen 2000-07-19
+- **The Gummi Bears** (Disney's Adventures of the Gummi Bears) — 1985 · Jymn Magon · US · Animation, Family, Kids · seen 2000-06-24
+- **The Jetsons** — 1962 · William Hanna · US · Animation, Comedy, Family · seen 2000-07-27
+- **The Kids From Room 402** (The Kids from Room 402) — 1999 · Betty Paraskevas, Michael Paraskevas · US · Animation, Comedy, Family · seen 2002-11-23
+- **The Little Mermaid** — 1992 · US · Family, Animation, Kids · seen 2000-02-17
+- **The Looney Tunes Show** — 2011 · Sam Register · US · Animation, Comedy, Family · seen 2011-07-18
+- **The Looney Tunes Show** — 2002 · Sam Register · US · Animation, Comedy, Family · seen 2003-03-12
+- **The New Adventures of Winnie the Pooh** — 1988 · US · Family, Animation, Comedy · seen 2000-02-19
+- **The New Scooby-Doo Movies** — 1972 · William Hanna · US · Animation, Mystery, Comedy · seen 2002-03-19
+- **The Pink Panther Show** (The Pink Panther) — 1969 · David H. DePatie · US · Kids, Animation, Comedy · seen 2001-12-22
+- **The Porky Pig Show** — 1964 · US · Animation · seen 2001-03-24
+- **The Powerpuff Girls** — 1998 · Craig McCracken · US · Action & Adventure, Animation, Comedy · seen 2000-08-19
+- **The Road Runner Show** — 1966 · Chuck Jones · US · seen 2001-07-24
+- **The Scooby-Doo/Dynomutt Hour** — 1976 · William Hanna · US · Animation, Comedy, Family · seen 2001-06-24
+- **The Simpsons** — 1989 · Matt Groening · US · Family, Animation, Comedy · seen 2012-08-05
+- **The Sylvester & Tweety Mysteries** — 1995 · James T. Walker, Lenord Robinson · US · Animation, Comedy, Mystery · seen 2001-03-28
+- **Time Squad** — 2001 · Dave Wasson · US · Animation, Comedy, Kids · seen 2003-05-16
+- **Timon and Pumbaa** — 1995 · US · Animation, Comedy, Kids · seen 2002-05-16
+- **Tom and Jerry** (Tom and Jerry: The Golden Era Anthology (1940–1958)) — 1940 · William Hanna · US · Animation, Comedy, Kids · seen 2001-06-19
+- **Tom and Jerry Kids Show** (Tom & Jerry Kids Show) — 1990 · William Hanna · US · Kids, Animation, Comedy · seen 2001-06-20
+- **Totally Spies!** — 2001 · Vincent Chalvon-Demersay, David Michel · FR · Animation, Kids, Comedy · seen 2001-12-26
+- **Ugly Americans** — 2010 · Devin Clark · US · Animation, Comedy · seen 2016-01-18
+- **Wacky Races** — 1968 · William Hanna · US · Family, Animation, Comedy · seen 2001-11-26
+- **What's with Andy?** — 2001 · Andy Griffiths · CA · Animation, Comedy, Kids · seen 2003-11-25
+- **Włatcy móch** — 2006 · PL · Animation, Comedy · seen 2010-06-17
+- **X-Men** — 1992 · Eric Lewald · US · Kids, Sci-Fi & Fantasy, Animation · seen 2003-02-18
+
+## Shorts (1003)
+- **Kiwi!** — 2006 · Dony Permedi · US · rated 10/10 · favourite · seen 2007-05-23
+- **Premier Automne** (First Fall) — 2013 · Carlos de Carvalho, Aude Danset · FR · Fantasy, Animation, Drama · rated 10/10 · favourite · seen 2020-08-23
+- **Zdjęcie** (The Photograph) — 1968 · Krzysztof Kieślowski · PL · Documentary · rated 10/10 · favourite · seen 2021-05-07
+- **Lebensader** — 2009 · Angela Steffen · DE · Animation · rated 9/10 · favourite · seen 2020-12-03
+- **Pierwsza miłość** (First Love) — 1974 · Krzysztof Kieślowski · PL · Documentary, TV Movie · rated 9/10 · favourite · seen 2021-06-21
+- **Skały** — 2003 · Chris Stenner · DE · rated 9/10 · favourite · seen 2020-09-11
+- **Urząd** (The Office) — 1966 · Krzysztof Kieślowski · PL · Documentary · rated 9/10 · favourite · seen 2021-05-05
+- **Hinterland** — 2010 · Linda McCarthy · UK · Comedy, Drama · rated 8/10 · favourite · seen 2021-04-04
+- **In the Fall** — 2011 · Steve Cutts · UK · rated 8/10 · favourite · seen 2020-08-28
+- **Loom** — 2010 · Jan Bitzer, Ilija Brunck, Csaba Letay, Tom Weber · DE · Animation · rated 8/10 · favourite · seen 2020-12-03
+- **Odrzucone** — 2000 · Don Hertzfeldt · US · rated 8/10 · favourite · seen 2021-03-17
+- **Solo na ugorze** (Alone in a Fallow Field) — 1981 · Jerzy Kalina · PL · Animation · rated 8/10 · favourite · seen 2020-10-15
+- **Tori no Uta** (Bird Song) — 2007 · Yoshitaka Amano · JP · Animation · rated 8/10 · favourite · seen 2021-03-16
+- **Child** — 2016 · Iring Freytag, Linus Stetter, Viktor Stickel · DE · rated 10/10 · seen 2020-11-24
+- **Day & Night** — 2010 · Teddy Newton · US · Animation, Family, Comedy · rated 10/10 · seen 2020-09-01
+- **Age of Sail** — 2018 · John Kahrs · US · Animation, Adventure · rated 9/10 · seen 2020-08-26
+- **Artistic Creation** — 1901 · Walter R. Booth · UK · Comedy · rated 9/10 · seen 2021-05-16
+- **Att döda ett barn** (To Kill a Child) — 1953 · Lennart Rabbe · SE · Drama · rated 9/10 · seen 2021-11-14
+- **Blade Runner: Black Out 2022** — 2017 · Shinichirō Watanabe · JP · Animation, Science Fiction, Thriller · rated 9/10 · seen 2020-07-28
+- **Dla Elizy Bagatela a-moll WoO 59** — 1992 · Jacek Kasprzycki · PL · Animation, Music · rated 9/10 · seen 2020-09-07
+- **Duck Amuck** — 1953 · Chuck Jones · US · Animation, Comedy · rated 9/10 · seen 2021-01-21
+- **Duet** — 2014 · Glen Keane · US · Animation · rated 9/10 · seen 2022-01-02
+- **Everything Will Be Ok** (Everything Will Be OK) — 2006 · Don Hertzfeldt · US · Animation, Drama, Comedy · rated 9/10 · seen 2020-12-04
+- **Get a Horse!** — 2013 · Lauren MacMullan · US · Animation, Family, Comedy · rated 9/10 · seen 2020-07-23
+- **Hors de l'eau** — 2018 · Simon Duong Van Huyen, Joël Durand, Thibault Leclercq, Valentin Lucas, Andrei Sitari · FR · Animation, Drama · rated 9/10 · seen 2020-08-25
+- **Juste de l'eau** (Nothing Else But Water) — 2014 · Carlos De Carvalho · FR · Animation · rated 9/10 · seen 2020-08-27
+- **La charcuterie mécanique** (The Mechanical Butcher) — 1895 · Louis Lumière · FR · Comedy, Science Fiction · rated 9/10 · seen 2021-05-10
+- **Little Quentin** — 2010 · Albert t Hooft, Paco Vink · NL · Animation · rated 9/10 · seen 2020-08-25
+- **Lykantropia** — 1981 · Piotr Dumała · PL · Animation · rated 9/10 · seen 2020-09-01
+- **Mee** (The Meeting Place) — 2012 · Letty Felgendreher · DE · rated 9/10 · seen 2020-11-24
+- **Mercury Bird** — 2010 · Ina Findeisen · DE · Animation · rated 9/10 · seen 2020-12-03
+- **Mest kinematograficheskogo operatora** (The Cameraman's Revenge) — 1912 · Władysław Starewicz · SU · Animation, Comedy · rated 9/10 · seen 2020-08-30
+- **Natural Attraction** — 2014 · Fred Rousseau · FR · rated 9/10 · seen 2020-12-03
+- **One Small Step** — 2018 · Andrew Chesworth · US · Family, Animation, Adventure · rated 9/10 · seen 2020-08-18
+- **Refren** (Refrain) — 1972 · Krzysztof Kieślowski · PL · Documentary · rated 9/10 · seen 2021-05-07
+- **Robotnicy 1971 - Nic o nas bez nas** (Workers '71: Nothing About Us Without Us) — 1971 · Krzysztof Kieślowski · PL · Documentary · rated 9/10 · seen 2021-05-08
+- **Schody** (The Stairs) — 1968 · Stefan Schabenbeck · PL · Animation, Fantasy, Drama · rated 9/10 · seen 2020-09-01
+- **Szpital** (Hospital) — 1977 · Krzysztof Kieślowski · PL · Documentary · rated 9/10 · seen 2021-05-08
+- **The Blue Umbrella** — 2013 · Saschka Unseld · US · Animation, Romance · rated 9/10 · seen 2020-09-04
+- **The Gloaming** — 2010 · NoBrain · FR · Animation · rated 9/10 · seen 2020-08-25
+- **The Present** — 2014 · Jacob Frey · DE · Animation, Comedy · rated 9/10 · seen 2020-08-20
+- **366 Tage** (366 Days) — 2011 · Johannes Schiehsl · DE · rated 8/10 · seen 2020-09-11
+- **Achoo** — 2017 · Lucas Boutrot, Élise Carret, Maoris Creantor, Pierre Hubert, Camille Lacroix, Charlotte Perroux · FR · Comedy, Animation, Fantasy · rated 8/10 · seen 2020-08-27
+- **Animowana historia Polski** (Animated History of Poland) — 2010 · Tomasz Bagiński · PL · History, Animation · rated 8/10 · seen 2020-06-20
+- **Back to the Moon** — 2018 · Fx Goby, Hélène Leroux · UK · Animation · rated 8/10 · seen 2022-01-01
+- **Bao** — 2018 · Domee Shi · US · Animation, Family, Fantasy · rated 8/10 · seen 2020-09-04
+- **Blind Vaysha** — 2016 · Theodore Ushev · CA · Animation, Fantasy, Drama · rated 8/10 · seen 2021-11-07
+- **Blok** — 1982 · Hieronym Neumann · PL · Comedy, Drama · rated 8/10 · seen 2020-10-12
+- **Boundin'** — 2003 · Bud Luckey · US · Animation, Family, Music · rated 8/10 · seen 2020-09-01
+- **BURN-E** (BURN·E) — 2008 · Angus MacLane · US · Animation, Family, Comedy · rated 8/10 · seen 2020-09-01
+- **Cargo** — 2013 · Ben Howling, Yolanda Ramke · AU · Fantasy, Drama · rated 8/10 · seen 2018-10-31
+- **Danny Boy** — 2010 · Marek Skrobecki · PL · Fantasy, Animation · rated 8/10 · seen 2020-08-29
+- **Deep Dance** — 2014 · Marco Erbrich · DE · Animation · rated 8/10 · seen 2020-12-03
+- **Drawn to You** — 2014 · Ciarra Nevitt, Paride Odierna · AQ · Romance, Comedy, Animation · rated 8/10 · seen 2020-08-29
+- **Dworzec** (Railway Station) — 1980 · Krzysztof Kieślowski · PL · Documentary · rated 8/10 · seen 2021-05-06
+- **Egao** (Egao no Orchestra!) — 2003 · Makoto Shinkai · JP · Animation · rated 8/10 · seen 2021-06-21
+- **Elles** (The Women) — 1966 · Ahmed Lallem · AQ · Documentary · rated 8/10 · seen 2025-08-10
+- **Es wird Regen geben - eine Begegnung in Patagonien** — 1997 · Sönke Hansen · DE · rated 8/10 · seen 2020-12-03
+- **Fanatyk** — 2017 · Michal Tylka · PL · Drama, Comedy · rated 8/10 · seen 2020-02-22
+- **For the Birds** — 2000 · Ralph Eggleston · US · Animation, Family, Comedy · rated 8/10 · seen 2003-06-26
+- **Franz Kafka** — 1991 · Piotr Dumała · PL · rated 8/10 · seen 2020-08-30
+- **Garden Party** — 2017 · Théophile Dufresne · FR · Animation, Comedy, Horror · rated 8/10 · seen 2020-08-29
+- **Happily Ever After** — 2014 · Moritz Poth, Rafael Starman · DE · Drama, Documentary, Romance · rated 8/10 · seen 2020-12-03
+- **Happiness** — 2017 · Steve Cutts · UK · Animation, Drama · rated 8/10 · seen 2020-08-27
+- **Hostage** — 2002 · John Woo · US · Action, Crime, Thriller · rated 8/10 · seen 2020-08-03
+- **Hotarubi no Mori e** — 2011 · Takahiro Omori · JP · Romance, Animation, Fantasy · rated 8/10 · seen 2018-04-01
+- **Hotel Chevalier** — 2007 · Wes Anderson · US · Drama, Romance · rated 8/10 · seen 2021-02-21
+- **How to Hook Up Your Home Theater** — 2007 · Kevin Deters, Stevie Wermers-Skelton · US · Animation, Comedy · rated 8/10 · seen 2020-07-23
+- **I Am So Proud of You** — 2008 · Don Hertzfeldt · US · Animation, Drama · rated 8/10 · seen 2020-12-04
+- **I'm You, Dickhead** — 2014 · Lucas Testro · AU · Science Fiction, Comedy · rated 8/10 · seen 2015-02-10
+- **Iblard Jikan** (Iblard Time) — 2007 · Naohisa Inoue · JP · Animation, Fantasy, Adventure · rated 8/10 · seen 2021-12-29
+- **Inner Workings** — 2016 · Leo Matsuda · US · Animation, Family, Comedy · rated 8/10 · seen 2020-08-21
+- **It's Such a Beautiful Day** — 2011 · Don Hertzfeldt · US · Animation, Drama, Comedy · rated 8/10 · seen 2020-12-04
+- **Jaga** (Legendy Polskie: Jaga) — 2016 · Tomasz Bagiński · PL · rated 8/10 · seen 2020-06-20
+- **Johnny Express** — 2014 · Alfred Uhn · KR · Animation, Comedy, Science Fiction · rated 8/10 · seen 2020-08-21
+- **Kanojo to Kanojo no Neko** (She and Her Cat) — 1999 · Makoto Shinkai · JP · Animation · rated 8/10 · seen 2021-06-21
+- **Kater** (Tomcat) — 2005 · Tine Kluth · DE · Animation · rated 8/10 · seen 2020-12-03
+- **Kellerkind** — 2012 · Julia Ocker · DE · Animation · rated 8/10 · seen 2020-12-03
+- **Kreski i kropki** — 1967 · Władysław Nehrebecki · PL · Animation · rated 8/10 · seen 2020-10-12
+- **Kung Fury** — 2015 · David Sandberg · SE · Action, Comedy, Science Fiction · rated 8/10 · seen 2015-06-07
+- **Kyousogiga** (Kyousougiga) — 2011 · Rie Matsumoto · JP · Science Fiction, Fantasy, Animation · rated 8/10 · seen 2022-01-09
+- **L'homme orchestre** (The One-Man Band) — 1900 · Georges Méliès · FR · Comedy, Fantasy, Music · rated 8/10 · seen 2021-06-09
+- **La jetée** (La Jetée) — 1962 · Chris Marker · FR · Drama, Romance, Science Fiction · rated 8/10 · seen 2021-10-31
+- **La marmite diabolique** (The Diabolical Saucepan) — 1903 · Georges Méliès · FR · Comedy, Fantasy · rated 8/10 · seen 2021-05-13
+- **Łagodna** (A Gentle Spirit) — 1985 · Piotr Dumała · PL · Animation, Drama · rated 8/10 · seen 2020-08-30
+- **Le Chevalier mystere** (The Mysterious Knight) — 1899 · Georges Méliès · FR · Fantasy · rated 8/10 · seen 2021-06-09
+- **Le Magicien** (The Magician) — 1898 · Georges Méliès · FR · Fantasy, Drama · rated 8/10 · seen 2021-06-09
+- **Le portrait mystérieux** (The Mysterious Portrait) — 1899 · Georges Méliès · FR · Fantasy · rated 8/10 · seen 2021-06-09
+- **Le Renard et l'Oisille** — 2019 · Émilie Mercier · FR · rated 8/10 · seen 2021-04-04
+- **Le Repas fantastique** (A Fantastical Meal) — 1900 · Georges Méliès · FR · Comedy, Fantasy · rated 8/10 · seen 2021-05-13
+- **Le voyage dans la lune** (A Trip to the Moon) — 1902 · Georges Méliès · FR · History, Adventure, Science Fiction · rated 8/10 · seen 2021-10-31
+- **Les Aventures de Guillaume Tell** — 1898 · Georges Méliès · FR · rated 8/10 · seen 2021-06-09
+- **Lifted** — 2006 · Gary Rydstrom · US · Family, Animation, Science Fiction · rated 8/10 · seen 2020-08-27
+- **Logorama** — 2009 · H5 · FR · Animation, Crime, Comedy · rated 8/10 · seen 2015-03-24
+- **Lorenzo** — 2004 · Mike Gabriel · US · Animation, Comedy, Family · rated 8/10 · seen 2020-07-23
+- **Lost & Found** (Lost, Found) — 2018 · Andrew Goldsmith, Bradley Slabe · US · Drama, Family · rated 8/10 · seen 2020-08-30
+- **Lou** — 2017 · Dave Mullins · US · Family, Fantasy, Animation · rated 8/10 · seen 2020-09-04
+- **Lucky Day Forever** — 2011 · Piotr Milczarek · PL · Animation, Science Fiction · rated 8/10 · seen 2020-10-16
+- **Madame Tutli-Putli** — 2007 · Chris Lavis · CA · Animation, Thriller · rated 8/10 · seen 2021-11-07
+- **Metamorfoza** (Metamorphosis) — 1978 · Roman Kachanov · SU · Animation · rated 8/10 · seen 2023-03-26
+- **Mobile** — 2010 · Verena Fels · DE · Animation, Family · rated 8/10 · seen 2020-09-10
+- **Monstersymfonie** — 2012 · Kiana Naghshineh · DE · rated 8/10 · seen 2020-11-24
+- **Murarz** (The Bricklayer) — 1973 · Krzysztof Kieślowski · PL · Documentary · rated 8/10 · seen 2021-05-07
+- **My Best Friend's Birthday** — 1987 · Quentin Tarantino · US · rated 8/10 · seen 2021-03-13
+- **Myth: A Frozen Tale** — 2019 · Jeff Gipson · US · Animation, Family, Fantasy · rated 8/10 · seen 2021-10-02
+- **Nie wiem** (I Don't Know) — 1977 · Krzysztof Kieślowski · PL · Documentary · rated 8/10 · seen 2021-06-23
+- **Nie wiem** (I Don't Know) — 1976 · Krzysztof Kieślowski · PL · Documentary · rated 8/10 · seen 2021-06-23
+- **Niezwyciężeni** (The Unconquered) — 2017 · Michal Misinski · PL · Animation, Documentary · rated 8/10 · seen 2020-06-20
+- **Nowy Janko Muzykant** (New Janko the Musician) — 1960 · Jan Lenica · PL · Animation · rated 8/10 · seen 2020-10-15
+- **Oh Sheep!** — 2012 · Gottfried Mentor · DE · Animation, Comedy · rated 8/10 · seen 2020-08-25
+- **Out** — 2020 · Steven Clay Hunter · US · Animation, Comedy, Drama · rated 8/10 · seen 2021-10-02
+- **Paperman** — 2012 · John Kahrs · US · Animation, Family, Romance · rated 8/10 · seen 2020-07-23
+- **Partly Cloudy** — 2009 · Peter Sohn · US · Animation, Family, Comedy · rated 8/10 · seen 2020-09-02
+- **Party Central** — 2014 · Kelsey Mann · US · Family, Comedy, Animation · rated 8/10 · seen 2020-09-04
+- **Party Central** — 2013 · Kelsey Mann · US · Family, Comedy, Animation · rated 8/10 · seen 2020-09-04
+- **Paths of Hate** — 2010 · Damian Nenow · PL · Action, Animation · rated 8/10 · seen 2020-08-22
+- **Pearl** — 2016 · Patrick Osborne · US · Animation · rated 8/10 · seen 2020-08-26
+- **Pianoid** — 2015 · Janina Putzker-Wimshurst · DE · rated 8/10 · seen 2020-11-26
+- **Piper** — 2016 · Alan Barillaro · US · Family, Animation · rated 8/10 · seen 2020-03-25
+- **Postrzyżyny** — 1973 · Piotr Szpakowicz · PL · Animation · rated 8/10 · seen 2020-10-17
+- **Presto** — 2008 · Doug Sweetland · US · Animation, Family, Comedy · rated 8/10 · seen 2020-09-02
+- **Querelle enfantine** (Childish Quarrel) — 1896 · Louis Lumière · FR · Documentary · rated 8/10 · seen 2021-05-12
+- **REW-FFWD** — 1994 · Denis Villeneuve · CA · Drama, Documentary · rated 8/10 · seen 2021-01-04
+- **Rondo Alla Turca z Sonaty A-dur KV 331** — 1993 · Witold Giersz · PL · rated 8/10 · seen 2020-09-07
+- **Royal Madness** — 2019 · Mriganka Bhuyan, Romain Couderette, Eunbyeol Ko, Sean Lewis, Milàn Salmona, Wenkai Wang · FR · Animation, Fantasy · rated 8/10 · seen 2020-08-25
+- **Scrambled** — 2017 · Bastiaan Schravendeel · NL · Animation, Comedy · rated 8/10 · seen 2020-08-21
+- **Shine** — 2016 · Alexander Dietrich, Johannes Flick · DE · Animation, Fantasy · rated 8/10 · seen 2020-11-24
+- **Síðasti bærinn** (The Last Farm) — 2004 · Rúnar Rúnarsson · IS · Drama · rated 8/10 · seen 2017-06-23
+- **Smok** (Legendy Polskie: Smok) — 2015 · Tomasz Bagiński · PL · rated 8/10 · seen 2020-06-20
+- **Some Thing** — 2015 · Elena Walf · DE · Animation · rated 8/10 · seen 2020-11-25
+- **Spring** — 2019 · Andy Goralczyk · NL · Fantasy, Animation, Adventure · rated 8/10 · seen 2020-08-25
+- **Strojenie instrumentów** (Tuning the Instruments) — 2000 · Jerzy Kucia · PL · Animation · rated 8/10 · seen 2020-10-17
+- **Sztuka spadania** (Fallen Art) — 2004 · Tomasz Bagiński · PL · Animation, Comedy, War · rated 8/10 · seen 2015-09-05
+- **Tangled Ever After** — 2012 · Nathan Greno · US · Animation, Comedy, Action · rated 8/10 · seen 2020-07-23
+- **Tango** (The Tango of Jealousy) — 1981 · Zbigniew Rybczyński · PL · Comedy · rated 8/10 · seen 2020-10-10
+- **The Adventures of André and the Wally B.** (The Adventures of André and Wally B.) — 1984 · Alvy Ray Smith · US · Family, Animation, Comedy · rated 8/10 · seen 2020-09-01
+- **The Dam Keeper** — 2014 · Dice Tsutsumi · US · Animation, Drama, Family · rated 8/10 · seen 2020-08-30
+- **The Dot and the Line: A Romance in Lower Mathematics** — 1965 · Chuck Jones · US · Animation, Family · rated 8/10 · seen 2022-01-01
+- **The Escape** — 2016 · Andre Surya · US · Thriller, Action · rated 8/10 · seen 2020-08-03
+- **The Highway Rat** — 2017 · Jeroen Jaspaert · UK · Family, Animation, Comedy · rated 8/10 · seen 2021-01-02
+- **The Magic Sword** — 1901 · Walter R. Booth · UK · Fantasy, Romance · rated 8/10 · seen 2021-06-09
+- **The Maker** — 2011 · Christopher Kezelos · AU · Animation, Music, Fantasy · rated 8/10 · seen 2020-08-27
+- **The Metamorphosis of Mr. Samsa** — 1977 · Caroline Leaf · CA · Animation · rated 8/10 · seen 2020-08-30
+- **The Pixar Shorts: A Short History** — 2007 · Tony Kaplan, Erica Milsom · US · Animation, Family, Documentary · rated 8/10 · seen 2020-09-02
+- **The Rise and Fall of Globosome** — 2014 · Patrick Schur · DE · Animation · rated 8/10 · seen 2020-08-24
+- **The Turning Point** (THE TURNING POINT) — 2020 · Steve Cutts · UK · Drama, Crime · rated 8/10 · seen 2021-04-25
+- **The Wrong Rock** — 2018 · Michael Cawood · UK · Animation, Drama · rated 8/10 · seen 2021-04-15
+- **Tick Tock Tale** — 2010 · Dean Wellins · US · Animation · rated 8/10 · seen 2020-07-23
+- **Tom Whisky ou L'illusioniste toqué** (Addition and Subtraction) — 1900 · Georges Méliès · FR · Comedy · rated 8/10 · seen 2021-06-09
+- **Toy Story: Small Fry** (Small Fry) — 2011 · Angus MacLane · US · Animation, Comedy, Family · rated 8/10 · seen 2020-09-02
+- **Twardowsky** (Legendy Polskie: Twardowsky) — 2015 · Tomasz Bagiński · PL · Science Fiction, Action, Comedy · rated 8/10 · seen 2020-06-20
+- **Twardowsky 2.0** (Legendy Polskie: Twardowsky 2.0) — 2016 · Tomasz Bagiński · PL · rated 8/10 · seen 2020-06-20
+- **Upside Down, or The Human Flies** (Upside Down; or, The Human Flies) — 1899 · Walter R. Booth · UK · Fantasy · rated 8/10 · seen 2021-05-15
+- **Vincent** — 1982 · Tim Burton · US · Animation, Fantasy · rated 8/10 · seen 2020-10-20
+- **Weekends** — 2017 · Trevor Jimenez · US · Animation, Drama · rated 8/10 · seen 2023-01-28
+- **When the Day Breaks** — 1999 · Wendy Tilby · CA · Animation · rated 8/10 · seen 2021-11-07
+- **Worlds Apart** — 2011 · Michael Huber · DE · Science Fiction, Animation · rated 8/10 · seen 2020-08-25
+- **Zing** — 2011 · Kyra Buschor, Cynthia Collins · DE · Animation, Fantasy · rated 8/10 · seen 2020-09-10
+- **Abiogenesis** — 2011 · Richard Mans · NL · Science Fiction, Animation · rated 7/10 · seen 2020-08-20
+- **Adam and Dog** — 2011 · Minkyu Lee · KR · Animation, Drama · rated 7/10 · seen 2020-08-26
+- **Adam and Dog** — 2012 · Minkyu Lee · US · Animation, Drama · rated 7/10 · seen 2020-08-26
+- **Afternoon Class** — 2015 · Kyoung Bae Oh · KR · Animation, Comedy · rated 7/10 · seen 2020-08-28
+- **Alike** — 2015 · Daniel Martínez Lara · ES · Animation, Drama · rated 7/10 · seen 2020-08-20
+- **Ambition** — 2014 · Tomasz Bagiński · PL · Science Fiction, History, Mystery · rated 7/10 · seen 2015-09-05
+- **Angelinho** — 2011 · Maryna Shchipak · AQ · rated 7/10 · seen 2020-11-26
+- **Anytime Is Ice Cream Time** — 2013 · Steve Cutts · UK · rated 7/10 · seen 2020-08-28
+- **Auntie Edna** — 2018 · Ted Mathot · US · Animation, Comedy, Family · rated 7/10 · seen 2021-06-22
+- **Borrowed Time** — 2015 · Andrew Coats, Lou Hamou-Lhadj · US · Animation, Drama, Western · rated 7/10 · seen 2020-08-30
+- **Bottle Rocket** — 1993 · Wes Anderson · US · Comedy, Crime · rated 7/10 · seen 2021-02-21
+- **Brain Divided** — 2013 · Josiah Haworth, Joon Shik Song, Joon Soo Song · US · Animation, Comedy, Romance · rated 7/10 · seen 2020-08-29
+- **Burrow** — 2020 · Madeline Sharafian · US · Animation, Family, Comedy · rated 7/10 · seen 2021-10-02
+- **Camino de agua para un pez** (Water Path for a Fish) — 2016 · Mercedes Marro · FR · Adventure, Animation · rated 7/10 · seen 2021-04-04
+- **Canada Vignettes: Log Driver's Waltz** — 1979 · John Weldon · CA · Animation, Music, Comedy · rated 7/10 · seen 2021-04-15
+- **Canned** — 2014 · Nathaniel Hatton, Ivan Joy, Tanya Zaman · US · rated 7/10 · seen 2020-08-29
+- **Carne** — 1991 · Gaspar Noé · FR · Drama, Thriller, Crime · rated 7/10 · seen 2021-03-20
+- **Castello Cavalcanti** — 2013 · Wes Anderson · US · Comedy, Drama · rated 7/10 · seen 2021-02-14
+- **Catch It** — 2015 · Paul Bar, Marion Demaret, Nadège Forner, Pierre-Baptiste Marty, Julien Robyn, Jordan Soler · FR · Animation, Comedy, Family · rated 7/10 · seen 2020-08-27
+- **Chateau De Sable** (Sand Castle) — 2015 · Clément Bolla, Léo Brunel, Loris Cavalier, Camille Jalabert, Oscar Malet · FR · Fantasy, Animation, Action · rated 7/10 · seen 2020-08-22
+- **Czar kółek** (The Charm of the Wheels) — 1966 · Kazimierz Urbanski · PL · Animation · rated 7/10 · seen 2020-10-15
+- **Czarny Kapturek** (Little Black Riding Hood) — 1983 · Piotr Dumała · PL · Animation · rated 7/10 · seen 2020-09-01
+- **Czerwone i czarne** (The Red and the Black) — 1963 · Witold Giersz · PL · Animation, Comedy · rated 7/10 · seen 2020-09-04
+- **Dear Basketball** — 2017 · Glen Keane · US · Animation, History · rated 7/10 · seen 2022-01-02
+- **Der Besuch** — 2006 · Zeljka Morawek · DE · Drama · rated 7/10 · seen 2020-09-11
+- **Desire** — 2014 · Carl Beauchemin, Thomas Chrétien, David Forest · AQ · Animation · rated 7/10 · seen 2020-08-29
+- **Devotion** — 2013 · Philémon Salerno, Marc-André Perez, Agathe Le Marchand, Emeline Mateus, Flavien Garnier · FR · rated 7/10 · seen 2020-08-26
+- **Dia de los Muertos** (Día de los muertos) — 2013 · Ashley Graham, Kate Reynolds, Lindsey St. Pierre · US · rated 7/10 · seen 2020-08-29
+- **Dimanche** (Sunday) — 2011 · Patrick Doyon · CA · Animation · rated 7/10 · seen 2021-04-04
+- **Dji. Death Sails** — 2014 · Dmitriy Voloshin · RU · Animation, Comedy · rated 7/10 · seen 2021-04-04
+- **Droga** (Road) — 1971 · Mirosław Kijowicz · PL · Animation · rated 7/10 · seen 2020-09-08
+- **Dug's Special Mission** — 2009 · Bob Peterson · US · Animation, Comedy, Family · rated 7/10 · seen 2020-09-02
+- **Ex-E.T.** — 2008 · Benoit Bargeton, Rémy Froment, Nicolas Gracia, Yannick Lasfas · FR · Animation, Comedy, Fantasy · rated 7/10 · seen 2020-08-21
+- **Exode** — 2014 · Kathleen Cartier, Sandrine Gimenez, Nicolas Mrikhi, Baptiste Roy, Thomas Saez · FR · Animation · rated 7/10 · seen 2020-08-25
+- **Fabryka** (Factory) — 1970 · Krzysztof Kieślowski · PL · Documentary · rated 7/10 · seen 2021-05-06
+- **Falling Leaves** — 1912 · Alice Guy-Blaché · US · Drama · rated 7/10 · seen 2021-12-07
+- **Fantascope tylostoma** (Fantascope 'Tylostoma') — 2006 · Kōji Yamamura · JP · Animation, Fantasy · rated 7/10 · seen 2021-04-25
+- **Feast** — 2014 · Patrick Osborne · US · Animation, Comedy, Drama · rated 7/10 · seen 2020-07-23
+- **Flipped** — 2018 · Zhang Lichuan · AQ · Animation, Family, Comedy · rated 7/10 · seen 2021-04-04
+- **Float** — 2019 · Bobby Rubio · US · Animation, Drama, Family · rated 7/10 · seen 2021-06-22
+- **Francis** — 2013 · Richard Hickey · ES · Animation, Drama, Mystery · rated 7/10 · seen 2020-08-30
+- **Frog Perspective** — 2016 · Eliza Plocieniak-Alvarez · PL · rated 7/10 · seen 2020-11-26
+- **Geist** — 2015 · Ben Harper, Sean Mullen, Alex Sherwood · IE · Animation, Drama, Horror · rated 7/10 · seen 2020-08-22
+- **Geri's Game** — 1997 · Jan Pinkava · US · Animation, Comedy, Family · rated 7/10 · seen 2020-09-01
+- **Golden Shot** — 2015 · Gökalp Gönen · AQ · Animation, Fantasy · rated 7/10 · seen 2020-08-24
+- **Goliath** (Die großen und die kleinen Wünsche - David gegen Goliath) — 2007 · Carole Fontaine · FR · Comedy, Drama, TV Movie · rated 7/10 · seen 2020-08-25
+- **Goutte d'Or** (A Drop of Gold) — 2013 · Christophe Peladan · FR · Animation, Fantasy · rated 7/10 · seen 2020-08-25
+- **Help** — 2015 · unknown · AQ · Drama · rated 7/10 · seen 2022-01-02
+- **Hoshi no Koe** (Voices of a Distant Star) — 2002 · Makoto Shinkai · JP · Animation, Science Fiction, Romance · rated 7/10 · seen 2021-06-24
+- **If I was God** (If I Was God) — 2015 · Cordell Barker · CA · Animation · rated 7/10 · seen 2020-08-29
+- **Jack-Jack Attack** — 2005 · Brad Bird · US · Adventure, Animation, Family · rated 7/10 · seen 2020-09-01
+- **Jak to się dzieje, pyta Agnisia, że na ekranie widzimy misia** (How Does It Happen, Agnisia Is Asking, That We Can See a Bear on the Screen) — 1970 · Julian Józef Antonisz · PL · Animation · rated 7/10 · seen 2020-09-09
+- **Je t'aime** — 2010 · Mamoru Oshii · JP · Animation, Science Fiction · rated 7/10 · seen 2021-06-22
+- **Jinxy Jenkins, Lucky Lou** — 2014 · Michael Bidinger, Michelle Kwon · US · Comedy, Animation · rated 7/10 · seen 2020-08-20
+- **John Henry** — 2000 · Mark Henn · US · Animation, Drama, Family · rated 7/10 · seen 2020-07-23
+- **Katedra** (The Cathedral) — 2002 · Tomasz Bagiński · PL · Science Fiction, Animation · rated 7/10 · seen 2015-09-05
+- **Kitbull** — 2019 · Rosana Sullivan · US · Animation, Family, Drama · rated 7/10 · seen 2020-08-26
+- **La Luna** (La luna) — 2011 · Enrico Casarosa · US · Animation, Family, Fantasy · rated 7/10 · seen 2020-09-02
+- **Labirynt** (Labyrinth) — 1962 · Jan Lenica · PL · Animation · rated 7/10 · seen 2020-09-08
+- **Lamp Life** — 2020 · Valerie LaPointe · US · Adventure, Animation, Comedy · rated 7/10 · seen 2021-10-02
+- **Lava** — 2014 · James Ford Murphy · US · Animation, Family · rated 7/10 · seen 2020-09-04
+- **Le gouffre** (The Gulf) — 2014 · Carl Beauchemin, Thomas Chrétien, David Forest · CA · Drama, Animation · rated 7/10 · seen 2020-08-22
+- **Legenda** (Legend) — 1975 · Krzysztof Kieślowski · PL · Documentary · rated 7/10 · seen 2021-06-23
+- **Libido** — 1967 · Alina Maliszewska · PL · Animation · rated 7/10 · seen 2020-10-16
+- **Loop** — 2020 · Erica Milsom · US · Science Fiction, Drama · rated 7/10 · seen 2021-10-02
+- **Luxo Jr.** — 1986 · John Lasseter · US · Animation, Comedy · rated 7/10 · seen 2020-09-01
+- **Man** (The Amazing Spider-Man) — 2012 · Steve Cutts · UK · Action, Adventure, Science Fiction · rated 7/10 · seen 2020-08-28
+- **Mimoza** (Mimosa) — 1973 · Piotr Szpakowicz · PL · Animation · rated 7/10 · seen 2020-10-15
+- **Moby & the Void Pacific Choir: Are You Lost in the World Like Me** — 2016 · Steve Cutts · UK · rated 7/10 · seen 2020-08-28
+- **Mr. Indifferent** — 2018 · Aryasb Feiz · AQ · rated 7/10 · seen 2020-08-29
+- **My Happy End** — 2007 · Oded Davidoff · IL · Animation · rated 7/10 · seen 2021-04-04
+- **Negative Space** — 2017 · Max Porter · US · Animation, Drama · rated 7/10 · seen 2020-08-26
+- **Nerwowe życie kosmosu** (A Nervous Life of Cosmos) — 1986 · Piotr Dumała · PL · Animation · rated 7/10 · seen 2020-10-12
+- **Night Spinning** — 2017 · Yi Luo · DE · rated 7/10 · seen 2020-11-24
+- **One-Man Band** (One Man Band) — 2005 · Mark Andrews, Andrew Jimenez · US · Animation, Family, Music · rated 7/10 · seen 2020-09-01
+- **Operacja Bazyliszek** (Legendy Polskie: Operacja Bazyliszek) — 2016 · Tomasz Baginski · PL · rated 7/10 · seen 2020-06-20
+- **Out of Order** (Out Of Order) — 1916 · Louis Myll · US · Comedy · rated 7/10 · seen 2021-05-11
+- **Partysaurus Rex** — 2012 · Mark Walsh · US · Family, Animation, Comedy · rated 7/10 · seen 2020-09-04
+- **Piirongin piiloissa** (Chest of Drawers) — 2011 · Sanni Lahtinen · FI · Animation, Fantasy, Comedy · rated 7/10 · seen 2020-08-29
+- **Prep & Landing Stocking Stuffer: Operation: Secret Santa** — 2010 · Kevin Deters, Stevie Wermers-Skelton · US · Animation, Family, Fantasy · rated 7/10 · seen 2020-07-23
+- **Protozoa** — 1993 · Darren Aronofsky · US · Drama · rated 7/10 · seen 2021-03-08
+- **Prześwietlenie** (X-Ray) — 1974 · Krzysztof Kieślowski · PL · Documentary · rated 7/10 · seen 2021-05-06
+- **Ptak** (The Bird) — 1968 · Ryszard Czekała · PL · Animation · rated 7/10 · seen 2020-09-08
+- **Puparia** — 2020 · Shingo Tamagawa · JP · Animation, Drama, Fantasy · rated 7/10 · seen 2021-10-30
+- **Reaping for Dummies** — 2013 · Jonas Martin Larsen, Øyvind Fiksdal, Eilef Sandnæs, Eskild Carlsen, Yvonne Engbråten · DK · Animation, Comedy · rated 7/10 · seen 2020-08-25
+- **Red's Dream** — 1987 · John Lasseter · US · Animation, Family · rated 7/10 · seen 2020-09-01
+- **Redone** — 2017 · David James Armsby · US · rated 7/10 · seen 2020-08-30
+- **Refleksy** (Reflections) — 1979 · Jerzy Kucia · PL · Animation · rated 7/10 · seen 2020-10-12
+- **Room on the Broom** — 2012 · Max Lang, Jani Lowe · UK · Family, Animation, TV Movie · rated 7/10 · seen 2021-01-01
+- **Ruin** — 2011 · Wes Ball · US · Animation, Science Fiction, Action · rated 7/10 · seen 2020-08-20
+- **Sanjay's Super Team** — 2015 · Sanjay Patel · US · Animation, Family, Fantasy · rated 7/10 · seen 2020-09-04
+- **Schwarzfahrer** (Black Rider) — 1993 · Pepe Danquart · DE · Comedy · rated 7/10 · seen 2017-06-23
+- **Sintel** — 2010 · Colin Levy · NL · Animation, Fantasy · rated 7/10 · seen 2020-08-25
+- **Smash and Grab** — 2019 · Brian Larsen · US · Animation, Science Fiction · rated 7/10 · seen 2020-08-25
+- **Soar** (My Name Is Now, Elza Soares) — 2014 · Alyce Tzue · US · Documentary · rated 7/10 · seen 2020-08-27
+- **Stalk of the Celery Monster** — 1979 · Tim Burton · US · Animation, Comedy · rated 7/10 · seen 2020-10-20
+- **Super Rhino** — 2009 · Nathan Greno · US · Animation, Comedy · rated 7/10 · seen 2021-10-02
+- **Tea Time** — 2015 · Thomas Bourret, Vincent Delmon, François Gris, Julian Mifsud, Rémi Vincent · FR · Comedy, Science Fiction, Animation · rated 7/10 · seen 2020-08-27
+- **The Albatross** — 2015 · Joel Best, Alex Jeremy, Alex Karonis · AU · Animation · rated 7/10 · seen 2020-08-25
+- **The Ballad of Nessie** — 2011 · John Lasseter · US · Animation, Family, Fantasy · rated 7/10 · seen 2020-07-23
+- **The Bead Game** — 1977 · Ishu Patel · CA · Animation · rated 7/10 · seen 2021-11-07
+- **The Gruffalo's Child** — 2011 · Max Lang · UK · Adventure, Animation, Family · rated 7/10 · seen 2021-01-02
+- **The Little Matchgirl** — 2006 · Roger Allers · US · Animation, Drama, Family · rated 7/10 · seen 2020-07-23
+- **The Lost Thing** — 2010 · Shaun Tan · AU · Animation, Drama, Science Fiction · rated 7/10 · seen 2020-08-30
+- **The OceanMaker** — 2014 · Lucas Martell · AQ · Drama, Action, Animation · rated 7/10 · seen 2020-08-23
+- **The Sad Reality of Our World** — 2017 · Steve Cutts · UK · rated 7/10 · seen 2020-08-28
+- **The Street** — 1976 · Caroline Leaf · CA · Comedy, Animation, Drama · rated 7/10 · seen 2021-11-07
+- **Tramwaj** (Tramway) — 1966 · Krzysztof Kieślowski · PL · Drama, Romance · rated 7/10 · seen 2021-05-05
+- **Tsumiki no ie** (La Maison en Petits Cubes) — 2008 · Kunio Katō · JP · Animation, Drama · rated 7/10 · seen 2017-01-16
+- **Tumbleweed Tango** — 2013 · Samuel Stephens, Chris Wolfgang Mauch · DE · Animation · rated 7/10 · seen 2020-08-30
+- **Warzywniak, 360 St.** (Warzywniak, 360 st.) — 2006 · Andrzej Barański · PL · Animation · rated 7/10 · seen 2020-10-16
+- **Watermelon: A Cautionary Tale** — 2019 · Kefei Li, Connie He · US · Animation · rated 7/10 · seen 2020-08-21
+- **Wedding Cake** — 2013 · Viola Baldwin · US · Comedy, Animation · rated 7/10 · seen 2020-08-21
+- **Wild Life** — 2011 · Amanda Forbis, Wendy Tilby · CA · Animation, Western, Fantasy · rated 7/10 · seen 2021-11-07
+- **World of Tomorrow** — 2015 · Don Hertzfeldt · US · Animation, Drama, Science Fiction · rated 7/10 · seen 2020-04-25
+- **Your Friend the Rat** — 2007 · Jim Capobianco · US · Animation, Family, Comedy · rated 7/10 · seen 2020-09-02
+- **Z miasta Łodzi** (From the City of Lodz) — 1969 · Krzysztof Kieślowski · PL · Documentary · rated 7/10 · seen 2021-05-06
+- **Z punktu widzenia nocnego portiera** (From a Night Porter's Point of View) — 1977 · Krzysztof Kieślowski · PL · Documentary · rated 7/10 · seen 2021-06-25
+- **Zbrodnia i kara** (Crime and Punishment) — 2000 · Piotr Dumała · PL · Animation, Crime · rated 7/10 · seen 2020-09-01
+- **Żegnaj paro!** (Farewell to Steam) — 1974 · Ryszard Antoniszczak · PL · Animation · rated 7/10 · seen 2020-10-16
+- **1001 Nights** — 1998 · Yoshitaka Amano, Mike Smith · JP · Animation, Drama, Fantasy · rated 6/10 · seen 2021-03-20
+- **120 Seconds to Get Elected** — 2006 · Denis Villeneuve · US · Comedy · rated 6/10 · seen 2021-01-04
+- **22 vs. Earth** — 2021 · Kevin Nolting · US · Family, Comedy, Fantasy · rated 6/10 · seen 2021-10-04
+- **9** (9th Company) — 2005 · Shane Acker · US · War, Drama, History · rated 6/10 · seen 2020-10-01
+- **Alarm** — 2009 · Moo-Hyun Jang · KR · Animation, Comedy · rated 6/10 · seen 2020-08-27
+- **Alien: Covenant - Prologue: The Crossing** — 2017 · Ridley Scott · US · rated 6/10 · seen 2020-10-25
+- **Alma** — 2009 · Rodrigo Blaas · US · Animation, Fantasy, Horror · rated 6/10 · seen 2020-08-30
+- **Amblin'** — 1968 · Steven Spielberg · US · Drama, Romance · rated 6/10 · seen 2021-03-12
+- **Amour Fou** — 2015 · Florian Werzinski · DE · Drama, Comedy, Romance · rated 6/10 · seen 2020-11-24
+- **Animated Guide to Polish Success** — 2010 · Rafał Wojtunik · PL · rated 6/10 · seen 2020-08-25
+- **Ban-do** (Peninsula) — 2020 · unknown · KR · Horror, Action, Thriller · rated 6/10 · seen 2020-08-31
+- **Baobab** — 2011 · Amin Albahari · AQ · Drama, Animation · rated 6/10 · seen 2020-08-29
+- **Bear Me** — 2012 · Katarzyna Wilk · PL · Comedy, Animation · rated 6/10 · seen 2020-11-24
+- **Blush** — 2021 · Joe Mateo · US · Animation, Romance, Science Fiction · rated 6/10 · seen 2021-10-06
+- **Can I Stay** (Can I Stay?) — 2015 · Paige Carter, Katie Knudson, Onyee Lo · US · Fantasy, Animation, Family · rated 6/10 · seen 2020-08-27
+- **Captain Sparky vs. The Flying Saucers** — 2013 · Mark Waring · US · Animation, Family · rated 6/10 · seen 2021-10-09
+- **Citipati** — 2015 · Andreas Feix · DE · Animation · rated 6/10 · seen 2020-09-11
+- **Cosmos Laundromat** — 2015 · Francesco Siddi · NL · Animation, Fantasy · rated 6/10 · seen 2020-07-15
+- **Cousin Ben Troop Screening with Jason Schwartzman** (Cousin Ben Troop Screening) — 2012 · Wes Anderson · US · Comedy · rated 6/10 · seen 2021-02-14
+- **Cowboy Bebop PV: Don't Bother None** (Cowboy Bebop: Don't Bother None) — 2012 · Shinichiro Watanabe · JP · Action, Crime, Western · rated 6/10 · seen 2021-04-25
+- **Dareka no Manazashi** (Someone's Gaze) — 2013 · Makoto Shinkai · JP · Animation, Drama, Science Fiction · rated 6/10 · seen 2021-06-25
+- **Dear Alice** — 2018 · Matt Cerini · US · Animation, Drama · rated 6/10 · seen 2020-08-27
+- **Descendants** — 2008 · Patrick Cunningham, Heiko van der Scherm · NL · Animation, Drama, Fantasy · rated 6/10 · seen 2020-08-23
+- **Destino** — 2003 · Dominique Monfery · US · Animation, Music, Family · rated 6/10 · seen 2021-10-02
+- **Doodlebug** — 1997 · Christopher Nolan · US · Horror · rated 6/10 · seen 2021-06-27
+- **DragonSlayer** — 2004 · Robert Kuczera · DE · Animation · rated 6/10 · seen 2020-09-11
+- **Dreammaker** — 2007 · Leszek Plichta · DE · Animation, Fantasy · rated 6/10 · seen 2020-09-20
+- **Esperalia** — 1983 · Jerzy Kalina · PL · Animation · rated 6/10 · seen 2020-10-17
+- **Extinguished** — 2017 · Ashley Anderson, Jacob Mann · US · Animation, Romance · rated 6/10 · seen 2020-08-18
+- **Fox Tale** (A Fox Tale) — 2011 · Doosun Shin · US · Animation, Fantasy, Action · rated 6/10 · seen 2020-08-21
+- **Frankenweenie** — 1984 · Tim Burton · US · Horror, Family, Science Fiction · rated 6/10 · seen 2021-10-09
+- **Frozen Fever** — 2015 · Chris Buck · US · Animation, Family, Adventure · rated 6/10 · seen 2020-07-23
+- **Goldman v Silverman** — 2020 · Josh Safdie, Benny Safdie · US · Drama, Comedy · rated 6/10 · seen 2021-11-28
+- **Gus** — 2010 · Andrew Martin · AQ · Animation, Family · rated 6/10 · seen 2020-08-25
+- **Hair Love** — 2019 · Matthew A. Cherry · US · Animation, Family, Comedy · rated 6/10 · seen 2020-08-18
+- **Hawaiian Vacation** — 2011 · Gary Rydstrom · US · Animation, Family, Comedy · rated 6/10 · seen 2020-09-02
+- **Hessi James** (Cogney James) — 2002 · Johannes Weiland · DE · rated 6/10 · seen 2020-09-11
+- **Ice pepper** (Ice Pepper) — 2017 · Maïlly Boulin, Guillaume Escots, Alicia Journet, Soizic Lefeuvre, Clément Malargé, Eddy Martinez · FR · Animation · rated 6/10 · seen 2020-08-27
+- **Jak nauka wyszła z lasu** (How Did Books Leave the Forest) — 1970 · Julian Józef Antonisz · PL · Animation · rated 6/10 · seen 2020-09-09
+- **Kernseif** — 2005 · Sebastian Badea, Alexander Kiesl · DE · Animation · rated 6/10 · seen 2020-09-11
+- **Kinematograf** (The Kinematograph) — 2009 · Tomasz Bagiński · PL · Animation, Drama · rated 6/10 · seen 2020-06-14
+- **Klaps** (Slate) — 1976 · Krzysztof Kieślowski · PL · Documentary · rated 6/10 · seen 2021-05-06
+- **Klatki** (Cages) — 1966 · Mirosław Kijowicz · PL · Animation · rated 6/10 · seen 2020-09-04
+- **Knick Knack** — 1989 · John Lasseter · US · Animation, Comedy, Family · rated 6/10 · seen 2020-09-01
+- **Koncert życzeń** (Concert of Requests) — 1967 · Krzysztof Kieślowski · PL · Drama · rated 6/10 · seen 2021-05-06
+- **Kotonoha no Niwa** (The Garden of Words) — 2013 · Makoto Shinkai · JP · Animation, Drama, Romance · rated 6/10 · seen 2020-07-22
+- **Le Fauteuil** — 2013 · Gaëtan Brasse, Charles Dieric, Elodie Dos Santos, Quentin Luna, Enzo Vieules · FR · Drama, Animation · rated 6/10 · seen 2020-08-27
+- **Le Gros et le maigre** (The Fat and the Lean) — 1961 · Roman Polański · PL · Comedy · rated 6/10 · seen 2021-03-13
+- **Little Tombstone** — 2011 · Frédéric Azais, Théo Di Malta, Benjamin Leymonerie, Adrien Quillet · FR · Action, Western, Animation · rated 6/10 · seen 2020-08-25
+- **Machina Mortem** — 2016 · Jan Postema · NL · rated 6/10 · seen 2020-08-22
+- **Mater and the Ghostlight** — 2006 · John Lasseter · US · Animation, Comedy, Family · rated 6/10 · seen 2020-09-01
+- **Mezame no Hakobune** (Open Your Mind) — 2005 · Mamoru Oshii · JP · Animation, Mystery · rated 6/10 · seen 2021-03-16
+- **Między Wrocławiem a Zieloną Górą** (Between Wrocław and Zielona Góra) — 1972 · Krzysztof Kieślowski · PL · Documentary · rated 6/10 · seen 2021-05-06
+- **Mike's New Car** — 2002 · Pete Docter · US · Animation, Comedy, Family · rated 6/10 · seen 2020-09-01
+- **Miss Fritter's Racing Skoool** — 2017 · Steve Purcell · US · Animation, Family, Comedy · rated 6/10 · seen 2020-09-04
+- **Our Wonderful Nature** — 2008 · Tomer Eshed · DE · Animation, Comedy · rated 6/10 · seen 2021-04-15
+- **Powder Keg** — 2001 · Alejandro González Iñárritu · US · Action, War · rated 6/10 · seen 2020-08-03
+- **Przed rajdem** (Before the Rally) — 1971 · Krzysztof Kieślowski · PL · Documentary · rated 6/10 · seen 2021-05-06
+- **Przygoda marynarza** — 1958 · Witold Giersz · PL · Animation · rated 6/10 · seen 2020-10-17
+- **Purl** — 2018 · Kristen Lester · US · Animation, Comedy · rated 6/10 · seen 2020-08-26
+- **Quay** — 2015 · Christopher Nolan · US · Documentary · rated 6/10 · seen 2020-08-26
+- **Rain** (Heart Full of Rain) — 1997 · unknown · AQ · TV Movie, Drama · rated 6/10 · seen 2020-06-20
+- **Rain or Shine** — 2016 · Felix Massie · US · Animation, Comedy · rated 6/10 · seen 2022-01-02
+- **Riley's First Date?** — 2015 · Josh Cooley · US · Animation, Family · rated 6/10 · seen 2020-09-04
+- **Rituel** — 2014 · Jean-Baptiste Bellande, Maxime Couturat, Sebastien Durouchoux, Maeva Gruaz, Amaury Rospars · FR · rated 6/10 · seen 2020-08-25
+- **Rubato** — 2012 · Félix Ferrand, Florian Magnin, Jordan Mercredi, Corentin Provost, Marjolaine Robin · FR · rated 6/10 · seen 2020-08-27
+- **Sailor's Delight** — 2017 · Louise Aubertin, Eloïse Girard, Marine Meneyrol, Jonas Ritter, Loucas Rongeart, Amandine Thomoux · FR · Animation, Comedy · rated 6/10 · seen 2020-08-29
+- **Sailor's Delight** — 2018 · Louise Aubertin, Eloïse Girard · FR · Animation, Comedy · rated 6/10 · seen 2020-08-29
+- **Skywatch** — 2019 · Colin Levy · US · Science Fiction, Action · rated 6/10 · seen 2020-09-05
+- **Son of Jaguar** — 2017 · Jorge R. Gutiérrez, Jan Pinkava · US · Animation · rated 6/10 · seen 2022-01-01
+- **Sonder** — 2018 · Neth Nom · AQ · Animation · rated 6/10 · seen 2020-08-26
+- **Special Delivery** — 2015 · Tim Ruffle · UK · Animation, Comedy, Fantasy · rated 6/10 · seen 2022-01-02
+- **Star** — 2001 · Guy Ritchie · US · Comedy, Action · rated 6/10 · seen 2020-08-03
+- **Syn** (The Son) — 1970 · Ryszard Czekała · PL · Drama, Animation · rated 6/10 · seen 2020-09-08
+- **Taking the Plunge** — 2015 · Thaddaeus Andreades, Elizabeth Ku-Herrero, Nicholas Manfredi, Marie Raoult · US · Animation · rated 6/10 · seen 2020-08-29
+- **The Amputee** — 1974 · David Lynch · US · Drama, Comedy · rated 6/10 · seen 2020-08-31
+- **The Apple** — 1959 · unknown · AQ · rated 6/10 · seen 2020-09-07
+- **The Cat Came Back** — 1988 · Cordell Barker · CA · Music, Animation, Comedy · rated 6/10 · seen 2021-04-15
+- **The Colors of Evil** — 2012 · Alyse Miller, Phillip Simon · US · Animation, Comedy, Fantasy · rated 6/10 · seen 2020-08-27
+- **The Danish Poet** — 2006 · Torill Kove · CA · Animation · rated 6/10 · seen 2021-11-07
+- **The Dingles** — 1988 · Les Drew · CA · Animation · rated 6/10 · seen 2021-11-07
+- **The Gruffalo** — 2009 · Max Lang · UK · Animation, Family, TV Movie · rated 6/10 · seen 2021-01-01
+- **The Legend of Mor'du** — 2012 · Brian Larsen · US · Animation, Family, Fantasy · rated 6/10 · seen 2020-09-04
+- **The Short Story of a Fox and a Mouse** (A Fox and a Mouse) — 2015 · Camille Chaix, Hugo Jean, Juliette Jourdan, Marie Pillier, Kévin Roger · FR · Animation · rated 6/10 · seen 2020-08-27
+- **The Walk Home** — 2014 · Steve Cutts · UK · Drama · rated 6/10 · seen 2020-08-28
+- **The Wishgranter** — 2016 · Kal Athannassov, John McDonald · US · Romance, Animation, Comedy · rated 6/10 · seen 2020-08-18
+- **Toy Story of Terror** (Toy Story of Terror!) — 2013 · Angus MacLane · US · Adventure, Animation, Comedy · rated 6/10 · seen 2021-10-03
+- **Tuurngait** — 2011 · Paul-Emile Boucher, Rémy Dupont, Benjamin Flouw, Mickaël Riciotti, Alexandre Toufaili · FR · Fantasy, Animation · rated 6/10 · seen 2020-08-30
+- **Tysiąc i jeden drobiazgów** (One Thousand and One Trifles) — 1972 · Julian Józef Antonisz · PL · Animation · rated 6/10 · seen 2020-09-10
+- **Urs** — 2009 · Moritz Mayerhofer · DE · Adventure, Animation, Drama · rated 6/10 · seen 2020-09-20
+- **Us Again** — 2021 · Zach Parrish · US · Animation, Drama, Family · rated 6/10 · seen 2021-10-02
+- **Village of Idiots** — 1999 · Eugene Fedorenko · CA · Animation · rated 6/10 · seen 2021-11-07
+- **Wake Up Call** — 2014 · Steve Cutts · UK · Animation, Comedy · rated 6/10 · seen 2020-08-28
+- **Where Are They Now?** (Once Were Warriors: Where Are They Now?) — 2014 · Steve Cutts · UK · Documentary · rated 6/10 · seen 2020-08-28
+- **Wielka ucieczka!** (Wielka ucieczka) — 2006 · Damian Nenow · PL · Animation · rated 6/10 · seen 2020-08-25
+- **Wiklinowy kosz** (Wicker Basket) — 1966 · Mirosław Kijowicz · PL · Animation · rated 6/10 · seen 2020-10-15
+- **Wire Cutters** — 2014 · Jack Anderson · US · Animation, Drama, Science Fiction · rated 6/10 · seen 2020-08-21
+- **Zawodowiec** — 2004 · Marek Serafinski · PL · rated 6/10 · seen 2020-10-17
+- **Życiorys** (Curriculum Vitae) — 1975 · Krzysztof Kieślowski · PL · Drama · rated 6/10 · seen 2021-06-09
+- **Adumu** — 2009 · Adam Temple · CA · Animation, War · rated 5/10 · seen 2020-09-05
+- **Ambush** — 2001 · John Frankenheimer · US · Action · rated 5/10 · seen 2020-08-03
+- **Apel** (The Roll-Call) — 1970 · Ryszard Czekała · PL · Animation · rated 5/10 · seen 2020-09-08
+- **Apollo** — 2010 · Felix Gönnert · DE · Drama, Fantasy, Science Fiction · rated 5/10 · seen 2021-04-04
+- **Autonomous** — 2016 · Mike Jeffs · AQ · Action, Drama, Science Fiction · rated 5/10 · seen 2020-08-20
+- **Bankiet** (The Banquet) — 1976 · Zofia Oraczewska · PL · Animation · rated 5/10 · seen 2020-10-16
+- **Bibo** — 2012 · Anton Chistiakov, Mikhail Dmitriev · RU · rated 5/10 · seen 2020-08-27
+- **Big Boom** — 2018 · Brian Watson · US · Animation, Science Fiction · rated 5/10 · seen 2020-08-24
+- **Big Buck Bunny** — 2008 · Sacha Goedegebure · NL · Animation, Comedy, Family · rated 5/10 · seen 2020-08-29
+- **Birdstrike** — 2008 · Johannes Schiehsl · DE · Animation · rated 5/10 · seen 2020-10-10
+- **Buggy Night** — 2014 · Mark Oftedal · US · Animation · rated 5/10 · seen 2022-01-02
+- **Canvas** — 2020 · Frank E. Abney III · US · Animation, Family, Drama · rated 5/10 · seen 2020-12-12
+- **Carmen Sandiego: To Steal or Not to Steal** — 2020 · Jos Humphrey, Kenny Park, Mike West · CA · Animation, Adventure, Family · rated 5/10 · seen 2021-01-24
+- **Chosen** — 2001 · Ang Lee · US · Action · rated 5/10 · seen 2020-08-03
+- **Electroshock** — 2011 · Pascal Chandelier, Hugo Jackson, Elliot Maren, Valentin Michel, Bastien Mortelecque · FR · Animation, Fantasy, Science Fiction · rated 5/10 · seen 2020-08-29
+- **Finding Dory: Marine Life Interviews** (Marine Life Interviews) — 2016 · Austin Madison · US · Animation, Family, Comedy · rated 5/10 · seen 2020-09-04
+- **Fortune Cookie** — 1991 · Darren Aronofsky · US · Comedy · rated 5/10 · seen 2021-03-11
+- **George & A.J.** (George and A.J.) — 2009 · Josh Cooley · US · Animation, Family, Comedy · rated 5/10 · seen 2020-09-02
+- **Gondora** — 1997 · Katsuhiro Otomo · JP · Animation · rated 5/10 · seen 2021-03-08
+- **Grunwald. Walka 600-lecia** (Grunwald: Walka 600-lecia) — 2010 · Tomasz Bagiński · PL · Animation · rated 5/10 · seen 2020-06-20
+- **If Anything Happens I Love You** — 2020 · Will McCormack · US · Drama, Animation · rated 5/10 · seen 2020-11-20
+- **Monsterbox** — 2012 · Ludovic Gavillet, Derya Kocaurlu, Lucas Hudson, Colin Jean-Saunier · FR · Animation, Family, Fantasy · rated 5/10 · seen 2020-08-27
+- **Moonbird** — 1959 · John Hubley · US · Animation, Family, Fantasy · rated 5/10 · seen 2020-09-07
+- **Moonrise Kingdom: Animated Book Short** — 2012 · Wes Anderson · US · rated 5/10 · seen 2021-02-14
+- **My Grandmother Ironed the King's Shirts** — 1999 · Torill Kove · CA · Animation · rated 5/10 · seen 2021-11-07
+- **Next Floor** — 2008 · Denis Villeneuve · CA · Comedy · rated 5/10 · seen 2021-01-04
+- **No Limits** (岡田智美 / No Limits) — 2004 · Anja Perl, Max Stolzenberg, Heidi Wittlinger · DE · rated 5/10 · seen 2020-12-03
+- **No Time** — 1994 · Darren Aronofsky · US · Comedy · rated 5/10 · seen 2021-02-21
+- **Once Upon a Snowman** — 2020 · Trent Correy, Dan Abraham · US · Adventure, Animation, Comedy · rated 5/10 · seen 2021-10-02
+- **Origami** — 2012 · Kei Kanamori · JP · Animation · rated 5/10 · seen 2020-08-25
+- **Planet Unknown** — 2016 · Brandon Oldenburg, Lampton Enochs · US · Animation, Science Fiction, Adventure · rated 5/10 · seen 2020-08-20
+- **Podróż** (Journey) — 1970 · Daniel Szczechura · PL · Animation · rated 5/10 · seen 2020-10-02
+- **Poilus** — 2016 · Benjamin Botella · FR · Animation, War · rated 5/10 · seen 2020-08-22
+- **Print Your Guy** — 2015 · Sarah Barry, Quentin Cornillon, Laura Gisselaire, Alwin Leene, Lucas Scheurer, Thomas Sigaud · FR · Animation · rated 5/10 · seen 2020-08-21
+- **Ręka** (Hand) — 1974 · Mirosław Kijowicz · PL · Animation · rated 5/10 · seen 2020-10-15
+- **Selfie Cat** — 2016 · Geoffrey Assie, Emeline Bernard, Elsa Divet · FR · Animation · rated 5/10 · seen 2020-08-27
+- **Snack Attack** — 2012 · Andrew Cadelago · AQ · Animation, Family · rated 5/10 · seen 2020-08-21
+- **Spellbound** — 2010 · unknown · AQ · Horror, Comedy, Fantasy · rated 5/10 · seen 2020-08-28
+- **Sweet Cocoon** — 2014 · Marine Deschamps, Sylvain Demeusois, Marion Stocker, Barbara Florczyk, Julien Sardet · FR · Adventure, Comedy, Animation · rated 5/10 · seen 2020-08-27
+- **Szychta** — 1988 · Jerzy Kalina · PL · Animation · rated 5/10 · seen 2020-10-15
+- **The Alphabet** — 1968 · David Lynch · US · Animation, Horror · rated 5/10 · seen 2020-08-31
+- **Tin Toy** — 1988 · John Lasseter · US · Animation, Family · rated 5/10 · seen 2020-09-01
+- **Toy Story That Time Forgot** — 2014 · Steve Purcell · US · Animation, Family, Adventure · rated 5/10 · seen 2021-10-03
+- **Two Worlds** (Between Two Worlds) — 2013 · unknown · AQ · Documentary · rated 5/10 · seen 2020-08-26
+- **Wind** — 2019 · Edwin Chang · US · Music · rated 5/10 · seen 2021-06-22
+- **Xenogenesis** — 1978 · James Cameron · US · Science Fiction, Action · rated 5/10 · seen 2021-03-13
+- **Zmiana warty** (The Changing of the Guard) — 1958 · Halina Bielińska, Włodzimierz Haupe · PL · Animation, Fantasy · rated 5/10 · seen 2020-10-02
+- **850 meters** (850 Meters) — 2013 · Joeri Christiaen · EU · Animation · rated 4/10 · seen 2020-08-22
+- **Beerbug** — 2012 · Ander Mendia · ES · rated 4/10 · seen 2020-08-22
+- **Children** (Children...) — 2011 · Takuya Okada, Naoki Izutsu, Temari Kondo, Takahiro Miyauchi · JP · Crime, Thriller, Drama · rated 4/10 · seen 2020-08-27
+- **Edward Psie Serce** — 2011 · unknown · PL · rated 4/10 · seen 2020-10-17
+- **Fobia** (Phobia) — 1967 · Julian Antonisz · PL · Comedy, Animation · rated 4/10 · seen 2020-09-07
+- **Lokomotywa** (Locomotive) — 1976 · Zbigniew Rybczyński · PL · Animation · rated 4/10 · seen 2020-10-12
+- **Mr. Incredible and Pals** — 2005 · Ted Mathot · US · Animation, Comedy, Science Fiction · rated 4/10 · seen 2021-06-26
+- **Stara latarnia** — 1987 · Bogdan Nowicki · PL · Animation, Horror · rated 4/10 · seen 2020-10-17
+- **The End of Pinky** — 2013 · Claire Blanchet · CA · Animation · rated 4/10 · seen 2021-11-07
+- **The Short Films of David Lynch** — 2002 · David Lynch · US · rated 4/10 · seen 2020-08-31
+- **Wallflower Tango** — 2011 · Wolfram Kampffmeyer · DE · Action, Romance, Animation · rated 4/10 · seen 2020-09-11
+- **Wypadek** (Accident) — 1971 · Ryszard Czekała · PL · Animation, Drama · rated 4/10 · seen 2020-10-16
+- **Autonomous Soul** — 2002 · Derek Shimoda · US · rated 3/10 · seen 2020-08-20
+- **Beat the Devil** — 2002 · Tony Scott · US · Comedy, Action, Fantasy · rated 3/10 · seen 2020-08-03
+- **Darkwave: Edge of the Storm** — 2016 · Darren Scales · AU · Science Fiction · rated 3/10 · seen 2020-10-10
+- **Manivald** — 2017 · Chintis Lundgren · EE · Animation, Romance, Comedy · rated 3/10 · seen 2021-11-07
+- **Narodziny** (The birth) — 1995 · Marek Serafiński · PL · Animation · rated 3/10 · seen 2020-10-15
+- **Racing Beats** — 2006 · Steffen Hacker, Alexander Kiesl · DE · rated 3/10 · seen 2020-12-03
+- **Sekcja zwłok** (Autopsy) — 1973 · Ryszard Czekała · PL · Drama, Animation · rated 3/10 · seen 2020-09-09
+- **Six Figures Getting Sick** (Six Men Getting Sick) — 1966 · David Lynch · US · Animation · rated 3/10 · seen 2020-08-31
+- **Six Figures Getting Sick** (Six Men Getting Sick) — 1967 · David Lynch · US · Animation · rated 3/10 · seen 2020-08-31
+- **Syn Gwiazd** (Syn gwiazd) — 2006 · Marek Serafiński · PL · rated 3/10 · seen 2020-10-16
+- **The Follow** — 2001 · Wong Kar-wai · US · Action, Mystery, Romance · rated 3/10 · seen 2020-08-03
+- **Ticker** — 2002 · Joe Carnahan · US · Action, Adventure, Crime · rated 3/10 · seen 2020-08-03
+- **Rated R for Nudity** — 2011 · Denis Villeneuve · CA · Comedy, Animation · rated 2/10 · seen 2021-01-04
+- **The Chase** — 2012 · Philippe Gamer · FR · Animation · rated 2/10 · seen 2020-08-22
+- **The Grandmother** — 1970 · David Lynch · US · Animation, Horror · rated 2/10 · seen 2020-08-31
+- **Tolerantia** — 2008 · Ivan Ramadan · DE · Animation · rated 2/10 · seen 2020-08-25
+- **Absurd Encounter with Fear** — 1967 · David Lynch · US · Horror · rated 1/10 · seen 2020-08-31
+- **24ème chasseurs alpins: leçon de boxe** (24th Mountain Infantry: Boxing Lesson) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **6ème bataillon de chasseurs alpins: ascension du sommet du diable** — 1898 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **99ème régiment d'infanterie: assaut du portique** — 1897 · Louis Lumière · FR · seen 2021-05-12
+- **A bord du 'Formidable': escrime au sabre** — 1896 · Louis Lumière · FR · seen 2021-05-12
+- **À bord du 'Formidable': Ramassage du linge** — 1898 · Louis Lumière · FR · seen 2021-05-12
+- **A bord du 'Tonkin' - Le saut à la corde** (Aboard the 'Tonkin' - Rope skipping) — 1900 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **A Camp Smithy** — 1899 · Robert Paul · UK · seen 2021-05-15
+- **A Chess Dispute** — 1903 · Robert W. Paul · UK · Comedy · seen 2021-06-09
+- **A Hand Shake** — 1892 · W.K.L. Dickson · US · Documentary · seen 2021-05-11
+- **A Railway Collision** — 1900 · Robert W. Paul · UK · Drama · seen 2021-05-15
+- **A Sea Cave Near Lisbon** — 1896 · Robert Paul · UK · Documentary · seen 2021-05-13
+- **A Switchback Railway** — 1898 · Robert Paul · UK · Documentary · seen 2021-05-15
+- **Acteurs japonais: Bataille au sabre** (Acteurs japonais : bataille au sabre) — 1898 · Louis Lumière · FR · Action, Documentary · seen 2021-05-13
+- **Acteurs japonais: Exercice de la perruque** (Japanese Actors: Wig Exercise) — 1898 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Alger: place du gouvernement** (Alger : place du gouvernement) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Alger: rue Bab-Azoun** (Alger: Rue Bab-Azoun) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **An Exciting Pillow Fight** — 1900 · Robert Paul · UK · Documentary · seen 2021-05-15
+- **An Extraordinary Cab Accident** — 1903 · Robert W. Paul · UK · Comedy · seen 2021-06-09
+- **An Over-Incubated Baby** — 1901 · Walter R. Booth · UK · Science Fiction, Comedy · seen 2021-05-15
+- **Andalusian Dance** — 1896 · Henry Short · UK · seen 2021-05-11
+- **Anima** — 2019 · Paul Thomas Anderson · US · Music · seen 2019-09-08
+- **Annabelle Butterfly Dance** — 1894 · W.K.L. Dickson · US · Documentary · seen 2021-05-11
+- **Annabelle Sun Dance** — 1894 · W.K.L. Dickson · US · Documentary · seen 2021-05-11
+- **Annie Oakley** — 1894 · W.K.L. Dickson · US · Documentary, Western · seen 2021-05-11
+- **Après le bal** (After the Ball) — 1897 · Georges Méliès · FR · Drama · seen 2021-06-09
+- **Après le lancement: sortie des invités et du public** (Après le lancement : sortie des invités et du public) — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Aquarium** — 1895 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Arles: La sortie de St-Throphime** — 1901 · Louis Lumière · FR · seen 2021-05-13
+- **Army Life** (Army Life: Mounted Infantry) — 1900 · Robert Paul · UK · Documentary · seen 2021-05-15
+- **Arrivée d'un bateau à vapeur** (Steamship Arrival) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Arrivée d'un train à Perrache** (Arrival of a Train at Perrache) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Arrivée de cyclistes à Turin** — 1900 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Arroseur et arrosé** (The Sprinkler Sprinkled) — 1896 · Louis Lumière · FR · Comedy · seen 2021-05-13
+- **Assassinat de Kleber** — 1897 · Louis Lumière · FR · History · seen 2021-05-13
+- **Assiettes tournantes** — 1896 · Louis Lumière · FR · seen 2021-05-12
+- **Ateliers de La Ciotat** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Athlete with Wand** — 1894 · W.K.L. Dickson · US · Documentary · seen 2021-05-11
+- **Attack on a Piquet** — 1899 · Robert Paul · UK · seen 2021-05-15
+- **Attelage d'un camion** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Attentat contre maître Labori** (The Attempt Against the Life of Maitre Labori) — 1899 · Georges Méliès · FR · seen 2021-06-09
+- **Autruches** (Ostriches) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-11
+- **Avenue des Champs-Elysées et le Petit Palais** — 1900 · Louis Lumière · FR · seen 2021-05-13
+- **Bagarre entre journalistes** (The Fight of Reporters) — 1899 · Georges Méliès · FR · seen 2021-06-09
+- **Baignade de chevaux** (Horses Bathing) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Baignade de nègres** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Baignade en mer** (Swimming in the Sea) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Baignade en mer** (Swimming in the Sea) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-11
+- **Baignade en mer** (Swimming in the Sea) — 1895 · Louis Lumière · FR · Documentary · seen 2021-05-10
+- **Bains en mer** (Baths in the Sea) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Bains sur la Saône** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Bal d'enfants** (Children's Ball) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Balançoires** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Ballet, 'Le carnaval de Venise' II** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Band Drill** — 1894 · W.K.L. Dickson · US · Documentary · seen 2021-05-11
+- **Barcelone, panorama du port I** (Barcelone, panorama du port II) — 1896 · Louis Lumière · FR · seen 2021-05-12
+- **Barcelone, panorama du port II** — 1896 · Louis Lumière · FR · seen 2021-05-13
+- **Barque sortant du port** (Boat Leaving the Port) — 1895 · Louis Lumière · FR · Drama, Documentary · seen 2021-05-11
+- **Barrage du Nil** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Basse-cour** (Poultry-Yard) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-11
+- **Bassin des Tuileries** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Bataille de boules de neige** — 1900 · Louis Lumière · FR · seen 2021-05-12
+- **Bataille de boules de neige** (Snowball Fight) — 1896 · Louis Lumière · FR · Documentary, Comedy · seen 2021-05-12
+- **Bataille de femmes** (Women Fighting) — 1896 · Louis Lumière · FR · Comedy, Action · seen 2021-05-12
+- **Bataille de neige** (Snowball Fight) — 1900 · Louis Lumière · FR · Documentary, Comedy · seen 2021-05-12
+- **Batteuse de blé** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Belfast, Castle Place** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Belfast, exercices de sauvetage** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Belfast, Queen's Bridge** (Belfast : Queen's Bridge) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Berlin, Hallesches Thor** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Berlin: Panoptikum** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Berne: Arrivée du roi de Siam** (Berne : arrivée du roi de Siam) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Bethléem, une place** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Beyrouth, place des canons** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Bicycliste** (Bicyclist) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-11
+- **Billy Edwards and the Unknown** — 1895 · W.K.L. Dickson · US · Documentary · seen 2021-05-11
+- **Blackfriars Bridge** — 1896 · Robert Paul · UK · Documentary · seen 2021-05-13
+- **Blacksmith Scene** (Blacksmithing Scene) — 1893 · W.K.L. Dickson · US · Drama · seen 2021-05-11
+- **Bocal aux poissons-rouges** (Bocal aux poissons rouges) — 1895 · Louis Lumière · FR · Documentary · seen 2021-05-11
+- **Bonne d'enfants et soldat** (The Nanny and the Soldier) — 1897 · Louis Lumière · FR · Comedy · seen 2021-05-13
+- **Boulevard Anspach** (Bruxelles, Boulevard Anspach) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Bourricots sous les palmiers** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Boxeurs en tonneaux** (Boxers in Barrels) — 1897 · Louis Lumière · FR · Comedy · seen 2021-05-13
+- **Brooklyn Bridge** (New York, Brooklyn Bridge) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Brooklyn, Fulton Street** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Bruxelles, Grande place** — 1897 · Louis Lumière · FR · seen 2021-05-13
+- **Bucking Broncho** — 1894 · W.K.L. Dickson · US · Documentary, Western · seen 2021-05-11
+- **Budapest, cortège de la Couronne** (Budapest, Crown Procession) — 1896 · Charles Moisson · HU · Documentary · seen 2021-05-12
+- **Budapest, cortege dr la Couronne** — 1896 · Louis Lumière · FR · seen 2021-05-12
+- **Budapest, pont suspendu** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Buffalo Bill: peaux rouges** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Buffalo Dance** — 1894 · W.K.L. Dickson · US · Documentary, Western · seen 2021-05-11
+- **Buy Your Own Cherries** — 1904 · Robert W. Paul · UK · Drama · seen 2021-06-09
+- **Caicedo (with Pole)** — 1894 · W.K.L. Dickson · US · Documentary · seen 2021-05-11
+- **Caped Mounted Riflemen Passing St Paul's** — 1897 · Robert Paul · UK · Documentary · seen 2021-05-13
+- **Carmaux, chargement du coke** (Carmaux, Loading the Coke) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Carmaux, défournage du coke** (Carmaux: Drawing Out the Coke) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Carmencita** — 1894 · W.K.L. Dickson · US · Documentary · seen 2021-05-11
+- **Carrare, train sortant d'un tunnel** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Cavalcade (Char du soleil)** — 1896 · Louis Lumière · FR · seen 2021-05-12
+- **Cavalcade historique en Sardaigne** — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Chaise en Bascule** (Chaise en bascule) — 1900 · Louis Lumière · FR · Comedy · seen 2021-05-12
+- **Chamonix: Arrivée en voitures des breaks d'excursion** — 1901 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Chamonix: Le Mauvais Pas** (Chamonix: Le mauvais pas) — 1901 · Louis Lumière · FR · seen 2021-05-12
+- **Champs-Élysées** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Chapeaux à transformations** (Transformation by Hats) — 1895 · Louis Lumière · FR · Comedy · seen 2021-05-10
+- **Charmeur d'oiseaux** — 1897 · Louis Lumière · FR · seen 2021-05-12
+- **Chasse au Renard: Le Départ** — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Cheval de haute école II** (Cheval de haute école, II) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Chicago défilé de policemen** (Chicago Police Parade) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Chicago, grande roue** (Chicago, Grande Roue) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Chiens savants: Equilibres** (Chiens savants: équilibres) — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Chiens savants: la danse serpentine** — 1898 · Louis Lumière · FR · seen 2021-05-13
+- **Chinese Laundry Scene** — 1895 · W.K.L. Dickson · US · Crime, Comedy · seen 2021-05-11
+- **Chirgwin in His Humorous Business** — 1896 · Robert Paul · UK · seen 2021-05-13
+- **Chirgwin Plays a Scotch Reel** — 1896 · Robert Paul · UK · seen 2021-05-13
+- **Cirque de Gavarni: Caravane** — 1901 · Louis Lumière · FR · seen 2021-05-12
+- **Cock Fight, No. 2** — 1894 · W.K.L. Dickson · US · Documentary · seen 2021-05-11
+- **Colleurs d'affiches** — 1897 · Louis Lumière · FR · Comedy · seen 2021-05-12
+- **Cologne, Panorama pris d'un bateau** (Panorama pris d'un bateau) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Cologne, pont de bateaux** — 1896 · Louis Lumière · FR · seen 2021-05-13
+- **Combat de coqs** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Combat de coqs** — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Come Along Do!** (Come Along, Do!) — 1898 · Robert Paul · UK · Comedy · seen 2021-05-15
+- **Comic Costume Race** — 1896 · Robert Paul · UK · Comedy, Documentary · seen 2021-05-13
+- **Concert** — 1896 · Louis Lumière · FR · seen 2021-05-13
+- **Concours de bébés** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Concours de boules** (Boules Game) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Conseil de guerre en séance à Rennes** (The Court Martial at Rennes) — 1899 · Georges Méliès · FR · Drama · seen 2021-06-09
+- **Constantinople, panorama des rives du Bosphore** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Coolies à Saïgon** (Coolies in Saigon) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Corbett and Courtney Before the Kinetograph** — 1894 · W.K.L. Dickson · US · Documentary · seen 2021-05-11
+- **Coronation Durbar at Delhi** — 1903 · Robert W. Paul · UK · Documentary · seen 2021-06-09
+- **Cortège arabe** (Arab Cortege, Geneva) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Cortège au mariage de la princesse Maud** (Procession to Princess Maud's Wedding) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Cortège de gymnastique devant LL. MM.** — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Couronnement du Czar: Les Souverains et les Invités se rendant au sacre (escalier rouge)** — 1896 · Louis Lumière · FR · seen 2021-05-13
+- **Course de taureaux, sortie de la quadrille** — 1896 · Louis Lumière · FR · seen 2021-05-13
+- **Course en sac** (Sack Race) — 1895 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Course en sacs** (Sack Race) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Courses d'anes: II, la course** (Courses d'ânes: II, la course) — 1896 · Louis Lumière · FR · seen 2021-05-12
+- **Cronje's Surrender to Lord Roberts** — 1900 · Robert Paul · UK · History · seen 2021-05-15
+- **Cuirassiers à cheval** (Cuirassiers on Horseback) — 1896 · Louis Lumière · FR · Documentary, War · seen 2021-05-11
+- **Cuirassiers traversant la Saône à la nage** — 1897 · Louis Lumière · FR · seen 2021-05-13
+- **Cupid at the Washtub** — 1897 · Robert Paul · UK · Comedy · seen 2021-05-15
+- **Cyclistes et cavaliers arrivant au cottage** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Danse au bivouac** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Danse d'hommes** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Danse de l'éventail** — 1905 · Louis Lumière · FR · Documentary
+- **Danse de l'éventail** — 1899 · FR · Documentary · seen 2021-05-13
+- **Danse des Ciocciari** — 1897 · Louis Lumière · FR · seen 2021-05-12
+- **Danse indienne** — 1902 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Danse Japonaise: Gueichas en Jinrikcha** (Danse japonaise, III : Gueichas en Jinrikcha) — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Danse serpentine** (Serpentine Dance) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Danse Tyrolienne** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Danses espagnoles** — 1900 · Louis Lumière · FR · Music · seen 2021-05-13
+- **Danseuse de ballet** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Danseuses Cambodgiennes du roi Norodom. II.** (Danseuses cambodgiennes du roi Norodom, II) — 1902 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Danseuses des rues** (London Street Dancers) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Das Boxende Känguruh** (The Boxing Kangaroo) — 1895 · Max Skladanowsky · DE · Documentary, Action · seen 2021-05-11
+- **Débarquement** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Défense du drapeau** (La défense du drapeau) — 1902 · Louis Lumière · FR · History, Drama, War · seen 2021-05-13
+- **Défilé de jeunes filles au lycée** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Défilé de voitures de bébés à la pouponnière de Paris** (Procession of Baby Carriages at a Paris Nursery) — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Défilé des Vétérans en costumes anciens: Vue de près** (Défilé des vétérans en costumes anciens : II. Vue de près) — 1899 · Louis Lumière · FR · seen 2021-05-12
+- **Démolition d'un mur** (Demolition of a Wall) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Départ de cyclistes** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Départ de Jérusalem en chemin de fer** (Leaving Jerusalem by Railway) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Départ de S. M. le Roi et de M. le Président pour la chasse à Rambouillet** — 1904 · Louis Lumière · FR · seen 2021-05-13
+- **Départ en gondole de LL. MM.** — 1898 · Louis Lumière · FR · seen 2021-05-12
+- **Départ en voiture** — 1895 · Louis Lumière · FR · Documentary · seen 2021-05-11
+- **Descente de la grande pyramide** (Descent of the Great Pyramid) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Dickson Experimental Sound Film** — 1894 · W.K.L. Dickson · US · Music · seen 2021-05-11
+- **Dickson Greeting** — 1891 · W.K.L. Dickson · US · Documentary · seen 2021-05-11
+- **Douche après le bain** — 1896 · Louis Lumière · FR · Family, Documentary · seen 2021-05-12
+- **Dragons traversant la Saône à la nage** (Dragoons Crossing the Sâone) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Dragoons Passing St Paul's** — 1897 · Robert Paul · UK · Documentary · seen 2021-05-15
+- **Drat That Boy** (Drat That Boy!) — 1904 · Robert W. Paul · UK · Comedy · seen 2021-06-09
+- **Dresde, vieux quartier allemand à I'Exposition** — 1896 · Louis Lumière · FR · seen 2021-05-12
+- **Dresden, August-Brücke** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Duel au pistolet** (Pistol Duel) — 1896 · Louis Lumière · FR · Drama · seen 2021-05-12
+- **École de cavalerie de Saumur, le carrousel militaire: Changement de main** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Écriture à l'envers** (Writing Backwards) — 1896 · Louis Lumière · FR · seen 2021-05-13
+- **Edison Kinetoscopic Record of a Sneeze** — 1894 · W.K.L. Dickson · US · Documentary · seen 2021-05-11
+- **Embarquement d'une chaudiere** (Loading a Boiler) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-11
+- **Enfants annamites ramassant des sapèques devant la pagode des dames** (Indochina: Children Gathering Coins Scattered by Western Women) — 1900 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Enfants jouant aux billes** (Children Playing Marbles) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Enfants pêchant des crevettes** (Children Digging for Clams) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Entre Calais et Douvres** (Between Calais and Dover) — 1897 · Louis Lumière · FR · Comedy · seen 2021-06-09
+- **Entrée d'une noce à l'église** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Entrée de l'Exposition** (Stockholm, entrée de l'exposition) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Entrée du cinématographe** (Vienne, entrée du cinématographe) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Entretien de Dreyfus et de sa femme à Rennes** (Dreyfus Meets His Wife at Rennes) — 1899 · Georges Méliès · FR · Drama · seen 2021-06-09
+- **Entry of the Scots' Guard Into Bloemfontein** — 1900 · Robert Paul · UK · seen 2021-05-15
+- **Epinal: Les bords de la Moselle** — 1900 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Equilibre et moulinet** (Équilibre et moulinet) — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Escamotage d'une dame au théâtre Robert Houdin** — 1896 · Georges Méliès · FR · seen 2021-06-09
+- **Escrime au sabre japonais** (Japanese Sword Fencing) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Espagne : courses de taureaux, II** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Evian: Embarquement** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Evian: procession de la Fête-Dieu I** (Evian: Procession de la Fête-Dieu I) — 1898 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Exécution de Jeanne d'Arc** (The Execution of Joan of Arc) — 1898 · Louis Lumière · FR · Drama · seen 2021-05-13
+- **Exercices de ski, I** — 1904 · Louis Lumière · FR · seen 2021-05-13
+- **Exercises de lances** — 1903 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Expérience du ballon dirigeable de M. Santos-Dumont : I. Sortie du ballon** (Expérience du ballon dirigeable de M. Santos Dumont. I. Sortie du ballon) — 1900 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Expérience du ballon dirigeable de M. Santos-Dumont : II. Le ballon et son moteur** (Expérience du ballon dirigeable de M. Santos Dumont. II. Le ballon et son moteur) — 1900 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Falling Cat** — 1894 · W.K.L. Dickson · US · seen 2021-05-11
+- **Faneurs** (Tedders) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Faust: apparition de Méphistophélès** (Faust: Appearance of Mephistopheles) — 1897 · Louis Lumière · FR · Horror, Fantasy · seen 2021-05-12
+- **Fencing** — 1892 · W.K.L. Dickson · US · Documentary · seen 2021-05-11
+- **Fête au village** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Fête de Paris 1899: Concours d'automobiles fleuries** (Fête de Paris 1899: Concours d'automobiles fleuries (départ)) — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Fêtes du couronnement de S.M. le Tsar Nicolas II: Saint-Pétersbourg, rue Tverskaïa** — 1896 · Louis Lumière · FR · seen 2021-05-13
+- **Fêtes du Palais-Royal: Un tournoi** — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Fêtes franco-russes: Cherbourg, Entrée des Souverains russes et du président de la République sous le hall** — 1896 · Louis Lumière · FR · seen 2021-05-12
+- **Feu de bois** (Wood Fire) — 1897 · Louis Lumière · FR · seen 2021-05-13
+- **Fire Rescue Scene** — 1894 · W.K.L. Dickson · US · Drama · seen 2021-05-11
+- **Fishermen and Boat at Port Said** — 1897 · Henry Short · UK · Documentary · seen 2021-05-15
+- **Football** — 1897 · Robert Paul · UK · Documentary · seen 2021-05-13
+- **Fumerie d'opium** (Opium Den) — 1901 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Gadające głowy** (Talking Heads) — 1980 · Krzysztof Kieślowski · PL · Documentary · seen 2016-11-24
+- **Géant et nain** (Giant and Dwarf) — 1896 · Louis Lumière · FR · Comedy · seen 2021-05-12
+- **Genève (Exposition 1896): rentrée à l'étable** — 1896 · Louis Lumière · FR · seen 2021-05-13
+- **Glenroy Bros., No. 2** — 1894 · W.K.L. Dickson · US · Comedy · seen 2021-05-11
+- **Glissade sur la neige** — 1901 · Louis Lumière · FR · seen 2021-05-12
+- **Gospodarze** — 1972 · Krzysztof Kieślowski · PL · seen 2021-05-08
+- **Guillaume Tell** — 1897 · Louis Lumière · FR · Animation, Comedy · seen 2021-05-12
+- **Hadj Cheriff** — 1894 · W.K.L. Dickson · US · seen 2021-05-11
+- **Hammerfest** — 1903 · Robert W. Paul · UK · Documentary · seen 2021-06-09
+- **Head of Colonial Procession** — 1897 · Robert Paul · UK · Documentary · seen 2021-05-13
+- **Head of Procession Including Bluejackets** — 1897 · Robert Paul · UK · Documentary · seen 2021-05-13
+- **His Brave Defender** — 1900 · Robert W. Paul · UK · Crime, Thriller, Comedy · seen 2021-05-15
+- **His Only Pair** — 1902 · Robert W. Paul · UK · Comedy · seen 2021-06-09
+- **Hyde Park Bicycling Scene** — 1896 · Robert Paul · UK · Documentary · seen 2021-05-13
+- **I Promenade du dragon à Cholon** (Promenade du dragon à Cholon, I) — 1902 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **I une rue à Tokyo** (Une rue à Tokyo, [I]) — 1898 · Louis Lumière · FR · seen 2021-05-13
+- **II. Inauguration (longueur : 8 mètres)** — 1896 · Louis Lumière · FR · seen 2021-05-13
+- **Illusions fantasmagoriques** (The Famous Box Trick) — 1898 · Georges Méliès · FR · Fantasy · seen 2021-06-09
+- **Imperial Japanese Dance** — 1894 · W.K.L. Dickson · US · seen 2021-05-11
+- **Intérieur d'une imprimerie (tirage d'une épreuve)** — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Intérieur d'une vacherie** — 1900 · Louis Lumière · FR · Comedy · seen 2021-05-13
+- **Japonaise faisant sa toilette** — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Jérusalem, le saint sépulcre** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Jérusalem, porte de Jaffa, côté Est** (Jérusalem : porte de Jaffa, côté Est) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Jeu de la poêle** — 1897 · Louis Lumière · FR · seen 2021-05-12
+- **Jeux d'enfants dans une rue** — 1896 · Louis Lumière · FR · seen 2021-05-12
+- **Joe Pera Talks You to Sleep** — 2016 · Joe Pera · US · Animation, Comedy · seen 2023-02-16
+- **Jongleur javanais** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Joueurs de cartes arrosés** — 1896 · Louis Lumière · FR · Comedy · seen 2021-05-13
+- **Kiddies Cakewalk** (The Kiddies' Cakewalk) — 1903 · Robert W. Paul · UK · Documentary · seen 2021-06-09
+- **Kiel: lancement du 'Fürst-Bismarck'** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **L'affaire Dreyfus** (The Dreyfus Affair) — 1899 · Georges Méliès · FR · Drama · seen 2021-06-09
+- **L'album merveilleux** (The Wonderful Album) — 1905 · Georges Méliès · FR · Fantasy · seen 2021-05-16
+- **L'Arrivée d'un train a la Ciotat** (The Arrival of a Train at La Ciotat) — 1895 · Louis Lumière · FR · History · seen 2021-05-10
+- **L'Arrivée des Maires** — 1900 · Louis Lumière · FR · seen 2021-05-13
+- **L'Arrivee en voiture** (Arrival of President Loubet) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **L'arrivée en voiture - La remise des decorations - La sortie de la Chambre de Commerce** — 1902 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **L'arroseur arrosé** (The Sprinkler Sprinkled) — 1895 · Louis Lumière · FR · Comedy · seen 2021-05-11
+- **L'assassinat du duc de Guise** (The Assassination of the Duke de Guise) — 1897 · Louis Lumière · FR · History, Drama · seen 2021-05-13
+- **L'Auberge ensorcelée** (The Bewitched Inn) — 1897 · Georges Méliès · FR · Fantasy · seen 2021-06-09
+- **L'Île du diable** (Devil's Island - Within the Palisade) — 1899 · Georges Méliès · FR · Drama · seen 2021-06-09
+- **L'Impressionniste fin de siècle** (An Up-to-Date Conjurer) — 1899 · Georges Méliès · FR · Comedy · seen 2021-06-09
+- **La cène** — 1898 · Louis Lumière · FR · seen 2021-05-12
+- **La Colonne de feu** (The Pillar of Fire) — 1899 · Georges Méliès · FR · Fantasy · seen 2021-06-09
+- **La défense du drapeau** — 1897 · Louis Lumière · FR · History, Drama, War · seen 2021-05-13
+- **La Dictée du bordereau** (Dreyfus Court Martial - Arrest Of Dreyfus) — 1899 · Georges Méliès · FR · seen 2021-06-09
+- **La Fée au pigeons** — 1906 · Georges Méliès · FR · seen 2021-05-16
+- **La fée aux fleurs** (Flower Fairy) — 1905 · Georges Méliès · FR · Fantasy · seen 2021-05-16
+- **La gare** (Halte à la gare) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **La Gare Saint-Lazare** — 1896 · Louis Lumière · FR · seen 2021-05-13
+- **La lune à un mètre** (The Astronomer's Dream) — 1898 · Georges Méliès · FR · Fantasy, Horror, Comedy · seen 2021-06-09
+- **La Métamorphose du papillon** — 1904 · Georges Méliès · FR · seen 2021-05-16
+- **La Mi-Carême, Char et bataille de confettis** — 1899 · Louis Lumière · FR · seen 2021-05-12
+- **La mise en croix** (X. La mise en croix) — 1898 · Louis Lumière · FR · Drama, History · seen 2021-05-12
+- **La Mort de Marat** (The Death of Marat) — 1897 · Louis Lumière · FR · seen 2021-05-12
+- **La mort de Robespierre** — 1897 · Louis Lumière · FR · seen 2021-05-12
+- **La Palestina en 1896** — 1897 · Louis Lumière · FR · seen 2021-05-12
+- **La paralytique** — 1897 · Louis Lumière · FR · seen 2021-05-13
+- **La pêche aux poissons rouges** (Fishing for Goldfish) — 1895 · Louis Lumière · FR · Documentary · seen 2021-05-11
+- **La petite fille et son chat** (The Little Girl and Her Cat) — 1900 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **La Piscine d'Aix-les-Bains** — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **La Plage et l'Etablissement** — 1901 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **La Plage et la Mer** (Biarritz : la plage et la mer) — 1901 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **La poupée: Le cure et les mannequins** (La poupée: Le curé et les mannequins) — 1899 · Louis Lumière · FR · Comedy, Science Fiction · seen 2021-05-12
+- **La Prise de Tournavos** (The Surrender of Tournavos) — 1897 · Georges Méliès · FR · Action, War, Drama · seen 2021-06-09
+- **La rue des nations, II** — 1900 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **La sortie de l'arsenal** — 1900 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **La sortie des usines Lumière** — 1895 · Louis Lumière · FR · seen 2021-05-11
+- **La Tentation de Saint-Antoine** (The Temptation of St. Anthony) — 1898 · Georges Méliès · FR · Fantasy · seen 2021-06-09
+- **La toilette du petit chien** — 1899 · Louis Lumière · FR · Documentary, Family · seen 2021-05-12
+- **La vague** (Dolorès Marat: The Wave) — 1891 · Étienne-Jules Marey · FR · Documentary · seen 2021-05-11
+- **La Vengeance du gâte-sauce** (The Cook's Revenge) — 1900 · Georges Méliès · FR · Comedy, Fantasy · seen 2021-06-09
+- **La voltige** (Horse Trick Riders) — 1895 · Louis Lumière · FR · Documentary · seen 2021-05-10
+- **Labourage** (Ploughing) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Lancement d'un navire** (Launching of a Ship) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Lancement du 'Varèse' à Livourne** — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Lassage des boeufs pour le labour** (Lassage des bœufs pour le labour) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Lausanne, défilé du 8ème bataillon** (Défilé du 8e bataillon) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Laveuses** — 1896 · Louis Lumière · FR · seen 2021-05-13
+- **Laveuses sur la rivière** (Washerwomen on the River) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Le Bey de Tunis et les personnages de sa suite descendant l'escalier du Bardo** — 1904 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Le bon jardinier** — 1911 · Louis Lumiere · FR · seen 2021-05-13
+- **Le Caire, un enterrement** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Le Carrousel: Evolution des quadrilles** — 1903 · Georges Méliès · FR · Documentary · seen 2021-05-13
+- **Le Cauchemar** (A Nightmare) — 1896 · Georges Méliès · FR · Horror · seen 2021-06-09
+- **Le char funèbre** — 1901 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Le char funèbre** (Le char funèbre, II) — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Le Château hanté** (Le château hanté) — 1896 · Georges Méliès · FR · Horror · seen 2021-06-09
+- **Le cigare introuvable** — 1897 · Louis Lumière · FR · Comedy · seen 2021-05-12
+- **Le Cocher de fiacre endormi** — 1897 · Louis Lumière · FR · seen 2021-05-12
+- **Le cocher endormi** — 1897 · Louis Lumière · FR · seen 2021-05-12
+- **Le commandant Marchand au Cercle Militaire à Paris** — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Le cortège : la reine** (Fête du jubilé de la reine d'Angleterre : le cortège, la reine) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Le déjeuner du chat** — 1895 · Louis Lumière · FR · seen 2021-05-11
+- **Le Diable au couvent** (The Devil in a Convent) — 1899 · Georges Méliès · FR · Horror, Comedy, Fantasy · seen 2021-06-09
+- **Le goûter champêtre** — 1898 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Le goûter des bébés** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Le marchand de marrons** — 1897 · Louis Lumière · FR · seen 2021-05-13
+- **Le marché aux poissons** (Tokyo, il était une fois le marché aux poissons) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-11
+- **Le maréchal-ferrant** — 1895 · Louis Lumière · FR · Documentary · seen 2021-05-11
+- **Le Moustique Récalcitrant** (Le Moustique récalcitrant) — 1905 · Louis Lumière · FR · Comedy · seen 2021-05-13
+- **Le President en promenade** (Le Président en Promenade) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Le Prince de Galles** (Le prince de Galles) — 1892 · Louis Lumiere · FR · History, Documentary · seen 2021-05-10
+- **Le rémouleur et l'assiette au noir** — 1897 · Louis Lumière · FR · seen 2021-05-12
+- **Le repas fantastique** (Le Repas fantastique) — 1902 · Georges Méliès · FR · Comedy, Fantasy · seen 2021-05-13
+- **Le retour. Place de l'Etoile** (Le retour, Place de l'Etoile) — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Le Roi de Cambodge se rendant au Palais** (Le roi de Cambodge se rendant au palais) — 1902 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Le Roi et la reine de Roumanie et leur escorte** (Roi et reine de Roumanie et leur escorte) — 1896 · Louis Lumière · FR · seen 2021-05-13
+- **Le Roi Victor Emmanuel III se rendant au Sénat pour la cérémonie du Serment** — 1900 · Louis Lumière · FR · seen 2021-05-13
+- **Le saut à la couverture** (Jumping the Blanket) — 1895 · Louis Lumière · FR · Documentary, Comedy · seen 2021-05-11
+- **Le scieur de bois mélomane** — 1898 · Louis Lumière · FR · seen 2021-05-12
+- **Le squelette joyeux** (The Dancing Skeleton) — 1897 · Georges Méliès · FR · Comedy, Fantasy, Horror · seen 2021-05-11
+- **Le Village** (Chamonix, Le Village) — 1900 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Le village de Namo - Panorama pris d'une chaise à porteurs** — 1900 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Leçon de boxe** (24th Mountain Infantry: Boxing Lesson) — 1898 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Leonard-Cushing Fight** — 1894 · W.K.L. Dickson · US · Documentary · seen 2021-05-11
+- **Les Bains de Diane à Milan** — 1896 · Louis Lumière · FR · seen 2021-05-13
+- **Les chats boxeurs** — 1898 · Louis Lumière · FR · seen 2021-05-12
+- **Les Elks champions du Cake-Walk** — 1903 · Louis Lumière · FR · seen 2021-05-13
+- **Les Escaliers du Pont de l'Alma** — 1900 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Les forgerons** (The Blacksmiths) — 1895 · Louis Lumière · FR · Documentary · seen 2021-05-11
+- **Les Infortunes d'un explorateur** (The Misfortunes of an Explorer) — 1900 · Georges Méliès · FR · seen 2021-06-09
+- **Les Patineurs** (The Skaters) — 1900 · Louis Lumière · FR · seen 2021-05-12
+- **Les pyramides (vue générale)** (The Pyramids (Overview)) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Les saltimbanques** (Les saltimbanques (Parodie)) — 1898 · Louis Lumière · FR · seen 2021-05-13
+- **Levée des filets de pêche** — 1896 · Louis Lumière · FR · seen 2021-05-13
+- **Life Guards and Princes North of St Paul's** — 1897 · Robert Paul · UK · Documentary · seen 2021-05-15
+- **Lions, Jardin zoologique, Londres** — 1896 · Louis Lumière · FR · seen 2021-05-12
+- **Liverpool, la rade** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Liverpool, Lime Street** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **London's Trafalgar Square** — 1890 · William Friese-Greene · UK · Documentary · seen 2021-05-10
+- **Londres, Entrée du cinématographe** (London, Cinematography Entry) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-11
+- **Londres, Piccadilly Circus** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Lourdes, transport de malades II** (Lourdes, Transporting the Sick, II) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Luis Martinetti, Contortionist** — 1894 · W.K.L. Dickson · US · Documentary · seen 2021-05-11
+- **Lyon, place Bellecour** — 1895 · Louis Lumière · FR · Documentary · seen 2021-05-11
+- **Lyon, sauvetage de lapins; innondations** — 1896 · Louis Lumière · FR · seen 2021-05-13
+- **Lyon, travaux au canal de Jonage: Machine à damer** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **M. le Président de la République sur la Jetée Promenade** — 1902 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **M. Loubet aux courses** — 1899 · Louis Lumière · FR · seen 2021-05-12
+- **Madrid, arrivée des toréadors** (Madrid, Arrival of the Toreadors) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Maillane: Défilé des tambourinaires** (Maillane : défilé des tambourinaires) — 1901 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Marché aux boeufs, I** — 1897 · Louis Lumière · FR · seen 2021-05-12
+- **Marseille, la Canebière** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Mauvaises herbes** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-11
+- **Melbourne** (The Melbourne Cup) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Melbourne, les courses: présentation du vainqueur** (Melbourne, les courses : présentation du vainqueur) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Melbourne, les courses: sorties de chevaux** — 1896 · Louis Lumière · FR · seen 2021-05-11
+- **Men Boxing** — 1891 · W.K.L. Dickson · US · Documentary · seen 2021-05-11
+- **Miasto ruin** (City of Ruins) — 2010 · Tomasz Bagiński · PL · Animation · seen 2010-09-19
+- **Mickey's Christmas Carol** — 1983 · Burny Mattinson · US · Family, Animation · seen 2006-06-17
+- **Milan, place du Dôme** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Mise aux fers de Dreyfus** (Dreyfus Put in Irons) — 1899 · Georges Méliès · FR · seen 2021-06-09
+- **Monkeyshines, No. 1** — 1890 · W.K.L. Dickson · US · Documentary · seen 2021-05-10
+- **Monkeyshines, No. 2** — 1890 · W.K.L. Dickson · US · Documentary · seen 2021-05-10
+- **Mont Dore: L'Etablissement thermal** — 1900 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Montreux, Fêtes des Narcisses: Marquises dans leurs chaises à porteurs** — 1900 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Monza, L.L. M.M. le Roi et la Reine d'Italie** — 1896 · Louis Lumière · FR · seen 2021-05-12
+- **Moulin à homme pour l'arrosage des rizières** — 1899 · Louis Lumière · FR · seen 2021-05-12
+- **Mounted Police Charge** — 1896 · Robert Paul · UK · Documentary · seen 2021-05-11
+- **Mr. Pecksniff Fetches the Doctor** — 1904 · Robert W. Paul · UK · Comedy · seen 2021-06-09
+- **Munich, Maximilianeum** — 1896 · Louis Lumière · FR · seen 2021-05-11
+- **Naples, port et Vésuve** — 1896 · Louis Lumière · FR · seen 2021-05-12
+- **Nègres Ashantis: Toilette d'un negrillon II** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Nègres dansant dans la rue** (Negro Street Dancers) — 1896 · Louis Lumière · FR · Comedy, Documentary · seen 2021-05-11
+- **Néron essayant des poisons sur des esclaves** — 1896 · Louis Lumière · FR · Drama, History · seen 2021-05-12
+- **Neuville-sur-Saône: Débarquement du congrès des photographes à Lyon** (The Photographical Congress Arrives in Lyon) — 1895 · Louis Lumière · FR · Documentary · seen 2021-05-11
+- **New Brooklyn to New York via Brooklyn Bridge, No. 1** — 1899 · James H. White · US · Documentary · seen 2021-05-11
+- **New Brooklyn to New York via Brooklyn Bridge, No. 2** — 1899 · James H. White · US · Documentary · seen 2021-05-11
+- **New York, arrivée d'un train à Bathery Place** — 1896 · Louis Lumière · FR · seen 2021-05-12
+- **New York, Avenue et Union Square** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **New York, pont de Brooklyn** (New York, Brooklyn Bridge) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **New-York, patineurs au Parc central** (New York, patineurs au Parc central) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Newark Athlete** — 1891 · W.K.L. Dickson · US · Documentary · seen 2021-05-11
+- **Nice : panorama sur la ligne de Beaulieu à Monaco, III** (Nice: Panorama sur la ligne de Beaulieu à Monaco, III) — 1900 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Nice, Carnaval (N° 1)** — 1897 · Louis Lumière · FR · seen 2021-05-12
+- **Nice, panorama du casino pris d'un bateau** — 1897 · Louis Lumière · FR · seen 2021-05-13
+- **Nice: Sa Majesté Carnaval et le char des Limonadiers** (Nice : Sa Majesté Carnaval et le char des Limonadiers) — 1901 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Nîmes, sortie de l'église** (Sortie de l’église) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-11
+- **On Westminster Bridge** — 1896 · Robert Paul · UK · Documentary · seen 2021-05-11
+- **Ouvriers réparant un trottoir en bitume** (Workers Repairing a Sidewalk with Bitumen) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Panorama de l'arrivée en gare de Perrache pris du train** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Panorama de la ligne de Cauteréts: Le tunnel** (Panorama de la ligne de Cauterets, III. Le tunnel) — 1900 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Panorama des quais de la Saône à Lyon pris d'un bateau** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Panorama des rives de la Seine à Paris** (Panorama des rives de la Seine à Paris, III) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Panorama du funiculaire de Bellevue II** — 1898 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Panorama du funiculaire du Mont-Dore** — 1898 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Panorama du Grand Canal vu d'un bateau** — 1896 · Louis Lumière · FR · seen 2021-05-11
+- **Panorama du havre (pris d'un bateau)** — 1896 · Louis Lumière · FR · seen 2021-05-13
+- **Panorama du port d'Alger** — 1904 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Panorama pendant l'ascension de la Tour Eiffel** (Panorama during the Ascent of the Eiffel Tower) — 1898 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Panorama pris d'un ballon captif** (Panorama Taken from a Tethered Balloon) — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Panorama pris d'un train en marche** (Panorama from Top of a Moving Train) — 1898 · Louis Lumière · FR · Documentary · seen 2021-06-09
+- **Panorama pris depuis une plate-forme mobile** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Panorama pris en chemin de fer, départ de Dammurey** — 1897 · Louis Lumière · FR · seen 2021-05-13
+- **Paris, Arc de Triomphe** — 1896 · Louis Lumière · FR · seen 2021-05-12
+- **Paris, Champs-Elysées (voitures)** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Paris, cortège du boeuf gras: Char du prince du carnaval** (Paris, cortège du bœuf gras (char du prince du carnaval)) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Paris, le Pont-Neuf** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Paris, mi-carême: char de la reine des reines** (Paris, mi-carême : char de la reine des reines) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Paris, Place de la République** — 1897 · Louis Lumière · FR · seen 2021-05-12
+- **Partie d'écarte** (The Card Game) — 1896 · Louis Lumière · FR · Comedy, History · seen 2021-05-12
+- **Partie de cartes** — 1897 · Georges Méliès · FR · Drama · seen 2021-06-09
+- **Partie de tric-trac** (Backgammon Game) — 1895 · Louis Lumière · FR · Documentary · seen 2021-05-11
+- **Passage d'un tunnel en chemin de fer** — 1898 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Passage en chaises à porteurs au col des Nuages (Annam)** — 1900 · Louis Lumière · FR · seen 2021-05-12
+- **Patineur grotesque** (Humorous Rollerskater) — 1896 · Louis Lumière · FR · Comedy · seen 2021-05-13
+- **Pau: La Terrasse** (Pau : la terrasse) — 1901 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Pêche aux sardines** (Sardine Fishing) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Photographe** (Photograph) — 1895 · Louis Lumière · FR · Comedy · seen 2021-05-11
+- **Place de la Comédie** — 1896 · Louis Lumière · FR · seen 2021-05-13
+- **Place de la République** (Paris, Place de la République) — 1897 · Louis Lumière · FR · seen 2021-05-12
+- **Place des Cordeliers à Lyon** (Cordeliers' Square in Lyon) — 1895 · Louis Lumière · FR · Documentary · seen 2021-05-11
+- **Plate-forme mobile et train électrique** — 1900 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Podstawy BHP w kopalni miedzi** (The Principles of Safety and Hygiene in a Copper Mine) — 1972 · Krzysztof Kieślowski · PL · seen 2021-06-09
+- **Pont de Westminster** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Poursuite sur les toits** — 1898 · Louis Lumière · FR · Comedy · seen 2021-05-13
+- **Premiers pas de bébé** (Baby's First Steps) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Prestidigitateur** (Magician, I) — 1897 · Louis Lumière · FR · Comedy, Documentary · seen 2021-05-13
+- **Princess Ali** — 1895 · W.K.L. Dickson · US · seen 2021-05-11
+- **Procession à Séville III** — 1898 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Procession du tapis sacré** (Procession of the Sacred Carpet) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Procession, I** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Promenade des congressistes sur le bord de la Saône** — 1895 · Louis Lumière · FR · seen 2021-05-12
+- **Queen's Carriage and Indian Escort Arriving at St. Paul's** — 1897 · Robert Paul · UK · Documentary · seen 2021-05-15
+- **Querelle de matelassières** — 1898 · Louis Lumière · FR · Comedy · seen 2021-05-13
+- **Radeau avec baigneurs** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Récréation à la Martinière** — 1895 · Louis Lumière · FR · Documentary · seen 2021-05-11
+- **Repas d'indiens** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Repas de bébé** (Baby's Meal) — 1895 · Louis Lumière · FR · Documentary, Family · seen 2021-05-11
+- **Repas des chats** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Repas en famille** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Retour d'une promenade en mer** (Retour d’une promenade en mer) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Retour du Cortège après le Couronnement: Le Roi** — 1903 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Return of T.R.H. the Prince and Princess of Wales** — 1906 · Robert W. Paul · UK · Documentary · seen 2021-06-09
+- **Robbery** — 1897 · Robert W. Paul · UK · Crime, Comedy · seen 2021-05-15
+- **Robetta and Doretto, No. 1** — 1895 · W.K.L. Dickson · US · seen 2021-05-11
+- **Rome, pont Ripetta** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Rough Sea at Dover** — 1895 · Birt Acres · UK · Documentary · seen 2021-05-11
+- **Royal Carriage Arriving at St Paul's** — 1897 · Robert Paul · UK · Documentary · seen 2021-05-15
+- **Royal Carriages Passing Westminster** — 1897 · Robert Paul · UK · Documentary · seen 2021-05-13
+- **Royal Princes in St. Paul's Churchyard** — 1897 · Robert Paul · UK · Documentary · seen 2021-05-15
+- **Royal Train** — 1896 · Robert Paul · UK · seen 2021-05-13
+- **Sandow** (Sandow: The Strong Man) — 1894 · W.K.L. Dickson · US · Documentary · seen 2021-05-11
+- **Sauts au cheval en longueur** — 1897 · Louis Lumière · FR · seen 2021-05-13
+- **Sauts périlleux par deux** (III. Sauts périlleux par deux) — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Scaphandrier** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Scène de laveuses** — 1896 · Louis Lumière · FR · seen 2021-05-13
+- **Scene from the Coronation of the Czar of Russia** — 1896 · Robert Paul · UK · Documentary · seen 2021-05-11
+- **Scene on the Delaware River** — 1897 · Robert Paul · UK · seen 2021-05-13
+- **Schaffouse, Chûtes du Rhin vues de loin** (Chutes du Rhin vues de loin) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-11
+- **Scieurs de bois** (Woodcutters) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-11
+- **Scooby-Doo And Mummy Too** — 1969 · William Hanna, Joseph Barbera · US · seen 2000-07-23
+- **Scrooge; or Marley's Ghost** — 1901 · Walter R. Booth · UK · Drama, Fantasy · seen 2021-06-09
+- **Serpentine Dance by Annabelle** — 1896 · Robert Paul · UK · Documentary · seen 2021-05-11
+- **Silent** — 2014 · Limbert Fabian, Brandon Oldenburg · US · Adventure, Animation, Family · seen 2020-07-15
+- **Sioux Ghost Dance** — 1894 · W.K.L. Dickson · US · Documentary, Western · seen 2021-05-11
+- **Sirdar's Reception at Guildhall** — 1898 · Robert Paul · UK · seen 2021-05-15
+- **Sortie de l'église Saint-Jacques** — 1899 · Louis Lumière · FR · seen 2021-05-13
+- **Sortie de l'usine Cockeril à Seraing** — 1899 · Louis Lumière · FR · seen 2021-05-13
+- **Sortie de la briqueterie Meffre et Bourgoin, à Hanoï** — 1902 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Sortie de la grand' messe de l'église de la cathédrale** — 1899 · Louis Lumière · FR · seen 2021-05-13
+- **Sortie de la pompe** (Pompiers : sortie de la pompe) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Sortie de la Quadrille (Vue de face)** (Sortie de la quadrille (vue de face)) — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Sortie de la Quadrille et commencement de la course (Vue de trios quarts)** (Sortie de la Quadrille et commencement de la course (Vue de trois quarts)) — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Sousse: Marché aux charbons (avec chameaux)** — 1896 · Louis Lumière · FR · seen 2021-05-12
+- **Stockholm, entrée de l'exposition** — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Suicide du Colonel Henry** (Suicide of Colonel Henry) — 1899 · Georges Méliès · FR · seen 2021-06-09
+- **Tetherball, or Do-Do** — 1898 · Robert Paul · UK · Documentary · seen 2021-05-15
+- **The '?' Motorist** — 1906 · Walter R. Booth · UK · Science Fiction, Fantasy, Comedy · seen 2021-06-09
+- **The Arrest of a Bookmaker** — 1895 · Robert Paul · UK · Crime · seen 2021-05-13
+- **The Arrest of a Pickpocket** — 1895 · Birt Acres · UK · seen 2021-05-11
+- **The Barbershop** — 1894 · W.K.L. Dickson · US · seen 2021-05-11
+- **The Big Swallow** — 1901 · James Williamson · UK · Comedy · seen 2021-11-14
+- **The Black Ghiandola** — 2017 · Sam Raimi, Catherine Hardwicke, Theodore Melfi · US · Horror · seen 2020-12-29
+- **The Boxing Cats (Prof. Welton's)** (The Boxing Cats) — 1894 · W.K.L. Dickson · US · Documentary, Comedy, Action · seen 2021-05-11
+- **The Burning Stable** — 1896 · Robert Paul · UK · Documentary · seen 2021-05-11
+- **The Cheese Mites** (The Cheese Mites, or Lilliputians in a London Restaurant) — 1903 · James Williamson · UK · Comedy, Fantasy · seen 2021-05-15
+- **The Countryman and the Cinematograph** — 1901 · Robert W. Paul · UK · Comedy · seen 2021-05-15
+- **The Delhi Durbar** — 1903 · Robert W. Paul · UK · Documentary · seen 2021-06-09
+- **The Deonzo Brothers** — 1901 · Robert W. Paul · UK · Documentary · seen 2021-05-16
+- **The Derby** (The Derby 1900) — 1900 · Robert Paul · UK · seen 2021-05-13
+- **The Derby** — 1896 · Robert Paul · UK · Documentary · seen 2021-05-11
+- **The Derby 1895** — 1895 · Robert Paul · UK · Documentary · seen 2021-05-13
+- **The Execution of Mary Stuart** (The Execution of Mary, Queen of Scots) — 1895 · Robert W. Paul · UK · History · seen 2021-05-11
+- **The Extraordinary Waiter** — 1902 · Robert W. Paul · UK · Fantasy, Comedy · seen 2021-06-09
+- **The Gay Brothers** — 1895 · W.K.L. Dickson · US · seen 2021-05-11
+- **The Haunted Curiosity Shop** — 1901 · Walter R. Booth · UK · Fantasy, Horror · seen 2021-05-16
+- **The Hornbacker-Murphy Fight** — 1894 · W.K.L. Dickson · US · Action, Comedy · seen 2021-05-11
+- **The Kiddies' Cakewalk** — 1903 · Robert W. Paul · UK · Documentary · seen 2021-06-09
+- **The Launch of HMS Albion at Blackwall** — 1898 · Robert Paul · UK · Documentary · seen 2021-05-15
+- **The Pickaninnies** — 1894 · W.K.L. Dickson · US · seen 2021-05-11
+- **The Pigeons, Place St. Marc, Venice** — 1903 · Louis Lumiere · FR · seen 2021-05-12
+- **The Twins' Tea Party** — 1896 · Robert Paul · UK · seen 2021-05-13
+- **The Unfortunate policeman** — 1905 · Walter R. Booth · UK · seen 2021-06-09
+- **The Waif and the Wizard** — 1901 · Walter R. Booth · UK · Drama, Fantasy · seen 2021-05-16
+- **Thiers, Mac-Mahon, Grévy, Carnot, Félix Faure** — 1898 · Louis Lumière · FR · seen 2021-05-13
+- **Tigres** (Tigers at the Zoo) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Tommy Atkins In The Park** (Tommy Atkins in the Park) — 1898 · Robert Paul · UK · Comedy · seen 2021-05-15
+- **Toulouse, rue Alsace-Lorraine** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Transport d'une tourelle par un attelage de 60 chevaux** (Transport of a Turret by a Team of 60 Horses) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Transport de la cloche de l'indépendance** — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Troyes : l'hôtel de ville** (Troyes: L'Hôtel-de-Ville) — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Two AM; or, The Husband's Return** — 1896 · Robert Paul · UK · Drama · seen 2021-05-11
+- **Un Bal d'enfants** — 1896 · Louis Lumière · FR · seen 2021-05-13
+- **Un homme de têtes** (The Four Troublesome Heads) — 1898 · Georges Méliès · FR · Comedy, Fantasy · seen 2021-06-09
+- **Undressing Extraordinary** — 1901 · Walter R. Booth · UK · Comedy · seen 2021-05-16
+- **Une Noce indigène** (Biskra : une noce indigène) — 1903 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Une Nuit terrible** (A Terrible Night) — 1896 · Georges Méliès · FR · Comedy, Horror · seen 2021-06-09
+- **Une partie de lawn-tennis II** (Une partie de lawn-tennis, II) — 1897 · Louis Lumière · FR · seen 2021-05-12
+- **Une partie des cartes** — 1896 · Georges Méliès · FR · seen 2021-06-09
+- **Une rue à Séville** — 1898 · Louis Lumière · FR · seen 2021-05-13
+- **Une scène d'hypnotisme II** — 1898 · Louis Lumière · FR · Mystery, Documentary · seen 2021-05-13
+- **Venise, panorama de la place Saint-Marc pris d'un bateau** (Panorama of St. Mark's Square Taken From a Boat) — 1897 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Venise, tramway sur le Grand Canal** (Venice Showing Gondolas) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Victor Hugo et les principaux personnages des 'Misérables'** — 1897 · Louis Lumière · FR · seen 2021-05-13
+- **Visite sous-marine du Maine** (Divers at Work on the Wreck of the "Maine") — 1898 · Georges Méliès · FR · Documentary · seen 2021-06-09
+- **Voitures automobiles** — 1896 · Louis Lumière · FR · seen 2021-05-12
+- **Voltige à cheval à Prague** — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Voyage de M. le Président de la République Félix Faure en Vendée: bal des Sablaises, Les Sables-d'Olonne** — 1897 · Louis Lumière · FR · seen 2021-05-13
+- **Voyage de M. le Président Félix Faure en Russie (Août 1897): Arrivée du président et du Czar à Peterhof** — 1897 · Louis Lumière · FR · seen 2021-05-13
+- **Vu générale de l'Exposition prise du Trocadéro** — 1900 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Vue de l'avant d'un transatlantique par un gros temps** — 1899 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Vue générale du Pont Alexandre III** (Vue générale du pont Alexandre III) — 1900 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Vue prise d'une baleinière en marche** — 1901 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Vue prise d'une plate-forme mobile, I** (A View Taken from a Mobile Platform, I) — 1900 · Louis Lumière · FR · Documentary · seen 2021-05-13
+- **Washington, défilé de la garde nationale du district Colombia** (Défilé de la garde nationale du district de Columbia) — 1896 · Louis Lumière · FR · Documentary · seen 2021-05-12
+- **Washington, le président Mac Kinley adressant son message** — 1897 · Louis Lumière · FR · seen 2021-05-13
+- **Water-to-bogant (Montagnes russes sur l'eau)** — 1896 · Louis Lumière · FR · seen 2021-05-12
+- **What Did Jack Do?** (WHAT DID JACK DO?) — 2017 · David Lynch · US · Comedy, Mystery, Crime · seen 2020-05-10
+- **Women Fetching Water from the Nile** — 1897 · Henry Short · UK · Documentary · seen 2021-05-15
+
+## Games (359)
+- **Antichamber** — 2013 · Alexander Bruce · AU · Platform, Puzzle, Arcade · rated 10/10 · favourite
+- **Call of Duty 4: Modern Warfare** — 2007 · Infinity Ward · US · Shooter · rated 10/10 · favourite
+- **Half-Life 2** — 2004 · Valve · US · Shooter · rated 10/10 · favourite · seen 2012-08-11
+- **Max Payne** — 2001 · Remedy Entertainment · FI · Shooter, Arcade · rated 10/10 · favourite
+- **The Last of Us Part II** — 2020 · Neil Druckmann · Naughty Dog · US · Shooter, Arcade · rated 10/10 · favourite
+- **BioShock** — 2007 · Ken Levine · Irrational Games · US · Shooter, RPG, Arcade · rated 9/10 · favourite
+- **Bulletstorm** — 2011 · People Can Fly · PL · Shooter · rated 9/10 · favourite
+- **Call of Duty: MW2** (Call of Duty: Modern Warfare 2) — 2009 · Infinity Ward · US · Shooter · rated 9/10 · favourite
+- **Crysis** — 2007 · Crytek · DE · Shooter, Arcade · rated 9/10 · favourite
+- **Grand Theft Auto IV** — 2008 · Rockstar North · UK · Shooter, Racing, Arcade · rated 9/10 · favourite
+- **Heavy Rain** — 2010 · David Cage · Quantic Dream · FR · Arcade · rated 9/10 · favourite
+- **Ico** — 2001 · Fumito Ueda · Team ICO · JP · Platform, Puzzle, Arcade · rated 9/10 · favourite
+- **Manifold Garden** — 2019 · William Chyr · US · Puzzle, Arcade · rated 9/10 · favourite
+- **Mass Effect** — 2007 · Casey Hudson · BioWare · CA · RPG · rated 9/10 · favourite
+- **Max Payne 2** — 2003 · Remedy Entertainment · FI · Shooter, Arcade · rated 9/10 · favourite
+- **Mirror's Edge** — 2008 · DICE · SE · Platform, Adventure · rated 9/10 · favourite
+- **Subnautica** — 2018 · Unknown Worlds · US · Arcade · rated 9/10 · favourite
+- **The Last of Us** — 2013 · Neil Druckmann · Naughty Dog · US · Shooter, Arcade · rated 9/10 · favourite
+- **The Walking Dead: S1** — 2012 · Sean Vanaman · Telltale Games · US · Point-and-click, Puzzle, Adventure · rated 9/10 · favourite
+- **The Witcher** — 2007 · CD Projekt Red · PL · RPG, Arcade · rated 9/10 · favourite
+- **The Wolf Among Us** — 2013 · Telltale Games · US · Point-and-click, Arcade · rated 9/10 · favourite
+- **Undertale** — 2015 · Toby Fox · US · Puzzle, RPG, Arcade · rated 9/10 · favourite
+- **What Remains of Edith Finch** — 2017 · Ian Dallas · Giant Sparrow · US · Puzzle, Arcade · rated 9/10 · favourite
+- **World in Conflict** — 2007 · Massive Entertainment · SE · RTS, Strategy · rated 9/10 · favourite
+- **Life is Strange** (Life Is Strange) — 2015 · Dontnod · FR · Puzzle, Arcade · rated 8/10 · favourite
+- **Spec Ops: The Line** — 2012 · Cory Davis · Yager Development · DE · Shooter, Arcade · rated 8/10 · favourite
+- **Firewatch** — 2016 · Sean Vanaman · Campo Santo · US · Arcade · rated 7/10 · favourite
+- **Grand Theft Auto III** — 2001 · Rockstar North · UK · Shooter, Racing, Simulator · rated 10/10 · seen 2012-02-10
+- **Grand Theft Auto: San Andreas** — 2004 · Rockstar North · UK · Shooter, Racing, Arcade · rated 10/10 · seen 2012-02-10
+- **Half-Life** — 1998 · Valve · US · Shooter, Puzzle, Arcade · rated 10/10 · seen 2012-08-11
+- **Heroes of Might and Magic III: The Shadow of Death** — 2000 · Jon Van Caneghem · New World Computing · US · RPG, Strategy, Turn-based Strategy · rated 10/10 · seen 2012-08-11
+- **Tekken 3** — 1997 · Namco · JP · Fighting · rated 10/10 · seen 2012-07-03
+- **Alan Wake** — 2010 · Remedy Entertainment · FI · Shooter, Arcade · rated 9/10 · seen 2012-03-09
+- **Assassin's Creed II** — 2009 · Ubisoft Montréal · FR · Platform, Arcade · rated 9/10 · seen 2012-02-10
+- **Assassin's Creed: Revelations** (Assassin's Creed Revelations) — 2011 · Ubisoft Montréal · FR · Arcade · rated 9/10 · seen 2012-04-30
+- **Batman: Arkham Asylum** — 2009 · Rocksteady Studios · UK · Arcade · rated 9/10 · seen 2012-02-10
+- **Batman: Arkham City** — 2011 · Rocksteady Studios · UK · Arcade · rated 9/10 · seen 2012-02-10
+- **Battlefield 2** — 2005 · DICE · SE · Shooter · rated 9/10 · seen 2012-11-22
+- **Battlefield 3** — 2011 · DICE · SE · Shooter · rated 9/10 · seen 2012-11-09
+- **Black Mesa** — 2020 · Crowbar Collective · US · Shooter, Platform, Arcade · rated 9/10 · seen 2020-03-31
+- **Braid** — 2008 · Jonathan Blow · US · Platform, Puzzle, Strategy · rated 9/10 · seen 2009-07-18
+- **Call of Duty 2** — 2005 · US · Shooter · rated 9/10 · seen 2006-08-25
+- **Crysis Warhead** — 2008 · DE · Shooter, Arcade · rated 9/10 · seen 2010-00-00
+- **Deus Ex: Human Revolution** — 2011 · Jean-François Dugas · Eidos Montréal · CA · Shooter, Puzzle, RPG · rated 9/10 · seen 2012-02-10
+- **Fallout: New Vegas** — 2010 · Obsidian Entertainment · US · Shooter, RPG · rated 9/10 · seen 2012-02-10
+- **God of War III** — 2010 · Santa Monica Studio · US · Arcade · rated 9/10 · seen 2012-12-14
+- **Grand Theft Auto 2** — 1999 · UK · Shooter, Arcade · rated 9/10 · seen 2009-00-00
+- **Grand Theft Auto IV: The Ballad of Gay Tony** — 2009 · Rockstar North · UK · Shooter, Racing, Arcade · rated 9/10 · seen 2012-02-10
+- **Half-Life 2: Episode Two** — 2007 · Valve · US · Shooter, Puzzle · rated 9/10 · seen 2012-09-03
+- **Horizon Zero Dawn: The Frozen Wilds** — 2017 · Guerrilla Games · NL · RPG, Arcade · rated 9/10 · seen 2020-09-06
+- **L.A. Noire** — 2011 · Brendan McNamara · Team Bondi · AU · Strategy, Arcade · rated 9/10 · seen 2012-02-10
+- **Left 4 Dead** — 2008 · Valve · US · Shooter · rated 9/10 · seen 2010-00-00
+- **Mass Effect 2** — 2010 · Casey Hudson · BioWare · CA · Shooter, RPG, Arcade · rated 9/10 · seen 2012-02-10
+- **Max Payne 3** — 2012 · Rockstar North · US · Shooter · rated 9/10 · seen 2012-07-03
+- **Need for Speed Most Wanted** (Need for Speed: Most Wanted) — 2005 · CA · Racing · rated 9/10 · seen 2012-11-22
+- **Portal** — 2007 · Valve · US · Platform, Puzzle, Arcade · rated 9/10 · seen 2012-07-01
+- **Portal 2** — 2011 · Valve · US · Platform, Puzzle, Arcade · rated 9/10 · seen 2012-07-01
+- **Race Driver: GRID** (Race Driver: Grid) — 2008 · UK · Racing, Simulator, Sport · rated 9/10 · seen 2012-11-22
+- **The Elder Scrolls IV: Oblivion** — 2006 · Todd Howard · Bethesda · US · RPG, Arcade · rated 9/10 · seen 2012-02-10
+- **The Elder Scrolls V: Skyrim** — 2011 · Todd Howard · Bethesda · US · RPG, Arcade · rated 9/10 · seen 2012-05-06
+- **Tomb Raider** — 2013 · Crystal Dynamics · US · Shooter, Platform, Puzzle · rated 9/10 · seen 2013-03-23
+- **Uncharted 3: Drake's Deception** — 2011 · Amy Hennig · Naughty Dog · US · Shooter, Platform, Arcade · rated 9/10 · seen 2012-12-02
+- **Unreal Tournament** — 1999 · US · Shooter · rated 9/10 · seen 2008-06-24
+- **Wiedźmin 2: Zabójcy królów** — 2011 · CD Projekt Red · PL · Role-playing (RPG), Adventure · rated 9/10 · seen 2012-07-18
+- **Wiedźmin 3: Dziki Gon** — 2015 · Konrad Tomaszkiewicz · CD Projekt Red · PL · Role-playing (RPG), Adventure · rated 9/10 · seen 2015-08-24
+- **Wiedźmin 3: Dziki Gon - Serca z kamienia** — 2015 · CD Projekt Red · PL · Role-playing (RPG), Adventure · rated 9/10 · seen 2017-03-04
+- **Assassin's Creed** — 2007 · Ubisoft Montréal · FR · Platform, Adventure · rated 8/10 · seen 2012-02-10
+- **Assassin's Creed: Brotherhood** (Assassin's Creed Brotherhood) — 2010 · Ubisoft Montréal · FR · Puzzle, Adventure · rated 8/10 · seen 2010-11-27
+- **Battlefield 1942** — 2002 · DICE · SE · Shooter · rated 8/10 · seen 2012-11-22
+- **Battlefield: Bad Company 2** — 2010 · DICE · SE · Shooter, Strategy, Arcade · rated 8/10 · seen 2010-07-24
+- **Brütal Legend** — 2009 · Tim Schafer · Double Fine · US · Music, RTS, Simulator · rated 8/10 · seen 2013-06-23
+- **Burnout Paradise** — 2008 · UK · Racing · rated 8/10 · seen 2012-02-10
+- **Call of Duty: Advanced Warfare** — 2014 · Sledgehammer Games · US · Shooter · rated 8/10 · seen 2015-01-08
+- **Call of Duty: WWII** — 2017 · Sledgehammer Games · US · Shooter · rated 8/10 · seen 2017-12-15
+- **Civilization V** (Sid Meier's Civilization V) — 2010 · Firaxis Games · US · Simulator, Strategy, Turn-based strategy (TBS) · rated 8/10 · seen 2012-09-16
+- **Colin McRae: DiRT 2** (Colin McRae: Dirt 2) — 2009 · UK · Racing, Sport · rated 8/10 · seen 2012-11-22
+- **Control** — 2019 · Remedy Entertainment · FI · Shooter, Adventure · rated 8/10 · seen 2020-01-05
+- **Dishonored** — 2012 · Arkane Studios · FR · Puzzle, RPG, Arcade · rated 8/10 · seen 2012-12-08
+- **Dishonored 2** — 2016 · Arkane Studios · FR · Shooter, RPG, Arcade · rated 8/10 · seen 2017-04-10
+- **DmC: Devil May Cry** — 2013 · JP · Puzzle, Arcade · rated 8/10 · seen 2014-06-09
+- **Doom** — 2016 · id Software · US · Shooter · rated 8/10 · seen 2016-10-18
+- **Doom: Eternal** (Doom Eternal) — 2020 · id Software · US · Shooter · rated 8/10 · seen 2020-04-17
+- **F.E.A.R.** — 2005 · US · Shooter · rated 8/10 · seen 2009-07-24
+- **F.E.A.R. 2: Project Origin** — 2009 · US · Shooter · rated 8/10 · seen 2012-02-10
+- **F.E.A.R.: Extraction Point** (F.E.A.R. Extraction Point) — 2006 · US · Shooter · rated 8/10 · seen 2011-02-18
+- **Far Cry** — 2004 · Crytek · FR · Shooter · rated 8/10 · seen 2009-06-19
+- **Frostpunk** — 2018 · 11 bit studios · PL · Simulator, Strategy · rated 8/10 · seen 2019-09-24
+- **FTL: Faster Than Light** — 2012 · Justin Ma · Subset Games · US · RPG, Simulator, Strategy · rated 8/10 · seen 2015-08-19
+- **Gears of War** — 2006 · US · rated 8/10 · seen 2007-05-16
+- **Grand Theft Auto IV: The Lost and Damned** — 2009 · Rockstar North · UK · Shooter, Racing, Arcade · rated 8/10 · seen 2012-02-10
+- **Grand Theft Auto V** — 2013 · Rockstar North · UK · Shooter, Racing · rated 8/10 · seen 2014-06-07
+- **Grand Theft Auto: Vice City** — 2002 · Rockstar North · UK · Shooter, Racing, Arcade · rated 8/10 · seen 2012-11-22
+- **Hard Reset** — 2011 · PL · Shooter, Puzzle · rated 8/10 · seen 2012-12-07
+- **Horizon Zero Dawn** — 2017 · Guerrilla Games · NL · Shooter, RPG, Arcade · rated 8/10 · seen 2020-09-09
+- **Inside** — 2016 · Arnt Jensen · Playdead · DK · RPG, Arcade · rated 8/10 · seen 2018-06-11
+- **Journey** — 2012 · Jenova Chen · thatgamecompany · US · Platform, Adventure · rated 8/10 · seen 2020-06-21
+- **Just Cause 2** — 2010 · SE · Shooter, Racing, Arcade · rated 8/10 · seen 2012-02-10
+- **Left 4 Dead 2** — 2009 · Valve · US · Shooter · rated 8/10 · seen 2012-07-15
+- **Limbo** — 2010 · Arnt Jensen · Playdead · DK · Platform, Puzzle, Arcade · rated 8/10 · seen 2014-06-20
+- **Mafia II** — 2010 · 2K Czech · CZ · Shooter, Racing, Arcade · rated 8/10 · seen 2012-02-10
+- **Need for Speed: Carbon** — 2006 · CA · Racing · rated 8/10 · seen 2012-11-22
+- **Psychonauts** — 2005 · Tim Schafer · Double Fine · US · Platform, Puzzle, Arcade · rated 8/10 · seen 2014-07-22
+- **Psychonauts 2** — 2021 · Tim Schafer · Double Fine · US · Platform, Arcade · rated 8/10 · seen 2021-11-06
+- **Red Faction** — 2001 · US · Shooter, Arcade · rated 8/10 · seen 2012-06-18
+- **Return to Castle Wolfenstein** — 2001 · US · Shooter · rated 8/10 · seen 2003-05-19
+- **Singularity** — 2010 · US · RPG, Simulator, Arcade · rated 8/10 · seen 2012-03-09
+- **Spore** — 2008 · US · RTS, RPG, Simulator · rated 8/10 · seen 2012-11-22
+- **Team Fortress 2** — 2007 · Valve · US · Shooter · rated 8/10 · seen 2012-08-11
+- **The Matrix: Path of Neo** — 2005 · US · Fighting, Shooter · rated 8/10 · seen 2006-07-26
+- **The Outer Worlds** — 2019 · Obsidian Entertainment · US · Shooter, RPG, Arcade · rated 8/10 · seen 2019-10-31
+- **The Walking Dead: Season Two** — 2013 · Telltale Games · US · Point-and-click, Puzzle, Arcade · rated 8/10 · seen 2014-08-27
+- **The Witness** — 2016 · Jonathan Blow · US · Puzzle, Arcade · rated 8/10 · seen 2016-10-24
+- **Titanfall 2** — 2016 · Respawn Entertainment · US · Shooter, Arcade · rated 8/10 · seen 2019-07-22
+- **Tom Clancy's Splinter Cell: Conviction** — 2010 · FR · Shooter, Hack and Slash · rated 8/10 · seen 2011-04-16
+- **Trine** — 2009 · FI · Platform, Puzzle, Arcade · rated 8/10 · seen 2012-03-09
+- **Trine 2** — 2011 · FI · Platform, Puzzle, Arcade · rated 8/10 · seen 2012-03-09
+- **Uncharted 4: A Thief's End** — 2016 · Neil Druckmann · Naughty Dog · US · Shooter, Arcade · rated 8/10 · seen 2023-10-07
+- **Wiedźmin 3: Dziki Gon - Krew i wino** — 2016 · CD Projekt Red · PL · Role-playing (RPG), Adventure · rated 8/10 · seen 2017-03-04
+- **World of Goo** — 2008 · US · Puzzle, Simulator, Strategy · rated 8/10 · seen 2009-06-16
+- **Alpha Protocol: The Espionage RPG** — 2010 · US · Shooter, Role-playing (RPG) · rated 7/10 · seen 2012-02-10
+- **BioShock Infinite** — 2013 · Ken Levine · Irrational Games · US · Shooter, Arcade · rated 7/10 · seen 2018-09-03
+- **Call of Duty: World at War** — 2008 · US · Shooter, Arcade · rated 7/10 · seen 2008-12-08
+- **Crysis 2** — 2011 · DE · Shooter, Arcade · rated 7/10 · seen 2012-03-01
+- **Dark Sector** — 2008 · US · Shooter · rated 7/10 · seen 2012-11-22
+- **Dead Rising 2** — 2010 · JP · Arcade · rated 7/10 · seen 2012-02-10
+- **Devil May Cry 4** — 2008 · JP · Arcade · rated 7/10 · seen 2008-07-17
+- **Duke Nukem: Manhattan Project** — 2002 · US · Shooter, Platform, Arcade · rated 7/10 · seen 2004-07-24
+- **Fallout 3** — 2008 · Todd Howard · Bethesda · US · Shooter, RPG · rated 7/10 · seen 2011-00-00
+- **Far Cry 3** — 2012 · Ubisoft Montréal · FR · Shooter, Arcade · rated 7/10 · seen 2012-12-03
+- **Frontlines: Fuel of War** — 2008 · FR · Shooter · rated 7/10 · seen 2012-07-15
+- **Fuel** — 2009 · FR · Racing · rated 7/10 · seen 2009-11-26
+- **Half-Life 2: Episode One** — 2006 · Valve · US · Shooter · rated 7/10 · seen 2012-09-03
+- **Hitman: Absolution** — 2012 · DK · Shooter, Hack and Slash, Arcade · rated 7/10 · seen 2013-02-02
+- **Medal of Honor** — 2010 · US · Shooter · rated 7/10 · seen 2012-06-18
+- **Need for Speed Shift** (Need for Speed: Shift) — 2009 · CA · Racing · rated 7/10 · seen 2010-06-17
+- **Need for Speed: Hot Pursuit 2** — 2002 · CA · Racing · rated 7/10 · seen 2010-07-31
+- **Prototype** — 2009 · Radical Entertainment · US · Platform, Arcade · rated 7/10 · seen 2012-02-10
+- **Prototype 2** — 2012 · Radical Entertainment · US · Platform, Arcade · rated 7/10 · seen 2013-05-17
+- **R.U.S.E.** — 2010 · FR · RTS, Strategy, Hack and Slash · rated 7/10 · seen 2011-03-11
+- **Red Faction Guerrilla** (Red Faction: Guerrilla) — 2009 · US · Shooter, Arcade · rated 7/10 · seen 2012-06-18
+- **SimCity** — 2013 · US · Simulator · rated 7/10 · seen 2014-11-25
+- **Star Wars Jedi: Fallen Order** — 2019 · Respawn Entertainment · US · Arcade · rated 7/10 · seen 2020-05-26
+- **The Stanley Parable** — 2013 · Davey Wreden · Galactic Cafe · US · Arcade · rated 7/10 · seen 2020-03-21
+- **Tom Clancy's EndWar** — 2008 · FR · RTS, Simulator, Strategy · rated 7/10 · seen 2012-06-18
+- **Uncharted 2: Among Thieves** — 2009 · Amy Hennig · Naughty Dog · US · Shooter, Platform, Arcade · rated 7/10 · seen 2023-04-23
+- **Wolfenstein** — 2009 · US · Shooter · rated 7/10 · seen 2012-07-15
+- **Beyond: Two Souls** — 2013 · David Cage · Quantic Dream · FR · Arcade · rated 6/10 · seen 2014-06-10
+- **Call of Duty: Black Ops** — 2010 · Treyarch · US · Shooter · rated 6/10 · seen 2010-12-17
+- **Call of Duty: Infinite Warfare** — 2016 · Infinity Ward · US · Shooter, Arcade · rated 6/10 · seen 2021-05-02
+- **Call of Duty: Modern Warfare 3** — 2011 · Infinity Ward · US · Shooter, Hack and Slash, Arcade · rated 6/10 · seen 2012-11-22
+- **Days Gone** — 2019 · SIE Bend Studio · US · Shooter, Arcade · rated 6/10 · seen 2021-06-13
+- **F.E.A.R.: Perseus Mandate** (F.E.A.R. Perseus Mandate) — 2007 · US · Shooter · rated 6/10 · seen 2012-02-11
+- **Far Cry 2** — 2008 · FR · Shooter, Arcade · rated 6/10 · seen 2009-02-11
+- **Homefront** — 2011 · US · Shooter · rated 6/10 · seen 2012-11-22
+- **Kane & Lynch: Dead Men** — 2007 · DK · Shooter · rated 6/10 · seen 2012-09-25
+- **Quantum Break** — 2016 · Remedy Entertainment · FI · Shooter, Arcade · rated 6/10 · seen 2021-06-20
+- **Rise of the Tomb Raider** — 2015 · Crystal Dynamics · US · Shooter, Arcade · rated 6/10 · seen 2016-03-19
+- **Syndicate** — 2012 · SE · Shooter, Puzzle · rated 6/10 · seen 2013-11-26
+- **The Walking Dead: A New Frontier** — 2016 · Telltale Games · US · Point-and-click, Arcade · rated 6/10 · seen 2016-12-30
+- **TimeShift** — 2007 · US · Shooter, Puzzle · rated 6/10 · seen 2012-02-10
+- **Battlefield 2142** — 2006 · DICE · SE · Shooter · rated 5/10 · seen 2012-11-22
+- **Cyberpunk 2077** — 2020 · CD Projekt Red · PL · Shooter, RPG, Arcade · rated 5/10 · seen 2021-06-30
+- **Medal of Honor: Airborne** — 2007 · US · Shooter · rated 5/10 · seen 2008-06-23
+- **Duke Nukem Forever** — 2011 · US · Platform · rated 4/10 · seen 2012-06-24
+- **Metin2** — 2007 · KR · RPG, Arcade · rated 3/10 · seen 2005-08-26
+- **Medal of Honor Warfighter** (Medal of Honor: Warfighter) — 2012 · US · Shooter · rated 2/10 · seen 2012-12-13
+- **Need for Speed: Undercover** — 2008 · CA · Racing, Arcade · rated 2/10 · seen 2012-11-22
+- **A Bug's Life** — 1998 · US · Platform, Arcade · seen 2001-02-04
+- **Alan Wake: The Signal** — 2010 · Remedy Entertainment · FI · Shooter, Arcade · seen 2012-11-26
+- **Alan Wake: The Writer** — 2010 · Remedy Entertainment · FI · Shooter, Arcade · seen 2012-11-29
+- **Alien Swarm** — 2010 · US · Shooter · seen 2011-04-13
+- **Angry Birds** — 2009 · FI · Puzzle, Strategy · seen 2009-12-20
+- **Angry Birds Seasons** — 2010 · FI · Puzzle, Strategy · seen 2010-11-25
+- **Anomaly: Warzone Earth** — 2011 · PL · RTS, Strategy · seen 2011-11-19
+- **Another World** — 1991 · FR · seen 2010-07-26
+- **ArmA II** — 2009 · CZ · seen 2011-08-17
+- **Audiosurf** — 2008 · US · Music, Puzzle · seen 2010-11-26
+- **Ball Breakers** — 2000 · UK · Fighting · seen 2003-05-18
+- **Batman: Arkham Knight** — 2015 · Rocksteady Studios · UK · Hack and slash/Beat 'em up, Adventure · seen 2016-06-19
+- **Battlefield 2: Special Forces** — 2005 · SE · Shooter · seen 2010-12-14
+- **Battlefield 2142: Northern Strike** — 2007 · SE · Shooter · seen 2010-11-26
+- **Beach Life** — 2002 · UK · Simulator, Strategy · seen 2005-04-25
+- **Beat Saber** — 2018 · CZ · Music, Sport · seen 2019-05-09
+- **Biohazard 5** (Resident Evil 5) — 2009 · JP · Shooter, Adventure · seen 2011-08-20
+- **Biohazard: Gun Survivor** — 2000 · JP · Shooter, Puzzle · seen 2001-11-11
+- **Böse Nachbarn** — 2003 · DE · seen 2004-06-19
+- **Brothers in Arms: Earned in Blood** — 2005 · US · Shooter, Strategy, Hack and Slash · seen 2009-04-30
+- **Brothers in Arms: Hell's Highway** — 2008 · US · Shooter, Simulator, Strategy · seen 2009-08-25
+- **Brothers in Arms: Road to Hill 30** — 2005 · US · Shooter, Simulator, Strategy · seen 2009-04-19
+- **Burnout 3: Takedown** — 2004 · UK · Racing · seen 2006-10-24
+- **Casper** — 1996 · US · seen 2000-09-18
+- **Cities XL 2012** — 2011 · FR · Simulator, Strategy · seen 2013-10-30
+- **Cities XL Platinum** (Cities XL: Platinum) — 2013 · FR · Simulator, Strategy · seen 2015-07-19
+- **Cities: Skylines** — 2015 · FI · Simulator, Strategy · seen 2017-06-23
+- **Civilization III** (Sid Meier's Civilization III) — 2001 · US · Simulator, Strategy, Turn-based Strategy · seen 2008-10-31
+- **Civilization IV** (Sid Meier's Civilization IV) — 2005 · US · Simulator, Strategy, Turn-based Strategy · seen 2008-06-20
+- **Civilization VI** (Sid Meier's Civilization VI) — 2016 · Firaxis Games · US · Simulator, Strategy, Turn-based strategy (TBS) · seen 2018-10-24
+- **Civilization VI: Gathering Storm** (Sid Meier's Civilization VI: Gathering Storm) — 2019 · Firaxis Games · US · Strategy, Turn-based Strategy · seen 2020-02-18
+- **Civilization VI: Rise and Fall** (Sid Meier's Civilization VI: Rise and Fall) — 2018 · Firaxis Games · US · Strategy, Turn-based Strategy · seen 2019-11-26
+- **Codename: Panzers - Phase One** — 2004 · HU · RTS, Simulator, Strategy · seen 2009-11-26
+- **Codename: Panzers - Phase Two** — 2005 · HU · RTS, Simulator, Strategy · seen 2006-12-14
+- **Colin McRae Rally 04** — 2003 · UK · Racing · seen 2004-08-19
+- **Company of Heroes** — 2006 · CA · RTS, Strategy · seen 2014-06-16
+- **Conflict: Desert Storm II - Back to Baghdad** (Conflict: Desert Storm II: Back to Baghdad) — 2003 · UK · Shooter, Strategy, Hack and Slash · seen 2005-12-24
+- **Counter-Strike: Condition Zero** — 2004 · US · Shooter · seen 2006-12-31
+- **Crazy Taxi** — 2001 · JP · Racing, Arcade · seen 2003-05-16
+- **Croc 2: Kingdom of the Gobbo's** — 1999 · UK · Platform · seen 2001-08-24
+- **Dark Messiah: Might and Magic** (Dark Messiah of Might and Magic) — 2006 · FR · Fighting, RPG · seen 2014-06-30
+- **Day of Defeat: Source** — 2005 · US · Shooter · seen 2007-12-31
+- **Delta Force** — 1998 · US · seen 2001-08-25
+- **Delta Force 2** — 1999 · US · Shooter, Hack and Slash · seen 2002-07-18
+- **Delta Force: Black Hawk Down** — 2003 · US · Shooter, Hack and Slash · seen 2004-06-24
+- **Delta Force: Land Warrior** — 2000 · US · Shooter, Strategy, Hack and Slash · seen 2001-11-26
+- **Deluxe Ski Jump 2** — 2001 · FI · Sport · seen 2003-05-16
+- **Deluxe Ski Jump 4** — 2012 · FI · Simulator, Sport · seen 2012-06-24
+- **Deus Ex** — 2000 · US · Shooter, Role-playing (RPG), Adventure · seen 2001-11-26
+- **Die Stämme** — 2003 · DE · Strategy · seen 2005-12-28
+- **Driver** — 1999 · UK · Racing, Simulator · seen 2003-05-25
+- **Duke Nukem 3D** — 1996 · US · Shooter · seen 2003-06-19
+- **Emergency 2: The Ultimate Fight For Life** (Emergency 2: The Ultimate Fight for Life) — 2002 · DE · Simulator, Strategy · seen 2004-10-24
+- **Empire Earth II** — 2005 · US · RTS, Simulator, Strategy · seen 2006-08-19
+- **Enemy Territory: Quake Wars** — 2007 · US · Shooter, Strategy · seen 2007-12-21
+- **Evolva** — 2000 · UK · Shooter, Strategy, Arcade · seen 2004-06-17
+- **Fez** — 2012 · CA · Platform, Puzzle, Arcade · seen 2015-07-20
+- **FIFA 06** (FIFA Soccer 06) — 2005 · CA · Sport · seen 2005-12-14
+- **FIFA 07** — 2006 · CA · Sport · seen 2006-12-20
+- **FIFA 08** (FIFA Soccer 08) — 2007 · CA · Sport · seen 2007-11-18
+- **FIFA 09** — 2008 · CA · Sport · seen 2009-06-10
+- **FIFA 10** (FIFA Soccer 10) — 2009 · CA · Sport · seen 2010-06-24
+- **FIFA 11** (FIFA Soccer 11) — 2010 · CA · Sport · seen 2012-12-02
+- **FIFA 12** (FIFA Soccer 12) — 2011 · CA · Sport · seen 2012-12-02
+- **FIFA 13** — 2012 · CA · Sport · seen 2012-11-10
+- **FIFA 14** — 2013 · CA · Sport · seen 2013-10-19
+- **FIFA 15** — 2014 · CA · Sport · seen 2014-11-16
+- **FIFA 16** — 2015 · CA · Sport · seen 2015-10-26
+- **FIFA 17** — 2016 · CA · Sport · seen 2016-11-17
+- **FIFA 18** — 2017 · CA · Sport · seen 2017-11-15
+- **FlatOut 2** — 2006 · FI · Racing, Sport · seen 2006-07-18
+- **Forza Horizon 4** — 2018 · UK · Racing, Sport, Arcade · seen 2021-03-28
+- **Fruit Ninja** — 2010 · AU · seen 2011-11-26
+- **Full Spectrum Warrior** — 2004 · US · Shooter, RTS, Simulator · seen 2010-10-24
+- **Full Tilt! Pinball** — 1996 · US · Indie · seen 2001-06-26
+- **Gothic** — 2001 · DE · RPG, Arcade · seen 2004-06-17
+- **Gothic II** — 2002 · DE · RPG, Strategy, Arcade · seen 2005-07-19
+- **Gothic II: Die Nacht des Raben** — 2003 · DE · Role-playing (RPG), Strategy, Adventure · seen 2006-06-17
+- **Guitar Hero: Warriors of Rock** — 2010 · US · Music · seen 2013-08-28
+- **Guitar Hero: World Tour** (Guitar Hero World Tour) — 2008 · US · Music · seen 2014-05-23
+- **Half-Life: Counter-Strike** — 2000 · US · Shooter · seen 2005-07-19
+- **Harry Potter and the Prisoner of Azkaban** — 2004 · UK · Arcade · seen 2005-09-18
+- **Heroes of Might and Magic III: Armageddon's Blade** — 1999 · Jon Van Caneghem · New World Computing · US · RPG, Strategy, Turn-based Strategy · seen 2017-03-04
+- **Heroes of Might and Magic III: The Restoration of Erathia** — 1999 · Jon Van Caneghem · New World Computing · US · RPG, Strategy, Turn-based Strategy · seen 2017-03-04
+- **Heroes of Might and Magic V** — 2006 · RU · RPG, Strategy, Turn-based Strategy · seen 2007-02-18
+- **Heroes of Might and Magic V: Hammers of Fate** — 2006 · RU · RPG, Strategy, Turn-based Strategy · seen 2006-11-18
+- **Heroes of Might and Magic V: Tribes of the East** — 2007 · RU · RPG, Strategy, Turn-based Strategy · seen 2008-06-16
+- **Hitman** — 2016 · DK · Shooter, Hack and Slash, Arcade · seen 2016-07-16
+- **Hitman 2: Silent Assassin** — 2002 · DK · Shooter, Hack and Slash · seen 2005-10-25
+- **Hitman: Blood Money** — 2006 · DK · Shooter · seen 2008-06-20
+- **Hitman: Codename 47** — 2000 · DK · Shooter, Hack and Slash, Arcade · seen 2009-02-25
+- **Hitman: Contracts** — 2004 · DK · Shooter · seen 2006-06-18
+- **Hooligans: Storm over Europe** (Hooligans: Storm Over Europe) — 2002 · NL · seen 2004-10-24
+- **Jazz Jackrabbit** — 1994 · US · Shooter, Platform, Arcade · seen 2003-04-23
+- **Jazz Jackrabbit 2** — 1998 · US · Shooter, Platform · seen 2003-06-25
+- **Jazz Jackrabbit 2: The Christmas Chronicles** — 1998 · US · Platform, Arcade · seen 2003-05-15
+- **Just Cause 4** — 2018 · SE · Shooter, Arcade · seen 2020-07-10
+- **Kurka Wodna 3: Popłoch w kurniku** — 2003 · PL · Shooter · seen 2004-06-17
+- **Left 4 Dead 2: The Passing** — 2010 · US · Shooter · seen 2010-11-25
+- **Legaia Densetsu** — 1998 · JP · Role-playing (RPG) · seen 2002-02-18
+- **Lost Planet: Extreme Condition** — 2006 · JP · Shooter, Platform, Arcade · seen 2007-08-19
+- **Maluch Racer** — 2003 · PL · Racing · seen 2004-11-27
+- **Mass Effect 3** — 2012 · Casey Hudson · BioWare · CA · Shooter, RPG, Strategy · seen 2012-10-17
+- **MechWarrior 3** — 1999 · US · Shooter, Simulator, Strategy · seen 2001-11-26
+- **MediEvil** — 1998 · UK · Platform, Puzzle, Arcade · seen 2001-08-18
+- **Metal Slug** — 1996 · JP · Shooter, Platform · seen 2006-10-31
+- **Minesweeper** — 1992 · US · seen 2001-07-19
+- **MotorStorm: Pacific Rift** — 2008 · UK · Racing · seen 2014-05-16
+- **Need for Speed III: Hot Pursuit** — 1998 · CA · Racing · seen 2006-08-27
+- **Need for Speed: ProStreet** — 2007 · CA · Racing · seen 2008-06-25
+- **Neighbours From Hell 2** (Neighbours from Hell 2: On Vacation) — 2004 · DE · Strategy, Arcade · seen 2005-06-18
+- **OGame** — 2002 · DE · RTS, Simulator, Strategy · seen 2007-02-18
+- **Osmos** — 2009 · US · Puzzle, Simulator · seen 2012-08-27
+- **Pac-Man** — 1980 · JP · seen 2003-05-16
+- **Painkiller** — 2004 · PL · Shooter · seen 2005-07-26
+- **Pepsiman** — 1999 · JP · Platform, Arcade · seen 2001-06-17
+- **Plague Inc: Evolved** — 2014 · UK · RTS, Simulator, Strategy · seen 2015-08-25
+- **Plague Inc.** — 2012 · UK · RTS, Simulator, Strategy · seen 2012-12-07
+- **Pocket Monsters Blue** — 1996 · JP · Role-playing (RPG), Turn-based strategy (TBS), Adventure · seen 2004-06-18
+- **Poker Night 2** — 2013 · US · Puzzle, Sport, Strategy · seen 2015-07-19
+- **Poker Night at the Inventory** — 2010 · US · Sport, Turn-based Strategy, Hack and Slash · seen 2014-06-24
+- **Pro Evolution Soccer 2009** — 2008 · JP · Simulator, Sport · seen 2008-11-21
+- **Pro Evolution Soccer 2010** — 2009 · JP · Sport · seen 2009-12-16
+- **Pro Evolution Soccer 2011** — 2010 · JP · Simulator, Sport · seen 2010-12-17
+- **Pro Evolution Soccer 2012** — 2011 · JP · Sport · seen 2011-12-08
+- **Proteus** — 2013 · UK · Arcade · seen 2016-04-19
+- **Quake III: Arena** (Quake III Arena) — 1999 · US · Shooter · seen 2004-06-18
+- **Quake Live** — 2009 · US · Shooter · seen 2009-04-17
+- **Real War: Rogue States** — 2002 · US · RTS, Strategy · seen 2004-11-24
+- **Robin Hood: The Legend of Sherwood** — 2002 · DE · Point-and-click, Strategy, Hack and Slash · seen 2003-06-18
+- **RollerCoaster Tycoon 2** — 2002 · UK · RTS, Simulator, Strategy · seen 2005-07-31
+- **Serious Sam II** — 2005 · HR · Shooter · seen 2006-08-27
+- **Shadow of the Tomb Raider** — 2018 · Crystal Dynamics · US · Shooter, Puzzle, Arcade · seen 2021-06-10
+- **Silent Storm** — 2003 · RU · RPG, Strategy, Hack and Slash · seen 2004-11-27
+- **SimCity 4** — 2003 · US · Simulator, Strategy · seen 2008-07-31
+- **SimCity: Cities of Tomorrow** — 2013 · US · RTS, Simulator · seen 2015-07-19
+- **Sniper: Path of Vengeance** — 2002 · DE · Shooter · seen 2003-05-16
+- **Soldat** — 2003 · PL · Shooter · seen 2004-06-17
+- **Soldier of Fortune** — 2000 · US · Shooter · seen 2004-10-25
+- **Solitaire** — 1990 · US · Card & Board Game · seen 2001-08-20
+- **Space Interceptor: Project Freedom** — 2004 · PL · seen 2005-10-18
+- **SpecForce** (Chrome: SpecForce) — 2005 · PL · Shooter · seen 2006-11-26
+- **Spyro the Dragon** — 1998 · US · Platform, Arcade · seen 2001-08-23
+- **Spyro: Year of the Dragon** — 2000 · US · Platform, Puzzle, Arcade · seen 2002-01-18
+- **Stronghold** — 2001 · UK · RTS, Simulator, Strategy · seen 2006-06-24
+- **Stronghold: Crusader** (Stronghold Crusader) — 2002 · UK · RTS, Simulator, Strategy · seen 2006-07-24
+- **SWAT 4** — 2005 · US · Shooter, Strategy, Hack and Slash · seen 2006-04-11
+- **Tactical Ops: Assault on Terror** — 2002 · DE · Shooter · seen 2004-06-18
+- **Takeda 3** — 2009 · US · RTS, Strategy, Turn-based Strategy · seen 2011-03-18
+- **Taxi 2** — 2000 · FR · Racing · seen 2003-05-16
+- **Tekken 4** — 2001 · JP · Fighting · seen 2005-07-26
+- **Tekken 5** — 2004 · JP · Fighting · seen 2005-07-25
+- **The Elder Scrolls III: Morrowind** — 2002 · US · RPG, Arcade · seen 2005-07-24
+- **The Great Escape** — 2003 · UK · Shooter, Arcade · seen 2005-11-24
+- **The Incredibles** — 2004 · US · seen 2005-07-19
+- **The Sims** — 2000 · US · Simulator · seen 2003-10-24
+- **The Sims 2** — 2004 · US · Simulator, Strategy, Arcade · seen 2006-07-19
+- **The Sims: House Party** — 2001 · US · RPG, Simulator, Strategy · seen 2003-12-30
+- **The Sims: Superstar** — 2003 · US · RPG, Simulator, Strategy · seen 2004-10-24
+- **The Sims: Unleashed** — 2002 · US · RPG, Simulator, Strategy · seen 2003-11-26
+- **The Walking Dead: 400 Days** — 2013 · Telltale Games · US · Point-and-click, Arcade · seen 2014-06-24
+- **Thief: The Dark Project** — 1998 · Looking Glass Studios · US · Simulator, Arcade · seen 2009-11-20
+- **This War of Mine** — 2014 · 11 bit studios · PL · seen 2017-06-19
+- **TOCA Race Driver 2** — 2004 · UK · seen 2005-10-18
+- **Tom Clancy's Ghost Recon: Advanced Warfighter** (Tom Clancy's Ghost Recon Advanced Warfighter) — 2006 · FR · Shooter, Simulator, Strategy · seen 2008-03-05
+- **Tom Clancy's Ghost Recon: Advanced Warfighter 2** (Tom Clancy's Ghost Recon Advanced Warfighter 2) — 2007 · FR · Shooter, Simulator, Strategy · seen 2008-04-18
+- **Tom Clancy's Rainbow Six Vegas** (Tom Clancy's Rainbow Six: Vegas) — 2006 · FR · Shooter · seen 2007-11-26
+- **Tony Hawk's Pro Skater 2** — 2000 · US · Sport · seen 2001-07-19
+- **Tony Hawk's Underground 2** — 2004 · US · Sport · seen 2006-10-25
+- **Toy Story 2: Buzz Lightyear to the Rescue!** — 1999 · US · Platform, Arcade · seen 2002-02-10
+- **TrackMania Nations Forever** — 2008 · FR · Racing · seen 2008-11-24
+- **Trackmania United** (TrackMania United) — 2006 · FR · Racing · seen 2008-10-25
+- **Tropico 4** — 2011 · BG · RTS, Simulator, Strategy · seen 2019-11-25
+- **Turok 2: Seeds of Evil** — 1998 · US · Shooter, Arcade · seen 2000-10-26
+- **Unreal** — 1998 · US · Shooter, Platform · seen 2006-08-24
+- **Unreal Tournament 2003** — 2002 · US · Shooter · seen 2006-06-16
+- **Unreal Tournament 2004** — 2004 · US · Shooter · seen 2009-11-24
+- **Unreal Tournament III** — 2007 · US · Shooter · seen 2008-07-23
+- **Wander to Kyozou** (Shadow of the Colossus) — 2005 · Fumito Ueda · Team ICO · JP · Platform, Puzzle, Adventure · seen 2023-04-27
+- **Warcraft III: Reign of Chaos** — 2002 · US · RTS, Strategy · seen 2005-07-26
+- **Warcraft III: The Frozen Throne** — 2003 · US · RTS, Strategy · seen 2005-07-22
+- **Wolfenstein II: The New Colossus** — 2017 · SE · Shooter, Arcade · seen 2018-06-18
+- **Wolfenstein: Enemy Territory** — 2003 · US · Shooter · seen 2009-06-25
+- **Worms** — 1994 · UK · Strategy · seen 2003-02-10
+- **Worms 2** — 1997 · UK · Shooter, Platform, Strategy · seen 2004-06-30
+- **Worms 3D** — 2003 · UK · Strategy, Turn-based Strategy · seen 2005-06-27
+- **Worms Armageddon** — 1999 · UK · Strategy · seen 2004-06-20
+- **Worms Forts Under Siege** (Worms Forts: Under Siege) — 2004 · UK · Strategy · seen 2006-06-24
+- **Worms Reloaded** — 2010 · UK · Platform, Strategy, Turn-based Strategy · seen 2011-07-26
+- **Worms World Party** — 2001 · UK · Strategy · seen 2003-07-17
+- **Zoo Tycoon** — 2001 · US · Simulator · seen 2004-11-24
+- **Zoo Tycoon 2** — 2004 · US · Simulator, Strategy · seen 2005-06-24
+
+## Books (112)
+- **Fahrenheit 451** — 1953 · Ray Bradbury · US · rated 8/10 · favourite · seen 2018-10-23
+- **1984** — 1949 · George Orwell · UK · favourite
+- **Animal Farm** — 1945 · George Orwell · UK · favourite
+- **Blood of Elves** — 1994 · Andrzej Sapkowski · PL · favourite
+- **Goodnight Punpun** — 2007 · Inio Asano · JP · favourite
+- **Heart of Darkness** — 1899 · Joseph Conrad · UK · favourite
+- **Limes Inferior** — 1982 · Janusz Zajdel · PL · favourite
+- **Norwegian Wood** — 1987 · Haruki Murakami · JP · favourite
+- **One Thousand and One Nights** — 800 · OTHER · favourite
+- **Paradyzja** — 1984 · Janusz Zajdel · PL · favourite
+- **Robot (Lem)** — 1964 · Stanisław Lem · PL · favourite
+- **The Idiot** — 1869 · Fyodor Dostoevsky · RU · favourite
+- **The Illustrated Man** — 1951 · Ray Bradbury · US · favourite
+- **The Velveteen Rabbit** — 1922 · Margery Williams · UK · favourite
+- **Czas pogardy (Saga o Wiedźminie, #2)** — 1995 · PL · rated 10/10 · seen 2014-11-04
+- **Goodnight Punpun, Vol. 12 (Goodnight Punpun, #12)** — 2013 · JP · rated 10/10 · seen 2024-08-07
+- **Pani Jeziora (Saga o Wiedźminie, #5)** — 1999 · PL · rated 10/10 · seen 2015-01-15
+- **1984** — 1948 · UK · rated 8/10 · seen 2018-10-23
+- **Desire** — 2017 · JP · rated 8/10 · seen 2024-10-26
+- **Goodnight Punpun Omnibus, Vol. 1** — 2006 · JP · rated 8/10 · seen 2022-09-08
+- **Goodnight Punpun Omnibus, Vol. 4** — 2017 · JP · rated 8/10 · seen 2023-07-01
+- **Goodnight Punpun Omnibus, Vol. 5** — 2009 · JP · rated 8/10 · seen 2024-07-08
+- **Goodnight Punpun Volume 1-7 Collection 7 Books Set By Inio Asano** — 2007 · JP · rated 8/10 · seen 2024-07-22
+- **Goodnight Punpun, Vol. 10 (Goodnight Punpun, #10)** — 2012 · JP · rated 8/10 · seen 2024-07-25
+- **Goodnight Punpun, Vol. 11 (Goodnight Punpun, #11)** — 2012 · JP · rated 8/10 · seen 2024-07-28
+- **Goodnight Punpun, Vol. 13 (Goodnight Punpun, #13)** — 2013 · JP · rated 8/10
+- **Goodnight Punpun, Vol. 8 (Goodnight Punpun, #8)** — 2011 · JP · rated 8/10 · seen 2024-07-22
+- **Goodnight Punpun, Vol. 9 (Goodnight Punpun, #9)** — 2011 · JP · rated 8/10 · seen 2024-07-25
+- **Great Mythologies of the World** — 2015 · US · rated 8/10 · seen 2020-11-22
+- **The Informer** — 1906 · UK · rated 8/10 · seen 2025-12-18
+- **The Invincible** — 1964 · PL · rated 8/10 · seen 2020-07-01
+- **The Lagoon (Creative Short Stories)** — 1897 · UK · rated 8/10 · seen 2025-12-14
+- **Wieża Jaskółki (Saga o Wiedźminie, #4)** — 1997 · PL · rated 8/10 · seen 2014-12-21
+- **Alice’s Adventures in Wonderland / Through the Looking-Glass** — 1871 · UK · rated 6/10 · seen 2020-05-20
+- **Black Orchid** — 1989 · UK · rated 6/10 · seen 2024-08-20
+- **Cała prawda o planecie Ksi** — 1983 · PL · rated 6/10 · seen 2020-06-11
+- **Chrzest ognia (Saga o Wiedźminie, #3)** — 1996 · PL · rated 6/10 · seen 2014-11-28
+- **Cylinder van Troffa** — 1980 · PL · rated 6/10 · seen 2020-06-14
+- **Czarownik Iwanow (Kroniki Jakuba Wędrowycza, #2)** — 2002 · PL · rated 6/10 · seen 2020-06-26
+- **Demons** — 1872 · RU · rated 6/10 · seen 2020-07-16
+- **Goodnight Punpun Omnibus, Vol. 2** — 2007 · JP · rated 6/10 · seen 2022-09-11
+- **Goodnight Punpun Omnibus, Vol. 3** — 2016 · JP · rated 6/10 · seen 2022-11-15
+- **Goodnight Punpun Omnibus, Vol. 6** — 2017 · JP · rated 6/10 · seen 2024-07-14
+- **Inny świat** — 1951 · PL · rated 6/10
+- **Lalka** — 1890 · PL · rated 6/10 · seen 2013-01-01
+- **Lolita** — 1955 · RU · rated 6/10 · seen 2018-12-27
+- **Obcy** — 1942 · FR · rated 6/10 · seen 2025-12-10
+- **Przedwiośnie** — 1924 · PL · rated 6/10 · seen 2013-01-01
+- **Robot** — 1973 · PL · rated 6/10 · seen 2021-09-25
+- **The Brute** — 1906 · UK · rated 6/10 · seen 2025-12-12
+- **The Last Wish (The Witcher, #0.5)** — 1993 · PL · rated 6/10 · seen 2011-08-14
+- **We** — 1924 · RU · rated 6/10 · seen 2020-05-24
+- **Wyjście z cienia** — 1983 · PL · rated 6/10 · seen 2020-06-16
+- **Brave New World** — 1932 · UK · rated 4/10 · seen 2018-04-23
+- **Ferdydurke** — 1937 · PL · rated 4/10
+- **Granica** — 1935 · PL · rated 4/10
+- **Katar** — 1976 · PL · rated 4/10 · seen 2020-07-06
+- **Kroniki Jakuba Wędrowycza (Kroniki Jakuba Wędrowycza, #1)** — 2001 · PL · rated 4/10 · seen 2020-06-24
+- **Pale Fire** — 1962 · RU · rated 4/10 · seen 2020-05-30
+- **The Alchemist** — 1988 · BR · rated 2/10 · seen 2016-10-14
+- **"Oda do Młodości" w przekładach na języki słowiańskie** — 1820 · PL · seen 2012-01-01
+- **Antygona** — -441 · GR · seen 2013-01-01
+- **Bajki i przypowieści** — 1779 · PL · seen 2009-01-01
+- **Balladyna** — 1839 · PL · seen 2011-01-01
+- **Brzydkie kaczątko** — 1843 · DK · seen 2003-01-01
+- **Cała prawda o planecie Ksi / Drugie spojrzenie na planetę Ksi** — 1983 · PL · seen 2020-06-11
+- **Calineczka** — 1835 · DK · seen 2005-01-01
+- **Chłopi** — 1909 · PL · seen 2013-01-01
+- **Choinka** — DK · seen 2003-01-01
+- **Cierpienia młodego Wertera** — 1774 · DE · seen 2013-01-01
+- **Coś się kończy, coś się zaczyna** — 1988 · PL · seen 2012-05-13
+- **Czerwony Kapturek** — 1968 · DE · seen 2007-01-01
+- **Dzieci z Bullerbyn (Dzieci z Bullerbyn #1-3)** — 1947 · SE · seen 2006-07-14
+- **Dziewczyna z zapałkami (Hanka, #1)** — 2007 · PL · seen 2003-01-01
+- **Dżuma** — 1947 · FR · seen 2010-01-01
+- **Green Eggs and Ham** — 1960 · US · seen 2000-01-01
+- **Hop On Pop** — 1963 · US · seen 2000-01-01
+- **Horton Hatches the Egg** — 1940 · US · seen 2000-01-01
+- **Horton Hears a Who!** — 1954 · US · seen 2000-01-01
+- **How the Grinch Stole Christmas!** — 1957 · US · seen 2000-01-01
+- **In Desert and Wilderness** — 1911 · PL · seen 2006-01-01
+- **Jądro ciemności** — 1899 · UK · seen 2014-03-18
+- **Kamienie na szaniec** — 1943 · PL
+- **Kordian. Część pierwsza trylogii. Spisek koronacyjny** — 1834 · PL · seen 2013-01-01
+- **Król Edyp** — -429 · GR · seen 2013-01-01
+- **Lalande 21185** — 1966 · PL · seen 2025-06-26
+- **Latarnik** — 1881 · PL · seen 2010-01-01
+- **Light for Visual Artists: Understanding & Using Light in Art & Design** — 2011 · UK · seen 2022-08-27
+- **Ludzie bezdomni** — 1900 · PL
+- **Makbet** — 1623 · UK · seen 2012-01-01
+- **Mała syrena & Czerwone trzewiczki** — 1992 · DK · seen 2005-01-01
+- **Mały Książę** — 1943 · FR · seen 2009-01-01
+- **Mr. Brown Can Moo! Can You?** — 1970 · US · seen 2000-01-01
+- **Opowieść wigilijna** — 1843 · UK · seen 2003-01-01
+- **Reduta Ordona** — 1832 · PL · seen 2009-01-01
+- **Romeo and Juliet** — 1590 · UK · seen 2011-01-01
+- **Skąpiec** — 1668 · FR · seen 2012-01-01
+- **Syzyfowe prace** — 1898 · PL · seen 2009-01-01
+- **Szatan z siódmej klasy** — 1937 · PL · seen 2006-01-01
+- **Tango** — 1968 · PL
+- **The Cat in the Hat (Cat in the Hat, #1)** — 1957 · US · seen 2000-01-01
+- **The Cat in the Hat and Other Dr. Seuss Favorites** — 2003 · US · seen 2000-01-01
+- **The Little Match Girl** — 1845 · DK · seen 2005-01-01
+- **The Lorax** — 1971 · US · seen 2000-01-01
+- **The Red Shoes** — 1845 · US · seen 2005-01-01
+- **The Very Hungry Caterpillar** — 1969 · US · seen 2000-01-01
+- **The Wedding** — 1901 · PL
+- **Thidwick the Big-Hearted Moose** — 1948 · US · seen 2000-01-01
+- **Trzej muszkieterowie** — 1844 · FR · seen 2007-01-01
+- **W pustyni i w puszczy** — 1911 · PL
+- **Yertle the Turtle and Other Stories** — 1958 · US · seen 2000-01-01
+- **Zemsta** — 1838 · PL · seen 2011-01-01

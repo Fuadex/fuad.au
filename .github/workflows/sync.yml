@@ -99,6 +99,19 @@ jobs:
           path: rotation/live-artist-img.json
           retention-days: 2
 
+      # 5b) the readable lists (gigs-upcoming, Culture seen/wishlist) are ALSO committed to feeds/ by the
+      #     persist job, so agents that cannot reach fuad.au (Cloudflare challenges datacenter fetchers)
+      #     can read them from GitHub. Fuad 2026-11-08.
+      - name: Collect feeds
+        run: |
+          mkdir -p feeds
+          cp rotation/gigs-upcoming.md rotation/gigs-upcoming.json culture/seen.md culture/wishlist.md culture/culture.json feeds/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: feeds
+          path: feeds
+          retention-days: 2
+
       # 6) stage the whole hub (root launcher + every app in apps.json) into _site/.
       #    Babel is needed to precompile rotation's .jsx → .js in the staged copy
       #    (see stage-site.js). Installed here, in CI only — never committed.
@@ -153,6 +166,11 @@ jobs:
         with:
           name: live-artist-img
           path: rotation
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: feeds
+          path: feeds
       - name: Commit CSV + artist-image cache if changed
         run: |
           git config user.name "rotation-bot"
@@ -162,5 +180,14 @@ jobs:
             echo "no new scrobbles / no new artist images"
           else
             git commit -m "chore: daily last.fm sync"
+            git push || (git pull --rebase --autostash && git push)
+          fi
+          # the readable lists (5b) -- a separate commit so the scrobble history stays readable.
+          # A GITHUB_TOKEN push does not start another workflow run, so this cannot loop.
+          git add feeds
+          if git diff --staged --quiet; then
+            echo "feeds unchanged"
+          else
+            git commit -m "chore: refresh feeds (gigs-upcoming, culture lists)"
             git push || (git pull --rebase --autostash && git push)
           fi

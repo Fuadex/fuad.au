@@ -1,0 +1,1552 @@
+# Wishlist — what Fuad wants to watch, play or read
+
+Generated 2026-11-07 · 1535 titles · per medium, newest release first (unreleased titles at the top). Seen list: fuad.au/culture/seen.md · both as JSON: fuad.au/culture/culture.json
+
+## Movies (1149)
+- **Obsession** — 2026 · Curry Barker · US · Horror, Thriller · added by hand · added 2026-09-27
+- **Truly Naked** — 2026 · Muriel d'Ansembourg · NL · Drama, Romance · added by hand · added 2026-11-03
+- **Amélie et la métaphysique des tubes** (Little Amélie or the Character of Rain) — 2025 · Maïlys Vallade · FR · Animation, Drama, Family · Filmweb 7.3
+- **Fixed** — 2025 · Genndy Tartakovsky · US · Animation, Comedy · Filmweb 5.3
+- **Good Boy** — 2025 · Jan Komasa · UK · Thriller, Drama, Mystery · Filmweb 5.6
+- **Kokuhō** (Kokuho) — 2025 · Sang-il Lee · JP · Drama, Music · Filmweb 7.2
+- **Obsession** — 2025 · Curry Barker · US · Horror, Thriller · added by hand · added 2026-06-06
+- **The Rats: A Witcher Tale** — 2025 · Mairzee Almas · US · Fantasy, Drama, Adventure · Filmweb 5.3
+- **Juror #2** — 2024 · Clint Eastwood · US · Drama, Thriller · Filmweb 6.6
+- **Kneecap** — 2024 · Rich Peppiatt · IE · Music, Comedy, Drama · Filmweb 7.5
+- **Monkey Man** — 2024 · Dev Patel · CA · Thriller, Crime, Action · Filmweb 6.1
+- **27** — 2023 · Flóra Anna Buda · FR · Animation · Filmweb 5.8
+- **Aku wa Sonzai Shinai** (Evil Does Not Exist) — 2023 · Ryusuke Hamaguchi · JP · Drama · Filmweb 6.4
+- **All of Us Strangers** — 2023 · Andrew Haigh · UK · Romance, Drama, Fantasy · added 2026-07-08
+- **Daddio** — 2023 · Christy Hall · US · Drama · Filmweb 6.8
+- **Infinity Pool** — 2023 · Brandon Cronenberg · CA · Horror, Science Fiction, Thriller · Filmweb 5.8
+- **It Lives Inside** — 2023 · Bishal Dutta · CA · Horror, Mystery · Filmweb 4.5
+- **Kaibutsu** (Monster) — 2023 · Hirokazu Kore-eda · JP · Mystery, Thriller, Drama · Filmweb 7.3
+- **Kos** (Scarborn) — 2023 · Paweł Maślona · PL · History, Drama, Action · Filmweb 7.1
+- **La bête** (The Beast) — 2023 · Bertrand Bonello · FR · Science Fiction, Drama, Romance · Filmweb 5.9
+- **La chimera** (La Chimera) — 2023 · Alice Rohrwacher · IT · Drama, Fantasy, Comedy · Filmweb 6.8
+- **Magyarázat mindenre** (Explanation for Everything) — 2023 · Gábor Reisz · HU · Drama · Filmweb 6.9
+- **Savvusanna sõsarad** (Smoke Sauna Sisterhood) — 2023 · Anna Hints · EU · Documentary · Filmweb 7.2
+- **Shen Hai** (Deep Sea) — 2023 · Tian Xiaopeng · CN · Animation, Adventure, Drama · Filmweb 7.2
+- **Sirocco et le royaume des courants d'air** (Sirocco and the Kingdom of Winds) — 2023 · Benoît Chieux · FR · Adventure, Animation, Family · Filmweb 7
+- **Święto ognia** (Feast of Fire) — 2023 · Kinga Dębska · PL · Drama, Comedy · Filmweb 6.7
+- **The Equalizer 3** — 2023 · Antoine Fuqua · IT · Action, Thriller, Crime · Filmweb 6.8
+- **The Holdovers** — 2023 · Alexander Payne · US · Drama, Comedy · Filmweb 7.6
+- **The Monk and the Gun** — 2023 · Pawo Choyning Dorji · FR · Comedy, Drama · Filmweb 6.9
+- **The Zone of Interest** — 2023 · Jonathan Glazer · US · Drama, History, War · added 2026-07-08
+- **Znachor** (Forgotten Love) — 2023 · Michał Gazda · PL · Drama, Romance · Filmweb 7.5
+- **Alcarràs** — 2022 · Carla Simón · ES · Drama · Filmweb 6.9
+- **Baburu** (Bubble) — 2022 · Tetsuro Araki · JP · Animation, Adventure, Science Fiction · Filmweb 6.4
+- **Beurokeo** (Broker) — 2022 · Hirokazu Kore-eda · KR · Drama · Filmweb 6.7
+- **Café au lait** — 2022
+- **Chleb i sól** (Bread and Salt) — 2022 · Damian Kocur · PL · Drama · Filmweb 6.8
+- **Filip** — 2022 · Michał Kwieciński · PL · Drama, History, War · Filmweb 7
+- **Fire of Love** — 2022 · Sara Dosa · US · Documentary · Filmweb 7.6
+- **Fresh** — 2022 · Mimi Cave · US · Horror, Thriller, Comedy · Filmweb 6.6
+- **Haken Anime** (Anime Supremacy!) — 2022 · Kohei Yoshino · JP · Drama · Filmweb 6.4
+- **Heartbeat** — 2022 · Lee Chang-dong · KR · Drama
+- **Johnny** — 2022 · Daniel Jaroszek · PL · Drama · Filmweb 7.6
+- **Les passagers de la nuit** (The Passengers of the Night) — 2022 · Mikhaël Hers · FR · Drama · Filmweb 6.9
+- **Living** — 2022 · Oliver Hermanus · JP · Drama · Filmweb 6.9
+- **Mall Stories - Atilla the Grilla** — 2022 · Filmweb 4
+- **Moonage Daydream** — 2022 · Brett Morgen · DE · Documentary, Music · Filmweb 7.6
+- **My Father's Dragon** — 2022 · Nora Twomey · IE · Animation, Adventure, Family · Filmweb 6.4
+- **Niebezpieczni dżentelmeni** (Dangerous Men) — 2022 · Maciej Kawalski · PL · Comedy, Crime, History · Filmweb 6.1
+- **Pearl** — 2022 · Ti West · US · Horror, Drama, Thriller · Filmweb 7
+- **Poker Face** — 2022 · Russell Crowe · US · Thriller, Crime · Filmweb 4.9
+- **Saules aveugles, femme endormie** (Blind Willow, Sleeping Woman) — 2022 · Pierre Földes · CA · Animation, Drama, Science Fiction · Filmweb 6.5
+- **The Stranger** — 2022 · Thomas M. Wright · AU · Thriller, Crime, Drama · Filmweb 6.4
+- **Tsutsué** (Tsutsue) — 2022 · Amartei Armar · FR · Drama
+- **Vanskabte Land** (Godland) — 2022 · Hlynur Pálmason · DK · Drama · Filmweb 6.9
+- **Caillou** (I am a Pebble) — 2021 · Nicolas Grondin · FR · Fantasy, Animation
+- **Ennio** — 2021 · Giuseppe Tornatore · EU · Documentary, Music, History · Filmweb 7.8
+- **Gūzen to Sōzō** (Wheel of Fortune and Fantasy) — 2021 · Ryusuke Hamaguchi · JP · Drama, Romance · Filmweb 7
+- **Inu-Ō** (Inu-Oh) — 2021 · Masaaki Yuasa · JP · Animation, Drama, Music · Filmweb 6.9
+- **Les Olympiades** (Paris, 13th District) — 2021 · Jacques Audiard · FR · Drama, Romance · Filmweb 6.9
+- **Memoria** — 2021 · Apichatpong Weerasethakul · CN · Drama, Science Fiction, Mystery · Filmweb 6.2
+- **Nightmare Alley** — 2021 · Guillermo del Toro · US · Crime, Drama, Thriller · Filmweb 6.6
+- **Petite Maman** — 2021 · Céline Sciamma · FR · Drama, Fantasy · added 2026-07-08
+- **Pokój** (Room) — 2021 · Krzysztof Jankowski · PL · Science Fiction, Comedy, Drama · Filmweb 5.3
+- **Shōjo Kageki Revue Starlight** (Revue Starlight: The Movie) — 2021 · Tomohiro Furukawa · JP · Animation, Drama, Fantasy · Filmweb 8.4
+- **Taming the Garden** — 2021 · Salome Jashi · DE · Documentary · Filmweb 6.6
+- **The Green Knight** — 2021 · David Lowery · CA · Adventure, Drama, Fantasy · added 2026-07-08
+- **The Windshield Wiper** — 2021 · Alberto Mielgo · ES · Animation, Romance · Filmweb 6.5
+- **The Year Earth Changed** — 2021 · Tom Beard · UK · Documentary · Filmweb 7.7
+- **Titane** — 2021 · Julia Ducournau · EU · Drama, Thriller, Horror · Filmweb 6.2
+- **Vivo** — 2021 · Kirk DeMicco · US · Animation, Family, Comedy · Filmweb 6.3
+- **Without Remorse** (Tom Clancy's Without Remorse) — 2021 · Stefano Sollima · US · Action, Thriller, War · Filmweb 5.4
+- **Żeby nie było śladów** (Leave No Traces) — 2021 · Jan P. Matuszyński · CZ · Drama, History, Thriller · Filmweb 7.3
+- **À la mer poussière** (To The Dusty Sea) — 2020 · Héloïse Ferlay · FR · Animation, Drama · Filmweb 5.8
+- **Berlin Alexanderplatz** — 2020 · Burhan Qurbani · DE · Drama, Crime · Filmweb 7.4
+- **Black Bear** — 2020 · Lawrence Michael Levine · US · Drama, Thriller · Filmweb 6.6
+- **DAU. Natasha** — 2020 · Ilya Khrzhanovsky · UK · Drama · Filmweb 7.4
+- **Druk** (Another Round) — 2020 · Thomas Vinterberg · DK · Comedy, Drama · Filmweb 7.5
+- **Gunda** — 2020 · Viktor Kossakovsky · EU · Documentary · Filmweb 7.1
+- **Josee to Tora to Sakana-tachi** (Josée) — 2020 · Kim Jong-kwan · JP · Romance, Drama · Filmweb 7.6
+- **Kol** (The Lake) — 2020 · Emil Atageldijev · Drama · Filmweb 6.8
+- **Minari** — 2020 · Lee Isaac Chung · US · Drama · Filmweb 7
+- **Nomadland** — 2020 · Chloé Zhao · US · Drama · Filmweb 7.1
+- **Pieces of a Woman** — 2020 · Kornél Mundruczó · CA · Drama · Filmweb 7.1
+- **Promising Young Woman** — 2020 · Emerald Fennell · US · Thriller, Crime, Drama · Filmweb 7.6
+- **Quo Vadis, Aïda?** (Quo Vadis, Aida?) — 2020 · Jasmila Žbanić · EU · War, Drama, History · Filmweb 8
+- **Riders of Justice** — 2020 · Anders Thomas Jensen · DK · Action, Comedy, Drama · added 2026-07-08
+- **Sukienka** (The Dress) — 2020 · Tadeusz Łysiak · PL · Drama · Filmweb 6.6
+- **The Devil All the Time** — 2020 · Antonio Campos · US · Crime, Drama, Thriller · Filmweb 7.1
+- **The Hunt** — 2020 · Craig Zobel · US · Action, Thriller, Horror · Filmweb 5.9
+- **The Man Standing Next** — 2020 · Woo Min-ho · KR · Drama, Thriller · added 2026-07-08
+- **The Social Dilemma** — 2020 · Jeff Orlowski · US · Documentary, Drama · Filmweb 6.7
+- **37 sekanzu** (37 Seconds) — 2019 · Hikari · JP · Drama · Filmweb 7.1
+- **Article 15** — 2019 · Anubhav Sinha · IN · Crime, Drama, Thriller · Filmweb 7.2
+- **Bacurau** — 2019 · Kleber Mendonça Filho · BR · Mystery, Western, Thriller · Filmweb 6.7
+- **Blood Machines** — 2019 · Raphaël Hernandez · FR · Science Fiction, Horror · Filmweb 5.8
+- **Captain Marvel** — 2019 · Ryan Fleck · US · Action, Adventure, Science Fiction · Filmweb 6.7
+- **Fritzi - eine Wendewundergeschichte** (Fritzi: A Revolutionary Tale) — 2019 · Ralf Kukula · DE · Animation, Drama, Family · Filmweb 6.8
+- **I Am Mother** — 2019 · Grant Sputore · AU · Science Fiction, Thriller · Filmweb 6.4
+- **It Must Be Heaven** — 2019 · Elia Suleiman · FR · Comedy, Drama · Filmweb 6.6
+- **Jak zostałem gangsterem. Historia prawdziwa** (How I Became a Gangster) — 2019 · Maciej Kawulski · PL · Crime, Action · Filmweb 7.3
+- **Kimi to, Nami ni Noretara** (Ride Your Wave) — 2019 · Masaaki Yuasa · JP · Animation, Romance, Comedy · Filmweb 6.7
+- **La fameuse invasion des ours en Sicile** (The Bears' Famous Invasion of Sicily) — 2019 · Lorenzo Mattotti · FR · Animation, Adventure, Family · Filmweb 6.8
+- **Little Women** — 2019 · Greta Gerwig · US · Drama, Romance · Filmweb 7.4
+- **Midsommar** — 2019 · Ari Aster · SE · Horror, Drama, Mystery · Filmweb 6.8
+- **Ongaku** (On-Gaku: Our Sound) — 2019 · Kenji Iwaisawa · JP · Animation, Comedy, Music · Filmweb 7.5
+- **Ready or Not** — 2019 · Tyler Gillett · US · Horror, Comedy · Filmweb 6.5
+- **Smak phở** (The Taste of Pho) — 2019 · Mariko Bobrik · PL · Drama · Filmweb 5.5
+- **The Painted Bird** — 2019 · Václav Marhoul · EU · War, Drama, Thriller · added 2026-07-08
+- **The Vast of Night** — 2019 · Andrew Patterson · US · Drama, Mystery, Science Fiction · added 2026-07-08
+- **Ts'onot** (Cenote) — 2019 · Kaori Oda · JP · Documentary · Filmweb 5.7
+- **Un divan à Tunis** (Arab Blues) — 2019 · Manele Labidi · FR · Comedy, Drama · Filmweb 6.2
+- **Waves** — 2019 · Trey Edward Shults · CA · Romance, Drama · Filmweb 6.9
+- **Ya no estoy aquí** (I'm No Longer Here) — 2019 · Luis Fernando Frías de la Parra · MX · Drama · Filmweb 6.9
+- **Andhadhun** — 2018 · Sriram Raghavan · IN · Crime, Mystery, Thriller · Filmweb 6.8
+- **Beautiful Boy** — 2018 · Felix van Groeningen · US · Drama · Filmweb 7.3
+- **Climax** — 2018 · Gaspar Noé · FR · Drama, Horror, Music · Filmweb 7
+- **Croc-Blanc** (White Fang) — 2018 · Alexandre Espigares · US · Animation, Family · Filmweb 6.9
+- **Da Xiang Xi Di Er Zuo** (An Elephant Sitting Still) — 2018 · Hu Bo · CN · Drama · Filmweb 7.8
+- **Di Qiu Zui Hou De Ye Wan** (Long Day's Journey Into Night) — 2018 · Bi Gan · CN · Drama, Mystery · Filmweb 6.8
+- **Hereditary** — 2018 · Ari Aster · US · Horror, Mystery, Thriller · added 2026-07-08
+- **K.G.F: Chapter 1** — 2018 · Prashanth Neel · IN · Action, Thriller, Adventure · Filmweb 6.3
+- **Kimi no Suizō o Tabetai** (I Want to Eat Your Pancreas) — 2018 · Shinichiro Ushijima · JP · Animation, Drama, Romance · Filmweb 7.9
+- **La casa lobo** (The Wolf House) — 2018 · Cristóbal León · OTHER · Animation, Horror, Drama · Filmweb 7.2
+- **Lazzaro Felice** (Happy as Lazzaro) — 2018 · Alice Rohrwacher · FR · Drama, Fantasy · Filmweb 7.4
+- **Manbiki Kazoku** (Shoplifters) — 2018 · Hirokazu Kore-eda · JP · Drama, Crime, Thriller · Filmweb 7.5
+- **Mandy** — 2018 · Panos Cosmatos · UK · Fantasy, Action, Horror · Filmweb 6
+- **Netemo Sametemo** (Asako I & II) — 2018 · Ryusuke Hamaguchi · JP · Drama, Romance · Filmweb 6.2
+- **Niepodległość** — 2018 · Krzysztof Talczewski · PL · Documentary, History, War · Filmweb 8.3
+- **Penguin Highway** — 2018 · Hiroyasu Ishida · JP · Animation, Adventure, Comedy · Filmweb 7.1
+- **Pul-ip-deul** — 2018 · Bohdan Poręba · PL · Drama · Filmweb 6.1
+- **Se rokh** (3 Faces) — 2018 · Jafar Panahi · OTHER · Drama · Filmweb 6.4
+- **Shirkers** — 2018 · Sandi Tan · UK · Documentary · Filmweb 7
+- **The Favourite** — 2018 · Yorgos Lanthimos · IE · History, Comedy, Drama · Filmweb 7.5
+- **The Guilty** — 2018 · Gustav Möller · DK · Thriller, Drama, Crime · added 2026-07-08
+- **The Nightingale** — 2018 · Jennifer Kent · AU · Drama, Thriller, Western · Filmweb 7.2
+- **1922** — 2017 · Zak Hilditch · US · Horror, Crime, Drama · Filmweb 6
+- **A Dog's Purpose** — 2017 · Lasse Hallström · IN · Adventure, Fantasy, Family · Filmweb 7.7
+- **A Ghost Story** — 2017 · David Lowery · US · Drama, Fantasy, Romance · Filmweb 6.6
+- **Atomic Blonde** — 2017 · David Leitch · DE · Action, Thriller · Filmweb 6.5
+- **Bam-eui hae-byeon-e-so hon-ja** — 2017 · Hong Sang-soo · KR · Drama · Filmweb 6.6
+- **Call Me by Your Name** — 2017 · Luca Guadagnino · BR · Romance, Drama · Filmweb 7.6
+- **Cicha noc** (Silent Night) — 2017 · Piotr Domalewski · PL · Drama, Comedy · Filmweb 7.3
+- **Columbus** — 2017 · Kogonada · US · Drama · added 2026-07-08
+- **First Reformed** — 2017 · Paul Schrader · US · Drama · added 2026-07-08
+- **Foxtrot** — 2017 · Samuel Maoz · FR · Drama · Filmweb 7.1
+- **God's Own Country** — 2017 · Francis Lee · UK · Romance, Drama · Filmweb 7.1
+- **Hikari** (And Then There Was Light) — 2017 · Tatsushi Ōmori · JP · Drama, Mystery · Filmweb 6.4
+- **Mother!** (mother!) — 2017 · Darren Aronofsky · US · Horror, Drama · Filmweb 6.2
+- **Najlepszy** (Breaking the Limits) — 2017 · Łukasz Palkowski · PL · Drama, History · Filmweb 8
+- **Phantom Thread** — 2017 · Paul Thomas Anderson · US · Drama, Romance · Filmweb 7
+- **Photon** — 2017 · Norman Leto · PL · Animation, Drama, Mystery · Filmweb 7.5
+- **Seu-wing-ki-jeu** — 2017 · Kang Hyoung-chul · KR · Drama, War · Filmweb 7.2
+- **So-gong-nyeo** (Microhabitat) — 2017 · Jeon Go-woon · KR · Drama, Romance · Filmweb 7.4
+- **Taek-si un-jeon-sa** — 2017 · Jang Hoon · KR · Drama, History · Filmweb 7.5
+- **The Disaster Artist** — 2017 · James Franco · US · Comedy, Drama · Filmweb 7.3
+- **You Were Never Really Here** — 2017 · Lynne Ramsay · UK · Crime, Drama, Thriller · Filmweb 6.3
+- **Zombillénium** — 2017 · Alexis Ducord · EU · Comedy, Animation, Fantasy · Filmweb 6.3
+- **Ah-ga-ssi** (The Handmaiden) — 2016 · Park Chan-wook · KR · Thriller, Drama, Romance · Filmweb 7.7
+- **Amerykański sen** — 2016 · Marek Skrzecz · PL · Filmweb 7
+- **Blue Jay** — 2016 · Alexandre Lehmann · US · Drama, Romance · Filmweb 7.4
+- **Dangal** — 2016 · Nitesh Tiwari · IN · Drama, Family, Comedy · Filmweb 7.9
+- **Europe, She Loves** — 2016 · Jan Gassmann · DE · Documentary · Filmweb 6.7
+- **Forushande** (The Salesman) — 2016 · Asghar Farhadi · OTHER · Drama, Thriller · Filmweb 7
+- **Grave** (Raw) — 2016 · Julia Ducournau · EU · Horror, Drama · Filmweb 5.9
+- **Hell or High Water** — 2016 · David Mackenzie · US · Western, Crime, Drama · Filmweb 7.1
+- **Hunt for the Wilderpeople** — 2016 · Taika Waititi · AU · Adventure, Comedy, Drama · Filmweb 7.5
+- **Jestem mordercą** (I'm a Killer) — 2016 · Maciej Pieprzyca · PL · History, Crime, Thriller · Filmweb 7.2
+- **La pazza gioia** (Like Crazy) — 2016 · Paolo Virzì · FR · Drama, Comedy · Filmweb 7
+- **Maudie** — 2016 · Aisling Walsh · IE · Drama, Romance, History · Filmweb 7.8
+- **Paterson** — 2016 · Jim Jarmusch · US · Drama, Comedy, Romance · Filmweb 7
+- **Seoul-yeok** — 2016 · Yeon Sang-ho · KR · Animation, Horror, Science Fiction · Filmweb 5.8
+- **Shin Gojira** (Shin Godzilla) — 2016 · Shinji Higuchi · JP · Action, Science Fiction, Horror · Filmweb 6.2
+- **The Love Witch** — 2016 · Anna Biller · US · Horror, Comedy, Romance · Filmweb 6.6
+- **Trapped** — 2016 · Dawn Porter · US · Documentary · Filmweb 5.7
+- **Zoolander 2** — 2016 · Ben Stiller · US · Action, Adventure, Comedy · Filmweb 4.8
+- **Anomalisa** — 2015 · Duke Johnson · US · Animation, Drama, Romance · Filmweb 6.8
+- **Beasts of No Nation** — 2015 · Cary Joji Fukunaga · BR · Drama, War · Filmweb 7.3
+- **Blanka** — 2015 · Kohki Hasei · IT · Drama · Filmweb 6.3
+- **Bone Tomahawk** — 2015 · S. Craig Zahler · US · Drama, Horror, Western · Filmweb 6.5
+- **Cosmos** — 2015 · Andrzej Żuławski · EU · Drama, Comedy, Fantasy · Filmweb 6.1
+- **Dheepan** — 2015 · Jacques Audiard · FR · Crime, Drama · Filmweb 6.6
+- **Dofus - Livre 1: Julith** (Dofus - Book I: Julith) — 2015 · Jean-Jacques Denis · FR · Animation, Action, Adventure · Filmweb 7.9
+- **El abrazo de la serpiente** (Embrace of the Serpent) — 2015 · Ciro Guerra · OTHER · Drama, Adventure · Filmweb 7.6
+- **Harmony** — 2015 · Michael Arias · JP · Thriller, Animation, Science Fiction · Filmweb 6.4
+- **Little Witch Academia: Mahō Shikake no Parade** — 2015 · Yoh Yoshinari · JP · Action, Animation, Fantasy · Filmweb 7.2
+- **Macbeth** — 2015 · Justin Kurzel · FR · Drama, War · Filmweb 6.5
+- **Room** — 2015 · Lenny Abrahamson · CA · Drama, Thriller · Filmweb 7.8
+- **Son of Saul** — 2015 · László Nemes · HU · War, Drama, Thriller · added 2026-07-08
+- **The Witch** — 2015 · Robert Eggers · BR · Horror · added 2026-07-08
+- **Victoria** — 2015 · Sebastian Schipper · DE · Crime, Thriller, Romance · Filmweb 7.2
+- **Where to Invade Next** — 2015 · Michael Moore · US · Documentary, Comedy · Filmweb 6.8
+- **20,000 Days on Earth** — 2014 · Iain Forsyth · UK · Documentary, Drama, Music · Filmweb 7.2
+- **Ask Me Anything** — 2014 · Allison Burnett · US · Drama · Filmweb 6.3
+- **Bogowie** (Gods) — 2014 · Łukasz Palkowski · PL · Drama, History · Filmweb 8
+- **En Duva satt på en gren och funderade på tillvaron** (A Pigeon Sat on a Branch Reflecting on Existence) — 2014 · Roy Andersson · FR · Drama, Comedy, Fantasy · Filmweb 6.6
+- **Force Majeure** — 2014 · Ruben Östlund · DK · Drama · added 2026-07-08
+- **Güeros** — 2014 · Alonso Ruizpalacios · MX · Drama, Comedy · Filmweb 7
+- **Heaven Knows What** — 2014 · Josh Safdie · FR · Drama, Crime · Filmweb 6.4
+- **Le sel de la terre** (The Salt of the Earth) — 2014 · Juliano Ribeiro Salgado · IT · Documentary · Filmweb 8.3
+- **Neighbors** — 2014 · Nicholas Stoller · US · Comedy · Filmweb 6.1
+- **Predestination** — 2014 · The Spierig Brothers · AU · Science Fiction, Thriller
+- **Relatos salvajes** (Wild Tales) — 2014 · Damián Szifron · OTHER · Drama, Thriller, Comedy · Filmweb 7.6
+- **Rurōni Kenshin: Densetsu no Saigo-hen** (Rurouni Kenshin Part III: The Legend Ends) — 2014 · Keishi Otomo · JP · Action, Adventure, Fantasy · Filmweb 7.2
+- **Rurōni Kenshin: Kyōto Taika-hen** (Rurouni Kenshin Part II: Kyoto Inferno) — 2014 · Keishi Otomo · JP · Action, Adventure, Drama · Filmweb 7.3
+- **The Boxtrolls** — 2014 · Graham Annable · US · Animation, Comedy, Family · Filmweb 6.7
+- **The Look of Silence** — 2014 · Joshua Oppenheimer · DK · History, Documentary · Filmweb 7.8
+- **What We Do in the Shadows** — 2014 · Jemaine Clement · AU · Comedy, Horror · Filmweb 7.2
+- **A Master Builder** — 2013 · Jonathan Demme · US · Drama · Filmweb 4.4
+- **About Time** — 2013 · Richard Curtis · UK · Drama, Romance, Fantasy · Filmweb 7.6
+- **Angélique** — 2013 · Ariel Zeitoun · FR · Adventure, Romance · Filmweb 6.8
+- **Before Midnight** — 2013 · Richard Linklater · GR · Romance, Drama · Filmweb 7
+- **Coherence** — 2013 · James Ward Byrkit · US · Thriller, Science Fiction
+- **Enemy** — 2013 · Denis Villeneuve · CA · Thriller, Mystery
+- **Hard to Be a God** — 2013 · Aleksei German · RU · Drama, Science Fiction · added 2026-07-08
+- **Inside Llewyn Davis** — 2013 · Joel Coen · FR · Drama, Music · Filmweb 6.7
+- **Jeune & jolie** (Young & Beautiful) — 2013 · François Ozon · FR · Drama · Filmweb 6.2
+- **Kick-Heart** — 2013 · Masaaki Yuasa · JP · Animation, Comedy, Romance · Filmweb 6.8
+- **La vie d'Adèle** (Blue Is the Warmest Color) — 2013 · Abdellatif Kechiche · EU · Romance, Drama · Filmweb 7
+- **Locke** — 2013 · Steven Knight · UK · Drama, Thriller · added 2026-07-08
+- **Out of the Furnace** — 2013 · Scott Cooper · US · Thriller, Drama, Crime · Filmweb 6.7
+- **Philomena** — 2013 · Stephen Frears · UK · Drama · Filmweb 7.4
+- **The Great Beauty** — 2013 · Paolo Sorrentino · FR · Drama · added 2026-07-08
+- **The Secret Life of Walter Mitty** — 2013 · Ben Stiller · UK · Comedy, Drama, Fantasy · Filmweb 7
+- **Under the Skin** — 2013 · Jonathan Glazer · UK · Thriller, Science Fiction, Drama · Filmweb 5.7
+- **Upstream Color** — 2013 · Shane Carruth · US · Drama, Science Fiction · Filmweb 5.9
+- **American Reunion** — 2012 · Jon Hurwitz · US · Comedy · Filmweb 6.8
+- **Cloud Atlas** — 2012 · Lana Wachowski · DE · Drama, Science Fiction · Filmweb 7.1
+- **Gyakuten saiban** (Ace Attorney) — 2012 · Takashi Miike · JP · Crime, Mystery, Drama · Filmweb 7
+- **Holy Motors** — 2012 · Leos Carax · DE · Drama, Fantasy · added 2026-07-08
+- **Inny świat** (Another World) — 2012 · Dorota Kędzierzawska · PL · Documentary · Filmweb 8.1
+- **Laurence Anyways** — 2012 · Xavier Dolan · CA · Drama, Romance · Filmweb 7.3
+- **Liberal Arts** — 2012 · Josh Radnor · US · Romance, Comedy, Drama · Filmweb 6.2
+- **Rurōni Kenshin** (Rurouni Kenshin Part I: Origins) — 2012 · Keishi Otomo · JP · Adventure, Action, Fantasy · Filmweb 7.3
+- **Seven Psychopaths** — 2012 · Martin McDonagh · UK · Comedy, Crime · Filmweb 6.7
+- **Spring Breakers** — 2012 · Harmony Korine · FR · Drama, Crime · Filmweb 4.8
+- **The Act of Killing** — 2012 · Joshua Oppenheimer · DK · Documentary, History · Filmweb 7.8
+- **The Broken Circle Breakdown** — 2012 · Felix van Groeningen · EU · Drama · Filmweb 7.7
+- **The Perks of Being a Wallflower** — 2012 · Stephen Chbosky · US · Drama · Filmweb 7.5
+- **The Words** — 2012 · Brian Klugman · US · Drama, Thriller · Filmweb 7.2
+- **Travelling Salesman** — 2012 · Timothy Lanzone · US · Drama, Mystery · Filmweb 5.7
+- **Wadjda** — 2012 · Haifaa al-Mansour · DE · Drama · Filmweb 7.3
+- **Zero Dark Thirty** — 2012 · Kathryn Bigelow · US · Thriller, Drama · Filmweb 7.1
+- **5 Broken Cameras** (Five Broken Cameras) — 2011 · Guy Davidi · FR · War, Documentary · Filmweb 7.3
+- **A Torinói ló** (The Turin Horse) — 2011 · Béla Tarr · HU · Drama · Filmweb 7.5
+- **Do-ga-ni** (Silenced) — 2011 · Hwang Dong-hyuk · KR · Drama · Filmweb 7.8
+- **Dwae-ji-ui wang** (The King of Pigs) — 2011 · Yeon Sang-ho · KR · Animation, Thriller, Drama · Filmweb 6.9
+- **Go-ji-jeon** (The Front Line) — 2011 · Jang Hoon · KR · Drama, Action, War · Filmweb 7.4
+- **Himizu** — 2011 · Sion Sono · JP · Crime, Drama, Thriller · Filmweb 7
+- **Hodejegerne** (Headhunters) — 2011 · Morten Tyldum · DE · Thriller, Crime, Action · Filmweb 7.2
+- **Hoshi o Ou Kodomo** (Children Who Chase Lost Voices) — 2011 · Makoto Shinkai · JP · Animation, Adventure, Fantasy · Filmweb 7.4
+- **Jodaeiye Nader az Simin** (From Iran, a Separation) — 2011 · Kourosh Ataee · OTHER · Documentary · Filmweb 7.6
+- **Księstwo** (Heritage) — 2011 · Andrzej Barański · PL · Drama · Filmweb 6.5
+- **List** — 2011 · Hong Sang-soo · KR · Drama · Filmweb 6.7
+- **Melancholia** — 2011 · Lars von Trier · DK · Drama, Science Fiction · Filmweb 6.9
+- **Momo e no Tegami** (A Letter to Momo) — 2011 · Hiroyuki Okiura · JP · Comedy, Fantasy, Animation · Filmweb 7.2
+- **One Day** — 2011 · Lone Scherfig · UK · Drama, Romance · Filmweb 7.5
+- **Oslo, 31. august** (Oslo, August 31st) — 2011 · Joachim Trier · EU · Drama · Filmweb 7.3
+- **Paul** — 2011 · Greg Mottola · UK · Adventure, Comedy, Science Fiction · Filmweb 6.6
+- **Róża** (Rose) — 2011 · Wojtek Smarzowski · PL · Drama, History, War · Filmweb 7.8
+- **Samsara** — 2011 · Ron Fricke · BR · Documentary · Filmweb 8.2
+- **Snowtown** — 2011 · Justin Kurzel · AU · Crime, Drama · Filmweb 6.7
+- **Take Shelter** — 2011 · Jeff Nichols · US · Thriller, Drama, Horror · Filmweb 6.9
+- **Take This Waltz** — 2011 · Sarah Polley · CA · Drama, Comedy, Romance · Filmweb 6.8
+- **The Iron Lady** — 2011 · Phyllida Lloyd · UK · History, Drama · Filmweb 6.8
+- **The Skin I Live In** — 2011 · Pedro Almodóvar · EU · Drama, Horror, Mystery
+- **The Tree of Life** — 2011 · Terrence Malick · US · Drama, Fantasy · Filmweb 5.8
+- **Tinker Tailor Soldier Spy** — 2011 · Tomas Alfredson · DE · Drama, Thriller, Mystery · Filmweb 7.1
+- **A-jeo-ssi** — 2010 · Lee Jeong-beom · KR · Action, Thriller, Crime · Filmweb 7.6
+- **Ak-ma-leul Bo-ass-da** (I Saw the Devil) — 2010 · Kim Jee-woon · KR · Thriller, Horror · Filmweb 7.4
+- **Animal Kingdom** — 2010 · David Michôd · AU · Crime, Drama · Filmweb 6.9
+- **Biutiful** — 2010 · Alejandro G. Iñárritu · MX · Drama · Filmweb 7.6
+- **Boy** — 2010 · Taika Waititi · AU · Drama, Comedy · Filmweb 7.3
+- **Das Letzte Schweigen** (The Silence) — 2010 · Baran bo Odar · DE · Crime, Thriller, Drama · Filmweb 6.7
+- **Eat Pray Love** — 2010 · Ryan Murphy · US · Drama, Romance · Filmweb 6.2
+- **El Infierno** — 2010 · Luis Estrada · MX · Action, Crime, Western · Filmweb 6.8
+- **Four Lions** — 2010 · Chris Morris · UK · Comedy, Crime, Drama · Filmweb 6.6
+- **Get Him to the Greek** — 2010 · Nicholas Stoller · US · Adventure, Comedy, Music · Filmweb 6.1
+- **Green Zone** — 2010 · Paul Greengrass · US · War, Action, Adventure · Filmweb 7
+- **Kokuhaku** (Confessions) — 2010 · Tetsuya Nakashima · JP · Drama, Thriller, Mystery · Filmweb 7.4
+- **Korespondent Bryan** — 2010 · Eugeniusz Starky · PL · Documentary, War · Filmweb 8.4
+- **L'illusionniste** (The Illusionist) — 2010 · Sylvain Chomet · FR · Animation, Drama · Filmweb 7.4
+- **Pa-soo-ggoon** — 2010 · Filmweb 7.4
+- **Parate** — 2010
+- **Problema** — 2010 · Ralf Schmerberg · DE · Documentary · Filmweb 6.5
+- **Świteź** (The Lost Town of Switez) — 2010 · Kamil Polak · PL · Animation · Filmweb 6.8
+- **The Other Guys** — 2010 · Adam McKay · US · Comedy, Action · Filmweb 5.9
+- **The Town** — 2010 · Ben Affleck · US · Crime, Drama, Thriller · Filmweb 7.2
+- **The Way Back** — 2010 · Peter Weir · PL · Drama, Adventure, History · Filmweb 7.4
+- **TRON: Legacy** — 2010 · Joseph Kosinski · US · Adventure, Action, Science Fiction · Filmweb 6.6
+- **Utomlyonnye solntsem 2: Predstoyanie** (Burnt by the Sun 2: Exodus) — 2010 · Nikita Mikhalkov · RU · Drama, War · Filmweb 6.4
+- **Who Killed Captain Alex** (Who Killed Captain Alex?) — 2010 · Nabwana IGG · OTHER · Action, Comedy, Drama · Filmweb 7.4
+- **A Serious Man** — 2009 · Ethan Coen · US · Comedy, Drama · Filmweb 6.7
+- **Antichrist** — 2009 · Lars von Trier · DK · Drama, Horror, Thriller · Filmweb 5.7
+- **Black Dynamite** — 2009 · Scott Sanders · US · Comedy, Action · Filmweb 7.2
+- **Crank: High Voltage** — 2009 · Mark Neveldine · US · Action, Thriller, Crime · Filmweb 6.2
+- **Dance Flick** — 2009 · Damien Dante Wayans · US · Music, Comedy, Action · Filmweb 5.4
+- **Enter the Void** — 2009 · Gaspar Noé · FR · Fantasy, Drama · Filmweb 7.2
+- **Fish Tank** — 2009 · Andrea Arnold · NL · Drama · Filmweb 6.8
+- **Fuk sau** (Vengeance) — 2009 · Johnnie To · FR · Action, Crime, Thriller · Filmweb 5.5
+- **Galerianki** (Mall Girls) — 2009 · Kasia Rosłaniec · PL · Drama · Filmweb 5.3
+- **Hamlet** — 2009 · Gregory Doran · UK · Drama, TV Movie · Filmweb 8.1
+- **Kape Neuwareu** (Café Noir) — 2009 · Jung Sung-il · KR · Drama, Romance · Filmweb 7.9
+- **The Secret in Their Eyes** — 2009 · Juan José Campanella · OTHER · Mystery, Thriller, Drama · added 2026-07-08
+- **The Taking of Pelham 1 2 3** — 2009 · Tony Scott · UK · Crime, Thriller, Action · Filmweb 6.6
+- **The White Ribbon** — 2009 · Michael Haneke · IT · Drama, Mystery · added 2026-07-10
+- **Triangle** — 2009 · Christopher Smith · AU · Horror · Filmweb 6.4
+- **Un prophète** (A Prophet) — 2009 · Jacques Audiard · FR · Crime, Drama · Filmweb 7.3
+- **Up in the Air** — 2009 · Jason Reitman · US · Drama, Romance · Filmweb 6.9
+- **Valhalla Rising** — 2009 · Nicolas Winding Refn · DK · Adventure, Drama, Action · Filmweb 6.2
+- **Ai no Mukidashi** (Love Exposure) — 2008 · Sion Sono · JP · Comedy, Drama, Romance · Filmweb 8
+- **Aruitemo, Aruitemo** (Still Walking) — 2008 · Hirokazu Kore-eda · JP · Drama, Family · Filmweb 7.5
+- **Choo-gyeok-ja** — 2008 · Na Hong-jin · KR · Crime, Thriller, Action · Filmweb 7.4
+- **Dear Zachary: A Letter to a Son About His Father** — 2008 · Kurt Kuenne · US · Documentary, Crime · Filmweb 7.6
+- **Die Welle** (The Wave) — 2008 · Dennis Gansel · DE · Drama, Thriller · Filmweb 7.4
+- **Felon** — 2008 · Ric Roman Waugh · US · Crime, Drama, Thriller · Filmweb 7.6
+- **Hyakuman-en to nigamushi onna** (One Million Yen Girl) — 2008 · Yuki Tanada · JP · Drama · Filmweb 7
+- **Kara no Kyōkai: Mujun Rasen** (The Garden of Sinners: Paradox Spiral) — 2008 · Takayuki Hirao · JP · Action, Animation, Drama · Filmweb 7.8
+- **Karamazovi** (The Karamazov Brothers) — 2008 · Petr Zelenka · CZ · Drama · Filmweb 7.6
+- **Kite Liberator** — 2008 · Yasuomi Umetsu · JP · Animation, Thriller, Action · Filmweb 5.4
+- **Les plages d'Agnès** (The Beaches of Agnès) — 2008 · Agnès Varda · FR · Documentary · Filmweb 7.4
+- **Man on Wire** — 2008 · James Marsh · UK · Documentary · Filmweb 7.4
+- **Max Payne** — 2008 · John Moore · US · Crime, Action, Drama · Filmweb 5.8
+- **Synecdoche, New York** — 2008 · Charlie Kaufman · US · Drama · Filmweb 7.5
+- **The Happening** — 2008 · M. Night Shyamalan · US · Thriller, Science Fiction · Filmweb 5.3
+- **The Sky Crawlers** — 2008 · Mamoru Oshii · JP · Animation, Action, War · Filmweb 7.3
+- **The Wrestler** — 2008 · Darren Aronofsky · US · Drama, Romance · Filmweb 7.2
+- **Tôkyô sonata** (Tokyo Sonata) — 2008 · Kiyoshi Kurosawa · JP · Drama · Filmweb 7.2
+- **Tôkyô!** (Tokyo!) — 2008 · Leos Carax · KR · Comedy, Drama, Fantasy · Filmweb 7
+- **Yip Man** (The Legend Is Born: Ip Man) — 2008 · Wilson Yip · CN · Drama, Action, History · Filmweb 7.8
+- **[Rec]** ([REC]) — 2007 · Jaume Balagueró · ES · Horror, Mystery · Filmweb 6.5
+- **4 luni, 3 săptămâni şi 2 zile** (4 Months, 3 Weeks and 2 Days) — 2007 · Cristian Mungiu · EU · Drama · Filmweb 7.4
+- **Across the Universe** — 2007 · Julie Taymor · US · Drama, Romance, Fantasy · Filmweb 7.3
+- **Bee Movie** — 2007 · Steve Hickner · US · Family, Animation, Adventure · Filmweb 6.4
+- **Bra Boys** — 2007 · Sunny Abberton · AU · Comedy, Documentary · Filmweb 6.2
+- **Bridge to Terabithia** — 2007 · Gábor Csupó · US · Adventure, Drama, Family · Filmweb 7.3
+- **Chacun son cinéma ou Ce petit coup au coeur quand la lumière s'éteint et que le film commence** (To Each His Own Cinema) — 2007 · Theo Angelopoulos · FR · Comedy, Drama · Filmweb 6.9
+- **Control** — 2007 · Anton Corbijn · UK · Drama · Filmweb 7.7
+- **Disturbia** — 2007 · D.J. Caruso · US · Thriller, Drama, Mystery · Filmweb 7
+- **Encounters at the End of the World** — 2007 · Werner Herzog · US · Documentary · Filmweb 8
+- **Frownland** — 2007 · Ronald Bronstein · US · Comedy, Drama · Filmweb 6.8
+- **Gidam** (Epitaph) — 2007 · Jung Bum-shik · KR · Horror, Drama · Filmweb 6.8
+- **Into the Wild** — 2007 · Sean Penn · US · Adventure, Drama · Filmweb 7.9
+- **Kappa no Coo to Natsuyasumi** (Summer Days with Coo) — 2007 · Keiichi Hara · JP · Animation, Fantasy, Comedy · Filmweb 7.6
+- **Katyń** (Katyn) — 2007 · Andrzej Wajda · PL · Drama, History, War · Filmweb 6.8
+- **Kino no Tabi: Byōki no Kuni - For You** — 2007 · Filmweb 7.6
+- **My Winnipeg** — 2007 · Guy Maddin · CA · Documentary, Drama, Comedy · Filmweb 7.3
+- **Pora umierać** (Time to Die) — 2007 · Dorota Kędzierzawska · PL · Drama · Filmweb 7.9
+- **Secret Sunshine** — 2007 · Lee Chang-dong · KR · Drama · added 2026-07-08
+- **Superbad** — 2007 · Greg Mottola · US · Comedy · Filmweb 6.5
+- **Taare Zameen Par** (Like Stars on Earth) — 2007 · Aamir Khan · IN · Drama · Filmweb 7.9
+- **The Assassination of Jesse James by the Coward Robert Ford** — 2007 · Andrew Dominik · CA · Drama, Western · Filmweb 7.2
+- **The Man from Earth** — 2007 · Richard Schenkman · US · Science Fiction, Drama · added 2026-07-08
+- **The Nines** — 2007 · John August · US · Drama, Fantasy, Mystery
+- **Timecrimes** — 2007 · Nacho Vigalondo · EU · Science Fiction, Thriller
+- **A Scanner Darkly** — 2006 · Richard Linklater · US · Animation, Science Fiction, Thriller · Filmweb 7.2
+- **A-joo Teuk-byeol-han Son-nim** — 2006 · Filmweb 6.5
+- **Babel** — 2006 · Alejandro G. Iñárritu · FR · Drama · Filmweb 7.4
+- **Borat: Cultural Learnings of America for Make Benefit Glorious Nation of Kazakhstan** — 2006 · Larry Charles · UK · Comedy · Filmweb 6.6
+- **Chup Chup Ke: Love Meets Confusion Meets Love...** — 2006 · Priyadarshan · IN · Comedy · Filmweb 7
+- **Click** — 2006 · Frank Coraci · US · Comedy, Drama, Fantasy · Filmweb 6.5
+- **Crank** — 2006 · Brian Taylor · US · Action, Thriller, Crime · Filmweb 7
+- **Das Leben der Anderen** (The Lives of Others) — 2006 · Florian Henckel von Donnersmarck · DE · Drama, Thriller · Filmweb 7.8
+- **Hoshi o Katta Hi** — 2006 · Filmweb 6.2
+- **Idiocracy** — 2006 · Mike Judge · US · Comedy, Science Fiction, Adventure · Filmweb 5.9
+- **Kenny** — 2006 · Clayton Jacobson · AU · Comedy · Filmweb 6.6
+- **Kiraware Matsuko no Isshō** (Memories of Matsuko) — 2006 · Tetsuya Nakashima · JP · Comedy, Drama · Filmweb 7.8
+- **Let's Go to Prison** — 2006 · Bob Odenkirk · US · Comedy, Crime · Filmweb 6.5
+- **Letters from Iwo Jima** — 2006 · Clint Eastwood · US · Action, Drama, War · Filmweb 7.6
+- **Little Children** — 2006 · Todd Field · US · Drama, Romance · Filmweb 7.2
+- **Little Miss Sunshine** — 2006 · Jonathan Dayton · US · Comedy, Drama · Filmweb 7.2
+- **Open Season** — 2006 · Jill Culton · US · Animation, Family, Adventure · Filmweb 6.7
+- **Paris, je t'aime** (Paris Je T'aime) — 2006 · Isabel Coixet · FR · Drama, Romance · Filmweb 7.1
+- **Serras da desordem** (The Hills of Disorder) — 2006 · Andrea Tonacci · BR · Documentary · Filmweb 5.2
+- **Ten Canoes** — 2006 · Rolf de Heer · AU · Adventure, Comedy, Drama · Filmweb 7.3
+- **The Fall** — 2006 · Tarsem Singh · US · Adventure, Fantasy, Drama · Filmweb 7.6
+- **The Fountain** — 2006 · Darren Aronofsky · US · Drama, Adventure, Science Fiction · Filmweb 7.3
+- **The Last King of Scotland** — 2006 · Kevin Macdonald · US · Drama · Filmweb 7.5
+- **The Pursuit of Happyness** — 2006 · Gabriele Muccino · US · Drama · Filmweb 8
+- **The Road to Guantánamo** (The Road to Guantanamo) — 2006 · Mat Whitecross · UK · Drama · Filmweb 6.9
+- **This Is England** — 2006 · Shane Meadows · UK · Drama, Crime · Filmweb 7.6
+- **A Bittersweet Life** — 2005 · Kim Jee-woon · KR · Action, Drama, Crime · added 2026-07-08
+- **A History of Violence** — 2005 · David Cronenberg · DE · Drama, Thriller, Crime · Filmweb 7
+- **Adams æbler** (Adam's Apples) — 2005 · Anders Thomas Jensen · DK · Drama, Comedy, Crime · Filmweb 7.7
+- **Caché** — 2005 · Michael Haneke · FR · Mystery, Drama, Thriller
+- **Chin-jeol-han Geum-ja-ssi** — 2005 · Park Chan-wook · KR · Drama, Thriller · Filmweb 7.4
+- **Die Höhle des gelben Hundes** (The Cave of the Yellow Dog) — 2005 · Byambasuren Davaa · DE · Drama · Filmweb 7.8
+- **Good Night, and Good Luck.** — 2005 · George Clooney · FR · Drama, History · Filmweb 7.1
+- **Grizzly Man** — 2005 · Werner Herzog · US · Documentary · added 2026-07-08
+- **Hooligans** (Green Street Hooligans) — 2005 · Lexi Alexander · UK · Crime, Drama · Filmweb 7.5
+- **Jarhead** — 2005 · Sam Mendes · UK · Drama, War · Filmweb 7.3
+- **Joyeux Noël** (Joyeux Noel) — 2005 · Christian Carion · EU · Drama, War, Romance · Filmweb 7.5
+- **King Kong** — 2005 · Peter Jackson · US · Adventure, Drama, Action · Filmweb 6.5
+- **Les 10 Ans de 'La Haine'** (Ten Years of La Haine) — 2005 · Benjamin Geffroy · FR · Documentary · Filmweb 8
+- **Les amants réguliers** (Regular Lovers) — 2005 · Philippe Garrel · FR · Drama, Romance · Filmweb 6.5
+- **Oda do radości** (Ode to Joy) — 2005 · Jan Komasa · PL · Drama · Filmweb 6.9
+- **Pride & Prejudice** — 2005 · Joe Wright · FR · Drama, Romance · Filmweb 7.7
+- **Robots** — 2005 · Chris Wedge · US · Animation, Comedy, Family · Filmweb 6.5
+- **Sha po lang** (SPL: Kill Zone) — 2005 · Wilson Yip · HK · Action, Crime, Drama · Filmweb 6.8
+- **Stay** — 2005 · Marc Forster · US · Mystery, Thriller, Drama
+- **The Constant Gardener** — 2005 · Fernando Meirelles · DE · Drama, Mystery, Thriller · Filmweb 7.5
+- **The Death of Mr. Lazarescu** — 2005 · Cristi Puiu · EU · Drama, Comedy · added 2026-07-08
+- **The Descent** — 2005 · Neil Marshall · UK · Adventure, Horror · Filmweb 6.3
+- **The Proposition** — 2005 · John Hillcoat · AU · Western · Filmweb 7.1
+- **Unleashed** — 2005 · Louis Leterrier · CN · Action, Crime · Filmweb 7.3
+- **V for Vendetta** — 2005 · James McTeigue · DE · Action, Thriller, Science Fiction · Filmweb 7.4
+- **Waiting...** — 2005 · Rob McKittrick · US · Comedy, Romance · Filmweb 6.5
+- **Walk the Line** — 2005 · James Mangold · DE · Drama, Music, Romance · Filmweb 7.6
+- **2046** — 2004 · Wong Kar-Wai · DE · Drama, Science Fiction, Romance · Filmweb 7.3
+- **Before Sunset** — 2004 · Richard Linklater · US · Drama, Romance · Filmweb 7.5
+- **Bin-jip** (3-Iron) — 2004 · Kim Ki-duk · KR · Drama, Romance, Crime · Filmweb 7.7
+- **Closer** — 2004 · Mike Nichols · UK · Drama, Romance · Filmweb 7.2
+- **Diarios de motocicleta** (The Motorcycle Diaries) — 2004 · Walter Salles · OTHER · Drama · Filmweb 7.3
+- **EuroTrip** — 2004 · Jeff Schaffer · US · Comedy · Filmweb 6.9
+- **Fahrenheit 9/11** — 2004 · Michael Moore · IT · Documentary · Filmweb 6.4
+- **Hotel Rwanda** — 2004 · Terry George · US · Drama, History, War · Filmweb 7.7
+- **Kyoshin** (Mirrored Mind) — 2004 · Gakuryu Ishii · JP · Drama · Filmweb 7
+- **Machuca** — 2004 · Andrés Wood · OTHER · Drama · Filmweb 7.1
+- **Millions** — 2004 · Danny Boyle · UK · Comedy, Crime, Drama · Filmweb 6.2
+- **Mind Game** — 2004 · Masaaki Yuasa · JP · Animation, Romance, Comedy · Filmweb 7.7
+- **Mysterious Skin** — 2004 · Gregg Araki · US · Drama · Filmweb 7.5
+- **Primer** — 2004 · Shane Carruth · US · Science Fiction, Drama, Thriller · Filmweb 6.5
+- **Rangeh eshgh** (The Color Of Love) — 2004 · Maryam Keshavarz · DE · Documentary · Filmweb 8
+- **Saam gaang yi** (Three... Extremes) — 2004 · Fruit Chan · HK · Horror · Filmweb 7.1
+- **Sat Pralat** — 2004 · Apichatpong Weerasethakul · OTHER · Drama, Romance, Fantasy · Filmweb 7.2
+- **Saw** — 2004 · James Wan · US · Horror, Mystery, Crime · Filmweb 6.7
+- **Shimotsuma monogatari** (Kamikaze Girls) — 2004 · Tetsuya Nakashima · JP · Comedy · Filmweb 7.1
+- **Six Shooter** — 2004 · Martin McDonagh · IE · Drama, Comedy, Crime · Filmweb 7.1
+- **Tae-geug-ki Hwi-nal-ri-myeo** — 2004 · Kang Je-kyu · KR · Action, Adventure, Drama · Filmweb 7.8
+- **The Aim** (One Piece: Take Aim! The Pirate Baseball King) — 2004 · Yukio Kaizawa · JP · Comedy, Animation, Fantasy · Filmweb 8
+- **The Machinist** — 2004 · Brad Anderson · EU · Thriller, Drama
+- **Tony Takitani** — 2004 · Jun Ichikawa · JP · Drama · Filmweb 7.1
+- **Van Helsing** — 2004 · Stephen Sommers · CZ · Horror, Adventure, Action · Filmweb 6.8
+- **Wesele** (The Wedding) — 2004 · Wojtek Smarzowski · PL · Comedy, Drama · Filmweb 7.6
+- **A Tale of Two Sisters** — 2003 · Kim Jee-woon · KR · Drama, Horror, Mystery
+- **Big Fish** — 2003 · Tim Burton · US · Adventure, Fantasy, Drama · Filmweb 7.6
+- **Bom yeoreum gaeul gyeoul geurigo bom** (Spring, Summer, Fall, Winter... and Spring) — 2003 · Kim Ki-duk · KR · Drama · Filmweb 7.8
+- **Carandiru** — 2003 · Héctor Babenco · BR · Drama · Filmweb 7.3
+- **Dogville** — 2003 · Lars von Trier · DK · Crime, Drama, Thriller · Filmweb 7.8
+- **Harvie Krumpet** — 2003 · Adam Elliot · AU · Animation, Comedy, Drama · Filmweb 7.6
+- **Identity** — 2003 · James Mangold · US · Mystery, Thriller
+- **Interstella 5555: The 5tory of the 5ecret 5tar 5ystem** — 2003 · Kazuhisa Takenouchi · FR · Animation, Science Fiction, Music · Filmweb 7.9
+- **Ruang rak noi nid mahasan** (Last Life in the Universe) — 2003 · Pen-Ek Ratanaruang · OTHER · Drama, Action, Thriller · Filmweb 7.3
+- **Save the Green Planet!** — 2003 · Jang Joon-hwan · KR · Comedy, Science Fiction, Crime
+- **The Dreamers** — 2003 · Bernardo Bertolucci · FR · Drama, Romance · Filmweb 7.2
+- **The Return** — 2003 · Dermot Boyd · UK · Drama · added 2026-07-10
+- **Two cars, one night** (Two Cars, One Night) — 2003 · Taika Waititi · AU · Drama, Comedy · Filmweb 6.9
+- **Zmruż oczy** (Squint Your Eyes) — 2003 · Andrzej Jakimowski · PL · Drama, Comedy · Filmweb 6.8
+- **25th Hour** — 2002 · Spike Lee · US · Crime, Drama · Filmweb 7.4
+- **Ali G Indahouse** — 2002 · Mark Mylod · FR · Comedy · Filmweb 6.5
+- **Blue** — 2002 · Hiroshi Ando · JP · Drama, Romance · Filmweb 6.9
+- **Bok-su-neun Na-ui Geot** — 2002 · Park Chan-wook · KR · Action, Drama, Thriller · Filmweb 7.3
+- **Edi** — 2002 · Piotr Trzaskalski · PL · Drama · Filmweb 7.3
+- **Irréversible** (Irreversible) — 2002 · Gaspar Noé · FR · Drama, Thriller, Crime · Filmweb 7.2
+- **Kariera Nikosia Dyzmy** (The Career of Nikos Dyzma) — 2002 · Jacek Bromski · PL · Comedy · Filmweb 6.7
+- **Lilja 4-ever** (Lilya 4-ever) — 2002 · Lukas Moodysson · DK · Drama, Crime · Filmweb 7.7
+- **Oasis** — 2002 · Lee Chang-dong · KR · Drama, Romance · added 2026-07-08
+- **Punch-Drunk Love** — 2002 · Paul Thomas Anderson · US · Romance, Drama, Comedy · Filmweb 6.4
+- **Signs** — 2002 · M. Night Shyamalan · US · Thriller, Science Fiction, Horror · Filmweb 6.3
+- **Sungnyangpali sonyeoui jaerim** (Resurrection of the Little Match Girl) — 2002 · Jang Sun-woo · KR · Action, Comedy, Science Fiction · Filmweb 6.5
+- **The Powerpuff Girls** (The Powerpuff Girls Movie) — 2002 · Craig McCracken · US · Animation, Action, Family · Filmweb 6.3
+- **The Ring** — 2002 · Gore Verbinski · US · Horror, Mystery · Filmweb 6.9
+- **The Time Machine** — 2002 · Simon Wells · US · Science Fiction, Adventure, Action · Filmweb 6.7
+- **Undercover Brother** — 2002 · Malcolm D. Lee · US · Action, Comedy · Filmweb 5.8
+- **White Oleander** — 2002 · Peter Kosminsky · DE · Drama · Filmweb 7.5
+- **Yadon ilaheyya** (Divine Intervention) — 2002 · Elia Suleiman · FR · Drama, Romance, Comedy · Filmweb 5.8
+- **Avalon** — 2001 · Mamoru Oshii · JP · Action, Science Fiction · Filmweb 5.5
+- **Black Knight** — 2001 · Gil Junger · US · Comedy, Fantasy, Adventure · Filmweb 6.2
+- **Der Schuh des Manitu** (Manitou's Shoe) — 2001 · Michael Herbig · DE · Western, Comedy, Adventure · Filmweb 6.8
+- **Donnie Darko** — 2001 · Richard Kelly · US · Fantasy, Drama, Mystery · Filmweb 7.7
+- **Final Fantasy: The Spirits Within** — 2001 · Hironobu Sakaguchi · JP · Action, Adventure, Animation · Filmweb 6.9
+- **Freddy Got Fingered** — 2001 · Tom Green · CH · Comedy · Filmweb 5.6
+- **Ghost World** — 2001 · Terry Zwigoff · UK · Comedy, Drama · Filmweb 7.1
+- **Goyangileul butaghae** (Take Care of My Cat) — 2001 · Jeong Jae-eun · KR · Drama · Filmweb 7.3
+- **How High** — 2001 · Jesse Dylan · US · Comedy · Filmweb 6.9
+- **Human Nature** — 2001 · Michel Gondry · FR · Drama, Comedy · Filmweb 5.8
+- **Kairo** — 2001 · Kiyoshi Kurosawa · JP · Horror, Thriller, Mystery · added 2026-07-10
+- **Koroshiya 1** (Ichi the Killer) — 2001 · Takashi Miike · JP · Action, Crime, Horror · Filmweb 7.1
+- **Lantana** — 2001 · Ray Lawrence · DE · Crime, Drama, Mystery · Filmweb 6.6
+- **Not Another Teen Movie** — 2001 · Joel Gallen · US · Comedy · Filmweb 5.7
+- **Pootie Tang** — 2001 · Louis C.K. · US · Action, Comedy · Filmweb 4.9
+- **Reich** — 2001 · Władysław Pasikowski · DE · Action · Filmweb 6.3
+- **Semper Fi** — 2001 · Michael W. Watkins · Action, Drama, TV Movie · Filmweb 7.9
+- **Siu Lam Juk Kau** (Shaolin Soccer) — 2001 · Stephen Chow · HK · Action, Comedy · Filmweb 6.6
+- **The Majestic** — 2001 · Frank Darabont · US · Drama, Romance · Filmweb 7.3
+- **The Others** — 2001 · Alejandro Amenábar · ES · Horror, Mystery, Thriller · Filmweb 7.4
+- **The Piano Teacher** — 2001 · Michael Haneke · FR · Drama, Romance · added 2026-07-08
+- **Waking Life** — 2001 · Richard Linklater · US · Animation, Drama, Fantasy · Filmweb 7.6
+- **Y tu mamá también** (Y Tu Mamá También) — 2001 · Alfonso Cuarón · MX · Drama, Romance · Filmweb 7.1
+- **Almost Famous** — 2000 · Cameron Crowe · US · Drama, Music · Filmweb 7.3
+- **Amores perros** (Amores Perros) — 2000 · Alejandro G. Iñárritu · MX · Drama, Thriller · Filmweb 7.8
+- **Batoru rowaiaru** (Battle Royale) — 2000 · Kinji Fukasaku · JP · Drama, Thriller, Action · Filmweb 6.8
+- **Bedazzled** — 2000 · Harold Ramis · DE · Fantasy, Comedy, Romance · Filmweb 6.3
+- **Blood: The Last Vampire** — 2000 · Hiroyuki Kitakubo · JP · Animation, Fantasy, Horror · Filmweb 6.9
+- **Chopper** — 2000 · Andrew Dominik · AU · Crime, Drama, Thriller · Filmweb 6.9
+- **Code inconnu: Récit incomplet de divers voyages** (Code Unknown) — 2000 · Michael Haneke · FR · Drama · Filmweb 6.9
+- **Final Destination** — 2000 · James Wong · US · Horror · Filmweb 6.6
+- **Frequency** — 2000 · Gregory Hoblit · US · Science Fiction, Crime, Thriller · Filmweb 7.3
+- **Gongdong gyeongbi guyeok JSA** (Joint Security Area) — 2000 · Park Chan-wook · KR · Drama, Thriller, Mystery · Filmweb 7.6
+- **Karakuri no Kimi** (Puppet Princess) — 2000 · Hirotoshi Takaya · JP · Animation, Action, Drama · Filmweb 7.4
+- **Kytice** (Wild Flowers) — 2000 · F. A. Brabec · CZ · Drama, Horror, Fantasy · Filmweb 7.5
+- **Looking For Alibrandi** (Looking for Alibrandi) — 2000 · Kate Woods · AU · Drama, Comedy, Romance · Filmweb 7.9
+- **Malèna** (Malena) — 2000 · Giuseppe Tornatore · IT · Drama · Filmweb 7.3
+- **Nueve reinas** (Nine Queens) — 2000 · Fabián Bielinsky · OTHER · Crime, Thriller, Drama · Filmweb 7.1
+- **Princes et Princesses** (Princes and Princesses) — 2000 · Michel Ocelot · FR · Drama, Animation, Fantasy · Filmweb 7.2
+- **Sånger från andra våningen** (Songs from the Second Floor) — 2000 · Roy Andersson · SE · Drama, Comedy · Filmweb 7.6
+- **Seom** (The Isle) — 2000 · Kim Ki-duk · KR · Drama, Thriller · Filmweb 7
+- **Sezon na leszcza** — 2000 · Bogusław Linda · PL · Comedy, Romance · Filmweb 5.4
+- **Vampire Hunter D** (Vampire Hunter D: Bloodlust) — 2000 · Yoshiaki Kawajiri · JP · Animation, Fantasy, Horror · Filmweb 7.7
+- **Werckmeister harmóniák** (Werckmeister Harmonies) — 2000 · Béla Tarr · FR · Drama · Filmweb 7.9
+- **Yurîka** (Eureka) — 2000 · Shinji Aoyama · JP · Drama · Filmweb 7.8
+- **Żółty szalik** (The Yellow Scarf) — 2000 · Janusz Morgenstern · PL · Drama, TV Movie · Filmweb 7.7
+- **But I'm a Cheerleader** — 1999 · Jamie Babbit · US · Comedy, Drama, Romance · Filmweb 6.8
+- **Dogma** — 1999 · Kevin Smith · US · Fantasy, Comedy, Adventure · Filmweb 7
+- **eXistenZ** — 1999 · David Cronenberg · CA · Action, Thriller, Science Fiction
+- **Girl, Interrupted** — 1999 · James Mangold · US · Drama · Filmweb 7.9
+- **Human Traffic** — 1999 · Justin Kerrigan · UK · Comedy, Drama · Filmweb 7.4
+- **Juyuso seubgyuksageun** (Attack the Gas Station!) — 1999 · Kim Sang-jin · KR · Action, Comedy · Filmweb 6.3
+- **Kikujirô no natsu** (Kikujiro) — 1999 · Takeshi Kitano · JP · Comedy, Drama · Filmweb 7.5
+- **Office Space** — 1999 · Mike Judge · US · Comedy · Filmweb 6.5
+- **Olive, the Other Reindeer** — 1999 · Steve Moore · US · Animation, Family, Comedy · Filmweb 7
+- **Sunshine** — 1999 · István Szabó · EU · Drama, History, Romance · Filmweb 7.1
+- **The Blair Witch Project** — 1999 · Daniel Myrick · US · Horror, Mystery · Filmweb 6.3
+- **The Insider** — 1999 · Michael Mann · US · Drama, Thriller · Filmweb 7.4
+- **The Thirteenth Floor** — 1999 · Josef Rusnak · US · Thriller, Science Fiction, Mystery
+- **Todo sobre mi madre** (All About My Mother) — 1999 · Pedro Almodóvar · ES · Comedy, Drama · Filmweb 7.6
+- **A Night at the Roxbury** — 1998 · John Fortenberry · US · Comedy, Romance · Filmweb 6.9
+- **Buffalo '66** — 1998 · Vincent Gallo · US · Drama, Romance, Comedy · Filmweb 7.6
+- **Crna mačka, beli mačor** (Black Cat, White Cat) — 1998 · Emir Kusturica · FR · Comedy, Romance, Crime · Filmweb 7.8
+- **Dark City** — 1998 · Alex Proyas · AU · Mystery, Science Fiction · Filmweb 7.2
+- **Fallen** — 1998 · Gregory Hoblit · US · Crime, Drama, Thriller · Filmweb 7.3
+- **Festen** — 1998 · Thomas Vinterberg · DK · Drama · added 2026-07-08
+- **Fin août, début septembre** (Late August, Early September) — 1998 · Olivier Assayas · FR · Drama, Romance · Filmweb 6.8
+- **Following** — 1998 · Christopher Nolan · UK · Drama, Thriller · Filmweb 7.4
+- **La leggenda del pianista sull'oceano** (The Legend of 1900) — 1998 · Giuseppe Tornatore · IT · Drama, Music · Filmweb 7.9
+- **Lock, Stock and Two Smoking Barrels** — 1998 · Guy Ritchie · UK · Comedy, Crime · Filmweb 7.9
+- **Lola rennt** (Run Lola Run) — 1998 · Tom Tykwer · DE · Action, Drama, Thriller · Filmweb 6.8
+- **Los Amantes del Círculo Polar** (Lovers of the Arctic Circle) — 1998 · Julio Medem · ES · Drama, Mystery, Romance · Filmweb 7.6
+- **Love & Pop** — 1998 · Hideaki Anno · JP · Drama · Filmweb 7.3
+- **Meet Joe Black** — 1998 · Martin Brest · US · Fantasy, Drama, Romance · Filmweb 7.6
+- **SLC Punk!** (SLC Punk) — 1998 · James Merendino · US · Comedy, Drama, Music · Filmweb 7.2
+- **Spriggan** — 1998 · Hirotsugu Kawasaki · JP · Action, Animation, Science Fiction · Filmweb 6.8
+- **What Dreams May Come** — 1998 · Vincent Ward · US · Drama, Fantasy, Romance · Filmweb 7.6
+- **Wonderful Life** (After Life) — 1998 · Hirokazu Kore-eda · JP · Fantasy, Drama · Filmweb 7.3
+- **Bacheha-Ye aseman** (Children of Heaven) — 1997 · Majid Majidi · OTHER · Drama, Family · Filmweb 8
+- **Boogie Nights** — 1997 · Paul Thomas Anderson · US · Drama, Comedy · Filmweb 7.2
+- **Cats Don't Dance** — 1997 · Mark Dindal · US · Animation, Comedy, Family · Filmweb 7
+- **Chasing Amy** — 1997 · Kevin Smith · US · Comedy, Drama, Romance · Filmweb 7
+- **Chun Gwong Cha Sit** (Happy Together) — 1997 · Wong Kar-Wai · HK · Drama, Romance · Filmweb 7.5
+- **Dobermann** — 1997 · Jan Kounen · FR · Action, Crime · Filmweb 6.9
+- **Event Horizon** — 1997 · Paul W. S. Anderson · UK · Horror, Science Fiction, Mystery · Filmweb 6.9
+- **Face/Off** — 1997 · John Woo · US · Action, Crime, Science Fiction · Filmweb 7.1
+- **Funny Games** — 1997 · Michael Haneke · EU · Drama, Horror, Thriller · added 2026-07-08
+- **Gummo** — 1997 · Harmony Korine · US · Drama, Comedy · Filmweb 7.1
+- **Hana-bi** (Fireworks) — 1997 · Takeshi Kitano · JP · Crime, Drama · Filmweb 7.4
+- **Kyua** (Cure) — 1997 · Kiyoshi Kurosawa · JP · Crime, Thriller, Horror · Filmweb 7.5
+- **La Vieille dame et les pigeons** (The Old Lady and the Pigeons) — 1997 · Sylvain Chomet · CA · Animation, Comedy · Filmweb 7.7
+- **Liar Liar** — 1997 · Tom Shadyac · US · Comedy, Fantasy · Filmweb 6.8
+- **Open Your Eyes** — 1997 · Alejandro Amenábar · EU · Drama, Thriller, Science Fiction
+- **Sztos** — 1997 · Olaf Lubaszenko · PL · Crime, Action · Filmweb 6.9
+- **Ta'm-e gīlās** (Taste of Cherry) — 1997 · Abbas Kiarostami · OTHER · Drama · Filmweb 7.1
+- **The Castle** — 1997 · Rob Sitch · AU · Drama, Comedy · Filmweb 6.4
+- **A Petal** — 1996 · Jang Sun-woo · KR · Drama · added 2026-07-08
+- **Akwarium** (Aquarium) — 1996 · Antoni Krauze · PL · Action · Filmweb 7.2
+- **Breaking the Waves** — 1996 · Lars von Trier · DK · Drama, Romance · Filmweb 7.8
+- **Conte d'été** (A Summer's Tale) — 1996 · Éric Rohmer · FR · Romance, Drama, Comedy · Filmweb 7.2
+- **Cosmos** — 1996 · Marie-Julie Dallaire · CA · Comedy, Drama · Filmweb 5.8
+- **Don't Be a Menace to South Central While Drinking Your Juice in the Hood** — 1996 · Paris Barclay · US · Comedy, Crime · added by hand · added 2026-09-27
+- **Gabbeh** — 1996 · Mohsen Makhmalbaf · OTHER · Drama, Mystery, Romance · Filmweb 7
+- **Hamlet** — 1996 · Kenneth Branagh · US · Drama · Filmweb 7.8
+- **Irma Vep** — 1996 · Olivier Assayas · FR · Comedy, Drama · Filmweb 6.6
+- **L'Appartement** (The Apartment) — 1996 · Gilles Mimouni · FR · Mystery, Drama, Romance · Filmweb 7.2
+- **Nun va Goldoon** (A Moment of Innocence) — 1996 · Mohsen Makhmalbaf · OTHER · Drama, Comedy · Filmweb 7.5
+- **Panic Mechanic** — 1996 · David Lister · OTHER · Comedy · Filmweb 6.5
+- **Secrets & Lies** — 1996 · Mike Leigh · UK · Drama · Filmweb 7.7
+- **Shine** — 1996 · Scott Hicks · AU · Drama · Filmweb 7.9
+- **The Cable Guy** — 1996 · Ben Stiller · US · Comedy, Drama, Thriller · Filmweb 6.4
+- **The Trigger Effect** — 1996 · David Koepp · US · Drama, Thriller · Filmweb 5.6
+- **A Goofy Movie** — 1995 · Kevin Lima · AU · Adventure, Comedy, Romance · Filmweb 7.1
+- **Before Sunrise** — 1995 · Richard Linklater · EU · Drama, Romance · Filmweb 7.7
+- **Dead Man** — 1995 · Jim Jarmusch · US · Drama, Fantasy, Western · Filmweb 7.6
+- **Devil in a Blue Dress** — 1995 · Carl Franklin · US · Thriller, Crime, Drama · Filmweb 6.5
+- **Four Rooms** — 1995 · Allison Anders · US · Comedy · Filmweb 7.4
+- **Institute Benjamenta** — 1995 · Stephen Quay · DE · Drama · added 2026-07-08
+- **Kids** — 1995 · Larry Clark · US · Drama, Crime · Filmweb 6.7
+- **Lumière et compagnie** (Lumière & Company) — 1995 · John Boorman · FR · Drama, Documentary · Filmweb 6.9
+- **Maboroshi no Hikari** (Maborosi) — 1995 · Hirokazu Kore-eda · JP · Drama · Filmweb 7.4
+- **Mizu no naka no hachigatsu** (August in the Water) — 1995 · Gakuryu Ishii · JP · Science Fiction, Drama · Filmweb 7.5
+- **On Your Mark** (Chage & Aska: On Your Mark) — 1995 · Hayao Miyazaki · JP · Music, Fantasy, Animation · Filmweb 7.4
+- **Strange Days** — 1995 · Kathryn Bigelow · US · Crime, Drama, Science Fiction · Filmweb 7.1
+- **Tokyo Fist** — 1995 · Shinya Tsukamoto · JP · Action, Drama, Thriller · Filmweb 7
+- **Wszystko może się przytrafić** (Anything Can Happen) — 1995 · Marcel Łoziński · PL · Documentary · Filmweb 8.1
+- **Ai Qing Wan Sui** (Vive L'Amour) — 1994 · Tsai Ming-liang · JP · Drama · Filmweb 7.2
+- **Ed Wood** — 1994 · Tim Burton · US · Comedy, Drama, History · Filmweb 7.3
+- **Exotica** — 1994 · Atom Egoyan · CA · Drama · Filmweb 6.8
+- **Heavenly Creatures** — 1994 · Peter Jackson · AU · Drama, Fantasy · Filmweb 7
+- **Hoop Dreams** — 1994 · Steve James · US · Documentary · added 2026-07-10
+- **In the Mouth of Madness** — 1994 · John Carpenter · US · Horror, Mystery · Filmweb 7
+- **Nattevagten** (Nightwatch) — 1994 · Ole Bornedal · DK · Horror, Thriller · Filmweb 6.8
+- **Plastic Little** (Plastic Little: The Adventures of Captain Tita) — 1994 · Kinji Yoshimoto · JP · Animation, Science Fiction, Adventure · Filmweb 6
+- **Sátántangó** (Satantango) — 1994 · Béla Tarr · DE · Drama · Filmweb 8.2
+- **Shallow Grave** — 1994 · Danny Boyle · UK · Crime, Thriller · Filmweb 7
+- **Taebek sanmaek** — 1994 · Im Kwon-taek · KR · War, Drama · Filmweb 7.6
+- **The Adventures of Priscilla, Queen of the Desert** — 1994 · Stephan Elliott · AU · Drama, Comedy · Filmweb 7.3
+- **The Crow** — 1994 · Alex Proyas · US · Fantasy, Action, Thriller · Filmweb 7.3
+- **Una pura formalità** (A Pure Formality) — 1994 · Giuseppe Tornatore · IT · Mystery, Thriller, Crime · Filmweb 7.6
+- **Utomlyonnye solntsem** (Burnt by the Sun) — 1994 · Nikita Mikhalkov · RU · Drama · Filmweb 7.9
+- **Yin shi nan nu** (Eat Drink Man Woman) — 1994 · Ang Lee · JP · Comedy, Drama, Romance · Filmweb 7.4
+- **Blue** — 1993 · Derek Jarman · UK · Documentary, Drama · Filmweb 7.8
+- **Carlito's Way** — 1993 · Brian De Palma · US · Crime, Drama, Thriller · Filmweb 8
+- **Cronos** — 1993 · Guillermo del Toro · MX · Drama, Horror, Thriller · Filmweb 5.8
+- **Dazed and Confused** — 1993 · Richard Linklater · US · Comedy, Drama · Filmweb 6.8
+- **Hiroshima ni ichiban densha ga hashitta** (The First Tram Runs to Hiroshima) — 1993 · Toshio Hirata · JP · Animation, Drama, History · Filmweb 6
+- **In the Name of the Father** — 1993 · Jim Sheridan · IE · Drama · Filmweb 8
+- **In weiter Ferne, so nah!** (Faraway, So Close!) — 1993 · Wim Wenders · DE · Drama, Fantasy, Romance · added by hand · added 2026-09-27
+- **Jūbee Ninpūchō** — 1993 · Yoshiaki Kawajiri · JP · Fantasy, Animation, Action · Filmweb 7.7
+- **Kidō Keisatsu Patlabor 2 the Movie** (Patlabor 2: The Movie) — 1993 · Mamoru Oshii · JP · Animation, Science Fiction, Action · Filmweb 7.6
+- **Menace II Society** — 1993 · Allen Hughes · US · Drama, Crime, Thriller · Filmweb 7.4
+- **Naked** — 1993 · Mike Leigh · UK · Drama, Comedy · Filmweb 7.6
+- **Przypadek Pekosińskiego** (The Case of Bronek Pekosinski) — 1993 · Grzegorz Królikiewicz · PL · Documentary, Drama · Filmweb 6.7
+- **Short Cuts** — 1993 · Robert Altman · US · Drama, Comedy · Filmweb 7.5
+- **Skutki noszenia kapelusza w maju** — 1993 · Krystyna Krupska-Wysocka · PL · Comedy, Family, TV Movie · Filmweb 7
+- **Sonatine** — 1993 · Takeshi Kitano · JP · Action, Crime, Thriller · Filmweb 7.3
+- **The Dark Half** — 1993 · George A. Romero · US · Mystery, Horror · Filmweb 6
+- **The Piano** — 1993 · Jane Campion · AU · Drama, Romance · Filmweb 7.8
+- **The Princess and the Cobbler** (The Thief and the Cobbler) — 1993 · Richard Williams · UK · Animation, Family, Fantasy · Filmweb 7.7
+- **True Romance** — 1993 · Tony Scott · US · Action, Crime, Romance · Filmweb 7.5
+- **Army of Darkness** — 1992 · Sam Raimi · US · Fantasy, Horror, Comedy · Filmweb 7.1
+- **Braindead** — 1992 · Peter Jackson · AU · Horror, Comedy · Filmweb 6.8
+- **Damage** — 1992 · Louis Malle · FR · Drama, Romance · Filmweb 6.7
+- **Gas, Food Lodging** (Gas Food Lodging) — 1992 · Allison Anders · US · Drama, Romance · Filmweb 6.7
+- **Glengarry Glen Ross** — 1992 · James Foley · US · Crime, Drama, Mystery · Filmweb 7.2
+- **Hashire Melos!** (Run, Melos!) — 1992 · Masaaki Osumi · JP · Animation, History, Drama · Filmweb 7.6
+- **Lat sau san taam** (Hard Boiled) — 1992 · John Woo · HK · Action, Thriller, Crime · Filmweb 7.3
+- **Lorenzo's Oil** — 1992 · George Miller · AU · Drama · Filmweb 7.4
+- **Man Bites Dog** — 1992 · Rémy Belvaux · EU · Comedy, Crime · added 2026-07-08
+- **Of Mice and Men** — 1992 · Gary Sinise · US · Drama · Filmweb 7.8
+- **Qing shao nian nuo zha** (Rebels of the Neon God) — 1992 · Tsai Ming-liang · JP · Drama, Crime · Filmweb 7
+- **Scent of a Woman** — 1992 · Martin Brest · US · Drama · Filmweb 8.1
+- **Talking Head** — 1992 · Mamoru Oshii · JP · Mystery, Drama, Thriller · Filmweb 6.7
+- **The Last of the Mohicans** — 1992 · Michael Mann · US · History, War, Drama · Filmweb 7.6
+- **Topâzu** — 1992 · Filmweb 6.4
+- **Unforgiven** — 1992 · Clint Eastwood · US · Western · Filmweb 7.9
+- **Urideului ilgeuleojin yeongung** (Our Twisted Hero) — 1992 · Park Chong-won · KR · Drama · Filmweb 7.4
+- **Wuthering Heights** — 1992 · Peter Kosminsky · UK · Drama, Romance · Filmweb 7.3
+- **964 Pinocchio** — 1991 · Shozin Fukui · JP · Horror, Science Fiction, Thriller · Filmweb 5.3
+- **A Brighter Summer Day** — 1991 · Edward Yang · JP · Crime, Drama, Romance · added 2026-07-10
+- **Barton Fink** — 1991 · Joel Coen · UK · Comedy, Drama, Thriller · Filmweb 7.6
+- **Boyz n the Hood** — 1991 · John Singleton · US · Crime, Drama · Filmweb 7.5
+- **Gu Ling Jie Shao Nian Sha Ren Shi Jian** (A Brighter Summer Day) — 1991 · Edward Yang · JP · Crime, Drama, Romance · Filmweb 7.9
+- **Night on Earth** — 1991 · Jim Jarmusch · US · Comedy, Drama · Filmweb 7.9
+- **Obecná škola** (The Elementary School) — 1991 · Jan Svěrák · OTHER · Comedy, Drama · Filmweb 7.4
+- **Rōjin Z** (Roujin Z) — 1991 · Hiroyuki Kitakubo · JP · Animation, Drama, Science Fiction · Filmweb 6.9
+- **Rozmowy kontrolowane** (Controlled Conversations) — 1991 · Sylwester Chęciński · PL · Comedy · Filmweb 7.4
+- **Tous les matins du monde** (All the Mornings of the World) — 1991 · Alain Corneau · FR · Drama, History, Music · Filmweb 7.9
+- **Zendegi va digar hich** (Life, and Nothing More…) — 1991 · Abbas Kiarostami · OTHER · Drama, Adventure · Filmweb 7.3
+- **3-4 x jūgatsu** — 1990 · Takeshi Kitano · JP · Crime, Comedy, Drama · Filmweb 6.3
+- **Arachnophobia** — 1990 · Frank Marshall · US · Comedy, Horror · Filmweb 6
+- **Henry & June** — 1990 · Philip Kaufman · US · Romance · Filmweb 6.8
+- **Jacob's Ladder** — 1990 · Adrian Lyne · US · Drama, Mystery, Horror · Filmweb 7.6
+- **Kaze no Na wa Amnesia** (A Wind Named Amnesia) — 1990 · Kazuo Yamazaki · JP · Animation, Drama, Science Fiction · Filmweb 6.5
+- **Keduldo urichurum** — 1990 · Filmweb 7.2
+- **Life Is Sweet** — 1990 · Mike Leigh · UK · Comedy, Drama · Filmweb 7.1
+- **Miller's Crossing** — 1990 · Joel Coen · US · Drama, Thriller, Crime · Filmweb 7.2
+- **Misery** — 1990 · Rob Reiner · US · Drama, Thriller · Filmweb 7.6
+- **Nambugun** (North Korean Partisan in South Korea) — 1990 · Chung Ji-young · KR · War, History, Drama · Filmweb 6.7
+- **Nema-ye Nazdik** (Close-Up) — 1990 · Abbas Kiarostami · OTHER · Crime, Drama · Filmweb 7.8
+- **Paris Is Burning** — 1990 · Jennie Livingston · US · Documentary · Filmweb 7.9
+- **The Grifters** — 1990 · Stephen Frears · CA · Crime, Drama · Filmweb 6.8
+- **Tian ruo you qing** (A Moment of Romance) — 1990 · Benny Chan · HK · Action, Romance, Crime · Filmweb 7.2
+- **Wild at Heart** — 1990 · David Lynch · US · Crime, Thriller, Romance · Filmweb 7.6
+- **Bei qing cheng shi** — 1989 · Hou Hsiao-hsien · HK · Drama, History · Filmweb 7.3
+- **Black Rain** — 1989 · Ridley Scott · US · Drama, Action, Thriller · Filmweb 7
+- **Christmas Vacation** (National Lampoon's Christmas Vacation) — 1989 · Jeremiah S. Chechik · US · Comedy · Filmweb 7.3
+- **Do the Right Thing** — 1989 · Spike Lee · US · Drama · Filmweb 7.5
+- **Kuroi ame** (Black Rain) — 1989 · Shōhei Imamura · JP · Drama, History · Filmweb 7.3
+- **Last Exit to Brooklyn** — 1989 · Uli Edel · DE · Drama · Filmweb 7.1
+- **Perdues dans New York** (Lost in New York) — 1989 · Jean Rollin · FR · TV Movie, Fantasy, Horror · Filmweb 6.3
+- **Tetsuo: The Iron Man** — 1989 · Shinya Tsukamoto · JP · Horror, Science Fiction · added 2026-07-10
+- **The Abyss** — 1989 · James Cameron · US · Adventure, Thriller, Science Fiction · Filmweb 7.3
+- **The Seventh Continent** — 1989 · Michael Haneke · EU · Drama · added 2026-07-08
+- **UHF** — 1989 · Jay Levey · US · Comedy · Filmweb 6.5
+- **Ashug-Karibi** (Ashik Kerib) — 1988 · Sergei Parajanov · SU · Drama, History, Fantasy · Filmweb 7.3
+- **Beetle Juice** — 1988 · Tim Burton · US · Fantasy, Comedy · Filmweb 7.2
+- **Dead Ringers** — 1988 · David Cronenberg · CA · Thriller, Horror · added 2026-07-08
+- **Dom za vješanje** (Time of the Gypsies) — 1988 · Emir Kusturica · IT · Drama, Crime, Fantasy · Filmweb 8
+- **Evil Angels** — 1988 · Fred Schepisi · AU · Drama · Filmweb 6.9
+- **Gandahar** — 1988 · René Laloux · FR · Animation, Science Fiction, Fantasy · Filmweb 7.4
+- **I'm Gonna Git You Sucka** — 1988 · Keenen Ivory Wayans · US · Comedy, Action, Crime · Filmweb 5.9
+- **Kárhozat** (Damnation) — 1988 · Béla Tarr · HU · Drama, Crime · Filmweb 7.7
+- **Le grand bleu** (The Big Blue) — 1988 · Luc Besson · FR · Romance, Adventure, Drama · Filmweb 7.5
+- **Mujeres al borde de un ataque de nervios** (Women on the Verge of a Nervous Breakdown) — 1988 · Pedro Almodóvar · ES · Comedy, Drama · Filmweb 7.5
+- **Return from the River Kwai** — 1988 · Andrew V. McLaglen · UK · War · Filmweb 6.3
+- **Spoorloos** (The Vanishing) — 1988 · George Sluizer · NL · Thriller, Mystery · Filmweb 7.2
+- **The Lair of the White Worm** — 1988 · Ken Russell · UK · Horror, Comedy · Filmweb 5.8
+- **The Unbearable Lightness of Being** — 1988 · Philip Kaufman · US · Drama, Romance · Filmweb 7.2
+- **They Live** — 1988 · John Carpenter · US · Science Fiction, Action, Thriller · Filmweb 6.9
+- **Topio stin omichli** (Landscape in the Mist) — 1988 · Theo Angelopoulos · FR · Drama · Filmweb 7.4
+- **Who Framed Roger Rabbit** — 1988 · Robert Zemeckis · US · Fantasy, Animation, Comedy · Filmweb 7.1
+- **Angel Heart** — 1987 · Alan Parker · UK · Horror, Mystery · Filmweb 7.6
+- **Der Himmel über Berlin** (Wings of Desire) — 1987 · Wim Wenders · DE · Drama, Fantasy, Romance · Filmweb 7.9
+- **Empire of the Sun** — 1987 · Steven Spielberg · US · Drama, History, War · Filmweb 7.8
+- **Evil Dead II** — 1987 · Sam Raimi · US · Horror, Comedy, Fantasy · Filmweb 7.2
+- **Khane-ye doust kodjast?** (Where Is The Friend's House?) — 1987 · Abbas Kiarostami · OTHER · Drama, Adventure · Filmweb 7.6
+- **Na srebrnym globie** (On the Silver Globe) — 1987 · Andrzej Żuławski · PL · Science Fiction, Drama · Filmweb 6.7
+- **Ōritsu Uchūgu: Honneamise no Tsubasa** — 1987 · Filmweb 7.6
+- **Radio Days** — 1987 · Woody Allen · US · Comedy, Drama · Filmweb 7.4
+- **Withnail & I** — 1987 · Bruce Robinson · UK · Comedy, Drama · Filmweb 7.3
+- **Yanagawa horiwari monogatari** (The Story of Yanagawa's Canals) — 1987 · Isao Takahata · JP · Documentary, Animation · Filmweb 6.1
+- **Big Trouble in Little China** — 1986 · John Carpenter · US · Action, Adventure, Comedy · Filmweb 6.6
+- **Down by Law** — 1986 · Jim Jarmusch · US · Crime, Drama, Comedy · Filmweb 7.7
+- **Ferris Bueller's Day Off** — 1986 · John Hughes · US · Comedy · Filmweb 7.1
+- **Flight of the Navigator** — 1986 · Randal Kleiser · US · Family, Science Fiction, Adventure · Filmweb 6.6
+- **Kong bu fen zi** (Terrorizers) — 1986 · Edward Yang · JP · Drama, Crime, Mystery · Filmweb 7.6
+- **Mauvais sang** (Mauvais Sang) — 1986 · Leos Carax · FR · Drama, Romance, Crime · Filmweb 7
+- **Pisma myortvogo cheloveka** (Dead Man's Letters) — 1986 · Konstantin Lopushansky · SU · Drama, Science Fiction · Filmweb 7.6
+- **The Fly** — 1986 · David Cronenberg · US · Horror, Science Fiction · Filmweb 7.1
+- **The Great Mouse Detective** — 1986 · Burny Mattinson · US · Animation, Family, Mystery · Filmweb 7.1
+- **The Mission** — 1986 · Roland Joffé · UK · Adventure, Drama, Action · Filmweb 8
+- **When the Wind Blows** — 1986 · Jimmy T. Murakami · UK · Animation, War, Drama · Filmweb 7.6
+- **A Hora da Estrela** (Hour of the Star) — 1985 · Suzana Amaral · BR · Drama · Filmweb 7.2
+- **A Room with a View** — 1985 · James Ivory · UK · Drama, Romance · Filmweb 7.3
+- **After Hours** — 1985 · Martin Scorsese · US · Comedy, Thriller, Drama · Filmweb 7.4
+- **Brazil** — 1985 · Terry Gilliam · UK · Comedy, Science Fiction · Filmweb 7.5
+- **Esperando la carroza** (Waiting for the Hearse) — 1985 · Alejandro Doria · OTHER · Comedy · Filmweb 7.1
+- **Ga, ga. Chwała bohaterom** (Ga-ga: Glory to the Heroes) — 1985 · Piotr Szulkin · PL · Science Fiction, Comedy, Drama · Filmweb 7.1
+- **Kamui no ken** (The Dagger of Kamui) — 1985 · Rintaro · JP · Animation, Action, Adventure · Filmweb 6.5
+- **Kyūketsuki Hunter D** (Vampire Hunter D) — 1985 · Toyoo Ashida · JP · Animation, Fantasy, Horror · Filmweb 7.1
+- **Mishima: A Life in Four Chapters** — 1985 · Paul Schrader · JP · Drama · Filmweb 7.5
+- **Penguin's Memory - Shiawase monogatari** (Penguin's Memory: A Tale of Happiness) — 1985 · Shunji Kimura · JP · Animation, War, Drama · Filmweb 7.3
+- **Shoah** — 1985 · Claude Lanzmann · FR · Documentary, History · added 2026-07-10
+- **Tampopo** — 1985 · Jūzō Itami · JP · Comedy · added 2026-07-08
+- **Volunteers** — 1985 · Nicholas Meyer · US · Comedy · Filmweb 5.9
+- **White Nights** — 1985 · Taylor Hackford · US · Drama, Thriller · Filmweb 7.4
+- **¿Qué he hecho yo para merecer esto!!** (What Have I Done to Deserve This?) — 1984 · Pedro Almodóvar · ES · Comedy, Drama · Filmweb 7.5
+- **Amadeus** — 1984 · Miloš Forman · US · Drama, History, Music · Filmweb 8.2
+- **Balkanski špijun** (Balkan Spy) — 1984 · Dušan Kovačević · OTHER · Drama, Comedy · Filmweb 7.5
+- **Boy Meets Girl** — 1984 · Leos Carax · FR · Drama, Romance · Filmweb 6.8
+- **Chō Jikū Yōsai Macross: Ai, Oboete Imasu ka** — 1984 · Noboru Ishiguro · JP · Animation, Science Fiction, War · Filmweb 7.5
+- **Dom wariatów** (The House of Fools) — 1984 · Marek Koterski · PL · Drama, Comedy · Filmweb 6.9
+- **Love Streams** — 1984 · John Cassavetes · US · Drama · Filmweb 6.2
+- **O-bi, o-ba: Koniec cywilizacji** (O-Bi, O-Ba: The End of Civilization) — 1984 · Piotr Szulkin · PL · Drama, Science Fiction · Filmweb 7.3
+- **Saraba hakobune** (Farewell to the Ark) — 1984 · Shūji Terayama · JP · Fantasy, Drama · Filmweb 7.1
+- **Taxidi sta Kithira** (Voyage to Cythera) — 1984 · Theo Angelopoulos · GR · Drama · Filmweb 7.6
+- **The Killing Fields** — 1984 · Roland Joffé · UK · Drama, History, War · Filmweb 7.7
+- **This Is Spinal Tap** — 1984 · Rob Reiner · US · Comedy, Music · Filmweb 7.2
+- **Threads** — 1984 · Mick Jackson · AU · War, Drama, Science Fiction · Filmweb 7.7
+- **Un Poeta nel Cinema: Andreij Tarkovskij** (Andrei Tarkovsky: A Poet in the Cinema) — 1984 · Donatella Baglivo · IT · Documentary · Filmweb 7.2
+- **100% no onna no ko** (A Girl, She Is 100%) — 1983 · Naoto Yamakawa · JP · Drama, Romance, Comedy · Filmweb 7.1
+- **À nos amours** (A Nos Amours) — 1983 · Maurice Pialat · FR · Drama, Romance · Filmweb 6.8
+- **Hadashi no Gen** (Barefoot Gen) — 1983 · Mori Masaki · JP · Animation, Drama, War · Filmweb 7.9
+- **Kartka z podróży** (Postcard from a Journey) — 1983 · Waldemar Dziki · PL · History, Drama, War · Filmweb 7.6
+- **Merry Christmas, Mr. Lawrence** — 1983 · Nagisa Ōshima · JP · Drama, History, War · Filmweb 7.3
+- **Rumble Fish** — 1983 · Francis Ford Coppola · US · Crime, Drama, Romance · Filmweb 7.4
+- **Sans soleil** (Sans Soleil) — 1983 · Chris Marker · FR · Documentary · Filmweb 7.5
+- **The Meaning of Life** (Monty Python's The Meaning of Life) — 1983 · Terry Jones · UK · Comedy · Filmweb 7.9
+- **The Outsiders** — 1983 · Francis Ford Coppola · US · Crime, Drama · Filmweb 6.6
+- **Twilight Zone: The Movie** — 1983 · John Landis · US · Horror, Fantasy, Science Fiction · Filmweb 6.6
+- **Videodrome** — 1983 · David Cronenberg · CA · Horror, Science Fiction, Mystery · Filmweb 6.9
+- **Widziadło** (The Phantom) — 1983 · Marek Nowicki · PL · Drama · Filmweb 5.7
+- **Fanny and Alexander** — 1982 · Ingmar Bergman · SE · Fantasy, Drama, Mystery · added 2026-07-08
+- **Fitzcarraldo** — 1982 · Werner Herzog · DE · Drama, Adventure · Filmweb 7.8
+- **Krzyk** (The Scream) — 1982 · Barbara Sass · PL · Drama · Filmweb 7.3
+- **Made in Britain** — 1982 · Alan Clarke · UK · TV Movie, Crime, Drama · Filmweb 6.7
+- **Nieciekawa historia** (An Uneventful Story) — 1982 · Wojciech Has · PL · Drama · Filmweb 7.2
+- **Pink Floyd: The Wall** — 1982 · Alan Parker · UK · Music, Drama · Filmweb 8.1
+- **Tenebre** — 1982 · Dario Argento · IT · Horror, Mystery, Thriller · Filmweb 6.4
+- **The Thing** — 1982 · John Carpenter · US · Horror, Mystery, Science Fiction · Filmweb 7.5
+- **The Verdict** — 1982 · Sidney Lumet · US · Drama · Filmweb 7.5
+- **Tootsie** — 1982 · Sydney Pollack · US · Comedy, Romance · Filmweb 7.5
+- **TRON** (Tron) — 1982 · Steven Lisberger · US · Science Fiction, Action, Adventure · Filmweb 7
+- **An American Werewolf in London** — 1981 · John Landis · UK · Comedy, Horror, Fantasy · Filmweb 6.6
+- **Blow Out** — 1981 · Brian De Palma · US · Crime, Mystery, Thriller · added 2026-07-08
+- **Christiane F. - Wir Kinder vom Bahnhof Zoo** (Christiane F.) — 1981 · Uli Edel · DE · Drama · Filmweb 7.3
+- **Człowiek z żelaza** (Man of Iron) — 1981 · Andrzej Wajda · PL · Drama, History · Filmweb 7.5
+- **Dreszcze** (Shivers) — 1981 · Wojciech Marczewski · PL · Drama, History · Filmweb 7.4
+- **Excalibur** — 1981 · John Boorman · UK · Adventure, Fantasy · Filmweb 6.8
+- **Fehérlófia** (Son of the White Mare) — 1981 · Marcell Jankovics · HU · Adventure, Animation, Fantasy · Filmweb 8
+- **Kageroza** (Kagero-za) — 1981 · Seijun Suzuki · JP · Romance, Drama, Mystery · Filmweb 7.2
+- **Konopielka** (The Linnet) — 1981 · Witold Leszczyński · PL · Comedy, Drama · Filmweb 7.7
+- **La femme de l'aviateur** (The Aviator's Wife) — 1981 · Éric Rohmer · FR · Drama, Comedy, Romance · Filmweb 7.2
+- **Le pont du Nord** (Le Pont du Nord) — 1981 · Jacques Rivette · FR · Mystery, Drama, Comedy · Filmweb 6.4
+- **Ms. 45** (Ms .45) — 1981 · Abel Ferrara · US · Crime, Thriller, Action · Filmweb 6.6
+- **My Dinner with André** (My Dinner with Andre) — 1981 · Louis Malle · US · Drama, Comedy · Filmweb 7.8
+- **Natsu e no Tobira** (The Door Into Summer) — 1981 · Mori Masaki · JP · Animation, Drama, Romance · Filmweb 5.7
+- **Prince of the City** — 1981 · Sidney Lumet · US · Drama, Thriller, Crime · added 2026-07-08
+- **Przypadek** (Przypadek pana Marka) — 1981 · Krzysztof Blok · PL · Comedy, Drama · Filmweb 8
+- **Storie di ordinaria follia** (Tales of Ordinary Madness) — 1981 · Marco Ferreri · IT · Drama · Filmweb 6.6
+- **The Evil Dead** — 1981 · Sam Raimi · US · Horror · Filmweb 6.7
+- **Coal Miner's Daughter** — 1980 · Michael Apted · US · Music, Drama, History · Filmweb 7
+- **Gregory's Girl** — 1980 · Bill Forsyth · UK · Comedy, Romance · Filmweb 6.9
+- **Nine to Five** — 1980 · Colin Higgins · US · Comedy · Filmweb 6.7
+- **Ordinary People** — 1980 · Robert Redford · US · Drama · Filmweb 7.1
+- **Permanent Vacation** — 1980 · Jim Jarmusch · US · Drama · Filmweb 6.9
+- **Signum Laudis** (The Medal) — 1980 · Martin Hollý · OTHER · Drama, War · Filmweb 5.7
+- **The Elephant Man** — 1980 · David Lynch · US · Drama, History · Filmweb 7.9
+- **The Gods Must Be Crazy** — 1980 · Jamie Uys · OTHER · Action, Comedy · Filmweb 7.2
+- **All That Jazz** — 1979 · Bob Fosse · US · Drama · Filmweb 7.8
+- **Being There** — 1979 · Hal Ashby · US · Comedy, Drama · Filmweb 7.5
+- **Ginga Tetsudou 999** (Galaxy Express 999: Can You Live Like a Warrior!!) — 1979 · Nobutaka Nishizawa · JP · Adventure, Drama, Science Fiction · Filmweb 7.7
+- **Golem** — 1979 · Dominik Graf · DE · Thriller, Science Fiction · Filmweb 7.1
+- **Klucznik** (The Housemaster) — 1979 · Wojciech Marczewski · PL · Drama · Filmweb 7.5
+- **Kummatty** — 1979 · Govindan Aravindan · IN · Family, Fantasy, Drama · Filmweb 7.4
+- **Manhattan** — 1979 · Woody Allen · US · Comedy, Drama, Romance · Filmweb 7.7
+- **Os Trombadinhas** — 1979 · Anselmo Duarte · BR · Crime, Drama · Filmweb 5
+- **Panny z Wilka** (The Maids of Wilko) — 1979 · Andrzej Wajda · FR · Drama, Romance · Filmweb 7.3
+- **Vengeance Is Mine** — 1979 · Shōhei Imamura · JP · Crime, Drama · added 2026-07-08
+- **Autumn Sonata** — 1978 · Ingmar Bergman · DE · Drama, Music · added 2026-07-08
+- **Convoy** — 1978 · Sam Peckinpah · US · Action, Comedy, Drama · Filmweb 7.2
+- **Dawn of the Dead** — 1978 · George A. Romero · IT · Horror, Science Fiction · Filmweb 6.9
+- **Days of Heaven** — 1978 · Terrence Malick · US · Drama, Romance · Filmweb 7.2
+- **Szpital Przemienienia** (Hospital of the Transfiguration) — 1978 · Edward Żebrowski · PL · Drama, War, History · Filmweb 7.8
+- **Zmory** (Nightmares) — 1978 · Wojciech Marczewski · PL · Drama · Filmweb 7.3
+- **3 Women** — 1977 · Robert Altman · US · Drama · added 2026-07-08
+- **Close Encounters of the Third Kind** — 1977 · Steven Spielberg · UK · Science Fiction, Drama · Filmweb 7.2
+- **Hausu** (House) — 1977 · Nobuhiko Obayashi · JP · Comedy, Fantasy, Horror · Filmweb 7.1
+- **Man of Marble** — 1977 · Andrzej Wajda · PL · Drama · added 2026-07-08
+- **News From Home** (News from Home) — 1977 · Chantal Akerman · EU · Documentary · Filmweb 7.3
+- **Opening Night** — 1977 · John Cassavetes · US · Drama · added 2026-07-08
+- **Rolling Thunder** — 1977 · John Flynn · US · Drama, Thriller · Filmweb 6.4
+- **Śmierć prezydenta** (Death of a President) — 1977 · Jerzy Kawalerowicz · PL · History, Drama · Filmweb 7.7
+- **Sorcerer** — 1977 · William Friedkin · US · Thriller, Adventure · Filmweb 7.4
+- **The Duellists** — 1977 · Ridley Scott · UK · Drama, War · Filmweb 7.6
+- **Wizards** — 1977 · Ralph Bakshi · US · Animation, Fantasy, Science Fiction · Filmweb 6.5
+- **Camouflage** — 1976 · Bregt Pepijn Verhagen · Drama · added 2026-07-10
+- **Don's Party** — 1976 · Bruce Beresford · AU · Comedy · Filmweb 6.6
+- **Hadashi no Gen** (Barefoot Gen's Hiroshima) — 1976 · Ishida Yuko · JP · Documentary, War
+- **L'Une chante, l'autre pas** (One Sings, the Other Doesn't) — 1976 · Agnès Varda · EU · Drama, Music · Filmweb 7.2
+- **Lost, Lost, Lost** — 1976 · Jonas Mekas · US · Documentary · Filmweb 7.4
+- **Mad Dog Morgan** — 1976 · Philippe Mora · AU · Action, Crime, Drama · Filmweb 6.1
+- **Marathon Man** — 1976 · John Schlesinger · US · Thriller, Crime, Drama · Filmweb 7.5
+- **Mikey and Nicky** — 1976 · Elaine May · US · Crime, Drama · Filmweb 7.2
+- **Natvris khe** (The Wishing Tree) — 1976 · Tengiz Abuladze · SU · Drama · Filmweb 7.6
+- **Sami maneti** (Three Rubles) — 1976 · Ramaz Sharabidze · SU · Comedy · Filmweb 10
+- **Termometri** (Thermometer) — 1976 · Ramaz Sharabidze · SU · Comedy · Filmweb 10
+- **The Killing of a Chinese Bookie** — 1976 · John Cassavetes · US · Thriller, Crime, Drama · added 2026-07-08
+- **A Boy and His Dog** — 1975 · L.Q. Jones · US · Drama, Science Fiction, Comedy · Filmweb 6.6
+- **Babodeuli haengjin** — 1975 · Ha Gil-jong · KR · Romance, Drama, Comedy · Filmweb 6.6
+- **Barry Lyndon** — 1975 · Stanley Kubrick · UK · Drama, War, History · Filmweb 8
+- **Dersu Uzala** — 1975 · Akira Kurosawa · JP · Adventure, Drama · Filmweb 8
+- **Falsche Bewegung** (Wrong Move) — 1975 · Wim Wenders · DE · Drama · added by hand · added 2026-09-27
+- **Jeanne Dielman, 23 Quai du Commerce, 1080 Bruxelles** (Jeanne Dielman, 23, quai du Commerce, 1080 Bruxelles) — 1975 · Chantal Akerman · EU · Drama · Filmweb 7.7
+- **Maynila: Sa mga kuko ng liwanag** (Manila in the Claws of Light) — 1975 · Lino Brocka · OTHER · Drama, Mystery · Filmweb 7.4
+- **Picnic at Hanging Rock** — 1975 · Peter Weir · AU · Drama, Mystery · Filmweb 7.3
+- **Professione: Reporter** (The Passenger) — 1975 · Michelangelo Antonioni · IT · Drama, Mystery, Thriller · Filmweb 7.5
+- **Profondo rosso** (Deep Red) — 1975 · Dario Argento · IT · Horror, Mystery, Thriller · Filmweb 7.1
+- **Salò o le 120 giornate di Sodoma** (Salò, or the 120 Days of Sodom) — 1975 · Pier Paolo Pasolini · IT · Drama, Horror · Filmweb 5.2
+- **Sampoganeun kil** (The Road to Sampo) — 1975 · Lee Man-hee · KR · Drama · Filmweb 6.4
+- **Bring Me the Head of Alfredo Garcia** — 1974 · Sam Peckinpah · US · Action, Crime, Drama · Filmweb 7.1
+- **Celine and Julie Go Boating** — 1974 · Jacques Rivette · FR · Comedy, Drama, Fantasy · added 2026-07-08
+- **Hearts and Minds** — 1974 · Peter Davis · US · Documentary, War · Filmweb 7.8
+- **Himiko** — 1974 · Masahiro Shinoda · JP · Drama, History · Filmweb 7
+- **Jeder für sich und Gott gegen alle** (The Enigma of Kaspar Hauser) — 1974 · Werner Herzog · DE · Drama, History · Filmweb 7.6
+- **Phase IV** — 1974 · Saul Bass · UK · Horror, Science Fiction · Filmweb 6.3
+- **Stone** — 1974 · Sandy Harbutt · AU · Action, Crime, Thriller · Filmweb 5.8
+- **To ja zabiłem** (I killed) — 1974 · Stanisław Lenartowicz · PL · Drama · Filmweb 6.2
+- **Ziemia obiecana** — 1974 · Andrzej Wajda · PL · Drama, History · added 2026-07-10
+- **Battles Without Honor and Humanity** — 1973 · Kinji Fukasaku · JP · Crime, Action, Drama · added by hand · added 2026-11-06
+- **Don't Look Now** — 1973 · Nicolas Roeg · IT · Thriller, Drama, Horror · Filmweb 6.7
+- **El espíritu de la colmena** (The Spirit of the Beehive) — 1973 · Víctor Erice · ES · Drama, Fantasy · Filmweb 7.5
+- **F for Fake** — 1973 · Orson Welles · FR · Documentary · added 2026-07-10
+- **Hubal** — 1973 · Bohdan Poręba · PL · War, Drama, History · Filmweb 7.6
+- **Magnum Force** — 1973 · Ted Post · US · Drama, Crime, Action · Filmweb 7.6
+- **Shurayukihime** (Lady Snowblood) — 1973 · Toshiya Fujita · JP · Action, Crime, Drama · Filmweb 7.3
+- **Soylent Green** — 1973 · Richard Fleischer · US · Science Fiction, Crime, Mystery · Filmweb 6.7
+- **The Holy Mountain** — 1973 · Alejandro Jodorowsky · US · Drama · Filmweb 7.6
+- **The Sting** — 1973 · George Roy Hill · US · Comedy, Crime, Drama · Filmweb 8.1
+- **The Wicker Man** — 1973 · Robin Hardy · UK · Horror · Filmweb 7
+- **Vérités et mensonges** (F for Fake) — 1973 · Orson Welles · FR · Documentary · Filmweb 7.4
+- **World on a Wire** — 1973 · Rainer Werner Fassbinder · DE · Documentary
+- **Aguirre, der Zorn Gottes** (Aguirre, the Wrath of God) — 1972 · Werner Herzog · DE · History, Adventure, Drama · Filmweb 7.5
+- **Cabaret** — 1972 · Bob Fosse · DE · Music, Romance, Drama · Filmweb 8
+- **Deliverance** — 1972 · John Boorman · US · Drama, Adventure, Thriller · Filmweb 7.1
+- **État de siège** (State of Siege) — 1972 · Costa-Gavras · FR · Thriller, Drama · Filmweb 7.3
+- **Iluminacja** (Illumination) — 1972 · Krzysztof Zanussi · PL · Drama · Filmweb 7.2
+- **L'Amour l'après-midi** (Love in the Afternoon) — 1972 · Éric Rohmer · FR · Drama, Romance · Filmweb 7.4
+- **Le charme discret de la bourgeoisie** (The Discreet Charm of the Bourgeoisie) — 1972 · Luis Buñuel · FR · Comedy · Filmweb 7.6
+- **The Devil** — 1972 · Andrzej Żuławski · PL · Horror, History, Drama · added 2026-07-08
+- **Un Flic** (A Cop) — 1972 · Jean-Pierre Melville · FR · Crime, Thriller · Filmweb 6.9
+- **Nie lubię poniedziałku** (I Hate Mondays) — 1971 · Tadeusz Chmielewski · PL · Comedy · Filmweb 7.6
+- **Quatre nuits d'un rêveur** (Four Nights of a Dreamer) — 1971 · Robert Bresson · FR · Drama, Romance · Filmweb 7
+- **Sho o Suteyo Machi e Deyō** (Throw Away Your Books, Rally in the Streets) — 1971 · Shūji Terayama · JP · Drama · Filmweb 7.6
+- **Straw Dogs** — 1971 · Sam Peckinpah · US · Thriller, Drama, Crime · Filmweb 7.4
+- **The French Connection** — 1971 · William Friedkin · US · Action, Crime, Thriller · Filmweb 7.3
+- **The Last Picture Show** — 1971 · Peter Bogdanovich · US · Drama, Romance · Filmweb 7.8
+- **The Omega Man** — 1971 · Boris Sagal · US · Science Fiction, Action, Drama · Filmweb 6
+- **Trial on the Road** — 1971 · Aleksei German · SU · War, Drama · added 2026-07-08
+- **Baal** — 1970 · Volker Schlöndorff · DE · Drama · Filmweb 5.9
+- **Catch-22** — 1970 · Mike Nichols · US · War, Comedy · Filmweb 6.9
+- **Deadlock** — 1970 · Roland Klick · DE · Western, Thriller, Crime · Filmweb 6.5
+- **Five Easy Pieces** — 1970 · Bob Rafelson · US · Drama · Filmweb 7.4
+- **Il conformista** (The Conformist) — 1970 · Bernardo Bertolucci · DE · Drama · Filmweb 7.4
+- **MASH** (Mashhad) — 1970 · Hossein Torabi · OTHER · Documentary · Filmweb 7.3
+- **Patton** — 1970 · Franklin J. Schaffner · US · War, Drama, History · Filmweb 7.1
+- **Performance** — 1970 · Nicolas Roeg · UK · Crime, Drama · added 2026-07-08
+- **The Strawberry Statement** — 1970 · Stuart Hagmann · US · Drama, Romance · Filmweb 7
+- **Valerie a týden divů** (Valerie and Her Week of Wonders) — 1970 · Jaromil Jireš · OTHER · Fantasy, Adventure, Drama · Filmweb 7.2
+- **Wanda** — 1970 · Barbara Loden · US · Drama, Crime · Filmweb 6.8
+- **Waterloo** — 1970 · Sergey Bondarchuk · IT · History, Drama, War · Filmweb 7.6
+- **Bara no soretsu** (Funeral Parade of Roses) — 1969 · Toshio Matsumoto · JP · Drama, Horror · Filmweb 7.8
+- **Fellini - Satyricon** (Satyricon) — 1969 · Federico Fellini · IT · Drama, Fantasy · Filmweb 7.1
+- **Kladivo na čarodějnice** (Witchhammer) — 1969 · Otakar Vávra · OTHER · Drama, Thriller · Filmweb 7.7
+- **L'armée des ombres** (Army of Shadows) — 1969 · Jean-Pierre Melville · FR · War, Drama, Thriller · Filmweb 7.2
+- **La piscine** (The Swimming Pool) — 1969 · Jacques Deray · FR · Drama, Thriller · Filmweb 7.4
+- **Ma nuit chez Maud** (My Night at Maud's) — 1969 · Éric Rohmer · FR · Romance, Comedy, Drama · Filmweb 7.4
+- **Medea** — 1969 · Pier Paolo Pasolini · FR · Drama, Fantasy · Filmweb 6.8
+- **Medium Cool** — 1969 · Haskell Wexler · US · Drama · Filmweb 7.2
+- **Senya Ichiya Monogatari** (A Thousand and One Nights) — 1969 · Eiichi Yamamoto · JP · Animation, Drama, Fantasy · Filmweb 6.8
+- **Spalovač mrtvol** (The Cremator) — 1969 · Juraj Herz · OTHER · Horror, Drama, Comedy · Filmweb 7.9
+- **The Wild Bunch** — 1969 · Sam Peckinpah · US · Western · Filmweb 7.7
+- **Z** — 1969 · Costa-Gavras · OTHER · Thriller, Crime, Drama · Filmweb 7.6
+- **All My Good Countrymen** — 1968 · Vojtěch Jasný · OTHER · Drama, Comedy · added 2026-07-10
+- **Bullitt** — 1968 · Peter Yates · US · Action, Crime, Thriller · Filmweb 7.4
+- **Candy** — 1968 · Christian Marquand · FR · Adventure, Comedy, Fantasy · Filmweb 5.2
+- **Człowiek z M-3** — 1968 · Leon Jeannot · PL · Comedy, Romance · Filmweb 7.4
+- **Gra** (Grand Prix) — 1968 · John Frankenheimer · US · Drama, Action · Filmweb 6.9
+- **Il grande silenzio** (The Great Silence) — 1968 · Sergio Corbucci · IT · Western, Drama · Filmweb 7.6
+- **Kiru** (Kill!) — 1968 · Kihachi Okamoto · JP · Action, Comedy · Filmweb 7.4
+- **Kōshikei** (Death by Hanging) — 1968 · Nagisa Ōshima · JP · Comedy, Drama · Filmweb 7.6
+- **Kuroneko** — 1968 · Kaneto Shindō · JP · Drama, Fantasy, Horror · added 2026-07-10
+- **Rosemary's Baby** — 1968 · Roman Polanski · US · Drama, Horror, Thriller · Filmweb 7.7
+- **Sayat Nova** (The Color of Pomegranates) — 1968 · Sergei Parajanov · SU · Drama, History · Filmweb 7.9
+- **Shinjuku Dorobō Nikki** (Diary of a Shinjuku Thief) — 1968 · Nagisa Ōshima · JP · Drama, Comedy · Filmweb 6
+- **Where Eagles Dare** — 1968 · Brian G. Hutton · UK · Adventure, War · Filmweb 7.7
+- **Yellow Submarine** — 1968 · George Dunning · UK · Music, Animation, Adventure · Filmweb 7.7
+- **Žert** (The Joke) — 1968 · Jaromil Jireš · OTHER · Comedy, Drama · Filmweb 6.8
+- **Hoří, má panenko!** (The Firemen's Ball) — 1967 · Miloš Forman · IT · Comedy · Filmweb 7.2
+- **In Cold Blood** — 1967 · Richard Brooks · US · Crime, Drama, History · Filmweb 7.7
+- **Juliet dans Paris** (Juliet in Paris) — 1967 · Claude Miller · FR · Horror, Drama, Mystery · Filmweb 7
+- **La chinoise** (La Chinoise) — 1967 · Jean-Luc Godard · FR · Drama, Comedy · Filmweb 7
+- **Mad Monster Party?** — 1967 · Jules Bass · US · Animation, Comedy, Family · Filmweb 7
+- **Marketa Lazarová** — 1967 · František Vláčil · OTHER · Drama, History · Filmweb 7.9
+- **Ningen Johatsu** (A Man Vanishes) — 1967 · Shōhei Imamura · JP · Drama, Documentary · Filmweb 7.1
+- **Oncle Yanco** (Uncle Yanco) — 1967 · Agnès Varda · FR · Documentary · Filmweb 7.2
+- **Playtime** (PlayTime) — 1967 · Jacques Tati · FR · Comedy · Filmweb 7.2
+- **Privarzaniyat balon** (The Tied Up Balloon) — 1967 · Binka Zhelyazkova · BG · Comedy, Drama, Fantasy · Filmweb 8.1
+- **Seishun no etsuraku** — 1967
+- **The Dirty Dozen** — 1967 · Robert Aldrich · UK · Action, Adventure, War · Filmweb 7.6
+- **The Graduate** — 1967 · Mike Nichols · US · Drama, Romance, Comedy · Filmweb 7.9
+- **Titicut Follies** — 1967 · Frederick Wiseman · US · Documentary, Drama · Filmweb 7.6
+- **Údolí včel** (The Valley of the Bees) — 1967 · František Vláčil · OTHER · Drama, History · Filmweb 7.6
+- **Akai tenshi** (Red Angel) — 1966 · Yasuzō Masumura · JP · War, Drama, Romance · Filmweb 7.7
+- **Au hasard Balthazar** (Au Hasard Balthazar) — 1966 · Robert Bresson · FR · Drama · Filmweb 7
+- **Blow-Up** — 1966 · Michelangelo Antonioni · UK · Drama, Mystery, Thriller · Filmweb 7.7
+- **Erogotoshi-tachi yori: Jinruigaku nyûmon** (The Pornographers) — 1966 · Shōhei Imamura · JP · Comedy, Drama, Romance · Filmweb 7.1
+- **La battaglia di Algeri** (The Battle of Algiers) — 1966 · Gillo Pontecorvo · IT · Drama, War, History · Filmweb 7.8
+- **Masculin, féminin: 15 faits précis** (Masculin Féminin) — 1966 · Jean-Luc Godard · FR · Drama, Romance · Filmweb 7.3
+- **Onna no mizûmi** (The Women in the Lakes) — 1966 · Yoshishige Yoshida · JP · Drama · Filmweb 7.3
+- **Ostře sledované vlaky** (Closely Watched Trains) — 1966 · Jiří Menzel · OTHER · Comedy, Drama, War · Filmweb 7.5
+- **Persona** — 1966 · Ingmar Bergman · SE · Drama · Filmweb 8.1
+- **Seconds** — 1966 · John Frankenheimer · US · Science Fiction, Thriller, Horror · added 2026-07-10
+- **Tobenai chinmoku** (Silence Has No Wings) — 1966 · Kazuo Kuroki · JP · Drama · Filmweb 7.9
+- **Tōkyō Nagaremono** (Tokyo Drifter) — 1966 · Seijun Suzuki · JP · Thriller, Crime, Action · Filmweb 6.7
+- **Uccellacci e uccellini** (The Hawks and the Sparrows) — 1966 · Pier Paolo Pasolini · IT · Comedy, Fantasy · Filmweb 7.1
+- **Un homme et une femme** (A Man and a Woman) — 1966 · Claude Lelouch · FR · Drama, Romance · Filmweb 7.4
+- **Who's Afraid of Virginia Woolf?** — 1966 · Mike Nichols · US · Drama · Filmweb 7.9
+- **Wings** — 1966 · Larisa Shepitko · SU · Drama · added 2026-07-08
+- **Alphaville, une étrange aventure de Lemmy Caution** (Alphaville) — 1965 · Jean-Luc Godard · FR · Drama, Science Fiction, Mystery · Filmweb 6.8
+- **Doctor Zhivago** — 1965 · David Lean · IT · Drama, Romance, War · Filmweb 7.4
+- **Etsuraku** (Pleasures of the Flesh) — 1965 · Nagisa Ōshima · JP · Drama, Comedy, Crime · Filmweb 7
+- **Faraon** (Pharaoh) — 1965 · Jerzy Kawalerowicz · PL · History, Drama · Filmweb 7.4
+- **Intimní osvětlení** (Intimate Lighting) — 1965 · Ivan Passer · OTHER · Drama, Comedy · Filmweb 7.1
+- **Lásky jedné plavovlásky** (Loves of a Blonde) — 1965 · Miloš Forman · OTHER · Comedy, Drama, Romance · Filmweb 7.3
+- **Le bonheur** (Happiness) — 1965 · Agnès Varda · FR · Drama, Romance · Filmweb 7.3
+- **Obchod na korze** (The Shop on Main Street) — 1965 · Ján Kadár · OTHER · Drama, War · Filmweb 7.9
+- **Operatsiya Y i drugiye priklyucheniya Shurika** — 1965 · Leonid Gaidai · SU · Comedy · Filmweb 7.2
+- **Pierrot le Fou** — 1965 · Jean-Luc Godard · FR · Drama, Romance, Crime · Filmweb 7.3
+- **Repulsion** — 1965 · Roman Polanski · UK · Drama, Thriller, Horror · Filmweb 7.7
+- **Salto** — 1965 · Tadeusz Konwicki · PL · Drama, Fantasy · added 2026-07-10
+- **Subarnarekha** (The Golden Thread) — 1965 · Ritwik Ghatak · IN · Drama · Filmweb 7.2
+- **The Saragossa Manuscript** — 1965 · Wojciech Has · PL · Fantasy, Mystery, History · added 2026-07-08
+- **The Sound of Music** — 1965 · Robert Wise · US · Drama, Family, Music · Filmweb 7.9
+- **Alexis Zorbas** (Zorba the Greek) — 1964 · Mihalis Kakogiannis · GR · Drama · Filmweb 7.8
+- **Bande à part** (Band of Outsiders) — 1964 · Jean-Luc Godard · FR · Crime, Drama, Comedy · Filmweb 7.3
+- **Démanty noci** (Diamonds of the Night) — 1964 · Jan Němec · OTHER · Drama, War · Filmweb 7.5
+- **Fail Safe** — 1964 · Sidney Lumet · US · Thriller, Drama, War · added 2026-07-08
+- **Kaidan** (Kwaidan) — 1964 · Masaki Kobayashi · JP · Horror, Fantasy, Drama · Filmweb 7.7
+- **L'Enfer** — 1964 · Filmweb 7.8
+- **La peau douce** (The Soft Skin) — 1964 · François Truffaut · FR · Drama, Romance · Filmweb 7.2
+- **Les Parapluies de Cherbourg** (The Umbrellas of Cherbourg) — 1964 · Jacques Demy · FR · Drama, Romance · Filmweb 7
+- **My Fair Lady** — 1964 · George Cukor · US · Comedy, Romance · Filmweb 7.6
+- **Nikutai no mon** (Gate of Flesh) — 1964 · Seijun Suzuki · JP · Drama, Crime · Filmweb 6.7
+- **Onibaba** — 1964 · Kaneto Shindō · JP · Horror · Filmweb 7.6
+- **Pale Flower** — 1964 · Masahiro Shinoda · JP · Crime, Romance · added 2026-07-08
+- **Sette contro la morte** (The Cavern) — 1964 · Edgar G. Ulmer · DE · Adventure, War, Drama · Filmweb 6
+- **Soy Cuba** (I Am Cuba) — 1964 · Mikhail Kalatozov · OTHER · Drama · Filmweb 8
+- **Suna no Onna** (Woman in the Dunes) — 1964 · Hiroshi Teshigahara · JP · Drama, Thriller · Filmweb 7.9
+- **The Pawnbroker** — 1964 · Sidney Lumet · US · Drama · Filmweb 7.5
+- **A Child Is Waiting** — 1963 · John Cassavetes · US · Drama · Filmweb 7
+- **Až přijde kocour** (When the Cat Comes) — 1963 · Vojtěch Jasný · OTHER · Comedy, Fantasy · Filmweb 6.9
+- **Barnvagnen** (The Baby Carriage) — 1963 · Bo Widerberg · SE · Drama · Filmweb 6.4
+- **Khaneh siah ast** (The House Is Black) — 1963 · Forugh Farrokhzad · OTHER · Documentary · Filmweb 7.5
+- **La baie des anges** (Bay of Angels) — 1963 · Jacques Demy · FR · Romance, Drama · Filmweb 7
+- **Le feu follet** (The Fire Within) — 1963 · Louis Malle · FR · Drama · Filmweb 7.5
+- **Le mépris** (Contempt) — 1963 · Jean-Luc Godard · FR · Drama, Romance · Filmweb 7.1
+- **Passenger** — 1963 · Andrzej Munk · PL · Drama, War · added 2026-07-08
+- **The Great Escape** — 1963 · John Sturges · US · Adventure, Drama, War · Filmweb 7.8
+- **The Servant** — 1963 · Joseph Losey · UK · Drama · added by hand · added 2026-09-01
+- **Vidas Secas** (Barren Lives) — 1963 · Nelson Pereira dos Santos · BR · Drama · Filmweb 6.7
+- **Winter Light** — 1963 · Ingmar Bergman · SE · Drama · added 2026-07-08
+- **Cléo de 5 à 7** (Cléo from 5 to 7) — 1962 · Agnès Varda · FR · Drama · Filmweb 7.5
+- **El ángel exterminador** (The Exterminating Angel) — 1962 · Luis Buñuel · MX · Comedy, Drama, Fantasy · Filmweb 7.6
+- **Jak być kochaną** (How to Be Loved) — 1962 · Wojciech Has · PL · Drama · Filmweb 7.9
+- **Karami-ai** (The Inheritance) — 1962 · Masaki Kobayashi · JP · Drama · Filmweb 7.2
+- **L'Eclisse** — 1962 · Michelangelo Antonioni · FR · Drama, Romance · added 2026-07-08
+- **Le Procès** (The Trial) — 1962 · Orson Welles · FR · Crime, Drama, Mystery · Filmweb 7.3
+- **O Pagador de Promessas** (The Given Word) — 1962 · Anselmo Duarte · BR · Drama · Filmweb 5.6
+- **Oczekiwanie** (Expectation) — 1962 · Ludwik Perski · PL · Animation · Filmweb 7.3
+- **The Man Who Shot Liberty Valance** — 1962 · John Ford · US · Western · Filmweb 7.6
+- **To Kill a Mockingbird** — 1962 · Robert Mulligan · US · Drama · Filmweb 7.9
+- **Vivre sa vie: Film en douze tableaux** (Vivre Sa Vie) — 1962 · Jean-Luc Godard · FR · Drama · Filmweb 7.5
+- **What Ever Happened to Baby Jane?** — 1962 · Robert Aldrich · US · Drama, Horror, Thriller · Filmweb 8
+- **A Taste of Honey** — 1961 · Tony Richardson · UK · Drama · Filmweb 7
+- **Accattone** — 1961 · Pier Paolo Pasolini · IT · Drama · Filmweb 7
+- **Blast of Silence** — 1961 · Allen Baron · US · Crime, Drama, Thriller · Filmweb 7.2
+- **Buta to Gunkan** (Pigs and Battleships) — 1961 · Shōhei Imamura · JP · Crime, Drama · Filmweb 7.2
+- **L'année dernière à Marienbad** (Last Year at Marienbad) — 1961 · Alain Resnais · FR · Drama, Romance · Filmweb 7.6
+- **La notte** (La Notte) — 1961 · Michelangelo Antonioni · IT · Drama, Romance · Filmweb 7.7
+- **Matka Joanna od Aniołów** (Mother Joan of the Angels) — 1961 · Jerzy Kawalerowicz · PL · Drama, Horror · Filmweb 7.8
+- **Paris nous appartient** (Paris Belongs to Us) — 1961 · Jacques Rivette · FR · Mystery, Drama, Thriller · Filmweb 6.5
+- **Plácido** (Placido) — 1961 · Luis García Berlanga · ES · Comedy · Filmweb 6.5
+- **Une femme est une femme** (A Woman Is a Woman) — 1961 · Jean-Luc Godard · FR · Comedy, Drama, Romance · Filmweb 7.5
+- **Victim** — 1961 · Basil Dearden · UK · Drama, Crime, Thriller · Filmweb 7.1
+- **Viridiana** — 1961 · Luis Buñuel · ES · Drama · Filmweb 7.6
+- **À bout de souffle** (Breathless) — 1960 · Jean-Luc Godard · FR · Drama, Crime, Romance · Filmweb 7.5
+- **Hadaka no shima** (The Naked Island) — 1960 · Kaneto Shindō · JP · Drama · added by hand · added 2026-09-27
+- **Jigoku** — 1960 · Nobuo Nakagawa · JP · Horror, Drama · Filmweb 6.3
+- **Katok i skripka** (The Steamroller and the Violin) — 1960 · Andrei Tarkovsky · SU · Drama · Filmweb 7.2
+- **Krzyżacy** (Knights of the Teutonic Order) — 1960 · Aleksander Ford · PL · Adventure, Drama, History · Filmweb 6.6
+- **L'Avventura** — 1960 · Michelangelo Antonioni · FR · Drama, Mystery, Romance · added 2026-07-08
+- **Le trou** (Le Trou) — 1960 · Jacques Becker · FR · Drama, Thriller, Crime · Filmweb 8
+- **Macario** — 1960 · Roberto Gavaldón · MX · Drama, Fantasy · Filmweb 7
+- **Muzykanci** (The Musicians) — 1960 · Kazimierz Karabasz · PL · Documentary, Music · Filmweb 7.3
+- **Onna ga kaidan o agaru toki** — 1960 · Mikio Naruse · JP · Drama · Filmweb 7.7
+- **Rocco e i suoi fratelli** (Rocco and His Brothers) — 1960 · Luchino Visconti · FR · Drama, Romance, Crime · Filmweb 7.8
+- **Seishun zankoku monogatari** (Cruel Story of Youth) — 1960 · Nagisa Ōshima · JP · Romance, Drama, Crime · Filmweb 6.8
+- **The Bad Sleep Well** — 1960 · Akira Kurosawa · JP · Crime, Drama, Thriller · added 2026-07-08
+- **Anatomy of a Murder** — 1959 · Otto Preminger · US · Crime, Drama, Mystery · added 2026-07-08
+- **Apur sansar** (The World of Apu) — 1959 · Satyajit Ray · IN · Drama · Filmweb 8.4
+- **Ballada o soldate** (Ballad of a Soldier) — 1959 · Grigoriy Chukhray · SU · Drama, Romance, War · Filmweb 7.6
+- **Ben-Hur** — 1959 · William Wyler · US · History, Drama, Adventure · Filmweb 7.7
+- **Les quatre cents coups** (The 400 Blows) — 1959 · François Truffaut · FR · Drama · Filmweb 7.7
+- **Neotpravlennoye pismo** — 1959 · Mikhail Kalatozov · SU · Drama, Adventure · Filmweb 7.3
+- **Ohayô** (Good Morning) — 1959 · Yasujirō Ozu · JP · Comedy, Family, Drama · Filmweb 7.1
+- **Pickpocket** — 1959 · Robert Bresson · FR · Crime, Drama · Filmweb 6.8
+- **Shadows** — 1959 · John Cassavetes · US · Drama · Filmweb 6.8
+- **Some Like It Hot** — 1959 · Billy Wilder · US · Comedy, Romance, Crime · Filmweb 7.9
+- **Ukigusa** (Floating Weeds) — 1959 · Yasujirō Ozu · JP · Drama · Filmweb 7.5
+- **Ashes and Diamonds** — 1958 · Andrzej Wajda · PL · Drama, War, Romance · added 2026-07-08
+- **Elevator to the Gallows** — 1958 · Louis Malle · FR · Crime, Drama, Thriller · added 2026-07-08
+- **Eroica** — 1958 · Andrzej Munk · PL · Comedy, Drama, War · added 2026-07-08
+- **Kyojin to gangu** (Giants and Toys) — 1958 · Yasuzō Masumura · JP · Comedy, Drama · Filmweb 6.3
+- **Ostatni dzień lata** (The Last Day of Summer) — 1958 · Tadeusz Konwicki · PL · Drama, Romance · Filmweb 7.3
+- **Touch of Evil** — 1958 · Orson Welles · US · Crime, Thriller, Drama · added 2026-07-08
+- **A Face in the Crowd** — 1957 · Elia Kazan · US · Drama · added 2026-07-08
+- **Ewa chce spać** (Ewa Wants to Sleep) — 1957 · Tadeusz Chmielewski · PL · Comedy · Filmweb 7.4
+- **Kanal** — 1957 · Andrzej Wajda · PL · War, Drama · added 2026-07-08
+- **Kuroi kawa** (Black River) — 1957 · Masaki Kobayashi · JP · Crime, Drama · Filmweb 7
+- **Le notti bianche** (Le Notti Bianche) — 1957 · Luchino Visconti · FR · Drama, Romance · Filmweb 7.5
+- **Letyat zhuravli** (The Cranes Are Flying) — 1957 · Mikhail Kalatozov · SU · Drama, Romance, War · Filmweb 7.8
+- **Love in the Afternoon** — 1957 · Billy Wilder · US · Comedy, Romance · Filmweb 7.5
+- **Sweet Smell of Success** — 1957 · Alexander Mackendrick · US · Drama · added 2026-07-08
+- **Tokyo boshoku** (Tokyo Twilight) — 1957 · Yasujirō Ozu · JP · Drama · Filmweb 7.7
+- **Aparajito** — 1956 · Satyajit Ray · IN · Drama · Filmweb 7.9
+- **Biruma no Tategoto** (The Burmese Harp) — 1956 · Kon Ichikawa · JP · Drama, War · Filmweb 7.7
+- **Bob le flambeur** (Bob le Flambeur) — 1956 · Jean-Pierre Melville · FR · Drama, Action, Crime · Filmweb 6.8
+- **Cień** (Shadow) — 1956 · Jerzy Kawalerowicz · PL · Crime, Drama, War · Filmweb 7.1
+- **Kabe atsuki heya** (The Thick-Walled Room) — 1956 · Masaki Kobayashi · JP · Drama, War · Filmweb 6.5
+- **Körhinta** (Merry-Go-Round) — 1956 · Zoltán Fábri · HU · Romance, Drama · Filmweb 6.8
+- **Le ballon rouge** (The Red Balloon) — 1956 · Albert Lamorisse · FR · Comedy, Drama, Family · Filmweb 7.6
+- **Night and Fog** — 1956 · Alain Resnais · FR · Documentary, History · added 2026-07-08
+- **Soshun** (Early Spring) — 1956 · Yasujirō Ozu · JP · Drama, Romance · Filmweb 7.5
+- **Un condamné à mort s'est échappé ou Le vent souffle où il veut** (A Man Escaped) — 1956 · Robert Bresson · FR · Drama, Thriller · Filmweb 7.5
+- **All That Heaven Allows** — 1955 · Douglas Sirk · US · Drama, Romance · Filmweb 7.2
+- **Jedda** — 1955 · Charles Chauvel · AU · Adventure, Drama · Filmweb 7.1
+- **Les Diaboliques** (Diabolique) — 1955 · Henri-Georges Clouzot · FR · Thriller, Mystery · Filmweb 7.6
+- **Ordet** — 1955 · Carl Theodor Dreyer · DK · Drama · Filmweb 7.7
+- **Pather Panchali** — 1955 · Satyajit Ray · IN · Drama, History · Filmweb 7.9
+- **Rebel Without a Cause** — 1955 · Nicholas Ray · US · Drama · Filmweb 7.4
+- **The Night of the Hunter** — 1955 · Charles Laughton · US · Crime, Drama, Thriller · added 2026-07-08
+- **Ukigumo** (Floating Clouds) — 1955 · Mikio Naruse · JP · Drama, Romance · Filmweb 7.3
+- **La Strada** — 1954 · Federico Fellini · IT · Drama · Filmweb 7.8
+- **On the Waterfront** — 1954 · Elia Kazan · US · Crime, Drama, Romance · Filmweb 7.6
+- **Sanshô dayû** (Sansho the Bailiff) — 1954 · Kenji Mizoguchi · JP · Drama · Filmweb 7.8
+- **Celuloza** (Cellulose) — 1953 · Jerzy Kawalerowicz · PL · Drama · Filmweb 6.8
+- **From Here to Eternity** — 1953 · Fred Zinnemann · US · War, Romance, Drama · Filmweb 7.6
+- **Jigokumon** (Love Letter) — 1953 · Kinuyo Tanaka · JP · Romance, Drama · Filmweb 6.7
+- **The Tell-Tale Heart** — 1953 · Ted Parmelee · US · Animation, Horror, Crime · Filmweb 7.2
+- **The Wages of Fear** — 1953 · Henri-Georges Clouzot · FR · Drama, Thriller, Adventure · added 2026-07-08
+- **Ugetsu monogatari** (Ugetsu) — 1953 · Kenji Mizoguchi · JP · Fantasy, Drama, Mystery · Filmweb 7.7
+- **Singin' in the Rain** — 1952 · Gene Kelly · US · Comedy, Romance · Filmweb 7.9
+- **The Life of Oharu** — 1952 · Kenji Mizoguchi · JP · Drama · added 2026-07-08
+- **A Streetcar Named Desire** — 1951 · Elia Kazan · US · Drama, Thriller · Filmweb 7.7
+- **Ace in the Hole** — 1951 · Billy Wilder · US · Drama · added 2026-07-08
+- **Journal d'un curé de campagne** (Diary of a Country Priest) — 1951 · Robert Bresson · FR · Drama · Filmweb 6.9
+- **All About Eve** — 1950 · Joseph L. Mankiewicz · US · Drama · Filmweb 8
+- **In a Lonely Place** — 1950 · Nicholas Ray · US · Thriller, Drama, Romance · Filmweb 7.5
+- **Los Olvidados** (The Young and the Damned) — 1950 · Luis Buñuel · MX · Drama, Crime · Filmweb 7.4
+- **Orphée** (Orpheus) — 1950 · Jean Cocteau · FR · Romance, Fantasy, Drama · Filmweb 7.5
+- **Sunset Boulevard** — 1950 · Billy Wilder · US · Drama · Filmweb 8.1
+- **Adam's Rib** — 1949 · George Cukor · US · Comedy, Romance · Filmweb 7.2
+- **Banshun** (Late Spring) — 1949 · Yasujirō Ozu · JP · Drama · Filmweb 7.7
+- **The Adventures of Ichabod and Mr. Toad** — 1949 · Clyde Geronimi · US · Horror, Fantasy, Animation · Filmweb 6.2
+- **The Third Man** — 1949 · Carol Reed · UK · Thriller, Mystery · Filmweb 7.7
+- **Rope** — 1948 · Alfred Hitchcock · US · Thriller, Crime, Drama · Filmweb 7.4
+- **The Red Shoes** — 1948 · Michael Powell · UK · Drama, Romance · Filmweb 7.9
+- **The Treasure of the Sierra Madre** — 1948 · John Huston · US · Adventure, Drama, Western · Filmweb 7.8
+- **Black Narcissus** — 1947 · Michael Powell · UK · Drama · Filmweb 7.2
+- **The Lady from Shanghai** — 1947 · Orson Welles · US · Mystery, Crime, Thriller · Filmweb 7.1
+- **It's a Wonderful Life** — 1946 · Frank Capra · US · Drama, Family, Fantasy · Filmweb 8.1
+- **Le Visiteur** (Tainted) — 1946 · Jean Dréville · Drama
+- **The Big Sleep** — 1946 · Howard Hawks · US · Mystery, Crime, Thriller · Filmweb 7.7
+- **Les enfants du paradis** (Children of Paradise) — 1945 · Marcel Carné · FR · Drama, Romance · Filmweb 8
+- **Roma, città aperta** (Rome, Open City) — 1945 · Roberto Rossellini · IT · Drama, War · Filmweb 7.5
+- **Spellbound** — 1945 · Alfred Hitchcock · US · Thriller, Mystery, Romance · Filmweb 7.5
+- **Double Indemnity** — 1944 · Billy Wilder · US · Crime, Thriller · Filmweb 7.9
+- **Meshes of the Afternoon** — 1943 · Maya Deren · US · Mystery, Fantasy · Filmweb 7.8
+- **Who Killed Who?** — 1943 · Tex Avery · US · Animation, Comedy, Mystery · Filmweb 6.9
+- **The Lady Eve** — 1941 · Preston Sturges · US · Comedy, Romance · Filmweb 7.3
+- **The Maltese Falcon** — 1941 · John Huston · US · Mystery, Crime, Thriller · Filmweb 7.6
+- **His Girl Friday** — 1940 · Howard Hawks · US · Comedy, Romance, Drama · Filmweb 7
+- **The Grapes of Wrath** — 1940 · John Ford · US · Drama · Filmweb 7.5
+- **Gone with the Wind** — 1939 · Victor Fleming · US · Drama, War, Romance · Filmweb 7.9
+- **Mr. Smith Goes to Washington** — 1939 · Frank Capra · US · Comedy, Drama · Filmweb 7.7
+- **La Grande Illusion** (Grand Illusion) — 1937 · Jean Renoir · FR · Drama, History, War · Filmweb 7.2
+- **Piętro wyżej** (The Apartment Above) — 1937 · Leon Trystan · PL · Comedy, Music, Romance · Filmweb 8.2
+- **The Old Mill** — 1937 · Wilfred Jackson · US · Animation, Thriller, Family · Filmweb 7.3
+- **Czy Lucyna to dziewczyna?** (Is Lucyna a Girl?) — 1934 · Juliusz Gardan · PL · Comedy, Romance · Filmweb 7.5
+- **Duck Soup** — 1933 · Leo McCarey · US · Comedy, War · Filmweb 7.4
+- **The Invisible Man** — 1933 · James Whale · US · Horror, Science Fiction · Filmweb 7.2
+- **Les croix de bois** (Wooden Crosses) — 1932 · Raymond Bernard · FR · Drama, War · Filmweb 7.4
+- **The Old Dark House** — 1932 · James Whale · US · Drama, Horror, Thriller · Filmweb 6.4
+- **Vampyr - Der Traum des Allan Grey** (Vampyr) — 1932 · Carl Theodor Dreyer · DE · Horror, Fantasy, Mystery · Filmweb 7.1
+- **M** — 1931 · Fritz Lang · DE · Drama, Thriller, Crime · Filmweb 7.8
+- **Le Sang d'un poète** (The Blood of a Poet) — 1930 · Jean Cocteau · FR · Fantasy · Filmweb 7.5
+- **The Big Trail** — 1930 · Raoul Walsh · US · Drama, Western · Filmweb 6.8
+- **Man with a Movie Camera** — 1929 · Dziga Vertov · SU · Documentary · added 2026-07-08
+- **The Skeleton Dance** — 1929 · Walt Disney · US · Animation, Family, Music · Filmweb 7.1
+- **The Passion of Joan of Arc** — 1928 · Carl Theodor Dreyer · FR · Drama, History · added 2026-07-08
+- **Napoléon** (Napoleon) — 1927 · Abel Gance · FR · Drama, History, War · Filmweb 7.4
+- **Sunrise** — 1927 · F. W. Murnau · US · Drama, Romance · added 2026-07-08
+- **Faust - Eine deutsche Volkssage** (Faust) — 1926 · F. W. Murnau · DE · Fantasy, Drama, Horror · Filmweb 7.8
+- **Kurutta ippêji** (A Page of Madness) — 1926 · Teinosuke Kinugasa · JP · Horror, Drama · Filmweb 7.2
+- **Mat** (Matrimony Blues) — 1926 · Benjamin Stoloff · US · Comedy · Filmweb 7.2
+- **The General** — 1926 · Clyde Bruckman · US · Comedy, War, Romance · Filmweb 7.9
+- **Bronenosets Potyomkin** (Battleship Potemkin) — 1925 · Sergei Eisenstein · SU · Drama, History, War · Filmweb 7.4
+- **Greed** — 1924 · Erich von Stroheim · US · Drama, Crime · Filmweb 7.4
+- **Sherlock, Jr.** (Sherlock Jr.) — 1924 · Buster Keaton · US · Action, Comedy, Mystery · Filmweb 7.8
+- **Häxan** — 1922 · Benjamin Christensen · SE · Documentary, Horror, History · Filmweb 7.7
+- **Körkarlen** (The Phantom Carriage) — 1921 · Victor Sjöström · SE · Drama, Fantasy, Horror · Filmweb 7.8
+
+## TV (185)
+- **Tongari Bōshi no Atelier** (Witch Hat Atelier) — 2026 · JP · Animation, Drama, Sci-Fi & Fantasy · Filmweb 8
+- **Takopii no Genzai** (Takopi's Original Sin) — 2025 · JP · Animation, Drama, Sci-Fi & Fantasy · Filmweb 8.1
+- **Dandadan** (Dan Da Dan) — 2024 · JP · Animation, Action & Adventure, Comedy · Filmweb 7.9
+- **1670** — 2023 · PL · Comedy · Filmweb 7.9
+- **Beef** (BEEF) — 2023 · Lee Sung Jin · US · Comedy, Drama · Filmweb 7.4
+- **Emigracja XD** (Emigration XD) — 2023 · PL · Comedy · Filmweb 7.2
+- **History of the World: Part II** — 2023 · Mel Brooks · US · Comedy · Filmweb 5.2
+- **Kaleidoscope** — 2023 · Eric Garcia · US · Crime, Drama · Filmweb 6.3
+- **Mahō Shōjo Magical Destroyers** (Magical Destroyers) — 2023 · JP · Animation, Sci-Fi & Fantasy, Action & Adventure · Filmweb 5.5
+- **Pluto** (PLUTO) — 2023 · JP · Animation, Sci-Fi & Fantasy, Mystery · Filmweb 7.6
+- **Poker Face** — 2023 · Rian Johnson · US · Crime, Mystery · Filmweb 7
+- **The Consultant** — 2023 · Tony Basgallop · US · Comedy, Drama · Filmweb 6.5
+- **The Continental: From the World of John Wick** — 2023 · Greg Coolidge, Kirk Ward · US · Crime, Drama, Action & Adventure · Filmweb 6.7
+- **The Curse** — 2023 · Nathan Fielder, Benny Safdie · US · Comedy, Drama · added 2026-07-08
+- **Unicorn: Warriors Eternal** — 2023 · US · Animation, Action & Adventure, Drama · Filmweb 6.6
+- **Warszawianka** (Still Here) — 2023 · PL · Drama, Comedy · Filmweb 6.3
+- **1899** — 2022 · Baran bo Odar · DE · Mystery, Drama
+- **Andor** — 2022 · Tony Gilroy · US · Sci-Fi & Fantasy, Action & Adventure, Drama · Filmweb 8
+- **Behawiorysta** (The Behaviorist) — 2022 · PL · Crime · Filmweb 6.9
+- **Copenhagen Cowboy** — 2022 · Nicolas Winding Refn · DK · Crime, Drama · Filmweb 6.2
+- **Lost Ollie** — 2022 · Shannon Tindle · US · Animation, Family, Drama · Filmweb 7.6
+- **Lycoris Recoil** — 2022 · JP · Animation, Action & Adventure, Comedy · Filmweb 7.5
+- **Moon Knight** — 2022 · Jeremy Slater · US · Sci-Fi & Fantasy, Mystery, Action & Adventure · Filmweb 7
+- **Oni: Thunder God's Tale** (ONI: Thunder God's Tale) — 2022 · Daisuke 'Dice' Tsutsumi · US · Animation, Action & Adventure, Sci-Fi & Fantasy · Filmweb 7.6
+- **Pachinko** — 2022 · Soo Hugh · US · Drama · Filmweb 7.9
+- **Peacemaker** — 2022 · James Gunn · US · Action & Adventure, Sci-Fi & Fantasy, Comedy · Filmweb 7.7
+- **The Guardians of Justice** — 2022 · Adi Shankar · US · Animation, Sci-Fi & Fantasy, Action & Adventure · Filmweb 5.3
+- **The Rehearsal** — 2022 · Nathan Fielder · US · Comedy, Documentary · Filmweb 7.8
+- **The Tourist** — 2022 · Jack Williams, Harry Williams · UK · Mystery, Drama · Filmweb 6.4
+- **Foundation** — 2021 · David S. Goyer, Josh Friedman · US · Sci-Fi & Fantasy, Drama · Filmweb 7.3
+- **Fumetsu no Anata e** (To Your Eternity) — 2021 · JP · Animation, Action & Adventure, Sci-Fi & Fantasy · Filmweb 7.5
+- **Heike Monogatari** (The Heike Story) — 2021 · JP · Animation, Drama, Sci-Fi & Fantasy · Filmweb 7.4
+- **Kastanjemanden** (The Chestnut Man) — 2021 · DK · Drama, Crime, Mystery · Filmweb 7.2
+- **Klangor** — 2021 · PL · Drama, Mystery, Crime · Filmweb 7.7
+- **Mushoku Tensei: Isekai Ittara Honki Dasu** (Mushoku Tensei: Jobless Reincarnation) — 2021 · JP · Action & Adventure, Animation, Sci-Fi & Fantasy · Filmweb 7.7
+- **Station Eleven** — 2021 · Patrick Somerville · US · Drama, Mystery · added 2026-07-08
+- **The White Lotus** — 2021 · Mike White · US · Comedy, Drama, Mystery · Filmweb 7.6
+- **Brave New World** — 2020 · David Wiener, Grant Morrison · US · Sci-Fi & Fantasy, Drama · Filmweb 6.5
+- **Devs** — 2020 · Alex Garland · US · Sci-Fi & Fantasy, Drama, Mystery · Filmweb 7.3
+- **How to with John Wilson** (How To with John Wilson) — 2020 · John Wilson · US · Comedy, Documentary · Filmweb 8.3
+- **I May Destroy You** — 2020 · Michaela Coel · UK · Drama · added 2026-07-08
+- **Kami no Tō: Tower of God** (Tower of God) — 2020 · JP · Animation, Action & Adventure, Mystery · Filmweb 7.3
+- **Normal People** — 2020 · UK · Drama · Filmweb 7.8
+- **Smiling Friends** — 2020 · Michael Cusack, Zach Hadel · US · Animation, Comedy, Sci-Fi & Fantasy · Filmweb 7.9
+- **Stateless** — 2020 · Cate Blanchett, Tony Ayres · AU · Drama · Filmweb 7.2
+- **The Owl House** — 2020 · Dana Terrace · US · Animation, Action & Adventure, Comedy · Filmweb 8.4
+- **Carnival Row** — 2019 · Travis Beacham, René Echevarria · US · Crime, Drama, Sci-Fi & Fantasy · Filmweb 7.3
+- **Catch-22** — 2019 · Luke Davies, David Michôd · US · Comedy, Drama, War & Politics · Filmweb 7.6
+- **Dororo** — 2019 · Osamu Tezuka · JP · Animation, Action & Adventure · Filmweb 7.9
+- **Euphoria** — 2019 · Sam Levinson · US · Drama · Filmweb 7.7
+- **For All Mankind** — 2019 · Matt Wolpert, Ronald D. Moore · US · Drama, Sci-Fi & Fantasy, War & Politics · Filmweb 7.8
+- **Fruits Basket** — 2019 · JP · Animation, Drama, Sci-Fi & Fantasy · Filmweb 7.9
+- **How to Sell Drugs Online (Fast)** — 2019 · Matthias Murmann, Philipp Kässbohrer · DE · Drama, Comedy, Crime · Filmweb 7
+- **I Think You Should Leave with Tim Robinson** — 2019 · Zach Kanin, Tim Robinson · US · Comedy · Filmweb 7.2
+- **Seven Worlds, One Planet** — 2019 · UK · Documentary, Family · Filmweb 8.4
+- **Vinland Saga** — 2019 · JP · Animation, War & Politics, Action & Adventure · Filmweb 8.2
+- **ZeroZeroZero** — 2019 · JP · Mystery, Crime · added 2026-07-08
+- **Kruk** (Raven) — 2018 · PL · Crime, Mystery, Sci-Fi & Fantasy · Filmweb 8
+- **L'amica geniale** (My Brilliant Friend) — 2018 · Saverio Costanzo, Elena Ferrante · IT · Drama · Filmweb 8.1
+- **Maniac** — 2018 · Patrick Somerville, Cary Joji Fukunaga · US · Comedy, Drama, Sci-Fi & Fantasy · Filmweb 7.2
+- **Manifest** — 2018 · Jeff Rake · US · Sci-Fi & Fantasy, Mystery, Drama · Filmweb 6.7
+- **Mr Inbetween** — 2018 · Scott Ryan · US · Crime, Drama · added 2026-07-08
+- **RErideD: Tokigoe no Derrida** (RErideD – Derrida, who leaps through time –) — 2018 · JP · Animation, Action & Adventure, Sci-Fi & Fantasy · Filmweb 5.1
+- **Rojst** (The Mire) — 2018 · PL · Drama, Crime, Mystery · Filmweb 7.4
+- **Steins;Gate 0** — 2018 · JP · Sci-Fi & Fantasy, Animation, Drama · Filmweb 7.9
+- **The Terror** — 2018 · David Kajganich, Max Borenstein · US · Mystery, Drama, Sci-Fi & Fantasy · added 2026-07-08
+- **Babylon Berlin** — 2017 · Tom Tykwer, Achim von Borries · DE · Drama, Crime, Mystery · Filmweb 8
+- **Ernest et Célestine, La Collection** (Ernest and Célestine, The Collection) — 2017 · Julien Chheng, Jean-Christophe Roger · FR · Animation, Kids, Sci-Fi & Fantasy · Filmweb 7.4
+- **Philip K. Dick's Electric Dreams** — 2017 · Philip K. Dick · UK · Sci-Fi & Fantasy, Drama · Filmweb 7.2
+- **S.W.A.T.** — 2017 · Aaron Rahsaan Thomas, Shawn Ryan · US · Crime, Action & Adventure, Drama · Filmweb 7.3
+- **Taboo** — 2017 · Steven Knight, Chips Hardy · UK · Drama, Mystery · Filmweb 7.9
+- **The Deuce** — 2017 · David Simon, George Pelecanos · US · Drama, Crime · Filmweb 7.7
+- **The Marvelous Mrs. Maisel** — 2017 · Amy Sherman-Palladino · US · Comedy, Drama · Filmweb 8.1
+- **Twin Peaks: The Return** — 2017 · EU · added 2026-07-08
+- **Artyści** (Artists) — 2016 · PL · Drama, Comedy · Filmweb 7.9
+- **Belfer** (The Teacher) — 2016 · PL · Crime, Drama, Mystery · Filmweb 7.8
+- **Dirk Gently's Holistic Detective Agency** — 2016 · Max Landis · US · Comedy, Sci-Fi & Fantasy, Crime · Filmweb 7.9
+- **O.J.: Made in America** — 2016 · Ezra Edelman · US · Documentary · added 2026-07-08
+- **The Night Of** — 2016 · Richard Price, Steven Zaillian · US · Crime, Drama, Mystery · Filmweb 7.7
+- **Death Parade** — 2015 · JP · Animation, Drama, Mystery · Filmweb 7.9
+- **Gakkō Gurashi!** (SCHOOL-LIVE!) — 2015 · JP · Animation, Drama, Mystery · Filmweb 6.7
+- **Le Bureau des Légendes** (The Bureau) — 2015 · Éric Rochant · FR · Crime, Drama · Filmweb 8.1
+- **Patriot** — 2015 · Steven Conrad · US · Comedy, Drama · added 2026-07-08
+- **Show Me a Hero** — 2015 · David Simon · US · Crime, Drama, War & Politics · Filmweb 7.5
+- **Si-geu-neol** — 2015 · Kim Eun-hee, Kim Won-suk · KR · Crime, Mystery, Sci-Fi & Fantasy · Filmweb 8.1
+- **The Jinx** — 2015 · Andrew Jarecki, Marc Smerling · US · Documentary, Crime · added 2026-07-08
+- **Black Sails** — 2014 · Robert Levine, Jonathan E. Steinberg · US · Drama, Action & Adventure · Filmweb 7.9
+- **Boku no Ita Jikan** (The Hours of My Life) — 2014 · JP · Drama, Family · Filmweb 8
+- **Constantine** — 2014 · Daniel Cerone, David S. Goyer · US · Action & Adventure, Drama, Sci-Fi & Fantasy · Filmweb 7.1
+- **Halt and Catch Fire** — 2014 · Christopher C. Rogers, Christopher Cantwell · US · Drama · added 2026-07-08
+- **Kiseijū** (Parasyte -the maxim-) — 2014 · JP · Animation, Drama, Sci-Fi & Fantasy · Filmweb 7.9
+- **Nobunaga Concerto** — 2014 · JP · Animation, Comedy, Drama · Filmweb 7.6
+- **Noragami** — 2014 · Adachitoka · JP · Animation, Action & Adventure, Sci-Fi & Fantasy · Filmweb 7.9
+- **Outlander** — 2014 · Ronald D. Moore · US · Drama, Sci-Fi & Fantasy · Filmweb 8
+- **Over the Garden Wall** — 2014 · Patrick McHale, Katie Krentz · US · Mystery, Sci-Fi & Fantasy, Animation · Filmweb 8.5
+- **Ping Pong** (Ping Pong the Animation) — 2014 · JP · Animation, Drama · Filmweb 7.8
+- **Review** — 2014 · Andy Daly · US · Comedy · added 2026-07-08
+- **Sanzoku no Musume Rōnja** (Ronja, the Robber's Daughter) — 2014 · Goro Miyazaki · JP · Comedy, Animation, Family · Filmweb 7.5
+- **Space Dandy** — 2014 · JP · Animation, Comedy, Sci-Fi & Fantasy · Filmweb 7.3
+- **The Leftovers** — 2014 · Damon Lindelof, Tom Perrotta · US · Sci-Fi & Fantasy, Drama · Filmweb 7.4
+- **Tokyo Ghoul** — 2014 · JP · Animation, Drama, Sci-Fi & Fantasy · Filmweb 7.6
+- **Africa** — 2013 · UK · Documentary · Filmweb 7.9
+- **Aku no Hana** (Flowers of Evil) — 2013 · JP · Animation, Drama · Filmweb 7.3
+- **Banshee** — 2013 · David Schickler, Jonathan Tropper · US · Crime, Drama · Filmweb 7.9
+- **Family Tools** — 2013 · Adrian Poynton, Bobby Bowman · US · Comedy · Filmweb 4.7
+- **Nathan for You** — 2013 · Nathan Fielder, Michael Koman · US · Comedy, Documentary · Filmweb 8.8
+- **Rectify** — 2013 · Ray McKinnon · US · Crime, Drama · added 2026-07-08
+- **The Americans** — 2013 · Joe Weisberg · US · Crime, Drama · added 2026-07-08
+- **Vicious** — 2013 · Mark Ravenhill · UK · Comedy · Filmweb 7.8
+- **Copper** — 2012 · Tom Fontana, Will Rokos · US · Action & Adventure, Drama · Filmweb 7
+- **Gravity Falls** — 2012 · Alex Hirsch · US · Action & Adventure, Animation, Comedy · Filmweb 8.3
+- **JoJo no Kimyō na Bōken** (JoJo's Bizarre Adventure) — 2012 · JP · Animation, Action & Adventure, Sci-Fi & Fantasy · Filmweb 7.9
+- **Les Revenants** — 2012 · Fabrice Gobert · FR · Mystery, Sci-Fi & Fantasy, Drama · added 2026-07-08
+- **Line of Duty** — 2012 · Jed Mercurio · UK · Crime, Drama, Mystery · Filmweb 8.3
+- **Magic City** — 2012 · Mitch Glazer · US · Drama · Filmweb 7.4
+- **Shinsekai Yori** (From the New World) — 2012 · JP · Animation, Sci-Fi & Fantasy · Filmweb 8
+- **The Newsroom** — 2012 · Aaron Sorkin · US · Drama · Filmweb 7.7
+- **Danger 5** — 2011 · Dario Russo, David Ashby · AU · Comedy, Action & Adventure · Filmweb 8.3
+- **Fate/Zero** — 2011 · Gen Urobuchi · JP · Action & Adventure, Animation, Sci-Fi & Fantasy · Filmweb 8
+- **Hell on Wheels** — 2011 · Tony Gayton, Joe Gayton · US · Action & Adventure, Drama, Western · Filmweb 7.8
+- **Human Planet** — 2011 · Dale Templar, Brian Leith · UK · Documentary · Filmweb 7.9
+- **Nichijō** (Nichijou: My Ordinary Life) — 2011 · JP · Animation, Comedy · Filmweb 7.9
+- **Usagi Drop** — 2011 · JP · Animation, Drama · Filmweb 8.1
+- **Adventure Time with Finn and Jake** — 2010 · Pendleton Ward · US · Animation, Comedy, Sci-Fi & Fantasy · Filmweb 8.1
+- **An Idiot Abroad** — 2010 · Ricky Gervais · UK · Comedy, Documentary · Filmweb 7.8
+- **Spartacus: Blood and Sand** (Spartacus) — 2010 · Steven S. DeKnight · US · Drama · Filmweb 8
+- **Treme** — 2010 · David Simon, Eric Overmyer · US · Drama · Filmweb 7.7
+- **A-i-ri-seu** — 2009 · KR · Drama, Action & Adventure · Filmweb 8.1
+- **Community** — 2009 · Dan Harmon · US · Comedy · Filmweb 7.5
+- **Higashi no Eden** (Eden of the East) — 2009 · JP · Animation, Drama, Mystery · Filmweb 7.5
+- **Life** — 2009 · Martha Holmes · UK · Documentary · Filmweb 7.8
+- **White Collar** — 2009 · Jeff Eastin · US · Crime, Drama, Mystery · Filmweb 7.9
+- **Bōnen no Xamdou** (Xam'd: Lost Memories) — 2008 · JP · Animation, Sci-Fi & Fantasy, Action & Adventure · Filmweb 7.5
+- **Clannad: After Story** (Clannad) — 2008 · JP · Animation, Comedy, Drama · Filmweb 8.2
+- **Mnemosyne: Mnemosyne no Musume-tachi** (Rin: Daughters of Mnemosyne) — 2008 · JP · Animation, Mystery, Drama · Filmweb 7.1
+- **Underbelly** — 2008 · AU · Drama · Filmweb 7.5
+- **Baccano!** — 2007 · JP · Comedy, Action & Adventure, Animation · Filmweb 8
+- **Flight of the Conchords** — 2007 · Jemaine Clement, Bret McKenzie · US · Comedy · Filmweb 8.1
+- **Murder Princess** — 2007 · Sekihiko Inui · JP · Animation, Action & Adventure · Filmweb 6.8
+- **Shigurui** (Shigurui: Death Frenzy) — 2007 · JP · Animation, Drama, Action & Adventure · Filmweb 8.1
+- **Nana** (NANA) — 2006 · Ai Yazawa · JP · Animation, Drama · Filmweb 8.2
+- **Extras** — 2005 · Ricky Gervais, Stephen Merchant · UK · Comedy · Filmweb 7.9
+- **Karas** — 2005 · JP · Animation, Action & Adventure, Sci-Fi & Fantasy · Filmweb 7.5
+- **Weeds** — 2005 · Jenji Kohan · US · Comedy, Crime, Drama · Filmweb 7.5
+- **Battlestar Galactica** — 2004 · Glen A. Larson, Ronald D. Moore · CA · Sci-Fi & Fantasy, Action & Adventure, Drama · Filmweb 8
+- **BECK: Mongolian Chop Squad** (Beck: Mongolian Chop Squad) — 2004 · JP · Animation, Drama · Filmweb 8.1
+- **Deadwood** — 2004 · David Milch · US · Western, Crime, Drama · added 2026-07-08
+- **Gankutsuō** (Gankutsuou) — 2004 · JP · Animation, Drama, Mystery · Filmweb 7.6
+- **Garth Marenghi's Darkplace** — 2004 · Richard Ayoade, Matthew Holness · UK · Comedy, Mystery, Action & Adventure · Filmweb 8.1
+- **Monster** — 2004 · JP · Animation, Drama, Mystery · Filmweb 8.2
+- **Glina** — 2003 · PL · Crime, Drama, Action & Adventure · Filmweb 8.1
+- **Idiot** (The Idiot) — 2003 · Vladimir Bortko · RU · Drama · Filmweb 7.8
+- **Kino no Tabi: The Beautiful World** (Kino's Journey) — 2003 · JP · Animation, Sci-Fi & Fantasy, Drama · Filmweb 8.1
+- **Last Exile** — 2003 · JP · Animation, Action & Adventure, Sci-Fi & Fantasy · Filmweb 7.7
+- **Planetes** — 2003 · JP · Animation, Sci-Fi & Fantasy · Filmweb 7.7
+- **Texhnolyze** — 2003 · JP · Animation, Drama, Sci-Fi & Fantasy · Filmweb 8
+- **Azumanga Daiō The Animation** (Azumanga Daioh) — 2002 · JP · Animation, Comedy · Filmweb 7.9
+- **RahXephon** — 2002 · Yutaka Izubuchi · JP · Animation, Sci-Fi & Fantasy, Action & Adventure · Filmweb 7.3
+- **Witch Hunter Robin** — 2002 · JP · Animation, Action & Adventure, Drama · Filmweb 7.7
+- **The Corner** — 2000 · US · Crime, Drama · Filmweb 8.2
+- **Blue Gender** — 1999 · JP · Animation, Sci-Fi & Fantasy, Action & Adventure · Filmweb 6.8
+- **Ima, Soko ni Iru Boku** (Now and Then, Here and There) — 1999 · JP · Animation, Sci-Fi & Fantasy, War & Politics · Filmweb 7.7
+- **Spaced** — 1999 · Simon Pegg, Jessica Hynes · UK · Comedy · Filmweb 7.9
+- **Seihō Bukyō Outlaw Star** (Outlaw Star) — 1998 · Takehito Ito · JP · Animation, Sci-Fi & Fantasy, Comedy · Filmweb 7.1
+- **Daria** — 1997 · Glenn Eichler, Susie Lewis · US · Comedy, Animation · Filmweb 8.1
+- **Shōjo Kakumei Utena** (Revolutionary Girl Utena) — 1997 · JP · Animation, Drama, Mystery · Filmweb 8
+- **Spicy City** — 1997 · Ralph Bakshi · US · Animation, Action & Adventure, Crime · Filmweb 6.8
+- **Tenkū no Escaflowne** — 1996 · Shoji Kawamori · JP · Animation, Drama, Sci-Fi & Fantasy · Filmweb 7.8
+- **Ekstradycja** — 1995 · PL · Drama, Action & Adventure · Filmweb 7.5
+- **Golden Boy** — 1995 · JP · Animation, Comedy · Filmweb 7.8
+- **Gunsmith Cats** — 1995 · Kenichi Sonoda · JP · Animation, Comedy, Action & Adventure · Filmweb 7.2
+- **The Maxx** — 1995 · Sam Kieth, William Messner-Loebs · US · Animation, Sci-Fi & Fantasy, Action & Adventure · Filmweb 7.8
+- **Genocyber** — 1994 · Tony Takezaki · JP · Action & Adventure, Animation, Sci-Fi & Fantasy · Filmweb 5.2
+- **Dekalog - Polska 93** — 1993 · Filmweb 8.8
+- **Ginga Eiyū Densetsu** (Legend of the Galactic Heroes) — 1988 · JP · Animation, Drama, Sci-Fi & Fantasy · Filmweb 7.8
+- **Home and Away** — 1988 · Alan Bateman · AU · Drama, Soap · Filmweb 6.5
+- **Neighbours** — 1985 · Reg Watson · AU · Soap, Drama, Family · Filmweb 8.1
+- **Meitantei Holmes** (Sherlock Hound) — 1984 · JP · Action & Adventure, Animation, Family · Filmweb 4.4
+- **Cosmos** (Cosmos: A Personal Voyage) — 1980 · Carl Sagan · US · Documentary · Filmweb 7.3
+- **Dom** — 1980 · PL · Drama · Filmweb 7.8
+- **Life on Earth** — 1979 · UK · Documentary · Filmweb 7.2
+- **Dokaben** — 1976 · JP · Animation · Filmweb 5.4
+- **M*A*S*H** — 1972 · Larry Gelbart · US · War & Politics, Drama, Comedy · Filmweb 7.8
+- **The Twilight Zone** — 1959 · Rod Serling · US · Sci-Fi & Fantasy, Mystery, Drama · Filmweb 8
+- **Alfred Hitchcock Presents** — 1955 · Alfred Hitchcock · US · Mystery, Drama, Crime · Filmweb 8
+
+## Feature Animation (6)
+- **A New Dawn** — 2026 · Yoshitoshi Shinomiya · JP · Animation, Drama · added by hand
+- **Mu Yi** — 2026 · Julien Chheng · EU · Fantasy · added by hand
+- **The House** — 2022 · Paloma Baeza · UK · Animation, Drama, Comedy · added 2026-07-08
+- **Flee** — 2021 · Jonas Poher Rasmussen · DK · Documentary, Animation · added 2026-07-08
+- **I Lost My Body** — 2019 · Jérémy Clapin · FR · Animation, Drama, Fantasy · added 2026-07-08
+- **Asura** — 2012 · Keiichi Sato · JP · Animation, Drama, History · added by hand
+
+## Animated Series (14)
+- **Jiyi Guanli Ju** (False Memory) — 2026 · Li Shuyu, Liu Wenyu · CN · Animation, Action & Adventure · Filmweb 8.6 · added by hand · added 2026-10-26
+- **Summer Time Rendering** — 2022 · Ayumu Watanabe · JP · Animation, Drama, Mystery · added by hand · added 2026-10-05
+- **Girls' Last Tour** — 2017 · Tsukumizu, Takaharu Ozaki · JP · Animation, Action & Adventure, Mystery · added 2026-07-08
+- **Land of the Lustrous** — 2017 · JP · Animation, Action & Adventure, Drama · added 2026-07-08
+- **Showa Genroku Rakugo Shinju** — 2016 · JP · Animation, Drama · added 2026-07-08
+- **Hyouka** — 2012 · JP · Animation, Mystery, Comedy · added 2026-07-10
+- **Mawaru Penguindrum** — 2011 · JP · Animation, Drama, Mystery · added 2026-07-10
+- **Puella Magi Madoka Magica** — 2011 · Akiyuki Shinbo · JP · Animation, Drama, Sci-Fi & Fantasy
+- **Casshern Sins** — 2008 · JP · Animation, Drama, Sci-Fi & Fantasy · added 2026-07-08
+- **Dennō Coil** — 2007 · JP · Animation, Sci-Fi & Fantasy · added 2026-07-10
+- **Seirei no Moribito** — 2007 · Nahoko Uehashi · JP · Animation, Action & Adventure, Drama · added 2026-07-10
+- **Kemonozume** — 2006 · JP · Animation, Sci-Fi & Fantasy, Action & Adventure · added 2026-07-08
+- **Aria the Animation** — 2005 · JP · Animation, Sci-Fi & Fantasy · added 2026-07-10
+- **Mushishi** — 2005 · JP · Animation, Drama, Sci-Fi & Fantasy · added 2026-07-08
+
+## Shorts (6)
+- **Paper Trail** — 2026 · Don Hertzfeldt · US · Animation, Drama · added by hand
+- **God Is Shy** — 2025 · Jocelyn Charles · EU · Animation, Mystery, Fantasy · added by hand
+- **Li.le** — 2017 · Natia Nikolashvili · GE · Animation · added by hand
+- **Father and Daughter** — 2000 · Michael Dudok de Wit · EU · Animation, Drama · added 2026-07-08
+- **Balance** — 1989 · Christoph Lauenstein · DE · Drama, Animation · added 2026-07-08
+- **Muramasa** — 1987 · Osamu Tezuka · JP · Animation, Horror · added by hand · added 2026-09-27
+
+## Games (116)
+- **The Last Night** — 2026 · Simulator, Strategy, Adventure · Filmweb 3
+- **Blue Prince** — 2025 · Dogubomb · Puzzle, Strategy, Adventure · added 2026-07-08
+- **1000xRESIST** — 2024 · sunset visitor 斜陽過客 · Adventure, Indie · added 2026-07-08
+- **Animal Well** — 2024 · Shared Memory · Platform, Puzzle, Adventure · Filmweb 7.7
+- **Lorelei and the Laser Eyes** — 2024 · Simogo · Puzzle, Adventure, Indie · added 2026-07-08
+- **Mouthwashing** — 2024 · Wrong Organ · Adventure, Indie · added 2026-07-08
+- **Chants of Sennaar** — 2023 · Rundisc · Platform, Puzzle, Adventure · added 2026-07-08
+- **Cocoon** — 2023 · Geometric Interactive · Puzzle, Adventure, Indie · added 2026-07-08
+- **Planet of Lana** — 2023 · Wishfully · Platform, Puzzle, Adventure · Filmweb 7.2
+- **Slay the Princess** — 2023 · Black Tabby Games · Point-and-click, Role-playing (RPG), Adventure · added 2026-07-08
+- **The Talos Principle 2** — 2023 · Croteam · Puzzle, Adventure, Indie · added 2026-07-08
+- **Void Stranger** — 2023 · System Erasure · System Erasure · OTHER · Puzzle, Adventure, Indie
+- **Citizen Sleeper** — 2022 · Jump Over the Age · Role-playing (RPG), Adventure, Indie · added 2026-07-08
+- **High On Life** (High on Life) — 2022 · Squanch Games · Shooter, Adventure · Filmweb 6.8
+- **Immortality** — 2022 · Sam Barlow · Role-playing (RPG), Strategy, Adventure
+- **Pentiment** — 2022 · Obsidian Entertainment · Puzzle, Role-playing (RPG), Adventure · Filmweb 8.2
+- **Shadow Warrior 3** — 2022 · Flying Wild Hog · Shooter, Role-playing (RPG), Adventure · Filmweb 6.3
+- **Signalis** — 2022 · rose-engine · Adventure, Indie · added 2026-07-08
+- **The Callisto Protocol** — 2022 · Striking Distance Studios · Shooter, Adventure · Filmweb 6.5
+- **The Case of the Golden Idol** — 2022 · Color Gray Games · Point-and-click, Puzzle, Adventure · added 2026-07-08
+- **Trek to Yomi** — 2022 · Leonard Menchiari · Hack and slash/Beat 'em up, Adventure, Indie · Filmweb 6.3
+- **Tunic** — 2022 · Andrew Shouldice · Andrew Shouldice · Puzzle, Role-playing (RPG), Adventure
+- **Inscryption** — 2021 · Daniel Mullins · Daniel Mullins Games · Puzzle, Strategy, Adventure
+- **Kena: Bridge of Spirits** — 2021 · Ember Lab · Role-playing (RPG), Adventure, Indie · Filmweb 7.4
+- **Maquette** — 2021 · Graceful Decay · Puzzle, Adventure, Indie · Filmweb 5.8
+- **Norco** — 2021 · Geography of Robots · Point-and-click, Puzzle, Adventure · added 2026-07-08
+- **Outriders** — 2021 · People Can Fly · Shooter, Role-playing (RPG), Adventure · Filmweb 6.7
+- **Paradise Lost** — 2021 · Buff Studio (Story Games · Simulator · Filmweb 5.5
+- **The Eternal Cylinder** — 2021 · ACE Team · Adventure · Filmweb 6.2
+- **The Forgotten City** — 2021 · Nick Pearce · Modern Storyteller · AU · Role-playing (RPG), Adventure, Indie
+- **A Monster's Expedition** — 2020 · Draknek & Friends · Puzzle, Strategy, Adventure · added 2026-07-08
+- **Half-Life: Alyx** — 2020 · Valve · Shooter, Puzzle, Adventure · Filmweb 8.8
+- **Someday You'll Return** — 2020 · CBE software · Adventure, Indie · Filmweb 6.6
+- **Spiritfarer** — 2020 · Thunder Lotus · Platform, Simulator, Adventure · Filmweb 8
+- **13 Sentinels: Aegis Rim** — 2019 · George Kamitani · Vanillaware · JP · Simulator, Strategy, Tactical
+- **Baba Is You** — 2019 · Arvi Teikari · hempuli · Puzzle, Strategy, Indie
+- **Devil May Cry 5** — 2019 · Capcom Development Division 1 · Hack and slash/Beat 'em up, Adventure · Filmweb 8
+- **Disco Elysium** — 2019 · ZA/UM · Role-playing (RPG), Adventure, Indie · Filmweb 9
+- **Lost Ember** — 2019 · Mooneye Studios · Adventure, Indie · Filmweb 6.6
+- **Mosaic** — 2019 · Krillbite Studio · Puzzle, Adventure, Indie · Filmweb 5.9
+- **Outer Wilds** — 2019 · Alex Beachum · Mobius Digital · Puzzle, Simulator, Adventure
+- **Pathologic 2** — 2019 · Ice-Pick Lodge · Role-playing (RPG), Adventure, Indie · added 2026-07-08
+- **Sea of Solitude** — 2019 · Jo-Mei Games · Adventure, Indie · Filmweb 6
+- **Superliminal** — 2019 · Albert Shih · Pillow Castle Games · Puzzle, Adventure, Indie
+- **Untitled Goose Game** — 2019 · House House · Puzzle, Simulator, Adventure · Filmweb 7.2
+- **Celeste** — 2018 · Extremely OK Games · Platform, Adventure, Indie · Filmweb 8.2
+- **Dead Cells** — 2018 · Motion Twin · Platform, Adventure, Indie · Filmweb 7.9
+- **Florence** — 2018 · Mountains · Puzzle, Adventure, Indie · Filmweb 6.9
+- **GRIS** (Gris) — 2018 · Nomada Studio · Platform, Puzzle, Adventure · Filmweb 7.8
+- **Kenshi** — 2018 · Lo-Fi Games · Real Time Strategy (RTS), Role-playing (RPG), Strategy · Filmweb 7.1
+- **Moonlighter** — 2018 · Digital Sun Games · Role-playing (RPG), Simulator, Hack and slash/Beat 'em up · Filmweb 6.7
+- **Red Dead Redemption 2** — 2018 · Rockstar Games · Shooter, Role-playing (RPG), Adventure · added by hand · added 2026-06-07
+- **Return of the Obra Dinn** — 2018 · Lucas Pope · Lucas Pope · Puzzle, Adventure, Indie
+- **The Gardens Between** — 2018 · Filmweb 6.6
+- **Doki Doki Literature Club!** — 2017 · Team Salvato · Adventure, Indie, Visual Novel · Filmweb 7.8
+- **ECHO** (Echo) — 2017 · Filmweb 6.4
+- **Finding Paradise** — 2017 · Freebird Games · Point-and-click, Puzzle, Role-playing (RPG) · Filmweb 8.3
+- **Hollow Knight** — 2017 · Team Cherry · Platform, Adventure, Indie · Filmweb 8.7
+- **Last Day of June** — 2017 · Ovosonico · Puzzle, Role-playing (RPG), Adventure · Filmweb 7.1
+- **LawBreakers** — 2017 · Boss Key Productions · Shooter, Sport · Filmweb 5.3
+- **NieR: Automata** — 2017 · Yoko Taro · PlatinumGames · Role-playing (RPG), Hack and slash/Beat 'em up
+- **Rain World** — 2017 · Videocult · Platform, Adventure, Indie · Filmweb 7
+- **Rime** — 2017 · Puzzle · Filmweb 7.4
+- **Battlefield 1** — 2016 · EA Digital Illusions CE · Shooter · Filmweb 7.7
+- **Beholder** — 2016 · Warm Lamp Games · Role-playing (RPG), Simulator, Strategy · Filmweb 7.4
+- **Furi** — 2016 · The Game Bakers · Shooter, Hack and slash/Beat 'em up, Adventure · Filmweb 7.5
+- **Kathy Rain** — 2016 · Clifftop Games · Point-and-click, Puzzle, Adventure · Filmweb 7.1
+- **No Man's Sky** — 2016 · Hello Games · Shooter, Simulator, Adventure · Filmweb 6.1
+- **Obduction** — 2016 · Cyan Worlds · Point-and-click, Puzzle, Adventure · Filmweb 6.2
+- **OneShot** — 2016 · Future Cat · Puzzle, Role-playing (RPG), Adventure · added 2026-07-08
+- **Pony Island** — 2016 · Daniel Mullins · Daniel Mullins Games · CA · Puzzle, Simulator, Adventure
+- **Stephen's Sausage Roll** — 2016 · increpare · Puzzle, Indie · added 2026-07-08
+- **Superhot** — 2016 · Superhot Team · SUPERHOT Team · PL · Shooter, Puzzle, Tactical
+- **The Solus Project** — 2016 · Teotl Studios · Simulator, Adventure, Indie · Filmweb 6.5
+- **Environmental Station Alpha** — 2015 · hempuli · Platform, Adventure, Indie · added 2026-07-08
+- **Her Story** — 2015 · Sam Barlow · Sam Barlow · Point-and-click, Simulator, Indie
+- **Mad Max** — 2015 · Avalanche Studios · Racing, Hack and slash/Beat 'em up, Adventure · Filmweb 7.2
+- **SOMA** — 2015 · Thomas Grip · Frictional Games · Puzzle, Adventure, Indie
+- **The Beginner's Guide** — 2015 · Davey Wreden · Everything Unlimited Ltd. · Adventure, Indie
+- **The Park** — 2015 · Filmweb 5.4
+- **Volume** — 2015 · Bithell Games · Puzzle, Tactical, Indie · Filmweb 6.3
+- **A Story About My Uncle** — 2014 · Gone North Games · Platform, Puzzle, Adventure · Filmweb 6.4
+- **Lisa** (Lisa: The Painful) — 2014 · Dingaling · Role-playing (RPG), Turn-based strategy (TBS), Adventure · Filmweb 8.4
+- **Monument Valley** — 2014 · Ustwo Games · Point-and-click, Platform, Puzzle · Filmweb 8
+- **Reprisal Universe** — 2014 · electrolyte · Strategy, Indie · Filmweb 6.5
+- **The Talos Principle** — 2014 · Croteam · Puzzle, Adventure, Indie · Filmweb 8.3
+- **Assassin's Creed IV: Black Flag** (Assassin's Creed IV Black Flag) — 2013 · Ubisoft Montreal · Adventure · Filmweb 8.1
+- **Brothers - A Tale of Two Sons** (Brothers: A Tale of Two Sons) — 2013 · Starbreeze Studios · Puzzle, Adventure, Indie · Filmweb 7.8
+- **Gone Home** — 2013 · Fullbright · Puzzle, Adventure, Indie · Filmweb 6.4
+- **Kentucky Route Zero** — 2013 · Cardboard Computer · Point-and-click, Adventure, Indie · added 2026-07-08
+- **Rain** — 2013 · ACQUIRE Corp. · Puzzle, Adventure · Filmweb 6.4
+- **The Bridge** — 2013 · Ty Taylor & Mario Castañeda · Platform, Puzzle, Strategy · Filmweb 6.3
+- **The Swapper** — 2013 · Facepalm Games · Platform, Puzzle, Strategy · added 2026-07-10
+- **Year Walk** — 2013 · Simogo · Adventure · Filmweb 7.6
+- **Call of Duty: Black Ops II** — 2012 · Treyarch · Shooter · Filmweb 7.2
+- **Datura** — 2012 · Plastic · Adventure · Filmweb 5.7
+- **Papo & Yo** — 2012 · Minority · Platform, Puzzle, Adventure · Filmweb 7.2
+- **Zero Escape: Virtue's Last Reward** — 2012 · Kotaro Uchikoshi · Chunsoft · JP · Point-and-click, Puzzle, Adventure
+- **To the Moon** — 2011 · Georgios Sykiotis · Adventure, Indie · added 2026-07-08
+- **Ghost Trick** — 2010 · Capcom · Point-and-click, Puzzle, Adventure · added 2026-07-08
+- **Eufloria** — 2009 · Omni Systems Limited · Real Time Strategy (RTS), Strategy, Indie · Filmweb 7.4
+- **Flower** — 2009 · ThatGameCompany · Puzzle, Simulator, Adventure · Filmweb 7.5
+- **Nine Hours, Nine Persons, Nine Doors** (999) — 2009 · Kotaro Uchikoshi · Chunsoft · JP · Point-and-click, Puzzle, Adventure
+- **Umineko no Naku Koro ni** — 2007 · Ryukishi07 · 07th Expansion · JP · Adventure, Visual Novel
+- **flOw** — 2006 · ThatGameCompany · Puzzle, Simulator · Filmweb 6.4
+- **.hack//Fragment** (.Hack//Frägment) — 2005 · CyberConnect2 · Role-playing (RPG), Hack and slash/Beat 'em up, Adventure · Filmweb 5.5
+- **Advent Rising** — 2005 · GlyphX Games · Shooter, Adventure · Filmweb 7.2
+- **Stubbs the Zombie in Rebel Without a Pulse** — 2005 · Wideload Games · Hack and slash/Beat 'em up, Adventure · Filmweb 6.6
+- **Halo 2** — 2004 · Bungie · Shooter · Filmweb 7.6
+- **Eternal Darkness: Sanity's Requiem** — 2002 · Denis Dyack · Silicon Knights · Puzzle, Adventure
+- **Metal Gear Solid 2: Sons of Liberty** — 2001 · Hideo Kojima · Konami Computer Entertainment Japan · Shooter, Tactical, Adventure
+- **Zero** (Mega Man Zero 2) — 2001 · Masaya · Hack and slash/Beat 'em up · Filmweb 8
+- **Planescape: Torment** — 1999 · Chris Avellone · Black Isle Studios · Puzzle, Role-playing (RPG), Strategy
+- **Final Fantasy VII** — 1997 · Yoshinori Kitase · Square · JP · Role-playing (RPG), Turn-based strategy (TBS), Adventure · added by hand
+- **Moon: Remix RPG Adventure** — 1997 · Love-de-Lic · Puzzle, Role-playing (RPG), Adventure · added 2026-07-08
+- **The Neverhood** — 1996 · The Neverhood, Inc. · Point-and-click, Puzzle, Adventure · Filmweb 8.6
+
+## Books (59)
+- **Trust** — 2022 · Hernán Diaz · US
+- **Anatomia pęknięcia** — 2021 · Michał Protasiuk · added 2021-03-23
+- **Piranesi** — 2020 · Susanna Clarke · UK
+- **Les Indes fourbes** — 2019 · Alain Ayroles · added 2023-11-05
+- **On a Sunbeam** — 2018 · Tillie Walden · added 2023-11-05
+- **Fire Punch, Vol. 3** — 2016 · Tatsuki Fujimoto · added 2024-07-08
+- **Dead Dead Demon's Dededede Destruction** — 2014 · Inio Asano · added 2026-07-08
+- **S.** — 2013 · J.J. Abrams, Doug Dorst · US
+- **Two Generals** — 2010 · Scott Chantler · added 2023-11-05
+- **The City & the City** — 2009 · China Miéville · added 2026-07-08
+- **Alone** — 2008 · Christophe Chabouté · added 2023-11-05
+- **The Raw Shark Texts** — 2007 · Steven Hall · UK
+- **Blindsight** — 2006 · Peter Watts · added 2026-07-08
+- **Inne Pieśni** — 2003 · Jacek Dukaj · added 2020-07-01
+- **The Sandman: Endless Nights** — 2003 · Neil Gaiman · added 2023-11-05
+- **Stories of Your Life and Others** — 2002 · Ted Chiang · added 2026-07-08
+- **House of Leaves** — 2000 · Mark Z. Danielewski · US
+- **Transmetropolitan, Vol. 1: Back on the Street** — 1998 · Warren Ellis · added 2023-11-05
+- **Uzumaki** — 1998 · Junji Ito · added 2026-07-08
+- **Vagabond** — 1998 · Takehiko Inoue · added 2026-07-08
+- **Blindness** — 1995 · José Saramago · added 2026-07-08
+- **Permutation City** — 1994 · Greg Egan · added 2026-07-08
+- **The Wind-Up Bird Chronicle** — 1994 · Haruki Murakami · added 2026-07-10
+- **Use of Weapons** — 1990 · Iain M. Banks · UK
+- **Hyperion** — 1989 · Dan Simmons · added 2026-07-08
+- **The Remains of the Day** — 1989 · Kazuo Ishiguro · added 2026-07-08
+- **Blood Meridian** — 1985 · Cormac McCarthy · added 2026-07-08
+- **Swamp Thing, Vol. 1: Saga of the Swamp Thing** — 1983 · Alan Moore · added 2023-11-05
+- **The Affirmation** — 1981 · Christopher Priest · UK
+- **The Book of the New Sun** — 1980 · Gene Wolfe · US
+- **If on a winter's night a traveler** — 1979 · Italo Calvino · IT
+- **They: A Sequence of Unease** — 1977 · Kay Dick · added 2022-04-07
+- **The Dispossessed** — 1974 · Ursula K. Le Guin · added 2026-07-08
+- **The Box Man** — 1973 · Kōbō Abe · added 2026-07-08
+- **Invisible Cities** — 1972 · Italo Calvino · added 2026-07-08
+- **Roadside Picnic** — 1972 · Arkady Strugatsky, Boris Strugatsky · added 2026-07-08
+- **The Fifth Head of Cerberus** — 1972 · Gene Wolfe · added 2026-07-08
+- **A Perfect Vacuum** — 1971 · Stanisław Lem · added 2026-07-08
+- **The Futurological Congress** — 1971 · Stanisław Lem · added 2026-07-08
+- **The General Zapped an Angel** — 1970 · Howard Fast · added 2022-12-03
+- **Slaughterhouse-Five** — 1969 · Kurt Vonnegut · added 2026-07-08
+- **Ubik** — 1969 · Philip K. Dick · US
+- **The Third Policeman** — 1967 · Flann O'Brien · IE
+- **Flowers for Algernon** — 1966 · Daniel Keyes · US
+- **Stoner** — 1965 · John Williams · added 2026-07-08
+- **The Cyberiad** — 1965 · Stanisław Lem · added 2020-06-06
+- **The Magus** — 1965 · John Fowles · UK
+- **The Woman in the Dunes** — 1962 · Kōbō Abe · added 2026-07-08
+- **Solaris** — 1961 · Stanisław Lem · added 2020-06-06
+- **Pedro Paramo** — 1955 · Juan Rulfo · added 2026-07-08
+- **No Longer Human** — 1948 · Osamu Dazai · added 2026-07-08
+- **Ficciones** — 1944 · Jorge Luis Borges · added 2026-07-08
+- **Darkness at Noon** — 1940 · Arthur Koestler · added 2026-07-08
+- **The Tartar Steppe** — 1940 · Dino Buzzati · added 2026-07-08
+- **The Murder of Roger Ackroyd** — 1926 · Agatha Christie · UK
+- **The Brothers Karamazov** — 1880 · Fyodor Dostoevsky · added 2026-07-08
+- **Неточка Незванова** — 1849 · Fyodor Dostoevsky · added 2023-07-30
+- **White Nights** — 1848 · Fyodor Dostoevsky · added 2023-07-30
+- **Ozymandias** — 1817 · Percy Bysshe Shelley · added 2021-07-06
