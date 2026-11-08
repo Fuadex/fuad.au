@@ -1,27 +1,10 @@
 # Upcoming shows in Japan — matched against the Rotation library
 
-Generated 2026-11-07 · 767 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
+Generated 2026-11-08 · 753 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
 
 
 ## November 2026
-- 2026-11-07 (Sat) · **9mm Parabellum Bullet** — 金沢EIGHT HALL, Kanazawa · 424 plays · not seen live · top · 9mm Parabellum Bullet Tour 2026-27「Raison d'être」 · https://9mm.jp/live.php
-- 2026-11-07 (Sat) · **MAN WITH A MISSION** — ZOZO Marine Stadium, Chiba · 416 plays · seen live 1× · seen · AIR JAM 2026 · https://www.livenationhip.co.jp/all-events/air-jam-2026-tickets-ae1692177
-- 2026-11-07 (Sat) · **TsuShiMaMiRe** — Tokyo Kinema Club, Tokyo · 290 plays · not seen live · top · Greatest World Tour in Japan "Hana-mamire 2026" · https://tsushimamire.com/en/
-- 2026-11-07 (Sat) · **Maximum the Hormone** — ZOZO Marine Stadium, Chiba · 86 plays · seen live 2× · seen · AIR JAM 2026 · https://www.livenationhip.co.jp/all-events/air-jam-2026-tickets-ae1692177
-- 2026-11-07 (Sat) · **Enth** — ZOZO Marine Stadium, Chiba · 68 plays · seen live 1× · seen · AIR JAM 2026 · https://www.livenationhip.co.jp/all-events/air-jam-2026-tickets-ae1692177
-- 2026-11-07 (Sat) · **THE ORAL CIGARETTES** — 横浜F.A.D, Yokohama · 46 plays · seen live 1× · seen · WANDER ABOUT 放浪 TOUR 2026 関東編 · https://ticketjam.jp/tickets/the-oral-cigarettes/event/1262210
-- 2026-11-07 (Sat) · **Wienners** — Spotify O-EAST, Tokyo · 36 plays · not seen live · top · ツタロック DIG LIVE Vol.21 · https://eplus.jp/sf/word/0000033997
-- 2026-11-07 (Sat) · **Cö shu Nie** — Billboard Live OSAKA, Osaka · 30 plays · not seen live · top · A coshutic Nie Vol.6 · https://eplus.jp/sf/word/0000063608
-- 2026-11-07 (Sat) · **Garlicboys** — Osaka · 18 plays · not seen live · top · RAZORS EDGE presents STORMY DUDES FESTA 2026 · https://www.livefans.jp/events/1977107
-- 2026-11-07 (Sat) · **ORANGE RANGE** — 東金文化会館 大ホール, Togane · 16 plays · not seen live · top · ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜 · https://orangerange.com/feature/25th
-- 2026-11-07 (Sat) · **eastern youth** — 磔磔, Kyoto · 13 plays · not seen live · top · eastern youth 全国巡業公演 ~ファイトバック現代 2026~ · https://www.livefans.jp/artists/2117
 - 2026-11-07 (Sat) – 2026-11-08 · **ACIDMAN** — 宜野湾港マリーナ・トロピカルビーチ特設会場, Ginowan · 12 plays · not seen live · top · MONGOL800 ga FESTIVAL What a Wonderful World!! 26 · https://eplus.jp/acidman/
-- 2026-11-07 (Sat) · **BLUE ENCOUNT** — KT Zepp Yokohama, Yokohama · 10 plays · not seen live · top · 青木陽菜 × BLUE ENCOUNT SPECIAL LIVE「BLUE RIOT」 · https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc
-- 2026-11-07 (Sat) · **BUMP OF CHICKEN** — GLION ARENA KOBE, Kobe · 8 plays · not seen live · top · BUMP OF CHICKEN TOUR 2026-2027 Ratio Clavis · https://www.bumpofchicken.com/
-- 2026-11-07 (Sat) · **Sheena Ringo** — あきた芸術劇場ミルハス 大ホール, Akita · 7 plays · not seen live · also · 椎名林檎と彼奴等と試す煩悩菩提 · https://lp.p.pia.jp/article/news/489069/index.html
-- 2026-11-07 (Sat) · **ART-SCHOOL** — SPiCE, Sapporo · 7 plays · not seen live · also · ART-SCHOOL TOUR 2026「The Fragile Songs」 · https://eplus.jp/artschool/
-- 2026-11-07 (Sat) · **lilbesh ramko** — Shibuya WWW X, Tokyo · 5 plays · not seen live · also · Billionhappy [Eastern Margins] / MCR-T [Live From Earth] / lilbesh ramko / kegøn / PAS TAS... — CANTEEN presents attic – Live from Margins : Tokyo · https://www-shibuya.jp/schedule/020155.php
-- 2026-11-07 (Sat) · **Barebones** — Shindaita FEVER, Tokyo · 5 plays · not seen live · also · MOUNTAIN HIGH · https://www.fever-popo.com/schedule/2026/11/0717.html
 - 2026-11-08 (Sun) · **9mm Parabellum Bullet** — 長野CLUB JUNK BOX, Nagano · 424 plays · not seen live · top · 9mm Parabellum Bullet Tour 2026-27「Raison d'être」 · https://9mm.jp/live.php
 - 2026-11-08 (Sun) · **Age Factory** — Nippon Budokan, Tokyo · 31 plays · not seen live · top · twilight 2026 · https://agefactory.biz
 - 2026-11-08 (Sun) · **171** — Jissen Women's University Hino Campus, Tokyo area · 28 plays · not seen live · top · 171 with えんぷてい, Jissen Women's University festival · https://eplus.jp/sf/detail/4604990001-P0030001P021001?P1=0175
@@ -251,6 +234,7 @@ Generated 2026-11-07 · 767 shows · date order. Tier: **top** = a strong match 
 - 2026-12-09 (Wed) · **Have a nice day!** — 新宿LOFT, Tokyo · 17 plays · not seen live · top · Have a nice day! live (L-Tike listing) · https://l-tike.com/haveaniceday/
 - 2026-12-09 (Wed) · **Jane Remover** — WWW X, Tokyo · 12 plays · not seen live · top · https://smash-jpn.com/live/?id=4769
 - 2026-12-09 (Wed) · **Mrs. GREEN APPLE** — マリンメッセ福岡A館, Fukuoka · 5 plays · not seen live · also · Mrs. GREEN APPLE Ringo Jam Tour "SHADOWS" · https://www.oricon.co.jp/news/2461508/full/
+- 2026-12-10 (Thu) · **MAN WITH A MISSION** — SGC HALL ARIAKE, Tokyo · 416 plays · seen live 1× · seen · https://eplus.jp/sf/detail/0557730001
 - 2026-12-10 (Thu) · **Enth** — 名古屋CLUB QUATTRO, Nagoya · 68 plays · seen live 1× · seen · ANORAK! Presents FINGERS CROSSED Tour 2026 · https://www.livefans.jp/search?keyword=ANORAK!
 - 2026-12-10 (Thu) · **a flood of circle** — Shinjuku LOFT, Tokyo · 44 plays · not seen live · top · DREAM MATCH 2026 · https://www.loft-prj.co.jp/schedule/loft/schedule/363095
 - 2026-12-10 (Thu) · **ANORAK!** — 名古屋CLUB QUATTRO, Nagoya · 14 plays · not seen live · top · ANORAK! Presents FINGERS CROSSED Tour 2026 · https://www.livefans.jp/search?keyword=ANORAK!
@@ -319,10 +303,12 @@ Generated 2026-11-07 · 767 shows · date order. Tier: **top** = a strong match 
 - 2026-12-20 (Sun) · **BUMP OF CHICKEN** — IGアリーナ, Nagoya · 8 plays · not seen live · top · BUMP OF CHICKEN TOUR 2026-2027 Ratio Clavis · https://www.bumpofchicken.com/
 - 2026-12-20 (Sun) · **ART-SCHOOL** — Zepp Shinjuku (TOKYO), Tokyo · 7 plays · not seen live · also · ART-SCHOOL TOUR 2026「The Fragile Songs」 · https://eplus.jp/artschool/
 - 2026-12-20 (Sun) · **Mrs. GREEN APPLE** — ぴあアリーナMM, Yokohama · 5 plays · not seen live · also · Mrs. GREEN APPLE Ringo Jam Tour "SHADOWS" · https://www.oricon.co.jp/news/2461508/full/
+- 2026-12-21 (Mon) · **MAN WITH A MISSION** — Zepp Osaka Bayside, Osaka · 416 plays · seen live 1× · seen · https://eplus.jp/sf/detail/0557730001
 - 2026-12-21 (Mon) · **UVERworld** — 横浜アリーナ, Yokohama · 20 plays · not seen live · top · UVERworld LIVE “危ない” TOUR 2026 · https://www.uverworld.jp/feature/2026_live
 - 2026-12-21 (Mon) · **Texas 3000** — 奈良NEVER LAND, Nara · 19 plays · seen live 1× · seen · ANORAK! Presents FINGERS CROSSED Tour 2026 · https://www.livefans.jp/search?keyword=ANORAK!
 - 2026-12-21 (Mon) · **österreich** — Shindaita FEVER, Tokyo · 18 plays · not seen live · top · Tattletale pre. "LANDSCAPE" Live at FEVER · https://www.fever-popo.com/schedule/2026/12/2117.html
 - 2026-12-21 (Mon) · **ANORAK!** — 奈良NEVER LAND, Nara · 14 plays · not seen live · top · ANORAK! Presents FINGERS CROSSED Tour 2026 · https://www.livefans.jp/search?keyword=ANORAK!
+- 2026-12-22 (Tue) · **MAN WITH A MISSION** — Zepp Osaka Bayside, Osaka · 416 plays · seen live 1× · seen · https://eplus.jp/sf/detail/0557730001
 - 2026-12-22 (Tue) · **ZAZEN BOYS** — Spotify O-nest, Tokyo · 223 plays · seen live 1× · seen · ZAZEN BOYS × SODA! for O-nest's 30th · https://eplus.jp/sf/detail/4458420001-P0030018P021001
 - 2026-12-22 (Tue) · **The Cabs** — F.A.D YOKOHAMA, Yokohama · 83 plays · not seen live · top · the cabs tour 2026-27 "Anemoica" · https://skream.jp/news/2026/09/the_cabs_anemoica.php
 - 2026-12-22 (Tue) · **MUCC** — 名古屋CLUB QUATTRO, Nagoya · 15 plays · not seen live · top · MUCC Club tour 2026「Beginning to Lotus」 · https://55-69.com/live/30023
