@@ -1,19 +1,9 @@
 # Upcoming shows in Japan — matched against the Rotation library
 
-Generated 2026-11-08 · 753 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
+Generated 2026-11-09 · 743 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
 
 
 ## November 2026
-- 2026-11-07 (Sat) – 2026-11-08 · **ACIDMAN** — 宜野湾港マリーナ・トロピカルビーチ特設会場, Ginowan · 12 plays · not seen live · top · MONGOL800 ga FESTIVAL What a Wonderful World!! 26 · https://eplus.jp/acidman/
-- 2026-11-08 (Sun) · **9mm Parabellum Bullet** — 長野CLUB JUNK BOX, Nagano · 424 plays · not seen live · top · 9mm Parabellum Bullet Tour 2026-27「Raison d'être」 · https://9mm.jp/live.php
-- 2026-11-08 (Sun) · **Age Factory** — Nippon Budokan, Tokyo · 31 plays · not seen live · top · twilight 2026 · https://agefactory.biz
-- 2026-11-08 (Sun) · **171** — Jissen Women's University Hino Campus, Tokyo area · 28 plays · not seen live · top · 171 with えんぷてい, Jissen Women's University festival · https://eplus.jp/sf/detail/4604990001-P0030001P021001?P1=0175
-- 2026-11-08 (Sun) · **Death Cab for Cutie** — 松下IMPホール, Osaka · 19 plays · not seen live · also · DEATH CAB FOR CUTIE · https://www.creativeman.co.jp/event/death-cab-for-cutie_2026/
-- 2026-11-08 (Sun) · **ORANGE RANGE** — よこすか芸術劇場, Yokosuka · 16 plays · not seen live · top · ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜 · https://orangerange.com/feature/25th
-- 2026-11-08 (Sun) · **fox capture plan** — Music Club JANUS, Osaka · 14 plays · not seen live · top · fox capture plan 2026 tour · https://eplus.jp/foxcaptureplan/
-- 2026-11-08 (Sun) · **eastern youth** — YEBISU YA PRO, Okayama · 13 plays · not seen live · top · eastern youth 全国巡業公演 ~ファイトバック現代 2026~ · https://www.livefans.jp/artists/2117
-- 2026-11-08 (Sun) · **Turtle Island** — LIQUIDROOM, Tokyo · 9 plays · not seen live · top · ELECTRIC DELAY LAND Vol.2 · https://www.liquidroom.net/schedule/edl2_20261108
-- 2026-11-08 (Sun) · **BUMP OF CHICKEN** — GLION ARENA KOBE, Kobe · 8 plays · not seen live · top · BUMP OF CHICKEN TOUR 2026-2027 Ratio Clavis · https://www.bumpofchicken.com/
 - 2026-11-09 (Mon) · **Hollow suns** — Shindaita FEVER, Tokyo · 91 plays · not seen live · top · SAY HELLO TO NEVER RECORDINGS Presents 【SHINER JAPAN TOUR 2026】 · https://www.fever-popo.com/schedule/2026/11/0918.html
 - 2026-11-09 (Mon) · **THE ORAL CIGARETTES** — mito LIGHT HOUSE, Mito · 46 plays · seen live 1× · seen · WANDER ABOUT 放浪 TOUR 2026 関東編 · https://ticketjam.jp/tickets/the-oral-cigarettes/event/1262211
 - 2026-11-09 (Mon) · **首振りdolls** — Shinjuku LOFT, Tokyo · 6 plays · not seen live · also · 「激突★流血キノコDolls」 · https://www.loft-prj.co.jp/schedule/loft/schedule/364462
