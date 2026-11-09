@@ -4988,7 +4988,7 @@ by: "Opus 4.8" },
 
  "about": "A basket of fruit tips over the table's edge into the viewer's space while a disciple's arm thrusts forward in extreme foreshortening — the physical shock of the moment Christ is recognised as risen, mid-meal. Caravaggio, 1601.",
 
- "deep": "The innkeeper stands behind the table, one arm crooked at his side, and he is the key the picture hides in plain sight. Closest to Christ, he sees nothing — face in shadow, unmoved, faintly puzzled at the fuss. Caravaggio uses him as the control case: recognition is not about proximity, it is given to some and withheld from others. Uncover the disciples and the room detonates around him. One has flung a forearm so hard toward you that Caravaggio shortens it to almost nothing — palm and fingers crossing the picture plane. A pilgrim's shell is pinned to that shoulder: a man defined by walking to holy places, stopped cold because the holy thing arrived at his table.",
+ "deep": "The innkeeper stands behind the table, one arm crooked at his side, and he is the key the picture hides in plain sight. Closest to Christ, he sees nothing — face in shadow, unmoved, faintly puzzled at the fuss. Caravaggio uses him as the control case: recognition is not about proximity, it is given to some and withheld from others. Uncover the disciples and the room detonates around him. One has flung a forearm so hard toward you that Caravaggio shortens it to almost nothing — palm and fingers crossing the picture plane. A pilgrim's scallop shell is pinned to the front of his jerkin, just below the collar: a man defined by walking to holy places, stopped cold because the holy thing arrived at his table.",
 
  "deepBy": "Sonnet 4.6",
 
@@ -6077,8 +6077,8 @@ about: "Matisse made all five Jeannette heads from the same model, Jeanne Vaderi
 by: "Opus 4.8" },
 
 "henri-matisse-nu-bleu-iv": {
-about: "After surgery for stomach cancer confined Matisse to a bed or wheelchair in the early 1950s, he turned to gouache-painted paper that assistants prepared in bulk, cutting the sheets himself with scissors into organic silhouettes he then arranged and rearranged over weeks. Nu bleu IV is among the most reworked of the four Blue Nudes — a seated figure resolved almost entirely into flat, interlocking planes of ultramarine. Matisse described the method as an occupation in which he could lose himself. Matisse, 1952, gouache découpée.",
-by: "Opus 4.8" },
+about: "The second of four seated Blue Nudes Matisse cut in 1952 from gouache-painted paper. His collaborator Lydia Delectorskaya recalled the first three being made one after another, each in one go of ten to fifteen minutes at most.",
+by: "Opus 5.5" },
 
 "claude-monet-untitled": {
   "about": "Monet's sunrise on the Seine, among the Mornings known for certain to have hung at his June 1898 show. Le Figaro's Arsène Alexandre dared anyone still resisting bright painting to hold out against its charm and freshness.",

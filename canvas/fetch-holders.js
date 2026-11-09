@@ -94,7 +94,12 @@ for (const w of W) {
   if (!raw.length) continue;
   const cq = raw.filter(q => !DENY_HOLDERS.has(q));
   if (!cq.length) { seededNone++; continue; } // every claim denied (the Makart) — stays holderless
-  const musPick = cq.find(q => musByQid[q]);
+  // TRANSFERRED HOLDERS (2026-11-09): Wikidata keeps the National Gallery (Q180788) as a P195
+  // claim on the Turner Bequest and the other British pictures later transferred to the Tate, and
+  // the museum-first pick below chose it because Tate (Q430682) is not a museums.js row — 18 works
+  // were sent to Trafalgar Square. When a Tate claim sits beside it, the Tate claim wins.
+  const tatePick = cq.includes("Q180788") && (cq.includes("Q195436") ? "Q195436" : cq.includes("Q430682") ? "Q430682" : null);
+  const musPick = tatePick || cq.find(q => musByQid[q]);
   works[w.id] = musPick || cq[0];
   if (musPick) seededByMuseum++; else seededByFirst++;
 }

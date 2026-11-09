@@ -627,8 +627,8 @@ window.CANVAS_ARTWORKS = [
     seenAt: "kunstsalon-franke-schenk", seenConfidence: "sure" },
   { id: "claude-monet-bouquet-of-sunflowers", title: "Bouquet of Sunflowers", artist: "Claude Monet", artistId: "monet", qid: "Q19905274", qidTrusted: true, year: 1881,
     seenAt: "met-nyc", seenConfidence: "sure" },
-  { id: "henri-matisse-nu-bleu-iv", title: "Nu bleu IV", artist: "Henri Matisse", artistId: "matisse", qid: "Q1853880", qidTrusted: true, year: 1952,
-    seenAt: "orsay", seenConfidence: "sure" },
+  { id: "henri-matisse-nu-bleu-iv", title: "Nu bleu II", artist: "Henri Matisse", artistId: "matisse", qid: "Q882587", qidTrusted: true, year: 1952,
+    seenAt: "agnsw", via: "exhibition", exhibition: "Matisse: Life & Spirit, Masterpieces from the Centre Pompidou", seenConfidence: "sure" },
   // The year is the holder's: the Met dates this pastel 1894 or 1898; the 1896 that shipped split the
   // difference. Integer convention: the earlier date opens the range (2026-10-27).
   { id: "edgar-degas-woman-with-a-towel", title: "Woman with a Towel", artist: "Edgar Degas", artistId: "degas", qid: "Q19913634", qidTrusted: true, year: 1894,
@@ -2649,7 +2649,7 @@ window.CANVAS_ARTWORKS = [
     wish: true, liked: true },
   { id: "theo-van-rysselberghe-big-clouds", title: "Big Clouds", artist: "Théo van Rysselberghe", artistId: "theo-van-rysselberghe", qid: "Q27898432", qidTrusted: true, year: 1893,
     wish: true, liked: true },
-  { id: "thomas-alexander-harrison-marine-clair-de-lune", title: "Marine", artist: "Thomas Alexander Harrison", artistId: "thomas-alexander-harrison", qid: "Q123338401", qidTrusted: true, year: 1892,
+  { id: "thomas-alexander-harrison-marine-clair-de-lune", title: "Marine", artist: "Thomas Alexander Harrison", artistId: "thomas-alexander-harrison", qid: "Q123338401", qidTrusted: true, year: 1890,
     wish: true, loved: true,
     img: "https://commons.wikimedia.org/wiki/Special:FilePath/Marine.Alexander_Harrison-IMG_8226.JPG?width=900", imgGrid: "https://commons.wikimedia.org/wiki/Special:FilePath/Marine.Alexander_Harrison-IMG_8226.JPG?width=480", imgZoom: "https://commons.wikimedia.org/wiki/Special:FilePath/Marine.Alexander_Harrison-IMG_8226.JPG?width=2000" },
   { id: "georges-seurat-beach-at-gravelines", title: "Beach at Gravelines", artist: "Georges Seurat", artistId: "seurat", qid: "Q3848104", qidTrusted: true, year: 1890,
