@@ -3,6 +3,106 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "unknown-sappho": {
+  "about": "Struck, it is said, by the pose of a model resting in his studio, James Pradier made a sketch only afterwards christened \"Sappho dreaming on the rock of Leucas\". The seated marble followed in 1852.",
+  "deep": "To three critics in 1852 she was a woman at rest who had been told she was Sappho. In May, Gustave Planche held that without the catalogue's christening no one could guess her name. The Goncourt brothers' review breaks off as they begin to fault her for sleeping in her pose: Pradier had died in June. Alphonse Grün, owing the truth even to the dead, admired a beautiful dreamer and found no Sappho. Claude Vignon saw the reverse: the whole drama of a coming suicide. The resting model said to have lent the pose had her shift slipping from her right shoulder, at our left; Sappho's chiton slides from that shoulder too.",
+  "by": "Opus 5.5"
+ },
+ "edvard-munch-evening-on-karl-johan": {
+  "about": "Munch opened an exhibition in a building on Karl Johan on 14 September 1892, and that day the newspaper Morgenbladet called \"On Carl Johan\" — by a later identification, this view of the street — \"so downright insane\".",
+  "deep": "Before this crowd was painted, its stare had been written down as one man's suspicion, in a notebook of Munch's from 1889–90 that scholars link with the picture. Drifting up and down Karl Johan at seven in the evening, the man thinks the passers-by are staring at him, \"all these faces\", and, sure he will fall and draw a crowd, fixes his eyes on a window high up, yellow against the dark sky, \"as if he wanted to hold on to it\". The page reaches that window only after the faces. On the canvas the faces and the windows lit high on the left above them share one moment.",
+  "by": "Opus 5.5"
+ },
+ "edvard-munch-melancholy": {
+  "about": "The motif of this oil of the mid-1890s has been linked to the affair between Munch’s friend Jappe Nilssen and the married Oda Krohg at Åsgårdstrand in the summer of 1891, which Munch witnessed.",
+  "deep": "The painter had decided not to sell this canvas. He was anxious, he told the buyer in 1909, “to keep some of the great Frieze”, his cycle of paintings, and sold it on condition that it be lent to him for copying, as he had meant to copy them all. The buyer wanted it because it showed “another side” of Munch’s art from the pictures he had bought. In 1918 Munch wrote of the cycle: “The sinuous shoreline weaves through them all.” Here it is the lilac water’s wine-red edge, which runs along the dark beach to its point, turns back on itself and bends down to curl around a dark stone in the shallows.",
+  "by": "Opus 5.5"
+ },
+ "pythokritos-winged-victory-of-samothrace": {
+  "about": "Restorers in the 1880s gave this Hellenistic marble Victory of 200–175 BC the right wing she had lost. It is plaster, modelled on her ancient left wing, which they reassembled from its fragments.",
+  "deep": "Statue and ship left Samothrace sixteen years apart. Her finder, Charles Champoiseau, took the ship for a tomb whose upturned sarcophagus seemed to have toppled and broken her. In 1875 the Austrian architect Alois Hauser drew it the right way up: it was part of the bow. Champoiseau fetched the ship in 1879, and that November a plaster cast of her stood on the propped-up bow in Paris. He had left one block behind, enormous, he wrote, and of no artistic value. Mended in 1999, it fits a gap at the back of her deck and keeps part of the socket that held her. The deck she stands on is still without it.",
+  "by": "Opus 5.5"
+ },
+ "torii-kiyonaga-evening-glow-at-ryogoku-bridge-from-the-serie": {
+  "about": "Actors and the women of the pleasure quarters were Torii Kiyonaga's main subjects; of his pure landscapes, his biographer Chie Hirano wrote, practically only this set of eight Edo views, from about 1781, is confirmed.",
+  "deep": "Cut down to its circle, the design loses its black and the name it carries: an evening glow, one of eight views of Edo. An impression so trimmed was shown in Paris in 1911, and the show's cataloguer, Charles Vignier, called it a \"petit nozokiyé\", a small peep-box picture of the Sumida under Ryōgoku Bridge. Raymond Koechlin, introducing the show, wrote that the landscapes behind Kiyonaga's tall figures seemed, by their exactness, wide windows opened onto the Japanese countryside. The black belongs to the picture too: toward the bottom the boat at lower left runs into it with no edge, which on the trimmed impression only the cut could supply.",
+  "by": "Opus 5.5"
+ },
+ "chobunsai-eishi-yokihi-yang-guifei-playing-the-flute": {
+  "about": "In earlier pictures Yang Guifei plays the flute with her emperor, Xuanzong of Tang. Chōbunsai Eishi seats her alone, in ink, colour and gold on silk, perhaps after Li Bai's poem likening her to mountain immortals.",
+  "deep": "The peonies beside her are the flower the poet Li Bai likened her beauty to, in songs ordered while tree peonies stood in full bloom. In Yue Shi's unofficial life of her, written under the Song dynasty, the emperor Xuanzong, facing the flowers with his consort beside him, would hear no old song-words; Li Bai was sent for, still suffering from the night's wine, and wrote three. The first opens on clouds that recall her robes and flowers that recall her face. Then the emperor himself tuned a jade flute and played along. If those songs lie behind this picture, the flute has passed from the emperor's hands into hers.",
+  "by": "Opus 5.5"
+ },
+ "utagawa-kunisada-onoe-kikugoro-iii-as-hayano-kanpei": {
+  "about": "Onoe Kikugorō III, drawn by Kunisada, played Kanpei in August 1816, a year after taking a stage name no actor had held for almost thirty years, and handed down his staging of the part to his acting house.",
+  "deep": "Kanpei is admitted to his lord's avengers only as he dies, and a misreading brings him there. Hunting on a rainy night, he fires at what he takes for a wild boar, finds a man shot, and, without examining the body, takes the purse from him: money he needs to join them. Next day, believing the dead man his father-in-law, he cuts his belly. Only then does a comrade examine the father-in-law's body and find a sword wound: Kanpei's shot had killed the murderer, and his name goes on their roll as he dies. This print shows him alive and armed, which in his story places him outside their ranks.",
+  "by": "Opus 5.5"
+ },
+ "unknown-portrait-of-minamoto-no-yoritomo": {
+  "about": "The famous portrait in Kyoto that this anonymous silk copies carries no writing. Here, panels name Yoritomo outright, so the copy was cited in support of the traditional belief that the Kyoto portrait shows him.",
+  "deep": "This copy's own eulogy, at top left, became the evidence against its age. In 1995 a historian proposed that the portrait it copies may show a later Ashikaga lord. The next year Uwayokote Masataka caught the eulogy dating Yoritomo's uprising a year late and calling him shogun where his contemporaries said General of the Right, and it struck him as written after 1868. Conservation found physical signs that the copy may have been made as late as the Edo period, and Kuroda Hideo put it in the eighteenth century or later. The repair also reportedly showed that the eulogy was not added afterwards, and if so the painting can be no older than its wording.",
+  "by": "Opus 5.5"
+ },
+ "gen-ki-scenes-of-ghosts-and-monsters": {
+  "about": "About 46 centimetres of an eleven-metre handscroll painted in 1778 by Genki, a pupil of Maruyama Ōkyo. In it, monsters in a court noble's dilapidated mansion amuse themselves at tea, poetry, dance and the board game go.",
+  "deep": "The kitchen that closes the scroll is where its readers part company. For William Anderson, cataloguing it in 1886, a cock crowing there meant early morning, and “the horrors that have gone before are but the disordered fancies of a dream”. A Japanese catalogue essay finds a samurai household at work there instead, and an intention that “seems to be a satirical comparison between the nobility in decline and the increasingly prospering samurai class”, made with sympathy for the court. Even the sun in that scene has been read as rising and as setting. Some five metres of painting short of the kitchen, the monsters in this passage have the house to themselves.",
+  "by": "Opus 5.5"
+ },
+ "kawanabe-kyosai-humorous-sketches-of-animals-sumo-bout-betwe": {
+  "about": "The first of the Chōjū-giga animal scrolls, of the twelfth century, sets a frog and a hare at sumo. Kawanabe Kyōsai drew the match again in 1879, reportedly at the British surgeon William Anderson's request.",
+  "deep": "The frog in this ring is the animal the painter is said to have first drawn from life. At three, relates the 1887 picture-biography he illustrated, he was given a frog on the way to his mother's village and drew it on his emptied sweets bag. On his sickbed, by one account, he asked for a garden stone carved into a toad to stand on his grave; the toad-shaped stone there now is a natural one, and is said to be a different stone. On this sheet the frog appears ten times, wrestling a rabbit in the ring and crowding round it, drawn from the front, from the side and from behind.",
+  "by": "Opus 5.5"
+ },
+ "tsukioka-yoshitoshi-fujiwara-no-yasumasa-playing-the-flute-b": {
+  "about": "By its own account, this woodblock triptych is the picture Tsukioka Yoshitoshi showed, as a painting, at the 1882 Painting Competitive Exhibition, the first of the government's two painting shows, which barred Western-style work.",
+  "deep": "Twice that night the man at right walked behind the flute player: first to rob him, then at his bidding. In the two medieval tellings the robber Hakamadare dogged him, stamping up close and falling back, while the man played on; the playing stopped only when Hakamadare at last drew and ran at him. The man asked who he was, told him to come along and played again. At home he gave the robber a thickly wadded robe, telling him to come and ask when he needed clothes. Here it is still the first walk: the robber's hand at the hilt is bare, the mail ending at the wrist, the sword not yet drawn.",
+  "by": "Opus 5.5"
+ },
+ "unknown-haniwa-in-the-shape-of-a-woman": {
+  "about": "Made for a burial mound in sixth-century eastern Japan, she was photographed in 1896 for an English translation of Japan's chronicle, to go with its story of clay figures replacing living men at a prince's tomb.",
+  "deep": "Her stand was made to hold her up in the open, and the open would have destroyed her. The chronicle that tells how such clay figures began gives them a second name, tatemono, \"things set up\". William Gowland judged from their stands that they had stood above the mound, not inside it, and wrote in his paper of 1897 that they \"would be rapidly destroyed as long as they stood above the ground\": only those overturned by chance and covered with earth could last. By his reasoning she lasted because she once fell, and the cracks she was mended along run through the very stand meant to keep her upright.",
+  "by": "Opus 5.5"
+ },
+ "anders-zorn-nude-woman-combing-her-hair": {
+  "about": "Zorn painted this nude in 1907 at Mora, the Dalarna village he had come home to from Paris, and wrote the place into his signature: a young woman doing up her hair in a timber room.",
+  "deep": "The charge most often laid against these nudes, that they were voyeuristic, finds little to hold on to here. The woman is neither caught unawares nor arranged for display: she faces us, looks straight out, and carries on with what she is doing. A local word, Zornkulla, grew up for the young Dalarna women Zorn painted, as though painting them had made them his; this canvas leaves her to her own business. Nothing in the room waits on the viewer. The hair is being bound, the green cover hangs in loose folds, and she looks straight out while her hands keep working.",
+  "by": "Opus 5.5"
+ },
+ "edouard-vuillard-untitled-2": {
+  "about": "A woman lying with her back to us, painted in oil about 1891 on a piece of card some twelve centimetres by nineteen, when Vuillard, at twenty-three, was working small among the Nabis.",
+  "deep": "This small board takes Maurice Denis almost at his word. In August 1890 Denis told the painters around him that a picture, before it is a war horse, a nude woman or some anecdote, is essentially a flat surface covered with colours assembled in a certain order, and Vuillard, a year later, makes the order come first. A woman lies here, unclothed or under a sheet, and the painting will not say which: what it offers before anything else is one chalky cream and a few darks, set side by side on card. The woman arrives afterwards, put together by the swing of the brush through the cream.",
+  "by": "Opus 5.5"
+ },
+ "camille-pissarro-harvest": {
+  "about": "Pissarro painted this harvest in 1876 at Montfoucault, the Mayenne farm of his friend the painter Ludovic Piette, whose hospitality and support helped carry Pissarro's growing family through the hard years of the 1870s.",
+  "deep": "The farm in this picture belonged to a friend, and the friendship is its hidden subject. Ludovic Piette, a painter himself, gave Pissarro's family food, encouragement and a place to work through the lean years of the 1870s, and Pissarro painted his fields at Montfoucault in winter and in summer. In the spring of 1877 both men showed their pictures at the third Impressionist exhibition. A year later, in April 1878, Piette was dead at fifty-one, and the son born to Pissarro that year was named Ludovic after him. The harvest stays as it was in the summer of 1876, the stacks built and a last sheaf still being carried.",
+  "by": "Opus 5.5"
+ },
+ "tsukioka-yoshitoshi-one-hundred-aspects-of-the-moon-how-hope": {
+  "about": "Ariko loved the courtier Tokudaiji Sanesada, far above her station, and the poem in the cartouche is hers, wondering whether to sink beneath the waves. Yoshitoshi's sheet of 1886, from his Hundred Aspects of the Moon.",
+  "deep": "In the tale she goes under. Ariko, in love with a courtier far above her, drowns herself, in one telling a shrine attendant at Itsukushima, in another a court lady whose ghost tells the story in a Noh play; the poem in the cartouche is her own last thought, the wish to sink beneath the waves and see her beloved from the Moon Capital. Yoshitoshi stops the print short of the act. He keeps her in the boat, eyes closed, the biwa silent, and lays the one clear stretch of water before her, where, in a series about the moon, light on the sea stands in for the moon itself.",
+  "by": "Opus 5.5"
+ },
+ "ferdinand-keller-bocklins-grab": {
+  "about": "Keller's homage to Böcklin, begun when Böcklin died in 1901, is painted in the dead man's own manner, and shows not his real grave near Florence but one out of his Isle of the Dead.",
+  "deep": "To give Böcklin a grave, Keller borrowed Böcklin's eyes. A painter of imperial apotheoses, director of an academy, set his own manner aside for a colleague's, in an act that has been called one of enormous reverence and a very unusual one, and the picture asks to be read as that borrowing. Only someone who knew Böcklin's pictures could see it whole: the cypress wall, the rock-cut door and the dark water are quotations from another man's pictures, signed in capitals with Keller's own name and hung in Karlsruhe a year after the funeral. At the door stands the picture's one living figure, a mourner with a harp set against the stone.",
+  "by": "Opus 5.5"
+ },
+ "claude-monet-the-turkeys": {
+  "about": "Painted for the grand salon of Ernest Hoschedé's château at Montgeron, Monet's turkeys were shown in 1877 as an \"unfinished decoration\", and never hung there: their patron went bankrupt that same year.",
+  "deep": "In June 1909 Monet saw his turkeys again at his dealer's and wanted them back. He wrote to their owner, the princesse de Polignac, that his means would not stretch to the thirty thousand francs he had heard asked for this very old painting, and wondered whether, in deference to the work's creator, she might allow a discount. She declined. She had just bought a house in London, and the picture was to be its most beautiful ornament. So the decoration painted for a salon it never reached was to have its room after all, only not the painter's: a lawn, a flock and a strip of château, kept for someone else's wall.",
+  "by": "Opus 5.5"
+ },
+ "kobayashi-kiyochika-burning-of-the-imperial-diet-building": {
+  "about": "Japan's first parliament building, wooden and less than two months old, burned down on a January night in 1891. Within weeks Kiyochika's triptych of the fire was on sale, at eight sen with postage.",
+  "deep": "The print fixes the one night between two buildings. Within weeks of the fire the House of Peers was meeting in the ballroom of the Imperial Hotel, and by October 1891 a second temporary hall, wooden and Western in style like the first, had been put up. Kiyochika's triptych was on sale in between, while Japan's new parliament had no house, and it shows the first one at the stage when it could still be pictured whole: one wing already reduced, above its roofline, to timbers and chimneys, the other still standing whole, with a thin plume just starting from the vent under its gable.",
+  "by": "Opus 5.5"
+ },
+ "katsushika-hokusai-waterfall-at-aoigaoka-in-the-eastern-metr": {
+  "about": "The one man-made fall in Hokusai's tour of waterfalls, about 1832–33: at Aoigaoka in Edo the overflow of the Tameike reservoir dropped over a built edge into the shogun's outer moat.",
+  "deep": "Seven of the falls in this tour are in the provinces, wild water in mountain country that a traveller set out to see, and the eighth is in the shogun's own city. It is not even a natural fall. The Tameike's overflow went over a built lip into the castle's outer moat, a piece of the city's plumbing that had become a sight, and Hokusai puts it in his series of famous waterfalls on equal terms with the cataracts, then surrounds it with people who have no reason to look up. The water drops behind a porter who has set down his load and stands resting, a hand raised to his head.",
+  "by": "Opus 5.5"
+ },
  "eugene-burnand-the-disciples-peter-and-john-running-to-the-t": {
   "about": "In John's gospel the beloved disciple outruns Peter to the tomb, stoops at the entrance and stays outside; Peter, arriving second, goes in first. Burnand's 1898 canvas shows them running, that reversal still ahead.",
   "deep": "The run turns devotional in the hands. In 1920 the critic Robert de la Sizeranne saw the whole Resurrection in the runners' eyes. The theologian Jérôme Cottin held in 2017 that the canvas is explicitly religious only by its title, so plainly that one critic thought the painter irreligious. Both follow from Burnand's rule, as his historian Philippe Kaenel describes it: show only what can be tangibly understood. By that rule the eyes prove little, since a narrowed stare and a widened one fit any urgent errand. The title's claim rests on John's laced fingers, Peter's hand flat on his black cloak, and a tomb somewhere beyond the canvas, the way both men are looking.",
@@ -3124,8 +3224,10 @@ about: "Lithuania was the last pagan nation in medieval Europe; Matejko's 1888 c
 by: "Opus 4.8" },
 
 "peasant-coffin": {
-about: "Director Andrzej Wajda wrote that he knew no other painting in Polish art where tragedy strikes with equal force; Aleksander Gierymski's 1895 canvas, his last figural composition, shows a couple waiting outside with a small blue coffin.",
-by: "Opus 4.8" },
+  "about": "Aleksander Gierymski first called this canvas \"Ostatnie\", a title meaning \"The Last\". Painted around 1894, it sets a peasant man and woman by a cottage wall beside a small coffin lid, read as their last child's.",
+  "deep": "Its two risks, a small blue coffin lid and grief painted largely in pale rose and lilac, split reviewers in Vienna in January 1896. For Felix Salten the blue lid told of a dead person in the house, and the two sat like worn-out beasts of burden, \"too tired to break out in lament\". Steininger thought so small a coffin for such old people a whim, and mocked skin painted rose \"with a touch of lilac\"; Fr. Stern called the picture \"a plein-air creation of shattering effect\". All three called the couple old, yet above his greying beard the man's hair is still dark.",
+  "by": "Opus 5.5"
+ },
 
 "union-of-lublin": {
 about: "Painted to mark the 300th anniversary of the 1569 Polish-Lithuanian union, Matejko's 1869 canvas was acclaimed in Paris and earned him the Légion d'honneur — the work that first turned Polish attention toward the positive moments of their shared past.",
@@ -3237,8 +3339,10 @@ by: "Opus 4.8" },
 },
 
 "the-rescue": {
-about: "John Ruskin declared Millais's 1855 painting the only great picture at that year's Royal Academy — singling out a fireman hauling children from a blaze, a subject Millais chose to honour men he watched fight a London fire in 1854.",
-by: "Opus 4.8" },
+  "about": "After seeing a roof fall in with two firemen on a rafter, Millais said, his brother recalled, \"My next picture shall be of the fireman.\" Here, in 1855, one brings three children to their kneeling mother.",
+  "deep": "The fireman's clothes stay dark in a light that reddens the children, and in 1855 that looked like an error. The Athenaeum doubted \"the truth of the crimson glare\"; the Art Journal knew not \"why the dress of the fireman is not at all lighted\". John Ruskin, in a sixpenny pamphlet, called it \"the only great picture exhibited this year\" and answered those who found the fireman's arm too black in the red light: \"near black, compared with other colours, is always black. Coals do not look red in a fire, but where they are red hot.\" The burning wood behind his legs is painted that way, its grain black, its red in the embers.",
+  "by": "Opus 5.5"
+ },
 
 "the-pioneer": {
  "about": "By casting settler life in a triptych — the format of religious altarpieces — McCubbin's 1904 painting deliberately elevated the Australian pioneer to a near-sacred subject, tracing one family from bush clearing to a grave he never said was theirs.",
@@ -3618,8 +3722,10 @@ by: "Opus 4.8" },
 },
 
 "the-horse-fair": {
-about: "To sketch at Paris's horse market without harassment, Bonheur obtained a formal police permit to wear male clothing; she spent eighteen months visiting the market twice a week before finishing this 1853 canvas.",
-by: "Opus 4.8" },
+  "about": "The minister Morny, choosing a State commission from Rosa Bonheur's studies, judged her too new to painting horses and took a haymaking scene. She painted this Paris horse market anyway, for herself, over 1852–55.",
+  "deep": "At this procession's crest, where the black horse and the white rear together, one face is shown and one half hidden: below the white's head a moustached man looks up, lips parted, while the black's mane falls across its rider's eye. In 1858 John Ruskin found the human faces \"nearly all dexterously, but disagreeably, hidden\": the rider bears him out; the man below, one of several in plain view, does not. The procession had a classical model. Among dealers trying out their horses, the painter later recalled, she would think of the friezes of the Parthenon, her idea being \"not to imitate … but to interpret\", and she peopled hers with men in smocks and caps.",
+  "by": "Opus 5.5"
+ },
 
 "woman-with-a-lute": {
 about: "She is tuning, not playing — head already turned to the window, the lute suspended mid-preparation, songbooks open for a duet partner not yet arrived, and a map of Europe on the wall behind her: Vermeer, c. 1662–63.",
@@ -4915,8 +5021,10 @@ by: "Opus 4.8" },
 },
 
 "an-experiment-on-a-bird-in-the-air-pump": {
-about: "A travelling lecturer pumps air from a glass vessel containing a white cockatoo while a family watches by candlelight, each face registering a different response to the bird's impending suffocation. Wright holds Enlightenment curiosity and its moral cost in one frame. Joseph Wright of Derby, 1768.",
-by: "Opus 4.8" },
+  "about": "The white cockatoo in Joseph Wright of Derby's 1768 canvas is a bird nobody would really have risked in this experiment. His first sketch has the bird normally used, a lark or a thrush.",
+  "deep": "Air can still be let back into the bird's glass: the lecturer's fingertips are poised on the stop-cock, and nothing on the canvas says whether he will turn it in time. In Robert Boyle's book of 1660 the stop-cock was turned as soon as a lark began to thrash, \"yet it came too late\". Valentine Green's mezzotint of the next year, presumably with Wright's sanction, showed the air just perceptibly coming back. The historian Judy Egerton asks whether the boy holding the birdcage's cord is to lower it for a revived bird or haul it out of sight for a dead one. He and the lecturer both meet our eyes.",
+  "by": "Opus 5.5"
+ },
 
 "the-fighting-temeraire": {
 
@@ -5058,8 +5166,10 @@ by: "Opus 4.8" },
 },
 
 "tiger-in-a-tropical-storm": {
-about: "Rousseau claimed his dense jungle scenes drew on military service in Mexico, but he never left France — the vegetation here was pieced together from the Jardin des Plantes in Paris, its zoo, and taxidermy specimens. Painted in 1891, it was his first jungle canvas and was shown at the open Salon des Indépendants.",
-by: "Opus 4.8" },
+  "about": "Shown in 1891 as \"Surpris!\", Rousseau's tiger was first read as the hunter: a review called it his \"tiger surprising a prey\", and a \"Tiger chasing explorers\" in his 1895 list has been identified with it.",
+  "deep": "Beginning or end of painting: the reviewer who put this tiger at one or the other would not say which. His Paris dispatch of March 1891, unsigned and attributed to the young Félix Vallotton, then showing at the same exhibition, calls Rousseau a terrible neighbour who crushes everything and names the tiger the alpha or the omega of painting, so disconcerting that deep-rooted convictions stop and hesitate. Not everyone laughs, he adds: it is always fine to see a belief, whatever it is, so pitilessly expressed. Rousseau's makes no exception for the tiger. Its open mouth, green between the pale teeth, is laid in as flat colour, like the leaves around it.",
+  "by": "Opus 5.5"
+ },
 
 "the-execution-of-lady-jane-grey": {
 about: "Delaroche painted the blindfolded sixteen-year-old queen groping for the block in 1833, and the canvas was a sensation at the 1834 Paris Salon. It then vanished into storage, was assumed destroyed in the 1928 Thames flood, and lay forgotten until a Tate curator unrolled it by accident in 1973 — with another painting rolled inside it.",
@@ -5122,16 +5232,20 @@ about: "Excavated in 1939 from a ship burial in Suffolk, the helmet arrived in o
 by: "Opus 4.8" },
 
 "wheatfield-with-crows": {
-about: "Everyone calls it Van Gogh's last painting, but it wasn't — scholars have long established from his letters that he made other works after this one. Painted in July 1890 on the double-square format he used in his final Auvers weeks, it shows three dirt paths converging in a wheat field under a bruised sky, crows peeling off in every direction.",
-by: "Opus 4.8" },
+  "about": "This canvas, crows included, is most likely one of two 'wheatfields under turbulent skies' that Van Gogh, at Auvers in July 1890, almost believed would tell 'what I consider healthy and fortifying about the countryside'.",
+  "deep": "Weeks and several works separate this canvas from Van Gogh's death: it was most likely painted by about 10 July 1890, more than two weeks before he died, and yet it has been moved ever nearer. In 1914 his sister-in-law Jo van Gogh-Bonger felt in his final pictures 'imminent disaster, coming closer like the black birds'. Meyer Schapiro in 1946 dated it 'a few days before his suicide'; Antonin Artaud in 1947, two days, yet he found the picture rich and sumptuous. Martin Bailey credits Irving Stone's 1934 novel and its 1956 film with fuelling the link. The flock reaches from one big crow laid across the wheat back to deep-blue birds among the black.",
+  "by": "Opus 5.5"
+ },
 
 "skull-of-a-skeleton-with-burning-cigarette": {
 about: "Van Gogh made this at the Antwerp academy in early 1886, where drawing skeletons was a standard exercise — but painting them was not. Stuffing a lit cigarette into the jaw was a student-prank subversion of a tedious anatomy drill, not a meditation on mortality, and it shows the wit he rarely gets credit for.",
 by: "Opus 4.8" },
 
 "almond-blossom": {
-about: "Van Gogh painted this in February 1890 at Saint-Rémy as a gift for his newborn nephew, also named Vincent, whose birth he celebrated from inside a psychiatric asylum. The look — blossoming branches floated close against a flat turquoise sky — comes directly from the Japanese woodblock prints he had been collecting for years.",
-by: "Opus 4.8" },
+  "about": "When Theo and Jo van Gogh named their newborn son after him, Vincent, who would rather the boy had been named Theo, began this canvas in February 1890 at Saint-Rémy \"for him, to hang in their bedroom\".",
+  "deep": "The calm its painter claimed for this canvas belongs to how it was painted, and the sky bears it out. That spring, ill and in his words \"totally stupefied\", he wrote to his brother Theo of the last canvas of the branches in blossom: \"you'll see that it was perhaps the most patiently worked, best thing I had done, painted with calm and a greater sureness of touch. And the next day done for like a brute.\" All over the tree the blue halts short of twig after twig, and here and there on the left a thin twig is little more than pale canvas left bare between strokes of blue.",
+  "by": "Opus 5.5"
+ },
 
 "tree-roots": {
 about: "In 2020 a researcher matched the painting's tangled root mass to a specific hillside on a road 150 metres from Van Gogh's inn in Auvers-sur-Oise, using a 1905 postcard as a key — the largest trunk is still standing. This identification strengthened the argument that Tree Roots, not Wheatfield with Crows, was his final work, likely made on 27 July 1890.",
@@ -6000,8 +6114,10 @@ by: "Opus 4.8" },
 
 
 "claude-monet-arm-of-the-seine-near-giverny": {
-about: "One of the Mornings on the Seine, the 1897 series Monet made by rowing out to his studio boat in the dark so that first light would find him already at the easel. He worked the same branch of river near Giverny through some twenty canvases, changing only as the mist did, and showed the group to acclaim in 1898.",
-by: "Fable" },
+  "about": "One of Monet's Mornings on the Seine: before first light he rowed out to a punt moored off the bank as his studio, where his canvases waited, fastened together in numbered pairs.",
+  "deep": "Twenty-one canvases of one stretch of river add up to a subject no single canvas holds: the morning light coming in. If, as seems likely, Monet took up each one only while its own moment lasted, every surface in the series is one state of the same arrival, and when a group of them hung together in Paris in 1898 the order of a morning could be read along a wall. Seen alone, a canvas from such a series is a sentence lifted from a paragraph, and this one has stopped at the moment when the sky, wide open above, narrows down to meet the river only at its turn.",
+  "by": "Opus 5.5"
+ },
 
 "anders-zorn-mrs-veronica-heiss": {
 
@@ -6029,8 +6145,10 @@ by: "Fable" },
  },
 
 "claude-monet-twilight-venice": {
-about: "From Monet's only visit to Venice — three months in the autumn of 1908, aged sixty-eight, that yielded some thirty-seven canvases. San Giorgio Maggiore stands against the afterglow across the basin. He kept finishing the series from memory at Giverny and didn't show the Venices until 1912, when Bernheim-Jeune presented twenty-nine at once.",
-by: "Fable" },
+  "about": "Monet's only visit to Venice, in the autumn of 1908, began as a holiday and turned into a campaign, though he warned his dealer he would bring home only \"beginnings\", souvenirs for himself.",
+  "deep": "The canvas holds one Venice evening, and holding it took more than two years. On the spot Monet called what he was making trials and beginnings, and he left the city in December 1908 with the canvases unfinished. He began to retouch them only in November 1910, at Giverny, while Alice, whose daily letters are the record of the trip, was failing; she died the following spring, and in 1912 twenty-nine of the Venice pictures were shown together in Paris without her. Whatever the studio added, it added to an hour that was already gone. The date painted under his name, 1908, is the date of the evening.",
+  "by": "Opus 5.5"
+ },
 
 "teodor-axentowicz-ko-omyjka": {
 about: "The kołomyjka is a Hutsul whirling dance, and this 1895 canvas is the painting that fixed Axentowicz's name to the Carpathian highlanders he returned to all his career. Fresh from a decade in Paris and newly appointed professor in Kraków, he gave Polish art one of its defining folk images — motion first, ethnography second.",
@@ -6412,8 +6530,10 @@ by: "Opus · Fable" },
  },
 
 "claude-monet-water-lilies": {
-about: "A late Giverny canvas from 1918, the year an armistice-era Monet — cataract-clouded and nearing eighty — was reworking his lily pond in ever-freer colour. It belongs to the easel-scale studies, not the room-sized Grande Décoration panels he offered the French state that November through his friend Clemenceau. He painted these final ponds almost from memory of a motif he had tended for two decades.",
-by: "Opus · Fable" },
+  "about": "Monet had four weeping willows planted round the lily pond at Giverny. This canvas of 1916–19, nearly two metres wide, keeps only their hanging falls, at either side: no trunk or bank says which tree.",
+  "deep": "No date appears here, and the name at lower right is not in Monet's hand, though in November 1918 he wanted a date and his signature on two large decorative panels he was finishing. The day after the Armistice he wrote to Clemenceau, then prime minister, that he wished to sign them with the day of Victory and asked him to offer them to the State: a small thing, but the only way he had of taking part in the victory. This canvas, not one of them, stayed with his family, whose large water lilies are said never to have been exhibited while he lived. That name is a studio stamp with nothing after it.",
+  "by": "Opus 5.5"
+ },
 
 "hiromitsu-nakazawa-mist-nude": {
 

@@ -76,3 +76,16 @@ splices them in and proves that every other entry is unchanged. Canon-row fixes 
   (plaster ≠ marble ≠ bronze cast; a replica mural ≠ the canvas).
 - The app shows `w.img` from the canon row first. An `art_hires` row alone only upgrades the zoom, so swapping a wrong
   image needs the canon row's `img` / `imgGrid` / `imgZoom`, plus `art_imgsize.js` and the palette.
+
+## API-eye mode (wave 37, Fuad 2026-11-09: "reading the artwork … gets billed by API … rest you'd be doing yourself")
+Every LOOKING stage can run through the Anthropic Messages API instead of a subagent: `apieye.js` (copy into the workshop with
+`apieye_tool.py` as `tool.py` and `briefs/ASK_BRIEF.md`). Modes: `p1 <id>` (the blind phase 1 — RULE_CARD + PHASE1/STUDY/EYE briefs,
+the plate, the tile grid, `zoom`/`colour` tools on the full-resolution plate), `audit <id>` (the independent audit, its whole-image
+account FORCED first by a two-turn exchange — the tour is sent only after the account comes back), `ask <id> <q.md> [--plate f]
+[--tag t]` (plate questions: plate identity, every repaired visual claim, the seal's PLATE role, companion plates), `cold <LETTER>
+<ids>` (the visitor cold read on Fable 5.1). The key is read from `fuad.au/.env`; spend goes to `api_spend.jsonl`. Replies are parsed
+leniently (`fixjson.js` repairs an unescaped quote). The orchestrator writes research, fusion, phase 2, the repair text, the reads and
+the seal's WEB/TEMPLATE roles itself, and sends every changed visual claim back to the plate (`ask`) before it ships — in wave 37
+those checks refuted about twenty of the orchestrator's own repair wordings. `patch.py <id> <patches.json> [--tag repair|seal]`
+applies exact-span patches (each OLD must occur once) with a backup. Wave 37 cost ≈ $33 for ten works at list prices (p1 ≈ $1,
+audit ≈ $0.8, each ask ≈ $0.15–0.6, a cold packet of five ≈ $1.6).
