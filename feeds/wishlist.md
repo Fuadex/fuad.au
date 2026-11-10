@@ -1,6 +1,6 @@
 # Wishlist — what Fuad wants to watch, play or read
 
-Generated 2026-11-09 · 1535 titles · per medium, newest release first (unreleased titles at the top). Seen list: fuad.au/culture/seen.md · both as JSON: fuad.au/culture/culture.json
+Generated 2026-11-10 · 1535 titles · per medium, newest release first (unreleased titles at the top). Seen list: fuad.au/culture/seen.md · both as JSON: fuad.au/culture/culture.json
 
 ## Movies (1149)
 - **Obsession** — 2026 · Curry Barker · US · Horror, Thriller · added by hand · added 2026-09-27

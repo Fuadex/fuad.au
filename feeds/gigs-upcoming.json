@@ -1,46 +1,7 @@
 {
- "generated": "2026-11-09",
- "count": 743,
+ "generated": "2026-11-10",
+ "count": 740,
  "shows": [
-  {
-   "date": "2026-11-09",
-   "artist": "Hollow suns",
-   "title": "SAY HELLO TO NEVER RECORDINGS Presents 【SHINER JAPAN TOUR 2026】",
-   "venue": "Shindaita FEVER",
-   "city": "Tokyo",
-   "plays": 91,
-   "seenLive": 0,
-   "tier": "top",
-   "japanese": true,
-   "url": "https://www.fever-popo.com/schedule/2026/11/0918.html",
-   "added": "2026-11-05"
-  },
-  {
-   "date": "2026-11-09",
-   "artist": "THE ORAL CIGARETTES",
-   "title": "WANDER ABOUT 放浪 TOUR 2026 関東編",
-   "venue": "mito LIGHT HOUSE",
-   "city": "Mito",
-   "plays": 46,
-   "seenLive": 1,
-   "tier": "seen",
-   "japanese": true,
-   "url": "https://ticketjam.jp/tickets/the-oral-cigarettes/event/1262211",
-   "added": "2026-11-05"
-  },
-  {
-   "date": "2026-11-09",
-   "artist": "首振りdolls",
-   "title": "「激突★流血キノコDolls」",
-   "venue": "Shinjuku LOFT",
-   "city": "Tokyo",
-   "plays": 6,
-   "seenLive": 0,
-   "tier": "also",
-   "japanese": false,
-   "url": "https://www.loft-prj.co.jp/schedule/loft/schedule/364462",
-   "added": "2026-11-05"
-  },
   {
    "date": "2026-11-10",
    "artist": "Wienners",
