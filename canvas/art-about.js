@@ -3,6 +3,106 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "rembrandt-the-jewish-bride": {
+  "about": "A dealer called Rembrandt's late-career couple Jephthah and his Daughter in 1828, a father about to sacrifice her. A collector's inventory made her a Jewish bride adorned by her father: the name stuck; later readings dropped the father.",
+  "deep": "Upright and unwatched, the two stand in the dark, though the story now attached to them turns on a watcher. In Genesis, Isaac passes Rebecca off as his sister until King Abimelech sees them caressing. Rembrandt's drawing of the scene, of about 1665, follows Raphael's fresco: she sits on Isaac's lap, and the king looks on. An X-ray from the 1993 restoration is reported to show this pair seated at first too, then stood and set apart. If so, the canvas was made by taking out the king, the lap and the ruse. Without the lap, the embrace must pass behind her back, surfacing only as his hand at her far shoulder.",
+  "by": "Opus 5.5"
+ },
+ "johannes-vermeer-woman-in-blue-reading-a-letter": {
+  "about": "In 1860 the critic Thoré-Bürger hesitated long over whether Vermeer had painted this letter-reader, whose paint looked thin, dry and much rubbed; her face and the drawing of her bare arms won him over.",
+  "deep": "The pale dots on the tabletop, a string of pearls, had been touched yellow by a later hand. Others narrowed a chair leg, covered the brass nails on the right-hand chair, greyed the purplish wall under it and stretched the edges until the image stood tall. The 2010–11 treatment took all of it off, and the picture is squarer again. There was older harm too. Heat, probably in an early lining, had blistered the paint from the ground up. A conservator suggests the blistering may be the rubbed look behind a critic's doubt in 1860. One loss is permanent: the wall's ultramarine has decayed, and the grey-green at her back was painted bluer.",
+  "by": "Opus 5.5"
+ },
+ "jan-steen-the-feast-of-saint-nicholas": {
+  "about": "Saint Nicholas's Eve, derided in the Dutch Republic as \"Popish\", painted around 1665–68 by the Catholic Jan Steen: sweets for good children, a John the Baptist doll, a switch in a shoe for the wailing boy.",
+  "deep": "Two shoes carry the joke. One, dark, is held up by the older girl, a switch rising from it; the other lies tipped over at bottom centre, tan and empty, and the scholar Kloek saw the pair as a visual rhyme. He read further. Teasing children by hiding their presents was, he notes, part of the feast's fun, and he took the old woman at the curtain to be beckoning the weeping boy, a better present having evidently been hidden in the four-poster. On that reading the tears are the first turn of a household game.",
+  "by": "Opus 5.5"
+ },
+ "jacob-van-ruisdael-the-windmill-at-wijk-bij-duurstede": {
+  "about": "The round mill Ruisdael painted on Wijk bij Duurstede's town wall was demolished in the early 1800s. In 1911 the art historian Hofstede de Groot declared it still standing, mistaking another, square-based mill there for it.",
+  "deep": "The castle at the mill's left, with its spired tower, probably sets the latest date for the town as painted: after the French occupation of 1672–73, its walls were partly demolished. Ruisdael left out the town's Women's Gate, which stood a short way off; a drawing of 1750 shows it. The earliest date comes from the squat, never-finished church tower. In 1668 the town ordered clock faces for its four sides, and the Ruisdael specialist Seymour Slive dated the picture by them, probably to that year or a few after. You can find the face he read high on that tower: a small round disc, its dial too small to read.",
+  "by": "Opus 5.5"
+ },
+ "claude-monet-sur-la-falaise-de-dieppe": {
+  "about": "Monet painted this view from the Val Saint-Nicolas, on the cliffs near Dieppe, in 1897. By early February a local company had leased the ground for English games; the navvies, he wrote, would soon reach his motifs.",
+  "deep": "Until March 1903 the canvas almost certainly carried no signature. That month Monet offered a picture of this title and size to a sale held for the painter Victor Vignon, whose place in the impressionists' 1882 show he had once objected to, and wrote that he had only had to sign it, leaving the frame to the dealer. Three days earlier he had written that his canvases of London pleased him one day and looked all bad the next. Beside them this cliff, kept in his studio since it was painted, needed, if it is that picture, nothing more than the name now in dark paint at lower right.",
+  "by": "Opus 5.5"
+ },
+ "kobayashi-kiyochika-fireworks-at-ryogoku": {
+  "about": "Fireworks over the Sumida, designed by Kiyochika around 1880. Nishimura Kumakichi recalled printing what was probably this design: its solid black sky needed a new rubbing pad, bought on borrowed money, and it sold well.",
+  "deep": "Where the passenger beside the oarsman meets the cabin roof, figure and roof are one dark tone, with no edge between. Kiyochika's pencil-drawing manual of 1895 teaches the reverse: by the principle of light rays, a black ball on a black table must differ in dark and light within one black, since ball and table sit in different places. The lesson is headed kōsenga, light-ray pictures, the name his Tokyo views now go by, though no newspaper of the time is known to print it. This print mostly keeps the earlier way: the night a single black, and the light kept as pale as the bare paper of the margins.",
+  "by": "Opus 5.5"
+ },
+ "unknown-untitled": {
+  "about": "Commandant Doyen-Parigot, a cavalry officer, posed for Bourdelle's 1909 archer, holding an off-balance stance with a broom handle; in ten hours the body was fixed in clay, and at his request the face remade unrecognisable.",
+  "deep": "The bronze is signed with the model's year, 1909, but was cast more than a decade later. The archer had long since made Bourdelle's name when that cast was planned in 1922. That December he accepted the state's offer: the founder would cost 20,000 francs, he wrote, and he would give his work. The bronze the state bought for its museum of living artists repeats the nude and changes the rock. Two earlier labours, the Hydra and the Nemean Lion, were added in small relief on the tall rock his forward foot braces against.",
+  "by": "Opus 5.5"
+ },
+ "antonin-mercie-gloria-victis": {
+  "about": "Begun in Rome as France lost to Prussia, by Antonin Mercié, a twenty-five-year-old Prix de Rome winner. The plaster took the 1874 Salon's medal of honour for sculpture, unanimously; this bronze was cast a year later.",
+  "deep": "The winged woman has had to answer to three names. The title's word for her is Glory, yet nothing in her face exults. In the plaster at the 1874 Salon, the critic Louis Gonse saw a Fame, the winged herald, her hair stirred by the fierce breath of battle; but Fame's work is to proclaim, and these lips are shut. Reviewing the same Salon, Jules-Antoine Castagnary called her Justice, beautiful with contempt and trembling with indignation, holding up the body to show the generations as a memory and a remorse. No tremor reaches her features. The showing does: her eyes go out level, leaving the face beside her own for us to look at.",
+  "by": "Opus 5.5"
+ },
+ "toshusai-sharaku-actor-arashi-ryuzo-ii-as-the-moneylender-is": {
+  "about": "Sharaku drew this actor in 1794 as the moneylender of a revenge play, come to dun a lamed, ruined retainer. The role's name was a byword, stone and metal, for a man no money could move.",
+  "deep": "Both eyes are trained on someone within arm's reach, and two readings part over whether he means it. One finds a \"resolute grimace\", a creditor pulling back his sleeve perhaps to strike; the other, the \"cocky bravado\" of a bully whose eyes give away a coward. The print bears out either. The look is close and fixed, as a man's might be who intends to hit, yet it never meets ours, and the mouth stays clamped on whatever he would say. The gesture stops short too. One hand hauls the other sleeve up at the shoulder, and of the arm inside that sleeve, the one a blow would come from, nothing shows.",
+  "by": "Opus 5.5"
+ },
+ "utagawa-kunisada-view-of-futami-ga-ura-at-dawn": {
+  "about": "Actors and beauties were Kunisada's trade; around 1832–33, as Hokusai and Hiroshige raced into landscape, he designed a set of ten pure landscapes, Futami's roped rocks at dawn among them, then apparently let it drop.",
+  "deep": "The tablet at upper right calls this sheet a zu, a picture, of dawn at Futami, the word the poet Matsuo Bashō used for a painting of Futami he bowed before. His verse on it told its viewer not to doubt that the painted spray, the tide's flowers, was the bay's spring too. In a year's-end verse he bade everyone bow to Futami's sacred rope, and wrote it, a commentator explains, before a hanging scroll of the rocks, not at the shore. The shore was already worshipped from afar, through its likenesses. A print sold in Edo could carry that devotion further from Ise, and with it the rope and the two rocks it binds.",
+  "by": "Opus 5.5"
+ },
+ "claude-monet-belle-ile-rocks-cote-sauvage": {
+  "about": "Painting the rocks of Port-Domois on Belle-Île in 1886, Monet wrote to Caillebotte that he had got used to the Channel and knew how to go about it, “but the Atlantic Ocean is quite different”.",
+  "deep": "Every mark of water on this canvas keeps its own shape, and one account of the picture names those shapes: strokes flat and broad, upright or rounded, like circumflex accents and commas, in a handling very different from Monet's Normandy seascapes. The comparison is exact in one sense. Accents and commas are signs, and the sea here is assembled from distinct signs, set side by side and never worked into one smooth surface. On the Channel, by his own account, he had known how to go about it; on this coast he spelled the water out mark by mark, and even where the surf is thickest the touches stand apart, unmerged.",
+  "by": "Opus 5.5"
+ },
+ "claude-monet-debacle-at-vetheuil-view-of-lavacourt": {
+  "about": "When the frozen Seine broke up in January 1880, Monet painted its floes from Vétheuil, where he lived, looking across to Lavacourt; he returned to this stretch of river on two more canvases.",
+  "deep": "The ice on this canvas is mostly grey, and one reading of it asks for more. It has been said that Monet set primary and secondary colours side by side in the blocks of ice and so laid the foundation of Impressionism. At the canvas the claim holds only in part. The white of the pack is a grey made from many greys, with long strokes of blue and blue-green laid into it, and the warmer notes come further out, in small touches of rust-red and green under the floes drifting mid-river. There is no clean yellow in the ice at all. Colour on this river is kept to the edges and undersides of things.",
+  "by": "Opus 5.5"
+ },
+ "camille-pissarro-the-marguerite-church-knocke": {
+  "about": "Pissarro painted this village church at Knokke, a small resort near Bruges, in the summer of 1894. He had arrived in Belgium the day after President Carnot was assassinated, and a new law against anarchists kept him there.",
+  "deep": "From the cabbages to the clouds, this canvas is worked in small, patient touches, and that autumn Pissarro explained why. In a country seen for the first time, he told Lucien, “I have to analyze what I see carefully, I cannot embroider, I cannot give myself over to my fantasy, as in a country I know by heart. Hence the severe and dry quality, which, incidentally, will finally please by its very sincerity.” The church at the heart of the title gets no special handling: its spire and gable are built from the same small marks as the hedge in front of it.",
+  "by": "Opus 5.5"
+ },
+ "alfred-sisley-la-cote-du-c-ur-volant-a-marly-sous-la-neige": {
+  "about": "Sisley painted this snowbound hill road between Marly-le-Roi and Louveciennes, villages west of Paris, around the end of his years at Marly, in the late 1870s; it was long titled for the road to Louveciennes.",
+  "deep": "Some fifteen years after this winter Sisley set down his method in a letter to Adolphe Tavernier: the sky, he wrote, cannot be a mere backdrop, and he always began by painting it. Whether this canvas began with the sky cannot be known, but it is built as if the sky came first. The pale, broken cover above the road sets the key for everything under it, and the white of the snow is not a white of its own: the flecks of blue and lavender set into it are the sky's colours carried down to the ground, so that the road is painted in the colours of the sky above it.",
+  "by": "Opus 5.5"
+ },
+ "artur-loureiro-untitled": {
+  "about": "This moon spirit was painted at Kew, Melbourne, in 1888 by the Portuguese Artur Loureiro, a pupil of Cabanel in Paris who had reached Melbourne four years before, by one account an almost helpless invalid.",
+  "deep": "Shown alone, this canvas is half of a pair. Loureiro painted it in 1888 with The spirit of the Southern Cross, a picture of the same size, so that together they give bodies to two sights of the southern night: a moon, and a constellation that cannot be seen from the Europe he had left. Read that way, the picture is one term of an emblem as much as a mood, and its figure is less a woman asleep than the moon's attribute made flesh, her body folded to the crescent's curve and her veil drawn round the dark sky like a second, paler orbit.",
+  "by": "Opus 5.5"
+ },
+ "frans-hals-a-militiaman-holding-a-berkemeyer-known-as-the-me": {
+  "about": "Painted about 1628–30, Hals's laughing man with a tall glass may be a Haarlem civic guardsman: the buff coat is a soldier's, the medallion the kind guards received for special service, its portrait too sketchy to name.",
+  "deep": "Painted around 1630, the picture looked new again in 1872, when Édouard Manet saw it in Amsterdam, then hanging in the Trippenhuis, and in 1873 he painted Le Bon Bock, his own half-length drinker. The kinship is not in the subject alone. A painter of Manet's generation, arguing for pictures that kept the record of their making, could find the argument already made here: forms laid in quick strokes and never smoothed over, a few touches standing for a whole hand or a whole glass, and the speed of the brush still legible in this jerkin and this collar, each stroke where it landed.",
+  "by": "Opus 5.5"
+ },
+ "aelbert-cuyp-river-landscape-with-riders": {
+  "about": "Cuyp built this river view near Nijmegen in his Dordrecht studio in the mid-1650s, from drawings made on a journey up the Rhine and the Waal: Wyler lake at the left, the Duivelsberg rising at the right.",
+  "deep": "A real river country between Nijmegen and Cleves is lit here by a borrowed sun. Its light has been read as the golden brown glow of the Italian evening, learned from Jan Both, a Utrecht painter who had worked in Rome, and it turns a valley of named lakes and hills into a southern hour. The borrowing is selective. Warmth floods the distance and the slope on the right, and the riders' faces catch it, yet the heavy cloud at the top of the canvas stays cool and grey in its body, a northern sky held over the borrowed light.",
+  "by": "Opus 5.5"
+ },
+ "katsushika-hokusai-minamoto-no-muneyuki-ason-from-the-series": {
+  "about": "From One Hundred Poems Explained by the Nurse, about 1835: Hokusai takes Minamoto no Muneyuki's poem of a mountain village loneliest in winter, when grass and visitors have dried up, and fills it with hunters round a fire.",
+  "deep": "Only twenty-seven of a planned hundred pictures in this series were published, and the difficulty of reading them is given as one of the reasons. This sheet shows the difficulty and an answer to it. The poem's loneliness has not been thrown away: it is still there at the right, in the snow-loaded trees and the shelter beneath them, where a pot hangs from its hook and nobody can be seen. The picture moves the people out of that shelter and into the open, round a fire, so the empty place the poem mourns and the company it lacks stand on one sheet, a few steps apart.",
+  "by": "Opus 5.5"
+ },
+ "kitagawa-utamaro-abalone-divers": {
+  "about": "One sheet of Utamaro's three-sheet print, published in Edo around 1788–90: women travellers, probably pilgrims to the Benten shrine on Enoshima, watch abalone divers at work, and below them one diver swims under the water.",
+  "deep": "Enoshima's shrine to Benten put its treasures on show only once every six years, in the years of the Snake and the Boar, and in those years the island filled with pilgrims. The nearest to this print was the Boar year 1791, and it has been suggested that Utamaro and his publishers prepared it and its companions the winter before, for the crowds to come, though its style may be a little earlier. If so, the print sold the island's sights to the people who came to see them, and its buyers could find themselves in the women on the strand, sandalled and hatted for the road.",
+  "by": "Opus 5.5"
+ },
+ "kawanabe-kyosai-dancing-skeletons": {
+  "about": "A Meiji-era party of the dead by Kawanabe Kyōsai: a skeleton plays the shamisen beneath a broken paper lantern while others dance, some with bamboo swords at their sides, some with towels round their foreheads.",
+  "deep": "Half hidden in the bamboo, a skeleton with a cloth over its skull lifts a spray of thin sticks to its jaw, and they have been read as the bare ribs of a fan, raised to hide a laugh. The reading makes the whole party's joke in one gesture. To lift a fan to the mouth is a living courtesy, a way of covering amusement in company. Here the fan has lost its paper and the face has lost its lips, so there is nothing left to hide and nothing to hide it with, yet the hand still goes up, and the thin sticks still cross the jaw.",
+  "by": "Opus 5.5"
+ },
  "unknown-sappho": {
   "about": "Struck, it is said, by the pose of a model resting in his studio, James Pradier made a sketch only afterwards christened \"Sappho dreaming on the rock of Leucas\". The seated marble followed in 1852.",
   "deep": "To three critics in 1852 she was a woman at rest who had been told she was Sappho. In May, Gustave Planche held that without the catalogue's christening no one could guess her name. The Goncourt brothers' review breaks off as they begin to fault her for sleeping in her pose: Pradier had died in June. Alphonse Grün, owing the truth even to the dead, admired a beautiful dreamer and found no Sappho. Claude Vignon saw the reverse: the whole drama of a coming suicide. The resting model said to have lent the pose had her shift slipping from her right shoulder, at our left; Sappho's chiton slides from that shoulder too.",
@@ -6264,9 +6364,6 @@ by: "Opus · Fable" },
 
 },
 
-"claude-monet-gare-saint-lazare-monet-series": {
-about: "Having relocated from Argenteuil to lodgings near the station, Monet trained his easel on Paris's busiest terminus through the first half of 1877, producing twelve canvases of steam, iron and glass. Roughly eight were ready for the third Impressionist exhibition that April, where they hung together as a deliberate ensemble — an early experiment in the serial method he would push to haystacks and cathedrals.",
-by: "Opus · Fable" },
 
 "claude-monet-argenteuil": {
   "about": "These red-hulled sailing boats, moored at Argenteuil, were painted by Claude Monet around 1875 — the year he wrote to Édouard Manet that he had not a penny left and no credit at the butcher's or the baker's.",
