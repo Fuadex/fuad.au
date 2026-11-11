@@ -147,7 +147,7 @@ window.CANVAS_ARTWORKS = [
   // year: the Musée Rodin marble S.1002: group conceived c. 1882; marble commissioned by the state in 1888, carved 1888–98,
   // delivered 1898 (holder notice). `year` dates the finished marble, as the Canova MR 1777 row does. The old 1880 was
   // Wikidata's composition date. qid Q2418237 kept: no item exists for this marble alone (checked 2026-10-20, fix29).
-  // 2026-11-11 (wave 41 data flag): the marble was carved 1888–98 (Musée Rodin; the group conceived c. 1882); year 1898 = completion. art_data's 1880 is Wikidata's inception (the Gates of Hell project) and is not used for display.
+  // 2026-11-11 (wave 41 data flag): the marble was carved 1888–98 (Musée Rodin; the group conceived c. 1882); year 1898 = completion. art_data's year (Wikidata's 1880 inception, the Gates of Hell project) aligned to 1898.
   { id: "the-kiss", title: "The Kiss", artist: "Auguste Rodin", artistId: "rodin", qid: "Q2418237", qidTrusted: true, year: 1898, seenAt: "rodin", seenConfidence: "sure", loved: true, note: "Deck pick — rodin-2026-07-07." },
   { id: "arles-view-from-the-wheat-fields", title: "Arles: View from the Wheat Fields", artist: "Vincent van Gogh", artistId: "van-gogh", qid: "Q4792194", qidTrusted: true, year: 1888, seenAt: "rodin", seenConfidence: "unsure", wish: true, liked: true, note: "Deck pick — rodin-2026-07-07." },
   { id: "the-eternal-springtime", title: "The Eternal Springtime", artist: "Auguste Rodin", artistId: "rodin", qid: "Q3205458", qidTrusted: true, year: 1884, seenAt: "rodin", seenConfidence: "unsure", wish: true, note: "Deck pick — rodin-2026-07-07." },
@@ -1259,6 +1259,7 @@ window.CANVAS_ARTWORKS = [
     seenAt: "artizon", seenConfidence: "sure", loved: true },
   { id: "leon-wyczo-kowski-kopanie-burakow-i", title: "Kopanie buraków I", artist: "Leon Wyczółkowski", artistId: "leon-wyczo-kowski", qid: "Q24686044", qidTrusted: true, year: 1893,
     seenAt: "mnw", seenConfidence: "sure", loved: true },
+  // 2026-11-11 (data flag closed): the Ny Carlsberg Glyptotek canvas (inv. 1752; holder in art_holders), shown at the first Impressionist exhibition of 1874; seenAt "orsay" is where it was seen, on loan to the Orsay's exhibition reuniting the 1874 show (the photo is located in the Orsay).
   { id: "alfred-sisley-the-ferry-of-the-ile-de-la-loge-flood", title: "The Ferry of the Ile de la Loge Flood", artist: "Alfred Sisley", artistId: "sisley", qid: "Q47500913", qidTrusted: true, year: 1872,
     seenAt: "orsay", seenConfidence: "sure", loved: true },
   { id: "paul-cezanne-une-moderne-olympia", title: "Une moderne Olympia", artist: "Paul Cézanne", artistId: "cezanne", qid: "Q614986", qidTrusted: true, year: 1873,
