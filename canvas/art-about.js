@@ -3,6 +3,16 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "gustave-caillebotte-dahlias-garden-at-petit-gennevilliers": {
+  "about": "In this larger second version of 1893, Caillebotte's view of his dahlias, house and the greenhouse he had built gained what the first canvas lacked: a young woman and a small dog on the path.",
+  "deep": "The straw hat is tipped so low over the woman at the left that the canvas, which made room for her, shows almost nothing of her face. She is likely the woman Caillebotte lived with. Marie Berhaut, who catalogued his paintings, names her as Charlotte Berthier, whom the Gennevilliers census of 1891 lists in his household, aged twenty-eight. Of that household she alone is brought into the garden, and there she keeps to herself, head bowed toward her hands, a little black dog near her. The dahlia heads stand at eye height, worked petal by petal, while hers stays bent under the straw.",
+  "by": "Opus 5.5"
+ },
+ "j-m-w-turner-a-yorkshire-river": {
+  "about": "About 1827, as his England and Wales series began to appear, Turner set down light and weather here in loose first washes: a colour beginning, possibly, though disputedly, tied to the series' view of Richmond.",
+  "deep": "The lone figure in red, down on the left-hand slope, stands in washes that were never worked up. Eric Shanes has written that the finished watercolours of Turner's engraved England and Wales series were often built over spontaneous washes of this kind. His point concerns the series, not this sheet, and no design is known to have grown from it. The layer those finished views buried lies open on it all the same, with an order of its own. On the rounded crag mid-valley, grey went down over the pink, and on its left side, where the grey stops, the pink is left alone.",
+  "by": "Opus 5.5"
+ },
  "claude-monet-interior-after-dinner": {
   "about": "Claude Monet painted this lamplit room twice in 1868–69; in The Dinner, his infant son sits at table in a high chair. Here, the art historian Florence Coman notes, the meal is cleared and the child absent.",
   "deep": "The man at the mantel may be the friend who was told of such evenings by letter. Monet wrote to Frédéric Bazille in December 1868 that evenings in his small house brought a good fire and a good little family, and that thanks to a patron from Le Havre he had perfect peace. The letter names no painting. Florence Coman sees Bazille in that man, though the letter went to him in Paris. The canvas puts its peace under the lamp, in a woman bent over her white cloth, while the fire, the comfort named first, burns at the right edge with no face turned toward it.",
@@ -3364,8 +3374,10 @@ about: "Painted to mark the 300th anniversary of the 1569 Polish-Lithuanian unio
 by: "Opus 4.8" },
 
 "garden-in-kissingen": {
-about: "Menzel painted this view of the Kissingen spa fountain from the Hailmann Villa where he lodged on annual summer visits with his sister, producing a series of small gouaches there between 1884 and 1893. Adolph von Menzel, 1885.",
-by: "Opus 4.8" },
+  "about": "Signed at the spa town of Kissingen in summer 1885, this small watercolour and gouache was hanging within months in the retrospective that the Berlin Academy opened on Menzel's seventieth birthday that December.",
+  "deep": "In a cure town's garden, the only creature drinking at the fountain is a dog, leaning over the stone lip with its head lowered into the basin and its muzzle out of sight. Menzel summered at Kissingen and, by his own account, did not take the cure himself; in 1889, four years after this sheet, he signed the town's Golden Book as Nicht-Kurgast, not a spa guest. The sheet shares that footing, present in the cure town without being one of its patients: its eye sits above the garden, outside the scene, and from there the water at its centre is a sight, a thin jet fanning up over the basin.",
+  "by": "Opus 5.5"
+ },
 
 "rzeczpospolita-babinska": {
 about: "The Babin Republic was a real mock-state where Polish nobles earned offices by telling the funniest anecdote; their register of 411 stories, compiled over nearly seventy years, survives as a document of gentry life. Jan Matejko, 1881.",
@@ -4057,8 +4069,10 @@ about: "Smoked herrings and a garlic bulb on a bare table: painted in Paris in 1
 by: "Opus 4.8" },
 
 "paradise-under-the-sea": {
-about: "Drawn from the Kojiki creation myth, this 1907 canvas by Shigeru Aoki shows the moment a mortal hunter enters the sea-god Wadatsumi's palace and meets Toyotama-hime, rendered in Pre-Raphaelite register by a painter who died of tuberculosis at 28.",
-by: "Opus 4.8" },
+  "about": "The Kojiki's god Hoori meets Toyotama-hime at the sea god's well — a rare finished picture by Shigeru Aoki, for Tokyo's 1907 Industrial Exhibition. Third prize, lowest in its class, marked the turn to his tragic last years.",
+  "deep": "Caught on the jar's rim sits a dark bead, readable as the jewel that starts this meeting. In the Kojiki the god in the tree asks the maid for water and spits a jewel from his necklace into her vessel, where it sticks; she takes it to the princess Toyotama-hime, who comes out to look. The bead has a comma's curl and the darkness of the lowest pendant on the youth's necklace. The princess's eyes turn steeply up, the youth's are lowered, and whether their looks have met stays open. By now the jewel is fixed to the lip, and the maid's two hands are still on the jar.",
+  "by": "Opus 5.5"
+ },
 
 "striped-jacket": {
 about: "Three surviving photographs show this 1914 portrait of Matisse's daughter Marguerite being stripped back to near-abstraction in under three weeks, the face and striped bodice distilled into flat planes of red, blue, and yellow outlined in black.",
@@ -4105,8 +4119,10 @@ by: "Opus 4.8" },
 },
 
 "man-writing-a-letter": {
-about: "Painted as a deliberate pendant to Metsu's companion piece, Woman Reading a Letter, this c.1665 panel was stolen twice from Russborough House alongside the Vermeer before Sir Alfred Beit donated both to the National Gallery of Ireland in 1987.",
-by: "Opus 4.8" },
+  "about": "A young man in black bends over a love letter in a panel of the mid-1660s. In 1792 Metsu's was still the bigger name: a Paris dealer praised Vermeer as great \"in the fashion of Metsu\".",
+  "deep": "No word can be read on the sheet beneath his quill, though the nib already touches the page: the words stay on his side of it. The panel holds half of an exchange. Woman Reading a Letter, the panel paired with it, has kept company with it since 1720, and he is presumably writing for the woman there, so whatever he sets down is read in another frame. Here only the writer is shown. His lowered lids keep his look on the page, and the yellow-handled stamp for sealing the letter lies ready by the inkstand.",
+  "by": "Opus 5.5"
+ },
 
 "the-funeral-of-patroclus": {
 about: "Painted in Rome during David's Prix de Rome pension and shown to critical acclaim at the Palazzo Mancini in 1778, this vast Homeric canvas then vanished for nearly two centuries before the National Gallery of Ireland acquired it in 1973.",
@@ -4420,8 +4436,10 @@ about: "Van Gogh painted this while teaching Eindhoven friends to paint still li
 by: "Opus 4.8" },
 
 "lady-in-white": {
-about: "Klimt suffered a fatal stroke in January 1918 and died the following month, leaving several canvases mid-session; this portrait of an unidentified woman, face and dress barely resolved, is among those caught at the moment he stopped working, 1917–18.",
-by: "Opus 4.8" },
+  "about": "An unnamed woman, by Klimt, 1917–18, painted straight onto raw canvas, unusual for him, and left unfinished: where the white of her shoulder meets the dark, a thin seam of brown cloth shows between them.",
+  "deep": "The red flecks in the dark beyond her hair may belong to a vanished head. X-rays show an earlier hairstyle and head beneath the one we see; infrared shows the hair's back painted over and raised to the top edge, and its light-red underlayer could be what still glints outside it. That first head matches, in contour and size, a tracing of his third portrait of Ria Munk, a canvas of the same years, and Franz Smola proposes this one is possibly her portrait too. Why the head changed is not known. Ultraviolet finds later paint on the face as well, so the smile and the unmatched eyes may belong to the second head.",
+  "by": "Opus 5.5"
+ },
 
 "trois-ecolieres": {
 about: "Courbet's Realist instinct fills the canvas with the quiet texture of absorbed attention: three girls at a desk, barely looking up from their books, painted in a close, dim interior in 1860 with characteristic economy of light and sentiment.",
@@ -4789,8 +4807,10 @@ about: "After moving to Paris in 1912 and absorbing Cubism, Mondrian repainted h
 by: "Opus 4.8" },
 
 "the-football-players": {
-about: "Rousseau chose rugby — then a novelty sport in France — as one of his rare athletic subjects in 1908, placing four striped players in his signature flat-leaved forest with the same ceremonial gravity he gave to jungles and dreamers.",
-by: "Opus 4.8" },
+  "about": "The oval ball makes it rugby, though the title says football: the word then covered both codes. Rousseau showed this rare sporting scene at the 1908 Indépendants, beside another of his canvases, tiger against buffalo.",
+  "deep": "The ball hangs above the leaper's spread hands. A recent essay, following the 1984–85 retrospective catalogue, calls this the one scene where Rousseau's figures break a lifetime's stillness. On the canvas, that break reaches the limbs and stops short of the eyes. Arms fly up, a leg kicks back, a fist lands level against a blue jersey, and the small man perched against the rail sits the game out. Whether that split is a limit of the painter's hand or a decision, the paint does not say. Of the four faces, three are turned to the viewer, one to the man the fist has reached, and none to the ball.",
+  "by": "Opus 5.5"
+ },
 
 "still-life-with-gingerpot-i": {
 about: "On long-term loan to the Guggenheim since a 1975 exchange with Kunstmuseum Den Haag, this 1911 Mondrian keeps its objects legible where the near-simultaneous Gingerpot II dissolves them into Cubist facets.",
@@ -4957,8 +4977,10 @@ by: "Opus 4.8" },
 },
 
 "allegory-of-wisdom-and-strength": {
-about: "Veronese inscribed OMNIA VANITAS — \"all is vanity\" — at the lower left, so that Hercules gazing down at jewels and treasure reads not as triumphant but as distracted by what the painting declares worthless, ca. 1565.",
-by: "Opus 4.8" },
+  "about": "Veronese painted Divine Wisdom triumphing over Strength and Love about 1565; its earliest known record, a list of the antiquary Jacopo Strada's stock, knows it only by its painted motto: OMNIA VANITAS, all is vanity.",
+  "deep": "Two crowns are on the floor, set down differently. The closed one, with pearled arches, rests by the globe where Divine Wisdom sets her sandal, and some scholars read it as an imperial crown; a ruler before the picture would meet a crown like his own twice. Whom it was meant to instruct is unsettled: Duncan Bull has proposed that Jacopo Strada, an antiquary, commissioned it as the allegorical partner to his own portrait by Titian. One crown is laid aside before Wisdom. The other, an open ring of pearl-tipped points, stays under the palm of the winged child who stands for Love, against the bare toes of Hercules, Strength in a lion's pelt.",
+  "by": "Opus 5.5"
+ },
 
 "the-bullfight": {
 
@@ -5055,8 +5077,10 @@ by: "Opus 4.8" },
 },
 
 "the-mall-in-st-james-s-park": {
-about: "Gainsborough painted this ca. 1783 scene of fashionable London promenaders for George III, who rejected it as too fantastical and unfaithful to the actual Mall — leaving the canvas in the artist's studio until his death.",
-by: "Opus 4.8" },
+  "about": "Early notices called this promenade, painted about 1783, Watteau-like; next summer a newspaper paragraph probably briefed by Gainsborough insisted it was \"strictly from nature\", yet not taken from St James's Park, the park its title names.",
+  "deep": "Nearly one face serves the women walking three abreast at the centre and the pair arm in arm at the right: a small dark-red mouth, the same rose high on the cheek, heavy lids. The composer William Jackson, the painter's friend, wrote a decade after his death that every woman in this park scene was drawn from a doll Gainsborough made himself. A newspaper account of 1784 saw some of the strollers trading knowing looks in passing. Two women further down the walk have no painted eyes to look with. Heads turn: the woman carrying copper-coloured silk swings hers back over her shoulder, though the walk never settles whom she looks at.",
+  "by": "Opus 5.5"
+ },
 
 "the-white-horse": {
 
@@ -5410,8 +5434,10 @@ by: "Opus 4.8" },
 },
 
 "crab-on-its-back": {
-about: "The idea for this still life came from a Japanese woodblock print of a crab by Hokusai, reproduced in the magazine Le Japon Artistique that Van Gogh described as admirable. Painted in Paris in 1887, the orange-red shell set hard against a green background is a deliberate exercise in complementary-colour contrast — the same Delacroix principle Van Gogh was working through that summer.",
-by: "Opus 4.8" },
+  "about": "In Paris in 1887 (others place it in Arles), Van Gogh painted a crab on its back, its reds set against green, complementary colours side by side, to try Delacroix's laws of colour from Charles Blanc's books.",
+  "deep": "The cream knob heaped at the middle of the underside lies on the side a crab keeps against the ground, and it may face us because of a flip. His Two Crabs is a larger canvas on a similar green, and it has been called possible that he painted the same crab twice, turning it over for one of the two. Here the hidden side becomes the picture's face. The shell's back is out of sight, the red limbs meant to carry the animal reach into the green with nothing under them, and the paint sits heavier on the pale underside, in courses of dabs, than on the lean deep reds.",
+  "by": "Opus 5.5"
+ },
 
 "view-of-the-sea-at-scheveningen": {
 about: "Painted outdoors on the beach in a storm in 1882, this seascape has actual grains of beach sand embedded in its surface — the wind nearly blew Van Gogh off his feet and he had to scrape the canvas twice. The painting was stolen from the Van Gogh Museum in 2002 and recovered by anti-Mafia police in Italy in 2016, returning to Amsterdam after fourteen years.",
@@ -6140,8 +6166,9 @@ by: "Opus 4.8" },
 
 },
 
+// 2026-11-12 (wave 42 data flag): the Info's "raking coins with a bony hand" is not on the canvas (checked at native crops) — re-said as what the plate shows.
 "marinus-van-reymerswaele-poborcy-podatkow": {
-about: "Two caricatured Flemish clerks — one bent over a ledger, the other raking coins with a bony hand — Reymerswaele's cold verdict on avarice, c.1540. The composition was so exactly right it spawned more than twenty-five copies.",
+about: "Two caricatured Flemish clerks — one writing in a ledger, the other baring his teeth beside him, coins heaped below — Reymerswaele's cold verdict on avarice, c.1540. The composition was so exactly right it spawned more than twenty-five copies.",
 deep: "Reymerswaele sets both men so close to the surface their sleeves seem about to spill over the frame — a cropping that collapses depth and forces the eye onto surfaces: coins, ledger script, wax seals, the knuckles on the pointing hand. The flame-red hat on the seated clerk is the picture's loudest note, absurdly elaborate for the grubby task, rendered fibre by fibre. His companion leans in hook-nosed, one elongated finger jabbing the book — the hinge that links the money on the right to its accounting on the left and keeps the transaction perpetually in progress. Twenty-five versions survive — a moral cartoon exact enough to be copied endlessly.",
 deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },

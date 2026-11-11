@@ -101,6 +101,840 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+ "gustave-caillebotte-dahlias-garden-at-petit-gennevilliers": {
+  "mv": 6,
+  "see": "A tall canvas of a sunlit garden. A dahlia bush fills the lower right at close range, its heads coral, red and yellow among blue-green leaves. At left a path runs back past a clipped hedge to a cream-walled house with a salmon roof, dormers and a tall chimney. A long glazed building with a curved roof slants in from the right, and cloud crosses a blue sky above. On the path stand a woman in a white blouse, blue skirt and straw hat, and a small black dog. Between the path and the bush runs a bank of white flowers broken with blue.",
+  "about": "A gardener painted this, and the picture ranks things the way a gardener does. The dahlias he grew come first, brought nearest to us and given the largest share of the canvas. The house, which a visitor would have made the subject, is kept to a small sunlit front at the end of a path. Between the two slants the long glazed roof of the greenhouse he had built, where he tended his flowers himself.",
+  "craft": "The thickness of the oil paint follows the light across a canvas over one and a half metres tall. Darks go down first and thin, lights last and loaded, standing up from the surface. A petal or a small leaf is usually a single shaped stroke, laid along the form it describes and lifted away at its end, keeping the ridge that one movement of the brush left. The light strokes often carry darker streaks inside them, crimson through the salmon of a petal, green through the cream of a lit leaf. In the broad open passages a pale colour is dragged on so lightly that only the raised threads take it, and the colour beneath shows between.",
+  "context": "On 12 May 1890 Monet wrote from Giverny that the dahlias Caillebotte had sent him had arrived. His later letters show two painters who were also careful, knowledgeable gardeners: one spring he pressed Caillebotte to come on the Monday agreed, because all his irises would be in flower. Caillebotte's own flower painting, in Marie Berhaut's judgement, reached its full measure in 1892–93, worked in the open air from the beds of his garden; this canvas is signed and dated 1893. The critic Gustave Geffroy, in an essay on the painter, called him le sage amateur de jardins, a wise lover of gardens, and described a garden in which every plant was labelled, pampered and adored.",
+  "deeper": [
+   {
+    "t": "Heads at eye height",
+    "x": 0.66,
+    "y": 0.42,
+    "w": 0.34,
+    "h": 0.36,
+    "body": "The big coral head low in this crop is built petal by petal. Its petals are single loaded flicks, pulled outward from a dark crimson heart and lifted off so the paint stands up in a ridge at its tip; a paler salmon goes on last, along the outer petals where the light falls. Higher up are three more red heads. The highest and the next one down are made differently: narrower, pointed strokes in a hotter red-orange that flare like spikes, while the third, at the right, is fuller and pinker, closer to the big one. The brush changes its gesture from bloom to bloom, and the heads do not repeat like a printed pattern. Even the coral head's outline is ragged, its petals breaking the silhouette at different lengths, so the head does not sit flat as a disc."
+   },
+   {
+    "t": "Where the sun stands",
+    "x": 0.08,
+    "y": 0.18,
+    "w": 0.49,
+    "h": 0.22,
+    "body": "The roof says where the sun is. The right-hand dormer throws a long wedge of violet shadow down the tiles to its right, and the left-hand dormer carries a dark band down its right side: the light comes from our left. The same violet, cool against the warm salmon, mottles the roof to the left of the left-hand dormer in broken patches that follow no edge of the building. The roof itself is laid in short strokes running down the slope, while the half-timbered gable at the top is drawn with dark beams at clean angles, and the chimney stack lifts a row of red pots against the sky."
+   },
+   {
+    "t": "Shadow under the eaves",
+    "x": 0.12,
+    "y": 0.37,
+    "w": 0.4,
+    "h": 0.25,
+    "body": "Below the eaves the wall is cut by a deep band of blue shadow with a toothed lower edge, lit wedges of cream pushing up into it. A shadow reaching that far down a wall means the sun stands high. The lit stone is thick cream with flecks of orange and pink worked into it, so the masonry reads as rough without a single joint being drawn. Against it the shutters are flat, hard-edged salmon panels. The house is set square to us, while the glazed roof cutting in at the right runs on a steep diagonal."
+   },
+   {
+    "t": "The arched rib",
+    "x": 0.58,
+    "y": 0.19,
+    "w": 0.42,
+    "h": 0.25,
+    "body": "The glazed building's roof ends in a single pale rib that curves down out of the trees in one unbroken sweep. The house's drawn lines run straight, its beams and shutter edges; this one holds steady through a long bend, with a crisp edge against the dark end wall. Along it sit small scrolled ornaments, each made of two or three twisted touches of blue and white. Inside the arch the end wall is a dark blue-green laid in long, even horizontal strokes; outside it the paler green of the roof is dragged lengthwise. The two directions of brushwork meet at the rib, roof on one side of it and wall on the other. Behind, the trees are dabbed every which way, and a second red roof rises over them, its thin mast painted as a broken column of blue dots."
+   },
+   {
+    "t": "Stalks against the glass",
+    "x": 0.4,
+    "y": 0.36,
+    "w": 0.28,
+    "h": 0.24,
+    "body": "Where the tallest dahlia stems rise in front of the glazed building, their leaves turn into flat dark cut-outs: blue-green shapes with hard edges and almost no modelling against the pale roof and the white wall. Down in the bush the same kind of leaf is turned and lit; here, against a light ground, it is left as a silhouette. The stems are single drawn lines, thin and slightly knotted, carrying small red heads and closed buds up past the eaves of the house. A plant near us is laid straight over a building well behind it, and the flatness of the silhouettes locks the two together on the surface."
+   },
+   {
+    "t": "Under the hat",
+    "x": 0.02,
+    "y": 0.52,
+    "w": 0.26,
+    "h": 0.27,
+    "body": "The woman stands turned to our left, head bowed over her hands where they meet at her chest, and the tilted straw hat hides her face; a touch of pink below the brim is all of it we get. The blouse is another matter. On the side facing our left, where the light falls, it is thick cream dragged in short ridged strokes; on the side turned away, the same white is rendered in strokes of clear blue. The hat works the same way, a cream rim with blue laid across its crown. The skirt is a deeper blue, pulled down in long strokes that flare out toward the path."
+   },
+   {
+    "t": "Sun bars and a small dog",
+    "x": 0,
+    "y": 0.74,
+    "w": 0.34,
+    "h": 0.26,
+    "body": "The path is built from two kinds of paint. The sunlit patches are thick cream, worked into ridges that catch the light; the shadows between them are thinner strokes of blue and violet laid crosswise, in bars running in from the left. The small dark dog stands at the edge of one sun patch, tail cocked up at our left, its black coat brushed through with blue so it belongs to the same light as the path. Along the left edge the clipped hedge meets the path in a hard straight line, a firm edge in a passage that from a distance reads as all dapple. Lower down the path turns lilac and pink in a band of shade, and below it, along the bottom edge, the sun patches come back."
+   },
+   {
+    "t": "Lit leaves on a dark ground",
+    "x": 0.28,
+    "y": 0.745,
+    "w": 0.72,
+    "h": 0.255,
+    "body": "Low in the bush the dark is not a void. Its ground is a thin blue-green, scrubbed on so that the weave shows, and over it the lit leaves are shaped one at a time, each from several pale strokes of grey-green and cream laid along its length, with lilac or blue among them. Many are split down the midrib into two halves of different tone, one cooler than the other, and sometimes a dark gap is left between the halves. The leaves deeper in are still drawn as leaves, in darker blue, with firm edges. On the right the yellow heads are a dull ochre built from blunt, rounded dabs with red-brown inside them; the yellow is kept low in key down here. Thin stems are single lines of pale or reddish paint, and small orange sprigs of some other flower flicker near the bottom edge."
+   },
+   {
+    "t": "Cloud curls and the near flower's size",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Up top the cloud bank is made of curls: short loaded strokes of cream that hook round at their ends, crowded at the upper left and running down toward the trees at the right. Toward the upper right the curls thin out and the open blue takes over, brushed in diagonal strokes and deepening toward the top edge. Down in the garden, the big coral head in the near bush stands nearly half as tall as the woman on the path, from her hat to her hem."
+   }
+  ],
+  "beside": "Where this woman stands, at the left edge of a garden with flowers massed on our right and a house behind, Claude Monet put his wife in Camille Monet (1847–1879) in the Garden at Argenteuil, painted in 1876 at the house he rented there. She wears a long blue-grey dress and a hat with a red trim and stands by a slim tree, the house half lost in leaves. Her face is turned out toward the painter, the mouth a red dab. The woman here turns aside, her face hidden under a lowered brim.",
+  "refs": [
+   {
+    "id": "claude-monet-camille-monet-1847-1879-in-the-garden-at-argent",
+    "text": "Camille Monet (1847–1879) in the Garden at Argenteuil"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "j-m-w-turner-a-yorkshire-river": {
+  "mv": 6,
+  "see": "A watercolour landscape looking down into a valley, nearly all pale wash on cream paper. Cream cloud with patches of blue fills the upper third, darkening to a grey bank at the right. Below lie a level far distance in violet and blue, a lilac strip, then the warm near ground: a long yellow-orange bank sloping from the left, a rounded pink-and-grey crag, and at the right a grey crag above a bright orange bank. Between them opens a pale hollow. One small red figure stands on the left bank.",
+  "about": "The title promises a river in a particular county, and the sheet does not single one out; who first gave it that name, and on what grounds, has not been traced. Andrew Wilton, cataloguing Turner's work in 1979, thought it possibly related to the Richmond, Yorkshire design, one of the finished watercolours engraved for the series Picturesque Views in England and Wales. Matthew Imms, writing in 2013, found affinities in colour and handling but wrote that the lie of the land suggests a different place. Whatever ground lay behind the name, the sheet is given over to the weather of one day.",
+  "craft": "The method behind the sheet is control of water: how wet the paper was when a colour went on, and how much the brush carried, decide whether a mark keeps a hard edge, spreads, or breaks on the grain of the paper. The watercolour is worked almost entirely in thin washes, and the wove paper, about 29 by 41 centimetres, keeps showing through them. On the slopes at the left, wetter colour met a wash that had begun to set, ran back into it and pushed the pigment into feathered, branching fringes with darker margins, and Turner left them as they dried. The few lines drawn in colour went down over washes that were already dry.",
+  "context": "The sheet was made about 1827, the year the England and Wales engravings began to come out, four to a part, roughly three parts a year. That summer Turner was the architect John Nash's guest at East Cowes Castle on the Isle of Wight, where Nash had commissioned two pictures of the Cowes regatta from him, and later in the year he joined the house guests at Petworth. The publisher Charles Heath had planned 120 designs; Turner finished a hundred, and Heath showed them in exhibitions of their own in 1829, 1831 and 1833. The prints never paid, and the series stopped in 1838 with ninety-six engraved. Andrew Wilton would later call it \"the central document in Turner's art\".",
+  "deeper": [
+   {
+    "t": "One red figure",
+    "x": 0.235,
+    "y": 0.64,
+    "w": 0.13,
+    "h": 0.22,
+    "body": "One small upright figure in red stands against the orange band of the near bank, and it is the darkest touch anywhere on the sheet, darker than the grey crags and darker than the blue drawing along the horizon. Its making is spare: a head laid as one blot, a paler lump beside it at shoulder height, and a body laid in one tapering wash that widens toward the ground. The red is deepest at the neck. It does not cover the paper evenly; it catches on the tops of the grain and leaves the hollows pale, so the figure looks speckled from close and solid from a few steps back. Against the broad bank and the open valley, this one small vertical turns a run of washes into ground a person can stand on, and measures how far off everything else lies."
+   },
+   {
+    "t": "The bank's sure edge",
+    "x": 0.33,
+    "y": 0.64,
+    "w": 0.28,
+    "h": 0.26,
+    "body": "The orange band running down from the figure toward the valley floor is the near bank's contour, and its upper edge is firm. The colour does not blend into the grey slope above it; it stops on a definite line, and along that line it breaks into islands and specks where the brush skipped over the paper's tooth. Inside the band the same skipping leaves small pale flecks, so the bank glitters where a smooth wash would lie flat. The band narrows to a point short of the valley floor."
+   },
+   {
+    "t": "Notes at the lower edge",
+    "x": 0.37,
+    "y": 0.845,
+    "w": 0.3,
+    "h": 0.14,
+    "body": "Along the bottom edge the sheet stops describing. A few rose-red marks lie on the paper, dragged so dry that the colour breaks into crumbs; they suggest rocks, animals or figures without becoming any of them. Just above sits a small brown hook that behaved differently: its colour gathers darkest at its right-hand end and along parts of its edge, as a pool of wet colour does when it dries where it fell. To the right a thin, straight grey line runs diagonally through the yellow, finer and straighter than any wash around it. The foreground is left as notation, so the finish of the sheet thins out toward the viewer's feet."
+   },
+   {
+    "t": "Grey laid over pink",
+    "x": 0.33,
+    "y": 0.45,
+    "w": 0.2,
+    "h": 0.21,
+    "body": "The rounded crag in the middle distance is built in two layers, and the order shows. A pale pink wash gives the whole mass, soft at its left where it melts into the hillside. Over its right-hand half lies a grey with small hard edges and a toothed upper margin, read as scrub or trees on the brow. Those edges stay sharp where the grey crosses the pink, so the pink was dry when the grey went on; laid into a wet wash, the grey would have spread. The grey flank is the side that faces the pale hollow, and across the hollow the orange bank ends in a grey spur that faces back toward it, so the shading on the two darks gives no single direction for the light."
+   },
+   {
+    "t": "The strongest colour",
+    "x": 0.7,
+    "y": 0.52,
+    "w": 0.29,
+    "h": 0.22,
+    "body": "The most saturated colour on the sheet is this orange bank at the right edge. It is laid full and even, and its crest holds a clean, rising profile against the pale valley. The wash is granular, the pigment settled into the paper's grain, which keeps so strong a colour from going flat. At its left end the orange gives way to grey flecked with darker specks. The bank is the counterweight to the red figure on the far side of the sheet: the picture's two strong warms sit on a diagonal, one small and dark at lower left, one broad and bright at right, with the pale hollow between them."
+   },
+   {
+    "t": "Pale puffs on the far band",
+    "x": 0.52,
+    "y": 0.3,
+    "w": 0.2,
+    "h": 0.1,
+    "body": "On the violet far distance a string of small pale puffs climbs from a point on the ground line and leans away up to the right, like smoke or steam rising from something out of sight. Smoke would lean that way in a wind from our left. The puffs are lighter than the violet around them, round-edged, set one after another as they rise. A single pale puff sits farther left on the same line. To the right, wiry blue lines run along the horizon, thin and broken on the paper's grain, putting line where a wash would blur."
+   },
+   {
+    "t": "Blue combed downward",
+    "x": 0.47,
+    "y": 0.1,
+    "w": 0.32,
+    "h": 0.19,
+    "body": "The sky's strongest blue does not lie level. It hangs from a flat upper edge under the cream cloud and is pulled downward in short, combed strokes that fray into the paper below, a texture like hair or grass. Stroked vertically, the blue suggests something falling, perhaps a shower trailing under the cloud base, and the fainter blue at upper left is combed the same way. To the right the cloud thickens into a grey bank along the top of the sheet."
+   }
+  ],
+  "beside": "John Constable's Sketch for ‘Hadleigh Castle’, of about 1828–9, looks out as this sheet does: down from high ground across a level distance, weather above, a small figure on the near slope at lower left, Constable's with a staff and a dog. Of these two trials of weather, only his is known to have led to a finished work, as a full-size trial for his six-foot Academy picture. This valley has no ruin and no landmark to say where it is. His is built round one: two broken towers hold the hill, one split into two stumps, the other pierced by an arch, at a place he had drawn on the spot years before.",
+  "refs": [
+   {
+    "id": "john-constable-sketch-for-hadleigh-castle",
+    "text": "Sketch for ‘Hadleigh Castle’"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "garden-in-kissingen": {
+  "mv": 6,
+  "see": "An upright sheet looks down into a summer garden in Kissingen. A woman in a blue jacket and rose bustle skirt stands reading at the far rim of a round stone basin, a plum parasol on her shoulder. A thin fountain jet rises from the basin's centre; a long-haired black-and-white dog drinks at its right-hand lip; a black-and-tan dog lies in the lawn at lower right; two small birds sit on a gravel path curving in from the top right. A fruiting branch screens the lower left. Dense, flecked flower borders alternate with flatter stretches: the path, and the lawn behind the woman.",
+  "about": "Several of Menzel's other Kissingen gouaches, from the 1880s and 1890s, carry titles about company: spa guests at the warming kettle, coffee time, the promenade by the springs, a bakery's breakfast buffet. Among them this one is quiet. A woman and a few animals share a spa garden with room to spare, each taken up with something of its own, and nothing ties them together except the painter's look from above. No event is on its way, yet the sheet is worked as densely as a set piece, down to flower beds built up touch on touch.",
+  "craft": "Watercolour and gouache on a sheet about 18 cm high, a little larger than a postcard. Gouache is watercolour made opaque, so a stroke covers what lies under it, and that lets Menzel lay his lights over darker paint the way an oil painter would, without having to save them as untouched paper. Much of the colour goes down in flat, unblended patches set side by side. The palest strokes are pulled across the darker paint with a brush so nearly dry that the bristles skip, and the colour underneath shows through the gaps in flecks. Where the paint lies thickest, the whites above all, it is pitted with tiny pinholes, plain in the flower beds at close range.",
+  "context": "In the summer of 1885 Menzel, sixty-nine, was at Kissingen with the household of his widowed sister Emilie. Among the sheets that carry the town and the year 85 are a bedroom, a street and this garden. Scholars writing for the 1996 Menzel retrospective place him at a window, looking down into the spa garden. On 8 December, his seventieth birthday, the Berlin Academy opened a retrospective, with loans from the Kaiser and the Crown Prince and Crown Princess. This sheet was in it as Fountain in the Garden (Springbrunnen im Garten), and so was his oil of Prince Albrecht's palace garden, begun in 1846.",
+  "deeper": [
+   {
+    "t": "The reader in blue",
+    "x": 0.15,
+    "y": 0.09,
+    "w": 0.3,
+    "h": 0.38,
+    "body": "Her head is bowed low over the sheet in her lower hand, and the face under the hat brim is small but complete, a profile in which nose, lips and chin each get a darker touch. The reading is carried by posture: rounded shoulders, a neck bent forward out of the dark collar, both hands drawn up close to the body. The parasol is shouldered and idle. Its shaft runs from the handle in her upper hand over her shoulder, so the plum canopy and its white frill hang behind her back. The skirt is a bustle, the overskirt drawn back and gathered, and its folds are built from flat patches of rose and red-brown set edge to edge, unblended; the turn of each fold is a change of patch. The trim is several wavering lines of white dragged across those patches, at the waist, over the middle of the drape and above the hem flounce, enough to read as lace at a glance, and the sheet she reads is another flat stroke of white."
+   },
+   {
+    "t": "Two birds on the path",
+    "x": 0.68,
+    "y": 0.12,
+    "w": 0.19,
+    "h": 0.14,
+    "body": "Two small birds sit on the upper reach of the path, each made of three or four dark touches: a body, a flick of tail, and beneath it a short grey-dark dash. The dash is the bird's shadow, and it seats each bird on the gravel. The path around them is an almost flat field of pale buff, which is why such small accents carry. At the bottom of this crop the tree's shade starts to break the path into dapples; up here it lies open, and the birds have it to themselves."
+   },
+   {
+    "t": "The jet",
+    "x": 0.36,
+    "y": 0.35,
+    "w": 0.28,
+    "h": 0.23,
+    "body": "At the centre of the basin a short dark stub, the nozzle, sends up a fan of spray. The fan is made of many thin, pale grey-blue strokes dragged upward from the stub and splaying as they rise, laid over the water and the stone. The far rim's curve runs on unbroken behind them and the dark water shows between them, so the spray reads as something seen through, a veil over a surface that stays intact. Where the fan crosses the rim its strokes grow fewer and thinner and mix with separate flecks of white, scattered over the gravel and the planting beyond; a second spatter of flecks lies on the water near the stub, where drops fall back. The jet has no top: its streaks and flecks thin out to nothing, and no crest is drawn."
+   },
+   {
+    "t": "The dog at the rim",
+    "x": 0.64,
+    "y": 0.46,
+    "w": 0.325,
+    "h": 0.2,
+    "body": "A long-haired dog, black patches on white, stands on the gravel to drink from the basin. The coat is built in broad, loaded patches of grey and chalky white, the black patches dropped in as flat dark shapes; at the edges, the feathered tail and the fringe of the hindquarters, the brush breaks into dry, splayed strokes flicked out over the gravel colour. Under the dog a grey shadow spreads toward us and slides left along the foot of the basin, joining the shade on its near face. That shadow tells where the light comes from: the far side of the fountain."
+   },
+   {
+    "t": "The fruiting branch",
+    "x": 0.02,
+    "y": 0.57,
+    "w": 0.4,
+    "h": 0.31,
+    "body": "A fruiting branch reaches into the lower-left corner from beyond the edge, between us and the basin; its twigs cross the gravel and its upper sprays overlap the stone rim. Each leaf is made in two touches: a dark olive shape for the leaf in shade, then a pale grey-green stroke laid along one side of it for the light. Repeated, the pairing turns silhouettes into foliage that twists and catches the sun. Among the leaves hang green, pear-shaped fruits with a brown flush. The pale gravel shows between them, so the branch is something we look through, not at. Its darks are harder-edged and deeper than the soft-edged shapes of the far garden at the top of the sheet, and that contrast, more than size, pushes the branch forward."
+   },
+   {
+    "t": "The dog in the grass",
+    "x": 0.73,
+    "y": 0.77,
+    "w": 0.24,
+    "h": 0.185,
+    "body": "In the lower-right corner a second, smaller dog lies sprawled in the lawn, black with tan markings, its tail hooked upward and its body cut off by the edge of the painted field. It is painted almost flat: a near-black mass with a few strokes of blue-grey for the sheen of a short coat, and orange-brown dabs for the markings. Set against the long-haired drinker at the basin, it is that dog's opposite in handling: short coat against long, dark against light, flat against broken."
+   },
+   {
+    "t": "Looking down",
+    "x": 0.017,
+    "y": 0.015,
+    "w": 0.955,
+    "h": 0.969,
+    "body": "Along the top edge the garden simply goes on: lawn, flower beds, tree trunks and leaves run up to the margin of the sheet, and no horizon or open band of sky appears above them. The basin shows how high the eye stood. The higher the eye above a round basin, the rounder its rim looks, and this rim makes an open oval, seen from well above: the water lies spread out inside it, and beyond the jet the inner face of the far wall shows as a darker band above the waterline."
+   }
+  ],
+  "beside": "From a window high above a Paris garden, Claude Monet painted The Tuileries (Study) in 1876, looking down, as this sheet does. Below him lie lawns cut by straight walks, white statues, a tall building at the left and a city beyond the trees. A round basin with a pale stone rim sits at the foot of his view, half hidden by shrubs, while the people out on the paths are a dab or two apiece, none with a face. Menzel’s eye stays close enough to its basin to give the bowed woman beside it a face.",
+  "refs": [
+   {
+    "id": "the-tuileries-study",
+    "text": "The Tuileries (Study)"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "the-mall-in-st-james-s-park": {
+  "mv": 6,
+  "see": "A tree-lined walk seen from the path itself. Feathery foliage fills the upper half and closes into a dark opening at its centre, with broken trunks at either edge and pale sky in the gaps. Along a sandy path below runs a loose line of fashionable walkers: women in pale gowns and tall trimmed hats, several men in dark coats and one in red, a seated party under the trees at left with cattle half-hidden behind them, and three small dogs. The figures are small against the trees and painted with a quick, flickering touch, the pale gowns standing bright against the dark of the leaves.",
+  "about": "A crowd of types, painted in a year full of portrait sittings, and nobody in it can be named. On this walk no likeness is at stake: dress and gait do the work a face does in a portrait. Describing the picture in 1784, the journalist Henry Bate sorted its company by kind and not by name, as women of fashion, women of frolic, military beaux and petit-maîtres, the dandies of the day. A biographer of 1856 thought he saw members of the royal family among the women; William Whitley set the guess aside in 1915 on the evidence of Bate's notes, and nothing has taken its place.",
+  "craft": "Most of the paint is thin and fluid, laid on a canvas about 1.2 by 1.5 metres. The paler trees toward the sky are built warm side first: a layer of ochre and brown brushed broadly in, then cool grey-blue and green dabbed over it, with small flecks of yellow on top, so the warmth shows up through the leaves from beneath. The skirts take their shadows from the same mixtures, grey-greens and blue-greys, so silk and foliage share one set of colours. The path gets the least attention of all: broad horizontal sweeps of thin brown and ochre, darker bands dragged across them for shade, an open floor laid under the flicker of the walkers.",
+  "context": "Gainsborough, fifty-six, went on a sketching tour of the Lakes in the summer of 1783 with his friend Samuel Kilderbee, having written he would show \"your Grays and Dr. Brownes\", poets who had described the Lakes, to be \"tawdry fan-painters\". That autumn he painted a portrait of the Duchess of Cumberland meant as a gift for the Prince of Wales, while Henry Bate's Morning Herald reported him at work on a park with figures walking in it \"in a style new to his hand\"; in December another paper had it finished and, by its own understanding, bound for the King's collection. The King did not buy it. Still unsold at Gainsborough's death in 1788, it was offered by his widow in 1789 at two hundred guineas and found no buyer. James Northcote, talking to Hazlitt around 1830, said you would suppose it stiff and formal, with its straight rows of trees and people on benches, and that it was \"all in motion, and in a flutter like a lady's fan\".",
+  "deeper": [
+   {
+    "t": "Two backs in white",
+    "x": 0.17,
+    "y": 0.57,
+    "w": 0.22,
+    "h": 0.41,
+    "body": "The two women nearest the front of the path are walking away. One turns nearly all her back to us: a fall of auburn hair, a hat heaped with crumpled white, and the edge of a profile turned to our right. Her companion, arm in arm, turns a three-quarter face down toward her. Between them they carry the brightest whites on the canvas, brighter than the open sky above the trees, so the strongest light in the picture falls on a pair of backs. Down the nearer figure the white changes weight: at the hat and shoulders it is laid thick enough to catch ridges of light; through the skirt it thins; by the train, swept out across the path to our left, it has gone translucent, and the brown of the path comes up through it. A line of shadow holds the train's lower edge against the path, and a dark stroke runs along the fold near its tip; nearer her shoe the frilled hem frays into grey strokes, where a dark shoe points to our right. She is stepping into the picture, toward the group in the centre, with the train trailing behind her."
+   },
+   {
+    "t": "Three abreast under the dark",
+    "x": 0.33,
+    "y": 0.38,
+    "w": 0.31,
+    "h": 0.49,
+    "body": "Directly above the three women coming toward us down the centre sits the darkest passage in the painting, the place where the avenue closes into near-black foliage, and their pale skirts stand against it like lit lamps. Each skirt is built from short dabs and dragged strokes of grey-blue, cream and a little rose over a pale base, the touches separate and quick, a pattern of flicks more than a set of modelled folds; at the picture's distance they turn back into gauze over a hoop. The faces get less paint still: a red touch for the mouth, a flush on the cheek, lowered lids in a stroke or two. A fourth face, darker and in shadow, looks out from the gap behind the second and third women. To our right of them is a man in a red coat with gold at the breast and a black hat, his face painted a deep brown, one hand at his chest. At the third woman's hem a small white dog trots to our left."
+   },
+   {
+    "t": "The party under the trees",
+    "x": 0,
+    "y": 0.55,
+    "w": 0.24,
+    "h": 0.4,
+    "body": "At the far left a party sits out of the traffic under the trees: a woman in golden yellow with her head bowed, a second leaning close at her shoulder, a third in a black plumed hat smiling toward the path, and a fourth figure in a hat with pale trimming standing in shadow behind them. In the gloom beyond their hats a pale cow with horns faces out, a fence running behind it, and another horned head, brown, shows further right. Cattle stand a few steps from the silks, the park's own cows, whose milk went into dairy drinks sold there. The pale one is among the lighter shapes in the gloom; the brown one is close in tone to the undergrowth and surfaces only on a second look. The seated skirts are laid in long sweeps of yellow and deep green that pool on the ground. Below them a black dog with a white collar sprints to our right after the white pair, forelegs flung out in front."
+   },
+   {
+    "t": "Walkers thinning into air",
+    "x": 0.565,
+    "y": 0.575,
+    "w": 0.125,
+    "h": 0.255,
+    "body": "Between the red coat and a man in a feathered hat, at least two more women walk in the middle distance, and they are barely there. Their gowns are a few long strokes of grey-green dragged over the dark, thin enough for the foliage behind to show through the skirts; faces and hats are a pale smudge, and the hems fade into the path without an edge. Distance on this walk is measured as much by the thickness of the paint as by the size of the figures: the near pair's whites are loaded, the trio's are dabbed, and these two are a veil laid over the trees."
+   },
+   {
+    "t": "Copper silk, turned head",
+    "x": 0.585,
+    "y": 0.6,
+    "w": 0.26,
+    "h": 0.38,
+    "body": "Coming toward us on the right, a woman in grey-blue walks arm in arm with a smiling companion, a wrap of copper silk over her forearm and a dark shawl at her shoulders. Her feet keep coming forward, one shoe showing under the hem, while her head is turned hard over her shoulder to our left. The silk is worked thick: ridged strokes of orange and rust whose lit crests stand up from the surface, with firm edges where the folds break, set against a grey skirt laid on thinly. At her hem a white, sharp-muzzled dog with a plumed tail springs to our right, tongue out, its face turned to us and its coat a mass of broken whites. Behind her shoulder stands the man in the feathered hat, in a dark coat."
+   },
+   {
+    "t": "Gold, walking away",
+    "x": 0.8,
+    "y": 0.55,
+    "w": 0.2,
+    "h": 0.43,
+    "body": "At the right edge a woman in a golden gown walks away from us, her overskirt gathered up behind into a heavy swag caught with a grey bow, one shoe showing beneath the hem as she steps. She turns her head to our left in profile, as the woman in copper does, though the two are moving in opposite directions along the walk. A man in a dark coat keeps pace at her shoulder, half absorbed into the trunk beside them. That trunk is built from long, twisting strokes of brown and ochre that follow the grain of the bark, and its edge against the couple stays firm, while the gown is laid in looser, glinting touches of gold over brown."
+   },
+   {
+    "t": "The broken limb",
+    "x": 0.62,
+    "y": 0.27,
+    "w": 0.38,
+    "h": 0.38,
+    "body": "The trunk at the right is split and shattered at its crown, and from it a long, largely bare limb runs out to our left high over the path, its upper edge lit in pale ochre, its end a splintered fork. The limb is painted as drawing: opaque, with firm contours and a clear lit side and shadow side, against foliage made of soft-edged, dragged flicks. Toward its end the limb lifts, turning that fork up into the leaves, and a short pale offshoot hangs from its underside."
+   },
+   {
+    "t": "Canopy and a low glow",
+    "x": 0,
+    "y": 0.02,
+    "w": 0.48,
+    "h": 0.48,
+    "body": "The upper half of the picture is leaves, set down as marks of the brush more than as leaves: short dragged touches of olive, grey-green and brown, each a single movement with a feathered tail, many leaning along one diagonal so the masses seem to stir. Solid forms are kept for the tree at the left, whose trunk and broken crown are laid in firm browns; the crown ends in a jagged, splintered stump, its broken tip touched with rust. Low beneath the broken tree's leaves sits a yellow glow whose hottest touches rival the open sky for brightness."
+   },
+   {
+    "t": "Five, three and two",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "In his 1784 account Henry Bate found the walk \"broken in parties of five, three, and two\", and the people on the path, leaving aside the party seated at the far left, can be counted his way. Five make the centre group: the three women abreast, the man in red at their side and the darker face in the gap behind them. Three come toward us right of centre: the woman in copper silk, her smiling companion and the man in the feathered hat. The twos come twice, the white pair at left walking away and, at the right edge, the woman in gold with the man at her shoulder. The figures between the parties could be his \"few accidental stragglers\": the veiled women of the middle distance, and a dark head in shadow between the copper group and the woman in gold."
+   }
+  ],
+  "beside": "In Canaletto's London: Interior of the Rotunda at Ranelagh, painted in 1754, another fashionable crowd is known only by its clothes. Under a dome hung with chandeliers on red cords, the company crosses the floor in twos and small knots, men with canes and tricorns, women in hooped gowns, one of them striped red, yellow and pale blue. The building takes the canvas: arch after arch runs round its walls, and musicians are packed onto a stand under the organ. Gainsborough turns that order round, bringing his walkers to the front and leaving their setting to loosely brushed trees.",
+  "refs": [
+   {
+    "id": "canaletto-london-interior-of-the-rotunda-at-ranelagh",
+    "text": "London: Interior of the Rotunda at Ranelagh"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "allegory-of-wisdom-and-strength": {
+  "mv": 6,
+  "see": "Two large figures fill a loggia of brown stone columns. On the left a fair-haired woman in rose silk and a white mantle patterned in gold and blue stands with one foot on a dark globe, a small radiant sun-face at her head; a crown, a sceptre and pearls lie on the floor beside her. On the right a bearded man in a lion's skin stoops under a heavy patterned hanging, and a winged child sits at his feet. Open sky and a landscape of trees, hills and water fill the left edge. Her side of the picture is high and cool in colour, his warm and dark.",
+  "about": "The woman on the left is Divine Wisdom, whom the whole picture sets above everything else in it: Strength, as Hercules in his lion's skin; Love, as the winged child on the floor; and the regalia and riches of power, left lying at her feet. The verdict is written in two words, OMNIA VANITAS, from Ecclesiastes, the biblical book that ranks the wisdom of God over every worldly good. Her triumph over Strength needs no force: Hercules is neither trampled nor chained, and his head is bowed. And the sermon leaves splendour standing. Wisdom herself wears silk, gold and pearls, and what lies discarded is the equipment of rule and the wealth that pays for it.",
+  "craft": "The lights on the silks are dragged on as pale strokes along the crests of the folds. The clouds are pulled across the blue so that their lower edges break up, and the distant trees at the left are set down as dabs of olive-gold against the pale sky. In oil on a canvas more than two metres tall, the woman stands at about life size. The picture was long taken for half of a pair with the Allegory of Virtue and Vice, and doubt about that grew after it was cleaned and examined in 2006. The two are close in size but painted on different types of canvas.",
+  "context": "About 1565, when this canvas was painted, Veronese had been settled in Venice for more than a decade, with the Wedding at Cana for the Benedictines of San Giorgio Maggiore behind him. Venice was also a market, with buyers from the north in it. In 1567 the antiquary Jacopo Strada was in Venice, buying paintings for Duke Albrecht V of Bavaria and on his own account. Niccolò Stopio, Hans Jakob Fugger's agent in the city, kept Fugger informed of the \"modern\" pictures Strada bought, writing in May and again in October.",
+  "deeper": [
+   {
+    "t": "The sun on her curls",
+    "x": 0.3,
+    "y": 0.04,
+    "w": 0.28,
+    "h": 0.24,
+    "body": "A small white sun with a human face sits on the woman's curls, close enough to read at first as a jewel in her hair. Its face is only a few thin grey lines (brows, lowered lids, a short mouth) inside a disc whose rays are brushed thinly in white and feathered at the rim. Its glow lies partly over the dark stone of the column and partly over the sky, and the column's straight edge shows through the radiance: the light was brushed on over the architecture. Her own eyes roll up and to our right, toward the slot of blue cut between the columns by the pointed hem of the hanging, where two gold tassels dangle. She does not look at the sun on her own head, and her face turns toward the open sky."
+   },
+   {
+    "t": "A hanging ruled like an engraving",
+    "x": 0.6,
+    "y": 0,
+    "w": 0.4,
+    "h": 0.26,
+    "body": "On the heavy hanging over the upper right, pattern and shadow are laid differently. Its leafy scrolls are laid in flat gold-ochre and outlined in dark line; the ground between them is ruled in close parallel strokes, running level across the folds, the way an engraver lays a tone. Each ruling is a separate brushed line, spaced too widely to be the weave of the canvas showing through. Along the top the cloth is gathered into points, each finished with a tassel made of a few touches of yellow and one pale highlight. The ruling darkens the ground while leaving the pattern legible, so the scrolls still read down in the hanging's deepest shadow."
+   },
+   {
+    "t": "Strap, clasp and bared breast",
+    "x": 0.27,
+    "y": 0.25,
+    "w": 0.34,
+    "h": 0.22,
+    "body": "A gold chain strap, set with small blue stones, runs from her left shoulder down to a square clasp holding a dark stone, with a pearl hanging below it. The bodice on that side has slipped beneath the strap and her left breast is bare, the nipple a soft touch of pink. Her left arm crosses her body and the hand lies open on the silk below the clasp, fingers spread. The silk's lights go almost white, and in the folds it deepens to a redder rose instead of darkening toward grey, the way a changeant silk flashes between two colours. A thin white edging runs along the neckline, one line of light holding the dress's edge against the skin."
+   },
+   {
+    "t": "Two bowed heads",
+    "x": 0.58,
+    "y": 0.22,
+    "w": 0.4,
+    "h": 0.38,
+    "body": "The man wears a lion's skin, and the lion's head lies on his chest just under his beard: eyes shut, whiskers drawn in a few fine pale strokes, the muzzle resting where a cloak would be clasped. His own head bows the same way, lids lowered, face turned down toward our left, so man and dead animal tilt in parallel, his lowered eyes above the lion's closed ones. The skin wraps him: its dark mane falls over his right shoulder, a fringe of pale curls breaks out under his left arm, and a tawny paw hangs at his hip below a band of white cloth. The fur is flicked on in short strokes that follow the lie of the hair, against the smoother, blended modelling of his chest. His right arm reaches out from under the pelt toward the woman and disappears behind her lilac shawl, while his shoulders stay rounded and the strong body at rest."
+   },
+   {
+    "t": "A brocade drawn, not woven",
+    "x": 0.27,
+    "y": 0.47,
+    "w": 0.32,
+    "h": 0.3,
+    "body": "The white mantle across her hips is patterned in two separate systems of mark, laid over a silver-grey modelling of the folds. The gold is thick, opaque ochre set down in single loaded strokes: rosettes, strapwork bands, small flowers with a blue dot at the centre. The blue is drawn. A fine dark contour sweeps through acanthus scrolls and leaves, and only some of the shapes are then filled with blue; others stay bare outline on the white. The drawing does not stop for the shadows. It runs straight through the grey of a fold and out the other side, and where a fold turns, the gold bands break and jog to follow it. The motifs are drawn freehand, each repeat a little different from its neighbour. Yet the mantle still holds together as one costly fabric, because the folds underneath carry the form and the pattern rides on top."
+   },
+   {
+    "t": "A foot on the globe",
+    "x": 0.08,
+    "y": 0.68,
+    "w": 0.36,
+    "h": 0.32,
+    "body": "Her right foot, in a blue strapped sandal, rests on top of a dark globe, while her left stands on the floor beside it. The globe is a near-black sphere crossed by thin pale meridians, with a beaded band slanting over it. At its base lie the things of rank: a closed crown with pearl-studded arches and a small cross on top, a jewelled sceptre on its side, strings of pearls and a heap of gold work. On the face of the plinth just above the crown, a line of dark Roman capitals reads OMNIA VANITAS."
+   },
+   {
+    "t": "The child and the second crown",
+    "x": 0.56,
+    "y": 0.7,
+    "w": 0.4,
+    "h": 0.3,
+    "body": "At the man's bare foot a winged child sits on a rose cloth, one knee drawn up and the other leg stretched out, and leans over to press one hand on top of a second crown, a dark band of gold points each tipped with a pearl. He looks straight up along the lit shin beside him. The wing is a quick passage: slate-blue feathers, a single white flick at the joint, darker strokes trailing off into the shadow of the fur behind. The child's flesh is painted paler and cooler than the man's warmer skin, so the two bodies stay distinct even where the small head overlaps the leg. His palm lies flat on the crown's rim, beside the man's toes."
+   },
+   {
+    "t": "A hand on the club",
+    "x": 0.81,
+    "y": 0.55,
+    "w": 0.19,
+    "h": 0.4,
+    "body": "The man's left arm hangs down at the right of the picture, and the hand at its end rests on his club. The club is easy to miss: a knotted shaft stood on end in the dark gap between the lion's fur and a grey block, painted in olive-gold, its knots set down as rounded touches of a paler gold. The fingers curl over its top, and pale strokes pick out the raised veins on the back of the hand and wrist. Below, the shaft runs straight down to the rose cloth on the floor, beside the dark tip of the child's wing. He has not given the weapon up; he has stood it on the floor and laid his hand on it."
+   }
+  ],
+  "beside": "The verdict on riches that this canvas paints on a stone plinth goes unwritten in Marinus van Reymerswaele's The Tax Collectors (Poborcy podatków), of about 1540. There no judge stands over the table and no motto weighs the takings; the condemnation is left to the collectors' faces. A clerk in spectacles and a red hat of curling tufts writes in a ledger in close script. Over his shoulder a wrinkled face in a green hood bares its teeth, and a long finger points at the page. A fur-cuffed hand holds a roll of copper coins, another works the clasp of a purse, and silver and gold lie heaped at the right.",
+  "refs": [
+   {
+    "id": "marinus-van-reymerswaele-poborcy-podatkow",
+    "text": "Poborcy podatków"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "crab-on-its-back": {
+  "mv": 6,
+  "see": "A single crab lies on its back on a green ground, pale underside turned up, set on a slant through the middle of the canvas. Its two claws, tipped in black, close the body at the bottom; slimmer jointed legs lift free at the upper left and at the right. The body is rose, cream, tan and rust, the legs red-orange and red-brown, and dark contour lines hold much of it together. All around it is green: lighter and laid in broad crossing strokes above, deeper and sweeping below, with shadow on our left of the crab.",
+  "about": "A crab is an animal whose skeleton is on the outside: armour made of jointed plates that overlap and fold under one another, its hinges on show. That armour is the whole subject here. Nothing in the picture sets the crab in a kitchen or at a meal. Taken out of the still life of food, one creature fills the canvas, as a sitter fills a portrait.",
+  "craft": "The crab and the ground are handled in two different ways, in oil on a small canvas under half a metre wide. The animal is assembled piece by piece: segments fixed by dark drawn contours, their turn from light to shade laid as separate touches of colour set side by side, with almost no blending between them. The ground takes a broader, loaded brush in long strokes. In both, a thin first layer is left open in gaps between the strokes laid over it, so the under-colour keeps breaking through.",
+  "context": "The canvas is dated to Paris in August or September 1887, though others place it in Arles early in 1889. In July 1887, with Theo away in the Netherlands, Vincent went to Le Tambourin, the café that held his paintings and the Japanese prints he had exhibited there, and demanded everything back. It was in such prints that he had found the crab as a subject. About a week later he wrote to Theo: \"I'm going to retreat to somewhere in the south so as not to see so many painters who repel me as men.\" In late October he told his sister Willemien of his plan to go south, \"where there's even more colour and even more sun.\" The crab was never sold. It was first shown in The Hague in 1892, after the painter's death.",
+  "deeper": [
+   {
+    "t": "Claws drawn in black",
+    "x": 0.15,
+    "y": 0.47,
+    "w": 0.6,
+    "h": 0.4,
+    "body": "The picture's darks gather most densely here, at the crab's lower rim, where the two pincers point toward each other from either side. Each tip is a flat shape edged by a heavy black line and filled with parallel strokes of black and deep blue-green, and small openings of paler colour break each black. Inside the left pincer's black sits a single dab of saturated blue, which keeps the dark from going dead at close range. Below the gap and under the right claw, a row of short upright strokes stands on the green like the teeth of a comb: the claw's shadow, written as line. Between the two tips a fan of cream strokes ends in an orange rim worked in tiny loops. These two are the crab's only pincers: the legs that lift free elsewhere end in slim points, and one in a rounded tip."
+   },
+   {
+    "t": "Two greens, woven",
+    "x": 0.64,
+    "y": 0,
+    "w": 0.36,
+    "h": 0.42,
+    "body": "In the field above the crab, the gaps between strokes show which layer went down first. Underneath lies a deeper, yellower green, laid thin enough that the canvas weave shows in it. Over it go broad slabs of a lighter, bluer green, each pulled in one pass by a loaded brush that left bristle furrows down its length and a ridged lip where it lifted. Some run level, some upright, and they cross like strips in a woven mat; where two miss each other, a small window of the first green opens."
+   },
+   {
+    "t": "Hooked against the green",
+    "x": 0,
+    "y": 0.03,
+    "w": 0.3,
+    "h": 0.42,
+    "body": "At the upper left a red-brown arc of jointed segments climbs out of the shell and hooks back, parting near the top into two slim leg tips, each tapering to a point on a segment of its own. Its red-brown goes on lean and thin. A dark line runs along its outer edge, and the rounded joints below it take a few quick strokes of orange over the brown. The green around it moves differently from the crossing slabs higher up and to the right: its strokes curve, running parallel to the arc along the outside, so the field bends with it and the arc seems to rise out of the current of the brushwork."
+   },
+   {
+    "t": "Rim in dashes, knob in a heap",
+    "x": 0.32,
+    "y": 0.2,
+    "w": 0.3,
+    "h": 0.27,
+    "body": "Where the shell's edge meets the green, the brush writes in separate marks. The rim is a band of short dashes, orange, cream and rust, each laid across the edge over a violet-brown underlayer, with a cool grey showing between them. Inside it, a curved line of dark green and a row of olive-yellow dashes follow the shell's curve like stitching along a seam. A little lower, at the centre of the underside, the handling changes completely: a round knob is heaped in one thick cream mass, pushed about until its surface is pitted and glossy, and edged on its right by a raised white line that wavers like piped icing."
+   },
+   {
+    "t": "Red legs, green field",
+    "x": 0.55,
+    "y": 0.15,
+    "w": 0.33,
+    "h": 0.38,
+    "body": "On the right, red-orange limbs kick free of the body, their edges drawn in dark line. The upright one ends in two black leg tips, each tapering to a point on a dark segment of its own, that stab up into the green. The other slants down to our right, with a row of short orange dashes along its upper edge and a rounded maroon tip. Just left of the upright limb's higher point the green thins out, and a patch of bare canvas shows through."
+   },
+   {
+    "t": "Pale limbs in rows of dabs",
+    "x": 0.08,
+    "y": 0.3,
+    "w": 0.38,
+    "h": 0.36,
+    "body": "The pale limbs folded across the middle of the crab are built from rows of short upright dabs, one row stacked over the next like courses of thatch, so the bands end in ragged, notched edges. The colour steps from cream through tan and rose to brown as each segment turns away or slides under its neighbour, and the steps are laid as separate dabs, which gives the limbs their hard, plated look. The joints and seams are drawn on top, in thin lines of dark blue-green, dragged lightly and broken in places. One oval near the top, half-ringed in black, looks like a lidded eye: inside it, two short curved strokes of blue-black sit side by side under a thin dark line that arches over them."
+   },
+   {
+    "t": "Shadow in hatching",
+    "x": 0,
+    "y": 0.3,
+    "w": 0.26,
+    "h": 0.62,
+    "body": "On our left of the crab the green deepens to blue-green, and the darkening is no smooth tone. It is a mass of short upright strokes, many of them near-black, packed against the shell's outline. This is the crab's shadow, and its weight here, hard against the flank on our left, places the light on the other side, at our right. Lower down the strokes lengthen and swing into broad arcs of brighter green that curve around the bottom of the shell, keeping to its rounded edge."
+   },
+   {
+    "t": "A field with no edge",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Nowhere in the green does a line mark a table edge or a horizon, so the surface the crab lies on and the space behind it are told apart by the direction of the strokes and the depth of the colour. Above, the slabs cross. At the right, level with the leg that slants down, the green steps darker, and the strokes turn into long sweeps running down and away from the shell. Below the right claw they flatten into near-level strokes of deeper green. The crab lies across the band where that change happens."
+   }
+  ],
+  "beside": "Working from a description and a quick sketch of a rhinoceros brought to Lisbon, Albrecht Dürer designed The Rhinoceros in 1515 and built the animal he never saw the way this crab is built, out of hard plates. His beast stands alone in profile on a strip of ground: a ribbed shield over the barrel, a shoulder plate edged below with a row of oval studs, legs sleeved in overlapping scales. Studs belong to an armourer, and Dürer fastened them onto a hide. Nothing on the crab comes from a workshop: its plates are its skeleton, and the joints drawn across its limbs are the animal's own.",
+  "refs": [
+   {
+    "id": "the-rhinoceros",
+    "text": "The Rhinoceros"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "man-writing-a-letter": {
+  "mv": 6,
+  "see": "A long-haired young man sits at a table in a tiled room, bent over a sheet of paper with a quill, dressed in black with a white collar and full white shirt sleeves. A patterned carpet covers the table, with a silver writing stand and a turned yellow wafer stamp at its back edge. Behind him are an open casement of leaded panes with a globe behind its glass and, on the whitewashed wall, a landscape in a carved gilt frame. His hat hangs on a red chair at the right, and the floor under it is black and white stone laid on the diagonal.",
+  "about": "A well-to-do young man writing a love letter, the subject Dutch painters and their buyers kept coming back to through the 1650s and 1660s. Metsu painted no fewer than nine letter scenes, the first around 1657–59, and the theme came to him from Gerard ter Borch's elegant letter writers. In Adriaan Waiboer's account, Metsu loosened the social and emotional corset of Ter Borch's ladies and gentlemen and set them in richer, more fanciful interiors, the kind his wealthy Amsterdam buyers liked. This room is furnished to tell us who the writer is: fashionable black and a costly carpet for means, a globe behind the window for learning.",
+  "craft": "The room around him is framed in straight uprights and level edges, and against them the man's back, shoulder and head make one long curve down to the table. On this wood panel, about half a metre high, the back wall is not smoothed out: it is laid in open, crossing strokes of grey and off-white, with creamier streaks dragged over them and the track of the brush left showing where it turned. In the coat the black is worked up from inside: a warm brown-black body, with the folds, the rows of buttons and the slashes of the sleeve put in over it in thin strokes and small dots of grey.",
+  "context": "Metsu had come to Amsterdam from Leiden in 1654, and in May 1658 he married Isabella de Wolff of Enkhuizen, who sat for many of the women in his scenes. He became the most famous of the city's fijnschilders, the fine painters, by fitting an assured style to what the market wanted. In the mid-1660s, the years of this panel, he was turning back to religious subjects of a Catholic cast, his mother's faith: a Christ on the Cross of 1664, for which his wife stood model as the Magdalene, and The Sick Child. He died in the autumn of 1667, at thirty-eight. More than a century and a half later the London dealer John Smith catalogued this panel and judged it “of the rarest excellence and beauty”.",
+  "deeper": [
+   {
+    "t": "Lids lowered",
+    "x": 0.32,
+    "y": 0.27,
+    "w": 0.26,
+    "h": 0.25,
+    "body": "The head is bent so far forward that the eyes are almost all lid: two heavy brown arcs under the brow with a dark sliver beneath them, aimed down at the hands. The tilt carries the gaze to the paper, and the same line runs on through the nose and the closed red mouth. The window light comes from our left. It is fullest on the brow and the bridge of the nose, on that side, and fades across the cheek into the warm brown of the hair, which falls in long curls painted lock by lock over a darker mass. Then, under the chin, the handling changes. The face is blended smooth, its turns made by soft transitions; the falling band of linen below it is laid in long, loaded drags of white with grey-blue in the creases, every pull of the brush still standing in the paint."
+   },
+   {
+    "t": "The open leaf",
+    "x": 0.02,
+    "y": 0.01,
+    "w": 0.42,
+    "h": 0.47,
+    "body": "On the left stile of the leaded window, two flat iron straps are nailed on as hinges, and on the right stile is a round catch with a hook. They tell us this leaf of glass has been swung open into the room and now stands square to us, which is why, low in its last panes, a globe appears behind the glass, its wooden horizon ring and turned legs seen through the lead strips and bars that cross its face. The glazing is built from a short vocabulary of marks repeated with patience: a grey line for each lead strip, edged on one side with a thread of light; a white dot where two strips are soldered; a dark rod for each iron saddle bar, its flattened end pinned to the frame with a nail-head. The arches in the top rows are the same marks bent into curves. At the far left edge a strip of red belongs to the window opening itself."
+   },
+   {
+    "t": "A painter's gilt",
+    "x": 0.57,
+    "y": 0.05,
+    "w": 0.41,
+    "h": 0.39,
+    "body": "The carved frame is the busiest surface on the wall, and its gold is made of paint: an ochre-brown body, darker brown pressed into the hollows, and on top a scatter of thick white and cream flicks where each lobe and bead catches the light. Enlarged, each flick is a separate blob of paint; at the size of the whole panel they fuse into burnish. Along the right side and under the bottom rail a soft grey shadow falls on the wall and lifts the frame off the plaster. Inside, the brush changes pace: the landscape is laid in broad, soft browns, a rust-red tree, a pale band of low sky, and a knot of animals, one of them red-brown; under the tree, a small red touch too slight to name."
+   },
+   {
+    "t": "Point on the paper",
+    "x": 0.17,
+    "y": 0.45,
+    "w": 0.27,
+    "h": 0.15,
+    "body": "The quill's point is down on the sheet. The far hand, his right, holds it in a pinch of thumb and two fingers, the shaft slanting up past the knuckles; the near hand, his left, lies flat with its fingers spread to keep the paper still. One hand works and one holds, and the grip is drawn exactly enough to tell the two jobs apart. Left of the quill's point the paper rises in a buckled edge, caught in a few strokes of grey and white. The flesh is modelled in small, smooth turns, warmer on the backs of the hands."
+   },
+   {
+    "t": "Silver made of the room",
+    "x": 0,
+    "y": 0.46,
+    "w": 0.25,
+    "h": 0.13,
+    "body": "Silver has almost no colour of its own here; it is assembled from what stands near it. On the lidded pot and the two beakers the painter sets down narrow vertical bands, near-black, a mid grey, a warm streak, then a hard white stripe, and the eye reads polished, curved metal. Each rim is a single bright line bent into an ellipse. Above the lid sits a clear glass ball, painted as hardly anything: a thin outline, a bright crescent, the dark behind it showing straight through. In front, on its side, lies the wafer stamp for sealing the letter: a turned yellow handle swelling into a round bulb, its narrow end bound in silver, the bulb holding one soft patch of light. The whole stand sits at the carpet's back edge, within reach of the hand that writes."
+   },
+   {
+    "t": "Hat on the chair",
+    "x": 0.6,
+    "y": 0.41,
+    "w": 0.38,
+    "h": 0.25,
+    "body": "The broad black hat hangs from the top corner of the chair back, its brim hooked over the edge, with a dark piece dangling below it that ends in a sheer grey band and a fringe of dark tassels. Behind it is the widest field of light in the picture, this stretch of wall on the right, and against it the hat reads almost as a cut-out: one flat black shape with a few cool greys inside and a soft shadow at its right edge. It reverses the man's scheme: he is a light face and white linen set against dark, the hat is dark set against light. The chair back below is a plain red panel, closed at its lower rail by two brass nail-heads, its surface streaked with fine diagonal strokes of the brush."
+   },
+   {
+    "t": "The carpet's fall",
+    "x": 0.02,
+    "y": 0.56,
+    "w": 0.46,
+    "h": 0.44,
+    "body": "At the table's front corner the border, a dark band of flowers between beaded white lines, comes down, breaks over the edge and swings into a curve, so that the corner of the carpet hangs in a cone and its brown fringe spreads on the floor. Where the border meets the red field it makes a sharp V, and that bend draws the corner of the table beneath. The weave is written in separate, crisp touches: a dot of white for a lit knot, a comma of blue, a dab of orange set down and left alone. On the table's left face the cloth sinks toward black in shadow, and the pattern goes on there in darker reds, its touches still separate."
+   },
+   {
+    "t": "Polished floor",
+    "x": 0.5,
+    "y": 0.66,
+    "w": 0.5,
+    "h": 0.34,
+    "body": "Under the chair, the turned ball foot of the farther leg stands in its own reflection, a soft dark column running down into the black tile. With that one smear the floor becomes polished stone. The tiles are laid on the diagonal, black and white, the white ones faintly veined in grey, and their diamonds narrow as they run back to the wall, where a skirting of white tiles painted with blue birds runs behind the chair. In front, the man's foot is drawn back with its heel raised off the floor, so the shoe shows its tan sole and squared toe under a large black bow, and a shadow pools beneath the lifted heel."
+   },
+   {
+    "t": "Glove below the seat",
+    "x": 0.6,
+    "y": 0.68,
+    "w": 0.14,
+    "h": 0.13,
+    "body": "Below the seat, between his leg and the chair's front leg, a dark glove hangs with its fingers pointing to the floor. It sits in the chair's shadow, dark on the dim wall and tiles behind, and it is easy to miss. It takes only a few strokes: the fingers laid as separate dark lengths, slightly parted, and a paler line along its upper edge. With the hat hung on the chair back above, it seems part of the outdoor dress he has set aside, and both hands at work on the paper are bare."
+   }
+  ],
+  "beside": "Looking up from the page is the other way to paint a letter being written, and Johannes Vermeer chose it in A Lady Writing a Letter, of about 1665. Her nib still rests on the sheet and the fingers of her other hand lie on the paper, as this young man's do, at a table under a blue cloth with a studded casket and a strand of pearls. She has turned her face to us, half smiling.",
+  "refs": [
+   {
+    "id": "a-lady-writing-a-letter",
+    "text": "A Lady Writing a Letter"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "paradise-under-the-sea": {
+  "mv": 6,
+  "see": "A tall, narrow picture, its painted field rounded at the upper corners, stacks three figures around one tree. A nude youth in a leaf wreath and bead necklace sits high in the branches. Below, two women stand at the trunk's foot, one in a rose-red robe seen in profile, one in a pale dress with her back turned, and both have their hands on the tall ochre jar between them. They stand at a stone-rimmed well among red coral and sea plants, and between the leaves lies turquoise and blue water. A thread of small bubbles runs down beside the red robe.",
+  "about": "In the Kojiki's first book, the age of the gods, the young god Hoori has lost his elder brother's fishhook and goes down to the sea god's palace for it. He is told to sit in the katsura tree beside the well at its gate and wait to be seen. A maid comes out to draw water, sees his light reflected in the well and looks up, and he asks her for water. Her mistress, Toyotama-hime, comes out in turn, and the two exchange looks. Only then is he taken inside and married to her, and from that marriage, the story runs on, the imperial line descends. Aoki keeps to the meeting at the gate: the woman in red at the left is Toyotama-hime, the one in white her maid, and the palace built like fish scales is a place the god has not yet entered.",
+  "craft": "Oil on canvas, about 1.8 metres tall, and finished, which for Aoki was the exception: he left many paintings incomplete, but this one was carried through on a careful plan, worked out in repeated studies. The long, narrow upright for three figures shows the influence of the British Pre-Raphaelites, whose pictures he knew from publications that had reached Japan, and he said that Gustave Moreau's use of colour had worked on him too. Except in the faces, which are worked smoother, the oil is laid in distinct strokes that sit beside and across one another and are seldom fused, so even the largest passages keep the marks of the touches that built them.",
+  "context": "In 1903 Aoki, still an art student, won the first Hakuba-kai Prize with drawings from the old myths. The next summer, at Mera on the Bōsō peninsula, he painted A Gift of the Sea. This picture went to the Tokyo Industrial Exhibition in the spring of 1907, and the months after went badly. That year he went home to Kurume to his dying father; that autumn the first Bunten rejected him; from late 1908 he wandered Kyushu, and he died in a Fukuoka hospital on 25 March 1911, aged twenty-eight. Natsume Sōseki put the picture into his novel Sorekara (1909): its hero, Daisuke, finds strong red disagreeable and would like to float his head in green and sleep. He remembers the tall woman a man called Aoki painted standing on the sea floor as the one entry in that show pleasingly made, because he too wanted to be in that sunk, settled mood.",
+  "deeper": [
+   {
+    "t": "The youth in the crown",
+    "x": 0.2,
+    "y": 0,
+    "w": 0.65,
+    "h": 0.21,
+    "body": "High in the branches, at the top of the narrow canvas, a youth sits and looks down, and the first thing the paint does is turn him green. The shadows of his face, the side of his neck and the hollows of his chest are laid in olive and grey-green, the same family as the leaves around him, so the skin reads as lit through water. The lips and a ridge of the cheek keep a warmer pink. Behind his head the leaves part on a pale yellow-green opening, and his dark hair and leaf wreath, pricked with red berries, stand out sharply against it. Round his neck hang two strands of green and dull red beads with curved, comma-shaped pendants, the lowest of them dark."
+   },
+   {
+    "t": "Leaves over open water",
+    "x": 0,
+    "y": 0.045,
+    "w": 0.48,
+    "h": 0.22,
+    "body": "The canopy on our left is built leaf by leaf. Each leaf is one long, pointed stroke with its own edge, rust, olive, dull red or a green so dark it is nearly black, laid over the next so the crown thickens in layers. The leaves hold their edges as firmly as the figures do. Between them the ground is turquoise, and toward the left edge it breaks into longer blue strokes that ripple sideways: the colour and the movement of water seen from inside it. So a land tree, given full attention leaf by leaf, grows in the sea. Low in the crop a dark leaf crosses in front of the youth's arm and ties him into the branches he sits in."
+   },
+   {
+    "t": "The scaled lattice",
+    "x": 0.5,
+    "y": 0.21,
+    "w": 0.5,
+    "h": 0.2,
+    "body": "At the right edge the sea garden turns briefly into architecture. Behind the dark-haired woman's head stands an ochre panel netted with thin dark arcs, each row overlapping the one below like the scales of a fish, and beside it, near the canvas edge, stands a green post. Above the post the water is brushed in short blue curls. Into this corner the youth's arm comes down, and his hand rests on the crown of the woman's dark head: the wrist and the back of the hand are painted pale and edged over the hair, and only the fingers, never separated, lose their edges where they meet it."
+   },
+   {
+    "t": "Her eyes turned up",
+    "x": 0,
+    "y": 0.25,
+    "w": 0.5,
+    "h": 0.16,
+    "body": "The woman in rose-red is drawn in strict profile, head tipped back, and the eye carries the whole gesture. The dark iris rides high under the upper lid with the white showing below it: someone looking steeply upward, made with a dark crescent, a pale wedge and a lifted brow. Her lips are parted, and a round flush of red sits high on her cheek, a separate blot of colour on the green-shadowed face. A gold hoop hangs from her ear; in her hair a yellow branched ornament curls like a sprig of coral."
+   },
+   {
+    "t": "The bead on the jar's lip",
+    "x": 0.18,
+    "y": 0.32,
+    "w": 0.5,
+    "h": 0.24,
+    "body": "At the centre, three hands and a shin meet at this jar. The red-robed woman's fingers rest on its neck from the left. The woman in white holds it with both hands: one cups its foot from below, and the other reaches across her body to lie over the rim on the right, its wrist turned down the jar's flank. The youth's lowered leg comes down behind it, pale against the dark leaves, to its mouth. The vessel itself is plain and archaic-looking: a tall ochre body, thinly painted, with a band of brown spirals round the shoulder and a small dark tab hanging from one of them. On the jar the light falls from our right: it is palest just right of the middle, and its right half is a little paler than its left. Then the lip, and the mark that ties the jar to the youth: a dark maroon bead with a curved tail clinging to the rim, a curl of red beside and below it. It is the comma shape from his necklace, dark like the lowest pendant there."
+   },
+   {
+    "t": "Braid, beads, a drifting ribbon",
+    "x": 0.5,
+    "y": 0.37,
+    "w": 0.5,
+    "h": 0.26,
+    "body": "At right, the second woman stands with her back to us. A string of round red beads circles the nape, and a long dark braid drops from a small white bow down the spine to the waist, swaying a little as it falls. The dress is the lightest large passage in the picture, yet its white is assembled from green, cream and faint rose strokes dragged downward, with darker ground glinting between them; the folds on our right take more of the light. Then the ribbon. From her shoulder a pale band loops out sideways in slack S-curves, doubles back and only then descends, the way cloth behaves when water, not air, is holding it up. It is painted thin and dry, so the dark green behind shows through it."
+   },
+   {
+    "t": "Bubbles at the robe's edge",
+    "x": 0.1,
+    "y": 0.47,
+    "w": 0.5,
+    "h": 0.22,
+    "body": "Down the front edge of the rose-red robe runs a broken column of small rings: flattened ovals, each with a pale highlight and a rim of blue-green, spaced irregularly. They are bubbles, a plain statement that all of this happens under water, and they join the bottom of the picture to its middle. Followed down, the column runs to the well at the women's feet; followed up, it ends against the jar's flank, just under the band of spirals. At this distance the robe also shows how it is made. The red is hatched: long dry strokes of rose, crimson and orange laid in sheaves that follow the fall of the cloth, with darker red gathered in the folds. The bubbles sit on top of that hatching, small crisp accents on a soft field."
+   },
+   {
+    "t": "The well on the sea floor",
+    "x": 0,
+    "y": 0.74,
+    "w": 0.8,
+    "h": 0.26,
+    "body": "At the bottom of the picture the women stand at a well. Its pale stone curb is drawn as a long flattened ellipse, the rim firm and continuous from the left edge to behind the white skirt, and inside it lies a band of dark water streaked with blue: water opened inside water. The ellipse lays the floor down flat and fixes where each pair of feet stands in depth. The bare feet are drawn with care, the toes separately shaped; the red-robed woman stands on a spreading patch of red, the white-dressed woman on green ground scattered with red sprigs. Behind the curb, at the foot of the trunk, a bank of coral pinks and reds with branching sea plants stands where a land garden would have grass. And beside the red-robed woman's ankle the bubbles cross the dark water and go on, smaller and fainter, over the near curb to the floor by her toes."
+   },
+   {
+    "t": "Where he touches the woman in white",
+    "x": 0.36,
+    "y": 0.16,
+    "w": 0.64,
+    "h": 0.31,
+    "body": "From the youth's arm at our right down to the jar's rim, he and the woman in white, the one holding the jar, touch at three places. Highest is his hand on her head. Lower, one of his legs slants down beside her head to her shoulder, its end hidden behind her sleeve and the forearm she reaches toward the jar. Lowest, that forearm turns up the jar's flank, and her hand lies over the lip at the very point where his other leg comes down behind it."
+   }
+  ],
+  "beside": "Asked by the sea god Glaucus for a charm to win the nymph Scylla, the sorceress of John William Waterhouse's Circe Invidiosa, of 1892, makes poison of the errand. As in Aoki's picture, a love story of the sea rests on a woman holding a vessel over water. Circe stands alone in a green pool, head bowed, and from the shallow bowl in her hands a thin stream drops into bubbles, among the fins and coiled tail of a dark creature in the water under her feet. In the old story, the princess's own maid fills Aoki's jar at the sea palace's well, and the meeting it brings is her mistress's first exchange of looks with the god; Circe's bowl pours poison meant to transform her rival.",
+  "refs": [
+   {
+    "id": "circe-invidiosa",
+    "text": "Circe Invidiosa"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "the-football-players": {
+  "mv": 6,
+  "see": "Four men in striped suits, two in blue with pink or white and two in orange with yellow, play with an oval ball on a brown earth avenue. Rows of autumn trees with blue-grey trunks line both sides, a white rail fence crosses behind the players, and beyond it rise a wooded hill, a few small trees on its ridge, a lilac-grey cloud bank and blue sky. The avenue is frontal and nearly symmetrical. Almost every form sits inside a firm outline and is built one mark at a time.",
+  "about": "Rugby was spreading fast in France and new to Rousseau's painted world, yet here it has none of its usual setting: no marked pitch, no crowd. The four men play in an avenue of autumn trees closed by a white rail, dressed in two pairs of striped colours that match neither the French nor the English side. One recent essay wonders whether the sky-blue stripes point to the Racing Club, whose players trained in the Bois de Boulogne, and calls the scene a kind of Eden of rugby, an enclosed garden.",
+  "craft": "The colour falls into a pair of opposites, warm orange and gold against cool blue, across the whole oil canvas, about a metre tall: blue sky and blue-grey bark against gold leaves and brown earth. The kits split the same way, two blue and two orange, so each player carries one side of the landscape's pair. The figures are laid out with almost no overlap, each body kept whole as one readable shape against fence, foliage or earth, and the drawing keeps a cartoonist's economy. Angelica Rudenstine judged the conception not far removed from a newspaper cartoon of a France–England match, published in January 1907.",
+  "context": "Rugby was the season's news: on New Year's Day 1908 England beat France 19–0 at Colombes before some five thousand spectators. When the Salon des Indépendants opened eleven weeks later, Rousseau, at sixty-three, had this canvas in it as Joueurs de foot-ball, with three other canvases. In 1907 a friend drew him into a bank fraud, and he spent a month in prison; the case would end in court with a conviction and a suspended sentence. Wilhelm Uhde, who knew him, tells how he took the verdict: he thanked the presiding judge and promised to paint the judge's wife.",
+  "deeper": [
+   {
+    "t": "The ball above the fingertips",
+    "x": 0.29,
+    "y": 0.26,
+    "w": 0.24,
+    "h": 0.22,
+    "body": "The ball hangs a finger's length above the leaping man's fingertips, and the gap is the whole event: nothing in the paint says whether it is dropping into his hands or has just left them. It is also painted unlike anything around it. The hill behind is built of small separate dabs; the ball is a smooth, blended oval, warm at the centre and darkening toward a hard dark contour, and a little wider than the head of the man reaching for it. In that head, both pupils sit in the middle of the eyes and meet ours. The arms go up for the ball while the face stays turned to the viewer, moustache curled up at both ends, cheeks marked with round pink patches."
+   },
+   {
+    "t": "The dotted hill",
+    "x": 0.41,
+    "y": 0.12,
+    "w": 0.35,
+    "h": 0.22,
+    "body": "Behind the game the land rises into a wooded slope. Most of it is small rounded dabs of olive, ochre and grey-green packed edge to edge over a darker under-layer, so the slope is shaded by how far apart the touches sit. On the ridge stand a few small trees, each its own specimen with its own silhouette. Behind them the cloud bank is soft-edged, and the blue is laid so thin that the weave of the canvas reads through it."
+   },
+   {
+    "t": "Leaves that grow on the way down",
+    "x": 0,
+    "y": 0.04,
+    "w": 0.21,
+    "h": 0.58,
+    "body": "Each leaf in this canopy is one stroke, a short pull of ochre, orange or olive laid over a darker layer that shows between the strokes as shadow. The rule holds from crown to lowest spray, but the stroke grows. At the top the leaves are flecks; low down they have lengthened into long fronds several times that size, spread in fans like an open hand, and some of these low fans turn a cool grey-green against the gold. Where the canopy meets the sky the edge stays crisp, leaf by leaf. Enlarging the leaf as the tree descends brings the lower branches toward us, so they seem to hang nearer than the crown."
+   },
+   {
+    "t": "The wave and the auburn frame",
+    "x": 0.62,
+    "y": 0.35,
+    "w": 0.22,
+    "h": 0.22,
+    "body": "The man at the right is not chasing anything. One arm is up with the palm open to us; the other hand is raised in front of his chest, fingers spread, and it too shows us its palm; his pale blue eyes look straight out. The gesture is a greeting or a pledge, and it is made to the viewer. Around his head the colour changes key. On our right of his face the canopy turns rust and red, leaf by leaf; on our left a smooth auburn mass with no leaf shape in it falls in long strokes from behind his ear to the shoulder, so he seems to wear long auburn hair beneath his own dark crop. His jersey is blue and white, with pink running into the whites. The thin line that crosses his throat and runs on into the jersey is a crack in the paint, not a drawn collar."
+   },
+   {
+    "t": "Two boots in one knot",
+    "x": 0.54,
+    "y": 0.42,
+    "w": 0.18,
+    "h": 0.24,
+    "body": "The smallest of the four men stands farthest back, and he is the one at rest: knees bent and apart, hands dropped between them, perched against the white rails, grey-haired and half-smiling toward us. Where his boots meet the earth they sit higher on the canvas than any other foot that touches ground, and that height sends him into the distance. His leg on our right, orange-red stocking and brown boot, comes down to the earth. The boot meets the hanging boot of the waving man's lifted leg, and the two cross in a single brown X, same colour, same handling, so it takes a moment to sort out which foot belongs to whom."
+   },
+   {
+    "t": "The fist at the hip",
+    "x": 0.12,
+    "y": 0.41,
+    "w": 0.31,
+    "h": 0.33,
+    "body": "The one touch in the game happens here. The orange-and-yellow man's arm shoots out level and ends in a closed fist against the blue jersey of the leaping man, and his whole body follows that line. The stripes on his torso run across the slant of his lean, so they tilt with him like rungs; his head drops forward into his shoulders, the only face of the four turned aside from us, and his eyes slide toward the man he is reaching for. The upper rail of the fence runs straight into his moustache, a tangency that pins his head to the fence. His other hand opens near the lower rail, and both feet point their toes down with neither sole flat on the earth."
+   },
+   {
+    "t": "Stripes doing the shading",
+    "x": 0.3,
+    "y": 0.4,
+    "w": 0.22,
+    "h": 0.38,
+    "body": "The leaping man's suit is modelled almost entirely by its stripes. Across the chest they run nearly level, a flat banner of blue and pink; at the hips they begin to bow, and on the thighs they curve into deep arcs, so the eye reads round limbs where the paint has put very little shadow. Each band is a single loaded stroke laid beside the last, with the ridges of the bristles running along it. Below the shorts the colour switches to blocks: a bare pink knee, a yellow cuff, a deep red stocking, a brown boot, the whole leg tapering to a toe that only just meets the ground. The other leg kicks back, red stocking and boot appearing from behind the shorts."
+   },
+   {
+    "t": "Trunks with eyes",
+    "x": 0.78,
+    "y": 0.52,
+    "w": 0.22,
+    "h": 0.36,
+    "body": "Low on the right the trunks come down as smooth blue-grey columns, and two of them carry an almond-shaped hollow, dark at the core and ringed with paler bark; a third shows farther back, and the left row has them too. They are knotholes, but outlined like that, a black centre inside a pale lid, they look unsettlingly like eyes. The bark is laid in long vertical strokes, the palest of them mostly on the side of each trunk that faces the open avenue. In this row the bases do not spread into roots; they end in rounded stumps that stand on the earth like the feet of furniture. A fine web of cracks runs over the trunks and the earth in this corner, the age of the paint showing through the illusion."
+   },
+   {
+    "t": "The earth in front of the game",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "The earth that fills the bottom of the picture is laid as one smooth brown, with no visible stroke in it, and its tone changes steadily all the way back. At the bottom edge it is a warm, light ochre-brown; it darkens evenly as it recedes, and at the foot of the fence it is a brown so deep it is nearly black. Most of the players' bright stockings and boots stand against that darkest stretch, while the lightest ground lies nearest us, where nobody plays. Below the lowest toe, nearly a quarter of the canvas's height holds nothing but bare earth, the bases of the trunks at either side and the signature, Henri Rousseau over 1908, at lower right: a broad empty apron laid in front of the game."
+   }
+  ],
+  "beside": "Four people, a game named in the title, walls of leaves: Édouard Manet's A Game of Croquet, of 1873, sets out the same terms. Only the woman in white bends to her mallet; a woman in dark blue rests her hands on a slender shaft, and a man in a boater sits on the grass, his back to us. Where Rousseau's ball goes up into the air over bodies in motion, with no hand holding it, one of Manet's balls lies on the turf, nowhere near a mallet, among bodies mostly at rest.",
+  "refs": [
+   {
+    "id": "edouard-manet-a-game-of-croquet",
+    "text": "A Game of Croquet"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "lady-in-white": {
+  "mv": 6,
+  "see": "A portrait of a smiling woman, her head tipped and pushed high into the upper left of a near-square canvas, her hair massed in reddish brown. She wears a loose white garment that carries the figure in one long diagonal to the lower right, where it swells into a broad curve. Behind her the ground is pale on our left and green-black on our right. The eye lands on the face, drawn more closely than anything around it, then runs down the white. The weave of the canvas reads through almost every passage, and the garment is laid in as broken touches of colour.",
+  "about": "Her identity has never been settled, though attempts have been made to name her. She belongs with the more than ten portraits of unnamed women Klimt painted in under four years, a kind of picture collectors bought on studio visits without commissioning it. In place of a sitter on record, it offers a design. The square is built from three fields: a light one on our left, the white of the figure, and a dark one on our right that takes in the back of her hair. Her head is small, high and off-centre, yet the picture turns on it, because all three fields converge there.",
+  "craft": "Under the hair Klimt laid a light-red underpainting, under the face and neck a light-yellow one, and beneath everything lie only a few lines of preliminary drawing. He painted in oil-resin paint and usually worked out his backgrounds on the canvas itself, without studies.",
+  "context": "From 1911 Klimt worked in a studio in the Feldmühlgasse in Hietzing, and this canvas was still there, unfinished, when he died in 1918. From 1914 the war and a falling currency cut his income hard. By 1927 the picture belonged to the painter Broncia Koller-Pinell. On 19 September that year Gerhardus Knuttel, gathering Austrian pictures for a Dutch tour, saw the Klimt portrait she owned, evidently this one, in her house and wrote the same day to borrow it. On that tour and at the Secession's Klimt memorial show it was listed as a portrait of a lady. On a Secession receipt of 12 June 1928 its owner named it otherwise, in pencil: Dame in weiß mit schwarzem Hintergrund, a lady in white with a black background.",
+  "deeper": [
+   {
+    "t": "A lidded eye",
+    "x": 0.07,
+    "y": 0.01,
+    "w": 0.31,
+    "h": 0.33,
+    "body": "The mouth pulls first: an orange-red upper edge over a pinker red, corners lifted, laid thinly. The whole face is tipped toward our right, so eyes, nose and mouth run slightly downhill toward the dark, and the eyes are not a pair. Both are heavy-lidded, but her right eye, on our left, is short, a blue iris under a teal lid line, while her left eye is about a third longer, an almond drawn out toward the temple, its dark upper line over a near-black pupil and a touch of yellow beneath. That mismatch, as much as the mouth, gives the look its sidelong cast. The features are drawn in colour: brows, lid lines and the flank of the nose are laid in blue and turquoise, cool touches run along the face's far contour against the hair, and a blue-white band sits under the jaw. On our right the broad cheek is built of curling pink-white strokes that stand up in small ridges."
+   },
+   {
+    "t": "Red beside the hair",
+    "x": 0.36,
+    "y": 0.03,
+    "w": 0.18,
+    "h": 0.28,
+    "body": "Just outside the coiffure, inside the dark, a broken trail of red specks runs downward, roughly parallel to the hair's edge but a little beyond it. The red catches on the weave in tiny points among the green-black. It is the same red that flecks the hair itself, where dark brown is worked over and among small strokes of it, a cool blue-grey band crosses the mass, and a ridge of thicker pinkish white rides the crown's outer edge. Below the hair, paler blue-grey strokes are pulled down through the dark. The warm colour of the head carries a short way past the line where the green-black now stops it."
+   },
+   {
+    "t": "The ochre throat",
+    "x": 0.12,
+    "y": 0.24,
+    "w": 0.22,
+    "h": 0.27,
+    "body": "Below the chin the skin changes key. The face is built in pale pinks and whites; the throat and the opening of the neckline are a thin, dull ochre, scrubbed on lightly. A turquoise shadow sits where jaw and throat meet. On our left the neckline is drawn with a dry, broken grey line, and beyond it the collar is a cluster of short parallel strokes, hatched like the edge of a ruffle. The ochre V carries the body down into the white and ties the face to the figure below it."
+   },
+   {
+    "t": "A light-brown seam at the shoulder",
+    "x": 0.42,
+    "y": 0.33,
+    "w": 0.34,
+    "h": 0.3,
+    "body": "Along the shoulder's long slope, white against green-black, the two fields do not quite meet. Between the last touches of white and the first of the dark runs a thin seam of light-brown flecks on the tops of the threads: the raw cloth, showing between the two paints. The white comes outward in short, ragged drags; the dark comes back at it, and near the middle of the run one dark touch bites into the white. Above the seam the dark is not a flat coat either: it lies thin, with blue-grey pulled down through it toward the shoulder."
+   },
+   {
+    "t": "Discs in the white",
+    "x": 0.44,
+    "y": 0.64,
+    "w": 0.36,
+    "h": 0.32,
+    "body": "Low in the garment the white breaks into soft round blots, roughly coin-shaped, white or rose-white, several marked with a darker smudge. They sit among hooked strokes of teal, short dashes of deep blue, ochre dabs and points of pink. Repeated across the lower garment, the discs read as a pattern in the cloth, flowers or spots on a pale ground, set down as colour with no motif drawn into them. The teal strokes hook and break like folds in cloth that hangs."
+   },
+   {
+    "t": "The white is grey",
+    "x": 0,
+    "y": 0.44,
+    "w": 0.4,
+    "h": 0.46,
+    "body": "On our left the dress meets the pale field behind her with a soft contour, a drag of grey-blue with a stripe of creamy paint running down beside it. The values hold a surprise. Area for area, the dress is the greyer of the two: its blues, lilacs and dull ochres sit a step below the pale ground on our left, which carries faint blots of yellow and blue and a few thin teal lines. The garment reads as white because of its other neighbour, the green-black against the shoulder and the long outer curve."
+   },
+   {
+    "t": "Brushwork in the dark",
+    "x": 0.72,
+    "y": 0.56,
+    "w": 0.28,
+    "h": 0.44,
+    "body": "At the lower right the green-black shows how it was laid. A pale blue-grey stroke drags downward beside the white's outer curve, the brush running dry so the weave catches it in a broken column. Where the white rounds toward the bottom edge, a dark stroke hooks back into it, and around that foot the dark wears thin: flecks of light brown show along the bottom edge, thinning out before the corner, most likely the raw cloth again, its thread tops left bare by the dark."
+   },
+   {
+    "t": "Edges above and below",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "The square is cut close above and below her and left open at the sides. Along the top edge the hair runs straight off the canvas over about a fifth of its width, so the coiffure has no upper outline at all; at the bottom the white leaves the canvas along most of the edge. The sides are another matter. On our left a strip of the pale ground stands beside her from top to bottom, and on our right the green-black carries on past the white's outer curve to the edge."
+   }
+  ],
+  "beside": "The sitter of Amedeo Modigliani's Woman with Red Hair, painted in 1917, is unnamed too: he made it on a daily wage under contract, with his models supplied. She also tips her head, her hair a red mass, but the colours run the other way, a black dress with a wide grey collar against a pale grey-green wall. The woman in white has no chair and no room, only a pale ground and a dark one, and her face stays readable, smiling, one iris blue. Modigliani keeps the studio, a turned red chair under his sitter's arm, and closes the face, each eye a solid dark almond with no pupil and no white.",
+  "refs": [
+   {
+    "id": "amedeo-modigliani-woman-with-red-hair",
+    "text": "Woman with Red Hair"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
  "the-sower": {
   "mv": 6,
   "see": "A peasant sower strides through a ploughed field with the sun on the horizon behind him. He fills the lower left, dark and outlined, a bag of seed at his chest and one arm thrown out. A great yellow disc stands low in a yellow-green sky streaked with pink cloud. A thick, cut-back tree trunk leans across the right half from the bottom edge to the top, sprouting long shoots; a branch with russet and pink curls reaches over the upper left. A farmhouse and trees sit small on the far right horizon. Separate strokes, most of them ridged, build everything, and the dark near shapes press against a lit distance.",
