@@ -35,11 +35,33 @@ in re-reads alone.
    `python fuad.au/rotation/tools/check-subagent-models.py --session <id>`):
    plate hunt → research ∥ blind phase 1 (`preblind_` files, so phase 1 never sees shipped text) → fusion (allocation,
    not a source: every fusion line is a claim the drafter checks) → phase 2 → `crops.py` → audit → one consolidated
-   repair → reads (Info, Interpretation, `beside`, `infodisp`) → `build-cold.js` + one blind cold reader per ~8 works →
+   repair → reads (Info, Interpretation, `beside`, `infodisp`) → `build-cold.js` + one blind cold reader per ~5 works ON FABLE 5.0 (see below) →
    COLD_RULINGS → seal (WEB / PLATE / TEMPLATE, one agent for a small wave, halves for a large one) → SEAL RULING →
    seal edit → gates → merge dry proof → print → Fuad's verdict → `node mergeNN.js --write` → `validate-refs.js` →
    `.sptmp/check-public-dates.js` (untracked by design) → `git commit -F` → push.
 4. Record every ruling as an R-item in the workshop's `QUEUE.md` and the stage state in `DISPATCH_LOG.md`.
+
+## Subagent mode (waves 39–41, Fuad 2026-11-11: "don't use API") — the current default
+Every drafting and looking stage is a `canvas-opus` subagent; the orchestrator writes the fusions and rules every finding as
+an R-item. Per wave: plates (look at every candidate whole on contact sheets; `tile.py` for flat files, `tile_iiif.py <id>
+<info.json>` re-cuts the 3x3 grid from IIIF regions at native scale where a server caps full images, e.g. the NGA's 4096 px)
+→ `build-canon.js`, `build-pre.js`, `mkpreblind.js`, `build-corpus-index.js`, `build-beside-candidates.js`,
+`build-used-companions.js` → `_blockNN.md` + `_mkbriefsNN.py` (stage briefs cut from the wave-36 set, RULE_CARD frame +
+LESSON_LEDGER from the previous wave) → research ∥ phase 1 in waves of five → fusion → phase 2 (`mkp2.py` assembles `out_tour_` from phase 1 + the drafter's `p2_` lenses) → crops → audit
+→ repair → reads → cold → seal (WEB h1/h2, PLATE, TEMPLATE) → SEAL EDIT h1/h2 → cold edit → gates → dry proof → print →
+verdict → merge. Wave 40/41 workshops (`.dtmp/tourwave40`, `.dtmp/tourwave41`) hold the full working set to copy from.
+- **Cold readers run on FABLE 5.0** (Fuad 2026-11-11), never `model:"fable"` (that is Fable 5.1). Preferred:
+  `subagent_type: "canvas-cold"` (`.claude/agents/canvas-cold.md`, pinned `claude-fable-5`; agent types load at session start).
+  If it is not loaded, the working route is the headless CLI bundled with the VS Code extension, run from inside `cold/` with
+  `COLD_BRIEF.md` copied in and the prompt on stdin:
+  `~/.vscode/extensions/anthropic.claude-code-<latest>-win32-x64/resources/native-binary/claude.exe -p --model claude-fable-5
+  --allowedTools "Read,Write,Glob" --output-format json < promptA.txt > runA.json` — `modelUsage` in the JSON confirms
+  `claude-fable-5`. (`claude` is not on PATH.)
+- Rebuild the `cold/` packets AFTER the seal edits (`build-cold.js` reads the current files), so readers see sealed text.
+- Ruling patterns that held: the drafter's refusals of fusion lines are usually right (about 25 a wave) — accept them in the
+  R-item and carry the correction forward; every "Step back / Seen whole / From a step back" closer falls (lessons 55/57) —
+  rebuild as a detail closer on what no stop boxes, or cut; the PLATE seal checks every new visual claim in Info/Interp/
+  beside and every companion claim at the companion's own plate.
 
 ## Gates
 - ⚠ `gate-label.js` and `gate-quarantine.js` take WORK IDS (`node gate-label.js <id> [<id> …]`). Run with `.` they loop
@@ -74,6 +96,9 @@ splices them in and proves that every other entry is unchanged. Canon-row fixes 
 - Write scanners and patches with the Write/Edit tools, never heredocs. Heredocs mangle `\n` inside string literals.
 - An image matcher's pick is not an identity. Pin a sighting against Fuad's own photo, and keep sister versions apart
   (plaster ≠ marble ≠ bronze cast; a replica mural ≠ the canvas).
+- An `art_hires` zoom row can point at a DIFFERENT PAINTING from the canon row (wave 41: the Sower's zoomed the
+  Kröller-Müller's June 1888 canvas under the Van Gogh Museum's November one). Check the hi-res row's inventory against the
+  canon qid at plate time and fix it through the merge's `REPLACE_PLATES`.
 - The app shows `w.img` from the canon row first. An `art_hires` row alone only upgrades the zoom, so swapping a wrong
   image needs the canon row's `img` / `imgGrid` / `imgZoom`, plus `art_imgsize.js` and the palette.
 
@@ -83,7 +108,7 @@ Every LOOKING stage can run through the Anthropic Messages API instead of a suba
 the plate, the tile grid, `zoom`/`colour` tools on the full-resolution plate), `audit <id>` (the independent audit, its whole-image
 account FORCED first by a two-turn exchange — the tour is sent only after the account comes back), `ask <id> <q.md> [--plate f]
 [--tag t]` (plate questions: plate identity, every repaired visual claim, the seal's PLATE role, companion plates), `cold <LETTER>
-<ids>` (the visitor cold read on Fable 5.1). The key is read from `fuad.au/.env`; spend goes to `api_spend.jsonl`. Replies are parsed
+<ids>` (the visitor cold read on Fable 5.1 — API mode only; cold readers are Fable 5.0 since wave 41, see Subagent mode). The key is read from `fuad.au/.env`; spend goes to `api_spend.jsonl`. Replies are parsed
 leniently (`fixjson.js` repairs an unescaped quote). The orchestrator writes research, fusion, phase 2, the repair text, the reads and
 the seal's WEB/TEMPLATE roles itself, and sends every changed visual claim back to the plate (`ask`) before it ships — in wave 37
 those checks refuted about twenty of the orchestrator's own repair wordings. `patch.py <id> <patches.json> [--tag repair|seal]`
