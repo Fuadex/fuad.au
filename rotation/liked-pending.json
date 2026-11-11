@@ -1,0 +1,8 @@
+{
+  "_about": "Liked saves NOT in spotify-liked-src.json because no Spotify track id could be resolved. Recorded at the 2026-11-11 add (cc4e475e). When an id turns up, add the row to spotify-liked-src.json (newest-first block) and its month to liked-added.json, then delete it here.",
+  "pending": [
+    { "artist": "Mr. Dibbs", "track": "Live at Ultimate Beats and Breaks 2", "album": "Primitive Tracks", "saved": "2026.09", "reason": "greyed out (unavailable) in the library; Spotify search returns no match" },
+    { "artist": "KILLEDDY", "track": "cattle.", "album": "cattle.", "saved": "2026.08", "reason": "greyed out (unavailable) in the library; Spotify search returns no match" },
+    { "artist": null, "track": null, "album": null, "saved": "2026.09", "reason": "Liked position 87 (saved 2026-09-16): title and artist set in decorative glyphs, unreadable from the screenshot; needs Fuad's plain-text name" }
+  ]
+}

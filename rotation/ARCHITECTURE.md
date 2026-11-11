@@ -900,6 +900,9 @@ D/W/M calendar cross-filters remain as shipped 2026-07-06.
 - **Liked songs view.** Derived buckets (fresh/doorway/canon/lived/left/mid) + genre/tempo/
   energy filters + artist/album miniatures; `liked-meta.js` 9-field rows joined truth-first
   via the track's media albIdx (never name-slug).
+  Saves come from `spotify-liked-src.json` (newest block prepended by hand when new saves are
+  added); real save months in `liked-added.json`; saves with no resolvable Spotify id wait in
+  `liked-pending.json` (not read by the build).
 - **Artist status.** Reactivated badge = pins ledger (`react:true` — Linkin Park 2017→2024,
   Alice in Chains 2002→2005, Nevermore 2011→2025, Bleach ~2009→performing again) OR the
   derived path (disbanded group + upcoming TM dates); `tmExclude` guards wrong-entity TM
