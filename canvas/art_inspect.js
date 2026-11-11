@@ -101,6 +101,864 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+ "vincent-van-gogh-green-wheat-fields-auvers": {
+  "mv": 6,
+  "see": "A field of young green wheat, seen from close in among the crop under a sky crowded with cloud in white, turquoise and lavender. The skyline runs a little under halfway down; a pale path enters at the lower right and leaves by the right edge. Tall stalks stand out of the field, and clusters of yellow flowers are scattered through its middle ground. The whole surface is built from separate strokes, most of them heavily loaded, whose direction changes from zone to zone.",
+  "about": "A crop before it becomes a harvest. The wheat is still green, nobody works it, and the path at the right leaves the frame empty. The field itself is the subject, a living mass growing upward under a sky that is moving too, and because the view is taken from inside the crop, the field reads as ground to stand in, not country laid out to be surveyed.",
+  "craft": "Oil on canvas, carrying no date, and one of several green-wheat canvases he painted in 1890. Throughout, the unit is a single loaded stroke of stiff paint that keeps the ridges of the brush. Colours sit beside each other in separate touches more often than they melt together. The surface goes on in passes: first a body of colour, then the drawing and the accents laid over the top.",
+  "context": "In May 1890 he left the asylum at Saint-Rémy after a year and moved north to Auvers-sur-Oise. In his first days there he wrote to Theo and Jo that going into the south had done him good, “the better to see the north,” and that “Auvers is decidedly very beautiful.” Within the week he wrote that what he had caught was “above all an illness of the south” and that the return would clear it. In 1905 his sister-in-law Jo van Gogh-Bonger showed the canvas in Amsterdam, that autumn the dealer Paul Cassirer took it on tour through Germany, and in the 1930s the son of the Berlin painter who had owned it carried it to London.",
+  "deeper": [
+   {
+    "t": "Lavender scrolls",
+    "x": 0.5,
+    "y": 0,
+    "w": 0.5,
+    "h": 0.34,
+    "body": "In the upper right the sky is drawn with lavender ribbons laid over white and turquoise, and they are the marks that catch first. Each ribbon is one loaded stroke. Look inside one and pale streaks run along its length, white picked up from the layer beneath as the brush passed through it. At their ends the ribbons roll over into hooks, and the hooks repeat along the band like a line of cresting waves. Beneath them the white has been combed into parallel ridges that stand up as relief, and where it lies thickest it is crazed with a fine net of cracks. The lavender does the drawing: an outline made in colour, which gives the white masses their edges and sets the upper sky turning."
+   },
+   {
+    "t": "White heaps on the skyline",
+    "x": 0.5,
+    "y": 0.26,
+    "w": 0.5,
+    "h": 0.24,
+    "body": "Low in the sky a row of white clouds sits right on the skyline, and their paint stands up off the canvas. Each was built by turning the brush in place: the ridges run in loops around a sunken centre, so the white rises as a coil, while the turquoise around them lies flatter. Their bases rest on the topmost dabs of the field, land and cloud pressed together into one seam of paint, which holds the eye at the horizon instead of letting it run off into space. Above them, near the right edge, a lavender disc repeats the turning stroke in a cooler colour, so the sky carries two kinds of cloud: white heaps resting on the land, and rounded lavender forms floating clear of it."
+   },
+   {
+    "t": "Stalks against the sky",
+    "x": 0,
+    "y": 0.23,
+    "w": 0.3,
+    "h": 0.38,
+    "body": "At the left a sheaf of tall stalks stands up out of the field and crosses into the sky. They went on after the sky was painted: each stem is a single pale-green pull of the brush, each head a short flat dab sitting on top of the turquoise ridges. All of them lean the same way, rooted at lower left with their heads tipped up to the right, and that shared lean is how the picture states its wind. A plant standing in the field rises past the far skyline, so near and far share a single plane of paint. On the horizon behind them a blue-green clump is wound into a coil and edged with a near-black line that stands out hard against the pale sky."
+   },
+   {
+    "t": "The curl",
+    "x": 0.19,
+    "y": 0.37,
+    "w": 0.27,
+    "h": 0.2,
+    "body": "Left of centre the field swells into a hump, and the hump is painted as a curl. Dark green and yellow-green, streaked together while wet, bend up from the lower left and roll over to the right like a wave about to break. To its left, short dark dashes lie flat in rows; in front, a strip of pale strokes runs level. The landform comes from the direction the strokes travel more than from any shading. Between the pale strokes small flecks of a warm buff show through, and they keep the greens from closing into a single sheet."
+   },
+   {
+    "t": "The standing crop and the tall stem",
+    "x": 0.38,
+    "y": 0.31,
+    "w": 0.3,
+    "h": 0.47,
+    "body": "Behind the curl the far field stands up as a wall. Its strokes are long, upright and slightly hooked, set side by side like stalks seen edge-on, with specks of the same buff showing here and there between them. Along the top runs a different mark: short flat dabs in yellow-green and blue-green, laid crosswise, which read as the ears of the wheat at a distance. Through this wall rises a tall dark stem, built up in several strokes from low in the field and across the pale strip; its leafy top stops among the crosswise dabs, short of the skyline. The bent mark standing up against the turquoise a little to its right is a separate stroke, laid along the skyline and turned upward at its end. That stem is a measuring rod: a single plant set against the full depth of the field. The wall is a cooler, bluer green than the strip in front, and that shift sets it back. The far strokes have not been softened to do it; they stay as firm and separate as the near ones."
+   },
+   {
+    "t": "Two yellows",
+    "x": 0.27,
+    "y": 0.55,
+    "w": 0.19,
+    "h": 0.27,
+    "body": "The flowers are assembled from separate touches: two or three fat strokes for the petals, sometimes a deeper dab at the centre, set down on top of the green. They stand proud of the surface and have cracked along their ridges. The higher blooms are a pale lemon; lower down the touches turn a deeper golden yellow and swell into round buds. They step down loosely toward the dark teal swirl beneath, scattered and not lined up, which keeps them reading as wild growth among the wheat and gives the cool field its warm notes."
+   },
+   {
+    "t": "The near wheat",
+    "x": 0,
+    "y": 0.53,
+    "w": 0.38,
+    "h": 0.47,
+    "body": "At the bottom left the wheat comes closest, and each leaf is a single stroke. A loaded flat brush swept through an arc: each crescent is one gesture, and the crescents stack in fans, tier over tier, so the near field piles up in overlapping rows. There are three layers to find. The deepest is a dark sea-green laid in broad arcs. Over it go mid-greens, and inside many arcs a near-black sliver sits like the shadow under a bent leaf. Last come the pale, almost white crescents, dragged on so thinly in places that the green below breaks through them in spots; their raised edges throw tiny shadows of their own. In the gaps, flecks of buff show through. Toward the lower right the key changes: the arcs turn yellow-green with lemon edges, a lighter strand of growth curving forward."
+   },
+   {
+    "t": "The path",
+    "x": 0.58,
+    "y": 0.47,
+    "w": 0.42,
+    "h": 0.53,
+    "body": "On the right a pale path climbs from the bottom edge and leaves the picture at the right side. Its paint is thinner than the wheat's, laid in slanting hatches of mint, lemon and pale green that climb with the path, and toward the bottom right it thins until the weave shows through in flecks of buff. Its lower stretch is as pale as much of the sky, the palest land in the picture. Where field meets path, a thin grey-violet line is drawn along the bank, a firm contour between heaped crop and flat ground. Beside it, short strokes of strong blue lie on the path, and in the wheat to the left of the line a cluster of flowers is touched in a dull mustard, wiry and splayed."
+   },
+   {
+    "t": "Marks that grow",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "The marks grow as they come forward, and they grow in steps. The dabs along the horizon are short and laid crosswise; the upright strokes of the far wall below them are longer; the arcs along the bottom edge run several times the length of the horizon dabs. The depth is built from that growth more than from any converging line. Two pale shapes answer all the green: the row of white clouds on the skyline and the path's wedge at lower right, which climbs toward them."
+   }
+  ],
+  "beside": "The harvest this green crop has not yet reached is under way in Harvest at La Crau, with Montmajour in the Background, which Van Gogh painted in 1888 from the opposite standpoint. In the green field he stands among the crop, stalks rising past the skyline. At La Crau he looks out over a plain laid in yellow bands toward blue hills and a far ruin, country surveyed and worked throughout. A stack has ladders set against it, a man bends at work in the field behind it, a blue cart rests unhitched on its shafts, and picket fences rule the foreground. Over that labour hangs an even turquoise sky without a cloud.",
+  "refs": [
+   {
+    "id": "harvest-at-la-crau-with-montmajour-in-the-background",
+    "text": "Harvest at La Crau, with Montmajour in the Background"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "j-m-w-turner-a-packet-boat-off-dover": {
+  "mv": 6,
+  "see": "A small paddle steamer with a red hull, a red funnel and two masts pitches through broken water near the centre of the sheet, trailing grey smoke toward the upper left. To our left a low, pale shore with a few upright white shapes lies along the horizon; to our right a blue-green bank climbs toward the upper corner. The near sea is grey-buff wash, heaped white foam and lines of white drawn across it. Most of the sheet is a pale, lightly washed grey field.",
+  "about": "The boat is small, set low in a wide pale field, and the sheet is about her passage through the weather around her. Steamers had worked the Dover crossing since 1821, and passengers preferred them as less at the wind's mercy than sail. They were not beyond it: in bad weather even a steam packet could not get into Dover, and every ship ran for the Downs off Deal to wait. The sheet holds that balance, a machine meant to free the crossing from the wind, small inside weather that could still shut the harbour against it.",
+  "craft": "The support is grey wove paper, worked in watercolour and gouache with touches of black chalk, and since laid down on a backing. On a grey sheet the picture is built two ways from the paper's own middle tone: down with transparent watercolour, up with gouache. That pairing was Turner's habit in his maturity: coloured papers in blue, grey, brown or green, matched with gouache, an opaque, quick-drying paint, on sheets strong enough for colour washes and scratching out. Black chalk is the one dry medium in the mix: drawn across paper with a raised grain, it catches on the high points and skips the hollows, so its line comes out broken.",
+  "context": "The sheet is from about 1836, the year Turner showed Juliet and her Nurse at the Royal Academy and H. A. J. Munro of Novar bought it; when a Blackwood's critic mocked the painting that October as models of Venice \"streaked blue and white, and thrown into a flour-tub\", the seventeen-year-old John Ruskin wrote a reply, which Turner passed on to Munro. Munro was also his travelling companion that year: as he recalled in later letters to Ruskin, the two crossed from Dover and went on through France to Geneva, Chamonix and the Val d'Aosta. Around the time of this sheet, then, Turner made the Dover crossing himself.",
+  "deeper": [
+   {
+    "t": "Funnel, masts and a red hull",
+    "x": 0.315,
+    "y": 0.42,
+    "w": 0.345,
+    "h": 0.26,
+    "body": "The strongest colour on the sheet belongs to this boat, and it is built from a handful of strokes. The funnel is one upright red mark with a notched top. The mast just to its right starts red at the tip and goes grey as it descends, while a mast at the left is laid in ochre. A faint pinkish line leaves the funnel high up, just under its notched top, and slants down and to the left to the deck, a stay or the edge of a small sail. The hull is three or four red-orange strokes, their upper edges caught with white, and at the right end the colour pales to ochre and breaks into short upright flicks: water thrown up at the bow. The smoke goes the other way, streaming back over the paddle box toward our left. Two marks pointing in opposite directions, spray at one end and smoke at the other, are all Turner needs to give the vessel a heading and a speed: she is driving to our right, into the blue-green weather."
+   },
+   {
+    "t": "Smoke laid in dabs",
+    "x": 0.25,
+    "y": 0.33,
+    "w": 0.32,
+    "h": 0.21,
+    "body": "From the funnel's mouth the smoke climbs to the left as a staircase of short grey dabs, each tilted the same way and set one after another. Nearest the funnel they are densest and darkest, and along their upper edges runs a dark, broken, granular line. A rose tinge creeps into the grey part-way along. Further out the dabs thin, lose their rims and turn into dry, broken drags of the brush, and at the far end only a few scratchy grey hooks remain, barely darker than the paper. The trail fades by changing its handling, wet near the funnel and dry at the tail, and that change of touch does as much as the paling tone to make the smoke look torn away by the wind."
+   },
+   {
+    "t": "The paddle box",
+    "x": 0.315,
+    "y": 0.535,
+    "w": 0.205,
+    "h": 0.14,
+    "body": "The mark that makes this vessel a paddle steamer is a small grey disc half sunk in white: the paddle box, the housing over the wheel that drove her. It is one pale grey wash, its upper rim picked out by a broken, dotted dark edge, with a couple of faint dark ticks inside it. Its lower half is lost under opaque white laid on thickly enough to have crazed, and fine cracks run through the foam. To its left a run of ochre dots sits along a low line, the rest of the deck dissolving into the spray."
+   },
+   {
+    "t": "The pale shore",
+    "x": 0.02,
+    "y": 0.44,
+    "w": 0.33,
+    "h": 0.23,
+    "body": "Along the horizon at the left lies a shore made almost entirely of tone. A grey-violet band of wash was carried along the skyline and stopped around two upright pale shapes, like towers, so their outlines are cut clean by the wash around them. Under them runs a strip of faint pink and orange touches, a waterfront catching light. Below that the sea's far edge is a row of small blue-green scallops, each a single curved touch of the brush laid down wet and left alone. This corner is lighter and warmer than the blue-green bank across the sheet."
+   },
+   {
+    "t": "The blue-green bank",
+    "x": 0.6,
+    "y": 0.17,
+    "w": 0.37,
+    "h": 0.5,
+    "body": "On the right a bank of blue-green wash climbs from the boat's bow to the upper right, and its top edge is hard. The colour was flooded onto dry paper and left to dry where it lay, which is why its rim set crisp; along the top the brush pulled it up into a row of upright notches, some pointed like torn spray, some square-shouldered, with pale brownish blocks set among them near the top. Lower down, a stronger blue was dropped into the bank while it was still wet and spread softly, without a rim, so the two ways of letting wash dry sit in one form. At its foot the handling changes again: a nearly dry brush was dragged across the blue-green so that the white caught only the paper's raised grain, leaving broken streaks like spume blown off the back of a wave."
+   },
+   {
+    "t": "Heaped white",
+    "x": 0.18,
+    "y": 0.57,
+    "w": 0.29,
+    "h": 0.22,
+    "body": "The whitest paint on the sheet is here, in the sea behind the paddle box and to the left of the hull. It is opaque white, pushed on in irregular, clotted patches that overlap and leave the grey showing between them, thickest along the line where the boat meets the water and thinning downward into the trough. It stands brighter than any bare stretch of the grey field, so it sits on the sheet as paint, and the wake carries the light, piled where the paddles churn."
+   },
+   {
+    "t": "White lines on the near sea",
+    "x": 0.34,
+    "y": 0.66,
+    "w": 0.52,
+    "h": 0.27,
+    "body": "Below and right of the boat the near sea carries only thin buff and grey washes, with a soft grey shadow under the hull, and across them run lines of white drawn with the tip of a loaded brush: loops, hooks and short upright strokes strung together in a running line low across the sheet, and a looser curl closer to the boat. These are drawing, each mark a continuous line with a start and a finish, set over the wash once it had dried. They give the crests of the nearest waves and leave the field between them to stand for the body of the water. Toward the bottom edge the marks thin out and the plain field carries the sea alone."
+   },
+   {
+    "t": "The whole sheet",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "From the heaped white at lower left, most of the paint on the sheet runs in one track: low along the near sea, through the red hull, then up the blue-green bank to its notches near the upper right corner. The smoke crosses that track at the funnel, running the other way, up to the left. Above the track the grey field is left nearly as it is. Nothing is painted along the top of the sheet; the highest marks are the bank's notches, and the upper left holds little but the smoke and the pale shore on the horizon."
+   }
+  ],
+  "beside": "Rain catches people halfway over the water in Utagawa Hiroshige’s Sudden rain over Ōhashi and Atake, a print of 1857, where the crossing is a bridge. Walkers hurry both ways along its plank deck, bent under hats, umbrellas and a mat held over the head. Fine dark lines of rain fall across the whole scene, down to the misted trees of the far bank. That bridge stands on timber legs in the river, and the rain can only soak the walkers. Turner’s packet has nothing under her but the sea, and his weather, far from falling everywhere, gathers into one blue-green mass ahead of her.",
+  "refs": [
+   {
+    "id": "utagawa-hiroshige-sudden-rain-over-ohashi-and-atake-from-the",
+    "text": "Utagawa Hiroshige’s Sudden rain over Ōhashi and Atake"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "claude-monet-banks-of-the-seine-vetheuil": {
+  "mv": 6,
+  "see": "A river seen from a near bank in full leaf and flower. Sky with broken cloud fills the upper third; below it the far bank runs straight across as a dark line of trees and poplars, with a green spit of meadow pushing into the water at right and a low blue band of distance behind. The river crosses the middle as a field of short horizontal touches. The lower half is the near bank: grasses, a shrubby thicket at left, flowers in yellow and white, rising until they overlap the water.",
+  "about": "The far shore is a calm, level line of trees; the near side is crowded, upright growth, and the water lies between them as the thing the view is for, reached through that growth. In 1880, once his Salon pictures had gone in, Monet tired of familiar motifs and widened his radius along the bank and the islands; Wildenstein's biography lists among the new ones a far bank seen through a curtain of willows and the village glimpsed past an island's trees. It places this view upstream of Vétheuil, looking across the water to the plain of Lavacourt. Here the screen is the bank itself, and the ground the view must cross becomes half the subject.",
+  "craft": "Oil on canvas, the larger of two canvases Monet painted that year of a closely similar view. It is handled between two consistencies of paint: thin colour dragged with a fairly dry brush, so that it breaks over the texture of the canvas, and loaded paint that stands up in raised strokes. Monet plays the two against each other from the sky down to the grass. The brush is left to show its direction, and that direction does the drawing: forms are built from the size and lie of the touch.",
+  "context": "In spring 1880 Monet broke with the Impressionists' own exhibition and sent two canvases to the Salon. One was refused; the other was hung on the top row, where, the critic Philippe Burty wrote, all the delicacy of his palette evaporated. On 7 June eighteen of his canvases opened in a one-man show at the gallery of the weekly La Vie Moderne, prefaced by his friend Théodore Duret. Later that month Zola, reviewing the Salon, called him an incomparable landscape painter and reproached him with haste, work verging on pacotille, cheap goods, when he should be making important canvases studied over seasons. In September he left the river for the sea cliffs at Les Petites-Dalles.",
+  "deeper": [
+   {
+    "t": "Three poplars",
+    "x": 0.3,
+    "y": 0.09,
+    "w": 0.16,
+    "h": 0.27,
+    "body": "The tallest things on the far bank are three poplars just left of centre, and their dark blue-green columns against the pale sky are what the eye finds first. Each tree is built from short downward drags of a brush carrying little paint, so the colour catches on the raised threads of the canvas and skips the hollows; flecks of pale sky show through the foliage all the way down. The sides fray, yet the silhouettes stay firm: three separate columns with sky between them, the right-hand one the tallest, its top bent over by a single dark curling stroke. Bunched together, the three give the long flat bank one strong vertical accent, and beside them the shorter, bluer poplars further right read as farther away."
+   },
+   {
+    "t": "A sky scrubbed thin",
+    "x": 0.02,
+    "y": 0,
+    "w": 0.27,
+    "h": 0.23,
+    "body": "Above the trees the paint is thin enough that the weave of the canvas shows through it almost everywhere. A soft blue is scrubbed over a cream layer in wide, mostly level swipes, and the cream breaks through wherever the brush skipped, giving the haze its glow. Two small clouds at the left are handled differently: they are built up in thick, rounded strokes of pale blue-white that stand proud of the surface and hold the light on their ridges. One sits near the top edge, the other lower down. In both, the body of the paint gives the cloud substance, and the scrubbed blue around it falls back as open air."
+   },
+   {
+    "t": "The green tongue",
+    "x": 0.68,
+    "y": 0.26,
+    "w": 0.32,
+    "h": 0.14,
+    "body": "At right the far bank comes forward as a tongue of meadow that narrows to a point in the water, about three-quarters of the way across the picture. Its paint behaves unlike anything around it: long sweeps of saturated green and a yellower green, laid in the same direction and meeting along soft edges, smooth enough that the brush's track can be followed over the rise. The water just below is the opposite, pale paint dragged so dry it breaks into a granular stipple. Monet separates land from river by handling as much as by hue: the meadow gets the continuous stroke of a surface that holds still, the water the broken touch of one that moves. Behind the meadow a low blue band of distance sits under the sky, with trees standing in front of it."
+   },
+   {
+    "t": "A reflection made of ripples",
+    "x": 0.27,
+    "y": 0.31,
+    "w": 0.2,
+    "h": 0.27,
+    "body": "Straight below the poplars, the river carries their reflection, and how it is made is easy to miss. The reflection is not painted as an upside-down tree. The whole river is laid in short horizontal dashes of blue, cream, a little green and a little pink, set side by side like ripples. Under the poplars the dashes simply turn darker and bluer, and stacked one above another they add up to a vertical column; the eye assembles a reflection out of marks that, taken one by one, describe moving water. Followed down, the darker column runs about as far below the bank as the trees rise above it, which is how a reflection in level water behaves, so the geometry holds while the strokes inside it stay horizontal. Near the top, greener dashes carry the bank's foliage down into the river before blue takes over. At the column's head, the dark trees meet the light water along a firm, nearly straight line, picked out by a string of thick cream-white strokes at the foot of the bank."
+   },
+   {
+    "t": "Flowers in the river",
+    "x": 0.5,
+    "y": 0.33,
+    "w": 0.34,
+    "h": 0.27,
+    "body": "At centre right the near bank stops behaving like a foreground and climbs into the view. Two clumps of yellow flowers on tall stems rise until their highest touches overlap the river and come within a short gap of the far bank. At their upper edge the yellow is laid over the blue: ripples show between the yellow strokes, and yellow rides on top of the water's ridges, so the river was there first and the flowers were painted into it. Inside the clumps, rust and orange touches keep the yellow from going flat, and thin green lines stand for stems."
+   },
+   {
+    "t": "The left thicket",
+    "x": 0,
+    "y": 0.52,
+    "w": 0.3,
+    "h": 0.4,
+    "body": "Bottom left, the bank thickens into a shrubby tangle painted darker and denser than the flowering ground at the centre. Here the touches curl and cross in several directions, short hooked strokes of deep green over olive flecked with yellow and rust, and among them thin brown lines fork upward like twigs. The crossing hatch gives the mass an inside, foliage with depth to it. Set against the left edge, the dark tangle closes that side of the picture, and the eye slides off it to the right, toward the brighter yellow and the strip of water above."
+   },
+   {
+    "t": "Near flowers, far flowers",
+    "x": 0.62,
+    "y": 0.6,
+    "w": 0.38,
+    "h": 0.4,
+    "body": "In the lower right the brushwork turns upright. Strokes of dark green, olive and yellow-green are pulled vertically side by side, a combing of grass seen from very close, and over them sit a few white flower heads drawn with care: petals laid as separate radiating strokes around a dab of orange-yellow centre. Higher in the same patch, the white flowers shrink to commas and flecks with no centre to them. That change of definition is a depth scale built into the grass: the nearest flowers have parts, the farther ones only colour and direction. Along the bottom, the signature and date are written into the grass in orange-red."
+   },
+   {
+    "t": "Where the banks close in",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "The near bank does not lie flat. From the bottom edge it swells upward toward the centre right, the green meadow at right pushes the far bank forward to meet it, and the water between them narrows, broad where it leaves the picture at left, a thin strip where it leaves at right. The picture's upper part is cool, blue and grey-green; its lower is warm yellow-green. Past the river, warm colour comes back once: low on the horizon, at left and again at right, peach touches sit in the sky just above the far fields."
+   }
+  ],
+  "beside": "Two girls pick the flowers that Monet's bank only grows in Pierre-Auguste Renoir's In the Meadow, of about 1890, and their slope is a place to stay. The nearer, in rose pink, sits with her back to us, one hand reaching down into the grass; the blonde in white bends over the small white bunch held between them. Beyond, framed by trees, the ground drops to a pale valley with roofs and a square tower, and two tiny figures walk a path. Neither girl looks toward it, and the distance stays a backdrop. On the Seine bank nobody sits or gathers, and the growth climbs until its yellow lies over the river.",
+  "refs": [
+   {
+    "id": "pierre-auguste-renoir-in-the-meadow",
+    "text": "In the Meadow"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "gustave-caillebotte-skiffs": {
+  "mv": 6,
+  "see": "A summer river between wooded banks, seen from a little above the water. Three men in straw hats, white shirts and blue trousers sit in narrow wooden skiffs, each working one long paddle with a blade at both ends: the nearest fills the right half of the foreground, the second sits farther back on the left, the third is a small figure at the bend where the river turns out of sight. The pointed tip of a fourth boat edges in at the right. The yellow blades and white shirts are the warm, light accents against blue-green water laid in short horizontal strokes, which the near paddle crosses on one long diagonal.",
+  "about": "Men in straw hats, shirtsleeves and blue trousers drive narrow one-man boats along a summer river, and the picture treats the outing as sport, caring as much for the exercise as for the holiday: two fists on the shaft, legs stretched out in the hull, the trunk upright while the arms work. The river is the Yerres, which ran past the family's country estate south of Paris; over the summers of 1876 to 1878 Caillebotte made it his open-air study ground, painting swimmers, anglers, rowers and paddlers. Here he takes one pastime and looks down on it at three distances.",
+  "craft": "Oil on canvas, worked from thin and dark to thick and light. The water goes down first, a blue-green dragged across the open river so that a pale ground shows in its skips; the lights go on top in heavy, separate strokes that keep their own colour and edges. The trees follow the same order, a dark mass scumbled in and the lit leaves pressed on dab by dab. He signed and dated it in dark paint at upper right, among the leaves; the name at lower left was added after his death, as the family's stamp or a painted copy of it.",
+  "context": "His parents bought the estate at Yerres in 1860, when he was twelve. In April 1877 he showed his big Paris pictures, Le Pont de l'Europe and Rue de Paris, temps de pluie, at the third Impressionist exhibition; that same year he painted these paddlers on the Yerres. The summers ended with his mother: Céleste Caillebotte died on 20 October 1878, the estate was sold the next year, and the Yerres pictures stop there. By 1879 his address was the boulevard Haussmann, and that May, reviewing the fourth exhibition, F.-C. de Syène praised, in his boating scenes, “the lapping water and foliage flooded with light or bathed in transparent shade.”",
+  "deeper": [
+   {
+    "t": "Under the straw brim",
+    "x": 0.42,
+    "y": 0.27,
+    "w": 0.27,
+    "h": 0.36,
+    "body": "The brim of the near paddler's hat cuts his face along the line of the nose. His eyes sit in a cool shadow; only a pursed red mouth and the chin take the sun, so even the nearest man keeps his look to himself. The light is high and comes from our left: the sleeve on our left is lit cream, the sleeve on our right a greyer white, and his neck is warm cream on our left, grey-green on our right. The shaft throws a soft blue band across the shirt just below itself, and the band lifts the paddle off his body and sets it in front of him. The shirt is laid in thick, short strokes that ride over the folds and is never one white: cream where the sun strikes, blue in the creases, a few pink touches near the hand on our right. Behind him a dark purple-brown backrest stands like a panel, and the shirt's outline comes from that contrast."
+   },
+   {
+    "t": "The blade going in",
+    "x": 0.11,
+    "y": 0.6,
+    "w": 0.24,
+    "h": 0.19,
+    "body": "Low on the left, the near man's blade is entering the water. Its upper edge is a firm outline of buttery yellow, but the lower half does not close: below a level line the same yellow breaks into horizontal bars, the river's surface cutting across the blade, and the bars beneath it mix the drowned part of the blade with its reflection in one broken band. At the leading tip a small knot of blue-white dabs stands up from the canvas, the splash where the blade bites. The other end of the same shaft is up in the air on the far side of the boat, so the picture holds the paddle at a single instant, one blade loading as the other lifts clear."
+   },
+   {
+    "t": "The bow wave",
+    "x": 0.26,
+    "y": 0.69,
+    "w": 0.37,
+    "h": 0.29,
+    "body": "Beside the hull the water changes its habit. Over most of the river the strokes lie flat, short horizontal bars; here they swing round into long slants that fan back from the boat's side, steepest beside the hull, white and cream laid thick over darker blue, each one pulled until the brush ran dry and the paint skipped across the canvas weave at its tail. Those slants are the wave the bow pushes aside as the skiff comes on toward us. Yellow reflections ride inside the wave as well, and they tilt with it, while the yellow farther out on the river lies level."
+   },
+   {
+    "t": "The bow at the edge",
+    "x": 0.53,
+    "y": 0.58,
+    "w": 0.34,
+    "h": 0.42,
+    "body": "The near skiff runs straight out of the picture: its pointed bow reaches the bottom edge and the tip is cut off there. We look down into it, onto the pale floorboards, a cross-bar over the man's legs, ribs flicked in orange along the inside and a pinkish gunwale. The eye is only a little higher than the paddler's head; the floor shows because the boat is so close. The carpentry is drawn in long, single strokes that hold a straight edge, each gunwale one pull of the brush, and a dark violet line runs the length of the outer hull where its side turns away from the light. Set against the broken dashes of water on either side, the drawing changes register here: the boat is built with ruled lines, the river around it with touches."
+   },
+   {
+    "t": "A boat from outside the frame",
+    "x": 0.74,
+    "y": 0.37,
+    "w": 0.26,
+    "h": 0.28,
+    "body": "At the right edge the frame cuts into a fourth boat. A pointed hull, dark blue-grey with a pink-orange gunwale, comes in from the edge, and a blade of its own lies low across the hull, its shaft running off the edge toward a paddler who is never shown. Thin orange streaks under that blade are its reflection, broken by the ripples. The hull's tip, finished with a small upturned orange flick, stops exactly at the lower edge of the near man's raised blade: the two contours meet at a point, and neither runs behind the other."
+   },
+   {
+    "t": "Two moments of one stroke",
+    "x": 0.11,
+    "y": 0.22,
+    "w": 0.36,
+    "h": 0.27,
+    "body": "The middle skiff repeats the near one smaller and reversed. This man also faces us, his face shaded under a taller straw hat, but his blades are the other way round: the one on our left is up in the air, the one on our right is down at the water, where the near man digs on our left. The reflections here follow a rule worth checking. Directly under the raised blade, but far below it, its yellow returns as a stack of horizontal dashes; under the bow, his white shirt comes back as a zigzag of white touches close to the hull. The higher a thing stands above the water, the farther down its reflection falls."
+   },
+   {
+    "t": "The shaded bank",
+    "x": 0,
+    "y": 0.06,
+    "w": 0.27,
+    "h": 0.21,
+    "body": "The left bank is the dark side of the river. Its trees are brushed in deep blue-greens with little to separate one from the next, and through gaps between the trunks a few slabs of yellow-green blaze out: open ground in full sun beyond the wood. Those slabs come back in the water below as soft pale patches, and a run of thin pale upright ticks sits in the shade just under the mauve strip of bank. A long orange-brown shape along the edge, likely a moored boat, is almost lost in the shade. The sun stands behind these trees, on our left, so they turn their shaded side to the river while the opposite bank takes the light full on."
+   },
+   {
+    "t": "The far paddler",
+    "x": 0.42,
+    "y": 0.11,
+    "w": 0.25,
+    "h": 0.19,
+    "body": "Up at the bend the third paddler is built from a few separate touches: one yellow dab for the hat, a few thick white strokes for the shirt, a flick of yellow on either side for the blades, and below him a short stack of white and gold dashes for his reflection. It is the near man's vocabulary of straw, white cloth and yellow wood, at its smallest, still legible as a man in a boat. Behind him a pale band of light lies across the bend, an opening in the green."
+   },
+   {
+    "t": "Three steps up the river",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "From the bow at the bottom edge the three skiffs zigzag into depth, up and left to the middle boat, then back toward the centre and the bend. Measured across the shoulders, each man is roughly a third the size of the one before, so the river covers its distance in three steep jumps with open water between them. The two nearer boats are seen from above, and the same straw, white and yellow return at every distance, which ties the three men into one file on the move, with the green closing in on both sides and overhead."
+   }
+  ],
+  "beside": "Leisure by a river is rest in Georges Seurat's Bathers at Asnières, of 1884, and the effort stays far off. In front, a man in a bowler lies stretched on the grass, another in a wide straw hat sits on the slope with a knee drawn up, a youth sits head bowed at the water's edge, and two boys are in the river. The boats are small and distant: a ferryman bent on his pole behind his passengers, and at the right edge a sculler in a long, thin shell that the frame cuts off. Caillebotte turns that order round, and the effort fills his foreground: the nearest of three men, each driving his own boat.",
+  "refs": [
+   {
+    "id": "bathers-at-asnieres",
+    "text": "Bathers at Asnières"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "franz-marc-siberian-dogs-in-the-snow": {
+  "mv": 6,
+  "see": "Two white dogs fill the canvas almost edge to edge, both heading to the right through snow. The far dog carries its head level at the upper right; the near dog overlaps it, its head lowered toward the snow, its hindquarters and legs coming down to the bottom edge. Light arrives from our left: lit fur is cream and yellow, turned-away fur grey-green, and the dogs' shadows lie on the snow as broad fields of blue. A few ochre twigs stick up out of the snow.",
+  "about": "Fur and drift draw on the same colours, cream, yellow, grey-green and blue, so the two dogs belong to the light around them instead of being cut out against it. In April 1910, about two months after this canvas was first shown, Marc wrote to Reinhard Piper, for a book on the animal in art, that his aims did not lie with animal painting as such: he wanted to feel his way, pantheistically, into “the trembling and running of the blood” in trees, in animals, in the air. Here that aim is still tied to daylight, and the colours are light and shade.",
+  "craft": "Oil on canvas, put down with a stiff bristle brush whose hairs leave fine parallel grooves along its strokes, in thick paint and in thin. Colours are often dragged through one another while both are still soft, wet into wet, and the signature at lower right is a thin grey-olive line drawn into white that had not yet set: the white is pushed up along the edges of each letter. Marc drew and painted his own animals again and again, and he was modelling animals as well: at the end of 1908 he wrote of a horse group made in wax “in two short days”.",
+  "context": "Munich, 1909: Marc was not yet living from his painting. That September he told his brother Paul of small sheep modelled for a crib and illustrations for a book of poems. In January 1910 the collector Bernhard Koehler bought a picture and, by one account, paid him a stipend, and Marc wrote to the painter August Macke that meeting colleagues of such conviction was “a real stroke of luck”. Within a year or so the canvas belonged to Ludwig Hopf, a physicist just taken on as Einstein's assistant; his family kept it through his suspension in 1933, their flight in 1939 and his death in Dublin that December, until 1958.",
+  "deeper": [
+   {
+    "t": "The near dog's back",
+    "x": 0.29,
+    "y": 0.2,
+    "w": 0.42,
+    "h": 0.44,
+    "body": "The near dog's back is built up in cream paint from a loaded brush, laid along the spine in short overlapping strokes with raised ridges, through which fine cracks now run. Follow the body down the flank on the right and the handling changes completely: long, thin strokes of grey-green, dragged so lightly that the weave of the canvas shows through them. That change is how the animal is modelled. On this dog, fur that faces the light is thick and warm, fur that turns away is thin and cool, and the eye reads the difference as a rounded body. The strokes also follow the dog: along the spine they run with the hair, and on the flank they swing down in long curves toward the legs, the way the coat falls. Where the belly needs an edge, on the right, it gets strokes of blue, and where the white lobe rising off the rump at left meets the grey behind it, the edge is a streak of unmixed yellow on its lit side."
+   },
+   {
+    "t": "The far dog's head",
+    "x": 0.72,
+    "y": 0.02,
+    "w": 0.28,
+    "h": 0.33,
+    "body": "The far dog's head is painted thin: a grey-violet veil laid over the ground across skull and hanging ear, and a warm smear of orange-ochre at the neck. Thin, cool and grey, it drops back behind the near dog's cream, which is how the picture puts one animal behind the other with little change of scale. The single firm accent is the nose, a twist of dark blue at the tip of the muzzle. It is among the darkest marks on the canvas, and like the others it is blue: the picture contains no black. The head's underside is not drawn at all. Thick horizontal strokes of white snow are pulled up against the grey, and the upper edge of that white is the jaw."
+   },
+   {
+    "t": "The near dog's lowered head",
+    "x": 0.68,
+    "y": 0.27,
+    "w": 0.3,
+    "h": 0.33,
+    "body": "The near dog's head hangs low, its muzzle pointing right at the level of the snow. The crown is a cap of cream paint in short ridged strokes, lit because it faces up into the light. Below it the ear falls as a long, thin tongue of orange-ochre. The muzzle is grey-green, and its lower edge against the snow is a firm, continuous curve, as is the tip. The muzzle does not dissolve into the white; it is more sharply bounded than the far dog's head. At lower right of the box a small yellow stick stands upright in the snow with a pool of blue at its foot. It marks the snow as a flat surface at the muzzle's level, so the eye reads the head as dipped to the ground."
+   },
+   {
+    "t": "Yellow edge on the far dog's hind leg",
+    "x": 0,
+    "y": 0.1,
+    "w": 0.34,
+    "h": 0.52,
+    "body": "At the left the far dog's body ends in a hind leg stretched back, its mass laid in a cool grey-blue. Its whole left contour is a streak of unmixed yellow, dragged in one long curve from haunch to foot. Yellow does here the work a dark line does in a drawing, inverted: it marks the edge with light. It sits on the left-facing side because the light comes from our left, and the same rule puts yellow on left-facing edges of the near dog. Across the foot runs a long ochre stalk, touched with red, painted straight over the yellow and continuous through it. That stalk is the one long line in this corner, and because it crosses the leg it stands between the viewer and the dog, giving the snow a front plane. Below the leg a band of blue shadow lies on the snow."
+   },
+   {
+    "t": "Hind legs at the bottom edge",
+    "x": 0.3,
+    "y": 0.6,
+    "w": 0.28,
+    "h": 0.4,
+    "body": "Two of the near dog's legs come down here. The right-hand one runs straight out through the bottom edge of the canvas before any paw is drawn: the frame crops the animal, so the dog reads as close and as larger than the picture can hold. Low on it, one hooked stroke of deep blue curves along the line where its pale side meets its cool side, among the darkest strokes on the whole canvas. Around that stroke the leg is three temperatures side by side: cream down its left side, streaks of yellow, grey-green on the right. The left-hand leg ends higher in a rounded cream tip, its shadow side scumbled thin."
+   },
+   {
+    "t": "The blue shadow",
+    "x": 0.54,
+    "y": 0.55,
+    "w": 0.46,
+    "h": 0.45,
+    "body": "A broad field of mid-blue spreads to the right of the near dog, from its legs toward the right edge. It is the dog's cast shadow on the snow, and it is painted as a shape with edges. Where it meets sunlit snow its border is a firm, wavy line, ridged where the white was pulled against it, and the blue tongues it sends out read as the dips and lips of a drift. Inside the shadow the strokes lie flat and sideways along the ground, unlike the long curving strokes that follow the dogs' fur; the direction of the brush tells the eye which surfaces are horizontal. In the white at upper right sits a smaller oval of pale blue-green, a hollow in the snow that the shadow does not reach. Two ochre twigs stand in the blue, their tips going red-brown and their feet turning bright yellow where they reach the pale snow at the bottom; neither takes on the shadow's blue, which keeps them reading as objects standing up out of the plane."
+   },
+   {
+    "t": "Twigs and their shadows",
+    "x": 0,
+    "y": 0.6,
+    "w": 0.32,
+    "h": 0.4,
+    "body": "The open snow at lower left is scrubbed on thin, and its white breaks into touches of pink, pale yellow and blue. A short twig leans out of it, and the long ochre stalk that crosses the far dog's foot comes down to end here; from the foot of each a thin line of blue runs off to the right. Those lines are cast shadows, each on the side away from the light. Lower in the box an orange stub carries a dab of pure blue on its right, the same rule at a smaller size."
+   },
+   {
+    "t": "Snow up to the top edge",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "Along the top of the canvas there is no horizon and no sky. The band above the far dog's back is snow, laid thin in horizontal strokes, and at upper left a yellow stalk stands in it, one green leaf-stroke at its tip and a few loose green strokes beside it. The ground does not run back to a line in the distance; it rises behind the dogs to the frame, so that even the far dog's level head at upper right has snow behind it."
+   }
+  ],
+  "beside": "The dogs come close to sinking into the snow, held to it by the colours fur and drift share, and Marc’s The Tiger, of 1912, holds a beast to its ground by the reverse arrangement, joined by shape and set apart by colour. The animal lies coiled on rock, its head turned toward our left, its body cut into angular planes like the green, violet and red ones set around it. Against them the yellow of the body stands out, with black running along the head and the top of the back.",
+  "refs": [
+   {
+    "id": "franz-marc-triple-t",
+    "text": "The Tiger"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "thor-s-fight-with-the-giants": {
+  "mv": 6,
+  "see": "A tall canvas of a battle inside a storm. At its centre the thunder god Thor, blond, in a red tunic and a pale fur, sits forward in a gilded chariot drawn by two black, long-horned goats and raises his hammer overhead. Giants press in around him: grey figures in the cloud at upper left, a white-bearded elder at right, one held down at Thor's knee, and a nude figure seen from behind in the lower right foreground. Lightning forks through a sky that glares brightest round the hammer, and the foot of the canvas is a brown dark.",
+  "about": "The fight is one “whose outcome is not in doubt”, the critic Karl Warburg wrote in 1881: the god of light and strength against the hostile powers. Shown in 1872, when the Norse gods were greatly popular and Winge was one of many Scandinavian painters giving them bodies, it was broadly taken by its first audience as good battling evil. Later readers found politics in the myth. A 1992 newspaper column passed on the art historian Bo Grandien's argument that it belongs to the national-liberal circles of the 1860s, Winge among them: the picture as “the new enlightened and democratic age's struggle against unfreedom and ignorance”.",
+  "craft": "Oil on a canvas of colossal size, begun in 1868 and carrying an ambition from his student days, when a cartoon of this subject caught the eye of the architect Scholander, whose notice drew Winge, then a young Post Office clerk, into art. Warburg judged that form, more than colour, had always mattered most to him, and the making put form first: the subject was a drawing years before it was a painting, and between the student cartoon and the colossal canvas stands a small oil sketch on cardboard, made for it.",
+  "context": "Asarne, Pehr Henrik Ling's poem of the gods, shaped Winge as a boy in a Roslagen parsonage, where his clergyman father knew Ling. At the Academy he studied under J. C. Boklund, chief painting teacher also to Karl XV, a king who wrote verse on Viking themes. Warburg says Winge finished this canvas in 1871; the signature is dated 1872. The king owned it; after a summer cure at Aachen in 1872 he died at Malmö on 18 September, and his will left the picture to the national collection. In modern times it has found a following on the far right, helped by the swastika on Thor's belt, for Winge's contemporaries an ancient sun sign.",
+  "deeper": [
+   {
+    "t": "The hammer against its glow",
+    "x": 0.27,
+    "y": 0.01,
+    "w": 0.4,
+    "h": 0.14,
+    "body": "The hammer is held up into the brightest stretch of sky on the canvas, a gold glare that peaks just to our left of the fist. Against it the weapon is painted a dull, cool grey, darker than its surround, so that even from far off it stands as a hard silhouette. Up close the head is decorated, its faces cut with chevrons and triangles, and the short handle ends in a ring that pokes out past his little finger, on our left of the fist. The lightning here is no broad fork. It is a scatter of thin zigzags drawn over the glow in fine lines of pale paint, spreading from the hammer head like cracks in glass, as if the storm broke out of the weapon."
+   },
+   {
+    "t": "The stare",
+    "x": 0.36,
+    "y": 0.13,
+    "w": 0.32,
+    "h": 0.31,
+    "body": "Thor's head is bowed and turned to our right, the brows drawn down into one knotted ridge. The eyes are painted pale against the shadow of the brow, so the stare carries: it runs down his own left arm to the fist buried in a giant's hair at the foot of this crop. The light falls from high on our left, the hammer's side, lighting the brow and cheek there and leaving the cheek on our right in shade. The costume is specified as closely as the face: a thin gold band in the wind-lifted hair, a ring brooch with a long pin at the throat beside a strap of small square plaques, green woven bands at the sleeves, a pale fur laid in dragged, feathery strokes."
+   },
+   {
+    "t": "Giants in the cloud",
+    "x": 0.012,
+    "y": 0.12,
+    "w": 0.3,
+    "h": 0.27,
+    "body": "At the upper left, what reads at first as storm cloud is full of giants. One lifts a dark, angular boulder over his head, his arm a long pale curve rising out of the murk, his bearded face beside it; a second, younger face hangs to the right, and a further arm reaches in from the left edge. Winge draws their eyes, noses and beards but holds them inside the same narrow band of smoky greys as the sky, so they sink back into the weather while the gilt corner of the chariot below pushes forward. Beneath them, flat stones with pale, broken edges tilt at odd angles in the dark, one of them with only smoke beneath it."
+   },
+   {
+    "t": "The old giant and the second bolt",
+    "x": 0.6,
+    "y": 0.14,
+    "w": 0.385,
+    "h": 0.29,
+    "body": "On the right, a giant with a white beard and a fur cap lies with his head thrown back, mouth open, one eye wide with the white showing. A second bolt, far dimmer than the white fork on the left and tinged pink, comes down out of the dark and stops just short of his cap; the painting sets the strike beside the slack face and leaves the contact to the viewer. His beard is built from long, wiry strokes of grey and cream dragged over darker paint, a coarser touch than the smooth, blended flesh of the young giant whose bare shoulder crowds in beneath him."
+   },
+   {
+    "t": "The gilding",
+    "x": 0.15,
+    "y": 0.26,
+    "w": 0.47,
+    "h": 0.24,
+    "body": "From the belt down, the picture turns into a goldsmith's display. Thor's belt is a row of gold plaques, each with its own motif: a spiral, panels of S-shaped and knotted forms, a roundel holding a hooked cross, with small rings hanging below. On our left of Thor the chariot rises in a tall board, framed in gilt interlace around a red field, with a long gilt spike jutting from its outer side. Along the rim, pyramid-shaped studs jut like teeth, each given a lit face and a shadowed one, so they stand off the rim in relief. The gold is made in two layers: a warm ochre base, then the ornament picked out in quick strokes of light yellow, which catch the eye unevenly and make the surface flicker."
+   },
+   {
+    "t": "The fist in the hair",
+    "x": 0.4,
+    "y": 0.3,
+    "w": 0.28,
+    "h": 0.34,
+    "body": "At Thor's knee the fight becomes a chain of hands. Thor's left fist is twisted into a giant's thick hair, knuckles lit, hair dragged up between the fingers, and it forces the head down until the face meets the end of the chariot's rim: a wide, upturned eye, a snarl of bared teeth, skin flushed a darker red-brown than the pale back behind it. Above the fist another hand clenches round a thin gilt upright. And from the giant's shoulder a long arm stretches down and across to Thor's boot, the fingers closed under its pointed toe: held by the hair, he is still reaching for the god's foot. The boot is soft and fur-topped, the shin bound with crossed strips of cloth. Winge also veils the giant: a thin grey haze is dragged over the reaching forearm, pushing it back behind the rim and the leg. Below, half lost in the dark at the chariot's base, a small black horned head sits with a snake coiled round its horn, easy to pass by, though the snake is drawn crisply, a highlight running along its coils."
+   },
+   {
+    "t": "The goats",
+    "x": 0.012,
+    "y": 0.42,
+    "w": 0.46,
+    "h": 0.49,
+    "body": "Two black goats rear at the lower left, harnessed by chains to a gilt pole that ends in a spiked star. Their horns are drawn with a precision the fur is spared: ridged and ringed, each ridge caught with a pale highlight along its upper edge, hard horn against shaggy coats laid in dry, broken strokes of black and brown. The nearer goat turns its head to our right, mouth open, eye a hot amber; the farther, cut by the canvas edge, shows a face seen almost head-on. Follow the nearer goat down past the chains: its forelegs reach down, the cloven hooves barely visible in the dark and about level with the tops of the stones at the bottom edge."
+   },
+   {
+    "t": "The giant seen from behind",
+    "x": 0.5,
+    "y": 0.49,
+    "w": 0.488,
+    "h": 0.48,
+    "body": "The nearest figure in the painting has his back to us. Cut off by the bottom edge, arms raised toward the fight above, this giant places the viewer among the attackers, behind his shoulders and below the chariot. He is the figure Warburg meant in 1881 when he wrote that the lowest giant, one of the best drawn, “falls out” of the painting, almost outside the frame. His left hand is spread with the fingers hooked; his right fist closes on the top of a dark, mossy boulder. Winge models the back and arms in warm red-browns with firm, sculptural shadows between the muscles, and lays the shaggy hair in long black strokes flicked outward at the ends. Two details are easily missed: thin red strokes on the back of his right shoulder, beside the hair, and another low on his left side, where the tip of a dead, thorny branch in the foreground reaches toward him. Small as they are, they register the fight on the skin of a body still below the chariot. The branch is drawn in pale, sharp, splintered lines along the picture's lowest edge."
+   },
+   {
+    "t": "One diagonal, from the bottom edge to the hammer",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "The picture is built on one long diagonal. It starts in the dark at the bottom right, on the back of the giant cut off by the frame, climbs his raised arms to the gripped giant's pale back and the head held by the hair, then to Thor's glaring face, and runs up the flung arm to the grey hammer at top centre. The light rises along the same line: the top third of the canvas is about three times as bright as the bottom, so the climb runs out of the darkest third into the brightest. Thor is the one figure in the picture dressed in strong colour, his red tunic and gold belt set among giants who are bare-skinned or grey with smoke, the elder under a pale fur cap. The tall format gives his raised arm the height to break clear above them all."
+   }
+  ],
+  "beside": "Thor fights with his own fist, a giant gripped by the hair. The rider at the centre of Jan Matejko's Battle of Grunwald, of 1878, another people's past laid across a canvas ten metres wide, has the god's colours and none of his work. He sits a black horse in a long red coat belted with gold plaques, both arms flung up, a sword in one fist. To our left the Grand Master of the Teutonic Order, white-mantled on a white horse, is set upon by men in no armour: one, bare-chested under a fur pelt, drives a spear at him. The victory is theirs, and the rider in red holds his sword over no one.",
+  "refs": [
+   {
+    "id": "battle-of-grunwald",
+    "text": "Battle of Grunwald"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "the-three-soldiers": {
+  "mv": 6,
+  "see": "An upright panel painted in greys and browns alone: three soldiers in slashed and puffed dress on a strip of pale ground before a brown-black darkness with no horizon. At left a drummer, seen from behind, walks beside a large field drum cut by the panel's edge; in the middle an ensign, mostly in shadow, raises a great grey flag that spreads across the upper right; at right a piper faces us, playing a transverse fife. A name and date in capitals run along the lower left.",
+  "about": "Of everything a company of foot soldiers was, the panel keeps its musicians and its ensign. Their costume — slashed sleeves, ballooning breeches, outsized codpieces — is the fashion of the landsknechts, the mercenary foot soldiers of Bruegel's century. The curator Aimee Ng finds the picture's theme in morale: the work of men like these was to bring pomp to a hard trade and keep their comrades' spirits up through the long weeks, months and years of a war. Their long, elegant bodies, she adds, are “hardly suited for combat.”",
+  "craft": "Oil on an oak panel smaller than a page, painted in greys and browns with every other hue left out. Why he worked without colour is open: Ng suggests the panel may answer the popular prints of such soldiers, or was perhaps made toward an engraving, though no print after it is known. The figures are no taller than a pencil, and at that scale their contours and smallest details are drawn with the tip of the brush.",
+  "context": "Bruegel had lived in Brussels since 1563, when he married Mayken Coecke, daughter of the painter Pieter Coecke; Karel van Mander, writing his life in 1604, ties the move to the match. The panel is signed and dated 1568, the year he also dated the Parable of the Blind, and the year the Counts of Egmont and Horn were beheaded in Brussels under the Duke of Alba. Bruegel died there in 1569. Van Mander reports that in his last illness he had his wife destroy many carefully drawn sheets whose inscriptions he judged too biting, afraid that she would suffer for them.",
+  "deeper": [
+   {
+    "t": "A flag that names nobody",
+    "x": 0.4,
+    "y": 0,
+    "w": 0.54,
+    "h": 0.42,
+    "body": "A fist at the panel's top edge grips staff and cloth together, a twist of cord bound round the wrist, and from it a sheet of cool grey swings down and out to the right across the upper part of the panel. Its far edge curves down well short of the panel's side, so a band of the dark ground keeps the corner. Search what is visible of it for a cross, a stripe or an emblem and there is none: the cloth is smoothly blended grey, a few long pale streaks marking where it turns. Because the hand reaches the top edge, whatever crowns the staff lies outside the picture. The flag's work here is tonal. It is the one mid-grey backdrop in a picture otherwise set against brown-black, and the piper's lit cap is placed against it."
+   },
+   {
+    "t": "The one face given",
+    "x": 0.49,
+    "y": 0.12,
+    "w": 0.4,
+    "h": 0.24,
+    "body": "Of the three soldiers only the piper shows a readable face. The drummer has his back to us and the ensign's head is a dark shape in shadow; this face is lit, ivory on our left, dropping into brown on the other side. Under the fur-edged cap the lids are heavy and lowered, and a long moustache hangs in two thin points down over the tube where his lips press against it. The fife is one pale cylinder, light along its upper edge with a dark line beneath, running out to our left. He holds it with both hands: one under the tube close to his mouth, its wrist bound with a tied cuff, the other far along, fingertips curled over the top as a few small dabs of light, as if stopping holes. Below his chin a row of bright dots marks the edge of a little collar ruffle. The lowered lids and the bent head turn him in toward the instrument; the face is busy with playing, not posed for us."
+   },
+   {
+    "t": "One mark, repeated",
+    "x": 0.07,
+    "y": 0.15,
+    "w": 0.42,
+    "h": 0.27,
+    "body": "The drummer, seen wholly from behind, is built from one small repeated mark. His doublet's slashes, the cuts that let a lining show through the outer cloth, are each a single short dark crescent with a lick of white along its lip, stacked one under another in rows down every puff of sleeve and back. The rows bow as the puffs swell, so the same mark both describes the cloth and models its roundness. At the neck the collar is a band of raised beads. Above it the head is wrapped in a close white coif whose curved strokes follow the skull, an ear showing on our right, and a thin grey ring, the brim of a hat, circles behind. The plumes are grey swirls, softer-edged than anything else on him."
+   },
+   {
+    "t": "The drum at the edge",
+    "x": 0,
+    "y": 0.36,
+    "w": 0.34,
+    "h": 0.38,
+    "body": "The panel's left edge slices through the drum, so only its near head and part of the shell stay in the picture; even so, its visible height outstrips the drummer's whole torso, and his sleeve rests on its top. Its lacing is drawn line by line: from the hoop at the near rim a cord zigzags up across the shell toward the far end, out of sight behind him, each run a single fine line of pale paint with a small tied tab where it meets the hoop. The head is a flat grey disc brushed in strokes that circle with the rim, a fine straight line dropping across it from top to bottom. The upper shell is the lightest broad surface of the drum, outdone only by a line of white along the top of the rim. Just past the rim, against the shell, hangs the hilt of his sword, its looping guards drawn as ribbons of grey-white over the grey beyond."
+   },
+   {
+    "t": "The ensign in shadow",
+    "x": 0.33,
+    "y": 0.15,
+    "w": 0.3,
+    "h": 0.55,
+    "body": "Between the two lit men stands the one who raises the flag, and he is painted on another footing altogether. His breeches are a thin warm brown through which the texture of the surface underneath shows, with chevrons set down in a few dark strokes and a cool grey sheen along one pane. His codpiece is a grey bulb; above it the guards of a sword hilt loop over his waist in grey line. Set beside the piper's breeches, his read at roughly half their lightness: he is pushed back into the middle of the group by tone, with no change of costume vocabulary. Higher up his head is almost gone, a dark face under a dark cap, pressed so close behind the drummer's head that the two nearly touch, legible only as a brow and the curve of a cheek."
+   },
+   {
+    "t": "Warm hollows, cool ridges",
+    "x": 0.57,
+    "y": 0.38,
+    "w": 0.38,
+    "h": 0.36,
+    "body": "The piper's breeches balloon from hip to below the knee in long panes, with a big knotted codpiece swelling at their centre. Watch the temperature more than the shapes. In the hollows between the panes the paint runs warm yellow-brown and along the ridges cool grey-white, with long dark dashes down the panes for slashes; lower on the legs the warm spreads across some pane faces too. With hue withheld, those two temperatures carry the modelling: the warm sinks, the cool comes forward. The drummer's puffs are turned the same way, but on this long fall of lit cloth the scheme can be followed fold by fold."
+   },
+   {
+    "t": "Three ways of standing",
+    "x": 0.16,
+    "y": 0.72,
+    "w": 0.8,
+    "h": 0.28,
+    "body": "At floor level the three men do three different things. The drummer's pale leg shows us its heel while his dark leg reaches ahead and to the right: he is mid-stride, walking away from us into the picture. Behind, the ensign's shoes stand together in the shadow, dim brown rimmed with a thin line of grey. The piper plants his feet apart, toes turned out, facing us. On every leg the lit side is on our left and the shaded side on our right, so the light comes from our left. Behind and between the feet the floor is laid in short slanting strokes, close to a draughtsman's hatching; nearer the bottom edge it turns to broad, smooth pale paint and lightens steadily, until it is more than twice as light as that strip behind the feet. Across it lie a few pebbles, each a grey loop with a fleck of white, and a trail of curved scuffs."
+   },
+   {
+    "t": "Drum, flag, fife",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "The three instruments link up across the panel. The drum sits low at the left edge under the drummer's arm; the ensign's grey sleeve climbs from behind the drummer's head to the fist at the top; the flag falls from that fist to the right and down behind the piper's cap; and the fife runs back from the piper's mouth toward the middle, its far end stopping against the grey grip of the ensign's sword. Of that sword only the hilt shows, the grip rising across his body, the blade out of sight, and the piper's is no more than a dim brown hilt at his far hip. The one sword the picture shows whole is the drummer's, from hilt to the rounded tip of its scabbard, and it hangs sheathed at his hip."
+   }
+  ],
+  "beside": "Under a raised flag, in Alphonse de Neuville's The Flag of Truce, of 1884, soldiers are again shown at war without a blow struck, and there every man can be placed. French infantry in red-banded caps bring three envoys out of a brick arch, white bands tied over their eyes, one in an eagle-crested helmet. The flag rides above them, white with a dark band at the staff. Across the road, beside a house broken open and smouldering, a young woman flings out her fist, and a soldier looks on with his arm in a sling. Bruegel paints his three with no enemy among them and nobody looking on, on ground where nothing has been broken.",
+  "refs": [
+   {
+    "id": "alphonse-de-neuville-the-flag-of-truce",
+    "text": "The Flag of Truce"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "knight-death-and-the-devil": {
+  "mv": 6,
+  "see": "An engraving in dark line on pale paper. An armoured knight rides a heavy horse toward our left, his lance angled across the whole sheet. On the far side of his horse rides Death, crowned with snakes and holding up an hourglass, on a drooping nag; at the right a horned devil follows, a hooked pike rising beside him. A long-haired dog runs below, a lizard crosses the ground, and a skull and a lettered tablet sit at lower left. Above, a walled town crowns a hill. The near group fills almost the whole sheet, its pale shapes pressed forward by a dark, densely hatched slope.",
+  "about": "Death draws up beside the rider with the glass raised, the devil follows behind, and the armoured man between them keeps his course without turning to either. No blow is struck and no threat answered, so what that steadiness means has always been supplied by its readers. In 1943 Erwin Panofsky read him as the Christian soldier of Erasmus’s Handbook, first printed in 1504, who is taught to treat the terrors that come upon him as “spooks and phantoms”, to be ignored, never fought. Panofsky traced that soldier back through fifteenth-century woodcuts to St Paul’s armour of God, and granted that Erasmus’s book could give an artist no details to draw, only the idea.",
+  "craft": "Dürer cut the plate in copper with the burin and built its figures from earlier work. In Panofsky’s account the rider comes from a watercolour of a mounted soldier Dürer made in 1498, its plain face swapped for “a stern mask of concentrated energy”, and the horse from Leonardo’s studies for the Sforza monument, remodelled on a canon of Dürer’s own. The plate also carries a word from his theoretical work: the “S.” before the year, which Panofsky reads as Salus, stands where the same word stands in the date lines of Dürer’s 1512–13 drafts on human proportion.",
+  "context": "Nuremberg, 1513. The year before, Dürer had been drawn into Emperor Maximilian I’s artistic projects. Early in 1513 he finished the panels of Charlemagne and Sigismund and then, in Panofsky’s phrase, “abandoned brushwork for a period of more than three years”. That year he published the Engraved Passion and gave up printing his treatise on proportion, partly because the emperor’s commissions left little room for theory. Through 1513 and 1514 the work went into copper, not woodcuts. In 1568 Giorgio Vasari, in his Lives, saw in the rider “Human Strength”, and praised an engraving so finished that one could see “the lustre of the arms and of the black horse’s coat”, a hard thing, he wrote, to render in drawing.",
+  "deeper": [
+   {
+    "t": "Steel made of lines",
+    "x": 0.39,
+    "y": 0.27,
+    "w": 0.28,
+    "h": 0.48,
+    "body": "The armoured leg is the long pale shape at the centre of the sheet, and all of it is made from engraved line and untouched paper. Down the thigh plate the burin runs strokes along the fluting, letting them thin and part where the steel turns toward the light, so each ridge carries its own glint. The lit half of the knee cop is bare paper, with fine curved lines closing round it on the shadow side: a highlight made by leaving the plate uncut. The palest planes face our left, which puts the light ahead of the rider, in the direction he travels. Around this polished core the line takes other forms: the gauntlet on the rein is scaled in tiny overlapping arcs, the ornamented piece beside the thigh carries a border of small loops, and the horse's coat behind is laid in close crossing hatches."
+   },
+   {
+    "t": "Two faces and the glass",
+    "x": 0.19,
+    "y": 0.17,
+    "w": 0.45,
+    "h": 0.2,
+    "body": "The hourglass is lifted into the space ahead of the rider, its base held in a bony hand just above the horse's mane. Its top carries a second instrument: a small round dial with numerals around the rim and a pointer, a clock face set on the glass, so the object shows time twice over. The hand belongs to Death, who rides on the far side of the knight's horse. His head is a corpse's head above a pale, draped shoulder: a cavity where the nose was, teeth without lips, a long beard. Snakes wind through his crown and coil about his neck. His eyes are open and turned toward the knight, and his mouth hangs open as if he were speaking. Two faces share this strip of the sheet, Death's lower by about the length of the knight's face, and they are opposites: Death's turned and open, the knight's in profile, mouth shut, eyes kept forward to our left. Even the engraving divides them, Death's flesh cut in short broken strokes and flicks, the knight's cheek in tight lines shadowed by the brim."
+   },
+   {
+    "t": "Chain bit and rope halter",
+    "x": 0.012,
+    "y": 0.28,
+    "w": 0.21,
+    "h": 0.51,
+    "body": "Two horses' heads stack at the left edge, one above the other, and their tack tells them apart. The upper head belongs to the knight's horse, carried on an arched neck: its headstall is straps, the cheekpiece set with a braided band, and the metal sits at the mouth, where the bit is ringed and a chain hangs from it; the rein is a band worked with a running ornament, and a spray of leaves is tied at the poll. Below it, Death's nag hangs its head toward the ground, forelock falling over its eye. It is led by a twisted rope knotted at the muzzle, and a small bell hangs at its throat. Between the two heads runs the butt of the knight's lance, fluted and ringed. The engraver gives the twist of the rope the same patience as the chain's links."
+   },
+   {
+    "t": "Skull on the stump",
+    "x": 0.012,
+    "y": 0.74,
+    "w": 0.29,
+    "h": 0.245,
+    "body": "At the bottom left a skull rests on a flat-topped tree stump, its lower jaw gone, the upper teeth set down on the wood. The light from our left catches the dome of the cranium; shadow fills the eye socket on our right and runs down the side turned away from the light. Death's nag lowers its muzzle toward it from above. Leaning against the stump is a squared tablet with projecting lugs on its sides, its face ruled in fine diagonal lines and the lettering drawn as outlined strokes within them: the date and Dürer's monogram. Placing the maker's lettering on an object inside the scene, propped among stones and grass, makes the inscription part of the ground the riders cross: the tablet lies in their path like any other thing by the road."
+   },
+   {
+    "t": "The dog under the stirrup",
+    "x": 0.38,
+    "y": 0.635,
+    "w": 0.36,
+    "h": 0.28,
+    "body": "A long-haired hound runs in the shadow beneath the horse's belly, its nose level with the knight's stirrup. Its forelegs reach forward in stride with the horse, and the long hair of its ears and neck is cut in long, curling strokes that stream backward. Its eye is rolled upward under a lifted brow. The dark around it is built from layers of crossing hatches, close enough to read as near-black, and the dog's pale head is a shape left open in that dark. The engraver keeps the hound light while the belly and the far legs around it sink into shade."
+   },
+   {
+    "t": "The lizard running the other way",
+    "x": 0.56,
+    "y": 0.85,
+    "w": 0.3,
+    "h": 0.12,
+    "body": "On the flat ground near the bottom edge a lizard runs with its head to our right, the opposite way from the hooves beside it, whose toes point left. Its back is a strip of short scaly marks; its tail thins to a single trailing line. The two hooves are drawn differently from each other: one wears a shoe, its band studded with nail holes, the other is bare horn ringed with growth lines. The shod hoof hangs lifted above the path, and under it thin lines that belong to no other form draw a lower hoof reaching the ground, with a further line running up behind the leg: an earlier placement still visible in the print, a last-minute correction that, as Panofsky noted, heightens the leg's movement. The ground beneath is laid in long horizontal strokes broken into short dashes, a quiet field against which the small creature reads clearly."
+   },
+   {
+    "t": "The haunch built of arcs",
+    "x": 0.58,
+    "y": 0.44,
+    "w": 0.3,
+    "h": 0.26,
+    "body": "The knight's horse's hindquarter fills the right side of the sheet at the level of the rider's knee, and its roundness is made almost entirely by the direction of the line. The burin lays arcs that curve around the swell of the haunch like contour lines on a map: close and crossed where the form turns into shadow, opening out and running single toward the pale centre, where the paper between the lines carries the light. In the darkest folds a second set of arcs crosses the first at an angle, and short flicks and dots sit in the gaps between lines, deepening the tone without adding a new direction. The crupper straps lie over this surface as flat pale bands, with a small bell where they meet and a round pendant hanging below, and their bending path traces the curve a second time. The sword crosses the haunch as the one straight edge among all these curves, with the swell of the flank rising under it."
+   },
+   {
+    "t": "A devil made of animals",
+    "x": 0.68,
+    "y": 0.25,
+    "w": 0.295,
+    "h": 0.3,
+    "body": "Behind the horse's rump, against the dark bank, comes the devil, assembled from parts of real animals: a pig's snout, a ram's horns curled at either side of the head, long drooping ears, a single long horn sweeping up from the crown beside a crest of flame-shaped points, and a long flap hanging from the jaw. A batlike wing hangs at his side, a long shaft topped with a hooked blade rises beside him, and a scaly arm reaches forward over the horse's back. One round, rimmed eye stares straight out of the sheet at us, its pupil set in the middle of the ring. Nothing about him is drawn loosely: each hair of the snout and each scale along the horn is cut separately, with the same patient line that describes the armour, so each borrowed part looks true to its animal, though no animal was ever put together this way."
+   },
+   {
+    "t": "The town on the hill",
+    "x": 0.2,
+    "y": 0.015,
+    "w": 0.42,
+    "h": 0.14,
+    "body": "At the top of the sheet a walled town stands on a hilltop against open sky: round towers with battlements, a tall tower with a lantern, steep gabled roofs, a thread of smoke rising from one chimney. The line here turns thin and sparse, the sky is untouched paper, and the bare branches framing the view taper to single clean strokes and spiky twigs. A pale path climbs the slope toward the walls. These are the only buildings on the plate, set high above the travellers and cut off from them by the dark mass of the hill: a place of hearths and shelter the procession is not shown reaching."
+   }
+  ],
+  "beside": "Turning to face us is what Dürer's knight never does, and the young horseman of The Polish Rider, painted by Rembrandt about 1655, does it with nobody at his side. He crosses darkening ground on a pale horse, a bow and a quiver of arrows at his hip and a sword hilt at his saddle, with a great building on the heights behind him, as the town stands above the knight's road. No danger shows, and nothing settles who he is or where he rides. The engraved rider keeps his eyes ahead, and of all his company it is the devil whose stare comes out at us.",
+  "refs": [
+   {
+    "id": "the-polish-rider",
+    "text": "The Polish Rider"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "inwang-jesaekdo": {
+  "mv": 6,
+  "see": "Ink on paper, a landscape wider than it is tall. A mountain fills the upper half: its summit a great dark rock dome, with crags and a smaller black knob along the ridge to the right. Paler ridges dotted with growth step down past thin waterfalls into a broad bank of mist that is the bare paper. At the mountain's foot, pines and leaning trees stand in front of and above a house with a broad roof, a second roof to its left. Three short columns of characters with two seals stand in the sky at upper right. Dark rock, white mist and dark trees alternate down the sheet.",
+  "about": "The dark summit is Chima-bawi, the cliff of Mount Inwang, and the title has the mountain clearing after rain. It is a true-view landscape, which the historian Hong Sun-pyo describes as \"not simple reproduction\" but \"pictorial reconstruction\" realising the feeling a real place gave. Its brush descends from a Chinese manner of painting; its subject is a hill the painter lived beneath. And the view is edited: the cliff stands taller than in life, two rain-fed valleys invisible from a distance are probably put in, and the foot is seen from above, the cliff from below, each change pushing the hill toward how it feels.",
+  "craft": "Ink on paper, large for a Joseon painting. Hong Sun-pyo names the method behind Jeong Seon's massive dark rocks: accumulated ink (jeongmuk), ink laid on ink in repeated passes. The scholar Lee Tae-ho found the real cliff's wet granite far paler from afar than this black, and wondered whether the rock was darker in 1751 or the painter exaggerated with that method; a 1939 photograph of it came out nearly as black. The inscription is in the painter's own hand, with seals of his name and courtesy name. The sheet long lay loose and rolled before its mounting as a hanging scroll; the faint grid across it, plainest in the mist, is apparently from that storage.",
+  "context": "Jeong Seon was born in 1676 under Bugak, Inwang's neighbour. Fame came in his thirties, office only at about forty. In 1745 he left a magistracy at Yangcheon for home at Inwang-gok, below this hill. By 1751 he was seventy-five, his life grown more comfortable. Not all the court admired the trade: in 1754, when he was raised to a fourth-rank post, officials objected that a man who had made his name by \"a lowly skill\" should be dismissed from it, and the king overruled them. He died in 1759. A modern dissent: in 2011 Chang Chin-sung argued that writing on him had over-stressed \"Korean characteristics\" from a nationalist angle, and that he lived by quick brushwork meeting \"explosive demand\".",
+  "deeper": [
+   {
+    "t": "A dome built downward",
+    "x": 0.21,
+    "y": 0,
+    "w": 0.34,
+    "h": 0.44,
+    "body": "The dark dome at the summit is not a flat fill. It is built from long strokes of wet ink pulled down from the crest, each following the fall of the rock: leaning with the contour on the left flank, close to plumb through the centre and right. Where strokes overlap the ink deepens; where the brush skipped, a pale streak of paper survives between them, and the face reads as fluted, streaming stone. The crown runs off the top edge of the sheet: the summit is not given whole, and the mass presses up against the boundary of the picture. A fringe of tiny upright ticks rides the dome's left skyline, and against its right flank sits a squared block of nearly flat dark, laid with fewer and broader strokes, its hard corners making it a separate boulder perched on the slope."
+   },
+   {
+    "t": "A level line across the saddle",
+    "x": 0.47,
+    "y": 0,
+    "w": 0.18,
+    "h": 0.19,
+    "body": "Down the dome's right shoulder runs a line of tiny upright ticks, spaced like beads along the edge of the rock. At the bottom of that descent the line changes behaviour: across the saddle between the dome and the next crag it straightens into a level band with small posts standing on it, bridging a gap that otherwise opens straight onto bare paper. Drawn this small beside the boulders on either side, it hands the summit its scale. It is the city wall of Hanyang, old Seoul, as the curators' key identifies it, set down in dots: a level, built line against the falling strokes of the rock. The same beaded mark runs along the crest of the left-hand ridge and turns up again as a winding band on the far right ridge, dropping to the sheet's edge."
+   },
+   {
+    "t": "The knob of pooled ink",
+    "x": 0.72,
+    "y": 0.02,
+    "w": 0.16,
+    "h": 0.2,
+    "body": "At the right-hand end of the summit ridge a rounded knob of rock is laid in almost as one pool of ink: an even dark, with little of the streaking in the grey rock below it at left, and a clean curved contour on its right where the ink stops against the paper. The loaded strokes have run together wet and left no seams between them, and that evenness makes the knob a smooth, rounded stone. A small cap with its own rounded contour, parted from the knob by a thin paler seam, rests on its top like a separate stone, and up its left flank the beaded crest line climbs on, tick by tick."
+   },
+   {
+    "t": "Seams and a falling stream",
+    "x": 0.19,
+    "y": 0.16,
+    "w": 0.18,
+    "h": 0.3,
+    "body": "At the dome's foot the rock breaks into upright slabs, each a column of vertical strokes, and between them run thin pale lines, across the top of each slab and down its sides, like masonry joints. Those lines are paper the brush went around, no brighter than the bare sheet, and they make a ledge catch the light without any light being drawn. Just left of the slabs a narrow strip of paper drops between dark rock with fine grey hairlines inside it: a waterfall made by the same method, the water standing where the ink is not. Its top edge is crisp where it leaves the ledge; lower down it frays into short grey strokes, so the fall breaks into spray at the slope."
+   },
+   {
+    "t": "Dots along the ridges",
+    "x": 0,
+    "y": 0.3,
+    "w": 0.34,
+    "h": 0.3,
+    "body": "The lower hills on the left are close to bare paper, and two marks make their form. A faint grey wash lies in each fold and trough, leaving the ridge tops whitest, so the hills swell without an outline doing the work. Over that, rows of short, flat dots, each laid sideways with the brush, run along the ridge spines and trail down the slopes. Because they gather along the spines, they draw each ridge as surely as a line would while leaving its face open and pale. Lower in the crop the same flat mark, broadened and stacked, becomes a grove: tiers of horizontal canopy with thin trunks hanging beneath."
+   },
+   {
+    "t": "Two kinds of tree",
+    "x": 0.57,
+    "y": 0.38,
+    "w": 0.23,
+    "h": 0.36,
+    "body": "Right of centre, two vocabularies of the brush stand side by side in one stand of trees. The pines are tiers of broad, flat horizontal strokes, one or two sideways drags to a tier, set on trunks that bend and lean as they rise. The tree behind them, with a heavy drooping crown, is built from many short vertical ticks, densest at the top of each clump and loosening downward, with flecks of paper left between that keep the mass from going solid. Behind both sits a third layer: the same upright ticks and sideways tiers in thin grey ink, their edges soft, trees further back and already half lost in the mist."
+   },
+   {
+    "t": "A ridge made of wash alone",
+    "x": 0.08,
+    "y": 0.58,
+    "w": 0.3,
+    "h": 0.32,
+    "body": "Low on the left a ridge surfaces from the mist, and for most of its length it carries no line and no dot: a single grey wash, darkest along its lower edge, which stops in a firm curved contour, and thinning upward until its top is lost in the white. Only a small dark hump at its right end keeps a top of its own. The one hard edge is the foot; upward, the ridge is given over to the mist. Beside it a clump of trees is set down with more weight, a crown of wet ink that has spread softly into the paper, a small conifer of stacked ticks, a pale bare upright, and from the clump what reads as a track, two grey lines with paper between, climbs to the right up the slope."
+   },
+   {
+    "t": "The house behind the darkest ink",
+    "x": 0.46,
+    "y": 0.6,
+    "w": 0.54,
+    "h": 0.4,
+    "body": "Low on the right, a building with a broad roof stands among the pines, a lower gabled wing joined at its left. The roof is drawn with fine, steady lines, a straight ridge capped by small knobs at each end and gable edges sweeping out toward the eaves, and its planes carry a light grey wash, paler than the trees around it and close to the open slope behind. Thin posts stand under the eave with paper showing between them. The trees in front are handled the other way: broad horizontal strokes of very wet, very dark ink stacked into a band of pine crowns, with trunks dropping beneath as single upright strokes. That band holds the heaviest ink on the whole sheet, darker than the summit dome, and it lies between the eye and the house, so the building is reached through the darkest passage in the picture. At the left end of the band a second, smaller roof with a railed edge looks out: the house has at least one companion, mostly screened by the trees."
+   },
+   {
+    "t": "Two darks, two directions",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "The summit dome and the pine band at the foot, the sheet's two great weights of dark ink, are built on opposite axes. The dome's strokes fall from the crest, following the drop of the rock; the band before the house is stacked from strokes laid sideways, the way pine crowns spread. Tone follows what things are made of, rock dark, earth pale, cloud blank, with no cast shadow and no lit side. Between summit and foot the mist is mostly bare paper: it comes in from the left edge, swallows the bases of the hills and reaches the house's left side."
+   }
+  ],
+  "beside": "From the top edge of Paul Cézanne's La Montagne Sainte-Victoire au-dessus de la route du Tholonet, of 1904, a pine's boughs hang down across the sky. Like Jeong Seon at Inwang, Cézanne was arranging a real mountain he knew well, but he kept his at a distance. The peak stands whole near the centre, open sky on both sides, its ridge drawn in a dark blue line, behind ochre ground and a screen of round trees. Jeong Seon's summit has no sky above its crown, and nothing near rises across it. Cézanne lets the pine reach over his peak, and the ochres and pinks of the ground in front come back in patches across the mountain's face.",
+  "refs": [
+   {
+    "id": "paul-cezanne-la-montagne-sainte-victoire-au-dessus-de-la-rou",
+    "text": "La Montagne Sainte-Victoire au-dessus de la route du Tholonet"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "early-sunday-morning": {
+  "mv": 6,
+  "see": "A row of two-storey shop buildings fills the canvas edge to edge, seen straight on. Under a band of clear blue sky runs a dark cornice set with brackets; below it, a long red upper storey of ten windows dressed in blinds and curtains; then shops, green at the left and dark red at the right, with awnings, hanging signs and dark glass. Light comes from our right, onto a fire hydrant and a barber pole standing on the empty pavement. A tall dark building rises behind the row at top right.",
+  "about": "What happens on this street is light. The shops are dark behind their glass, the pavement holds nobody, the rooms upstairs sit behind blinds and curtains; what acts is a sun coming in from one side and giving lintels, sills and posts their shadows. The photographer Robert Adams put it in five words: “Nothing moves except the light.” John Updike, counting this canvas among the best Hoppers, wrote that their silence and plainness “repel commentary”; what is left is a plain commercial row held in sunlight, its business suspended.",
+  "craft": "Oil on canvas, and a building edited before it was painted. Hopper said most of his pictures were composites and this one was close to Seventh Avenue as it stood; in 2013 a curator matching old photographs of the since-demolished building showed where the painting parted from it. Hopper lengthened the upper storey by a bay, added another shop opening below, and made the doors and windows smaller than they were; by Avis Berman’s account he also took off the shutters and borrowed from the neighbouring houses. The brush pares in the same way: the red wall goes on in short upright drags of one colour, with no course of brick drawn anywhere.",
+  "context": "In 1930 Hopper was painting where he had since 1913, at 3 Washington Square North, a short walk from this row. Three years later, in November 1933, the Museum of Modern Art gave him a retrospective at fifty-one, “an honor rarely bestowed on living American artists”, in Avis Berman’s words, and the canvas went into it already listed under its Sunday name, with the street still named beneath it: Seventh Avenue, New York, 1930. Long afterwards, speaking of his pictures in general and not of this one, Hopper told the curator Katharine Kuh in an interview published in 1962: “There is a sort of elation about sunlight on the upper part of a house.”",
+  "deeper": [
+   {
+    "t": "The barber pole",
+    "x": 0.48,
+    "y": 0.52,
+    "w": 0.32,
+    "h": 0.42,
+    "body": "The barber pole pulls the eye first, and the reason is how little else on this street is broken up. The façade is laid in broad fields of red, green and ochre; the pole is chopped into short diagonal bands of red and white with a stroke or two of blue, under a white globe and over a blue foot. Each band reads as one loaded stroke, and a thicker red ring at mid-height ties the column together. The globe and the upper column stand against the dark, scrubbed glass of the shop window behind, so they show as a cut-out shape; lower down, the column and its blue foot stand against the green panel under the window. Along the foot of the shopfront to its left lies a thin band of blue shadow, the pole's own."
+   },
+   {
+    "t": "A building beyond the row",
+    "x": 0.66,
+    "y": 0,
+    "w": 0.34,
+    "h": 0.3,
+    "body": "At the top right corner a dark slab rises behind the roofline and runs straight out through the top edge. It is the one thing in the picture that stands behind the row, a glimpse of the city going on beyond it, painted as a plain block of near-black grey, thin enough that the weave of the canvas shows through, with no window marked on it. The sky is not one even blue: it pales from left to right, so the dark block is set against the lightest stretch of it."
+   },
+   {
+    "t": "Brackets and their shadows",
+    "x": 0.35,
+    "y": 0.12,
+    "w": 0.43,
+    "h": 0.18,
+    "body": "The cornice runs the full width of the canvas, a band of dark green-blue set with brackets at steady intervals. Each bracket is modelled with little more than a lit olive face and a dark blue-green side, and each throws a diagonal wedge of shadow to its left across the frieze — the same direction as the shadows on the pavement far below. Near the middle two brackets stand side by side where elsewhere there is one; a second pair sits further right, directly above the point where the green shopfronts give way to red. The pairs read as joints in what looks at first like a single building."
+   },
+   {
+    "t": "Blinds in the windows",
+    "x": 0.41,
+    "y": 0.22,
+    "w": 0.32,
+    "h": 0.27,
+    "body": "In these three windows a yellow blind comes down partway, and below it white curtains part around a dark gap; in the middle window the blind hangs lower than in its neighbours, and along the row other windows are dark-blinded or half-curtained, so evenly spaced openings are dressed unevenly. The blinds also carry the light. Each is split vertically: a paler yellow on its left half, a greener, darker tone on its right. That split is a shadow. With the light coming from our right, the right-hand side of each window opening throws shade across the blind set back inside it, while the left-hand side faces the light and is picked out as a thin strip of hot orange; the curtains below are split the same way, whiter on the left and a bluer grey on the right. Two tones per window, one lit and one shaded, give a flat red wall its thickness, and the same rule of lit left side and dark right side holds in the doorways below. The curtains, for their part, make these rooms someone's rooms, kept private at this hour."
+   },
+   {
+    "t": "A shadow from outside the frame",
+    "x": 0,
+    "y": 0.22,
+    "w": 0.33,
+    "h": 0.38,
+    "body": "Low on the left of the upper storey, a wedge of darker red climbs from the sill line beside the first window toward the right and ends in a plumb vertical edge just short of the third. Nothing in the picture casts it. It comes from something outside the frame, a trace of the unseen side of the street pressed onto the canvas. The shadow is the same red as the lit wall, brought down hard in value while keeping its hue, so the wall stays one material in and out of the light. It swallows the lower half of the second window and darkens it, and below the ledge the same slant continues across the green signboard over the left-hand shop. Its sloping top and square end are drawn as firmly as the window frames."
+   },
+   {
+    "t": "The draped window",
+    "x": 0.29,
+    "y": 0.52,
+    "w": 0.31,
+    "h": 0.34,
+    "body": "One shop window is dressed like a small stage: a pale blue-white valance with a scalloped edge across the top and two white drapes hanging straight down the sides, tapering to points short of the sill. The drapes are laid in with broken, opaque whites, with blue and touches of red-violet in the folds, while the glass between them is a thin, dark scrub with an arch of yellow-green bars standing for lettering — a window dressed for display, with dark glass behind the dressing. The doorway to its left is a flat slot of near-black, thinly painted. Other shopfronts along the row carry awnings, or, in the barber's window, a drape and white cards, but none is framed as fully as this one."
+   },
+   {
+    "t": "The red shopfronts",
+    "x": 0.7,
+    "y": 0.46,
+    "w": 0.3,
+    "h": 0.42,
+    "body": "At the right the shopfronts change from green to a dark red, and the handling changes with them. The frames — mullions, panels under the windows, the jambs of the narrow door — are ruled straight in a warm red. Inside them the glass is scrubbed: in the rightmost window the brush drags in loose vertical and diagonal strokes over a brown-grey ground, more openly than anywhere around it. Firmness goes to the carpentry and looseness to the glass. Above the door, the bracket of a hanging sign is a dark post with one thin yellow stroke down its right side."
+   },
+   {
+    "t": "The hydrant and its shadow",
+    "x": 0.02,
+    "y": 0.72,
+    "w": 0.34,
+    "h": 0.28,
+    "body": "The fire hydrant is the nearest upright in the picture, standing out on the pavement in front of the left-hand shops. It is modelled in very few strokes: a pale cap where the light strikes the top, a dark olive body, a lighter nozzle on its right. Its shadow is the real event. It runs flat to the left, a blue stroke far longer than the hydrant is tall, and a shadow that long means a low sun, as the title's early hour would have it. The pavement under it is built as horizontal bands — lit, shaded, lit, a broader dark band, then a warm ochre strip along the bottom edge. The shadow stays inside one lit band, and the hydrant stands up out of that layered flatness."
+   },
+   {
+    "t": "A street with no way in",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "The row's own lines — roofline, cornice, sills, the ledge over the shops, the bands of the pavement — run parallel to the top and bottom of the frame, so the street offers no perspective to walk into, and the row runs off both side edges as a stretch of a longer street. Against all that horizontality two uprights stand on the pavement, the hydrant and the barber pole, neither of them centred. Space beyond this shallow front enters the picture twice: the dark block at top right stands behind the row, and the wedge on the upper storey at left is thrown by something in front of it that never comes into view."
+   }
+  ],
+  "beside": "Weeks after America entered the war, the New York avenue in Childe Hassam's Allies Day, May 1917 is filled for an occasion that hangs from its own buildings, while Hopper's street, its shops dark and its pavement empty, gives no reason for its quiet. Flags of America, Britain and France lean out on staffs from the fronts at the right and hang from lines strung across the foreground, so near that their stripes run off the bottom edge. Seen from high above, beyond a pale Gothic front at the left, the crowd thickens far up the avenue, its people a few dark touches each under the flags.",
+  "refs": [
+   {
+    "id": "childe-hassam-allies-day-may-1917",
+    "text": "Allies Day, May 1917"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
  "rembrandt-the-jewish-bride": {
   "mv": 6,
   "see": "A man and a woman stand close together, seen from the head to below the hips, against a dim brown setting: dark upright architecture behind their heads, a leafy plant above a broad vessel or stand at the right. He wears a gold robe and a dark cap; she wears a red dress with cream sleeves, pearls and gold, and he holds her. The clothes are heaped and scored with paint.",

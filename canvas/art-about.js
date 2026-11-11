@@ -3,6 +3,31 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "vincent-van-gogh-green-wheat-fields-auvers": {
+  "about": "This young wheat in wind, under turning cloud, is by Van Gogh. In 1911 the Neo-Impressionist Curt Herrmann printed it full-page in his book on style, after a chapter calling rhythm \"pure form set in motion\".",
+  "deep": "No sun stands in this sky, and the clouds give none away: lavender edges their white below as well as above. Curt Herrmann, a Berlin painter who owned it, printed it beside his chapter on rhythm in 1911, in a book that saw pure painting in Neo-Impressionism and its scientific treatment of light. He allowed that Van Gogh's pictures bore the stamp of genius but did not yet embody the problem of light, and elsewhere called him a rare phenomenon. At the paint, both judgements hold. The field's order is the strokes', their beat slowing as they lengthen toward the bottom edge, and they never settle which side the light comes from.",
+  "by": "Opus 5.5"
+ },
+ "j-m-w-turner-a-packet-boat-off-dover": {
+  "about": "Turner painted this steamer off Dover on grey paper about 1836, when the Post Office's Dover packets, losing some £39,000 a year, faced inquiry and by December were due to pass to the Admiralty.",
+  "deep": "The red-hulled steamer is out on the strait where Turner's first landing in France was nearly swamped. On 15 July 1802, his first journey abroad, he sailed from Dover; off Calais, in rough water, he left the ship for a small boat and waded ashore through the breakers. On a chalk study he wrote \"Our landing at Calais nearly swampt\". Thirty-odd years on, the sheet sets the rough water against the machine itself. One laid-on white, wheel-churn and breaking sea alike, runs from her side to the lower left and buries the lower half of the paddle box over her wheel.",
+  "by": "Opus 5.5"
+ },
+ "claude-monet-banks-of-the-seine-vetheuil": {
+  "about": "From a flowering bank of the Seine, 1880 — the year Monet told a journalist he had never had a studio and, waving at the river and the hills, said that was his studio.",
+  "deep": "Blue runs under the yellow at centre right: the river went down before the flowers climbing into it. How long before, and where, the paint does not say. In April 1880 Monet claimed the river as his studio, and Théodore Duret's preface to his June show said as much, describing pictures begun and finished in front of the scene. Wildenstein, his cataloguer, called the claim self-advertisement, noting that studies from the motif could feed canvases painted elsewhere and out of season. Laid over the river almost to the opposite trees, the yellow fits either account, indoors or at the water.",
+  "by": "Opus 5.5"
+ },
+ "gustave-caillebotte-skiffs": {
+  "about": "These paddlers on the Yerres hung in 1879 at the Impressionist show Caillebotte helped run. He told Monet the public stayed merry; Le Figaro's Albert Wolff found his twenty-odd canvases dashed off in a single day.",
+  "deep": "The near man sits in a hull barely wider than his hips, and his shaft reaches out over the water on both sides. In 1879 the picture was shown under the boat's own name, Périssoires; Skiffs is a later English title. A périssoire takes its name from périr, to perish: a light, unstable craft worked with a double paddle, so called because it capsized easily. Nobody here is going over. The paddle bites one side, then the other, and the near and middle men are caught at opposite halves of that stroke, each with a blade at the water and his body centred in the hull.",
+  "by": "Opus 5.5"
+ },
+ "franz-marc-siberian-dogs-in-the-snow": {
+  "about": "In 1910 this canvas hung in Marc's first solo show, at the Munich dealer Brakl's. Weeks before, August Macke, having found two of his lithographs under the dealer's table, came knocking at the little-known painter's door.",
+  "deep": "At the right, a long muzzle and a hanging ear are painted twice at much the same size, once held level, once lowered to the snow, like one dog in two attitudes. The model was Marc's own Siberian sheepdog, Russi, who came to him, his wife later recalled, when his widowed mother gave up her house. In 1940 an edition of Marc's letters printed this canvas as \"Unsere Hunde\", our dogs, and whether it shows two animals or Russi twice, no source settles. The far muzzle ends in a dark blue nose; the near one has none, just grey-green with the snow's white brushed up to its tip.",
+  "by": "Opus 5.5"
+ },
  "rembrandt-the-jewish-bride": {
   "about": "A dealer called Rembrandt's late-career couple Jephthah and his Daughter in 1828, a father about to sacrifice her. A collector's inventory made her a Jewish bride adorned by her father: the name stuck; later readings dropped the father.",
   "deep": "Upright and unwatched, the two stand in the dark, though the story now attached to them turns on a watcher. In Genesis, Isaac passes Rebecca off as his sister until King Abimelech sees them caressing. Rembrandt's drawing of the scene, of about 1665, follows Raphael's fresco: she sits on Isaac's lap, and the king looks on. An X-ray from the 1993 restoration is reported to show this pair seated at first too, then stood and set apart. If so, the canvas was made by taking out the king, the lap and the ruse. Without the lap, the embrace must pass behind her back, surfacing only as his hand at her far shoulder.",
@@ -4484,8 +4509,10 @@ by: "Opus 4.8" },
 },
 
 "thor-s-fight-with-the-giants": {
-about: "Crowds queued for hours at its 1872 Nationalmuseum debut; bought by King Charles XV, who died that year and bequeathed it to the museum, Winge's 1872 canvas became the defining image of Norse mythology for Swedish national romanticism.",
-by: "Opus 4.8" },
+  "about": "Thor drives his goat chariot into the giants, hammer raised. Reviewing it in March 1872, the twenty-three-year-old August Strindberg refused to call them evil: they were \"big children\", strong without knowing how to use it.",
+  "deep": "Raised over an enemy forced down at the god's knee, the hammer stands where the archangel's weapon stands in older altarpieces of St Michael subduing the devil, which Winge saw in Rome and probably drew on. Reviewing the canvas, the young August Strindberg carried the pagan scene into the Christian story: Thor's light, he wrote, would burn out before the one lit at Bethlehem, the hammer be wrung from his hand and the cross raised, in a tragedy of two acts with a third to come. The canvas stops in the first act, before the hammer falls.",
+  "by": "Opus 5.5"
+ },
 
 
 "omnibus": {
@@ -4603,8 +4630,10 @@ deepBy: "Sonnet 4.6",
 by: "Fable 5" },
 
 "early-sunday-morning": {
-about: "Hopper painted out a figure he had placed in an upper window, and the resulting 1930 Seventh Avenue row of shopfronts holds its stillness without any human presence to explain it.",
-by: "Opus 4.8" },
+  "about": "The shop row Hopper first titled Seventh Avenue Shops, painted in 1930 — “almost a literal translation of Seventh Avenue,” he said, though “it wasn’t necessarily Sunday. That word was tacked on later by someone else.”",
+  "deep": "Ten windows face the street from the upper storey, where, on a stage Hopper had watched, people appeared. In 1929 he and his wife saw Jo Mielziner's scenery for Elmer Rice's play Street Scene from the second balcony, and Gail Levin suggests that view may have given this canvas its raised viewpoint, which looks down onto the shop ledge. She also writes that Hopper first put a figure in one of the windows, as on that stage, and painted it out. In a letter of 1936 his wife still recalled that scenery fondly. Which window, Levin does not say; upstairs each is still dressed for an entrance, behind a blind, a curtain or both.",
+  "by": "Opus 5.5"
+ },
 
 "rideau-cruchon-et-compotier": {
 about: "Sold at Sotheby's in 1999 for $60.5 million, Cézanne's c.1893–94 arrangement of apples, pitcher, and curtain became the highest price paid at auction for a still life up to that point.",
@@ -4973,8 +5002,10 @@ about: "Commissioned by Madame du Barry for a music pavilion, the series was rej
 by: "Opus 4.8" },
 
 "the-three-soldiers": {
-about: "Once owned by King Charles I of England, this tiny grisaille shows three Landsknecht mercenaries — a drummer, a fifer, and a standard-bearer — in flamboyant slashed-sleeve costume. Bruegel painted it in 1568, likely as a model for an engraving.",
-by: "Opus 4.8" },
+  "about": "Painted in 1568, the year before Bruegel died, in greys and browns: a drummer, a fifer, a standard-bearer. His other two surviving grisailles show sacred scenes: one he kept, the other his friend Ortelius owned.",
+  "deep": "The grey flag over the three men is what a company carried to declare whose soldiers they were, and what shows of its cloth declares nothing. The earliest known description supplies the answer the cloth withholds. About 1639 Abraham van der Doort, keeper of Charles I's pictures, listed a board painted in black and white with three Swiss soldiers: a drummer, a piper and an ensign, the man with the flag. The entry almost certainly describes this panel. He named each man by his office, as the panel shows them, and all three by a nation, Swiss, that the panel never names. His black and white, on the board itself, is greys and browns.",
+  "by": "Opus 5.5"
+ },
 
 "regatta-in-venice": {
  "about": "Guardi based this view on a Canaletto composition rather than direct observation, then dissolved it into something Canaletto never quite managed: a shimmering, atmospheric light that makes the crowded Grand Canal feel felt rather than documented. Guardi, c.1770.",
@@ -5471,8 +5502,10 @@ refs: [{"id":"the-potato-eaters","text":"The Potato Eaters"}],
 by: "Opus 4.8" },
 
 "inwang-jesaekdo": {
-about: "Painted from direct observation near the artist's home rather than from Chinese landscape formulas, this ink-on-paper work captures Mount Inwang's granite mass still steaming after rain — the defining example of Korea's jingyeong ('true-view') landscape tradition. Jeong Seon, 1751. National Treasure No. 216.",
-by: "Opus 4.8" },
+  "about": "Mount Inwang, no famous sight, was the back hill of Jeong Seon's neighbourhood. At seventy-five he painted it in ink, writing \"rain clears on Mount Inwang\" and the date, a summer month's last ten days, 1751.",
+  "deep": "The inscription names a mountain clearing after rain, the painter and ten days of 1751, and nobody else. Within those ten days the court annals entered the death of the poet Yi Byeong-yeon, whose pact with the painter, Yi wrote in 1741, traded poems for paintings. Later scholars read the sheet as made for the dying Yi, the clearing a wish for his recovery. Yet his family genealogy dates the death about six months earlier, and the house at the foot has been assigned to at least four owners, Yi and the painter among them. The house sits behind a band of dark pines, its eaves on thin posts, with no one under them.",
+  "by": "Opus 5.5"
+ },
 
 "gold-buckle-from-seogam-ri-pyeongyang": {
 about: "Seven intertwined dragons built up from hundreds of tiny gold granules and originally set with 41 turquoise stones — this pure-gold belt buckle from Tomb 9 at Seogam-ri, Pyeongyang, was made under the Han Lelang commandery around the 1st–2nd century AD. It is National Treasure No. 89 and weighs 53.6 grams.",
@@ -5507,8 +5540,10 @@ by: "Opus 4.8" },
 },
 
 "knight-death-and-the-devil": {
-about: "Dürer called it simply the Rider (Reuter), but Knight, Death, and the Devil became one of his three Meisterstiche — master engravings grouped with Melencolia I and St Jerome in His Study for their technical perfection and depth of meaning, all made within a single year between 1513 and 1514.",
-by: "Opus 4.8" },
+  "about": "An armoured knight with Death beside him and a devil behind, engraved by Dürer. Nietzsche's Birth of Tragedy, 1872, made him the hopeless seeker's emblem: \"Our Schopenhauer was such a Dürerian knight\".",
+  "deep": "Dürer named the print for horse and man alone: in his Netherlands journal he calls it plain Reuter, the Rider. At Antwerp in 1520 one went in a job lot of prints for eight florins; the next year another went to Rüdiger von Gelern, with three large books, in return for a snail shell and some coins. The one passage of Dürer's that readers tie to a Christian knight came on 17 May 1521, when, believing Luther seized, he urged Erasmus, knight of Christ, to make himself heard and ride on beside the Lord Jesus. It names no print. Under the brim, the engraved knight's lips are closed.",
+  "by": "Opus 5.5"
+ },
 
 "opening-of-the-fifth-seal": {
 about: "Picasso studied this before beginning Les Demoiselles d'Avignon in 1907; Richardson later argued it shaped the size, format, and compositional logic of that work at least as much as Cézanne did — a debt recognized only in the 1980s.",
