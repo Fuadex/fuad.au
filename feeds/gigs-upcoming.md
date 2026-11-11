@@ -1,10 +1,9 @@
 # Upcoming shows in Japan — matched against the Rotation library
 
-Generated 2026-11-10 · 740 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
+Generated 2026-11-11 · 739 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
 
 
 ## November 2026
-- 2026-11-10 (Tue) · **Wienners** — 仙台 LIVE HOUSE enn 2nd, Sendai · 36 plays · not seen live · top · Wienners <振替公演> · https://eplus.jp/sf/word/0000033997
 - 2026-11-11 (Wed) · **THE ORAL CIGARETTES** — 新代田FEVER, Tokyo · 46 plays · seen live 1× · seen · WANDER ABOUT 放浪 TOUR 2026 関東編 · https://ticketjam.jp/tickets/the-oral-cigarettes/event_groups/347122
 - 2026-11-12 (Thu) · **THE ORAL CIGARETTES** — HEAVEN'S ROCK 宇都宮 VJ-2, Utsunomiya · 46 plays · seen live 1× · seen · WANDER ABOUT 放浪 TOUR 2026 関東編 · https://ticketjam.jp/tickets/the-oral-cigarettes/event/1262215
 - 2026-11-12 (Thu) · **a flood of circle** — F.A.D横浜, Yokohama · 44 plays · not seen live · top · a flood of circle TOUR 革命未遂の蝶が見る夢 · https://www.teichiku.co.jp/artist/a-flood-of-circle/schedule/
