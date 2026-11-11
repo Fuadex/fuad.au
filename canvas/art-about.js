@@ -3,6 +3,11 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "claude-monet-interior-after-dinner": {
+  "about": "Claude Monet painted this lamplit room twice in 1868–69; in The Dinner, his infant son sits at table in a high chair. Here, the art historian Florence Coman notes, the meal is cleared and the child absent.",
+  "deep": "The man at the mantel may be the friend who was told of such evenings by letter. Monet wrote to Frédéric Bazille in December 1868 that evenings in his small house brought a good fire and a good little family, and that thanks to a patron from Le Havre he had perfect peace. The letter names no painting. Florence Coman sees Bazille in that man, though the letter went to him in Paris. The canvas puts its peace under the lamp, in a woman bent over her white cloth, while the fire, the comfort named first, burns at the right edge with no face turned toward it.",
+  "by": "Opus 5.5"
+ },
  "vincent-van-gogh-green-wheat-fields-auvers": {
   "about": "This young wheat in wind, under turning cloud, is by Van Gogh. In 1911 the Neo-Impressionist Curt Herrmann printed it full-page in his book on style, after a chapter calling rhythm \"pure form set in motion\".",
   "deep": "No sun stands in this sky, and the clouds give none away: lavender edges their white below as well as above. Curt Herrmann, a Berlin painter who owned it, printed it beside his chapter on rhythm in 1911, in a book that saw pure painting in Neo-Impressionism and its scientific treatment of light. He allowed that Van Gogh's pictures bore the stamp of genius but did not yet embody the problem of light, and elsewhere called him a rare phenomenon. At the paint, both judgements hold. The field's order is the strokes', their beat slowing as they lengthen toward the bottom edge, and they never settle which side the light comes from.",
@@ -3367,8 +3372,10 @@ about: "The Babin Republic was a real mock-state where Polish nobles earned offi
 by: "Opus 4.8" },
 
 "the-raising-of-lazarus": {
-about: "Hidden beneath old overpaint, the signature 'Car. Fabr.' was only uncovered during a 1935 restoration, before which the canvas was attributed to an anonymous German follower of Rembrandt. Carel Fabritius, 1643.",
-by: "Opus 4.8" },
+  "about": "Credited to a Rembrandt imitator, Dietrich, and stored above a Warsaw sacristy, this altarpiece went to state conservators in 1935. Within two months a signature on the tomb gave Carel Fabritius what is now his earliest known painting.",
+  "deep": "The two figures nearest us, low in the corners, share our floor, facing the grave from our side. Which side that is has changed with each cleaning. Overpainters around 1800 set the miracle under sky and mountains; in 1935 the canvas read as a dark tomb, a lamp at its entrance. The 2003–04 cleaning found a sketched wood beyond, and Antoni Ziemba sees the lamp burning far off among its trees. He puts the viewer inside the tomb, Christ's call to come out leading past us into the living world. Christ stands between Lazarus's rising head and those trees, yet the wood behind him, that living world, is no brighter than our floor.",
+  "by": "Opus 5.5"
+ },
 
 "introduction-of-christianity-in-poland": {
 about: "Matejko painted this twelve-work cycle in 1889 partly to satisfy the research requirements for his honorary doctorate from the Jagiellonian University, making it as much an academic statement as a historical panorama. Jan Matejko, 1889.",
@@ -3819,8 +3826,10 @@ by: "Opus 4.8" },
 },
 
 "beauty-revealed": {
-about: "Goodridge sent this watercolor-on-ivory self-portrait — just 2.6 by 3.1 inches, depicting only her bare breasts — to the recently widowed senator Daniel Webster in 1828, and Webster kept it until his death in 1852.",
-by: "Opus 4.8" },
+  "about": "This watercolour on ivory of 1828 shows a woman's bared breasts, not her face. English and French lovers carried miniatures of a single eye, the beloved unrecognisable; for so personal a token, no American precedent is known.",
+  "deep": "A brown mark sits high on the skin at our left, and whether the sitter's mole or the painter's beauty spot, nothing settles. By the Webster family's tradition, Goodridge gave Daniel Webster the miniature in a covered case, its paper backing lettered by her with title and date. Case and backing are lost; the backing is recorded as inscribed 1828. Title, year and the belief that the body is the painter's own rest on that paper and a family's word. Alone, the painting vouches for one body, never whose: the broader breast at our left, the lower nipple at our right, and that brown mark.",
+  "by": "Opus 5.5"
+ },
 
 
 "heart-of-the-andes": {
@@ -3946,8 +3955,10 @@ by: "Opus 4.8" },
 },
 
 "deer-running-in-the-snow": {
-about: "Courbet built a series of more than sixty hunting scenes that were his most commercially reliable work; here a stag bolts across snow he scraped with a palette knife, capturing the Franche-Comté landscape he knew as a native, c.1856.",
-by: "Opus 4.8" },
+  "about": "Courbet painted this stag running over snow a year or two before any stag hunt his letters record. Those were German: on New Year's Eve 1858 he killed a twelve-pointer, a feat he boasted all Germany envied.",
+  "deep": "Forelegs reaching ahead and hind legs trailing at the same instant, its head thrown back to the sky: where the painter found this animal is an open question. Nothing shows Courbet had seen red deer in his home country, and away from the chase, the historian Tom Stammers writes, he studied stuffed specimens, which he called nature caught in the act, and deer carcasses from a butcher in the rue Montorgueil. A hide could have given the coat its climb from black haunch to copper shoulder, a mount the set of the antlers. The legs are harder to place, seen, stuffed or imagined, stretched over snow that keeps no print of them.",
+  "by": "Opus 5.5"
+ },
 
 "georgette-charpeitier-seated": {
 about: "Commissioned in 1876 when Georgette Charpentier was four years old, the portrait was a direct product of Renoir's relationship with her father Georges Charpentier, the publisher-patron who became his most important financial backer in that decade.",
@@ -4355,8 +4366,10 @@ by: "Opus 4.8" },
 },
 
 "souls-on-the-banks-of-the-acheron": {
-about: "Hermes stands luminous before a surging crowd of the newly dead awaiting passage across the Acheron; Hirémy-Hirschl fused academic finish with Symbolist despair in this 1898 canvas, a centrepiece of the Belvedere collection.",
-by: "Opus 4.8" },
+  "about": "Emperor Franz Joseph called this canvas of Hermes and the dead at the Acheron serious and significant, and it took the great gold state medal of 1898, the year its painter left Vienna for Rome.",
+  "deep": "Hermes holds his gold staff over the dead on an arm of warm flesh, and the hands reaching up beneath it are grey. Writing in April 1898, the critic Emil Schäffer saw here no mild guide of souls from ancient vase painting but a god staring down in inexorable, icy cold on the teeming human herd. Any cold lives in the face. Among open mouths his lips are closed and his lids lowered, and his head keeps its profile as the dead take hold of him. Between his warm arm and the grey fingers that a kneeling woman has hooked into his cloak lies only dark cloth.",
+  "by": "Opus 5.5"
+ },
 
 "eduard-kosmack": {
 
@@ -4990,16 +5003,20 @@ by: "Opus 4.8" },
 },
 
 "portrait-of-a-man": {
-about: "Memling painted this unidentified man around 1470-75, set against an open window with a Flemish landscape behind. The tower at right may be the church of St. Giles outside Bruges — the one clue to his identity scholars have chased for five centuries.",
-by: "Opus 4.8" },
+  "about": "Among the earliest known portraits in which Hans Memling set a sitter before an open window and distant land, about 1470–75 — its window is painted stone, pared thin, with the unnamed man in front of it.",
+  "deep": "Two towers stand in the country at his shoulders, and the man's name, if the picture holds it, is sought in the pale one at our right. One conjecture makes it St Giles in Bruges, the church where Memling would be buried; in 1471–74 the Torreman family built a chapel there beside the choir. Their arms carried a tower, and he may be one of them. Helen York, a historian, reads it as a lord's house, the mark of an estate. The panel's apparent past in northern Italy suggests an Italian of Bruges. His head turns from that tower toward the spire across the water.",
+  "by": "Opus 5.5"
+ },
 
 "dance-of-time": {
 about: "The clock inside the glass globe was the first rotating annular-dial mechanism ever built to sit within a transparent sphere. Clockmaker Jean-Baptiste Lepaute and sculptor Clodion made it in 1788; three terracotta nymphs dance around a column to hold it aloft.",
 by: "Opus 4.8" },
 
 "the-progress-of-love-the-meeting": {
-about: "Commissioned by Madame du Barry for a music pavilion, the series was rejected by 1773 and returned to Fragonard — possibly for being too nakedly romantic. He kept the canvases two decades before installing them in his cousin's house at Grasse.",
-by: "Opus 4.8" },
+  "about": "A young man scales a garden wall to a girl — one of four canvases Fragonard painted for Louis XV's mistress, Madame du Barry. Unfinished in 1772, the four struck a Paris chronicle as allegories of her own affairs.",
+  "deep": "The young man was climbing before the wall he climbs existed. In Fragonard's small oil sketch, only his head shows at the top of a ladder, and the garden's stone is missing: parapet, column shaft, the statue's pedestal, the urn. Pierre Rosenberg reported that a restoration and an X-ray found the sketch first copied faithfully onto the full-size canvas, so the stone went in around lovers already placed. The parapet gives the ladder a far side, and him a body halfway into the garden. The pedestal lifts the stone Venus over both heads, and against its dark face sits the girl, in white satin where the sketch dressed her in yellow and raspberry.",
+  "by": "Opus 5.5"
+ },
 
 "the-three-soldiers": {
   "about": "Painted in 1568, the year before Bruegel died, in greys and browns: a drummer, a fifer, a standard-bearer. His other two surviving grisailles show sacred scenes: one he kept, the other his friend Ortelius owned.",
@@ -5066,8 +5083,10 @@ by: "Opus 4.8" },
 },
 
 "view-of-the-cannaregio-canal-in-venice": {
-about: "Guardi painted the Cannaregio Canal not as a grand tourist route but as a working neighbourhood artery, filling the foreground with gondoliers and tradespeople rather than ceremony. The loose brushwork dissolves architecture into light and atmosphere, c.1770.",
-by: "Opus 4.8" },
+  "about": "Venice's Cannaregio canal, as Francesco Guardi painted it about 1770 — at its centre the Palazzo Surian, residence of France's ambassadors in the eighteenth century, where the young Jean-Jacques Rousseau once worked as the ambassador's secretary.",
+  "deep": "Four men work the oars of a big gondola, and none of the effort is for show: it carries a traveller, seated in the cabin's shade, and luggage piled toward the bow. Through the 1760s Guardi was painting larger canvases, often in pairs or sets, and therefore, his biographer reasons, to order. This one was painted as the pendant, the matching companion, to a regatta on the Grand Canal, and from 1774 to 1984 the two shared every owner. Beside a race, this half shows rowing as carriage. At the right-hand wharf, one man steadies a laden boat with a long pole while another stoops to its crates.",
+  "by": "Opus 5.5"
+ },
 
 "femmes-arabes-a-la-promenade": {
 about: "The painter born Étienne Dinet converted to Islam, took the name Nasreddine, and settled permanently in the Algerian oasis of Bou-Saâda — making this 1895 scene of veiled women at leisure a document of a life genuinely lived from the inside rather than observed at distance.",
@@ -5419,8 +5438,10 @@ about: "These worn boots sparked one of the twentieth century's most cited art-p
 by: "Opus 4.8" },
 
 "the-sower": {
-about: "Van Gogh consciously updated Millet's dark, sombre Sower from 1850 into a colour manifesto: the enormous lemon-yellow sun doubles as a halo, turning a peasant labourer into a near-sacred figure. He wrote to Theo that he wanted radiant colour and sharp contrasts where Millet had grey. The sower motif appears repeatedly across his career. Van Gogh, Arles 1888.",
-by: "Opus 4.8" },
+  "about": "This small sower, striding under a low sun, was once assumed to have come before the large one Van Gogh sketched for Theo in November 1888. Technical examination has since shown it was painted second.",
+  "deep": "The sun's disc stands behind the sower's cap, not his face, which falls below its rim against the far field. In June 1888, writing of an earlier sower, Van Gogh said what the motif needed: colour where Millet's sower, his early model, had colourless grey, yellow against purple, and symbolic colour, as in the lemon-yellow halo of Delacroix's Christ in the boat. Letters of late 1888 praise only a large sower, so none says whether this small one carries out that programme or quiets it. The paint allows both: the yellow sits in a yellow-green sky, and the field's lilacs and blues reach the disc only at its low rim, left of the cap.",
+  "by": "Opus 5.5"
+ },
 
 "vase-with-irises": {
 about: "The irises in this painting are not the blue they appear today: Van Gogh mixed in a red pigment that has since faded, meaning the flowers were originally a vivid purple. He painted the work at the Saint-Paul-de-Mausole asylum in Saint-Rémy, setting cut irises against the emphatic yellow ground to drive the colour contrast he wanted. Van Gogh, 1890.",
@@ -5512,8 +5533,10 @@ about: "Seven intertwined dragons built up from hundreds of tiny gold granules a
 by: "Opus 4.8" },
 
 "baegak-chunhyo": {
-about: "Painted in 1915 when Korea was under Japanese occupation, An Jung-sik — the last official court painter of the Joseon dynasty — rendered Mt. Baegak and Gyeongbokgung Palace in the traditional true-view landscape mode, making the seat of Korean sovereignty a quiet act of cultural preservation.",
-by: "Opus 4.8" },
+  "about": "Gyeongbokgung palace stands intact beneath Mount Baegak on a silk scroll An Jung-sik dated to a summer day of 1915, as most of its halls were coming down for a colonial exposition that opened there in September.",
+  "deep": "The palace is shown at what the title calls a spring dawn, and the line An inscribed beside that title dates the scroll to a summer day. The art historian Kim Yi-soon hears in those words the title of a Tang poem by Meng Haoran. Its sleeper recalls the night's wind and rain, and An, she thinks, heard more than a season there. Lee In-suk reads the title as a prayer that spring would return. He left no word on why he gave the palace a spring that summer. Under the gate's upper roof the board where its name would hang is blank above stonework drawn down to six drainage spouts.",
+  "by": "Opus 5.5"
+ },
 
 "london-the-houses-of-parliament-sunlight-opening-in-fog": {
 
