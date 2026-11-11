@@ -1256,6 +1256,7 @@ window.CANVAS_ARTWORKS = [
     seenAt: "national-gallery-london", seenConfidence: "sure", loved: true },
   { id: "robert-delaunay-tour-eiffel", title: "Tour Eiffel", artist: "Robert Delaunay", artistId: "delaunay", qid: "Q18927486", qidTrusted: true, year: 1926,
     seenAt: "mam-paris", seenConfidence: "sure", liked: true },
+  // 2026-11-11 (wave 38 data flag): title was "(untitled)"; the work is The spirit of the new moon, NGV 73922 (the holder's record).
   { id: "artur-loureiro-untitled", title: "The spirit of the new moon", artist: "Artur Loureiro", artistId: "artur-loureiro", qid: "Q99196734", qidTrusted: true, year: 1888,
     seenAt: "ngv", seenConfidence: "sure", loved: true },
   { id: "albert-chmielowski-opuszczona-plebania", title: "Opuszczona plebania", artist: "Albert Chmielowski", artistId: "albert-chmielowski", qid: "Q23465167", qidTrusted: true, year: 1888,
@@ -1367,6 +1368,7 @@ window.CANVAS_ARTWORKS = [
     seenAt: "alte-nationalgalerie", seenConfidence: "sure", loved: true },
   { id: "anders-zorn-hemlandstoner", title: "Hemlandstoner", artist: "Anders Zorn", artistId: "zorn", qid: "Q18599205", qidTrusted: true, year: 1920,
     seenAt: "tokyo-met", seenConfidence: "sure", floored: true },
+  // 2026-11-11 (wave 39 data flag): year 1923 -> 1909. The model is of 1909 (the holder's date, cast in the signature); this cast was commissioned for the state 1922-23.
   { id: "unknown-untitled", title: "Héraklès tue les oiseaux du lac Stymphale", artist: "Antoine Bourdelle", artistId: "antoine-bourdelle", qid: "Q122385962", qidTrusted: true, year: 1909,
     seenAt: "orsay", seenConfidence: "sure" },
   { id: "edouard-vuillard-untitled-2", title: "Femme couchée de dos", artist: "Édouard Vuillard", artistId: "edouard-vuillard", qid: "Q17491441", qidTrusted: true, year: 1891,
@@ -4985,6 +4987,7 @@ window.CANVAS_ARTWORKS = [
 {"id":"jan-steen-the-sick-woman","title":"The Sick Woman","artist":"Jan Steen","artistId":"jan-steen","qid":"Q17342253","qidTrusted":true,"year":1664,"seenAt":"rijksmuseum","seenConfidence":"sure","note":"Rijksmuseum permanent display, seen 2016-07-10 (room Gallery of Honour; inv. SK-C-230; on-display tag on the museum’s 2016 page)."},
 {"id":"jan-steen-the-drunken-couple","title":"The Drunken Couple","artist":"Jan Steen","artistId":"jan-steen","qid":"Q17342259","qidTrusted":true,"year":1660,"seenAt":"rijksmuseum","seenConfidence":"sure","note":"Rijksmuseum permanent display, seen 2016-07-10 (room Gallery of Honour; inv. SK-C-232; on-display tag on the museum’s 2016 page)."},
 {"id":"willem-van-de-velde-the-younger-the-cannon-shot","title":"The Cannon Shot","artist":"Willem van de Velde the Younger","artistId":"willem-van-de-velde","qid":"Q17342294","qidTrusted":true,"year":1680,"seenAt":"rijksmuseum","seenConfidence":"sure","note":"Rijksmuseum permanent display, seen 2016-07-10 (room Gallery of Honour; inv. SK-C-244; on-display tag on the museum’s 2016 page)."},
+// 2026-11-11 (wave 39 data flag): year 1664 -> 1663 (the Rijksmuseum dates SK-C-251 c. 1663).
 {"id":"johannes-vermeer-woman-in-blue-reading-a-letter","title":"Woman in Blue Reading a Letter","artist":"Johannes Vermeer","artistId":"vermeer","qid":"Q166937","qidTrusted":true,"year":1663,"seenAt":"rijksmuseum","seenConfidence":"sure","note":"Rijksmuseum permanent display, seen 2016-07-10 (room Gallery of Honour; inv. SK-C-251; on-display tag on the museum’s 2016 page)."},
 {"id":"frans-hals-and-pieter-codde-militia-company-of-district-xi-u","title":"Militia Company of District XI under the Command of Captain Reynier Reael","artist":"Frans Hals and Pieter Codde","artistId":"hals","qid":"Q5779800","qidTrusted":true,"year":1633,"seenAt":"rijksmuseum","seenConfidence":"sure","note":"Rijksmuseum permanent display, seen 2016-07-10 (room Gallery of Honour; inv. SK-C-374; on-display tag on the museum’s 2016 page)."},
 {"id":"frans-hals-portrait-of-lucas-de-clercq","title":"Portrait of Lucas de Clercq","artist":"Frans Hals","artistId":"hals","qid":"Q17342911","qidTrusted":true,"year":1635,"seenAt":"rijksmuseum","seenConfidence":"sure","note":"Rijksmuseum permanent display, seen 2016-07-10 (room Gallery of Honour; inv. SK-C-556; on-display tag on the museum’s 2016 page)."},
