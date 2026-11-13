@@ -1,59 +1,7 @@
 {
- "generated": "2026-11-12",
- "count": 738,
+ "generated": "2026-11-13",
+ "count": 742,
  "shows": [
-  {
-   "date": "2026-11-12",
-   "artist": "THE ORAL CIGARETTES",
-   "title": "WANDER ABOUT 放浪 TOUR 2026 関東編",
-   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
-   "city": "Utsunomiya",
-   "plays": 46,
-   "seenLive": 1,
-   "tier": "seen",
-   "japanese": true,
-   "url": "https://ticketjam.jp/tickets/the-oral-cigarettes/event/1262215",
-   "added": "2026-11-05"
-  },
-  {
-   "date": "2026-11-12",
-   "artist": "a flood of circle",
-   "title": "a flood of circle TOUR 革命未遂の蝶が見る夢",
-   "venue": "F.A.D横浜",
-   "city": "Yokohama",
-   "plays": 44,
-   "seenLive": 0,
-   "tier": "top",
-   "japanese": true,
-   "url": "https://www.teichiku.co.jp/artist/a-flood-of-circle/schedule/",
-   "added": "2026-11-05"
-  },
-  {
-   "date": "2026-11-12",
-   "artist": "TK from 凛として時雨",
-   "title": "TK from 凛として時雨 TK from 凛として時雨 TOUR 2026 生癖 -seiheki-",
-   "venue": "LIQUIDROOM",
-   "city": "Tokyo",
-   "plays": 8,
-   "seenLive": 0,
-   "tier": "also",
-   "japanese": false,
-   "url": "https://www.liquidroom.net/schedule/tk-from-rintoshiteshigure_20261112",
-   "added": "2026-11-05"
-  },
-  {
-   "date": "2026-11-12",
-   "artist": "Sheena Ringo",
-   "title": "椎名林檎と彼奴等と試す煩悩菩提",
-   "venue": "大分iichikoグランシアタ",
-   "city": "Oita",
-   "plays": 7,
-   "seenLive": 0,
-   "tier": "also",
-   "japanese": true,
-   "url": "https://lp.p.pia.jp/article/news/489069/index.html",
-   "added": "2026-11-05"
-  },
   {
    "date": "2026-11-13",
    "until": "2026-11-14",
@@ -1145,6 +1093,19 @@
    "japanese": true,
    "url": "https://eplus.jp/sf/word/0000072235",
    "added": "2026-11-05"
+  },
+  {
+   "date": "2026-11-23",
+   "artist": "lilbesh ramko",
+   "title": "Kamui [Guest Act] Need a Flex / jellyy / TOKYO世界 / lilbesh ramko / Tee Shyne / S.J.soldie... — Kamui ONE MAN LIVE",
+   "venue": "Shibuya WWW",
+   "city": "Tokyo",
+   "plays": 5,
+   "seenLive": 0,
+   "tier": "also",
+   "japanese": true,
+   "url": "https://www-shibuya.jp/schedule/020029.php",
+   "added": "2026-11-12"
   },
   {
    "date": "2026-11-24",
@@ -2483,6 +2444,20 @@
    "added": "2026-11-05"
   },
   {
+   "date": "2026-12-05",
+   "until": "2026-12-06",
+   "artist": "Pulling Teeth",
+   "title": "トーキョークダマキ其の肆",
+   "venue": "Shimokitazawa CLUB Que",
+   "city": "Tokyo",
+   "plays": 5,
+   "seenLive": 0,
+   "tier": "also",
+   "japanese": false,
+   "url": "https://clubque.net/schedule/15850/",
+   "added": "2026-11-12"
+  },
+  {
    "date": "2026-12-06",
    "artist": "9mm Parabellum Bullet",
    "title": "9mm Parabellum Bullet Tour 2026-27「Raison d'être」",
@@ -2609,6 +2584,19 @@
    "japanese": true,
    "url": "https://www.sonymusic.co.jp/artist/sawanohiroyukinzk/info/582544",
    "added": "2026-11-05"
+  },
+  {
+   "date": "2026-12-07",
+   "artist": "Cephalo",
+   "title": "Oaiko pre.「これからはじまる」 supported by GIGGS",
+   "venue": "Spotify O-nest",
+   "city": "Tokyo",
+   "plays": 13,
+   "seenLive": 0,
+   "tier": "top",
+   "japanese": true,
+   "url": "https://shibuya-o.com/nest/schedule/oaiko-pre-%e3%80%8c%e3%81%93%e3%82%8c%e3%81%8b%e3%82%89%e3%81%af%e3%81%98%e3%81%be%e3%82%8b%e3%80%8dsupported-by-giggs/",
+   "added": "2026-11-12"
   },
   {
    "date": "2026-12-07",
@@ -4390,6 +4378,19 @@
   },
   {
    "date": "2027-01-04",
+   "artist": "ANORAK!",
+   "title": "CRYMAX NEW YEAR NIGHT",
+   "venue": "Shimokitazawa SHELTER",
+   "city": "Tokyo",
+   "plays": 14,
+   "seenLive": 0,
+   "tier": "top",
+   "japanese": true,
+   "url": "https://www.loft-prj.co.jp/schedule/shelter/368356",
+   "added": "2026-11-12"
+  },
+  {
+   "date": "2027-01-04",
    "artist": "人畜乱弾",
    "title": "ジェット神社ジェット初詣ライブ2027",
    "venue": "新宿 LOFT",
@@ -4636,6 +4637,19 @@
    "japanese": true,
    "url": "https://eplus.jp/ath/word/6877/",
    "added": "2026-11-05"
+  },
+  {
+   "date": "2027-01-10",
+   "artist": "FOUR GET ME A NOTS",
+   "title": "” START HERE AGAIN ” vol.3",
+   "venue": "Shimokitazawa SHELTER",
+   "city": "Tokyo",
+   "plays": 6,
+   "seenLive": 0,
+   "tier": "also",
+   "japanese": true,
+   "url": "https://www.loft-prj.co.jp/schedule/shelter/368696",
+   "added": "2026-11-12"
   },
   {
    "date": "2027-01-11",
@@ -5623,6 +5637,19 @@
    "japanese": true,
    "url": "https://eplus.jp/sf/word/0000001215",
    "added": "2026-10-31"
+  },
+  {
+   "date": "2027-01-29",
+   "artist": "Flow",
+   "title": "FLOW WORLD TOUR 2027 \"ONCE IN A CENTURY\" ～ANIME THE MAX!!!～",
+   "venue": "Spotify O-WEST",
+   "city": "Tokyo",
+   "plays": 19,
+   "seenLive": 0,
+   "tier": "top",
+   "japanese": true,
+   "url": "https://shibuya-o.com/west/schedule/flow-world-tour-2027-once-in-a-century%ef%bd%9eanime-the-max%ef%bd%9e/",
+   "added": "2026-11-12"
   },
   {
    "date": "2027-01-29",
@@ -6804,6 +6831,18 @@
    "added": "2026-11-05"
   },
   {
+   "date": "2027-02-26",
+   "artist": "Bleech 9:3",
+   "title": "BLEECH 9:3",
+   "city": "Tokyo",
+   "plays": 5,
+   "seenLive": 0,
+   "tier": "also",
+   "japanese": false,
+   "url": "https://www.creativeman.co.jp/event/bleech93/",
+   "added": "2026-11-12"
+  },
+  {
    "date": "2027-02-27",
    "artist": "ASIAN KUNG-FU GENERATION",
    "title": "ASIAN KUNG-FU GENERATION 30th Anniversary Tour 2027 \"Take The World Back Again\"",
@@ -6956,6 +6995,19 @@
    "japanese": true,
    "url": "https://www.japanconcerttickets.com/event/kana-boon-in-tokyo-2027-03-26/",
    "added": "2026-11-05"
+  },
+  {
+   "date": "2027-03-05",
+   "artist": "lilbesh ramko",
+   "title": "崎山蒼志 / lilbesh ramko — ningen_ryoko_2027",
+   "venue": "Shibuya WWW X",
+   "city": "Tokyo",
+   "plays": 5,
+   "seenLive": 0,
+   "tier": "also",
+   "japanese": true,
+   "url": "https://www-shibuya.jp/schedule/020201.php",
+   "added": "2026-11-12"
   },
   {
    "date": "2027-03-06",
