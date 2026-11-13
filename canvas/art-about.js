@@ -4049,8 +4049,10 @@ about: "Remembered in Japan as the father of Western-style painting, Kuroda Seik
 by: "Opus 4.8" },
 
 "self-portrait-with-a-hat": {
-about: "Painted in 1924, the year Koide Narashige opened his Osaka atelier after two years in France, this near-monumental self-portrait declares his identity as a yōga painter — a confident image unusual for an artist whose canvases were otherwise notably small.",
-by: "Opus 4.8" },
+  "about": "Koide came home to Osaka from Europe, adopted Western clothes and meals at a stroke and began painting things bought abroad. In 1924 he painted himself full-length, suited, palette in hand, beside a trumpet he reportedly brought back.",
+  "deep": "Both eyes look out from the flat brown over his brow and far cheek, so his assurance reaches us from shadow. One reading of the picture finds overflowing confidence over a dark expression, and that reading looks back a year. In September 1923 Koide lived through the Great Kantō earthquake and, by the same account, carried a re-examination of his painting to completion; an older account adds that his crowded canvases came out cleared and ordered. Part of the dark is the light's, falling from our right. The rest is the paint's, one plane laid over both eyes, nearly as flat as the bowler's black.",
+  "by": "Opus 5.5"
+ },
 
 "still-life-with-horse-s-head": {
 
@@ -4165,8 +4167,10 @@ about: "Commissioned early in Guercino's career, this 1620 painting — sent to 
 by: "Opus 4.8" },
 
 "judith-with-the-head-of-holofernes": {
-about: "Painted in grisaille to mimic carved stone relief, Mantegna's c.1495 tempera uses monochrome not as a shortcut but as the point — the entire surface reads as sculpture before it reads as paint.",
-by: "Opus 4.8" },
+  "about": "Mantegna painted this small canvas in stone greys, to pass for carved relief, in the later 1490s, when the throne of his Madonna della Vittoria, the altarpiece for Francesco Gonzaga's doubtful victory at Fornovo, was painted with reliefs.",
+  "deep": "The maid's bowed face is the darkest of the three heads: a shade darker than Judith's, and darker still than the dead man's. The Book of Judith gives her no origin. The art historian Paul Kaplan, in a museum catalogue's summary of his work, argues that Mantegna painted her as a Black woman across several Judiths of the 1490s, as enslaved Black people grew more present in Europe, notably at Isabella d'Este's Mantuan court. The biographer Vasari, in the next century, described a Mantegna drawing of Judith putting the head into the bag of one of her Black slaves. Tone alone cannot say whether her darker face means skin or shade under a pale turban.",
+  "by": "Opus 5.5"
+ },
 
 "connemara-girl": {
 about: "Reproduced on more Irish classroom and kitchen walls than almost any other painting, Burke's early 1870s portrait of a barefoot girl herding goats became an unofficial image of rural Ireland.",
@@ -4181,8 +4185,10 @@ about: "Among Rembrandt's nine painted landscapes, this 1647 work is the only on
 by: "Opus 4.8" },
 
 "hellelil-and-hildebrand-the-meeting-on-the-turret-stairs": {
-about: "Voted Ireland's favourite painting in a 2012 public poll, Burton's 1864 watercolour is kept behind closed cabinet doors and displayed for only a few hours a week to protect its colours from light damage.",
-by: "Opus 4.8" },
+  "about": "Burton found these lovers in a Danish ballad that Whitley Stokes translated in 1855; the stair is his invention — the ballad gives them one kiss, on her brow, as her father's armed men reach the door.",
+  "deep": "His face sinks into her sleeve and hers turns to the stone, so both faces a love scene calls for are held back. At its first showing in 1864 one review found the heads given up to a close study of the dresses; another thought the brilliant blue of her robe short of variety. On colour the charge holds: apart from the green band low on it, her skirt is one blue, only darker in the folds. The faces that do look out are two small heads drawn in gold on his red-orange surcoat, open-eyed, below his closed lids.",
+  "by": "Opus 5.5"
+ },
 
 "cornelis-de-graeff-with-his-wife-and-sons": {
 about: "The only known commissioned work by Jacob van Ruisdael, this c.1660 collaboration with Thomas de Keyser records Amsterdam's most powerful burgomaster arriving at his Soestdijk estate with his family in a gilded coach.",
@@ -4400,8 +4406,10 @@ by: "Opus 4.8" },
 },
 
 "theodor-billroth-operating": {
-about: "Seligmann inserted himself into the front row of this meticulous group portrait of Billroth performing surgery before packed student galleries at the Vienna General Hospital, documenting a celebrity surgeon at work in 1890.",
-by: "Opus 4.8" },
+  "about": "Seligmann painted the surgeon Billroth in his Vienna lecture hall in 1888–90 at the instant before an operation: an assistant holds out the instrument, the patient is anaesthetised, and no wound is yet in sight.",
+  "deep": "The hand Billroth holds out is empty, and it was painted in the years after an illness that, by one biographer's account, had all Vienna fearing for his life. Another says the pneumonia of 1887 left him prematurely aged; in a birthday letter of 1890, as translated, he called his remaining life only a coda. The calm Seligmann painted in him may be the man's own, or the bearing his school needed. The picture builds it from placement, his white-bearded head turned aside from the patient's masked face while younger men hold the skull and lift the forceps.",
+  "by": "Opus 5.5"
+ },
 
 "sea-beach-in-the-fog": {
 
@@ -4458,8 +4466,10 @@ about: "One of the leading Austrian Rococo decorators, Maulbertsch was trained t
 by: "Opus 4.8" },
 
 "woman-with-child-mathilde-schonberg-with-daughter-gertrud": {
-about: "Gerstl had been invited into the Schönberg household to teach Mathilde to paint; two years after this portrait she left Arnold for him, then returned, and Gerstl killed himself at 25; Richard Gerstl, 1906.",
-by: "Opus 4.8" },
+  "about": "Taken into Schönberg's household in spring 1906 to teach the composer and his wife to paint, the 22-year-old Gerstl painted both life-size, probably within weeks — the composer alone, and Mathilde with their four-year-old daughter, Gertrud.",
+  "deep": "Under the girl's fingers at the table's edge lies her mother's ringed hand, a touch legible to those who know whose hand is whose, below two faces turned out to anyone. This was the household's own picture: it belonged to Arnold and Mathilde Schönberg, and the dealer Otto Kallir, who in 1931 showed the canvases Gerstl's brother had stored from his studio, never knew of this one. By a 2017 retrospective's count it is also the first of eight portraits Gerstl made of Mathilde, painted two summers before she briefly left her husband for him. Higher up, the mother's other arm passes behind the girl's shoulders and disappears behind her braid.",
+  "by": "Opus 5.5"
+ },
 
 "verherrlichung-des-namens-jesu": {
 about: "This oil sketch is the surviving bozzetto Rottmayr made before painting the nave fresco of the Jesuit church in Breslau (1704–06), preserving his working composition in miniature; Johann Michael Rottmayr, 1703.",
@@ -4478,8 +4488,10 @@ by: "Opus 4.8" },
 },
 
 "the-lady-with-a-fan-the-artist-s-wife": {
-about: "Roslin's wife Marie-Suzanne Giroust was herself a painter elected to the Académie royale, and this 1768 portrait — Diderot called it très piquante — captures a fellow professional behind dark silk and a half-raised fan.",
-by: "Opus 4.8" },
+  "about": "Roslin's wife, the pastel portraitist Marie-Suzanne Giroust, is shown in Bolognese fancy dress, and at the Paris Salon of 1769 the portrait hung as simply a woman's head; the Académie royale admitted Giroust the following year.",
+  "deep": "The veil's edge clips her right eye at the outer corner, leaving the rest uncovered in half-shadow on the side facing the light. Reviewing the Salon of 1769, Denis Diderot praised a half-veiled head, taken to be this canvas, for its colour and frank brushwork, but said the veil left no air around the head: it made a blot on the canvas and stuck to it. Over the face, though, the silk casts that half-shadow, as no flat blot could. On our left the near drape turns in grey sweeps against the lower wall, sunk almost to black. The blot is there on our right, where the far drape stays near-black against lighter stone.",
+  "by": "Opus 5.5"
+ },
 
 "portrait-of-a-violinist": {
  "about": "Vallayer-Coster was one of only four women the Académie royale allowed as members at any one time, and this 1773 portrait — acquired by Nationalmuseum at a then-record price — shows her at the height of that hard-won recognition.",
@@ -4587,16 +4599,16 @@ by: "Opus 4.8" },
 },
 
 "breakfast-time": {
-about: "One critic wrote that Hirsch-Pauli must have used the tablecloth to clean her brushes, yet this 1887 plein-air garden scene became a breakthrough work in the Nordic art world and is now in Nationalmuseum.",
-by: "Opus 4.8" },
+  "about": "Back from her Paris studies, Hanna Hirsch painted this table outdoors at her family's place in the Stockholm archipelago in 1887, months before marrying the painter Georg Pauli; one biographer thinks it was laid for him.",
+  "deep": "The sun on this cloth was taken for dirt, and by the painter's own later account the charge was aimed at her as a Jewish artist. The usual retelling has a reviewer supposing she wiped her brushes on it. In 1939, at seventy-five, she said one reviewer had tied the flecked cloth to her Jewishness, as if Jewish homes kept dirty tablecloths. A retrospective in 2025 took up her account; the review she meant has not been traced. The brightest white on the canvas is the fall below the right-hand napkin, and its light is made of lemon, orange, pink and violet flecks, thick enough to stand in ridges.",
+  "by": "Opus 5.5"
+ },
 
 "landscape-with-the-fall-of-icarus": {
-
- "about": "W.H. Auden wrote \"Musée des Beaux Arts\" about Bruegel's Fall of Icarus in Brussels; this panel by Joos de Momper the Younger, c.1620s, shares its subject: Icarus tumbles from the sky while a ploughman, shepherd, and angler carry on, indifferent.",
-
- "by": "Opus 4.8"
-
-},
+  "about": "In Ovid's poem, an angler, a shepherd and a ploughman look up at Daedalus and Icarus flying and take them for gods. Momper's panel has all three, with rod, staff and plough handle; none looks up.",
+  "deep": "If an entry in an inventory of 1652 is this panel, as has been tentatively proposed, that list named it for the man at the plough: a landscape with mountains and a peasant ploughing, and no word of a fall. The list of 1648 had called it a landscape with Daedalus and Icarus. The plough team holds the warm browns in front, the fliers only pale cloud. Whether the picture wants the fall missed or merely lets it be is not settled, and size does not settle it: by the story the bearded father on whole wings is drawn at the ploughman's own scale, and the tumbling boy above him drawn somewhat smaller.",
+  "by": "Opus 5.5"
+ },
 
 "zoie-ghika-moldavian-princess": {
 about: "After Russian troops overran Moldavia and her father was executed by the Ottomans, Zoie Ghika ended up a political pawn at the court of Catherine the Great, who commissioned this portrait; Alexander Roslin, 1777.",
@@ -4682,8 +4694,10 @@ by: "Opus 4.8" },
 },
 
 "baptism-in-kansas": {
-about: "A full-immersion ceremony in a barnyard cattle trough, witnessed by Curry on a neighbour's Kansas farm, which critics on its 1928 debut called the signal work of a new Regionalist movement, John Steuart Curry, 1928.",
-by: "Opus 4.8" },
+  "about": "In 1915, a drought year, the teenage Curry watched a baptism on a neighbour's farm: with the creeks dry, the convert entered a stock tank filled by a windmill, her church holding that immersion washed away sins.",
+  "deep": "The singers round the tank are drawn as types, a few strokes each, so the picture could be mocking or honouring them. Reviewing the picture's debut in 1928, the New York Times critic called it a splendid satire on backcountry religious fanaticism, excepting only the portentous clouds. In 1935 another critic saw no sneer: Curry, he wrote, did not just understand these people but was one of them. Jeffrey Richmond-Moll, a recent scholar, holds to both. The rite serves the second verdict: the preacher's hand at the nape is braced for weight, and two other women in white bow their heads, silent. The clouds the 1928 review spared now part on falling rays above the yard.",
+  "by": "Opus 5.5"
+ },
 
 "my-egypt": {
 about: "Demuth cast a Lancaster grain elevator as an American equivalent of the ancient Egyptian monuments, while the title also hints at the slave labour those monuments required, a Precisionist icon, Charles Demuth, 1927.",
@@ -4841,8 +4855,10 @@ about: "This Cubist-Futurist canvas by Gleizes, 1914, portrays Madame Raymond Du
 by: "Opus 4.8" },
 
 "nude-study-sad-young-man-on-a-train": {
-about: "Duchamp identified this fragmented, dark study as a self-portrait, painted in 1911–12 while working toward Nude Descending a Staircase; the French title pleased him with its triste–train alliteration.",
-by: "Opus 4.8" },
+  "about": "By Duchamp's account, this December 1911 picture holds two parallel movements, the train's and that of a young man moving about in its corridor, under a title meant as humour: triste (sad) chiming with train.",
+  "deep": "Nothing in this head lets a stranger name the young man: its crown is a nest of outlines, and the forms to its right hook forward and sink. Yet Duchamp identified the figure as himself. Robert Lebel reported him admitting he recognised himself on the train to Rouen, and Jerrold Seigel adds that Duchamp later said his pipe was there to identify him. The likeness has left the face for a habit and a journey. If the pipe is there, it could be the dark oval on the figure's centre line below that crown: closed, filled solid, with no stem drawn.",
+  "by": "Opus 5.5"
+ },
 
 "composition-8": {
 about: "Still rooted in observable Paris facades, this 1914 grid of muted rectangles shows Mondrian out-abstracting the Cubists by stripping volume entirely — the building source is there if you know it, but pure grid is almost all that remains.",
