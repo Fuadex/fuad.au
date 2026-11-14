@@ -66,8 +66,11 @@ try {
   const RE = {};
   for (const id of IDS) {
     const t = G[id].tour, b = G[id].beside;
-    const e = { mv: MV, see: t.see, about: t.about, craft: t.craft, context: t.context, deeper: t.deeper, beside: b.beside, refs: b.refs, by: BY };
-    if (!e.see || !e.about || !e.craft || !e.context || !Array.isArray(e.deeper) || !e.beside || !Array.isArray(e.refs)) restore('incomplete tour: ' + id);
+    // wave 44: a tour lens (about/context/…) may carry its own keyed refs in out_tour; merged with the beside's as the keyed shape {field: [...], beside: [...]}.
+    const tr = t.refs && !Array.isArray(t.refs) && Object.keys(t.refs).length ? t.refs : null;
+    if (t.refs && !tr && !(Array.isArray(t.refs) && !t.refs.length)) restore('tour refs must be keyed by field: ' + id);
+    const e = { mv: MV, see: t.see, about: t.about, craft: t.craft, context: t.context, deeper: t.deeper, beside: b.beside, refs: tr ? Object.assign({}, tr, { beside: b.refs }) : b.refs, by: BY };
+    if (!e.see || !e.about || !e.craft || !e.context || !Array.isArray(e.deeper) || !e.beside || !Array.isArray(b.refs)) restore('incomplete tour: ' + id);
     if (RETOUR.has(id)) RE[id] = e; else ins += block(id, e);
   }
   sI = sI.replace(aI, aI + ins);
@@ -122,7 +125,9 @@ try {
     if (!a || a.mv !== MV || a.by !== BY || a.flags !== undefined || a.survey !== undefined || a.id !== undefined) restore('tour stamp/fields wrong: ' + id);
     for (const k of ['see', 'about', 'craft', 'context']) if (a[k] !== t[k]) restore(k + ' drifted: ' + id);
     if (JSON.stringify(a.deeper) !== JSON.stringify(t.deeper)) restore('stops drifted: ' + id);
-    for (const r of a.refs) { if (a.beside.split(r.text).length !== 2) restore('ref text not once: ' + id); if (!aIo[r.id] && !aAo[r.id]) restore('companion resolves nowhere: ' + r.id); refs++; }
+    // wave 44: refs may be keyed {field: [...], beside: [...]} — each ref's text must occur once in ITS field.
+    const rf = Array.isArray(a.refs) ? { beside: a.refs } : a.refs;
+    for (const [fk, list] of Object.entries(rf)) for (const r of list) { if (typeof a[fk] !== 'string' || a[fk].split(r.text).length !== 2) restore('ref text not once in ' + fk + ': ' + id); if (!aIo[r.id] && !aAo[r.id]) restore('companion resolves nowhere: ' + r.id); refs++; }
     const ab = aAo[id];
     if (G[id].disp === 'KEEP') { if (JSON.stringify(ab) !== JSON.stringify(bA[id])) restore('KEEP read changed: ' + id); continue; }
     const wantAbout = G[id].disp === 'LEAVE' ? bA[id].about : G[id].info;

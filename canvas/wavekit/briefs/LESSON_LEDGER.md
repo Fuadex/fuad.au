@@ -1,9 +1,36 @@
-# LESSON LEDGER — every numbered lesson from waves 17–34 (1–100) (split from BRIEF_common 2026-11-05)
+# LESSON LEDGER — every numbered lesson from waves 17–43 (1–108) (split from BRIEF_common 2026-11-05)
 
 One lesson per past defect, numbered for citation. **Read whole only if you are the AUDITOR or a
 SEAL role** — the ledger is their checklist. Every other agent looks up the specific numbers its
 stage brief or its audit cites, and nothing more. New waves append their lessons here.
 
+
+## WAVE-43 LESSONS (2026-11-13, ten works, audit + three-role seal + seal edit + Fable 5.0 cold pass + cold edit) — binding
+105. **A fusion line resting on a visible fact is a hypothesis until the audit checks it at 3–4x.** Wave 43's orchestrator wrote an
+    Info hook on three heads "kept down" (one was down, one faced out), a reserved test on an eye "under the veil" (it sat beside
+    the veil's edge) and stop prose on two "pale heads" (the maid's was the darkest). The audit answers the fusion's visual
+    premises FIRST, and the reads prompt carries the fusion's CAUTIONS verbatim (a narrowed caution let a barred companion through).
+106. **A measured order with a small gap is told at its size.** Mantegna's three heads measure in a stable order but the first two
+    sit close: "a shade darker", never a wide contrast — and the measure's rectangle decides the order, so name only what holds
+    across rectangles.
+107. **A translated quotation is checked in its source language where the source is reachable.** Koide's 1921 letter said clothes
+    MADE IN Japan suit a Japanese best, not "Japanese dress"; the summary's English had flipped the point. Lesson 102 extended.
+108. **An Info is a sentence with a main verb.** Two wave-43 Infos shipped to the gate as fragments ("The baptism Curry watched … —";
+    "Painted small … — Mantegna in the later 1490s") and one as a "Not X but Y" opener; all three were recast. A fragment or a
+    deferring opener is a defect at the reads stage, whatever the band.
+
+## WAVE-42 LESSONS (2026-11-12, ten works, audit + cold pass + three-role seal + seal edit + cold edit) — binding
+101. **A reserved claim never moves by ruling.** Wave 42's seal ruling pushed the Aoki Interpretation's reserved jewel into the
+    `beside`; it had to be pulled back before the cold pass. A seal, cold or repair ruling that would place a reserved claim in
+    another layer is a defect in the ruling — re-derive without it.
+102. **A page-read outranks a summary of the page.** Wave 42's research file said a cartoon showed "the 1906 match"; the web seal
+    had read the source at its page ("the previous year's match … at Richmond", January 1907). Where a hook summary and a
+    page-read disagree, the page-read stands until a better page overturns it.
+103. **The fusion checks every allocated craft method against the phase-1 stop list before it is written** (orchestrator note of
+    2026-09-30, failed again four times in wave 42). A method a stop already demonstrates is that stop's instance, never craft's.
+104. **A term the Info rests on is glossed in the Info.** Wave 42's cold reader could not use a Turner Info built on "colour
+    beginning" left unexplained; and three true counts in two layers (100 finished, 120 planned, 96 engraved) read as a
+    contradiction. One home, each number labelled.
 
 ## WAVE-34 LESSONS (2026-10-29, fifteen works, audit + cold pass + two-half seal) — binding
 95. **A tighter image is checked against the WHOLE object.** Two wave-34 "upgrades" were details — a Morisot cut at the

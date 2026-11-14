@@ -114,3 +114,17 @@ the seal's WEB/TEMPLATE roles itself, and sends every changed visual claim back 
 those checks refuted about twenty of the orchestrator's own repair wordings. `patch.py <id> <patches.json> [--tag repair|seal]`
 applies exact-span patches (each OLD must occur once) with a backup. Wave 37 cost ≈ $33 for ten works at list prices (p1 ≈ $1,
 audit ≈ $0.8, each ask ≈ $0.15–0.6, a cold packet of five ≈ $1.6).
+
+## Wave 44 notes (2026-11-14)
+- `merge-template.js` accepts keyed refs: a tour lens may carry `refs` keyed by field in `out_tour_<id>.json`
+  (`{about: [...]}`); the merge combines it with the beside's as `{about: [...], beside: [...]}` and the final proof checks each
+  ref's text once in ITS field (`validate-refs.js` already understood the keyed shape).
+- `briefs/COLD_EDIT.md` is the cold-edit brief (rename NN per wave). Its BATCH step defers wholly to COLD_RULINGS ## BATCH —
+  wave 43's quota line had survived into wave 44's copy and two agents asked whether it was a standing rule.
+- The SEAL / SEAL EDIT briefs' KNOWN lists are wave-specific: write them fresh from the R-items' SEAL WATCH lines once all reads
+  are in (wave 44: SEAL_BRIEF44 written from R40–R56).
+- `briefs/LESSON_LEDGER.md` now runs to lesson 108 (101–108 were added in waves 42–44 but lived only in the workshops).
+- `../tonegate.js` knows works on paper (graphite, pencil, gouache, pastel, paper count as concrete craft nouns).
+- A plate that is not on Commons (wave 44's Guercino: the holder's own photograph via its Wayback capture) needs the canon row's
+  hand-set `img` to point at the SAME plate, because the tour boxes are fractions of the displayed image; keep a light
+  `imgGrid` thumbnail, and set `art_imgsize.js` to the plate's true size.

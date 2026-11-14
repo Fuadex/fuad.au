@@ -189,7 +189,9 @@ function checkCloser(text) {
 // none of these is probably gesturing at technique rather than stating it — flag it, don't fail it.
 const CONCRETE_NOUNS = ['paint', 'brush', 'stroke', 'touch', 'glaze', 'ground', 'canvas', 'panel',
   'line', 'edge', 'contour', 'impasto', 'wash', 'pigment', 'layer', 'mark', 'scumble', 'drag',
-  'load', 'varnish', 'weave'];
+  'load', 'varnish', 'weave',
+  // wave 44: works on paper — drawing and pastel vocabulary (Dinet's sheet tripped the abstract-craft check).
+  'graphite', 'pencil', 'gouache', 'pastel', 'paper'];
 
 function craftAbstractHits(text) {
   const hits = [];

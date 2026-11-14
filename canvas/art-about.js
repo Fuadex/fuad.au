@@ -4163,8 +4163,10 @@ by: "Opus 4.8" },
 },
 
 "jacob-blessing-the-sons-of-joseph": {
-about: "Commissioned early in Guercino's career, this 1620 painting — sent to the Getty Conservation Institute for a landmark public restoration — shows the blind patriarch Jacob crossing his hands to bless Joseph's younger son Ephraim over the elder Manasseh.",
-by: "Opus 4.8" },
+  "about": "Jacob, dying and nearly blind in Genesis, crosses his arms to lay his right hand, the greater blessing, on Joseph's younger son; Joseph grips the arm to move it, and Jacob refuses, knowing what he does.",
+  "deep": "Time may have deepened this picture's darks, and the conservators who thought so began cleaning on the bowed boy at far left. There, in 2016–17, their first trial lifted retouching over a large patch of lost paint, finding strands of his hair. The dark greens, Joseph's blue sleeves and the browns had in all likelihood darkened, they judged, while flesh and white sheets seemed to hold. Joseph's sleeve is near-black, blue only on its lit crests, the curtain dark olive, green only in its lit folds. How much of that dark is Guercino's stays unsettled. The lights likelier stand as he left them, and that boy's sleeve is a shade lighter than the sheet.",
+  "by": "Opus 5.5"
+ },
 
 "judith-with-the-head-of-holofernes": {
   "about": "Mantegna painted this small canvas in stone greys, to pass for carved relief, in the later 1490s, when the throne of his Madonna della Vittoria, the altarpiece for Francesco Gonzaga's doubtful victory at Fornovo, was painted with reliefs.",
@@ -4454,8 +4456,10 @@ about: "Courbet's Realist instinct fills the canvas with the quiet texture of ab
 by: "Opus 4.8" },
 
 "the-old-bachelor": {
-about: "Spitzweg plants his solitary figure with his back to the viewer, quietly parodying the Romantic Rückenfigur to skewer Biedermeier bachelor isolation; the 1846 genre scene is gentle social satire from a self-taught painter who trained as a pharmacist.",
-by: "Opus 4.8" },
+  "about": "This oil study by Spitzweg carries the title Hagestolz, old German for a younger son left too little land to marry, later the confirmed bachelor; here he stands facing us in a top hat among walkers.",
+  "deep": "The man in the top hat may owe his comedy to a label: the finished canvas goes by Der Gutsherr, the squire, but was shown in 1929 as Der Hagestolz, the old bachelor, and neither name is known to be Spitzweg's. The painter knew the type from inside; a biographer writing in 1893 called him a kind-hearted, hardened bachelor with droll oddities. Upright in the sunlit middle while the others keep to pairs and clusters, the man never shows whether he is the outing's butt, laughing along, or a landowner surveying his ground. At the right corner, the fence that might mark that ground is broken.",
+  "by": "Opus 5.5"
+ },
 
 "allegory-of-sacred-music": {
 about: "Painted for a seven-ceiling theatre commission in Rijeka twelve years before Klimt co-founded the Vienna Secession, this work shows him as a fully conventional academic decorator; Gustav Klimt, 1885.",
@@ -4472,8 +4476,10 @@ by: "Opus 4.8" },
  },
 
 "verherrlichung-des-namens-jesu": {
-about: "This oil sketch is the surviving bozzetto Rottmayr made before painting the nave fresco of the Jesuit church in Breslau (1704–06), preserving his working composition in miniature; Johann Michael Rottmayr, 1703.",
-by: "Opus 4.8" },
+  "about": "Breslau was mainly Protestant when the Jesuits, granted the emperor's castle, built a church on its site and opened a university; Johann Michael Rottmayr painted this oil design, about 1703–04, for the church's vault fresco.",
+  "deep": "Kneeling, bowed or hung head-down, the crowd turns toward a meeting of rays where no figure is painted. The church was dedicated to the Name of Jesus, and its vault illustrates the verse in Philippians in which every knee in heaven and on earth should bow at that name. The fresco sets the Name at its centre in a blaze of light, as IHS, its first letters in Greek. Here the bowing surrounds that point: two black-habited figures hang head-down below the upper rim, a man in black kneels with two crowns at his knees, and two more kneel beneath a cross. Where the rays meet sit a few pale marks too small to read.",
+  "by": "Opus 5.5"
+ },
 
 "the-conspiracy-of-claudius-civilis": {
 
@@ -4513,8 +4519,10 @@ by: "Opus 4.8" },
 },
 
 "the-triumph-of-venus": {
-about: "Swedish diplomat Carl Gustaf Tessin bought this directly from Boucher's Paris studio in 1740, then was forced by debt to sell his entire collection to the Swedish crown in 1749 — which is how Boucher's most celebrated mythological canvas ended up in Stockholm.",
-by: "Opus 4.8" },
+  "about": "The Swedish envoy Carl Gustaf Tessin commissioned it and saw it on the easel, writing home in July 1740 that Boucher was making him a Birth of Venus; within weeks Paris saw it at the Salon.",
+  "deep": "The dark-haired woman lying at the right edge was first painted sunk entirely in the foam; Boucher then brought her waist and buttocks up out of it. An X-ray found no other important change in a crowded picture he composed, unusually for him, almost straight onto the canvas, with hardly any preparatory studies. Infrared found only small second thoughts besides. Three flying children at the upper left, the higher of the two flights, were painted out and put back. He painted out a dove behind Venus's right hand, though it is said still to show faintly there. Where the wave meets the woman's hips, its foam thins to a film with the skin showing beneath.",
+  "by": "Opus 5.5"
+ },
 
 "the-kitchen-maid": {
 
@@ -4626,8 +4634,10 @@ by: "Opus 4.8" },
 },
 
 "victory-at-narva": {
-about: "At Narva in November 1700, Charles XII's Swedish army routed a Russian force three to four times its size in a blizzard, a shock that reverberated across Europe; Gustaf Cederström painted this retrospective scene in 1905.",
-by: "Opus 4.8" },
+  "about": "The Russians' flags go down on the snow before Charles XII, who had routed their army at Narva in 1700, though it was some three times larger; Cederström painted it two centuries later, his largest canvas.",
+  "deep": "The victory is counted in cloth, in banners lowered at the horses' feet and drums tipped beside them, nobody fighting. Swedish painters had shown Narva before. Kilian Zoll painted the surrender of the colours in 1858, a subject Cederström later took up, the critic Georg Nordensvan noted. Henric Ankarcrona painted the king charging through the snow in 1870. Cederström left the charge alone. The cloth is spoils for the riders waiting at the left and the last thing a beaten army holds, and it remains both because the handover is unfinished: a pale hand still grips the red banner's staff, and a gloved hand has not let go of the green standard.",
+  "by": "Opus 5.5"
+ },
 
 "at-breakfast": {
 about: "Myrtle branches above her head signal Aphrodite's blessing on a young marriage: Ring painted his wife Sigrid Kähler, two years wed, reading the newspaper in their home, in 1898.",
@@ -4881,8 +4891,10 @@ by: "Opus 4.8" },
 },
 
 "birsk": {
-about: "Popova began this 1916 canvas during a summer visit to her former governess near the Ural Mountains, translating the small town of Birsk into a bird's-eye cascade of geometric planes — a bridge between her Cubo-Futurist work and Suprematist abstraction.",
-by: "Opus 4.8" },
+  "about": "Birsk, a small town near the Urals, was home to Popova's former governess, Adelaida Dege, and Popova began this picture in 1916 while visiting the woman who had gone with her to Paris as a chaperone.",
+  "deep": "The houses keep their pitched roofs, and most of their planes shade from a dark seam to a pale one, so they stand as solids. The back of the canvas carries a second picture, a Portrait of a Woman from Popova's figure theme of 1915. The curator Matthew Drutt finds in that portrait her gradual move away from depicting things, and places the town near the end of her Cubo-Futurist years, in 1916, as she joined Malevich's Supremus group and turned to abstraction. Either side may have come first. Against that reading the front holds to its subject: whatever the curving green and brown forms are, the houses' own edges run straight.",
+  "by": "Opus 5.5"
+ },
 
 "white-bull": {
 about: "Marc held that animals possessed a godliness humans had forfeited; in this 1911 canvas the white bull embodies that purity, its pale body set against a deep blue field that, in his colour system, signified the spiritual and masculine.",
@@ -5077,8 +5089,10 @@ by: "Opus 4.8" },
 },
 
 "the-comtesse-daru": {
-about: "David painted this portrait free of charge as a private gift to thank Comte Daru for finally securing his overdue payment for the monumental coronation painting of Napoleon — completing it in just a few sittings in 1810.",
-by: "Opus 4.8" },
+  "about": "David painted Alexandrine Daru in 1810 as a surprise thank-you to her husband Pierre, the imperial official who handled nearly four years of fee disputes; she wrote that she loved it, though perhaps not modestly.",
+  "deep": "The heavy brows, each a different shape, and the full chin are where the painter and a man in love with the sitter agree. Stendhal, Pierre Daru's cousin, was, by his diaries, in love with Alexandrine; his private memorandum of 1811 gives her thick black brows, some plumpness and features of force and gaiety. On 14 March 1810 he watched David sign as four o'clock struck, after petty fussing over how to trace his name, and she, by his editors' reading, dared not lift her eyes to Stendhal's. Neither was impartial: he wrote in love, David painted in thanks. On the canvas the eyes are not lowered; both look straight out at the viewer.",
+  "by": "Opus 5.5"
+ },
 
 "christ-driving-the-money-changers-from-the-temple": {
 
@@ -5129,8 +5143,10 @@ by: "Opus 4.8" },
  },
 
 "femmes-arabes-a-la-promenade": {
-about: "The painter born Étienne Dinet converted to Islam, took the name Nasreddine, and settled permanently in the Algerian oasis of Bou-Saâda — making this 1895 scene of veiled women at leisure a document of a life genuinely lived from the inside rather than observed at distance.",
-by: "Opus 4.8" },
+  "about": "Étienne Dinet drew this walk in 1895, around the time he resolved to paint only Algerian subjects, eleven years after a chance first trip there; he later settled in Algeria and converted to Islam as Nasreddine.",
+  "deep": "The green veil bares a single eye, a cheek and a mouth, and they may show a woman Dinet knew or a face he was still learning. In 1905 he wrote that he had studied his models as types for fourteen years before truly painting them, needing first to reach the person behind the features, and that one had to love. However counted, those years take in 1895, when this sheet was drawn. The other faces leave the same question open, person or type. The old woman's lined face carries one woman's years, but she looks down. The child's bare head is drawn only in profile, its eye raised away to the right.",
+  "by": "Opus 5.5"
+ },
 
 "the-milkmaid": {
 
@@ -5544,8 +5560,10 @@ about: "Van Gogh painted this self-portrait in Paris in 1887 after studying the 
 by: "Opus 4.8" },
 
 "bridge-in-the-rain-after-hiroshige": {
-about: "Van Gogh made this 1887 oil painting as a near-exact copy of a Hiroshige woodblock print, preserving the composition's proportions and even adding a border filled with Japanese characters — copied from other prints by other artists, in a script he could not read. His Japonisme is made literal here: the frame is a performance of Japanese form rather than a translation of it.",
-by: "Opus 4.8" },
+  "about": "In Paris in 1887 Van Gogh copied a Hiroshige print onto a standard-size canvas whose proportions did not fit it, so he set the scene inside a painted border of characters taken from other Japanese prints.",
+  "deep": "One walker under a round yellow hat is made two ways: body and legs flat patches outlined in dark, the hat a ridge of thick paint. Prints like the one he copied cost three sous apiece. From Arles in 1888 he told his brother that all his work rested partly on Japanese art, and that the commonest of those prints, coloured in flat tones, were admirable for the same reason as Rubens and Veronese. Flat tone rules most of the canvas, down to rain drawn in single lines. Yet three coverings carry a weight of paint no woodcut could hold: that hat, the straw hat over the shared cover, the yellow covering at the right.",
+  "by": "Opus 5.5"
+ },
 
 "vincent-van-gogh": {
 about: "This is a portrait of Van Gogh by Australian painter John Peter Russell, made in Paris in 1886 when both men were students at Cormon's atelier. Van Gogh valued it so much that years later he wrote to his brother Theo urging him to 'take good care of my portrait by Russell, which means a lot to me.' A fellow student, Hartrick, later called it the most accurate likeness of Van Gogh ever made.",
@@ -5893,8 +5911,10 @@ by: "Opus 4.8" },
 },
 
 "eugene-delacroix-l-etang-le-louroux-en-touraine": {
-about: "Delacroix painted this pond — the Étang de Beauregard at Le Louroux in Touraine — during a stay with his brother, General Charles Delacroix, most likely in 1822; the job metadata gives 1825, which appears to be a later scholarly bracket rather than the visit date. The painting was long disputed, attributed by Lee Johnson to Delacroix's collaborator Pierre Andrieu, then reattributed to Delacroix himself by Jean-Luc Stéphant. It is now in the Louvre.",
-by: "Opus 4.8" },
+  "about": "On a visit to his brother, a retired general, at Le Louroux in Touraine, Delacroix painted this small oil of a pond; in September 1822, in the same house, he began his Journal, a private diary.",
+  "deep": "The pond gave this canvas back to Delacroix. Lee Johnson had given it to Delacroix's assistant Pierre Andrieu, whose name it bore for some twenty years, until Jean-Luc Stéphant identified the water as the Beauregard pond at Le Louroux. In January 1850 the Journal records a little study of the Louroux pond with a light greyish sky, sent to be relined; perhaps this one. This sky would fit, grey breaking high up into blue-grey and cream, but so would many overcast skies. A place fixes where, not who; the hand has to be read in the handling, which masses trees and water, keeping drawn line for bare limbs and one bush's flicked edge.",
+  "by": "Opus 5.5"
+ },
 
 "gustave-courbet-soleil-couchant-marine": {
 about: "In August 1869 Courbet painted roughly twenty seascapes in a single campaign at Étretat on the Normandy coast, working with palette knife and heavy impasto to give the sea mass and weight rather than shimmer. This sunset — a low red line under a vast pale sky, one sail barely legible — strips the scene to almost nothing; the technique and the economy both pointed toward what the Impressionists would do next.",
