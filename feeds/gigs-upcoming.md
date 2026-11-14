@@ -1,16 +1,10 @@
 # Upcoming shows in Japan — matched against the Rotation library
 
-Generated 2026-11-13 · 742 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
+Generated 2026-11-14 · 736 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
 
 
 ## November 2026
 - 2026-11-13 (Fri) – 2026-11-14 · **BAND-MAID** — Nippon Budokan · 89 plays · not seen live · top · BAND-MAID WORLD TOUR 2026 FINAL · https://www.creativeman.co.jp/event/band-maid-world-tour-2026-final/
-- 2026-11-13 (Fri) · **Fear, and Loathing in Las Vegas** — KYOTO MUSE, Kyoto · 33 plays · not seen live · top · Fear, and Loathing in Las Vegas live · https://www.ticket.co.jp/sys/d/11071.htm
-- 2026-11-13 (Fri) · **赤いくらげ** — Spotify O-Crest, Tokyo · 15 plays · not seen live · top · 赤いくらげ 満腹ワンマンツアー2026 · https://shibuya-o.com/crest/schedule/%e6%ba%80%e8%85%b9%e3%83%af%e3%83%b3%e3%83%9e%e3%83%b3%e3%83%84%e3%82%a2%e3%83%bc2026/
-- 2026-11-13 (Fri) · **BACK DROP BOMB** — LIQUIDROOM, Tokyo area · 14 plays · not seen live · top · BACK DROP BOMB at LIQUIDROOM (sold out) · https://smash-jpn.com/live/?id=4730
-- 2026-11-13 (Fri) · **EMNW** — 高松DIME, Takamatsu · 11 plays · not seen live · top · EMNW To KAMASU “LOVING TO GET US BY” TOUR 2026 · https://eplus.jp/emnw
-- 2026-11-13 (Fri) · **Sheena Ringo** — 大分iichikoグランシアタ, Oita · 7 plays · not seen live · also · 椎名林檎と彼奴等と試す煩悩菩提 · https://lp.p.pia.jp/article/news/489069/index.html
-- 2026-11-13 (Fri) · **Mrs. GREEN APPLE** — サンドーム福井, Fukui · 5 plays · not seen live · also · Mrs. GREEN APPLE Ringo Jam Tour "SHADOWS" · https://www.oricon.co.jp/news/2461508/full/
 - 2026-11-14 (Sat) · **9mm Parabellum Bullet** — DIAMOND HALL, Nagoya · 424 plays · not seen live · top · 9mm Parabellum Bullet Tour 2026-27「Raison d'être」 · https://www.livefans.jp/groups/268254
 - 2026-11-14 (Sat) · **BAND-MAID** — Nippon Budokan, Tokyo · 89 plays · not seen live · top · BAND-MAID WORLD TOUR 2026 FINAL · https://www.creativeman.co.jp/event/band-maid-world-tour-2026-final/
 - 2026-11-14 (Sat) · **PassCode** — 高松オリーブホール, Takamatsu · 73 plays · not seen live · top · https://eplus.jp/sf/word/0000066651

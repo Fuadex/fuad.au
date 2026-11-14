@@ -1,6 +1,6 @@
 # Seen — the Culture library (films, TV, animation, games, books)
 
-Generated 2026-11-13 · 3275 titles · per medium, favourites first, then by Fuad's own rating (1–10). Wishlist: fuad.au/culture/wishlist.md · both as JSON: fuad.au/culture/culture.json
+Generated 2026-11-14 · 3275 titles · per medium, favourites first, then by Fuad's own rating (1–10). Wishlist: fuad.au/culture/wishlist.md · both as JSON: fuad.au/culture/culture.json
 
 ## Movies (1166)
 - **12 Angry Men** — 1957 · Sidney Lumet · US · Drama · rated 10/10 · favourite
