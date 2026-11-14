@@ -1,6 +1,6 @@
 # Upcoming shows in Japan — matched against the Rotation library
 
-Generated 2026-11-14 · 736 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
+Generated 2026-11-14 · 739 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
 
 
 ## November 2026
@@ -683,10 +683,13 @@ Generated 2026-11-14 · 736 shows · date order. Tier: **top** = a strong match 
 - 2027-06-09 (Wed) · **Radiohead** — Saitama Super Arena / さいたまスーパーアリーナ · 66 plays · not seen live · top · https://www.songkick.com/concerts/43401966-radiohead-at-saitama-super-arena-saitamasupaarina
 - 2027-06-09 (Wed) · **MUCC** — Zepp DiverCity (TOKYO), Tokyo · 15 plays · not seen live · top · 2027スペシャルMUCC day！「ムックリ クエストLIVE-急-」 · https://www.55-69.com/news/29477
 - 2027-06-11 (Fri) · **MAN WITH A MISSION** — iichikoグランシアタ, Oita · 416 plays · seen live 1× · seen · MAN WITH A MISSION LIVE TOUR "The Circus" · https://gekirock.com/news/2026/10/man_with_a_mission_the_circus.php
+- 2027-06-11 (Fri) · **Radiohead** — Saitama Super Arena, Saitama · 66 plays · not seen live · top · https://www.songkick.com/concerts/43401967-radiohead-at-saitama-super-arena-saitamasupaarina
 - 2027-06-12 (Sat) · **Ling Tosite Sigure** — Takamatsu MONSTER, Takamatsu · 2682 plays · seen live 1× · seen · Ling tosite sigure TOUR 2749025 TURBO SAURUS · https://x.com/sigure_official/status/2105266412755230752
+- 2027-06-12 (Sat) · **Radiohead** — Saitama Super Arena, Saitama · 66 plays · not seen live · top · https://www.songkick.com/concerts/43401975-radiohead-at-saitama-super-arena-saitamasupaarina
 - 2027-06-12 (Sat) · **凛として時雨** — 高松MONSTER, Takamatsu · 8 plays · not seen live · top · 凛として時雨 TOUR 2749025 TURBO SAURUS · https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221
 - 2027-06-13 (Sun) · **Ling Tosite Sigure** — 松山WstudioRED, Matsuyama · 2682 plays · seen live 1× · seen · 凛として時雨 TOUR 2749025 TURBO SAURUS · https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221
 - 2027-06-13 (Sun) · **MAN WITH A MISSION** — 宮崎市民文化ホール 大ホール, Miyazaki · 416 plays · seen live 1× · seen · MAN WITH A MISSION LIVE TOUR "The Circus" · https://gekirock.com/news/2026/10/man_with_a_mission_the_circus.php
+- 2027-06-13 (Sun) · **Radiohead** — Saitama Super Arena, Saitama · 66 plays · not seen live · top · https://www.songkick.com/concerts/43401977-radiohead-at-saitama-super-arena-saitamasupaarina
 - 2027-06-13 (Sun) · **ACIDMAN** — りゅーとぴあ 新潟市民芸術文化会館 劇場, Niigata · 12 plays · not seen live · top · ACIDMAN 2027 hall tour (title not captured) · https://eplus.jp/sf/detail/0042180001
 - 2027-06-13 (Sun) · **凛として時雨** — 松山WstudioRED, Matsuyama · 8 plays · not seen live · top · 凛として時雨 TOUR 2749025 TURBO SAURUS · https://www.sonymusic.co.jp/artist/lingtositesigure/info/587221
 - 2027-06-16 (Wed) – 2027-06-17 · **Mrs. GREEN APPLE** — Kアリーナ横浜, Yokohama · 5 plays · not seen live · also · Mrs. GREEN APPLE presents "CEREMONY" · https://mrsgreenapple.com/
