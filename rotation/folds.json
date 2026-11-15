@@ -14526,6 +14526,78 @@
     "to": "The Hunt",
     "type": "spelling",
     "reason": "spelling: tag qualifier variant of the official tracklist title — same recording (fold-scan 2026-09-17)"
+   },
+   {
+    "from": "Canyon Jam - 2017 Remaster",
+    "to": "Canyon Jam",
+    "type": "spelling",
+    "reason": "remaster row (- 2017 Remaster); same recording per house rule"
+   },
+   {
+    "from": "Dictatorshit - 2017 Remaster",
+    "to": "Dictatorshit",
+    "type": "spelling",
+    "reason": "remaster row (- 2017 Remaster); same recording per house rule"
+   },
+   {
+    "from": "Endangered Species - 2017 Remaster",
+    "to": "Endangered Species",
+    "type": "spelling",
+    "reason": "remaster row (- 2017 Remaster); same recording per house rule"
+   },
+   {
+    "from": "Ambush - 2017 Remaster",
+    "to": "Ambush",
+    "type": "spelling",
+    "reason": "remaster row (- 2017 Remaster); same recording per house rule"
+   },
+   {
+    "from": "Dusted - 2017 Remaster",
+    "to": "Dusted",
+    "type": "spelling",
+    "reason": "remaster row (- 2017 Remaster); same recording per house rule"
+   },
+   {
+    "from": "Breed Apart - 2017 Remaster",
+    "to": "Breed Apart",
+    "type": "spelling",
+    "reason": "remaster row (- 2017 Remaster); same recording per house rule"
+   },
+   {
+    "from": "sepultura-ratamahatta",
+    "to": "Ratamahatta",
+    "type": "variant",
+    "reason": "junk tag: artist name embedded in the track title; same recording (sepultura campaign 2026-11-15)"
+   },
+   {
+    "from": "sepultura-refuseresist",
+    "to": "Refuse/Resist",
+    "type": "variant",
+    "reason": "junk tag: artist name embedded in the track title; same recording (sepultura campaign 2026-11-15)"
+   },
+   {
+    "from": "sepultura-roots bloody roots",
+    "to": "Roots Bloody Roots",
+    "type": "variant",
+    "reason": "junk tag: artist name embedded in the track title; same recording (sepultura campaign 2026-11-15)"
+   },
+   {
+    "from": "sepultura-territory",
+    "to": "Territory",
+    "type": "variant",
+    "reason": "junk tag: artist name embedded in the track title; same recording (sepultura campaign 2026-11-15)"
+   },
+   {
+    "from": "Roots",
+    "to": "Roots Bloody Roots",
+    "type": "variant",
+    "reason": "truncated tag of the Roots opener; 1p row whose trackNo is an artifact of the bad tag (sepultura campaign 2026-11-15)"
+   },
+   {
+    "from": "Intro & Arise",
+    "to": "Arise",
+    "type": "variant",
+    "reason": "rip tag bundling the intro with the song; same recording (sepultura campaign 2026-11-15)"
    }
   ]
  },
