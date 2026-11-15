@@ -1,19 +1,9 @@
 # Upcoming shows in Japan — matched against the Rotation library
 
-Generated 2026-11-14 · 739 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
+Generated 2026-11-15 · 729 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
 
 
 ## November 2026
-- 2026-11-13 (Fri) – 2026-11-14 · **BAND-MAID** — Nippon Budokan · 89 plays · not seen live · top · BAND-MAID WORLD TOUR 2026 FINAL · https://www.creativeman.co.jp/event/band-maid-world-tour-2026-final/
-- 2026-11-14 (Sat) · **9mm Parabellum Bullet** — DIAMOND HALL, Nagoya · 424 plays · not seen live · top · 9mm Parabellum Bullet Tour 2026-27「Raison d'être」 · https://www.livefans.jp/groups/268254
-- 2026-11-14 (Sat) · **BAND-MAID** — Nippon Budokan, Tokyo · 89 plays · not seen live · top · BAND-MAID WORLD TOUR 2026 FINAL · https://www.creativeman.co.jp/event/band-maid-world-tour-2026-final/
-- 2026-11-14 (Sat) · **PassCode** — 高松オリーブホール, Takamatsu · 73 plays · not seen live · top · https://eplus.jp/sf/word/0000066651
-- 2026-11-14 (Sat) · **Wienners** — Shimokitazawa BASEMENTBAR, Tokyo · 36 plays · not seen live · top · POYACORO 1st Live “We are POYACORO” · https://toos.co.jp/calabash.b1f/event/poyacoro-1st-live-we-are-poyacoro/
-- 2026-11-14 (Sat) · **Survive Said The Prophet** — 周南RISING HALL, Shunan · 21 plays · not seen live · top · RISING HALL 11th Birthday bash !! SHUNAN JAMBOREE · https://survivesaidtheprophet.com/live
-- 2026-11-14 (Sat) · **eastern youth** — CLUB CHANGE WAVE, Morioka · 13 plays · not seen live · top · eastern youth 全国巡業公演 ~ファイトバック現代 2026~ · https://www.livefans.jp/artists/2117
-- 2026-11-14 (Sat) · **ART-SCHOOL** — 仙台MACANA, Sendai · 7 plays · not seen live · also · ART-SCHOOL TOUR 2026「The Fragile Songs」 · https://eplus.jp/artschool/
-- 2026-11-14 (Sat) · **Doddodo** — 大阪城音楽堂, Osaka · 6 plays · not seen live · also · こんがりおんがく祭 2026 · https://eplus.jp/sf/word/0000026450
-- 2026-11-14 (Sat) · **Mrs. GREEN APPLE** — サンドーム福井, Fukui · 5 plays · not seen live · also · Mrs. GREEN APPLE Ringo Jam Tour "SHADOWS" · https://www.oricon.co.jp/news/2461508/full/
 - 2026-11-15 (Sun) · **9mm Parabellum Bullet** — 浜松窓枠, Hamamatsu · 424 plays · not seen live · top · 9mm Parabellum Bullet Tour 2026-27「Raison d'être」 · https://9mm.jp/live.php
 - 2026-11-15 (Sun) · **Hollow suns** — 今池 CLUB 3STAR, Nagoya · 91 plays · not seen live · top · Hollow suns x INGROWN Japan tour · https://eplus.jp/sf/detail/4191720001
 - 2026-11-15 (Sun) · **PassCode** — LIVE VANQUISH, Hiroshima · 73 plays · not seen live · top · PassCode UNLIMITED X · https://passcode-official.com/schedule/
