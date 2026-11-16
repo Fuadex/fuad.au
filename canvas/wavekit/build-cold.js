@@ -16,7 +16,7 @@ for (const id of IDS) {
   const bs = rd('beside_' + id + '.json'); const beside = bs ? JSON.parse(bs).beside : null;
   if (!info || !interp || !beside) throw new Error('reads missing for ' + id);
   fs.copyFileSync(path.join(W, 'img_' + id + '.jpg'), path.join(OUT, 'plate_' + id + '.jpg'));
-  const L = [`# ${c.title} — ${c.artist}, ${c.year || ''}`, '', 'Painting: plate_' + id + '.jpg', '',
+  const L = [`# ${c.title} — ${c.artist || 'maker unknown'}, ${c.year || ''}`, '', 'Painting: plate_' + id + '.jpg', '',
     '## Info', info, '', '## Interpretation', interp, '', '## What you see', t.see, '', '## About', t.about, '',
     '## Craft', t.craft, '', '## Context', t.context, '', '## The tour (each stop zooms the painting to its crop)'];
   t.deeper.forEach((s, i) => {

@@ -214,7 +214,7 @@ window.CANVAS_ART_ABOUT = {
   "by": "Opus 5.5"
  },
  "unknown-haniwa-in-the-shape-of-a-woman": {
-  "about": "Made for a burial mound in sixth-century eastern Japan, she was photographed in 1896 for an English translation of Japan's chronicle, to go with its story of clay figures replacing living men at a prince's tomb.",
+  "about": "Made for a burial mound in sixth-century eastern Japan, she was photographed in 1896 for an English translation of Japan's chronicle, to go with its story of clay figures replacing living men at a royal burial.",
   "deep": "Her stand was made to hold her up in the open, and the open would have destroyed her. The chronicle that tells how such clay figures began gives them a second name, tatemono, \"things set up\". William Gowland judged from their stands that they had stood above the mound, not inside it, and wrote in his paper of 1897 that they \"would be rapidly destroyed as long as they stood above the ground\": only those overturned by chance and covered with earth could last. By his reasoning she lasted because she once fell, and the cracks she was mended along run through the very stand meant to keep her upright.",
   "by": "Opus 5.5"
  },
@@ -4506,7 +4506,7 @@ by: "Opus 4.8" },
 
 "the-conspiracy-of-claudius-civilis": {
 
- "about": "Rejected by Amsterdam's town hall after delivery in 1662, returned to Rembrandt, then cut to roughly a quarter of its vast original size to be sold — what survives is that mutilated fragment.",
+ "about": "Delivered to Amsterdam's town hall in 1662, it hung there only briefly before going back to Rembrandt, for reasons no record gives, and was cut to roughly a quarter of its vast original size to be sold — what survives is that fragment.",
 
  "deep": "The tablecloth is the lamp. No torch is visible; the long cloth's lit edge glows from within, throwing warm radiance up onto faces, swords, hands, and sinking everything around it into brown night. Out of that dark the chief sits frontal and massive, his left eye a blind slit — Rembrandt shows the disfigurement straight on, which may have counted against the picture with the Town Hall governors, and is exactly what makes him formidable. His companions bring their blades up to cross his, and every leaning body converges on that tangle of raised steel. The near-figures jammed at the bottom are a scar: what was once a vast lunette sliced back to this blazing core.",
 
