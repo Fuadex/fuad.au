@@ -101,6 +101,79 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+ "portrait-of-an-army-doctor": {
+  "mv": 6,
+  "see": "A man's figure, built from flat, straight-edged planes. The head sits at top centre, a tall dark block coming down from the top edge into its left side; the chest splits into a white half and a blue half either side of a black band; a pale arc rounds off the figure on the right; below come a grey scroll, a dark wedge and, at lower left and bottom centre, two slabs of red. Chequered fields of square dabs recur. Behind lie flat grey-blue, plum and green-blue. The paint runs from lean washes to crusted passages. A pale two-line inscription sits on the dark block at lower right.",
+  "about": "Gleizes's superior at Toul, an army doctor named Lambert, very probably the Nancy physiologist Mayer Simon Lambert, had asked for the portrait. Gleizes builds him on one vertical, which runs from the top edge down through the head and the chest just left of centre, and big slanting planes lean off it on both sides, so the man's bearing holds steady while those planes tilt around him. Daniel Robbins, writing in 1964, saw the picture begin to fuse a circular rhythm with a composition of intersecting diagonals, and found that rhythm in the shoulders, where a few wide curves swing round the upright and give the angular figure its breadth.",
+  "craft": "At least eight studies for the canvas survive, and by Gleizes's own later account they came first: he drew the doctor many times from memory, in pencil, pen and ink and ink wash, then worked the figure up through watercolours and gouaches before he turned to the canvas. At Toul he worked mainly on paper, in sketches and gouaches, some of which he later developed into larger works. This oil is the one big painting he carried through there, on a canvas he says he ordered from Nancy and nailed to a wall at the barracks, its colour laid on plane by plane.",
+  "context": "When war broke out in 1914 Gleizes was called up, sent to the big army garrison at Toul and put in charge of entertainments for the troops; in 1915 he was attached to the infirmary of the 167th Infantry Regiment. His commanding officer, an admirer of his work, arranged for him to keep painting while he served. Early in the war his friend and brother-in-law Jacques Nayral was killed. By 1915 Gleizes was increasingly set against the war; that autumn he was demobilised, married Juliette Roche and left almost at once for New York. The canvas is inscribed Toul 1914, yet three of its studies are dated 1915, so the dates do not settle his recollection that the drawings came first. Two decades later it hung in his New York retrospective, and in 1937 it was given to a newly founded American art foundation.",
+  "deeper": [
+   {
+    "t": "White against the black band",
+    "x": 0.13,
+    "y": 0.29,
+    "w": 0.64,
+    "h": 0.37,
+    "body": "The white wedge left of centre pulls first, and it holds the lightest paint on the canvas. Close to, its surface is worked: short dragged strokes crust into ridges, with faint pinks and blues stirred into the white. The blue plane on the far side of the black band is another material altogether, scrubbed on so thin that the canvas grain and small warm specks show through it. Light and dark here are also thick and thin, so the bright half of the chest stands up off the weave while the blue half sinks into it. The black band between them has width, a brushed edge and a rough texture of its own: a plane set between two others where a contour would have been a line."
+   },
+   {
+    "t": "A head cut from shards",
+    "x": 0.32,
+    "y": 0.03,
+    "w": 0.38,
+    "h": 0.33,
+    "body": "The head is put together from separate pieces: a brown band slanting across the top, a tall black lozenge tipped onto its point, a grey disc where an ear would sit, a black bar crossing low, a plum half-disc beneath. Each piece is laid in one colour with no modelling inside it, and a thin warm seam rings most of them, so they read as cut out and laid down. The straight edges do the building; the few curves do the recognising. A dark contour closes the back of the head against the green-blue, a thin arc swings under the plum half-disc, and at upper left a black hook, one narrow stroke, springs from a dark crescent. The tall black block that comes down from the top edge goes through the head as well: it turns into pale strips where it passes through the face, then goes black again below it, down the chest. Gleizes keeps the axis but changes its value there, so the face becomes a bright interval in a dark line."
+   },
+   {
+    "t": "Green that darkens inside one plane",
+    "x": 0,
+    "y": 0.14,
+    "w": 0.42,
+    "h": 0.33,
+    "body": "At the top left, behind the figure, the paint is lean. The grey-blue along the top is brushed so thinly that the weave reads through it, and the tan strip at the left edge lets the grain show evenly from end to end. The green wedge does something its neighbours do not: it begins as a bright leaf green along its upper edge and sinks, inside the same plane, to near black at its foot, a gradient doing the work of shading. At the joins, grey stops short of green; a ragged warm line runs between them, and the same warm colour edges the pale chequer beside it. The planes sit like cut sheets laid on tan, each one ending just before the next begins."
+   },
+   {
+    "t": "The arc that turns into a line",
+    "x": 0.56,
+    "y": 0.3,
+    "w": 0.44,
+    "h": 0.3,
+    "body": "On our right a pale band bends in a wide arc over a navy wedge, rounding off that side of the figure against the green-blue. Follow the arc leftward. Where the pale paint gives out, the curve carries on as a thin dark drawn line, down into the mid blue of the chest, so line completes what the painted plane began. A second line, long and straight, comes down from the upper right through the arc's lower end and cuts the round form off clean. Inside the arc the navy is velvety and thinly loaded, freckled with warm points, and the grey band above it carries a ghost of the chequer: small squares only a shade lighter than their ground."
+   },
+   {
+    "t": "A scroll among wedges",
+    "x": 0.37,
+    "y": 0.64,
+    "w": 0.4,
+    "h": 0.24,
+    "body": "Below the chest a grey disc curls into a spiral, the coil drawn in brown line over flat grey, with a pale dab caught inside the curl. A dark wedge runs into it from the right, broad where it meets the scroll and narrowing to a point, the way a long shape narrows as it recedes; together they read as one shaft ending in a curl. Around it the red, the cream and a strip of cool grey are all cut with straight edges, which is why the spiral holds the eye: in a field of wedges it is a place where a drawn line winds inward and closes on itself."
+   },
+   {
+    "t": "Dabs beside flat red",
+    "x": 0,
+    "y": 0.58,
+    "w": 0.42,
+    "h": 0.42,
+    "body": "The chequer at lower left is built one touch at a time: square dabs of wine red, blue and near-black on a lilac ground, each a single press of the brush, lightening lower down into pinks, greens and pale blues. The same device turns up elsewhere, pale pink and grey beside the head and grey on grey on the right, above the dark blocks in the corner, at roughly the same dab size, with only the colours changing; here it runs at full strength. Gleizes sets it directly against flat, thin paint. The two reds beside it are even and matte, the weave visible through both, and they are not one red: the slab on the left is a deep, dark red, the one beyond the chequer lighter and more orange. Along the chequer's long slanting side the dabbed field meets the flat dark red with no drawn line between them."
+   },
+   {
+    "t": "Two dark blocks in the corner",
+    "x": 0.56,
+    "y": 0.63,
+    "w": 0.44,
+    "h": 0.37,
+    "body": "In the lower right corner two dark blocks stand one on the other, their sides running straight up and down. The lower one, which carries the pale inscription, is a mottled dark grey laid thin, and it is drawn as a box: a narrower, blacker face runs down its left side, its top corner cut on the slant, as if the block were seen a little from one side. The block above it is near-black, its top edge sloping down to the right, and the dark wedge from the scroll comes to its point at that block's upper left corner. A thin dark line curves down through the grey-on-grey chequer above and comes to rest on the sloping top: a second, lower arc on this side, drawn as line alone, with no pale band beside it. To the right a rust-red strip, thinly dragged, drops straight to the bottom edge, with ochre above it and a margin of pale cream at the very edge."
+   }
+  ],
+  "beside": "While the war was new, another painter cut someone close to him into flat planes and left her the black ribbon that marked her. Henri Matisse's Tête blanche et rose, painted in the autumn of 1914 as Gleizes served at Toul, shows his daughter Marguerite at twenty: a black band drops through her brow to the nose, and her face splits into pink and chalk white either side. She has two eyes, brows and a red mouth, and at her throat that ribbon, its pendant left over from the naturalistic likeness the canvas began as. The doctor, cut as flat by a soldier serving under him, is left no drawn eye or mouth.",
+  "refs": [
+   {
+    "id": "henri-matisse-tete-blanche-et-rose",
+    "text": "Tête blanche et rose"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
  "at-breakfast": {
   "mv": 6,
   "see": "A woman sits with her back to us at a laid breakfast table, reading a newspaper she holds up before her face. The room is sunlit and plainly furnished. At the left of the back wall stands a blue-painted display cupboard with glazed pottery on its cornice and a copper urn in its niche; at the right an open door gives onto a garden in leaf and blossom, with a potted palm on a wooden stand beside it. In front are a ladder-back chair with a rush seat and the table's painted trestle base.",

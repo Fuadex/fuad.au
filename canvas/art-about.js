@@ -2779,8 +2779,8 @@ deep: "A bridge is a horizontal thing, and Monet stands the canvas on end anyway
 by: "Opus 4.8" },
 
 "henri-matisse-tete-blanche-et-rose": {
-about: "The face gridded by black bars is Matisse's daughter Marguerite, painted in 1914 during his most Cubist-influenced experiment with abstraction. Matisse said he could only push this far with her, and he kept the picture until his death.",
-deep: "The face is split down the nose: pink on one side, chalk white on the other, meeting along a ruled edge with no gradient between them. This isn't shadow — it's a decision to treat a head as a diagram of planes. Black lines carve through anatomy rather than follow it; the eyes sit at different heights, which makes the face seem to turn and confront you at once. One withdraws, one stares out. The red mouth is the only warmth — one small mark that fixes the whole structure as a specific person. Two heavy blacks flank the head on either side, boxing it forward like an altarpiece: a shrine around someone Matisse could push furthest.",
+about: "The face gridded by black bars is Matisse's daughter Marguerite, painted in 1914 at his nearest to Cubism. It began as a naturalistic portrait until Matisse told her the canvas wanted to take him elsewhere, and she agreed.",
+deep: "The face is split down the nose: pink on one side, chalk white on the other, meeting along a ruled edge with no gradient between them. This isn't shadow — it's a decision to treat a head as a diagram of planes. Black lines carve through anatomy rather than follow it; the eyes sit at different heights, which makes the face seem to turn and confront you at once. One withdraws, one stares out. The red mouth is one small mark that fixes the whole structure as a specific person. Two heavy blacks flank the head on either side, boxing it forward like an altarpiece: a shrine around someone who agreed to let Matisse push this far.",
 deepBy: "Sonnet 4.6",
 by: "Opus 4.8" },
 
@@ -4829,8 +4829,10 @@ about: "Franz Marc filled this 1913 Tyrolean landscape with black horses, a red 
 by: "Opus 4.8" },
 
 "portrait-of-an-army-doctor": {
-about: "Gleizes painted this Cubist portrait of his regimental surgeon while actually serving in the French army at Toul in 1914, turning military obligation into a commission and fragmenting uniform, rank, and figure into interlocking planes.",
-by: "Opus 4.8" },
+  "about": "At the Toul garrison in the first year of the war, Gleizes painted his superior, the army doctor Lambert, in flat cut planes; the doctor, who had asked for the portrait, found the result rather disconcerting.",
+  "deep": "The doctor's head, near the top, is a cluster of brown, black, grey and plum pieces. Yet Gleizes's less sophisticated friends at Toul, he recalled decades later, all knew Dr Lambert from it, while the more sophisticated were divided. Gleizes wrote that Georges Valmier, another painter serving there, had painted the same doctor as a traditional likeness, while he himself wanted to stay faithful to Cubism. By that account the doctor declined the canvas, amicably and for good, and kept only the final gouache study for it. Whoever knew him on this canvas most likely went by his face, just left of centre, where the tall black block turns to pale strips.",
+  "by": "Opus 5.5"
+ },
 
 "blue-mountain": {
 
