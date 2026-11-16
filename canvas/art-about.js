@@ -3,6 +3,16 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "franz-marc-genesis-ii": {
+  "about": "Cut by Marc in 1914 for an illustrated Bible the war stopped, this creation in white line on black, with yellow and green, was printed only after his death; a printer pencilled a note below the image.",
+  "deep": "Two eyes in this Genesis are made of what the gouge took away. At upper left two curved cuts frame a lens of black, the wood left standing; right of centre a green almond sits in a hole cut through the black. In May 1913 Marc told Paul Klee how their circle's illustrated Bible was shared out: Daniel for Alfred Kubin, Job for Oskar Kokoschka, the Apocalypse for Wassily Kandinsky, a Gospel for Erich Heckel, the first book of Moses for himself, the rest of the world for Klee. The painter of animals took the one book in which animals are made. The gouge has given some of his creatures eyes, and none a whole body.",
+  "by": "Opus 5.5"
+ },
+ "utagawa-hiroshige-nagakubo-from-the-series-sixty-nine-statio": {
+  "about": "Keisai Eisen began this Kiso Road series for the publisher Hōeidō; Hiroshige joined it with a second publisher, Kinjudō, whose mark, by Edward F. Strange's reading, rides on the packhorse's cloth under Nagakubo's full moon.",
+  "deep": "On the river's near bank the figures gain drawn contours: a boy sits astride a white dog, another claps both hands to his head. The curator Edward F. Strange, writing in 1925, paired Nagakubo with Mochizuki as the Kiso Road series' two great moonlit scenes and called it the weaker: its moonlight on the river mist had no equal, but the children pulled too insistently at the eye, low comedy at odds with the beauty around them. Walkers and hills beyond the water are unlined tone; the children are drawn. But the man leading the laden horse is drawn the same way, walking toward the house with the boys behind him.",
+  "by": "Opus 5.5"
+ },
  "gustave-caillebotte-dahlias-garden-at-petit-gennevilliers": {
   "about": "In this larger second version of 1893, Caillebotte's view of his dahlias, house and the greenhouse he had built gained what the first canvas lacked: a young woman and a small dog on the path.",
   "deep": "The straw hat is tipped so low over the woman at the left that the canvas, which made room for her, shows almost nothing of her face. She is likely the woman Caillebotte lived with. Marie Berhaut, who catalogued his paintings, names her as Charlotte Berthier, whom the Gennevilliers census of 1891 lists in his household, aged twenty-eight. Of that household she alone is brought into the garden, and there she keeps to herself, head bowed toward her hands, a little black dog near her. The dahlia heads stand at eye height, worked petal by petal, while hers stays bent under the straw.",
@@ -3380,8 +3390,10 @@ by: "Opus 4.8" },
  },
 
 "rzeczpospolita-babinska": {
-about: "The Babin Republic was a real mock-state where Polish nobles earned offices by telling the funniest anecdote; their register of 411 stories, compiled over nearly seventy years, survives as a document of gentry life. Jan Matejko, 1881.",
-by: "Opus 4.8" },
+  "about": "The Babin Republic, a mock-state of sixteenth-century gentry near Lublin, rewarded the funniest lie on a given theme with an office. Here, in 1881–82, Matejko crowns the man named as its chief officer, the burgrave, with sunflowers.",
+  "deep": "This company could never have met. Tradition seats the primate Dzierzgowski, who died in 1559, in the armchair, and the physician Petrycy, then a child, beside the lute player. Babin's register of offices starts only in the 1600s, after most of them had died: the gathering is a tale of the kind Babin rewarded, splendid and untrue. In 1884 Matejko played along, reportedly claiming an old portrait of the poet Kochanowski was in his attic, then painting one in two days, a verse on its back crediting an invented Italian painter and filing it, in Latin, among Babin's acts. By the same tradition, the bowing man's quill invites the primate to sign the open book.",
+  "by": "Opus 5.5"
+ },
 
 "the-raising-of-lazarus": {
   "about": "Credited to a Rembrandt imitator, Dietrich, and stored above a Warsaw sacristy, this altarpiece went to state conservators in 1935. Within two months a signature on the tomb gave Carel Fabritius what is now his earliest known painting.",
@@ -3822,8 +3834,10 @@ by: "Opus 4.8" },
 },
 
 "the-woman-in-the-waves": {
-about: "Courbet evokes Venus rising from the sea but pointedly shows his model's underarm hair — a detail no goddess in academic painting would have — making her unmistakably a real woman; he painted her in 1868.",
-by: "Opus 4.8" },
+  "about": "Courbet first showed this woman, waist-deep in a breaking sea, at Ghent in 1868; a Brussels paper wondered whether such pictures had scared the organisers into hanging his work out of the way, and laughed at the fear.",
+  "deep": "Grey-green and blue in the breast's half-shadow could be skin chilled by the sea or sea-colour in a figure made of it, and viewers have split the same way. A Brussels reviewer in 1868 praised the shivering skin for its delicacy and transparency. Later writers found myth in her: Julius Meier-Graefe a possible personification of the waves in 1905, Hélène Toussaint the sea-goddess Amphitrite in 1977. At the waist no line parts belly from water, which favours the myth; yet below the breast the flesh warms toward the waterline, keeping a body's own colour down to where the foam begins.",
+  "by": "Opus 5.5"
+ },
 
 "a-girl-asleep": {
 
@@ -3997,8 +4011,10 @@ by: "Opus 4.8" },
 },
 
 "quai-d-ivry": {
-about: "The airship overhead is identifiable as La Patrie, the French army's first military dirigible, which crossed Paris skies in 1907, giving Rousseau's naïve Seine-bank scene an unexpected contemporary edge.",
-by: "Opus 4.8" },
+  "about": "Above strollers on a working quai of the Seine at Ivry, Rousseau set an airship, probably La Patrie, the French army's new dirigible, which a gale tore loose in November 1907 and carried off for good.",
+  "deep": "Not one of the eleven walkers tips a head back toward the airship, which may date the picture. If it is La Patrie, as is probable, its tail fins came with a 1907 refit, putting the canvas at about that year. Wilhelm Uhde, a friend and early dealer, judged Rousseau's views of Paris and its outskirts of little interest as records of places: they outgrow the facts and become his own experience of a suburb where people tired from work walk out in the evening for a wider sky. The hottest red goes to the walkers, folded at two women's sides and touched in at men's hands, down on the quai below the airship.",
+  "by": "Opus 5.5"
+ },
 
 "mont-sainte-victoire-and-chateau-noir": {
 about: "Cézanne returned to Mont Sainte-Victoire more than sixty times in his career; this c.1904 canvas, one of his last, presses the mountain and the ochre Château Noir into a single geometric field that pointed directly toward Cubism.",
@@ -4193,8 +4209,10 @@ by: "Opus 4.8" },
  },
 
 "cornelis-de-graeff-with-his-wife-and-sons": {
-about: "The only known commissioned work by Jacob van Ruisdael, this c.1660 collaboration with Thomas de Keyser records Amsterdam's most powerful burgomaster arriving at his Soestdijk estate with his family in a gilded coach.",
-by: "Opus 4.8" },
+  "about": "The portraitist Thomas de Keyser had lived mostly by stonemasonry for some twenty years; the de Graeff family arriving by coach at their estate, about 1660, is credited to him, the landscape to Jacob van Ruisdael.",
+  "deep": "The house the coach drives toward is a likeness no one can check. De Graeff founded it about 1650, and what it looked like is not known: in 1674 the estate passed to William III, Prince of Orange, who apparently built a new house without using the old. In 1660 de Graeff had been named to a commission of Holland's provincial assembly for the education of that prince, the boy who would take the estate, and gave it little attention. Faces and gilding in front are sure. The house stands back, and its dormered block may be the one image of de Graeff's house or a painter's invention, with no source to settle which.",
+  "by": "Opus 5.5"
+ },
 
 "the-gleaners-breton": {
 about: "Painted three years before Millet's more famous version, Jules Breton's 1854 canvas drew praise at the 1855 Salon for finding dignity rather than hardship in the women gathering leftover grain after the harvest.",
@@ -4640,16 +4658,20 @@ by: "Opus 4.8" },
  },
 
 "at-breakfast": {
-about: "Myrtle branches above her head signal Aphrodite's blessing on a young marriage: Ring painted his wife Sigrid Kähler, two years wed, reading the newspaper in their home, in 1898.",
-by: "Opus 4.8" },
+  "about": "Sigrid Kähler, two years married to the painter L.A. Ring, reads the morning paper in their first home, in the harbour village of Karrebæksminde; he painted it in 1898, the year they left.",
+  "deep": "Pottery and plants fill the reader's room; she grew up with the one and kept an interest in the other all her life. Sigrid Kähler was raised at her father's ceramics works in Næstved and painted decoration there; when she married Ring she set her own art aside, by her own choice. Their daughter remembered that her father thought her mother should have been an artist and talked every picture over with her, and that as a rule her mother named them. In his picture she reads with her back turned, among glazed pots on the cupboard's cornice, a blue-patterned cup at her elbow and a palm by the door.",
+  "by": "Opus 5.5"
+ },
 
 "en-premiar": {
 about: "The title means a child's first time in the water, not a theatre opening night: Zorn's nude mother steadies her infant at the edge of the sea at Dalarö in 1888, painted when outdoor nudity was still banned in Swedish waters.",
 by: "Opus 4.8" },
 
 "maria-lady-eardley-1743-1794": {
-about: "Gainsborough painted Maria Wilmot around the time of her 1766 marriage to Sir Sampson Gideon, who would later take the Eardley title from her family name, making her one of the few Georgian women whose maiden identity outlasted her husband's.",
-by: "Opus 4.8" },
+  "about": "Gainsborough painted Maria Wilmot, a judge's daughter who married Sir Sampson Gideon, at full length, long before she became Lady Eardley in 1789, when her husband took her father's middle name, Eardley, as his surname.",
+  "deep": "Pompeo Batoni's full-length of Sir Sampson Gideon, signed in Rome in 1767, has him showing a companion a portrait miniature presumed to be Maria, whom he had married in December 1766. In his portrait she would be a likeness small enough for his hand, held out to someone else; in this one she stands at her own height and does the holding. Both of her hands are busy with things of her own, one letting a white flower hang loose by its stem, the other, below the blue satin heaped on her forearm, gathering a fold of it in curled fingers. Nobody presents her, and she looks straight out at whoever stands before her.",
+  "by": "Opus 5.5"
+ },
 
 "the-rhinoceros": {
  "about": "Dürer never saw the animal: working from a written description and a quick sketch of a live Indian rhinoceros brought to Lisbon, he produced a woodcut in 1515 that Europeans accepted as an accurate likeness for over 250 years.",
@@ -4827,8 +4849,10 @@ about: "By December 1913 Kandinsky had cut every remaining tie to the visible wo
 by: "Opus 4.8" },
 
 "still-life-with-gingerpot-2": {
-about: "After moving to Paris in 1912 and absorbing Cubism, Mondrian repainted his own ginger-jar still life almost to the point of erasure: the jar survives as a faint green volume inside a scaffold of grey lines that has swallowed the rest.",
-by: "Opus 4.8" },
+  "about": "In 1912 Mondrian painted his ginger-jar still life again, on a canvas more than twice the area of the first, keeping the jar at the centre and cutting the table into planes under black lines.",
+  "deep": "The ginger jar keeps its own edge and lets the black lines in. Its contour is a plum-brown curve among black strokes, and a curator's account of the jar as the strong central motif round which the picture revolves rests on that line: whatever happens nearby, it stays a pot. A Dutch biographical dictionary sees the pot and its objects already reduced, by 1912, to a round form with rectangles and triangles, and inside the curve the jar's light has gone that way. Its body changes from lighter to darker at one straight seam instead of shading round the belly, so its roundness is left to the plum-brown line round it.",
+  "by": "Opus 5.5"
+ },
 
 "the-football-players": {
   "about": "The oval ball makes it rugby, though the title says football: the word then covered both codes. Rousseau showed this rare sporting scene at the 1908 Indépendants, beside another of his canvases, tiger against buffalo.",
@@ -5601,8 +5625,10 @@ by: "Opus 4.8" },
  },
 
 "gold-buckle-from-seogam-ri-pyeongyang": {
-about: "Seven intertwined dragons built up from hundreds of tiny gold granules and originally set with 41 turquoise stones — this pure-gold belt buckle from Tomb 9 at Seogam-ri, Pyeongyang, was made under the Han Lelang commandery around the 1st–2nd century AD. It is National Treasure No. 89 and weighs 53.6 grams.",
-by: "Opus 4.8" },
+  "about": "This gold belt buckle, smaller than a hand, its dragons hammered from one sheet, came out of a Pyongyang tomb that a Japanese colonial survey opened in 1916 to prove the city a former Chinese colony.",
+  "deep": "These gold dragons, beaded with grain, were dug up to prove a Han Chinese colony, and may not be Chinese at all. Han dress hardly used such buckles, and their nearest excavated relatives come from the empire's edges, Yanqi in Xinjiang and Dalian in Liaoning. Gold worked like this has turned up among the Xiongnu, northern steppe nomads, so the scholar Joo Kyung-mi leans toward a maker in that world or a local workshop under its sway; that a Han emperor sent such buckles to frontier chiefs as honours is still disputed. Its near-double from Yanqi is set with turquoise, and this one's teardrop cells have lost most of their blue stones.",
+  "by": "Opus 5.5"
+ },
 
 "baegak-chunhyo": {
   "about": "Gyeongbokgung palace stands intact beneath Mount Baegak on a silk scroll An Jung-sik dated to a summer day of 1915, as most of its halls were coming down for a colonial exposition that opened there in September.",
