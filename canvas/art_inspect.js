@@ -101,6 +101,95 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+ "jan-van-huysum-still-life-with-flowers": {
+  "mv": 6,
+  "see": "A tall bouquet in an earthenware urn stands on a stone ledge before a garden, with a draped statue of Flora on a pedestal at the left and, at the right, a pond with a pale pillar at the picture's edge and a low green bank in front of it. A crown imperial rises at the top; below come white and dark tulips, roses, a poppy, auriculas, narcissus, pale blue bells, morning glory and pink blossom. More flowers lie cut on the ledge beside a bird's nest with eggs, and butterflies, ants and other insects are scattered through it. The blooms are sharp to their edges and the garden soft and hazy, so the bouquet comes forward and the garden falls back.",
+  "about": "The picture sets out a garden's finest flowers and a skill equal to them. Feathered tulips and auriculas share the urn with roses, narcissus, a poppy and many more under a crown imperial, all gathered into a single tall mass of bloom. A flower-loving public could test such a painting against the real thing. The painter's biographer Johan van Gool tells of Haarlem growers who, shown his painted flowers, stood stock-still, staring at their deceiving naturalness, and knew every kind at once, tulips and auriculas among them.",
+  "craft": "His own letters show van Huysum working from living flowers: writing in the 1740s about two small paintings on copper for the Duke of Mecklenburg, he explains that they ran late for want of living specimens, the flower piece held up a year by a single bloom he could not get. Haarlem growers, Voorhelm among them, put their finest flowers at his disposal, Van Gool writes, and the blooms on this oak panel are painted at life size. The paint went on in private: no one entered his painting room while he worked, not even his brothers. The main masses of the bouquet are set against their opposites in the backdrop, pale against shade, dark against the pale backdrop.",
+  "context": "Jan was the eldest son of Justus van Huysum, whose Amsterdam shop sold painted goods of every kind, screens, vases, everything to ornament a house or garden. The sons painted the stock, Jan so quickly, Van Gool says, that the work seemed to fly; the urn and statue here belong to that world of ornament. Working for himself, he kept to flowers and landscapes. His father died in 1716. By the early 1720s his pieces fetched 1,200 guilders each, and the French ambassador bought four, two for the Duke of Orléans; this panel would be sold at The Hague in 1735, still in his lifetime. Already by 1721 Arnold Houbraken's lives of the painters were calling him the Phoenix of flower painting.",
+  "deeper": [
+   {
+    "t": "The white heart",
+    "x": 0.27,
+    "y": 0.4,
+    "w": 0.34,
+    "h": 0.23,
+    "body": "The cluster of white roses just left of centre is the lightest passage in the picture, and the eye goes there first. Close to, almost none of it is white. The petals are built from cream, ivory and a yellow that warms toward the centre of each cup, with pale pink pooled in the lower blooms and grey-green shade wherever one rose tucks behind the next; the clean lights are saved for the turned-back lips of the petals. The pale flower to the right has a streak of pink down its throat, and the narcissus above carries a bead of water. Then small dark marks resolve into ants, a scatter of them crossing the cream petals and one walking along a blue-green stem below. They are painted at the size of real ants, which makes them vanish at viewing distance and appear to someone close enough to smell the flowers."
+   },
+   {
+    "t": "The crown imperial",
+    "x": 0.26,
+    "y": 0,
+    "w": 0.42,
+    "h": 0.25,
+    "body": "The bouquet ends at the top in a crown imperial: a tuft of blue-green leaves above a ring of orange bells hanging face-down from one thick stem. Because the bells point at the ledge, their insides are on show, and the pale stamens dangle out of the open mouths in long cream threads; a single bead of water sits on one bell. Many of the tuft's leaves are edged in ochre or turn to show an ochre underside, so the spiky crown holds its shape against the soft backdrop. On the lip of the outermost bell perches a dark butterfly with a red band across its wing, a hard dark accent set exactly where the orange bells give way to open air, fixing the edge of the bouquet."
+   },
+   {
+    "t": "A poppy on a hairpin stem",
+    "x": 0.65,
+    "y": 0.07,
+    "w": 0.33,
+    "h": 0.22,
+    "body": "To the right of the crown a single stem climbs out of the leaves, bends over in a wide hairpin and hangs its flower head-down. The stem is painted as a smooth blue-green tube with a pale line along its upper curve, so it looks round and lit. The flower is a poppy caught opening: the green cap still sits on top like a lid while the crumpled red-and-white petals spill out beneath it, their ends frayed into a fringe. Below it a sprig of pink buds grows on a brown woody twig, most of them still shut. Both are flowers at their least finished moment, hung at the outer edge of the bouquet against the paler sky."
+   },
+   {
+    "t": "Two tulips, light and dark",
+    "x": 0.51,
+    "y": 0.26,
+    "w": 0.45,
+    "h": 0.25,
+    "body": "Two tulips lie on their sides at the right. The white one is streaked along its petal edges with fine purple-red feathering, and each petal is laid in long strokes that run its length, so the surface reads as satin with a grain. A drop of water sits on its lowest petal, a clear bead with a small white highlight. Beside it the second tulip is a dusky brown-purple feathered with paler streaks; set against the light part of the backdrop, its dark shape holds firm. Further out, a single olive bell hangs alone on a curved stem. Below them the auriculas cluster in dark red, brown and grey, each pale eye dusted as if with powder and ringed crisply in light."
+   },
+   {
+    "t": "The statue in the shade",
+    "x": 0,
+    "y": 0.085,
+    "w": 0.2,
+    "h": 0.43,
+    "body": "Behind the bouquet on the left stands a statue of Flora on a moulded pedestal, against a dark pier at the picture's edge. She is painted in one dull olive-brown with soft edges, close in tone to the garden behind her, and she holds up a small bunch of flowers in one hand while the other gathers her drapery. The left side of the garden is markedly darker than the right, so she stands in shade and well back. In front of her a small orange-brown butterfly with dark spots is painted in crisp focus, its edges sharp where hers are soft."
+   },
+   {
+    "t": "The children on the urn",
+    "x": 0.33,
+    "y": 0.64,
+    "w": 0.27,
+    "h": 0.17,
+    "body": "The urn carries a relief of plump children: one on its back with arms raised, held by a second who bends over it, a third reaching in from the left, and below them a shaggy, furred shape. The light from the left falls full on this side of the urn and the relief glows, while the urn's right side sinks to about half that brightness. The children are modelled in smooth, blended tones, their outlines soft but still clear against the urn. Two insects have settled on this side: a small winged insect on the fluted band below, and, just under the yellow rose, a lacewing with a slim green body, its clear wings netted with fine veins."
+   },
+   {
+    "t": "Over the edge",
+    "x": 0.14,
+    "y": 0.77,
+    "w": 0.5,
+    "h": 0.22,
+    "body": "The ledge is a block of pale yellow stone, veined and chipped, standing proud of a darker reddish slab behind it, and its sharp lit corner is the stage for things that have come out of the urn. A white rose lies on its side with its pink centre showing, one petal pushed over the block's edge; deep blue trumpet-shaped flowers lie beside it, and their shadows fall to the right across the stone, which fixes the light as coming from the left. Further right a spray of long leaves hangs down over the front face of the ledge, toward the viewer, some of their tips already turned yellow-brown. Drops of water sit on these leaves, and each one is a small lens: a dark rim, a white point of light on the side facing the light, and a pale glow inside on the opposite side, where light has passed through the water onto the leaf."
+   },
+   {
+    "t": "The fallen flower and the nest",
+    "x": 0.57,
+    "y": 0.7,
+    "w": 0.4,
+    "h": 0.27,
+    "body": "At the bottom right a large red double flower has slumped out of the urn onto the ledge. Its petals are made of hairline strokes laid side by side, light at the rims and deepening toward a dark mark at the base, giving them the look of ruffled silk. A small striped beetle walks across one petal. Beside it, on the darker slab, sits a nest woven from grass and moss with three pale speckled eggs, and a small segmented creature clings to its outer wall. Thin trailing stems with round seed heads and closed blue buds fall from above across nest and flower."
+   },
+   {
+    "t": "The pond behind the leaves",
+    "x": 0.78,
+    "y": 0.52,
+    "w": 0.22,
+    "h": 0.32,
+    "body": "At the picture's right edge, just above the ledge, a low bank runs level, green along its top and browner below. Behind it lies a pond, a band of flat, loose level strokes, and down to its far shore comes a grey-buff pillar, hardly set apart from the haze; its reflection runs on into the water as a faint vertical streak. The dark pointed leaves that sweep out over the water from the bouquet are painted quite differently, firm at their edges and creased down the middle. Among them, on a short stem, hangs a pale blue double flower: smooth pale petals above, and below them a ragged fringe of blue-grey ones."
+   }
+  ],
+  "beside": "Both pictures pit a painter's colours against the grower's art. Claude Monet's Champs de tulipes en Hollande, painted in 1886 among Holland's tulip fields, lays the beds out in bands of red, yellow, pink and violet. Its tulips are colour before they are flowers: the red bed at lower left is a press of short strokes leaning with its rows, and Monet wrote from Holland that such fields were beyond his colours. The bouquet on this ledge was cut and brought close, each bloom kept distinct, while Monet left his flowers in the ground and kept his distance until they became the colour of the land.",
+  "refs": [
+   {
+    "id": "claude-monet-champs-de-tulipes-en-hollande",
+    "text": "Champs de tulipes en Hollande"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
  "portrait-of-an-army-doctor": {
   "mv": 6,
   "see": "A man's figure, built from flat, straight-edged planes. The head sits at top centre, a tall dark block coming down from the top edge into its left side; the chest splits into a white half and a blue half either side of a black band; a pale arc rounds off the figure on the right; below come a grey scroll, a dark wedge and, at lower left and bottom centre, two slabs of red. Chequered fields of square dabs recur. Behind lie flat grey-blue, plum and green-blue. The paint runs from lean washes to crusted passages. A pale two-line inscription sits on the dark block at lower right.",

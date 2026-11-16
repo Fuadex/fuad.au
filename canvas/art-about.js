@@ -3,6 +3,11 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "jan-van-huysum-still-life-with-flowers": {
+  "about": "This 1723 panel belongs to van Huysum's break with the dark backgrounds of earlier flower pieces, a move collectors applauded at once: the bouquet stands out of doors, before a statue of Flora, goddess of flowers.",
+  "deep": "Two of the leaves hanging over the ledge are turning yellow-brown, and further along a rose lies toppled on the stone. In a poem printed in an early life of the painter, the poet Bruins lets Flora boast that winter, which threatened her garden year after year, frightens her no longer, since van Huysum's brush makes a spring that cannot wilt. This panel makes the boast good, though not as he meant it: its spring holds bud, bloom and fallen flower, and the brush keeps the wilting as surely as the bloom. Flora stands here too, and her small raised bunch, as drab as the rest of her, is a bouquet made never to droop.",
+  "by": "Opus 5.5"
+ },
  "franz-marc-genesis-ii": {
   "about": "Cut by Marc in 1914 for an illustrated Bible the war stopped, this creation in white line on black, with yellow and green, was printed only after his death; a printer pencilled a note below the image.",
   "deep": "Two eyes in this Genesis are made of what the gouge took away. At upper left two curved cuts frame a lens of black, the wood left standing; right of centre a green almond sits in a hole cut through the black. In May 1913 Marc told Paul Klee how their circle's illustrated Bible was shared out: Daniel for Alfred Kubin, Job for Oskar Kokoschka, the Apocalypse for Wassily Kandinsky, a Gospel for Erich Heckel, the first book of Moses for himself, the rest of the world for Klee. The painter of animals took the one book in which animals are made. The gouge has given some of his creatures eyes, and none a whole body.",
