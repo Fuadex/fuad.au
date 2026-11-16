@@ -1,18 +1,9 @@
 # Upcoming shows in Japan — matched against the Rotation library
 
-Generated 2026-11-15 · 729 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
+Generated 2026-11-16 · 720 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
 
 
 ## November 2026
-- 2026-11-15 (Sun) · **9mm Parabellum Bullet** — 浜松窓枠, Hamamatsu · 424 plays · not seen live · top · 9mm Parabellum Bullet Tour 2026-27「Raison d'être」 · https://9mm.jp/live.php
-- 2026-11-15 (Sun) · **Hollow suns** — 今池 CLUB 3STAR, Nagoya · 91 plays · not seen live · top · Hollow suns x INGROWN Japan tour · https://eplus.jp/sf/detail/4191720001
-- 2026-11-15 (Sun) · **PassCode** — LIVE VANQUISH, Hiroshima · 73 plays · not seen live · top · PassCode UNLIMITED X · https://passcode-official.com/schedule/
-- 2026-11-15 (Sun) · **THE ORAL CIGARETTES** — 高崎 Club JAMMERS, Takasaki · 46 plays · seen live 1× · seen · WANDER ABOUT 放浪 TOUR 2026 関東編 · https://ticketjam.jp/tickets/the-oral-cigarettes/event/1262216
-- 2026-11-15 (Sun) · **CVLTE** — Yogibo HOLY MOUNTAIN, Osaka · 37 plays · not seen live · top · EMNW To KAMASU “LOVING TO GET US BY” TOUR 2026 · https://eplus.jp/emnw
-- 2026-11-15 (Sun) · **AA=** — Yogibo META VALLEY, Osaka · 22 plays · not seen live · top · AA= X-FADER CIRCUIT · https://eplus.jp/sf/word/0000033480
-- 2026-11-15 (Sun) · **eastern youth** — 仙台Rensa, Sendai · 13 plays · not seen live · top · eastern youth 全国巡業公演 ~ファイトバック現代 2026~ · https://www.livefans.jp/artists/2117
-- 2026-11-15 (Sun) · **EMNW** — Yogibo HOLY MOUNTAIN, Osaka · 11 plays · not seen live · top · EMNW To KAMASU “LOVING TO GET US BY” TOUR 2026 · https://eplus.jp/emnw
-- 2026-11-15 (Sun) · **fulusu** — 仙台FLYING SON, Sendai · 8 plays · not seen live · top · "Decay in Vivo" Release Tour 2026 · https://www.livefans.jp/events/1996907
 - 2026-11-16 (Mon) · **Fleshwater** — Yogibo Holy Mountain, Osaka · 137 plays · not seen live · top · Fleshwater @ Yogibo Holy Mountain · https://www.songkick.com/concerts/43339995-fleshwater-at-yogibo-holy-mountain
 - 2026-11-16 (Mon) · **Hollow suns** — Yogibo HOLY MOUNTAIN, Osaka · 91 plays · not seen live · top · Hollow suns x INGROWN Japan tour · https://eplus.jp/sf/detail/4191720001
 - 2026-11-16 (Mon) · **MUCC** — 水戸ライトハウス, Mito · 15 plays · not seen live · top · MUCC Club tour 2026「Beginning to Lotus」 · https://55-69.com/schedule
