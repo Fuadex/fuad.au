@@ -1,12 +1,9 @@
 # Upcoming shows in Japan — matched against the Rotation library
 
-Generated 2026-11-16 · 720 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
+Generated 2026-11-17 · 717 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
 
 
 ## November 2026
-- 2026-11-16 (Mon) · **Fleshwater** — Yogibo Holy Mountain, Osaka · 137 plays · not seen live · top · Fleshwater @ Yogibo Holy Mountain · https://www.songkick.com/concerts/43339995-fleshwater-at-yogibo-holy-mountain
-- 2026-11-16 (Mon) · **Hollow suns** — Yogibo HOLY MOUNTAIN, Osaka · 91 plays · not seen live · top · Hollow suns x INGROWN Japan tour · https://eplus.jp/sf/detail/4191720001
-- 2026-11-16 (Mon) · **MUCC** — 水戸ライトハウス, Mito · 15 plays · not seen live · top · MUCC Club tour 2026「Beginning to Lotus」 · https://55-69.com/schedule
 - 2026-11-17 (Tue) · **Hollow suns** — 赤羽ReNY alpha, Tokyo · 91 plays · not seen live · top · Hollow suns x INGROWN Japan tour · https://eplus.jp/sf/detail/4191720001
 - 2026-11-17 (Tue) · **Enfants** — Shinsaibashi CONPASS, Osaka · 15 plays · not seen live · top · yeti let you notice TOUR 2026 · https://eplus.jp/sf/word/0000084976
 - 2026-11-17 (Tue) · **MUCC** — 水戸ライトハウス, Mito · 15 plays · not seen live · top · MUCC Club tour 2026「Beginning to Lotus」 · https://55-69.com/schedule
