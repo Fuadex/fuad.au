@@ -128,3 +128,22 @@ audit ≈ $0.8, each ask ≈ $0.15–0.6, a cold packet of five ≈ $1.6).
 - A plate that is not on Commons (wave 44's Guercino: the holder's own photograph via its Wayback capture) needs the canon row's
   hand-set `img` to point at the SAME plate, because the tour boxes are fractions of the displayed image; keep a light
   `imgGrid` thumbnail, and set `art_imgsize.js` to the plate's true size.
+
+## Waves 45–47 notes (2026-11-16/17)
+- **Fable limit at the cold pass (waves 45, 46, 47 in a row).** `canvas-cold` (Fable 5.0) died on a 429 each time. The fallback is the
+  `reads-opus5` agent type (pinned claude-opus-5) with the same COLD_BRIEF — but ONLY on Fuad's word for that wave; an earlier wave's
+  approval never carries over. Tell the reader it is a Canvas visitor, not a song-reads task. `check-subagent-models.py` lists it as BAD
+  (expected). Log the approval as a QUEUE R-item.
+- **Re-run `crops.py` after any repair or cold edit that moves a box, and always before `build-cold.js`** — build-cold copies the
+  `box_` crops as they stand; a stale full-frame crop misled wave 46's cold reader.
+- **One-work waves:** seed with `_mkbriefsNN.py` from the previous wave (string replaces on its briefs; fix the AUDIT_BRIEF block by
+  hand if an anchor moved), one seal agent with all three roles (`SEAL_BRIEFNN.md`), the orchestrator applies the seal and cold rows
+  itself; GAIT_FORECAST's cross-wave list gets one line per wave.
+- **Name every flower/object only from the holder's own list for THIS work** and hedge an assignment by look; a phase-1 "hill under
+  sky" in wave 47 was a pond with a pillar reflected (the audit caught it) — whole-scale landscape reads get a plate check in the audit.
+- **Block files must be checked against CORPUS_INDEX before they claim "the store tours no X"** (wave 47's "no flower-piece painter"
+  was wrong: Arellano and Vallayer-Coster are toured).
+- `build-cold.js` prints "maker unknown" for a null artist (wave-45 packets showed "null").
+- **Data flags** found in a wave go into its memory note and the print, and are fixed only on Fuad's word, as their own commit
+  (wave 45's: 3795e68a — art_hires native size, two de-hardened Infos, a heading year, `// source` comments above canon rows in
+  `artworks.js`).
