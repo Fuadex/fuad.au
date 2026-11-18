@@ -1,14 +1,9 @@
 # Upcoming shows in Japan — matched against the Rotation library
 
-Generated 2026-11-17 · 717 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
+Generated 2026-11-18 · 712 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
 
 
 ## November 2026
-- 2026-11-17 (Tue) · **Hollow suns** — 赤羽ReNY alpha, Tokyo · 91 plays · not seen live · top · Hollow suns x INGROWN Japan tour · https://eplus.jp/sf/detail/4191720001
-- 2026-11-17 (Tue) · **Enfants** — Shinsaibashi CONPASS, Osaka · 15 plays · not seen live · top · yeti let you notice TOUR 2026 · https://eplus.jp/sf/word/0000084976
-- 2026-11-17 (Tue) · **MUCC** — 水戸ライトハウス, Mito · 15 plays · not seen live · top · MUCC Club tour 2026「Beginning to Lotus」 · https://55-69.com/schedule
-- 2026-11-17 (Tue) · **yeti let you notice** — Shinsaibashi CONPASS, Osaka · 12 plays · not seen live · top · yeti let you notice TOUR 2026 · https://eplus.jp/sf/word/0000084976
-- 2026-11-17 (Tue) · **bentham** — Shimokitazawa SHELTER, Tokyo · 5 plays · not seen live · also · Bentham 15th anniversary Release order oneman live！ 『事実は小説より奇なり』 · https://www.loft-prj.co.jp/schedule/shelter/366888
 - 2026-11-18 (Wed) · **Wienners** — 名古屋クラブクアトロ, Nagoya · 36 plays · not seen live · top · OVER THE TOP TOUR 2026 · https://eplus.jp/sf/word/0000033997
 - 2026-11-18 (Wed) · **Blind Channel** — Shibuya CLUB QUATTRO, Tokyo area · 10 plays · not seen live · also · BLIND CHANNEL at Shibuya CLUB QUATTRO · https://www.creativeman.co.jp/event/blind-channel26/
 - 2026-11-18 (Wed) · **Mrs. GREEN APPLE** — 長野市若里多目的スポーツアリーナ(ビッグハット), Nagano · 5 plays · not seen live · also · Mrs. GREEN APPLE Ringo Jam Tour "SHADOWS" · https://www.oricon.co.jp/news/2461508/full/
