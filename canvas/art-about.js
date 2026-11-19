@@ -3,6 +3,36 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "jan-asselijn-the-threatened-swan": {
+  "about": "Painted words, added by another hand, makes the swan the Grand Pensionary, an egg Holland and the dog the enemy of the state. Johan de Witt took that office in 1653, the year after Asselijn died.",
+  "deep": "The swan rearing at the dog was the first picture the Dutch national gallery bought, and it went up among pictures of the nation's history. On 11 June 1800, eleven days after the gallery let in its first visitors, its inspector Cornelis Sebille Roos took it, already offered as an allusion to the statesman Johan de Witt, at a sale he was co-running under his own roof. He had it, he wrote, for a give-away price, 95 guilders or 100 with fees, and would crate it off next day to hang by Saturday. The visitors' ticket money paid for it. Yet a receipt of 1808 lists only a swan with outstretched wings.",
+  "by": "Opus 5.5"
+ },
+ "pieter-de-hooch-a-mother-s-duty": {
+  "about": "About 1660, leaving Delft for Amsterdam, Pieter de Hooch painted a couple in another pose before this curtained bed and then, imaging has shown, replaced them with a mother checking her child's head for lice.",
+  "deep": "The mother's hands hold no comb, and none lies on her lap or anywhere near; she searches the child's hair for lice with bare fingertips. For well over a century, writers supplied one. In 1766 Jean-François de Bastide, touring an Amsterdam collector's pictures in verse, heard her preaching to her child as she combed, praised a house where cleanliness makes up for wealth, and never mentioned lice. By 1903 the picture had become Moedertaak, A Mother's Duty, as it is known today; in 1907 the scholar Hofstede de Groot still had her combing. Lice entered the title only lately. The cleanliness Bastide admired is the work those fingertips are doing.",
+  "by": "Opus 5.5"
+ },
+ "inferno": {
+  "about": "After this hell's New York debut in 1909 as Infernal Regions, Stuck repainted and extended its flames, showed it as Inferno, and set it in a gilded frame he designed, whose lower panel spells that name.",
+  "deep": "Most of the bodies in this hell are greenish, grey or blue-black, the colouring its first critics fought over. In New York in 1909, the exhibition's own catalogue hailed Stuck as an eminent colourist with tones like enamel; within days one paper found his sense of colour abominable and his colour livid, cold and lustreless. The word livid means the leaden blue of bruised flesh, and it fits these bodies. The fire is another matter. A reviewer that winter wrote of lurid hints of flame behind the figures, and the red band now along the top, reworked and extended after the show, is not quite the fire they saw.",
+  "by": "Opus 5.5"
+ },
+ "the-afternoon-meal-la-merienda": {
+  "about": "Usually, Meléndez placed fruit and pots against stark backgrounds. This meal he set outdoors, on a canvas far larger than most of his: a deliberate response, Peter Cherry argues, to Italian garden still lifes.",
+  "deep": "Beside the three pears at the far left, round shapes the painter covered over still show through the paint of the ledge, its strokes dragged across them, and another lies just left of the small fruits beneath the dish of peaches. Katharine Baetjer wrote in 1984 that the shapes of fruit painted out by the artist could now be seen there, and Peter Cherry finds the corner radically reworked: it first held a branch of peaches, loose peaches and plums. By his account, the pears are all that remains of that first composition. The covered shapes carry no highlight and throw no shadow, and nothing in them shows which fruit they were.",
+  "by": "Opus 5.5"
+ },
+ "comtesse-de-la-chatre": {
+  "about": "Portrayed in 1789 by Marie Antoinette's painter, the sitter was, to a hostile émigré, among the capital's most zealous constitutionalists, her rooms a meeting place for reforming deputies, though her husband was a deputy of the right.",
+  "deep": "She holds a book open in a portrait that seems to have been made for one man and later bore his name. Her lover, François de Jaucourt, a liberal colonel, presumably commissioned it, and it was not exhibited while he lived. Jaucourt married her in 1799, and the portrait was in his hands when he died in 1852, four years after her. His heirs lent it in 1883 as the marquise de Jaucourt, her name as his wife, and it was printed so while the Madame de la Châtre on the painter's list for 1789 went unmatched, until in 1975 Joseph Baillio saw she was the woman with the book.",
+  "by": "Opus 5.5"
+ },
+ "the-coronation-of-the-virgin": {
+  "about": "Newly in Rome from Bologna, Annibale Carracci painted this heaven about 1596–97, most scholars think, while frescoing a room of the Farnese Palace; they trace its manner to Correggio, its scheme to Raphael's Vatican Disputa.",
+  "deep": "The canvas, its crown held over the Virgin amid music-making angels, fell and rose in price with the Bolognese school. In 1827 the dealer William Buchanan, who ranked it among that school's leading works, quoted it at 1,500 guineas. At the Manchester exhibition of 1857 a French critic dismissed Annibale's religious pictures in general: he had come too late, in a condemned cause. In 1937 it fetched 48 guineas. Denis Mahon, champion of the then unfashionable seventeenth-century Italians, bought it in 1939 and, after his mother died in 1970, offered it to the nation against death duties. He was not bluffing, a colleague wrote: denied credit by the Treasury for the picture's worth beyond the duties, he sold it abroad in 1971.",
+  "by": "Opus 5.5"
+ },
  "rembrandt-the-night-watch": {
   "about": "In 1642 Rembrandt painted this company setting out. Its guardsmen paid about a hundred guilders apiece, more or less by where they stand; his pupil wrote that he made more of his own picture than of their portraits.",
   "deep": "The guardsman in the gilded helmet at the far left is sliced down the back by an edge that two doors drew. Moved to the Town Hall in 1715, the canvas was cut down to fit between them, above all on the left. That strip, about 64 centimetres wide, has never been found; a copy attributed to Gerrit Lundens shows it held two more guardsmen and a child on a bridge. The right lost only a sliver, so the edge through the drummer is nearly the painter's own. With the strip in place, the two officers who now hold the middle walked right of the centre.",
@@ -4507,8 +4537,10 @@ by: "Opus 4.8" },
  },
 
 "trois-ecolieres": {
-about: "Courbet's Realist instinct fills the canvas with the quiet texture of absorbed attention: three girls at a desk, barely looking up from their books, painted in a close, dim interior in 1860 with characteristic economy of light and sentiment.",
-by: "Opus 4.8" },
+  "about": "The lettering painted at lower left, beneath three girls at their books, dedicates the picture to his friend Mander and signs it Courbet, 1860. No one has identified Mander, and the lettering may be another hand's.",
+  "deep": "The light in this picture is brightest on a page, under a girl's outstretched forefinger, and not on the face that looks out at us. It comes from our right and runs along the row, and the girl nearest it bends to that page with her eyes lowered. The face that meets ours belongs to the middle girl, who holds her head up over her book. At the left end, the girl in the red kerchief has turned in profile, away from the other two. The light is weakest on her, and hers is the most broadly painted of the three heads, so the row ends where light and finish run out together.",
+  "by": "Opus 5.5"
+ },
 
 "the-old-bachelor": {
   "about": "This oil study by Spitzweg carries the title Hagestolz, old German for a younger son left too little land to marry, later the confirmed bachelor; here he stands facing us in a top hat among walkers.",
@@ -4864,8 +4896,10 @@ by: "Opus 4.8" },
 },
 
 "the-unfortunate-land-of-tyrol": {
-about: "Franz Marc filled this 1913 Tyrolean landscape with black horses, a red hill studded with grave crosses, and a border sign — imagery that reads as a direct premonition of the war in which Marc himself would be killed in 1916.",
-by: "Opus 4.8" },
+  "about": "On foot from castle to castle through South Tyrol in March 1913, Marc wrote of frescoes; by late May this canvas was done, with a border post his watercolour study lacks and its title written in paint.",
+  "deep": "Perched high above the striped border post, a bird spreads its wings under the rainbow, and the promise read into it is the picture's more unsettling half. John Russell has written that the canvas foreshadows Europe's battlefields. Nancy Spector sees there a redemption won through struggle, though Shearer West finds Marc's zeal for an end to materialist Europe somewhat muted here. Angelica Zander Rudenstine calls the bird a heraldic eagle beyond the border, and suggests it may mean a Europe freed of frontiers by a purifying war to come, as Marc would write of the war itself in October 1914. Read so, the bird's promise points to the same war as the graveyard's crosses.",
+  "by": "Opus 5.5"
+ },
 
 "portrait-of-an-army-doctor": {
   "about": "At the Toul garrison in the first year of the war, Gleizes painted his superior, the army doctor Lambert, in flat cut planes; the doctor, who had asked for the portrait, found the result rather disconcerting.",
@@ -4938,8 +4972,10 @@ by: "Opus 4.8" },
  },
 
 "composition-8": {
-about: "Still rooted in observable Paris facades, this 1914 grid of muted rectangles shows Mondrian out-abstracting the Cubists by stripping volume entirely — the building source is there if you know it, but pure grid is almost all that remains.",
-by: "Opus 4.8" },
+  "about": "This web of lines, built from a Paris façade, probably went ahead of Mondrian to a show in The Hague. He followed in July 1914, days before war kept him from Paris for nearly five years.",
+  "deep": "One horizontal in the upper middle is broken off, a short vertical dropped into its gap, keeping a rule written in the same months. Horizontals and verticals needed breaking off continually, Mondrian told H. P. Bremmer on 29 January 1914, for unopposed by other directions they would say something definite, and so something human. The crowd found his work vague, he said, at best like music, yet he built lines and colour on a flat plane, abstracting things to their foundation, if still a visible one. The letter does not name this canvas, but at the canvas's foot, too, verticals break off in open paint. The letter allows curves if need be; the canvas has a few.",
+  "by": "Opus 5.5"
+ },
 
 "composition": {
 about: "One of the last Mondrian works traceable to a real source — a church study — this 1916 canvas bridges his Cubist phase and Neoplasticism, with scattered colour planes and plus-minus black marks replacing any readable subject.",
@@ -5517,8 +5553,10 @@ by: "Opus 4.8" },
  },
 
 "skull-of-a-skeleton-with-burning-cigarette": {
-about: "Van Gogh made this at the Antwerp academy in early 1886, where drawing skeletons was a standard exercise — but painting them was not. Stuffing a lit cigarette into the jaw was a student-prank subversion of a tedious anatomy drill, not a meditation on mortality, and it shows the wit he rarely gets credit for.",
-by: "Opus 4.8" },
+  "about": "Van Gogh painted this smoking skeleton at one sitting, adding the smoke near the end, probably at the Antwerp academy early in 1886. He kept, it seems, to the school's earth colours, not newer, brighter pigments.",
+  "deep": "The skeleton smokes with a straight face, and between 1930 and 1959 three writers kept one too. H. P. Bremmer asked, rhetorically, whether it was by Van Gogh at all; M. E. Tralbaut found in it a lugubrious scepticism, the first such irony in his art; J. Stellingwerff read it as a final denial of the Christian afterlife. In 2011 Ella Hendriks and Louis van Tilborgh countered that no such ponderous thoughts belong behind a well-painted in-joke, academy humour as old as academies. The joke itself is anatomical: a lit cigarette held in a jaw with no muscle to close it, above ribs with no lungs to draw on it.",
+  "by": "Opus 5.5"
+ },
 
 "almond-blossom": {
   "about": "When Theo and Jo van Gogh named their newborn son after him, Vincent, who would rather the boy had been named Theo, began this canvas in February 1890 at Saint-Rémy \"for him, to hang in their bedroom\".",
