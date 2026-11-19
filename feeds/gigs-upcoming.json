@@ -1,46 +1,7 @@
 {
- "generated": "2026-11-18",
- "count": 712,
+ "generated": "2026-11-19",
+ "count": 709,
  "shows": [
-  {
-   "date": "2026-11-18",
-   "artist": "Wienners",
-   "title": "OVER THE TOP TOUR 2026",
-   "venue": "名古屋クラブクアトロ",
-   "city": "Nagoya",
-   "plays": 36,
-   "seenLive": 0,
-   "tier": "top",
-   "japanese": true,
-   "url": "https://eplus.jp/sf/word/0000033997",
-   "added": "2026-11-05"
-  },
-  {
-   "date": "2026-11-18",
-   "artist": "Blind Channel",
-   "title": "BLIND CHANNEL at Shibuya CLUB QUATTRO",
-   "venue": "Shibuya CLUB QUATTRO",
-   "city": "Tokyo area",
-   "plays": 10,
-   "seenLive": 0,
-   "tier": "also",
-   "japanese": false,
-   "url": "https://www.creativeman.co.jp/event/blind-channel26/",
-   "added": "2026-10-30"
-  },
-  {
-   "date": "2026-11-18",
-   "artist": "Mrs. GREEN APPLE",
-   "title": "Mrs. GREEN APPLE Ringo Jam Tour \"SHADOWS\"",
-   "venue": "長野市若里多目的スポーツアリーナ(ビッグハット)",
-   "city": "Nagano",
-   "plays": 5,
-   "seenLive": 0,
-   "tier": "also",
-   "japanese": true,
-   "url": "https://www.oricon.co.jp/news/2461508/full/",
-   "added": "2026-11-05"
-  },
   {
    "date": "2026-11-19",
    "artist": "a flood of circle",

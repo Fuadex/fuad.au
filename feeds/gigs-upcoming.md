@@ -1,12 +1,9 @@
 # Upcoming shows in Japan — matched against the Rotation library
 
-Generated 2026-11-18 · 712 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
+Generated 2026-11-19 · 709 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
 
 
 ## November 2026
-- 2026-11-18 (Wed) · **Wienners** — 名古屋クラブクアトロ, Nagoya · 36 plays · not seen live · top · OVER THE TOP TOUR 2026 · https://eplus.jp/sf/word/0000033997
-- 2026-11-18 (Wed) · **Blind Channel** — Shibuya CLUB QUATTRO, Tokyo area · 10 plays · not seen live · also · BLIND CHANNEL at Shibuya CLUB QUATTRO · https://www.creativeman.co.jp/event/blind-channel26/
-- 2026-11-18 (Wed) · **Mrs. GREEN APPLE** — 長野市若里多目的スポーツアリーナ(ビッグハット), Nagano · 5 plays · not seen live · also · Mrs. GREEN APPLE Ringo Jam Tour "SHADOWS" · https://www.oricon.co.jp/news/2461508/full/
 - 2026-11-19 (Thu) · **a flood of circle** — 松山WStudioRED, Matsuyama · 44 plays · not seen live · top · a flood of circle TOUR 革命未遂の蝶が見る夢 · https://www.teichiku.co.jp/artist/a-flood-of-circle/schedule/
 - 2026-11-19 (Thu) · **Fear, and Loathing in Las Vegas** — Nagoya DIAMOND HALL, Nagoya · 33 plays · not seen live · top · Fear, and Loathing in Las Vegas live · https://www.ticket.co.jp/sys/d/11071.htm
 - 2026-11-19 (Thu) · **Texas 3000** — Shindaita FEVER, Tokyo · 19 plays · seen live 1× · seen · TIGERS JAW "JAPAN 2026" WITH COUNTRY YARD · https://www.fever-popo.com/schedule/2026/11/1918.html
