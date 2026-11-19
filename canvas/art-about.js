@@ -3,6 +3,46 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "johannes-vermeer-the-love-letter": {
+  "about": "On loan in Brussels in 1971, Vermeer's small canvas was cut from its stretcher with a linoleum knife by a 21-year-old trainee waiter demanding money for Bengali refugees; it was found under his hotel mattress.",
+  "deep": "Where you stand was the measure when this canvas was mended. It keeps you back in the dim near room, looking through a door frame at two women and a letter in the lit one. After the theft, by one account, artists and sociologists wanted it left unrestored and hung in a museum department devoted to the third world. An international committee had the gaps in the paint made good to keep the sense of looking into a real room, and refused a plea to leave the damage as a symbol of the world's disorder. The retouching was to convince chiefly from where a visitor stands, and each touch was to lift off easily.",
+  "by": "Opus 5.5"
+ },
+ "willem-van-de-velde-the-younger-the-cannon-shot": {
+  "about": "Famous for the calms of his twenties, Willem van de Velde the Younger painted this one, a warship firing a gun in still water, about 1680, probably in his English years, as the companion to a storm.",
+  "deep": "Fired from the bow, the shot reaches the eye as smoke, and Paul Claudel, the French poet, supplied its sound. Of this canvas he wrote, in 1935, that at the gun's signal the whole course of nature seems to halt at once, the sea's attention spreading out until it reaches us, and counted it among the paintings one listens to even more than one looks at. The calm bears him out, with sails hanging empty from their yards, pennants that barely lift and a hull doubled in flat water. Yet the smoke has rolled far out over the water, so the stillness he describes has already lasted some moments.",
+  "by": "Opus 5.5"
+ },
+ "johannes-cornelisz-verspronck-portrait-of-a-girl-dressed-in": {
+  "about": "Verspronck probably painted this girl to hang between matching portraits of her presumed parents. The three were separated in 1922, and a scholar who spent his career wondering who she was has not found her name.",
+  "deep": "The only name this girl has is the blue of her dress, and that blue is weaker than the one she was painted in. It has lost strength everywhere except a strip along the bottom edge, which survives under the frame. Some of its present look was there from the start, though. Where the blue lies thin, on the lit sleeve and skirt, the warmth showing through is the ground, the pinkish preparation beneath the paint, left uncovered by the painter. The fan came late, and the pattern in shades of blue and the gold trimmings came last of all, laid onto a blue still at full strength.",
+  "by": "Opus 5.5"
+ },
+ "kobayashi-eijiro-a-high-bridge-by-night": {
+  "about": "Its publisher, selling to foreign buyers in English, listed no artist for this woodcut or any of its night scenes. Some sheets bear a small seal read as Eijirō's, probably Kobayashi Eijirō; this one has none.",
+  "deep": "Between this woodcut and a Japanese print of 1857 there may stand a London painting. One cataloguer has suggested the design was possibly inspired by Whistler's night picture of Old Battersea Bridge, of about 1872–75, itself traced to Hiroshige's Kyōbashi Bridge. If so, the image went from Edo to London and on into a Tokyo publisher's woodcut for foreign buyers. Both have a tall pier rising to a deck lined with people, a lone figure on a boat below and lights on the far shore. Whistler's people on the deck, though, are soft lumps of paint; the woodcut's are cut silhouettes with clear heads.",
+  "by": "Opus 5.5"
+ },
+ "the-crucifixion-with-the-virgin-and-saint-john": {
+  "about": "For about sixty years this ter Brugghen served, unrecognised, as an altarpiece in a London parish church. It came to light after the church's war damage, and in 1956 the Times hailed \"a new discovery\".",
+  "deep": "The contorted body, strict symmetry and starred sky that ter Brugghen chose about 1624–25 reach a century back, to German art prized by collectors of his day. Grünewald, Dürer's prints and Gothic carving have been proposed as models; to Natasha Seaman the old form was reimagined, not recreated. More than a decade earlier Rubens's Antwerp altarpieces had made the Passion a modern drama, and ter Brugghen's own Saint Sebastian, from these same years, has none of the old manner. Pattern and observation share the canvas: below the beam blood hangs in strands that never form drops, while John's lower lid holds a wet bead of light, most likely a tear.",
+  "by": "Opus 5.5"
+ },
+ "the-holy-family-with-saints-anne-and-catherine-of-alexandria": {
+  "about": "This Holy Family carries the date 1648, the year Spain crushed the Naples revolt first led by the fish seller Masaniello. Long ill, Ribera spent the rising sheltering with the Spanish in the royal palace.",
+  "deep": "The young woman kneeling to the child, Catherine of Alexandria by the title, kisses his hand where her legend has the Christ Child marry her in a vision with a ring. Gustav Waagen, the Berlin gallery director, thought he was looking not at the Holy Family but at an ordinary, even rather vulgar one, nature copied masterfully but with no thought for its spiritual meaning. Praise brackets his verdict of 1835: William Buchanan had found every figure graceful and fitting in 1824, and in 1908 August Mayer wrote that Waagen had missed its plain nobility and depth of feeling. Its title calls the group holy, but no halo crowns any of the five.",
+  "by": "Opus 5.5"
+ },
+ "marie-emilie-coignet-de-courson-1716-1806-with-a-dog": {
+  "about": "She was long called Fragonard's sister, though he had none, until a scholar in 2013 named her from the word Courson under a sketch of this composition: an unmarried Burgundian noblewoman living at a Paris convent.",
+  "deep": "She may have ordered this picture, or only lent it her face. The organisers of a 2017 exhibition thought she probably commissioned it. The curator Katharine Baetjer doubts it is a portrait at all: a queen's guise out of Rubens is one Mademoiselle de Courson presumably would not have chosen for herself, and a related drawing shows a much younger woman with perhaps the same dog. Baetjer also reads the contrast between an amply built lady in ermine and a small white lapdog as humorous. Yet the picture came down through the family of the comtesse de Grave, the friend who executed Mademoiselle de Courson's will, though it appears in neither woman's inventory.",
+  "by": "Opus 5.5"
+ },
+ "the-baptism-of-christ": {
+  "about": "About ten weeks after Jacopo Bassano died in 1592, a notary listing his pictures entered a baptism, held to be this canvas, as an altarpiece \"roughed out\". Christ stands by the Baptist under a near-black sky.",
+  "deep": "Most of this canvas is near-black, yet forms are drawn in the black: the muzzle and ear of what looks like a lamb, a child's features, folds and leaves. The notary who inventoried the painter's house in 1592 still called it sbozzata, roughed out, and the biographer Carlo Ridolfi, in 1648, unfinished. In 1931 the art historian Lili Fröhlich-Bum argued that its night setting had misled Ridolfi; in 2011 Carlo Corsato judged it finished, the inventory's roughed-out baptism more likely another version. The inventory itself marks other pictures di notte, by night, but not its baptism. Nobody has settled the question. Only the bare sky is laid in as plain tone.",
+  "by": "Opus 5.5"
+ },
  "jan-asselijn-the-threatened-swan": {
   "about": "Painted words, added by another hand, makes the swan the Grand Pensionary, an egg Holland and the dog the enemy of the state. Johan de Witt took that office in 1653, the year after Asselijn died.",
   "deep": "The swan rearing at the dog was the first picture the Dutch national gallery bought, and it went up among pictures of the nation's history. On 11 June 1800, eleven days after the gallery let in its first visitors, its inspector Cornelis Sebille Roos took it, already offered as an allusion to the statesman Johan de Witt, at a sale he was co-running under his own roof. He had it, he wrote, for a give-away price, 95 guilders or 100 with fees, and would crate it off next day to hang by Saturday. The visitors' ticket money paid for it. Yet a receipt of 1808 lists only a swan with outstretched wings.",
@@ -4226,8 +4266,10 @@ by: "Opus 4.8" },
 },
 
 "castle-bentheim": {
-about: "Ruisdael deliberately placed Bentheim's modest low-hill castle atop a towering wooded mountain — a conscious act of invention — making this 1653 painting, completed when he was just twenty-four, the grandest of his dozen versions of the site.",
-by: "Opus 4.8" },
+  "about": "Other artists drew the castle at Bentheim, over the Dutch border, on a small knoll. In 1653 Ruisdael set it on a towering wooded hill, yet a dealer who passed Bentheim still called his pictures faithful.",
+  "deep": "The sky over the castle holds two weathers. White cloud billows up at the centre, while grey lies close behind the towers and a dark mass hangs at the upper right. Two early viewers each saw one. In 1835 the dealer John Smith admired bright, fleecy clouds and a composition of the grandest kind. In 1857 the French critic Thoré-Bürger found grey weather and a hillock, as he called it, without sun, and judged the canvas very learned but less poetic than a Ruisdael wood hung beside it. On the hill the canvas sides with him: the sun finds the walls and stops short of the slope that lifts them.",
+  "by": "Opus 5.5"
+ },
 
 "argenteuil-basin-with-a-single-sailboat": {
 about: "A visitor punched a three-branched tear through this Monet in 2012, and restorers spent eighteen months rejoining individual threads under a microscope before it returned to the wall; Monet painted the autumn basin at Argenteuil in 1874.",
@@ -4944,8 +4986,10 @@ about: "Mondrian began this Neoplastic grid in London in 1938 and was still rewo
 by: "Opus 4.8" },
 
 "woman-in-evening-dress": {
-about: "A 2018 Guggenheim restoration stripped two layers of discoloured varnish and revealed the dress is striped, not black — prompting a retitle to Woman in a Striped Dress. Manet painted it around 1877-80, not 1850 as earlier records stated. Manet, c.1877-80.",
-by: "Opus 4.8" },
+  "about": "Théodore Duret, Manet's friend and biographer, wrote in 1902 of grey-violet stripes on this woman's dress. Discoloured varnish made them look black and white for decades, until conservators cleaning the canvas bore him out.",
+  "deep": "Her glove on our left narrows to one stiff point, and the conservators and scientists who examined the canvas found that hand altered after Manet's death. By their account the picture was cut down while his widow kept it, losing about a third of its width and a strip at the top. Other hands, apparently to make it saleable, filled the background he had only hinted at with trellis and foliage. A side table once at an angle lost its left legs to the cut and was turned almost square: the level gold edge under that hand. The woman who in his version perched on or leaned against the table now seems to stand, less securely.",
+  "by": "Opus 5.5"
+ },
 
 "levels": {
 about: "Structured like a display case of geometric specimens — semicircles, crescents, bicoloured circles and triangles sorted into compartments — this 1929 Kandinsky distils the systematic visual grammar he taught at the Bauhaus during his decade there.",
