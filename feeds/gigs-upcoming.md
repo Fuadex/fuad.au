@@ -1,6 +1,6 @@
 # Upcoming shows in Japan — matched against the Rotation library
 
-Generated 2026-11-19 · 709 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
+Generated 2026-11-19 · 713 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
 
 
 ## November 2026
@@ -145,6 +145,7 @@ Generated 2026-11-19 · 709 shows · date order. Tier: **top** = a strong match 
 - 2026-12-03 (Thu) · **Fcukers** — Yogibo META VALLEY, Osaka · 10 plays · seen live 1× · seen · https://smash-jpn.com/live/?id=4776
 - 2026-12-03 (Thu) · **lilbesh ramko** — Zepp DiverCity TOKYO, Tokyo · 5 plays · not seen live · also · Ramko Helvetica · https://eplus.jp/sf/word/0000159112
 - 2026-12-03 (Thu) · **Mrs. GREEN APPLE** — GLION ARENA KOBE, Kobe · 5 plays · not seen live · also · Mrs. GREEN APPLE Ringo Jam Tour "SHADOWS" · https://www.oricon.co.jp/news/2461508/full/
+- 2026-12-04 (Fri) · **i_o** — LIQUIDROOM, Tokyo · 236 plays · not seen live · top · “the Juzzy Reprise” part Ⅱ · https://www.liquidroom.net/schedule/keiju_20261204
 - 2026-12-04 (Fri) · **Evanescence** — Zepp Osaka Bayside, Osaka · 65 plays · not seen live · top · EVANESCENCE · https://www.creativeman.co.jp/artist/2026/12evanescence/
 - 2026-12-04 (Fri) · **a flood of circle** — PEPPERLAND, Okayama · 44 plays · not seen live · top · TOUR 革命未遂の蝶が見る夢 · https://realsound.jp/2026/05/post-2386759.html
 - 2026-12-04 (Fri) · **People In The Box** — 神戸 VARIT., Kobe · 33 plays · not seen live · top · People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour - · https://www.peopleinthebox.com/live
@@ -208,6 +209,7 @@ Generated 2026-11-19 · 709 shows · date order. Tier: **top** = a strong match 
 - 2026-12-13 (Sun) · **The Cabs** — 千葉LOOK, Chiba · 83 plays · not seen live · top · the cabs tour 2026-27 "Anemoica" · https://skream.jp/news/2026/09/the_cabs_anemoica.php
 - 2026-12-13 (Sun) · **171** — 札幌近松, Sapporo · 28 plays · not seen live · top · JAPAN TOUR from 171 · https://eplus.jp/sf/word/0000152434
 - 2026-12-13 (Sun) · **ORANGE RANGE** — 荘銀タクト鶴岡 大ホール, Tsuruoka · 16 plays · not seen live · top · ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜 · https://orangerange.com/feature/25th
+- 2026-12-13 (Sun) · **BACK DROP BOMB** — Spotify O-EAST, Tokyo · 14 plays · not seen live · top · MASTER OF MUSIC 2026 · https://shibuya-o.com/east/schedule/master-of-music-2026/
 - 2026-12-13 (Sun) · **BUMP OF CHICKEN** — マリンメッセ福岡A館, Fukuoka · 8 plays · not seen live · top · BUMP OF CHICKEN TOUR 2026-2027 Ratio Clavis · https://www.bumpofchicken.com/
 - 2026-12-13 (Sun) · **ART-SCHOOL** — 梅田Shangri-La, Osaka · 7 plays · not seen live · also · ART-SCHOOL TOUR 2026「The Fragile Songs」 · https://eplus.jp/artschool/
 - 2026-12-14 (Mon) · **Paledusk** — Shibuya LOVEZ, Tokyo · 252 plays · seen live 1× · seen · F-LAGSTUF-F presents NOW HERE · https://eplus.jp/sf/word/0000082521
@@ -496,10 +498,12 @@ Generated 2026-11-19 · 709 shows · date order. Tier: **top** = a strong match 
 - 2027-02-24 (Wed) · **Father Of Peace** — Nagoya · 18 plays · not seen live · top · FATHER OF PEACE · https://www.creativeman.co.jp/event/father-of-peace27/
 - 2027-02-24 (Wed) · **板歯目** — 渋谷 CLUB QUATTRO, Tokyo · 15 plays · not seen live · top · 板歯目 (Banshimoku) at Shibuya CLUB QUATTRO · https://www.creativeman.co.jp/event/banshimoku-iai/
 - 2027-02-25 (Thu) · **Megadeth** — Nippon Budokan, Tokyo · 2507 plays · seen live 1× · seen · MEGADETH Farewell Japan Tour · https://www.udo.jp/shows/Megadeth27
+- 2027-02-25 (Thu) · **The Cabs** — Shinjuku LOFT, Tokyo · 83 plays · not seen live · top · 『ENDSCAPE vol.65』 · https://www.loft-prj.co.jp/schedule/loft/schedule/368053
 - 2027-02-25 (Thu) · **Gurriers** — 代官山UNIT, Tokyo · 55 plays · not seen live · top · Gurriers at Daikanyama UNIT · https://www.creativeman.co.jp/event/gurriers27/
 - 2027-02-25 (Thu) – 2027-02-27 · **Bon Jovi** — Tokyo Dome｜東京ドーム, Tokyo area · 31 plays · not seen live · top · Bon Jovi at Tokyo Dome · https://www.songkick.com/concerts/43494643-bon-jovi-at-tokyo-domedong-jing-domu
 - 2027-02-26 (Fri) · **ASIAN KUNG-FU GENERATION** — 福岡サンパレス ホテル&ホール, Fukuoka · 61 plays · not seen live · top · ASIAN KUNG-FU GENERATION 30th Anniversary Tour 2027 "Take The World Back Again" · https://www.akglive.com/30th/
 - 2027-02-26 (Fri) · **Father Of Peace** — Shibuya CLUB QUATTRO, Tokyo · 18 plays · not seen live · top · Father Of Peace at Shibuya CLUB QUATTRO · https://www.creativeman.co.jp/event/father-of-peace27/
+- 2027-02-26 (Fri) · **Enfants** — Shindaita FEVER, Tokyo · 15 plays · not seen live · top · Apes presents. nobody · https://www.fever-popo.com/schedule/2027/02/2618.html
 - 2027-02-26 (Fri) · **Bleech 9:3** — Tokyo · 5 plays · not seen live · also · BLEECH 9:3 · https://www.creativeman.co.jp/event/bleech93/
 - 2027-02-27 (Sat) · **ASIAN KUNG-FU GENERATION** — 熊本城ホール メインホール, Kumamoto · 61 plays · not seen live · top · ASIAN KUNG-FU GENERATION 30th Anniversary Tour 2027 "Take The World Back Again" · https://www.akglive.com/30th/
 - 2027-02-27 (Sat) · **Bon Jovi** — Tokyo Dome｜東京ドーム · 31 plays · not seen live · top · https://www.songkick.com/concerts/43494644-bon-jovi-at-tokyo-domedong-jing-domu

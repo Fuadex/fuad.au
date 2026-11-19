@@ -1,6 +1,6 @@
 {
  "generated": "2026-11-19",
- "count": 709,
+ "count": 713,
  "shows": [
   {
    "date": "2026-11-19",
@@ -1810,6 +1810,19 @@
   },
   {
    "date": "2026-12-04",
+   "artist": "i_o",
+   "title": "“the Juzzy Reprise” part Ⅱ",
+   "venue": "LIQUIDROOM",
+   "city": "Tokyo",
+   "plays": 236,
+   "seenLive": 0,
+   "tier": "top",
+   "japanese": false,
+   "url": "https://www.liquidroom.net/schedule/keiju_20261204",
+   "added": "2026-11-19"
+  },
+  {
+   "date": "2026-12-04",
    "artist": "Evanescence",
    "title": "EVANESCENCE",
    "venue": "Zepp Osaka Bayside",
@@ -2622,6 +2635,19 @@
    "japanese": true,
    "url": "https://orangerange.com/feature/25th",
    "added": "2026-11-05"
+  },
+  {
+   "date": "2026-12-13",
+   "artist": "BACK DROP BOMB",
+   "title": "MASTER OF MUSIC 2026",
+   "venue": "Spotify O-EAST",
+   "city": "Tokyo",
+   "plays": 14,
+   "seenLive": 0,
+   "tier": "top",
+   "japanese": true,
+   "url": "https://shibuya-o.com/east/schedule/master-of-music-2026/",
+   "added": "2026-11-19"
   },
   {
    "date": "2026-12-13",
@@ -6312,6 +6338,19 @@
   },
   {
    "date": "2027-02-25",
+   "artist": "The Cabs",
+   "title": "『ENDSCAPE vol.65』",
+   "venue": "Shinjuku LOFT",
+   "city": "Tokyo",
+   "plays": 83,
+   "seenLive": 0,
+   "tier": "top",
+   "japanese": true,
+   "url": "https://www.loft-prj.co.jp/schedule/loft/schedule/368053",
+   "added": "2026-11-19"
+  },
+  {
+   "date": "2027-02-25",
    "artist": "Gurriers",
    "title": "Gurriers at Daikanyama UNIT",
    "venue": "代官山UNIT",
@@ -6362,6 +6401,19 @@
    "japanese": false,
    "url": "https://www.creativeman.co.jp/event/father-of-peace27/",
    "added": "2026-11-05"
+  },
+  {
+   "date": "2027-02-26",
+   "artist": "Enfants",
+   "title": "Apes presents. nobody",
+   "venue": "Shindaita FEVER",
+   "city": "Tokyo",
+   "plays": 15,
+   "seenLive": 0,
+   "tier": "top",
+   "japanese": true,
+   "url": "https://www.fever-popo.com/schedule/2027/02/2618.html",
+   "added": "2026-11-19"
   },
   {
    "date": "2027-02-26",
