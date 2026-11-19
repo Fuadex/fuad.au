@@ -4026,7 +4026,7 @@ by: "Opus 4.8" },
 
 "don-manuel-osorio-de-zuniga": {
 
- "about": "The cats eyeing the tethered magpie read as menace encircling innocence in Goya's 1787–88 portrait of a boy who died at eight, making the predatory animals beside him feel less decorative than prophetic.",
+ "about": "Three wide-eyed cats behind the tethered magpie read as menace encircling innocence in Goya's 1787–88 portrait of a boy who died at eight, making the predatory animals beside him feel less decorative than prophetic.",
 
  "deep": "Goya makes one decision and lets it run the picture: the scarlet suit is the only strong colour. Everything else drains to brown-grey murk, so the lit child floats forward while the animals gather in near-darkness. Three cats are crouched behind the magpie — a white one patched with black and orange, a black one whose body dissolves so only its yellow eyes surface, a grey tabby against the boy's leg — predators out of dark. The magpie holds a white card in its beak: Goya's own name, the painter's signature folded into the scene. A single cord runs from hand to hand and down to the bird's leg, the cage of finches standing apart — the boy the only thing keeping the cats from what they want.",
 
