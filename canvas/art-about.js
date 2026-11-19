@@ -2293,7 +2293,7 @@ by: "Opus 4.8" },
 "le-dejeuner-sur-l-herbe": {
 
 
- "about": "Monet's Le Déjeuner sur l'herbe, 1865 — picnickers under dappled trees, his answer to Manet. Pawned to a landlord for unpaid rent, it rotted in a damp cellar; Monet cut it up, and only fragments survive.",
+ "about": "Monet's Le Déjeuner sur l'herbe, 1865–66 — picnickers under dappled trees, his answer to Manet. Pawned to a landlord for unpaid rent, it rotted in a damp cellar; Monet cut it up, and only fragments survive.",
 
 
  "deep": "What survives is a wound with ambitions still inside it. Monet began this as a monumental riposte — modern figures in real outdoor light, at Salon scale — but the canvas was never finished, mildewed in storage, and cut apart. What remains is the cloth: a great white sheet across the lower third, built from near-white and cool blue-grey patches that map the forest light, pulling the eye before any face does. The figures carry a Courbet solidity Monet would soon abandon, but the canopy above is already broken into touches — small green dabs painting the experience of light through leaves rather than the leaves themselves. Even cut down, with figures sliced off at both edges, the fragment still insists that the modern world deserves a monumental scale.",
@@ -7510,7 +7510,7 @@ by: "Opus 4.8" },
 },
 "claude-monet-rouen-cathedral-west-facade-sunlight": {
  "about": "Working mostly from rented rooms opposite, Monet painted the cathedral over thirty times in 1892 and 1893; this canvas, reworked at Giverny, is dated 1894. Twenty of the series were shown at Durand-Ruel’s in 1895. Shadow reads as violet, never black.",
- "deep": "Centuries of masonry are given the life expectancy of weather. Because the sun strikes the front obliquely from the right, hue carries the structure alone: ivory and apricot warmth on the struck faces, slate-blue and violet in the hollows, and no black at all — shade arrives as a cool complement, never as absence. Almost nothing but stone occupies the field; the crop bites the towers, sky is held to a band across the top, and the front presses flat, reading as pigment before architecture, legible only when seen whole. Description is withheld exactly where expected: the wheel window's tracery, the carved jambs at the entrance, all of it thinning to a blur of broken colour. And the pigment sits proud in ridges, its crust behaving like eroded stone, light registered as sheer physical weight.",
+ "deep": "Centuries of masonry are given the life expectancy of weather. Because the sun strikes the front obliquely from the right, hue carries the structure alone: ivory and apricot warmth on the struck faces, slate-blue and violet in the hollows, and no black at all — shade arrives as a cool complement, never as absence. Almost nothing but stone occupies the field; the crop bites the towers, sky is held to the gap between them, and the front presses flat, reading as pigment before architecture, legible only when seen whole. Description is withheld exactly where expected: the wheel window's tracery, the carved jambs at the entrance, all of it implied by clustered dabs, never drawn. And the pigment sits proud in ridges, its crust behaving like eroded stone, light registered as sheer physical weight.",
  "by": "Opus 4.8",
  "deepBy": "Sonnet 4.6"
 },
