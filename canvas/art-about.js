@@ -3,6 +3,36 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "rembrandt-the-night-watch": {
+  "about": "In 1642 Rembrandt painted this company setting out. Its guardsmen paid about a hundred guilders apiece, more or less by where they stand; his pupil wrote that he made more of his own picture than of their portraits.",
+  "deep": "The guardsman in the gilded helmet at the far left is sliced down the back by an edge that two doors drew. Moved to the Town Hall in 1715, the canvas was cut down to fit between them, above all on the left. That strip, about 64 centimetres wide, has never been found; a copy attributed to Gerrit Lundens shows it held two more guardsmen and a child on a bridge. The right lost only a sliver, so the edge through the drummer is nearly the painter's own. With the strip in place, the two officers who now hold the middle walked right of the centre.",
+  "by": "Opus 5.5"
+ },
+ "katsushika-oi-night-scene-in-the-yoshiwara": {
+  "about": "Behind a brothel's lattice in Edo's licensed quarter, women sit on show, and Katsushika Ōi, Hokusai's daughter, hid her signature in three lanterns, one character each, spelling her art name, Ōi, and her given name, Ei.",
+  "deep": "Though two hand-lanterns glow in the street below her, the woman seated behind the bars left of centre is dark from the head down. A curator argues that those lamps, a woman's and a child's, should light her face, and that Ōi painted her black anyway, in a scene that only looks like a faithful record. Perhaps she has come to talk with a regular customer; her expression cannot be read. Ōi's father, Hokusai, reportedly said he could not match her pictures of beautiful women, in a pupil's account printed decades after his death. Ōi brushed the woman's pins out to their ball ends and left her head without a feature.",
+  "by": "Opus 5.5"
+ },
+ "merrymakers-at-shrovetide": {
+  "about": "On Shrove Tuesday, the eve of Lent, two men taken for stock clowns flank a youth, probably a boy in girl's dress made queen for the day, in Hals's crowd of about 1616–17.",
+  "deep": "Part of the crowd packing the canvas once lay under paint. Six heads in the background were painted out at a date nobody has fixed, though they belonged to the design: the picture's painted copies, and a drawing made after it in 1660, all show them. Claus Grimm adds that an obscene gesture by the fool at the right had been repainted so that his fist seemed to hold a stick. A cleaning in 1951 uncovered the heads and, he writes, the gesture and the full brightness of the colour. The stick is gone: at the right edge, a fingertip from one hand presses into the other's closed fist.",
+  "by": "Opus 5.5"
+ },
+ "a-bouquet-of-flowers": {
+  "about": "Clara Peeters, of the first generation to specialise in still life, signed the stone ledge under this bouquet about 1612, near a sprig of forget-me-nots: a playful plea for memory from a painter later records forgot.",
+  "deep": "The bouquet stands in a roemer, a studded wine glass, and the ledge beneath it is set like a table. About 1612, the year the author of the main monograph on Clara Peeters gives this panel, she was otherwise painting tables: fish, fowl, sweets and gilt cups on a low ledge against the dark. By that account it is among her first flower pieces, painted as she left behind her presumed teacher Osias Beert's high viewpoint and symmetry. She brought the table with her. The fallen flowers are laid out like dishes along the front of the stone, and the hard outline she gave a goblet now closes round the petals.",
+  "by": "Opus 5.5"
+ },
+ "the-penitence-of-saint-jerome": {
+  "about": "In this early altarpiece of about 1515, Joachim Patinir, whom Dürer would call \"the good landscape painter\", left rough spaces in the landscape for John the Baptist, Jerome and Anthony, and probably painted them himself.",
+  "deep": "The demons crowding Anthony intrude on the painting as they do on his solitude: no room was kept for them as the landscape was laid in, so they lie on top of it. Above the group, the dabbed leaves still run on inside the outline of a halberd blade. To an art historian who examined the panels, the demons may be an afterthought, or possibly another painter's addition. Hybrids like the bird's head with a human-looking eye have been traced by scholars to the example of Hieronymus Bosch. Anthony, like John and Jerome in the other panels, was painted back and forth with the landscape around him.",
+  "by": "Opus 5.5"
+ },
+ "piazza-san-marco": {
+  "about": "Canaletto painted Venice's great square in the late 1720s, ruling many lines with a straightedge. Apart from too few bell-tower windows, too widely spaced, and three too-tall masts before the church, he took few liberties.",
+  "deep": "The buildings in this square run into depth at the angles Luca Carlevaris had given them in a 1703 etching of virtually the same view, but the two differ in their light. In 1725 an agent steering a merchant of Lucca to Canaletto, away from Carlevaris, wrote that in Canaletto's work the sun could be seen shining, though, J. G. Links cautions, the agent had things he wanted the merchant to believe. A curator finds this canvas crisp and light-toned after the ominous air of Canaletto's own earlier view of the square. The etching's cast shadows point to early morning; here the church front, facing us, stands in sun.",
+  "by": "Opus 5.5"
+ },
  "jan-van-huysum-still-life-with-flowers": {
   "about": "This 1723 panel belongs to van Huysum's break with the dark backgrounds of earlier flower pieces, a move collectors applauded at once: the bouquet stands out of doors, before a statue of Flora, goddess of flowers.",
   "deep": "Two of the leaves hanging over the ledge are turning yellow-brown, and further along a rose lies toppled on the stone. In a poem printed in an early life of the painter, the poet Bruins lets Flora boast that winter, which threatened her garden year after year, frightens her no longer, since van Huysum's brush makes a spring that cannot wilt. This panel makes the boast good, though not as he meant it: its spring holds bud, bloom and fallen flower, and the brush keeps the wilting as surely as the bloom. Flora stands here too, and her small raised bunch, as drab as the rest of her, is a bouquet made never to droop.",
@@ -3407,8 +3437,10 @@ by: "Opus 4.8" },
  },
 
 "introduction-of-christianity-in-poland": {
-about: "Matejko painted this twelve-work cycle in 1889 partly to satisfy the research requirements for his honorary doctorate from the Jagiellonian University, making it as much an academic statement as a historical panorama. Jan Matejko, 1889.",
-by: "Opus 4.8" },
+  "about": "Made an honorary doctor by the Jagiellonian University in 1887, Matejko replied with twelve oil sketches of Polish civilisation and a printed commentary. He painted their first chapter, Poland's conversion at Lake Lednica, last.",
+  "deep": "Designed to be painted again at monumental size, the panel sets its crowd before an island on Lake Lednica that Matejko never visited. He meant the series for halls in Kraków, but would-be patrons balked at the cost, and the conversion was never painted large. His view of the island comes most probably from Władysław Łuszczkiewicz's drawings of its 1874 survey. The bridge stands almost exactly where the real one stood, but high on trestles; the real deck lay about a metre above the water. The painted island is thick with trees, the real one bare into the late 1920s, and only trees grown in recent decades have made it look like his.",
+  "by": "Opus 5.5"
+ },
 
 "cymon-and-iphigenia": {
 
@@ -4642,8 +4674,10 @@ by: "Opus 4.8" },
  },
 
 "zoie-ghika-moldavian-princess": {
-about: "After Russian troops overran Moldavia and her father was executed by the Ottomans, Zoie Ghika ended up a political pawn at the court of Catherine the Great, who commissioned this portrait; Alexander Roslin, 1777.",
-by: "Opus 4.8" },
+  "about": "Many guests at a Peterhof masked ball in 1777 dressed as the empire's far-off peoples, while a few young women, probably Moldavian exiles, wore their own clothes. Catherine II ordered their portraits; Roslin painted Zoie Ghika.",
+  "deep": "Her fringe, cut level across the brow, is where this portrait meets the one written description a stranger left of a few young women at Catherine's court; above it and below it, the two part. Johann Bernoulli, a Swiss traveller who looked closely at the women he believed to be Moldavian, wrote that their hair was cut off in front and hung over the brow, and so it does here. His account covers their heads with a kind of low cap; this head is wound in cloth, heaped high above a rolled band and set with roses. He gave them beautiful black eyes, and hers are grey.",
+  "by": "Opus 5.5"
+ },
 
 "virgin-and-child-with-saints": {
 about: "This drawing records a lost Rogier van der Weyden altarpiece that has not been seen since the 17th century; the Master of the Drapery Studies copied it in meticulous detail, preserving the composition for posterity, c.1435.",
@@ -4888,8 +4922,10 @@ about: "Kandinsky buried horsemen, a flood and a fleeing boat beneath the abstra
 by: "Opus 4.8" },
 
 "sketch-for-composition-ii": {
-about: "The finished Composition II was destroyed in World War II, leaving this 1910 study as the most complete surviving record of what Kandinsky considered a landmark in his move toward abstraction.",
-by: "Opus 4.8" },
+  "about": "Composition II, Kandinsky's largest canvas yet, was destroyed in Berlin in the Second World War and survives only in black-and-white photographs. This final, half-size study of 1909–10 shows nearly the same design in colour.",
+  "deep": "For decades this study was often taken for the canvas it was made for. Will Grohmann printed it in 1924 with that picture's title, size and owner; in 1938, while the canvas was still in Berlin, it was offered in London as Composition No. 2, a title it kept until 1963. Comparing the two, Angelica Zander Rudenstine found only two plain differences. The four round heads in a row at lower left became, in the canvas, one shapeless mass. The white column in the upper middle stops under a black line with violet above it, where in the canvas it reached the top edge. In both places the canvas dropped a boundary this study keeps.",
+  "by": "Opus 5.5"
+ },
 
 "woman-with-animals": {
 about: "This Cubist-Futurist canvas by Gleizes, 1914, portrays Madame Raymond Duchamp-Villon — wife of the sculptor, not the painter — surrounded by pets, using multiple viewpoints and force-lines to dissolve figure into setting.",
@@ -5567,8 +5603,10 @@ about: "Van Gogh drew these beached fishing boats on the Mediterranean shore in 
 by: "Opus 4.8" },
 
 "giant-peacock-moth": {
-about: "Van Gogh found this moth in the asylum garden at Saint-Rémy in May 1889 and wrote to Theo calling it a death's-head moth — but it was a giant peacock moth, and the skull-like marking he described exists only on the former species. He drew it rather than kill it, and painted it later from that drawing.",
-by: "Opus 4.8" },
+  "about": "To paint this moth, Van Gogh wrote in May 1889, he would have had to kill it, so he drew it alive in the asylum garden at Saint-Rémy. The canvas came later, from that drawing.",
+  "deep": "He knew this moth by the wrong name. Death's-head, he wrote to Theo, was what it was called, and its painted hind body has been read as a kind of skull: below the glossy black thorax, two dark lobes sit side by side over black bands barred with cream, where the giant peacock moth it really was has only stripes. The same letter lists its colours: black, grey and white, shaded, with glints of carmine or a drift toward olive green. The body has the black, the white and the red. Nothing in the list is blue or yellow, and the wings wear both, each blue-green field edged with a broad yellow band.",
+  "by": "Opus 5.5"
+ },
 
 "the-raising-of-lazarus-van-gogh": {
 about: "Working from a Rembrandt etching at Saint-Rémy in 1890, Van Gogh cut Christ out of the scene entirely and replaced him with a blazing sun — and gave Lazarus his own red beard, identifying himself with the figure returning from the dead during his illness.",

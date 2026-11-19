@@ -101,6 +101,832 @@
 // Fields near Argenteuil / Bridge over a Pond of Water Lilies / Sur la plage à Trouville, Morisot
 // Autoportrait / Eugène Manet et sa fille à Bougival, Manet Berthe Morisot, Boudin The beach.
 window.CANVAS_INSPECT = {
+ "rembrandt-the-night-watch": {
+  "mv": 6,
+  "see": "A company of armed men crowds out of a dark arched gateway onto a lit floor, with muskets, pikes, halberds and a partisan. The light falls into the middle, where two officers walk in front: the captain in black with a white ruff and a red sash, the lieutenant in pale gold with a white sash and a broad buff hat. Guardsmen press around them, with a girl in gold at the left and a drummer at the right. Above them hang a banner and an oval shield, and pike shafts rise against the masonry.",
+  "about": "The captain in black is telling his lieutenant to set the company marching; a caption in the captain's own family album, beside a drawn copy, describes the scene the same way. A group portrait of Amsterdam arquebusiers, the company of District II, becomes one event, and the men in it are given work to do. Across the picture a musket is loaded at our left, fired in the middle and cleaned at our right, each stage by a different man. Among them stands a girl in gold, probably the painter's invention, with a dead bird at her belt whose claws are widely read as the arquebusiers' emblem.",
+  "craft": "Rembrandt prepared the canvas for one wall. Before the ground, he worked a lead-rich layer into the bare cloth in large semicircular strokes, a step never observed before in his work or his contemporaries', probably to guard it from the damp outer wall it would hang against. Over a brown quartz ground he sketched the composition in chalky beige paint, then changed it, painting out a helmet's feathers, moving a leg, giving up a sword and extra spears. He loaded the lights and kept the darks thin. For the lieutenant's gold he mixed arsenic-sulphide yellows with lead-tin yellow and vermilion, pigments the scientists who found them believe he chose deliberately.",
+  "context": "The commission reached Rembrandt before December 1640, for the great hall of the Kloveniersdoelen, the arquebusiers' headquarters, which came to hold six company pictures. His canvas, dated 1642, the year his wife Saskia died, hung in a row with two other company pictures painted that year. In 1678 his former pupil Samuel van Hoogstraten thought it would outlast its rivals, which to some looked like playing cards beside it, but wished Rembrandt had kindled more light in it. More than a century on, its dark tones had earned the daylight march its name, the Night Watch, which the historian D. C. Meijer thought a foolish title in 1886.",
+  "deeper": [
+   {
+    "t": "A hand's shadow",
+    "x": 0.455,
+    "y": 0.565,
+    "w": 0.22,
+    "h": 0.23,
+    "body": "Below the lieutenant's white sash, on the gold flap of his tunic that hangs nearer the captain, lies a dark shape with the outline of a thumb and fingers. It is the shadow of the captain's open hand, which hangs well above it and to our left, palm up, fingers reaching out. The offset fixes the light: it comes from our upper left, and high enough to throw the shadow down onto cloth a little behind the hand. Rembrandt lays it on pale gold cloth, so the shadow that joins the two officers reads at once. The flap's gold border is built from beads and dabs of ochre and white laid on thick, and the shadow passes straight over them, darkening the embroidery without breaking its pattern. To its right, the shadow of a fingertip slips across the pale gap between the two flaps. Just past that fingertip, worked into the border of the other flap, a small rearing lion stands beside a narrow upright panel of stacked crosses: the arms of Amsterdam, which have been read as the city held safe in the militia's hands."
+   },
+   {
+    "t": "A word and a flare",
+    "x": 0.42,
+    "y": 0.42,
+    "w": 0.26,
+    "h": 0.2,
+    "body": "The captain's lips are parted on a word. Beside him the lieutenant has turned his head to our left to take it in: a clean profile, eyes cast down toward the captain, mouth closed. The captain does not return the look; his eyes come straight out of the picture, so he speaks sideways while facing us. Between their heads a gun barrel slides out from behind the captain's shoulder, steadied by a gloved hand under a third man's open mouth, and runs to the brim of the lieutenant's hat. Where it vanishes behind the brim the paint flares: streaks of orange and a grey haze rise beside the white feather. A shot has gone off a hand's breadth from the lieutenant's face, and his profile does not flinch."
+   },
+   {
+    "t": "A bird hung by its claws",
+    "x": 0.235,
+    "y": 0.55,
+    "w": 0.145,
+    "h": 0.33,
+    "body": "At the girl's waist two clawed feet point straight up, bound at the ankles and hung from her belt; beneath them a white bird dangles head-down against her skirt. The feet are drawn tight, each claw lit separately and the toes jointed, while the plumage below is laid in loose, creamy strokes that sit thick on the dress. Beside the feet hangs a tapering cup with a metal rim. She is lit almost as fully as the officers in front, yet she stands deeper in the crowd: the red musketeer's gloved hand and the dark butt of his gun pass in front of her skirt. A second girl, in blue-green and in shadow, bows her head just behind her."
+   },
+   {
+    "t": "Powder at the muzzle",
+    "x": 0.11,
+    "y": 0.44,
+    "w": 0.17,
+    "h": 0.32,
+    "body": "The man in red lifts his right fist to the top of his musket, and inside the fist is a small capped bottle, held upright over the muzzle with a red cord hanging from it. More bottles of the same shape dangle on cords at his hip. He is charging the gun from them, eyes lowered to his hand, while the barrel runs from that fist down across his body. The red that clothes him from hat crown to breeches is several reds: orange highlights dragged in broken strokes over a deep crimson, the folds of the sleeve made where those strokes stop and the darker layer shows."
+   },
+   {
+    "t": "Running for the edge",
+    "x": 0.004,
+    "y": 0.62,
+    "w": 0.166,
+    "h": 0.34,
+    "body": "Low at the left a small figure runs for the edge of the canvas, one heel kicked up behind him, his face hard to make out under the brim of an iron helmet. He hugs a horn with a metal rim against his hip. Almost everything about him is painted in browns close to the wall's own, and he is easy to miss; what catches the light is the rim of the horn, a scrap of red scarf and the pale stone pier at his back, where an iron ring hangs. On the floor by his feet a small round object flecked with pink lies near one of the dark seams between the paving stones."
+   },
+   {
+    "t": "The drum and the dog",
+    "x": 0.72,
+    "y": 0.6,
+    "w": 0.278,
+    "h": 0.33,
+    "body": "The drum at the right is built stud by stud: its shell is pricked with rows of brass tacks ringing a small round vent, cords zigzag between the hoops through leather tugs, and the lower head shows as a full ellipse because the drum tilts toward us. The drummer stands hard against the right edge, which cuts through him: here he is a brocade sleeve, a hand raising the stick above the top hoop, and red legs behind the drum. Low to the drum's left a dog crouches with its forelegs splayed, its head lifted toward the drum's lower rim. It is painted in quite another way: pale strokes dragged thin over the dark, so the darker layer shows through, and a body at almost the floor's own tone. Pale contours along its legs and muzzle, and the studs of its collar, lift it free of the ground."
+   },
+   {
+    "t": "Blowing the pan",
+    "x": 0.655,
+    "y": 0.49,
+    "w": 0.155,
+    "h": 0.185,
+    "body": "Right of the lieutenant's striped sleeve, a man in a black steel helmet with a tawny plume bends over his musket with his lips pushed forward, blowing across the lock just under his chin. His eyes are on it and his brow is pinched. He holds the gun slanting across his chest: the lock and its pan sit at his mouth, and the barrel climbs to our right until its muzzle catches a hard ring of light. From his hand a red cord loops down over his coat. Behind him an older man in a black hat turns his eyes down toward him, and above them a hand in a white cuff points back toward the centre."
+   },
+   {
+    "t": "Silk in a few strokes",
+    "x": 0.12,
+    "y": 0.003,
+    "w": 0.2,
+    "h": 0.5,
+    "body": "High in the dark at the left hangs a banner in bands of gold and blue-green, running from the top edge nearly halfway down the canvas. The banner is made of very few marks. Each gold fold is laid in a few long strokes dragged downward side by side, in more than one ochre, their hairs leaving fine parallel tracks, so the folds read as heavy silk from a distance and as paint at arm's length. The blue-green band between them is darker and glassier, and its small motifs are touched in yellow with a few flicks of the brush. The folds fall straight down, as if in still air, and the cloth hangs against the black mouth of the arch. At its foot, below and to the right, a gloved fist rises into the dark."
+   },
+   {
+    "t": "A shield of names",
+    "x": 0.515,
+    "y": 0.045,
+    "w": 0.165,
+    "h": 0.277,
+    "body": "High on the wall at the right shoulder of the dark arch, over a round column, hangs an oval shield in a wreath. The wreath's leaves are laid in short dabs of dull ochre, with what looks like a small carved head at its crown and a curled scroll at its foot. The shield's face is a flat dark grey, and lines of small writing run across its upper part, so dark against it that they barely show. They are names, eighteen of them, headed by the captain and the lieutenant, and they were probably added later. The man who cleaned the canvas reported in 1758 that the shield and its names, invisible before, appeared once he had taken off old oil and varnish. By one account of the sitters, the list leaves out the drummer."
+   }
+  ],
+  "beside": "Cornelis de Graeff with his Wife and Sons, of about 1660, also makes a group portrait into a journey, but its family arrives on wheels and horseback where these guardsmen set out on foot. Thomas de Keyser is credited with its figures and Jacob van Ruisdael with the landscape. A coachman with a whip drives four black horses and a black coach to our left, toward a house half-hidden in trees. The older man in a broad black hat sits at the coach's open window, a hooded woman beside him. Two youths ride behind, and three men stand waiting on a bank by the house.",
+  "refs": [
+   {
+    "id": "cornelis-de-graeff-with-his-wife-and-sons",
+    "text": "Cornelis de Graeff with his Wife and Sons"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "katsushika-oi-night-scene-in-the-yoshiwara": {
+  "mv": 6,
+  "see": "Night, in front of a house in the Yoshiwara. Most of the width is a lattice of dark bars, and through it, in lit rooms, women in red and patterned robes sit on show. At right, a post carries a box lantern, an open doorway shows more women, and a deep blue curtain hangs at the edge. In the street, people stand at the bars with their backs to us, a girl carries a round lantern, and a group gathers at the door around a tall one. Colour sits mostly inside; outside, the lanterns throw warm light onto a street of browns and near-black.",
+  "about": "Ōi paints a room where women were put on show for sale. In the Yoshiwara, Edo's licensed quarter, a brothel's street front held such a room, the harimise, where the women of the house sat behind a lattice to be looked at by passers-by and chosen by customers; this house is said to be the Izumiya. The women were indentured to it, and the room is lit because they are what it sells. The Japanese title, Yoshiwara kōshisaki no zu, names the picture for the lattice and the ground in front of it, and that is where the viewer is put: in the street, on the choosing side.",
+  "craft": "The night is painted through what its lamps do: light throws shadows onto the ground, and figures set against a light are laid in as silhouettes, a way of painting very rare in ukiyo-e. She probably knew Western pictures, in which cast shadows were ordinary. The medium is ink and colour brushed on paper, mounted as a hanging scroll about 26 by 39 centimetres, and the brushwork is minute: the faces in the lit rooms are no bigger than a fingernail, yet an eye or a nose is a single fine stroke of the tip.",
+  "context": "Undated, the picture belongs to the working life of a woman named Ei. Married to the painter Minamizawa Tōmei, she reportedly laughed at the clumsy parts of his pictures, and the marriage ended; she came home, never remarried, took the name Ōi and worked beside her father, Hokusai, until his death in 1849. In 1833 the painter Keisai Eisen, writing on ukiyo-e artists, called her a working painter and a fine hand. She is remembered saying that with one brush she would never lack food or clothes. In the summer of 1857, it is said, she set off to paint with her brush in the fold of her kimono and was not heard of again.",
+  "deeper": [
+   {
+    "t": "Where the bars show two faces",
+    "x": 0.003,
+    "y": 0.02,
+    "w": 0.297,
+    "h": 0.41,
+    "body": "At this end of the lattice, each bar is painted as a square timber with two faces: a black front turned to the street and a warm brown side where the room's light catches it. That second face is the picture's first statement about its light: it lives indoors and reaches the street through the bars. Through the openings the women come in strips — a white face between two bars, a shoulder of red robe, a spray of orange pins, a lidded vessel on a red stand, one woman raising a white sheet. Each is broken by at least one bar, and the eye assembles her as anyone outside would have to. Behind them a painted pine, its needles brushed as green fans among grey clouds, fills the back of the room, and the bars slice that too."
+   },
+   {
+    "t": "A woman made of dark",
+    "x": 0.28,
+    "y": 0.25,
+    "w": 0.19,
+    "h": 0.33,
+    "body": "In the palest window of the lattice sits one woman painted as a single dark shape: a rounded back, a bun, and a spray of ochre pins with ball ends fanning out behind her head, her one touch of colour. The wall behind her is ruled into panels with fine brown lines. Where her outline meets the bars, their warm side faces turn dark, so bar and body fuse into one silhouette, and her lower half runs into the dark sill. The pins slip behind the bars, which places her inside with the others; farther to the left, women sit in full colour, faces and patterns intact."
+   },
+   {
+    "t": "The lantern on the post",
+    "x": 0.6,
+    "y": 0.11,
+    "w": 0.13,
+    "h": 0.38,
+    "body": "A box lantern is fixed to the broad post between lattice and doorway, two of its paper faces showing, each brushed with characters that stand dark against the lit paper. The post under the lantern goes brown in a wedge that widens as it falls, bounded by one straight slanting edge; beyond that edge the wall stays pale. The lantern brightens what surrounds it and shades the strip beneath its own base, and Ōi draws the border of that shade as a hard, straight line."
+   },
+   {
+    "t": "The face in the doorway",
+    "x": 0.71,
+    "y": 0.03,
+    "w": 0.24,
+    "h": 0.27,
+    "body": "Through the open doorway, with no bars between, one woman turns her face to the street: a white oval with lowered eyes and a small red mouth, under a high coiffure bound in red and bristling with pins, against a lattice of yellow slats. The women nearer us are mostly backs of heads, black hair spiked with ochre pins above a pale nape, so among turned shoulders the eye meets her face. A dark slanting mass rises from lower left to upper right and slices across the group, hiding their laps. Framed by the doorposts and the beam above, she is on show to the street and partly screened by what stands in front of her."
+   },
+   {
+    "t": "Backs to us",
+    "x": 0.003,
+    "y": 0.37,
+    "w": 0.345,
+    "h": 0.45,
+    "body": "Four figures stand at the left end of the lattice with their backs to us, heads tipped toward the bars. Against the lit openings their outlines are firm and clean; near the ground most of them sink into the dark of the street. Detail returns where something catches light: a white headcloth folded over one head, a hood drawn up on another, fine stripes along the edges of the robes, and past the hood and one dark head a pale rim of cheek, the nearest any of them comes to a face. The figure at the far left is one flat dark with no inner line. The brush that patterned the robes inside leaves these backs almost bare: the people looking in are painted from their unlit side."
+   },
+   {
+    "t": "Each lantern's own shadow",
+    "x": 0.29,
+    "y": 0.54,
+    "w": 0.19,
+    "h": 0.37,
+    "body": "A girl in a green robe walks toward our left, holding a round paper lantern ahead of her on a stick. A short gap below its black base, a dark spot lies on the ground, its rim feathered, and around it the street warms to a reddish brown that fades into the general dark. The base of the lantern is solid and the light leaves through the paper sides, so the lamp throws a shadow directly beneath itself. Ōi keeps this rule for each hand-lantern in the picture. The hooded figure's lantern, at the left of this view, has its own spot, and because it is carried higher, its spot lies much farther below it. The distance between lamp and spot tells the eye how high each light is held."
+   },
+   {
+    "t": "The lamp among them",
+    "x": 0.65,
+    "y": 0.28,
+    "w": 0.33,
+    "h": 0.66,
+    "body": "At the doorway glows a tall cylindrical lantern: ribbed paper warm with light, a black lid pricked with spots of yellow under an upright handle. The people around it are painted in full colour, unlike the watchers at the bars: a man with a shaved crown in a green robe patterned with small rounded shapes; a woman in a dark outer robe over red; and a woman whose hair bristles with ball-ended pins, wearing large roundels on pink above a hem of graded blue stripes, raised on high black clogs. The three face into the house, and the lamp among them colours the robes we see. Below, its light spreads over the entrance floor, crosses the straight edge of the step and runs into the street until the dark takes it back."
+   },
+   {
+    "t": "The lattice laid on the street",
+    "x": 0.003,
+    "y": 0.74,
+    "w": 0.56,
+    "h": 0.26,
+    "body": "The pale bands slanting across the lower left are the lattice again, thrown onto the street by the light inside: the bars become bands of shadow and the openings bands of light, all leaning down toward our left. Nearest the house the street lies in a strip of dark under the low wall, broken by the glow of the girl's lantern. Where the light begins, its border runs straight, except at the left, where rounded bites eat into it: the shadows of the watchers' heads, thrown toward us by the same light that shows them the women. The bands run to the bottom edge, so the house's light reaches the nearest ground in the picture, and the onlookers stand in its path. Where the bands give out on the right lies another shadow, with pins standing out of it like a coiffure's."
+   }
+  ],
+  "beside": "Out in the open, the women for sale are themselves the dark shapes in Ernst Ludwig Kirchner's Five Women on the Street, painted in 1913. Ōi's picture has it the other way round: the women sit in a lit room behind the lattice, and the figures left dark in the street are the ones looking in. Kirchner's five cocottes, in feathered hats with pale fur at the neck, are dressed to be looked at as hers are, but their black coats merge into one tall column against an acid-green pavement. No bars stand between them and whoever passes, and no customer is painted in.",
+  "refs": [
+   {
+    "id": "ernst-ludwig-kirchner-five-women-on-the-street",
+    "text": "Five Women on the Street"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "merrymakers-at-shrovetide": {
+  "mv": 6,
+  "see": "A tall canvas packed to its edges with revellers crowded behind a table. At the centre sits a young figure in a red embroidered gown, broad lace collar, white satin sleeves and a wreath of leaves. An old man in a wide black hat, a garland of food hanging down his front, presses in from our left; a man in a red cap and grey-green cloak from our right; more grinning heads crowd above. Along the bottom a green-covered table holds a bagpipe, pots, a tall jug, sausages and bread. Light from our left gathers on the young face and the collar and fades toward the corners. Background shows only in slivers, so the surface reads as one dense press of faces, hands and food.",
+  "about": "Shrove Tuesday was the last licence before the Lenten fast, and this is its cast. The old man at left, hung with a garland of food, is identified as Pekelharing (Pickled Herring) and the man in the red cap as Hans Worst (John Sausage), stock clowns of farces played by the all-male chambers of rhetoric. Between them sits a wreathed figure in a girl's finery. In the period's jokes herring and mussels stood for the male and female genitals, and eggs for male prowess or, once cracked, impotence; the bagpipe carried a risqué Flemish proverb, so the feast doubles as a bawdy joke.",
+  "craft": "Walter Liedtke called this \"the most Flemish-looking Dutch picture\" he knew from before the 1630s, for its brilliant colour, open brushwork and movement swirling over the surface. Many of its shadows are cool, laid in greens and greys. The space is another matter: where Rubens and Jordaens set figures back into depth, Hals, as Claus Grimm puts it, spread his out in a flat tableau. Whose brush did what is disputed: Liedtke found the execution wholly consistent with Hals's own, while Grimm, in 2024, gave Hals the design, the lace collar, part of the central face and probably the still life, and the male heads and background figures to assistants.",
+  "context": "From before 6 August to mid-November 1616 Hals was in Antwerp, evidently, Liedtke wrote, to study Rubens, and this picture, of about 1616–17, probably reflects the trip. That year he painted his first large group portrait and became a supporting member of De Wijngaertrancken, a Haarlem chamber of rhetoric; such a chamber, or one of its members, may have ordered the painting. His first wife had been buried in a paupers' grave, the woman minding his children sued him three times in 1616, and in February 1617 he remarried. The painter Willem Buytewech drew the clowns' heads before moving to Rotterdam in 1617, and old copies suggest the canvas was once larger.",
+  "deeper": [
+   {
+    "t": "Two reds under one brim",
+    "x": 0.295,
+    "y": 0.228,
+    "w": 0.375,
+    "h": 0.222,
+    "body": "Two red-cheeked heads press together under the black brim, and from a few steps back their colour reads as one rosiness. Close to, it is two different reds. On the young face the colour sits in two rounded patches kept to the round of each cheek, soft-edged, with pale skin all about them: red laid on a face, the way make-up is. On the old man the red is the face itself, spread over cheekbone, nose and forehead, and round his eyes the hollows are cooled with olive-green half-tones, so the red beside them burns hotter. The heads touch. Blond curls fall over his grizzled beard, a wreath of dark pointed leaves is pressed into them, and the pale crown is set straight against the hat's black. Their eyes go separate ways: his slide sideways toward our right, while the young face tips back and looks up."
+   },
+   {
+    "t": "A spoon worn in a cap",
+    "x": 0.015,
+    "y": 0.03,
+    "w": 0.325,
+    "h": 0.25,
+    "body": "In the top-left corner a spoon is stuck into a red cap, bowl up, handle slanting down to our left like a feather in a hatband. Its wearer throws his head sideways and laughs open-mouthed, eyes squeezed to slits, one hand up, its forefinger laid against his temple and the other fingers folded against his cheek. Around him heads stack with hardly a body between them: a grinner wedged into the corner, a face cut by the left edge, and higher, in shadow, a bearded profile pressed to the cheek of a man in a dark cap. A spoon here, and at the right a white clay pipe stuck in the old man's hat, both worn as finery: the kitchen and the tavern have been raided for costume."
+   },
+   {
+    "t": "A jug tipped at the top edge",
+    "x": 0.3,
+    "y": 0.017,
+    "w": 0.4,
+    "h": 0.19,
+    "body": "A hand at the top edge lifts an olive-glazed jug and tips it toward us, so we look straight into its dark mouth; its rim runs off the top of the picture. Beside it a fist rises, closed, its arm lost behind the hat. Both crowd the upper edge. Just below the fist, the white clay pipe in the hat stands bowl-up with a spark of orange-red at the bowl's mouth. Under them the hat spreads as an almost unbroken black, the deepest dark on the canvas, and grinning faces flank it, one looking straight out at us from under a dark cap, the other screwed up with its eyes shut."
+   },
+   {
+    "t": "The straight face",
+    "x": 0.6,
+    "y": 0.06,
+    "w": 0.383,
+    "h": 0.49,
+    "body": "Under a soft red cap whose tail drops to his shoulder, a man with an upturned moustache lowers his lids and pushes out his lower lip. The shadowed face grinning at his shoulder sharpens the point: his is a straight, almost mournful face kept beside the laughter, and it is modelled in firm, clear planes, the beard laid in short dark strokes. A grey-green cloak edged in red wraps him, red ball buttons at the cuff, and a sausage dangles from the tip of the cap's tail, with a skewer run through the tie at its lower end. At the right edge two hands meet. One is closed in a fist, a dark ring on its little finger and a dark strip of cloth running down out of it; the other, out of the buttoned cuff, hangs over it and presses a fingertip down into its top. Lower down, a third hand, almost lost in shadow, clutches the red cloth at the young figure's far shoulder."
+   },
+   {
+    "t": "A larder hung on a black coat",
+    "x": 0.015,
+    "y": 0.27,
+    "w": 0.345,
+    "h": 0.51,
+    "body": "The garland hangs down the black coat, and against that black each piece is painted as its own small still life with its own surface. The sausages are dull, creased at the ties. Beside them an open shell, blue-black and wet, spills pale flesh, with thin drips running from it. Green pods hang by a pale egg flecked with grey and lit by one white touch at its upper left; a red tail trails beneath it, and lower down a second pale oval is tied at the neck. Golden fish hang head-down, their sides combed with fine lines, one showing a round eye. At the bottom a pig's trotter, pale hide and split hoof, is bound with green cord. Left of the garland a fist comes up out of the black and grips the top of a brown furry tail that hangs down the picture's edge: a foxtail, the fool's insignia in Claus Grimm's reading. Into all this the young figure lifts a hand, one finger raised beside the hanging pods, coral beads at the wrist."
+   },
+   {
+    "t": "Lace drawn over red",
+    "x": 0.28,
+    "y": 0.37,
+    "w": 0.5,
+    "h": 0.25,
+    "body": "Each wheel in the collar is drawn line by line, with spokes, a ring or two and a small star at the hub, each line a raised thread of white set down with the tip of the brush. Between the threads the bodice's red runs on unbroken: the lace was laid over colour already there, and it takes on whatever lies beneath. Over the black on our left its meshes are black, at the breast they are red, and at the far shoulder a patch of green shows through. The embroidery below is worked the same way, silver-white scrolls in short ticks of the brush, small flowers in yellow and white, a seam of white dots down the centre, with dark green bows knotted on top. The coral necklace lies on the bare neck inside the collar's opening, two strands of separate round dabs, most of them touched with a speck of light."
+   },
+   {
+    "t": "The bagpipe set down",
+    "x": 0.015,
+    "y": 0.74,
+    "w": 0.4,
+    "h": 0.248,
+    "body": "A bagpipe lies collapsed on the green cloth at lower left, its leather bag creased flat, a ruff of fleece round the neck where the pipes go in. The turned wooden pipes lie loose, their metal ferrules catching the light, and nobody's arm presses the bag. Its leather is modelled in smooth greys, soot-dark in the folds, with a firm edge against the green. Behind it a dark glazed pot holds a stick slantwise in its mouth, and the stick's tip reaches up to the hoof of the trotter hanging above, so garland and table meet. At the far left a footed earthenware pot is heaped with red and ash-grey lumps; a white clay pipe lies by it, bowl toward us, and pale split sticks lie nearby."
+   },
+   {
+    "t": "A hand above the dish",
+    "x": 0.36,
+    "y": 0.68,
+    "w": 0.623,
+    "h": 0.308,
+    "body": "The young figure's second hand closes over a red-glazed dish of grey-brown sausages, the thumb just above the end of a wooden skewer. The sausages are pinned shut with skewers through their tied ends, and the rim of the dish throws back a long, wet highlight. To the left stands a tall pale jug, hinged lid thrown open, its ribbed bands framing a dark middle band striped with upright reflections and marked with Hals's monogram in pale letters. In front, a cut loaf shows its crumb as one pale plane inside a broken crust, and on a dark plate a pat of butter is scored beside another sausage. The green cloth has no front edge: it runs straight out of the bottom of the picture, and the knife handle runs out with it."
+   }
+  ],
+  "beside": "At Shrovetide folly is the guest of honour; on Saint Nicholas's Eve, the feast Jan Steen painted about 1665–68 in The Feast of Saint Nicholas, it stands accused. His household, too, gathers round a figure in finery at the centre, with the day's food heaped at the front, breads and cakes tipped from a basket. She is a little girl in gold hugging a doll, a pail of sweets on her arm, rewarded for being good. At the left a boy cries, a crooked finger at one eye, while an older girl holds out his shoe, thin twigs rising from it: the switch left for a naughty child.",
+  "refs": [
+   {
+    "id": "jan-steen-the-feast-of-saint-nicholas",
+    "text": "The Feast of Saint Nicholas"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "a-bouquet-of-flowers": {
+  "mv": 6,
+  "see": "A bouquet of cut flowers stands in a glass vase on a ledge, against a dark brown ground. Roses, tulips, carnations, narcissi and an iris are among them, along with what look like columbines and grape hyacinths, and their leaves run from bright green to almost black. A few loose flowers and two fallen petals lie on the ledge, and a butterfly perches on the stem of one of them. Light falls from our left. The paint looks smooth and finely brushed, its strokes showing only close up. Most of the brightest paint gathers in the crowded centre.",
+  "about": "Late-spring and early-summer flowers, most at full bloom, are gathered and arranged for display. At the centre they crowd and overlap; toward the rim they thin out, and single flowers stand on their own stems, shown whole against the dark. The ending is already in place, out at the margins: a pair of tulips hangs head-down, one on each flank of the bouquet, and fallen flowers and petals lie on the ledge below. Decay is only hinted, and kept to the edges, so abundance holds the centre. Minutely finished, the panel was probably made for a collector's cabinet.",
+  "craft": "The blooms have firm outlines, kept firm even inside the crush at the centre, so that where flowers overlap, each still stops at its own edge. Edges that hard may point to printed botanical illustrations among Peeters's sources. Colour goes on locally and at full strength, each red, blue or yellow kept to its own flower, and each of the three turns up all round the spray, so that the colours hold together a mass whose outline is ragged. All of it is oil on a wooden panel, and the ground behind is one even dark brown, with no setting painted in to compete with the flowers.",
+  "context": "From the start, Clara Peeters signed. Her earliest dated work, a still life of sweets, wine and a candle of 1607, already bears what became her standard signature, CLARA P. This bouquet is dated to about 1612, in her most active years. From Antwerp, where most accounts place her, her pictures reached collections in Rotterdam, Amsterdam and Madrid, probably through dealers. The signatures did not keep her name. In 1666 a Spanish royal inventory described two of her pictures, both signed, without naming her. Early researchers confused her with namesakes ranging from an Antwerp heiress to an Amsterdam prostitute, and her birth year and marriage are still argued.",
+  "deeper": [
+   {
+    "t": "A flat star against a folded cup",
+    "x": 0.295,
+    "y": 0.305,
+    "w": 0.355,
+    "h": 0.173,
+    "body": "At the heart of the bouquet a big pink rose and a six-petalled white flower, a narcissus by its look, press together, built in opposite ways. The white flower lies almost flat to the viewer, shaped by its outlines and by fine strokes running the length of each petal. Most of its white is a mid grey: only a small share of the surface carries truly pale paint, kept for thin rims and for the petals turned toward the light, and its tiny cup has a crinkled red rim. The rose is all depth. Its heart is its deepest crimson, and the petals lighten as they curl outward, each curled lip caught as a thin pale line. The irregular net of hairlines over the white petals is cracking in the old paint, and the same net runs through the dark ground."
+   },
+   {
+    "t": "A red star and two near-black bells",
+    "x": 0.27,
+    "y": 0.08,
+    "w": 0.4,
+    "h": 0.2,
+    "body": "High in the crown a red flower with eight pointed petals opens flat. Each petal is streaked with fine lengthwise strokes, a cream halo spreads from the petal bases, and the centre is a ring of separate blue-black dabs, the stamens, round a black eye. To its right hang two nodding, spurred flowers, columbines by their look, painted almost as dark as the ground; they read mainly by the thin light along their edges and a tuft of yellow stamens under the left one. Behind both, a layer of toothed leaves sits back in the brown, modelled in low, dark greens: a leaf is lighter on one side of its midrib than the other, and light catches the tips of its teeth. The crown works at three depths at once: a red that comes forward, bells that sink, leaves that recede."
+   },
+   {
+    "t": "A flower with its back turned",
+    "x": 0.5,
+    "y": 0.425,
+    "w": 0.26,
+    "h": 0.15,
+    "body": "Right of centre an orange flower is shown from behind. What faces out is its green collar, a ruff of narrow pointed bracts, with the orange rays fanning beyond it and the stem coming in from the left. Just below and to the left, a flower of what looks like the same kind is seen from the side: its rays rise from a green base, the near ones showing their orange-streaked undersides, the far ones their paler faces. Side by side, the pair gives one kind of flower from behind and in profile, and in neither does its centre show. Around them sit small pink four-petalled flowers on stems lined with ribbed buds, the fine hairs on each bud drawn as single strokes."
+   },
+   {
+    "t": "A drop on a serrated leaf",
+    "x": 0.28,
+    "y": 0.625,
+    "w": 0.17,
+    "h": 0.15,
+    "body": "A serrated leaf at the bouquet's lower left, most likely a rose leaf, carries a drop of water. Three small marks make it: a sliver of white at its upper left, where the light strikes; a pale crescent along its lower right, where light that has passed through the water gathers on the far side; and a hairline of dark just outside that crescent, the shadow the drop casts on the leaf. So the drop is lit twice, and its second light sits on the side away from the source."
+   },
+   {
+    "t": "The vase, and a pale oval in its shadow",
+    "x": 0.32,
+    "y": 0.615,
+    "w": 0.42,
+    "h": 0.29,
+    "body": "The vase is two kinds of glass. Its upper bowl is clear, and through it the stems stand as dark verticals, a few of them set with small, hooked reddish thorns; below a pale rim, the base is green glass set with raised studs and stands on a foot of crimped loops. The studs carry their small highlights at the upper left. The clear bowl, though, behaves like the drop on the leaf at its left: its flank toward the light is nearly black, while its far flank glows with a broad pale band. To the right, the vase and bouquet throw a shadow across the back of the ledge, and inside that shadow lies a pale oval, firm along its lower edge but soft along its top and its tapering right end, laid in a dry, grainy scumble unlike the polished glass beside it. It has the shape and the place of light gathered by a rounded glass and thrown out on the side away from the source. A stem is painted crisply across it, so the oval was there before the stem."
+   },
+   {
+    "t": "A white rose on its face, a butterfly on its stem",
+    "x": 0.11,
+    "y": 0.755,
+    "w": 0.34,
+    "h": 0.18,
+    "body": "On the ledge at left a white rose lies on its face, so what turns up is the side a bouquet keeps hidden: green sepals spread over the petals and a stem bristling with small thorns. The shadow it throws curls round its right side. Along that stem a butterfly has settled with its wings folded upright, which shows their undersides: a red band across the forewing, pale spots near its tip, a mottled brown hindwing with a scalloped edge. Its legs grip a smooth length of stem beyond its leaves, and its clubbed antennae point toward the rose. Beside it a sprig of forget-me-nots, small sky-blue flowers with yellow eyes, trails toward the front edge of the ledge, its lower blooms throwing small shadows of their own."
+   },
+   {
+    "t": "Fallen petals, and a sprig cut by the edge",
+    "x": 0.45,
+    "y": 0.8,
+    "w": 0.51,
+    "h": 0.14,
+    "body": "Two pink petals lie on the ledge just in front of the vase's crimped foot, each painted as a part come loose. The left one is cupped and shows its pale heel, the whitish base where it was joined to the flower; the right one is folded over at its end and flecked with small pale spots. Each throws a small shadow to its right. Further right, past a pink flower and a red one whose petal edges are finely toothed, a long sprig carries buds and leaves out to the right edge, where the picture cuts it off."
+   },
+   {
+    "t": "The chipped edge, in a few broad strokes",
+    "x": 0.224,
+    "y": 0.908,
+    "w": 0.24,
+    "h": 0.055,
+    "body": "Under the white rose and the forget-me-nots, the lit front edge of the ledge is broken in two places. Each break is a brown notch, crossed by a few broad, curved strokes of grey that spill over the edge onto the dark front face, the broken stone catching the light; along the bottom of the left break runs a single stroke of near-white. The bristles have left fine tracks along the grey strokes, a looser handling than anything around them. The pale oval in the vase's shadow is loosely laid too, but there the paint is thin and grainy, with the dark showing through; these strokes are opaque. Directly above the right break, almost touching it, lies the lowest forget-me-not bloom, its petals rimmed with pale hairlines and its eye made of tiny yellow dabs."
+   }
+  ],
+  "beside": "The loss this bouquet only hints at, out at its edges, has reached the centre of Vincent van Gogh's Roses, and no brush put it there. Painted in May 1890, his canvas crowds a green jar with blooms against a green wall, and it too lays a small ending at the jar's foot: a rose and a few green sprigs lie loose on the pale table. But he painted the roses pink. Their red pigment has since bleached, all but erasing the contrast of pink against green that he intended, and the whole mass, from the stragglers at the rim to the crowded middle, now reads white.",
+  "refs": [
+   {
+    "id": "vincent-van-gogh-roses",
+    "text": "Vincent van Gogh's Roses"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "giant-peacock-moth": {
+  "mv": 6,
+  "see": "A large moth, its wings spread flat, lies on a slant across the lower middle of an upright canvas packed with leaves. The wings are blue-green, rimmed in yellow and outlined in dark lines, with an eye-spot on each of the four. Around it rise broad pointed leaves in two greens: pale yellow-green blades that point upward and darker blue-greens that curl and overlap. Orange-red berries are bunched in two clusters at the top edge, and slanting grey-blue strokes fill the lower left corner. The whole makes a flat pattern of outlined shapes in close greens, with two accents set in it: the yellow-rimmed moth below, the red berries above.",
+  "about": "Plants and the ground they grow from fill the canvas, with no horizon and no sky, so this patch of growth has no setting beyond itself. He had learned to look closely at everyday, seemingly unimportant things, partly from the Japanese prints he admired. Into that ordinary growth the picture sets one moth, very large and rather rare by his own account, settled among the leaves with its wings spread. What the canvas records is a find, a rare thing turning up in a common bed of leaves, and most of the room goes to the bed.",
+  "craft": "He painted the moth from a drawing in chalk, pen and brush and ink, and in paint the brush goes on drawing. The big shapes are closed by lines of dark paint, and the colour inside them goes on in separate strokes, left unblended, so the brush's touches stay legible. The load of paint is the other instrument. Some strokes are heaped so thick that they stand up in ridges and catch the light, while others are brushed out so thin that the weave of the canvas reads through.",
+  "context": "In May 1889 he entered the asylum at Saint-Rémy. About 23 May he told Theo that he had not yet been outside its grounds, and that the neglected garden, tall pines over long, badly kept grass and weeds, had given him enough work. Four canvases of the garden were under way, irises and lilacs among their subjects. When Theo saw them, he wrote, he would find that with life passing mostly in the garden, it was not so sad. The next lines tell of the moth he had drawn there the day before. By 16 July Theo had the drawing in Paris, and he praised it together with another plant drawing as \"simple in terms of colour and really beautifully drawn\".",
+  "deeper": [
+   {
+    "t": "Green on green",
+    "x": 0.07,
+    "y": 0.47,
+    "w": 0.8,
+    "h": 0.34,
+    "body": "The moth spans most of the canvas's width on a slant, its left wingtip near the left edge and its right one dipping toward the lower right, laid across leaves that mostly point upward. It is a green creature on green, and its colour sets it apart: the wings lean toward turquoise, bluer than the yellow-green leaves behind them and lighter than the dark blue-green leaves beneath. Its edges tie it back in. A dark line outlines the wings, as lines running from deep green to black outline the leaves around them. And the broad yellow band that rims each wing is the yellow of the pale leaf points rising behind the body."
+   },
+   {
+    "t": "An eye built from strokes",
+    "x": 0.175,
+    "y": 0.495,
+    "w": 0.16,
+    "h": 0.1,
+    "body": "The eye-spot on the upper-left wing looks like a neat target at a distance and is built from separate touches. Its dark ring is a run of broad strokes that meet at corners, and stretches of it are a deep maroon instead of black. Inside, an orange crescent runs round the left side and the bottom only. Where the orange stops, at the top and right, the band round the pupil is buff, and the weave of the canvas shows through it like graph paper, while the wing around it is laid in ridged, heavy strokes: the eye-spot's centre is flat where the wing is thick. The pupil is a dark teal blot, flattened along its lower side and greener than the navy pupils of the other three spots. The four eye-spots are not copies of one another. The crescent shifts along the rim from spot to spot and the pupils change shape, so each was painted as its own small event."
+   },
+   {
+    "t": "The dark knot at the centre",
+    "x": 0.395,
+    "y": 0.5,
+    "w": 0.18,
+    "h": 0.175,
+    "body": "At the moth's centre the paint changes character. A raised ridge of pale pinkish cream runs along the front edge of the left forewing, over the top of the body and on along the right forewing, one line tying both wings to the body. Under it the thorax is a heap of near-black paint, glossy, with a deep red showing inside the black. Below that the abdomen is a stack of black lobes split by pale bars, and the stack has the look of a small dark mask. Beyond the ridge, at the body's leading end, sits a knob of dark paint touched with red, with thin dark strokes splayed from it across the yellow leaf behind. The whole knot sits almost exactly on the canvas's vertical centre line, the dark weight the four wings spread from."
+   },
+   {
+    "t": "A short vocabulary of strokes",
+    "x": 0.56,
+    "y": 0.62,
+    "w": 0.31,
+    "h": 0.16,
+    "body": "Out on the right forewing, around its eye-spot, the moth's markings come down to a short vocabulary of strokes. A cream zigzag crosses the wing in raised, sharp-angled peaks, thick enough to catch light along its ridges. Below it the darker band is a row of hooked dark blue and black dabs, each a single touch set beside the next. Then comes the yellow border, then the near-black outline, which rounds the blunt tip in a continuous curve. Inside the wing the turquoise strokes are short and combed, running mostly along the wing's length, so the surface reads as scales with a direction. The moth's pattern has been translated into marks a loaded brush makes naturally: a zigzag, a hook, a band, a line, a short combed stroke."
+   },
+   {
+    "t": "Hatching at the foot",
+    "x": 0,
+    "y": 0.84,
+    "w": 0.52,
+    "h": 0.16,
+    "body": "Along the bottom left the ground is hatched. Grey-blue strokes are laid side by side on a slant, like the hatching of a pen drawing, with yellow-olive showing between them. Many carry a dark blue-black dash along the stroke, a separate, glossier touch laid on top: the grey gives the tone, the dash gives the edge. The same dark dashes come back at the canvas's lower right, over green. The grey-blue is cooler and duller than the greens above it, and directly under the yellow blade the ground pales to a grey that is lighter than the blade itself. Dark green stems rise through the hatching in single loaded strokes that break into flecks where the brush ran dry over the weave."
+   },
+   {
+    "t": "Edges that are drawn",
+    "x": 0.72,
+    "y": 0.03,
+    "w": 0.26,
+    "h": 0.33,
+    "body": "In the upper right the leaves can pass for loose ribbons of green. Their edges say otherwise. Each margin is a single dark line laid with a loaded brush, deep green on some leaves and close to black on others, and where a leaf's edge crinkles, the line ripples in tight waves while keeping a nearly even width. The leaves themselves are thinly brushed, and so is the screen of vertical blue-green strokes behind them. These are outlines, the same device that rings the moth, and they keep a crowded corner of foliage legible as separate leaves."
+   },
+   {
+    "t": "Berries made in two moves",
+    "x": 0.28,
+    "y": 0,
+    "w": 0.45,
+    "h": 0.2,
+    "body": "Most of the berries are made in two moves: a ring of blue-green or near-black swirled round first, then a dab of orange-red pressed into the middle, a few with a dark dot at the centre. Pale and green streaks are marbled through the red in places, wet paint dragged through wet. The berries stand proud of the surface, with glints along their ridges, against a thinly painted background. In both clusters the berries at the top are the brightest, hottest red and the lower ones duller and darker, a gentler step in the left cluster than in the right, where the lowest turn brick-brown. Between the clusters, the leaf below them is edged on its right by a single near-black stroke whose upper side breaks into a ragged, saw-like row of uneven points."
+   },
+   {
+    "t": "Red strokes in a pale leaf",
+    "x": 0.325,
+    "y": 0.245,
+    "w": 0.14,
+    "h": 0.135,
+    "body": "At full view there is a faint warm smudge on the pale green leaf above the moth's left wing. Enlarged, it is a patch of thin red strokes, about two centimetres tall, running down the leaf in the same direction as the leaf's own green strokes. The brightest are solid orange-red. Others are streaked, red and green lying side by side in the lines the brush's hairs left. A short curved stroke of ochre sits among them. The red lines close no shape and stay clear of the leaf's edges, out in the open middle of the green."
+   }
+  ],
+  "beside": "Looking for small creatures among plants is the subject of Suzuki Harunobu's Young man and woman hunting for insects at night, a print of about 1767–68, and it is the half of the story this moth leaves out. Against a black night, a young woman in a pale robe holds a paper lantern out on a rod, and a youth in a striped robe crouches at a flowering bush clover, pinching a stem. Where this canvas has the creature and no one with it, the print has the hunters and no creature: no insect can be made out among the stems, or in the small barred cage on the ground beside him.",
+  "refs": [
+   {
+    "id": "suzuki-harunobu-young-man-and-woman-hunting-for-insects-at-n",
+    "text": "Young man and woman hunting for insects at night"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "introduction-of-christianity-in-poland": {
+  "mv": 6,
+  "see": "A wide lake shore in low, orange light. A dark wood fills the upper left; across the lake lie a wooded island, a round tower, a steep-roofed building and a long bridge on trestles, with a peaked hill beyond. Along the near bank a crowd spreads: a mitred cleric baptising at a font, people in furs and headcloths, a ploughman with a yoke of oxen, armed men with spears at the right. Birds and a banner fly against the sky. Right of centre, a man in a red robe stands at a tall wooden cross.",
+  "about": "The title promises more than a baptism: here a whole way of life is being replaced, on the shore of Lake Lednica, with an island stronghold across the water. In Matejko's printed key, Mieszko I, the man in red, has planted the cross in Polanian soil; St Wojciech baptises at the font; two Benedictines read the creed to a not very willing host of nobles and their families; at sunrise, monks plough the holy line for a house of God that is yet to stand. The key names the losers too: an old Slavic temple dying in the nearby wood, an old musician weeping over timber brought from that wood, and a young bowman carrying off a stone fragment of the toppled idol.",
+  "craft": "Matejko painted twelve oil sketches in under a year, this one probably in a few weeks at the start of 1889, on an oak panel. The paint changes with distance. At the front, figures are built in dark paint and their lights laid on last and thick. A row back, a head is a few touches of the brush. Across the lake the island is scrubbed in thin, cool paint, the brush's hatching left showing, so that it sits back behind the crowd, and the sky above it is laid in broad, mostly level strokes of orange cloud over blue.",
+  "context": "In December 1886 Józef Łepkowski proposed Matejko for an honorary doctorate at the Jagiellonian University, writing that each of his pictures was like a work of history, a book in which no critic found an inaccuracy. At the conferment in 1887 Matejko answered, for all those honoured, that to a nation erased, as partitioned Poland was, it mattered what it could show an unwilling world as proof that it lived. His painted History of Civilisation in Poland followed, built on the historian Józef Szujski's lectures; he began with the University's own story and turned to the beginnings last. The 965 in Matejko's own title was the year the annals gave, first questioned by historians in 1872, and 966 is the date accepted now.",
+  "deeper": [
+   {
+    "t": "Two beams against the glow",
+    "x": 0.635,
+    "y": 0.016,
+    "w": 0.31,
+    "h": 0.357,
+    "body": "Two plain beams carry the upper right of the picture. The cross is laid in as one flat brown silhouette, barely modelled, and at the top of the upright the paint ends in a bristly, feathered edge, the hairs of a nearly dry brush dragged out into the sky. Warm paint touches it at the edges, a stripe down the upright's right side, where the sky burns brightest, and a thin orange rim along the underside of the crossbar, on both arms: the light comes low from our right, and the cross stands against it, a dark shape cut out of the glow. A large bird with spread wings, pale beneath, flies in toward the crossbar, two smaller dark birds beyond; lower down, a lance-headed pole hangs a red cloth from a short bar, streaming to the right with a pale device painted on it."
+   },
+   {
+    "t": "A palm on the upright",
+    "x": 0.645,
+    "y": 0.4,
+    "w": 0.2,
+    "h": 0.37,
+    "body": "The man in red neither grips the cross nor kneels to it. One open palm is laid flat against the upright at the height of his own head, fingers spread, the arm held straight out from the shoulder. His face goes the other way. Under a fur-rimmed cap studded with red, the bearded profile is turned to our left, toward the crowd and the font, so this one figure spans both halves of the scene: arm to the cross, eyes to the baptism. His other hand rests on the hilt of a sword held point-down. On the costume the painter's method changes. The robe is a deep red dragged in long strokes, while belt, collar and chest are built from small raised dabs of pale and yellow paint, each one a glint of metal or jewel on dark cloth. One booted foot stands on the edge of a long squared block at the cross's foot."
+   },
+   {
+    "t": "The crest beyond the cross",
+    "x": 0.8,
+    "y": 0.3,
+    "w": 0.178,
+    "h": 0.42,
+    "body": "Right of the cross the crowd changes kind. Armed men in furs, spearheads standing up along the edge, are set beneath the brightest part of the sky, and the painter builds them almost wholly from glints: small pale dabs flicked over dark paint wherever metal or a clasp would catch. Above them rises a tall, two-peaked headdress, dark and shaggy, over a bearded face turned toward the cross; beside him a bridled horse's head dips, pale down the front. Behind, one hand is flung up, fingers spread. The nearest of the armed men stands hard against the upright, under the banner pole, and below him a man in a blue cap bends over a tall red shield propped against the cross, one hand raised to its pale upper panel."
+   },
+   {
+    "t": "One stroke of water",
+    "x": 0.265,
+    "y": 0.395,
+    "w": 0.25,
+    "h": 0.29,
+    "body": "Among all the figures, the pale paint gathers most densely here, in the mitred cleric's sleeve: cream-white laid on thick in short, broken strokes that stand up in ridges. The arm ends in a small dark vessel tipped over the font, and all that loaded white narrows to one thin stroke of water falling onto a bowed head. The man receiving it is bare to the waist, a yellow cloth at his hips, his head laid on a forearm folded over the rim. A band of letters runs round the font below its lip, a cross shape standing out beneath. To the right a hooded elder holds up an open book and a small cross on a staff; behind him a long-haired young man stands with lips parted over the page."
+   },
+   {
+    "t": "A furrow beside the font",
+    "x": 0.012,
+    "y": 0.585,
+    "w": 0.455,
+    "h": 0.385,
+    "body": "Below the font, while the water is poured, a man is ploughing. In a dark tunic, forearms and shins bare, he bears down on the two curved handles of a wooden plough, and the share has turned a line of pink-brown clods out of the grass. Two oxen under one wooden yoke, one grey and one darker, pull with heads down while a man in a dark cap holds their rope. The grey ox's hide is laid in heavy, curling, broken strokes that keep their weight even in its shadowed flank. Low over the grass a cord runs from the oxen past the plough to a short stake beside the turned earth: the furrow is being cut along a line pegged out on the ground."
+   },
+   {
+    "t": "The face turned to us",
+    "x": 0.455,
+    "y": 0.55,
+    "w": 0.27,
+    "h": 0.42,
+    "body": "At the front of the crowd a young woman in a white headcloth looks straight out of the picture, while the rest of her is busy elsewhere. Her outstretched hand reaches the arm of a man in a long fur-collared coat, just below the collar; he stands with his back to us, head bowed. At her other side a barefoot child hangs on to her hand. To their right an old man with white hair has folded almost double, one hand spread over his brow and eyes, the other on a stick. Four people make up this group at the rite's edge, and the painter gives them hands that hold, cling and cover. Matejko's key identifies her as a wife urging a doubting husband toward baptism, yet it is us she looks at, with both hands taken, one reaching to the man, the other held by the child. The paint keeps her solid: headcloth and apron in loaded, broken whites, the blue skirt dragged down in long dark strokes, flecked with white just below the apron."
+   },
+   {
+    "t": "At the foot of the cross",
+    "x": 0.675,
+    "y": 0.665,
+    "w": 0.195,
+    "h": 0.305,
+    "body": "Under the boot of the man in red sits a long squared block, its right-hand end cut at an angle and catching the light. Just below that end, a carved post lies tipped on its side in the grass, ringed with folds of carving, its round flat end turned toward us. Loose stones lie round it, and a short stake beside the block has a pale cord knotted to it. In front, heavy logs lie side by side, an axe left biting into the nearest. Stones, timber, a tool and a stake make this corner a work site, and the carved post, identified as the toppled idol of Matejko's key, lies among them like something cleared away."
+   },
+   {
+    "t": "A fire in the wood",
+    "x": 0.012,
+    "y": 0.285,
+    "w": 0.155,
+    "h": 0.19,
+    "body": "At the far left, deep among the dark trunks, something built is burning. A timber frame with one upright post carries a handful of flames, and a soft blue-grey haze spreads above them through the trees. The flames are short strokes of orange dragged round in curves, the bristle marks still in them, while the haze is a thin veil with the dark of the wood showing through in places. Below them, under the branches, are small figures, some with arms raised, one on a pale horse. The burning frame is identified as the dying old Slavic temple of Matejko's key."
+   }
+  ],
+  "beside": "Thor's Fight with the Giants, which Mårten Eskil Winge signed in 1872, gives a pagan god the place this panel gives the cross, high against the glow above something brought low, and he is winning. At Lednica the old faith goes down; Matejko's own commentary has its idol toppled. In a red tunic, Thor sits forward in a gilded chariot behind two black goats and lifts his hammer into the storm's glare, while his other fist holds a giant down by the hair at his knee. In 1881 a Swedish critic saw in it the god of light and strength, in a fight “whose outcome is not in doubt”.",
+  "refs": [
+   {
+    "id": "thor-s-fight-with-the-giants",
+    "text": "Thor's Fight with the Giants"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "sketch-for-composition-ii": {
+  "mv": 6,
+  "see": "An oil sketch packed edge to edge with saturated colour: red, yellow, blue, green and violet patches, most closed by black lines drawn with a loaded brush. Some shapes resolve as figures and creatures, a row of round heads at lower left, a small figure with arms held straight out, upright forms that carry eyes, long shapes lying on yellow at the right; others stay pure shape. The large forms are a pale diagonal band at the left, a white column at top centre and a red wedge across the lower centre. Dark teal and blue gather in the upper left, which holds more deep, dark colour than any other quarter of the canvas.",
+  "about": "In a lecture he drafted in January 1914 and never gave, Kandinsky wrote that Composition II was painted without a theme, and that he might then have been wary of starting from one. Scholars have looked for one anyway. Klaus Brisch, in 1955, read a deluge on the left and a garden of love on the right; Peg Weiss has argued for a water spirit and a sacred grove from the Komi beliefs Kandinsky studied on an 1889 journey to Vologda province. No theme did not mean no feeling: in the same draft he wrote that he had softened, with colour, a tragic element in its composition and drawing.",
+  "craft": "Under the paint lie the remains of a grid drawn in soft black crayon, with pencilled colour notes scattered across the canvas, both recorded when it was examined in 1972. Kandinsky often wrote colour notes on paper studies, but none was then known on another canvas of his, and a grid seems to have been extremely rare in his work. In the 1914 lecture draft he wrote that Composition II used colour freely, without regard for perspective; nor does the paint model form: no light falls from one side, no shape casts a shadow, and the darks are colours, not shading.",
+  "context": "In January 1909 Kandinsky founded the New Artists' Association of Munich and was elected its president. He lived openly with Gabriele Münter, between Munich and the house she acquired that summer at Murnau. He finished Composition I in January 1910; Composition II, the canvas this study prepared, was painted that winter and hung in the association's second exhibition in September. The painter Franz Marc wished the Compositions could hang beside the Islamic tapestries then on show in Munich, sure they would hold up as pictures, not tapestry. On 1 November a reviewer in Die Kunst für Alle called Composition II a coloured chaos, parts of which he might accept if labelled 'colour sketch for a modern carpet'.",
+  "deeper": [
+   {
+    "t": "The red that turns orange",
+    "x": 0.18,
+    "y": 0.64,
+    "w": 0.44,
+    "h": 0.35,
+    "body": "The largest red shape on the canvas lies across the lower centre, a wedge several times the size of any other red patch. Black lines close it, yet its colour travels: from deep red at our left end it warms through orange to its palest, peach strokes along the upper middle, then deepens again to a strong orange-red where the wedge narrows at the right. The shift is built from short slanting touches of orange and pink laid side by side, each still visible, so the change happens stroke by stroke. Near the top, rows of pale strokes cross the red at one repeated slant, like hatching. Most of the red is scrubbed thin, the canvas weave showing through; toward its left end the green band beneath is laid thick, in ridged strokes that bury the weave, and there its upper edge rides over the dark seam between them. Further left, the black line under the green stops acting as an edge and coils into a small spiral holding lilac and yellow."
+   },
+   {
+    "t": "The black hollow",
+    "x": 0.33,
+    "y": 0.46,
+    "w": 0.27,
+    "h": 0.27,
+    "body": "Just above the red, the painting knots. A black hollow opens between a heavy white form on our left and a blue-and-white mass on our right. Inside it lies a tongue of blue carrying two rows of opaque pink dabs, set like beads. Over the hollow, curved strokes of white and black alternate in a stack of arcs, a dome built by repetition. To the right, a knob-ended form, outlined in black and filled with strokes of dark blue, carries a run of brown dabs, the same beading in another colour. The white on the left is laid heavy and ridged, and the white stroke beneath the hollow is dragged into small scalloped waves."
+   },
+   {
+    "t": "Four heads in a row",
+    "x": 0.06,
+    "y": 0.52,
+    "w": 0.22,
+    "h": 0.3,
+    "body": "Four round heads stand shoulder to shoulder at the lower left, each a disc on a column of colour, each ringed by the same black line. The contour repeats; the paint inside it does not. The two heads on our left are near-black and solid, while the two on our right break into streaks of blue touched with crimson and green, and are far lighter. None has features. Yet the outline is not a boundary the colour fills: blue dabs ride straight over the black line between the red body and the pink one, and on that same edge a pale sliver is left between the line and the pink."
+   },
+   {
+    "t": "The pale band and its dotted edges",
+    "x": 0,
+    "y": 0.18,
+    "w": 0.24,
+    "h": 0.45,
+    "body": "From high on the left edge, the biggest pale shape on the canvas slides down toward the four heads. Its edges are black lines that jog in short steps, and rows of small yellow dots run beside them, a little off the line, as if each contour had been echoed in another colour. At its upper end the white is thick and crusted; lower down it thins to washes of lilac, green and pink through which the weave shows. In the middle of the band a short grey zigzag is drawn with a point, and no painted edge takes it up. On the pale strip to its left, two threads of thin blue waver down and to our left, each ending in a small bead."
+   },
+   {
+    "t": "The figure with outstretched arms",
+    "x": 0.18,
+    "y": 0.19,
+    "w": 0.19,
+    "h": 0.32,
+    "body": "Up at the left, under a broad field of dark teal and blue, stands a shape built like a person: a round olive head, a yellow torso, two arms held straight out in a single bar. It rises from an oval drawn in black and packed with blue, green and violet over a heavy plum band. The arms are not painted alike. The one on our left is a saturated yellow-ochre; the one on our right is a pale yellow, nearly as light as the creamy strokes heaped behind it, its tip held by a black line that curls round it."
+   },
+   {
+    "t": "The column and the eye",
+    "x": 0.545,
+    "y": 0,
+    "w": 0.185,
+    "h": 0.49,
+    "body": "At the top centre a white column, spotted with crimson, rises to two peaks; a black line closes them short of the upper edge, under a strip of violet. Its right edge is drawn twice, a thin dark line and beside it a chain of blue dots. At the top the dots carry on where that dark line stops, loop round on themselves and double back under a yellow patch; at the bottom they spread apart and give out. Red slabs lie flat and even on either side, a plain foil to the spotting. Below the right-hand slab, a brown upright form wrapped in a blue mantle carries one orange oval ringed in black near its top. That single ring is enough to make the shape read as a creature."
+   },
+   {
+    "t": "Lines that hang",
+    "x": 0.72,
+    "y": 0,
+    "w": 0.28,
+    "h": 0.37,
+    "body": "High on the right, black lines hang from an arch like long strands, wavering as they fall, some ending in a small hook. Between them sit dabs of red and green, mostly clear of the lines, so colour and drawing make two separate patterns over a thin cream ground. A long pink stroke runs down the arch's right side beside one of the black lines, an edge doubled in colour. Inside the arch rises a yellow form whose rounded top juts to our right, with an orange eye ringed in black near that end; strands come down onto its crown, and a thin grey-blue one runs a short way into the yellow."
+   },
+   {
+    "t": "Stroke turns to dab",
+    "x": 0.69,
+    "y": 0.61,
+    "w": 0.31,
+    "h": 0.39,
+    "body": "In the lower right corner the touch changes from stroke to dab. The yellow band is laid in long horizontal strokes, crossed by three parallel red slashes; the blue field below it is set with separate square touches of red, green and black, a wavering black line threaded through them. Above the band lies a long white form, closed by a black line that climbs along its top into a thin hook tipped with yellow and finishes at its right in a black wedge filled with blue. Left of the hook, where the white's upper edge meets the blue above it, two black lines hold a fringe of short blue and teal strokes laid side by side, darkening the edge by mark, not by mixing."
+   },
+   {
+    "t": "Shapes lying on yellow",
+    "x": 0.665,
+    "y": 0.35,
+    "w": 0.335,
+    "h": 0.275,
+    "body": "Below the hanging lines on the right, long shapes lie across a ground of yellow and orange. A magenta shape lifts a rounded red head on a short neck and reaches out to our right, where a black line curls into a white round shape laid with brown. Below them, a longer magenta shape, edged with red strokes toward its right end, narrows to a round dark-blue tip ringed in black. Further right, a white form with a small round top curves round an orange-red patch, its lower part stretched along the yellow to our left. Higher up, a short olive drip falls straight down from the dark lower edge of a violet band and ends rounded, so the canvas stood upright, this way up, while that paint was still wet."
+   }
+  ],
+  "beside": "Less survives of the Magnificence of Princes, Giambattista Tiepolo's ceiling for the Russian court, than of Composition II. No photograph of it is known, and Tiepolo's own sketch for it probably survives only in part, as Study for a Ceiling with the Personification of Counsel, made before about 1762. On a brown cloud bank at its left a figure swathed in ochre sits above a child, and a winged child flies overhead with a wreath. At the right, the blue gives way to a warm field with nothing drawn in it. The ceiling is known from a print after it, the robed figure and the flier reversed.",
+  "refs": [
+   {
+    "id": "tiepolo-study-for-a-ceiling-with-the-personification-of-counsel",
+    "text": "Study for a Ceiling with the Personification of Counsel"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "zoie-ghika-moldavian-princess": {
+  "mv": 6,
+  "see": "A young woman, half-length, looks straight out from a plain ground, near-black at our left and olive at our right. A wound headdress of pale crumpled cloth, set with pink roses and metal-bright ornaments, sits high on dark hair cut in a fringe. A lace frill stands at the neck, lace edges a sheer layer across the breast, and a braided, spangled border and buttons run down the bodice of a long-sleeved white gown. Open over the gown lies a sleeveless waistcoat that looks like fur. Light falls from our left. The pale costume rises in one column from bodice to headdress, with the face, ringed by dark hair, set inside it.",
+  "about": "Zoie Ghika was a Moldavian princess living in exile in Russia, at the court of Catherine II. Roslin paints her in the dress of her own country: a white silk gown with silver braid and lace edging, and a turban-like headdress set with roses, worn over her own dark hair with no wig. At that court such clothes made an exotic impression. The ground behind her is plain, so the dress alone tells where she comes from, and she wears it a long way from Moldavia.",
+  "craft": "Roslin's oil is smooth and fused, the flesh blended until its strokes all but disappear. Nearly everything she wears is white, so the touch, more than the colour, tells one material from the next. The fine work is not spread evenly: the long sleeve at our left is laid in broad folds turned by a few long, crisp lights, and the waistcoat's pale bands in long, feathery drags with soft edges, while small, exact touches crowd into the column from bodice to headdress.",
+  "context": "In May 1772 Gustav III of Sweden made Roslin one of the first knights of his new Order of Vasa, hence the signature, \"le Chev: Roslin\". On his way north in the summer of 1774, Roslin stopped in Amsterdam, where he studied Bartholomeus van der Helst. Per Bjurström, his biographer, traces a plain Dutch demand for truth in his painting from that stop on. Invited by Catherine II, he travelled to St Petersburg in September 1775, and his portraits of Grand Duke Paul and the Grand Duchess brought a flood of commissions and, by 1777, orders for copies. Bjurström calls the output very large and therefore uneven; the Empress is said to have complained that he made her look like a Swedish kitchen-maid. He was back in Paris by the summer of 1778, and Bjurström calls this portrait, one of his last in Russia, perhaps the finest of his late work.",
+  "deeper": [
+   {
+    "t": "Light on the forehead, light in the eyes",
+    "x": 0.33,
+    "y": 0.22,
+    "w": 0.31,
+    "h": 0.2,
+    "body": "The face takes its fullest light on the forehead, just under a fringe cut straight across, and the fringe is less solid than it looks from a distance: its ends are separate tapering strokes of brown laid over pale skin, thinning enough beneath the headdress for the forehead to show through them. Each eye holds a single crisp touch of white, set at the upper left of the pupil in both eyes, so even these two specks obey the light coming from our left. The brows are heavy and dark, densest near the nose and thinning outward, built from soft feathered strokes with no drawn outline. In the eye at our left, a tiny coral touch marks the inner corner and a thin wet light runs along the lower lid under the iris."
+   },
+   {
+    "t": "Cloth, metal and roses",
+    "x": 0.21,
+    "y": 0.02,
+    "w": 0.47,
+    "h": 0.29,
+    "body": "At the top of the picture, the crown of the headdress is a heap of crumpled cloth built from short, curling strokes of pale paint with grey-brown pressed into the hollows, and it looks light enough to crush in the hand. Pinned into it are pointed lozenges and, at our left, a long pointed strip: dull olive-brown laid flat, crossed on the strip by dotted zigzags of pale ochre, and lit by a few crisp, opaque dabs of near-white bunched along one edge. Those few dabs carry the shine, and from them the eye reads metal at once. The roses at our left are softer again, lilac-pink outer petals brushed round coral hearts built from a few curved strokes; their leaves are broad blades of dark green, lighter along their edges, and a few thin green lines are laid across the palest rose. For all its whiteness, the headdress is painted darker than the forehead beneath it, an ivory-grey that reads as white against the dark ground around it."
+   },
+   {
+    "t": "A rose on the centre line",
+    "x": 0.38,
+    "y": 0.15,
+    "w": 0.22,
+    "h": 0.36,
+    "body": "The small rose at the front of the headdress is placed with care: it sits plumb above the tip of the nose and the middle of the mouth, so a line dropped from it runs straight down the centre of the face. Its coral heart is the deepest of three related warm pinks: the lower lip is lighter, and the flush on the cheek at our left lighter still, a flush that keeps to that lit side; the shaded cheek at our right warms toward ochre. The mouth has no hard edge anywhere. The parting of the lips is one thin warm line, the upper lip hardly separates from the skin around it, and the faint smile sits in the corners, two soft shadows melting into the cheeks."
+   },
+   {
+    "t": "A plait in the dark hair",
+    "x": 0.23,
+    "y": 0.36,
+    "w": 0.18,
+    "h": 0.24,
+    "body": "Inside the dark hair at our left runs a thin plait, drawn as a chain of small linked strokes of warm brown that catch a little light; at full view it sinks into the mass of hair. On this side the hair's outer edge barely parts from the near-black ground, dark laid against darker along a soft boundary. Below, a small lace frill stands up at the neck, and its lace is made differently from the lace lower down: pale, broken touches dragged over the dark, with the dark left showing between them, so the frill reads as open-work held up against the hair."
+   },
+   {
+    "t": "Lace drawn over skin",
+    "x": 0.36,
+    "y": 0.54,
+    "w": 0.32,
+    "h": 0.34,
+    "body": "Under the lace, the skin of the opening carries its own full modelling: the shadow between the breasts, and the turn of the breast at our right, closed off by the dark edge of the bodice. The lace lies on top of that modelling as thin lines of pale paint, drawn as scrolls, as rings and loops with dark centres, and, near the outer curve of the breast at our right, as a net of tiny honeycomb cells. Between the motifs the skin is barely changed, only a shade greyer than the unpatterned skin higher in the opening, so the cloth that carries the pattern is the thinnest of veils, and the pattern does most of the work of showing it is there. Where the lace gathers into frills, down both edges of the opening and in the ruffle that hangs into the hollow, the pale lines crowd and overlap until the lace turns nearly opaque. How covered the skin looks depends on how densely the lines are drawn over it."
+   },
+   {
+    "t": "Spangles that go dark in the shade",
+    "x": 0.35,
+    "y": 0.74,
+    "w": 0.34,
+    "h": 0.26,
+    "body": "The edging down the bodice is a corded braid of olive ridges, and along its lit stretch at our left it is studded with spangles, each a separate crisp dab of opaque white, set in loose rows that follow the braid down to the buttons and on down the cords beside them. Follow the same braid round the curve at our right, where it turns into shadow, and the white dabs give way to small dull ticks of olive and grey. The spangles were dimmed wherever the light does not reach them, so the sparkle follows the light. The buttons down the front are handled another way: small soft spheres with a highlight at the upper left and a shadow tucked beneath, matte beside the glitter of the braid."
+   },
+   {
+    "t": "Dark behind light, light behind dark",
+    "x": 0.12,
+    "y": 0.28,
+    "w": 0.86,
+    "h": 0.46,
+    "body": "The ground behind her changes from side to side. At our left, behind the lit cheek and the bright shoulder of the waistcoat, it is near-black. At our right it turns a warm olive, and the olive is lightest just beside the dark hair at the level of her jaw, fading upward toward the top corner and outward toward the edge. That grading sets each side of the figure against its opposite: the light skin and costume at our left stand out against the darkest ground, while the dark hair and the waistcoat's shadowed shoulder at our right stand out against the lightest. The olive is thin enough for the weave of the canvas to show through it."
+   },
+   {
+    "t": "Turned away, facing out",
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1,
+    "body": "At our left, the near shoulder and the long sleeve spread wide in the light; at our right, the far side of the body narrows into shade. The torso is turned toward our right, and the bodice opening with its buttons bears it out, sitting well to the right of the midpoint between the two shoulders. Above that turned body the head comes back almost square to us, so face and torso point two ways and the still pose holds a quiet twist. The body, set left of centre, turns toward the open olive field at our right, and low near that edge sits a two-line inscription in dark paint."
+   }
+  ],
+  "beside": "Zoie Ghika is known by her own name and painted in her country's dress. Anna Bilińska's Black Woman, made in a Paris studio in 1884, shows a woman in pale cloth too, her head wrapped and metal catching the light, but she is an unnamed model, and the white is a studio drape. It crosses one shoulder and leaves the other bare, and one breast with it. Unlike Zoie Ghika, she raises her eyes above the viewer's, to one side.",
+  "refs": [
+   {
+    "id": "black-woman",
+    "text": "Black Woman"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "the-penitence-of-saint-jerome": {
+  "mv": 6,
+  "see": "An open triptych: three arched painted fields, a broad centre and two narrower wings, each in its own frame. On the left a kneeling man baptises another standing in a river, a crowned figure in the clouds above. In the centre an old man in a blue-green robe kneels beside a tall pale rock, a monastery, a caravan and a far plain behind him. On the right an old man in a black habit sits with a red book among strange creatures, a harbour and the sea beyond. Four large figures hold the foregrounds, two of them in the left wing, and dozens of tiny ones people the land behind. In all three fields the far horizon sits at nearly one height.",
+  "about": "John the Baptist, Jerome and Anthony, presumably a patron's choice, were each tested alone in the wilderness. Set in one country, they stand together as models of the life that leaves the city for the wild. On the left John baptises Christ in the Jordan while God blesses from the clouds; at the centre Jerome does penance before a crucifix, and far behind him appears again, pardoning the merchants whose theft of the monastery's donkey his lion uncovered; on the right Anthony sits with Scripture and rosary while demons taunt him. Christ and Anthony each raise a right hand in blessing, out toward a worshipper before the open altarpiece.",
+  "craft": "Patinir laid a loose drawing in a crumbly black material, like chalk, over the white priming of three panels of Baltic oak. It fixed a high horizon, placed the main figures and roughed in the main landscape and the buildings; many small things were never drawn at all, only painted in at the last stage. He plotted one landscape across all three, so crags, trees and fields run on over the joins between wing and centre. Karel van Mander, writing in 1604, praised his landscapes as clean, with the trees somewhat dabbed in, and the crowns here are built that way: dark masses of green touched with lighter leaf.",
+  "context": "Patinir became a master of the Antwerp painters' guild in 1515, about when this triptych was made, and later worked as a specialist, painting landscapes into which other men, Quinten Massys among them, set the figures. Dürer, in Antwerp in 1520 and 1521, borrowed his journeyman and his paints, drew his portrait and four Saint Christophers for him, and was a guest at his second wedding; his diary calls him a landscape painter, Landschaftmaler, a word its 1893 editors thought new to German writing. Patinir died in 1524. By 1674 the triptych was an emperor's, and an Austrian abbey then kept it for some 250 years, once calling it the most important piece of its collection.",
+  "deeper": [
+   {
+    "t": "The stone in the fist",
+    "x": 0.36,
+    "y": 0.52,
+    "w": 0.23,
+    "h": 0.38,
+    "body": "A small grey stone sits in Jerome's raised fist, so slight against the leaves behind it that the gesture can pass for a wave. Once it is seen, the whole pose becomes one action held at its peak. The arm is drawn back to shoulder height as if to strike; the other hand clutches the robe's edge at mid-chest and holds it open, baring the chest. He is old and spare, the long beard falling into the opening. The robe is a deep blue-green that sinks almost to black where it pools over his knees, one bare sole turned up behind him. His body turns toward a small crucifix lying tilted on the slope at his side, its long shaft angled down toward us, and below it a bound bundle of switches lies on the ground."
+   },
+   {
+    "t": "Sawn, and still growing",
+    "x": 0.281,
+    "y": 0.4,
+    "w": 0.103,
+    "h": 0.518,
+    "body": "The stump at the left edge of the centre has been sawn, not snapped. Its top is a flat disc marked with growth rings and split by a crack from heart to rim, a thin pale run spilling over the edge below it; lower down, a long strip of bark has been torn away to show raw wood. From directly behind the cut, pressed against it, a second, smooth stem climbs to a leafy crown high above, and a thin shoot rises from the stump's other shoulder."
+   },
+   {
+    "t": "The spring under the rock",
+    "x": 0.55,
+    "y": 0.665,
+    "w": 0.17,
+    "h": 0.253,
+    "body": "In the black mouth of the cave at the rock's foot, a spring spurts out as a few hair-fine white strokes that arc over and break into a small splash; at its source the water is made of nothing more. Downstream it runs as a dark brown band through pale sand, flecked with single white glints, down the right side of a squared boulder; below the boulder it meets a second channel that comes down on the boulder's left. The rock above is built the same way at a larger scale: broad cream faces in full light, their right-hand sides dropping into brown shadow, the cracks drawn as crisp dark lines. On its top edge perches a small bird, grey-backed with an orange-buff breast, the wing laid in with a few separate strokes."
+   },
+   {
+    "t": "The lion in the yard",
+    "x": 0.583,
+    "y": 0.47,
+    "w": 0.137,
+    "h": 0.22,
+    "body": "Through the gap beside the rock, a lion pads across a sandy yard with its tail curled high, and the donkey and camels near it stand where they are. Two men kneel before Jerome, a small bald figure in a dark hooded habit who stands facing them. The nearer, in pink, white-bearded under a yellow turban, joins his hands, a curved sword at his belt; the second kneels close behind him in a yellow hood over a blue-grey robe. The grey donkey wears a wooden pack-saddle, one camel carries a great white bale, and a peacock perches on the wall behind. This second Jerome, head to foot, is shorter than the foreground Jerome's head, yet the episode is told completely, down to the halter ropes trailing on the ground."
+   },
+   {
+    "t": "A hand above the head",
+    "x": 0.04,
+    "y": 0.535,
+    "w": 0.192,
+    "h": 0.403,
+    "body": "In the left wing, John, kneeling in an ochre robe, holds his hand flat and open just above Christ's hair, and it is empty: the gesture alone carries the rite. His own eyes look past the head, out over the water to our right. Christ stands in the river with the water just below his knees, eyes lowered almost shut, one hand raised with two fingers lifted, the other gathering a white loincloth at the hip. Below the waterline his legs do not simply stop: for a short way they go on as a fainter, greener ghost under the surface, ringed by ripples where they break it. The surface around him is a run of level pale strokes over blue-green, so the water is drawn twice: once as a skin, once as the depth beneath it."
+   },
+   {
+    "t": "Gold lines from the cloud",
+    "x": 0.048,
+    "y": 0.2,
+    "w": 0.122,
+    "h": 0.305,
+    "body": "High in the left wing, a bundle of thin gold lines, about ten of them, falls in a slowly widening fan from the cloud window above this view, where a crowned God holds an orb. They run dead straight and lie over everything they meet, the cloud bank, the face of the rock pinnacle, the river, the treetops, while the water and leaves between them keep their own colour. They are a sign laid on the scene, a different order of light from the daylight that models the rocks from our left. Followed down, they pass a white dove hanging with spread wings against the tree crowns and aim at Christ's head in the river below. Orb, dove and head sit on one slanting line: the wing's tallest axis is a single descent from cloud to water."
+   },
+   {
+    "t": "A pinch at the book",
+    "x": 0.8,
+    "y": 0.555,
+    "w": 0.162,
+    "h": 0.381,
+    "body": "A long, bony arm reaches out of a white veil and pinches the top corner of Anthony's red book between two long fingers. His eyes do not go to it: they lift up and to our left, away from the company at his shoulder, and his free hand is raised palm-out before his chest. The veil frames a bird's head with a hooked beak, a ring through its nostril and a human-looking eye with lids, a steel helmet on top. Behind, a frowning human face peers from under a cap studded with pale beads, two brown points rising from it; a young woman's smooth face lifts above them; a halberd blade and a second pole slant in from the upper right. The group is cropped by the wing's right edge, as if more of it stood outside."
+   },
+   {
+    "t": "The harbour town",
+    "x": 0.769,
+    "y": 0.247,
+    "w": 0.193,
+    "h": 0.183,
+    "body": "In the right wing, below the open sea's horizon, a harbour town is drawn whole along the near shore: a domed church with a lantern and a round window, a squat round tower standing in the water, stepped gables along the quay, masted ships at their moorings and tiny figures on the waterfront. Distance here changes the colour and leaves the drawing alone. The town is set in pale blue-greys and the sea paler still, yet its edges stay crisp and the dome's windows remain separate marks. Beyond a wooded spit, small boats sail, and a far shore carries another town and pale mountains on the horizon."
+   }
+  ],
+  "beside": "Shiokawa Bunrin painted the same withdrawal into wild country that these saints made, without Jerome's stone or Anthony's demons: his Visit to hermitage in autumn, a hanging scroll dated 1865, values the retreat for its distance, and tests no one. The hermitage is a plain roof half hidden among trees, beside one in red autumn leaf, high under a cliff that curves up into mist. Two figures stand far below where a path bends, and dense wood closes over the whole way between them and the roof.",
+  "refs": [
+   {
+    "id": "shiokawa-bunrin-visit-to-hermitage-in-autumn",
+    "text": "Visit to hermitage in autumn"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
+ "piazza-san-marco": {
+  "mv": 6,
+  "see": "A long paved square seen down its length, under a sky that takes nearly half the canvas. Two arcaded ranges of buildings run in from the side edges and converge on a domed, gilded church front at the far end. A tall bell tower with a green spire stands right of centre, a low dark roof wrapped round its foot. The left range is in sunlight, the right in shade. Small figures in loose groups stand, stroll and talk across grey-green paving ruled with pale lines, shrinking with distance and thickening before the church.",
+  "about": "Canaletto shows Saint Mark's Square down its length from an upper floor at its west end, so the eye looks down on the crowd. The basilica closes the far end, the Procuratie Vecchie runs down the left and the Procuratie Nuove down the right, and a pink-and-white corner of the Doge's Palace shows past the bell tower, the tower that stood until it collapsed in 1902. No procession crosses the square. He paints the city's great public space as a place in use, with cloth propped on poles to shade the arcade, birdcages set down on the stone, and figures standing about and strolling.",
+  "craft": "Canaletto ruled many of the perspective lines and verticals of his buildings against a straightedge, so the long edges of stone run straight and true into depth. In his larger, earlier painting of the same square he had drawn the architectural detail freehand. Against the ruled drawing the brushwork runs loose and ragged, and in the highlights the paint goes on thick, in heavy impasto.",
+  "context": "Canaletto came to views from the stage. In 1720 he and his father Bernardo are credited with the sets for two Scarlatti operas in Rome, and the same year he entered the Venetian painters' guild. He then renounced the theatre to paint views from nature, as Anton Maria Zanetti told it in 1771. Buyers followed: in 1725–26 the merchant of Lucca whom that agent was steering, Stefano Conti, ordered four views from him. On 28 November 1727 Owen McSwiney, an Irishman in Italy who was finding pictures for the Duke of Richmond, warned the duke from Venice that \"the fellow is whimsical and vary's his prices every day\". This canvas belongs to those late 1720s, though who first bought it is not known.",
+  "deeper": [
+   {
+    "t": "A tower set to one side",
+    "x": 0.525,
+    "y": 0.012,
+    "w": 0.14,
+    "h": 0.765,
+    "body": "The tallest thing in the picture stands off its centre. The bell tower rises right of the middle, its shaft just clear of the church front's right-hand corner, so the front stays whole beside it, and from its foot to the tip of its spire it fills about two-thirds of the canvas height. The shaft is a run of long vertical strips, each edge a single dark line drawn dead straight. The tower is occupied: at the rail of the bell chamber's four arches stand people no bigger than specks, a red one in the first arch, a white and a blue side by side in the third, a pale one in the fourth. Above them a square attic carries a pale carved emblem, then comes the green spire, then a dark winged figure on the tip. Tufts of green sprout along the ledges of the chamber and the attic."
+   },
+   {
+    "t": "Where the lines run",
+    "x": 0.3,
+    "y": 0.455,
+    "w": 0.275,
+    "h": 0.335,
+    "body": "The rooflines and ground lines of the two long ranges converge on the church front, meeting at about the height of its lower arches. The perspective is aimed at this facade, and the facade is packed edge to edge with small work: gilt lunettes with tiny figures inside them, a gilt beast on a blue field above the great central window, four small gilt shapes standing on the gallery, pinnacles picked out in single touches of light. The domes are paler on their right halves. In front stand three tall red masts on dark pedestals, bare but for small gilt finials, and at their feet the parasols of market stalls open in yellow, grey and brown."
+   },
+   {
+    "t": "The range in shade",
+    "x": 0.665,
+    "y": 0.27,
+    "w": 0.325,
+    "h": 0.39,
+    "body": "The right-hand range has its whole front in shade, and the shade is no dark blank. It is a dull grey-green in which pediments, balusters and window frames are still drawn, line by line, in a darker grey. What rises above the roof reaches the sun. Each tall chimney pot is lighter on its right side and darker on its left: the light comes from the right, from behind this building, and its face, turned away, sits in its own shadow. The shade still holds signs of use, a pink cloth thrown over the balcony rail, cream cloths streaked with blue hung flat from rods inside the window openings, pots of plants on the ledge, green growth along the cornices."
+   },
+   {
+    "t": "One shadow, two surfaces",
+    "x": 0.47,
+    "y": 0.56,
+    "w": 0.22,
+    "h": 0.425,
+    "body": "Low on the bell tower the stone darkens, and the top of that dark is not a straight line. It steps up and down in flared, cup-shaped silhouettes on short stems, the outlines of chimney pots like those on the shaded range's roof, thrown onto the tower by the light behind them. So the tower's foot stands in another building's shadow while its spire is in sun. Trace the same shade down onto the pavement. It covers the right-hand part of the square, and its edge runs from the tower's foot to the bottom of the canvas, uneven, not ruled, with dark tongues pushing out into the sunlit stone at intervals that widen as they come nearer. The edge sorts the crowd. On its sunny side the woman in the black hood and the man in the blue cloak cast a single long shadow between them, running to the left; across it, the man with the cane and the stooped man beside him stand in shade, their shadows shrunk to a smudge at the feet. Beyond the tower, a pink-and-white patterned wall takes the light full on."
+   },
+   {
+    "t": "Red caps, a turban and tricorns",
+    "x": 0.3,
+    "y": 0.79,
+    "w": 0.18,
+    "h": 0.195,
+    "body": "Near the front, a knot of men mixes two wardrobes. A man in a red cap, short brown jacket and red breeches stands beside another, seen from behind, in a long brown robe with a white turban wound round a red crown; next to them, two black tricorns over grey and dark hair, and a man wrapped in a pale cloak. The cap itself is a dab of red, a face two or three touches, a flick of white at collar and cuff, the robe's hem broken off by the brush. A child runs at them with one arm flung out, and behind, a man in a tricorn steps out with a pale blue cloak flying to the left."
+   },
+   {
+    "t": "Cloth on poles",
+    "x": 0.03,
+    "y": 0.66,
+    "w": 0.3,
+    "h": 0.26,
+    "body": "Along the sunlit arcade on the left, long lengths of cloth hang from poles and cords in deep swags, one after another, until near the church they shrink to a row of pale strokes. At the nearest the brush changes pace. Behind it the arcade is drawn in fine, steady lines; the cloth is laid in broad, loaded strokes, cream on the lit folds, blue-grey and near-black in the hollows. The poles are single straight strokes, and some lean. People pass beneath and beside the swags, and the dark of the arches behind gives each lit fold its edge."
+   },
+   {
+    "t": "Awnings out, washing out",
+    "x": 0.01,
+    "y": 0.4,
+    "w": 0.27,
+    "h": 0.38,
+    "body": "Above the arcade the sunlit range is busy. Striped awnings in blue and white are let down from the window heads and drawn out at an angle, small gilt knobs at their corners and a fringe of quick blue and white flicks along their lower edges. Washing hangs over the sills beside pots of plants, and wooden window boxes with sloping lids jut from some bays. At the windows over the arcade two women lean on the sill, one with an arm hanging over it into the air above the square. Along the roof a crest of white pointed merlons runs against red-brown tiles, and where a band of darker cloud lies low behind the far end, the crest stands out hard against it."
+   },
+   {
+    "t": "Cloud brushed up to the tower",
+    "x": 0.372,
+    "y": 0.282,
+    "w": 0.2,
+    "h": 0.185,
+    "body": "Left of the bell tower, white cloud is heaped up in the blue. The mass farther from the tower is built of short, curling strokes laid one over another. Nearer the tower a second, more ragged cloud carries small, crisp touches of opaque white along its upper edge, and its strokes run right up to the tower's side. Katharine Baetjer, writing on the picture in 1989, found the sky freely painted, most of all where its brushwork meets the tower, and wrote that in the clouds \"the white pigment is thickly applied and projects slightly in relief\". Across the same patch of sky, tiny dark flicks bent at the middle are birds, scattered over the clouds and the blue between them."
+   }
+  ],
+  "beside": "Away from the city's centre and its famous buildings, Venice goes about its business in Francesco Guardi's View of the Cannaregio Canal in Venice, painted about 1770. Canaletto came back to this square many times; Guardi chose a canal running out toward the lagoon, one of the sites, the historian Eric Garberson judges, that view painters took up less often. Gentlemen stroll its quay, but the canal belongs to work: four oarsmen drive a covered gondola with baggage heaped toward the bow, and at the right-hand wharf a man stoops over crates in a moored boat below houses hung with laundry.",
+  "refs": [
+   {
+    "id": "view-of-the-cannaregio-canal-in-venice",
+    "text": "View of the Cannaregio Canal in Venice"
+   }
+  ],
+  "by": "Opus 5.5"
+ },
  "jan-van-huysum-still-life-with-flowers": {
   "mv": 6,
   "see": "A tall bouquet in an earthenware urn stands on a stone ledge before a garden, with a draped statue of Flora on a pedestal at the left and, at the right, a pond with a pale pillar at the picture's edge and a low green bank in front of it. A crown imperial rises at the top; below come white and dark tulips, roses, a poppy, auriculas, narcissus, pale blue bells, morning glory and pink blossom. More flowers lie cut on the ledge beside a bird's nest with eggs, and butterflies, ants and other insects are scattered through it. The blooms are sharp to their edges and the garden soft and hazy, so the bouquet comes forward and the garden falls back.",

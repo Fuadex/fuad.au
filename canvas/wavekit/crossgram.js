@@ -35,7 +35,7 @@ function load(prefix, ext) {
       try {
         const j = JSON.parse(text);
         const b = j.beside || j;
-        text = [b.text, b.prose, b.body, j.text].filter(x => typeof x === 'string').join(' ') || '';
+        text = typeof b === 'string' ? b : ([b.text, b.prose, b.body, j.text].filter(x => typeof x === 'string').join(' ') || ''); // besides are plain strings
       } catch (e) { text = ''; }
     }
     out[id] = norm(text);
