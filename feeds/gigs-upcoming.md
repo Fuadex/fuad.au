@@ -1,18 +1,9 @@
 # Upcoming shows in Japan — matched against the Rotation library
 
-Generated 2026-11-19 · 713 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
+Generated 2026-11-20 · 704 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
 
 
 ## November 2026
-- 2026-11-19 (Thu) · **a flood of circle** — 松山WStudioRED, Matsuyama · 44 plays · not seen live · top · a flood of circle TOUR 革命未遂の蝶が見る夢 · https://www.teichiku.co.jp/artist/a-flood-of-circle/schedule/
-- 2026-11-19 (Thu) · **Fear, and Loathing in Las Vegas** — Nagoya DIAMOND HALL, Nagoya · 33 plays · not seen live · top · Fear, and Loathing in Las Vegas live · https://www.ticket.co.jp/sys/d/11071.htm
-- 2026-11-19 (Thu) · **Texas 3000** — Shindaita FEVER, Tokyo · 19 plays · seen live 1× · seen · TIGERS JAW "JAPAN 2026" WITH COUNTRY YARD · https://www.fever-popo.com/schedule/2026/11/1918.html
-- 2026-11-19 (Thu) · **Have a nice day!** — 新宿 LOFT, Tokyo · 17 plays · not seen live · top · SHINJUKU LOFT 50th ANNIVERSARY PINK OR BLUE · https://eplus.jp/sf/word/0000086780
-- 2026-11-19 (Thu) · **Blind Channel** — Umeda Club Quattro, Osaka · 10 plays · not seen live · also · Blind Channel Painstream Tour Japan 2026 · https://www.creativeman.co.jp/event/blind-channel26/
-- 2026-11-19 (Thu) · **Sheena Ringo** — 神戸国際会館 こくさいホール, Kobe · 7 plays · not seen live · also · 椎名林檎と彼奴等と試す煩悩菩提 · https://lp.p.pia.jp/article/news/489069/index.html
-- 2026-11-19 (Thu) · **Prompts** — Yogibo Holy Mountain, Osaka · 5 plays · not seen live · also · Prompts @ Yogibo Holy Mountain · https://www.songkick.com/concerts/43369639-prompts-at-yogibo-holy-mountain
-- 2026-11-19 (Thu) · **Seiko Oomori** — 新宿 LOFT, Tokyo · 5 plays · not seen live · also · SHINJUKU LOFT 50th ANNIVERSARY PINK OR BLUE · https://eplus.jp/sf/word/0000059792
-- 2026-11-19 (Thu) · **Mrs. GREEN APPLE** — 長野市若里多目的スポーツアリーナ(ビッグハット), Nagano · 5 plays · not seen live · also · Mrs. GREEN APPLE Ringo Jam Tour "SHADOWS" · https://www.oricon.co.jp/news/2461508/full/
 - 2026-11-20 (Fri) · **THE NOVEMBERS** — Spotify O-EAST, Tokyo area · 37 plays · not seen live · top · THE NOVEMBERS at Spotify O-EAST · https://eplus.jp/sf/detail/0231090001-P0030229P021001
 - 2026-11-20 (Fri) · **People In The Box** — LIVE HOUSE CB, Fukuoka · 33 plays · not seen live · top · 2026 autumn tour (Fukuoka opener) · https://eplus.jp/sf/word/0000026644
 - 2026-11-20 (Fri) – 2026-11-23 · **mouse on the keys** — MoN Takanawa, Tokyo area · 18 plays · not seen live · top · MUTEK.JP 2026 at MoN Takanawa, with mouse on the keys · https://www.songkick.com/festivals/224061-mutek/id/43406328-festival-mutek-2026
