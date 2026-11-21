@@ -1,33 +1,7 @@
 {
- "generated": "2026-11-20",
- "count": 704,
+ "generated": "2026-11-21",
+ "count": 699,
  "shows": [
-  {
-   "date": "2026-11-20",
-   "artist": "THE NOVEMBERS",
-   "title": "THE NOVEMBERS at Spotify O-EAST",
-   "venue": "Spotify O-EAST",
-   "city": "Tokyo area",
-   "plays": 37,
-   "seenLive": 0,
-   "tier": "top",
-   "japanese": true,
-   "url": "https://eplus.jp/sf/detail/0231090001-P0030229P021001",
-   "added": "2026-10-25"
-  },
-  {
-   "date": "2026-11-20",
-   "artist": "People In The Box",
-   "title": "2026 autumn tour (Fukuoka opener)",
-   "venue": "LIVE HOUSE CB",
-   "city": "Fukuoka",
-   "plays": 33,
-   "seenLive": 0,
-   "tier": "top",
-   "japanese": true,
-   "url": "https://eplus.jp/sf/word/0000026644",
-   "added": "2026-11-05"
-  },
   {
    "date": "2026-11-20",
    "until": "2026-11-23",
@@ -41,45 +15,6 @@
    "japanese": true,
    "url": "https://www.songkick.com/festivals/224061-mutek/id/43406328-festival-mutek-2026",
    "added": "2026-10-25"
-  },
-  {
-   "date": "2026-11-20",
-   "artist": "MUCC",
-   "title": "MUCC Club tour 2026「Beginning to Lotus」",
-   "venue": "柏PALOOZA",
-   "city": "Kashiwa",
-   "plays": 15,
-   "seenLive": 0,
-   "tier": "top",
-   "japanese": true,
-   "url": "https://55-69.com/schedule",
-   "added": "2026-11-05"
-  },
-  {
-   "date": "2026-11-20",
-   "artist": "EMNW",
-   "title": "EMNW To KAMASU “LOVING TO GET US BY” TOUR 2026",
-   "venue": "ell.FITS ALL",
-   "city": "Nagoya",
-   "plays": 11,
-   "seenLive": 0,
-   "tier": "top",
-   "japanese": true,
-   "url": "https://eplus.jp/emnw",
-   "added": "2026-11-05"
-  },
-  {
-   "date": "2026-11-20",
-   "artist": "Sheena Ringo",
-   "title": "椎名林檎と彼奴等と試す煩悩菩提",
-   "venue": "神戸国際会館 こくさいホール",
-   "city": "Kobe",
-   "plays": 7,
-   "seenLive": 0,
-   "tier": "also",
-   "japanese": true,
-   "url": "https://lp.p.pia.jp/article/news/489069/index.html",
-   "added": "2026-11-05"
   },
   {
    "date": "2026-11-21",

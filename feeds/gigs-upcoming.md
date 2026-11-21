@@ -1,15 +1,10 @@
 # Upcoming shows in Japan — matched against the Rotation library
 
-Generated 2026-11-20 · 704 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
+Generated 2026-11-21 · 699 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
 
 
 ## November 2026
-- 2026-11-20 (Fri) · **THE NOVEMBERS** — Spotify O-EAST, Tokyo area · 37 plays · not seen live · top · THE NOVEMBERS at Spotify O-EAST · https://eplus.jp/sf/detail/0231090001-P0030229P021001
-- 2026-11-20 (Fri) · **People In The Box** — LIVE HOUSE CB, Fukuoka · 33 plays · not seen live · top · 2026 autumn tour (Fukuoka opener) · https://eplus.jp/sf/word/0000026644
 - 2026-11-20 (Fri) – 2026-11-23 · **mouse on the keys** — MoN Takanawa, Tokyo area · 18 plays · not seen live · top · MUTEK.JP 2026 at MoN Takanawa, with mouse on the keys · https://www.songkick.com/festivals/224061-mutek/id/43406328-festival-mutek-2026
-- 2026-11-20 (Fri) · **MUCC** — 柏PALOOZA, Kashiwa · 15 plays · not seen live · top · MUCC Club tour 2026「Beginning to Lotus」 · https://55-69.com/schedule
-- 2026-11-20 (Fri) · **EMNW** — ell.FITS ALL, Nagoya · 11 plays · not seen live · top · EMNW To KAMASU “LOVING TO GET US BY” TOUR 2026 · https://eplus.jp/emnw
-- 2026-11-20 (Fri) · **Sheena Ringo** — 神戸国際会館 こくさいホール, Kobe · 7 plays · not seen live · also · 椎名林檎と彼奴等と試す煩悩菩提 · https://lp.p.pia.jp/article/news/489069/index.html
 - 2026-11-21 (Sat) · **9mm Parabellum Bullet** — 岡山CRAZYMAMA KINGDOM, Okayama · 424 plays · not seen live · top · 9mm Parabellum Bullet Tour 2026-27「Raison d'être」 · https://9mm.jp/live.php
 - 2026-11-21 (Sat) · **Ladybaby** — 下北沢ライブハウス9店舗同時開催, Tokyo · 101 plays · not seen live · top · SNAZZY TUNES×over print pre. over fest 2026 · https://eplus.jp/sf/word/0000074209
 - 2026-11-21 (Sat) · **PassCode** — BEAT STATION, Fukuoka · 73 plays · not seen live · top · PassCode UNLIMITED X · https://passcode-official.com/schedule/
