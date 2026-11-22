@@ -1,22 +1,10 @@
 # Upcoming shows in Japan — matched against the Rotation library
 
-Generated 2026-11-21 · 699 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
+Generated 2026-11-22 · 687 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
 
 
 ## November 2026
 - 2026-11-20 (Fri) – 2026-11-23 · **mouse on the keys** — MoN Takanawa, Tokyo area · 18 plays · not seen live · top · MUTEK.JP 2026 at MoN Takanawa, with mouse on the keys · https://www.songkick.com/festivals/224061-mutek/id/43406328-festival-mutek-2026
-- 2026-11-21 (Sat) · **9mm Parabellum Bullet** — 岡山CRAZYMAMA KINGDOM, Okayama · 424 plays · not seen live · top · 9mm Parabellum Bullet Tour 2026-27「Raison d'être」 · https://9mm.jp/live.php
-- 2026-11-21 (Sat) · **Ladybaby** — 下北沢ライブハウス9店舗同時開催, Tokyo · 101 plays · not seen live · top · SNAZZY TUNES×over print pre. over fest 2026 · https://eplus.jp/sf/word/0000074209
-- 2026-11-21 (Sat) · **PassCode** — BEAT STATION, Fukuoka · 73 plays · not seen live · top · PassCode UNLIMITED X · https://passcode-official.com/schedule/
-- 2026-11-21 (Sat) · **a flood of circle** — 高知X-pt., Kochi · 44 plays · not seen live · top · a flood of circle TOUR 革命未遂の蝶が見る夢 · https://www.teichiku.co.jp/artist/a-flood-of-circle/schedule/
-- 2026-11-21 (Sat) · **171** — B-FLAT, Otsu · 28 plays · not seen live · top · 171 × POLYSICS · https://eplus.jp/sf/word/0000152434
-- 2026-11-21 (Sat) · **Survive Said The Prophet** — 甲府KAZOO HALL, Kofu · 21 plays · not seen live · top · Face | Face TOUR · https://survivesaidtheprophet.com/live
-- 2026-11-21 (Sat) · **Garlicboys** — 新宿ANTIKNOCK, Tokyo · 18 plays · not seen live · top · BURL presents "KISS NO ASS TOUR" · https://www.livefans.jp/events/1990194
-- 2026-11-21 (Sat) · **The Bonez** — LIQUIDROOM, Tokyo · 17 plays · seen live 1× · seen · 山嵐 ⼭嵐 ツアー “スペースフラワー2026” · https://www.liquidroom.net/schedule/yamaarashi_20261121
-- 2026-11-21 (Sat) · **ORANGE RANGE** — 名寄市民文化センター EN-RAY HALL, Nayoro · 16 plays · not seen live · top · ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜 · https://orangerange.com/feature/25th
-- 2026-11-21 (Sat) · **yeti let you notice** — Tsurumai DAYTRIP, Nagoya · 12 plays · not seen live · top · yeti let you notice TOUR 2026 · https://eplus.jp/sf/word/0000084976
-- 2026-11-21 (Sat) · **BLUE ENCOUNT** — 札幌共済ホール, Sapporo · 10 plays · not seen live · top · BLUE ENCOUNT アルバム完全再現ツアー 2015-2018「still B.E. coming」 · https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc
-- 2026-11-21 (Sat) · **BUMP OF CHICKEN** — あなぶきアリーナ香川, Takamatsu · 8 plays · not seen live · top · BUMP OF CHICKEN TOUR 2026-2027 Ratio Clavis · https://www.bumpofchicken.com/
 - 2026-11-22 (Sun) · **9mm Parabellum Bullet** — 高松MONSTER, Takamatsu · 424 plays · not seen live · top · 9mm Parabellum Bullet Tour 2026-27「Raison d'être」 · https://9mm.jp/live.php
 - 2026-11-22 (Sun) · **PassCode** — 神戸 Harbor Studio, Kobe · 73 plays · not seen live · top · PassCode UNLIMITED X · https://passcode-official.com/schedule/
 - 2026-11-22 (Sun) · **Crystal Lake** — Toyosu PIT, Tokyo area · 42 plays · not seen live · top · Crystal Lake presents TRUE NORTH FESTIVAL 2026 at Toyosu PIT · https://eplus.jp/sf/detail/2669250001-P0030004P021001?P1=0175
