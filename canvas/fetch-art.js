@@ -150,6 +150,7 @@ const ARTY = /painting|drawing|sculpture|artwork|series|cycle|canvas/i;
     "kubota-beisen-george-v-king-of-the-united-kingdom": "Q6441301", // Kubota Beisen (1852–1906)
     "hibata-osuke-takagawa-bunsen": "Q109269221",                    // Hibata Ōsuke, Sanada retainer (Perry scroll)
     "ten-en-dojin": "Q39382862",      // 天淵道人 (Wikidata romanises "Ten'en Dōshin")
+    "kurihara-chuji": "Q21464774",    // 栗原忠二 (1886–1936); Wikidata orders it "Chuji Kurihara"
   };
   for (const [id, name] of Object.entries(artistNames)) {
     let pick;
