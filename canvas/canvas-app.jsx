@@ -12,6 +12,10 @@ const WORKS = (window.CANVAS_ARTWORKS || []).map(w => (w.artist == null ? { ...w
 const AD = window.CANVAS_ART_DATA || { museums: {}, artworks: {}, artists: {} };
 
 const MUS_BY_ID = {}; for (const m of MUSEUMS) MUS_BY_ID[m.id] = m;
+// Temporary exhibitions Fuad went to (museums.js, CANVAS_EXHIBITIONS). `name` is the exact string the
+// canon rows carry in `exhibition`, so the registry adds dates + a stable id without touching rows.
+const EXHIBITIONS = window.CANVAS_EXHIBITIONS || [];
+const EXH_BY_ID = {}; for (const x of EXHIBITIONS) EXH_BY_ID[x.id] = x;
 
 // ——— lazy data tier (2026-08-26): the three heaviest overlays no longer ride index.html.
 // art_inspect.js (Study tours), art-about.js (Reader reads) and museum_highlights.js (decks)
@@ -276,14 +280,15 @@ const tokenScopePass = (w, t) =>
   t.type === "artist" ? w.artistId === t.id
   : t.type === "museum" ? workInMuseum(w, t.id)
   : t.type === "city" ? workInCity(w, t.id)
+  : t.type === "exhibition" ? !!EXH_BY_ID[t.id] && w.exhibition === EXH_BY_ID[t.id].name
   : true;
-// OR within a type, AND across types — but museum+city are ONE "place" axis, ORed together (both
-// scope WHERE). So: (artistA OR artistB) AND (museumX OR cityY). WORK tokens skipped (pins).
+// OR within a type, AND across types — but museum+city+exhibition are ONE "place" axis, ORed together
+// (all scope WHERE). So: (artistA OR artistB) AND (museumX OR cityY OR showZ). WORK tokens skipped (pins).
 function tokensPass(w, tokens) {
-  const byType = { artist: [], museum: [], city: [] };
+  const byType = { artist: [], museum: [], city: [], exhibition: [] };
   for (const t of tokens) if (byType[t.type]) byType[t.type].push(t);
   if (byType.artist.length && !byType.artist.some(t => tokenScopePass(w, t))) return false;
-  const place = [...byType.museum, ...byType.city];
+  const place = [...byType.museum, ...byType.city, ...byType.exhibition];
   if (place.length && !place.some(t => tokenScopePass(w, t))) return false;
   return true;
 }
@@ -1336,7 +1341,7 @@ function affinityOrder(list) {
 // before it parses the path, so the two never collide.
 //
 // GRAMMAR (all `&`-joined, order below; empty facets omitted so a plain wall has no query):
-//   tok=<a|m|c|w>:<id>+…   tokens; each id encodeURIComponent'd; type prefix keeps them one param
+//   tok=<a|m|c|w|x>:<id>+… tokens (x = exhibition, CANVAS_EXHIBITIONS id); each id encodeURIComponent'd
 //   mk=floored+loved+liked marks     st=sure+unsure+wish   status
 //   er=1880-1925           year span (one [lo, hi]; -9999 = earliest, 2030 = now; the legacy
 //                          chip form er=e1890+e1900 still parses — see parseYearSpan)
@@ -1359,8 +1364,10 @@ const WALL_QUAL_KEYS = new Set(QUALITY.map(q => q[0]));
 // absent, so a legacy shared link carrying one of them fails this membership test in the parser and
 // silently falls back to hang (the default) rather than restoring a sort that no longer exists.
 const WALL_SORTS = new Set(["affinity", "colour"]);   // "tierhue" retired 2026-09-28 — old links fall back to the hang
-const WALL_TOK_PREFIX = { artist: "a", museum: "m", city: "c", work: "w" };
-const WALL_TOK_TYPE = { a: "artist", m: "museum", c: "city", w: "work" };
+const WALL_TOK_PREFIX = { artist: "a", museum: "m", city: "c", work: "w", exhibition: "x" };
+const WALL_TOK_TYPE = { a: "artist", m: "museum", c: "city", w: "work", x: "exhibition" };
+// how a token type reads on its chip / suggestion row ("exhibition" is too long for a chip)
+const TOK_TYPE_LABEL = { work: "pin", exhibition: "show" };
 // `er=` PARSER — reads BOTH the current form and the retired one, so no shared wall URL ever rots.
 //   CURRENT: er=1880-1925   one [lo, hi] span. The sentinels serialise as their numbers, so an
 //            open-ended low bound reads er=-9999-1750; the regex is anchored and \d+ is greedy, so
@@ -2025,6 +2032,12 @@ function Wall({ go, styleIds }) {
     for (const id of Object.keys(musHas)) { const m = MUS_BY_ID[id]; if (m && m.city) citySet.set(m.city, true); }
     for (const w of all) { const h = homeOf(w); if (h && h.city) citySet.set(h.city, true); }
     const cities = [...citySet.keys()].map(city => ({ type: "city", id: city, label: city, hay: fold(city) }));
+    // EXHIBITIONS — registry shows with at least one work on the wall; sub = the venue.
+    const exhNames = new Set(all.map(w => w.exhibition).filter(Boolean));
+    const exhibitions = EXHIBITIONS.filter(x => exhNames.has(x.name)).map(x => {
+      const m = MUS_BY_ID[x.venue]; const venue = m ? m.name.replace(/\s*\(.*\)$/, "") : "";
+      return { type: "exhibition", id: x.id, label: x.name, sub: venue, hay: fold(x.name + " " + venue) };
+    });
     // WORKS — title match against the whole wall (pins). Cleaned like the header index does.
     const works = all.map(w => ({
       type: "work", id: w.id, label: w.title.replace(/^TBC — /, ""),
@@ -2034,6 +2047,7 @@ function Wall({ go, styleIds }) {
       artists: Object.values(artistById).sort((a, b) => a.label.localeCompare(b.label)),
       museums: museums.sort((a, b) => a.label.localeCompare(b.label)),
       cities: cities.sort((a, b) => a.label.localeCompare(b.label)),
+      exhibitions,
       works,
     };
   }, [all]);
@@ -2050,6 +2064,7 @@ function Wall({ go, styleIds }) {
       artist: new Map(tokenIndex.artists.map(o => [o.id, o.label])),
       museum: new Map(tokenIndex.museums.map(o => [o.id, o.label])),
       city: new Map(tokenIndex.cities.map(o => [o.id, o.label])),
+      exhibition: new Map(tokenIndex.exhibitions.map(o => [o.id, o.label])),
       work: new Map(tokenIndex.works.map(o => [o.id, o.label])),
     };
     const restored = [];
@@ -2094,7 +2109,7 @@ function Wall({ go, styleIds }) {
     const free = (arr) => arr.filter(o => !taken.has(o.type + "\u0000" + o.id));
     const pick = (arr, n) => free(arr).filter(o => o.hay.includes(needle)).slice(0, n);
     // artists · museums · cities lead (broad scopes), works fill the remainder up to 8
-    const lead = [...pick(tokenIndex.artists, 3), ...pick(tokenIndex.museums, 3), ...pick(tokenIndex.cities, 2)];
+    const lead = [...pick(tokenIndex.artists, 3), ...pick(tokenIndex.museums, 3), ...pick(tokenIndex.exhibitions, 2), ...pick(tokenIndex.cities, 2)];
     const out = lead.slice(0, 6);
     const worksN = pick(tokenIndex.works, 8 - out.length);
     return [...out, ...worksN].slice(0, 8);
@@ -2229,7 +2244,7 @@ function Wall({ go, styleIds }) {
             the tokens only. Work tokens PIN — the picture always shows and leads the wall. */}
         <span className="cv-omni" ref={searchWrapRef}>
           <input className="cv-omni-input" type="search" value={searchQ}
-            placeholder={tokens.length ? "add another…" : "design your wall — artist, museum, city, work…"}
+            placeholder={tokens.length ? "add another…" : "design your wall — artist, museum, show, city, work…"}
             onChange={e => { setSearchQ(e.target.value); setSearchSel(0); }}
             onKeyDown={e => {
               if (e.key === "Escape") { setSearchQ(""); return; }
@@ -2243,8 +2258,8 @@ function Wall({ go, styleIds }) {
           {tokens.map(t => (
             <button key={t.type + t.id} className="cv-omni-tok" data-type={t.type}
               onClick={() => removeToken(t.type, t.id)}
-              title={"remove this " + (t.type === "work" ? "pin" : t.type)}>
-              <span className="cv-omni-tok-type">{t.type === "work" ? "pin" : t.type}</span>
+              title={"remove this " + (TOK_TYPE_LABEL[t.type] || t.type)}>
+              <span className="cv-omni-tok-type">{TOK_TYPE_LABEL[t.type] || t.type}</span>
               <span className="cv-omni-tok-label">{t.label}</span>
               <span className="cv-omni-tok-x" aria-hidden="true">×</span>
             </button>
@@ -2258,7 +2273,7 @@ function Wall({ go, styleIds }) {
                 <div key={o.type + o.id} className={"cv-omni-sugg" + (i === searchSel ? " cv-omni-sugg-sel" : "")}
                   onMouseEnter={() => setSearchSel(i)}
                   onMouseDown={e => { e.preventDefault(); addToken(o); setSearchQ(""); setSearchSel(0); }}>
-                  <span className="cv-omni-sugg-type" data-type={o.type}>{o.type}</span>
+                  <span className="cv-omni-sugg-type" data-type={o.type}>{o.type === "exhibition" ? "show" : o.type}</span>
                   <span className="cv-omni-sugg-label">{o.label}</span>
                   {o.sub && <span className="cv-omni-sugg-sub">{o.sub}</span>}
                 </div>
@@ -5048,6 +5063,24 @@ function MapView({ go }) {
     }
     return Object.entries(by).map(([y, s]) => [y, [...s]]).filter(([, c]) => c.length).sort((a, b) => b[0] - a[0]);
   }, []);
+  // EXHIBITIONS VISITED (Fuad 2026-11-22: "between the timeline and the list of countries … with
+  // hyperlinks to a wall that filters by those exhibitions"). Dates pass the same visitEligible gate as
+  // the trip strip; a show whose dates are unrecorded still lists, undated, at the foot.
+  const shows = useMemo(() => {
+    const n = {}; for (const w of WORKS) if (w.exhibition) n[w.exhibition] = (n[w.exhibition] || 0) + 1;
+    const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    return EXHIBITIONS.filter(x => n[x.name] && MUS_BY_ID[x.venue]).map(x => {
+      const m = MUS_BY_ID[x.venue];
+      const days = (x.visits || []).filter(d => /^\d{4}-\d{2}-\d{2}$/.test(d) && visitEligible(d, m.country)).sort();
+      // "18 Oct · 14 Nov 2026" — the year once per run of same-year dates
+      const when = days.map((d, i) => {
+        const [y, mo, dd] = d.split("-");
+        const next = days[i + 1];
+        return +dd + " " + MON[+mo - 1] + (next && next.slice(0, 4) === y ? "" : " " + y);
+      }).join(" · ");
+      return { ...x, n: n[x.name], last: days[days.length - 1] || "", when, venueName: m.name.replace(/\s*\(.*\)$/, ""), city: m.city };
+    }).sort((a, b) => (b.last || "").localeCompare(a.last || "") || a.name.localeCompare(b.name));
+  }, []);
 
   // zoom + pan: the viewBox is state; wheel zooms toward the cursor, drag pans. Marker/label sizes
   // are multiplied by k = vb.w/880 so they stay a constant size on screen at any zoom. The wheel is
@@ -6063,6 +6096,21 @@ function MapView({ go }) {
           </div>
         ))}
       </div>
+      {shows.length > 0 && (
+        <div className="cv-shows">
+          <div className="cv-a-secl">Exhibitions — the shows I went to</div>
+          {shows.map(x => (
+            <a className="cv-show-row" key={x.id} href={"#/wall?tok=x:" + encodeURIComponent(x.id)}
+              onClick={() => { cvDidNavigate = true; }} title={"open the wall on " + x.name}>
+              <span className="cv-show-when">{x.when || "—"}</span>
+              <span className="cv-show-main">
+                <span className="cv-show-name">{x.name}</span>
+                <span className="cv-show-where">{x.venueName}, {x.city} · {x.n} {x.n === 1 ? "work" : "works"}</span>
+              </span>
+            </a>
+          ))}
+        </div>
+      )}
       {wishCities.length > 0 && (
         <div className="cv-map-tosee">
           <div className="cv-a-secl">To see — the pilgrimage</div>

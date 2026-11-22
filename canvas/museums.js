@@ -108,3 +108,17 @@ window.CANVAS_MUSEUMS = [
   {id: "ueno-royal",name: "Ueno Royal Museum",city: "Tokyo",country: "jp",qid: "Q11360245",kind: "art",visits: ["2026-11-21"],note: "Ueno Park. Cincinnati Art Museum Exhibition (2026-10-10 to 2027-01-10), 84 works lent by the Cincinnati Art Museum."},
   {id: "nmwa",name: "National Museum of Western Art",city: "Tokyo",country: "jp",qid: "Q1362629",kind: "art",visits: ["2026-11-21"],note: "Ueno Park. Turner: Painting the Sublime, in Dialogue with Contemporary Art (2026-10-24 to 2027-02-21), lent mainly by Tate."}
 ];
+
+// Temporary exhibitions Fuad went to. `name` must equal the `exhibition` string on the canon rows
+// (artworks.js); `venue` is a museum id above; `visits` are the days he saw the show (a two-period or
+// two-term show seen twice carries both). Feeds the map's exhibitions list + the wall's "show" token.
+window.CANVAS_EXHIBITIONS = [
+  {id: "turner-nmwa-2026", name: "Turner: Painting the Sublime, in Dialogue with Contemporary Art", venue: "nmwa", visits: ["2026-11-21"]},
+  {id: "cincinnati-ueno-2026", name: "Cincinnati Art Museum Exhibition", venue: "ueno-royal", visits: ["2026-11-21"]},
+  {id: "hiroshige-tnm-2026", name: "Utagawa Hiroshige: New Perspective on Edo", venue: "tnm", visits: ["2026-11-16"]},
+  {id: "oi-nightscapes-ota-2026", name: "Katsushika Ōi \"Night Scene in the Yoshiwara\" — The Lineage of Nightscapes", venue: "ota-memorial", visits: ["2026-10-25", "2026-11-14"]},
+  {id: "sumida-best-2026", name: "See the Sumida Hokusai Museum's Best", venue: "hokusai-museum", visits: ["2026-10-18", "2026-11-14"]},
+  {id: "edo-in-focus-2026", name: "Edo in Focus: Japanese Treasures from the British Museum", venue: "tokyo-met", visits: ["2026-09-30"]},
+  {id: "swedish-masters-2026", name: "Swedish Masters of Art", venue: "tokyo-met", visits: ["2026-01-28", "2026-02-15"]},
+  {id: "matisse-agnsw", name: "Matisse: Life & Spirit, Masterpieces from the Centre Pompidou", venue: "agnsw", visits: []},
+];
