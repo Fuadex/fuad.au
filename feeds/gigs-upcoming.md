@@ -1,22 +1,10 @@
 # Upcoming shows in Japan — matched against the Rotation library
 
-Generated 2026-11-22 · 687 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
+Generated 2026-11-23 · 675 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
 
 
 ## November 2026
 - 2026-11-20 (Fri) – 2026-11-23 · **mouse on the keys** — MoN Takanawa, Tokyo area · 18 plays · not seen live · top · MUTEK.JP 2026 at MoN Takanawa, with mouse on the keys · https://www.songkick.com/festivals/224061-mutek/id/43406328-festival-mutek-2026
-- 2026-11-22 (Sun) · **9mm Parabellum Bullet** — 高松MONSTER, Takamatsu · 424 plays · not seen live · top · 9mm Parabellum Bullet Tour 2026-27「Raison d'être」 · https://9mm.jp/live.php
-- 2026-11-22 (Sun) · **PassCode** — 神戸 Harbor Studio, Kobe · 73 plays · not seen live · top · PassCode UNLIMITED X · https://passcode-official.com/schedule/
-- 2026-11-22 (Sun) · **Crystal Lake** — Toyosu PIT, Tokyo area · 42 plays · not seen live · top · Crystal Lake presents TRUE NORTH FESTIVAL 2026 at Toyosu PIT · https://eplus.jp/sf/detail/2669250001-P0030004P021001?P1=0175
-- 2026-11-22 (Sun) · **Fear, and Loathing in Las Vegas** — Niigata LOTS, Niigata · 33 plays · not seen live · top · Fear, and Loathing in Las Vegas live · https://www.ticket.co.jp/sys/d/11071.htm
-- 2026-11-22 (Sun) · **People In The Box** — 高松 DIME, Takamatsu · 33 plays · not seen live · top · People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour - · https://www.peopleinthebox.com/live
-- 2026-11-22 (Sun) · **171** — 堺 Live Bar FANDANGO, Sakai · 28 plays · not seen live · top · 171 × POLYSICS · https://eplus.jp/sf/word/0000152434
-- 2026-11-22 (Sun) · **ANORAK!** — Shimokitazawa BASEMENTBAR, Tokyo · 14 plays · not seen live · top · Studio REIMEI 5th Anniversary "Re:I MADE ROOM #10 ～冥～" with to Blends · https://toos.co.jp/calabash.b1f/event/rei-made-room-10-%ef%bd%9e%e5%86%a5%ef%bd%9e-with-to-blends/
-- 2026-11-22 (Sun) · **ACIDMAN** — BEAT STATION, Fukuoka · 12 plays · not seen live · top · G-FREAK FACTORY Path to 30th TOUR “TOMOSHIBI” -燈- 福岡公演 · https://eplus.jp/acidman/
-- 2026-11-22 (Sun) · **EMNW** — 天神Queblick, Fukuoka · 11 plays · not seen live · top · EMNW To KAMASU “LOVING TO GET US BY” TOUR 2026 · https://eplus.jp/emnw
-- 2026-11-22 (Sun) · **BLUE ENCOUNT** — 国立代々木競技場 第一体育館, Tokyo · 10 plays · not seen live · top · ANI-ROCK FES. 2026 "ヒロアカ" PLUS ULTRA LIVE · https://www.anirockfes.jp/
-- 2026-11-22 (Sun) · **BUMP OF CHICKEN** — あなぶきアリーナ香川, Takamatsu · 8 plays · not seen live · top · BUMP OF CHICKEN TOUR 2026-2027 Ratio Clavis · https://www.bumpofchicken.com/
-- 2026-11-22 (Sun) · **Sheena Ringo** — 松山市民会館, Matsuyama · 7 plays · not seen live · also · 椎名林檎と彼奴等と試す煩悩菩提 · https://lp.p.pia.jp/article/news/489069/index.html
 - 2026-11-23 (Mon) · **ZAZEN BOYS** — Shibuya CLUB QUATTRO, Tokyo area · 223 plays · seen live 1× · seen · ZAZEN BOYS with SuiseiNoboAz at Shibuya CLUB QUATTRO · https://eplus.jp/sf/detail/4428850001-P0030004P021001
 - 2026-11-23 (Mon) · **Texas 3000** — Shimokitazawa BASEMENTBAR, Tokyo · 19 plays · seen live 1× · seen · CONGRATULATIONS "2" RELEASE SHOW · https://toos.co.jp/calabash.b1f/event/congratulations-2-release-show/
 - 2026-11-23 (Mon) · **Garlicboys** — Shindaita FEVER, Tokyo area · 18 plays · not seen live · top · GARLICBOYS at Shindaita FEVER · https://smash-jpn.com/live/?id=4742
