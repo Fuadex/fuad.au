@@ -3233,6 +3233,19 @@ function Reader({ id, go }) {
   const a = w.artistData;
   const life = a.born ? `${a.born}–${a.died || ""}` : null;
   const pal = (window.CANVAS_PALETTE || {})[id];
+  // HOME (Fuad 2026-11-24: "we should include the home museums for any ingested artworks"). Where
+  // the object lives when it is not on the wall in front of him: the canon `home` (the lender an
+  // exhibition list names, via art_holders.js) or, failing that, Wikidata's P195 collection. Shown
+  // only when it adds something — never when he saw it AT home (a TNM print at the TNM, a Tate
+  // work at Tate Britain: same institution, so "Tate" is a name-prefix of the venue in that city).
+  // For a SEEN work, P195 is not trusted: met in a museum's own rooms, a different P195 is usually a
+  // past owner (Cache-cache "at" the Bellagio casino); met in a show, a print's qid is often another
+  // museum's impression of the same design (Sumida's own Hokusai sheets resolving to the Met's). So a
+  // seen work shows Home only when the canon states it (`home`, from the ingest's lender list).
+  const homeAt = w.home === "private" ? { name: "a private collection" } : homeOf(w);
+  const homeTrusted = !!w.home || !w.venues.length;
+  const homeShown = homeAt && homeTrusted && !w.venues.some(v => (homeAt.museumId && v.id === homeAt.museumId) ||
+    (homeAt.city && v.city === homeAt.city && v.name.startsWith(homeAt.name)));
   const read = (window.CANVAS_ART_ABOUT || {})[id];
   const inspect = (window.CANVAS_INSPECT || {})[id] || null;
   // FIX 6b: a deep-zoom detail tour is available if the work has hires details OR its study has at
@@ -3318,22 +3331,35 @@ function Reader({ id, go }) {
               live in the same row as the palette but as the first object"). Both are one-line
               facts about the object rather than reading, so they belong together and out of the
               way of the read above them. Palette leads, venue second (Fuad 2026-08-24). */}
-          {(w.venues.length > 0 || pal) && (
+          {(w.venues.length > 0 || pal || homeShown) && (
             <div className="cv-r-metarow">
               {pal && (
                 <div className="cv-r-sec"><span className="lbl">Palette</span>
                   <span className="cv-pal">{pal.map(c => <i key={c} style={{ background: c }} title={c} />)}</span>
                 </div>
               )}
-              {w.venues.length > 0 && (
-                <div className="cv-r-sec"><span className="lbl">Where I saw it{w.venues.length > 1 ? " — an impression at each" : ""}</span>
-                  {w.venues.map((v, vi) => (
-                    <React.Fragment key={v.id}>
-                      {vi > 0 ? " · " : ""}
-                      <a className="cv-r-venue" href={"#/museum/" + v.id} onClick={(e) => { e.preventDefault(); go("museum", v.id); }}>{v.name.replace(/\s*\(.*\)$/, "")}, {v.city}</a>
+              {(w.venues.length > 0 || homeShown) && (
+                <div className="cv-r-sec">
+                  {w.venues.length > 0 && (
+                    <React.Fragment>
+                      <span className="lbl">Where I saw it{w.venues.length > 1 ? " — an impression at each" : ""}</span>
+                      {w.venues.map((v, vi) => (
+                        <React.Fragment key={v.id}>
+                          {vi > 0 ? " · " : ""}
+                          <a className="cv-r-venue" href={"#/museum/" + v.id} onClick={(e) => { e.preventDefault(); go("museum", v.id); }}>{v.name.replace(/\s*\(.*\)$/, "")}, {v.city}</a>
+                        </React.Fragment>
+                      ))}
+                      {w.exhibition ? ` — ${w.exhibition}` : ""}
                     </React.Fragment>
-                  ))}
-                  {w.exhibition ? ` — ${w.exhibition}` : ""}
+                  )}
+                  {homeShown && (
+                    <div className="cv-r-home" title="the collection that owns this object — where it lives, not a promise it is on the wall">
+                      <span className="lbl">Home</span>
+                      {homeAt.museumId && MUS_BY_ID[homeAt.museumId]
+                        ? <a className="cv-r-venue" href={"#/museum/" + homeAt.museumId} onClick={(e) => { e.preventDefault(); go("museum", homeAt.museumId); }}>{homeAt.name.replace(/\s*\(.*\)$/, "")}, {homeAt.city}</a>
+                        : <span>{homeAt.name}{homeAt.city ? ", " + homeAt.city : ""}</span>}
+                    </div>
+                  )}
                 </div>
               )}
             </div>

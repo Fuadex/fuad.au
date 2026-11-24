@@ -83,6 +83,20 @@ const PRIOR = g2.CANVAS_HOLDERS || { works: {}, places: {} };
 
 const works = { ...PRIOR.works };
 
+// CANON HOME WINS (Fuad 2026-11-24: "we should include the home museums for any ingested
+// artworks"). A row's `home` is the institution that OWNS the object Fuad actually stood in front
+// of — for an exhibition sighting, the lender the printed list names ("Lent by Tate", "Lent by the
+// Cincinnati Art Museum", a British Museum registration number). That is ground truth from the
+// ingest, so it beats both a prior run and Wikidata P195 (which, for a print, often names some
+// other museum's impression). `home: "private"` = a private lender: no institution, no holder.
+// This is the one place the additive-only rule above yields — a hand-set fact overrides a guess.
+let canonHome = 0, canonPrivate = 0;
+for (const w of W) {
+  if (w.home === "private") { if (works[w.id]) { delete works[w.id]; canonPrivate++; } continue; }
+  if (w.home && /^Q\d+$/.test(w.home) && !DENY_HOLDERS.has(w.home) && works[w.id] !== w.home) { works[w.id] = w.home; canonHome++; }
+}
+console.log(`canon home: ${canonHome} set/overridden, ${canonPrivate} cleared as private`);
+
 // TASK 1 (2026-09-10): seed the works this file's own loop below never reaches — anything
 // already `seen` is invisible to the `unseen` filter, so it never got a holder even when
 // art_data.js has one sitting right there. Runs BEFORE the unseen/P195 loop so its museum-first
@@ -212,7 +226,12 @@ const labelOf = (ent) => {
     "Altstadt-Nord": "Cologne", "Bezirk Mitte": "Berlin", "Stadtbezirk II (Essen)": "Essen",
     "Huangpu District": "Shanghai", "Leninsky City District": "Perm",
     "Douglas County": "Lawrence", "Santa Barbara County": "Santa Barbara",
+    "Eden Park": "Cincinnati",   // the Cincinnati Art Museum's P131 is its park (2026-11-24)
+    "Suruga-ku": "Shizuoka", "Yanomachi": "Hachiōji",
   };
+  // Ward names that several cities share ("Kita-ku" is in Osaka, Tokyo, Sapporo, Nagoya …) can't
+  // be fixed by name — these are keyed on the holder's own qid instead.
+  const QID_CITY = { Q1055037: "Osaka" };   // National Museum of Art, Osaka — P131 Kita-ku
   const fixCity = (c) => (c && CITY_FIX[c]) || c;
   // DEAD COUNTRY CODES (2026-09-14). P17 can answer with a state that no longer exists: the Perm
   // Art Museum came back "su". Intl.DisplayNames resolves SU to "Russia", so it did not look broken
@@ -228,7 +247,7 @@ const labelOf = (ent) => {
   const places = {};
   let healed = 0;
   for (const [q, p] of Object.entries(PRIOR.places || {})) {
-    const city = fixCity(p.city), country = fixCc(p.country);
+    const city = QID_CITY[q] || fixCity(p.city), country = fixCc(p.country);
     if (city !== p.city || country !== p.country) healed++;
     places[q] = { ...p, city, country };
   }
@@ -247,7 +266,7 @@ const labelOf = (ent) => {
     placed++; newPlaces++;
     places[q] = {
       name: m ? m.name : h.name,
-      city: m ? m.city : fixCity(city ? city.name : null),
+      city: m ? m.city : QID_CITY[q] || fixCity(city ? city.name : null),
       country: m ? m.country : fixCc(country && country.iso ? String(country.iso).toLowerCase() : (country ? country.name : null)),
       lat, lon,
       ...(m ? { museumId: m.id } : {}),

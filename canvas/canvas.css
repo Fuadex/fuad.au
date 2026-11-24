@@ -1571,6 +1571,10 @@ a { color: inherit; }
    and would otherwise inherit the right-alignment meant for the pair and drift across the
    reader on its own (Fuad, same day). */
 .cv-r-metarow > .cv-r-sec:last-child:not(:first-child) { margin-left: auto; text-align: right; }
+/* HOME (Fuad 2026-11-24) — the owning collection, under "Where I saw it" in the same block (or
+   alone, for a work never met). Same label idiom; a little air when it follows the venue line. */
+.cv-r-home { margin-top: 12px; }
+.cv-r-home:first-child { margin-top: 0; }
 @media (max-width: 620px) {
   /* on a narrow reader the row wraps; a right-aligned second line reads as a stray, so it
      falls back to the left once it is no longer sharing a line with the palette */

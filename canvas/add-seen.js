@@ -1,7 +1,10 @@
 // add-seen.js — append REVIEWED seen-works to artworks.js (free-recall additions, PIPELINE step 2, at list scale).
 // Input: a JSON array of entries, each { title, artist, qid, year, seenAt, seenConfidence, ...optional }.
 //   Optional: id, artistId, qidTrusted (default true), img (pseudo-qid works: the holder image), via, exhibition,
-//   floored / liked, note, noResolve.
+//   floored / liked, note, noResolve, home.
+//   home (Fuad 2026-11-24) = the Wikidata qid of the institution that OWNS the object — for an exhibition, the
+//   lender the printed list names — or "private" for a private lender. EVERY exhibition ingest sets it; fetch-holders
+//   makes it win over Wikidata P195, and the reader shows it as "Home" under "Where I saw it".
 // Rules: refuses an id or a qid already in the canon (or twice in the input); derives id = slug(artist + title) and
 //   artistId = the canon's existing id for that artist name, else slug(artist); a pseudo-qid (e.g. "bm-…", "met-…") must
 //   carry `img`. Appends one compact JSON line per entry before the array's closing "];" — never re-emits the store.
@@ -36,6 +39,10 @@ for (const e of input) {
   row.seenAt = e.seenAt;
   if (e.via) row.via = e.via;
   if (e.exhibition) row.exhibition = e.exhibition;
+  if (e.home) {
+    if (e.home !== "private" && !/^Q\d+$/.test(e.home)) problems.push(`bad home ${e.home} on ${e.title} (a qid or "private")`);
+    row.home = e.home;
+  } else if (e.via === "exhibition") problems.push(`exhibition row without home (lender qid or "private"): ${e.title}`);
   row.seenConfidence = e.seenConfidence;
   if (e.floored) row.floored = true; else if (e.liked) row.liked = true;
   if (e.noResolve) row.noResolve = true;

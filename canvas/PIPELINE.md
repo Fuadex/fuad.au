@@ -107,6 +107,13 @@ are all open endpoints.
    Warsaw-Praga, removed 2026-08-22. If the host building is not itself worth an entry, the
    encounter lives in the work's `note` and `seenAt` simply omits it.
 
+   **Every exhibition row carries its `home`** (Fuad 2026-11-24) — the Wikidata qid of the
+   institution that owns the object, i.e. the lender the printed list names, or `"private"` for
+   a private lender. `add-seen.js` refuses an exhibition row without one. `fetch-holders.js` makes
+   the canon `home` win over Wikidata P195 (which, for a print, often names another museum's
+   impression), and the reader shows it as **Home** under "Where I saw it". The show itself also
+   gets a `window.CANVAS_EXHIBITIONS` row at the foot of `museums.js` (map page + wall "show" token).
+
    **Placeholder rows are debt with a deadline.** Entries named `"… (venue TBC)"` with a
    `confirm` note are guesses awaiting Fuad. They render on the Museums page looking exactly like
    confirmed venues, so resolve them when he answers rather than leaving the question in the data
