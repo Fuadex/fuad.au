@@ -148,7 +148,6 @@ window.CANVAS_EXHIBITIONS = [
   {id: "paris-1874-orsay-2024", name: "Paris 1874: Inventing Impressionism", venue: "orsay", visits: ["2024-05-23"]},
   {id: "bourgeois-agnsw-2024", name: "Louise Bourgeois: Has the Day Invaded the Night or Has the Night Invaded the Day?", venue: "agnsw", visits: ["2024-04-10","2024-04-14","2024-04-17","2024-04-24","2024-04-27","2024-04-28"]},
   {id: "year-of-the-dragon-4a-2024", name: "Lunar New Year // Year of the Dragon", venue: "4a-sydney", visits: ["2024-02-20"]},
-  {id: "kandinsky-agnsw-2024", name: "Kandinsky", venue: "agnsw", visits: ["2024-01-21"]},
   {id: "blueprint-white-rabbit-2023", name: "A Blueprint for Ruins", venue: "white-rabbit", visits: ["2023-12-27"]},
   {id: "archibald-agnsw-2023", name: "Archibald, Wynne and Sulman Prizes 2023", venue: "agnsw", visits: ["2023-07-19","2023-07-23","2023-07-26","2023-08-02","2023-08-09","2023-08-20","2023-08-23"]},
   {id: "solstice-mnw-2022", name: "Solstice. Nordic Painting 1880–1910", venue: "mnw", visits: ["2022-12-27"]},
