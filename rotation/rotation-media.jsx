@@ -1316,11 +1316,11 @@ function BlurbSwitcher({ id, about }) {
         {/* FLICKS (Fuad 2026-11-04, replacing the 2026-08-04 stacked fable2): older takes are a
             real flick system now — one read on the page, a chip (the Portrait card's pv-flick
             grammar) that cycles frontal → each older take → back, and names the version and the
-            drafting model it reverts to (fvr 3.0+ = Opus 5.5 · 2.3–2.9 = Opus 5 · 2.2 = Fable).
+            drafting model it reverts to (fvr 3.6+ = Opus 5 · 3.0–3.5 = Opus 5.5 · 2.3–2.9 = Opus 5 · 2.2 = Fable).
             Data: `flicks: [{t, fvr}]` in llm-about.js, migrated from fable2 by migrate-flicks.js
             (each flick's fvr recovered from git history — it was never stored on fable2). */}
         {onFableRead && !altTake && llm && llm.flicks && llm.flicks.length > 0 && (() => {
-          const model = (v) => { const n = parseFloat(v || "2.2"); return n >= 3 ? "Opus 5.5" : n >= 2.3 ? "Opus 5" : "Fable"; };
+          const model = (v) => { const n = parseFloat(v || "2.2"); return n >= 3.6 ? "Opus 5" : n >= 3 ? "Opus 5.5" : n >= 2.3 ? "Opus 5" : "Fable"; };
           const next = (flickI + 1) % (llm.flicks.length + 1);
           const tFvr = next === 0 ? (llm.fvr || "2.2") : (llm.flicks[next - 1].fvr || "2.2");
           return (
