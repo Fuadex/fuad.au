@@ -1,20 +1,9 @@
 # Upcoming shows in Japan — matched against the Rotation library
 
-Generated 2026-11-23 · 675 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
+Generated 2026-11-24 · 664 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
 
 
 ## November 2026
-- 2026-11-20 (Fri) – 2026-11-23 · **mouse on the keys** — MoN Takanawa, Tokyo area · 18 plays · not seen live · top · MUTEK.JP 2026 at MoN Takanawa, with mouse on the keys · https://www.songkick.com/festivals/224061-mutek/id/43406328-festival-mutek-2026
-- 2026-11-23 (Mon) · **ZAZEN BOYS** — Shibuya CLUB QUATTRO, Tokyo area · 223 plays · seen live 1× · seen · ZAZEN BOYS with SuiseiNoboAz at Shibuya CLUB QUATTRO · https://eplus.jp/sf/detail/4428850001-P0030004P021001
-- 2026-11-23 (Mon) · **Texas 3000** — Shimokitazawa BASEMENTBAR, Tokyo · 19 plays · seen live 1× · seen · CONGRATULATIONS "2" RELEASE SHOW · https://toos.co.jp/calabash.b1f/event/congratulations-2-release-show/
-- 2026-11-23 (Mon) · **Garlicboys** — Shindaita FEVER, Tokyo area · 18 plays · not seen live · top · GARLICBOYS at Shindaita FEVER · https://smash-jpn.com/live/?id=4742
-- 2026-11-23 (Mon) · **toddle** — Shimokitazawa BASEMENTBAR, Tokyo · 17 plays · not seen live · top · CONGRATULATIONS "2" RELEASE SHOW · https://toos.co.jp/calabash.b1f/event/congratulations-2-release-show/
-- 2026-11-23 (Mon) · **ORANGE RANGE** — 北斗市総合文化センター かなで〜る 大ホール, Hokuto · 16 plays · not seen live · top · ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜 · https://orangerange.com/feature/25th
-- 2026-11-23 (Mon) · **EMNW** — SIX ONE Live STAR, Hiroshima · 11 plays · not seen live · top · EMNW To KAMASU “LOVING TO GET US BY” TOUR 2026 · https://eplus.jp/emnw
-- 2026-11-23 (Mon) · **KANA-BOON** — 国立代々木競技場 第一体育館, Tokyo · 11 plays · not seen live · top · ANI-ROCK FES. 2026 僕のヒーローアカデミア PLUS ULTRA LIVE · https://kanaboon.jp/
-- 2026-11-23 (Mon) · **BLUE ENCOUNT** — 仙台電力ホール, Sendai · 10 plays · not seen live · top · BLUE ENCOUNT アルバム完全再現ツアー 2015-2018「still B.E. coming」 · https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc
-- 2026-11-23 (Mon) · **松本明人** — 代官山UNIT/B1FLAT/SALOON, Tokyo · 5 plays · not seen live · also · Rhythmic Toy World Presents 玩具大戦2026 · https://eplus.jp/sf/word/0000072235
-- 2026-11-23 (Mon) · **lilbesh ramko** — Shibuya WWW, Tokyo · 5 plays · not seen live · also · Kamui [Guest Act] Need a Flex / jellyy / TOKYO世界 / lilbesh ramko / Tee Shyne / S.J.soldie... — Kamui ONE MAN LIVE · https://www-shibuya.jp/schedule/020029.php
 - 2026-11-24 (Tue) – 2026-11-25 · **Iron Maiden** — K-Arena Yokohama, Tokyo area · 73 plays · not seen live · top · Iron Maiden at K-Arena Yokohama · https://www.creativeman.co.jp/artist/2026/11ironmaiden/
 - 2026-11-24 (Tue) · **Wienners** — LIQUIDROOM, Tokyo area · 36 plays · not seen live · top · Wienners at LIQUIDROOM · https://eplus.jp/sf/detail/1033790001-P0030165P021001?P1=0175
 - 2026-11-24 (Tue) · **1inamillion** — Spotify O-nest, Tokyo · 19 plays · not seen live · top · BAHAMAS FEST 2026 -Extra Show- · https://shibuya-o.com/nest/schedule/bahamas-fest-2026-extra-show/
