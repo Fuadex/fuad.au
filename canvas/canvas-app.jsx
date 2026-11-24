@@ -5095,7 +5095,8 @@ function MapView({ go }) {
   const shows = useMemo(() => {
     const n = {}; for (const w of WORKS) if (w.exhibition) n[w.exhibition] = (n[w.exhibition] || 0) + 1;
     const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    return EXHIBITIONS.filter(x => n[x.name] && MUS_BY_ID[x.venue]).map(x => {
+    // A show with no work logged still lists, just without the wall link.
+    return EXHIBITIONS.filter(x => MUS_BY_ID[x.venue]).map(x => {
       const m = MUS_BY_ID[x.venue];
       const days = (x.visits || []).filter(d => /^\d{4}-\d{2}-\d{2}$/.test(d) && visitEligible(d, m.country)).sort();
       // "18 Oct · 14 Nov 2026" — the year once per run of same-year dates
@@ -5104,7 +5105,7 @@ function MapView({ go }) {
         const next = days[i + 1];
         return +dd + " " + MON[+mo - 1] + (next && next.slice(0, 4) === y ? "" : " " + y);
       }).join(" · ");
-      return { ...x, n: n[x.name], last: days[days.length - 1] || "", when, venueName: m.name.replace(/\s*\(.*\)$/, ""), city: m.city };
+      return { ...x, n: n[x.name] || 0, last: days[days.length - 1] || "", when, venueName: m.name.replace(/\s*\(.*\)$/, ""), city: m.city };
     }).sort((a, b) => (b.last || "").localeCompare(a.last || "") || a.name.localeCompare(b.name));
   }, []);
 
@@ -6125,16 +6126,19 @@ function MapView({ go }) {
       {shows.length > 0 && (
         <div className="cv-shows">
           <div className="cv-a-secl">Exhibitions — the shows I went to</div>
-          {shows.map(x => (
-            <a className="cv-show-row" key={x.id} href={"#/wall?tok=x:" + encodeURIComponent(x.id)}
-              onClick={() => { cvDidNavigate = true; }} title={"open the wall on " + x.name}>
+          {shows.map(x => {
+            const body = (<>
               <span className="cv-show-when">{x.when || "—"}</span>
               <span className="cv-show-main">
                 <span className="cv-show-name">{x.name}</span>
-                <span className="cv-show-where">{x.venueName}, {x.city} · {x.n} {x.n === 1 ? "work" : "works"}</span>
+                <span className="cv-show-where">{x.venueName}, {x.city}{x.n ? " · " + x.n + (x.n === 1 ? " work" : " works") : ""}</span>
               </span>
-            </a>
-          ))}
+            </>);
+            return x.n ? (
+              <a className="cv-show-row" key={x.id} href={"#/wall?tok=x:" + encodeURIComponent(x.id)}
+                onClick={() => { cvDidNavigate = true; }} title={"open the wall on " + x.name}>{body}</a>
+            ) : (<div className="cv-show-row" key={x.id}>{body}</div>);
+          })}
         </div>
       )}
       {wishCities.length > 0 && (

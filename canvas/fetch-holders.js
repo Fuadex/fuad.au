@@ -103,7 +103,7 @@ console.log(`canon home: ${canonHome} set/overridden, ${canonPrivate} cleared as
 // pick is the one that lands, not that loop's plain "first candidate" fallback.
 let seededByMuseum = 0, seededByFirst = 0, seededNone = 0;
 for (const w of W) {
-  if (works[w.id]) continue;
+  if (works[w.id] || w.home === "private") continue; // canon "private" beats P195 (a past owner)
   const raw = (AD[w.id] && AD[w.id].collectionQids) || [];
   if (!raw.length) continue;
   const cq = raw.filter(q => !DENY_HOLDERS.has(q));
@@ -131,7 +131,7 @@ for (const w of W) {
 // Original P195/pseudo-qid/locationQid pass, unchanged — now just guarded so it only fills what
 // the seed pass above didn't touch (pseudo-qid works and locationQid-only works have no
 // collectionQids for that pass to seed from, so this is still load-bearing).
-for (const w of unseen) { if (works[w.id]) continue; const q = holderOf(w); if (q) works[w.id] = q; }
+for (const w of unseen) { if (works[w.id] || w.home === "private") continue; const q = holderOf(w); if (q) works[w.id] = q; }
 const qids = [...new Set(Object.values(works))];
 console.log(`${unseen.length} unseen works · ${Object.keys(works).length} with a holder · ${qids.length} distinct institutions`);
 console.log(`seeded from art_data: ${seededByMuseum} by museum match, ${seededByFirst} by first listed, ${seededNone} fully denied · lists: ${Object.keys(lists).length}`);

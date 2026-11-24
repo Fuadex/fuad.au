@@ -106,7 +106,15 @@ window.CANVAS_MUSEUMS = [
   {id: "kroller-muller",name: "Kröller-Müller Museum",city: "Otterlo",country: "nl",qid: "Q1051928",kind: "art",visits: [],lat: 52.095833333333,lng: 5.8169444444444,note: "Not visited — holds wish works (added 2026-08-27)."},
   {id: "rijksmuseum",name: "Rijksmuseum",city: "Amsterdam",country: "nl",qid: "Q190804",kind: "art",visits: ["2016-07-10"],lat: 52.36,lng: 4.885277777777778},
   {id: "ueno-royal",name: "Ueno Royal Museum",city: "Tokyo",country: "jp",qid: "Q11360245",kind: "art",visits: ["2026-11-21"],note: "Ueno Park. Cincinnati Art Museum Exhibition (2026-10-10 to 2027-01-10), 84 works lent by the Cincinnati Art Museum."},
-  {id: "nmwa",name: "National Museum of Western Art",city: "Tokyo",country: "jp",qid: "Q1362629",kind: "art",visits: ["2026-11-21"],note: "Ueno Park. Turner: Painting the Sublime, in Dialogue with Contemporary Art (2026-10-24 to 2027-02-21), lent mainly by Tate."}
+  {id: "nmwa",name: "National Museum of Western Art",city: "Tokyo",country: "jp",qid: "Q1362629",kind: "art",visits: ["2026-11-21"],note: "Ueno Park. Turner: Painting the Sublime, in Dialogue with Contemporary Art (2026-10-24 to 2027-02-21), lent mainly by Tate."},
+  {id: "white-rabbit",name: "White Rabbit Gallery",city: "Sydney",country: "au",qid: "Q7995247",kind: "art",visits: ["2022-11-12","2023-12-27"],lat: -33.886528,lng: 151.200139,note: "Chippendale. Contemporary Chinese art, shown in rotating collection exhibitions."},
+  {id: "4a-sydney",name: "4A Centre for Contemporary Asian Art",city: "Sydney",country: "au",qid: "Q108663292",kind: "art",visits: ["2024-02-20"],lat: -33.88,lng: 151.2058,note: "Haymarket."},
+  {id: "tokyo-station-gallery",name: "Tokyo Station Gallery",city: "Tokyo",country: "jp",qid: "Q115265693",kind: "art",visits: ["2025-05-08","2026-02-27"],lat: 35.680958,lng: 139.767306,note: "Inside the Marunouchi station building; brick walls of 1914."},
+  {id: "sompo",name: "Sompo Museum of Art",city: "Tokyo",country: "jp",qid: "Q1614504",kind: "art",visits: ["2026-01-26"],lat: 35.69277778,lng: 139.69611111,note: "Shinjuku. Home of van Gogh's Sunflowers."},
+  {id: "gilbert-george-centre",name: "Gilbert & George Centre",searchAs: "Gilbert & George Center",city: "London",country: "gb",qid: "Q122799895",kind: "art",visits: ["2024-06-13"],lat: 51.519046,lng: -0.07118,note: "Spitalfields."},
+  {id: "the-approach",name: "The Approach",searchAs: "The Approach Gallery",city: "London",country: "gb",qid: "Q7714092",kind: "art",visits: ["2024-06-16"],lat: 51.5313,lng: -0.0516,note: "Bethnal Green, above the pub."},
+  {id: "wetterling",name: "Wetterling Gallery",city: "Stockholm",country: "se",qid: "Q10719785",kind: "art",visits: ["2026-04-16"],lat: 59.331734,lng: 18.072424},
+  {id: "fourviere-religious-art",name: "Musée d'art religieux de Fourvière",searchAs: "Religious art museum of Fourvière",city: "Lyon",country: "fr",qid: "Q36076778",kind: "art",visits: ["2026-06-29"],lat: 45.76231887229571,lng: 4.822479757005444}
 ];
 
 // Temporary exhibitions Fuad went to. `name` must equal the `exhibition` string on the canon rows
@@ -120,5 +128,30 @@ window.CANVAS_EXHIBITIONS = [
   {id: "sumida-best-2026", name: "See the Sumida Hokusai Museum's Best", venue: "hokusai-museum", visits: ["2026-10-18", "2026-11-14"]},
   {id: "edo-in-focus-2026", name: "Edo in Focus: Japanese Treasures from the British Museum", venue: "tokyo-met", visits: ["2026-09-30"]},
   {id: "swedish-masters-2026", name: "Swedish Masters of Art", venue: "tokyo-met", visits: ["2026-01-28", "2026-02-15"]},
-  {id: "matisse-agnsw", name: "Matisse: Life & Spirit, Masterpieces from the Centre Pompidou", venue: "agnsw", visits: []},
+  {id: "matisse-agnsw", name: "Matisse: Life & Spirit, Masterpieces from the Centre Pompidou", venue: "agnsw", visits: ["2022-03-13"]},
+  // Visit days matched to the venues' exhibition archives (2026-11-24). Shows with no work on the
+  // wall list unlinked.
+  {id: "sacrees-boites-fourviere-2026", name: "Sacrées Boîtes", venue: "fourviere-religious-art", visits: ["2026-06-29"]},
+  {id: "zkm-collection-2026", name: "The Story That Never Ends: The ZKM Collection", venue: "neue-kunst-karlsruhe", visits: ["2026-05-07"]},
+  {id: "kalte-herz-stuttgart-2026", name: "Das kalte Herz", venue: "kunstmuseum-stuttgart", visits: ["2026-05-05"]},
+  {id: "sergel-nationalmuseum-2026", name: "Sergel: Fantasy and Reality", venue: "nationalmuseum", visits: ["2026-04-16"]},
+  {id: "lupertz-wetterling-2026", name: "Markus Lüpertz: Zwielicht", venue: "wetterling", visits: ["2026-04-16"]},
+  {id: "monet-artizon-2026", name: "Monet: Questioning Nature", venue: "artizon", visits: ["2026-03-24"]},
+  {id: "onishi-tokyo-station-2026", name: "Onishi Shigeru: Photography and Painting", venue: "tokyo-station-gallery", visits: ["2026-02-27"]},
+  {id: "shinjuku-sompo-2026", name: "Shinjuku: the City of Modern Art", venue: "sompo", visits: ["2026-01-26"]},
+  {id: "koson-ota-2025", name: "Ohara Koson", venue: "ota-memorial", visits: ["2025-05-09"]},
+  {id: "wirkkala-tokyo-station-2025", name: "Tapio Wirkkala: The Sculptor of Ultima Thule", venue: "tokyo-station-gallery", visits: ["2025-05-08"]},
+  {id: "chelmonski-mnw-2024", name: "Józef Chełmoński", venue: "mnw", visits: ["2024-12-21"]},
+  {id: "true-form-approach-2024", name: "Adelaide Cioni: True Form", venue: "the-approach", visits: ["2024-06-16"]},
+  {id: "london-pictures-gilbert-george-2024", name: "London Pictures", venue: "gilbert-george-centre", visits: ["2024-06-13"]},
+  {id: "surrealism-mnw-2024", name: "Surrealism. Other Myths", venue: "mnw", visits: ["2024-06-11"]},
+  {id: "paris-1874-orsay-2024", name: "Paris 1874: Inventing Impressionism", venue: "orsay", visits: ["2024-05-23"]},
+  {id: "bourgeois-agnsw-2024", name: "Louise Bourgeois: Has the Day Invaded the Night or Has the Night Invaded the Day?", venue: "agnsw", visits: ["2024-04-10","2024-04-14","2024-04-17","2024-04-24","2024-04-27","2024-04-28"]},
+  {id: "year-of-the-dragon-4a-2024", name: "Lunar New Year // Year of the Dragon", venue: "4a-sydney", visits: ["2024-02-20"]},
+  {id: "kandinsky-agnsw-2024", name: "Kandinsky", venue: "agnsw", visits: ["2024-01-21"]},
+  {id: "blueprint-white-rabbit-2023", name: "A Blueprint for Ruins", venue: "white-rabbit", visits: ["2023-12-27"]},
+  {id: "archibald-agnsw-2023", name: "Archibald, Wynne and Sulman Prizes 2023", venue: "agnsw", visits: ["2023-07-19","2023-07-23","2023-07-26","2023-08-02","2023-08-09","2023-08-20","2023-08-23"]},
+  {id: "solstice-mnw-2022", name: "Solstice. Nordic Painting 1880–1910", venue: "mnw", visits: ["2022-12-27"]},
+  {id: "i-loved-you-white-rabbit-2022", name: "I Loved You: Works from the White Rabbit Collection", venue: "white-rabbit", visits: ["2022-11-12"]},
+  {id: "archibald-agnsw-2022", name: "Archibald, Wynne and Sulman Prizes 2022", venue: "agnsw", visits: ["2022-06-26","2022-06-29","2022-07-13","2022-07-24","2022-07-27","2022-08-17","2022-08-21"]},
 ];
