@@ -3,6 +3,54 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "pierre-auguste-renoir-fog-on-guernsey": {
+  "about": "Guernsey printed this view of its foggy bay, painted by Renoir in 1883, on a stamp for the centenary of his visit, and a conservator found one stuck to the canvas's back, put there nobody knows when.",
+  "deep": "Fog takes the sky and the hilltops, but the line where the far cliffs meet the water stays drawn, as in a picture carried to a finish. Most of some fifteen pictures from Renoir's weeks on Guernsey were studies for use back in Paris; this is one of the few finished landscapes. Curators reuniting them in 2023 likened it to Monet's Fisherman's Cottage on the Cliffs at Varengeville; David Ummels, an organiser, suggested Renoir may have hoped it would sell. In a letter of 27 September 1883 he hoped to give Durand-Ruel, his dealer, an idea of these charming landscapes, and described bathers crowding the rocks, none of whom reached the finished canvas.",
+  "by": "Opus 5.5",
+  "refs": {
+   "deep": [
+    {
+     "id": "claude-monet-fisherman-s-cottage-on-the-cliffs-at-varengevil",
+     "text": "Fisherman's Cottage on the Cliffs at Varengeville"
+    }
+   ]
+  }
+ },
+ "willem-kalf-still-life-with-a-silver-jug-and-a-porcelain-bow": {
+  "about": "Among this silver, glass and fruit, Kalf painted the blue-and-white bowl from two porcelains: its inside is decorated like klapmutsen, flat-rimmed bowls from earlier in the century; its outside follows a piece of his own day.",
+  "deep": "The display on this ledge has been handled and left half-finished. A riddle printed among Vondel's poems lists the still things Kalf loves: among them lime and lemon, glass and bowl, ornament, excess and display. The words fit the silver and the porcelain; the next lines praise such things left carelessly in disorder. Pale wine stands in the tall glass, fruit lies heaped at the bowl's lip, and the jug and the watch stand with their lids open. A nut lies split among crumbs of its shell. The front lemon is still whole, and the fruit in the bowl, its rind as granular as the lemon's, lies half stripped.",
+  "by": "Opus 5.5"
+ },
+ "hendrik-martenszoon-sorgh-lute-player": {
+  "about": "Joan Miró returned to Paris from Holland in May 1928 with a postcard of Sorgh's lute player and turned it into the first of three Dutch Interior canvases, swelling the musician's head into a huge balloon shape.",
+  "deep": "Pink bows at knee and shoe, a crimson beret: the singer has dressed for an audience he is not looking at. Historians split: E. de Jongh read a caution against improper love, Ovid's doomed lovers Pyramus and Thisbe framed above the woman; Franits and others saw a fop failing to impress her. The looks tilt it toward the joke. He watches his own fingers, she watches him with a smile lifted at one corner, and the only passion on show is his, for his playing. Yet the panel holds both: the lovers' death a small dark picture overhead, the comedy beneath, and on the tiles the dog, the one pair of eyes turned on us.",
+  "by": "Opus 5.5"
+ },
+ "philips-koninck-distant-view-with-cottages-along-a-road": {
+  "about": "The three cottages along the road at the left of Koninck's 1655 river panorama are based on an etching Rembrandt made five years earlier, the one part of the view traced to a model.",
+  "deep": "The road's two ruts, pressed into sand by wheels, are proof a surveyor would trust, offered for a place no surveyor could find. Sun breaks off partway through the riverside town, as passing cloud lights real ground; beyond, strips of field and water narrow toward the horizon until distance reads band by band. P. J. J. van Thiel, writing on this canvas in 1967, judged that a search of the great Dutch rivers for the view would fail: Koninck painted land that might exist, never land that does. Even the cottages at the left were based on another artist's print, and the painter lettered his name and year on the white wall of the nearest.",
+  "by": "Opus 5.5"
+ },
+ "jean-auguste-dominique-ingres-luigi-cherubini": {
+  "about": "Ingres staked his hopes for Paris on an allegory of Cherubini with a Muse; this plainer portrait of the composer at his desk was made in Rome in 1840–41, and he recorded it as a copy.",
+  "deep": "Under a curl at the hairline a crooked fingertip disappears, a detail a sitting would supply. This canvas was made in Rome, with Cherubini in Paris and the one head taken from life gone into a grander allegory. Ingres had a drawing of the head squared for transfer, probably used, and the sculptor Bartolini's mask of it, promised in 1836; Gary Tinterow suggests Ingres's pupil Henri Lehmann may have painted the canvas, the master only retouching. Robert Rosenblum found him almost photographic, the hand at his temple a pose of many 1840s daguerreotypes. Neither the drawing nor the mask shows a hand, and opinion divides over whose brush tucked that fingertip under the curl.",
+  "by": "Opus 5.5"
+ },
+ "eugene-marion-the-boiler-room": {
+  "about": "So far as is known, the portrait painter Eugène Marion had shown nothing but likenesses at the Paris Salon until 1886, when he sent from Pontoise a chaufferie, a boiler house: very likely this canvas.",
+  "deep": "A man whose hands hold a pipe, not a tool, is painted as a portrait would paint him. His lowered face and cupped knuckles are worked up in small separate touches, the blue jacket in a few broad drags; down the hall, the man tending the open fire door is laid in thinner, looser strokes. The machinery gets a likeness too, dials, bolt heads and chain links each set apart, and the red cloth sash at the near man's waist is the personal particular a portrait records. The lower edge cuts him at the thigh, just left of centre, as near as a portrait would set him.",
+  "by": "Opus 5.5"
+ },
+ "keisai-eisen-cormorant-fishing-on-the-nagaragawa-river-godo": {
+  "about": "On the Nagara, cormorant fishing still runs by night: fire at the bow startles the sweetfish, the birds dive, and neck cords stop them swallowing larger fish — Eisen's subject for a post station on the Kiso road.",
+  "deep": "Both men in the near boat grin, and all six fires burn. Bashō's haiku on the Nagara's cormorant boats turns from delight to sadness; the print holds the delight. The scholar Fukasawa Shinji traces that turn to the noh play Ukai, whose ghost, a cormorant master drowned for fishing forbidden water, works the river again until his boat's fire fades into the dark, and hears in it the master's guilt at taking life. No fire here has begun to fade. The taking goes on below the grins, where one bird comes up holding a fish and two others dive into a blue the printer graded darker toward the foot of the sheet.",
+  "by": "Opus 5.5"
+ },
+ "edvard-munch-jealousy": {
+  "about": "The staring man in Munch's 1895 canvas is usually read as Stanisław Przybyszewski, the woman as his wife Dagny Juel. His novel Overboard, perhaps answering this picture, drove a character named Munch to suicide over her.",
+  "deep": "The red of the staring man's beard leaves him: a duller band of it edges his coat beside the gown, and a red line outlines the man bowed toward her, tying his face to the couple at his back. If they stand in the garden, he cannot see them and must simply know; if they are his thought, he has brought them with him. The scholar Arne Eggum wrote it both ways, looking and seeing in the mind's eye, and judged a portrait reading too narrow for an image of jealousy itself. The head's size sets them far back, yet no ground leads there: the green under her hem stops at that band of red.",
+  "by": "Opus 5.5"
+ },
  "j-m-w-turner-the-destruction-of-the-bards-by-edward-i": {
   "about": "Based on Thomas Gray's ode The Bard, this Snowdonia watercolour was meant, Andrew Wilton argues, as the war half of a pair whose peaceful half, Caernarvon Castle, Turner exhibited in 1800; this half apparently went unfinished.",
   "deep": "Titled for the massacre in Thomas Gray's ode, where a poet curses the king from a high rock as the army winds below, the sheet shows nothing on its rocks that can be made out as him. Large figure studies stayed on separate sheets, though Andrew Wilton says they were drawn for a ledge in its foreground. Without its hero, perhaps, the subject went unrecognised: Turner's cataloguer A. J. Finberg listed it in 1909 as a Welsh mountain subject, and another name, Scene in the Welsh Mountains with an Army on the March, named only the column. The poet's height falls to whoever stands before the sheet, looking down on the pale file far below.",
@@ -1467,8 +1515,10 @@ by: "Opus 4.8" },
 },
 
 "jean-baptiste-carpeaux-ugolin-entoure-de-ses-quatre-enfants": {
-about: "Count Ugolino walled up to starve with his four sons, from Dante's Inferno XXXIII, 1862 — he bites his own hands in grief, and the boys, reading it as hunger, offer themselves to be eaten.",
-by: "Opus 4.8" },
+  "about": "Carpeaux modelled Dante's starving Ugolino with his children; in 1862 the Institute judged the plaster not worth handing to a marble carver, so the state ordered bronze, and he reportedly coated this plaster himself to preview it.",
+  "deep": "Violence and tenderness meet on the father's lower legs. Seeing the group in bronze at the 1863 Salon, the critic Paul Mantz fixed on the fingers at the mouth, called the gesture more bizarre than rational and warned against ugliness. That was half of what Carpeaux attempted. While modelling it, he wrote to a friend that he meant to join the most violent passions to the most delicate tenderness. The violence stays in the father, turned on his own body at the mouth and at the feet. The tenderness is the young ones', fastened low on those legs: the kneeling youth's arm locked round a shin, the smallest child leaning in, eyes shut.",
+  "by": "Opus 5.5"
+ },
 
 "john-constable-salisbury-cathedral-from-the-meadows": {
 
@@ -5998,8 +6048,10 @@ about: "Van Gogh painted three versions of this composition at Saint-Rémy in De
 by: "Opus 4.8" },
 
 "pierre-denis-martin-die-schlacht-in-der-bukowina-1686": {
-about: "Louis XIV's court battle-painter Pierre-Denis Martin depicted the 1686 engagement in the Bukowina from a sweeping aerial vantage that turns the battlefield into a map of smoke and ranked formations — the same distancing strategy he applied to all the king's campaigns, making war legible rather than visceral.",
-by: "Opus 4.8" },
+  "about": "Pierre-Denis Martin painted this battle in the Bukovina, in Moldavia, about 1705 for Philippe Dupont, a French veteran of the Polish king Jan III Sobieski's army, and the caption in its sky names one officer: Dupont.",
+  "deep": "The caption in the sky claims a victory, yet the two campaigns it could mean, in 1685 and 1686, both ended, on one historian's account, in withdrawal. After Jan III Sobieski died in 1696, Martin painted the king's campaigns for Philippe Dupont, an engineer in his army, who wrote an eyewitness memoir against Dalérac's Anecdotes de Pologne, a 1699 book that sought to darken the king's memory. On the plain below, battalions stand in their files beneath the smoke and covered wagons a retreat would need line the wood, while past the smoke the other army still stands massed under its banners, so the paint shows order and the lettering supplies the victory.",
+  "by": "Opus 5.5"
+ },
 
 "harold-septimus-power-the-battle-before-villers-bretonneux-a": {
 about: "August 8, 1918 — the day Ludendorff called \"the black day of the German Army\" — saw Australian and Canadian forces break the German line near Amiens; official Australian war artist Harold Septimus Power painted this scene in 1920, centering the charge of horse-drawn artillery as the visible engine of a collapse that led Ludendorff to counsel seeking an armistice.",
