@@ -19,12 +19,13 @@ model, since that would override the pin. After each batch, run
 `rotation/tools/check-subagent-models.py` before applying anything: the `opus` alias alone has
 drifted between versions without warning.
 
-**Version drift note (2026-11-05):** entries in portraits.js carry stamps up to `mv: "3.4"`
-(v3.1 Ling Tosite Sigure holds-release era, v3.2, v3.3 Rob Zombie, v3.4 Lantlôs), but this
-document's history stops at v3.0 — the 3.1–3.4 deltas lived in session workshops and were
-never folded back here. Owner confirms **3.4 is the current stamp** (Airbourne is the first
-batch written to it from this doc alone); the v3.0 model pin stands unchanged. When the
-3.1–3.4 deltas get reconstructed, they belong in this paragraph.
+**Version drift note (2026-11-05; stamp updated 2026-11-26):** entries in portraits.js carry
+stamps up to `mv: "3.7"` (v3.1 Ling Tosite Sigure holds-release era, v3.2, v3.3 Rob Zombie,
+v3.4 Lantlôs, then the reads-methodology stamps ride along: 3.6 trash-boat/DT era, 3.7 Frost\*),
+but this document's history stops at v3.0 — the later deltas live in the session workshops
+(`.sptmp/album-batch/FABLE_READS_RECIPE.local.md` is the operative methodology). The v3.0
+model pin stands unchanged. Cascade entries stamp the READS methodology version current at
+their campaign.
 
 ## The design (settled over four test rounds)
 
@@ -242,6 +243,18 @@ invisible until its descriptor entered). **Emphasis may follow the listening**: 
 plays ride in the dossier, and where the listening concentrates, the read may weight
 accordingly — this is a personal library, not an encyclopedia. Both rules are generic —
 they apply to every artist identically; per-artist steering stays banned.
+
+**Signatures field (RULED 2026-11-26, Frost\* the pilot):** artist entries may carry
+`signatures` — 2–4 sentences naming the catalogue's VERIFIED distinctive devices, each citing
+2–3 songs where it fires. Two evidence tiers: **lyric** (devices verified at the reads diff —
+positionals — or caught by the final-sweep thread ledger: mutating reprises, withheld words,
+cross-record verbatim threads) and **sound** (hearing pass / DV, band-stated or heard).
+Signatures are DISCOVERED, never brainstormed — every claim must trace to a diff-verified
+positional, a sweep-ledger thread, or a DV-grounded fact; the no-trivia bar applies. Album
+entries do NOT get the field (their devices ride organically in liners). Fable authors it
+(the evidence lives in the campaign QC), rendered as a labeled SIGNATURES block between
+`note` and `note2` on the artist card (rotation-artist.jsx). A note2 is OPTIONAL — two flat
+drafts were rejected at the pilot; an empty slot beats a forced one.
 
 **Fable note tier**: after drafting, Fable audits the read's claims against its own
 knowledge of the world (quick web verification where unsure) and may append a `note` —
