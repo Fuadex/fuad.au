@@ -773,5 +773,10 @@
   "Romes": {
     "mbid": "41c21728-09aa-45dd-8597-d8aa07c2b73a",
     "note": "Verified 2026-09-19; the stats-side last.fm mbid resolved to a US rapper."
+  },
+  "Frost*": {
+    "spotify": "1Ha9FtCeuoajMbOG4Kz2d7",
+    "note": "Jem Godfrey's UK prog band (Milliontown, Falling Satellites, Day and Age, Life in the Wires). artist-images.json held Discogs \"Frost (11)\" (A-299360, a different act: dark silhouette in an arch) from a name-search collision; clearImage falls through to the Spotify photo (band of four on a sofa). Deezer artist 9029912 = Frost* (albums verified), picture hash 61be0814eee73a0a57f0311d3de83b49. Verified 2026-11-26.",
+    "clearImage": true
   }
 }

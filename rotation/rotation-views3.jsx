@@ -4995,7 +4995,24 @@ function SearchOverlay({ open, onClose, go }) {
     if (!q.trim() || !M) return { tracks: [], albums: [] };
     const needle = deAccent(q.trim());
     const scan = (rows) => { const out = []; for (const r of rows) { if (deAccent(r[0]).includes(needle) || romaMatch(r[0], needle)) { out.push(r); if (out.length >= 10) break; } } return out; };
-    return { tracks: scan(M.tracks), albums: scan(M.albums) };
+    // Songs resolve THROUGH M.vof (variantRowIdx → canonicalRowIdx, curated `variant` folds in
+    // folds.json): a live/remix/caption-title variant keeps its own row for album + track pages,
+    // but a search hit on it surfaces — and opens — the canonical, once (2026-11-26: Ocean Grove
+    // "Fly Away - Australia's brilliant nu metal band…" listed beside FLY AWAY, opening its own page).
+    const vof = M.vof || {};
+    const scanTracks = () => {
+      const out = [], seen = new Set();
+      for (let i = 0; i < M.tracks.length; i++) {
+        const r = M.tracks[i];
+        if (!(deAccent(r[0]).includes(needle) || romaMatch(r[0], needle))) continue;
+        const ci = vof[i] != null ? vof[i] : i;
+        if (seen.has(ci)) continue;
+        seen.add(ci); out.push(M.tracks[ci]);
+        if (out.length >= 10) break;
+      }
+      return out;
+    };
+    return { tracks: scanTracks(), albums: scan(M.albums) };
   }, [q, mediaReady]);
 
   // THEME search — songs by what they're about. Now index-driven: the inverted index
