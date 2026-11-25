@@ -1,6 +1,6 @@
 # Upcoming shows in Japan — matched against the Rotation library
 
-Generated 2026-11-25 · 658 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
+Generated 2026-11-25 · 659 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
 
 
 ## November 2026
@@ -177,6 +177,7 @@ Generated 2026-11-25 · 658 shows · date order. Tier: **top** = a strong match 
 - 2026-12-17 (Thu) – 2026-12-18 · **PassCode** — Zepp DiverCity Tokyo, Tokyo area · 73 plays · not seen live · top · PassCode: UNLIMITED X, the tour finale at Zepp DiverCity · https://www.creativeman.co.jp/event/passcode-unlimited-x/
 - 2026-12-17 (Thu) · **赤いくらげ** — 梅田Zeela, Osaka · 15 plays · not seen live · top · JUNKY58% もえ & Zeela MOTTY presents “TAKE IT EASY” -Zeela 13th ANNIVERSARY- · https://www.livefans.jp/search?keyword=赤いくらげ
 - 2026-12-17 (Thu) · **Cat Power** — GORILLA HALL OSAKA, Osaka · 5 plays · not seen live · also · CAT POWER · https://www.creativeman.co.jp/event/cat-power26/
+- 2026-12-18 (Fri) · **PassCode** — Zepp DiverCity TOKYO, Tokyo · 73 plays · not seen live · top · PassCode UNLIMITED X -THE FINALE- · https://eplus.jp/sf/word/0000066651
 - 2026-12-18 (Fri) · **a flood of circle** — SECOND CRUTCH, Hiroshima · 44 plays · not seen live · top · TOUR 革命未遂の蝶が見る夢 · https://realsound.jp/2026/05/post-2386759.html
 - 2026-12-18 (Fri) · **People In The Box** — 有楽町 ヒューリックホール東京, Tokyo · 33 plays · not seen live · top · People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour - · https://www.peopleinthebox.com/live
 - 2026-12-18 (Fri) · **BLUE ENCOUNT** — 名古屋 DIAMOND HALL, Nagoya · 10 plays · not seen live · top · 四星球方向性会議 · https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc

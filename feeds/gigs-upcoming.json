@@ -1,6 +1,6 @@
 {
  "generated": "2026-11-25",
- "count": 658,
+ "count": 659,
  "shows": [
   {
    "date": "2026-11-24",
@@ -2218,6 +2218,19 @@
    "japanese": false,
    "url": "https://www.creativeman.co.jp/event/cat-power26/",
    "added": "2026-11-05"
+  },
+  {
+   "date": "2026-12-18",
+   "artist": "PassCode",
+   "title": "PassCode UNLIMITED X -THE FINALE-",
+   "venue": "Zepp DiverCity TOKYO",
+   "city": "Tokyo",
+   "plays": 73,
+   "seenLive": 0,
+   "tier": "top",
+   "japanese": true,
+   "url": "https://eplus.jp/sf/word/0000066651",
+   "added": "2026-11-25"
   },
   {
    "date": "2026-12-18",
