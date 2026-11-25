@@ -1,16 +1,10 @@
 # Upcoming shows in Japan — matched against the Rotation library
 
-Generated 2026-11-24 · 664 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
+Generated 2026-11-25 · 658 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
 
 
 ## November 2026
 - 2026-11-24 (Tue) – 2026-11-25 · **Iron Maiden** — K-Arena Yokohama, Tokyo area · 73 plays · not seen live · top · Iron Maiden at K-Arena Yokohama · https://www.creativeman.co.jp/artist/2026/11ironmaiden/
-- 2026-11-24 (Tue) · **Wienners** — LIQUIDROOM, Tokyo area · 36 plays · not seen live · top · Wienners at LIQUIDROOM · https://eplus.jp/sf/detail/1033790001-P0030165P021001?P1=0175
-- 2026-11-24 (Tue) · **1inamillion** — Spotify O-nest, Tokyo · 19 plays · not seen live · top · BAHAMAS FEST 2026 -Extra Show- · https://shibuya-o.com/nest/schedule/bahamas-fest-2026-extra-show/
-- 2026-11-24 (Tue) · **MUCC** — 新横浜NEW SIDE BEACH!!, Yokohama · 15 plays · not seen live · top · MUCC Club tour 2026「Beginning to Lotus」 · https://55-69.com/schedule
-- 2026-11-24 (Tue) · **nhomme** — Spotify O-nest, Tokyo · 15 plays · not seen live · top · BAHAMAS FEST 2026 -Extra Show- · https://shibuya-o.com/nest/schedule/bahamas-fest-2026-extra-show/
-- 2026-11-24 (Tue) · **Sable Hills** — SPACE ODD, Tokyo · 14 plays · not seen live · top · HOMURA JAPAN TOUR -KICKOFF SHOW- · https://www.livefans.jp/events/2011457
-- 2026-11-24 (Tue) · **fulusu** — Spotify O-nest, Tokyo · 8 plays · not seen live · top · BAHAMAS FEST 2026 -Extra Show- · https://shibuya-o.com/nest/schedule/bahamas-fest-2026-extra-show/
 - 2026-11-25 (Wed) · **Queens of the Stone Age** — Zepp Haneda, Tokyo area · 1925 plays · not seen live · top · Queens of the Stone Age at Zepp Haneda · https://www.songkick.com/venues/4396898-zepp-haneda
 - 2026-11-25 (Wed) · **Iron Maiden** — K-Arena Yokohama, Yokohama · 73 plays · not seen live · top · RUN FOR YOUR LIVES WORLD TOUR 2026 · https://www.creativeman.co.jp/artist/2026/11ironmaiden/
 - 2026-11-25 (Wed) · **THE NOVEMBERS** — 名古屋JAMMIN', Nagoya · 37 plays · not seen live · top · https://eplus.jp/sf/word/0000019114
