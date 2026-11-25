@@ -3,6 +3,51 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "vincent-van-gogh-undergrowth-with-two-figures": {
+  "about": "Van Gogh told his brother in June 1890 that this undergrowth of lilac poplar trunks was the \"pendant\", or companion, of a wheatfield, each on a new canvas a metre long and only fifty centimetres high.",
+  "deep": "The couple among these trunks appear in neither of the painter's accounts of this canvas. He described it to Theo, his brother, in June 1890 and again in early July, with a pencil sketch, naming the blue depth of the wood and its long grasses but not the two people. In that second letter, to Theo and his wife Jo, he said he did not much believe he would ever have a wife of his own. Nothing he wrote joins that sentence to the pair. The meadow he did describe runs its yellow touches over both of them.",
+  "by": "Opus 5.5"
+ },
+ "jean-baptiste-camille-corot-the-maison-blanche-of-sevres": {
+  "about": "This canvas began as a study by a painter named Aubry. In 1872 Corot painted over it and transformed it into a shaded wood looking out on a sunlit glade with a pale house.",
+  "deep": "Alfred Robaut, Corot's cataloguer, had one word for why the painter bought the study beneath this picture: complaisance, an obliging kindness. Moreau-Nélaton, the biographer, uses the same word for the extraordinary concessions people won from the old man. In one, a stranger left little pictures bought as Corots with the painter and next day carried home a real one, touched by the master's brush. Fame had made that brush a currency others could draw on. Here the kindness had its sums: Corot paid Aubry a thousand francs, and Robaut paid two thousand for the finished canvas. No seam on the surface shows where one painter's beginning gives way to the other's finish.",
+  "by": "Opus 5.5"
+ },
+ "claude-emile-schuffenecker-the-road-under-the-trees": {
+  "about": "Claude-Émile Schuffenecker fed and housed Paul Gauguin, and conceived a café show of Gauguin's circle at the 1889 Paris World's Fair. Here he paints a country road under violet-crowned trees, two figures on it.",
+  "deep": "Schuffenecker gives leaf-green not to these great crowns but to lower growth, such as the small tree at the road's end. Gauguin's 1889 portrait of him with his family, set in his own studio and inscribed \"Souvenir à ce bon Schuffencker\", the name misspelt, stands him at the far left, hands clasped, apart from his wife and children. It has been read as denying him as a painter: he has not so much as a brush. There he is one of four sitters arranged by another man's brush. Here the brush is his, and the two people on his road are small beneath the trees.",
+  "by": "Opus 5.5"
+ },
+ "j-m-w-turner-moonlight-a-study-at-millbank": {
+  "about": "Turner's small moonlit Thames was shown at the Royal Academy in 1797, but Andrew Wilton argues it was painted earlier, a trial of his powers in oil held back until a sea piece had established him.",
+  "deep": "The moon was the fashionable part. Moonlight was in vogue, drawn from Dutch painters such as Aert van der Neer, prized by British collectors; one reading finds the panel taking that fashion toward plain, unforced naturalism. Andrew Wilton holds that Turner, in his early twenties, meant his handling to rival two masters of the nocturne: Joseph Wright of Derby, who died the year it was shown, and Claude-Joseph Vernet. If so, the contest is in the paint. The moon is dense, edged matter, apart from the sky's smooth film, and the dark below stays close enough in tone for a laden boat to be drawn from it piece by piece: pole, oar, covered cargo.",
+  "by": "Opus 5.5"
+ },
+ "jules-breton-last-flowers": {
+  "about": "Breton showed a canvas called Les Dernières fleurs at the Paris Salon of 1890, and the critic Georges Lafenestre saw in it autumn's last chrysanthemums, caught by the first snow and \"ready to die\".",
+  "deep": "The snow has found the flowers and not the girl. She works bare-handed, a shawl over her bodice and no coat, and does not draw in against the cold. Marius Vachon, Breton's biographer, wrote in 1899 that nothing in his landscapes is ever sad, and that if he happened to paint winter he hastened to give it a smile through the grace of his figures. Here that smile spreads past her into the beds, where the heads the snow has caught keep their crimson and mauve. It gives way at the tall staked plant on our right, many of its leaves turned and hanging slack.",
+  "by": "Opus 5.5"
+ },
+ "edouard-vuillard-lacing-the-ankle-boots": {
+  "about": "On the French state's first artists' mission to the army zone, in February 1917, Vuillard made intimate scenes while others recorded ruins and landscapes. This distemper of a boot being laced dates from that year and the next.",
+  "deep": "A woman stoops over another's foot at the still centre of a crowded, patterned room. Two auction catalogues, for works of this title, read rank into it: a maid lacing her mistress's boot. One sets the scene in the Paris sitting room of Vuillard's dealer, Jos Hessel, and names the woman in the brown coat as his wife, Lucy. That catalogue has her seated on the right, as the picture bears out, and her companion kneeling, which the picture leaves open. Rank aside, the hands do the labour, forearms angled in from two sides, and the boot the title names gets no more drawing than a dark taper between them.",
+  "by": "Opus 5.5"
+ },
+ "chaim-soutine-view-of-ceret": {
+  "about": "The hillside town is Céret, in the Pyrenees, where Soutine lived from 1919 on his dealer's monthly money. By one account the dealer, after two years without receiving a picture, found him starving, then burning canvases.",
+  "deep": "Over the long white building one orange-red stroke lies almost level while the town around it leans. Soutine later turned on pictures like this: he reportedly wrote off his Céret canvases as \"painted with my fingers\", and by a curator's account he would give a dealer a new picture for a Céret one, then do away with it, happily, as a ritual. A 1950 monograph, telling how he sought out early work to destroy it, judged that probably one in ten of his canvases was left. Whatever the phrase meant, the hillside's loaded greens begin and end cleanly over thin dark paint, and the foreground's colours stay streaked inside single strokes.",
+  "by": "Opus 5.5"
+ },
+ "theo-von-brockhusen-bridge-over-the-havel-at-baumgartenbruck": {
+  "about": "Theodor Fontane described the wooden drawbridge at Baumgartenbrück, on the Havel, lifting for barges. A steel arch road bridge replaced it in 1909; Brockhusen, who summered there, painted the newcomer a few years later.",
+  "deep": "Brockhusen saw van Gogh's paint at close quarters. In spring 1913 he sat on the Berlin Secession's board under Paul Cassirer, his dealer, who had shown van Gogh since 1901, and its catalogue put a painting of this bridge by Brockhusen in one room with six van Goghs. When Cassirer lost the chair that June and the Secession split, Brockhusen helped found the Freie Secession. Among originals he could see what no print shows: how high a stroke stands, how thin it drags. The crown's shelves stand in ridges that catch the light, and on the new bridge the arches thin at their edges until paint clings to the tops of the weave.",
+  "by": "Opus 5.5"
+ },
+ "ernst-ferdinand-oehme-moonlit-landscape-with-a-castle": {
+  "about": "Royal court painter since his late forties yet still teaching drawing at a Dresden school to keep his family, Oehme painted this night of river, castle and small fires in 1853, two years before he died.",
+  "deep": "Against its moon, this castle belongs to a kind of picture Oehme set aside in Rome: the so-called mood picture, a landscape made to carry a feeling. His friend Ludwig Richter remembered Joseph Anton Koch there unsatisfied with Oehme's landscapes, and Julius Schnorr von Carolsfeld more gently rejecting his leaning toward such pictures; the biographer who retold it traced that leaning to a nature drawn to the sentimental and the dark. Home in Dresden, Oehme returned to it for good. Three decades on, the mood rests on placement: a moon high enough to reach crowns and roofs across the view, and low fires by the bridge, their colour held close.",
+  "by": "Opus 5.5"
+ },
  "johannes-vermeer-the-love-letter": {
   "about": "On loan in Brussels in 1971, Vermeer's small canvas was cut from its stretcher with a linoleum knife by a 21-year-old trainee waiter demanding money for Bengali refugees; it was found under his hotel mattress.",
   "deep": "Where you stand was the measure when this canvas was mended. It keeps you back in the dim near room, looking through a door frame at two women and a letter in the lit one. After the theft, by one account, artists and sociologists wanted it left unrestored and hung in a museum department devoted to the third world. An international committee had the gaps in the paint made good to keep the sense of looking into a real room, and refused a plea to leave the damage as a symbol of the world's disorder. The retouching was to convince chiefly from where a visitor stands, and each touch was to lift off easily.",
@@ -6967,8 +7012,10 @@ about: "Scholars read the pale strokes at this canvas's right edge as snow-cappe
 by: "Opus · Fable" },
 
 "j-m-w-turner-the-long-cellar-at-petworth": {
-about: "For a decade Turner treated Petworth House almost as a second home, given the run of the place by George Wyndham, 3rd Earl of Egremont — an eccentric patron who set aside a private studio room for him along the north front. The connection deepened after Turner's father died in 1829, and closed with the Earl's death in 1837. He painted a cluster of Petworth interiors across those years; this dim oil is the largest in scale, at odds with the small blue-paper studies most associated with the house.",
-by: "Opus · Fable" },
+  "about": "The ninth Earl of Northumberland, freed after sixteen years in the Tower, built this barrel-vaulted cellar at Petworth House around 1625; two centuries later Turner, a regular guest of the builder's descendant, Lord Egremont, painted it.",
+  "deep": "Little in the arches narrowing toward this pale light ties them to one house, and for over a century no house was named. Turner never exhibited or titled the panel, still his at his death in 1851; it later went by the title A Vaulted Hall, a name for any arched room. Lawrence Gowing, in 1966, likened its sombre, massive design to an alpine storm Turner showed in 1837, a kinship of weight, not place. In 1987 the scholar Sarah A. Reid identified its setting in print, and the title follows her. The new title names only the room; under its light the dark uprights could still be figures or casks.",
+  "by": "Opus 5.5"
+ },
 
 "j-m-w-turner-sunset-from-the-top-of-the-rigi": {
 
