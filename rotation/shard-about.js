@@ -14,6 +14,9 @@
 // This co-locates one artist's tracks in one shard, so a track page loads exactly one gist file.
 //
 // These are CI ARTIFACTS (like music-core.js): about/ is gitignored; only this script is committed.
+// EXCEPTION: about/sem-* (sem-meta.js, sem-vecs.bin, sem-vocab.json) are COMMITTED workshop output of
+// tools/embed-reads.py (python; CI cannot regenerate them). This script never touches them — its
+// cleanup below deletes only g-NN.js / d-NN.js / index.js.
 // Run in CI right after build-data.js (see sync.yml). Nothing here touches the merge pipeline.
 
 const fs = require("fs");
@@ -74,6 +77,18 @@ function loadSource() {
   return O;
 }
 
+// lowercase text → unique tokens (len ≥ MIN_TOK_LEN, not a stopword) → add `id` to each posting
+function addTokens(map, text, id) {
+  const seen = new Set();
+  for (const tk of text.split(/[^a-z0-9]+/)) {
+    if (tk.length < MIN_TOK_LEN || STOPWORDS.has(tk) || seen.has(tk)) continue;
+    seen.add(tk);
+    let s = map.get(tk);
+    if (!s) { s = new Set(); map.set(tk, s); }
+    s.add(id);
+  }
+}
+
 const bucketOf = (key) => {
   const artistSlug = key.slice(0, key.indexOf("~") < 0 ? key.length : key.indexOf("~"));
   // _slugHash returns base-36; convert to a Number modulo the bucket count deterministically.
@@ -109,7 +124,9 @@ function main() {
   // inverted index: token -> Set of entry-ids (index into `keys`). Built alongside the shards.
   const keyId = new Map();
   keys.forEach((k, i) => keyId.set(k, i));
-  const tokenMap = new Map();   // token -> Set<int>
+  const tokenMap = new Map();   // token -> Set<int>   (reads + tells)
+  const tellMap = new Map();    // token -> Set<int>   (tells only: means + built) — v3 `tokT`
+  const themeMap = new Map();   // lowercased theme label -> Set<int> — v3 `th`
 
   const pick = (e, fields) => {
     const o = {};
@@ -139,16 +156,24 @@ function main() {
     if (Object.keys(d).length) deep[b][k] = d;
 
     // tokenise every present read (mirrors the theme-search corpus: haiku+sonnet+opus+fable+web)
+    // PLUS the tells (means + built) since v3 (searchbar contract 2026-11-26): tells become
+    // text-searchable in `tok`, and also get their own `tokT` postings (Meaning/Device scopes).
     const id = keyId.get(k);
-    const text = [e.haiku, e.sonnet, e.opus, e.fable, e.web].filter(Boolean).join(" ").toLowerCase();
-    const toks = text.split(/[^a-z0-9]+/);
-    const seen = new Set();
-    for (const tk of toks) {
-      if (tk.length < MIN_TOK_LEN || STOPWORDS.has(tk) || seen.has(tk)) continue;
-      seen.add(tk);
-      let s = tokenMap.get(tk);
-      if (!s) { s = new Set(); tokenMap.set(tk, s); }
-      s.add(id);
+    const tellText = [e.means, e.built].filter((x) => typeof x === "string" && x).join(" ").toLowerCase();
+    const text = [e.haiku, e.sonnet, e.opus, e.fable, e.web].filter(Boolean).join(" ").toLowerCase() +
+      (tellText ? " " + tellText : "");
+    addTokens(tokenMap, text, id);
+    if (tellText) addTokens(tellMap, tellText, id);
+
+    // th: shipped theme labels exactly as stored, keyed lowercased.
+    if (Array.isArray(e.themes)) {
+      for (const lab of e.themes) {
+        if (typeof lab !== "string" || !lab) continue;
+        const lk = lab.toLowerCase();
+        let s = themeMap.get(lk);
+        if (!s) { s = new Set(); themeMap.set(lk, s); }
+        s.add(id);
+      }
     }
   }
 
@@ -170,21 +195,41 @@ function main() {
   // joined string of base36 DELTAS ("c,9x,2,41"), which the search decodes with one split +
   // prefix-sum. Same results, roughly half the bytes before gzip. The consumer accepts both
   // shapes (array = v1, string = v2) so a stale cached index keeps working.
+  //
+  // v3 (searchbar contract, 2026-11-26) adds `th` (theme label → ids) and `tokT` (tells-only
+  // tokens → ids), same packing; `tok` also covers means+built. A v2-only client ignores them.
   const ceil = Math.max(TOK_MIN, Math.floor(keys.length * TOK_CEIL_FRAC));
+  const packIds = (set) => {
+    const ids = Array.from(set).sort((a, b) => a - b);
+    let prev = 0; const parts = new Array(ids.length);
+    for (let i = 0; i < ids.length; i++) { parts[i] = (ids[i] - prev).toString(36); prev = ids[i]; }
+    return parts.join(",");
+  };
   const tok = {};
   let kept = 0, dropped = 0;
   for (const [t, set] of tokenMap) {
     if (set.size < TOK_MIN || set.size > ceil) { dropped++; continue; }
-    const ids = Array.from(set).sort((a, b) => a - b);
-    let prev = 0; const parts = new Array(ids.length);
-    for (let i = 0; i < ids.length; i++) { parts[i] = (ids[i] - prev).toString(36); prev = ids[i]; }
-    tok[t] = parts.join(",");
+    tok[t] = packIds(set);
     kept++;
   }
-  const indexObj = { v: 2, buckets: N_BUCKETS, keys, tok };
+  const tokT = {};
+  let keptT = 0;
+  for (const [t, set] of tellMap) {
+    if (set.size < TOK_MIN || set.size > ceil) continue;
+    tokT[t] = packIds(set);
+    keptT++;
+  }
+  const th = {};
+  for (const lab of Array.from(themeMap.keys()).sort()) th[lab] = packIds(themeMap.get(lab));
+  // fv: ids of entries whose Fable tier is the v2 (Opus-authored + Fable-QC'd) read — the
+  // Themes-mode Fable/All filter needs this exactly, without loading any deep shard.
+  const fvIds = new Set();
+  for (const k of keys) if (O[k] && O[k].fv === 2) fvIds.add(keyId.get(k));
+  const indexObj = { v: 3, buckets: N_BUCKETS, keys, tok, th, tokT, fv: packIds(fvIds) };
   const indexBody =
     "// GENERATED by shard-about.js — do not edit. inverted theme index for llm-about.\n" +
-    "// shape: { v, buckets, keys:[entryKey...], tok:{ token:[keyId...] } }. keyId indexes keys[].\n" +
+    "// shape: { v:3, buckets, keys:[entryKey...], tok:{ token:ids }, th:{ themeLabelLower:ids }, tokT:{ tellToken:ids }, fv:ids (entries with fv===2) }\n" +
+    "// ids = comma-joined base36 DELTAS of sorted keyIds (prefix-sum to decode). keyId indexes keys[].\n" +
     "window.ROTATION_ABOUT_INDEX = " + JSON.stringify(indexObj) + ";\n";
   const indexPath = path.join(OUT_DIR, "index.js");
   fs.writeFileSync(indexPath, indexBody, "utf8");
@@ -194,7 +239,7 @@ function main() {
   console.log(`  source        : ${keys.length} entries`);
   console.log(`  gist tier     : ${N_BUCKETS} shards (${kb(gistBytes)} total, ROTATION_ABOUT_G)`);
   console.log(`  deep tier     : ${N_BUCKETS} shards (${kb(deepBytes)} total, ROTATION_ABOUT_D)`);
-  console.log(`  theme index   : ${kept} tokens kept, ${dropped} dropped (ceil=${ceil}) — ${kb(indexBody.length)}`);
+  console.log(`  theme index   : v3 — ${kept} tokens kept, ${dropped} dropped (ceil=${ceil}); ${keptT} tell tokens; ${Object.keys(th).length} theme labels; ${fvIds.size} fv==2 — ${kb(indexBody.length)}`);
   console.log(`  → rotation/about/  (${Date.now() - t0} ms)`);
 
   if (kept < 5000) {

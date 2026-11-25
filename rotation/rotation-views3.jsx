@@ -4897,6 +4897,280 @@ function GigsView({ go }) {
 }
 
 // ════════════════════════ SEARCH ════════════════════════
+
+// ── THEMES-MODE SEMANTIC LAYER (contract .sptmp/searchbar/CONTRACT.md, ruled by Fuad 2026-11-26) ──
+// Lexical theme search measured poor (the "escape" bucket: 36 of its 40 top songs never surfaced),
+// so free text is re-ranked by meaning: a quantized MiniLM embeds the QUERY in the browser and we
+// take the cosine against build-side vectors of every read (about/sem-vecs.bin).
+//
+// HARD CONSTRAINT (Fuad): nothing here is eager. semStart() is called from ONE place — the overlay's
+// effect on entering Themes mode — and is idempotent, so the ~23 MB model, the ~6.5 MB vectors,
+// the vocab and onnxruntime-web are fetched on the first Themes entry of the page's life and then
+// live in this module state for the session. Repeat visits hit the HTTP/SW cache (the model fetch
+// asks for force-cache; ort + wasm are a pinned, immutable cdnjs path).
+//
+// PROGRESSIVE ENHANCEMENT: any failure (offline, a 404, a blocked CDN, wasm unsupported) flips
+// status to "off" and the overlay simply keeps its lexical results. Nothing awaits this layer.
+const SEM_ORT_BASE = "https://cdnjs.cloudflare.com/ajax/libs/onnxruntime-web/1.31.1/";
+const SEM_ORT_SRI = "sha384-tNxIwEqSlcdvKtUte98AsccPbDKM958LBXB/+3BLS42TTihXHKTWgdqPqXI/lot8";   // ort.wasm.min.js 1.31.1
+const SEM_MODEL_URL = "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/main/onnx/model_quantized.onnx";
+const SEM_FLOOR = 0.25, SEM_WB_BONUS = 0.05, SEM_TOP = 40;
+const SEM = { status: "idle", session: null, vocab: null, keys: null, row: null, i8: null, factor: null, dims: 384,
+  subs: new Set(), qcache: new Map(), chain: Promise.resolve() };
+const semEmit = () => SEM.subs.forEach(f => { try { f(); } catch (e) {} });
+
+// the pure tokenizer rides on ROTATION for testing (sem-wordpiece.js is a plain script loaded
+// before the jsx bundles; node's parity check requires the same file).
+if (window.ROTATION && window.SEM_WORDPIECE) window.ROTATION.semWordPiece = window.SEM_WORDPIECE.tokenize;
+
+function semEnsureOrt() {
+  if (window.ort && window.ort.InferenceSession) return Promise.resolve(window.ort);
+  return new Promise((res, rej) => {
+    const s = document.createElement("script");
+    s.src = SEM_ORT_BASE + "ort.wasm.min.js";
+    s.integrity = SEM_ORT_SRI; s.crossOrigin = "anonymous";
+    s.onload = () => (window.ort && window.ort.InferenceSession) ? res(window.ort) : rej(new Error("ort global missing"));
+    s.onerror = () => rej(new Error("ort script failed"));
+    document.head.appendChild(s);
+  });
+}
+// about/* files get no stage-site ?v= stamp (it stamps top-level .js only), so bust per build the
+// way R.loadAboutIndex does: ?v=R.BUILT. The bin's URL inside the meta carries its own md5.
+const semBuiltQ = () => { const R = window.ROTATION; return R && R.BUILT ? "?v=" + R.BUILT : ""; };
+function semEnsureMeta() {
+  return new Promise((res, rej) => {
+    const ok = () => window.ROTATION_SEM && window.ROTATION_SEM.keys ? res(window.ROTATION_SEM) : rej(new Error("sem-meta missing"));
+    if (window.ROTATION_SEM) return ok();
+    const s = document.createElement("script");
+    s.src = "about/sem-meta.js" + semBuiltQ();
+    s.onload = ok; s.onerror = () => rej(new Error("sem-meta 404"));
+    document.head.appendChild(s);
+  });
+}
+// int8 rows stay int8 (6.5 MB, not 26 MB of floats). Dequantize-then-L2-normalize collapses to one
+// per-row factor: row_f = q·scale/127, and cos uses row_f/‖row_f‖ = q·(scale/127)/‖q·scale/127‖ —
+// so factor[r] = (scale/127)/‖deq row r‖, and cos(query, r) = factor[r]·Σ q_d·query_d. Exact.
+function semLoadVecs(meta) {
+  return fetch(new URL("about/" + meta.bin, location.href).href).then(r => { if (!r.ok) throw new Error("sem-vecs " + r.status); return r.arrayBuffer(); })
+    .then(buf => {
+      const dims = meta.dims || 384, n = meta.n || meta.keys.length;
+      const i8 = new Int8Array(buf);
+      if (i8.length !== n * dims || meta.keys.length !== n) throw new Error("sem-vecs shape mismatch");
+      const k = (meta.scale || 1) / 127, factor = new Float32Array(n);
+      for (let r = 0; r < n; r++) {
+        let ss = 0; const o = r * dims;
+        for (let d = 0; d < dims; d++) { const v = i8[o + d] * k; ss += v * v; }
+        factor[r] = ss > 0 ? k / Math.sqrt(ss) : 0;
+      }
+      const row = new Map(); meta.keys.forEach((key, i) => row.set(key, i));
+      Object.assign(SEM, { i8, factor, row, keys: meta.keys, dims });
+    });
+}
+function semLoadVocab() {
+  return fetch("about/sem-vocab.json" + semBuiltQ()).then(r => { if (!r.ok) throw new Error("sem-vocab " + r.status); return r.json(); })
+    .then(v => {
+      if (!v || !v.vocab || !window.SEM_WORDPIECE) throw new Error("sem-vocab/tokenizer missing");
+      SEM.vocab = v;
+      if (window.ROTATION) window.ROTATION.semTokenize = (text) => window.SEM_WORDPIECE.tokenize(text, v, { maxLen: 256 });
+    });
+}
+function semLoadModel() {
+  return fetch(SEM_MODEL_URL, { cache: "force-cache", mode: "cors", credentials: "omit" })
+    .then(r => { if (!r.ok) throw new Error("model " + r.status); return r.arrayBuffer(); });
+}
+function semStart() {
+  if (SEM.status !== "idle") return;
+  SEM.status = "loading"; semEmit();
+  const ortP = semEnsureOrt().then(ort => {
+    ort.env.wasm.wasmPaths = SEM_ORT_BASE;   // .mjs glue + .wasm from the same pinned directory
+    ort.env.wasm.numThreads = 1;             // Pages isn't cross-origin-isolated: no SharedArrayBuffer
+    ort.env.wasm.proxy = false;
+    return ort;
+  });
+  const sessP = Promise.all([ortP, semLoadModel()])
+    .then(([ort, buf]) => ort.InferenceSession.create(new Uint8Array(buf), { executionProviders: ["wasm"], graphOptimizationLevel: "all" }));
+  Promise.all([sessP, semEnsureMeta().then(semLoadVecs), semLoadVocab()])
+    .then(([session]) => { SEM.session = session; SEM.status = "ready"; semEmit(); })
+    .catch(err => { SEM.status = "off"; try { console.warn("[themes] semantic search off — lexical only:", err && err.message); } catch (e) {} semEmit(); });
+}
+// query → L2-normalized mean-pooled embedding (attention mask is all ones for one unpadded
+// sequence, so the masked mean is the plain mean over tokens). Runs are serialized: a wasm
+// session does not take concurrent run() calls. Cached per query string for the session.
+function semEmbed(text) {
+  if (SEM.status !== "ready") return Promise.reject(new Error("semantic not ready"));
+  const key = String(text).trim();
+  if (SEM.qcache.has(key)) return SEM.qcache.get(key);
+  const ort = window.ort;
+  const ids = window.SEM_WORDPIECE.tokenize(key, SEM.vocab, { maxLen: 256 }), L = ids.length;
+  const T = (fill) => new ort.Tensor("int64", BigInt64Array.from(ids, (v) => BigInt(fill == null ? v : fill)), [1, L]);
+  const all = { input_ids: T(), attention_mask: T(1), token_type_ids: T(0) };
+  const names = SEM.session.inputNames || Object.keys(all), feeds = {};
+  names.forEach(n => { if (all[n]) feeds[n] = all[n]; });
+  const p = SEM.chain.then(() => SEM.session.run(feeds)).then(out => {
+    const h = (out.last_hidden_state || out[SEM.session.outputNames[0]]).data, D = SEM.dims;
+    const v = new Float32Array(D);
+    for (let t = 0; t < L; t++) for (let d = 0; d < D; d++) v[d] += h[t * D + d];
+    let ss = 0; for (let d = 0; d < D; d++) { v[d] /= L; ss += v[d] * v[d]; }
+    const inv = ss > 0 ? 1 / Math.sqrt(ss) : 0; for (let d = 0; d < D; d++) v[d] *= inv;
+    return v;
+  });
+  SEM.chain = p.catch(() => {});
+  SEM.qcache.set(key, p);
+  p.catch(() => SEM.qcache.delete(key));
+  return p;
+}
+const semCos = (r, qv) => {
+  const D = SEM.dims, o = r * D, a = SEM.i8; let s = 0;
+  for (let d = 0; d < D; d++) s += a[o + d] * qv[d];
+  return s * SEM.factor[r];
+};
+
+// index postings: v2+ = delta+base36 strings ("c,9x,2"), v1 = plain int arrays (stale caches).
+function semPostings(p) {
+  if (Array.isArray(p)) return p;
+  if (p == null || p === "") return [];
+  const parts = String(p).split(","), out = new Array(parts.length);
+  let acc = 0; for (let i = 0; i < parts.length; i++) { acc += parseInt(parts[i], 36); out[i] = acc; }
+  return out;
+}
+// lexical match over an inverted token map (tok, or tokT = means+built only). Every query word
+// (len ≥ 3) unions the ids of all index tokens CONTAINING it (substring/prefix typing keeps
+// working); words AND together. An id reached through a token EQUAL to a word is a whole-word hit.
+function semLexical(T, needle) {
+  const words = needle.split(/[^a-z0-9]+/).filter(w => w.length >= 3);
+  const wb = new Set();
+  if (!words.length || !T) return { ids: new Set(), wb, words };
+  let acc = null;
+  for (const w of words) {
+    const hit = new Set();
+    for (const tok in T) {
+      if (tok.indexOf(w) < 0) continue;
+      const exact = tok === w;
+      for (const id of semPostings(T[tok])) { hit.add(id); if (exact) wb.add(id); }
+    }
+    acc = acc === null ? hit : new Set([...acc].filter(id => hit.has(id)));
+    if (!acc.size) break;
+  }
+  return { ids: acc || new Set(), wb, words };
+}
+
+// THE RESULT PIPELINE (contract §Result pipeline) — pure over its inputs, so the overlay and a
+// probe battery run the identical code (exposed as ROTATION.semThemeRank).
+//   candidates = all entries → [Fable only] → [bucket] → vof dedupe (by canonical key)
+//   · empty query: bucket → by plays; no bucket → nothing (tier "idle")
+//   · query, no query vector yet: LEXICAL — tok (or tokT when Meaning/Device is on), whole-word
+//     > substring > plays
+//   · query + vector: SEMANTIC — cosine over the candidates, floor 0.25, +0.05 for a lexical
+//     whole-word hit; Meaning/Device on = the tokT lexical set is a hard filter, cosine orders it
+//   → top 40.
+// Meaning/Device are verified against the entry's own means/built text once its gist shard is
+// here (tokT pools both fields, so the index alone can't tell a Meaning hit from a Device hit).
+// Fable-only uses the index's `fv` posting list when the build ships one; until then it is read
+// off the gist (`has` contains "f" — a Fable read exists; 7,405 of those 7,420 are fv 2). Either
+// gist-gated row waits (key returned in `want`) rather than guessing.
+// o = { q, fold, src:"all"|"fable", bucket, meaning, device, qVec, slugMap, canonKey:Map, gist(key), IDX?, LLM? }
+function semThemeRank(o) {
+  const out = { rows: [], tier: "idle", want: [], total: 0, pending: 0 };
+  const IDX = o.IDX !== undefined ? o.IDX : window.ROTATION_ABOUT_INDEX;
+  const LLM = o.LLM !== undefined ? o.LLM : window.ROTATION_LLM_ABOUT;
+  const slugMap = o.slugMap, gist = o.gist || (() => null), fold = o.fold || (s => s.toLowerCase());
+  if (!slugMap || (!IDX && !LLM)) return out;
+  const q = (o.q || "").trim(), needle = fold(q);
+  const bucket = o.bucket ? String(o.bucket).toLowerCase() : "";
+  if (!q && !bucket) return out;
+  if (q && needle.length < 3) { out.tier = "short"; return out; }
+
+  let scored = [];   // { key, score, cos?, wb }
+  let fableByGist = false, scoped = false, words = [];
+  if (IDX && IDX.keys) {
+    scoped = !!(IDX.tokT && (o.meaning || o.device));
+    // 1 · filters → candidate ids (null = every entry)
+    let cand = null;
+    const narrow = (ids) => { const s = new Set(ids); cand = cand ? new Set([...cand].filter(i => s.has(i))) : s; };
+    if (o.src === "fable") { if (IDX.fv) narrow(semPostings(IDX.fv)); else fableByGist = true; }
+    if (bucket && IDX.th) narrow(semPostings(IDX.th[bucket]));
+    // 2 · lexical match
+    const lex = q ? semLexical(scoped ? IDX.tokT : IDX.tok, needle) : null;
+    if (lex) words = lex.words;
+    const keyOf = (id) => IDX.keys[id];
+    if (!q) {
+      out.tier = "bucket";
+      for (const id of (cand || [])) { const k = keyOf(id); if (k) scored.push({ key: k, score: 0, wb: false }); }
+    } else if (o.qVec && SEM.status === "ready" && SEM.row) {
+      out.tier = "semantic";
+      let pool = cand;
+      if (scoped) pool = pool ? new Set([...pool].filter(i => lex.ids.has(i))) : lex.ids;
+      const visit = (k, wb) => {
+        const r = SEM.row.get(k); if (r == null) return;
+        const c = semCos(r, o.qVec); if (c < SEM_FLOOR) return;
+        scored.push({ key: k, score: c + (wb ? SEM_WB_BONUS : 0), cos: c, wb });
+      };
+      if (pool) { for (const id of pool) { const k = keyOf(id); if (k) visit(k, lex.wb.has(id)); } }
+      else {
+        // no filter: walk the vector rows; whole-word bonus looked up by key → id
+        const idOf = o._idOf || new Map(IDX.keys.map((k, i) => [k, i]));
+        for (let r = 0; r < SEM.keys.length; r++) {
+          const k = SEM.keys[r], id = idOf.get(k);
+          const c = semCos(r, o.qVec); if (c < SEM_FLOOR) continue;
+          const wb = id != null && lex.wb.has(id);
+          scored.push({ key: k, score: c + (wb ? SEM_WB_BONUS : 0), cos: c, wb });
+        }
+      }
+    } else {
+      out.tier = "lexical";
+      for (const id of lex.ids) {
+        if (cand && !cand.has(id)) continue;
+        const k = keyOf(id); if (k) scored.push({ key: k, score: lex.wb.has(id) ? 1 : 0, wb: lex.wb.has(id) });
+      }
+    }
+  } else {
+    // dev fallback — no index built, the whole llm-about blob is loaded: scan it (lexical only).
+    out.tier = q ? "lexical" : "bucket";
+    const wbRe = q ? new RegExp("\\b" + needle.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")) : null;
+    for (const key in LLM) {
+      const e = LLM[key];
+      if (o.src === "fable" && e.fv !== 2) continue;
+      if (bucket && !(e.themes || []).some(t => String(t).toLowerCase() === bucket)) continue;
+      if (!q) { scored.push({ key, score: 0, wb: false }); continue; }
+      const text = fold([e.haiku, e.sonnet, e.opus, e.fable, e.web].filter(Boolean).join(" · "));
+      if (!text.includes(needle)) continue;
+      const wb = wbRe.test(text); scored.push({ key, score: wb ? 1 : 0, wb });
+    }
+  }
+
+  // 3 · order: score, then plays (canonical row's plays)
+  const canon = (k) => (o.canonKey && o.canonKey.get(k)) || k;
+  const playsOf = (k) => { const t = slugMap[canon(k)] || slugMap[k]; return t ? t.plays : -1; };
+  scored.forEach(s => { s.plays = playsOf(s.key); });
+  scored.sort((a, b) => (b.score - a.score) || (b.plays - a.plays));
+
+  // 4 · walk: vof dedupe (first = best per canonical), gist gates, top 40
+  const scopeText = (g) => fold([o.meaning ? g.means : "", o.device ? g.built : ""].filter(Boolean).join(" · "));
+  const seen = new Set(), WANT_CAP = 160;
+  for (const s of scored) {
+    if (out.rows.length >= SEM_TOP) break;
+    const ck = canon(s.key);
+    if (seen.has(ck)) continue;
+    const disp = slugMap[ck] || slugMap[s.key];
+    if (!disp) continue;
+    const g = gist(s.key);
+    if (fableByGist || scoped) {
+      if (!g) { out.pending++; if (out.want.length < WANT_CAP) out.want.push(s.key); else break; continue; }
+      if (fableByGist && String(g.has || "").indexOf("f") < 0) continue;
+      if (scoped) { const t = scopeText(g); if (!words.every(w => t.includes(w))) continue; }
+    } else if (!g && out.want.length < WANT_CAP) out.want.push(s.key);   // blurb + chips arrive with the shard
+    seen.add(ck);
+    out.rows.push({ key: s.key, ck, title: disp.title, artist: disp.artist, plays: disp.plays,
+      blurb: (g && (g.haiku || g.web)) || "", themes: (g && g.themes) || [], score: s.score, cos: s.cos, wb: s.wb });
+  }
+  out.total = scored.length;
+  return out;
+}
+
+if (window.ROTATION) Object.assign(window.ROTATION, {
+  semThemeRank, semEmbed, semStart, semStatus: () => SEM.status,
+});
+
 function SearchOverlay({ open, onClose, go }) {
   const R = window.ROTATION;
   const [q, setQ] = React.useState("");
@@ -4911,6 +5185,16 @@ function SearchOverlay({ open, onClose, go }) {
   // the matched keys. `indexReady` gates the index; `shardTick` bumps as matched shards land.
   const [indexReady, setIndexReady] = React.useState(!!window.ROTATION_ABOUT_INDEX);
   const [shardTick, bumpShards] = React.useReducer(x => x + 1, 0);
+  // Themes-mode controls (contract 2026-11-26): source (all | fable), theme bucket (index `th`
+  // label, "" = all), and the Meaning / Device tell scopes (multi-select; index `tokT`).
+  const [src, setSrc] = React.useState("all");
+  const [bucket, setBucket] = React.useState("");
+  const [scopeM, setScopeM] = React.useState(false);
+  const [scopeD, setScopeD] = React.useState(false);
+  // semantic layer: module state (SEM) + a tick so this overlay re-renders as it loads; qVec is
+  // the embedding of the CURRENT query (stale vectors are ignored by comparing qVec.q).
+  const [semTick, bumpSem] = React.useReducer(x => x + 1, 0);
+  const [qVec, setQVec] = React.useState(null);
   const inputRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -4938,9 +5222,31 @@ function SearchOverlay({ open, onClose, go }) {
   React.useEffect(() => {
     if (mode !== "theme") return;
     const R = window.ROTATION;
+    // THE LAZY GATE: the semantic assets start loading here — first Themes entry only, once per
+    // page life (semStart is a no-op after the first call). Never awaited: lexical stands alone.
+    semStart();
     if (window.ROTATION_ABOUT_INDEX) { setIndexReady(true); return; }
     if (R && R.loadAboutIndex) R.loadAboutIndex(() => setIndexReady(true));
   }, [mode]);
+  React.useEffect(() => {
+    if (!open) return;
+    SEM.subs.add(bumpSem);
+    return () => { SEM.subs.delete(bumpSem); };
+  }, [open]);
+  const semStatus = SEM.status;
+
+  // embed the query once semantic is ready (debounced; cached per string in semEmbed). A failed
+  // embed just leaves qVec stale → the pipeline stays on the lexical tier for that query.
+  React.useEffect(() => {
+    if (mode !== "theme" || semStatus !== "ready") return;
+    const text = q.trim();
+    if (text.length < 3) return;
+    let live = true;
+    const t = setTimeout(() => {
+      semEmbed(text).then(v => { if (live) setQVec({ q: text, v }); }).catch(() => {});
+    }, 180);
+    return () => { live = false; clearTimeout(t); };
+  }, [q, mode, semStatus]);
 
   // slug-keyed track lookup (artistSlug~trackSlug → {title, artist, plays}) so a blurb key can be
   // resolved to a display row. Built ONCE when the media index lands. The blurb keys are ~7k, so
@@ -5015,92 +5321,57 @@ function SearchOverlay({ open, onClose, go }) {
     return { tracks: scanTracks(), albums: scan(M.albums) };
   }, [q, mediaReady]);
 
-  // THEME search — songs by what they're about. Now index-driven: the inverted index
-  // (about/index.js) maps tokens → entry-key ids; we resolve the query's words to candidate keys,
-  // then lazy-load ONLY the gist shards holding them (R.loadAboutFor) and rank for display. A hit
-  // on a token that STARTS with the needle scores as a whole-word match. Dev fallback: if the index
-  // never loaded but the whole blob did (R.loadAboutIndex synthesised it), scan the blob directly.
-  const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  // THEME search — songs by what they're ABOUT (reworked 2026-11-26 to the ruled contract,
+  // .sptmp/searchbar/CONTRACT.md). The ranking lives in semThemeRank (module scope, above) so
+  // the overlay and a probe battery run one pipeline; this component only feeds it state:
+  // the controls, the media join (slugMap + the vof canonical-key map) and the query vector.
+  //
+  // vof dedupe BY KEY: media-index's `vof` maps variant ROW → canonical ROW (curated `variant`
+  // folds), but reads are keyed artistSlug~titleSlug — so lift it to a key → canonical-key map,
+  // the same join the names-mode song scan does by row (2026-11-26, Ocean Grove FLY AWAY).
+  const canonKey = React.useMemo(() => {
+    const M = window.ROTATION_MEDIA; if (!M || !M.vof) return null;
+    const kOf = (i) => { const t = M.tracks[i]; return t ? R.slug(M.artists[t[1]]) + "~" + R.slug(t[0]) : null; };
+    const m = new Map();
+    for (const vi in M.vof) {
+      const vk = kOf(+vi), ck = kOf(M.vof[vi]);
+      if (vk && ck && vk !== ck) m.set(vk, ck);
+    }
+    return m;
+  }, [mediaReady]);
 
-  // 1) resolve query → candidate entry keys via the index (or blob-scan fallback).
-  const themeMatch = React.useMemo(() => {
-    if (mode !== "theme" || !q.trim()) return null;
-    const needle = deAccent(q.trim());
-    if (needle.length < 3) return null;
+  // index-derived control data: bucket labels with counts (from `th`), whether the tell scopes
+  // exist (`tokT`), and a key → id map for the unfiltered semantic walk. A v2 index has neither
+  // th nor tokT → the dropdown and the chips simply don't render.
+  const idxInfo = React.useMemo(() => {
     const IDX = window.ROTATION_ABOUT_INDEX;
-    if (IDX && IDX.tok) {
-      // words of the query (len≥3). For each word, union all index tokens that CONTAIN it (keeps
-      // substring/prefix typing). Multi-word queries AND the per-word id sets. An id whose match
-      // came from a token EQUAL to a word is a true whole-word hit → ranks above substring-only.
-      const words = needle.split(/[^a-z0-9]+/).filter(w => w.length >= 3);
-      if (!words.length) return { keys: [], needle, wbIds: new Set() };
-      let acc = null;
-      const wbIds = new Set();
-      // v2 postings are delta+base36 strings ("c,9x,2"); v1 were plain int arrays. Decode on
-      // the fly (split + prefix-sum) and keep accepting arrays so a stale cached index still
-      // searches (shard-about.js carries the why, 2026-09-21).
-      const postings = (p) => {
-        if (Array.isArray(p)) return p;
-        const parts = String(p).split(","), out = new Array(parts.length);
-        let acc = 0; for (let i = 0; i < parts.length; i++) { acc += parseInt(parts[i], 36); out[i] = acc; }
-        return out;
-      };
-      for (const w of words) {
-        const hit = new Set();
-        for (const tok in IDX.tok) {
-          if (tok.indexOf(w) < 0) continue;
-          const exact = tok === w;
-          for (const id of postings(IDX.tok[tok])) { hit.add(id); if (exact) wbIds.add(id); }
-        }
-        acc = acc === null ? hit : new Set([...acc].filter(id => hit.has(id)));
-        if (!acc.size) break;
-      }
-      const keys = [], wbKeys = new Set();
-      for (const id of (acc || [])) { const k = IDX.keys[id]; if (!k) continue; keys.push(k); if (wbIds.has(id)) wbKeys.add(k); }
-      return { keys, needle, wbKeys };
-    }
-    // fallback: whole-blob scan (dev, no index built)
-    const LLM = window.ROTATION_LLM_ABOUT;
-    if (!LLM) return null;
-    const keys = [];
-    for (const key in LLM) {
-      const e = LLM[key];
-      const text = deAccent([e.haiku, e.sonnet, e.opus, e.fable, e.web].filter(Boolean).join(" · "));
-      if (text.includes(needle)) keys.push(key);
-    }
-    return { keys, needle, wbKeys: null };   // null → per-entry whole-word test below (blob path)
-  }, [q, mode, indexReady]);
+    if (!IDX || !IDX.keys) return { buckets: [], hasTokT: false, idOf: null };
+    const buckets = IDX.th ? Object.keys(IDX.th).map(label => {
+      const p = IDX.th[label];
+      return { label, n: Array.isArray(p) ? p.length : (p ? String(p).split(",").length : 0) };
+    }).filter(b => b.n > 0).sort((a, b) => (b.n - a.n) || a.label.localeCompare(b.label)) : [];
+    return { buckets, hasTokT: !!IDX.tokT, idOf: new Map(IDX.keys.map((k, i) => [k, i])) };
+  }, [indexReady]);
 
-  // 2) load the gist shards holding the matched keys (so their display text is available).
+  const theme = React.useMemo(() => {
+    if (mode !== "theme") return null;
+    const text = q.trim();
+    return semThemeRank({
+      q: text, fold: deAccent, src, bucket,
+      meaning: idxInfo.hasTokT && scopeM, device: idxInfo.hasTokT && scopeD,
+      qVec: qVec && qVec.q === text ? qVec.v : null,
+      slugMap, canonKey, gist: (k) => (R && R.aboutGist ? R.aboutGist(k) : null), _idOf: idxInfo.idOf,
+    });
+  }, [mode, q, src, bucket, scopeM, scopeD, qVec, slugMap, canonKey, idxInfo, indexReady, shardTick, semTick]);
+
+  // load the gist shards for the keys the walk wants (blurbs, theme chips, and the gist-gated
+  // Fable/Meaning/Device checks). shardTick re-runs the pipeline as each shard lands.
+  const wantSig = theme && theme.want.length ? theme.want.join("|") : "";
   React.useEffect(() => {
-    const R = window.ROTATION;
-    if (!themeMatch || !themeMatch.keys.length || !R || !R.loadAboutFor) return;
-    R.loadAboutFor(themeMatch.keys, bumpShards);
-  }, [themeMatch]);
-
-  // 3) build ranked display rows from loaded gists (or the blob, in dev). shardTick re-runs this
-  // as matched shards land. Whole-word hit ranks above a bare substring, then by plays.
-  const themeResults = React.useMemo(() => {
-    if (!themeMatch || !slugMap) return [];
-    const R = window.ROTATION;
-    const { needle, keys, wbKeys } = themeMatch;
-    const wb = new RegExp("\\b" + esc(needle));
-    const out = [];
-    for (const key of keys) {
-      const t = slugMap[key]; if (!t) continue;
-      // prefer a loaded gist read for the visible blurb; fall back to the blob if that's the path.
-      const g = R && R.aboutGist ? R.aboutGist(key) : null;
-      const blob = window.ROTATION_LLM_ABOUT && window.ROTATION_LLM_ABOUT[key];
-      const blurb = (g && (g.haiku || g.web)) || (blob && (blob.fable || blob.opus || blob.sonnet || blob.haiku || blob.web)) || "";
-      // whole-word score: index path flags exact-token hits per key; blob path re-tests the text.
-      let score = 0;
-      if (wbKeys) score = wbKeys.has(key) ? 1 : 0;
-      else if (blob) score = wb.test(deAccent([blob.haiku, blob.sonnet, blob.opus, blob.fable, blob.web].filter(Boolean).join(" · "))) ? 1 : 0;
-      out.push({ key, title: t.title, artist: t.artist, plays: t.plays, blurb, score });
-    }
-    out.sort((a, b) => (b.score - a.score) || (b.plays - a.plays));
-    return out.slice(0, 40);
-  }, [themeMatch, slugMap, indexReady, shardTick]);
+    if (!wantSig || !R || !R.loadAboutFor) return;
+    R.loadAboutFor(wantSig.split("|"), bumpShards);
+  }, [wantSig]);
+  const themeResults = theme ? theme.rows : [];
 
   if (!open) return null;
 
@@ -5134,25 +5405,69 @@ function SearchOverlay({ open, onClose, go }) {
         <div className="se-modes">
           <button data-on={mode === "names"} onClick={() => { setMode("names"); setSel(null); }}>Names</button>
           <button data-on={mode === "theme"} onClick={() => { setMode("theme"); setSel(null); }}>Themes</button>
-          <span className="se-modehint">{mode === "theme" ? "songs by what they're about" : "artists · albums · songs"}</span>
+          <span className="se-modehint">{mode === "theme"
+            ? <>songs by what they're about{semStatus === "loading" && <span className="se-semload" title="fetching the meaning model — word matches show meanwhile"> · loading semantic…</span>}</>
+            : "artists · albums · songs"}</span>
         </div>
-        {mode === "theme" && q.trim() && (
+        {/* THEMES CONTROLS (contract 2026-11-26): [Fable | All] · [theme ▾] · [Meaning] [Device].
+            The dropdown needs the index's `th`, the chips its `tokT` — a v2 index renders neither. */}
+        {mode === "theme" && (
+          <div className="se-ctl">
+            <div className="se-seg" role="group" aria-label="read source">
+              <button data-on={src === "fable"} onClick={() => setSrc("fable")} title="only songs with a Fable read">Fable</button>
+              <button data-on={src === "all"} onClick={() => setSrc("all")} title="every read">All</button>
+            </div>
+            {/* `th` carries every stored label verbatim (~144, one-off proposals included), so the
+                menu lists the established buckets (≥ 5 entries, by count). A rarer label
+                is still reachable from a row's theme chip and then shows in the menu while active. */}
+            {idxInfo.buckets.length > 0 && (
+              <select className="se-sel" data-on={!!bucket} value={bucket} onChange={e => setBucket(e.target.value)} aria-label="theme">
+                <option value="">All themes</option>
+                {idxInfo.buckets.filter(b => b.n >= 5 || b.label === bucket).map(b => <option key={b.label} value={b.label}>{b.label} · {b.n}</option>)}
+              </select>
+            )}
+            {idxInfo.hasTokT && <>
+              <button className="se-chipt" data-on={scopeM} onClick={() => setScopeM(v => !v)} title="match only what the song MEANS (the meaning tell)">Meaning</button>
+              <button className="se-chipt" data-on={scopeD} onClick={() => setScopeD(v => !v)} title="match only how the song is BUILT (the device tell)">Device</button>
+            </>}
+          </div>
+        )}
+        {mode === "theme" && !q.trim() && !bucket && (
+          <div className="se-hint">Pick a theme, or type what a song is about.</div>
+        )}
+        {mode === "theme" && (q.trim() || bucket) && (
           <div className="se-results">
-            {themeResults.length === 0 && themeReady && slugMap && q.trim().length >= 3 &&
-              <div className="se-empty">No songs read as being about “{q.trim()}”.</div>}
-            {q.trim().length < 3 && <div className="se-loading">keep typing…</div>}
-            {(!themeReady || !slugMap) && q.trim().length >= 3 && <div className="se-loading">reading your library…</div>}
-            {themeResults.length > 0 && <div className="se-group">Songs about “{q.trim()}” · {themeResults.length}</div>}
+            {q.trim() && q.trim().length < 3 && <div className="se-loading">keep typing…</div>}
+            {(!themeReady || !slugMap) && (bucket || q.trim().length >= 3) && <div className="se-loading">reading your library…</div>}
+            {theme && themeResults.length === 0 && theme.pending === 0 && themeReady && slugMap && (bucket || q.trim().length >= 3) &&
+              <div className="se-empty">{q.trim() ? <>No songs read as being about “{q.trim()}”{bucket ? <> under {bucket}</> : null}.</> : <>No songs under {bucket}{src === "fable" ? " with a Fable read" : ""}.</>}</div>}
+            {themeResults.length > 0 && (
+              <div className="se-group">
+                {q.trim() ? <>Songs about “{q.trim()}”</> : <>{bucket} · by plays</>} · {themeResults.length}
+                {theme.tier === "semantic" && <span className="se-tier" title="ranked by meaning (semantic match over the reads)">by meaning</span>}
+              </div>
+            )}
             {themeResults.map((r) => (
-              <div key={"t-" + r.key} className="se-row se-themerow" onClick={() => pickMedia(r.artist, r.title)}>
+              <div key={"t-" + r.ck} className="se-row se-themerow" onClick={() => pickMedia(r.artist, r.title)}>
                 <GenCover hue={hueOfName(r.artist)} name={r.artist} size={36} radius={3} />
                 <div style={{ minWidth: 0, flex: 1 }}>
                   <div className="se-name">{r.title} <span className="se-sub" style={{ display: "inline", marginLeft: 4 }}>— {r.artist}</span></div>
                   <div className="se-blurb">{r.blurb}</div>
+                  {r.themes.length > 0 && (
+                    <div className="se-themes">
+                      {r.themes.map(t => {
+                        const lo = String(t).toLowerCase();
+                        const can = idxInfo.buckets.length > 0;
+                        return <span key={t} className="se-theme" data-on={lo === bucket} data-link={can}
+                          onClick={can ? (e) => { e.stopPropagation(); setBucket(lo === bucket ? "" : lo); } : undefined}>{t}</span>;
+                      })}
+                    </div>
+                  )}
                 </div>
                 <span className="se-plays">{fmt(r.plays)}<small>plays</small></span>
               </div>
             ))}
+            {theme && theme.pending > 0 && themeResults.length < 40 && <div className="se-loading">reading the tells…</div>}
           </div>
         )}
         {mode === "names" && q.trim() && (() => {
@@ -5235,6 +5550,38 @@ function SearchOverlay({ open, onClose, go }) {
         .se-modes button[data-on="true"] { border-color: var(--accent-dim); color: var(--accent); }
         .se-modehint { margin-left: auto; font-family: var(--mono); font-size: 8.5px; letter-spacing: .06em;
           text-transform: uppercase; color: var(--ink-faint); }
+        .se-semload { animation: seSemPulse 1.6s ease-in-out infinite; }
+        @keyframes seSemPulse { 0%,100% { opacity: .45; } 50% { opacity: 1; } }
+        @media (prefers-reduced-motion: reduce) { .se-semload { animation: none; } }
+        /* Themes controls row — same pill idiom as .se-modes; wraps to two lines on a phone */
+        .se-ctl { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 0 18px 12px; }
+        .se-seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; overflow: hidden; flex: none; }
+        .se-seg button, .se-chipt { font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase;
+          padding: 5px 12px; background: transparent; color: var(--ink-faint); cursor: pointer; transition: color .12s, border-color .12s, background .12s; }
+        .se-seg button { border: 0; border-radius: 0; }
+        .se-seg button + button { border-left: 1px solid var(--rule); }
+        .se-seg button:hover, .se-chipt:hover { color: var(--ink); }
+        .se-seg button[data-on="true"] { color: var(--accent); background: var(--accent-bg); }
+        .se-chipt { border: 1px solid var(--rule); border-radius: 999px; flex: none; }
+        .se-chipt[data-on="true"] { border-color: var(--accent-dim); color: var(--accent); background: var(--accent-bg); }
+        .se-sel { font-family: var(--mono); font-size: 9.5px; letter-spacing: .06em; text-transform: uppercase;
+          padding: 5px 26px 5px 12px; border-radius: 999px; border: 1px solid var(--rule); background-color: transparent;
+          color: var(--ink-faint); cursor: pointer; max-width: 220px; min-width: 0; flex: 0 1 auto; text-overflow: ellipsis;
+          -webkit-appearance: none; appearance: none;
+          background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+          background-position: right 13px center, right 9px center; background-size: 4px 4px, 4px 4px; background-repeat: no-repeat; }
+        .se-sel:hover { color: var(--ink); }
+        .se-sel[data-on="true"] { border-color: var(--accent-dim); color: var(--accent); }
+        .se-sel option { background: var(--panel); color: var(--ink); text-transform: none; }
+        .se-hint { padding: 4px 18px 16px; font-family: var(--serif); font-style: italic; font-size: 13px; color: var(--ink-faint); }
+        .se-tier { margin-left: 8px; color: var(--accent); opacity: .8; }
+        .se-themes { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; }
+        .se-theme { font-family: var(--mono); font-size: 8.5px; letter-spacing: .04em; color: var(--ink-faint);
+          border: 1px solid var(--rule); border-radius: 999px; padding: 1px 7px; white-space: nowrap; }
+        .se-theme[data-link="true"] { cursor: pointer; }
+        .se-theme[data-link="true"]:hover { color: var(--ink); border-color: var(--rule-2); }
+        .se-theme[data-on="true"] { color: var(--accent); border-color: var(--accent-dim); }
+        @media (max-width: 520px) { .se-sel { max-width: 100%; flex: 1 1 140px; } .se-modes { flex-wrap: wrap; } }
         .se-blurb { font-family: var(--serif); font-size: 12px; line-height: 1.45; color: var(--ink-soft);
           margin-top: 3px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .se-themerow { align-items: flex-start; }

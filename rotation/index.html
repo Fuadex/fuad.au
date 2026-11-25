@@ -62,6 +62,10 @@
      post-mount by rotation-app (they only decorate artist/track rows). -->
 <script src="music-core.js" defer></script>
 <script src="live-data.js" defer></script>
+<!-- sem-wordpiece.js: the pure BERT WordPiece tokenizer for Themes-mode semantic search (~4 KB, no
+     data — the vocab, vectors, model and onnxruntime-web load only on first Themes entry). Plain JS
+     so node's parity check (tools/sem-token-check.js) requires the same file; before the jsx. -->
+<script src="sem-wordpiece.js" defer></script>
 <script type="text/babel" src="rotation-live.jsx"></script>
 <script type="text/babel" src="tweaks-panel.jsx"></script>
 <script type="text/babel" src="rotation-core.jsx"></script>

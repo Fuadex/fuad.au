@@ -59,7 +59,12 @@ mb-lineup.js
 
 # llm-about shards + theme index — CI artifacts from shard-about.js (which STAYS committed).
 # llm-about.js itself remains the committed source of truth; only the split output is ignored.
-about/
+# EXCEPT about/sem-* — committed workshop output of tools/embed-reads.py (python; CI never embeds,
+# so these must ride in git to ship). `about/*` (not `about/`) so the negations can re-include.
+about/*
+!about/sem-meta.js
+!about/sem-vecs.bin
+!about/sem-vocab.json
 genealogy.js
 
 # Backup copies of data files. These carry stale snapshots of the very files that

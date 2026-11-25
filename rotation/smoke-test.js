@@ -158,6 +158,36 @@ if (!about) {
     let refBad = 0, checked = 0;
     for (const t in I.tok) { let prev = -1; for (const id of postings(I.tok[t])) { checked++; if (!(id >= 0 && id < I.keys.length) || id <= prev) refBad++; prev = id; } if (checked > 20000) break; }
     ok(refBad === 0, `theme index: token→id refs in range + ascending (${checked} sampled)`);
+    // v3 (searchbar contract 2026-11-26): th (theme label → ids) + tokT (tell tokens → ids)
+    if (I.v >= 3) {
+      let bad3 = 0, n3 = 0;
+      for (const m of [I.th, I.tokT]) {
+        if (!m || typeof m !== "object") { bad3++; continue; }
+        for (const t in m) { let prev = -1; for (const id of postings(m[t])) { n3++; if (!(id >= 0 && id < I.keys.length) || id <= prev) bad3++; prev = id; } }
+      }
+      ok(bad3 === 0 && Object.keys(I.th || {}).length > 0,
+        `theme index v3: th (${Object.keys(I.th || {}).length} labels) + tokT (${Object.keys(I.tokT || {}).length} tokens) refs valid (${n3} checked)`);
+      // fv: ids of fv===2 entries (Themes Fable/All filter) — must decode and match the blob exactly
+      const fvWant = Object.keys(about).filter(k => about[k] && about[k].fv === 2).length;
+      const fvIds = typeof I.fv === "string" ? (I.fv ? postings(I.fv) : []) : null;
+      const fvOk = !!fvIds && fvIds.every((id, i) => id >= 0 && id < I.keys.length && (i === 0 || id > fvIds[i - 1]) && about[I.keys[id]].fv === 2);
+      ok(fvOk && fvIds.length === fvWant, `theme index v3: fv ids decode + match blob fv==2 (${fvIds ? fvIds.length : "absent"} vs ${fvWant})`);
+    }
+  }
+
+  // sem-* = COMMITTED workshop output of tools/embed-reads.py (CI can't regenerate). Gate the
+  // shape (a torn bin would poison every semantic rank); stale keys only warn — the client skips them.
+  const semMeta = loadGlobal("about/sem-meta.js", "ROTATION_SEM");
+  if (semMeta.missing) ok(false, "about/sem-meta.js exists (committed — run tools/embed-reads.py)");
+  else if (semMeta.error) ok(false, `about/sem-meta.js parses — ${semMeta.error}`);
+  else {
+    const S = semMeta.value;
+    const binPath = path.join(__dirname, "about", "sem-vecs.bin");
+    const binBytes = fs.existsSync(binPath) ? fs.statSync(binPath).size : -1;
+    ok(S && S.n === S.keys.length && binBytes === S.n * S.dims,
+      `sem: n (${S && S.n}) == keys (${S && S.keys.length}) == bin bytes/${S && S.dims} (${binBytes})`);
+    const stale = S.keys.filter(k => !srcKeys.has(k)).length;
+    if (stale) console.warn(`  ⚠ sem: ${stale} vector keys no longer in llm-about — re-run tools/embed-reads.py`);
   }
 }
 
