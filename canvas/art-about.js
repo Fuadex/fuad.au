@@ -3,6 +3,41 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "j-m-w-turner-the-destruction-of-the-bards-by-edward-i": {
+  "about": "Based on Thomas Gray's ode The Bard, this Snowdonia watercolour was meant, Andrew Wilton argues, as the war half of a pair whose peaceful half, Caernarvon Castle, Turner exhibited in 1800; this half apparently went unfinished.",
+  "deep": "Titled for the massacre in Thomas Gray's ode, where a poet curses the king from a high rock as the army winds below, the sheet shows nothing on its rocks that can be made out as him. Large figure studies stayed on separate sheets, though Andrew Wilton says they were drawn for a ledge in its foreground. Without its hero, perhaps, the subject went unrecognised: Turner's cataloguer A. J. Finberg listed it in 1909 as a Welsh mountain subject, and another name, Scene in the Welsh Mountains with an Army on the March, named only the column. The poet's height falls to whoever stands before the sheet, looking down on the pale file far below.",
+  "by": "Opus 5.5"
+ },
+ "narcisse-virgilio-diaz-valley-marsh": {
+  "about": "Díaz's wartime months in Brussels raised his prices, his dealer Durand-Ruel recalled, and as his name grew from 1872 he could barely keep up with commissions \"from all quarters\". This marsh shower, on panel, dates from then.",
+  "deep": "If the hand was fast here, its speed went to the weather. Rain is dry-brushed straight down, the cloud above scrubbed every way, the pool's thin water in long sideways pulls. Théophile Silvestre wrote in 1856 that Díaz turned out figure pictures as fast as a factory, and Jules Claretie is reported to have repeated the charge of facility, of painting too easily. Yet Silvestre ranked the landscapes his best, and a modern cataloguer, Simon Kelly, finds them generally exempted from it, the rapid brush helping to catch changing light and weather. Where the subject holds still, the line turns crisp: forked limbs in the left-hand trees, reed stems standing in the pool.",
+  "by": "Opus 5.5"
+ },
+ "charles-francois-daubigny-the-pond-at-gylieu": {
+  "about": "With his friend Corot, Daubigny travelled into the Isère in 1852, then left him and lodged alone at an innkeeper's in Optevoz, a village east of Lyon. The pond he painted here lies close by.",
+  "deep": "The two long-legged birds occupy the pale shallows, where a classical landscape might set a shepherd or nymph. Around Crémieu, Daubigny wrote, the country seemed everywhere to need the shepherd Thyrsis and fair Galatea, and a dung-heap looked out of place; he could see why Lyon's painters professed the classical manner, though the wretches should at least copy accurately. He rated the country he moved to far higher, all marshes and magnificent hollows. This pond lies in one such hollow, filled with the marsh's own: ducks dark among the rushes, reeds gone to seed. The nearest thing to his dung-heap is a cart track, two ruts climbing from the water up the right bank.",
+  "by": "Opus 5.5"
+ },
+ "alfred-sisley-bougival": {
+  "about": "In 1876, close to poverty, Sisley painted this smoking steamboat on the Seine at Bougival, near his home at Marly-le-Roi: the year before, at a jeered auction, his pictures fetched just over a hundred francs each.",
+  "deep": "The white clouds and the grey smoke move in different ways. In 1876 Stéphane Mallarmé wrote that Sisley watches a passing cloud and seems to paint it in flight; here the flight belongs to the smoke, leaning off a steamboat's funnel while the feathery plants on the near bank lean with it. Sixteen years later, writing for the critic Adolphe Tavernier, Sisley asked whether any effect was grander, or fuller of movement, than a blue sky with drifting white clouds. Neither was writing of this canvas. Its white clouds move in the brush instead, opaque paint worked in curving and circling strokes into masses that turn where they stand.",
+  "by": "Opus 5.5"
+ },
+ "felix-ziem-boat-at-the-edge-of-the-mediterranean": {
+  "about": "In 1859 Ziem wrote that he needed salt air and meant to make studies of sea and ships on France's southern coast. Here a boat lies at the water's edge, a figure in red seated in it.",
+  "deep": "Ziem worked at the shore and in the studio. Sketches from the spot hung in his house, his Salon landscapes were painted entirely in the studio, and in Venice he hired boats fitted out as floating studios. Here the far sail's echo of the near boat's red and yellow looks arranged, while the shallows, ochre in blue with no shoreline drawn, look painted in sight of the sea. The critic Gautier said his truth could look like a paradox yet be exact, and this surface will not say which way it went. If it is a study, he found the hull's dark line toward that sail at the shore; if not, he put it there.",
+  "by": "Opus 5.5"
+ },
+ "claude-monet-still-life-with-bottle-carafe-bread-and-wine": {
+  "about": "This still life dates from about 1862–63, when Monet, invalided home from the army in Algeria, was bought out on condition he study under a master: Charles Gleyre, who, Monet later recalled, prized style above nature.",
+  "deep": "The amber-filled vessel at the left edge tints its shadow, and the clear one beside it does not: under the square decanter the cloth darkens to red-brown, and beside the carafe it shades only to grey. Curators showing the canvas in the early 2020s saw the young Monet absorbed in light passing through glass and liquid of different colours, and the two shadows bear them out. Clear glass is painted as whatever lies beyond it. The amber has a colour of its own, and not an even one: dark brown mid-body, hot orange low down. Cream touches at its foot sit just above the red-brown on the cloth.",
+  "by": "Opus 5.5"
+ },
+ "quirijn-van-brekelenkam-the-tailor-s-workshop": {
+  "about": "The painter of this tailor's workshop, where a woman confers over a coat, was a tailor's son: two documents of 1620, which the archivist Piet Bakker first noted, call his father a kleermaker.",
+  "deep": "Under the fur cap the face has features of its own: a thin moustache, the mouth open on a word, the eyes on the woman. The scholar Annette de Vries finds Dutch pictures of craftsmen at work not to be portraits, and points to this canvas as a single suspected exception. Where she says so, she names nobody and gives no grounds. The woman's end of the table gives that suspicion something to hold as well: her face is particular too, lids lowered to the cloth, beads at her ear, the one coat under both their hands. The empty chair carries Brekelenkam's initials and a year, and no other name.",
+  "by": "Opus 5.5"
+ },
  "vincent-van-gogh-undergrowth-with-two-figures": {
   "about": "Van Gogh told his brother in June 1890 that this undergrowth of lilac poplar trunks was the \"pendant\", or companion, of a wheatfield, each on a new canvas a metre long and only fifty centimetres high.",
   "deep": "The couple among these trunks appear in neither of the painter's accounts of this canvas. He described it to Theo, his brother, in June 1890 and again in early July, with a pencil sketch, naming the blue depth of the wood and its long grasses but not the two people. In that second letter, to Theo and his wife Jo, he said he did not much believe he would ever have a wife of his own. Nothing he wrote joins that sentence to the pair. The meadow he did describe runs its yellow touches over both of them.",
@@ -4086,8 +4121,10 @@ about: "Anthony Comstock's 1913 campaign to suppress a New York dealer's print o
 by: "Opus 4.8" },
 
 "the-source": {
-about: "Courbet painted this 1862 nude as a direct riposte to Ingres's celebrated idealized figure of the same name, replacing classical allegory with the unvarnished weight and texture of a real body in cold water.",
-by: "Opus 4.8" },
+  "about": "Since a 1919 review by Royal Cortissoz compared it with Ingres's idealised nude La Source, this naked woman standing in a spring has been read as Courbet's response, though he left no known word saying so.",
+  "deep": "Water closes over the woman's shins without hiding them, dimmed and crossed by the pool's flecks: a spring a body stands in, not one poured from a jar. Ingres's allegory La Source, a nude with a pouring jar, was shown in Paris in 1861. If Courbet painted against it, no one is known to have shown his canvas, or compared the two in print, before 1919. Its 1966 cataloguers offered the link with a perhaps; Marie-Thérèse de Forges, in 1969, added a second possible target, an 1862 brochure by one Guichard attacking Courbet's doctrines. Ingres's nude holds her jar; this woman's only arm in view ends in leaves, its hand hidden there.",
+  "by": "Opus 5.5"
+ },
 
 "regatta-at-sainte-adresse": {
 
@@ -4946,8 +4983,10 @@ about: "Painted during Renoir's classical \"dry period\" when he was experimenti
 by: "Opus 4.8" },
 
 "portrait-of-countess-albazzi": {
-about: "Executed in pastel on fine canvas stretched over wood, a fragile medium Manet returned to repeatedly in his final years, this c.1880 portrait belongs to the late burst of pastels he produced as his health declined.",
-by: "Opus 4.8" },
+  "about": "George Moore recalled being in Manet's studio when the countess arrived to say she could not sit that day: she was going to the Bois, the Paris park. Days later she sat for this 1880 pastel.",
+  "deep": "Her nose is drawn in a shadow's colour, and there an admirer's memory and the chalk part company. George Moore wrote that memory and a painter's vision quarrel over a woman, and liked to think of hers as a long, delicate nose, sparkling eyes and a mouth he likened to red fruit. At the pastel each survives as drawing, not substance. The nose's delicacy is a thin olive line. No touch of white is laid on either iris. The lips are a pale pink rub with one coral touch. The warm colour his memory set at her mouth lies lower, in the fan's red-brown leaf.",
+  "by": "Opus 5.5"
+ },
 
 "improvisation-28-second-version": {
 about: "Kandinsky called his \"Improvisations\" largely unconscious expressions, and this 1912 canvas hides an apocalyptic scene beneath its abstraction: a boat and flooding waves, a serpent, and cannons on the left, drawn from the Book of Revelation.",
@@ -5157,8 +5196,10 @@ by: "Opus 4.8" },
 },
 
 "allegory-of-virtue-and-vice": {
-about: "One half of a pair — its pendant Wisdom and Strength also hangs at the Frick, and the two have travelled together since Emperor Rudolf II's court. Veronese, c.1565, frames the Choice of Hercules as a physical tug-of-war for the hero's fate.",
-by: "Opus 4.8" },
+  "about": "Between Virtue and Vice stands a man in white, and a lettered stone says honour and virtue flourish after death. A 1727 Paris account took him for Veronese himself; others propose a young Venetian, painted posthumously.",
+  "deep": "Of the two women round the man in white, only Virtue, crowned with laurel, grips him, and it is Vice whose nails rest on his hose. Accounts since 1727 have had him turning to Virtue, and the canvas gives that choice its direction while still letting the other hand mark him. His arm lies round Virtue's shoulders, and his doublet's satin is drawn toward her shut fist. Vice's hand pulls nothing. It hangs open, and what has been taken for his stocking, ripped by her claws, runs from below its fingertips down the inside of his leg in a reddish-brown strip.",
+  "by": "Opus 5.5"
+ },
 
 "mother-and-children": {
 
