@@ -1,7 +1,7 @@
 {
- "generated": "2026-11-24",
+ "generated": "2026-11-25",
  "source": "Tokyo Morning Brief concerts collection (status = Fuad's marks: new | want | seen | skip)",
- "count": 824,
+ "count": 825,
  "concerts": [
   {
    "added": "2026-10-24",
@@ -21584,6 +21584,28 @@
    "text": "OPEN 17:00 / START 18:00",
    "lat": 35.6585,
    "lng": 139.6958
+  },
+  {
+   "id": "2026-11-25-passcode-2026-12-18",
+   "added": "2026-11-25",
+   "status": "new",
+   "title": "PassCode UNLIMITED X -THE FINALE-",
+   "venue": "Zepp DiverCity TOKYO",
+   "city": "Tokyo",
+   "href": "https://eplus.jp/sf/word/0000066651",
+   "on": "2026-12-18",
+   "until": "2026-12-18",
+   "acts": [
+    "PassCode"
+   ],
+   "artist": "PassCode",
+   "plays": 73,
+   "japanese": true,
+   "tier": "top",
+   "seenLive": 0,
+   "lastSeen": "",
+   "rotation": true,
+   "cat": "music"
   }
  ]
 }
