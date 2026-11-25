@@ -1294,6 +1294,16 @@ function PortraitCard({ id, alt, showWords = true, go }) {
               {p.note && open && (
                 <p className="pv-full pv-arc" style={{ fontStyle: "italic", opacity: 0.85 }}>{linkifyTracks(p.note, albumTracks, go)}</p>
               )}
+              {/* Signatures (artist reads, Fuad 2026-11-26, Frost* the pilot): the catalogue's
+                  verified distinctive devices — discovered at the reads workshop (diff positionals,
+                  cross-song threads, DV-grounded sound facts), each citing the songs where it
+                  fires. Never brainstormed; evidence-bound by rule. */}
+              {p.signatures && open && (
+                <div style={{ marginTop: 10 }}>
+                  <div className="r-mono" style={{ fontSize: 9.5, color: "var(--ink-faint)", letterSpacing: ".06em", marginBottom: 4 }}>SIGNATURES</div>
+                  <p className="pv-full" style={{ fontSize: 13 }}>{linkifyTracks(p.signatures, albumTracks, go)}</p>
+                </div>
+              )}
               {/* footnote slot (Fuad 2026-08-12, AtF Cavalera line the first user): a small factual
                   aside that earned keeping but would overload the arc. Rides the frontal read now
                   that the synthesis is the primary face (2026-08-13). */}
