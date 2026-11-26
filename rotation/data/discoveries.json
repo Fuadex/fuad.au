@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-19",
+ "generated": "2026-11-26",
  "picks": [
   {
    "act": "Suede",
@@ -94,263 +94,188 @@
    "score": 4.9
   },
   {
-   "act": "JunIzawa",
+   "act": "hardnuts",
    "events": [
     {
-     "d": "2026-11-24",
-     "title": "BAHAMAS FEST 2026 -Extra Show-",
+     "d": "2026-12-20",
+     "title": "hardnuts pre. (what we) pray for vol.1",
      "venue": "Spotify O-nest",
      "city": "Tokyo",
-     "url": "https://shibuya-o.com/nest/schedule/bahamas-fest-2026-extra-show/"
+     "url": "https://shibuya-o.com/nest/schedule/hardnuts-pre-what-we-pray-for-vol-1/"
     },
     {
-     "d": "2026-11-24",
-     "title": "BAHAMAS FEST 2026 -Extra Show- ＜開場 / 開演時間変更＞",
+     "d": "2027-02-21",
+     "title": "Moon in June pre. “saturdays = Youth” #9",
+     "venue": "Shimokitazawa SHELTER",
+     "city": "Tokyo",
+     "url": "https://www.loft-prj.co.jp/schedule/shelter/369393"
+    }
+   ],
+   "with": [
+    "Enfants",
+    "Moon in June"
+   ],
+   "score": 4.3
+  },
+  {
+   "act": "ROCKY&TheSWEDEN",
+   "events": [
+    {
+     "d": "2026-12-20",
+     "title": "MOUNTAIN HIGH",
+     "venue": "Shindaita FEVER",
+     "city": "Tokyo",
+     "url": "https://www.fever-popo.com/schedule/2026/12/2016.html"
+    }
+   ],
+   "with": [
+    "Melt-Banana"
+   ],
+   "score": 3.7
+  },
+  {
+   "act": "SLIGHT SLAPPERS",
+   "events": [
+    {
+     "d": "2026-12-20",
+     "title": "MOUNTAIN HIGH",
+     "venue": "Shindaita FEVER",
+     "city": "Tokyo",
+     "url": "https://www.fever-popo.com/schedule/2026/12/2016.html"
+    }
+   ],
+   "with": [
+    "Melt-Banana"
+   ],
+   "score": 3.7
+  },
+  {
+   "act": "RAGS",
+   "events": [
+    {
+     "d": "2026-12-20",
+     "title": "MOUNTAIN HIGH",
+     "venue": "Shindaita FEVER",
+     "city": "Tokyo",
+     "url": "https://www.fever-popo.com/schedule/2026/12/2016.html"
+    }
+   ],
+   "with": [
+    "Melt-Banana"
+   ],
+   "score": 3.7
+  },
+  {
+   "act": "KRIEGSHÖG",
+   "events": [
+    {
+     "d": "2026-12-20",
+     "title": "MOUNTAIN HIGH",
+     "venue": "Shindaita FEVER",
+     "city": "Tokyo",
+     "url": "https://www.fever-popo.com/schedule/2026/12/2016.html"
+    }
+   ],
+   "with": [
+    "Melt-Banana"
+   ],
+   "score": 3.7
+  },
+  {
+   "act": "NEPENTHES",
+   "events": [
+    {
+     "d": "2026-12-20",
+     "title": "MOUNTAIN HIGH",
+     "venue": "Shindaita FEVER",
+     "city": "Tokyo",
+     "url": "https://www.fever-popo.com/schedule/2026/12/2016.html"
+    }
+   ],
+   "with": [
+    "Melt-Banana"
+   ],
+   "score": 3.7
+  },
+  {
+   "act": "AI (BATORS MADNESS)",
+   "events": [
+    {
+     "d": "2026-12-20",
+     "title": "MOUNTAIN HIGH",
+     "venue": "Shindaita FEVER",
+     "city": "Tokyo",
+     "url": "https://www.fever-popo.com/schedule/2026/12/2016.html"
+    }
+   ],
+   "with": [
+    "Melt-Banana"
+   ],
+   "score": 3.7
+  },
+  {
+   "act": "DADDY-O-NOV (BACK FROM THE GRAVE)",
+   "events": [
+    {
+     "d": "2026-12-20",
+     "title": "MOUNTAIN HIGH",
+     "venue": "Shindaita FEVER",
+     "city": "Tokyo",
+     "url": "https://www.fever-popo.com/schedule/2026/12/2016.html"
+    }
+   ],
+   "with": [
+    "Melt-Banana"
+   ],
+   "score": 3.7
+  },
+  {
+   "act": "カオスのオーロラソース",
+   "events": [
+    {
+     "d": "2027-01-12",
+     "title": "カオスのオーロラソース THE KEBABS／9mm parabellum bullet",
+     "venue": "LIQUIDROOM",
+     "city": "Tokyo",
+     "url": "https://www.liquidroom.net/schedule/chaosaurorasauce_20270112"
+    }
+   ],
+   "with": [
+    "9mm Parabellum Bullet"
+   ],
+   "score": 3.6
+  },
+  {
+   "act": "THE KEBABS",
+   "events": [
+    {
+     "d": "2027-01-12",
+     "title": "カオスのオーロラソース THE KEBABS／9mm parabellum bullet",
+     "venue": "LIQUIDROOM",
+     "city": "Tokyo",
+     "url": "https://www.liquidroom.net/schedule/chaosaurorasauce_20270112"
+    }
+   ],
+   "with": [
+    "9mm Parabellum Bullet"
+   ],
+   "score": 3.6
+  },
+  {
+   "act": "SODA!",
+   "events": [
+    {
+     "d": "2026-12-22",
+     "title": "nest 30th Anniversary “ZAZEN BOYS × SODA!”",
      "venue": "Spotify O-nest",
      "city": "Tokyo",
-     "url": "https://shibuya-o.com/nest/schedule/bahamas-fest-2026-extra-show/"
+     "url": "https://shibuya-o.com/nest/schedule/nest-30th-anniversary-zazen-boys-x-soda/"
     }
    ],
    "with": [
-    "1inamillion",
-    "nhomme"
+    "ZAZEN BOYS"
    ],
-   "score": 4.6
-  },
-  {
-   "act": "pudelhunds",
-   "events": [
-    {
-     "d": "2026-11-24",
-     "title": "BAHAMAS FEST 2026 -Extra Show-",
-     "venue": "Spotify O-nest",
-     "city": "Tokyo",
-     "url": "https://shibuya-o.com/nest/schedule/bahamas-fest-2026-extra-show/"
-    },
-    {
-     "d": "2026-11-24",
-     "title": "BAHAMAS FEST 2026 -Extra Show- ＜開場 / 開演時間変更＞",
-     "venue": "Spotify O-nest",
-     "city": "Tokyo",
-     "url": "https://shibuya-o.com/nest/schedule/bahamas-fest-2026-extra-show/"
-    }
-   ],
-   "with": [
-    "1inamillion",
-    "nhomme"
-   ],
-   "score": 4.6
-  },
-  {
-   "act": "夕張工業団地",
-   "events": [
-    {
-     "d": "2026-11-24",
-     "title": "BAHAMAS FEST 2026 -Extra Show-",
-     "venue": "Spotify O-nest",
-     "city": "Tokyo",
-     "url": "https://shibuya-o.com/nest/schedule/bahamas-fest-2026-extra-show/"
-    },
-    {
-     "d": "2026-11-24",
-     "title": "BAHAMAS FEST 2026 -Extra Show- ＜開場 / 開演時間変更＞",
-     "venue": "Spotify O-nest",
-     "city": "Tokyo",
-     "url": "https://shibuya-o.com/nest/schedule/bahamas-fest-2026-extra-show/"
-    }
-   ],
-   "with": [
-    "1inamillion",
-    "nhomme"
-   ],
-   "score": 4.6
-  },
-  {
-   "act": "六花(Licca)",
-   "events": [
-    {
-     "d": "2026-11-24",
-     "title": "BAHAMAS FEST 2026 -Extra Show-",
-     "venue": "Spotify O-nest",
-     "city": "Tokyo",
-     "url": "https://shibuya-o.com/nest/schedule/bahamas-fest-2026-extra-show/"
-    },
-    {
-     "d": "2026-11-24",
-     "title": "BAHAMAS FEST 2026 -Extra Show- ＜開場 / 開演時間変更＞",
-     "venue": "Spotify O-nest",
-     "city": "Tokyo",
-     "url": "https://shibuya-o.com/nest/schedule/bahamas-fest-2026-extra-show/"
-    }
-   ],
-   "with": [
-    "1inamillion",
-    "nhomme"
-   ],
-   "score": 4.6
-  },
-  {
-   "act": "出張怪談師 フミキモ",
-   "events": [
-    {
-     "d": "2026-11-24",
-     "title": "BAHAMAS FEST 2026 -Extra Show-",
-     "venue": "Spotify O-nest",
-     "city": "Tokyo",
-     "url": "https://shibuya-o.com/nest/schedule/bahamas-fest-2026-extra-show/"
-    },
-    {
-     "d": "2026-11-24",
-     "title": "BAHAMAS FEST 2026 -Extra Show- ＜開場 / 開演時間変更＞",
-     "venue": "Spotify O-nest",
-     "city": "Tokyo",
-     "url": "https://shibuya-o.com/nest/schedule/bahamas-fest-2026-extra-show/"
-    }
-   ],
-   "with": [
-    "1inamillion",
-    "nhomme"
-   ],
-   "score": 4.6
-  },
-  {
-   "act": "Patrick Watson",
-   "events": [
-    {
-     "d": "2026-11-20",
-     "title": "Festival Mutek 2026",
-     "venue": "MoN Takanawa",
-     "city": "",
-     "url": "https://www.songkick.com/festivals/224061-mutek/id/43406328-festival-mutek-2026"
-    },
-    {
-     "d": "2026-11-20",
-     "title": "Festival Mutek 2026 @ MoN Takanawa",
-     "venue": "MoN Takanawa",
-     "city": "Tokyo",
-     "url": "https://www.songkick.com/festivals/224061-mutek/id/43406328-festival-mutek-2026"
-    }
-   ],
-   "with": [
-    "mouse on the keys"
-   ],
-   "score": 4.5
-  },
-  {
-   "act": "Hania Rani",
-   "events": [
-    {
-     "d": "2026-11-20",
-     "title": "Festival Mutek 2026",
-     "venue": "MoN Takanawa",
-     "city": "",
-     "url": "https://www.songkick.com/festivals/224061-mutek/id/43406328-festival-mutek-2026"
-    },
-    {
-     "d": "2026-11-20",
-     "title": "Festival Mutek 2026 @ MoN Takanawa",
-     "venue": "MoN Takanawa",
-     "city": "Tokyo",
-     "url": "https://www.songkick.com/festivals/224061-mutek/id/43406328-festival-mutek-2026"
-    }
-   ],
-   "with": [
-    "mouse on the keys"
-   ],
-   "score": 4.5
-  },
-  {
-   "act": "Richie Hawtin",
-   "events": [
-    {
-     "d": "2026-11-20",
-     "title": "Festival Mutek 2026",
-     "venue": "MoN Takanawa",
-     "city": "",
-     "url": "https://www.songkick.com/festivals/224061-mutek/id/43406328-festival-mutek-2026"
-    },
-    {
-     "d": "2026-11-20",
-     "title": "Festival Mutek 2026 @ MoN Takanawa",
-     "venue": "MoN Takanawa",
-     "city": "Tokyo",
-     "url": "https://www.songkick.com/festivals/224061-mutek/id/43406328-festival-mutek-2026"
-    }
-   ],
-   "with": [
-    "mouse on the keys"
-   ],
-   "score": 4.5
-  },
-  {
-   "act": "Grand River",
-   "events": [
-    {
-     "d": "2026-11-20",
-     "title": "Festival Mutek 2026",
-     "venue": "MoN Takanawa",
-     "city": "",
-     "url": "https://www.songkick.com/festivals/224061-mutek/id/43406328-festival-mutek-2026"
-    },
-    {
-     "d": "2026-11-20",
-     "title": "Festival Mutek 2026 @ MoN Takanawa",
-     "venue": "MoN Takanawa",
-     "city": "Tokyo",
-     "url": "https://www.songkick.com/festivals/224061-mutek/id/43406328-festival-mutek-2026"
-    }
-   ],
-   "with": [
-    "mouse on the keys"
-   ],
-   "score": 4.5
-  },
-  {
-   "act": "Robert Lippok",
-   "events": [
-    {
-     "d": "2026-11-20",
-     "title": "Festival Mutek 2026",
-     "venue": "MoN Takanawa",
-     "city": "",
-     "url": "https://www.songkick.com/festivals/224061-mutek/id/43406328-festival-mutek-2026"
-    },
-    {
-     "d": "2026-11-20",
-     "title": "Festival Mutek 2026 @ MoN Takanawa",
-     "venue": "MoN Takanawa",
-     "city": "Tokyo",
-     "url": "https://www.songkick.com/festivals/224061-mutek/id/43406328-festival-mutek-2026"
-    }
-   ],
-   "with": [
-    "mouse on the keys"
-   ],
-   "score": 4.5
-  },
-  {
-   "act": "wanbed",
-   "events": [
-    {
-     "d": "2026-11-22",
-     "title": "Studio REIMEI 5th Anniversary \"Re:I MADE ROOM #10 ～冥～\" with to Blends",
-     "venue": "Shimokitazawa BASEMENTBAR",
-     "city": "Tokyo",
-     "url": "https://toos.co.jp/calabash.b1f/event/rei-made-room-10-%ef%bd%9e%e5%86%a5%ef%bd%9e-with-to-blends/"
-    },
-    {
-     "d": "2026-12-12",
-     "title": "Dead By Inches new album 𝐧𝐞𝐯𝐞𝐫 𝐬𝐦𝐢𝐥𝐞 𝐚𝐠𝐚𝐢𝐧 (笑えない)",
-     "venue": "Shimokitazawa BASEMENTBAR",
-     "city": "Tokyo",
-     "url": "https://toos.co.jp/calabash.b1f/event/%f0%9d%90%a7%f0%9d%90%9e%f0%9d%90%af%f0%9d%90%9e%f0%9d%90%ab-%f0%9d%90%ac%f0%9d%90%a6%f0%9d%90%a2%f0%9d%90%a5%f0%9d%90%9e-%f0%9d%90%9a%f0%9d%90%a0%f0%9d%90%9a%f0%9d%90%a2%f0%9d%90%a7-%e7%ac%91/"
-    }
-   ],
-   "with": [
-    "Fennel",
-    "ANORAK!"
-   ],
-   "score": 4.5
+   "score": 3.4
   }
  ]
 }
