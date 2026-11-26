@@ -1,19 +1,9 @@
 # Upcoming shows in Japan — matched against the Rotation library
 
-Generated 2026-11-25 · 659 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
+Generated 2026-11-26 · 649 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
 
 
 ## November 2026
-- 2026-11-24 (Tue) – 2026-11-25 · **Iron Maiden** — K-Arena Yokohama, Tokyo area · 73 plays · not seen live · top · Iron Maiden at K-Arena Yokohama · https://www.creativeman.co.jp/artist/2026/11ironmaiden/
-- 2026-11-25 (Wed) · **Queens of the Stone Age** — Zepp Haneda, Tokyo area · 1925 plays · not seen live · top · Queens of the Stone Age at Zepp Haneda · https://www.songkick.com/venues/4396898-zepp-haneda
-- 2026-11-25 (Wed) · **Iron Maiden** — K-Arena Yokohama, Yokohama · 73 plays · not seen live · top · RUN FOR YOUR LIVES WORLD TOUR 2026 · https://www.creativeman.co.jp/artist/2026/11ironmaiden/
-- 2026-11-25 (Wed) · **THE NOVEMBERS** — 名古屋JAMMIN', Nagoya · 37 plays · not seen live · top · https://eplus.jp/sf/word/0000019114
-- 2026-11-25 (Wed) · **People In The Box** — 恵比寿 The Garden Hall, Tokyo · 33 plays · not seen live · top · People In The Box 2026 “あなたはなぜ箱を開けるのか？” - 『World Technique』 release tour - · https://www.peopleinthebox.com/live
-- 2026-11-25 (Wed) · **Survive Said The Prophet** — 福岡BEAT STATION, Fukuoka · 21 plays · not seen live · top · SHANK “THE TOUR 2026” · https://survivesaidtheprophet.com/live
-- 2026-11-25 (Wed) · **UVERworld** — LaLa arena TOKYO-BAY, Funabashi · 20 plays · not seen live · top · UVERworld LIVE 2026 at LaLa arena TOKYO-BAY · https://www.uverworld.jp/feature/2026_live
-- 2026-11-25 (Wed) · **Wolf Alice** — GORILLA HALL, Osaka · 20 plays · not seen live · also · WOLF ALICE · https://www.creativeman.co.jp/event/wolf-alice26/
-- 2026-11-25 (Wed) · **Gecko&Tokage Parade** — Bar Bassic, Fukuoka · 10 plays · seen live 1× · seen · Gecko&Tokage Parade live · https://music.apple.com/us/artist/gecko-tokage-parade/1296238692
-- 2026-11-25 (Wed) · **Sheena Ringo** — 東京国際フォーラム ホールA, Tokyo · 7 plays · not seen live · also · 椎名林檎と彼奴等と試す煩悩菩提 · https://lp.p.pia.jp/article/news/489069/index.html
 - 2026-11-26 (Thu) · **Queens of the Stone Age** — Zepp Nagoya, Nagoya · 1926 plays · not seen live · top · You'll See Queens of the Stone Age World Tour · https://www.creativeman.co.jp/event/queens-of-the-stone-age_2026/
 - 2026-11-26 (Thu) · **THE NOVEMBERS** — Music Club JANUS, Osaka · 37 plays · not seen live · top · https://eplus.jp/sf/word/0000019114
 - 2026-11-26 (Thu) · **UVERworld** — LaLa arena TOKYO-BAY, Funabashi · 20 plays · not seen live · top · UVERworld LIVE 2026 at LaLa arena TOKYO-BAY · https://www.uverworld.jp/feature/2026_live
