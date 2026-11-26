@@ -1,6 +1,6 @@
 # Upcoming shows in Japan — matched against the Rotation library
 
-Generated 2026-11-26 · 649 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
+Generated 2026-11-26 · 658 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
 
 
 ## November 2026
@@ -277,14 +277,18 @@ Generated 2026-11-26 · 649 shows · date order. Tier: **top** = a strong match 
 - 2027-01-12 (Tue) · **9mm Parabellum Bullet** — LIQUIDROOM, Tokyo · 424 plays · not seen live · top · カオスのオーロラソース · https://eplus.jp/sf/detail/4617080001
 - 2027-01-12 (Tue) · **Bloc Party** — Zepp Osaka Bayside, Osaka · 28 plays · not seen live · top · SUEDE / BLOC PARTY · https://www.creativeman.co.jp/event/suede-bloc-party_rosonicextra/
 - 2027-01-13 (Wed) · **Europe** — NHK Hall, Tokyo · 26 plays · not seen live · also · EUROPE The Final Countdown 40th Anniversary Tour · https://www.udo.jp/shows/Europe27
+- 2027-01-13 (Wed) · **Converge** — Yogibo META VALLEY, Osaka · 17 plays · not seen live · also · CONVERGE · https://smash-jpn.com/live/?id=4822
 - 2027-01-13 (Wed) · **Sable Hills** — Live House Anima, Osaka · 14 plays · not seen live · top · Homura Japan Tour 2027 · https://www.livefans.jp/events/2002396
 - 2027-01-13 (Wed) · **Against the Current** — Spotify O-EAST, Tokyo · 7 plays · not seen live · also · Till Death & Back Tour · https://www.livenationhip.co.jp/all-events/against-the-current-tickets-ae671869
 - 2027-01-14 (Thu) · **Europe** — Okaya Kohki Nagoya Public Hall, Nagoya · 26 plays · not seen live · also · EUROPE The Final Countdown 40th Anniversary Tour · https://www.udo.jp/shows/Europe27
+- 2027-01-14 (Thu) · **Converge** — NAGOYA CLUB QUATTRO, Nagoya · 17 plays · not seen live · also · CONVERGE · https://smash-jpn.com/live/?id=4822
 - 2027-01-15 (Fri) · **ASIAN KUNG-FU GENERATION** — Fuchu no Mori Geijutsu Gekijo, Tokyo · 61 plays · not seen live · top · 30th Anniversary Tour 2027 · https://www.ticket.co.jp/sys/d/268.htm?ki=224123
 - 2027-01-15 (Fri) · **a flood of circle** — BIGCAT, Osaka · 44 plays · not seen live · top · TOUR 革命未遂の蝶が見る夢 · https://realsound.jp/2026/05/post-2386759.html
 - 2027-01-15 (Fri) · **Europe** — Grand Cube Osaka, Osaka · 26 plays · not seen live · also · EUROPE The Final Countdown 40th Anniversary Tour · https://www.udo.jp/shows/Europe27
 - 2027-01-15 (Fri) · **The Bonez** — Spotify O-EAST, Tokyo · 17 plays · seen live 1× · seen · AA= X-FADER CIRCUIT · https://eplus.jp/sf/word/0000033480
+- 2027-01-15 (Fri) · **Converge** — LIQUIDROOM, Tokyo · 17 plays · not seen live · also · CONVERGE JAPAN TOUR 2027 · https://www.liquidroom.net/schedule/converge_20270115
 - 2027-01-15 (Fri) · **Sable Hills** — LIVE HOUSE enn 2nd, Sendai · 14 plays · not seen live · top · Homura Japan Tour 2027 · https://www.livefans.jp/events/2002398
+- 2027-01-15 (Fri) · **Kamomekamome** — LIQUIDROOM, Tokyo · 11 plays · not seen live · also · CONVERGE JAPAN TOUR 2027 · https://www.liquidroom.net/schedule/converge_20270115
 - 2027-01-16 (Sat) · **9mm Parabellum Bullet** — 水戸LIGHT HOUSE, Mito · 424 plays · not seen live · top · 9mm Parabellum Bullet Tour 2026-27「Raison d'être」 · https://9mm.jp/live.php
 - 2027-01-16 (Sat) · **Paledusk** — ペニーレーン24, Sapporo · 252 plays · seen live 1× · seen · Paledusk ”LIVE!!” TOUR · https://eplus.jp/sf/word/0000082521
 - 2027-01-16 (Sat) · **171** — 長野CLUB JUNK BOX, Nagano · 28 plays · not seen live · top · JAPAN TOUR from 171 · https://eplus.jp/sf/word/0000152434
@@ -305,6 +309,7 @@ Generated 2026-11-26 · 649 shows · date order. Tier: **top** = a strong match 
 - 2027-01-19 (Tue) · **Bruno Mars** — Kyocera Dome Osaka, Osaka · 15 plays · not seen live · also · The Romantic Tour in Japan · https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754
 - 2027-01-19 (Tue) · **Kalafina** — 東京国際フォーラム ホールA, Tokyo · 5 plays · not seen live · also · Kalafina (title unconfirmed) · https://l-tike.com/hikaru-x/
 - 2027-01-20 (Wed) · **Have a nice day!** — clubasia, Tokyo · 17 plays · not seen live · top · Have a nice day! live · https://l-tike.com/haveaniceday/
+- 2027-01-20 (Wed) · **toddle** — Shindaita FEVER, Tokyo · 17 plays · not seen live · top · グデイと、toddle · https://www.fever-popo.com/schedule/2027/01/2019.html
 - 2027-01-20 (Wed) · **Bruno Mars** — Kyocera Dome Osaka, Osaka · 15 plays · not seen live · also · The Romantic Tour in Japan · https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754
 - 2027-01-20 (Wed) · **BLUE ENCOUNT** — SHIBUYA Pleasure Pleasure, Tokyo · 10 plays · not seen live · top · 田邊駿一弾き語りワンマンツアー "alone, not alone. 〜chapter3〜" · https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc
 - 2027-01-21 (Thu) · **Wienners** — HEAVEN’S ROCK宇都宮 VJ-2, Utsunomiya · 36 plays · not seen live · top · HEAVEN’S ROCK Utsunomiya presents Gimme Five vol.12 · https://eplus.jp/sf/word/0000033997
@@ -321,6 +326,7 @@ Generated 2026-11-26 · 649 shows · date order. Tier: **top** = a strong match 
 - 2027-01-23 (Sat) · **BUMP OF CHICKEN** — 京セラドーム大阪, Osaka · 8 plays · not seen live · top · BUMP OF CHICKEN TOUR 2026-2027 Ratio Clavis · https://www.bumpofchicken.com/
 - 2027-01-23 (Sat) · **SUPER BEAVER** — グランメッセ熊本, Kumamoto · 8 plays · not seen live · top · SUPER BEAVER 都会のラクダ TOUR 2026-2027 〜ラクダの人生、ゴーゴーゴー〜 · https://realsound.jp/2026/03/post-2341581.html
 - 2027-01-23 (Sat) · **TOTALFAT** — 名古屋クラブクアトロ, Nagoya · 5 plays · not seen live · also · TOTALFAT (tour name TBA) · https://eplus.jp/sf/word/0000020111
+- 2027-01-23 (Sat) · **the band apart** — Shindaita FEVER, Tokyo · 5 plays · not seen live · also · ASPARAGUS×FRONTIER BACKYARD×the band apart ～ タカヒロとOZKと川崎の永遠のメリーメリー ～ · https://www.fever-popo.com/schedule/2027/01/2319.html
 - 2027-01-24 (Sun) · **9mm Parabellum Bullet** — HEAVEN'S ROCK さいたま新都心 VJ-3, Saitama · 424 plays · not seen live · top · 9mm Parabellum Bullet Tour 2026-27「Raison d'être」 · https://www.livefans.jp/groups/268254
 - 2027-01-24 (Sun) · **MAN WITH A MISSION** — KYOTO MUSE, Kyoto · 416 plays · seen live 1× · seen · LIVE TOUR "The Circus" · https://www.mwamjapan.info/contents/1122608
 - 2027-01-24 (Sun) · **ASIAN KUNG-FU GENERATION** — 仙台サンプラザホール, Sendai · 61 plays · not seen live · top · ASIAN KUNG-FU GENERATION 30th Anniversary Tour 2027 "Take The World Back Again" · https://www.akglive.com/30th/
@@ -362,6 +368,7 @@ Generated 2026-11-26 · 649 shows · date order. Tier: **top** = a strong match 
 - 2027-01-31 (Sun) · **BLUE ENCOUNT** — 大和工業アリーナ姫路, Himeji · 10 plays · not seen live · top · ROCK or LIVE！-ロックお笑い部- ひめじスペシャル · https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc
 
 ## February 2027
+- 2027-02-04 (Thu) · **KANA-BOON** — LIQUIDROOM, Tokyo · 11 plays · not seen live · top · KANA-BOON / NELKE 「GRIOTTO」 · https://www.liquidroom.net/schedule/griotto_20270204
 - 2027-02-05 (Fri) · **The Cabs** — BEAT STATION, Fukuoka · 83 plays · not seen live · top · the cabs tour 2026-27 "Anemoica" · https://skream.jp/news/2026/09/the_cabs_anemoica.php
 - 2027-02-05 (Fri) · **ORANGE RANGE** — 諫早文化会館 大ホール, Isahaya · 16 plays · not seen live · top · LIVE TOUR 026-027 ニコニコカーニバル · https://l-tike.com/concert/mevent/?mid=352670
 - 2027-02-06 (Sat) · **9mm Parabellum Bullet** — F.A.D YOKOHAMA, Yokohama · 424 plays · not seen live · top · 9mm Parabellum Bullet Tour 2026-27「Raison d'être」 · https://9mm.jp/live.php
@@ -402,6 +409,7 @@ Generated 2026-11-26 · 649 shows · date order. Tier: **top** = a strong match 
 - 2027-02-16 (Tue) · **Weezer** — Zepp Osaka Bayside, Osaka · 41 plays · seen live 1× · seen · WEEZER · https://www.creativeman.co.jp/artist/2027/02weezer/
 - 2027-02-16 (Tue) · **Father Of Peace** — Daikanyama SPACE ODD, Tokyo · 18 plays · not seen live · top · Father Of Peace at Daikanyama SPACE ODD · https://www.creativeman.co.jp/event/father-of-peace27/
 - 2027-02-16 (Tue) · **La Dispute** — Shimokitazawa SHELTER, Tokyo · 7 plays · not seen live · also · Nothing Feels Real presents La Dispute Japan Tour 2027 · https://www.loft-prj.co.jp/schedule/shelter/368331
+- 2027-02-16 (Tue) · **Sombra** — Shimokitazawa CLUB Que, Tokyo · 6 plays · not seen live · also · 如月-KISARAGI- · https://clubque.net/schedule/17781/
 - 2027-02-17 (Wed) · **Paledusk** — Zepp Osaka Bayside, Osaka · 252 plays · seen live 1× · seen · Paledusk ”LIVE!!” TOUR · https://eplus.jp/sf/word/0000082521
 - 2027-02-18 (Thu) · **Weezer** — COMTEC PORTBASE, Nagoya · 41 plays · seen live 1× · seen · WEEZER · https://www.creativeman.co.jp/artist/2027/02weezer/
 - 2027-02-18 (Thu) · **Father Of Peace** — Osaka · 18 plays · not seen live · top · FATHER OF PEACE · https://www.creativeman.co.jp/event/father-of-peace27/
@@ -423,6 +431,7 @@ Generated 2026-11-26 · 649 shows · date order. Tier: **top** = a strong match 
 - 2027-02-21 (Sun) · **171** — 名古屋CLUB QUATTRO, Nagoya · 28 plays · not seen live · top · JAPAN TOUR from 171 · https://eplus.jp/sf/word/0000152434
 - 2027-02-21 (Sun) · **Father Of Peace** — Kyoto · 18 plays · not seen live · top · FATHER OF PEACE · https://www.creativeman.co.jp/event/father-of-peace27/
 - 2027-02-21 (Sun) · **ORANGE RANGE** — Niterra日本特殊陶業市民会館 フォレストホール, Nagoya · 16 plays · not seen live · top · ORANGE RANGE LIVE TOUR 026-027 〜おかげさまで25周年！ニコニコカーニバル〜 · https://orangerange.com/feature/25th
+- 2027-02-21 (Sun) · **Moon in June** — Shimokitazawa SHELTER, Tokyo · 14 plays · not seen live · top · Moon in June pre. “saturdays = Youth” #9 · https://www.loft-prj.co.jp/schedule/shelter/369393
 - 2027-02-21 (Sun) · **SUPER BEAVER** — 和歌山ビッグホエール, Wakayama · 8 plays · not seen live · top · SUPER BEAVER 都会のラクダ TOUR 2026-2027 〜ラクダの人生、ゴーゴーゴー〜 · https://realsound.jp/2026/03/post-2341581.html
 - 2027-02-21 (Sun) · **Mrs. GREEN APPLE** — Kアリーナ横浜, Yokohama · 5 plays · not seen live · also · Mrs. GREEN APPLE on "Harmony2" · https://mrsgreenapple.com/feature/harmony_2
 - 2027-02-22 (Mon) · **Megadeth** — Grand Cube Osaka, Osaka · 2507 plays · seen live 1× · seen · MEGADETH Farewell Japan Tour · https://www.udo.jp/shows/Megadeth27

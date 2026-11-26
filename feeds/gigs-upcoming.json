@@ -1,6 +1,6 @@
 {
  "generated": "2026-11-26",
- "count": 649,
+ "count": 658,
  "shows": [
   {
    "date": "2026-11-26",
@@ -3496,6 +3496,19 @@
   },
   {
    "date": "2027-01-13",
+   "artist": "Converge",
+   "title": "CONVERGE",
+   "venue": "Yogibo META VALLEY",
+   "city": "Osaka",
+   "plays": 17,
+   "seenLive": 0,
+   "tier": "also",
+   "japanese": false,
+   "url": "https://smash-jpn.com/live/?id=4822",
+   "added": "2026-11-26"
+  },
+  {
+   "date": "2027-01-13",
    "artist": "Sable Hills",
    "title": "Homura Japan Tour 2027",
    "venue": "Live House Anima",
@@ -3532,6 +3545,19 @@
    "japanese": false,
    "url": "https://www.udo.jp/shows/Europe27",
    "added": "2026-11-05"
+  },
+  {
+   "date": "2027-01-14",
+   "artist": "Converge",
+   "title": "CONVERGE",
+   "venue": "NAGOYA CLUB QUATTRO",
+   "city": "Nagoya",
+   "plays": 17,
+   "seenLive": 0,
+   "tier": "also",
+   "japanese": false,
+   "url": "https://smash-jpn.com/live/?id=4822",
+   "added": "2026-11-26"
   },
   {
    "date": "2027-01-15",
@@ -3587,6 +3613,19 @@
   },
   {
    "date": "2027-01-15",
+   "artist": "Converge",
+   "title": "CONVERGE JAPAN TOUR 2027",
+   "venue": "LIQUIDROOM",
+   "city": "Tokyo",
+   "plays": 17,
+   "seenLive": 0,
+   "tier": "also",
+   "japanese": false,
+   "url": "https://www.liquidroom.net/schedule/converge_20270115",
+   "added": "2026-11-26"
+  },
+  {
+   "date": "2027-01-15",
    "artist": "Sable Hills",
    "title": "Homura Japan Tour 2027",
    "venue": "LIVE HOUSE enn 2nd",
@@ -3597,6 +3636,19 @@
    "japanese": true,
    "url": "https://www.livefans.jp/events/2002398",
    "added": "2026-11-05"
+  },
+  {
+   "date": "2027-01-15",
+   "artist": "Kamomekamome",
+   "title": "CONVERGE JAPAN TOUR 2027",
+   "venue": "LIQUIDROOM",
+   "city": "Tokyo",
+   "plays": 11,
+   "seenLive": 0,
+   "tier": "also",
+   "japanese": false,
+   "url": "https://www.liquidroom.net/schedule/converge_20270115",
+   "added": "2026-11-26"
   },
   {
    "date": "2027-01-16",
@@ -3858,6 +3910,19 @@
   },
   {
    "date": "2027-01-20",
+   "artist": "toddle",
+   "title": "グデイと、toddle",
+   "venue": "Shindaita FEVER",
+   "city": "Tokyo",
+   "plays": 17,
+   "seenLive": 0,
+   "tier": "top",
+   "japanese": true,
+   "url": "https://www.fever-popo.com/schedule/2027/01/2019.html",
+   "added": "2026-11-26"
+  },
+  {
+   "date": "2027-01-20",
    "artist": "Bruno Mars",
    "title": "The Romantic Tour in Japan",
    "venue": "Kyocera Dome Osaka",
@@ -4063,6 +4128,19 @@
    "japanese": true,
    "url": "https://eplus.jp/sf/word/0000020111",
    "added": "2026-11-05"
+  },
+  {
+   "date": "2027-01-23",
+   "artist": "the band apart",
+   "title": "ASPARAGUS×FRONTIER BACKYARD×the band apart ～ タカヒロとOZKと川崎の永遠のメリーメリー ～",
+   "venue": "Shindaita FEVER",
+   "city": "Tokyo",
+   "plays": 5,
+   "seenLive": 0,
+   "tier": "also",
+   "japanese": true,
+   "url": "https://www.fever-popo.com/schedule/2027/01/2319.html",
+   "added": "2026-11-26"
   },
   {
    "date": "2027-01-24",
@@ -4572,6 +4650,19 @@
    "japanese": true,
    "url": "https://blueencount.jp/news/2/?range=future_event_end_time&sort=asc",
    "added": "2026-11-05"
+  },
+  {
+   "date": "2027-02-04",
+   "artist": "KANA-BOON",
+   "title": "KANA-BOON / NELKE 「GRIOTTO」",
+   "venue": "LIQUIDROOM",
+   "city": "Tokyo",
+   "plays": 11,
+   "seenLive": 0,
+   "tier": "top",
+   "japanese": true,
+   "url": "https://www.liquidroom.net/schedule/griotto_20270204",
+   "added": "2026-11-26"
   },
   {
    "date": "2027-02-05",
@@ -5092,6 +5183,19 @@
    "added": "2026-11-05"
   },
   {
+   "date": "2027-02-16",
+   "artist": "Sombra",
+   "title": "如月-KISARAGI-",
+   "venue": "Shimokitazawa CLUB Que",
+   "city": "Tokyo",
+   "plays": 6,
+   "seenLive": 0,
+   "tier": "also",
+   "japanese": false,
+   "url": "https://clubque.net/schedule/17781/",
+   "added": "2026-11-26"
+  },
+  {
    "date": "2027-02-17",
    "artist": "Paledusk",
    "title": "Paledusk ”LIVE!!” TOUR",
@@ -5361,6 +5465,19 @@
    "japanese": true,
    "url": "https://orangerange.com/feature/25th",
    "added": "2026-11-05"
+  },
+  {
+   "date": "2027-02-21",
+   "artist": "Moon in June",
+   "title": "Moon in June pre. “saturdays = Youth” #9",
+   "venue": "Shimokitazawa SHELTER",
+   "city": "Tokyo",
+   "plays": 14,
+   "seenLive": 0,
+   "tier": "top",
+   "japanese": false,
+   "url": "https://www.loft-prj.co.jp/schedule/shelter/369393",
+   "added": "2026-11-26"
   },
   {
    "date": "2027-02-21",
