@@ -3,6 +3,56 @@
 // how the work works — composition, light, history, where to stand (Interpretation).
 // Hand-written via Claude (Fable) or drafted by Opus + Fable-polished (per-entry by:); keyed by canvas work id.
 window.CANVAS_ART_ABOUT = {
+ "wilhelm-leibl-portrait-of-the-sculptor-tobias-wei": {
+  "about": "Tobias Weiß, a herdsman's son raised in an ivory carver's workshop at Fürth, moved to Munich in 1865 though his appointment to teach there fell through, and met Wilhelm Leibl, who painted him the following year.",
+  "deep": "The face is where this portrait is careful, and the far shoulder is where it dares. Over the features no stroke breaks the likeness; the shoulder on our right is never outlined, and the eye finds it against ground rubbed paler behind. Emil Waldmann's 1914 monograph on Leibl set this portrait level with the one of his father from the same year. In both he heard Leibl speak hesitantly and quietly; after meeting the French realist Gustave Courbet in 1869, he would say the same without a care. The collar's lit wing and the hand holding the cigar already lean toward that later voice, their strokes left standing where the face's were worked together.",
+  "by": "Opus 5.5"
+ },
+ "juan-gris-still-life-with-violin-and-music-sheet": {
+  "about": "In 1914, his great year with pasted paper, Juan Gris worked almost entirely in it, gluing cut paper onto the canvas alongside paint; this still life of violin, glassware and music was made then.",
+  "deep": "The wood grain in three of the picture's corners appears to be pasted printed paper, set beside grain painted on the violin's front and the table. The bottle drawn on the top-right panel runs its right side down past the panel's painted rim and on through the planes below to the painted table top. Explaining the mirror glass he stuck into another picture, Gris later said, as his dealer Kahnweiler relates, that paint can re-create a surface but not a mirror, which changes and should even reflect the viewer. By that reasoning wood needed no pasting, yet the real material glued here is paper printed to pass for wood.",
+  "by": "Opus 5.5"
+ },
+ "joaquin-sorolla-the-little-granddaughter": {
+  "about": "This woman and child date from 1908. That May the collector Archer Huntington saw Sorolla's London show and promptly proposed one in New York; that summer was one of the painter's most productive on Valencia's beaches.",
+  "deep": "The two strongest oranges on this canvas lie where the woman holds the child close. One is the slab from her cheekbone to the ear beside the child's curls, butted against violet-grey and olive with nothing to ease the joins; the other is her forearm beneath the child's seat, one loaded band running to the hand that closes on its thigh. In Archer Huntington's diary, George Moore goes round Sorolla's London exhibition with him in 1908, calling the painter well equipped but very harsh while repeatedly conceding his startling qualities. On this beach canvas of that year, complaint and concession fall on the same two passages of paint.",
+  "by": "Opus 5.5"
+ },
+ "joachim-von-sandrart-the-elder-officers-of-the-militia-of-de": {
+  "about": "Sandrart painted Captain Cornelis Bicker's militia company waiting to welcome Maria de' Medici, the exiled French queen mother, into Amsterdam on 1 September 1638; the guest appears only as a stone bust on the table.",
+  "deep": "The heads at the upper left climb one above another with little body beneath them, and a gloved arm raised to a pole among them joins no visible head. A straight line just below the top edge very likely marks where an added strip begins. As the historian Dudok van Heel reported, the restoration of 1983–84 found a wide canvas cut at both sides, the cut-off guardsmen repainted on what was left, every head retouched by one unknown hand, a strip about 35 cm deep added across the top, and the stone bust turned a quarter toward the men. Its eyes lift to the group at our right; none returns the look.",
+  "by": "Opus 5.5"
+ },
+ "floris-van-dyck-still-life-with-cheese": {
+  "about": "Hendrick Hondius's engraved portraits of painters, published in 1610, gave van Dyck a Latin verse praising his lifelike, joyous tables without blood, which nourish eyes and mind. This table of cheeses came some years later.",
+  "deep": "Both wheels face us cut side out, and a cut shows how old a cheese is and how much there is. The lower, an old Gouda, is pale and seamed; the darker one above crumbles at its foot. For J.P. Filedt Kok, in his 2007 catalogue entry, these old, well-matured cheeses were probably meant to urge moderation. Fred Meijer, in a 2017 magazine article, wrote that cheese was everyday food, but that many would have taken a stack this size, Gouda and green Edam together, as Holland's dairy prosperity. The size shows in faces cut from rind to rind, and in the green Edam's broken shell, lifting the stack above everything on the table.",
+  "by": "Opus 5.5"
+ },
+ "frans-hals-portrait-of-a-couple-probably-isaac-massa-and-bea": {
+  "about": "Probably Isaac Massa and Beatrix van der Laen, married in 1622, sat for Hals; Massa, a merchant, lived about eight years in Moscow through Russia's civil wars and drew a Siberian coast map Mercator and Blaeu copied.",
+  "deep": "The thistle at the husband's side is Männertreu in German, men's fidelity. E. de Jongh and P.J. Vinken read the plants in that key in 1961; later readers took the whole garden as a marriage in stages. His hand on his chest is an oath. The vine on the trunk between them is the wife leaning on her husband, the ivy at lower right steadfast love, the clay pots tipped over beside it life's fragility. In the fountain garden, couples are still wooing, a stage these two have left. One man there, in tan, walks toward us with one hand flat on his chest, the husband's gesture made on foot.",
+  "by": "Opus 5.5"
+ },
+ "utagawa-kuniyoshi-night-raid-at-horikawa-palace": {
+  "about": "In 1185 Minamoto no Yoritomo, suspicious of his brother Yoshitsune, sent Tosabō Shōshun, the chronicle says, to attack Yoshitsune's Kyoto house at Horikawa by night. Kuniyoshi's three-sheet print shows the household fighting back around its veranda.",
+  "deep": "Perched on the veranda rail and gripping it with his toes, one defender drives a long shaft down at a fallen warrior, a feat sized for a story. A court diary of the time, the Gyokuyō, records a smaller fight: thirty-odd riders of a warrior band, the Kodama, driven off when Minamoto no Yukiie came to Yoshitsune's aid. The war tales, the Heike and the Gikeiki, gave the night its heroes, and the print takes its cast from them. The only woman in it, fighting barefoot at the front, butt of her pole-arm first, is Shizuka, Yoshitsune's companion, whom the tales, not the diary, put at the raid.",
+  "by": "Opus 5.5"
+ },
+ "yashima-gakutei-sheltering-from-a-sudden-rain-at-mount-tempo": {
+  "about": "Dredging at Osaka's Aji River mouth in 1831 built a new hill, Tempōzan; with pines, cherries and tea stalls, it was a holiday ground within three years, when Gakutei set this rain shelter there.",
+  "deep": "The hall has two kinds of opening, and most of its people crowd the smaller. Between the posts the timber frames bay, sails and far coast; each great pillar has an olive-lined squared hole, and no view shows through. Fujikake Shizuya's survey history of 1946 called this set of views of Tempōzan, Osaka's new hill, topical work made to cash in, yet skilful landscape well worth looking at. The sheet does not keep Fujikake's two halves apart. Gakutei put the holes people squeeze through into the great pillars standing across the view, in staves drawn with their grain and hooped in dark green.",
+  "by": "Opus 5.5"
+ },
+ "shotei-hokuju-view-of-tsukuda-island-in-the-eastern-capital": {
+  "about": "The island this harbour view is named for was built by Osaka fishermen from Tsukuda village on a tidal flat the shogunate granted in 1630; they named it after home and sent winter whitebait to Edo Castle.",
+  "deep": "No black outline edges the horizon, the grey column under the middle ship or the cloud that spills into a ribbon behind the mast; drawn line holds the boats, the thatch, the waves and the five people in the ferry. Inoue Kazuo's 1931 biographical dictionary reproduced this design to show how Hokuju, a pupil of Hokusai, excelled at water and sky, and above all clouds: without his teacher's unbounded genius, Inoue judged, but with a fresh, clean feeling. Fujikake Shizuya added that he took up Western methods early and used perspective well, and the spotted stones of the near bank shrink toward its tip.",
+  "by": "Opus 5.5"
+ },
+ "nikolai-astrup-night-in-spring": {
+  "about": "Two people work the soil under a full moon in this night garden. Astrup had painted it at least twice before 1909, when he made this canvas while living at the Jølster parsonage.",
+  "deep": "The reverence in this garden is aimed at the ground. A text on Astrup's colour woodcut of this motif, May Moon, reads the scene by an old belief: a garden planted and tended while the moon was full gave a better harvest. The text says his treatment makes such everyday labour holy. The canvas grants the belief its terms, a moon hanging whole and a bed nearest us that already has seedlings up to tend. Yet the pair go down as if in prayer, the man on knees and forearms, the woman bowed over her hands, and both are turned to the bed.",
+  "by": "Opus 5.5"
+ },
  "pierre-auguste-renoir-fog-on-guernsey": {
   "about": "Guernsey printed this view of its foggy bay, painted by Renoir in 1883, on a stamp for the centenary of his visit, and a conservator found one stuck to the canvas's back, put there nobody knows when.",
   "deep": "Fog takes the sky and the hilltops, but the line where the far cliffs meet the water stays drawn, as in a picture carried to a finish. Most of some fifteen pictures from Renoir's weeks on Guernsey were studies for use back in Paris; this is one of the few finished landscapes. Curators reuniting them in 2023 likened it to Monet's Fisherman's Cottage on the Cliffs at Varengeville; David Ummels, an organiser, suggested Renoir may have hoped it would sell. In a letter of 27 September 1883 he hoped to give Durand-Ruel, his dealer, an idea of these charming landscapes, and described bathers crowding the rocks, none of whom reached the finished canvas.",
