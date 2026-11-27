@@ -1,16 +1,9 @@
 # Upcoming shows in Japan — matched against the Rotation library
 
-Generated 2026-11-26 · 658 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
+Generated 2026-11-27 · 651 shows · date order. Tier: **top** = a strong match not yet seen live; **seen** = an artist already seen live; **also** = a lighter match. Same data as JSON: fuad.au/rotation/gigs-upcoming.json
 
 
 ## November 2026
-- 2026-11-26 (Thu) · **Queens of the Stone Age** — Zepp Nagoya, Nagoya · 1926 plays · not seen live · top · You'll See Queens of the Stone Age World Tour · https://www.creativeman.co.jp/event/queens-of-the-stone-age_2026/
-- 2026-11-26 (Thu) · **THE NOVEMBERS** — Music Club JANUS, Osaka · 37 plays · not seen live · top · https://eplus.jp/sf/word/0000019114
-- 2026-11-26 (Thu) · **UVERworld** — LaLa arena TOKYO-BAY, Funabashi · 20 plays · not seen live · top · UVERworld LIVE 2026 at LaLa arena TOKYO-BAY · https://www.uverworld.jp/feature/2026_live
-- 2026-11-26 (Thu) · **Knosis** — LIQUIDROOM, Tokyo · 11 plays · not seen live · top · Knosis KNOSIS JAPAN TOUR 2026 FALL · https://www.liquidroom.net/schedule/knosis_20261126
-- 2026-11-26 (Thu) · **Gecko&Tokage Parade** — Ondo, Kure · 10 plays · seen live 1× · seen · Gecko&Tokage Parade live · https://music.apple.com/us/artist/gecko-tokage-parade/1296238692
-- 2026-11-26 (Thu) · **Sheena Ringo** — 東京国際フォーラム ホールA, Tokyo · 7 plays · not seen live · also · 椎名林檎と彼奴等と試す煩悩菩提 · https://lp.p.pia.jp/article/news/489069/index.html
-- 2026-11-26 (Thu) · **TOTALFAT** — Shimokitazawa CLUB Que, Tokyo · 5 plays · not seen live · also · 『大恐竜ディスコ』漫才師ダイノジとロックバンドTOTALFATのツーマン · https://clubque.net/schedule/15877/
 - 2026-11-27 (Fri) · **COALTAR OF THE DEEPERS** — Shinjuku LOFT, Tokyo · 511 plays · seen live 1× · seen · COALTAR OF THE DEEPERS at Shinjuku LOFT's 50th anniversary · https://eplus.jp/sf/detail/4586120001-P0030001P021001?P1=0175
 - 2026-11-27 (Fri) · **PassCode** — PENNY LANE24, Sapporo · 73 plays · not seen live · top · PassCode UNLIMITED X · https://passcode-official.com/schedule/
 - 2026-11-27 (Fri) · **Fear, and Loathing in Las Vegas** — Zepp Haneda, Tokyo area · 33 plays · not seen live · top · Fear, and Loathing in Las Vegas at Zepp Haneda · https://eplus.jp/sf/live/creativeman/p2
